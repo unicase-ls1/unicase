@@ -24,7 +24,7 @@ import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl.FactoryIm
  */
 public class TransactionalEditingDomainProvider implements EditingDomainProvider {
 
-	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.EditingDomain";
+	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.eclipse.emf.emfstore.EditingDomain";
 
 	/**
 	 * {@inheritDoc}

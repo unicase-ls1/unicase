@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.connectionmanager.KeyStoreManager;
 import org.eclipse.emf.emfstore.client.model.exceptions.CertificateStoreException;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.window.Window;
@@ -165,7 +165,7 @@ public class NewRepositoryWizardPageOne extends WizardPage {
 	 * page
 	 */
 	private void saveDataToModel() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				NewRepositoryWizard wizard = (NewRepositoryWizard) getWizard();

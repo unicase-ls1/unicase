@@ -16,7 +16,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.connectionmanager.ConnectionManager;
 import org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.server.exceptions.FileTransferException;
 import org.eclipse.emf.emfstore.server.filetransfer.FilePartitionerUtil;
 import org.eclipse.emf.emfstore.server.filetransfer.FileTransferInformation;
@@ -71,7 +71,7 @@ public abstract class FileTransferJob extends Job {
 		if (projectSpace.getUsersession() == null) {
 			throw new FileTransferException("Session ID is unknown. Please login first!");
 		} else {
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 				@Override
 				protected void doRun() {
 					sessionId = projectSpace.getUsersession().getSessionId();

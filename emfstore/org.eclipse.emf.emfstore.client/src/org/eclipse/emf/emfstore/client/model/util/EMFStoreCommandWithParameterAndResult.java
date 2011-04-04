@@ -14,47 +14,55 @@ package org.eclipse.emf.emfstore.client.model.util;
  * 
  * @author koegel
  * @param <T> result type
+ * @param <U> parameter type
  */
-public abstract class UnicaseCommandWithResult<T> extends AbstractUnicaseCommand {
+public abstract class EMFStoreCommandWithParameterAndResult<T, U> extends AbstractEMFStoreCommand {
 
 	private T result;
+	private U parameter;
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.util.AbstractUnicaseCommand#commandBody()
+	 * @see org.eclipse.emf.emfstore.client.model.util.AbstractEMFStoreCommand#commandBody()
 	 */
 	@Override
 	protected void commandBody() {
-		result = doRun();
+		result = doRun(parameter);
 	}
 
 	/**
 	 * The actual action that is being executed.
 	 * 
+	 * @param parameter the parameter
 	 * @return the result
 	 */
-	protected abstract T doRun();
+	protected abstract T doRun(U parameter);
 
 	/**
 	 * Executes the command on the workspaces editing domain.
 	 * 
+	 * @param parameter the parameter
 	 * @return the result
 	 * @deprecated Use run(boolean) instead
 	 */
 	@Deprecated
-	public T run() {
-		return this.run(true);
+	public T run(U parameter) {
+		return run(parameter, true);
 	}
 
 	/**
 	 * Executes the command on the workspaces editing domain.
 	 * 
+	 * @param parameter the parameter
 	 * @param ignoreExceptions true if any thrown exception in the execution of the command should be ignored.
 	 * @return the result
 	 */
-	public T run(boolean ignoreExceptions) {
+	public T run(U parameter, boolean ignoreExceptions) {
+		this.parameter = parameter;
+
 		super.aRun(ignoreExceptions);
+
 		return this.result;
 	}
 

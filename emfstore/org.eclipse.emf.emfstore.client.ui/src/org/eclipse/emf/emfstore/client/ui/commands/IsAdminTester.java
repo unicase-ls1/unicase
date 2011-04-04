@@ -13,7 +13,7 @@ import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.Usersession;
 import org.eclipse.emf.emfstore.client.model.accesscontrol.AccessControlHelper;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommandWithResult;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommandWithResult;
 import org.eclipse.emf.emfstore.server.exceptions.AccessControlException;
 
 /**
@@ -33,7 +33,7 @@ public class IsAdminTester extends PropertyTester {
 	public boolean test(Object receiver, String property, Object[] args, final Object expectedValue) {
 		if (receiver instanceof ProjectSpace && expectedValue instanceof Boolean) {
 			final ProjectSpace projectSpace = (ProjectSpace) receiver;
-			UnicaseCommandWithResult<Boolean> command = new UnicaseCommandWithResult<Boolean>() {
+			EMFStoreCommandWithResult<Boolean> command = new EMFStoreCommandWithResult<Boolean>() {
 				@Override
 				protected Boolean doRun() {
 					Usersession usersession = projectSpace.getUsersession();

@@ -23,7 +23,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.Sema
  * 
  * @author koegel
  */
-public class SemanticCommand extends UnicaseCommand {
+public class SemanticCommand extends EMFStoreCommand {
 
 	private final Project project;
 	private final SemanticCompositeOperation semanticOperation;
@@ -46,7 +46,7 @@ public class SemanticCommand extends UnicaseCommand {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.util.UnicaseCommand#doRun()
+	 * @see org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand#doRun()
 	 */
 	@Override
 	protected void doRun() {

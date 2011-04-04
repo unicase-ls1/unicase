@@ -16,7 +16,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.server.exceptions.FileTransferException;
 import org.eclipse.emf.emfstore.server.model.FileIdentifier;
@@ -97,7 +97,7 @@ public class FileTransferManager {
 			}
 
 		}
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				projectSpace.getWaitingUploads().add(identifier);
@@ -127,7 +127,7 @@ public class FileTransferManager {
 						+ " was not found in cache. It was queued for upload but"
 						+ " is now removed from the queue. The file will NOT be on the server.", null);
 					// Remove from commit queue
-					new UnicaseCommand() {
+					new EMFStoreCommand() {
 						@Override
 						protected void doRun() {
 							projectSpace.getWaitingUploads().remove(fi);

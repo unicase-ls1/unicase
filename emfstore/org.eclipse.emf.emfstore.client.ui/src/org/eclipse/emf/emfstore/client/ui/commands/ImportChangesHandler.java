@@ -19,7 +19,7 @@ import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.ecp.common.util.PreferenceHelper;
 import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
@@ -56,7 +56,7 @@ public class ImportChangesHandler extends AbstractHandler {
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
 			.getActiveWorkbenchWindow().getShell());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				try {

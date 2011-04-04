@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommandWithResult;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommandWithResult;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 
 /**
@@ -39,7 +39,7 @@ public abstract class ServerRequestCommandHandler extends ServerRequestHandler {
 		// context.
 		setModelElement(UiUtil.getModelElement(event));
 		setProjectSpace(UiUtil.getEventElementByClass(event, ProjectSpace.class));
-		final UnicaseCommandWithResult<Object> command = new UnicaseCommandWithResult<Object>() {
+		final EMFStoreCommandWithResult<Object> command = new EMFStoreCommandWithResult<Object>() {
 
 			@Override
 			protected Object doRun() {

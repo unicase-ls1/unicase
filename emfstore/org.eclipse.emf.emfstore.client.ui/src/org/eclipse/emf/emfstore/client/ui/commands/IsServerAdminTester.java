@@ -13,7 +13,7 @@ import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.Usersession;
 import org.eclipse.emf.emfstore.client.model.accesscontrol.AccessControlHelper;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommandWithResult;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommandWithResult;
 import org.eclipse.emf.emfstore.server.exceptions.AccessControlException;
 import org.eclipse.emf.emfstore.server.model.ProjectInfo;
 import org.eclipse.jface.viewers.TreeNode;
@@ -44,7 +44,7 @@ public class IsServerAdminTester extends PropertyTester {
 			}
 
 			final ServerInfo finalServerInfo = serverInfo;
-			UnicaseCommandWithResult<Boolean> command = new UnicaseCommandWithResult<Boolean>() {
+			EMFStoreCommandWithResult<Boolean> command = new EMFStoreCommandWithResult<Boolean>() {
 				@Override
 				protected Boolean doRun() {
 					Usersession usersession = finalServerInfo.getLastUsersession();

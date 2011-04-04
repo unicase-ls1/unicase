@@ -23,7 +23,7 @@ import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.Workspace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.common.observer.ObserverBus;
 
 /**
@@ -156,7 +156,7 @@ public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.eclipse.emf
 				return;
 			}
 		}
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {

@@ -1462,7 +1462,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	// transfer.setFileName(fileAttachment.getFileName());
 	// transfer.setPreliminaryFileName(null);
 	// transfer.setUpload(false);
-	// new UnicaseCommand() {
+	// new EMFStoreCommand() {
 	// @Override
 	// protected void doRun() {
 	// fileAttachment.setDownloading(true);

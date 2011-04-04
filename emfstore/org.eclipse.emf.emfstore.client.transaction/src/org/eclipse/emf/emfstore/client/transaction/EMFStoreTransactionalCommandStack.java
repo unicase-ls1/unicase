@@ -16,7 +16,7 @@ import org.eclipse.emf.emfstore.client.model.Configuration;
 import org.eclipse.emf.emfstore.client.model.changeTracking.commands.CommandObserver;
 import org.eclipse.emf.emfstore.client.model.changeTracking.commands.EMFStoreCommandNotifier;
 import org.eclipse.emf.emfstore.client.model.changeTracking.commands.EMFStoreCommandStack;
-import org.eclipse.emf.emfstore.client.model.util.AbstractUnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.AbstractEMFStoreCommand;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -42,14 +42,14 @@ public class EMFStoreTransactionalCommandStack extends TransactionalCommandStack
 	@Override
 	public void execute(final Command command) {
 		//handle Unicase commands
-		if (command instanceof AbstractUnicaseCommand) {
-			runUnicaseCommand((AbstractUnicaseCommand) command);
+		if (command instanceof AbstractEMFStoreCommand) {
+			runUnicaseCommand((AbstractEMFStoreCommand) command);
 			return;
 		}
 		super.execute(command);
 	}
 
-	private void runUnicaseCommand(final AbstractUnicaseCommand unicaseCommand) {
+	private void runUnicaseCommand(final AbstractEMFStoreCommand unicaseCommand) {
 		//wrap UNICASECommands in RecordingCommands
 		RecordingCommand recordingCommand = new RecordingCommand((TransactionalEditingDomain) Configuration.getEditingDomain()) {
 			@Override

@@ -20,7 +20,7 @@ import org.eclipse.emf.ecp.common.util.PreferenceHelper;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.Workspace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.common.model.util.FileUtil;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IInputValidator;
@@ -76,7 +76,7 @@ public class ImportProjectHandler extends AbstractHandler {
 
 		// BEGIN SURPRESS CATCH EXCEPTION
 		try {
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 				@Override
 				protected void doRun() {
 					try {
@@ -95,7 +95,7 @@ public class ImportProjectHandler extends AbstractHandler {
 				}
 			}.run(false);
 		} catch (Throwable t) {
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 				@Override
 				protected void doRun() {
 					File projectFile = new File(absoluteFileName);

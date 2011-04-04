@@ -14,7 +14,7 @@ import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.Usersession;
 import org.eclipse.emf.emfstore.client.model.Workspace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.ui.Activator;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -56,11 +56,11 @@ import org.sharemedia.ui.sat.movement.SinusVariation;
 public class LoginDialog extends TitleAreaDialog {
 
 	/**
-	 * A UnicaseCommand for loggin in.
+	 * A EMFStoreCommand for loggin in.
 	 * 
 	 * @author shterev
 	 */
-	private final class LoginUnicaseCommand extends UnicaseCommand {
+	private final class LoginUnicaseCommand extends EMFStoreCommand {
 		@SuppressWarnings("deprecation")
 		@Override
 		protected void doRun() {
@@ -117,7 +117,7 @@ public class LoginDialog extends TitleAreaDialog {
 				Boolean confirm = MessageDialog.openConfirm(getShell(), "Confirm deletion",
 					"Are you sure you want to remove this session?");
 				if (confirm) {
-					new UnicaseCommand() {
+					new EMFStoreCommand() {
 						@Override
 						protected void doRun() {
 							currentWorkspace.getUsersessions().remove(session);
@@ -206,7 +206,7 @@ public class LoginDialog extends TitleAreaDialog {
 	private Usersession createNewSession() {
 		final Usersession session = ModelFactory.eINSTANCE.createUsersession();
 		session.setUsername(NEW_SESSION_NAME);
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				currentWorkspace.getUsersessions().add(session);
@@ -395,7 +395,7 @@ public class LoginDialog extends TitleAreaDialog {
 	 */
 	public int open(boolean autologin) {
 		if (usersession != null && usersession.getUsername() != null && usersession.getPassword() != null && autologin) {
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 				@Override
 				protected void doRun() {
 					try {

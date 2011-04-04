@@ -34,7 +34,7 @@ import org.eclipse.emf.emfstore.client.model.connectionmanager.KeyStoreManager;
 import org.eclipse.emf.emfstore.client.model.connectionmanager.xmlrpc.XmlRpcAdminConnectionManager;
 import org.eclipse.emf.emfstore.client.model.connectionmanager.xmlrpc.XmlRpcConnectionManager;
 import org.eclipse.emf.emfstore.client.model.util.EditingDomainProvider;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.CommonUtil;
 import org.eclipse.emf.emfstore.common.model.ModelVersion;
@@ -189,7 +189,7 @@ public final class WorkspaceManager {
 		workspace.setConnectionManager(this.connectionManager);
 		workspace.setWorkspaceResourceSet(resourceSet);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				workspace.init();
@@ -243,7 +243,7 @@ public final class WorkspaceManager {
 			}
 		}
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				resource.getContents().add(workspace);
