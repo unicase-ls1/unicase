@@ -12,7 +12,7 @@ package org.eclipse.emf.emfstore.client.ui.commands;
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.Usersession;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommandWithResult;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommandWithResult;
 import org.eclipse.jface.viewers.TreeNode;
 
 /**
@@ -35,7 +35,7 @@ public class ServerInfoIsLoggedInTester extends PropertyTester {
 				&& expectedValue instanceof Boolean) {
 			final ServerInfo serverInfo = (ServerInfo) ((TreeNode) receiver)
 					.getValue();
-			UnicaseCommandWithResult<Boolean> command = new UnicaseCommandWithResult<Boolean>() {
+			EMFStoreCommandWithResult<Boolean> command = new EMFStoreCommandWithResult<Boolean>() {
 				@Override
 				protected Boolean doRun() {
 					Usersession usersession = serverInfo.getLastUsersession();

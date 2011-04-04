@@ -12,7 +12,7 @@ package org.eclipse.emf.emfstore.client.ui.commands;
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.Usersession;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommandWithResult;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommandWithResult;
 
 /**
  * Property tester to test if a project is Shared with a server already.
@@ -32,7 +32,7 @@ public class ProjectIsSharedTester extends PropertyTester {
 		if (receiver instanceof ProjectSpace
 				&& expectedValue instanceof Boolean) {
 			final ProjectSpace projectSpace = (ProjectSpace) receiver;
-			UnicaseCommandWithResult<Boolean> command = new UnicaseCommandWithResult<Boolean>() {
+			EMFStoreCommandWithResult<Boolean> command = new EMFStoreCommandWithResult<Boolean>() {
 				@Override
 				protected Boolean doRun() {
 					Usersession usersession = projectSpace.getUsersession();

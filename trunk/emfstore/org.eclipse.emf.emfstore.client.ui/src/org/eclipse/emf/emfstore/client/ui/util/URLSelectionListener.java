@@ -16,7 +16,7 @@ import java.util.HashMap;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.exceptions.MEUrlResolutionException;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.server.model.url.ModelElementUrl;
@@ -82,7 +82,7 @@ public final class URLSelectionListener implements SelectionListener {
 		readEvent.setReadView("org.eclipse.emf.ecp.editor");
 		readEvent.setSourceView(source);
 		readEvent.setTimestamp(new Date());
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {

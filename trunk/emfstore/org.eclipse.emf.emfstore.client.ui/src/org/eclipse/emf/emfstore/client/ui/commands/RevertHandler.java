@@ -15,7 +15,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommandWithResult;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommandWithResult;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
@@ -33,7 +33,7 @@ public class RevertHandler extends AbstractHandler {
 	 * 
 	 * @author helming
 	 */
-	private final class RevertCommand extends UnicaseCommandWithResult<Boolean> {
+	private final class RevertCommand extends EMFStoreCommandWithResult<Boolean> {
 		private final ProgressMonitorDialog progressDialog;
 		private final ProjectSpace projectSpace;
 

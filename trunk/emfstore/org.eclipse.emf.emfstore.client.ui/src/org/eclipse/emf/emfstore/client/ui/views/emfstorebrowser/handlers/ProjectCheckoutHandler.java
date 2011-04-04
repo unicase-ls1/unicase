@@ -18,7 +18,7 @@ import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.observers.CheckoutObserver;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.views.ESBrowserView;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
@@ -48,7 +48,7 @@ public class ProjectCheckoutHandler extends AbstractHandler {
 	 * 
 	 * @author koegel
 	 */
-	private final class CheckoutCommand extends UnicaseCommand {
+	private final class CheckoutCommand extends EMFStoreCommand {
 
 		@Override
 		protected void doRun() {

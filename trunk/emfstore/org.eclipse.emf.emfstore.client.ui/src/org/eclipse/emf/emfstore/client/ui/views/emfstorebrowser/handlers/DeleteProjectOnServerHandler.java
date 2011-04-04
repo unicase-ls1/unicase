@@ -15,7 +15,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.Usersession;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.emf.emfstore.server.model.ProjectInfo;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -53,7 +53,7 @@ public class DeleteProjectOnServerHandler extends AbstractHandler {
 		if (dialog.getReturnCode() == MessageDialog.OK) {
 			ServerInfo serverInfo = (ServerInfo) node.getParent().getValue();
 			final Usersession session = serverInfo.getLastUsersession();
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 				@Override
 				protected void doRun() {
 					try {

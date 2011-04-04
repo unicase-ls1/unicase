@@ -20,7 +20,7 @@ import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -67,7 +67,7 @@ public class DeleteServerInfoHandler extends AbstractHandler {
 		} else {
 			if (MessageDialog.openQuestion(Display.getCurrent().getActiveShell(), "Confirm deletion",
 				"Are you sure you want to delete \'" + serverInfo.getName() + "\'")) {
-				new UnicaseCommand() {
+				new EMFStoreCommand() {
 					@Override
 					protected void doRun() {
 						WorkspaceManager.getInstance().getCurrentWorkspace().getServerInfos().remove(serverInfo);

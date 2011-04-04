@@ -162,8 +162,8 @@ public final class WorkspaceUtil {
 		final ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
 			.getActiveProjectSpace();
 		if (activeProjectSpace != null) {
-			// TODO: ChainSaw: check use of UnicaseCommand here
-			new UnicaseCommand() {
+			// TODO: ChainSaw: check use of EMFStoreCommand here
+			new EMFStoreCommand() {
 
 				@Override
 				protected void doRun() {

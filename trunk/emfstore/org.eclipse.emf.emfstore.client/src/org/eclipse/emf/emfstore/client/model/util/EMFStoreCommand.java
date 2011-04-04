@@ -14,7 +14,7 @@ package org.eclipse.emf.emfstore.client.model.util;
  * 
  * @author koegel
  */
-public abstract class UnicaseCommand extends AbstractUnicaseCommand {
+public abstract class EMFStoreCommand extends AbstractEMFStoreCommand {
 
 	/**
 	 * The actual action that is being executed.
@@ -24,7 +24,7 @@ public abstract class UnicaseCommand extends AbstractUnicaseCommand {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.util.AbstractUnicaseCommand#commandBody()
+	 * @see org.eclipse.emf.emfstore.client.model.util.AbstractEMFStoreCommand#commandBody()
 	 */
 	@Override
 	protected void commandBody() {

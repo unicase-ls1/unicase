@@ -22,7 +22,7 @@ import org.eclipse.emf.ecp.model.PostECPWorkspaceInitiator;
 import org.eclipse.emf.ecp.model.workSpaceModel.ECPWorkspace;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
@@ -59,7 +59,7 @@ public class ECPObserver implements PostECPWorkspaceInitiator, TraceObserver, Mo
 		final String readView = openView;
 		final EObject me = opened;
 		final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(me);
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				Project p = ModelUtil.getProject(me);
@@ -81,7 +81,7 @@ public class ECPObserver implements PostECPWorkspaceInitiator, TraceObserver, Mo
 			final EObject sourceModelElement = source;
 			final String featureName = feature;
 
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 				@Override
 				protected void doRun() {
 					ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
@@ -105,7 +105,7 @@ public class ECPObserver implements PostECPWorkspaceInitiator, TraceObserver, Mo
 			.getActiveProjectSpace();
 		if (activeProjectSpace != null) {
 
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 				@Override
 				protected void doRun() {
 					activeProjectSpace.addEvent(pluginFocusEvent);
@@ -124,7 +124,7 @@ public class ECPObserver implements PostECPWorkspaceInitiator, TraceObserver, Mo
 			.getActiveProjectSpace();
 		if (activeProjectSpace != null) {
 
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 				@Override
 				protected void doRun() {
 					activeProjectSpace.addEvent(presentationSwitchEvent);
@@ -145,7 +145,7 @@ public class ECPObserver implements PostECPWorkspaceInitiator, TraceObserver, Mo
 			.getActiveProjectSpace();
 		if (activeProjectSpace != null) {
 
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 				@Override
 				protected void doRun() {
 					activeProjectSpace.addEvent(dndEvent);

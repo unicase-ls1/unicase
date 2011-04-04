@@ -12,7 +12,7 @@ package org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.views;
 import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.emfstore.client.model.Usersession;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.server.exceptions.AccessControlException;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
@@ -82,7 +82,7 @@ public class CreateProjectDialog extends TitleAreaDialog {
 	 */
 	@Override
 	public void okPressed() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				try {

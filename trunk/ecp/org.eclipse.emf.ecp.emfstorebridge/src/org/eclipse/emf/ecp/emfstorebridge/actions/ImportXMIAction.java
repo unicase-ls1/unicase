@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.common.CommonUtil;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.action.IAction;
@@ -61,7 +61,7 @@ public class ImportXMIAction implements IActionDelegate {
 		if (selection instanceof TreeSelection) {
 			WorkspaceManager.init();
 			final Object firstElement = ((TreeSelection) selection).getFirstElement();
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 
 				@Override
 				protected void doRun() {
@@ -93,7 +93,7 @@ public class ImportXMIAction implements IActionDelegate {
 			final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
 				.getActiveWorkbenchWindow().getShell());
 
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 				@Override
 				protected void doRun() {
 					importFile(projectSpace, fileURI, resource, progressDialog);

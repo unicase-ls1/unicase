@@ -17,7 +17,7 @@ import org.eclipse.emf.emfstore.client.model.Configuration;
  * 
  * @author wesendon
  */
-public abstract class AbstractUnicaseCommand extends AbstractCommand {
+public abstract class AbstractEMFStoreCommand extends AbstractCommand {
 
 	private RuntimeException runtimeException;
 

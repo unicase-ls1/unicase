@@ -18,7 +18,7 @@ import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.Workspace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -43,7 +43,7 @@ public class AddXMIAction implements IActionDelegate {
 		if (selection instanceof TreeSelection) {
 			WorkspaceManager.init();
 			final Object firstElement = ((TreeSelection) selection).getFirstElement();
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 
 				@Override
 				protected void doRun() {
