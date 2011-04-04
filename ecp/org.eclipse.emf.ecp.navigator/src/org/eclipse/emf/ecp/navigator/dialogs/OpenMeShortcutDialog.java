@@ -12,8 +12,8 @@ package org.eclipse.emf.ecp.navigator.dialogs;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.dialogs.ModelElementSelectionDialog;
-import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
-import org.eclipse.emf.ecp.model.workSpaceModel.ECPProject;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
 
 /**
  * Dialog to select model elements.

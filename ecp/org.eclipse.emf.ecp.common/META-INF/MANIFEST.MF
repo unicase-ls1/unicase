@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.eclipse.emf.ecp.common;singleton:=true
 Bundle-Version: 0.7.3
 Bundle-Activator: org.eclipse.emf.ecp.common.Activator
 Bundle-Vendor: eclipse.org
-Require-Bundle: org.eclipse.emf.ecp.model;visibility:=reexport
+Require-Bundle: org.eclipse.emf.ecp.common.model;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.emf.ecp.common;

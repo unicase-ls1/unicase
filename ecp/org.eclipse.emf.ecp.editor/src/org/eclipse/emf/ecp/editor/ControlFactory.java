@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
 import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
-import org.eclipse.emf.ecp.model.ECPModelelementContext;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 /**

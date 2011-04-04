@@ -10,10 +10,10 @@
 package org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
 import org.eclipse.emf.ecp.common.observer.TraceObserver;
 import org.eclipse.emf.ecp.common.util.ActionHelper;
-import org.eclipse.emf.ecp.model.ECPModelelementContext;
-import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.events.IHyperlinkListener;

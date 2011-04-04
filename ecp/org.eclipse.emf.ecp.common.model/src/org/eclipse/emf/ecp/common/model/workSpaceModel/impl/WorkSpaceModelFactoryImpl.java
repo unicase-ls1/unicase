@@ -28,7 +28,7 @@ public class WorkSpaceModelFactoryImpl extends EFactoryImpl implements WorkSpace
 	 */
 	public static WorkSpaceModelFactory init() {
 		try {
-			WorkSpaceModelFactory theWorkSpaceModelFactory = (WorkSpaceModelFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/emf/ecp/workspaceModel"); 
+			WorkSpaceModelFactory theWorkSpaceModelFactory = (WorkSpaceModelFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/emf/ecp/common/model/workspaceModel"); 
 			if (theWorkSpaceModelFactory != null) {
 				return theWorkSpaceModelFactory;
 			}

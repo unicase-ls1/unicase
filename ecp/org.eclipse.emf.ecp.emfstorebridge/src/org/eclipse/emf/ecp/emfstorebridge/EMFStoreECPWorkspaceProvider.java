@@ -9,8 +9,9 @@
  ******************************************************************************/
 package org.eclipse.emf.ecp.emfstorebridge;
 
-import org.eclipse.emf.ecp.model.workSpaceModel.ECPWorkspace;
-import org.eclipse.emf.ecp.model.workSpaceModel.util.ECPWorkspaceProvider;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.util.ECPWorkspaceProvider;
+
 
 /**
  * Provides an ECPWorkspace based on an EMFStore Workspace.

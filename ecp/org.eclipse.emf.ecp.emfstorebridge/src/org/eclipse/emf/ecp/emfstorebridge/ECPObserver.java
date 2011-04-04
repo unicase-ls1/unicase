@@ -12,21 +12,19 @@ package org.eclipse.emf.ecp.emfstorebridge;
 import java.util.Calendar;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.PostECPWorkspaceInitiator;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
 import org.eclipse.emf.ecp.common.observer.FocusEventObserver;
 import org.eclipse.emf.ecp.common.observer.ModelElementOpenObserver;
 import org.eclipse.emf.ecp.common.observer.PresentationSwitchObserver;
-import org.eclipse.emf.ecp.common.observer.StatusViewDropEventObserver;
 import org.eclipse.emf.ecp.common.observer.TraceObserver;
-import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
-import org.eclipse.emf.ecp.model.PostECPWorkspaceInitiator;
-import org.eclipse.emf.ecp.model.workSpaceModel.ECPWorkspace;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.server.model.versioning.events.DNDEvent;
 import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.events.PluginFocusEvent;
 import org.eclipse.emf.emfstore.server.model.versioning.events.PresentationSwitchEvent;
@@ -37,7 +35,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.PresentationSwitc
  */
 // TODO: ChainSaw
 public class ECPObserver implements PostECPWorkspaceInitiator, TraceObserver, ModelElementOpenObserver,
-	FocusEventObserver, PresentationSwitchObserver, StatusViewDropEventObserver {
+	FocusEventObserver, PresentationSwitchObserver {
 
 	/**
 	 * {@inheritDoc}
@@ -128,27 +126,6 @@ public class ECPObserver implements PostECPWorkspaceInitiator, TraceObserver, Mo
 				@Override
 				protected void doRun() {
 					activeProjectSpace.addEvent(presentationSwitchEvent);
-				}
-			}.run();
-
-		}
-	}
-
-	public void onStatusViewDropEvent(EObject open, EObject dragged, String source, String tab) {
-		final DNDEvent dndEvent = EventsFactory.eINSTANCE.createDNDEvent();
-		dndEvent.setDropTargetElement(ModelUtil.getProject(open).getModelElementId(open));
-		dndEvent.setDragSourceElement(ModelUtil.getProject(dragged).getModelElementId(dragged));
-		dndEvent.setTimestamp(Calendar.getInstance().getTime());
-		dndEvent.setTargetView("org.unicase.StatusView." + tab);
-		dndEvent.setSourceView(source);
-		final ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
-			.getActiveProjectSpace();
-		if (activeProjectSpace != null) {
-
-			new EMFStoreCommand() {
-				@Override
-				protected void doRun() {
-					activeProjectSpace.addEvent(dndEvent);
 				}
 			}.run();
 

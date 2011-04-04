@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecp.common.commands.DeleteModelElementCommand;
 import org.eclipse.emf.ecp.common.commands.DeleteReferenceCommand;
-import org.eclipse.emf.ecp.model.ECPModelelementContext;
+import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 

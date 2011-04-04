@@ -14,9 +14,9 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecp.model.ECPMetaModelElementContext;
-import org.eclipse.emf.ecp.model.workSpaceModel.ECPProject;
-import org.eclipse.emf.ecp.model.workSpaceModel.impl.ECPProjectImpl;
+import org.eclipse.emf.ecp.common.model.ECPMetaModelElementContext;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.impl.ECPProjectImpl;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.emfstore.client.model.Configuration;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;

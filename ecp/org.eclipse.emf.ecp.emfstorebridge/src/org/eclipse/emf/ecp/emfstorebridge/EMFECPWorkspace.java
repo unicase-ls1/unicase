@@ -15,8 +15,9 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecp.model.workSpaceModel.ECPProject;
-import org.eclipse.emf.ecp.model.workSpaceModel.impl.ECPWorkspaceImpl;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.impl.ECPWorkspaceImpl;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.emfstore.client.model.Configuration;
 import org.eclipse.emf.emfstore.client.model.ModelPackage;
@@ -31,7 +32,7 @@ import org.eclipse.emf.emfstore.common.observer.ObserverBus;
  * 
  * @author helming
  */
-public class EMFECPWorkspace extends ECPWorkspaceImpl implements org.eclipse.emf.ecp.model.workSpaceModel.ECPWorkspace {
+public class EMFECPWorkspace extends ECPWorkspaceImpl implements ECPWorkspace {
 
 	private HashMap<ProjectSpace, EMFStoreECPProject> mapping = new HashMap<ProjectSpace, EMFStoreECPProject>();
 	private AdapterImpl workspaceListenerAdapter;
