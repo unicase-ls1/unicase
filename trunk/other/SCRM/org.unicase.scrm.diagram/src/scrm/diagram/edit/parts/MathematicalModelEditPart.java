@@ -30,15 +30,16 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 import scrm.diagram.edit.policies.MathematicalModelItemSemanticEditPolicy;
+import scrm.diagram.edit.policies.OpenDiagramEditPolicy;
 import scrm.diagram.edit.policies.ScrmTextSelectionEditPolicy;
 import scrm.diagram.opener.MEEditorOpenerPolicy;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
 /**
- * @generated
+ * @generated NOT
  */
-public class MathematicalModelEditPart extends ShapeNodeEditPart {
+public class MathematicalModelEditPart extends SCRMModelElementEditPart {
 
 	/**
 	 * @generated
@@ -63,14 +64,13 @@ public class MathematicalModelEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new MathematicalModelItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new MEEditorOpenerPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -283,10 +283,8 @@ public class MathematicalModelEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(5);
-		types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(ScrmElementTypes.MathematicalModel_4004);
-		types.add(ScrmElementTypes.MathematicalModel_4010);
 		types.add(ScrmElementTypes.MathematicalModelNumericalMethods_4011);
 		types.add(ScrmElementTypes.MathematicalModelDependencies_4012);
 		return types;
@@ -298,53 +296,8 @@ public class MathematicalModelEditPart extends ShapeNodeEditPart {
 	public List<IElementType> getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (targetEditPart instanceof FeatureEditPart) {
-			types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
-		}
-		if (targetEditPart instanceof HardwareEditPart) {
-			types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
-		}
-		if (targetEditPart instanceof ConstraintEditPart) {
-			types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
-		}
-		if (targetEditPart instanceof UserInterfaceEditPart) {
-			types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
-		}
-		if (targetEditPart instanceof SoftwareInterfaceEditPart) {
-			types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
-		}
-		if (targetEditPart instanceof ProcessEditPart) {
-			types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
-		}
-		if (targetEditPart instanceof PerformanceEditPart) {
-			types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
-		}
-		if (targetEditPart instanceof DataFlowEditPart) {
-			types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
-		}
-		if (targetEditPart instanceof DataDefinitionEditPart) {
-			types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
-		}
-		if (targetEditPart instanceof InputDataReadingEditPart) {
-			types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
-		}
-		if (targetEditPart instanceof DataHandlingEditPart) {
-			types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
-		}
-		if (targetEditPart instanceof ResultsOutputEditPart) {
-			types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
-		}
-		if (targetEditPart instanceof ErrorHandlingEditPart) {
-			types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
-		}
-		if (targetEditPart instanceof StatusMonitoringEditPart) {
-			types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
-		}
 		if (targetEditPart instanceof scrm.diagram.edit.parts.MathematicalModelEditPart) {
 			types.add(ScrmElementTypes.MathematicalModel_4004);
-		}
-		if (targetEditPart instanceof scrm.diagram.edit.parts.MathematicalModelEditPart) {
-			types.add(ScrmElementTypes.MathematicalModel_4010);
 		}
 		if (targetEditPart instanceof NumericalMethodEditPart) {
 			types.add(ScrmElementTypes.MathematicalModelNumericalMethods_4011);
@@ -360,24 +313,7 @@ public class MathematicalModelEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
-			types.add(ScrmElementTypes.Feature_2009);
-			types.add(ScrmElementTypes.Hardware_2010);
-			types.add(ScrmElementTypes.Constraint_2011);
-			types.add(ScrmElementTypes.UserInterface_2012);
-			types.add(ScrmElementTypes.SoftwareInterface_2013);
-			types.add(ScrmElementTypes.Process_2014);
-			types.add(ScrmElementTypes.Performance_2015);
-			types.add(ScrmElementTypes.DataFlow_2016);
-			types.add(ScrmElementTypes.DataDefinition_2017);
-			types.add(ScrmElementTypes.InputDataReading_2018);
-			types.add(ScrmElementTypes.DataHandling_2019);
-			types.add(ScrmElementTypes.ResultsOutput_2020);
-			types.add(ScrmElementTypes.ErrorHandling_2021);
-			types.add(ScrmElementTypes.StatusMonitoring_2022);
-		} else if (relationshipType == ScrmElementTypes.MathematicalModel_4004) {
-			types.add(ScrmElementTypes.MathematicalModel_2005);
-		} else if (relationshipType == ScrmElementTypes.MathematicalModel_4010) {
+		if (relationshipType == ScrmElementTypes.MathematicalModel_4004) {
 			types.add(ScrmElementTypes.MathematicalModel_2005);
 		} else if (relationshipType == ScrmElementTypes.MathematicalModelNumericalMethods_4011) {
 			types.add(ScrmElementTypes.NumericalMethod_2006);
@@ -391,10 +327,9 @@ public class MathematicalModelEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(ScrmElementTypes.ScientificProblemRepresentingModel_4006);
 		types.add(ScrmElementTypes.MathematicalModel_4004);
-		types.add(ScrmElementTypes.MathematicalModel_4010);
 		return types;
 	}
 
@@ -406,8 +341,6 @@ public class MathematicalModelEditPart extends ShapeNodeEditPart {
 		if (relationshipType == ScrmElementTypes.ScientificProblemRepresentingModel_4006) {
 			types.add(ScrmElementTypes.ScientificProblem_2007);
 		} else if (relationshipType == ScrmElementTypes.MathematicalModel_4004) {
-			types.add(ScrmElementTypes.MathematicalModel_2005);
-		} else if (relationshipType == ScrmElementTypes.MathematicalModel_4010) {
 			types.add(ScrmElementTypes.MathematicalModel_2005);
 		}
 		return types;

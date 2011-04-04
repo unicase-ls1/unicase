@@ -42,8 +42,8 @@ public class FeatureConstraintsEditPart extends ConnectionNodeEditPart
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel14EditPart) {
-			((WrappingLabel14EditPart) childEditPart)
+		if (childEditPart instanceof WrappingLabel12EditPart) {
+			((WrappingLabel12EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureFeature_ConstraintsLabel());
 			return true;
@@ -65,7 +65,7 @@ public class FeatureConstraintsEditPart extends ConnectionNodeEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel14EditPart) {
+		if (childEditPart instanceof WrappingLabel12EditPart) {
 			return true;
 		}
 		return false;

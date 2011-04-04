@@ -33,13 +33,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.DiagramEditingDomainFactory;
-import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.AbstractDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.DiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
@@ -55,10 +54,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
-import org.unicase.ui.common.commands.ECPCommand;
-
-import scrm.SCRMDiagram;
-import scrm.diagram.opener.SCRMDiagramOpener;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * @generated
@@ -152,11 +148,13 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected IDocument createEmptyDocument() {
 		DiagramDocument document = new DiagramDocument();
-		document.setEditingDomain(createEditingDomain());
+		EditingDomain domain = WorkspaceManager.getInstance()
+				.getCurrentWorkspace().getEditingDomain();
+		document.setEditingDomain((TransactionalEditingDomain) domain);
 		return document;
 	}
 
@@ -218,12 +216,8 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 			URI uri = ((URIEditorInput) element).getURI();
 			Resource resource = null;
 			try {
-				resource = domain.getResourceSet().getResource(
-						uri.trimFragment(), false);
-				if (resource == null) {
-					resource = domain.getResourceSet().createResource(
-							uri.trimFragment());
-				}
+				resource = domain.getResourceSet().createResource(uri,
+						"SCRMDiagram");
 				if (!resource.isLoaded()) {
 					try {
 						Map options = new HashMap(
@@ -236,25 +230,11 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 						throw e;
 					}
 				}
-				//				if (uri.fragment() != null) {
-				//					EObject rootElement = resource.getEObject(uri.fragment());
-				//					if (rootElement instanceof Diagram) {
-				//						document.setContent((Diagram) rootElement);
-				//						return;
-				//					}
-				//				} else {
 				for (Iterator it = resource.getContents().iterator(); it
 						.hasNext();) {
 					Object rootElement = it.next();
-					if (rootElement instanceof SCRMDiagram) {
-						SCRMDiagram scrmDiagram = (SCRMDiagram) SCRMDiagramOpener.element;
-						createDiagram(scrmDiagram);
-						Diagram diagram = scrmDiagram.getGmfdiagram();
-						document.setContent(diagram);
-						return;
-					}
 					if (rootElement instanceof Diagram) {
-						document.setContent((Diagram) rootElement);
+						document.setContent(rootElement);
 						return;
 					}
 				}
@@ -291,28 +271,6 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 											"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 							null));
 		}
-	}
-
-	private void createDiagram(final SCRMDiagram scrmDiagram) {
-
-		if (scrmDiagram.getGmfdiagram() != null) {
-			return;
-		}
-
-		final Diagram diagram = ViewService.createDiagram(scrmDiagram, "Scrm",
-				PreferencesHint.USE_DEFAULTS);
-
-		diagram.setElement(scrmDiagram);
-
-		new ECPCommand(scrmDiagram) {
-
-			@Override
-			protected void doRun() {
-
-				scrmDiagram.setGmfdiagram(diagram);
-			}
-
-		}.run(true);
 	}
 
 	/**

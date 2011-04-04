@@ -97,10 +97,6 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((NumericalMethodEditPart) sourceEditPart)
 					.getMARelTypesOnSource();
 		}
-		if (sourceEditPart instanceof AssumptionEditPart) {
-			return ((AssumptionEditPart) sourceEditPart)
-					.getMARelTypesOnSource();
-		}
 		if (sourceEditPart instanceof FeatureEditPart) {
 			return ((FeatureEditPart) sourceEditPart).getMARelTypesOnSource();
 		}
@@ -109,13 +105,6 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (sourceEditPart instanceof PerformanceEditPart) {
 			return ((PerformanceEditPart) sourceEditPart)
-					.getMARelTypesOnSource();
-		}
-		if (sourceEditPart instanceof DataFlowEditPart) {
-			return ((DataFlowEditPart) sourceEditPart).getMARelTypesOnSource();
-		}
-		if (sourceEditPart instanceof DataDefinitionEditPart) {
-			return ((DataDefinitionEditPart) sourceEditPart)
 					.getMARelTypesOnSource();
 		}
 		if (sourceEditPart instanceof InputDataReadingEditPart) {
@@ -235,10 +224,6 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((NumericalMethodEditPart) sourceEditPart)
 					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if (sourceEditPart instanceof AssumptionEditPart) {
-			return ((AssumptionEditPart) sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
 		if (sourceEditPart instanceof FeatureEditPart) {
 			return ((FeatureEditPart) sourceEditPart)
 					.getMARelTypesOnSourceAndTarget(targetEditPart);
@@ -249,14 +234,6 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (sourceEditPart instanceof PerformanceEditPart) {
 			return ((PerformanceEditPart) sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if (sourceEditPart instanceof DataFlowEditPart) {
-			return ((DataFlowEditPart) sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if (sourceEditPart instanceof DataDefinitionEditPart) {
-			return ((DataDefinitionEditPart) sourceEditPart)
 					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if (sourceEditPart instanceof InputDataReadingEditPart) {
@@ -379,10 +356,6 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((NumericalMethodEditPart) sourceEditPart)
 					.getMATypesForTarget(relationshipType);
 		}
-		if (sourceEditPart instanceof AssumptionEditPart) {
-			return ((AssumptionEditPart) sourceEditPart)
-					.getMATypesForTarget(relationshipType);
-		}
 		if (sourceEditPart instanceof FeatureEditPart) {
 			return ((FeatureEditPart) sourceEditPart)
 					.getMATypesForTarget(relationshipType);
@@ -393,14 +366,6 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (sourceEditPart instanceof PerformanceEditPart) {
 			return ((PerformanceEditPart) sourceEditPart)
-					.getMATypesForTarget(relationshipType);
-		}
-		if (sourceEditPart instanceof DataFlowEditPart) {
-			return ((DataFlowEditPart) sourceEditPart)
-					.getMATypesForTarget(relationshipType);
-		}
-		if (sourceEditPart instanceof DataDefinitionEditPart) {
-			return ((DataDefinitionEditPart) sourceEditPart)
 					.getMATypesForTarget(relationshipType);
 		}
 		if (sourceEditPart instanceof InputDataReadingEditPart) {

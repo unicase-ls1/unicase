@@ -57,7 +57,7 @@ public class WrappingLabel9EditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6013;
+	public static final int VISUAL_ID = 6015;
 
 	/**
 	 * @generated
@@ -312,7 +312,7 @@ public class WrappingLabel9EditPart extends LabelEditPart implements
 		if (parser == null) {
 			parser = ScrmParserProvider
 					.getParser(
-							ScrmElementTypes.NumericalMethodDependencies_4015,
+							ScrmElementTypes.NumericalMethodPerformance_4017,
 							getParserElement(),
 							ScrmVisualIDRegistry
 									.getType(scrm.diagram.edit.parts.WrappingLabel9EditPart.VISUAL_ID));

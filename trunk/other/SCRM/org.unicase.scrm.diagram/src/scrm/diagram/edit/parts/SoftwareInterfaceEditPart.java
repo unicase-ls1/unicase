@@ -6,9 +6,11 @@ import java.util.List;
 
 import org.eclipse.draw2d.Ellipse;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.ToolbarLayout;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
@@ -28,6 +30,7 @@ import org.eclipse.swt.graphics.Color;
 
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
+import scrm.diagram.edit.policies.OpenDiagramEditPolicy;
 import scrm.diagram.edit.policies.ScrmTextSelectionEditPolicy;
 import scrm.diagram.edit.policies.SoftwareInterfaceItemSemanticEditPolicy;
 import scrm.diagram.opener.MEEditorOpenerPolicy;
@@ -35,9 +38,9 @@ import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
 /**
- * @generated
+ * @generated NOT
  */
-public class SoftwareInterfaceEditPart extends ShapeNodeEditPart {
+public class SoftwareInterfaceEditPart extends SCRMModelElementEditPart {
 
 	/**
 	 * @generated
@@ -62,14 +65,13 @@ public class SoftwareInterfaceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new SoftwareInterfaceItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new MEEditorOpenerPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -179,7 +181,7 @@ public class SoftwareInterfaceEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(160, 77);
 		return result;
 	}
 
@@ -273,8 +275,7 @@ public class SoftwareInterfaceEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
-		types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(ScrmElementTypes.FeatureRequiredInterfaces_4023);
 		types.add(ScrmElementTypes.FeatureProvidedInterfaces_4024);
 		return types;
@@ -285,12 +286,7 @@ public class SoftwareInterfaceEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
-			types.add(ScrmElementTypes.ScientificProblem_2007);
-			types.add(ScrmElementTypes.MathematicalModel_2005);
-			types.add(ScrmElementTypes.NumericalMethod_2006);
-			types.add(ScrmElementTypes.Assumption_2008);
-		} else if (relationshipType == ScrmElementTypes.FeatureRequiredInterfaces_4023) {
+		if (relationshipType == ScrmElementTypes.FeatureRequiredInterfaces_4023) {
 			types.add(ScrmElementTypes.Feature_2009);
 		} else if (relationshipType == ScrmElementTypes.FeatureProvidedInterfaces_4024) {
 			types.add(ScrmElementTypes.Feature_2009);
@@ -301,7 +297,7 @@ public class SoftwareInterfaceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public class SoftwareInterfaceFigure extends Ellipse {
+	public class SoftwareInterfaceFigure extends RoundedRectangle {
 
 		/**
 		 * @generated
@@ -330,7 +326,11 @@ public class SoftwareInterfaceEditPart extends ShapeNodeEditPart {
 
 			this.setLayoutManager(layoutThis);
 
+			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(32),
+					getMapMode().DPtoLP(32)));
 			this.setBackgroundColor(THIS_BACK);
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(160),
+					getMapMode().DPtoLP(77)));
 			createContents();
 		}
 

@@ -42,8 +42,8 @@ public class FeatureRequiredFeaturesEditPart extends ConnectionNodeEditPart
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel18EditPart) {
-			((WrappingLabel18EditPart) childEditPart)
+		if (childEditPart instanceof WrappingLabel16EditPart) {
+			((WrappingLabel16EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureFeature_RequiredFeaturesLabel());
 			return true;
@@ -65,7 +65,7 @@ public class FeatureRequiredFeaturesEditPart extends ConnectionNodeEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel18EditPart) {
+		if (childEditPart instanceof WrappingLabel16EditPart) {
 			return true;
 		}
 		return false;

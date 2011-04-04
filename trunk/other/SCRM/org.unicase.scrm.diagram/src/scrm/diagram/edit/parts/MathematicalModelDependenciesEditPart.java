@@ -42,8 +42,8 @@ public class MathematicalModelDependenciesEditPart extends
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel8EditPart) {
-			((WrappingLabel8EditPart) childEditPart).setLabel(getPrimaryShape()
+		if (childEditPart instanceof WrappingLabel6EditPart) {
+			((WrappingLabel6EditPart) childEditPart).setLabel(getPrimaryShape()
 					.getFigureMathematicalModel_DependenciesLabel());
 			return true;
 		}
@@ -64,7 +64,7 @@ public class MathematicalModelDependenciesEditPart extends
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel8EditPart) {
+		if (childEditPart instanceof WrappingLabel6EditPart) {
 			return true;
 		}
 		return false;

@@ -233,137 +233,125 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case StatusMonitoringDescriptionEditPart.VISUAL_ID:
 				return new StatusMonitoringDescriptionEditPart(view);
 
-			case ScientificKnowledgeRequirementsEditPart.VISUAL_ID:
-				return new ScientificKnowledgeRequirementsEditPart(view);
+			case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
+				return new ScientificProblemRepresentingModelEditPart(view);
 
 			case WrappingLabelEditPart.VISUAL_ID:
 				return new WrappingLabelEditPart(view);
 
-			case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
-				return new ScientificProblemRepresentingModelEditPart(view);
+			case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
+				return new ScientificProblemSolvingMethodsEditPart(view);
 
 			case WrappingLabel2EditPart.VISUAL_ID:
 				return new WrappingLabel2EditPart(view);
 
-			case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
-				return new ScientificProblemSolvingMethodsEditPart(view);
+			case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID:
+				return new ScientificProblemInfluencedFeatureEditPart(view);
 
 			case WrappingLabel3EditPart.VISUAL_ID:
 				return new WrappingLabel3EditPart(view);
 
-			case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID:
-				return new ScientificProblemInfluencedFeatureEditPart(view);
+			case MathematicalModel2EditPart.VISUAL_ID:
+				return new MathematicalModel2EditPart(view);
 
 			case WrappingLabel4EditPart.VISUAL_ID:
 				return new WrappingLabel4EditPart(view);
 
-			case MathematicalModel2EditPart.VISUAL_ID:
-				return new MathematicalModel2EditPart(view);
+			case MathematicalModelNumericalMethodsEditPart.VISUAL_ID:
+				return new MathematicalModelNumericalMethodsEditPart(view);
 
 			case WrappingLabel5EditPart.VISUAL_ID:
 				return new WrappingLabel5EditPart(view);
 
-			case MathematicalModel3EditPart.VISUAL_ID:
-				return new MathematicalModel3EditPart(view);
+			case MathematicalModelDependenciesEditPart.VISUAL_ID:
+				return new MathematicalModelDependenciesEditPart(view);
 
 			case WrappingLabel6EditPart.VISUAL_ID:
 				return new WrappingLabel6EditPart(view);
 
-			case MathematicalModelNumericalMethodsEditPart.VISUAL_ID:
-				return new MathematicalModelNumericalMethodsEditPart(view);
+			case NumericalMethodDependenciesEditPart.VISUAL_ID:
+				return new NumericalMethodDependenciesEditPart(view);
 
 			case WrappingLabel7EditPart.VISUAL_ID:
 				return new WrappingLabel7EditPart(view);
 
-			case MathematicalModelDependenciesEditPart.VISUAL_ID:
-				return new MathematicalModelDependenciesEditPart(view);
+			case NumericalMethodRealizingRequirementEditPart.VISUAL_ID:
+				return new NumericalMethodRealizingRequirementEditPart(view);
 
 			case WrappingLabel8EditPart.VISUAL_ID:
 				return new WrappingLabel8EditPart(view);
 
-			case NumericalMethodDependenciesEditPart.VISUAL_ID:
-				return new NumericalMethodDependenciesEditPart(view);
+			case NumericalMethodPerformanceEditPart.VISUAL_ID:
+				return new NumericalMethodPerformanceEditPart(view);
 
 			case WrappingLabel9EditPart.VISUAL_ID:
 				return new WrappingLabel9EditPart(view);
 
-			case NumericalMethodRealizingRequirementEditPart.VISUAL_ID:
-				return new NumericalMethodRealizingRequirementEditPart(view);
+			case FeatureRequiredInterfacesEditPart.VISUAL_ID:
+				return new FeatureRequiredInterfacesEditPart(view);
 
 			case WrappingLabel10EditPart.VISUAL_ID:
 				return new WrappingLabel10EditPart(view);
 
-			case NumericalMethodPerformanceEditPart.VISUAL_ID:
-				return new NumericalMethodPerformanceEditPart(view);
+			case FeatureProvidedInterfacesEditPart.VISUAL_ID:
+				return new FeatureProvidedInterfacesEditPart(view);
 
 			case WrappingLabel11EditPart.VISUAL_ID:
 				return new WrappingLabel11EditPart(view);
 
-			case FeatureRequiredInterfacesEditPart.VISUAL_ID:
-				return new FeatureRequiredInterfacesEditPart(view);
+			case FeatureConstraintsEditPart.VISUAL_ID:
+				return new FeatureConstraintsEditPart(view);
 
 			case WrappingLabel12EditPart.VISUAL_ID:
 				return new WrappingLabel12EditPart(view);
 
-			case FeatureProvidedInterfacesEditPart.VISUAL_ID:
-				return new FeatureProvidedInterfacesEditPart(view);
+			case FeatureDependenciesEditPart.VISUAL_ID:
+				return new FeatureDependenciesEditPart(view);
 
 			case WrappingLabel13EditPart.VISUAL_ID:
 				return new WrappingLabel13EditPart(view);
 
-			case FeatureConstraintsEditPart.VISUAL_ID:
-				return new FeatureConstraintsEditPart(view);
+			case FeatureDetailedRequirementsEditPart.VISUAL_ID:
+				return new FeatureDetailedRequirementsEditPart(view);
 
 			case WrappingLabel14EditPart.VISUAL_ID:
 				return new WrappingLabel14EditPart(view);
 
-			case FeatureDependenciesEditPart.VISUAL_ID:
-				return new FeatureDependenciesEditPart(view);
+			case Feature2EditPart.VISUAL_ID:
+				return new Feature2EditPart(view);
 
 			case WrappingLabel15EditPart.VISUAL_ID:
 				return new WrappingLabel15EditPart(view);
 
-			case FeatureDetailedRequirementsEditPart.VISUAL_ID:
-				return new FeatureDetailedRequirementsEditPart(view);
+			case FeatureRequiredFeaturesEditPart.VISUAL_ID:
+				return new FeatureRequiredFeaturesEditPart(view);
 
 			case WrappingLabel16EditPart.VISUAL_ID:
 				return new WrappingLabel16EditPart(view);
 
-			case Feature2EditPart.VISUAL_ID:
-				return new Feature2EditPart(view);
+			case FeatureExcludedFeaturesEditPart.VISUAL_ID:
+				return new FeatureExcludedFeaturesEditPart(view);
 
 			case WrappingLabel17EditPart.VISUAL_ID:
 				return new WrappingLabel17EditPart(view);
 
-			case FeatureRequiredFeaturesEditPart.VISUAL_ID:
-				return new FeatureRequiredFeaturesEditPart(view);
+			case RequirementEditPart.VISUAL_ID:
+				return new RequirementEditPart(view);
 
 			case WrappingLabel18EditPart.VISUAL_ID:
 				return new WrappingLabel18EditPart(view);
 
-			case FeatureExcludedFeaturesEditPart.VISUAL_ID:
-				return new FeatureExcludedFeaturesEditPart(view);
+			case RequirementDefiningDataEditPart.VISUAL_ID:
+				return new RequirementDefiningDataEditPart(view);
 
 			case WrappingLabel19EditPart.VISUAL_ID:
 				return new WrappingLabel19EditPart(view);
 
-			case RequirementEditPart.VISUAL_ID:
-				return new RequirementEditPart(view);
-
-			case WrappingLabel20EditPart.VISUAL_ID:
-				return new WrappingLabel20EditPart(view);
-
-			case RequirementDefiningDataEditPart.VISUAL_ID:
-				return new RequirementDefiningDataEditPart(view);
-
-			case WrappingLabel21EditPart.VISUAL_ID:
-				return new WrappingLabel21EditPart(view);
-
 			case ProcessDataFlowEditPart.VISUAL_ID:
 				return new ProcessDataFlowEditPart(view);
 
-			case WrappingLabel22EditPart.VISUAL_ID:
-				return new WrappingLabel22EditPart(view);
+			case WrappingLabel20EditPart.VISUAL_ID:
+				return new WrappingLabel20EditPart(view);
 
 			}
 		}

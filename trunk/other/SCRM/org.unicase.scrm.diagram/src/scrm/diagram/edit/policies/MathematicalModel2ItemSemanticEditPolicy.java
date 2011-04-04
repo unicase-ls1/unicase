@@ -8,22 +8,16 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
 import scrm.diagram.edit.commands.MathematicalModel2CreateCommand;
-import scrm.diagram.edit.commands.MathematicalModel2ReorientCommand;
-import scrm.diagram.edit.commands.MathematicalModel3CreateCommand;
 import scrm.diagram.edit.commands.MathematicalModelDependenciesCreateCommand;
 import scrm.diagram.edit.commands.MathematicalModelDependenciesReorientCommand;
 import scrm.diagram.edit.commands.MathematicalModelNumericalMethodsCreateCommand;
 import scrm.diagram.edit.commands.MathematicalModelNumericalMethodsReorientCommand;
 import scrm.diagram.edit.commands.MathematicalModelReorientCommand;
-import scrm.diagram.edit.commands.ScientificKnowledgeRequirementsCreateCommand;
-import scrm.diagram.edit.commands.ScientificKnowledgeRequirementsReorientCommand;
 import scrm.diagram.edit.commands.ScientificProblemRepresentingModelCreateCommand;
 import scrm.diagram.edit.commands.ScientificProblemRepresentingModelReorientCommand;
 import scrm.diagram.edit.parts.MathematicalModel2EditPart;
-import scrm.diagram.edit.parts.MathematicalModel3EditPart;
 import scrm.diagram.edit.parts.MathematicalModelDependenciesEditPart;
 import scrm.diagram.edit.parts.MathematicalModelNumericalMethodsEditPart;
-import scrm.diagram.edit.parts.ScientificKnowledgeRequirementsEditPart;
 import scrm.diagram.edit.parts.ScientificProblemRepresentingModelEditPart;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -62,21 +56,12 @@ public class MathematicalModel2ItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.ScientificKnowledgeRequirements_4005 == req
-				.getElementType()) {
-			return getGEFWrapper(new ScientificKnowledgeRequirementsCreateCommand(
-					req, req.getSource(), req.getTarget()));
-		}
 		if (ScrmElementTypes.ScientificProblemRepresentingModel_4006 == req
 				.getElementType()) {
 			return null;
 		}
 		if (ScrmElementTypes.MathematicalModel_4004 == req.getElementType()) {
 			return getGEFWrapper(new MathematicalModel2CreateCommand(req,
-					req.getSource(), req.getTarget()));
-		}
-		if (ScrmElementTypes.MathematicalModel_4010 == req.getElementType()) {
-			return getGEFWrapper(new MathematicalModel3CreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.MathematicalModelNumericalMethods_4011 == req
@@ -97,10 +82,6 @@ public class MathematicalModel2ItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.ScientificKnowledgeRequirements_4005 == req
-				.getElementType()) {
-			return null;
-		}
 		if (ScrmElementTypes.ScientificProblemRepresentingModel_4006 == req
 				.getElementType()) {
 			return getGEFWrapper(new ScientificProblemRepresentingModelCreateCommand(
@@ -108,10 +89,6 @@ public class MathematicalModel2ItemSemanticEditPolicy extends
 		}
 		if (ScrmElementTypes.MathematicalModel_4004 == req.getElementType()) {
 			return getGEFWrapper(new MathematicalModel2CreateCommand(req,
-					req.getSource(), req.getTarget()));
-		}
-		if (ScrmElementTypes.MathematicalModel_4010 == req.getElementType()) {
-			return getGEFWrapper(new MathematicalModel3CreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.MathematicalModelNumericalMethods_4011 == req
@@ -136,8 +113,6 @@ public class MathematicalModel2ItemSemanticEditPolicy extends
 		switch (getVisualID(req)) {
 		case MathematicalModel2EditPart.VISUAL_ID:
 			return getGEFWrapper(new MathematicalModelReorientCommand(req));
-		case MathematicalModel3EditPart.VISUAL_ID:
-			return getGEFWrapper(new MathematicalModel2ReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
@@ -151,9 +126,6 @@ public class MathematicalModel2ItemSemanticEditPolicy extends
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case ScientificKnowledgeRequirementsEditPart.VISUAL_ID:
-			return getGEFWrapper(new ScientificKnowledgeRequirementsReorientCommand(
-					req));
 		case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
 			return getGEFWrapper(new ScientificProblemRepresentingModelReorientCommand(
 					req));

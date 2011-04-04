@@ -125,7 +125,6 @@ public class ScrmDiagramEditorPlugin extends AbstractUIPlugin {
 		factories
 				.add(new scrm.requirements.dataProcessing.provider.DataProcessingItemProviderAdapterFactory());
 		factories.add(new EcoreItemProviderAdapterFactory());
-		factories.add(new MetamodelItemProviderAdapterFactory());
 		factories.add(new NotationItemProviderAdapterFactory());
 		factories.add(new ResourceItemProviderAdapterFactory());
 		factories.add(new ReflectiveItemProviderAdapterFactory());

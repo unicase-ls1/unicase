@@ -393,11 +393,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Assumption_2008_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
 	public static String NavigatorGroupName_Assumption_2008_incominglinks;
 
 	/**
@@ -458,17 +453,7 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_DataFlow_2016_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
 	public static String NavigatorGroupName_DataDefinition_2017_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DataDefinition_2017_outgoinglinks;
 
 	/**
 	 * @generated
@@ -523,16 +508,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ScientificKnowledgeRequirements_4005_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ScientificKnowledgeRequirements_4005_source;
-
-	/**
-	 * @generated
-	 */
 	public static String NavigatorGroupName_ScientificProblemRepresentingModel_4006_target;
 
 	/**
@@ -579,26 +554,6 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ScientificProblemSolvingMethods_4041_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_MathematicalModel_4010_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_MathematicalModel_4010_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_MathematicalModel_4010_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_MathematicalModel_4010_outgoinglinks;
 
 	/**
 	 * @generated

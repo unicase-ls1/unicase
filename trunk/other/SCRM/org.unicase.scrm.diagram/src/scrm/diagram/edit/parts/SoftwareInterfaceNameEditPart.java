@@ -45,9 +45,9 @@ import scrm.diagram.providers.ScrmElementTypes;
 import scrm.diagram.providers.ScrmParserProvider;
 
 /**
- * @generated
+ * @generated NOT
  */
-public class SoftwareInterfaceNameEditPart extends CompartmentEditPart
+public class SoftwareInterfaceNameEditPart extends SCRMModelElementLabelEditPart
 		implements ITextAwareEditPart {
 
 	/**

@@ -45,9 +45,9 @@ import scrm.diagram.providers.ScrmElementTypes;
 import scrm.diagram.providers.ScrmParserProvider;
 
 /**
- * @generated
+ * @generated NOT
  */
-public class ConstraintDescriptionEditPart extends CompartmentEditPart
+public class ConstraintDescriptionEditPart extends SCRMModelElementLabelEditPart
 		implements ITextAwareEditPart {
 
 	/**

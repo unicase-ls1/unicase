@@ -42,8 +42,8 @@ public class MathematicalModel2EditPart extends ConnectionNodeEditPart
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel5EditPart) {
-			((WrappingLabel5EditPart) childEditPart).setLabel(getPrimaryShape()
+		if (childEditPart instanceof WrappingLabel4EditPart) {
+			((WrappingLabel4EditPart) childEditPart).setLabel(getPrimaryShape()
 					.getFigureMathematicalModel_RefinementsLabel());
 			return true;
 		}
@@ -64,7 +64,7 @@ public class MathematicalModel2EditPart extends ConnectionNodeEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel5EditPart) {
+		if (childEditPart instanceof WrappingLabel4EditPart) {
 			return true;
 		}
 		return false;

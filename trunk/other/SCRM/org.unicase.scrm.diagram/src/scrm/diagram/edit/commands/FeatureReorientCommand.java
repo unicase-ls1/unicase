@@ -84,7 +84,7 @@ public class FeatureReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Feature && newEnd instanceof Feature)) {
 			return false;
 		}
-		Feature source = getLink().getSupeFeature();
+		Feature source = getLink().getSuperFeature();
 		if (!(getLink().eContainer() instanceof Feature)) {
 			return false;
 		}
@@ -116,7 +116,7 @@ public class FeatureReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getLink().setSupeFeature(getNewSource());
+		getLink().setSuperFeature(getNewSource());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 

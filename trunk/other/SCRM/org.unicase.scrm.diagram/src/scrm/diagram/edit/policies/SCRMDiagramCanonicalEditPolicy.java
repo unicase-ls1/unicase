@@ -44,7 +44,6 @@ import scrm.diagram.edit.parts.FeatureEditPart;
 import scrm.diagram.edit.parts.HardwareEditPart;
 import scrm.diagram.edit.parts.InputDataReadingEditPart;
 import scrm.diagram.edit.parts.MathematicalModel2EditPart;
-import scrm.diagram.edit.parts.MathematicalModel3EditPart;
 import scrm.diagram.edit.parts.MathematicalModelEditPart;
 import scrm.diagram.edit.parts.NumericalMethodEditPart;
 import scrm.diagram.edit.parts.PerformanceEditPart;
@@ -504,17 +503,6 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ScrmDiagramUpdater
 						.getMathematicalModel_4004ContainedLinks(view));
-			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case MathematicalModel3EditPart.VISUAL_ID: {
-			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(ScrmDiagramUpdater
-						.getMathematicalModel_4010ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$

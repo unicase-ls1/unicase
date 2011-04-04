@@ -42,8 +42,8 @@ public class ScientificProblemInfluencedFeatureEditPart extends
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel4EditPart) {
-			((WrappingLabel4EditPart) childEditPart).setLabel(getPrimaryShape()
+		if (childEditPart instanceof WrappingLabel3EditPart) {
+			((WrappingLabel3EditPart) childEditPart).setLabel(getPrimaryShape()
 					.getFigureScientificProblem_InfluencedFeatureLabel());
 			return true;
 		}
@@ -64,7 +64,7 @@ public class ScientificProblemInfluencedFeatureEditPart extends
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel4EditPart) {
+		if (childEditPart instanceof WrappingLabel3EditPart) {
 			return true;
 		}
 		return false;
