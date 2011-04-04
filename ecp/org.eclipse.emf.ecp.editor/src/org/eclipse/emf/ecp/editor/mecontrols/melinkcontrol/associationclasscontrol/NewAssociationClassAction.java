@@ -103,7 +103,7 @@ public class NewAssociationClassAction extends Action {
 			// create the association
 			AssociationClassHelper.createAssociation(eReference, modelElement, relatedModelElement,
 				context.getMetaModelElementContext());
-			ActionHelper.openModelElement(relatedModelElement, this.getClass().getName(), context);
+			ActionHelper.openModelElement(relatedModelElement, this.getClass().getName());
 		}
 	}
 

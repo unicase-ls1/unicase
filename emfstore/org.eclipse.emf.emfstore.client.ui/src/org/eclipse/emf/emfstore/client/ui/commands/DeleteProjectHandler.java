@@ -17,8 +17,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.ecp.common.util.ActionHelper;
 import org.eclipse.emf.ecp.common.util.DialogHandler;
+import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.Workspace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
@@ -40,7 +40,7 @@ public class DeleteProjectHandler extends AbstractHandler {
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final ProjectSpace projectSpace = ActionHelper.getEventElementByClass(event, ProjectSpace.class);
+		final ProjectSpace projectSpace = UiUtil.getEventElementByClass(event, ProjectSpace.class);
 		if (projectSpace == null) {
 			return null;
 		}

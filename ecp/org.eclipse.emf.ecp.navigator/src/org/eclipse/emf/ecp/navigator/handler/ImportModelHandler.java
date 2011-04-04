@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.emf.ecp.common.util.ActionHelper;
 import org.eclipse.emf.ecp.common.util.PreferenceHelper;
+import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
 import org.eclipse.emf.ecp.model.workSpaceModel.ECPProject;
 import org.eclipse.emf.ecp.navigator.Activator;
@@ -59,7 +60,7 @@ public class ImportModelHandler extends AbstractHandler {
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final EObject selectedModelElement = ActionHelper.getSelectedModelelement();
+		final EObject selectedModelElement = UiUtil.getSelectedModelelement();
 		final ECPProject project = ECPWorkspaceManager.getECPProject(selectedModelElement);
 
 		if (project == null || selectedModelElement == null) {

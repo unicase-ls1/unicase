@@ -12,7 +12,7 @@ package org.eclipse.emf.emfstore.client.ui.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecp.common.util.ActionHelper;
+import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
 
@@ -27,7 +27,7 @@ public class UndoLastOperationHandler extends AbstractHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final ProjectSpace projectSpace = ActionHelper.getEventElementByClass(event, ProjectSpace.class);
+		final ProjectSpace projectSpace = UiUtil.getEventElementByClass(event, ProjectSpace.class);
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {

@@ -11,6 +11,7 @@ package org.eclipse.emf.ecp.navigator.commands;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.util.ActionHelper;
+import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -104,7 +105,7 @@ public class AltKeyDoubleClickAction extends Action implements IDoubleClickListe
 	private void openSelectedModelelement() {
 		// the selected Object or null if selection is not an IStructuredSelection
 
-		EObject me = ActionHelper.getSelectedModelelement();
+		EObject me = UiUtil.getSelectedModelelement();
 		if (me == null) {
 			return;
 		}

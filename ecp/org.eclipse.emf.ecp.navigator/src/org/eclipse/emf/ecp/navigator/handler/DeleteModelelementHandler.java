@@ -17,6 +17,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.commands.DeleteModelElementCommand;
 import org.eclipse.emf.ecp.common.util.ActionHelper;
+import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
 import org.eclipse.emf.ecp.model.NoWorkspaceException;
 import org.eclipse.emf.ecp.navigator.Activator;
@@ -32,7 +33,7 @@ public class DeleteModelelementHandler extends AbstractHandler {
 	 * . {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		Set<EObject> eObjects = ActionHelper.getSelectedEObjects(event);
+		Set<EObject> eObjects = UiUtil.getSelectedEObjects(event);
 		if (!eObjects.isEmpty()) {
 			deleteModelElement(eObjects);
 		}

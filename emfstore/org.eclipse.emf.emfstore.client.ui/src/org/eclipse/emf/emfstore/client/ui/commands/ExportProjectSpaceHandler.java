@@ -15,9 +15,9 @@ import java.io.IOException;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecp.common.util.ActionHelper;
 import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.ecp.common.util.PreferenceHelper;
+import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
@@ -52,7 +52,7 @@ public class ExportProjectSpaceHandler extends AbstractHandler {
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final ProjectSpace projectSpace = ActionHelper.getEventElementByClass(event, ProjectSpace.class);
+		final ProjectSpace projectSpace = UiUtil.getEventElementByClass(event, ProjectSpace.class);
 		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.SAVE);
 		dialog.setFilterNames(ExportProjectSpaceHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ExportProjectSpaceHandler.FILTER_EXTS);
@@ -63,8 +63,8 @@ public class ExportProjectSpaceHandler extends AbstractHandler {
 			// NPE raised when project is not shared yet, since getBaseVersion
 			// needs the project on the server already.
 			dialog.setFileName(initialFilename);
-			String initialPath = PreferenceHelper.getPreference(EXPORT_PROJECTSPACE_PATH, System
-				.getProperty("user.home"));
+			String initialPath = PreferenceHelper.getPreference(EXPORT_PROJECTSPACE_PATH,
+				System.getProperty("user.home"));
 			dialog.setFilterPath(initialPath);
 		} catch (NullPointerException e) {
 
@@ -91,8 +91,8 @@ public class ExportProjectSpaceHandler extends AbstractHandler {
 					// OW: why is the project exported as well? who's idea was
 					// that?
 					// projectSpace.exportProject(file.getAbsolutePath());
-					WorkspaceManager.getInstance().getCurrentWorkspace().exportProjectSpace(projectSpace,
-						file.getAbsolutePath());
+					WorkspaceManager.getInstance().getCurrentWorkspace()
+						.exportProjectSpace(projectSpace, file.getAbsolutePath());
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
 				} finally {

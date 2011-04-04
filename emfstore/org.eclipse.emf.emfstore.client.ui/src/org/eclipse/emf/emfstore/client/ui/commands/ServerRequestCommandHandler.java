@@ -12,8 +12,8 @@ package org.eclipse.emf.emfstore.client.ui.commands;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecp.common.util.ActionHelper;
 import org.eclipse.emf.ecp.common.util.DialogHandler;
+import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommandWithResult;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
@@ -37,8 +37,8 @@ public abstract class ServerRequestCommandHandler extends ServerRequestHandler {
 
 		// caching the modelelement, because the event loses parts of its
 		// context.
-		setModelElement(ActionHelper.getModelElement(event));
-		setProjectSpace(ActionHelper.getEventElementByClass(event, ProjectSpace.class));
+		setModelElement(UiUtil.getModelElement(event));
+		setProjectSpace(UiUtil.getEventElementByClass(event, ProjectSpace.class));
 		final UnicaseCommandWithResult<Object> command = new UnicaseCommandWithResult<Object>() {
 
 			@Override

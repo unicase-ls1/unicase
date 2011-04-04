@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.emf.ecp.common.util.ActionHelper;
+import org.eclipse.emf.ecp.common.util.UiUtil;
 
 /**
  * . This is the generic handler for commands to create containments of a model element
@@ -46,7 +47,7 @@ public class CreateContainmentHandler extends AbstractHandler {
 			final EClass newMEType = (EClass) o;
 			final EObject newMEInstance;
 
-			final EObject selectedME = ActionHelper.getSelectedModelelement();
+			final EObject selectedME = UiUtil.getSelectedModelelement();
 			EPackage ePackage = newMEType.getEPackage();
 			newMEInstance = ePackage.getEFactoryInstance().create(newMEType);
 			final EReference eReference = getStructuralFeature(newMEInstance, selectedME);

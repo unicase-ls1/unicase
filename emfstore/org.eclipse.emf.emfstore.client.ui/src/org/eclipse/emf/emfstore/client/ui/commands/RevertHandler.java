@@ -12,8 +12,8 @@ package org.eclipse.emf.emfstore.client.ui.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecp.common.util.ActionHelper;
 import org.eclipse.emf.ecp.common.util.DialogHandler;
+import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommandWithResult;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
@@ -76,7 +76,7 @@ public class RevertHandler extends AbstractHandler {
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 
 		final ProjectSpace projectSpace;
-		projectSpace = ActionHelper.getEventElementByClass(event, ProjectSpace.class);
+		projectSpace = UiUtil.getEventElementByClass(event, ProjectSpace.class);
 
 		if (projectSpace == null) {
 			DialogHandler.showErrorDialog("No Project selected.");

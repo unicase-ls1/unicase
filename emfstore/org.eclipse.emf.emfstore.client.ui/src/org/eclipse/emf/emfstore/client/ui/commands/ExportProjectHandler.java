@@ -15,9 +15,9 @@ import java.io.IOException;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecp.common.util.ActionHelper;
 import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.ecp.common.util.PreferenceHelper;
+import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -52,7 +52,7 @@ public class ExportProjectHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		final ProjectSpace projectSpace = ActionHelper.getEventElementByClass(event, ProjectSpace.class);
+		final ProjectSpace projectSpace = UiUtil.getEventElementByClass(event, ProjectSpace.class);
 
 		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.SAVE);
 		dialog.setFilterNames(ExportProjectHandler.FILTER_NAMES);
