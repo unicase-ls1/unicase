@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
-import org.eclipse.emf.ecp.common.util.ActionHelper;
+import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
 import org.eclipse.emf.ecp.model.NoWorkspaceException;
 import org.eclipse.emf.validation.model.EvaluationMode;
@@ -44,7 +44,7 @@ public class ValidateHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		// the object that is to be validated
-		EObject toValidate = ActionHelper.getModelElement(event);
+		EObject toValidate = UiUtil.getModelElement(event);
 		try {
 			if (ECPWorkspaceManager.getInstance().getWorkSpace().isRootObject(toValidate)) {
 				toValidate = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject().getRootContainer();

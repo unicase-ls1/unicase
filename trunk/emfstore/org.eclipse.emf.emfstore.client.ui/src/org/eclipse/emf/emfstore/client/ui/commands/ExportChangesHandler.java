@@ -15,8 +15,8 @@ import java.io.IOException;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecp.common.util.ActionHelper;
 import org.eclipse.emf.ecp.common.util.DialogHandler;
+import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -58,7 +58,7 @@ public class ExportChangesHandler extends AbstractHandler {
 
 		final File file = new File(fn);
 
-		final ProjectSpace projectSpace = ActionHelper.getEventElementByClass(event, ProjectSpace.class);
+		final ProjectSpace projectSpace = UiUtil.getEventElementByClass(event, ProjectSpace.class);
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
 			.getActiveWorkbenchWindow().getShell());
 

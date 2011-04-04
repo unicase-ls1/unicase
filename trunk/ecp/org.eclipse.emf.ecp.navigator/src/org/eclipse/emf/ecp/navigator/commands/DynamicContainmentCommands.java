@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecp.common.util.ActionHelper;
+import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.ecp.model.ECPWorkspaceManager;
 import org.eclipse.emf.ecp.model.NoWorkspaceException;
 import org.eclipse.emf.ecp.navigator.Activator;
@@ -55,7 +56,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 	@Override
 	protected IContributionItem[] getContributionItems() {
 		// 1. get selected EObject
-		selectedME = ActionHelper.getSelectedEObject();
+		selectedME = UiUtil.getSelectedEObject();
 		if (selectedME == null) {
 			return new IContributionItem[0];
 		}

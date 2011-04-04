@@ -13,8 +13,8 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.ecp.common.util.ActionHelper;
 import org.eclipse.emf.ecp.common.util.DialogHandler;
+import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.Usersession;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
@@ -69,7 +69,7 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 	 * inits the proper usersession.
 	 */
 	protected void initUsersession() {
-		ProjectSpace projectSpace = ActionHelper.getEventElementByClass(event, ProjectSpace.class);
+		ProjectSpace projectSpace = UiUtil.getEventElementByClass(event, ProjectSpace.class);
 		if (projectSpace != null && projectSpace.getUsersession() != null) {
 			usersession = projectSpace.getUsersession();
 		} else {
