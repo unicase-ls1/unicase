@@ -56,11 +56,11 @@ import org.sharemedia.ui.sat.movement.SinusVariation;
 public class LoginDialog extends TitleAreaDialog {
 
 	/**
-	 * A EMFStoreCommand for loggin in.
+	 * A EMFStoreCommand for logging in.
 	 * 
 	 * @author shterev
 	 */
-	private final class LoginUnicaseCommand extends EMFStoreCommand {
+	private final class LoginEMFStoreCommand extends EMFStoreCommand {
 		@SuppressWarnings("deprecation")
 		@Override
 		protected void doRun() {
@@ -358,10 +358,11 @@ public class LoginDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected void okPressed() {
-		new LoginUnicaseCommand().run();
+		new LoginEMFStoreCommand().run();
 		Display.getDefault().asyncExec(new Runnable() {
 			public void run() {
-				PlatformUI.getWorkbench().getDecoratorManager().update("org.unicase.ui.emfstorebrowser.LoginDecorator");
+				PlatformUI.getWorkbench().getDecoratorManager()
+					.update("org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.LoginDecorator");
 			}
 		});
 	}

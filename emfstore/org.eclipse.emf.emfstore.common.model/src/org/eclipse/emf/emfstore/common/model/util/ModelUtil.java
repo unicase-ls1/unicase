@@ -67,7 +67,7 @@ public final class ModelUtil {
 	/**
 	 * URI used to serialize EObject with the model util.
 	 */
-	public static final URI VIRTUAL_URI = URI.createURI("virtualUnicaseUri");
+	public static final URI VIRTUAL_URI = URI.createURI("virtualUri");
 
 	/**
 	 * Contains the canonical names of classes which will be ignored.

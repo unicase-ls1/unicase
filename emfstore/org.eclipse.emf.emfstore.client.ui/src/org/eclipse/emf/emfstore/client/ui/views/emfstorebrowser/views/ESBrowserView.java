@@ -177,7 +177,9 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 			}
 		});
 
-		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(), "org.unicase.repositoryview.viewer");
+		// TODO: context-ID correct: org.unicase.repositoryview.viewer?
+		PlatformUI.getWorkbench().getHelpSystem()
+			.setHelp(viewer.getControl(), "org.eclipse.emf.emfstore.client.ui.views.RepositoryView");
 
 		menuMgr = new MenuManager();
 		menuMgr.add(new Separator("additions"));

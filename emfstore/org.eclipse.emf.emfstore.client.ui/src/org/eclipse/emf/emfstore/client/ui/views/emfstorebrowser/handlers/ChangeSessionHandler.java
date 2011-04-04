@@ -61,7 +61,8 @@ public class ChangeSessionHandler extends AbstractHandler {
 		}.run();
 		Display.getDefault().asyncExec(new Runnable() {
 			public void run() {
-				PlatformUI.getWorkbench().getDecoratorManager().update("org.unicase.ui.emfstorebrowser.LoginDecorator");
+				PlatformUI.getWorkbench().getDecoratorManager()
+					.update("org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.LoginDecorator");
 			}
 		});
 		return null;

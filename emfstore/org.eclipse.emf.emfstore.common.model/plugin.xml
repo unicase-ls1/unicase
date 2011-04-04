@@ -9,7 +9,6 @@
 -->
 
 <plugin>
-   <extension-point id="org.eclipse.emf.emfstore.common.model.recommendationstrategy" name="Recommendation Strategy" schema="schema/org.eclipse.emf.emfstore.common.model.recommendationstrategy.exsd"/>
    <extension-point id="org.eclipse.emf.emfstore.common.model.modelversion" name="ModelVersion" schema="schema/org.eclipse.emf.emfstore.common.model.modelversion.exsd"/>
    <extension-point id="org.eclipse.emf.emfstore.common.model.ignoredatatype" name="Ignore Datatype" schema="schema/org.eclipse.emf.emfstore.common.model.ignoredatatype.exsd"/>
    <extension-point id="org.eclipse.emf.emfstore.common.model.singletonidresolver" name="Singleton ID Resolver" schema="schema/org.eclipse.emf.emfstore.common.model.singletonidresolver.exsd"/>

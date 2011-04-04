@@ -240,9 +240,7 @@ public class ChangePackageVisualizationHelper {
 				type = "ModelElement";
 			}
 		}
-		if (type.equals("UnicaseModelElement")) {
-			type = "ModelElement";
-		}
+
 		return unresolvedString.replace(AbstractOperationItemProvider.REFERENCE_TYPE_TAG_SEPARATOR, type);
 	}
 
