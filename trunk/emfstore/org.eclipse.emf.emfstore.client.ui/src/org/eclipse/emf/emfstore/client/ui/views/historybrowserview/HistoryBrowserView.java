@@ -651,7 +651,7 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	@Override
 	public void setFocus() {
 		viewer.getControl().setFocus();
-		WorkspaceUtil.logFocusEvent("org.unicase.ui.repository.views.HistoryView");
+		WorkspaceUtil.logFocusEvent("org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView");
 	}
 
 	/**

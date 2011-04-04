@@ -90,7 +90,7 @@
         point="org.eclipse.ui.commands">
      <category
            id="org.eclipse.emf.emfstore.client.ui.project"
-           name="Unicase">
+           name="ECP">
      </category>
      <command
            categoryId="org.eclipse.emf.emfstore.client.ui.project"
@@ -142,7 +142,7 @@
      </command>
      <command
            defaultHandler="org.eclipse.emf.emfstore.client.ui.commands.ShowHistoryHandler"
-           id="org.eclipse.emf.emfstore.client.ui.showHistory"
+           id="org.eclipse.emf.emfstore.client.ui.commands.showHistory"
            name="showHistory">
      </command>
      <command
@@ -191,7 +191,7 @@
      </command>
      <command
            defaultHandler="org.eclipse.emf.emfstore.client.ui.commands.ShowHistoryHandler"
-           id="org.unicase.ui.stem.ShowHistory"
+           id="org.eclipse.emf.emfstore.client.ui.commands.ShowHistory"
            name="Show History">
      </command>
       <command
@@ -422,7 +422,7 @@
               visible="true">
         </separator>
         <command
-              commandId="org.eclipse.emf.emfstore.client.ui.showHistory"
+              commandId="org.eclipse.emf.emfstore.client.ui.commands.showHistory"
               icon="icons/historyview.png"
               label="Show History"
               style="push">
@@ -757,7 +757,7 @@
      <menuContribution
             locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=org.unicase.ui.stem.ShowInStatusView">
          <command
-               commandId="org.unicase.ui.stem.ShowHistory"
+               commandId="org.eclipse.emf.emfstore.client.ui.commands.showHistory"
                icon="icons/historyview.png"
                label="Show History"
                style="push">
@@ -778,21 +778,21 @@
             </visibleWhen>
          </command>
          <separator
-               name="org.unicase.ui.stem.ShowHistoryViewSeperator"
+               name="org.eclipse.emf.emfstore.client.ui.commands.showHistoryViewSeperator"
                visible="true">
          </separator>
       </menuContribution>
      <menuContribution
            locationURI="toolbar:org.eclipse.emf.ecp.editor.MEEditorPage?after=additions">
         <command
-              commandId="org.unicase.ui.stem.ShowHistory"
+              commandId="org.eclipse.emf.emfstore.client.ui.commands.showHistory"
               icon="icons/historyview.png"
               label="Show History"
               style="push">
         </command>
      </menuContribution>
           <menuContribution
-           locationURI="popup:org.unicase.ui.repository.views.RepositoryView?after=additions">
+           locationURI="popup:org.eclipse.emf.emfstore.client.ui.views.RepositoryView?after=additions">
         <command
               commandId="org.eclipse.emf.emfstore.client.ui.repositorybrowser.Login"
               icon="icons/serverLogin.png"
@@ -1258,19 +1258,19 @@
            <extension
          point="org.eclipse.ui.views">
       <category
-            name="unicase"
-            id="org.unicase">
+            name="ECP"
+            id="org.eclipse.emf.ecp">
       </category>
       <view
             name="EmfStore Browser"
             icon="icons/serverDB.png"
-            category="org.unicase"
+            category="org.eclipse.emf.ecp"
             class="org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.views.ESBrowserView"
-            id="org.unicase.ui.repository.views.RepositoryView">
+            id="org.eclipse.emf.emfstore.client.ui.views.RepositoryView">
       </view>
       <view
             allowMultiple="false"
-            category="org.unicase"
+            category="org.eclipse.emf.ecp"
             class="org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView"
             icon="icons/historyview.png"
             id="org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView"
@@ -1289,7 +1289,7 @@
      <decorator
            adaptable="true"
            class="org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.provider.ESBrowserLabelDecorator"
-           id="org.unicase.ui.emfstorebrowser.LoginDecorator"
+           id="org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.LoginDecorator"
            label="Login Decorator"
            lightweight="true"
            state="true">

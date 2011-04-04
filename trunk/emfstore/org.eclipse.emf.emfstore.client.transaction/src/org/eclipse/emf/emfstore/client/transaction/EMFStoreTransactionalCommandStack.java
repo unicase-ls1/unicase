@@ -41,27 +41,27 @@ public class EMFStoreTransactionalCommandStack extends TransactionalCommandStack
 
 	@Override
 	public void execute(final Command command) {
-		//handle Unicase commands
+		// handle EMFStore commands
 		if (command instanceof AbstractEMFStoreCommand) {
-			runUnicaseCommand((AbstractEMFStoreCommand) command);
+			runEMFStoreCommand((AbstractEMFStoreCommand) command);
 			return;
 		}
 		super.execute(command);
 	}
 
-	private void runUnicaseCommand(final AbstractEMFStoreCommand unicaseCommand) {
-		//wrap UNICASECommands in RecordingCommands
+	private void runEMFStoreCommand(final AbstractEMFStoreCommand cmd) {
+		// wrap EMFStoreCommands in RecordingCommands
 		RecordingCommand recordingCommand = new RecordingCommand((TransactionalEditingDomain) Configuration.getEditingDomain()) {
 			@Override
 			protected void doExecute() {
-				unicaseCommand.execute();
+				cmd.execute();
 			}
 		};
 		super.execute(recordingCommand);
 		
-		//rethrow runtime exceptions if neccessary
-		if (!unicaseCommand.shouldIgnoreExceptions() && unicaseCommand.getRuntimeException()!=null) {
-			throw unicaseCommand.getRuntimeException();
+		// rethrow runtime exceptions if neccessary
+		if (!cmd.shouldIgnoreExceptions() && cmd.getRuntimeException()!=null) {
+			throw cmd.getRuntimeException();
 		}
 	}
 

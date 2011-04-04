@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: UNICASE metamodel edit plugin
+Bundle-Name: EMFStore Common Model Edit Plug-in
 Bundle-SymbolicName: org.eclipse.emf.emfstore.common.model.edit;singleton:=true
 Bundle-Version: 0.7.3
 Bundle-ClassPath: .

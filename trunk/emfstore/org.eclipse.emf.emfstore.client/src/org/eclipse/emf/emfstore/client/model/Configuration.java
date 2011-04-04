@@ -305,9 +305,9 @@ public final class Configuration {
 	}
 
 	/**
-	 * Retrieve the unicase editing domain. Will return null until the domain is initialized by the WorkspaceManager.
+	 * Retrieve the editing domain. Will return null until the domain is initialized by the WorkspaceManager.
 	 * 
-	 * @return the unicase workspace editing domain
+	 * @return the workspace editing domain
 	 */
 	public static EditingDomain getEditingDomain() {
 		return Configuration.editingDomain;

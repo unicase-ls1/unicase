@@ -48,7 +48,7 @@ public class EMFStorePerspective implements IPerspectiveFactory {
 		IFolderLayout bottom = factory.createFolder("bottomRight", // NON-NLS-1
 			IPageLayout.BOTTOM, 0.7f, factory.getEditorArea());
 
-		bottom.addView("org.unicase.ui.repository.views.RepositoryView");
+		bottom.addView("org.eclipse.emf.emfstore.client.ui.views.RepositoryView");
 	}
 
 }
