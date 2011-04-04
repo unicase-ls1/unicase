@@ -62,7 +62,7 @@ public class OpenMEShortcutHandler extends AbstractHandler implements IHandler {
 
 				if (result.length == 1 && result[0] instanceof EObject) {
 					EObject modelElement = (EObject) result[0];
-					ActionHelper.openModelElement(modelElement, "org.unicase.ui.OpenMEShortcut");
+					ActionHelper.openModelElement(modelElement, "org.eclipse.emf.ecp.navigator.handler.OpenMEShortcutHandler");
 				}
 			}
 		}

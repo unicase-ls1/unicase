@@ -6,7 +6,7 @@
 	<extension
          point="org.eclipse.ui.views">
 		<view
-        category="org.unicase"
+        category="org.eclipse.emf.ecp"
         class="org.eclipse.emf.ecp.validation.ValidationView"
         icon="icons/validation.png"
         id="org.eclipse.emf.ecp.validation.validationView"
@@ -52,7 +52,7 @@
         point="org.eclipse.ui.commands">
      <category
            id="org.eclipse.emf.emfstore.client.ui.project"
-           name="Unicase">
+           name="ECP">
      </category>
       <command
            defaultHandler="org.eclipse.emf.ecp.validation.ValidateHandler"

@@ -8,7 +8,7 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            category="org.unicase"
+            category="org.eclipse.emf.ecp"
             class="org.eclipse.emf.ecp.navigator.TreeView"
             icon="icons/unicase.png"
             id="org.eclipse.emf.ecp.navigator.viewer"
