@@ -73,11 +73,104 @@ public class MathematicalModelItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addContainingKnowledgeSpacePropertyDescriptor(object);
+			addRepresentedProblemPropertyDescriptor(object);
+			addRefinementsPropertyDescriptor(object);
+			addRefinedModelPropertyDescriptor(object);
 			addNumericalMethodsPropertyDescriptor(object);
+			addDependenciesPropertyDescriptor(object);
 			addTheoryPropertyDescriptor(object);
 			addMathematicalExpressionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Containing Knowledge Space feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContainingKnowledgeSpacePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ScientificKnowledge_containingKnowledgeSpace_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ScientificKnowledge_containingKnowledgeSpace_feature", "_UI_ScientificKnowledge_type"),
+				 KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__CONTAINING_KNOWLEDGE_SPACE,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Represented Problem feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRepresentedProblemPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MathematicalModel_representedProblem_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MathematicalModel_representedProblem_feature", "_UI_MathematicalModel_type"),
+				 KnowledgePackage.Literals.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Refinements feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRefinementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MathematicalModel_refinements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MathematicalModel_refinements_feature", "_UI_MathematicalModel_type"),
+				 KnowledgePackage.Literals.MATHEMATICAL_MODEL__REFINEMENTS,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Refined Model feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRefinedModelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MathematicalModel_refinedModel_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MathematicalModel_refinedModel_feature", "_UI_MathematicalModel_type"),
+				 KnowledgePackage.Literals.MATHEMATICAL_MODEL__REFINED_MODEL,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -94,6 +187,28 @@ public class MathematicalModelItemProvider
 				 getString("_UI_MathematicalModel_numericalMethods_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_MathematicalModel_numericalMethods_feature", "_UI_MathematicalModel_type"),
 				 KnowledgePackage.Literals.MATHEMATICAL_MODEL__NUMERICAL_METHODS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Dependencies feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDependenciesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MathematicalModel_dependencies_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MathematicalModel_dependencies_feature", "_UI_MathematicalModel_type"),
+				 KnowledgePackage.Literals.MATHEMATICAL_MODEL__DEPENDENCIES,
 				 true,
 				 false,
 				 true,
@@ -159,7 +274,6 @@ public class MathematicalModelItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(KnowledgePackage.Literals.MATHEMATICAL_MODEL__REFINEMENTS);
-			childrenFeatures.add(KnowledgePackage.Literals.MATHEMATICAL_MODEL__DEPENDENCIES);
 		}
 		return childrenFeatures;
 	}
@@ -192,14 +306,11 @@ public class MathematicalModelItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MathematicalModel)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_MathematicalModel_type") :
-			getString("_UI_MathematicalModel_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
@@ -219,7 +330,6 @@ public class MathematicalModelItemProvider
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case KnowledgePackage.MATHEMATICAL_MODEL__REFINEMENTS:
-			case KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -241,11 +351,6 @@ public class MathematicalModelItemProvider
 			(createChildParameter
 				(KnowledgePackage.Literals.MATHEMATICAL_MODEL__REFINEMENTS,
 				 KnowledgeFactory.eINSTANCE.createMathematicalModel()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.MATHEMATICAL_MODEL__DEPENDENCIES,
-				 KnowledgeFactory.eINSTANCE.createAssumption()));
 	}
 
 	/**

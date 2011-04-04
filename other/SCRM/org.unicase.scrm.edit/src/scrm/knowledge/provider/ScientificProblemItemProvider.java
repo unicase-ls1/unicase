@@ -72,9 +72,78 @@ public class ScientificProblemItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addContainingKnowledgeSpacePropertyDescriptor(object);
+			addRepresentingModelPropertyDescriptor(object);
+			addSolvingMethodsPropertyDescriptor(object);
 			addInfluencedFeaturePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Containing Knowledge Space feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContainingKnowledgeSpacePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ScientificKnowledge_containingKnowledgeSpace_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ScientificKnowledge_containingKnowledgeSpace_feature", "_UI_ScientificKnowledge_type"),
+				 KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__CONTAINING_KNOWLEDGE_SPACE,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Representing Model feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRepresentingModelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ScientificProblem_representingModel_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ScientificProblem_representingModel_feature", "_UI_ScientificProblem_type"),
+				 KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Solving Methods feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSolvingMethodsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ScientificProblem_solvingMethods_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ScientificProblem_solvingMethods_feature", "_UI_ScientificProblem_type"),
+				 KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__SOLVING_METHODS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -100,37 +169,6 @@ public class ScientificProblemItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL);
-			childrenFeatures.add(KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__SOLVING_METHODS);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
 	 * This returns ScientificProblem.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -145,14 +183,11 @@ public class ScientificProblemItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ScientificProblem)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ScientificProblem_type") :
-			getString("_UI_ScientificProblem_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
@@ -165,13 +200,6 @@ public class ScientificProblemItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(ScientificProblem.class)) {
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
@@ -185,16 +213,6 @@ public class ScientificProblemItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL,
-				 KnowledgeFactory.eINSTANCE.createMathematicalModel()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__SOLVING_METHODS,
-				 KnowledgeFactory.eINSTANCE.createNumericalMethod()));
 	}
 
 	/**

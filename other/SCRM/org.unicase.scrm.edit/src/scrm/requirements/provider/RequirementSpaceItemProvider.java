@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -69,8 +70,54 @@ public class RequirementSpaceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addContainingRequirementSpacePropertyDescriptor(object);
+			addContainedInformationofRequirementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Containing Requirement Space feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContainingRequirementSpacePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IRequirement_containingRequirementSpace_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IRequirement_containingRequirementSpace_feature", "_UI_IRequirement_type"),
+				 RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Contained Informationof Requirements feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContainedInformationofRequirementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_RequirementSpace_containedInformationofRequirements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RequirementSpace_containedInformationofRequirements_feature", "_UI_RequirementSpace_type"),
+				 RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -118,14 +165,11 @@ public class RequirementSpaceItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((RequirementSpace)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_RequirementSpace_type") :
-			getString("_UI_RequirementSpace_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**

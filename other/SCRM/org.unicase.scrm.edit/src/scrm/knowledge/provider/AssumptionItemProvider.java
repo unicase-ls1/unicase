@@ -15,25 +15,18 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import scrm.knowledge.Assumption;
 import scrm.knowledge.KnowledgePackage;
-
 import scrm.provider.SCRMModelElementItemProvider;
 import scrm.provider.ScrmEditPlugin;
-
-import scrm.requirements.RequirementsFactory;
-
-import scrm.requirements.dataProcessing.DataProcessingFactory;
 
 /**
  * This is the item provider adapter for a {@link scrm.knowledge.Assumption} object.
@@ -70,8 +63,77 @@ public class AssumptionItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addContainingKnowledgeSpacePropertyDescriptor(object);
+			addDependingModelPropertyDescriptor(object);
+			addDependingMethodPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Containing Knowledge Space feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContainingKnowledgeSpacePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ScientificKnowledge_containingKnowledgeSpace_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ScientificKnowledge_containingKnowledgeSpace_feature", "_UI_ScientificKnowledge_type"),
+				 KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__CONTAINING_KNOWLEDGE_SPACE,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Depending Model feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDependingModelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Assumption_dependingModel_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Assumption_dependingModel_feature", "_UI_Assumption_type"),
+				 KnowledgePackage.Literals.ASSUMPTION__DEPENDING_MODEL,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Depending Method feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDependingMethodPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Assumption_dependingMethod_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Assumption_dependingMethod_feature", "_UI_Assumption_type"),
+				 KnowledgePackage.Literals.ASSUMPTION__DEPENDING_METHOD,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -89,14 +151,11 @@ public class AssumptionItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Assumption)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Assumption_type") :
-			getString("_UI_Assumption_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
