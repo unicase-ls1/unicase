@@ -57,7 +57,7 @@ public class NewAssociationClassAction extends Action {
 			super(eObject);
 		}
 
-		@SuppressWarnings({ "unchecked", "deprecation" })
+		@SuppressWarnings({ "unchecked" })
 		@Override
 		protected void doRun() {
 			EClass relatedModelElementClass = null;
