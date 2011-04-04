@@ -144,10 +144,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 		if (labelWidget != null) {
 			labelWidget.dispose();
 		}
-		// new UnicaseCommand() {
-		//
-		// @Override
-		// protected void doRun() {
+	
 		EObject opposite = (EObject) getModelElement().eGet(eReference);
 		if (opposite != null) {
 			MELinkControlFactory meLinkControlFactory = new MELinkControlFactory();
@@ -162,9 +159,6 @@ public class MESingleLinkControl extends AbstractMEControl {
 		}
 		linkArea.layout(true);
 		composite.layout(true);
-
-		// }
-		// }.run();
 	}
 
 	/**
