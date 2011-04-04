@@ -66,7 +66,7 @@ public class ECPPreferencesPage extends PreferencePage implements IWorkbenchPref
 
 		Label label = new Label(content, SWT.WRAP);
 		label.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
-		label.setText("Unicase Preferences");
+		label.setText("ECP Preferences");
 
 		return content;
 	}

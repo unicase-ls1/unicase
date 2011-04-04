@@ -22,7 +22,7 @@ import org.eclipse.swt.events.SelectionEvent;
  * 
  * @author hodaie
  */
-public class TableViewerColumnSorter extends UnicaseColumnViewerSorter {
+public class TableViewerColumnSorter extends ColumnViewerSorter {
 
 	private TableViewerColumn column;
 
@@ -64,7 +64,7 @@ public class TableViewerColumnSorter extends UnicaseColumnViewerSorter {
 	 * @param direction direction
 	 */
 	@Override
-	protected void setSorter(UnicaseColumnViewerSorter sorter, int direction) {
+	protected void setSorter(ColumnViewerSorter sorter, int direction) {
 
 		super.setSorter(sorter, direction);
 
@@ -79,7 +79,7 @@ public class TableViewerColumnSorter extends UnicaseColumnViewerSorter {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.ecp.common.UnicaseColumnViewerSorter#getViewerColumn()
+	 * @see org.eclipse.emf.ecp.common.ColumnViewerSorter#getViewerColumn()
 	 */
 	@Override
 	public ViewerColumn getViewerColumn() {

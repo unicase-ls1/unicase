@@ -20,7 +20,7 @@ import org.eclipse.jface.viewers.ViewerComparator;
  * 
  * @author zardosht
  */
-public abstract class UnicaseColumnViewerSorter extends ViewerComparator {
+public abstract class ColumnViewerSorter extends ViewerComparator {
 
 	/**
 	 * Direction constant used to show right direction arrow on column header.
@@ -41,7 +41,7 @@ public abstract class UnicaseColumnViewerSorter extends ViewerComparator {
 	 * @param viewer ColumnViewer
 	 * @param columnLabelProvider ColumnLabelProvider
 	 */
-	public UnicaseColumnViewerSorter(ColumnViewer viewer, ColumnLabelProvider columnLabelProvider) {
+	public ColumnViewerSorter(ColumnViewer viewer, ColumnLabelProvider columnLabelProvider) {
 		this.columnLabelProvider = columnLabelProvider;
 		this.viewer = viewer;
 	}
@@ -52,7 +52,7 @@ public abstract class UnicaseColumnViewerSorter extends ViewerComparator {
 	 * @param sorter sorter
 	 * @param direction direction
 	 */
-	protected void setSorter(UnicaseColumnViewerSorter sorter, int direction) {
+	protected void setSorter(ColumnViewerSorter sorter, int direction) {
 		if (!sortingEnabled) {
 			sortingEnabled = true;
 		}

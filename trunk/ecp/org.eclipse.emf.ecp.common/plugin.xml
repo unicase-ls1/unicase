@@ -63,7 +63,7 @@
      <menuContribution
            locationURI="toolbar:org.eclipse.ui.main.toolbar">
         <toolbar
-              id="org.eclipse.emf.ecp.common.UnicaseToolbar">
+              id="org.eclipse.emf.ecp.common.ECPToolbar">
           <command
                  commandId="org.eclipse.emf.ecp.common.handlers.open_me_ID"
                  icon="icons/magnifier.png"
@@ -137,7 +137,7 @@
     <page
           class="org.eclipse.emf.ecp.common.preferences.ECPPreferencesPage"
           id="org.eclipse.emf.ecp"
-          name="Unicase">
+          name="ECP">
     </page>
  </extension>
  <extension
