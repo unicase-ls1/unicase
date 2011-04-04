@@ -84,14 +84,11 @@ public class InputDataReadingItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((InputDataReading)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_InputDataReading_type") :
-			getString("_UI_InputDataReading_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**

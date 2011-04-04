@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -31,10 +32,6 @@ import scrm.knowledge.KnowledgeSpace;
 
 import scrm.provider.SCRMModelElementItemProvider;
 import scrm.provider.ScrmEditPlugin;
-
-import scrm.requirements.RequirementsFactory;
-
-import scrm.requirements.dataProcessing.DataProcessingFactory;
 
 /**
  * This is the item provider adapter for a {@link scrm.knowledge.KnowledgeSpace} object.
@@ -71,8 +68,54 @@ public class KnowledgeSpaceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addContainingKnowledgeSpacePropertyDescriptor(object);
+			addContainedScientificProblemPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Containing Knowledge Space feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContainingKnowledgeSpacePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ScientificKnowledge_containingKnowledgeSpace_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ScientificKnowledge_containingKnowledgeSpace_feature", "_UI_ScientificKnowledge_type"),
+				 KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__CONTAINING_KNOWLEDGE_SPACE,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Contained Scientific Problem feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContainedScientificProblemPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_KnowledgeSpace_containedScientificProblem_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_KnowledgeSpace_containedScientificProblem_feature", "_UI_KnowledgeSpace_type"),
+				 KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -120,14 +163,11 @@ public class KnowledgeSpaceItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((KnowledgeSpace)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_KnowledgeSpace_type") :
-			getString("_UI_KnowledgeSpace_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**

@@ -26,8 +26,6 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.unicase.metamodel.provider.IdentifiableElementItemProvider;
-
 import scrm.SCRMModelElement;
 import scrm.ScrmPackage;
 
@@ -109,7 +107,7 @@ public class SCRMModelElementItemProvider
 				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_description_feature", "_UI_SCRMModelElement_type"),
 				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__DESCRIPTION,
 				 true,
-				 false,
+				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
@@ -120,14 +118,12 @@ public class SCRMModelElementItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((SCRMModelElement)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_SCRMModelElement_type") :
-			getString("_UI_SCRMModelElement_type") + " " + label;
+		return label;
 	}
 
 	/**
@@ -172,5 +168,5 @@ public class SCRMModelElementItemProvider
 	public ResourceLocator getResourceLocator() {
 		return ScrmEditPlugin.INSTANCE;
 	}
-
+	
 }

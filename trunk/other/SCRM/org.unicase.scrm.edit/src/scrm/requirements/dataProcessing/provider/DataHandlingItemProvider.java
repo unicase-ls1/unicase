@@ -24,8 +24,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import scrm.provider.ScrmEditPlugin;
 
-import scrm.requirements.RequirementsPackage;
-
 import scrm.requirements.dataProcessing.DataHandling;
 
 import scrm.requirements.provider.RequirementItemProvider;
@@ -84,14 +82,11 @@ public class DataHandlingItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((DataHandling)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_DataHandling_type") :
-			getString("_UI_DataHandling_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
