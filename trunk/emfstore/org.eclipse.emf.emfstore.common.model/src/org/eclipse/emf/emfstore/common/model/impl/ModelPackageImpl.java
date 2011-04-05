@@ -368,22 +368,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		// Create resource
 		createResource(eNS_URI);
-
-		// Create annotations
-		// http://www.cs.tum.edu/cope
-		createCopeAnnotations();
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.cs.tum.edu/cope</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createCopeAnnotations() {
-		String source = "http://www.cs.tum.edu/cope";
-		addAnnotation(this, source, new String[] { "historyURI",
-			"../../../resource/org.unicase.model/model/model.history" });
 	}
 
 } //ModelPackageImpl
