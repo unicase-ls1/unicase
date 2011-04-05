@@ -44,12 +44,12 @@ public class ExportModelHandler extends AbstractHandler {
 	/**
 	 * These filter names are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_NAMES = { "Unicase Project Files (*.ucm)", "All Files (*.*)" };
+	public static final String[] FILTER_NAMES = { "EMFStore Project Files (*.ecm)", "All Files (*.*)" };
 
 	/**
 	 * These filter extensions are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_EXTS = { "*.ucm", "*.*" };
+	public static final String[] FILTER_EXTS = { "*.ecm", "*.*" };
 
 	private static final String EXPORT_MODEL_PATH = "org.eclipse.emf.emfstore.client.ui.exportModelPath";
 
