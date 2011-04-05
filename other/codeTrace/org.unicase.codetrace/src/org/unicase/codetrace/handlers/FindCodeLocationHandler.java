@@ -8,8 +8,8 @@ package org.unicase.codetrace.handlers;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.codetrace.CodetraceUtil;
-import org.unicase.metamodel.ModelElement;
 import org.unicase.model.trace.CodeLocation;
 import org.unicase.ui.common.util.ActionHelper;
 
@@ -28,7 +28,7 @@ public class FindCodeLocationHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		ModelElement me = ActionHelper.getModelElement(event);
+		EObject me = ActionHelper.getModelElement(event);
 		if (me instanceof CodeLocation) {
 			CodetraceUtil.findCodeLocation((CodeLocation)me);
 		}

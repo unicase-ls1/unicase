@@ -9,13 +9,12 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-import org.eclipse.gmf.runtime.notation.NotationEditPlugin;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.metamodel.provider.MetamodelEditPlugin;
 import org.unicase.model.provider.ModelEditPlugin;
 
 /**
- * This is the central singleton for the Tracemodel editor plugin.
+ * This is the central singleton for the Tracemodel edit plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -51,9 +50,8 @@ public final class TracemodelEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public TracemodelEditPlugin() {
-		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
-				EsmodelEditPlugin.INSTANCE, MetamodelEditPlugin.INSTANCE,
-				ModelEditPlugin.INSTANCE, NotationEditPlugin.INSTANCE, });
+		super(new ResourceLocator[] { EsmodelEditPlugin.INSTANCE, MetamodelEditPlugin.INSTANCE,
+			ModelEditPlugin.INSTANCE, });
 	}
 
 	/**
@@ -63,7 +61,8 @@ public final class TracemodelEditPlugin extends EMFPlugin {
 	 * @return the singleton instance.
 	 * @generated
 	 */
-	
+
+	@Override
 	public ResourceLocator getPluginResourceLocator() {
 		return plugin;
 	}
@@ -85,7 +84,7 @@ public final class TracemodelEditPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static class Implementation extends EclipseUIPlugin {
+	public static class Implementation extends EclipsePlugin {
 		/**
 		 * Creates an instance.
 		 * <!-- begin-user-doc -->

@@ -29,8 +29,7 @@ public interface TraceFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	TraceFactory eINSTANCE = org.unicase.model.trace.impl.TraceFactoryImpl
-			.init();
+	TraceFactory eINSTANCE = org.unicase.model.trace.impl.TraceFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Code Location</em>'.
