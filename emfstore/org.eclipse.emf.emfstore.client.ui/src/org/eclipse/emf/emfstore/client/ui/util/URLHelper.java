@@ -27,7 +27,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 
 /**
- * This class offer helper methods for the unicase URLs.
+ * This class offer helper methods for the EMFStore URLs.
  * 
  * @author Shterev
  */
@@ -91,7 +91,7 @@ public final class URLHelper {
 		if (modelElement == null) {
 			return "";
 		}
-		StringBuilder ret = new StringBuilder("<a href=\"unicase://current:0/");
+		StringBuilder ret = new StringBuilder("<a href=\"emfstore://current:0/");
 		ret.append(projectSpace.getProjectName());
 		ret.append("%");
 		if (projectSpace.getProjectId() == null) {

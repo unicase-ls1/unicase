@@ -37,12 +37,12 @@ public class ExportProjectSpaceHandler extends AbstractHandler {
 	/**
 	 * These filter names are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_NAMES = { "Unicase change package (*.ucc)", "All Files (*.*)" };
+	public static final String[] FILTER_NAMES = { "EMFStore change package (*.ecc)", "All Files (*.*)" };
 
 	/**
 	 * These filter extensions are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_EXTS = { "*.ucc", "*.*" };
+	public static final String[] FILTER_EXTS = { "*.ecc", "*.*" };
 
 	private static final String EXPORT_PROJECTSPACE_PATH = "org.eclipse.emf.emfstore.client.ui.exportProjectSpacePath";
 

@@ -311,27 +311,27 @@ public final class ServerConfiguration {
 	 */
 
 	/**
-	 * File extension for main file: unicase server storage.
+	 * File extension for main file: emfstore server storage.
 	 */
 	public static final String FILE_EXTENSION_MAINSTORAGE = ".uss";
 
 	/**
-	 * File extension for main file: unicase project historyF.
+	 * File extension for main file: emfstore project historyF.
 	 */
 	public static final String FILE_EXTENSION_PROJECTHISTORY = ".uph";
 
 	/**
-	 * File extension for main file: unicase project version.
+	 * File extension for main file: emfstore project version.
 	 */
 	public static final String FILE_EXTENSION_VERSION = ".upv";
 
 	/**
-	 * File extension for main file: unicase project state.
+	 * File extension for main file: emfstore project state.
 	 */
 	public static final String FILE_EXTENSION_PROJECTSTATE = ".ups";
 
 	/**
-	 * File extension for main file: unicase change package.
+	 * File extension for main file: emfstore change package.
 	 */
 	public static final String FILE_EXTENSION_CHANGEPACKAGE = ".ucp";
 

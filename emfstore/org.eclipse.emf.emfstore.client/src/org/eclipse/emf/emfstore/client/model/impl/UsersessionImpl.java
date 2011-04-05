@@ -579,9 +579,6 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			throw new ConnectionException("Invalid server url: null");
 		}
 
-		// TODO: this has to be removed after some releases
-		migrateServerInfo(serverInfo);
-
 		// prepare serverInfo for send: copy and remove usersession
 		ServerInfo copy = EcoreUtil.copy(serverInfo);
 		copy.setLastUsersession(null);
@@ -635,18 +632,6 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			WorkspaceUtil.logException(e.getMessage(), e);
 		}
 		// END SUPRESS CATCH EXCEPTION
-	}
-
-	private void migrateServerInfo(ServerInfo serverInfo) {
-		if (serverInfo.getUrl() != null) {
-			if (serverInfo.getUrl().contains("unicase.in.tum.de")
-				|| serverInfo.getUrl().contains("unicase-internal.informatik.tu-muenchen.de")) {
-				if (serverInfo.getCertificateAlias() != null
-					&& serverInfo.getCertificateAlias().equals("unicase.org 2009#1")) {
-					serverInfo.setCertificateAlias("unicase.org 2010#1");
-				}
-			}
-		}
 	}
 
 	/**

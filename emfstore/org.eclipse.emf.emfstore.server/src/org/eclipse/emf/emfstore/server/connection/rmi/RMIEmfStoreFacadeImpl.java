@@ -44,7 +44,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.VersionSpec;
  * @author koegel
  * @author Wesendonk
  */
-public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements RMIEmfStoreFacade {
+public class RMIEmfStoreFacadeImpl extends AbstractEMFStoreRMIFacade implements RMIEmfStoreFacade {
 
 	private static final long serialVersionUID = -3245554287505036114L;
 

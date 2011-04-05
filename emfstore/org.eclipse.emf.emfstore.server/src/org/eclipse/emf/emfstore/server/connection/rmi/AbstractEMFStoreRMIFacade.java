@@ -24,7 +24,7 @@ import org.eclipse.emf.emfstore.server.exceptions.InvalidPropertyException;
  * 
  * @author wesendonk
  */
-public abstract class AbstractUnicaseRMIFacade extends UnicastRemoteObject {
+public abstract class AbstractEMFStoreRMIFacade extends UnicastRemoteObject {
 
 	private static final long serialVersionUID = 2586931338749730039L;
 
@@ -35,7 +35,7 @@ public abstract class AbstractUnicaseRMIFacade extends UnicastRemoteObject {
 	 * @throws RemoteException rmi related exception
 	 * @throws FatalEmfStoreException a fatal emfstore exception
 	 */
-	public AbstractUnicaseRMIFacade(int port) throws RemoteException, FatalEmfStoreException {
+	public AbstractEMFStoreRMIFacade(int port) throws RemoteException, FatalEmfStoreException {
 		super(port, getClientFactory(), getServerFactory());
 	}
 

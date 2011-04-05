@@ -19,7 +19,7 @@ import java.security.Permission;
  * @author koegel
  */
 // MK: make some restrictions
-public class UnicaseSecurityManager extends SecurityManager {
+public class EMFStoreSecurityManager extends SecurityManager {
 
 	/**
 	 * {@inheritDoc}

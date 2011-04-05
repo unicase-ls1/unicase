@@ -434,7 +434,7 @@ public class EmfStoreController implements IApplication, Runnable {
 	}
 
 	private void serverHeader() {
-		InputStream inputStream = getClass().getResourceAsStream("unicase.txt");
+		InputStream inputStream = getClass().getResourceAsStream("emfstore.txt");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 		String line;
 		try {
@@ -444,9 +444,9 @@ public class EmfStoreController implements IApplication, Runnable {
 		} catch (IOException e) {
 		}
 
-		System.out.println("*------------------*");
-		System.out.println("| unicase EmfStore |");
-		System.out.println("*------------------*");
+		System.out.println("*----------*");
+		System.out.println("| EmfStore |");
+		System.out.println("*----------*");
 	}
 
 	/**
