@@ -40,17 +40,17 @@ import org.eclipse.ui.PlatformUI;
  * Handles the import of ModelElements into a project.
  */
 public class ImportModelHandler extends AbstractHandler {
+	
+	/**
+	 * These filter extensions are used to filter which files are displayed.
+	 */
+	public static final String[] FILTER_EXTS = { "*.ecm", "*.*" };
 
 	/**
 	 * These filter names are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_NAMES = { "Unicase Project Files (*.ucm)", "All Files (*.*)" };
-
-	/**
-	 * These filter extensions are used to filter which files are displayed.
-	 */
-	public static final String[] FILTER_EXTS = { "*.ucm", "*.*" };
-
+	public static final String[] FILTER_NAMES = { "EMFStore Project Files (*.ecm)", "All Files (*.*)" };
+	
 	private static final String IMPORT_MODEL_PATH = "org.eclipse.emf.emfstore.client.ui.importModelPath";
 
 	/**
