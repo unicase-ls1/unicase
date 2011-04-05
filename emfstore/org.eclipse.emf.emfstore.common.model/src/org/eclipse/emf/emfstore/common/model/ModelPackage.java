@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see org.eclipse.emf.emfstore.common.model.ModelFactory
  * @model kind="package"
- *        annotation="http://www.cs.tum.edu/cope historyURI='../../../resource/org.unicase.model/model/model.history'"
  * @generated
  */
 public interface ModelPackage extends EPackage {
