@@ -1,12 +1,8 @@
-/*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- ******************************************************************************/
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.emfstore.jdt.ui.menu;
 
 import java.util.Collection;
@@ -14,14 +10,14 @@ import java.util.Collection;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
-import org.eclipse.emf.emfstore.client.ui.commands.UpdateProjectHandler;
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.EMFStoreUtil;
+import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.ui.commands.UpdateProjectHandler;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Handler to update manually a ProjectSpace for an managed file if no supported team provider is present.

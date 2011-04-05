@@ -17,8 +17,7 @@ public class ScrmDomainNavigatorItem extends PlatformObject {
 	 * @generated
 	 */
 	static {
-		final Class[] supportedTypes = new Class[] { EObject.class,
-				IPropertySource.class };
+		final Class[] supportedTypes = new Class[] { EObject.class, IPropertySource.class };
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
@@ -29,8 +28,7 @@ public class ScrmDomainNavigatorItem extends PlatformObject {
 						return eObject;
 					}
 					if (adapterType == IPropertySource.class) {
-						return domainNavigatorItem.getPropertySourceProvider()
-								.getPropertySource(eObject);
+						return domainNavigatorItem.getPropertySourceProvider().getPropertySource(eObject);
 					}
 				}
 
@@ -61,8 +59,7 @@ public class ScrmDomainNavigatorItem extends PlatformObject {
 	/**
 	 * @generated
 	 */
-	public ScrmDomainNavigatorItem(EObject eObject, Object parent,
-			IPropertySourceProvider propertySourceProvider) {
+	public ScrmDomainNavigatorItem(EObject eObject, Object parent, IPropertySourceProvider propertySourceProvider) {
 		myParent = parent;
 		myEObject = eObject;
 		myPropertySourceProvider = propertySourceProvider;
@@ -94,11 +91,8 @@ public class ScrmDomainNavigatorItem extends PlatformObject {
 	 */
 	public boolean equals(Object obj) {
 		if (obj instanceof scrm.diagram.navigator.ScrmDomainNavigatorItem) {
-			return EcoreUtil
-					.getURI(getEObject())
-					.equals(EcoreUtil
-							.getURI(((scrm.diagram.navigator.ScrmDomainNavigatorItem) obj)
-									.getEObject()));
+			return EcoreUtil.getURI(getEObject()).equals(
+				EcoreUtil.getURI(((scrm.diagram.navigator.ScrmDomainNavigatorItem) obj).getEObject()));
 		}
 		return super.equals(obj);
 	}

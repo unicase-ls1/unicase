@@ -18,14 +18,14 @@ import scrm.knowledge.ScientificProblem;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link scrm.requirements.Feature#getDetailedRequirements <em>Detailed Requirements</em>}</li>
- *   <li>{@link scrm.requirements.Feature#getSubFeatures <em>Sub Features</em>}</li>
- *   <li>{@link scrm.requirements.Feature#getSuperFeature <em>Super Feature</em>}</li>
  *   <li>{@link scrm.requirements.Feature#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link scrm.requirements.Feature#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link scrm.requirements.Feature#getRequiredInterfaces <em>Required Interfaces</em>}</li>
  *   <li>{@link scrm.requirements.Feature#getProvidedInterfaces <em>Provided Interfaces</em>}</li>
+ *   <li>{@link scrm.requirements.Feature#getDetailedRequirements <em>Detailed Requirements</em>}</li>
  *   <li>{@link scrm.requirements.Feature#getInfluencingProblem <em>Influencing Problem</em>}</li>
+ *   <li>{@link scrm.requirements.Feature#getSubFeatures <em>Sub Features</em>}</li>
+ *   <li>{@link scrm.requirements.Feature#getSupeFeature <em>Supe Feature</em>}</li>
  *   <li>{@link scrm.requirements.Feature#getRequiredFeatures <em>Required Features</em>}</li>
  *   <li>{@link scrm.requirements.Feature#getRequiringFeatures <em>Requiring Features</em>}</li>
  *   <li>{@link scrm.requirements.Feature#getExcludedFeatures <em>Excluded Features</em>}</li>
@@ -39,7 +39,7 @@ import scrm.knowledge.ScientificProblem;
  */
 public interface Feature extends IRequirement {
 	/**
-	 * Returns the value of the '<em><b>Constraints</b></em>' reference list.
+	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
 	 * The list contents are of type {@link scrm.requirements.Constraint}.
 	 * It is bidirectional and its opposite is '{@link scrm.requirements.Constraint#getRestrictedFeature <em>Restricted Feature</em>}'.
 	 * <!-- begin-user-doc -->
@@ -48,17 +48,16 @@ public interface Feature extends IRequirement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constraints</em>' reference list.
+	 * @return the value of the '<em>Constraints</em>' containment reference list.
 	 * @see scrm.requirements.RequirementsPackage#getFeature_Constraints()
 	 * @see scrm.requirements.Constraint#getRestrictedFeature
-	 * @model opposite="restrictedFeature"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='10'"
+	 * @model opposite="restrictedFeature" containment="true"
 	 * @generated
 	 */
 	EList<Constraint> getConstraints();
 
 	/**
-	 * Returns the value of the '<em><b>Dependencies</b></em>' reference list.
+	 * Returns the value of the '<em><b>Dependencies</b></em>' containment reference list.
 	 * The list contents are of type {@link scrm.requirements.Hardware}.
 	 * It is bidirectional and its opposite is '{@link scrm.requirements.Hardware#getDependingFeature <em>Depending Feature</em>}'.
 	 * <!-- begin-user-doc -->
@@ -67,11 +66,10 @@ public interface Feature extends IRequirement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dependencies</em>' reference list.
+	 * @return the value of the '<em>Dependencies</em>' containment reference list.
 	 * @see scrm.requirements.RequirementsPackage#getFeature_Dependencies()
 	 * @see scrm.requirements.Hardware#getDependingFeature
-	 * @model opposite="dependingFeature"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='15'"
+	 * @model opposite="dependingFeature" containment="true"
 	 * @generated
 	 */
 	EList<Hardware> getDependencies();
@@ -90,7 +88,6 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_RequiredInterfaces()
 	 * @see scrm.requirements.Interface#getRequiringFeatures
 	 * @model opposite="requiringFeatures"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='20'"
 	 * @generated
 	 */
 	EList<Interface> getRequiredInterfaces();
@@ -108,8 +105,7 @@ public interface Feature extends IRequirement {
 	 * @return the value of the '<em>Provided Interfaces</em>' containment reference list.
 	 * @see scrm.requirements.RequirementsPackage#getFeature_ProvidedInterfaces()
 	 * @see scrm.requirements.Interface#getProvidingFeature
-	 * @model opposite="providingFeature" containment="true" resolveProxies="true"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='25'"
+	 * @model opposite="providingFeature" containment="true"
 	 * @generated
 	 */
 	EList<Interface> getProvidedInterfaces();
@@ -127,8 +123,7 @@ public interface Feature extends IRequirement {
 	 * @return the value of the '<em>Detailed Requirements</em>' containment reference list.
 	 * @see scrm.requirements.RequirementsPackage#getFeature_DetailedRequirements()
 	 * @see scrm.requirements.Requirement#getSpecifiedFeature
-	 * @model opposite="specifiedFeature" containment="true" resolveProxies="true"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='5'"
+	 * @model opposite="specifiedFeature" containment="true"
 	 * @generated
 	 */
 	EList<Requirement> getDetailedRequirements();
@@ -147,7 +142,6 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_InfluencingProblem()
 	 * @see scrm.knowledge.ScientificProblem#getInfluencedFeature
 	 * @model opposite="influencedFeature"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='20'"
 	 * @generated
 	 */
 	ScientificProblem getInfluencingProblem();
@@ -165,7 +159,7 @@ public interface Feature extends IRequirement {
 	/**
 	 * Returns the value of the '<em><b>Sub Features</b></em>' containment reference list.
 	 * The list contents are of type {@link scrm.requirements.Feature}.
-	 * It is bidirectional and its opposite is '{@link scrm.requirements.Feature#getSuperFeature <em>Super Feature</em>}'.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.Feature#getSupeFeature <em>Supe Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Sub Features</em>' containment reference list isn't clear,
@@ -174,41 +168,39 @@ public interface Feature extends IRequirement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sub Features</em>' containment reference list.
 	 * @see scrm.requirements.RequirementsPackage#getFeature_SubFeatures()
-	 * @see scrm.requirements.Feature#getSuperFeature
-	 * @model opposite="superFeature" containment="true" resolveProxies="true"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='7'"
+	 * @see scrm.requirements.Feature#getSupeFeature
+	 * @model opposite="supeFeature" containment="true"
 	 * @generated
 	 */
 	EList<Feature> getSubFeatures();
 
 	/**
-	 * Returns the value of the '<em><b>Super Feature</b></em>' container reference.
+	 * Returns the value of the '<em><b>Supe Feature</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link scrm.requirements.Feature#getSubFeatures <em>Sub Features</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Super Feature</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Supe Feature</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Super Feature</em>' container reference.
-	 * @see #setSuperFeature(Feature)
-	 * @see scrm.requirements.RequirementsPackage#getFeature_SuperFeature()
+	 * @return the value of the '<em>Supe Feature</em>' container reference.
+	 * @see #setSupeFeature(Feature)
+	 * @see scrm.requirements.RequirementsPackage#getFeature_SupeFeature()
 	 * @see scrm.requirements.Feature#getSubFeatures
 	 * @model opposite="subFeatures" transient="false"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
 	 * @generated
 	 */
-	Feature getSuperFeature();
+	Feature getSupeFeature();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.Feature#getSuperFeature <em>Super Feature</em>}' container reference.
+	 * Sets the value of the '{@link scrm.requirements.Feature#getSupeFeature <em>Supe Feature</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Super Feature</em>' container reference.
-	 * @see #getSuperFeature()
+	 * @param value the new value of the '<em>Supe Feature</em>' container reference.
+	 * @see #getSupeFeature()
 	 * @generated
 	 */
-	void setSuperFeature(Feature value);
+	void setSupeFeature(Feature value);
 
 	/**
 	 * Returns the value of the '<em><b>Required Features</b></em>' reference list.
@@ -224,7 +216,6 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_RequiredFeatures()
 	 * @see scrm.requirements.Feature#getRequiringFeatures
 	 * @model opposite="requiringFeatures"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='30'"
 	 * @generated
 	 */
 	EList<Feature> getRequiredFeatures();
@@ -243,7 +234,6 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_RequiringFeatures()
 	 * @see scrm.requirements.Feature#getRequiredFeatures
 	 * @model opposite="requiredFeatures"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='35'"
 	 * @generated
 	 */
 	EList<Feature> getRequiringFeatures();
@@ -262,7 +252,6 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_ExcludedFeatures()
 	 * @see scrm.requirements.Feature#getExcludingFeatures
 	 * @model opposite="excludingFeatures"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='40'"
 	 * @generated
 	 */
 	EList<Feature> getExcludedFeatures();
@@ -281,7 +270,6 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_ExcludingFeatures()
 	 * @see scrm.requirements.Feature#getExcludedFeatures
 	 * @model opposite="excludedFeatures"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='45'"
 	 * @generated
 	 */
 	EList<Feature> getExcludingFeatures();

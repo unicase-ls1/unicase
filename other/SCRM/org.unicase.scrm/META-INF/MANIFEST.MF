@@ -21,7 +21,5 @@ Export-Package: scrm,
  scrm.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.gmf.runtime.notation;visibility:=reexport,
- org.unicase.metamodel;visibility:=reexport,
- org.unicase.ui.meeditor;visibility:=reexport
+ org.eclipse.gmf.runtime.notation;visibility:=reexport
 Bundle-ActivationPolicy: lazy

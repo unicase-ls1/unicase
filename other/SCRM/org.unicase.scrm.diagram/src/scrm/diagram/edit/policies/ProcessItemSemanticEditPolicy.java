@@ -32,19 +32,21 @@ import scrm.diagram.edit.commands.RequirementCreateCommand;
 import scrm.diagram.edit.commands.RequirementDefiningDataCreateCommand;
 import scrm.diagram.edit.commands.RequirementDefiningDataReorientCommand;
 import scrm.diagram.edit.commands.RequirementReorientCommand;
+import scrm.diagram.edit.commands.ScientificKnowledgeRequirementsCreateCommand;
+import scrm.diagram.edit.commands.ScientificKnowledgeRequirementsReorientCommand;
 import scrm.diagram.edit.parts.FeatureDetailedRequirementsEditPart;
 import scrm.diagram.edit.parts.NumericalMethodRealizingRequirementEditPart;
 import scrm.diagram.edit.parts.ProcessDataFlowEditPart;
 import scrm.diagram.edit.parts.RequirementDefiningDataEditPart;
 import scrm.diagram.edit.parts.RequirementEditPart;
+import scrm.diagram.edit.parts.ScientificKnowledgeRequirementsEditPart;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
 /**
  * @generated
  */
-public class ProcessItemSemanticEditPolicy extends
-		ScrmBaseItemSemanticEditPolicy {
+public class ProcessItemSemanticEditPolicy extends ScrmBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -58,31 +60,44 @@ public class ProcessItemSemanticEditPolicy extends
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View) getHost().getModel();
-		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
-				getEditingDomain(), null);
+		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
+		for (Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
+			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ScientificKnowledgeRequirementsEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
+					incomingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r) {
+					protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
+						throws ExecutionException {
+						EObject referencedObject = getReferencedObject();
+						Resource resource = referencedObject.eResource();
+						CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+						if (resource != null) {
+							resource.getContents().add(referencedObject);
+						}
+						return result;
+					}
+				});
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
 			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == NumericalMethodRealizingRequirementEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						incomingLink.getSource().getElement(), null,
-						incomingLink.getTarget().getElement(), false);
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
+					incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == FeatureDetailedRequirementsEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						incomingLink.getSource().getElement(), null,
-						incomingLink.getTarget().getElement(), false);
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
+					incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r) {
-					protected CommandResult doExecuteWithResult(
-							IProgressMonitor progressMonitor, IAdaptable info)
-							throws ExecutionException {
+					protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
+						throws ExecutionException {
 						EObject referencedObject = getReferencedObject();
 						Resource resource = referencedObject.eResource();
-						CommandResult result = super.doExecuteWithResult(
-								progressMonitor, info);
+						CommandResult result = super.doExecuteWithResult(progressMonitor, info);
 						if (resource != null) {
 							resource.getContents().add(referencedObject);
 						}
@@ -93,35 +108,53 @@ public class ProcessItemSemanticEditPolicy extends
 				continue;
 			}
 			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == RequirementEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						incomingLink.getElement(), false);
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 		}
-		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
+		for (Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						outgoingLink.getElement(), false);
+				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementDefiningDataEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						outgoingLink.getSource().getElement(), null,
-						outgoingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
+				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null,
+					outgoingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r) {
+					protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
+						throws ExecutionException {
+						EObject referencedObject = getReferencedObject();
+						Resource resource = referencedObject.eResource();
+						CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+						if (resource != null) {
+							resource.getContents().add(referencedObject);
+						}
+						return result;
+					}
+				});
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == ProcessDataFlowEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						outgoingLink.getSource().getElement(), null,
-						outgoingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
+				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null,
+					outgoingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r) {
+					protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
+						throws ExecutionException {
+						EObject referencedObject = getReferencedObject();
+						Resource resource = referencedObject.eResource();
+						CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+						if (resource != null) {
+							resource.getContents().add(referencedObject);
+						}
+						return result;
+					}
+				});
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
@@ -143,36 +176,31 @@ public class ProcessItemSemanticEditPolicy extends
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
-				: getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super
-				.getCreateRelationshipCommand(req);
+			: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.NumericalMethodRealizingRequirement_4016 == req
-				.getElementType()) {
+	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (ScrmElementTypes.ScientificKnowledgeRequirements_4005 == req.getElementType()) {
 			return null;
 		}
-		if (ScrmElementTypes.FeatureDetailedRequirements_4027 == req
-				.getElementType()) {
+		if (ScrmElementTypes.NumericalMethodRealizingRequirement_4016 == req.getElementType()) {
+			return null;
+		}
+		if (ScrmElementTypes.FeatureDetailedRequirements_4027 == req.getElementType()) {
 			return null;
 		}
 		if (ScrmElementTypes.Requirement_4036 == req.getElementType()) {
-			return getGEFWrapper(new RequirementCreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new RequirementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.RequirementDefiningData_4038 == req
-				.getElementType()) {
-			return getGEFWrapper(new RequirementDefiningDataCreateCommand(req,
-					req.getSource(), req.getTarget()));
+		if (ScrmElementTypes.RequirementDefiningData_4038 == req.getElementType()) {
+			return getGEFWrapper(new RequirementDefiningDataCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.ProcessDataFlow_4040 == req.getElementType()) {
-			return getGEFWrapper(new ProcessDataFlowCreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ProcessDataFlowCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -180,24 +208,21 @@ public class ProcessItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.NumericalMethodRealizingRequirement_4016 == req
-				.getElementType()) {
-			return getGEFWrapper(new NumericalMethodRealizingRequirementCreateCommand(
-					req, req.getSource(), req.getTarget()));
+	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (ScrmElementTypes.ScientificKnowledgeRequirements_4005 == req.getElementType()) {
+			return getGEFWrapper(new ScientificKnowledgeRequirementsCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.FeatureDetailedRequirements_4027 == req
-				.getElementType()) {
-			return getGEFWrapper(new FeatureDetailedRequirementsCreateCommand(
-					req, req.getSource(), req.getTarget()));
+		if (ScrmElementTypes.NumericalMethodRealizingRequirement_4016 == req.getElementType()) {
+			return getGEFWrapper(new NumericalMethodRealizingRequirementCreateCommand(req, req.getSource(), req
+				.getTarget()));
+		}
+		if (ScrmElementTypes.FeatureDetailedRequirements_4027 == req.getElementType()) {
+			return getGEFWrapper(new FeatureDetailedRequirementsCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.Requirement_4036 == req.getElementType()) {
-			return getGEFWrapper(new RequirementCreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new RequirementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.RequirementDefiningData_4038 == req
-				.getElementType()) {
+		if (ScrmElementTypes.RequirementDefiningData_4038 == req.getElementType()) {
 			return null;
 		}
 		if (ScrmElementTypes.ProcessDataFlow_4040 == req.getElementType()) {
@@ -212,8 +237,7 @@ public class ProcessItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(
-			ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case RequirementEditPart.VISUAL_ID:
 			return getGEFWrapper(new RequirementReorientCommand(req));
@@ -227,15 +251,14 @@ public class ProcessItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(
-			ReorientReferenceRelationshipRequest req) {
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
+		case ScientificKnowledgeRequirementsEditPart.VISUAL_ID:
+			return getGEFWrapper(new ScientificKnowledgeRequirementsReorientCommand(req));
 		case NumericalMethodRealizingRequirementEditPart.VISUAL_ID:
-			return getGEFWrapper(new NumericalMethodRealizingRequirementReorientCommand(
-					req));
+			return getGEFWrapper(new NumericalMethodRealizingRequirementReorientCommand(req));
 		case FeatureDetailedRequirementsEditPart.VISUAL_ID:
-			return getGEFWrapper(new FeatureDetailedRequirementsReorientCommand(
-					req));
+			return getGEFWrapper(new FeatureDetailedRequirementsReorientCommand(req));
 		case RequirementDefiningDataEditPart.VISUAL_ID:
 			return getGEFWrapper(new RequirementDefiningDataReorientCommand(req));
 		case ProcessDataFlowEditPart.VISUAL_ID:

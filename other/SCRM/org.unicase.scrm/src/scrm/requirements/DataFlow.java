@@ -23,9 +23,9 @@ package scrm.requirements;
  * @model
  * @generated
  */
-public interface DataFlow extends IRequirement {
+public interface DataFlow extends Requirement {
 	/**
-	 * Returns the value of the '<em><b>Specified Process</b></em>' reference.
+	 * Returns the value of the '<em><b>Specified Process</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link scrm.requirements.Process#getDataFlow <em>Data Flow</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -33,21 +33,20 @@ public interface DataFlow extends IRequirement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Specified Process</em>' reference.
+	 * @return the value of the '<em>Specified Process</em>' container reference.
 	 * @see #setSpecifiedProcess(scrm.requirements.Process)
 	 * @see scrm.requirements.RequirementsPackage#getDataFlow_SpecifiedProcess()
 	 * @see scrm.requirements.Process#getDataFlow
-	 * @model opposite="dataFlow"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
+	 * @model opposite="dataFlow" transient="false"
 	 * @generated
 	 */
 	scrm.requirements.Process getSpecifiedProcess();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.DataFlow#getSpecifiedProcess <em>Specified Process</em>}' reference.
+	 * Sets the value of the '{@link scrm.requirements.DataFlow#getSpecifiedProcess <em>Specified Process</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Specified Process</em>' reference.
+	 * @param value the new value of the '<em>Specified Process</em>' container reference.
 	 * @see #getSpecifiedProcess()
 	 * @generated
 	 */

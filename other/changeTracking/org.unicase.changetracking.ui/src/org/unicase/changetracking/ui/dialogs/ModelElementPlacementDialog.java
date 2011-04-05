@@ -28,13 +28,14 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.unicase.changetracking.common.ChangeTrackingUtil;
+import org.unicase.changetracking.git.GitUtil;
 import org.unicase.changetracking.ui.Activator;
 import org.unicase.changetracking.ui.ImageAndTextLabel;
 import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 
 public class ModelElementPlacementDialog extends TitleAreaDialog{
 
@@ -177,34 +178,6 @@ public class ModelElementPlacementDialog extends TitleAreaDialog{
 				
 
 			}
-			
-			@Override
-			public Object[] getChildren(Object object) {
-				if(object instanceof ProjectSpace){
-					ProjectSpace projectSpace = (ProjectSpace) object;
-					final Project project = projectSpace .getProject();
-					if (project == null) {
-						return EMPTY;
-					}
-					
-	
-					Collection<EObject> ret = new ArrayList<EObject>();
-					EList<EObject> modelElements = project.getModelElementsByClass(EcoreFactory.eINSTANCE.createEObject().eClass(),
-						new BasicEList<EObject>());
-					// ugly hack to avoid dependency to model
-					for (EObject modelElement : modelElements) {
-						EObject econtainer = modelElement.eContainer();
-						if ((econtainer instanceof Project) && modelElement.eClass().getName().equals("CompositeSection")) {
-							ret.add(modelElement);
-						}
-					}
-					ret.add(project);
-
-					return ret.toArray();
-					
-				}
-				return super.getChildren(object);
-			}
 		});
 		
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {	
@@ -256,7 +229,7 @@ public class ModelElementPlacementDialog extends TitleAreaDialog{
 			EObject obj = (EObject)elem;
 			this.selection = obj;
 			currentSelectionLabel.setInput(obj);
-			if(ChangeTrackingUtil.getPossibleContainingReference(modelElement,obj) == null){
+			if(GitUtil.getPossibleContainingReference(modelElement,obj) == null){
 				setErrorMessage("The model element cannot be placed here.");
 				getButton(Window.OK).setEnabled(false);
 				
@@ -274,29 +247,26 @@ public class ModelElementPlacementDialog extends TitleAreaDialog{
 		return super.close();
 	}
 
-//	public void doPlacement() {
-//		new UnicaseCommand() {
-//			@Override
-//			protected void doRun() {
-//				String name;
-//				if(allowNameChoosing){
-//					name = nameText;
-//				} else {
-//					name = "New " + modelElement.eClass().getName();
-//				}
-//				modelElement.setName(name);
-//				ChangeTrackingUtil.putInto(modelElement, selection);
-//			}
-//		}.run(false);
-//	}
+	public void doPlacement() {
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				String name;
+				if(allowNameChoosing){
+					name = nameText;
+				} else {
+					name = "New " + modelElement.eClass().getName();
+				}
+				modelElement.setName(name);
+				GitUtil.putInto(modelElement, selection);
+			}
+		}.run(false);
+	}
 	
 	public EObject getSelection() {
 		return selection;
 	}
 
 
-	public String getSelectedName(){
-		return nameText;
-	}
 	
 }

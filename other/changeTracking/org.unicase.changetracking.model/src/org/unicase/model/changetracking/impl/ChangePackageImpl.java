@@ -8,9 +8,11 @@ package org.unicase.model.changetracking.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.ChangetrackingPackage;
+
 import org.unicase.model.impl.AttachmentImpl;
 
 /**

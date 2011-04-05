@@ -70,124 +70,9 @@ public class RequirementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addContainingRequirementSpacePropertyDescriptor(object);
-			addRefinementsPropertyDescriptor(object);
-			addRefinedRequirementPropertyDescriptor(object);
-			addSpecifiedFeaturePropertyDescriptor(object);
-			addDefiningDataPropertyDescriptor(object);
 			addRealizedMethodPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Containing Requirement Space feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addContainingRequirementSpacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IRequirement_containingRequirementSpace_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IRequirement_containingRequirementSpace_feature", "_UI_IRequirement_type"),
-				 RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Refinements feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addRefinementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Requirement_refinements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Requirement_refinements_feature", "_UI_Requirement_type"),
-				 RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Refined Requirement feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addRefinedRequirementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Requirement_refinedRequirement_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Requirement_refinedRequirement_feature", "_UI_Requirement_type"),
-				 RequirementsPackage.Literals.REQUIREMENT__REFINED_REQUIREMENT,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Specified Feature feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSpecifiedFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Requirement_specifiedFeature_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Requirement_specifiedFeature_feature", "_UI_Requirement_type"),
-				 RequirementsPackage.Literals.REQUIREMENT__SPECIFIED_FEATURE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Defining Data feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDefiningDataPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Requirement_definingData_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Requirement_definingData_feature", "_UI_Requirement_type"),
-				 RequirementsPackage.Literals.REQUIREMENT__DEFINING_DATA,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -225,6 +110,7 @@ public class RequirementItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS);
+			childrenFeatures.add(RequirementsPackage.Literals.REQUIREMENT__DEFINING_DATA);
 		}
 		return childrenFeatures;
 	}
@@ -257,11 +143,14 @@ public class RequirementItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		String label = ((Requirement)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Requirement_type") :
+			getString("_UI_Requirement_type") + " " + label;
 	}
 
 	/**
@@ -277,6 +166,7 @@ public class RequirementItemProvider
 
 		switch (notification.getFeatureID(Requirement.class)) {
 			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
+			case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -312,6 +202,16 @@ public class RequirementItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
+				 RequirementsFactory.eINSTANCE.createDataFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
+				 RequirementsFactory.eINSTANCE.createDataDefinition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
 				 DataProcessingFactory.eINSTANCE.createInputDataReading()));
 
 		newChildDescriptors.add
@@ -333,6 +233,34 @@ public class RequirementItemProvider
 			(createChildParameter
 				(RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
 				 DataProcessingFactory.eINSTANCE.createStatusMonitoring()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RequirementsPackage.Literals.REQUIREMENT__DEFINING_DATA,
+				 RequirementsFactory.eINSTANCE.createDataDefinition()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS ||
+			childFeature == RequirementsPackage.Literals.REQUIREMENT__DEFINING_DATA;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

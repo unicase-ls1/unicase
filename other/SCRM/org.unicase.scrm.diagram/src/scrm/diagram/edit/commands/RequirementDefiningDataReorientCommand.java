@@ -41,8 +41,7 @@ public class RequirementDefiningDataReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public RequirementDefiningDataReorientCommand(
-			ReorientReferenceRelationshipRequest request) {
+	public RequirementDefiningDataReorientCommand(ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -73,9 +72,8 @@ public class RequirementDefiningDataReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof DataDefinition && newEnd instanceof Requirement)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistRequirementDefiningData_4038(getNewSource(),
-						getOldTarget());
+		return ScrmBaseItemSemanticEditPolicy.LinkConstraints.canExistRequirementDefiningData_4038(getNewSource(),
+			getOldTarget());
 	}
 
 	/**
@@ -85,19 +83,16 @@ public class RequirementDefiningDataReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof DataDefinition && newEnd instanceof DataDefinition)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistRequirementDefiningData_4038(getOldSource(),
-						getNewTarget());
+		return ScrmBaseItemSemanticEditPolicy.LinkConstraints.canExistRequirementDefiningData_4038(getOldSource(),
+			getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

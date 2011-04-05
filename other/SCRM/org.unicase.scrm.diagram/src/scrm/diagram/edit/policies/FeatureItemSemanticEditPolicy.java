@@ -38,6 +38,8 @@ import scrm.diagram.edit.commands.FeatureRequiredFeaturesCreateCommand;
 import scrm.diagram.edit.commands.FeatureRequiredFeaturesReorientCommand;
 import scrm.diagram.edit.commands.FeatureRequiredInterfacesCreateCommand;
 import scrm.diagram.edit.commands.FeatureRequiredInterfacesReorientCommand;
+import scrm.diagram.edit.commands.ScientificKnowledgeRequirementsCreateCommand;
+import scrm.diagram.edit.commands.ScientificKnowledgeRequirementsReorientCommand;
 import scrm.diagram.edit.commands.ScientificProblemInfluencedFeatureCreateCommand;
 import scrm.diagram.edit.commands.ScientificProblemInfluencedFeatureReorientCommand;
 import scrm.diagram.edit.parts.Feature2EditPart;
@@ -48,6 +50,7 @@ import scrm.diagram.edit.parts.FeatureExcludedFeaturesEditPart;
 import scrm.diagram.edit.parts.FeatureProvidedInterfacesEditPart;
 import scrm.diagram.edit.parts.FeatureRequiredFeaturesEditPart;
 import scrm.diagram.edit.parts.FeatureRequiredInterfacesEditPart;
+import scrm.diagram.edit.parts.ScientificKnowledgeRequirementsEditPart;
 import scrm.diagram.edit.parts.ScientificProblemInfluencedFeatureEditPart;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
@@ -55,8 +58,7 @@ import scrm.diagram.providers.ScrmElementTypes;
 /**
  * @generated
  */
-public class FeatureItemSemanticEditPolicy extends
-		ScrmBaseItemSemanticEditPolicy {
+public class FeatureItemSemanticEditPolicy extends ScrmBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -70,65 +72,74 @@ public class FeatureItemSemanticEditPolicy extends
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View) getHost().getModel();
-		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
-				getEditingDomain(), null);
+		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
+		for (Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
+			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ScientificKnowledgeRequirementsEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
+					incomingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r) {
+					protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
+						throws ExecutionException {
+						EObject referencedObject = getReferencedObject();
+						Resource resource = referencedObject.eResource();
+						CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+						if (resource != null) {
+							resource.getContents().add(referencedObject);
+						}
+						return result;
+					}
+				});
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
 			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ScientificProblemInfluencedFeatureEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						incomingLink.getSource().getElement(), null,
-						incomingLink.getTarget().getElement(), false);
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
+					incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == Feature2EditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						incomingLink.getElement(), false);
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == FeatureRequiredFeaturesEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						incomingLink.getSource().getElement(), null,
-						incomingLink.getTarget().getElement(), false);
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
+					incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == FeatureExcludedFeaturesEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						incomingLink.getSource().getElement(), null,
-						incomingLink.getTarget().getElement(), false);
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
+					incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 		}
-		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
+		for (Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == FeatureRequiredInterfacesEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						outgoingLink.getSource().getElement(), null,
-						outgoingLink.getTarget().getElement(), false);
+				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null,
+					outgoingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == FeatureProvidedInterfacesEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						outgoingLink.getSource().getElement(), null,
-						outgoingLink.getTarget().getElement(), false);
+				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null,
+					outgoingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r) {
-					protected CommandResult doExecuteWithResult(
-							IProgressMonitor progressMonitor, IAdaptable info)
-							throws ExecutionException {
+					protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
+						throws ExecutionException {
 						EObject referencedObject = getReferencedObject();
 						Resource resource = referencedObject.eResource();
-						CommandResult result = super.doExecuteWithResult(
-								progressMonitor, info);
+						CommandResult result = super.doExecuteWithResult(progressMonitor, info);
 						if (resource != null) {
 							resource.getContents().add(referencedObject);
 						}
@@ -139,33 +150,50 @@ public class FeatureItemSemanticEditPolicy extends
 				continue;
 			}
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == FeatureConstraintsEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						outgoingLink.getSource().getElement(), null,
-						outgoingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
+				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null,
+					outgoingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r) {
+					protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
+						throws ExecutionException {
+						EObject referencedObject = getReferencedObject();
+						Resource resource = referencedObject.eResource();
+						CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+						if (resource != null) {
+							resource.getContents().add(referencedObject);
+						}
+						return result;
+					}
+				});
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == FeatureDependenciesEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						outgoingLink.getSource().getElement(), null,
-						outgoingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
+				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null,
+					outgoingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r) {
+					protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
+						throws ExecutionException {
+						EObject referencedObject = getReferencedObject();
+						Resource resource = referencedObject.eResource();
+						CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+						if (resource != null) {
+							resource.getContents().add(referencedObject);
+						}
+						return result;
+					}
+				});
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == FeatureDetailedRequirementsEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						outgoingLink.getSource().getElement(), null,
-						outgoingLink.getTarget().getElement(), false);
+				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null,
+					outgoingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r) {
-					protected CommandResult doExecuteWithResult(
-							IProgressMonitor progressMonitor, IAdaptable info)
-							throws ExecutionException {
+					protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
+						throws ExecutionException {
 						EObject referencedObject = getReferencedObject();
 						Resource resource = referencedObject.eResource();
-						CommandResult result = super.doExecuteWithResult(
-								progressMonitor, info);
+						CommandResult result = super.doExecuteWithResult(progressMonitor, info);
 						if (resource != null) {
 							resource.getContents().add(referencedObject);
 						}
@@ -176,24 +204,21 @@ public class FeatureItemSemanticEditPolicy extends
 				continue;
 			}
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == Feature2EditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						outgoingLink.getElement(), false);
+				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == FeatureRequiredFeaturesEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						outgoingLink.getSource().getElement(), null,
-						outgoingLink.getTarget().getElement(), false);
+				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null,
+					outgoingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == FeatureExcludedFeaturesEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						outgoingLink.getSource().getElement(), null,
-						outgoingLink.getTarget().getElement(), false);
+				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null,
+					outgoingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
@@ -216,56 +241,43 @@ public class FeatureItemSemanticEditPolicy extends
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
-				: getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super
-				.getCreateRelationshipCommand(req);
+			: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.ScientificProblemInfluencedFeature_4008 == req
-				.getElementType()) {
+	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (ScrmElementTypes.ScientificKnowledgeRequirements_4005 == req.getElementType()) {
 			return null;
 		}
-		if (ScrmElementTypes.FeatureRequiredInterfaces_4023 == req
-				.getElementType()) {
-			return getGEFWrapper(new FeatureRequiredInterfacesCreateCommand(
-					req, req.getSource(), req.getTarget()));
+		if (ScrmElementTypes.ScientificProblemInfluencedFeature_4008 == req.getElementType()) {
+			return null;
 		}
-		if (ScrmElementTypes.FeatureProvidedInterfaces_4024 == req
-				.getElementType()) {
-			return getGEFWrapper(new FeatureProvidedInterfacesCreateCommand(
-					req, req.getSource(), req.getTarget()));
+		if (ScrmElementTypes.FeatureRequiredInterfaces_4023 == req.getElementType()) {
+			return getGEFWrapper(new FeatureRequiredInterfacesCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (ScrmElementTypes.FeatureProvidedInterfaces_4024 == req.getElementType()) {
+			return getGEFWrapper(new FeatureProvidedInterfacesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.FeatureConstraints_4025 == req.getElementType()) {
-			return getGEFWrapper(new FeatureConstraintsCreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new FeatureConstraintsCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.FeatureDependencies_4026 == req.getElementType()) {
-			return getGEFWrapper(new FeatureDependenciesCreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new FeatureDependenciesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.FeatureDetailedRequirements_4027 == req
-				.getElementType()) {
-			return getGEFWrapper(new FeatureDetailedRequirementsCreateCommand(
-					req, req.getSource(), req.getTarget()));
+		if (ScrmElementTypes.FeatureDetailedRequirements_4027 == req.getElementType()) {
+			return getGEFWrapper(new FeatureDetailedRequirementsCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.Feature_4029 == req.getElementType()) {
-			return getGEFWrapper(new Feature2CreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Feature2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.FeatureRequiredFeatures_4030 == req
-				.getElementType()) {
-			return getGEFWrapper(new FeatureRequiredFeaturesCreateCommand(req,
-					req.getSource(), req.getTarget()));
+		if (ScrmElementTypes.FeatureRequiredFeatures_4030 == req.getElementType()) {
+			return getGEFWrapper(new FeatureRequiredFeaturesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.FeatureExcludedFeatures_4032 == req
-				.getElementType()) {
-			return getGEFWrapper(new FeatureExcludedFeaturesCreateCommand(req,
-					req.getSource(), req.getTarget()));
+		if (ScrmElementTypes.FeatureExcludedFeatures_4032 == req.getElementType()) {
+			return getGEFWrapper(new FeatureExcludedFeaturesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -273,19 +285,18 @@ public class FeatureItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.ScientificProblemInfluencedFeature_4008 == req
-				.getElementType()) {
-			return getGEFWrapper(new ScientificProblemInfluencedFeatureCreateCommand(
-					req, req.getSource(), req.getTarget()));
+	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (ScrmElementTypes.ScientificKnowledgeRequirements_4005 == req.getElementType()) {
+			return getGEFWrapper(new ScientificKnowledgeRequirementsCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.FeatureRequiredInterfaces_4023 == req
-				.getElementType()) {
+		if (ScrmElementTypes.ScientificProblemInfluencedFeature_4008 == req.getElementType()) {
+			return getGEFWrapper(new ScientificProblemInfluencedFeatureCreateCommand(req, req.getSource(), req
+				.getTarget()));
+		}
+		if (ScrmElementTypes.FeatureRequiredInterfaces_4023 == req.getElementType()) {
 			return null;
 		}
-		if (ScrmElementTypes.FeatureProvidedInterfaces_4024 == req
-				.getElementType()) {
+		if (ScrmElementTypes.FeatureProvidedInterfaces_4024 == req.getElementType()) {
 			return null;
 		}
 		if (ScrmElementTypes.FeatureConstraints_4025 == req.getElementType()) {
@@ -294,23 +305,17 @@ public class FeatureItemSemanticEditPolicy extends
 		if (ScrmElementTypes.FeatureDependencies_4026 == req.getElementType()) {
 			return null;
 		}
-		if (ScrmElementTypes.FeatureDetailedRequirements_4027 == req
-				.getElementType()) {
+		if (ScrmElementTypes.FeatureDetailedRequirements_4027 == req.getElementType()) {
 			return null;
 		}
 		if (ScrmElementTypes.Feature_4029 == req.getElementType()) {
-			return getGEFWrapper(new Feature2CreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Feature2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.FeatureRequiredFeatures_4030 == req
-				.getElementType()) {
-			return getGEFWrapper(new FeatureRequiredFeaturesCreateCommand(req,
-					req.getSource(), req.getTarget()));
+		if (ScrmElementTypes.FeatureRequiredFeatures_4030 == req.getElementType()) {
+			return getGEFWrapper(new FeatureRequiredFeaturesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.FeatureExcludedFeatures_4032 == req
-				.getElementType()) {
-			return getGEFWrapper(new FeatureExcludedFeaturesCreateCommand(req,
-					req.getSource(), req.getTarget()));
+		if (ScrmElementTypes.FeatureExcludedFeatures_4032 == req.getElementType()) {
+			return getGEFWrapper(new FeatureExcludedFeaturesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -321,8 +326,7 @@ public class FeatureItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(
-			ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case Feature2EditPart.VISUAL_ID:
 			return getGEFWrapper(new FeatureReorientCommand(req));
@@ -336,25 +340,22 @@ public class FeatureItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(
-			ReorientReferenceRelationshipRequest req) {
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
+		case ScientificKnowledgeRequirementsEditPart.VISUAL_ID:
+			return getGEFWrapper(new ScientificKnowledgeRequirementsReorientCommand(req));
 		case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID:
-			return getGEFWrapper(new ScientificProblemInfluencedFeatureReorientCommand(
-					req));
+			return getGEFWrapper(new ScientificProblemInfluencedFeatureReorientCommand(req));
 		case FeatureRequiredInterfacesEditPart.VISUAL_ID:
-			return getGEFWrapper(new FeatureRequiredInterfacesReorientCommand(
-					req));
+			return getGEFWrapper(new FeatureRequiredInterfacesReorientCommand(req));
 		case FeatureProvidedInterfacesEditPart.VISUAL_ID:
-			return getGEFWrapper(new FeatureProvidedInterfacesReorientCommand(
-					req));
+			return getGEFWrapper(new FeatureProvidedInterfacesReorientCommand(req));
 		case FeatureConstraintsEditPart.VISUAL_ID:
 			return getGEFWrapper(new FeatureConstraintsReorientCommand(req));
 		case FeatureDependenciesEditPart.VISUAL_ID:
 			return getGEFWrapper(new FeatureDependenciesReorientCommand(req));
 		case FeatureDetailedRequirementsEditPart.VISUAL_ID:
-			return getGEFWrapper(new FeatureDetailedRequirementsReorientCommand(
-					req));
+			return getGEFWrapper(new FeatureDetailedRequirementsReorientCommand(req));
 		case FeatureRequiredFeaturesEditPart.VISUAL_ID:
 			return getGEFWrapper(new FeatureRequiredFeaturesReorientCommand(req));
 		case FeatureExcludedFeaturesEditPart.VISUAL_ID:

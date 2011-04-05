@@ -15,8 +15,7 @@ import scrm.diagram.providers.ScrmElementTypes;
 /**
  * @generated
  */
-public class RequirementDefiningDataItemSemanticEditPolicy extends
-		ScrmBaseItemSemanticEditPolicy {
+public class RequirementDefiningDataItemSemanticEditPolicy extends ScrmBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -29,7 +28,18 @@ public class RequirementDefiningDataItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
-		return getGEFWrapper(new DestroyReferenceCommand(req));
+		return getGEFWrapper(new DestroyReferenceCommand(req) {
+			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
+				throws ExecutionException {
+				EObject referencedObject = getReferencedObject();
+				Resource resource = referencedObject.eResource();
+				CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+				if (resource != null) {
+					resource.getContents().add(referencedObject);
+				}
+				return result;
+			}
+		});
 	}
 
 }

@@ -9,8 +9,7 @@ import scrm.diagram.providers.ScrmElementTypes;
 /**
  * @generated
  */
-public class MathematicalModelNumericalMethodsItemSemanticEditPolicy extends
-		ScrmBaseItemSemanticEditPolicy {
+public class MathematicalModelNumericalMethodsItemSemanticEditPolicy extends ScrmBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated

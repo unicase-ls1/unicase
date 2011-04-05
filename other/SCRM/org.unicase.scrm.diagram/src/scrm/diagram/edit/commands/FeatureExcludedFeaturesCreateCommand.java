@@ -29,8 +29,7 @@ public class FeatureExcludedFeaturesCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public FeatureExcludedFeaturesCreateCommand(
-			CreateRelationshipRequest request, EObject source, EObject target) {
+	public FeatureExcludedFeaturesCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
@@ -53,19 +52,16 @@ public class FeatureExcludedFeaturesCreateCommand extends EditElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return ScrmBaseItemSemanticEditPolicy
-				.getLinkConstraints()
-				.canCreateFeatureExcludedFeatures_4032(getSource(), getTarget());
+		return ScrmBaseItemSemanticEditPolicy.LinkConstraints.canCreateFeatureExcludedFeatures_4032(getSource(),
+			getTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
 		if (getSource() != null && getTarget() != null) {

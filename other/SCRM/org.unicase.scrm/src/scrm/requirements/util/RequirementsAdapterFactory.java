@@ -13,8 +13,6 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.unicase.metamodel.IdentifiableElement;
-
 import scrm.SCRMModelElement;
 
 import scrm.requirements.Constraint;
@@ -26,7 +24,6 @@ import scrm.requirements.IRequirement;
 import scrm.requirements.Interface;
 import scrm.requirements.Performance;
 import scrm.requirements.Requirement;
-import scrm.requirements.RequirementSpace;
 import scrm.requirements.RequirementsPackage;
 import scrm.requirements.SoftwareInterface;
 import scrm.requirements.UserInterface;
@@ -134,10 +131,6 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseDataDefinition(DataDefinition object) {
 				return createDataDefinitionAdapter();
-			}
-			@Override
-			public Adapter caseRequirementSpace(RequirementSpace object) {
-				return createRequirementSpaceAdapter();
 			}
 			@Override
 			public Adapter caseSCRMModelElement(SCRMModelElement object) {
@@ -328,20 +321,6 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDataDefinitionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link scrm.requirements.RequirementSpace <em>Requirement Space</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see scrm.requirements.RequirementSpace
-	 * @generated
-	 */
-	public Adapter createRequirementSpaceAdapter() {
 		return null;
 	}
 

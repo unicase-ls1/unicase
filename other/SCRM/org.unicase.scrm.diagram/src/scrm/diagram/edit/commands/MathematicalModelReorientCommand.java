@@ -67,16 +67,13 @@ public class MathematicalModelReorientCommand extends EditElementCommand {
 		if (getLink().getRefinements().size() != 1) {
 			return false;
 		}
-		MathematicalModel target = (MathematicalModel) getLink()
-				.getRefinements().get(0);
+		MathematicalModel target = (MathematicalModel) getLink().getRefinements().get(0);
 		if (!(getLink().eContainer() instanceof MathematicalModel)) {
 			return false;
 		}
-		MathematicalModel container = (MathematicalModel) getLink()
-				.eContainer();
-		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistMathematicalModel_4004(container, getLink(),
-						getNewSource(), target);
+		MathematicalModel container = (MathematicalModel) getLink().eContainer();
+		return ScrmBaseItemSemanticEditPolicy.LinkConstraints.canExistMathematicalModel_4004(container, getNewSource(),
+			target);
 	}
 
 	/**
@@ -90,21 +87,17 @@ public class MathematicalModelReorientCommand extends EditElementCommand {
 		if (!(getLink().eContainer() instanceof MathematicalModel)) {
 			return false;
 		}
-		MathematicalModel container = (MathematicalModel) getLink()
-				.eContainer();
-		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistMathematicalModel_4004(container, getLink(), source,
-						getNewTarget());
+		MathematicalModel container = (MathematicalModel) getLink().eContainer();
+		return ScrmBaseItemSemanticEditPolicy.LinkConstraints.canExistMathematicalModel_4004(container, source,
+			getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

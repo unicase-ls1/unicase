@@ -2,20 +2,25 @@ package org.unicase.changetracking.ui.releases;
 
 import java.text.DateFormat;
 
+import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
-import org.unicase.changetracking.release.ChangePackageState;
+import org.unicase.changetracking.release.BranchState;
 import org.unicase.changetracking.release.Problem;
 import org.unicase.changetracking.release.ReleaseCheckReport;
 import org.unicase.changetracking.release.WorkItemStatistics;
@@ -75,9 +80,9 @@ public class ReleaseOverviewWidget extends Composite {
 
 		labelProvider = new ChangePackageStateLabelProvider(report);
 		
-		alreadyMergedImage = labelProvider.generateImage(ChangePackageState.MERGED);
-		unmergedImage = labelProvider.generateImage(ChangePackageState.UNMERGED);
-		errorImage = labelProvider.generateImage(ChangePackageState.ERROR);
+		alreadyMergedImage = labelProvider.generateImage(BranchState.MERGED);
+		unmergedImage = labelProvider.generateImage(BranchState.UNMERGED);
+		errorImage = labelProvider.generateImage(BranchState.ERROR);
 	}
 
 	private void createOverviewTab(ChangeTrackingRelease release, ReleaseCheckReport report,
@@ -114,13 +119,13 @@ public class ReleaseOverviewWidget extends Composite {
 		GridDataFactory.swtDefaults().span(2, 1).applyTo(legend);
 		
 		ImageAndTextLabel alreadyMergedLabel = new ImageAndTextLabel(legend, SWT.NONE);
-		alreadyMergedLabel.setContent(alreadyMergedImage, report.getNumChangePackagesOfState(ChangePackageState.MERGED) + " change packages already merged");
+		alreadyMergedLabel.setContent(alreadyMergedImage, report.getNumChangePackagesOfState(BranchState.MERGED) + " change packages already merged");
 		
 		ImageAndTextLabel notMergedLabel = new ImageAndTextLabel(legend, SWT.NONE);
-		notMergedLabel.setContent(unmergedImage,report.getNumChangePackagesOfState(ChangePackageState.UNMERGED) +  " change packages not merged");
+		notMergedLabel.setContent(unmergedImage,report.getNumChangePackagesOfState(BranchState.UNMERGED) +  " change packages not merged");
 		
 		ImageAndTextLabel errorLabel = new ImageAndTextLabel(legend, SWT.NONE);
-		errorLabel.setContent(errorImage,(report.getNumChangePackagesOfState(ChangePackageState.ERROR)) +  " change packages erroneous");
+		errorLabel.setContent(errorImage,(report.getNumChangePackagesOfState(BranchState.ERROR) + report.getNumChangePackagesOfState(BranchState.UNCONNECTED)) +  " change packages erroneous");
 		
 		Label releaseStatus = new Label(overviewComposite,SWT.NONE);
 		releaseStatus.setText("Release status:");
@@ -227,7 +232,7 @@ public class ReleaseOverviewWidget extends Composite {
 		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(changelogText);
 		StringBuilder changelog = new StringBuilder();
 		changelog.append(release.getName()).append(":\n");
-		for(ChangePackage cp : report.getChangePackageResults().keySet()){
+		for(ChangePackage cp : report.getChangePackages()){
 			changelog.append(" - ").append(cp.getShortDescription()).append("\n");
 		}
 		changelogText.setText(changelog.toString());

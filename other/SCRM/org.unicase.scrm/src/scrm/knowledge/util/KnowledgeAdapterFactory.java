@@ -94,10 +94,6 @@ public class KnowledgeAdapterFactory extends AdapterFactoryImpl {
 				return createAssumptionAdapter();
 			}
 			@Override
-			public Adapter caseKnowledgeSpace(KnowledgeSpace object) {
-				return createKnowledgeSpaceAdapter();
-			}
-			@Override
 			public Adapter caseSCRMModelElement(SCRMModelElement object) {
 				return createSCRMModelElementAdapter();
 			}
@@ -188,20 +184,6 @@ public class KnowledgeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAssumptionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link scrm.knowledge.KnowledgeSpace <em>Space</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see scrm.knowledge.KnowledgeSpace
-	 * @generated
-	 */
-	public Adapter createKnowledgeSpaceAdapter() {
 		return null;
 	}
 

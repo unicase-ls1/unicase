@@ -88,13 +88,22 @@ public interface ScrmPackage extends EPackage {
 	int SCRM_MODEL_ELEMENT__DESCRIPTION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_MODEL_ELEMENT__IDENTIFIER = 2;
+
+	/**
 	 * The number of structural features of the '<em>SCRM Model Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_MODEL_ELEMENT_FEATURE_COUNT = 2;
+	int SCRM_MODEL_ELEMENT_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link scrm.impl.SCRMDiagramImpl <em>SCRM Diagram</em>}' class.
@@ -107,31 +116,13 @@ public interface ScrmPackage extends EPackage {
 	int SCRM_DIAGRAM = 1;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SCRM_DIAGRAM__NAME = SCRM_MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SCRM_DIAGRAM__DESCRIPTION = SCRM_MODEL_ELEMENT__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_DIAGRAM__ELEMENTS = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int SCRM_DIAGRAM__ELEMENTS = 0;
 
 	/**
 	 * The feature id for the '<em><b>New Elements</b></em>' containment reference list.
@@ -140,7 +131,7 @@ public interface ScrmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_DIAGRAM__NEW_ELEMENTS = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int SCRM_DIAGRAM__NEW_ELEMENTS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Diagram Layout</b></em>' attribute.
@@ -149,7 +140,7 @@ public interface ScrmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_DIAGRAM__DIAGRAM_LAYOUT = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int SCRM_DIAGRAM__DIAGRAM_LAYOUT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Gmfdiagram</b></em>' containment reference.
@@ -158,7 +149,7 @@ public interface ScrmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_DIAGRAM__GMFDIAGRAM = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int SCRM_DIAGRAM__GMFDIAGRAM = 3;
 
 	/**
 	 * The number of structural features of the '<em>SCRM Diagram</em>' class.
@@ -167,7 +158,7 @@ public interface ScrmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_DIAGRAM_FEATURE_COUNT = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int SCRM_DIAGRAM_FEATURE_COUNT = 4;
 
 
 	/**
@@ -201,6 +192,17 @@ public interface ScrmPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSCRMModelElement_Description();
+
+	/**
+	 * Returns the meta object for the attribute '{@link scrm.SCRMModelElement#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see scrm.SCRMModelElement#getIdentifier()
+	 * @see #getSCRMModelElement()
+	 * @generated
+	 */
+	EAttribute getSCRMModelElement_Identifier();
 
 	/**
 	 * Returns the meta object for class '{@link scrm.SCRMDiagram <em>SCRM Diagram</em>}'.
@@ -303,6 +305,14 @@ public interface ScrmPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SCRM_MODEL_ELEMENT__DESCRIPTION = eINSTANCE.getSCRMModelElement_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SCRM_MODEL_ELEMENT__IDENTIFIER = eINSTANCE.getSCRMModelElement_Identifier();
 
 		/**
 		 * The meta object literal for the '{@link scrm.impl.SCRMDiagramImpl <em>SCRM Diagram</em>}' class.

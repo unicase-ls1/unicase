@@ -23,10 +23,5 @@
             class="scrm.requirements.RequirementsPackage"
             genModel="model/scrm.genmodel"/>
    </extension>
-   <extension
-         point="org.unicase.ecp.model.ecpModelPackage">
-      <modelPackage
-            modelPackage="http://unicase.org/model/scrm"></modelPackage>
-   </extension>
 
 </plugin>

@@ -1,43 +1,39 @@
-/*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- ******************************************************************************/
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.emfstore.jdt.eclipseworkspace.emfstore;
 
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.emfstore.client.model.ModelFactory;
-import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.ServerInfo;
-import org.eclipse.emf.emfstore.client.model.Usersession;
-import org.eclipse.emf.emfstore.client.model.Workspace;
-import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommandWithResult;
-import org.eclipse.emf.emfstore.client.ui.commands.UpdateProjectVersionHandler;
-import org.eclipse.emf.emfstore.client.ui.dialogs.LoginDialog;
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.server.accesscontrol.AccessControlImpl;
-import org.eclipse.emf.emfstore.server.exceptions.AccessControlException;
-import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
-import org.eclipse.emf.emfstore.server.exceptions.FatalEmfStoreException;
-import org.eclipse.emf.emfstore.server.exceptions.SessionTimedOutException;
-import org.eclipse.emf.emfstore.server.exceptions.UnknownSessionException;
-import org.eclipse.emf.emfstore.server.model.ProjectInfo;
-import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
-import org.eclipse.emf.emfstore.server.model.versioning.VersionSpec;
-import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.unicase.emfstore.accesscontrol.AccessControlImpl;
+import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.exceptions.AccessControlException;
+import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.FatalEmfStoreException;
+import org.unicase.emfstore.exceptions.SessionTimedOutException;
+import org.unicase.emfstore.exceptions.UnknownSessionException;
 import org.unicase.emfstore.jdt.eclipseworkspace.StructuredEMFStoreURI;
 import org.unicase.emfstore.jdt.exception.ProjectInfoNotFoundException;
 import org.unicase.emfstore.jdt.exception.ProjectSpaceNotFoundException;
+import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.Usersession;
+import org.unicase.workspace.Workspace;
+import org.unicase.workspace.WorkspaceFactory;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.ui.commands.UpdateProjectVersionHandler;
+import org.unicase.workspace.ui.dialogs.LoginDialog;
+import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**
  * Utility class to handle with an EMF Store.
@@ -160,7 +156,7 @@ public final class EMFStoreUtil {
 		ServerInfo serverInfo = new UnicaseCommandWithResult<ServerInfo>() {
 			@Override
 			protected ServerInfo doRun() {
-				ServerInfo serverInfo = ModelFactory.eINSTANCE.createServerInfo();
+				ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
 				serverInfo.setName(structuredEMFStoreURI.getHost());
 				serverInfo.setUrl(structuredEMFStoreURI.getHost());
 				serverInfo.setPort(structuredEMFStoreURI.getPort());

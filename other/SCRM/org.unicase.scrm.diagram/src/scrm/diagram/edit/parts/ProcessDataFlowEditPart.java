@@ -12,10 +12,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import scrm.diagram.edit.policies.ProcessDataFlowItemSemanticEditPolicy;
 
 /**
- * @generated NOT
+ * @generated
  */
-public class ProcessDataFlowEditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class ProcessDataFlowEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -34,18 +33,15 @@ public class ProcessDataFlowEditPart extends ConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ProcessDataFlowItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ProcessDataFlowItemSemanticEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel20EditPart) {
-			((WrappingLabel20EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureProcess_DataFlowLabel());
+		if (childEditPart instanceof WrappingLabel22EditPart) {
+			((WrappingLabel22EditPart) childEditPart).setLabel(getPrimaryShape().getFigureProcess_DataFlowLabel());
 			return true;
 		}
 		return false;
@@ -58,14 +54,14 @@ public class ProcessDataFlowEditPart extends ConnectionNodeEditPart implements
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, index);
+		super.addChildVisual(childEditPart, -1);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel20EditPart) {
+		if (childEditPart instanceof WrappingLabel22EditPart) {
 			return true;
 		}
 		return false;
@@ -115,6 +111,7 @@ public class ProcessDataFlowEditPart extends ConnectionNodeEditPart implements
 		 * @generated
 		 */
 		public Process_DataFlowFigure() {
+			this.setLineWidth(1);
 
 			createContents();
 		}

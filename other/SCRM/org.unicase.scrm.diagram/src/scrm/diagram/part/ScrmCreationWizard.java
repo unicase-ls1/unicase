@@ -80,8 +80,7 @@ public class ScrmCreationWizard extends Wizard implements INewWizard {
 	/**
 	 * @generated
 	 */
-	public void setOpenNewlyCreatedDiagramEditor(
-			boolean openNewlyCreatedDiagramEditor) {
+	public void setOpenNewlyCreatedDiagramEditor(boolean openNewlyCreatedDiagramEditor) {
 		this.openNewlyCreatedDiagramEditor = openNewlyCreatedDiagramEditor;
 	}
 
@@ -93,7 +92,7 @@ public class ScrmCreationWizard extends Wizard implements INewWizard {
 		this.selection = selection;
 		setWindowTitle(Messages.ScrmCreationWizardTitle);
 		setDefaultPageImageDescriptor(ScrmDiagramEditorPlugin
-				.getBundledImageDescriptor("icons/wizban/NewScrmWizard.gif")); //$NON-NLS-1$
+			.getBundledImageDescriptor("icons/wizban/NewScrmWizard.gif")); //$NON-NLS-1$
 		setNeedsProgressMonitor(true);
 	}
 
@@ -101,32 +100,24 @@ public class ScrmCreationWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public void addPages() {
-		diagramModelFilePage = new ScrmCreationWizardPage(
-				"DiagramModelFile", getSelection(), "scrm_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
-		diagramModelFilePage
-				.setTitle(Messages.ScrmCreationWizard_DiagramModelFilePageTitle);
-		diagramModelFilePage
-				.setDescription(Messages.ScrmCreationWizard_DiagramModelFilePageDescription);
+		diagramModelFilePage = new ScrmCreationWizardPage("DiagramModelFile", getSelection(), "scrm_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
+		diagramModelFilePage.setTitle(Messages.ScrmCreationWizard_DiagramModelFilePageTitle);
+		diagramModelFilePage.setDescription(Messages.ScrmCreationWizard_DiagramModelFilePageDescription);
 		addPage(diagramModelFilePage);
 
-		domainModelFilePage = new ScrmCreationWizardPage(
-				"DomainModelFile", getSelection(), "scrm") { //$NON-NLS-1$ //$NON-NLS-2$
+		domainModelFilePage = new ScrmCreationWizardPage("DomainModelFile", getSelection(), "scrm") { //$NON-NLS-1$ //$NON-NLS-2$
 
 			public void setVisible(boolean visible) {
 				if (visible) {
 					String fileName = diagramModelFilePage.getFileName();
-					fileName = fileName.substring(0, fileName.length()
-							- ".scrm_diagram".length()); //$NON-NLS-1$
-					setFileName(ScrmDiagramEditorUtil.getUniqueFileName(
-							getContainerFullPath(), fileName, "scrm")); //$NON-NLS-1$
+					fileName = fileName.substring(0, fileName.length() - ".scrm_diagram".length()); //$NON-NLS-1$
+					setFileName(ScrmDiagramEditorUtil.getUniqueFileName(getContainerFullPath(), fileName, "scrm")); //$NON-NLS-1$
 				}
 				super.setVisible(visible);
 			}
 		};
-		domainModelFilePage
-				.setTitle(Messages.ScrmCreationWizard_DomainModelFilePageTitle);
-		domainModelFilePage
-				.setDescription(Messages.ScrmCreationWizard_DomainModelFilePageDescription);
+		domainModelFilePage.setTitle(Messages.ScrmCreationWizard_DomainModelFilePageTitle);
+		domainModelFilePage.setDescription(Messages.ScrmCreationWizard_DomainModelFilePageDescription);
 		addPage(domainModelFilePage);
 	}
 
@@ -136,18 +127,15 @@ public class ScrmCreationWizard extends Wizard implements INewWizard {
 	public boolean performFinish() {
 		IRunnableWithProgress op = new WorkspaceModifyOperation(null) {
 
-			protected void execute(IProgressMonitor monitor)
-					throws CoreException, InterruptedException {
-				diagram = ScrmDiagramEditorUtil.createDiagram(
-						diagramModelFilePage.getURI(),
-						domainModelFilePage.getURI(), monitor);
+			protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException {
+				diagram = ScrmDiagramEditorUtil.createDiagram(diagramModelFilePage.getURI(), domainModelFilePage
+					.getURI(), monitor);
 				if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
 					try {
 						ScrmDiagramEditorUtil.openDiagram(diagram);
 					} catch (PartInitException e) {
-						ErrorDialog.openError(getContainer().getShell(),
-								Messages.ScrmCreationWizardOpenEditorError,
-								null, e.getStatus());
+						ErrorDialog.openError(getContainer().getShell(), Messages.ScrmCreationWizardOpenEditorError,
+							null, e.getStatus());
 					}
 				}
 			}
@@ -158,12 +146,10 @@ public class ScrmCreationWizard extends Wizard implements INewWizard {
 			return false;
 		} catch (InvocationTargetException e) {
 			if (e.getTargetException() instanceof CoreException) {
-				ErrorDialog.openError(getContainer().getShell(),
-						Messages.ScrmCreationWizardCreationError, null,
-						((CoreException) e.getTargetException()).getStatus());
+				ErrorDialog.openError(getContainer().getShell(), Messages.ScrmCreationWizardCreationError, null,
+					((CoreException) e.getTargetException()).getStatus());
 			} else {
-				ScrmDiagramEditorPlugin.getInstance().logError(
-						"Error creating diagram", e.getTargetException()); //$NON-NLS-1$
+				ScrmDiagramEditorPlugin.getInstance().logError("Error creating diagram", e.getTargetException()); //$NON-NLS-1$
 			}
 			return false;
 		}

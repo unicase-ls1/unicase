@@ -114,9 +114,9 @@
                         value="+">
                   </count>
                   <iterate>
-                     <adapt
-                           type="org.eclipse.core.resources.IProject">
-                     </adapt>
+                     <instanceof
+                           value="org.eclipse.core.runtime.IAdaptable">
+                     </instanceof>
                   </iterate>
                </with>
             </visibleWhen>
@@ -137,7 +137,7 @@
             <command
                   commandId="org.unicase.changetracking.ui.createStreamFromCurrentBranchCommand"
                   helpContextId="variable_watch_action_context"
-                  icon="icons/createStream.gif"
+                  icon="icons/createRepositoryLocation.gif"
                   label="Create Stream From Current Branch"
                   tooltip="Creates a repository location in unicase based on the repository of the selected resource">
             </command>

@@ -7,6 +7,7 @@
 package scrm;
 
 import org.eclipse.emf.ecore.EObject;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>SCRM Model Element</b></em>'.
@@ -17,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link scrm.SCRMModelElement#getName <em>Name</em>}</li>
  *   <li>{@link scrm.SCRMModelElement#getDescription <em>Description</em>}</li>
+ *   <li>{@link scrm.SCRMModelElement#getIdentifier <em>Identifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,7 +40,6 @@ public interface SCRMModelElement extends EObject {
 	 * @see #setName(String)
 	 * @see scrm.ScrmPackage#getSCRMModelElement_Name()
 	 * @model default=""
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='1'"
 	 * @generated
 	 */
 	String getName();
@@ -64,7 +65,7 @@ public interface SCRMModelElement extends EObject {
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
 	 * @see scrm.ScrmPackage#getSCRMModelElement_Description()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='2'"
+	 * @model
 	 * @generated
 	 */
 	String getDescription();
@@ -78,5 +79,31 @@ public interface SCRMModelElement extends EObject {
 	 * @generated
 	 */
 	void setDescription(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Identifier</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Identifier</em>' attribute.
+	 * @see #setIdentifier(String)
+	 * @see scrm.ScrmPackage#getSCRMModelElement_Identifier()
+	 * @model id="true" required="true"
+	 * @generated
+	 */
+	String getIdentifier();
+
+	/**
+	 * Sets the value of the '{@link scrm.SCRMModelElement#getIdentifier <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Identifier</em>' attribute.
+	 * @see #getIdentifier()
+	 * @generated
+	 */
+	void setIdentifier(String value);
 
 } // SCRMModelElement

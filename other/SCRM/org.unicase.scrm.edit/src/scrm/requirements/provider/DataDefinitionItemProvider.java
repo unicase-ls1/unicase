@@ -13,7 +13,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -24,8 +23,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import scrm.provider.SCRMModelElementItemProvider;
-import scrm.provider.ScrmEditPlugin;
 import scrm.requirements.DataDefinition;
 import scrm.requirements.RequirementsPackage;
 
@@ -36,7 +33,7 @@ import scrm.requirements.RequirementsPackage;
  * @generated
  */
 public class DataDefinitionItemProvider
-	extends SCRMModelElementItemProvider
+	extends RequirementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -64,58 +61,12 @@ public class DataDefinitionItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addContainingRequirementSpacePropertyDescriptor(object);
-			addDefinedRequirementPropertyDescriptor(object);
 			addAccuracyPropertyDescriptor(object);
 			addFormatPropertyDescriptor(object);
 			addRangePropertyDescriptor(object);
 			addDataTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Containing Requirement Space feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addContainingRequirementSpacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IRequirement_containingRequirementSpace_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IRequirement_containingRequirementSpace_feature", "_UI_IRequirement_type"),
-				 RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Defined Requirement feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDefinedRequirementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DataDefinition_definedRequirement_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DataDefinition_definedRequirement_feature", "_UI_DataDefinition_type"),
-				 RequirementsPackage.Literals.DATA_DEFINITION__DEFINED_REQUIREMENT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -221,11 +172,14 @@ public class DataDefinitionItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		String label = ((DataDefinition)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DataDefinition_type") :
+			getString("_UI_DataDefinition_type") + " " + label;
 	}
 
 	/**
@@ -263,14 +217,26 @@ public class DataDefinitionItemProvider
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public ResourceLocator getResourceLocator() {
-		return ScrmEditPlugin.INSTANCE;
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS ||
+			childFeature == RequirementsPackage.Literals.REQUIREMENT__DEFINING_DATA;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

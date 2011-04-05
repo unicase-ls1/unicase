@@ -13,8 +13,7 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class ScrmReorientConnectionViewCommand extends
-		AbstractTransactionalCommand {
+public class ScrmReorientConnectionViewCommand extends AbstractTransactionalCommand {
 
 	/**
 	 * @generated
@@ -24,8 +23,7 @@ public class ScrmReorientConnectionViewCommand extends
 	/**
 	 * @generated
 	 */
-	public ScrmReorientConnectionViewCommand(
-			TransactionalEditingDomain editingDomain, String label) {
+	public ScrmReorientConnectionViewCommand(TransactionalEditingDomain editingDomain, String label) {
 		super(editingDomain, label, null);
 	}
 
@@ -57,8 +55,7 @@ public class ScrmReorientConnectionViewCommand extends
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(
-			IProgressMonitor progressMonitor, IAdaptable info) {
+	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) {
 		assert null != edgeAdaptor : "Null child in ScrmReorientConnectionViewCommand"; //$NON-NLS-1$
 		Edge edge = (Edge) getEdgeAdaptor().getAdapter(Edge.class);
 		assert null != edge : "Null edge in ScrmReorientConnectionViewCommand"; //$NON-NLS-1$

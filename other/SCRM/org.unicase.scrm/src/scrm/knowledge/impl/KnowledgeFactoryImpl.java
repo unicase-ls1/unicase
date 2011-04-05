@@ -64,7 +64,6 @@ public class KnowledgeFactoryImpl extends EFactoryImpl implements KnowledgeFacto
 			case KnowledgePackage.MATHEMATICAL_MODEL: return createMathematicalModel();
 			case KnowledgePackage.NUMERICAL_METHOD: return createNumericalMethod();
 			case KnowledgePackage.ASSUMPTION: return createAssumption();
-			case KnowledgePackage.KNOWLEDGE_SPACE: return createKnowledgeSpace();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -108,16 +107,6 @@ public class KnowledgeFactoryImpl extends EFactoryImpl implements KnowledgeFacto
 	public Assumption createAssumption() {
 		AssumptionImpl assumption = new AssumptionImpl();
 		return assumption;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public KnowledgeSpace createKnowledgeSpace() {
-		KnowledgeSpaceImpl knowledgeSpace = new KnowledgeSpaceImpl();
-		return knowledgeSpace;
 	}
 
 	/**

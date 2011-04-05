@@ -24,6 +24,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import scrm.provider.ScrmEditPlugin;
 
+import scrm.requirements.RequirementsPackage;
+
 import scrm.requirements.dataProcessing.DataHandling;
 
 import scrm.requirements.provider.RequirementItemProvider;
@@ -82,11 +84,14 @@ public class DataHandlingItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		String label = ((DataHandling)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DataHandling_type") :
+			getString("_UI_DataHandling_type") + " " + label;
 	}
 
 	/**
@@ -112,6 +117,29 @@ public class DataHandlingItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS ||
+			childFeature == RequirementsPackage.Literals.REQUIREMENT__DEFINING_DATA;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

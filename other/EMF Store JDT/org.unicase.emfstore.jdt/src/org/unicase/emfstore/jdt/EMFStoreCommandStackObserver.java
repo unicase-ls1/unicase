@@ -1,12 +1,8 @@
-/*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- ******************************************************************************/
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.emfstore.jdt;
 
 import java.io.InputStream;
@@ -19,13 +15,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.ServerInfo;
-import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.changeTracking.commands.CommandObserver;
-import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
 import org.unicase.emfstore.jdt.configuration.EMFStoreJDTConfiguration;
 import org.unicase.emfstore.jdt.configuration.Entry;
@@ -35,6 +24,13 @@ import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.ProjectSpaceUtil;
 import org.unicase.emfstore.jdt.exception.CannotOpenEObjectException;
 import org.unicase.emfstore.jdt.exception.EntryNotFoundException;
 import org.unicase.emfstore.jdt.exception.NoEMFStoreJDTConfigurationException;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.changeTracking.commands.CommandObserver;
 
 /**
  * An observer for the EMFStoreCommandStack. If the command invokes a commandCompleted the affected EObjects will be
@@ -47,7 +43,7 @@ public class EMFStoreCommandStackObserver implements CommandObserver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.changeTracking.commands.CommandObserver#commandFailed(org.eclipse.emf.common.command.Command,
+	 * @see org.unicase.workspace.changeTracking.commands.CommandObserver#commandFailed(org.eclipse.emf.common.command.Command,
 	 *      java.lang.Exception)
 	 */
 	public void commandFailed(Command command, Exception exception) {
@@ -57,7 +53,7 @@ public class EMFStoreCommandStackObserver implements CommandObserver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.changeTracking.commands.CommandObserver#commandStarted(org.eclipse.emf.common.command.Command)
+	 * @see org.unicase.workspace.changeTracking.commands.CommandObserver#commandStarted(org.eclipse.emf.common.command.Command)
 	 */
 	public void commandStarted(Command command) {
 		// uninteresting
@@ -66,7 +62,7 @@ public class EMFStoreCommandStackObserver implements CommandObserver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.changeTracking.commands.CommandObserver#commandCompleted(org.eclipse.emf.common.command.Command)
+	 * @see org.unicase.workspace.changeTracking.commands.CommandObserver#commandCompleted(org.eclipse.emf.common.command.Command)
 	 */
 	public void commandCompleted(Command command) {
 		Collection<?> affectedObjects = command.getAffectedObjects();
@@ -74,7 +70,7 @@ public class EMFStoreCommandStackObserver implements CommandObserver {
 			for (Object ob : affectedObjects) {
 				if (ob instanceof EObject) {
 					EObject eObject = (EObject) ob;
-					while (!(eObject == null) && !(eObject instanceof org.eclipse.emf.emfstore.common.model.Project)) {
+					while (!(eObject == null) && !(eObject instanceof org.unicase.metamodel.Project)) {
 						handleEObjectIfPossible(eObject);
 						eObject = eObject.eContainer();
 					}

@@ -14,8 +14,7 @@ import scrm.diagram.edit.policies.ScientificProblemInfluencedFeatureItemSemantic
 /**
  * @generated
  */
-public class ScientificProblemInfluencedFeatureEditPart extends
-		ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ScientificProblemInfluencedFeatureEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -34,17 +33,16 @@ public class ScientificProblemInfluencedFeatureEditPart extends
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ScientificProblemInfluencedFeatureItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ScientificProblemInfluencedFeatureItemSemanticEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel3EditPart) {
-			((WrappingLabel3EditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureScientificProblem_InfluencedFeatureLabel());
+		if (childEditPart instanceof WrappingLabel4EditPart) {
+			((WrappingLabel4EditPart) childEditPart).setLabel(getPrimaryShape()
+				.getFigureScientificProblem_InfluencedFeatureLabel());
 			return true;
 		}
 		return false;
@@ -57,14 +55,14 @@ public class ScientificProblemInfluencedFeatureEditPart extends
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, index);
+		super.addChildVisual(childEditPart, -1);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel3EditPart) {
+		if (childEditPart instanceof WrappingLabel4EditPart) {
 			return true;
 		}
 		return false;
@@ -103,8 +101,7 @@ public class ScientificProblemInfluencedFeatureEditPart extends
 	/**
 	 * @generated
 	 */
-	public class ScientificProblem_InfluencedFeatureFigure extends
-			PolylineConnectionEx {
+	public class ScientificProblem_InfluencedFeatureFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
@@ -115,6 +112,7 @@ public class ScientificProblemInfluencedFeatureEditPart extends
 		 * @generated
 		 */
 		public ScientificProblem_InfluencedFeatureFigure() {
+			this.setLineWidth(1);
 
 			createContents();
 		}
@@ -125,8 +123,7 @@ public class ScientificProblemInfluencedFeatureEditPart extends
 		private void createContents() {
 
 			fFigureScientificProblem_InfluencedFeatureLabel = new WrappingLabel();
-			fFigureScientificProblem_InfluencedFeatureLabel
-					.setText("influences");
+			fFigureScientificProblem_InfluencedFeatureLabel.setText("influences");
 
 			this.add(fFigureScientificProblem_InfluencedFeatureLabel);
 

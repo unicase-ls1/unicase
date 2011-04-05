@@ -26,6 +26,15 @@ public interface RequirementsFactory extends EFactory {
 	RequirementsFactory eINSTANCE = scrm.requirements.impl.RequirementsFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Interface</em>'.
+	 * @generated
+	 */
+	Interface createInterface();
+
+	/**
 	 * Returns a new object of class '<em>Feature</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -114,15 +123,6 @@ public interface RequirementsFactory extends EFactory {
 	 * @generated
 	 */
 	DataDefinition createDataDefinition();
-
-	/**
-	 * Returns a new object of class '<em>Requirement Space</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Requirement Space</em>'.
-	 * @generated
-	 */
-	RequirementSpace createRequirementSpace();
 
 	/**
 	 * Returns the package supported by this factory.

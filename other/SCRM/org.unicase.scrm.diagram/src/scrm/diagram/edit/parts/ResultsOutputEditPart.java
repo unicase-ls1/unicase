@@ -1,23 +1,21 @@
 package scrm.diagram.edit.parts;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.Ellipse;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.ToolbarLayout;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
+import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConstrainedToolbarLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -25,22 +23,17 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.widgets.Display;
 import scrm.diagram.edit.policies.OpenDiagramEditPolicy;
 import scrm.diagram.edit.policies.ResultsOutputItemSemanticEditPolicy;
-import scrm.diagram.edit.policies.ScrmTextSelectionEditPolicy;
-import scrm.diagram.opener.MEEditorOpenerPolicy;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
 /**
- * @generated NOT
+ * @generated
  */
-public class ResultsOutputEditPart extends SCRMModelElementEditPart {
+public class ResultsOutputEditPart extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
@@ -69,9 +62,9 @@ public class ResultsOutputEditPart extends SCRMModelElementEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ResultsOutputItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ResultsOutputItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -80,16 +73,22 @@ public class ResultsOutputEditPart extends SCRMModelElementEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-
-		ConstrainedToolbarLayoutEditPolicy lep = new ConstrainedToolbarLayoutEditPolicy() {
+		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				if (child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE) == null) {
-					if (child instanceof ITextAwareEditPart) {
-						return new ScrmTextSelectionEditPolicy();
-					}
+				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				if (result == null) {
+					result = new NonResizableEditPolicy();
 				}
-				return super.createChildEditPolicy(child);
+				return result;
+			}
+
+			protected Command getMoveChildrenCommand(Request request) {
+				return null;
+			}
+
+			protected Command getCreateCommand(CreateRequest request) {
+				return null;
 			}
 		};
 		return lep;
@@ -99,7 +98,8 @@ public class ResultsOutputEditPart extends SCRMModelElementEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new ResultsOutputFigure();
+		ResultsOutputFigure figure = new ResultsOutputFigure();
+		return primaryShape = figure;
 	}
 
 	/**
@@ -113,15 +113,9 @@ public class ResultsOutputEditPart extends SCRMModelElementEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ResultsOutputNameEditPart) {
-			((ResultsOutputNameEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getFigureResultsOutput_name());
-			return true;
-		}
-		if (childEditPart instanceof ResultsOutputDescriptionEditPart) {
-			((ResultsOutputDescriptionEditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureResultsOutput_description());
+		if (childEditPart instanceof ResultsOutputDescriptionNameEditPart) {
+			((ResultsOutputDescriptionNameEditPart) childEditPart).setLabel(getPrimaryShape()
+				.getFigureResultsOutputLabel());
 			return true;
 		}
 		return false;
@@ -131,10 +125,7 @@ public class ResultsOutputEditPart extends SCRMModelElementEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ResultsOutputNameEditPart) {
-			return true;
-		}
-		if (childEditPart instanceof ResultsOutputDescriptionEditPart) {
+		if (childEditPart instanceof ResultsOutputDescriptionNameEditPart) {
 			return true;
 		}
 		return false;
@@ -171,7 +162,7 @@ public class ResultsOutputEditPart extends SCRMModelElementEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(160, 65);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
 		return result;
 	}
 
@@ -257,15 +248,14 @@ public class ResultsOutputEditPart extends SCRMModelElementEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(ScrmVisualIDRegistry
-				.getType(ResultsOutputNameEditPart.VISUAL_ID));
+		return getChildBySemanticHint(ScrmVisualIDRegistry.getType(ResultsOutputDescriptionNameEditPart.VISUAL_ID));
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(ScrmElementTypes.Requirement_4036);
 		types.add(ScrmElementTypes.RequirementDefiningData_4038);
 		return types;
@@ -274,13 +264,19 @@ public class ResultsOutputEditPart extends SCRMModelElementEditPart {
 	/**
 	 * @generated
 	 */
-	public List<IElementType> getMARelTypesOnSourceAndTarget(
-			IGraphicalEditPart targetEditPart) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
+		IGraphicalEditPart targetEditPart) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (targetEditPart instanceof ProcessEditPart) {
 			types.add(ScrmElementTypes.Requirement_4036);
 		}
 		if (targetEditPart instanceof PerformanceEditPart) {
+			types.add(ScrmElementTypes.Requirement_4036);
+		}
+		if (targetEditPart instanceof DataFlowEditPart) {
+			types.add(ScrmElementTypes.Requirement_4036);
+		}
+		if (targetEditPart instanceof DataDefinitionEditPart) {
 			types.add(ScrmElementTypes.Requirement_4036);
 		}
 		if (targetEditPart instanceof InputDataReadingEditPart) {
@@ -307,17 +303,37 @@ public class ResultsOutputEditPart extends SCRMModelElementEditPart {
 	/**
 	 * @generated
 	 */
-	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
+		IElementType relationshipType) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if (relationshipType == ScrmElementTypes.Requirement_4036) {
 			types.add(ScrmElementTypes.Process_2014);
+		}
+		if (relationshipType == ScrmElementTypes.Requirement_4036) {
 			types.add(ScrmElementTypes.Performance_2015);
+		}
+		if (relationshipType == ScrmElementTypes.Requirement_4036) {
+			types.add(ScrmElementTypes.DataFlow_2016);
+		}
+		if (relationshipType == ScrmElementTypes.Requirement_4036) {
+			types.add(ScrmElementTypes.DataDefinition_2017);
+		}
+		if (relationshipType == ScrmElementTypes.Requirement_4036) {
 			types.add(ScrmElementTypes.InputDataReading_2018);
+		}
+		if (relationshipType == ScrmElementTypes.Requirement_4036) {
 			types.add(ScrmElementTypes.DataHandling_2019);
+		}
+		if (relationshipType == ScrmElementTypes.Requirement_4036) {
 			types.add(ScrmElementTypes.ResultsOutput_2020);
+		}
+		if (relationshipType == ScrmElementTypes.Requirement_4036) {
 			types.add(ScrmElementTypes.ErrorHandling_2021);
+		}
+		if (relationshipType == ScrmElementTypes.Requirement_4036) {
 			types.add(ScrmElementTypes.StatusMonitoring_2022);
-		} else if (relationshipType == ScrmElementTypes.RequirementDefiningData_4038) {
+		}
+		if (relationshipType == ScrmElementTypes.RequirementDefiningData_4038) {
 			types.add(ScrmElementTypes.DataDefinition_2017);
 		}
 		return types;
@@ -326,8 +342,9 @@ public class ResultsOutputEditPart extends SCRMModelElementEditPart {
 	/**
 	 * @generated
 	 */
-	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		types.add(ScrmElementTypes.ScientificKnowledgeRequirements_4005);
 		types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
 		types.add(ScrmElementTypes.FeatureDetailedRequirements_4027);
 		types.add(ScrmElementTypes.Requirement_4036);
@@ -337,19 +354,52 @@ public class ResultsOutputEditPart extends SCRMModelElementEditPart {
 	/**
 	 * @generated
 	 */
-	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
+		IElementType relationshipType) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
+			types.add(ScrmElementTypes.ScientificProblem_2007);
+		}
+		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
+			types.add(ScrmElementTypes.MathematicalModel_2005);
+		}
+		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
+			types.add(ScrmElementTypes.NumericalMethod_2006);
+		}
+		if (relationshipType == ScrmElementTypes.ScientificKnowledgeRequirements_4005) {
+			types.add(ScrmElementTypes.Assumption_2008);
+		}
 		if (relationshipType == ScrmElementTypes.NumericalMethodRealizingRequirement_4016) {
 			types.add(ScrmElementTypes.NumericalMethod_2006);
-		} else if (relationshipType == ScrmElementTypes.FeatureDetailedRequirements_4027) {
+		}
+		if (relationshipType == ScrmElementTypes.FeatureDetailedRequirements_4027) {
 			types.add(ScrmElementTypes.Feature_2009);
-		} else if (relationshipType == ScrmElementTypes.Requirement_4036) {
+		}
+		if (relationshipType == ScrmElementTypes.Requirement_4036) {
 			types.add(ScrmElementTypes.Process_2014);
+		}
+		if (relationshipType == ScrmElementTypes.Requirement_4036) {
 			types.add(ScrmElementTypes.Performance_2015);
+		}
+		if (relationshipType == ScrmElementTypes.Requirement_4036) {
+			types.add(ScrmElementTypes.DataFlow_2016);
+		}
+		if (relationshipType == ScrmElementTypes.Requirement_4036) {
+			types.add(ScrmElementTypes.DataDefinition_2017);
+		}
+		if (relationshipType == ScrmElementTypes.Requirement_4036) {
 			types.add(ScrmElementTypes.InputDataReading_2018);
+		}
+		if (relationshipType == ScrmElementTypes.Requirement_4036) {
 			types.add(ScrmElementTypes.DataHandling_2019);
+		}
+		if (relationshipType == ScrmElementTypes.Requirement_4036) {
 			types.add(ScrmElementTypes.ResultsOutput_2020);
+		}
+		if (relationshipType == ScrmElementTypes.Requirement_4036) {
 			types.add(ScrmElementTypes.ErrorHandling_2021);
+		}
+		if (relationshipType == ScrmElementTypes.Requirement_4036) {
 			types.add(ScrmElementTypes.StatusMonitoring_2022);
 		}
 		return types;
@@ -358,72 +408,58 @@ public class ResultsOutputEditPart extends SCRMModelElementEditPart {
 	/**
 	 * @generated
 	 */
-	public class ResultsOutputFigure extends RoundedRectangle {
+	public class ResultsOutputFigure extends Ellipse {
 
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureResultsOutput_name;
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fFigureResultsOutput_description;
+		private WrappingLabel fFigureResultsOutputLabel;
 
 		/**
 		 * @generated
 		 */
 		public ResultsOutputFigure() {
-
-			ToolbarLayout layoutThis = new ToolbarLayout();
-			layoutThis.setStretchMinorAxis(true);
-			layoutThis.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);
-
-			layoutThis.setSpacing(5);
-			layoutThis.setVertical(true);
-
-			this.setLayoutManager(layoutThis);
-
-			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(32),
-					getMapMode().DPtoLP(32)));
+			this.setLineWidth(1);
 			this.setBackgroundColor(THIS_BACK);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(160),
-					getMapMode().DPtoLP(65)));
 			createContents();
 		}
 
 		/**
-		 * @generated NOT
+		 * @generated
 		 */
 		private void createContents() {
 
-			fFigureResultsOutput_name = new WrappingLabel();
-			fFigureResultsOutput_name.setText("");
-			fFigureResultsOutput_name.setTextWrap(true);
+			fFigureResultsOutputLabel = new WrappingLabel();
+			fFigureResultsOutputLabel.setText("ResultsOutput");
 
-			fFigureResultsOutput_name.setFont(FFIGURERESULTSOUTPUT_NAME_FONT);
-
-			this.add(fFigureResultsOutput_name);
-
-			fFigureResultsOutput_description = new WrappingLabel();
-			fFigureResultsOutput_description.setText("");
-			fFigureResultsOutput_description.setTextWrap(true);
-
-			this.add(fFigureResultsOutput_description);
+			this.add(fFigureResultsOutputLabel);
 
 		}
 
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureResultsOutput_name() {
-			return fFigureResultsOutput_name;
+		private boolean myUseLocalCoordinates = false;
+
+		/**
+		 * @generated
+		 */
+		protected boolean useLocalCoordinates() {
+			return myUseLocalCoordinates;
 		}
 
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureResultsOutput_description() {
-			return fFigureResultsOutput_description;
+		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
+			myUseLocalCoordinates = useLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureResultsOutputLabel() {
+			return fFigureResultsOutputLabel;
 		}
 
 	}
@@ -431,12 +467,6 @@ public class ResultsOutputEditPart extends SCRMModelElementEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 53, 139, 234);
-
-	/**
-	 * @generated
-	 */
-	static final Font FFIGURERESULTSOUTPUT_NAME_FONT = new Font(
-			Display.getCurrent(), "Arial", 9, SWT.BOLD);
+	static final Color THIS_BACK = new Color(null, 0, 0, 255);
 
 }

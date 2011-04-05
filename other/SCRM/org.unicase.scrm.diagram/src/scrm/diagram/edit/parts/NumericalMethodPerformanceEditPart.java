@@ -14,8 +14,7 @@ import scrm.diagram.edit.policies.NumericalMethodPerformanceItemSemanticEditPoli
 /**
  * @generated
  */
-public class NumericalMethodPerformanceEditPart extends ConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+public class NumericalMethodPerformanceEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -34,17 +33,16 @@ public class NumericalMethodPerformanceEditPart extends ConnectionNodeEditPart
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new NumericalMethodPerformanceItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new NumericalMethodPerformanceItemSemanticEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel9EditPart) {
-			((WrappingLabel9EditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureNumericalMethod_PerformanceLabel());
+		if (childEditPart instanceof WrappingLabel11EditPart) {
+			((WrappingLabel11EditPart) childEditPart).setLabel(getPrimaryShape()
+				.getFigureNumericalMethod_PerformanceLabel());
 			return true;
 		}
 		return false;
@@ -57,14 +55,14 @@ public class NumericalMethodPerformanceEditPart extends ConnectionNodeEditPart
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, index);
+		super.addChildVisual(childEditPart, -1);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel9EditPart) {
+		if (childEditPart instanceof WrappingLabel11EditPart) {
 			return true;
 		}
 		return false;
@@ -114,6 +112,7 @@ public class NumericalMethodPerformanceEditPart extends ConnectionNodeEditPart
 		 * @generated
 		 */
 		public NumericalMethod_PerformanceFigure() {
+			this.setLineWidth(1);
 
 			createContents();
 		}

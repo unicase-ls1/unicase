@@ -35,49 +35,47 @@ import scrm.requirements.Requirement;
  */
 public interface NumericalMethod extends ScientificKnowledge {
 	/**
-	 * Returns the value of the '<em><b>Solved Problem</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link scrm.knowledge.ScientificProblem#getSolvingMethods <em>Solving Methods</em>}'.
+	 * Returns the value of the '<em><b>Solved Problem</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.ScientificProblem#getSolvingMethod <em>Solving Method</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Solved Problem</em>' reference isn't clear,
+	 * If the meaning of the '<em>Solved Problem</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Solved Problem</em>' reference.
+	 * @return the value of the '<em>Solved Problem</em>' container reference.
 	 * @see #setSolvedProblem(ScientificProblem)
 	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_SolvedProblem()
-	 * @see scrm.knowledge.ScientificProblem#getSolvingMethods
-	 * @model opposite="solvingMethods"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
+	 * @see scrm.knowledge.ScientificProblem#getSolvingMethod
+	 * @model opposite="solvingMethod" transient="false"
 	 * @generated
 	 */
 	ScientificProblem getSolvedProblem();
 
 	/**
-	 * Sets the value of the '{@link scrm.knowledge.NumericalMethod#getSolvedProblem <em>Solved Problem</em>}' reference.
+	 * Sets the value of the '{@link scrm.knowledge.NumericalMethod#getSolvedProblem <em>Solved Problem</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Solved Problem</em>' reference.
+	 * @param value the new value of the '<em>Solved Problem</em>' container reference.
 	 * @see #getSolvedProblem()
 	 * @generated
 	 */
 	void setSolvedProblem(ScientificProblem value);
 
 	/**
-	 * Returns the value of the '<em><b>Dependencies</b></em>' reference list.
+	 * Returns the value of the '<em><b>Dependencies</b></em>' containment reference list.
 	 * The list contents are of type {@link scrm.knowledge.Assumption}.
 	 * It is bidirectional and its opposite is '{@link scrm.knowledge.Assumption#getDependingMethod <em>Depending Method</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Dependencies</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Dependencies</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dependencies</em>' reference list.
+	 * @return the value of the '<em>Dependencies</em>' containment reference list.
 	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_Dependencies()
 	 * @see scrm.knowledge.Assumption#getDependingMethod
-	 * @model opposite="dependingMethod"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='10'"
+	 * @model opposite="dependingMethod" containment="true"
 	 * @generated
 	 */
 	EList<Assumption> getDependencies();
@@ -96,7 +94,6 @@ public interface NumericalMethod extends ScientificKnowledge {
 	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_RealizingRequirement()
 	 * @see scrm.requirements.Requirement#getRealizedMethod
 	 * @model opposite="realizedMethod"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='25'"
 	 * @generated
 	 */
 	Requirement getRealizingRequirement();
@@ -125,7 +122,6 @@ public interface NumericalMethod extends ScientificKnowledge {
 	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_MathematicalModel()
 	 * @see scrm.knowledge.MathematicalModel#getNumericalMethods
 	 * @model opposite="numericalMethods"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='20'"
 	 * @generated
 	 */
 	MathematicalModel getMathematicalModel();
@@ -142,6 +138,7 @@ public interface NumericalMethod extends ScientificKnowledge {
 
 	/**
 	 * Returns the value of the '<em><b>Performance</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.Performance#getNumericalMethod <em>Numerical Method</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Performance</em>' reference isn't clear,
@@ -151,7 +148,8 @@ public interface NumericalMethod extends ScientificKnowledge {
 	 * @return the value of the '<em>Performance</em>' reference.
 	 * @see #setPerformance(Performance)
 	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_Performance()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='30'"
+	 * @see scrm.requirements.Performance#getNumericalMethod
+	 * @model opposite="numericalMethod"
 	 * @generated
 	 */
 	Performance getPerformance();
@@ -177,7 +175,7 @@ public interface NumericalMethod extends ScientificKnowledge {
 	 * @return the value of the '<em>Theory</em>' attribute.
 	 * @see #setTheory(String)
 	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_Theory()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='5'"
+	 * @model
 	 * @generated
 	 */
 	String getTheory();
@@ -203,7 +201,7 @@ public interface NumericalMethod extends ScientificKnowledge {
 	 * @return the value of the '<em>Algorithm</em>' attribute.
 	 * @see #setAlgorithm(String)
 	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_Algorithm()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='7'"
+	 * @model
 	 * @generated
 	 */
 	String getAlgorithm();

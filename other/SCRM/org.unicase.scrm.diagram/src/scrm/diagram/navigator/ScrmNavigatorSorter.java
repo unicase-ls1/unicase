@@ -12,7 +12,7 @@ public class ScrmNavigatorSorter extends ViewerSorter {
 	/**
 	 * @generated
 	 */
-	private static final int GROUP_CATEGORY = 4043;
+	private static final int GROUP_CATEGORY = 4042;
 
 	/**
 	 * @generated

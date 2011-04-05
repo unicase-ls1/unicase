@@ -39,8 +39,7 @@ public class RequirementCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public RequirementCreateCommand(CreateRelationshipRequest request,
-			EObject source, EObject target) {
+	public RequirementCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
@@ -67,23 +66,19 @@ public class RequirementCreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canCreateRequirement_4036(getContainer(), getSource(),
-						getTarget());
+		return ScrmBaseItemSemanticEditPolicy.LinkConstraints.canCreateRequirement_4036(getContainer(), getSource(),
+			getTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
-		Requirement newElement = RequirementsFactory.eINSTANCE
-				.createRequirement();
+		Requirement newElement = RequirementsFactory.eINSTANCE.createRequirement();
 		getContainer().getRefinements().add(newElement);
 		newElement.setRefinedRequirement(getSource());
 		newElement.getRefinements().add(getTarget());
@@ -96,22 +91,15 @@ public class RequirementCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(Requirement newElement,
-			IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest())
-				.getElementType();
-		ConfigureRequest configureRequest = new ConfigureRequest(
-				getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest())
-				.getClientContext());
+	protected void doConfigure(Requirement newElement, IProgressMonitor monitor, IAdaptable info)
+		throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		configureRequest.setParameter(CreateRelationshipRequest.SOURCE,
-				getSource());
-		configureRequest.setParameter(CreateRelationshipRequest.TARGET,
-				getTarget());
-		ICommand configureCommand = elementType
-				.getEditCommand(configureRequest);
+		configureRequest.setParameter(CreateRelationshipRequest.SOURCE, getSource());
+		configureRequest.setParameter(CreateRelationshipRequest.TARGET, getTarget());
+		ICommand configureCommand = elementType.getEditCommand(configureRequest);
 		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
@@ -154,8 +142,7 @@ public class RequirementCreateCommand extends EditElementCommand {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element
-				.eContainer()) {
+		for (EObject element = source; element != null; element = element.eContainer()) {
 			if (element instanceof Requirement) {
 				return (Requirement) element;
 			}

@@ -1,21 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- ******************************************************************************/
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.emfstore.jdt.eclipseworkspace;
 
-import org.eclipse.emf.emfstore.client.model.ServerInfo;
-import org.eclipse.emf.emfstore.server.model.ModelFactory;
-import org.eclipse.emf.emfstore.server.model.ProjectId;
-import org.eclipse.emf.emfstore.server.model.ProjectInfo;
+import org.unicase.emfstore.esmodel.EsmodelFactory;
+import org.unicase.emfstore.esmodel.ProjectId;
+import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.jdt.configuration.EMFStoreLocation;
 import org.unicase.emfstore.jdt.configuration.EObjectLocation;
 import org.unicase.emfstore.jdt.exception.EMFStoreURIMalformedException;
+import org.unicase.workspace.ServerInfo;
 
 /**
  * Parses an URI to an structured URI, so that it is possible to access the several parts directly by invoking a method
@@ -168,10 +164,10 @@ public class StructuredEMFStoreURI {
 	 * @return An ProjectInfo.
 	 */
 	public ProjectInfo getProjectInfo() {
-		ProjectId projectId = ModelFactory.eINSTANCE.createProjectId();
+		ProjectId projectId = EsmodelFactory.eINSTANCE.createProjectId();
 		projectId.setId(this.projectID);
 
-		ProjectInfo projectInfo = ModelFactory.eINSTANCE.createProjectInfo();
+		ProjectInfo projectInfo = EsmodelFactory.eINSTANCE.createProjectInfo();
 		projectInfo.setProjectId(projectId);
 
 		return projectInfo;

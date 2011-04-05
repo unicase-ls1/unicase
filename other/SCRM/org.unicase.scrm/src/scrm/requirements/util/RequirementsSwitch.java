@@ -11,8 +11,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-import org.unicase.metamodel.IdentifiableElement;
-
 import scrm.SCRMModelElement;
 
 import scrm.requirements.Constraint;
@@ -24,7 +22,6 @@ import scrm.requirements.IRequirement;
 import scrm.requirements.Interface;
 import scrm.requirements.Performance;
 import scrm.requirements.Requirement;
-import scrm.requirements.RequirementSpace;
 import scrm.requirements.RequirementsPackage;
 import scrm.requirements.SoftwareInterface;
 import scrm.requirements.UserInterface;
@@ -189,6 +186,7 @@ public class RequirementsSwitch<T> {
 			case RequirementsPackage.DATA_FLOW: {
 				DataFlow dataFlow = (DataFlow)theEObject;
 				T result = caseDataFlow(dataFlow);
+				if (result == null) result = caseRequirement(dataFlow);
 				if (result == null) result = caseIRequirement(dataFlow);
 				if (result == null) result = caseSCRMModelElement(dataFlow);
 				if (result == null) result = defaultCase(theEObject);
@@ -197,16 +195,9 @@ public class RequirementsSwitch<T> {
 			case RequirementsPackage.DATA_DEFINITION: {
 				DataDefinition dataDefinition = (DataDefinition)theEObject;
 				T result = caseDataDefinition(dataDefinition);
+				if (result == null) result = caseRequirement(dataDefinition);
 				if (result == null) result = caseIRequirement(dataDefinition);
 				if (result == null) result = caseSCRMModelElement(dataDefinition);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementsPackage.REQUIREMENT_SPACE: {
-				RequirementSpace requirementSpace = (RequirementSpace)theEObject;
-				T result = caseRequirementSpace(requirementSpace);
-				if (result == null) result = caseIRequirement(requirementSpace);
-				if (result == null) result = caseSCRMModelElement(requirementSpace);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -391,21 +382,6 @@ public class RequirementsSwitch<T> {
 	 * @generated
 	 */
 	public T caseDataDefinition(DataDefinition object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Requirement Space</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Requirement Space</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRequirementSpace(RequirementSpace object) {
 		return null;
 	}
 

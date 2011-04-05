@@ -23,7 +23,6 @@ import scrm.knowledge.ScientificKnowledge;
 
 import scrm.requirements.Feature;
 import scrm.requirements.Hardware;
-import scrm.requirements.RequirementSpace;
 import scrm.requirements.RequirementsPackage;
 
 /**
@@ -33,7 +32,7 @@ import scrm.requirements.RequirementsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link scrm.requirements.impl.HardwareImpl#getContainingRequirementSpace <em>Containing Requirement Space</em>}</li>
+ *   <li>{@link scrm.requirements.impl.HardwareImpl#getUsedKnowledge <em>Used Knowledge</em>}</li>
  *   <li>{@link scrm.requirements.impl.HardwareImpl#getDependingFeature <em>Depending Feature</em>}</li>
  *   <li>{@link scrm.requirements.impl.HardwareImpl#getProcessor <em>Processor</em>}</li>
  *   <li>{@link scrm.requirements.impl.HardwareImpl#getPlatform <em>Platform</em>}</li>
@@ -44,16 +43,6 @@ import scrm.requirements.RequirementsPackage;
  * @generated
  */
 public class HardwareImpl extends SCRMModelElementImpl implements Hardware {
-	/**
-	 * The cached value of the '{@link #getDependingFeature() <em>Depending Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDependingFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected Feature dependingFeature;
-
 	/**
 	 * The default value of the '{@link #getProcessor() <em>Processor</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -138,9 +127,9 @@ public class HardwareImpl extends SCRMModelElementImpl implements Hardware {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RequirementSpace getContainingRequirementSpace() {
-		if (eContainerFeatureID() != RequirementsPackage.HARDWARE__CONTAINING_REQUIREMENT_SPACE) return null;
-		return (RequirementSpace)eContainer();
+	public ScientificKnowledge getUsedKnowledge() {
+		if (eContainerFeatureID() != RequirementsPackage.HARDWARE__USED_KNOWLEDGE) return null;
+		return (ScientificKnowledge)eContainer();
 	}
 
 	/**
@@ -148,18 +137,8 @@ public class HardwareImpl extends SCRMModelElementImpl implements Hardware {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RequirementSpace basicGetContainingRequirementSpace() {
-		if (eContainerFeatureID() != RequirementsPackage.HARDWARE__CONTAINING_REQUIREMENT_SPACE) return null;
-		return (RequirementSpace)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetContainingRequirementSpace(RequirementSpace newContainingRequirementSpace, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newContainingRequirementSpace, RequirementsPackage.HARDWARE__CONTAINING_REQUIREMENT_SPACE, msgs);
+	public NotificationChain basicSetUsedKnowledge(ScientificKnowledge newUsedKnowledge, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newUsedKnowledge, RequirementsPackage.HARDWARE__USED_KNOWLEDGE, msgs);
 		return msgs;
 	}
 
@@ -168,20 +147,20 @@ public class HardwareImpl extends SCRMModelElementImpl implements Hardware {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContainingRequirementSpace(RequirementSpace newContainingRequirementSpace) {
-		if (newContainingRequirementSpace != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.HARDWARE__CONTAINING_REQUIREMENT_SPACE && newContainingRequirementSpace != null)) {
-			if (EcoreUtil.isAncestor(this, newContainingRequirementSpace))
+	public void setUsedKnowledge(ScientificKnowledge newUsedKnowledge) {
+		if (newUsedKnowledge != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.HARDWARE__USED_KNOWLEDGE && newUsedKnowledge != null)) {
+			if (EcoreUtil.isAncestor(this, newUsedKnowledge))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newContainingRequirementSpace != null)
-				msgs = ((InternalEObject)newContainingRequirementSpace).eInverseAdd(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
-			msgs = basicSetContainingRequirementSpace(newContainingRequirementSpace, msgs);
+			if (newUsedKnowledge != null)
+				msgs = ((InternalEObject)newUsedKnowledge).eInverseAdd(this, KnowledgePackage.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS, ScientificKnowledge.class, msgs);
+			msgs = basicSetUsedKnowledge(newUsedKnowledge, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.HARDWARE__CONTAINING_REQUIREMENT_SPACE, newContainingRequirementSpace, newContainingRequirementSpace));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.HARDWARE__USED_KNOWLEDGE, newUsedKnowledge, newUsedKnowledge));
 	}
 
 	/**
@@ -190,24 +169,8 @@ public class HardwareImpl extends SCRMModelElementImpl implements Hardware {
 	 * @generated
 	 */
 	public Feature getDependingFeature() {
-		if (dependingFeature != null && dependingFeature.eIsProxy()) {
-			InternalEObject oldDependingFeature = (InternalEObject)dependingFeature;
-			dependingFeature = (Feature)eResolveProxy(oldDependingFeature);
-			if (dependingFeature != oldDependingFeature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementsPackage.HARDWARE__DEPENDING_FEATURE, oldDependingFeature, dependingFeature));
-			}
-		}
-		return dependingFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Feature basicGetDependingFeature() {
-		return dependingFeature;
+		if (eContainerFeatureID() != RequirementsPackage.HARDWARE__DEPENDING_FEATURE) return null;
+		return (Feature)eContainer();
 	}
 
 	/**
@@ -216,12 +179,7 @@ public class HardwareImpl extends SCRMModelElementImpl implements Hardware {
 	 * @generated
 	 */
 	public NotificationChain basicSetDependingFeature(Feature newDependingFeature, NotificationChain msgs) {
-		Feature oldDependingFeature = dependingFeature;
-		dependingFeature = newDependingFeature;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RequirementsPackage.HARDWARE__DEPENDING_FEATURE, oldDependingFeature, newDependingFeature);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
+		msgs = eBasicSetContainer((InternalEObject)newDependingFeature, RequirementsPackage.HARDWARE__DEPENDING_FEATURE, msgs);
 		return msgs;
 	}
 
@@ -231,10 +189,12 @@ public class HardwareImpl extends SCRMModelElementImpl implements Hardware {
 	 * @generated
 	 */
 	public void setDependingFeature(Feature newDependingFeature) {
-		if (newDependingFeature != dependingFeature) {
+		if (newDependingFeature != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.HARDWARE__DEPENDING_FEATURE && newDependingFeature != null)) {
+			if (EcoreUtil.isAncestor(this, newDependingFeature))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (dependingFeature != null)
-				msgs = ((InternalEObject)dependingFeature).eInverseRemove(this, RequirementsPackage.FEATURE__DEPENDENCIES, Feature.class, msgs);
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
 			if (newDependingFeature != null)
 				msgs = ((InternalEObject)newDependingFeature).eInverseAdd(this, RequirementsPackage.FEATURE__DEPENDENCIES, Feature.class, msgs);
 			msgs = basicSetDependingFeature(newDependingFeature, msgs);
@@ -315,13 +275,13 @@ public class HardwareImpl extends SCRMModelElementImpl implements Hardware {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.HARDWARE__CONTAINING_REQUIREMENT_SPACE:
+			case RequirementsPackage.HARDWARE__USED_KNOWLEDGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainingRequirementSpace((RequirementSpace)otherEnd, msgs);
+				return basicSetUsedKnowledge((ScientificKnowledge)otherEnd, msgs);
 			case RequirementsPackage.HARDWARE__DEPENDING_FEATURE:
-				if (dependingFeature != null)
-					msgs = ((InternalEObject)dependingFeature).eInverseRemove(this, RequirementsPackage.FEATURE__DEPENDENCIES, Feature.class, msgs);
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetDependingFeature((Feature)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -335,8 +295,8 @@ public class HardwareImpl extends SCRMModelElementImpl implements Hardware {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.HARDWARE__CONTAINING_REQUIREMENT_SPACE:
-				return basicSetContainingRequirementSpace(null, msgs);
+			case RequirementsPackage.HARDWARE__USED_KNOWLEDGE:
+				return basicSetUsedKnowledge(null, msgs);
 			case RequirementsPackage.HARDWARE__DEPENDING_FEATURE:
 				return basicSetDependingFeature(null, msgs);
 		}
@@ -351,8 +311,10 @@ public class HardwareImpl extends SCRMModelElementImpl implements Hardware {
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case RequirementsPackage.HARDWARE__CONTAINING_REQUIREMENT_SPACE:
-				return eInternalContainer().eInverseRemove(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
+			case RequirementsPackage.HARDWARE__USED_KNOWLEDGE:
+				return eInternalContainer().eInverseRemove(this, KnowledgePackage.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS, ScientificKnowledge.class, msgs);
+			case RequirementsPackage.HARDWARE__DEPENDING_FEATURE:
+				return eInternalContainer().eInverseRemove(this, RequirementsPackage.FEATURE__DEPENDENCIES, Feature.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -365,12 +327,10 @@ public class HardwareImpl extends SCRMModelElementImpl implements Hardware {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RequirementsPackage.HARDWARE__CONTAINING_REQUIREMENT_SPACE:
-				if (resolve) return getContainingRequirementSpace();
-				return basicGetContainingRequirementSpace();
+			case RequirementsPackage.HARDWARE__USED_KNOWLEDGE:
+				return getUsedKnowledge();
 			case RequirementsPackage.HARDWARE__DEPENDING_FEATURE:
-				if (resolve) return getDependingFeature();
-				return basicGetDependingFeature();
+				return getDependingFeature();
 			case RequirementsPackage.HARDWARE__PROCESSOR:
 				return getProcessor();
 			case RequirementsPackage.HARDWARE__PLATFORM:
@@ -389,8 +349,8 @@ public class HardwareImpl extends SCRMModelElementImpl implements Hardware {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RequirementsPackage.HARDWARE__CONTAINING_REQUIREMENT_SPACE:
-				setContainingRequirementSpace((RequirementSpace)newValue);
+			case RequirementsPackage.HARDWARE__USED_KNOWLEDGE:
+				setUsedKnowledge((ScientificKnowledge)newValue);
 				return;
 			case RequirementsPackage.HARDWARE__DEPENDING_FEATURE:
 				setDependingFeature((Feature)newValue);
@@ -416,8 +376,8 @@ public class HardwareImpl extends SCRMModelElementImpl implements Hardware {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.HARDWARE__CONTAINING_REQUIREMENT_SPACE:
-				setContainingRequirementSpace((RequirementSpace)null);
+			case RequirementsPackage.HARDWARE__USED_KNOWLEDGE:
+				setUsedKnowledge((ScientificKnowledge)null);
 				return;
 			case RequirementsPackage.HARDWARE__DEPENDING_FEATURE:
 				setDependingFeature((Feature)null);
@@ -443,10 +403,10 @@ public class HardwareImpl extends SCRMModelElementImpl implements Hardware {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.HARDWARE__CONTAINING_REQUIREMENT_SPACE:
-				return basicGetContainingRequirementSpace() != null;
+			case RequirementsPackage.HARDWARE__USED_KNOWLEDGE:
+				return getUsedKnowledge() != null;
 			case RequirementsPackage.HARDWARE__DEPENDING_FEATURE:
-				return dependingFeature != null;
+				return getDependingFeature() != null;
 			case RequirementsPackage.HARDWARE__PROCESSOR:
 				return PROCESSOR_EDEFAULT == null ? processor != null : !PROCESSOR_EDEFAULT.equals(processor);
 			case RequirementsPackage.HARDWARE__PLATFORM:

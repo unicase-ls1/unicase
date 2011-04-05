@@ -9,12 +9,12 @@ package org.unicase.model.changetracking.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
-import org.unicase.model.changetracking.ChangetrackingFactory;
-import org.unicase.model.changetracking.ChangetrackingPackage;
-import org.unicase.model.changetracking.Stream;
+
+import org.unicase.model.changetracking.*;
 
 /**
  * <!-- begin-user-doc -->

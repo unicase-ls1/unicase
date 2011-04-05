@@ -14,8 +14,7 @@ import scrm.diagram.edit.policies.NumericalMethodDependenciesItemSemanticEditPol
 /**
  * @generated
  */
-public class NumericalMethodDependenciesEditPart extends ConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+public class NumericalMethodDependenciesEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -34,17 +33,16 @@ public class NumericalMethodDependenciesEditPart extends ConnectionNodeEditPart
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new NumericalMethodDependenciesItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new NumericalMethodDependenciesItemSemanticEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel7EditPart) {
-			((WrappingLabel7EditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureNumericalMethod_DependenciesLabel());
+		if (childEditPart instanceof WrappingLabel9EditPart) {
+			((WrappingLabel9EditPart) childEditPart).setLabel(getPrimaryShape()
+				.getFigureNumericalMethod_DependenciesLabel());
 			return true;
 		}
 		return false;
@@ -57,14 +55,14 @@ public class NumericalMethodDependenciesEditPart extends ConnectionNodeEditPart
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, index);
+		super.addChildVisual(childEditPart, -1);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel7EditPart) {
+		if (childEditPart instanceof WrappingLabel9EditPart) {
 			return true;
 		}
 		return false;
@@ -103,8 +101,7 @@ public class NumericalMethodDependenciesEditPart extends ConnectionNodeEditPart
 	/**
 	 * @generated
 	 */
-	public class NumericalMethod_DependenciesFigure extends
-			PolylineConnectionEx {
+	public class NumericalMethod_DependenciesFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
@@ -115,6 +112,7 @@ public class NumericalMethodDependenciesEditPart extends ConnectionNodeEditPart
 		 * @generated
 		 */
 		public NumericalMethod_DependenciesFigure() {
+			this.setLineWidth(1);
 
 			createContents();
 		}

@@ -6,6 +6,7 @@
  */
 package scrm.requirements;
 
+import scrm.knowledge.NumericalMethod;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,6 +16,7 @@ package scrm.requirements;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link scrm.requirements.Performance#getNumericalMethod <em>Numerical Method</em>}</li>
  *   <li>{@link scrm.requirements.Performance#getProblemSize <em>Problem Size</em>}</li>
  * </ul>
  * </p>
@@ -24,6 +26,34 @@ package scrm.requirements;
  * @generated
  */
 public interface Performance extends Requirement {
+	/**
+	 * Returns the value of the '<em><b>Numerical Method</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.NumericalMethod#getPerformance <em>Performance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Numerical Method</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Numerical Method</em>' reference.
+	 * @see #setNumericalMethod(NumericalMethod)
+	 * @see scrm.requirements.RequirementsPackage#getPerformance_NumericalMethod()
+	 * @see scrm.knowledge.NumericalMethod#getPerformance
+	 * @model opposite="performance"
+	 * @generated
+	 */
+	NumericalMethod getNumericalMethod();
+
+	/**
+	 * Sets the value of the '{@link scrm.requirements.Performance#getNumericalMethod <em>Numerical Method</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Numerical Method</em>' reference.
+	 * @see #getNumericalMethod()
+	 * @generated
+	 */
+	void setNumericalMethod(NumericalMethod value);
+
 	/**
 	 * Returns the value of the '<em><b>Problem Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -35,7 +65,7 @@ public interface Performance extends Requirement {
 	 * @return the value of the '<em>Problem Size</em>' attribute.
 	 * @see #setProblemSize(String)
 	 * @see scrm.requirements.RequirementsPackage#getPerformance_ProblemSize()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='5'"
+	 * @model
 	 * @generated
 	 */
 	String getProblemSize();

@@ -16,8 +16,7 @@ import scrm.requirements.Feature;
 /**
  * @generated
  */
-public class ScientificProblemInfluencedFeatureReorientCommand extends
-		EditElementCommand {
+public class ScientificProblemInfluencedFeatureReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -42,8 +41,7 @@ public class ScientificProblemInfluencedFeatureReorientCommand extends
 	/**
 	 * @generated
 	 */
-	public ScientificProblemInfluencedFeatureReorientCommand(
-			ReorientReferenceRelationshipRequest request) {
+	public ScientificProblemInfluencedFeatureReorientCommand(ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -74,9 +72,8 @@ public class ScientificProblemInfluencedFeatureReorientCommand extends
 		if (!(oldEnd instanceof Feature && newEnd instanceof ScientificProblem)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistScientificProblemInfluencedFeature_4008(
-						getNewSource(), getOldTarget());
+		return ScrmBaseItemSemanticEditPolicy.LinkConstraints.canExistScientificProblemInfluencedFeature_4008(
+			getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -86,19 +83,16 @@ public class ScientificProblemInfluencedFeatureReorientCommand extends
 		if (!(oldEnd instanceof Feature && newEnd instanceof Feature)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistScientificProblemInfluencedFeature_4008(
-						getOldSource(), getNewTarget());
+		return ScrmBaseItemSemanticEditPolicy.LinkConstraints.canExistScientificProblemInfluencedFeature_4008(
+			getOldSource(), getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

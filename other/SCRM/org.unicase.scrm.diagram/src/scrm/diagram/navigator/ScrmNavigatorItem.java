@@ -20,9 +20,8 @@ public class ScrmNavigatorItem extends ScrmAbstractNavigatorItem {
 
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
 				if (adaptableObject instanceof scrm.diagram.navigator.ScrmNavigatorItem
-						&& (adapterType == View.class || adapterType == EObject.class)) {
-					return ((scrm.diagram.navigator.ScrmNavigatorItem) adaptableObject)
-							.getView();
+					&& (adapterType == View.class || adapterType == EObject.class)) {
+					return ((scrm.diagram.navigator.ScrmNavigatorItem) adaptableObject).getView();
 				}
 				return null;
 			}
@@ -71,11 +70,8 @@ public class ScrmNavigatorItem extends ScrmAbstractNavigatorItem {
 	 */
 	public boolean equals(Object obj) {
 		if (obj instanceof scrm.diagram.navigator.ScrmNavigatorItem) {
-			return EcoreUtil
-					.getURI(getView())
-					.equals(EcoreUtil
-							.getURI(((scrm.diagram.navigator.ScrmNavigatorItem) obj)
-									.getView()));
+			return EcoreUtil.getURI(getView()).equals(
+				EcoreUtil.getURI(((scrm.diagram.navigator.ScrmNavigatorItem) obj).getView()));
 		}
 		return super.equals(obj);
 	}

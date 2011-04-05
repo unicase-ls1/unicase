@@ -7,7 +7,9 @@
 package org.unicase.model.changetracking.patch.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import org.unicase.model.changetracking.patch.Patch;
 import org.unicase.model.changetracking.patch.PatchPackage;
 

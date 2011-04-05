@@ -31,7 +31,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 
 import scrm.SCRMDiagram;
-import scrm.ScrmFactory;
 import scrm.ScrmPackage;
 
 import scrm.knowledge.KnowledgeFactory;
@@ -47,7 +46,7 @@ import scrm.requirements.dataProcessing.DataProcessingFactory;
  * @generated
  */
 public class SCRMDiagramItemProvider
-	extends SCRMModelElementItemProvider
+	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -171,11 +170,14 @@ public class SCRMDiagramItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		String label = ((SCRMDiagram)object).getDiagramLayout();
+		return label == null || label.length() == 0 ?
+			getString("_UI_SCRMDiagram_type") :
+			getString("_UI_SCRMDiagram_type") + " " + label;
 	}
 
 	/**
@@ -215,11 +217,6 @@ public class SCRMDiagramItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
-				 ScrmFactory.eINSTANCE.createSCRMDiagram()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
 				 KnowledgeFactory.eINSTANCE.createScientificProblem()));
 
 		newChildDescriptors.add
@@ -240,7 +237,7 @@ public class SCRMDiagramItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
-				 KnowledgeFactory.eINSTANCE.createKnowledgeSpace()));
+				 RequirementsFactory.eINSTANCE.createInterface()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -295,11 +292,6 @@ public class SCRMDiagramItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
-				 RequirementsFactory.eINSTANCE.createRequirementSpace()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
 				 DataProcessingFactory.eINSTANCE.createInputDataReading()));
 
 		newChildDescriptors.add
@@ -331,6 +323,17 @@ public class SCRMDiagramItemProvider
 			(createChildParameter
 				(ScrmPackage.Literals.SCRM_DIAGRAM__GMFDIAGRAM,
 				 NotationFactory.eINSTANCE.createStandardDiagram()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return ScrmEditPlugin.INSTANCE;
 	}
 
 }

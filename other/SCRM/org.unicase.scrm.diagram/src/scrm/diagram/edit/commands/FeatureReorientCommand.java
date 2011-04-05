@@ -72,9 +72,7 @@ public class FeatureReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Feature container = (Feature) getLink().eContainer();
-		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistFeature_4029(container, getLink(), getNewSource(),
-						target);
+		return ScrmBaseItemSemanticEditPolicy.LinkConstraints.canExistFeature_4029(container, getNewSource(), target);
 	}
 
 	/**
@@ -84,24 +82,20 @@ public class FeatureReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Feature && newEnd instanceof Feature)) {
 			return false;
 		}
-		Feature source = getLink().getSuperFeature();
+		Feature source = getLink().getSupeFeature();
 		if (!(getLink().eContainer() instanceof Feature)) {
 			return false;
 		}
 		Feature container = (Feature) getLink().eContainer();
-		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistFeature_4029(container, getLink(), source,
-						getNewTarget());
+		return ScrmBaseItemSemanticEditPolicy.LinkConstraints.canExistFeature_4029(container, source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
@@ -116,7 +110,7 @@ public class FeatureReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getLink().setSuperFeature(getNewSource());
+		getLink().setSupeFeature(getNewSource());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 

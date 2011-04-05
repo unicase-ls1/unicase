@@ -18,7 +18,7 @@ import scrm.knowledge.ScientificKnowledge;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link scrm.requirements.IRequirement#getContainingRequirementSpace <em>Containing Requirement Space</em>}</li>
+ *   <li>{@link scrm.requirements.IRequirement#getUsedKnowledge <em>Used Knowledge</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,32 +28,31 @@ import scrm.knowledge.ScientificKnowledge;
  */
 public interface IRequirement extends SCRMModelElement {
 	/**
-	 * Returns the value of the '<em><b>Containing Requirement Space</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link scrm.requirements.RequirementSpace#getContainedInformationofRequirements <em>Contained Informationof Requirements</em>}'.
+	 * Returns the value of the '<em><b>Used Knowledge</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.ScientificKnowledge#getRequirements <em>Requirements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Containing Requirement Space</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Used Knowledge</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Containing Requirement Space</em>' container reference.
-	 * @see #setContainingRequirementSpace(RequirementSpace)
-	 * @see scrm.requirements.RequirementsPackage#getIRequirement_ContainingRequirementSpace()
-	 * @see scrm.requirements.RequirementSpace#getContainedInformationofRequirements
-	 * @model opposite="containedInformationofRequirements" transient="false"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='10'"
+	 * @return the value of the '<em>Used Knowledge</em>' container reference.
+	 * @see #setUsedKnowledge(ScientificKnowledge)
+	 * @see scrm.requirements.RequirementsPackage#getIRequirement_UsedKnowledge()
+	 * @see scrm.knowledge.ScientificKnowledge#getRequirements
+	 * @model opposite="requirements" transient="false"
 	 * @generated
 	 */
-	RequirementSpace getContainingRequirementSpace();
+	ScientificKnowledge getUsedKnowledge();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.IRequirement#getContainingRequirementSpace <em>Containing Requirement Space</em>}' container reference.
+	 * Sets the value of the '{@link scrm.requirements.IRequirement#getUsedKnowledge <em>Used Knowledge</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Containing Requirement Space</em>' container reference.
-	 * @see #getContainingRequirementSpace()
+	 * @param value the new value of the '<em>Used Knowledge</em>' container reference.
+	 * @see #getUsedKnowledge()
 	 * @generated
 	 */
-	void setContainingRequirementSpace(RequirementSpace value);
+	void setUsedKnowledge(ScientificKnowledge value);
 
 } // IRequirement

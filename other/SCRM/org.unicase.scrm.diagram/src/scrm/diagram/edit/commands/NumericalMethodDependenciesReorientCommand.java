@@ -16,8 +16,7 @@ import scrm.knowledge.NumericalMethod;
 /**
  * @generated
  */
-public class NumericalMethodDependenciesReorientCommand extends
-		EditElementCommand {
+public class NumericalMethodDependenciesReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -42,8 +41,7 @@ public class NumericalMethodDependenciesReorientCommand extends
 	/**
 	 * @generated
 	 */
-	public NumericalMethodDependenciesReorientCommand(
-			ReorientReferenceRelationshipRequest request) {
+	public NumericalMethodDependenciesReorientCommand(ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -74,9 +72,8 @@ public class NumericalMethodDependenciesReorientCommand extends
 		if (!(oldEnd instanceof Assumption && newEnd instanceof NumericalMethod)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistNumericalMethodDependencies_4015(getNewSource(),
-						getOldTarget());
+		return ScrmBaseItemSemanticEditPolicy.LinkConstraints.canExistNumericalMethodDependencies_4015(getNewSource(),
+			getOldTarget());
 	}
 
 	/**
@@ -86,19 +83,16 @@ public class NumericalMethodDependenciesReorientCommand extends
 		if (!(oldEnd instanceof Assumption && newEnd instanceof Assumption)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistNumericalMethodDependencies_4015(getOldSource(),
-						getNewTarget());
+		return ScrmBaseItemSemanticEditPolicy.LinkConstraints.canExistNumericalMethodDependencies_4015(getOldSource(),
+			getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

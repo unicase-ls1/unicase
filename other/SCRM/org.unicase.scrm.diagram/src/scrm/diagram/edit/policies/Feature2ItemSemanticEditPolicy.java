@@ -23,6 +23,8 @@ import scrm.diagram.edit.commands.FeatureRequiredFeaturesCreateCommand;
 import scrm.diagram.edit.commands.FeatureRequiredFeaturesReorientCommand;
 import scrm.diagram.edit.commands.FeatureRequiredInterfacesCreateCommand;
 import scrm.diagram.edit.commands.FeatureRequiredInterfacesReorientCommand;
+import scrm.diagram.edit.commands.ScientificKnowledgeRequirementsCreateCommand;
+import scrm.diagram.edit.commands.ScientificKnowledgeRequirementsReorientCommand;
 import scrm.diagram.edit.commands.ScientificProblemInfluencedFeatureCreateCommand;
 import scrm.diagram.edit.commands.ScientificProblemInfluencedFeatureReorientCommand;
 import scrm.diagram.edit.parts.Feature2EditPart;
@@ -33,14 +35,14 @@ import scrm.diagram.edit.parts.FeatureExcludedFeaturesEditPart;
 import scrm.diagram.edit.parts.FeatureProvidedInterfacesEditPart;
 import scrm.diagram.edit.parts.FeatureRequiredFeaturesEditPart;
 import scrm.diagram.edit.parts.FeatureRequiredInterfacesEditPart;
+import scrm.diagram.edit.parts.ScientificKnowledgeRequirementsEditPart;
 import scrm.diagram.edit.parts.ScientificProblemInfluencedFeatureEditPart;
 import scrm.diagram.providers.ScrmElementTypes;
 
 /**
  * @generated
  */
-public class Feature2ItemSemanticEditPolicy extends
-		ScrmBaseItemSemanticEditPolicy {
+public class Feature2ItemSemanticEditPolicy extends ScrmBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -61,56 +63,43 @@ public class Feature2ItemSemanticEditPolicy extends
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
-				: getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super
-				.getCreateRelationshipCommand(req);
+			: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.ScientificProblemInfluencedFeature_4008 == req
-				.getElementType()) {
+	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (ScrmElementTypes.ScientificKnowledgeRequirements_4005 == req.getElementType()) {
 			return null;
 		}
-		if (ScrmElementTypes.FeatureRequiredInterfaces_4023 == req
-				.getElementType()) {
-			return getGEFWrapper(new FeatureRequiredInterfacesCreateCommand(
-					req, req.getSource(), req.getTarget()));
+		if (ScrmElementTypes.ScientificProblemInfluencedFeature_4008 == req.getElementType()) {
+			return null;
 		}
-		if (ScrmElementTypes.FeatureProvidedInterfaces_4024 == req
-				.getElementType()) {
-			return getGEFWrapper(new FeatureProvidedInterfacesCreateCommand(
-					req, req.getSource(), req.getTarget()));
+		if (ScrmElementTypes.FeatureRequiredInterfaces_4023 == req.getElementType()) {
+			return getGEFWrapper(new FeatureRequiredInterfacesCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if (ScrmElementTypes.FeatureProvidedInterfaces_4024 == req.getElementType()) {
+			return getGEFWrapper(new FeatureProvidedInterfacesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.FeatureConstraints_4025 == req.getElementType()) {
-			return getGEFWrapper(new FeatureConstraintsCreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new FeatureConstraintsCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.FeatureDependencies_4026 == req.getElementType()) {
-			return getGEFWrapper(new FeatureDependenciesCreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new FeatureDependenciesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.FeatureDetailedRequirements_4027 == req
-				.getElementType()) {
-			return getGEFWrapper(new FeatureDetailedRequirementsCreateCommand(
-					req, req.getSource(), req.getTarget()));
+		if (ScrmElementTypes.FeatureDetailedRequirements_4027 == req.getElementType()) {
+			return getGEFWrapper(new FeatureDetailedRequirementsCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.Feature_4029 == req.getElementType()) {
-			return getGEFWrapper(new Feature2CreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Feature2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.FeatureRequiredFeatures_4030 == req
-				.getElementType()) {
-			return getGEFWrapper(new FeatureRequiredFeaturesCreateCommand(req,
-					req.getSource(), req.getTarget()));
+		if (ScrmElementTypes.FeatureRequiredFeatures_4030 == req.getElementType()) {
+			return getGEFWrapper(new FeatureRequiredFeaturesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.FeatureExcludedFeatures_4032 == req
-				.getElementType()) {
-			return getGEFWrapper(new FeatureExcludedFeaturesCreateCommand(req,
-					req.getSource(), req.getTarget()));
+		if (ScrmElementTypes.FeatureExcludedFeatures_4032 == req.getElementType()) {
+			return getGEFWrapper(new FeatureExcludedFeaturesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -118,19 +107,18 @@ public class Feature2ItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.ScientificProblemInfluencedFeature_4008 == req
-				.getElementType()) {
-			return getGEFWrapper(new ScientificProblemInfluencedFeatureCreateCommand(
-					req, req.getSource(), req.getTarget()));
+	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (ScrmElementTypes.ScientificKnowledgeRequirements_4005 == req.getElementType()) {
+			return getGEFWrapper(new ScientificKnowledgeRequirementsCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.FeatureRequiredInterfaces_4023 == req
-				.getElementType()) {
+		if (ScrmElementTypes.ScientificProblemInfluencedFeature_4008 == req.getElementType()) {
+			return getGEFWrapper(new ScientificProblemInfluencedFeatureCreateCommand(req, req.getSource(), req
+				.getTarget()));
+		}
+		if (ScrmElementTypes.FeatureRequiredInterfaces_4023 == req.getElementType()) {
 			return null;
 		}
-		if (ScrmElementTypes.FeatureProvidedInterfaces_4024 == req
-				.getElementType()) {
+		if (ScrmElementTypes.FeatureProvidedInterfaces_4024 == req.getElementType()) {
 			return null;
 		}
 		if (ScrmElementTypes.FeatureConstraints_4025 == req.getElementType()) {
@@ -139,23 +127,17 @@ public class Feature2ItemSemanticEditPolicy extends
 		if (ScrmElementTypes.FeatureDependencies_4026 == req.getElementType()) {
 			return null;
 		}
-		if (ScrmElementTypes.FeatureDetailedRequirements_4027 == req
-				.getElementType()) {
+		if (ScrmElementTypes.FeatureDetailedRequirements_4027 == req.getElementType()) {
 			return null;
 		}
 		if (ScrmElementTypes.Feature_4029 == req.getElementType()) {
-			return getGEFWrapper(new Feature2CreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new Feature2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.FeatureRequiredFeatures_4030 == req
-				.getElementType()) {
-			return getGEFWrapper(new FeatureRequiredFeaturesCreateCommand(req,
-					req.getSource(), req.getTarget()));
+		if (ScrmElementTypes.FeatureRequiredFeatures_4030 == req.getElementType()) {
+			return getGEFWrapper(new FeatureRequiredFeaturesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.FeatureExcludedFeatures_4032 == req
-				.getElementType()) {
-			return getGEFWrapper(new FeatureExcludedFeaturesCreateCommand(req,
-					req.getSource(), req.getTarget()));
+		if (ScrmElementTypes.FeatureExcludedFeatures_4032 == req.getElementType()) {
+			return getGEFWrapper(new FeatureExcludedFeaturesCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -166,8 +148,7 @@ public class Feature2ItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(
-			ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case Feature2EditPart.VISUAL_ID:
 			return getGEFWrapper(new FeatureReorientCommand(req));
@@ -181,25 +162,22 @@ public class Feature2ItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(
-			ReorientReferenceRelationshipRequest req) {
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
+		case ScientificKnowledgeRequirementsEditPart.VISUAL_ID:
+			return getGEFWrapper(new ScientificKnowledgeRequirementsReorientCommand(req));
 		case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID:
-			return getGEFWrapper(new ScientificProblemInfluencedFeatureReorientCommand(
-					req));
+			return getGEFWrapper(new ScientificProblemInfluencedFeatureReorientCommand(req));
 		case FeatureRequiredInterfacesEditPart.VISUAL_ID:
-			return getGEFWrapper(new FeatureRequiredInterfacesReorientCommand(
-					req));
+			return getGEFWrapper(new FeatureRequiredInterfacesReorientCommand(req));
 		case FeatureProvidedInterfacesEditPart.VISUAL_ID:
-			return getGEFWrapper(new FeatureProvidedInterfacesReorientCommand(
-					req));
+			return getGEFWrapper(new FeatureProvidedInterfacesReorientCommand(req));
 		case FeatureConstraintsEditPart.VISUAL_ID:
 			return getGEFWrapper(new FeatureConstraintsReorientCommand(req));
 		case FeatureDependenciesEditPart.VISUAL_ID:
 			return getGEFWrapper(new FeatureDependenciesReorientCommand(req));
 		case FeatureDetailedRequirementsEditPart.VISUAL_ID:
-			return getGEFWrapper(new FeatureDetailedRequirementsReorientCommand(
-					req));
+			return getGEFWrapper(new FeatureDetailedRequirementsReorientCommand(req));
 		case FeatureRequiredFeaturesEditPart.VISUAL_ID:
 			return getGEFWrapper(new FeatureRequiredFeaturesReorientCommand(req));
 		case FeatureExcludedFeaturesEditPart.VISUAL_ID:

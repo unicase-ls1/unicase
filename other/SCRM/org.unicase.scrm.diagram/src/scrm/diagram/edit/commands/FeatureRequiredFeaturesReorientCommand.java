@@ -40,8 +40,7 @@ public class FeatureRequiredFeaturesReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public FeatureRequiredFeaturesReorientCommand(
-			ReorientReferenceRelationshipRequest request) {
+	public FeatureRequiredFeaturesReorientCommand(ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -72,9 +71,8 @@ public class FeatureRequiredFeaturesReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Feature && newEnd instanceof Feature)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistFeatureRequiredFeatures_4030(getNewSource(),
-						getOldTarget());
+		return ScrmBaseItemSemanticEditPolicy.LinkConstraints.canExistFeatureRequiredFeatures_4030(getNewSource(),
+			getOldTarget());
 	}
 
 	/**
@@ -84,19 +82,16 @@ public class FeatureRequiredFeaturesReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Feature && newEnd instanceof Feature)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistFeatureRequiredFeatures_4030(getOldSource(),
-						getNewTarget());
+		return ScrmBaseItemSemanticEditPolicy.LinkConstraints.canExistFeatureRequiredFeatures_4030(getOldSource(),
+			getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

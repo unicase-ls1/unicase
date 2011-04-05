@@ -14,8 +14,7 @@ import scrm.diagram.edit.policies.MathematicalModelDependenciesItemSemanticEditP
 /**
  * @generated
  */
-public class MathematicalModelDependenciesEditPart extends
-		ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class MathematicalModelDependenciesEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -34,17 +33,16 @@ public class MathematicalModelDependenciesEditPart extends
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new MathematicalModelDependenciesItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new MathematicalModelDependenciesItemSemanticEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel6EditPart) {
-			((WrappingLabel6EditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureMathematicalModel_DependenciesLabel());
+		if (childEditPart instanceof WrappingLabel8EditPart) {
+			((WrappingLabel8EditPart) childEditPart).setLabel(getPrimaryShape()
+				.getFigureMathematicalModel_DependenciesLabel());
 			return true;
 		}
 		return false;
@@ -57,14 +55,14 @@ public class MathematicalModelDependenciesEditPart extends
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, index);
+		super.addChildVisual(childEditPart, -1);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel6EditPart) {
+		if (childEditPart instanceof WrappingLabel8EditPart) {
 			return true;
 		}
 		return false;
@@ -103,8 +101,7 @@ public class MathematicalModelDependenciesEditPart extends
 	/**
 	 * @generated
 	 */
-	public class MathematicalModel_DependenciesFigure extends
-			PolylineConnectionEx {
+	public class MathematicalModel_DependenciesFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
@@ -115,6 +112,7 @@ public class MathematicalModelDependenciesEditPart extends
 		 * @generated
 		 */
 		public MathematicalModel_DependenciesFigure() {
+			this.setLineWidth(1);
 
 			createContents();
 		}

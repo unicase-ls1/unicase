@@ -168,29 +168,6 @@ public class KnowledgeItemProviderAdapterFactory extends KnowledgeAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link scrm.knowledge.KnowledgeSpace} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected KnowledgeSpaceItemProvider knowledgeSpaceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link scrm.knowledge.KnowledgeSpace}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createKnowledgeSpaceAdapter() {
-		if (knowledgeSpaceItemProvider == null) {
-			knowledgeSpaceItemProvider = new KnowledgeSpaceItemProvider(this);
-		}
-
-		return knowledgeSpaceItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -293,7 +270,6 @@ public class KnowledgeItemProviderAdapterFactory extends KnowledgeAdapterFactory
 		if (mathematicalModelItemProvider != null) mathematicalModelItemProvider.dispose();
 		if (numericalMethodItemProvider != null) numericalMethodItemProvider.dispose();
 		if (assumptionItemProvider != null) assumptionItemProvider.dispose();
-		if (knowledgeSpaceItemProvider != null) knowledgeSpaceItemProvider.dispose();
 	}
 
 }

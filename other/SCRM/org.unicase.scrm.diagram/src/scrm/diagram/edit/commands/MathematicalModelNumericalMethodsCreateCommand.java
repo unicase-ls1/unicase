@@ -15,8 +15,7 @@ import scrm.knowledge.NumericalMethod;
 /**
  * @generated
  */
-public class MathematicalModelNumericalMethodsCreateCommand extends
-		EditElementCommand {
+public class MathematicalModelNumericalMethodsCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -31,8 +30,8 @@ public class MathematicalModelNumericalMethodsCreateCommand extends
 	/**
 	 * @generated
 	 */
-	public MathematicalModelNumericalMethodsCreateCommand(
-			CreateRelationshipRequest request, EObject source, EObject target) {
+	public MathematicalModelNumericalMethodsCreateCommand(CreateRelationshipRequest request, EObject source,
+		EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
@@ -55,19 +54,16 @@ public class MathematicalModelNumericalMethodsCreateCommand extends
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canCreateMathematicalModelNumericalMethods_4011(getSource(),
-						getTarget());
+		return ScrmBaseItemSemanticEditPolicy.LinkConstraints.canCreateMathematicalModelNumericalMethods_4011(
+			getSource(), getTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
 		if (getSource() != null && getTarget() != null) {

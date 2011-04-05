@@ -1,25 +1,21 @@
-/*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- ******************************************************************************/
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.emfstore.jdt.ui.menu;
 
-import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.ServerInfo;
-import org.eclipse.emf.emfstore.client.model.Usersession;
-import org.eclipse.emf.emfstore.server.model.ProjectInfo;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
+import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.EMFStoreUtil;
 import org.unicase.emfstore.jdt.exception.ProjectInfoNotFoundException;
 import org.unicase.emfstore.jdt.exception.ProjectSpaceNotFoundException;
 import org.unicase.emfstore.jdt.ui.dialog.SelectionDialog;
 import org.unicase.emfstore.jdt.ui.exception.NoProjectSelectedException;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.Usersession;
 
 /**
  * Abstract class, that provides the functionality to select a project from an EMFStore. So the extending classes do not

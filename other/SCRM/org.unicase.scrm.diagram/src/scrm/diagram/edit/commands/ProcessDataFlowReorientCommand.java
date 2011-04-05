@@ -41,8 +41,7 @@ public class ProcessDataFlowReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ProcessDataFlowReorientCommand(
-			ReorientReferenceRelationshipRequest request) {
+	public ProcessDataFlowReorientCommand(ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -73,8 +72,8 @@ public class ProcessDataFlowReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof DataFlow && newEnd instanceof Process)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistProcessDataFlow_4040(getNewSource(), getOldTarget());
+		return ScrmBaseItemSemanticEditPolicy.LinkConstraints.canExistProcessDataFlow_4040(getNewSource(),
+			getOldTarget());
 	}
 
 	/**
@@ -84,18 +83,16 @@ public class ProcessDataFlowReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof DataFlow && newEnd instanceof DataFlow)) {
 			return false;
 		}
-		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistProcessDataFlow_4040(getOldSource(), getNewTarget());
+		return ScrmBaseItemSemanticEditPolicy.LinkConstraints.canExistProcessDataFlow_4040(getOldSource(),
+			getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

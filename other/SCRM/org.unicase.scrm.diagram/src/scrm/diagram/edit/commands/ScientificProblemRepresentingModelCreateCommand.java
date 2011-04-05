@@ -15,8 +15,7 @@ import scrm.knowledge.ScientificProblem;
 /**
  * @generated
  */
-public class ScientificProblemRepresentingModelCreateCommand extends
-		EditElementCommand {
+public class ScientificProblemRepresentingModelCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -31,8 +30,8 @@ public class ScientificProblemRepresentingModelCreateCommand extends
 	/**
 	 * @generated
 	 */
-	public ScientificProblemRepresentingModelCreateCommand(
-			CreateRelationshipRequest request, EObject source, EObject target) {
+	public ScientificProblemRepresentingModelCreateCommand(CreateRelationshipRequest request, EObject source,
+		EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
@@ -55,19 +54,16 @@ public class ScientificProblemRepresentingModelCreateCommand extends
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canCreateScientificProblemRepresentingModel_4006(getSource(),
-						getTarget());
+		return ScrmBaseItemSemanticEditPolicy.LinkConstraints.canCreateScientificProblemRepresentingModel_4006(
+			getSource(), getTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
 		if (getSource() != null && getTarget() != null) {

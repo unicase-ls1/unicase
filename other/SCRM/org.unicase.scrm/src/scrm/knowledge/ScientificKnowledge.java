@@ -20,7 +20,7 @@ import scrm.requirements.IRequirement;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link scrm.knowledge.ScientificKnowledge#getContainingKnowledgeSpace <em>Containing Knowledge Space</em>}</li>
+ *   <li>{@link scrm.knowledge.ScientificKnowledge#getRequirements <em>Requirements</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,32 +30,21 @@ import scrm.requirements.IRequirement;
  */
 public interface ScientificKnowledge extends SCRMModelElement {
 	/**
-	 * Returns the value of the '<em><b>Containing Knowledge Space</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link scrm.knowledge.KnowledgeSpace#getContainedScientificProblem <em>Contained Scientific Problem</em>}'.
+	 * Returns the value of the '<em><b>Requirements</b></em>' containment reference list.
+	 * The list contents are of type {@link scrm.requirements.IRequirement}.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.IRequirement#getUsedKnowledge <em>Used Knowledge</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Containing Knowledge Space</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Requirements</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Containing Knowledge Space</em>' container reference.
-	 * @see #setContainingKnowledgeSpace(KnowledgeSpace)
-	 * @see scrm.knowledge.KnowledgePackage#getScientificKnowledge_ContainingKnowledgeSpace()
-	 * @see scrm.knowledge.KnowledgeSpace#getContainedScientificProblem
-	 * @model opposite="containedScientificProblem" transient="false"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='10'"
+	 * @return the value of the '<em>Requirements</em>' containment reference list.
+	 * @see scrm.knowledge.KnowledgePackage#getScientificKnowledge_Requirements()
+	 * @see scrm.requirements.IRequirement#getUsedKnowledge
+	 * @model opposite="usedKnowledge" containment="true"
 	 * @generated
 	 */
-	KnowledgeSpace getContainingKnowledgeSpace();
-
-	/**
-	 * Sets the value of the '{@link scrm.knowledge.ScientificKnowledge#getContainingKnowledgeSpace <em>Containing Knowledge Space</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Containing Knowledge Space</em>' container reference.
-	 * @see #getContainingKnowledgeSpace()
-	 * @generated
-	 */
-	void setContainingKnowledgeSpace(KnowledgeSpace value);
+	EList<IRequirement> getRequirements();
 
 } // ScientificKnowledge

@@ -1,12 +1,8 @@
-/*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- ******************************************************************************/
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.emfstore.jdt.configuration;
 
 import java.io.IOException;
@@ -24,10 +20,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.emfstore.jdt.eclipseworkspace.StructuredEMFStoreURI;
 import org.unicase.emfstore.jdt.exception.EntryNotFoundException;
 import org.unicase.emfstore.jdt.exception.NoEMFStoreJDTConfigurationException;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Manager class to handle with EMFStoreJDTConfigurations. A EMFStoreJDTConfiguration is only responsible for a project.

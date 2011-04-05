@@ -66,6 +66,7 @@ public class SCRMModelElementItemProvider
 
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
+			addIdentifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -107,7 +108,29 @@ public class SCRMModelElementItemProvider
 				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_description_feature", "_UI_SCRMModelElement_type"),
 				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__DESCRIPTION,
 				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Identifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIdentifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SCRMModelElement_identifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_identifier_feature", "_UI_SCRMModelElement_type"),
+				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__IDENTIFIER,
 				 true,
+				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
@@ -118,12 +141,14 @@ public class SCRMModelElementItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((SCRMModelElement)object).getName();
-		return label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_SCRMModelElement_type") :
+			getString("_UI_SCRMModelElement_type") + " " + label;
 	}
 
 	/**
@@ -140,6 +165,7 @@ public class SCRMModelElementItemProvider
 		switch (notification.getFeatureID(SCRMModelElement.class)) {
 			case ScrmPackage.SCRM_MODEL_ELEMENT__NAME:
 			case ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION:
+			case ScrmPackage.SCRM_MODEL_ELEMENT__IDENTIFIER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -168,5 +194,5 @@ public class SCRMModelElementItemProvider
 	public ResourceLocator getResourceLocator() {
 		return ScrmEditPlugin.INSTANCE;
 	}
-	
+
 }

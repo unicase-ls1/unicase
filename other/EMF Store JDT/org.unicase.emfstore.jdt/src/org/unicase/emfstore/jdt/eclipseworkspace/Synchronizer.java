@@ -1,22 +1,14 @@
-/*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- ******************************************************************************/
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.emfstore.jdt.eclipseworkspace;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.ServerInfo;
-import org.eclipse.emf.emfstore.client.model.Usersession;
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.server.model.ProjectInfo;
+import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.jdt.ITeamSynchronizer;
 import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
 import org.unicase.emfstore.jdt.configuration.EMFStoreJDTConfiguration;
@@ -34,6 +26,10 @@ import org.unicase.emfstore.jdt.exception.NoEMFStoreJDTConfigurationException;
 import org.unicase.emfstore.jdt.exception.ProjectInfoNotFoundException;
 import org.unicase.emfstore.jdt.exception.ProjectSpaceNotFoundException;
 import org.unicase.emfstore.jdt.exception.TeamSynchronizerException;
+import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.Usersession;
 
 /**
  * Synchronizer will take care that the file in the eclipse workspace will have the same state as the EObject in the EMF

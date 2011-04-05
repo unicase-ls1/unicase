@@ -1,12 +1,8 @@
-/*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- ******************************************************************************/
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.emfstore.jdt.eclipseworkspace.emfstore;
 
 import java.io.ByteArrayInputStream;
@@ -15,19 +11,19 @@ import java.io.InputStream;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.ServerInfo;
-import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
-import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.eclipse.emf.emfstore.common.model.ModelFactory;
-import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.emfstore.jdt.eclipseworkspace.StructuredEMFStoreURI;
 import org.unicase.emfstore.jdt.exception.CannotOpenEObjectException;
 import org.unicase.emfstore.jdt.exception.EMFStoreURIMalformedException;
 import org.unicase.emfstore.jdt.exception.EObjectNotFoundException;
 import org.unicase.emfstore.jdt.exception.ProjectSpaceNotFoundException;
+import org.unicase.metamodel.MetamodelFactory;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * A utility class to handle with project spaces.
@@ -89,7 +85,7 @@ public final class ProjectSpaceUtil {
 	}
 
 	private static EObject getEObject(ProjectSpace projectSpace, String eObjectID) throws EObjectNotFoundException {
-		ModelElementId modelElementId = ModelFactory.eINSTANCE.createModelElementId();
+		ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
 		modelElementId.setId(eObjectID);
 
 		EObject eObject = projectSpace.getProject().getModelElement(modelElementId);
@@ -113,7 +109,7 @@ public final class ProjectSpaceUtil {
 
 			return new ByteArrayInputStream(eObjectToString.getBytes());
 
-		} catch (org.eclipse.emf.emfstore.common.model.util.SerializationException e) {
+		} catch (org.unicase.metamodel.util.SerializationException e) {
 			throw new CannotOpenEObjectException();
 		}
 	}
@@ -142,8 +138,8 @@ public final class ProjectSpaceUtil {
 		protected void doRun() {
 			ServerInfo serverInfo = EMFStoreUtil.getServerInfo(structuredEMFStoreURI);
 			try {
-				ProjectSpace projectSpace = EMFStoreUtil.getProjectSpace(serverInfo,
-					structuredEMFStoreURI.getProjectInfo());
+				ProjectSpace projectSpace = EMFStoreUtil.getProjectSpace(serverInfo, structuredEMFStoreURI
+					.getProjectInfo());
 				EObject eObject = ProjectSpaceUtil.getEObject(structuredEMFStoreURI);
 				Project project = projectSpace.getProject();
 				project.deleteModelElement(eObject);

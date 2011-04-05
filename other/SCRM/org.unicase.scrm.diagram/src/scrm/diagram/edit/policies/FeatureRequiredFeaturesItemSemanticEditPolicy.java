@@ -9,8 +9,7 @@ import scrm.diagram.providers.ScrmElementTypes;
 /**
  * @generated
  */
-public class FeatureRequiredFeaturesItemSemanticEditPolicy extends
-		ScrmBaseItemSemanticEditPolicy {
+public class FeatureRequiredFeaturesItemSemanticEditPolicy extends ScrmBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated

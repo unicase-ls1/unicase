@@ -19,6 +19,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link scrm.knowledge.MathematicalModel#getRepresentedProblem <em>Represented Problem</em>}</li>
  *   <li>{@link scrm.knowledge.MathematicalModel#getRefinements <em>Refinements</em>}</li>
  *   <li>{@link scrm.knowledge.MathematicalModel#getRefinedModel <em>Refined Model</em>}</li>
+ *   <li>{@link scrm.knowledge.MathematicalModel#getSubMathematicalModels <em>Sub Mathematical Models</em>}</li>
+ *   <li>{@link scrm.knowledge.MathematicalModel#getSuperMathematicalModel <em>Super Mathematical Model</em>}</li>
  *   <li>{@link scrm.knowledge.MathematicalModel#getNumericalMethods <em>Numerical Methods</em>}</li>
  *   <li>{@link scrm.knowledge.MathematicalModel#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link scrm.knowledge.MathematicalModel#getTheory <em>Theory</em>}</li>
@@ -32,29 +34,28 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface MathematicalModel extends ScientificKnowledge {
 	/**
-	 * Returns the value of the '<em><b>Represented Problem</b></em>' reference.
+	 * Returns the value of the '<em><b>Represented Problem</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link scrm.knowledge.ScientificProblem#getRepresentingModel <em>Representing Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Represented Problem</em>' reference isn't clear,
+	 * If the meaning of the '<em>Represented Problem</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Represented Problem</em>' reference.
+	 * @return the value of the '<em>Represented Problem</em>' container reference.
 	 * @see #setRepresentedProblem(ScientificProblem)
 	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_RepresentedProblem()
 	 * @see scrm.knowledge.ScientificProblem#getRepresentingModel
-	 * @model opposite="representingModel"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
+	 * @model opposite="representingModel" transient="false"
 	 * @generated
 	 */
 	ScientificProblem getRepresentedProblem();
 
 	/**
-	 * Sets the value of the '{@link scrm.knowledge.MathematicalModel#getRepresentedProblem <em>Represented Problem</em>}' reference.
+	 * Sets the value of the '{@link scrm.knowledge.MathematicalModel#getRepresentedProblem <em>Represented Problem</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Represented Problem</em>' reference.
+	 * @param value the new value of the '<em>Represented Problem</em>' container reference.
 	 * @see #getRepresentedProblem()
 	 * @generated
 	 */
@@ -73,8 +74,7 @@ public interface MathematicalModel extends ScientificKnowledge {
 	 * @return the value of the '<em>Refinements</em>' containment reference list.
 	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_Refinements()
 	 * @see scrm.knowledge.MathematicalModel#getRefinedModel
-	 * @model opposite="refinedModel" containment="true" resolveProxies="true"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='5'"
+	 * @model opposite="refinedModel" containment="true"
 	 * @generated
 	 */
 	EList<MathematicalModel> getRefinements();
@@ -93,7 +93,6 @@ public interface MathematicalModel extends ScientificKnowledge {
 	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_RefinedModel()
 	 * @see scrm.knowledge.MathematicalModel#getRefinements
 	 * @model opposite="refinements" transient="false"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='12'"
 	 * @generated
 	 */
 	MathematicalModel getRefinedModel();
@@ -109,6 +108,52 @@ public interface MathematicalModel extends ScientificKnowledge {
 	void setRefinedModel(MathematicalModel value);
 
 	/**
+	 * Returns the value of the '<em><b>Sub Mathematical Models</b></em>' containment reference list.
+	 * The list contents are of type {@link scrm.knowledge.MathematicalModel}.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.MathematicalModel#getSuperMathematicalModel <em>Super Mathematical Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sub Mathematical Models</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sub Mathematical Models</em>' containment reference list.
+	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_SubMathematicalModels()
+	 * @see scrm.knowledge.MathematicalModel#getSuperMathematicalModel
+	 * @model opposite="superMathematicalModel" containment="true"
+	 * @generated
+	 */
+	EList<MathematicalModel> getSubMathematicalModels();
+
+	/**
+	 * Returns the value of the '<em><b>Super Mathematical Model</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.MathematicalModel#getSubMathematicalModels <em>Sub Mathematical Models</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Super Mathematical Model</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Super Mathematical Model</em>' container reference.
+	 * @see #setSuperMathematicalModel(MathematicalModel)
+	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_SuperMathematicalModel()
+	 * @see scrm.knowledge.MathematicalModel#getSubMathematicalModels
+	 * @model opposite="subMathematicalModels" transient="false"
+	 * @generated
+	 */
+	MathematicalModel getSuperMathematicalModel();
+
+	/**
+	 * Sets the value of the '{@link scrm.knowledge.MathematicalModel#getSuperMathematicalModel <em>Super Mathematical Model</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Super Mathematical Model</em>' container reference.
+	 * @see #getSuperMathematicalModel()
+	 * @generated
+	 */
+	void setSuperMathematicalModel(MathematicalModel value);
+
+	/**
 	 * Returns the value of the '<em><b>Numerical Methods</b></em>' reference list.
 	 * The list contents are of type {@link scrm.knowledge.NumericalMethod}.
 	 * It is bidirectional and its opposite is '{@link scrm.knowledge.NumericalMethod#getMathematicalModel <em>Mathematical Model</em>}'.
@@ -122,26 +167,24 @@ public interface MathematicalModel extends ScientificKnowledge {
 	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_NumericalMethods()
 	 * @see scrm.knowledge.NumericalMethod#getMathematicalModel
 	 * @model opposite="mathematicalModel"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='10'"
 	 * @generated
 	 */
 	EList<NumericalMethod> getNumericalMethods();
 
 	/**
-	 * Returns the value of the '<em><b>Dependencies</b></em>' reference list.
+	 * Returns the value of the '<em><b>Dependencies</b></em>' containment reference list.
 	 * The list contents are of type {@link scrm.knowledge.Assumption}.
 	 * It is bidirectional and its opposite is '{@link scrm.knowledge.Assumption#getDependingModel <em>Depending Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Dependencies</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Dependencies</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dependencies</em>' reference list.
+	 * @return the value of the '<em>Dependencies</em>' containment reference list.
 	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_Dependencies()
 	 * @see scrm.knowledge.Assumption#getDependingModel
-	 * @model opposite="dependingModel"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='15'"
+	 * @model opposite="dependingModel" containment="true"
 	 * @generated
 	 */
 	EList<Assumption> getDependencies();
@@ -157,7 +200,7 @@ public interface MathematicalModel extends ScientificKnowledge {
 	 * @return the value of the '<em>Theory</em>' attribute.
 	 * @see #setTheory(String)
 	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_Theory()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='5'"
+	 * @model
 	 * @generated
 	 */
 	String getTheory();
@@ -183,7 +226,7 @@ public interface MathematicalModel extends ScientificKnowledge {
 	 * @return the value of the '<em>Mathematical Expression</em>' attribute.
 	 * @see #setMathematicalExpression(String)
 	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_MathematicalExpression()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='7'"
+	 * @model
 	 * @generated
 	 */
 	String getMathematicalExpression();

@@ -161,6 +161,15 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getSCRMModelElement_Identifier() {
+		return (EAttribute)scrmModelElementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSCRMDiagram() {
 		return scrmDiagramEClass;
 	}
@@ -232,6 +241,7 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 		scrmModelElementEClass = createEClass(SCRM_MODEL_ELEMENT);
 		createEAttribute(scrmModelElementEClass, SCRM_MODEL_ELEMENT__NAME);
 		createEAttribute(scrmModelElementEClass, SCRM_MODEL_ELEMENT__DESCRIPTION);
+		createEAttribute(scrmModelElementEClass, SCRM_MODEL_ELEMENT__IDENTIFIER);
 
 		scrmDiagramEClass = createEClass(SCRM_DIAGRAM);
 		createEReference(scrmDiagramEClass, SCRM_DIAGRAM__ELEMENTS);
@@ -278,49 +288,21 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		scrmDiagramEClass.getESuperTypes().add(this.getSCRMModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(scrmModelElementEClass, SCRMModelElement.class, "SCRMModelElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSCRMModelElement_Name(), ecorePackage.getEString(), "name", "", 0, 1, SCRMModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSCRMModelElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, SCRMModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSCRMModelElement_Identifier(), theEcorePackage.getEString(), "identifier", null, 1, 1, SCRMModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(scrmDiagramEClass, SCRMDiagram.class, "SCRMDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSCRMDiagram_Elements(), this.getSCRMModelElement(), null, "elements", null, 0, -1, SCRMDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSCRMDiagram_NewElements(), this.getSCRMModelElement(), null, "newElements", null, 0, -1, SCRMDiagram.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSCRMDiagram_NewElements(), this.getSCRMModelElement(), null, "newElements", null, 0, -1, SCRMDiagram.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSCRMDiagram_DiagramLayout(), theEcorePackage.getEString(), "diagramLayout", null, 0, 1, SCRMDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSCRMDiagram_Gmfdiagram(), theNotationPackage.getDiagram(), null, "gmfdiagram", null, 0, 1, SCRMDiagram.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSCRMDiagram_Gmfdiagram(), theNotationPackage.getDiagram(), null, "gmfdiagram", null, 0, 1, SCRMDiagram.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
-
-		// Create annotations
-		// org.unicase.ui.meeditor
-		createOrgAnnotations();
-	}
-
-	/**
-	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createOrgAnnotations() {
-		String source = "org.unicase.ui.meeditor";		
-		addAnnotation
-		  (getSCRMModelElement_Name(), 
-		   source, 
-		   new String[] {
-			 "position", "left",
-			 "priority", "1"
-		   });		
-		addAnnotation
-		  (getSCRMModelElement_Description(), 
-		   source, 
-		   new String[] {
-			 "position", "left",
-			 "priority", "2"
-		   });
 	}
 
 } //ScrmPackageImpl

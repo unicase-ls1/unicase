@@ -1,12 +1,8 @@
-/*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- ******************************************************************************/
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.emfstore.jdt.ui.editor;
 
 import java.util.EventObject;
@@ -19,11 +15,11 @@ import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.ecore.presentation.EcoreEditor;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.unicase.emfstore.jdt.emf.resource.EMFStoreResourceSet;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Modified EcoreEditor which adapts the original EcoreEditor to be able to load the content from the EMFStore. For that

@@ -122,8 +122,7 @@ public class ScrmEditPartProvider extends AbstractEditPartProvider {
 	public synchronized boolean provides(IOperation operation) {
 		if (operation instanceof CreateGraphicEditPartOperation) {
 			View view = ((IEditPartOperation) operation).getView();
-			if (!SCRMDiagramEditPart.MODEL_ID.equals(ScrmVisualIDRegistry
-					.getModelID(view))) {
+			if (!SCRMDiagramEditPart.MODEL_ID.equals(ScrmVisualIDRegistry.getModelID(view))) {
 				return false;
 			}
 			if (isAllowCaching() && getCachedPart(view) != null) {

@@ -7,7 +7,6 @@
 package org.unicase.model.changetracking;
 
 import java.util.Date;
-
 import org.unicase.model.release.Release;
 
 /**

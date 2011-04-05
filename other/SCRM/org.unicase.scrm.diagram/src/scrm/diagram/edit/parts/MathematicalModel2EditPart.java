@@ -14,8 +14,7 @@ import scrm.diagram.edit.policies.MathematicalModel2ItemSemanticEditPolicy;
 /**
  * @generated
  */
-public class MathematicalModel2EditPart extends ConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+public class MathematicalModel2EditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -34,17 +33,16 @@ public class MathematicalModel2EditPart extends ConnectionNodeEditPart
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new MathematicalModel2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new MathematicalModel2ItemSemanticEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel4EditPart) {
-			((WrappingLabel4EditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureMathematicalModel_RefinementsLabel());
+		if (childEditPart instanceof WrappingLabel5EditPart) {
+			((WrappingLabel5EditPart) childEditPart).setLabel(getPrimaryShape()
+				.getFigureMathematicalModel_RefinementsLabel());
 			return true;
 		}
 		return false;
@@ -57,14 +55,14 @@ public class MathematicalModel2EditPart extends ConnectionNodeEditPart
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, index);
+		super.addChildVisual(childEditPart, -1);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel4EditPart) {
+		if (childEditPart instanceof WrappingLabel5EditPart) {
 			return true;
 		}
 		return false;
@@ -103,8 +101,7 @@ public class MathematicalModel2EditPart extends ConnectionNodeEditPart
 	/**
 	 * @generated
 	 */
-	public class MathematicalModel_RefinementsFigure extends
-			PolylineConnectionEx {
+	public class MathematicalModel_RefinementsFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
@@ -115,6 +112,7 @@ public class MathematicalModel2EditPart extends ConnectionNodeEditPart
 		 * @generated
 		 */
 		public MathematicalModel_RefinementsFigure() {
+			this.setLineWidth(1);
 
 			createContents();
 		}

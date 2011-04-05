@@ -13,7 +13,6 @@ public class DiagramAppearancePreferencePage extends AppearancePreferencePage {
 	 * @generated
 	 */
 	public DiagramAppearancePreferencePage() {
-		setPreferenceStore(ScrmDiagramEditorPlugin.getInstance()
-				.getPreferenceStore());
+		setPreferenceStore(ScrmDiagramEditorPlugin.getInstance().getPreferenceStore());
 	}
 }

@@ -14,8 +14,7 @@ import scrm.diagram.edit.policies.FeatureRequiredFeaturesItemSemanticEditPolicy;
 /**
  * @generated
  */
-public class FeatureRequiredFeaturesEditPart extends ConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+public class FeatureRequiredFeaturesEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -34,18 +33,16 @@ public class FeatureRequiredFeaturesEditPart extends ConnectionNodeEditPart
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new FeatureRequiredFeaturesItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new FeatureRequiredFeaturesItemSemanticEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel16EditPart) {
-			((WrappingLabel16EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureFeature_RequiredFeaturesLabel());
+		if (childEditPart instanceof WrappingLabel18EditPart) {
+			((WrappingLabel18EditPart) childEditPart).setLabel(getPrimaryShape()
+				.getFigureFeature_RequiredFeaturesLabel());
 			return true;
 		}
 		return false;
@@ -58,14 +55,14 @@ public class FeatureRequiredFeaturesEditPart extends ConnectionNodeEditPart
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, index);
+		super.addChildVisual(childEditPart, -1);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel16EditPart) {
+		if (childEditPart instanceof WrappingLabel18EditPart) {
 			return true;
 		}
 		return false;
@@ -115,6 +112,7 @@ public class FeatureRequiredFeaturesEditPart extends ConnectionNodeEditPart
 		 * @generated
 		 */
 		public Feature_RequiredFeaturesFigure() {
+			this.setLineWidth(1);
 
 			createContents();
 		}

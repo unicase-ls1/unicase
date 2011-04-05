@@ -14,8 +14,7 @@ import scrm.diagram.edit.policies.ScientificProblemRepresentingModelItemSemantic
 /**
  * @generated
  */
-public class ScientificProblemRepresentingModelEditPart extends
-		ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ScientificProblemRepresentingModelEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -34,17 +33,16 @@ public class ScientificProblemRepresentingModelEditPart extends
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ScientificProblemRepresentingModelItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ScientificProblemRepresentingModelItemSemanticEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabelEditPart) {
-			((WrappingLabelEditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureScientificProblem_RepresentingModelLabel());
+		if (childEditPart instanceof WrappingLabel2EditPart) {
+			((WrappingLabel2EditPart) childEditPart).setLabel(getPrimaryShape()
+				.getFigureScientificProblem_RepresentingModelLabel());
 			return true;
 		}
 		return false;
@@ -57,14 +55,14 @@ public class ScientificProblemRepresentingModelEditPart extends
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, index);
+		super.addChildVisual(childEditPart, -1);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabelEditPart) {
+		if (childEditPart instanceof WrappingLabel2EditPart) {
 			return true;
 		}
 		return false;
@@ -103,8 +101,7 @@ public class ScientificProblemRepresentingModelEditPart extends
 	/**
 	 * @generated
 	 */
-	public class ScientificProblem_RepresentingModelFigure extends
-			PolylineConnectionEx {
+	public class ScientificProblem_RepresentingModelFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
@@ -115,6 +112,7 @@ public class ScientificProblemRepresentingModelEditPart extends
 		 * @generated
 		 */
 		public ScientificProblem_RepresentingModelFigure() {
+			this.setLineWidth(1);
 
 			createContents();
 		}
@@ -125,8 +123,7 @@ public class ScientificProblemRepresentingModelEditPart extends
 		private void createContents() {
 
 			fFigureScientificProblem_RepresentingModelLabel = new WrappingLabel();
-			fFigureScientificProblem_RepresentingModelLabel
-					.setText("represents");
+			fFigureScientificProblem_RepresentingModelLabel.setText("represents");
 
 			this.add(fFigureScientificProblem_RepresentingModelLabel);
 

@@ -19,9 +19,9 @@ import scrm.requirements.DataDefinition;
 import scrm.requirements.DataFlow;
 import scrm.requirements.Feature;
 import scrm.requirements.Hardware;
+import scrm.requirements.Interface;
 import scrm.requirements.Performance;
 import scrm.requirements.Requirement;
-import scrm.requirements.RequirementSpace;
 import scrm.requirements.RequirementsFactory;
 import scrm.requirements.RequirementsPackage;
 import scrm.requirements.SoftwareInterface;
@@ -71,6 +71,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+			case RequirementsPackage.INTERFACE: return createInterface();
 			case RequirementsPackage.FEATURE: return createFeature();
 			case RequirementsPackage.HARDWARE: return createHardware();
 			case RequirementsPackage.CONSTRAINT: return createConstraint();
@@ -81,10 +82,19 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 			case RequirementsPackage.PERFORMANCE: return createPerformance();
 			case RequirementsPackage.DATA_FLOW: return createDataFlow();
 			case RequirementsPackage.DATA_DEFINITION: return createDataDefinition();
-			case RequirementsPackage.REQUIREMENT_SPACE: return createRequirementSpace();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Interface createInterface() {
+		InterfaceImpl interface_ = new InterfaceImpl();
+		return interface_;
 	}
 
 	/**
@@ -185,16 +195,6 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	public DataDefinition createDataDefinition() {
 		DataDefinitionImpl dataDefinition = new DataDefinitionImpl();
 		return dataDefinition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RequirementSpace createRequirementSpace() {
-		RequirementSpaceImpl requirementSpace = new RequirementSpaceImpl();
-		return requirementSpace;
 	}
 
 	/**

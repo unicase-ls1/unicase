@@ -11,7 +11,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import scrm.SCRMModelElement;
@@ -26,6 +25,7 @@ import scrm.ScrmPackage;
  * <ul>
  *   <li>{@link scrm.impl.SCRMModelElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link scrm.impl.SCRMModelElementImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link scrm.impl.SCRMModelElementImpl#getIdentifier <em>Identifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,9 +73,29 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements SCRMMo
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String IDENTIFIER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected String identifier = IDENTIFIER_EDEFAULT;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	protected SCRMModelElementImpl() {
 		super();
@@ -139,6 +159,27 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements SCRMMo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIdentifier(String newIdentifier) {
+		String oldIdentifier = identifier;
+		identifier = newIdentifier;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ScrmPackage.SCRM_MODEL_ELEMENT__IDENTIFIER, oldIdentifier, identifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -146,6 +187,8 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements SCRMMo
 				return getName();
 			case ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION:
 				return getDescription();
+			case ScrmPackage.SCRM_MODEL_ELEMENT__IDENTIFIER:
+				return getIdentifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -163,6 +206,9 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements SCRMMo
 				return;
 			case ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION:
 				setDescription((String)newValue);
+				return;
+			case ScrmPackage.SCRM_MODEL_ELEMENT__IDENTIFIER:
+				setIdentifier((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -182,6 +228,9 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements SCRMMo
 			case ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
+			case ScrmPackage.SCRM_MODEL_ELEMENT__IDENTIFIER:
+				setIdentifier(IDENTIFIER_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -198,6 +247,8 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements SCRMMo
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case ScrmPackage.SCRM_MODEL_ELEMENT__IDENTIFIER:
+				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -216,6 +267,8 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements SCRMMo
 		result.append(name);
 		result.append(", description: ");
 		result.append(description);
+		result.append(", identifier: ");
+		result.append(identifier);
 		result.append(')');
 		return result.toString();
 	}

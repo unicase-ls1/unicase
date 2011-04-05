@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -32,7 +31,6 @@ import scrm.knowledge.ScientificKnowledge;
 import scrm.requirements.DataDefinition;
 import scrm.requirements.Feature;
 import scrm.requirements.Requirement;
-import scrm.requirements.RequirementSpace;
 import scrm.requirements.RequirementsPackage;
 
 /**
@@ -42,7 +40,7 @@ import scrm.requirements.RequirementsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link scrm.requirements.impl.RequirementImpl#getContainingRequirementSpace <em>Containing Requirement Space</em>}</li>
+ *   <li>{@link scrm.requirements.impl.RequirementImpl#getUsedKnowledge <em>Used Knowledge</em>}</li>
  *   <li>{@link scrm.requirements.impl.RequirementImpl#getRefinements <em>Refinements</em>}</li>
  *   <li>{@link scrm.requirements.impl.RequirementImpl#getRefinedRequirement <em>Refined Requirement</em>}</li>
  *   <li>{@link scrm.requirements.impl.RequirementImpl#getSpecifiedFeature <em>Specified Feature</em>}</li>
@@ -65,7 +63,7 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	protected EList<Requirement> refinements;
 
 	/**
-	 * The cached value of the '{@link #getDefiningData() <em>Defining Data</em>}' reference list.
+	 * The cached value of the '{@link #getDefiningData() <em>Defining Data</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getDefiningData()
@@ -108,9 +106,9 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RequirementSpace getContainingRequirementSpace() {
-		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE) return null;
-		return (RequirementSpace)eContainer();
+	public ScientificKnowledge getUsedKnowledge() {
+		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE) return null;
+		return (ScientificKnowledge)eContainer();
 	}
 
 	/**
@@ -118,18 +116,8 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RequirementSpace basicGetContainingRequirementSpace() {
-		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE) return null;
-		return (RequirementSpace)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetContainingRequirementSpace(RequirementSpace newContainingRequirementSpace, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newContainingRequirementSpace, RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE, msgs);
+	public NotificationChain basicSetUsedKnowledge(ScientificKnowledge newUsedKnowledge, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newUsedKnowledge, RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE, msgs);
 		return msgs;
 	}
 
@@ -138,20 +126,20 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContainingRequirementSpace(RequirementSpace newContainingRequirementSpace) {
-		if (newContainingRequirementSpace != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE && newContainingRequirementSpace != null)) {
-			if (EcoreUtil.isAncestor(this, newContainingRequirementSpace))
+	public void setUsedKnowledge(ScientificKnowledge newUsedKnowledge) {
+		if (newUsedKnowledge != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE && newUsedKnowledge != null)) {
+			if (EcoreUtil.isAncestor(this, newUsedKnowledge))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newContainingRequirementSpace != null)
-				msgs = ((InternalEObject)newContainingRequirementSpace).eInverseAdd(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
-			msgs = basicSetContainingRequirementSpace(newContainingRequirementSpace, msgs);
+			if (newUsedKnowledge != null)
+				msgs = ((InternalEObject)newUsedKnowledge).eInverseAdd(this, KnowledgePackage.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS, ScientificKnowledge.class, msgs);
+			msgs = basicSetUsedKnowledge(newUsedKnowledge, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE, newContainingRequirementSpace, newContainingRequirementSpace));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE, newUsedKnowledge, newUsedKnowledge));
 	}
 
 	/**
@@ -161,7 +149,7 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 */
 	public EList<Requirement> getRefinements() {
 		if (refinements == null) {
-			refinements = new EObjectContainmentWithInverseEList.Resolving<Requirement>(Requirement.class, this, RequirementsPackage.REQUIREMENT__REFINEMENTS, RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT);
+			refinements = new EObjectContainmentWithInverseEList<Requirement>(Requirement.class, this, RequirementsPackage.REQUIREMENT__REFINEMENTS, RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT);
 		}
 		return refinements;
 	}
@@ -174,16 +162,6 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	public Requirement getRefinedRequirement() {
 		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT) return null;
 		return (Requirement)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Requirement basicGetRefinedRequirement() {
-		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT) return null;
-		return (Requirement)eInternalContainer();
 	}
 
 	/**
@@ -232,16 +210,6 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature basicGetSpecifiedFeature() {
-		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE) return null;
-		return (Feature)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public NotificationChain basicSetSpecifiedFeature(Feature newSpecifiedFeature, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newSpecifiedFeature, RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE, msgs);
 		return msgs;
@@ -275,7 +243,7 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 */
 	public EList<DataDefinition> getDefiningData() {
 		if (definingData == null) {
-			definingData = new EObjectWithInverseResolvingEList<DataDefinition>(DataDefinition.class, this, RequirementsPackage.REQUIREMENT__DEFINING_DATA, RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT);
+			definingData = new EObjectContainmentWithInverseEList<DataDefinition>(DataDefinition.class, this, RequirementsPackage.REQUIREMENT__DEFINING_DATA, RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT);
 		}
 		return definingData;
 	}
@@ -349,10 +317,10 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
+			case RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainingRequirementSpace((RequirementSpace)otherEnd, msgs);
+				return basicSetUsedKnowledge((ScientificKnowledge)otherEnd, msgs);
 			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRefinements()).basicAdd(otherEnd, msgs);
 			case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
@@ -381,8 +349,8 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
-				return basicSetContainingRequirementSpace(null, msgs);
+			case RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE:
+				return basicSetUsedKnowledge(null, msgs);
 			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
 				return ((InternalEList<?>)getRefinements()).basicRemove(otherEnd, msgs);
 			case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
@@ -405,8 +373,8 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
-				return eInternalContainer().eInverseRemove(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
+			case RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE:
+				return eInternalContainer().eInverseRemove(this, KnowledgePackage.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS, ScientificKnowledge.class, msgs);
 			case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
 				return eInternalContainer().eInverseRemove(this, RequirementsPackage.REQUIREMENT__REFINEMENTS, Requirement.class, msgs);
 			case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
@@ -423,17 +391,14 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
-				if (resolve) return getContainingRequirementSpace();
-				return basicGetContainingRequirementSpace();
+			case RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE:
+				return getUsedKnowledge();
 			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
 				return getRefinements();
 			case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
-				if (resolve) return getRefinedRequirement();
-				return basicGetRefinedRequirement();
+				return getRefinedRequirement();
 			case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
-				if (resolve) return getSpecifiedFeature();
-				return basicGetSpecifiedFeature();
+				return getSpecifiedFeature();
 			case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
 				return getDefiningData();
 			case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
@@ -452,8 +417,8 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
-				setContainingRequirementSpace((RequirementSpace)newValue);
+			case RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE:
+				setUsedKnowledge((ScientificKnowledge)newValue);
 				return;
 			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
 				getRefinements().clear();
@@ -484,8 +449,8 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
-				setContainingRequirementSpace((RequirementSpace)null);
+			case RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE:
+				setUsedKnowledge((ScientificKnowledge)null);
 				return;
 			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
 				getRefinements().clear();
@@ -514,14 +479,14 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
-				return basicGetContainingRequirementSpace() != null;
+			case RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE:
+				return getUsedKnowledge() != null;
 			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
 				return refinements != null && !refinements.isEmpty();
 			case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
-				return basicGetRefinedRequirement() != null;
+				return getRefinedRequirement() != null;
 			case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
-				return basicGetSpecifiedFeature() != null;
+				return getSpecifiedFeature() != null;
 			case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
 				return definingData != null && !definingData.isEmpty();
 			case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:

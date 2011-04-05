@@ -88,13 +88,22 @@ public interface DataProcessingPackage extends EPackage {
 	int DATA_PROCESSING__DESCRIPTION = RequirementsPackage.REQUIREMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESSING__CONTAINING_REQUIREMENT_SPACE = RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE;
+	int DATA_PROCESSING__IDENTIFIER = RequirementsPackage.REQUIREMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Used Knowledge</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_PROCESSING__USED_KNOWLEDGE = RequirementsPackage.REQUIREMENT__USED_KNOWLEDGE;
 
 	/**
 	 * The feature id for the '<em><b>Refinements</b></em>' containment reference list.
@@ -124,7 +133,7 @@ public interface DataProcessingPackage extends EPackage {
 	int DATA_PROCESSING__SPECIFIED_FEATURE = RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * The feature id for the '<em><b>Defining Data</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -179,13 +188,22 @@ public interface DataProcessingPackage extends EPackage {
 	int INPUT_DATA_READING__DESCRIPTION = DATA_PROCESSING__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INPUT_DATA_READING__CONTAINING_REQUIREMENT_SPACE = DATA_PROCESSING__CONTAINING_REQUIREMENT_SPACE;
+	int INPUT_DATA_READING__IDENTIFIER = DATA_PROCESSING__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Used Knowledge</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DATA_READING__USED_KNOWLEDGE = DATA_PROCESSING__USED_KNOWLEDGE;
 
 	/**
 	 * The feature id for the '<em><b>Refinements</b></em>' containment reference list.
@@ -215,7 +233,7 @@ public interface DataProcessingPackage extends EPackage {
 	int INPUT_DATA_READING__SPECIFIED_FEATURE = DATA_PROCESSING__SPECIFIED_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * The feature id for the '<em><b>Defining Data</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -270,13 +288,22 @@ public interface DataProcessingPackage extends EPackage {
 	int DATA_HANDLING__DESCRIPTION = DATA_PROCESSING__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_HANDLING__CONTAINING_REQUIREMENT_SPACE = DATA_PROCESSING__CONTAINING_REQUIREMENT_SPACE;
+	int DATA_HANDLING__IDENTIFIER = DATA_PROCESSING__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Used Knowledge</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_HANDLING__USED_KNOWLEDGE = DATA_PROCESSING__USED_KNOWLEDGE;
 
 	/**
 	 * The feature id for the '<em><b>Refinements</b></em>' containment reference list.
@@ -306,7 +333,7 @@ public interface DataProcessingPackage extends EPackage {
 	int DATA_HANDLING__SPECIFIED_FEATURE = DATA_PROCESSING__SPECIFIED_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * The feature id for the '<em><b>Defining Data</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -361,13 +388,22 @@ public interface DataProcessingPackage extends EPackage {
 	int RESULTS_OUTPUT__DESCRIPTION = DATA_PROCESSING__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESULTS_OUTPUT__CONTAINING_REQUIREMENT_SPACE = DATA_PROCESSING__CONTAINING_REQUIREMENT_SPACE;
+	int RESULTS_OUTPUT__IDENTIFIER = DATA_PROCESSING__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Used Knowledge</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULTS_OUTPUT__USED_KNOWLEDGE = DATA_PROCESSING__USED_KNOWLEDGE;
 
 	/**
 	 * The feature id for the '<em><b>Refinements</b></em>' containment reference list.
@@ -397,7 +433,7 @@ public interface DataProcessingPackage extends EPackage {
 	int RESULTS_OUTPUT__SPECIFIED_FEATURE = DATA_PROCESSING__SPECIFIED_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * The feature id for the '<em><b>Defining Data</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -452,13 +488,22 @@ public interface DataProcessingPackage extends EPackage {
 	int ERROR_HANDLING__DESCRIPTION = DATA_PROCESSING__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ERROR_HANDLING__CONTAINING_REQUIREMENT_SPACE = DATA_PROCESSING__CONTAINING_REQUIREMENT_SPACE;
+	int ERROR_HANDLING__IDENTIFIER = DATA_PROCESSING__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Used Knowledge</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ERROR_HANDLING__USED_KNOWLEDGE = DATA_PROCESSING__USED_KNOWLEDGE;
 
 	/**
 	 * The feature id for the '<em><b>Refinements</b></em>' containment reference list.
@@ -488,7 +533,7 @@ public interface DataProcessingPackage extends EPackage {
 	int ERROR_HANDLING__SPECIFIED_FEATURE = DATA_PROCESSING__SPECIFIED_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * The feature id for the '<em><b>Defining Data</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -543,13 +588,22 @@ public interface DataProcessingPackage extends EPackage {
 	int STATUS_MONITORING__DESCRIPTION = DATA_PROCESSING__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATUS_MONITORING__CONTAINING_REQUIREMENT_SPACE = DATA_PROCESSING__CONTAINING_REQUIREMENT_SPACE;
+	int STATUS_MONITORING__IDENTIFIER = DATA_PROCESSING__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Used Knowledge</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATUS_MONITORING__USED_KNOWLEDGE = DATA_PROCESSING__USED_KNOWLEDGE;
 
 	/**
 	 * The feature id for the '<em><b>Refinements</b></em>' containment reference list.
@@ -579,7 +633,7 @@ public interface DataProcessingPackage extends EPackage {
 	int STATUS_MONITORING__SPECIFIED_FEATURE = DATA_PROCESSING__SPECIFIED_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * The feature id for the '<em><b>Defining Data</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

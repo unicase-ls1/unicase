@@ -16,12 +16,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import scrm.impl.SCRMModelElementImpl;
-import scrm.knowledge.KnowledgePackage;
-import scrm.knowledge.ScientificKnowledge;
 import scrm.requirements.DataDefinition;
 import scrm.requirements.Requirement;
-import scrm.requirements.RequirementSpace;
 import scrm.requirements.RequirementsPackage;
 
 /**
@@ -31,7 +27,6 @@ import scrm.requirements.RequirementsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getContainingRequirementSpace <em>Containing Requirement Space</em>}</li>
  *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getDefinedRequirement <em>Defined Requirement</em>}</li>
  *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getAccuracy <em>Accuracy</em>}</li>
  *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getFormat <em>Format</em>}</li>
@@ -42,17 +37,7 @@ import scrm.requirements.RequirementsPackage;
  *
  * @generated
  */
-public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefinition {
-	/**
-	 * The cached value of the '{@link #getDefinedRequirement() <em>Defined Requirement</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDefinedRequirement()
-	 * @generated
-	 * @ordered
-	 */
-	protected Requirement definedRequirement;
-
+public class DataDefinitionImpl extends RequirementImpl implements DataDefinition {
 	/**
 	 * The default value of the '{@link #getAccuracy() <em>Accuracy</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -157,76 +142,9 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RequirementSpace getContainingRequirementSpace() {
-		if (eContainerFeatureID() != RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE) return null;
-		return (RequirementSpace)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RequirementSpace basicGetContainingRequirementSpace() {
-		if (eContainerFeatureID() != RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE) return null;
-		return (RequirementSpace)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetContainingRequirementSpace(RequirementSpace newContainingRequirementSpace, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newContainingRequirementSpace, RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setContainingRequirementSpace(RequirementSpace newContainingRequirementSpace) {
-		if (newContainingRequirementSpace != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE && newContainingRequirementSpace != null)) {
-			if (EcoreUtil.isAncestor(this, newContainingRequirementSpace))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newContainingRequirementSpace != null)
-				msgs = ((InternalEObject)newContainingRequirementSpace).eInverseAdd(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
-			msgs = basicSetContainingRequirementSpace(newContainingRequirementSpace, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE, newContainingRequirementSpace, newContainingRequirementSpace));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Requirement getDefinedRequirement() {
-		if (definedRequirement != null && definedRequirement.eIsProxy()) {
-			InternalEObject oldDefinedRequirement = (InternalEObject)definedRequirement;
-			definedRequirement = (Requirement)eResolveProxy(oldDefinedRequirement);
-			if (definedRequirement != oldDefinedRequirement) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT, oldDefinedRequirement, definedRequirement));
-			}
-		}
-		return definedRequirement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Requirement basicGetDefinedRequirement() {
-		return definedRequirement;
+		if (eContainerFeatureID() != RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT) return null;
+		return (Requirement)eContainer();
 	}
 
 	/**
@@ -235,12 +153,7 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	 * @generated
 	 */
 	public NotificationChain basicSetDefinedRequirement(Requirement newDefinedRequirement, NotificationChain msgs) {
-		Requirement oldDefinedRequirement = definedRequirement;
-		definedRequirement = newDefinedRequirement;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT, oldDefinedRequirement, newDefinedRequirement);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
+		msgs = eBasicSetContainer((InternalEObject)newDefinedRequirement, RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT, msgs);
 		return msgs;
 	}
 
@@ -250,10 +163,12 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	 * @generated
 	 */
 	public void setDefinedRequirement(Requirement newDefinedRequirement) {
-		if (newDefinedRequirement != definedRequirement) {
+		if (newDefinedRequirement != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT && newDefinedRequirement != null)) {
+			if (EcoreUtil.isAncestor(this, newDefinedRequirement))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (definedRequirement != null)
-				msgs = ((InternalEObject)definedRequirement).eInverseRemove(this, RequirementsPackage.REQUIREMENT__DEFINING_DATA, Requirement.class, msgs);
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
 			if (newDefinedRequirement != null)
 				msgs = ((InternalEObject)newDefinedRequirement).eInverseAdd(this, RequirementsPackage.REQUIREMENT__DEFINING_DATA, Requirement.class, msgs);
 			msgs = basicSetDefinedRequirement(newDefinedRequirement, msgs);
@@ -355,13 +270,9 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
+			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainingRequirementSpace((RequirementSpace)otherEnd, msgs);
-			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
-				if (definedRequirement != null)
-					msgs = ((InternalEObject)definedRequirement).eInverseRemove(this, RequirementsPackage.REQUIREMENT__DEFINING_DATA, Requirement.class, msgs);
 				return basicSetDefinedRequirement((Requirement)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -375,8 +286,6 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
-				return basicSetContainingRequirementSpace(null, msgs);
 			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
 				return basicSetDefinedRequirement(null, msgs);
 		}
@@ -391,8 +300,8 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
-				return eInternalContainer().eInverseRemove(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
+			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
+				return eInternalContainer().eInverseRemove(this, RequirementsPackage.REQUIREMENT__DEFINING_DATA, Requirement.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -405,12 +314,8 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
-				if (resolve) return getContainingRequirementSpace();
-				return basicGetContainingRequirementSpace();
 			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
-				if (resolve) return getDefinedRequirement();
-				return basicGetDefinedRequirement();
+				return getDefinedRequirement();
 			case RequirementsPackage.DATA_DEFINITION__ACCURACY:
 				return getAccuracy();
 			case RequirementsPackage.DATA_DEFINITION__FORMAT:
@@ -431,9 +336,6 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
-				setContainingRequirementSpace((RequirementSpace)newValue);
-				return;
 			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
 				setDefinedRequirement((Requirement)newValue);
 				return;
@@ -461,9 +363,6 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
-				setContainingRequirementSpace((RequirementSpace)null);
-				return;
 			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
 				setDefinedRequirement((Requirement)null);
 				return;
@@ -491,10 +390,8 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
-				return basicGetContainingRequirementSpace() != null;
 			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
-				return definedRequirement != null;
+				return getDefinedRequirement() != null;
 			case RequirementsPackage.DATA_DEFINITION__ACCURACY:
 				return ACCURACY_EDEFAULT == null ? accuracy != null : !ACCURACY_EDEFAULT.equals(accuracy);
 			case RequirementsPackage.DATA_DEFINITION__FORMAT:

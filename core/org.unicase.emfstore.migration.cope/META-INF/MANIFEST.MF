@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMFStore Cope Migration Integration
+Bundle-SymbolicName: org.unicase.emfstore.migration.cope;singleton:=true
+Bundle-Version: 0.7.3
+Bundle-Vendor: unicase.org
+Require-Bundle: org.eclipse.core.runtime,
+ org.unicase.emfstore.migration,
+ edu.tum.cs.cope.migration.execution
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy

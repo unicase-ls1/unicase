@@ -14,8 +14,7 @@ import scrm.diagram.edit.policies.NumericalMethodRealizingRequirementItemSemanti
 /**
  * @generated
  */
-public class NumericalMethodRealizingRequirementEditPart extends
-		ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class NumericalMethodRealizingRequirementEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -35,16 +34,16 @@ public class NumericalMethodRealizingRequirementEditPart extends
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new NumericalMethodRealizingRequirementItemSemanticEditPolicy());
+			new NumericalMethodRealizingRequirementItemSemanticEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel8EditPart) {
-			((WrappingLabel8EditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureNumericalMethod_RealizingRequirementLabel());
+		if (childEditPart instanceof WrappingLabel10EditPart) {
+			((WrappingLabel10EditPart) childEditPart).setLabel(getPrimaryShape()
+				.getFigureNumericalMethod_RealizingRequirementLabel());
 			return true;
 		}
 		return false;
@@ -57,14 +56,14 @@ public class NumericalMethodRealizingRequirementEditPart extends
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, index);
+		super.addChildVisual(childEditPart, -1);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel8EditPart) {
+		if (childEditPart instanceof WrappingLabel10EditPart) {
 			return true;
 		}
 		return false;
@@ -103,8 +102,7 @@ public class NumericalMethodRealizingRequirementEditPart extends
 	/**
 	 * @generated
 	 */
-	public class NumericalMethod_RealizingRequirementFigure extends
-			PolylineConnectionEx {
+	public class NumericalMethod_RealizingRequirementFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
@@ -115,6 +113,7 @@ public class NumericalMethodRealizingRequirementEditPart extends
 		 * @generated
 		 */
 		public NumericalMethod_RealizingRequirementFigure() {
+			this.setLineWidth(1);
 
 			createContents();
 		}
@@ -125,8 +124,7 @@ public class NumericalMethodRealizingRequirementEditPart extends
 		private void createContents() {
 
 			fFigureNumericalMethod_RealizingRequirementLabel = new WrappingLabel();
-			fFigureNumericalMethod_RealizingRequirementLabel
-					.setText("realizes");
+			fFigureNumericalMethod_RealizingRequirementLabel.setText("realizes");
 
 			this.add(fFigureNumericalMethod_RealizingRequirementLabel);
 

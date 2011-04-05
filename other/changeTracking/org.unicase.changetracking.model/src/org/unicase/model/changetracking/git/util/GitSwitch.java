@@ -10,17 +10,16 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
+
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.RepositoryRevision;
 import org.unicase.model.changetracking.RepositoryStream;
-import org.unicase.model.changetracking.git.GitBranch;
-import org.unicase.model.changetracking.git.GitBranchChangePackage;
-import org.unicase.model.changetracking.git.GitPackage;
-import org.unicase.model.changetracking.git.GitRepository;
-import org.unicase.model.changetracking.git.GitRevision;
+
+import org.unicase.model.changetracking.git.*;
 
 /**
  * <!-- begin-user-doc -->

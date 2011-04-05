@@ -70,14 +70,7 @@ public class FeatureItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addContainingRequirementSpacePropertyDescriptor(object);
-			addDetailedRequirementsPropertyDescriptor(object);
-			addSubFeaturesPropertyDescriptor(object);
-			addSuperFeaturePropertyDescriptor(object);
-			addConstraintsPropertyDescriptor(object);
-			addDependenciesPropertyDescriptor(object);
 			addRequiredInterfacesPropertyDescriptor(object);
-			addProvidedInterfacesPropertyDescriptor(object);
 			addInfluencingProblemPropertyDescriptor(object);
 			addRequiredFeaturesPropertyDescriptor(object);
 			addRequiringFeaturesPropertyDescriptor(object);
@@ -85,138 +78,6 @@ public class FeatureItemProvider
 			addExcludingFeaturesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Containing Requirement Space feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addContainingRequirementSpacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IRequirement_containingRequirementSpace_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IRequirement_containingRequirementSpace_feature", "_UI_IRequirement_type"),
-				 RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Detailed Requirements feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDetailedRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Feature_detailedRequirements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_detailedRequirements_feature", "_UI_Feature_type"),
-				 RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Sub Features feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSubFeaturesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Feature_subFeatures_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_subFeatures_feature", "_UI_Feature_type"),
-				 RequirementsPackage.Literals.FEATURE__SUB_FEATURES,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Super Feature feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSuperFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Feature_superFeature_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_superFeature_feature", "_UI_Feature_type"),
-				 RequirementsPackage.Literals.FEATURE__SUPER_FEATURE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Constraints feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addConstraintsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Feature_constraints_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_constraints_feature", "_UI_Feature_type"),
-				 RequirementsPackage.Literals.FEATURE__CONSTRAINTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Dependencies feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDependenciesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Feature_dependencies_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_dependencies_feature", "_UI_Feature_type"),
-				 RequirementsPackage.Literals.FEATURE__DEPENDENCIES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -236,28 +97,6 @@ public class FeatureItemProvider
 				 true,
 				 false,
 				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Provided Interfaces feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addProvidedInterfacesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Feature_providedInterfaces_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_providedInterfaces_feature", "_UI_Feature_type"),
-				 RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES,
-				 true,
-				 false,
-				 false,
 				 null,
 				 null,
 				 null));
@@ -385,9 +224,11 @@ public class FeatureItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__CONSTRAINTS);
+			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__DEPENDENCIES);
+			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES);
 			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS);
 			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__SUB_FEATURES);
-			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES);
 		}
 		return childrenFeatures;
 	}
@@ -420,11 +261,14 @@ public class FeatureItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		String label = ((Feature)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Feature_type") :
+			getString("_UI_Feature_type") + " " + label;
 	}
 
 	/**
@@ -439,9 +283,11 @@ public class FeatureItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Feature.class)) {
+			case RequirementsPackage.FEATURE__CONSTRAINTS:
+			case RequirementsPackage.FEATURE__DEPENDENCIES:
+			case RequirementsPackage.FEATURE__PROVIDED_INTERFACES:
 			case RequirementsPackage.FEATURE__DETAILED_REQUIREMENTS:
 			case RequirementsPackage.FEATURE__SUB_FEATURES:
-			case RequirementsPackage.FEATURE__PROVIDED_INTERFACES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -461,6 +307,31 @@ public class FeatureItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(RequirementsPackage.Literals.FEATURE__CONSTRAINTS,
+				 RequirementsFactory.eINSTANCE.createConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RequirementsPackage.Literals.FEATURE__DEPENDENCIES,
+				 RequirementsFactory.eINSTANCE.createHardware()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES,
+				 RequirementsFactory.eINSTANCE.createInterface()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES,
+				 RequirementsFactory.eINSTANCE.createUserInterface()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES,
+				 RequirementsFactory.eINSTANCE.createSoftwareInterface()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
 				 RequirementsFactory.eINSTANCE.createRequirement()));
 
@@ -473,6 +344,16 @@ public class FeatureItemProvider
 			(createChildParameter
 				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
 				 RequirementsFactory.eINSTANCE.createPerformance()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createDataFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
+				 RequirementsFactory.eINSTANCE.createDataDefinition()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -503,16 +384,6 @@ public class FeatureItemProvider
 			(createChildParameter
 				(RequirementsPackage.Literals.FEATURE__SUB_FEATURES,
 				 RequirementsFactory.eINSTANCE.createFeature()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES,
-				 RequirementsFactory.eINSTANCE.createUserInterface()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES,
-				 RequirementsFactory.eINSTANCE.createSoftwareInterface()));
 	}
 
 	/**

@@ -10,8 +10,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.model.changetracking.patch.Patch;
-import org.unicase.model.changetracking.patch.PatchPackage;
+
+import org.unicase.model.changetracking.patch.*;
 
 /**
  * <!-- begin-user-doc -->

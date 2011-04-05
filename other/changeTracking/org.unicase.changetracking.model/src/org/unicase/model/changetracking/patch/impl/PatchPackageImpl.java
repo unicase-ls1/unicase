@@ -8,13 +8,20 @@ package org.unicase.model.changetracking.patch.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.unicase.model.ModelPackage;
+
 import org.unicase.model.changetracking.ChangetrackingPackage;
+
 import org.unicase.model.changetracking.git.GitPackage;
+
 import org.unicase.model.changetracking.git.impl.GitPackageImpl;
+
 import org.unicase.model.changetracking.impl.ChangetrackingPackageImpl;
+
 import org.unicase.model.changetracking.patch.Patch;
 import org.unicase.model.changetracking.patch.PatchFactory;
 import org.unicase.model.changetracking.patch.PatchPackage;

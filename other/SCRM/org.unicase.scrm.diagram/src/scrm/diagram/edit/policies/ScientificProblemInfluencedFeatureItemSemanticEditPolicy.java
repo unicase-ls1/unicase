@@ -9,8 +9,7 @@ import scrm.diagram.providers.ScrmElementTypes;
 /**
  * @generated
  */
-public class ScientificProblemInfluencedFeatureItemSemanticEditPolicy extends
-		ScrmBaseItemSemanticEditPolicy {
+public class ScientificProblemInfluencedFeatureItemSemanticEditPolicy extends ScrmBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated

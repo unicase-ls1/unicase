@@ -14,8 +14,7 @@ import scrm.diagram.edit.policies.MathematicalModelNumericalMethodsItemSemanticE
 /**
  * @generated
  */
-public class MathematicalModelNumericalMethodsEditPart extends
-		ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class MathematicalModelNumericalMethodsEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -34,17 +33,16 @@ public class MathematicalModelNumericalMethodsEditPart extends
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new MathematicalModelNumericalMethodsItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new MathematicalModelNumericalMethodsItemSemanticEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel5EditPart) {
-			((WrappingLabel5EditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureMathematicalModel_NumericalMethodsLabel());
+		if (childEditPart instanceof WrappingLabel7EditPart) {
+			((WrappingLabel7EditPart) childEditPart).setLabel(getPrimaryShape()
+				.getFigureMathematicalModel_NumericalMethodsLabel());
 			return true;
 		}
 		return false;
@@ -57,14 +55,14 @@ public class MathematicalModelNumericalMethodsEditPart extends
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, index);
+		super.addChildVisual(childEditPart, -1);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel5EditPart) {
+		if (childEditPart instanceof WrappingLabel7EditPart) {
 			return true;
 		}
 		return false;
@@ -103,8 +101,7 @@ public class MathematicalModelNumericalMethodsEditPart extends
 	/**
 	 * @generated
 	 */
-	public class MathematicalModel_NumericalMethodsFigure extends
-			PolylineConnectionEx {
+	public class MathematicalModel_NumericalMethodsFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
@@ -115,6 +112,7 @@ public class MathematicalModelNumericalMethodsEditPart extends
 		 * @generated
 		 */
 		public MathematicalModel_NumericalMethodsFigure() {
+			this.setLineWidth(1);
 
 			createContents();
 		}

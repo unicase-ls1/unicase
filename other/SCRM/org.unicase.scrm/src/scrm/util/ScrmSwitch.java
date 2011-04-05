@@ -11,8 +11,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-import org.unicase.metamodel.IdentifiableElement;
-
 import scrm.*;
 
 /**
@@ -98,7 +96,6 @@ public class ScrmSwitch<T> {
 			case ScrmPackage.SCRM_DIAGRAM: {
 				SCRMDiagram scrmDiagram = (SCRMDiagram)theEObject;
 				T result = caseSCRMDiagram(scrmDiagram);
-				if (result == null) result = caseSCRMModelElement(scrmDiagram);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

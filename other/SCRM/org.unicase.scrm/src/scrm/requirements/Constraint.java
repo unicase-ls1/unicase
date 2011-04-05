@@ -25,7 +25,7 @@ package scrm.requirements;
  */
 public interface Constraint extends IRequirement {
 	/**
-	 * Returns the value of the '<em><b>Restricted Feature</b></em>' reference.
+	 * Returns the value of the '<em><b>Restricted Feature</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link scrm.requirements.Feature#getConstraints <em>Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -33,21 +33,20 @@ public interface Constraint extends IRequirement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Restricted Feature</em>' reference.
+	 * @return the value of the '<em>Restricted Feature</em>' container reference.
 	 * @see #setRestrictedFeature(Feature)
 	 * @see scrm.requirements.RequirementsPackage#getConstraint_RestrictedFeature()
 	 * @see scrm.requirements.Feature#getConstraints
-	 * @model opposite="constraints"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
+	 * @model opposite="constraints" transient="false"
 	 * @generated
 	 */
 	Feature getRestrictedFeature();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.Constraint#getRestrictedFeature <em>Restricted Feature</em>}' reference.
+	 * Sets the value of the '{@link scrm.requirements.Constraint#getRestrictedFeature <em>Restricted Feature</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Restricted Feature</em>' reference.
+	 * @param value the new value of the '<em>Restricted Feature</em>' container reference.
 	 * @see #getRestrictedFeature()
 	 * @generated
 	 */

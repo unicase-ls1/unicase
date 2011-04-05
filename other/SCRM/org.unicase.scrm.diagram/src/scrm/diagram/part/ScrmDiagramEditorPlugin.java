@@ -22,9 +22,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-import org.unicase.metamodel.provider.MetamodelItemProviderAdapterFactory;
-import scrm.diagram.edit.policies.ScrmBaseItemSemanticEditPolicy;
-import scrm.diagram.providers.ElementInitializers;
 import scrm.knowledge.provider.KnowledgeItemProviderAdapterFactory;
 import scrm.provider.ScrmItemProviderAdapterFactory;
 import scrm.requirements.provider.RequirementsItemProviderAdapterFactory;
@@ -42,8 +39,7 @@ public class ScrmDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	public static final PreferencesHint DIAGRAM_PREFERENCES_HINT = new PreferencesHint(
-			ID);
+	public static final PreferencesHint DIAGRAM_PREFERENCES_HINT = new PreferencesHint(ID);
 
 	/**
 	 * @generated
@@ -63,16 +59,6 @@ public class ScrmDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	private ScrmBaseItemSemanticEditPolicy.LinkConstraints linkConstraints;
-
-	/**
-	 * @generated
-	 */
-	private ElementInitializers initializers;
-
-	/**
-	 * @generated
-	 */
 	public ScrmDiagramEditorPlugin() {
 	}
 
@@ -82,8 +68,7 @@ public class ScrmDiagramEditorPlugin extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		instance = this;
-		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT,
-				getPreferenceStore());
+		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
 		adapterFactory = createAdapterFactory();
 	}
 
@@ -93,8 +78,6 @@ public class ScrmDiagramEditorPlugin extends AbstractUIPlugin {
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
 		adapterFactory = null;
-		linkConstraints = null;
-		initializers = null;
 		instance = null;
 		super.stop(context);
 	}
@@ -110,7 +93,7 @@ public class ScrmDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	protected ComposedAdapterFactory createAdapterFactory() {
-		ArrayList<AdapterFactory> factories = new ArrayList<AdapterFactory>();
+		List factories = new ArrayList();
 		fillItemProviderFactories(factories);
 		return new ComposedAdapterFactory(factories);
 	}
@@ -118,12 +101,11 @@ public class ScrmDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	protected void fillItemProviderFactories(List<AdapterFactory> factories) {
+	protected void fillItemProviderFactories(List factories) {
 		factories.add(new ScrmItemProviderAdapterFactory());
 		factories.add(new KnowledgeItemProviderAdapterFactory());
 		factories.add(new RequirementsItemProviderAdapterFactory());
-		factories
-				.add(new scrm.requirements.dataProcessing.provider.DataProcessingItemProviderAdapterFactory());
+		factories.add(new scrm.requirements.dataProcessing.provider.DataProcessingItemProviderAdapterFactory());
 		factories.add(new EcoreItemProviderAdapterFactory());
 		factories.add(new NotationItemProviderAdapterFactory());
 		factories.add(new ResourceItemProviderAdapterFactory());
@@ -141,11 +123,9 @@ public class ScrmDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public ImageDescriptor getItemImageDescriptor(Object item) {
-		IItemLabelProvider labelProvider = (IItemLabelProvider) adapterFactory
-				.adapt(item, IItemLabelProvider.class);
+		IItemLabelProvider labelProvider = (IItemLabelProvider) adapterFactory.adapt(item, IItemLabelProvider.class);
 		if (labelProvider != null) {
-			return ExtendedImageRegistry.getInstance().getImageDescriptor(
-					labelProvider.getImage(item));
+			return ExtendedImageRegistry.getInstance().getImageDescriptor(labelProvider.getImage(item));
 		}
 		return null;
 	}
@@ -174,8 +154,8 @@ public class ScrmDiagramEditorPlugin extends AbstractUIPlugin {
 	public static ImageDescriptor findImageDescriptor(String path) {
 		final IPath p = new Path(path);
 		if (p.isAbsolute() && p.segmentCount() > 1) {
-			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p
-					.removeFirstSegments(1).makeAbsolute().toString());
+			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p.removeFirstSegments(1).makeAbsolute()
+				.toString());
 		} else {
 			return getBundledImageDescriptor(p.makeAbsolute().toString());
 		}
@@ -220,35 +200,6 @@ public class ScrmDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	public ScrmBaseItemSemanticEditPolicy.LinkConstraints getLinkConstraints() {
-		return linkConstraints;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setLinkConstraints(
-			ScrmBaseItemSemanticEditPolicy.LinkConstraints lc) {
-		this.linkConstraints = lc;
-	}
-
-	/**
-	 * @generated
-	 */
-	public ElementInitializers getElementInitializers() {
-		return initializers;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setElementInitializers(ElementInitializers i) {
-		this.initializers = i;
-	}
-
-	/**
-	 * @generated
-	 */
 	public void logError(String error) {
 		logError(error, null);
 	}
@@ -260,9 +211,7 @@ public class ScrmDiagramEditorPlugin extends AbstractUIPlugin {
 		if (error == null && throwable != null) {
 			error = throwable.getMessage();
 		}
-		getLog().log(
-				new Status(IStatus.ERROR, ScrmDiagramEditorPlugin.ID,
-						IStatus.OK, error, throwable));
+		getLog().log(new Status(IStatus.ERROR, ScrmDiagramEditorPlugin.ID, IStatus.OK, error, throwable));
 		debug(error, throwable);
 	}
 
@@ -280,9 +229,7 @@ public class ScrmDiagramEditorPlugin extends AbstractUIPlugin {
 		if (message == null && throwable != null) {
 			message = throwable.getMessage();
 		}
-		getLog().log(
-				new Status(IStatus.INFO, ScrmDiagramEditorPlugin.ID,
-						IStatus.OK, message, throwable));
+		getLog().log(new Status(IStatus.INFO, ScrmDiagramEditorPlugin.ID, IStatus.OK, message, throwable));
 		debug(message, throwable);
 	}
 

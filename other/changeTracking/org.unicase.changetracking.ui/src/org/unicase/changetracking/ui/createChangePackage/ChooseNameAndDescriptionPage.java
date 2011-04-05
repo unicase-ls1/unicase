@@ -1,22 +1,48 @@
 package org.unicase.changetracking.ui.createChangePackage;
 
 
+import java.util.Map;
 import java.util.regex.Pattern;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.jgit.lib.Ref;
+import org.eclipse.jgit.lib.Repository;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.VerifyEvent;
+import org.eclipse.swt.events.VerifyListener;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.unicase.changetracking.git.GitNameUtil;
+import org.unicase.changetracking.ui.Activator;
 import org.unicase.changetracking.ui.ImageAndTextLabel;
+import org.unicase.changetracking.ui.dialogs.AttacheeSelectionDialog;
+import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.changetracking.ChangeTrackingRelease;
+import org.unicase.model.changetracking.git.GitRepository;
+import org.unicase.ui.navigator.ContentProvider;
 
 public class ChooseNameAndDescriptionPage extends WizardPage{
 
@@ -29,6 +55,7 @@ public class ChooseNameAndDescriptionPage extends WizardPage{
 	private Text shortDescInput;
 	private Text longDescInput;
 	private boolean validInput = true;
+	private Repository repository;
 	
 	public String getSelectedName(){
 		return nameInput.getText();
@@ -43,8 +70,10 @@ public class ChooseNameAndDescriptionPage extends WizardPage{
 	}
 	
 	protected ChooseNameAndDescriptionPage(String pageName, String title,
-			ImageDescriptor titleImage) {
+			ImageDescriptor titleImage, Repository repo) {
 		super(pageName, title, titleImage);
+		
+		repository = repo;
 		
 		
 	}
@@ -114,13 +143,20 @@ public class ChooseNameAndDescriptionPage extends WizardPage{
 				((CreateChangePackageWizard) getWizard()).setFinishable(false);
 			}
 		} else{
-		
-			setMessage("",DialogPage.NONE);
-			if (!validInput){
-				validInput = true;
-				((CreateChangePackageWizard) getWizard()).setFinishable(true);
+			String message = GitNameUtil.isNewBranchNameValid(nameInput.getText(), repository);
+			if(message != null){
+				setMessage(message,DialogPage.ERROR);
+				if(validInput){
+					validInput = false;
+					((CreateChangePackageWizard) getWizard()).setFinishable(false);
+				}	
+			} else {
+				setMessage("",DialogPage.NONE);
+				if (!validInput){
+					validInput = true;
+					((CreateChangePackageWizard) getWizard()).setFinishable(true);
+				}
 			}
-		
 			
 		}
 	}

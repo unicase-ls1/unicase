@@ -15,17 +15,19 @@ import scrm.diagram.edit.commands.RequirementCreateCommand;
 import scrm.diagram.edit.commands.RequirementDefiningDataCreateCommand;
 import scrm.diagram.edit.commands.RequirementDefiningDataReorientCommand;
 import scrm.diagram.edit.commands.RequirementReorientCommand;
+import scrm.diagram.edit.commands.ScientificKnowledgeRequirementsCreateCommand;
+import scrm.diagram.edit.commands.ScientificKnowledgeRequirementsReorientCommand;
 import scrm.diagram.edit.parts.FeatureDetailedRequirementsEditPart;
 import scrm.diagram.edit.parts.NumericalMethodRealizingRequirementEditPart;
 import scrm.diagram.edit.parts.RequirementDefiningDataEditPart;
 import scrm.diagram.edit.parts.RequirementEditPart;
+import scrm.diagram.edit.parts.ScientificKnowledgeRequirementsEditPart;
 import scrm.diagram.providers.ScrmElementTypes;
 
 /**
  * @generated
  */
-public class RequirementItemSemanticEditPolicy extends
-		ScrmBaseItemSemanticEditPolicy {
+public class RequirementItemSemanticEditPolicy extends ScrmBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -46,32 +48,28 @@ public class RequirementItemSemanticEditPolicy extends
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
-				: getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super
-				.getCreateRelationshipCommand(req);
+			: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.NumericalMethodRealizingRequirement_4016 == req
-				.getElementType()) {
+	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (ScrmElementTypes.ScientificKnowledgeRequirements_4005 == req.getElementType()) {
 			return null;
 		}
-		if (ScrmElementTypes.FeatureDetailedRequirements_4027 == req
-				.getElementType()) {
+		if (ScrmElementTypes.NumericalMethodRealizingRequirement_4016 == req.getElementType()) {
+			return null;
+		}
+		if (ScrmElementTypes.FeatureDetailedRequirements_4027 == req.getElementType()) {
 			return null;
 		}
 		if (ScrmElementTypes.Requirement_4036 == req.getElementType()) {
-			return getGEFWrapper(new RequirementCreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new RequirementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.RequirementDefiningData_4038 == req
-				.getElementType()) {
-			return getGEFWrapper(new RequirementDefiningDataCreateCommand(req,
-					req.getSource(), req.getTarget()));
+		if (ScrmElementTypes.RequirementDefiningData_4038 == req.getElementType()) {
+			return getGEFWrapper(new RequirementDefiningDataCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -79,24 +77,21 @@ public class RequirementItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.NumericalMethodRealizingRequirement_4016 == req
-				.getElementType()) {
-			return getGEFWrapper(new NumericalMethodRealizingRequirementCreateCommand(
-					req, req.getSource(), req.getTarget()));
+	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (ScrmElementTypes.ScientificKnowledgeRequirements_4005 == req.getElementType()) {
+			return getGEFWrapper(new ScientificKnowledgeRequirementsCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.FeatureDetailedRequirements_4027 == req
-				.getElementType()) {
-			return getGEFWrapper(new FeatureDetailedRequirementsCreateCommand(
-					req, req.getSource(), req.getTarget()));
+		if (ScrmElementTypes.NumericalMethodRealizingRequirement_4016 == req.getElementType()) {
+			return getGEFWrapper(new NumericalMethodRealizingRequirementCreateCommand(req, req.getSource(), req
+				.getTarget()));
+		}
+		if (ScrmElementTypes.FeatureDetailedRequirements_4027 == req.getElementType()) {
+			return getGEFWrapper(new FeatureDetailedRequirementsCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.Requirement_4036 == req.getElementType()) {
-			return getGEFWrapper(new RequirementCreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new RequirementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.RequirementDefiningData_4038 == req
-				.getElementType()) {
+		if (ScrmElementTypes.RequirementDefiningData_4038 == req.getElementType()) {
 			return null;
 		}
 		return null;
@@ -108,8 +103,7 @@ public class RequirementItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(
-			ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case RequirementEditPart.VISUAL_ID:
 			return getGEFWrapper(new RequirementReorientCommand(req));
@@ -123,15 +117,14 @@ public class RequirementItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(
-			ReorientReferenceRelationshipRequest req) {
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
+		case ScientificKnowledgeRequirementsEditPart.VISUAL_ID:
+			return getGEFWrapper(new ScientificKnowledgeRequirementsReorientCommand(req));
 		case NumericalMethodRealizingRequirementEditPart.VISUAL_ID:
-			return getGEFWrapper(new NumericalMethodRealizingRequirementReorientCommand(
-					req));
+			return getGEFWrapper(new NumericalMethodRealizingRequirementReorientCommand(req));
 		case FeatureDetailedRequirementsEditPart.VISUAL_ID:
-			return getGEFWrapper(new FeatureDetailedRequirementsReorientCommand(
-					req));
+			return getGEFWrapper(new FeatureDetailedRequirementsReorientCommand(req));
 		case RequirementDefiningDataEditPart.VISUAL_ID:
 			return getGEFWrapper(new RequirementDefiningDataReorientCommand(req));
 		}

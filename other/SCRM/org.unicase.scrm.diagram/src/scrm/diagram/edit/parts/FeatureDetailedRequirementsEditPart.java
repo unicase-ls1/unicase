@@ -14,8 +14,7 @@ import scrm.diagram.edit.policies.FeatureDetailedRequirementsItemSemanticEditPol
 /**
  * @generated
  */
-public class FeatureDetailedRequirementsEditPart extends ConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+public class FeatureDetailedRequirementsEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -34,18 +33,16 @@ public class FeatureDetailedRequirementsEditPart extends ConnectionNodeEditPart
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new FeatureDetailedRequirementsItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new FeatureDetailedRequirementsItemSemanticEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel14EditPart) {
-			((WrappingLabel14EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureFeature_DetailedRequirementsLabel());
+		if (childEditPart instanceof WrappingLabel16EditPart) {
+			((WrappingLabel16EditPart) childEditPart).setLabel(getPrimaryShape()
+				.getFigureFeature_DetailedRequirementsLabel());
 			return true;
 		}
 		return false;
@@ -58,14 +55,14 @@ public class FeatureDetailedRequirementsEditPart extends ConnectionNodeEditPart
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, index);
+		super.addChildVisual(childEditPart, -1);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel14EditPart) {
+		if (childEditPart instanceof WrappingLabel16EditPart) {
 			return true;
 		}
 		return false;
@@ -104,8 +101,7 @@ public class FeatureDetailedRequirementsEditPart extends ConnectionNodeEditPart
 	/**
 	 * @generated
 	 */
-	public class Feature_DetailedRequirementsFigure extends
-			PolylineConnectionEx {
+	public class Feature_DetailedRequirementsFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
@@ -116,6 +112,7 @@ public class FeatureDetailedRequirementsEditPart extends ConnectionNodeEditPart
 		 * @generated
 		 */
 		public Feature_DetailedRequirementsFigure() {
+			this.setLineWidth(1);
 
 			createContents();
 		}

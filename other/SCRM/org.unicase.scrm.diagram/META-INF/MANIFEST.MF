@@ -40,6 +40,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.gmf.runtime.notation;visibility:=reexport,
  org.eclipse.gmf.runtime.notation.edit;visibility:=reexport,
- org.eclipse.gef;visibility:=reexport,
- org.unicase.workspace;visibility:=reexport
+ org.eclipse.gef;visibility:=reexport
 Bundle-ActivationPolicy: lazy
+Eclipse-LazyStart: true

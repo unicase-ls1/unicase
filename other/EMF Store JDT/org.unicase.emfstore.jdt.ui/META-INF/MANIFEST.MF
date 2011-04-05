@@ -5,10 +5,10 @@ Bundle-SymbolicName: org.unicase.emfstore.jdt.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.emfstore.jdt.ui.Activator
 Require-Bundle: org.unicase.emfstore.jdt,
+ org.unicase.workspace.ui,
  org.eclipse.emf.ecore.editor,
  org.eclipse.emf.codegen.ecore,
- org.eclipse.emf.ecp.navigator,
- org.eclipse.emf.emfstore.client.ui;bundle-version="0.7.3"
+ org.unicase.ui.navigator
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Import-Package: org.eclipse.emf.codegen.ecore.genmodel.presentation

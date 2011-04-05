@@ -1,17 +1,13 @@
-/*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- ******************************************************************************/
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.emfstore.jdt.eclipseworkspace.emfstore;
 
-import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.ui.commands.CommitProjectHandler;
-import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.ui.commands.CommitProjectHandler;
 
 /**
  * This class carries three information. The CommitProjectHandler that involved the prepare commit phase. The involved

@@ -18,8 +18,7 @@ public class ScrmDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 * @generated
 	 */
 	private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-			ScrmDiagramEditorPlugin.getInstance()
-					.getItemProvidersAdapterFactory());
+		ScrmDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 
 	/**
 	 * @generated
@@ -32,8 +31,7 @@ public class ScrmDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 */
 	public Image getImage(Object element) {
 		if (element instanceof ScrmDomainNavigatorItem) {
-			return myAdapterFactoryLabelProvider
-					.getImage(((ScrmDomainNavigatorItem) element).getEObject());
+			return myAdapterFactoryLabelProvider.getImage(((ScrmDomainNavigatorItem) element).getEObject());
 		}
 		return null;
 	}
@@ -43,8 +41,7 @@ public class ScrmDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 */
 	public String getText(Object element) {
 		if (element instanceof ScrmDomainNavigatorItem) {
-			return myAdapterFactoryLabelProvider
-					.getText(((ScrmDomainNavigatorItem) element).getEObject());
+			return myAdapterFactoryLabelProvider.getText(((ScrmDomainNavigatorItem) element).getEObject());
 		}
 		return null;
 	}

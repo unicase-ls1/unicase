@@ -24,7 +24,7 @@ public abstract class ScrmAbstractNavigatorItem extends PlatformObject {
 
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
 				if (adaptableObject instanceof scrm.diagram.navigator.ScrmAbstractNavigatorItem
-						&& adapterType == ITabbedPropertySheetPageContributor.class) {
+					&& adapterType == ITabbedPropertySheetPageContributor.class) {
 					return propertySheetPageContributor;
 				}
 				return null;

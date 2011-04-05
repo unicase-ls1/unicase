@@ -27,9 +27,9 @@ package scrm.requirements;
  * @model
  * @generated
  */
-public interface DataDefinition extends IRequirement {
+public interface DataDefinition extends Requirement {
 	/**
-	 * Returns the value of the '<em><b>Defined Requirement</b></em>' reference.
+	 * Returns the value of the '<em><b>Defined Requirement</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link scrm.requirements.Requirement#getDefiningData <em>Defining Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -37,21 +37,20 @@ public interface DataDefinition extends IRequirement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Defined Requirement</em>' reference.
+	 * @return the value of the '<em>Defined Requirement</em>' container reference.
 	 * @see #setDefinedRequirement(Requirement)
 	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_DefinedRequirement()
 	 * @see scrm.requirements.Requirement#getDefiningData
-	 * @model opposite="definingData"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
+	 * @model opposite="definingData" transient="false"
 	 * @generated
 	 */
 	Requirement getDefinedRequirement();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.DataDefinition#getDefinedRequirement <em>Defined Requirement</em>}' reference.
+	 * Sets the value of the '{@link scrm.requirements.DataDefinition#getDefinedRequirement <em>Defined Requirement</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Defined Requirement</em>' reference.
+	 * @param value the new value of the '<em>Defined Requirement</em>' container reference.
 	 * @see #getDefinedRequirement()
 	 * @generated
 	 */
@@ -68,7 +67,7 @@ public interface DataDefinition extends IRequirement {
 	 * @return the value of the '<em>Accuracy</em>' attribute.
 	 * @see #setAccuracy(String)
 	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_Accuracy()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='5'"
+	 * @model
 	 * @generated
 	 */
 	String getAccuracy();
@@ -94,7 +93,7 @@ public interface DataDefinition extends IRequirement {
 	 * @return the value of the '<em>Format</em>' attribute.
 	 * @see #setFormat(String)
 	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_Format()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='6'"
+	 * @model
 	 * @generated
 	 */
 	String getFormat();
@@ -120,7 +119,7 @@ public interface DataDefinition extends IRequirement {
 	 * @return the value of the '<em>Range</em>' attribute.
 	 * @see #setRange(String)
 	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_Range()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='7'"
+	 * @model
 	 * @generated
 	 */
 	String getRange();
@@ -146,7 +145,7 @@ public interface DataDefinition extends IRequirement {
 	 * @return the value of the '<em>Data Type</em>' attribute.
 	 * @see #setDataType(String)
 	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_DataType()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='8'"
+	 * @model
 	 * @generated
 	 */
 	String getDataType();

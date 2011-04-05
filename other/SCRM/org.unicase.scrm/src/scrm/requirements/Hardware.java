@@ -28,7 +28,7 @@ package scrm.requirements;
  */
 public interface Hardware extends IRequirement {
 	/**
-	 * Returns the value of the '<em><b>Depending Feature</b></em>' reference.
+	 * Returns the value of the '<em><b>Depending Feature</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link scrm.requirements.Feature#getDependencies <em>Dependencies</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -36,21 +36,20 @@ public interface Hardware extends IRequirement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Depending Feature</em>' reference.
+	 * @return the value of the '<em>Depending Feature</em>' container reference.
 	 * @see #setDependingFeature(Feature)
 	 * @see scrm.requirements.RequirementsPackage#getHardware_DependingFeature()
 	 * @see scrm.requirements.Feature#getDependencies
-	 * @model opposite="dependencies"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
+	 * @model opposite="dependencies" transient="false"
 	 * @generated
 	 */
 	Feature getDependingFeature();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.Hardware#getDependingFeature <em>Depending Feature</em>}' reference.
+	 * Sets the value of the '{@link scrm.requirements.Hardware#getDependingFeature <em>Depending Feature</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Depending Feature</em>' reference.
+	 * @param value the new value of the '<em>Depending Feature</em>' container reference.
 	 * @see #getDependingFeature()
 	 * @generated
 	 */
@@ -67,7 +66,7 @@ public interface Hardware extends IRequirement {
 	 * @return the value of the '<em>Processor</em>' attribute.
 	 * @see #setProcessor(String)
 	 * @see scrm.requirements.RequirementsPackage#getHardware_Processor()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='5'"
+	 * @model
 	 * @generated
 	 */
 	String getProcessor();
@@ -93,7 +92,7 @@ public interface Hardware extends IRequirement {
 	 * @return the value of the '<em>Platform</em>' attribute.
 	 * @see #setPlatform(String)
 	 * @see scrm.requirements.RequirementsPackage#getHardware_Platform()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='6'"
+	 * @model
 	 * @generated
 	 */
 	String getPlatform();
@@ -119,7 +118,7 @@ public interface Hardware extends IRequirement {
 	 * @return the value of the '<em>Memory</em>' attribute.
 	 * @see #setMemory(String)
 	 * @see scrm.requirements.RequirementsPackage#getHardware_Memory()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='7'"
+	 * @model
 	 * @generated
 	 */
 	String getMemory();

@@ -6,8 +6,6 @@
  */
 package scrm.knowledge;
 
-import org.eclipse.emf.common.util.EList;
-
 import scrm.requirements.Feature;
 
 /**
@@ -19,7 +17,7 @@ import scrm.requirements.Feature;
  * The following features are supported:
  * <ul>
  *   <li>{@link scrm.knowledge.ScientificProblem#getRepresentingModel <em>Representing Model</em>}</li>
- *   <li>{@link scrm.knowledge.ScientificProblem#getSolvingMethods <em>Solving Methods</em>}</li>
+ *   <li>{@link scrm.knowledge.ScientificProblem#getSolvingMethod <em>Solving Method</em>}</li>
  *   <li>{@link scrm.knowledge.ScientificProblem#getInfluencedFeature <em>Influenced Feature</em>}</li>
  * </ul>
  * </p>
@@ -30,52 +28,60 @@ import scrm.requirements.Feature;
  */
 public interface ScientificProblem extends ScientificKnowledge {
 	/**
-	 * Returns the value of the '<em><b>Representing Model</b></em>' reference.
+	 * Returns the value of the '<em><b>Representing Model</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link scrm.knowledge.MathematicalModel#getRepresentedProblem <em>Represented Problem</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Representing Model</em>' reference isn't clear,
+	 * If the meaning of the '<em>Representing Model</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Representing Model</em>' reference.
+	 * @return the value of the '<em>Representing Model</em>' containment reference.
 	 * @see #setRepresentingModel(MathematicalModel)
 	 * @see scrm.knowledge.KnowledgePackage#getScientificProblem_RepresentingModel()
 	 * @see scrm.knowledge.MathematicalModel#getRepresentedProblem
-	 * @model opposite="representedProblem"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
+	 * @model opposite="representedProblem" containment="true"
 	 * @generated
 	 */
 	MathematicalModel getRepresentingModel();
 
 	/**
-	 * Sets the value of the '{@link scrm.knowledge.ScientificProblem#getRepresentingModel <em>Representing Model</em>}' reference.
+	 * Sets the value of the '{@link scrm.knowledge.ScientificProblem#getRepresentingModel <em>Representing Model</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Representing Model</em>' reference.
+	 * @param value the new value of the '<em>Representing Model</em>' containment reference.
 	 * @see #getRepresentingModel()
 	 * @generated
 	 */
 	void setRepresentingModel(MathematicalModel value);
 
 	/**
-	 * Returns the value of the '<em><b>Solving Methods</b></em>' reference list.
-	 * The list contents are of type {@link scrm.knowledge.NumericalMethod}.
+	 * Returns the value of the '<em><b>Solving Method</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link scrm.knowledge.NumericalMethod#getSolvedProblem <em>Solved Problem</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Solving Methods</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Solving Method</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Solving Methods</em>' reference list.
-	 * @see scrm.knowledge.KnowledgePackage#getScientificProblem_SolvingMethods()
+	 * @return the value of the '<em>Solving Method</em>' containment reference.
+	 * @see #setSolvingMethod(NumericalMethod)
+	 * @see scrm.knowledge.KnowledgePackage#getScientificProblem_SolvingMethod()
 	 * @see scrm.knowledge.NumericalMethod#getSolvedProblem
-	 * @model opposite="solvedProblem"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='10'"
+	 * @model opposite="solvedProblem" containment="true"
 	 * @generated
 	 */
-	EList<NumericalMethod> getSolvingMethods();
+	NumericalMethod getSolvingMethod();
+
+	/**
+	 * Sets the value of the '{@link scrm.knowledge.ScientificProblem#getSolvingMethod <em>Solving Method</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Solving Method</em>' containment reference.
+	 * @see #getSolvingMethod()
+	 * @generated
+	 */
+	void setSolvingMethod(NumericalMethod value);
 
 	/**
 	 * Returns the value of the '<em><b>Influenced Feature</b></em>' reference.
@@ -91,7 +97,6 @@ public interface ScientificProblem extends ScientificKnowledge {
 	 * @see scrm.knowledge.KnowledgePackage#getScientificProblem_InfluencedFeature()
 	 * @see scrm.requirements.Feature#getInfluencingProblem
 	 * @model opposite="influencingProblem"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='20'"
 	 * @generated
 	 */
 	Feature getInfluencedFeature();

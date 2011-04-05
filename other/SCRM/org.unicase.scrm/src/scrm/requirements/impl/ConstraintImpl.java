@@ -23,7 +23,6 @@ import scrm.knowledge.ScientificKnowledge;
 
 import scrm.requirements.Constraint;
 import scrm.requirements.Feature;
-import scrm.requirements.RequirementSpace;
 import scrm.requirements.RequirementsPackage;
 
 /**
@@ -33,7 +32,7 @@ import scrm.requirements.RequirementsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link scrm.requirements.impl.ConstraintImpl#getContainingRequirementSpace <em>Containing Requirement Space</em>}</li>
+ *   <li>{@link scrm.requirements.impl.ConstraintImpl#getUsedKnowledge <em>Used Knowledge</em>}</li>
  *   <li>{@link scrm.requirements.impl.ConstraintImpl#getRestrictedFeature <em>Restricted Feature</em>}</li>
  * </ul>
  * </p>
@@ -41,16 +40,6 @@ import scrm.requirements.RequirementsPackage;
  * @generated
  */
 public class ConstraintImpl extends SCRMModelElementImpl implements Constraint {
-	/**
-	 * The cached value of the '{@link #getRestrictedFeature() <em>Restricted Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRestrictedFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected Feature restrictedFeature;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,9 +64,9 @@ public class ConstraintImpl extends SCRMModelElementImpl implements Constraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RequirementSpace getContainingRequirementSpace() {
-		if (eContainerFeatureID() != RequirementsPackage.CONSTRAINT__CONTAINING_REQUIREMENT_SPACE) return null;
-		return (RequirementSpace)eContainer();
+	public ScientificKnowledge getUsedKnowledge() {
+		if (eContainerFeatureID() != RequirementsPackage.CONSTRAINT__USED_KNOWLEDGE) return null;
+		return (ScientificKnowledge)eContainer();
 	}
 
 	/**
@@ -85,18 +74,8 @@ public class ConstraintImpl extends SCRMModelElementImpl implements Constraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RequirementSpace basicGetContainingRequirementSpace() {
-		if (eContainerFeatureID() != RequirementsPackage.CONSTRAINT__CONTAINING_REQUIREMENT_SPACE) return null;
-		return (RequirementSpace)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetContainingRequirementSpace(RequirementSpace newContainingRequirementSpace, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newContainingRequirementSpace, RequirementsPackage.CONSTRAINT__CONTAINING_REQUIREMENT_SPACE, msgs);
+	public NotificationChain basicSetUsedKnowledge(ScientificKnowledge newUsedKnowledge, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newUsedKnowledge, RequirementsPackage.CONSTRAINT__USED_KNOWLEDGE, msgs);
 		return msgs;
 	}
 
@@ -105,20 +84,20 @@ public class ConstraintImpl extends SCRMModelElementImpl implements Constraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContainingRequirementSpace(RequirementSpace newContainingRequirementSpace) {
-		if (newContainingRequirementSpace != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.CONSTRAINT__CONTAINING_REQUIREMENT_SPACE && newContainingRequirementSpace != null)) {
-			if (EcoreUtil.isAncestor(this, newContainingRequirementSpace))
+	public void setUsedKnowledge(ScientificKnowledge newUsedKnowledge) {
+		if (newUsedKnowledge != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.CONSTRAINT__USED_KNOWLEDGE && newUsedKnowledge != null)) {
+			if (EcoreUtil.isAncestor(this, newUsedKnowledge))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newContainingRequirementSpace != null)
-				msgs = ((InternalEObject)newContainingRequirementSpace).eInverseAdd(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
-			msgs = basicSetContainingRequirementSpace(newContainingRequirementSpace, msgs);
+			if (newUsedKnowledge != null)
+				msgs = ((InternalEObject)newUsedKnowledge).eInverseAdd(this, KnowledgePackage.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS, ScientificKnowledge.class, msgs);
+			msgs = basicSetUsedKnowledge(newUsedKnowledge, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.CONSTRAINT__CONTAINING_REQUIREMENT_SPACE, newContainingRequirementSpace, newContainingRequirementSpace));
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.CONSTRAINT__USED_KNOWLEDGE, newUsedKnowledge, newUsedKnowledge));
 	}
 
 	/**
@@ -127,24 +106,8 @@ public class ConstraintImpl extends SCRMModelElementImpl implements Constraint {
 	 * @generated
 	 */
 	public Feature getRestrictedFeature() {
-		if (restrictedFeature != null && restrictedFeature.eIsProxy()) {
-			InternalEObject oldRestrictedFeature = (InternalEObject)restrictedFeature;
-			restrictedFeature = (Feature)eResolveProxy(oldRestrictedFeature);
-			if (restrictedFeature != oldRestrictedFeature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementsPackage.CONSTRAINT__RESTRICTED_FEATURE, oldRestrictedFeature, restrictedFeature));
-			}
-		}
-		return restrictedFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Feature basicGetRestrictedFeature() {
-		return restrictedFeature;
+		if (eContainerFeatureID() != RequirementsPackage.CONSTRAINT__RESTRICTED_FEATURE) return null;
+		return (Feature)eContainer();
 	}
 
 	/**
@@ -153,12 +116,7 @@ public class ConstraintImpl extends SCRMModelElementImpl implements Constraint {
 	 * @generated
 	 */
 	public NotificationChain basicSetRestrictedFeature(Feature newRestrictedFeature, NotificationChain msgs) {
-		Feature oldRestrictedFeature = restrictedFeature;
-		restrictedFeature = newRestrictedFeature;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RequirementsPackage.CONSTRAINT__RESTRICTED_FEATURE, oldRestrictedFeature, newRestrictedFeature);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
+		msgs = eBasicSetContainer((InternalEObject)newRestrictedFeature, RequirementsPackage.CONSTRAINT__RESTRICTED_FEATURE, msgs);
 		return msgs;
 	}
 
@@ -168,10 +126,12 @@ public class ConstraintImpl extends SCRMModelElementImpl implements Constraint {
 	 * @generated
 	 */
 	public void setRestrictedFeature(Feature newRestrictedFeature) {
-		if (newRestrictedFeature != restrictedFeature) {
+		if (newRestrictedFeature != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.CONSTRAINT__RESTRICTED_FEATURE && newRestrictedFeature != null)) {
+			if (EcoreUtil.isAncestor(this, newRestrictedFeature))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (restrictedFeature != null)
-				msgs = ((InternalEObject)restrictedFeature).eInverseRemove(this, RequirementsPackage.FEATURE__CONSTRAINTS, Feature.class, msgs);
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
 			if (newRestrictedFeature != null)
 				msgs = ((InternalEObject)newRestrictedFeature).eInverseAdd(this, RequirementsPackage.FEATURE__CONSTRAINTS, Feature.class, msgs);
 			msgs = basicSetRestrictedFeature(newRestrictedFeature, msgs);
@@ -189,13 +149,13 @@ public class ConstraintImpl extends SCRMModelElementImpl implements Constraint {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.CONSTRAINT__CONTAINING_REQUIREMENT_SPACE:
+			case RequirementsPackage.CONSTRAINT__USED_KNOWLEDGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainingRequirementSpace((RequirementSpace)otherEnd, msgs);
+				return basicSetUsedKnowledge((ScientificKnowledge)otherEnd, msgs);
 			case RequirementsPackage.CONSTRAINT__RESTRICTED_FEATURE:
-				if (restrictedFeature != null)
-					msgs = ((InternalEObject)restrictedFeature).eInverseRemove(this, RequirementsPackage.FEATURE__CONSTRAINTS, Feature.class, msgs);
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetRestrictedFeature((Feature)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -209,8 +169,8 @@ public class ConstraintImpl extends SCRMModelElementImpl implements Constraint {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.CONSTRAINT__CONTAINING_REQUIREMENT_SPACE:
-				return basicSetContainingRequirementSpace(null, msgs);
+			case RequirementsPackage.CONSTRAINT__USED_KNOWLEDGE:
+				return basicSetUsedKnowledge(null, msgs);
 			case RequirementsPackage.CONSTRAINT__RESTRICTED_FEATURE:
 				return basicSetRestrictedFeature(null, msgs);
 		}
@@ -225,8 +185,10 @@ public class ConstraintImpl extends SCRMModelElementImpl implements Constraint {
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case RequirementsPackage.CONSTRAINT__CONTAINING_REQUIREMENT_SPACE:
-				return eInternalContainer().eInverseRemove(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
+			case RequirementsPackage.CONSTRAINT__USED_KNOWLEDGE:
+				return eInternalContainer().eInverseRemove(this, KnowledgePackage.SCIENTIFIC_KNOWLEDGE__REQUIREMENTS, ScientificKnowledge.class, msgs);
+			case RequirementsPackage.CONSTRAINT__RESTRICTED_FEATURE:
+				return eInternalContainer().eInverseRemove(this, RequirementsPackage.FEATURE__CONSTRAINTS, Feature.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -239,12 +201,10 @@ public class ConstraintImpl extends SCRMModelElementImpl implements Constraint {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RequirementsPackage.CONSTRAINT__CONTAINING_REQUIREMENT_SPACE:
-				if (resolve) return getContainingRequirementSpace();
-				return basicGetContainingRequirementSpace();
+			case RequirementsPackage.CONSTRAINT__USED_KNOWLEDGE:
+				return getUsedKnowledge();
 			case RequirementsPackage.CONSTRAINT__RESTRICTED_FEATURE:
-				if (resolve) return getRestrictedFeature();
-				return basicGetRestrictedFeature();
+				return getRestrictedFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -257,8 +217,8 @@ public class ConstraintImpl extends SCRMModelElementImpl implements Constraint {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RequirementsPackage.CONSTRAINT__CONTAINING_REQUIREMENT_SPACE:
-				setContainingRequirementSpace((RequirementSpace)newValue);
+			case RequirementsPackage.CONSTRAINT__USED_KNOWLEDGE:
+				setUsedKnowledge((ScientificKnowledge)newValue);
 				return;
 			case RequirementsPackage.CONSTRAINT__RESTRICTED_FEATURE:
 				setRestrictedFeature((Feature)newValue);
@@ -275,8 +235,8 @@ public class ConstraintImpl extends SCRMModelElementImpl implements Constraint {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.CONSTRAINT__CONTAINING_REQUIREMENT_SPACE:
-				setContainingRequirementSpace((RequirementSpace)null);
+			case RequirementsPackage.CONSTRAINT__USED_KNOWLEDGE:
+				setUsedKnowledge((ScientificKnowledge)null);
 				return;
 			case RequirementsPackage.CONSTRAINT__RESTRICTED_FEATURE:
 				setRestrictedFeature((Feature)null);
@@ -293,10 +253,10 @@ public class ConstraintImpl extends SCRMModelElementImpl implements Constraint {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.CONSTRAINT__CONTAINING_REQUIREMENT_SPACE:
-				return basicGetContainingRequirementSpace() != null;
+			case RequirementsPackage.CONSTRAINT__USED_KNOWLEDGE:
+				return getUsedKnowledge() != null;
 			case RequirementsPackage.CONSTRAINT__RESTRICTED_FEATURE:
-				return restrictedFeature != null;
+				return getRestrictedFeature() != null;
 		}
 		return super.eIsSet(featureID);
 	}
