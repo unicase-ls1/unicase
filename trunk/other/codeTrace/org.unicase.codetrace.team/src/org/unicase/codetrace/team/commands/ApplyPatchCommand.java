@@ -3,7 +3,7 @@ package org.unicase.codetrace.team.commands;
 import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.filetransfer.FileRequestHandler;
+import org.unicase.workspace.filetransfer.FileDownloadStatus;
 import org.unicase.workspace.util.UnicaseCommand;
 
 public class ApplyPatchCommand extends UnicaseCommand{
@@ -18,8 +18,8 @@ public class ApplyPatchCommand extends UnicaseCommand{
 	
 	protected void doRun() {
 		try {
-			FileRequestHandler f = WorkspaceManager.getProjectSpace(attachment).getFile(attachment.getFileID());
-			while(f.isDownloadFinished()){
+			FileDownloadStatus f = WorkspaceManager.getProjectSpace(attachment).getFile(attachment.getFileIdentifier());
+			while(f.isTransferFinished()){
 				System.out.println("NOT FINISHED");
 			}
 			System.out.println("FINISHED");

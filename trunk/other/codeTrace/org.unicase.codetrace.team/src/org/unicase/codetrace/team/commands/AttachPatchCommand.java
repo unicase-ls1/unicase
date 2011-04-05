@@ -6,7 +6,7 @@ import org.eclipse.core.resources.IResource;
 import org.unicase.codetrace.team.exported.AbstractTeamAdapter;
 import org.unicase.codetrace.team.exported.CodetraceTeamException;
 import org.unicase.emfstore.exceptions.FileTransferException;
-import org.unicase.emfstore.filetransfer.FileInformation;
+import org.unicase.workspace.filetransfer.FileInformation;
 import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.attachment.AttachmentFactory;
@@ -62,11 +62,11 @@ public class AttachPatchCommand extends UnicaseCommand{
 			
 		//2) **** Create the model element for the patch, add it to the project and link it ****
 			FileAttachment f = (FileAttachment) AttachmentFactory.eINSTANCE.create(AttachmentPackage.Literals.FILE_ATTACHMENT);
-			Project p = attachTo.getProject();
+			
 
 			final ProjectSpace projectSpace = WorkspaceManager
-					.getProjectSpace(p);
-
+					.getProjectSpace(attachTo);
+			Project p = projectSpace.getProject();
 			//<<< Begin composite operation
 			CompositeOperationHandle operationHandle = projectSpace.beginCompositeOperation();
 
@@ -76,29 +76,29 @@ public class AttachPatchCommand extends UnicaseCommand{
 			
 
 			
-			
-		//3) **** Upload the patch ****
-			
-				// set information needed for this particular upload
-				final FileInformation fileInformation = new FileInformation();
-				fileInformation.setFileVersion(-1);
-				fileInformation.setFileName("patch.txt");
-				fileInformation.setFileAttachmentId(f.getIdentifier());
-				try {
-					// adds a pending file upload request
-					WorkspaceManager.getProjectSpace(f).addFileTransfer(fileInformation,
-						patch, true, true);
-				} catch (FileTransferException e1) {
-					throw new CodetraceTeamException("File Transfer Exception:" + e1.getMessage(), e1);
-				}
-			
-			//<<< End composite operation
-			try {
-				operationHandle.end("Attached patch",
-						"Attached a patch to " + attachTo.getName() + ".", attachTo.getModelElementId());
-			} catch (InvalidHandleException e) {
-				throw new CodetraceTeamException("Composite Operation failed!", e);
-			}
+//			
+//		//3) **** Upload the patch ****
+//			
+//				// set information needed for this particular upload
+//				final FileInformation fileInformation = new FileInformation();
+//				fileInformation.setFileVersion(-1);
+//				fileInformation.setFileName("patch.txt");
+//				fileInformation.setFileAttachmentId(f.getIdentifier());
+//				try {
+//					// adds a pending file upload request
+//					WorkspaceManager.getProjectSpace(f).addFileTransfer(fileInformation,
+//						patch, true, true);
+//				} catch (FileTransferException e1) {
+//					throw new CodetraceTeamException("File Transfer Exception:" + e1.getMessage(), e1);
+//				}
+//			
+//			//<<< End composite operation
+//			try {
+//				operationHandle.end("Attached patch",
+//						"Attached a patch to " + attachTo.getName() + ".", attachTo.getModelElementId());
+//			} catch (InvalidHandleException e) {
+//				throw new CodetraceTeamException("Composite Operation failed!", e);
+//			}
 			
 		//4) **** Open the model element ****
 			ActionHelper.openModelElement(attachTo, this.getClass().getName());

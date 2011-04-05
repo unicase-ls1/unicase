@@ -9,13 +9,19 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.unicase.model.impl.AttachmentImpl;
+
 import org.unicase.model.trace.CodeLocation;
 import org.unicase.model.trace.LineHash;
 import org.unicase.model.trace.TracePackage;
@@ -139,7 +145,7 @@ public class CodeLocationImpl extends AttachmentImpl implements CodeLocation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	
+	@Override
 	protected EClass eStaticClass() {
 		return TracePackage.Literals.CODE_LOCATION;
 	}
@@ -162,9 +168,8 @@ public class CodeLocationImpl extends AttachmentImpl implements CodeLocation {
 		String oldLineContent = lineContent;
 		lineContent = newLineContent;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					TracePackage.CODE_LOCATION__LINE_CONTENT, oldLineContent,
-					lineContent));
+			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.CODE_LOCATION__LINE_CONTENT,
+				oldLineContent, lineContent));
 	}
 
 	/**
@@ -185,9 +190,8 @@ public class CodeLocationImpl extends AttachmentImpl implements CodeLocation {
 		String oldProjectName = projectName;
 		projectName = newProjectName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					TracePackage.CODE_LOCATION__PROJECT_NAME, oldProjectName,
-					projectName));
+			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.CODE_LOCATION__PROJECT_NAME,
+				oldProjectName, projectName));
 	}
 
 	/**
@@ -208,9 +212,8 @@ public class CodeLocationImpl extends AttachmentImpl implements CodeLocation {
 		String oldPathInProject = pathInProject;
 		pathInProject = newPathInProject;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					TracePackage.CODE_LOCATION__PATH_IN_PROJECT,
-					oldPathInProject, pathInProject));
+			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.CODE_LOCATION__PATH_IN_PROJECT,
+				oldPathInProject, pathInProject));
 	}
 
 	/**
@@ -220,9 +223,8 @@ public class CodeLocationImpl extends AttachmentImpl implements CodeLocation {
 	 */
 	public EList<LineHash> getLinesBefore() {
 		if (linesBefore == null) {
-			linesBefore = new EObjectContainmentEList.Resolving<LineHash>(
-					LineHash.class, this,
-					TracePackage.CODE_LOCATION__LINES_BEFORE);
+			linesBefore = new EObjectContainmentEList.Resolving<LineHash>(LineHash.class, this,
+				TracePackage.CODE_LOCATION__LINES_BEFORE);
 		}
 		return linesBefore;
 	}
@@ -234,9 +236,8 @@ public class CodeLocationImpl extends AttachmentImpl implements CodeLocation {
 	 */
 	public EList<LineHash> getLinesAfter() {
 		if (linesAfter == null) {
-			linesAfter = new EObjectContainmentEList.Resolving<LineHash>(
-					LineHash.class, this,
-					TracePackage.CODE_LOCATION__LINES_AFTER);
+			linesAfter = new EObjectContainmentEList.Resolving<LineHash>(LineHash.class, this,
+				TracePackage.CODE_LOCATION__LINES_AFTER);
 		}
 		return linesAfter;
 	}
@@ -246,16 +247,13 @@ public class CodeLocationImpl extends AttachmentImpl implements CodeLocation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case TracePackage.CODE_LOCATION__LINES_BEFORE:
-			return ((InternalEList<?>) getLinesBefore()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getLinesBefore()).basicRemove(otherEnd, msgs);
 		case TracePackage.CODE_LOCATION__LINES_AFTER:
-			return ((InternalEList<?>) getLinesAfter()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getLinesAfter()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -265,7 +263,7 @@ public class CodeLocationImpl extends AttachmentImpl implements CodeLocation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case TracePackage.CODE_LOCATION__LINE_CONTENT:
@@ -288,7 +286,7 @@ public class CodeLocationImpl extends AttachmentImpl implements CodeLocation {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case TracePackage.CODE_LOCATION__LINE_CONTENT:
@@ -317,7 +315,7 @@ public class CodeLocationImpl extends AttachmentImpl implements CodeLocation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case TracePackage.CODE_LOCATION__LINE_CONTENT:
@@ -344,18 +342,16 @@ public class CodeLocationImpl extends AttachmentImpl implements CodeLocation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case TracePackage.CODE_LOCATION__LINE_CONTENT:
-			return LINE_CONTENT_EDEFAULT == null ? lineContent != null
-					: !LINE_CONTENT_EDEFAULT.equals(lineContent);
+			return LINE_CONTENT_EDEFAULT == null ? lineContent != null : !LINE_CONTENT_EDEFAULT.equals(lineContent);
 		case TracePackage.CODE_LOCATION__PROJECT_NAME:
-			return PROJECT_NAME_EDEFAULT == null ? projectName != null
-					: !PROJECT_NAME_EDEFAULT.equals(projectName);
+			return PROJECT_NAME_EDEFAULT == null ? projectName != null : !PROJECT_NAME_EDEFAULT.equals(projectName);
 		case TracePackage.CODE_LOCATION__PATH_IN_PROJECT:
-			return PATH_IN_PROJECT_EDEFAULT == null ? pathInProject != null
-					: !PATH_IN_PROJECT_EDEFAULT.equals(pathInProject);
+			return PATH_IN_PROJECT_EDEFAULT == null ? pathInProject != null : !PATH_IN_PROJECT_EDEFAULT
+				.equals(pathInProject);
 		case TracePackage.CODE_LOCATION__LINES_BEFORE:
 			return linesBefore != null && !linesBefore.isEmpty();
 		case TracePackage.CODE_LOCATION__LINES_AFTER:
@@ -369,7 +365,7 @@ public class CodeLocationImpl extends AttachmentImpl implements CodeLocation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	
+	@Override
 	public String toString() {
 		if (eIsProxy())
 			return super.toString();
