@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: exampleEmfstoreProduct
+Bundle-SymbolicName: exampleEmfstoreProduct;singleton:=true
+Bundle-Version: 1.0.0
+Require-Bundle: org.eclipse.emf.ecore
+Bundle-Vendor: unicase.org

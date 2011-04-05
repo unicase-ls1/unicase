@@ -1,0 +1,10 @@
+{
+	Name = "UnciaseURLHandler commands";
+	Description = "Commands to handle a UNICASE URL";
+	Commands = {
+		GetURL = {
+			Name = "get URL";
+			Description = "Open a UNICASE URL";
+		};
+	};
+}

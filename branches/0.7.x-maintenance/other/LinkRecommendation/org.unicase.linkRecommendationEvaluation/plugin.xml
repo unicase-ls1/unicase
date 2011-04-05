@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="org.unicase.linkRecommendationEvaluation"
+            name="unicase"
+            parentCategory="org.unicase">
+      </category>
+      <view
+            allowMultiple="false"
+            category="org.unicase"
+            class="org.unicase.linkrecommendationevaluation.views.EvaluationView"
+            icon="icons/sample.gif"
+            id="org.unicase.linkrecommendationevaluation.views.EvaluationView"
+            name="Evaluation View">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               id="org.unicase.linkrecommendationevaluation.views.EvaluationView"
+               ratio="0.5"
+               relationship="right"
+               relative="org.eclipse.ui.views.TaskList">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+   <extension
+         point="org.unicase.analyzer.analyzer">
+      <client_analyzer
+            class="org.unicase.linkrecommendationevaluation.LinkRecommendationAnalyzer">
+      </client_analyzer>
+   </extension>
+   <extension
+         id="id1"
+         point="org.eclipse.core.runtime.applications">
+      <application
+            cardinality="singleton-global"
+            thread="main"
+            visible="true">
+         <run
+               class="org.unicase.linkrecommendationevaluation.EvaluationApplication">
+         </run>
+      </application>
+   </extension>
+
+</plugin>
