@@ -33,7 +33,7 @@ public class DefaultServerWorkspaceLocationProvider implements LocationProvider 
 	 */
 	protected String getRootDirectory() {
 		String parameter = getStartParameter(EMFSTORE_HOME);
-		return (parameter == null) ? addFolders(getUserHome(), ".unicase", "server") : parameter;
+		return (parameter == null) ? addFolders(getUserHome(), ".emfstore", "server") : parameter;
 	}
 
 	/**

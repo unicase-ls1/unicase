@@ -43,12 +43,12 @@ public interface EmfStore extends EmfStoreInterface {
 	/**
 	 * Virtual Uri for change package de-/serialization.
 	 */
-	URI CHANGEPACKAGE_URI = URI.createURI("unicaseVirtualChangePackageUri");
+	URI CHANGEPACKAGE_URI = URI.createURI("emfstoreVirtualChangePackageUri");
 
 	/**
 	 * Virtual Uri for project de-/serialization.
 	 */
-	URI PROJECT_URI = URI.createURI("unicaseVirtualProjectUri");
+	URI PROJECT_URI = URI.createURI("emfstoreVirtualProjectUri");
 
 	/**
 	 * Get a list of projects the user of the session id can access. The server should is determined by the session id.

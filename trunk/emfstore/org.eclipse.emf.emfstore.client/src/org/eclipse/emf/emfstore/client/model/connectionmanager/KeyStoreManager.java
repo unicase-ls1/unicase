@@ -72,13 +72,10 @@ public final class KeyStoreManager {
 	private static final String CERTIFICATE_TYPE = "X.509";
 
 	private static final String CIPHER_ALGORITHM = "RSA";
-
-	private static final String DEFAULT_UNICASE_CERTIFICATE = "unicase.org 2010#1";
-
 	/**
 	 * Certificate Alias for devevelopment test certificate.
 	 */
-	public static final String DEFAULT_DEV_CERTIFICATE = "unicase.org test test(!!!) certificate";
+	public static final String DEFAULT_CERTIFICATE = "EMFStore Test Certificate (DO NOT USE IN PRODUCTION!)";
 
 	private String defaultCertificate;
 
@@ -126,10 +123,10 @@ public final class KeyStoreManager {
 	public void setupKeys() {
 		// No changes to exception handling here, due to call nature.
 		if (!keyStoreExists()) {
-			// create directory ~/.unicase/ if necessary
-			File unicasedir = new File(Configuration.getWorkspaceDirectory());
-			if (!unicasedir.exists()) {
-				unicasedir.mkdir();
+			// create directory ~/.emfstore/ if necessary
+			File emfstoreDir = new File(Configuration.getWorkspaceDirectory());
+			if (!emfstoreDir.exists()) {
+				emfstoreDir.mkdir();
 			}
 			try {
 				// configure file
@@ -440,9 +437,9 @@ public final class KeyStoreManager {
 		if (defaultCertificate != null) {
 			return defaultCertificate;
 		} else if (Configuration.isDeveloperVersion()) {
-			return DEFAULT_DEV_CERTIFICATE;
+			return DEFAULT_CERTIFICATE;
 		} else {
-			return DEFAULT_UNICASE_CERTIFICATE;
+			return DEFAULT_CERTIFICATE;
 		}
 	}
 

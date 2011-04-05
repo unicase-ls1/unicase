@@ -43,12 +43,12 @@ public class ImportProjectHandler extends AbstractHandler {
 	/**
 	 * These filter names are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_NAMES = { "Unicase Project Files (*.ucp)", "All Files (*.*)" };
+	public static final String[] FILTER_NAMES = { "EMFStore Project Files (*.ecp)", "All Files (*.*)" };
 
 	/**
 	 * These filter extensions are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_EXTS = { "*.ucp", "*.*" };
+	public static final String[] FILTER_EXTS = { "*.ecp", "*.*" };
 
 	private String projectName;
 

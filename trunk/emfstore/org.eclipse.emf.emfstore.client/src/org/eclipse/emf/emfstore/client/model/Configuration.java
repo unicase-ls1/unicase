@@ -149,7 +149,7 @@ public final class Configuration {
 		serverInfo.setName("Localhost Server");
 		serverInfo.setPort(8080);
 		serverInfo.setUrl("localhost");
-		serverInfo.setCertificateAlias(KeyStoreManager.DEFAULT_DEV_CERTIFICATE);
+		serverInfo.setCertificateAlias(KeyStoreManager.DEFAULT_CERTIFICATE);
 
 		Usersession superUsersession = ModelFactory.eINSTANCE.createUsersession();
 		superUsersession.setServerInfo(serverInfo);
@@ -280,7 +280,7 @@ public final class Configuration {
 	}
 
 	/**
-	 * If we are running tests. In this case the workspace will be created in USERHOME/.unicase.test.
+	 * If we are running tests. In this case the workspace will be created in USERHOME/.emfstore.test.
 	 * 
 	 * @param testing the testing to set
 	 */
@@ -289,14 +289,14 @@ public final class Configuration {
 	}
 
 	/**
-	 * @return if we are running tests. In this case the workspace will be created in USERHOME/.unicase.test.
+	 * @return if we are running tests. In this case the workspace will be created in USERHOME/.emfstore.test.
 	 */
 	public static boolean isTesting() {
 		return testing;
 	}
 
 	/**
-	 * Return the path of the plugin data directory inside the unicase workspace (trailing file separator included).
+	 * Return the path of the plugin data directory inside the emfstore workspace (trailing file separator included).
 	 * 
 	 * @return the plugin data directory absolute path as string
 	 */

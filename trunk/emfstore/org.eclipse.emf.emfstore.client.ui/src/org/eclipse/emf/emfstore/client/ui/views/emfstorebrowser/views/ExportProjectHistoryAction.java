@@ -41,12 +41,12 @@ public class ExportProjectHistoryAction extends Action {
 	/**
 	 * These filter names are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_NAMES = { "Unicase Project Files (*.uph)", "All Files (*.*)" };
+	public static final String[] FILTER_NAMES = { "EMFStore Project Files (*.eph)", "All Files (*.*)" };
 
 	/**
 	 * These filter extensions are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_EXTS = { "*.uph", "*.*" };
+	public static final String[] FILTER_EXTS = { "*.eph", "*.*" };
 
 	private static final String EXPORT_PROJECT_HISTORY_PATH = "org.eclipse.emf.emfstore.client.ui.exportProjectHistoryPath";
 

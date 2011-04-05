@@ -62,7 +62,7 @@ public final class EMFStoreClientUtil {
 	 * 
 	 * @param url the server url (e.g. IP address or DNS name)
 	 * @param port the server port
-	 * @param certificateAlias the certificateAlias (defaults to 'unicase.org test test(!!!) certificate' if null)
+	 * @param certificateAlias the certificateAlias (defaults to {@link KeyStoreManager.DEFAULT_CERTIFICATE})
 	 * @return a server info
 	 */
 	private static ServerInfo createServerInfo(String url, int port, String certificateAlias) {
@@ -71,7 +71,7 @@ public final class EMFStoreClientUtil {
 		serverInfo.setUrl(url);
 		serverInfo.setPort(port);
 		if (certificateAlias == null) {
-			serverInfo.setCertificateAlias("unicase.org test test(!!!) certificate");
+			serverInfo.setCertificateAlias(KeyStoreManager.DEFAULT_CERTIFICATE);
 		} else {
 			serverInfo.setCertificateAlias(certificateAlias);
 		}
@@ -125,7 +125,7 @@ public final class EMFStoreClientUtil {
 	 * @param password the password
 	 * @param serverUrl server url
 	 * @param serverPort server port
-	 * @param certificateAlias the certificateAlias (defaults to 'unicase.org test test(!!!) certificate' if null)
+	 * @param certificateAlias the certificateAlias (defaults to {@link KeyStoreManager.DEFAULT_CERTIFICATE})
 	 * @return true, if username & password are right
 	 * @throws EmfStoreException Problem with the EMFStore Server
 	 */

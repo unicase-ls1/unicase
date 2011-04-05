@@ -48,13 +48,12 @@ public class ImportProjectHistoryHandler extends AbstractHandler {
 	/**
 	 * These filter names are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_NAMES = {
-			"Unicase Project History Files (*.uph)", "All Files (*.*)" };
+	public static final String[] FILTER_NAMES = { "EMFStore Project History Files (*.eph)", "All Files (*.*)" };
 
 	/**
 	 * These filter extensions are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_EXTS = { "*.uph", "*.*" };
+	public static final String[] FILTER_EXTS = { "*.eph", "*.*" };
 
 	private static final String IMPORT_PROJECT_HISTORY_PATH = "org.eclipse.emf.emfstore.client.ui.importProjectHistoryPath";
 
@@ -66,10 +65,8 @@ public class ImportProjectHistoryHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow();
-		ISelection selection = activeWorkbenchWindow.getSelectionService()
-				.getSelection();
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		ISelection selection = activeWorkbenchWindow.getSelectionService().getSelection();
 		Object obj = ((IStructuredSelection) selection).getFirstElement();
 
 		if (!(obj instanceof TreeNode)) {
@@ -84,12 +81,11 @@ public class ImportProjectHistoryHandler extends AbstractHandler {
 			return null;
 		}
 
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			.getActiveWorkbenchWindow().getShell());
 
 		progressDialog.open();
-		progressDialog.getProgressMonitor().beginTask(
-				"Import project history...", 100);
+		progressDialog.getProgressMonitor().beginTask("Import project history...", 100);
 		progressDialog.getProgressMonitor().worked(10);
 
 		ProjectHistory projectHistory = null;
@@ -97,11 +93,9 @@ public class ImportProjectHistoryHandler extends AbstractHandler {
 			projectHistory = getProjectHistory(absoluteFileName);
 			if (usersession != null && projectHistory != null) {
 				WorkspaceManager.getInstance().getConnectionManager()
-						.importProjectHistoryToServer(
-								usersession.getSessionId(), projectHistory);
-				MessageDialog.openInformation(null, "Import",
-						"Imported project history from file: "
-								+ absoluteFileName);
+					.importProjectHistoryToServer(usersession.getSessionId(), projectHistory);
+				MessageDialog
+					.openInformation(null, "Import", "Imported project history from file: " + absoluteFileName);
 			}
 
 		} catch (EmfStoreException e) {
@@ -117,18 +111,14 @@ public class ImportProjectHistoryHandler extends AbstractHandler {
 
 	}
 
-	private ProjectHistory getProjectHistory(String absoluteFileName)
-			throws IOException {
+	private ProjectHistory getProjectHistory(String absoluteFileName) throws IOException {
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.getResource(URI
-				.createFileURI(absoluteFileName), true);
+		Resource resource = resourceSet.getResource(URI.createFileURI(absoluteFileName), true);
 		EList<EObject> directContents = resource.getContents();
 		// sanity check
 
-		if (directContents.size() != 1
-				&& (!(directContents.get(0) instanceof ProjectHistory))) {
-			throw new IOException(
-					"File is corrupt, does not contain a ProjectHistory.");
+		if (directContents.size() != 1 && (!(directContents.get(0) instanceof ProjectHistory))) {
+			throw new IOException("File is corrupt, does not contain a ProjectHistory.");
 		}
 
 		ProjectHistory projectHistory = (ProjectHistory) directContents.get(0);
@@ -139,19 +129,17 @@ public class ImportProjectHistoryHandler extends AbstractHandler {
 	}
 
 	private String showOpenFileDialog() {
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.OPEN);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.OPEN);
 		dialog.setFilterNames(FILTER_NAMES);
 		dialog.setFilterExtensions(FILTER_EXTS);
-		String initialPath = PreferenceHelper.getPreference(
-				IMPORT_PROJECT_HISTORY_PATH, System.getProperty("user.home"));
+		String initialPath = PreferenceHelper.getPreference(IMPORT_PROJECT_HISTORY_PATH,
+			System.getProperty("user.home"));
 		dialog.setFilterPath(initialPath);
 		String fn = dialog.open();
 		if (fn == null) {
 			return null;
 		}
-		PreferenceHelper.setPreference(IMPORT_PROJECT_HISTORY_PATH, dialog
-				.getFilterPath());
+		PreferenceHelper.setPreference(IMPORT_PROJECT_HISTORY_PATH, dialog.getFilterPath());
 		String fileName = dialog.getFileName();
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(dialog.getFilterPath());

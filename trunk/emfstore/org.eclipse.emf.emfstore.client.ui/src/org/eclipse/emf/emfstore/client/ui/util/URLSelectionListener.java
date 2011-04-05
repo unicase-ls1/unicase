@@ -28,7 +28,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 
 /**
- * A singleton selection listener that resolves unicase URLs and opens the element in a MEEditor.
+ * A singleton selection listener that resolves EMFStore URLs and opens the element in a MEEditor.
  * 
  * @author Shterev
  */
@@ -71,7 +71,7 @@ public final class URLSelectionListener implements SelectionListener {
 			ElementOpenerHelper.openModelElement(modelElement, e.getSource().getClass().getName());
 			logEvent(modelElementUrlFragment.getModelElementId(), e.getSource().getClass().getName());
 		} catch (MalformedURLException ex) {
-			WorkspaceUtil.logException("Invalid unicase URL pattern", ex);
+			WorkspaceUtil.logException("Invalid EMFStore URL pattern", ex);
 		}
 
 	}

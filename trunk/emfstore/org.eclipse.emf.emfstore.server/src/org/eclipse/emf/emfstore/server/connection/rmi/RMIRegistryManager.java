@@ -36,7 +36,7 @@ public final class RMIRegistryManager {
 		 */
 		URL url = Activator.getDefault().getBundle().getEntry("/bin/");
 		System.setProperty("java.rmi.server.codebase", url.toExternalForm());
-		System.setSecurityManager(new UnicaseSecurityManager());
+		System.setSecurityManager(new EMFStoreSecurityManager());
 		LocateRegistry.createRegistry(port);
 		RemoteServer.setLog(System.out);
 	}

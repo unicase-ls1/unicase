@@ -30,7 +30,7 @@ import org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser;
  * @author Wesendonk
  */
 @SuppressWarnings("serial")
-public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements RMIAdminEmfStoreFacade {
+public class RMIAdminEmfStoreFacadeImpl extends AbstractEMFStoreRMIFacade implements RMIAdminEmfStoreFacade {
 
 	private AdminEmfStore adminEmfStore;
 

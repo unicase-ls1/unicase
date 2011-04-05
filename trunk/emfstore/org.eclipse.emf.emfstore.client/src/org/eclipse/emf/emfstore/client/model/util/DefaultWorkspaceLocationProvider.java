@@ -34,7 +34,7 @@ public class DefaultWorkspaceLocationProvider extends DefaultServerWorkspaceLoca
 	 */
 	@Override
 	protected String getRootDirectory() {
-		return addFolders(getUserHome(), ".unicase", "client");
+		return addFolders(getUserHome(), ".emfstore", "client");
 	}
 
 	/**
