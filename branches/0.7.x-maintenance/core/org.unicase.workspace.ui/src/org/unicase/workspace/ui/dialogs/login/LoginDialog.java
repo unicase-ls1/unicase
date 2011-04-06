@@ -227,7 +227,7 @@ public class LoginDialog extends TitleAreaDialog {
 		}
 
 		getShell().setText("Authentication required");
-		setTitle("Log in");
+		setTitle("Log in to " + getServerInfoName());
 		setMessage("Please enter your username and password");
 		setTitleImage(Activator.getImageDescriptor("icons/login_icon.png").createImage());
 
@@ -240,6 +240,10 @@ public class LoginDialog extends TitleAreaDialog {
 		createInputFields(contents);
 
 		return contents;
+	}
+
+	private String getServerInfoName() {
+		return serverInfo.getName() + " [" + serverInfo.getUrl() + "]";
 	}
 
 	private void createInputFields(Composite root) {
