@@ -317,4 +317,18 @@ public final class Configuration {
 	public static void setEditingDomain(EditingDomain editingDomain) {
 		Configuration.editingDomain = editingDomain;
 	}
+
+	/**
+	 * Determines whehter to use resource splitting.
+	 * 
+	 * @result bool
+	 */
+	public static boolean useCrossResourceRefs() {
+		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.workspace.persistence.options");
+		for (IConfigurationElement extension : rawExtensions) {
+			return new Boolean(extension.getAttribute("crossReference"));
+		}
+		return true;
+	}
 }

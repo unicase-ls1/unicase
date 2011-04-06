@@ -1614,8 +1614,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		setResourceCount(getResourceCount() + 1);
 		Set<EObject> modelElements = this.getProject().getAllModelElements();
 
-		// TODO: OW, MK: make configurable
-		boolean crossResourceProxy = true;
+		boolean crossResource = Configuration.useCrossResourceRefs();
 
 		// int counter = Configuration.getMaxMECountPerResource() + 1;
 		int counter = 0;
@@ -1634,7 +1633,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			counter++;
 
 			if (splitResource) {
-				if (!crossResourceProxy) {
+				if (!crossResource) {
 					EObject parent = modelElement.eContainer();
 					ChangeRecorder changeRecorder = new ChangeRecorder();
 					changeRecorder.beginRecording(Collections.singleton(parent));
