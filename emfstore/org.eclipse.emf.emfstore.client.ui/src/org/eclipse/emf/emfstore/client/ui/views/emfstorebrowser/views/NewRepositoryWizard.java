@@ -20,6 +20,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * Wizard for adding a new repository.
@@ -31,10 +32,6 @@ public class NewRepositoryWizard extends Wizard implements INewWizard {
 	private ServerInfo serverInfo;
 
 	private NewRepositoryWizardPageOne mainPage;
-
-	private IStructuredSelection selection;
-
-	private IWorkbench workbench;
 
 	private boolean edit;
 
@@ -50,33 +47,8 @@ public class NewRepositoryWizard extends Wizard implements INewWizard {
 	 */
 	@Override
 	public void addPages() {
-		mainPage = new NewRepositoryWizardPageOne(workbench, selection);
+		mainPage = new NewRepositoryWizardPageOne();
 		addPage(mainPage);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @param workbench the workbench
-	 * @param selection the selection
-	 */
-	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		this.workbench = workbench;
-		this.selection = selection;
-		serverInfo = ModelFactory.eINSTANCE.createServerInfo();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @param workbench the workbench
-	 * @param selection the selection
-	 * @param serverInfo the serverInfo that would be modified
-	 */
-	public void init(IWorkbench workbench, IStructuredSelection selection, ServerInfo serverInfo) {
-		init(workbench, selection);
-		this.serverInfo = serverInfo;
-		this.edit = true;
 	}
 
 	/**
@@ -97,17 +69,20 @@ public class NewRepositoryWizard extends Wizard implements INewWizard {
 				@Override
 				protected void doRun() {
 					// save serverInfo to workspace
-					Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+					Workspace workspace = WorkspaceManager.getInstance()
+							.getCurrentWorkspace();
 					if (!NewRepositoryWizard.this.edit) {
-						workspace.getServerInfos().add(NewRepositoryWizard.this.serverInfo);
+						workspace.getServerInfos().add(
+								NewRepositoryWizard.this.serverInfo);
 					}
 					workspace.save();
 				}
 			}.run();
 			dispose();
 		} else {
-			MessageDialog.openError(workbench.getActiveWorkbenchWindow().getShell(), "Error",
-				"Field(s) were left blank!");
+			MessageDialog.openError(PlatformUI.getWorkbench()
+					.getActiveWorkbenchWindow().getShell(), "Error",
+					"Field(s) were left blank!");
 			return false;
 		}
 		return true;
@@ -119,7 +94,24 @@ public class NewRepositoryWizard extends Wizard implements INewWizard {
 	 * @return the {@link ServerInfo}
 	 */
 	public ServerInfo getServerInfo() {
+		if (serverInfo == null) {
+			serverInfo = ModelFactory.eINSTANCE.createServerInfo();
+		}
 		return serverInfo;
+	}
+
+	/**
+	 * Sets the ServerInfo.
+	 * 
+	 * @param serverInfo
+	 *            {@link ServerInfo}
+	 */
+	public void setServerInfo(ServerInfo serverInfo) {
+		this.serverInfo = serverInfo;
+		this.edit = true;
+	}
+
+	public void init(IWorkbench workbench, IStructuredSelection selection) {
 	}
 
 }
