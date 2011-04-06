@@ -7,11 +7,11 @@ package org.unicase.workspace.test.integration.reversibility;
 
 import static org.junit.Assert.assertTrue;
 
+import org.eclipse.emf.emfstore.common.model.util.SerializationException;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
-import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.metamodel.util.SerializationException;
 import org.unicase.workspace.test.integration.forward.IntegrationTestHelper;
 
 /**

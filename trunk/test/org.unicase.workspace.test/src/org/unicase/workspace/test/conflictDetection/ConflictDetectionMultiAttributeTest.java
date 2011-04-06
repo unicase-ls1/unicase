@@ -7,13 +7,13 @@ package org.unicase.workspace.test.conflictDetection;
 
 import static org.junit.Assert.assertEquals;
 
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiAttributeMoveOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiAttributeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiAttributeSetOperation;
 import org.junit.Test;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeSetOperation;
 import org.unicase.workspace.test.testmodel.TestElement;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Conflicttests for MultiAttribute, -Set and -Move operations.
@@ -35,7 +35,7 @@ public class ConflictDetectionMultiAttributeTest extends ConflictDetectionTest {
 	 */
 	@Test
 	public void multiAttRemoveVsAdd() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getFilledTestElement(3);
@@ -58,7 +58,7 @@ public class ConflictDetectionMultiAttributeTest extends ConflictDetectionTest {
 	 */
 	@Test
 	public void multiAttAddVsAdd() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getFilledTestElement(3);
@@ -81,7 +81,7 @@ public class ConflictDetectionMultiAttributeTest extends ConflictDetectionTest {
 	 */
 	@Test
 	public void multiAttRemoveVsRemove() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getFilledTestElement(3);
@@ -104,7 +104,7 @@ public class ConflictDetectionMultiAttributeTest extends ConflictDetectionTest {
 	 */
 	@Test
 	public void multiAttMoveVsAdd() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getFilledTestElement(3);
@@ -127,7 +127,7 @@ public class ConflictDetectionMultiAttributeTest extends ConflictDetectionTest {
 	 */
 	@Test
 	public void multiAttMoveVsRemove() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getFilledTestElement(3);
@@ -151,7 +151,7 @@ public class ConflictDetectionMultiAttributeTest extends ConflictDetectionTest {
 	// Move vs move is a soft conflict
 	// @Test
 	// public void multiAttMoveVsMoveConflict() {
-	// new UnicaseCommand() {
+	// new EMFStoreCommand() {
 	// @Override
 	// protected void doRun() {
 	// TestElement testElement = getFilledTestElement(3);
@@ -174,7 +174,7 @@ public class ConflictDetectionMultiAttributeTest extends ConflictDetectionTest {
 	 */
 	@Test
 	public void multiAttMoveVsMoveNoConflict() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getFilledTestElement(4);
@@ -197,7 +197,7 @@ public class ConflictDetectionMultiAttributeTest extends ConflictDetectionTest {
 	 */
 	@Test
 	public void multiAttSetVsAddNoConflict() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getFilledTestElement(4);
@@ -220,7 +220,7 @@ public class ConflictDetectionMultiAttributeTest extends ConflictDetectionTest {
 	 */
 	@Test
 	public void multiAttSetVsAddConflict() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getFilledTestElement(4);
@@ -243,7 +243,7 @@ public class ConflictDetectionMultiAttributeTest extends ConflictDetectionTest {
 	 */
 	@Test
 	public void multiAttSetVsRemoveNoConflict() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getFilledTestElement(4);
@@ -266,7 +266,7 @@ public class ConflictDetectionMultiAttributeTest extends ConflictDetectionTest {
 	 */
 	@Test
 	public void multiAttSetVsRemoveConflict() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getFilledTestElement(4);
@@ -289,7 +289,7 @@ public class ConflictDetectionMultiAttributeTest extends ConflictDetectionTest {
 	 */
 	@Test
 	public void multiAttSetVsMoveConflict() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getFilledTestElement(4);
@@ -312,7 +312,7 @@ public class ConflictDetectionMultiAttributeTest extends ConflictDetectionTest {
 	 */
 	@Test
 	public void multiAttSetVsMoveNoConflict() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getFilledTestElement(4);

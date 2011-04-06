@@ -11,25 +11,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.server.conflictDetection.ConflictDetector;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceSetOperation;
 import org.junit.Test;
-import org.unicase.emfstore.conflictDetection.ConflictDetector;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.rationale.Issue;
-import org.unicase.model.rationale.RationaleFactory;
-import org.unicase.model.rationale.Solution;
-import org.unicase.model.requirement.Actor;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.UseCase;
-import org.unicase.model.requirement.UserTask;
-import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.test.testmodel.TestElement;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests conflict detection behaviour on attributes.
@@ -48,7 +39,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -71,7 +62,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
 		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -102,7 +93,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -126,7 +117,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
 
 		// attention: same structure is being built here, should not conflict
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -157,7 +148,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final UserTask task = RequirementFactory.eINSTANCE.createUserTask();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -182,7 +173,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
 		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -213,7 +204,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Solution solution1 = RationaleFactory.eINSTANCE.createSolution();
 		final Solution solution2 = RationaleFactory.eINSTANCE.createSolution();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -236,7 +227,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Issue issue2 = (Issue) project2.getModelElement(issueId);
 		final Solution solution22 = (Solution) project2.getModelElement(solution2Id);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -265,7 +256,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Issue issue = RationaleFactory.eINSTANCE.createIssue();
 		final Solution solution = RationaleFactory.eINSTANCE.createSolution();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -287,7 +278,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Solution solution1 = (Solution) getProject().getModelElement(solutionId);
 		final Solution solution2 = (Solution) project2.getModelElement(solutionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -318,7 +309,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Solution solution = RationaleFactory.eINSTANCE.createSolution();
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -342,7 +333,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Solution solution1 = (Solution) getProject().getModelElement(solution1Id);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -372,7 +363,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -396,7 +387,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
 		final LeafSection section22 = (LeafSection) project2.getModelElement(section2Id);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -427,7 +418,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -450,7 +441,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
 		final LeafSection section12 = (LeafSection) project2.getModelElement(section1Id);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -482,7 +473,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -504,7 +495,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Actor actor1 = (Actor) getProject().getModelElement(actorId);
 		final Actor actor2 = (Actor) project2.getModelElement(actorId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -535,7 +526,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Solution solution1 = RationaleFactory.eINSTANCE.createSolution();
 		final Solution solution2 = RationaleFactory.eINSTANCE.createSolution();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -559,7 +550,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Solution solution1inProject1 = (Solution) getProject().getModelElement(solution1Id);
 		final Solution solution2inProject22 = (Solution) project2.getModelElement(solution2Id);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -590,7 +581,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Solution solution1 = RationaleFactory.eINSTANCE.createSolution();
 		final Solution solution2 = RationaleFactory.eINSTANCE.createSolution();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -613,7 +604,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Solution solution1inProject1 = (Solution) getProject().getModelElement(solution1Id);
 		final Solution solution1inProject2 = (Solution) project2.getModelElement(solution1Id);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -645,7 +636,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Solution solution1 = RationaleFactory.eINSTANCE.createSolution();
 		final Solution solution2 = RationaleFactory.eINSTANCE.createSolution();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -671,7 +662,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Solution solution1inProject1 = (Solution) getProject().getModelElement(solution1Id);
 		final Solution solution2inProject2 = (Solution) project2.getModelElement(solution2Id);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -701,7 +692,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -725,7 +716,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final LeafSection section11 = (LeafSection) getProject().getModelElement(section11Id);
 		final LeafSection section22 = (LeafSection) project2.getModelElement(section22Id);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -756,7 +747,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -779,7 +770,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1inProject1 = (LeafSection) getProject().getModelElement(section1Id);
 		final LeafSection section1inProject2 = (LeafSection) project2.getModelElement(section1Id);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -810,7 +801,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -834,7 +825,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(section1Id);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -859,7 +850,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 	 */
 	@Test
 	public void noConflictMultiReferenceAddVsSet() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();
@@ -888,7 +879,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 	 */
 	@Test
 	public void noConflictMultiReferenceRemoveVsSet() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();
@@ -916,7 +907,7 @@ public class ConflictDetectionReferenceTest extends ConflictDetectionTest {
 	 */
 	@Test
 	public void conflictMultiReferenceRemoveVsSet() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();

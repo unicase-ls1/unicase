@@ -11,15 +11,10 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.eclipse.emf.emfstore.client.model.changeTracking.notification.NotificationInfo;
+import org.eclipse.emf.emfstore.client.model.changeTracking.notification.recording.NotificationRecording;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.junit.Test;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.requirement.FunctionalRequirement;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.UseCase;
-import org.unicase.workspace.changeTracking.notification.NotificationInfo;
-import org.unicase.workspace.changeTracking.notification.recording.NotificationRecording;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests the notification recording for attribute features.
@@ -38,7 +33,7 @@ public class ContainmentNotificationTest extends NotificationTest {
 		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -94,7 +89,7 @@ public class ContainmentNotificationTest extends NotificationTest {
 		final FunctionalRequirement req = RequirementFactory.eINSTANCE.createFunctionalRequirement();
 		final FunctionalRequirement child = RequirementFactory.eINSTANCE.createFunctionalRequirement();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {

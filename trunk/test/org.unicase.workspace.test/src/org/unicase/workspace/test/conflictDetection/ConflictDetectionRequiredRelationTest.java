@@ -11,21 +11,12 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
+import org.eclipse.emf.emfstore.client.model.CompositeOperationHandle;
+import org.eclipse.emf.emfstore.client.model.exceptions.InvalidHandleException;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.server.conflictDetection.ConflictDetector;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.junit.Test;
-import org.unicase.emfstore.conflictDetection.ConflictDetector;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.rationale.Issue;
-import org.unicase.model.rationale.RationaleFactory;
-import org.unicase.model.rationale.Solution;
-import org.unicase.model.requirement.Actor;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.UseCase;
-import org.unicase.model.requirement.UserTask;
-import org.unicase.workspace.CompositeOperationHandle;
-import org.unicase.workspace.exceptions.InvalidHandleException;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests conflict detection behaviour on attributes.
@@ -43,7 +34,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -79,7 +70,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -123,7 +114,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -169,7 +160,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -213,7 +204,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final UserTask task = RequirementFactory.eINSTANCE.createUserTask();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -258,7 +249,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -303,7 +294,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final Solution solution1 = RationaleFactory.eINSTANCE.createSolution();
 		final Solution solution2 = RationaleFactory.eINSTANCE.createSolution();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -343,7 +334,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -391,7 +382,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -444,7 +435,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -487,7 +478,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -528,7 +519,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -570,7 +561,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -611,7 +602,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -651,7 +642,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -696,7 +687,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -752,7 +743,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(section);
@@ -808,7 +799,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor actor2 = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(section);
@@ -862,7 +853,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor actor2 = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -908,7 +899,7 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		final UserTask task = RequirementFactory.eINSTANCE.createUserTask();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProjectSpace().getOperations().clear();

@@ -13,13 +13,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.emfstore.client.model.changeTracking.notification.NotificationInfo;
+import org.eclipse.emf.emfstore.client.model.changeTracking.notification.recording.NotificationRecording;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.junit.Test;
-import org.unicase.model.requirement.Actor;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.UseCase;
-import org.unicase.workspace.changeTracking.notification.NotificationInfo;
-import org.unicase.workspace.changeTracking.notification.recording.NotificationRecording;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests the notification recording for attribute features.
@@ -42,7 +39,7 @@ public class MultiReferenceNotificationTest extends NotificationTest {
 		final UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
 		final UseCase[] useCases = { useCase1, useCase2, useCase3 };
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -101,7 +98,7 @@ public class MultiReferenceNotificationTest extends NotificationTest {
 		final UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
 		final UseCase[] useCases = { useCase1, useCase2, useCase3 };
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -161,7 +158,7 @@ public class MultiReferenceNotificationTest extends NotificationTest {
 		final UseCase[] useCasesIn = { useCase1, useCase2, useCase3 };
 		final UseCase[] useCasesOut = { useCase1, useCase3 };
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -223,7 +220,7 @@ public class MultiReferenceNotificationTest extends NotificationTest {
 		final UseCase[] useCasesIn = { useCase1, useCase2, useCase3 };
 		final UseCase[] useCasesOut = { useCase1, useCase3 };
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {

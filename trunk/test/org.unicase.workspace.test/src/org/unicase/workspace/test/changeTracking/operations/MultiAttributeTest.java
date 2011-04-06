@@ -9,14 +9,14 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiAttributeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
 import org.junit.Test;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.test.WorkspaceTest;
 import org.unicase.workspace.test.testmodel.TestElement;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests for MultiAttributes.
@@ -30,7 +30,7 @@ public class MultiAttributeTest extends WorkspaceTest {
 	 */
 	@Test
 	public void addValueToEmptyTest() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();
@@ -57,7 +57,7 @@ public class MultiAttributeTest extends WorkspaceTest {
 	 */
 	@Test
 	public void addValueToFilledTest() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();
@@ -86,7 +86,7 @@ public class MultiAttributeTest extends WorkspaceTest {
 	 */
 	@Test
 	public void addMultipleValueToFilledTest() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();
@@ -118,7 +118,7 @@ public class MultiAttributeTest extends WorkspaceTest {
 	 */
 	@Test
 	public void removeValueToEmptyTest() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();
@@ -145,7 +145,7 @@ public class MultiAttributeTest extends WorkspaceTest {
 	 */
 	@Test
 	public void recordedAddOperationsTest() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();
@@ -179,7 +179,7 @@ public class MultiAttributeTest extends WorkspaceTest {
 	 */
 	@Test
 	public void recordedRemoveOperationsTest() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();
@@ -210,7 +210,7 @@ public class MultiAttributeTest extends WorkspaceTest {
 	 */
 	@Test
 	public void removeAndReverseTest() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();

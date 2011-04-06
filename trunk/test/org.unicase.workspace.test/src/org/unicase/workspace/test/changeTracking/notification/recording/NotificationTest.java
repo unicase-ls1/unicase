@@ -5,7 +5,7 @@
  */
 package org.unicase.workspace.test.changeTracking.notification.recording;
 
-import org.unicase.workspace.impl.ProjectSpaceImpl;
+import org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl;
 import org.unicase.workspace.test.WorkspaceTest;
 
 /**

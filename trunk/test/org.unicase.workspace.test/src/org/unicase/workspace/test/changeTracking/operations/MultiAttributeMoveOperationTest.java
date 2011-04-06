@@ -7,12 +7,12 @@ package org.unicase.workspace.test.changeTracking.operations;
 
 import static org.junit.Assert.assertTrue;
 
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiAttributeMoveOperation;
 import org.junit.Test;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
 import org.unicase.workspace.test.WorkspaceTest;
 import org.unicase.workspace.test.testmodel.TestElement;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests for multiattributemove operations.
@@ -26,7 +26,7 @@ public class MultiAttributeMoveOperationTest extends WorkspaceTest {
 	 */
 	@Test
 	public void moveTest() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();
@@ -50,7 +50,7 @@ public class MultiAttributeMoveOperationTest extends WorkspaceTest {
 	 */
 	@Test
 	public void moveAndOperationTest() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();
@@ -79,7 +79,7 @@ public class MultiAttributeMoveOperationTest extends WorkspaceTest {
 	 */
 	@Test
 	public void moveAndReverseTest() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();

@@ -23,40 +23,21 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.exceptions.UnsupportedNotificationException;
+import org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.impl.ProjectImpl;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
 import org.junit.Test;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.impl.ProjectImpl;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.meeting.CompositeMeetingSection;
-import org.unicase.model.meeting.IssueMeetingSection;
-import org.unicase.model.meeting.Meeting;
-import org.unicase.model.meeting.MeetingFactory;
-import org.unicase.model.meeting.WorkItemMeetingSection;
-import org.unicase.model.rationale.Issue;
-import org.unicase.model.rationale.RationaleFactory;
-import org.unicase.model.rationale.Solution;
-import org.unicase.model.requirement.Actor;
-import org.unicase.model.requirement.FunctionalRequirement;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.UseCase;
-import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.TaskFactory;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspacePackage;
-import org.unicase.workspace.exceptions.UnsupportedNotificationException;
-import org.unicase.workspace.impl.ProjectSpaceImpl;
 import org.unicase.workspace.test.WorkspaceTest;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Test creating an deleting elements.
@@ -75,7 +56,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 	public void createElementTest() throws UnsupportedOperationException, UnsupportedNotificationException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -106,7 +87,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 	public void createElementwithCrossreferencesTest() throws UnsupportedOperationException,
 		UnsupportedNotificationException {
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -118,7 +99,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 
 		final FunctionalRequirement functionalRequirement = RequirementFactory.eINSTANCE.createFunctionalRequirement();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				useCase.getFunctionalRequirements().add(functionalRequirement);
@@ -129,7 +110,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(functionalRequirement, useCase.getFunctionalRequirements().get(0));
 		assertEquals(useCase, functionalRequirement.getUseCases().get(0));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(functionalRequirement);
@@ -160,8 +141,8 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		MultiReferenceOperation subOperation2 = (MultiReferenceOperation) createDeleteOperation.getSubOperations().get(
 			1);
 		assertEquals(useCase, getProject().getModelElement(subOperation2.getModelElementId()));
-		assertEquals(functionalRequirement, getProject().getModelElement(
-			subOperation2.getReferencedModelElements().get(0)));
+		assertEquals(functionalRequirement,
+			getProject().getModelElement(subOperation2.getReferencedModelElements().get(0)));
 	}
 
 	/**
@@ -174,7 +155,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 	public void deleteElementTest() throws UnsupportedOperationException, UnsupportedNotificationException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -184,7 +165,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 
 		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().deleteModelElement(useCase);
@@ -221,7 +202,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		final Actor newActor = RequirementFactory.eINSTANCE.createActor();
 		final Actor otherActor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(section);
@@ -240,7 +221,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 
 		ModelElementId useCaseId = ModelUtil.getProject(useCase).getModelElementId(useCase);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().deleteModelElement(useCase);
@@ -357,8 +338,8 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(useCaseId, referencedModelElements3.get(0));
 
 		// ((ProjectSpaceImpl) getProjectSpace()).saveProjectSpaceOnly();
-		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(WorkspacePackage.eINSTANCE
-			.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
+		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(
+			WorkspacePackage.eINSTANCE.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
 		Project loadedProject = loadedProjectSpace.getProject();
 
 		assertEquals(false, loadedProject.containsInstance(useCase));
@@ -480,7 +461,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		final Actor newActor = RequirementFactory.eINSTANCE.createActor();
 		final Actor otherActor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -509,7 +490,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 
 		ModelElementId useCaseId = getProject().getModelElementId(useCase);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().deleteModelElement(useCase);
@@ -629,7 +610,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(1, referencedModelElements3.size());
 		assertEquals(useCaseId, referencedModelElements3.get(0));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				reverse.apply(getProject());
@@ -670,7 +651,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		for (int i = 0; i < 10; i++) {
 			final CompositeSection createCompositeSection = DocumentFactory.eINSTANCE.createCompositeSection();
 			createCompositeSection.setName("Helmut" + i);
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 				@Override
 				protected void doRun() {
 					getProject().addModelElement(createCompositeSection);
@@ -688,8 +669,8 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(230, getProjectSpace().getOperations().size());
 
 		((ProjectSpaceImpl) getProjectSpace()).saveProjectSpaceOnly();
-		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(WorkspacePackage.eINSTANCE
-			.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
+		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(
+			WorkspacePackage.eINSTANCE.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(getProjectSpace(), loadedProjectSpace));
 	}
@@ -704,7 +685,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		final Issue issue = RationaleFactory.eINSTANCE.createIssue();
 		final Solution solution = RationaleFactory.eINSTANCE.createSolution();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				issue.setSolution(solution);
@@ -721,7 +702,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 
 		ModelElementId solutionId = ModelUtil.getProject(solution).getModelElementId(solution);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().deleteModelElement(solution);
@@ -746,8 +727,8 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(2, subOperations.size());
 
 		((ProjectSpaceImpl) getProjectSpace()).saveProjectSpaceOnly();
-		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(WorkspacePackage.eINSTANCE
-			.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
+		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(
+			WorkspacePackage.eINSTANCE.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
 
 		// perform asserts with loaded project space
 		assertTrue(ModelUtil.areEqual(getProjectSpace(), loadedProjectSpace));
@@ -769,7 +750,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		final UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase2);
@@ -778,7 +759,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -804,7 +785,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 	public void createInNonProjectContainmentTest() throws IOException {
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -843,8 +824,8 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertEquals(sectionId, multiReferenceOperation.getModelElementId());
 
 		((ProjectSpaceImpl) getProjectSpace()).saveProjectSpaceOnly();
-		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(WorkspacePackage.eINSTANCE
-			.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
+		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(
+			WorkspacePackage.eINSTANCE.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
 
 		// perform asserts with loaded project space
 		assertTrue(ModelUtil.areEqual(getProjectSpace(), loadedProjectSpace));
@@ -873,7 +854,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 
 		assertEquals(2, clazz.eContents().size());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(clazz);
@@ -881,8 +862,8 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		}.run(false);
 
 		((ProjectSpaceImpl) getProjectSpace()).saveProjectSpaceOnly();
-		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(WorkspacePackage.eINSTANCE
-			.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
+		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(
+			WorkspacePackage.eINSTANCE.getProjectSpace(), getProjectSpace().eResource().getURI(), false);
 
 		// perform asserts with loaded project space
 		assertTrue(ModelUtil.areEqual(getProjectSpace(), loadedProjectSpace));
@@ -907,7 +888,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		assertFalse(copiedMeeting.getIdentifiedWorkItemsSection() == meeting.getIdentifiedWorkItemsSection());
 
 		// add original element to project
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -936,7 +917,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		compMeetingSection.getSubsections().add(issueMeeting);
 		compMeetingSection.getSubsections().add(workItemMeetingSecion);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -952,7 +933,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 	public void testRemoveChildFromParentWithSplittedResource() throws IOException {
 		final CompositeSection compositeSection = DocumentFactory.eINSTANCE.createCompositeSection();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(compositeSection);
@@ -964,14 +945,14 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		Resource compositeResource = compositeSection.eResource();
 		final Resource leafResource = rs.createResource(URI.createFileURI(compositeResource.getURI().toFileString()
 			+ "leaf"));
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				leafResource.getContents().add(leafSection);
 			}
 		}.run(true);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				compositeSection.getSubsections().add(leafSection);
@@ -980,7 +961,7 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 
 		assertTrue(compositeSection.eResource() != leafSection.eResource());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {

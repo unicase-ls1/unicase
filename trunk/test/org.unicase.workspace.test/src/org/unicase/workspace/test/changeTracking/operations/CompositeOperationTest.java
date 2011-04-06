@@ -12,24 +12,16 @@ import static org.junit.Assert.fail;
 
 import java.io.IOException;
 
+import org.eclipse.emf.emfstore.client.model.CompositeOperationHandle;
+import org.eclipse.emf.emfstore.client.model.exceptions.InvalidHandleException;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
 import org.junit.Test;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.UseCase;
-import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.TaskFactory;
-import org.unicase.model.task.WorkPackage;
-import org.unicase.workspace.CompositeOperationHandle;
-import org.unicase.workspace.exceptions.InvalidHandleException;
 import org.unicase.workspace.test.WorkspaceTest;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests the comnposite operation recording.
@@ -46,7 +38,7 @@ public class CompositeOperationTest extends WorkspaceTest {
 
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -64,7 +56,7 @@ public class CompositeOperationTest extends WorkspaceTest {
 		}.run(false);
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -114,7 +106,7 @@ public class CompositeOperationTest extends WorkspaceTest {
 
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -132,7 +124,7 @@ public class CompositeOperationTest extends WorkspaceTest {
 		}.run(false);
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -177,7 +169,7 @@ public class CompositeOperationTest extends WorkspaceTest {
 	 */
 	@Test
 	public void beginAndAbortEmptyCompositeAfterSimpleOperation() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -208,7 +200,7 @@ public class CompositeOperationTest extends WorkspaceTest {
 	 */
 	@Test
 	public void beginAndAbortEmptyComposite() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {

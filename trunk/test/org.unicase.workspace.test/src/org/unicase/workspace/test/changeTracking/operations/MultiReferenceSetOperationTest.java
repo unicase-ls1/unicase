@@ -9,14 +9,14 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceSetOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
 import org.junit.Test;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceSetOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.test.WorkspaceTest;
 import org.unicase.workspace.test.testmodel.TestElement;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests for multireferenceset operations.
@@ -30,7 +30,7 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 	 */
 	@Test
 	public void setValueToFilledTest() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement element = getTestElement();
@@ -59,7 +59,7 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 	 */
 	@Test
 	public void applyValueToFilledTest() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();
@@ -90,7 +90,7 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 	 */
 	@Test
 	public void applyValueToFilledWrongIndexTest() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();
@@ -121,7 +121,7 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 	 */
 	@Test
 	public void applyValueToMultiFilledTest() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();
@@ -153,7 +153,7 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 	 */
 	@Test
 	public void setAndReverseTest() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				TestElement testElement = getTestElement();

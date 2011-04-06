@@ -7,13 +7,11 @@ package org.unicase.workspace.test.changeTracking.topology;
 
 import java.util.Date;
 
+import org.eclipse.emf.emfstore.client.model.ModelFactory;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
 import org.junit.Before;
-import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.Project;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceFactory;
 
 /**
  * Abstract super class for operation tests, contains setup.
@@ -30,16 +28,16 @@ public abstract class TopologyTest {
 	 */
 	@Before
 	public void setupProjectSpace() {
-		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
+		ProjectSpace projectSpace = ModelFactory.eINSTANCE.createProjectSpace();
 		projectSpace.setBaseVersion(VersioningFactory.eINSTANCE.createPrimaryVersionSpec());
 		projectSpace.setIdentifier("testProjectSpace");
 		projectSpace.setLastUpdated(new Date());
-		projectSpace.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
+		projectSpace.setLocalOperations(ModelFactory.eINSTANCE.createOperationComposite());
 		projectSpace.setProjectDescription("ps description");
-		projectSpace.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
+		projectSpace.setProjectId(org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createProjectId());
 		projectSpace.setProjectName("ps name");
 
-		setProject(MetamodelFactory.eINSTANCE.createProject());
+		setProject(org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createProject());
 
 		projectSpace.setProject(getProject());
 

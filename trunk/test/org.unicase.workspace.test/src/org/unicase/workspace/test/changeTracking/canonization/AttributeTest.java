@@ -12,26 +12,19 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 import java.util.List;
 
+import org.eclipse.emf.emfstore.client.model.CompositeOperationHandle;
+import org.eclipse.emf.emfstore.client.model.exceptions.InvalidHandleException;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationsCanonizer;
 import org.junit.Test;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCanonizer;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.requirement.Actor;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.UseCase;
-import org.unicase.workspace.CompositeOperationHandle;
-import org.unicase.workspace.exceptions.InvalidHandleException;
 import org.unicase.workspace.test.WorkspaceTest;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests canonization of attribute operations.
@@ -49,7 +42,7 @@ public class AttributeTest extends WorkspaceTest {
 	public void consecutiveAttributeChangeSingleFeature() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -60,7 +53,7 @@ public class AttributeTest extends WorkspaceTest {
 		Project expectedProject = ModelUtil.clone(getProject());
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				clearOperations();
@@ -77,7 +70,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -89,7 +82,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		final AttributeOperation reverse = (AttributeOperation) operations.get(0).reverse();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -99,8 +92,9 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI(), false);
+		Project loadedProject = ModelUtil.loadEObjectFromResource(
+			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.getModelPackage().getProject(), getProject()
+				.eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
@@ -114,7 +108,7 @@ public class AttributeTest extends WorkspaceTest {
 	public void consecutiveAttributeChangeSingleFeatureToNull() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -125,7 +119,7 @@ public class AttributeTest extends WorkspaceTest {
 		Project expectedProject = ModelUtil.clone(getProject());
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -142,7 +136,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
@@ -152,7 +146,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertEquals(operations.size(), 1);
 
 		final AttributeOperation reverse = (AttributeOperation) operations.get(0).reverse();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				reverse.apply(getProject());
@@ -177,7 +171,7 @@ public class AttributeTest extends WorkspaceTest {
 	public void consecutiveAttributeChangeSingleFeatureNullToValue() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -188,7 +182,7 @@ public class AttributeTest extends WorkspaceTest {
 		Project expectedProject = ModelUtil.clone(getProject());
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				clearOperations();
@@ -204,7 +198,7 @@ public class AttributeTest extends WorkspaceTest {
 		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 		assertEquals(3, operations.size());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
@@ -215,7 +209,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		final AttributeOperation reverse = (AttributeOperation) operations.get(0).reverse();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				reverse.apply(getProject());
@@ -224,8 +218,9 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI(), false);
+		Project loadedProject = ModelUtil.loadEObjectFromResource(
+			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.getModelPackage().getProject(), getProject()
+				.eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 
@@ -240,7 +235,7 @@ public class AttributeTest extends WorkspaceTest {
 	public void attributeChangeNoOp() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -251,7 +246,7 @@ public class AttributeTest extends WorkspaceTest {
 		Project expectedProject = ModelUtil.clone(getProject());
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				clearOperations();
@@ -269,7 +264,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
@@ -279,8 +274,9 @@ public class AttributeTest extends WorkspaceTest {
 		// should not have created any operations, we were just resetting the name to its original value
 		assertEquals(operations.size(), 0);
 
-		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI(), false);
+		Project loadedProject = ModelUtil.loadEObjectFromResource(
+			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.getModelPackage().getProject(), getProject()
+				.eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 
@@ -295,7 +291,7 @@ public class AttributeTest extends WorkspaceTest {
 	public void attributeChangeNoOpNull() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -306,7 +302,7 @@ public class AttributeTest extends WorkspaceTest {
 		Project expectedProject = ModelUtil.clone(getProject());
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				clearOperations();
@@ -324,7 +320,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
@@ -334,8 +330,9 @@ public class AttributeTest extends WorkspaceTest {
 		// should not have created any operations, we were just resetting the name to its original value
 		assertEquals(operations.size(), 0);
 
-		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI(), false);
+		Project loadedProject = ModelUtil.loadEObjectFromResource(
+			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.getModelPackage().getProject(), getProject()
+				.eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
@@ -349,7 +346,7 @@ public class AttributeTest extends WorkspaceTest {
 	public void attributeChangeMultiFeatureNoOp() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -361,7 +358,7 @@ public class AttributeTest extends WorkspaceTest {
 		Project expectedProject = ModelUtil.clone(getProject());
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				clearOperations();
@@ -381,7 +378,7 @@ public class AttributeTest extends WorkspaceTest {
 		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 		assertEquals(7, operations.size());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
@@ -391,8 +388,9 @@ public class AttributeTest extends WorkspaceTest {
 		// should not have created any operations, we were just resetting everything to its original value
 		assertEquals(operations.size(), 0);
 
-		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI(), false);
+		Project loadedProject = ModelUtil.loadEObjectFromResource(
+			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.getModelPackage().getProject(), getProject()
+				.eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
@@ -406,7 +404,7 @@ public class AttributeTest extends WorkspaceTest {
 	public void consecutiveAttributeChangeMultiFeature() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -417,7 +415,7 @@ public class AttributeTest extends WorkspaceTest {
 		Project expectedProject = ModelUtil.clone(getProject());
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				clearOperations();
@@ -435,7 +433,7 @@ public class AttributeTest extends WorkspaceTest {
 		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 		assertEquals(6, operations.size());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
@@ -444,7 +442,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertEquals(operations.size(), 2);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				for (int i = operations.size() - 1; i >= 0; i--) {
@@ -456,8 +454,9 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI(), false);
+		Project loadedProject = ModelUtil.loadEObjectFromResource(
+			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.getModelPackage().getProject(), getProject()
+				.eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
@@ -474,7 +473,7 @@ public class AttributeTest extends WorkspaceTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -490,7 +489,7 @@ public class AttributeTest extends WorkspaceTest {
 		Project expectedProject = ModelUtil.clone(getProject());
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				clearOperations();
@@ -508,14 +507,14 @@ public class AttributeTest extends WorkspaceTest {
 		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 		assertEquals(7, operations.size());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
 			}
 		}.run(false);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				for (int i = operations.size() - 1; i >= 0; i--) {
@@ -527,7 +526,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
+		Project loadedProject = ModelUtil.loadEObjectFromResource(org.eclipse.emf.emf MetamodelFactory.eINSTANCE.getMetamodelPackage()
 			.getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
@@ -546,7 +545,7 @@ public class AttributeTest extends WorkspaceTest {
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final LeafSection oldSection = DocumentFactory.eINSTANCE.createLeafSection();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -567,7 +566,7 @@ public class AttributeTest extends WorkspaceTest {
 		Project expectedProject = ModelUtil.clone(getProject());
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				clearOperations();
@@ -591,14 +590,14 @@ public class AttributeTest extends WorkspaceTest {
 		assertEquals("home", section.getName());
 		assertEquals("maggie", actor.getName());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
 			}
 		}.run(false);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				for (int i = operations.size() - 1; i >= 0; i--) {
@@ -610,8 +609,9 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI(), false);
+		Project loadedProject = ModelUtil.loadEObjectFromResource(
+			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.getModelPackage().getProject(), getProject()
+				.eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
@@ -626,7 +626,7 @@ public class AttributeTest extends WorkspaceTest {
 	public void compositeAttributeChangesACA() throws InvalidHandleException, IOException {
 
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(section);
@@ -638,7 +638,7 @@ public class AttributeTest extends WorkspaceTest {
 		Project expectedProject = ModelUtil.clone(getProject());
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				clearOperations();
@@ -650,8 +650,8 @@ public class AttributeTest extends WorkspaceTest {
 				UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 				section.getModelElements().add(useCase);
 				try {
-					handle.end("sectionCreation", "description", ModelUtil.getProject(section).getModelElementId(
-						section));
+					handle.end("sectionCreation", "description",
+						ModelUtil.getProject(section).getModelElementId(section));
 				} catch (InvalidHandleException e) {
 					fail();
 				}
@@ -663,14 +663,14 @@ public class AttributeTest extends WorkspaceTest {
 		assertEquals("desc 2", section.getDescription());
 		assertEquals(3, operations.size());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
 			}
 		}.run(false);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				for (int i = operations.size() - 1; i >= 0; i--) {
@@ -682,8 +682,9 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI(), false);
+		Project loadedProject = ModelUtil.loadEObjectFromResource(
+			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.getModelPackage().getProject(), getProject()
+				.eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
@@ -699,7 +700,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(section);
@@ -711,7 +712,7 @@ public class AttributeTest extends WorkspaceTest {
 		Project expectedProject = ModelUtil.clone(getProject());
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				clearOperations();
@@ -723,8 +724,8 @@ public class AttributeTest extends WorkspaceTest {
 				UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 				section.getModelElements().add(useCase);
 				try {
-					handle.end("sectionCreation", "description", ModelUtil.getProject(section).getModelElementId(
-						section));
+					handle.end("sectionCreation", "description",
+						ModelUtil.getProject(section).getModelElementId(section));
 				} catch (InvalidHandleException e) {
 					fail();
 				}
@@ -735,14 +736,14 @@ public class AttributeTest extends WorkspaceTest {
 		assertEquals(2, operations.size());
 		assertEquals("newDescription", section.getDescription());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
 			}
 		}.run(false);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				for (int i = operations.size() - 1; i >= 0; i--) {
@@ -754,8 +755,9 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI(), false);
+		Project loadedProject = ModelUtil.loadEObjectFromResource(
+			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.getModelPackage().getProject(), getProject()
+				.eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
@@ -770,7 +772,7 @@ public class AttributeTest extends WorkspaceTest {
 	public void compositeAttributeChangesCA() throws InvalidHandleException, IOException {
 
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(section);
@@ -782,7 +784,7 @@ public class AttributeTest extends WorkspaceTest {
 		Project expectedProject = ModelUtil.clone(getProject());
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				clearOperations();
@@ -792,8 +794,8 @@ public class AttributeTest extends WorkspaceTest {
 				UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 				section.getModelElements().add(useCase);
 				try {
-					handle.end("sectionCreation", "description", ModelUtil.getProject(section).getModelElementId(
-						section));
+					handle.end("sectionCreation", "description",
+						ModelUtil.getProject(section).getModelElementId(section));
 				} catch (InvalidHandleException e) {
 					fail();
 				}
@@ -805,14 +807,14 @@ public class AttributeTest extends WorkspaceTest {
 		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 		assertEquals(2, operations.size());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
 			}
 		}.run(false);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				for (int i = operations.size() - 1; i >= 0; i--) {
@@ -841,7 +843,7 @@ public class AttributeTest extends WorkspaceTest {
 		Project originalProject = ModelUtil.clone(getProject());
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -856,7 +858,7 @@ public class AttributeTest extends WorkspaceTest {
 		// expecting a create and two attribute operations
 		assertEquals(3, operations.size());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
@@ -874,7 +876,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		// test if the create is reversible and re-reversible
 		Project expectedProject = ModelUtil.clone(getProject());
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				op.reverse().apply(getProject());
@@ -883,7 +885,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				op.reverse().reverse().apply(getProject());
@@ -911,7 +913,7 @@ public class AttributeTest extends WorkspaceTest {
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		final UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -931,7 +933,7 @@ public class AttributeTest extends WorkspaceTest {
 		// expecting a create and two attribute operations per usecase
 		assertEquals(6, operations.size());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
@@ -956,7 +958,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		// test reversibility, too
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				op2.reverse().apply(getProject());
@@ -985,7 +987,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(section);
@@ -997,8 +999,8 @@ public class AttributeTest extends WorkspaceTest {
 				UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 				section.getModelElements().add(useCase);
 				try {
-					handle.end("sectionCreation", "description", ModelUtil.getProject(section).getModelElementId(
-						section));
+					handle.end("sectionCreation", "description",
+						ModelUtil.getProject(section).getModelElementId(section));
 				} catch (InvalidHandleException e) {
 					fail();
 				}
@@ -1017,7 +1019,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertTrue(operations.get(3) instanceof CompositeOperation);
 		assertTrue(operations.get(4) instanceof AttributeOperation);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
@@ -1034,7 +1036,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		// test reversibility
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				for (int i = operations.size() - 1; i >= 0; i--) {
@@ -1047,7 +1049,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
 
 		// test redo
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				operations.get(0).apply(getProject());
@@ -1073,7 +1075,7 @@ public class AttributeTest extends WorkspaceTest {
 	public void changeAttributesAndDeleteSimple() throws IOException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -1085,7 +1087,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		Project originalProject = ModelUtil.clone(getProject());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				useCase.setName("NameOfUseCase");
@@ -1099,7 +1101,7 @@ public class AttributeTest extends WorkspaceTest {
 		// expecting two attribute operations and a delete
 		assertEquals(3, operations.size());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
@@ -1118,7 +1120,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		// test if the delete is reversible and re-reversible
 		Project expectedProject = ModelUtil.clone(getProject());
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				op.reverse().apply(getProject());
@@ -1127,7 +1129,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				op.reverse().reverse().apply(getProject());
@@ -1154,7 +1156,7 @@ public class AttributeTest extends WorkspaceTest {
 		final UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(section);
@@ -1172,7 +1174,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		Project originalProject = ModelUtil.clone(getProject());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 
@@ -1189,7 +1191,7 @@ public class AttributeTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().deleteModelElement(useCase2);
@@ -1201,7 +1203,7 @@ public class AttributeTest extends WorkspaceTest {
 		// expecting two attribute operations and a delete per usecase
 		assertEquals(6, operations.size());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
@@ -1225,7 +1227,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertEquals(((UnicaseModelElement) op2.getModelElement()).getDescription(), "originalDescription2");
 
 		// test reversibility, too
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				op2.reverse().apply(getProject());
@@ -1316,7 +1318,7 @@ public class AttributeTest extends WorkspaceTest {
 	public void attributeChangesACAAndDelete() throws InvalidHandleException, IOException {
 
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(section);
@@ -1327,7 +1329,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		Project originalProject = ModelUtil.clone(getProject());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				clearOperations();
@@ -1338,8 +1340,8 @@ public class AttributeTest extends WorkspaceTest {
 				UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 				section.getModelElements().add(useCase);
 				try {
-					handle.end("sectionCreation", "description", ModelUtil.getProject(section).getModelElementId(
-						section));
+					handle.end("sectionCreation", "description",
+						ModelUtil.getProject(section).getModelElementId(section));
 				} catch (InvalidHandleException e) {
 					fail();
 				}
@@ -1359,7 +1361,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertTrue(operations.get(2) instanceof AttributeOperation);
 		assertTrue(operations.get(3) instanceof CreateDeleteOperation);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
@@ -1383,7 +1385,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		// test reversibility
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				for (int i = operations.size() - 1; i >= 0; i--) {
@@ -1396,7 +1398,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
 
 		// test redo
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				operations.get(0).apply(getProject());
@@ -1426,7 +1428,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -1440,7 +1442,7 @@ public class AttributeTest extends WorkspaceTest {
 		// expect create, 2 attribute ops, delete
 		assertEquals(4, operations.size());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
@@ -1469,7 +1471,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		final UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase2);
@@ -1478,7 +1480,7 @@ public class AttributeTest extends WorkspaceTest {
 
 		Project originalProject = ModelUtil.clone(getProject());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				clearOperations();
@@ -1495,7 +1497,7 @@ public class AttributeTest extends WorkspaceTest {
 		// expect create, 1 attribute ops, 1 multiref op, the delete
 		assertEquals(4, operations.size());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
@@ -1513,7 +1515,7 @@ public class AttributeTest extends WorkspaceTest {
 		assertEquals("someName", ((UnicaseModelElement) createOp.getModelElement()).getName());
 
 		// check reversibility
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				operations.get(2).reverse().apply(getProject());

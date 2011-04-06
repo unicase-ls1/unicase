@@ -10,17 +10,16 @@ import static org.junit.Assert.fail;
 
 import java.io.IOException;
 
+import org.eclipse.core.internal.resources.Workspace;
+import org.eclipse.emf.emfstore.client.model.Configuration;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
-import org.unicase.metamodel.Project;
-import org.unicase.workspace.Configuration;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.test.testmodel.TestElement;
 import org.unicase.workspace.test.testmodel.TestmodelFactory;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Abstract Superclass for WOrkspace Tests. Provides Setup and Tear-down.
@@ -38,7 +37,7 @@ public abstract class WorkspaceTest {
 	public void setupProjectSpace() {
 		Configuration.setTesting(true);
 		final Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -56,7 +55,7 @@ public abstract class WorkspaceTest {
 	 */
 	@After
 	public void cleanProjectSpace() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {

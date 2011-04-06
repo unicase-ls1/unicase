@@ -11,18 +11,13 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.server.conflictDetection.ConflictDetector;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.junit.Test;
-import org.unicase.emfstore.conflictDetection.ConflictDetector;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.requirement.Actor;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.UseCase;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests conflict detection behaviour on attributes.
@@ -39,7 +34,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -62,7 +57,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -93,7 +88,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -118,7 +113,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -149,7 +144,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -175,7 +170,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -204,7 +199,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -227,7 +222,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(section1Id);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(section2Id);
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -257,7 +252,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -281,7 +276,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(section1Id);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(section2Id);
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -313,7 +308,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -339,7 +334,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -372,7 +367,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -398,7 +393,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -432,7 +427,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -458,7 +453,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -493,7 +488,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -519,7 +514,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -551,7 +546,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -577,7 +572,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -607,7 +602,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -634,7 +629,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -665,7 +660,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -691,7 +686,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -722,7 +717,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -748,7 +743,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -778,7 +773,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -802,7 +797,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -835,7 +830,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -862,7 +857,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -894,7 +889,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -921,7 +916,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -954,7 +949,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -981,7 +976,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section2 = (LeafSection) project2.getModelElement(section2Id);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection2Id);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1014,7 +1009,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1040,7 +1035,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1072,7 +1067,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1095,7 +1090,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1126,7 +1121,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1153,7 +1148,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1186,7 +1181,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1213,7 +1208,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1246,7 +1241,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1273,7 +1268,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1312,7 +1307,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1340,7 +1335,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1373,7 +1368,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1401,7 +1396,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1435,7 +1430,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection anotherSection = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1463,7 +1458,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection otherSection1 = (LeafSection) getProject().getModelElement(otherSection1Id);
 		final LeafSection anotherSection2 = (LeafSection) project2.getModelElement(anotherSection2Id);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1502,7 +1497,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1529,7 +1524,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection otherSection1 = (LeafSection) getProject().getModelElement(otherSectionId);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1563,7 +1558,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1589,7 +1584,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection otherSection1 = (LeafSection) getProject().getModelElement(otherSectionId);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1622,7 +1617,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1647,7 +1642,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1683,7 +1678,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1707,7 +1702,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1743,7 +1738,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1769,7 +1764,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1804,7 +1799,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1832,7 +1827,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection otherSection1 = (LeafSection) getProject().getModelElement(otherSection1Id);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1869,7 +1864,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1899,7 +1894,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection otherSection1 = (LeafSection) getProject().getModelElement(otherSection1Id);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1937,7 +1932,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor dummy1 = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy2 = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -1968,7 +1963,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2005,7 +2000,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor dummy1 = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy2 = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2035,7 +2030,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2071,7 +2066,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2102,7 +2097,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
 		final Actor otherDummy2 = (Actor) project2.getModelElement(otherDummyId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2136,7 +2131,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2165,7 +2160,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2200,7 +2195,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2230,7 +2225,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection2Id);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2263,7 +2258,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2295,7 +2290,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(section1Id);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2327,7 +2322,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2354,7 +2349,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2387,7 +2382,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2416,7 +2411,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(section1Id);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2449,7 +2444,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2477,7 +2472,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2512,7 +2507,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2543,7 +2538,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(section1Id);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2579,7 +2574,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2609,7 +2604,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(section1Id);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2645,7 +2640,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2676,7 +2671,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2711,7 +2706,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2743,7 +2738,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(section1Id);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2778,7 +2773,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2810,7 +2805,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(section1Id);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2846,7 +2841,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2879,7 +2874,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection anotherSection1 = (LeafSection) getProject().getModelElement(anotherSection1Id);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2915,7 +2910,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2948,7 +2943,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection anotherSection1 = (LeafSection) getProject().getModelElement(anotherSectionId);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -2984,7 +2979,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor dummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3017,7 +3012,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection anotherSection1 = (LeafSection) getProject().getModelElement(anotherSection1Id);
 		final LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3053,7 +3048,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3084,7 +3079,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3119,7 +3114,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3150,7 +3145,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3185,7 +3180,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3216,7 +3211,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3253,7 +3248,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3286,7 +3281,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3321,7 +3316,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3353,7 +3348,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor actor1 = (Actor) getProject().getModelElement(actorId);
 		final Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummyId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3388,7 +3383,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3420,7 +3415,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3454,7 +3449,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3486,7 +3481,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3522,7 +3517,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3555,7 +3550,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection otherSection1 = (LeafSection) getProject().getModelElement(otherSectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3591,7 +3586,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3625,7 +3620,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection otherSection1 = (LeafSection) getProject().getModelElement(otherSection1Id);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3661,7 +3656,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3694,7 +3689,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection otherSection1 = (LeafSection) getProject().getModelElement(otherSection1Id);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3729,7 +3724,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3763,7 +3758,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection otherSection1 = (LeafSection) getProject().getModelElement(otherSection1Id);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3798,7 +3793,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3831,7 +3826,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3867,7 +3862,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
 		final Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -3900,7 +3895,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {

@@ -11,13 +11,10 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.eclipse.emf.emfstore.client.model.changeTracking.notification.NotificationInfo;
+import org.eclipse.emf.emfstore.client.model.changeTracking.notification.recording.NotificationRecording;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.junit.Test;
-import org.unicase.model.requirement.Actor;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.UseCase;
-import org.unicase.workspace.changeTracking.notification.NotificationInfo;
-import org.unicase.workspace.changeTracking.notification.recording.NotificationRecording;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests the notification recording for attribute features.
@@ -36,7 +33,7 @@ public class MoveNotificationTest extends NotificationTest {
 		final Actor actor2 = RequirementFactory.eINSTANCE.createActor();
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {

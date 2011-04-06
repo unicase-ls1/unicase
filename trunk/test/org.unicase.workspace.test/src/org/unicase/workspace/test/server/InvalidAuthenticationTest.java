@@ -5,8 +5,8 @@
  */
 package org.unicase.workspace.test.server;
 
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.junit.Test;
-import org.unicase.emfstore.exceptions.EmfStoreException;
 
 /**
  * Has to be implemented.

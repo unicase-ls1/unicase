@@ -7,12 +7,12 @@ package org.unicase.workspace.test.integration.reversibility;
 
 import java.net.URISyntaxException;
 
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.metamodel.Project;
-import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.test.SetupHelper;
 import org.unicase.workspace.test.TestProjectEnum;
 

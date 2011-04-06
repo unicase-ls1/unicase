@@ -13,24 +13,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.server.conflictDetection.ConflictDetector;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
 import org.junit.Test;
-import org.unicase.emfstore.conflictDetection.ConflictDetector;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.requirement.Actor;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.TaskFactory;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.impl.ProjectSpaceImpl;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Test conflict detection behaviour during a selective commit.
@@ -53,7 +47,7 @@ public class ConflictDetectionSelectiveCommitSpecialCases extends ConflictDetect
 		final ProjectSpace ps1 = getProjectSpace();
 
 		// 1. init first project and simulate commit
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -73,7 +67,7 @@ public class ConflictDetectionSelectiveCommitSpecialCases extends ConflictDetect
 
 		// 3. simulate create actionItem and a selective commit of the create operation
 		final List<AbstractOperation> commitedOperations = new ArrayList<AbstractOperation>();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				leafSection1.getModelElements().add(ai);
@@ -103,7 +97,7 @@ public class ConflictDetectionSelectiveCommitSpecialCases extends ConflictDetect
 		assertTrue("Commited operation is wrong", commitedOperations.get(0) instanceof CreateDeleteOperation);
 
 		// 4. simulate update of project 2
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -115,7 +109,7 @@ public class ConflictDetectionSelectiveCommitSpecialCases extends ConflictDetect
 		}.run(false);
 
 		// 5. move actionItem in project 2 from "orphans" to section2
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				assertTrue("Not allowed operations in ps2", ps2.getLocalOperations().getOperations().isEmpty());

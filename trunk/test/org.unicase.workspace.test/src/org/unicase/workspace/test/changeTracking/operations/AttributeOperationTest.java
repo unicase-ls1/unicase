@@ -11,19 +11,16 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 import java.util.List;
 
+import org.eclipse.emf.emfstore.client.model.exceptions.UnsupportedNotificationException;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationsCanonizer;
 import org.junit.Test;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCanonizer;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.UseCase;
-import org.unicase.workspace.exceptions.UnsupportedNotificationException;
 import org.unicase.workspace.test.WorkspaceTest;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests the Attribute Operation.
@@ -43,7 +40,7 @@ public class AttributeOperationTest extends WorkspaceTest {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -83,7 +80,7 @@ public class AttributeOperationTest extends WorkspaceTest {
 	public void changeAttributeTwice() throws UnsupportedOperationException, UnsupportedNotificationException {
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -95,7 +92,7 @@ public class AttributeOperationTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				useCase.setName("otherName");
@@ -105,7 +102,7 @@ public class AttributeOperationTest extends WorkspaceTest {
 
 		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
@@ -137,7 +134,7 @@ public class AttributeOperationTest extends WorkspaceTest {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -166,7 +163,7 @@ public class AttributeOperationTest extends WorkspaceTest {
 
 		assertEquals(useCaseId, attributeOperation.getModelElementId());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -198,7 +195,7 @@ public class AttributeOperationTest extends WorkspaceTest {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -236,7 +233,7 @@ public class AttributeOperationTest extends WorkspaceTest {
 		final AbstractOperation r = attributeOperation.reverse();
 		final AbstractOperation rr = r.reverse();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -247,7 +244,7 @@ public class AttributeOperationTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
