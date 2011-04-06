@@ -51,7 +51,7 @@
      </menuContribution>
      
       <menuContribution
-           locationURI="toolbar:org.eclipse.emf.ecp.navigator.viewer?bofore=additions">
+           locationURI="toolbar:org.eclipse.emf.ecp.navigator.viewer?before=additions">
          <command
                commandId="org.eclipse.emf.ecp.common.handlers.open_me_ID"
                icon="icons/magnifier.png"
@@ -130,7 +130,8 @@
                     value="org.eclipse.emf.emfstore.common.model.Project">
               </instanceof>
            </not>
-        </and>     </definition>
+        </and>    
+		</definition>
   </extension>
  <extension
        point="org.eclipse.ui.preferencePages">
