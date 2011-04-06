@@ -82,7 +82,7 @@ public final class ServerConfiguration {
 	/**
 	 * Default keystore password.
 	 */
-	public static final String KEYSTORE_PASSWORD_DEFAULT = "av374tb$VBGGtrgwa7tosdfa";
+	public static final String KEYSTORE_PASSWORD_DEFAULT = "123456"; // av374tb$VBGGtrgwa7tosdfa";
 
 	/**
 	 * Alias for certificate in keystore.
