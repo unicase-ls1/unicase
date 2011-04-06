@@ -33,6 +33,7 @@ import org.osgi.framework.Bundle;
  */
 public final class Configuration {
 
+	private static final String CLIENT_NAME = "emfstore eclipse client";
 	private static final String MODEL_VERSION_FILENAME = "modelReleaseNumber";
 	private static final String UPS = ".ups";
 	private static final String UOC = ".uoc";
@@ -197,7 +198,7 @@ public final class Configuration {
 	public static ClientVersionInfo getClientVersion() {
 		ClientVersionInfo clientVersionInfo = org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE
 				.createClientVersionInfo();
-		clientVersionInfo.setName("unicase.org eclipse client");
+		clientVersionInfo.setName(CLIENT_NAME);
 
 		Bundle emfStoreBundle = Platform
 				.getBundle("org.eclipse.emf.emfstore.client");

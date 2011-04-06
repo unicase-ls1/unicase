@@ -67,7 +67,7 @@ public final class KeyStoreManager {
 	 */
 	public static final String KEYSTORENAME = "emfstoreClient.keystore";
 
-	private static final String KEYSTOREPASSWORD = "jsFTga3rGTR833329GFQEfas";
+	private static final String KEYSTOREPASSWORD = "654321";
 
 	private static final String CERTIFICATE_TYPE = "X.509";
 
@@ -75,7 +75,7 @@ public final class KeyStoreManager {
 	/**
 	 * Certificate Alias for devevelopment test certificate.
 	 */
-	public static final String DEFAULT_CERTIFICATE = "EMFStore Test Certificate (DO NOT USE IN PRODUCTION!)";
+	public static final String DEFAULT_CERTIFICATE = "HB23fawf;;emfstore.org"; // "EMFStore Test Certificate (DO NOT USE IN PRODUCTION!)";
 
 	private String defaultCertificate;
 
