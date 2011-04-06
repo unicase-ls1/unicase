@@ -16,7 +16,6 @@ import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.connectionmanager.KeyStoreManager;
 import org.eclipse.emf.emfstore.client.model.exceptions.CertificateStoreException;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
@@ -31,7 +30,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.IWorkbench;
 
 /**
  * The main page of the wizard.
@@ -54,8 +52,7 @@ public class NewRepositoryWizardPageOne extends WizardPage {
 	 * @param selection
 	 *            the current selection
 	 */
-	public NewRepositoryWizardPageOne(IWorkbench workbench,
-			IStructuredSelection selection) {
+	public NewRepositoryWizardPageOne() {
 		super("Main");
 		setTitle("Server Details");
 		setDescription("Select the details for the new repository");
@@ -113,9 +110,7 @@ public class NewRepositoryWizardPageOne extends WizardPage {
 		gd.horizontalSpan = ncol - 1;
 		cert.setLayoutData(gd);
 		cert.setEditable(false);
-		cert
-				.setBackground(Display.getCurrent().getSystemColor(
-						SWT.COLOR_WHITE));
+		cert.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 
 		// Choose Certificate, Opens Dialogue
 		new Label(composite, SWT.NONE).setText("");

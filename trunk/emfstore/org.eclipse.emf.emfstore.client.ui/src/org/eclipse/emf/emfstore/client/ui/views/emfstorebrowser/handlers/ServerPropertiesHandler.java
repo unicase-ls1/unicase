@@ -41,8 +41,7 @@ public class ServerPropertiesHandler extends AbstractHandler {
 		TreeNode node = (TreeNode) obj;
 		ServerInfo serverInfo = (ServerInfo) node.getValue();
 		NewRepositoryWizard wizard = new NewRepositoryWizard();
-		wizard.init(activeWorkbenchWindow.getWorkbench(),
-				(IStructuredSelection) selection, serverInfo);
+		wizard.setServerInfo(serverInfo);
 		WizardDialog dialog = new WizardDialog(
 				activeWorkbenchWindow.getShell(), wizard);
 		dialog.create();
