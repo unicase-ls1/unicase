@@ -4,6 +4,11 @@
 
 You can report bugs and feature requests in the [https://bugs.eclipse.org/bugs/enter_bug.cgi?product=EMFT.emfclient bugzilla of Eclipse].
 
+=== Questions ===
+
+Please ask any questions on the 
+[http://www.eclipse.org/forums/index.php?t=thread&frm_id=207&S=54729736cf71d8ae16fa32e781b9e0b3 newsgroup.]
+
 
 === Twitter ===
 
