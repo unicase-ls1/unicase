@@ -37,7 +37,7 @@
       <decorator
             adaptable="true"
             class="org.eclipse.emf.emfstore.client.ui.decorators.VersionDecorator"
-            id="org.eclipse.emf.ecp.emfstorebridge.decorators.VersionDecorator"
+            id="org.eclipse.emf.emfstore.client.ui.decorators.VersionDecorator"
             label="Version Decorator"
             lightweight="true"
             state="true">
@@ -53,7 +53,7 @@
       <decorator
             adaptable="true"
             class="org.eclipse.emf.emfstore.client.ui.decorators.UsernameDecorator"
-            id="org.eclipse.emf.ecp.common.decorators.UsernameDecorator"
+            id="org.eclipse.emf.emfstore.client.ui.decorators.UsernameDecorator"
             label="Username Decorator"
             lightweight="true"
             state="true">
@@ -69,7 +69,7 @@
       <decorator
             adaptable="true"
             class="org.eclipse.emf.emfstore.client.ui.decorators.ProjectSpaceDirtyDecorator"
-            id="org.eclipse.emf.ecp.common.decorators.ProjectSpaceDirtyDecorator"
+            id="org.eclipse.emf.emfstore.client.ui.decorators.ProjectSpaceDirtyDecorator"
             label="ProjectSpaceDirty Decorator"
             lightweight="true"
             state="true">
@@ -85,7 +85,7 @@
       <decorator
             adaptable="true"
             class="org.eclipse.emf.emfstore.client.ui.decorators.ModelElementDirtyDecorator"
-            id="org.eclipse.emf.ecp.common.decorators.ModelElementDirtyDecorator"
+            id="org.eclipse.emf.emfstore.client.ui.decorators.ModelElementDirtyDecorator"
             label="ModelElement Dirty Decorator"
             lightweight="true"
             state="true">
@@ -101,7 +101,7 @@
       <decorator
             adaptable="true"
             class="org.eclipse.emf.emfstore.client.ui.decorators.ProjectDirtyDecorator"
-            id="org.eclipse.emf.ecp.common.decorators.ProjectDirtyDecorator"
+            id="org.eclipse.emf.emfstore.client.ui.decorators.ProjectDirtyDecorator"
             label="Project Dirty Decorator"
             lightweight="true"
             state="true">
@@ -125,7 +125,7 @@
          point="org.eclipse.emf.ecp.common.modelelementopener">
       <ModelElementOpener
             class="org.eclipse.emf.ecp.emfstorebridge.ProjectSpaceOpener"
-            name="org.eclipse.emf.ecp.ecpemfstorebridge.ProjectSpaceOpener">
+            name="org.eclipse.emf.ecp.emfstorebridge.ProjectSpaceOpener">
       </ModelElementOpener>
    </extension>
 
