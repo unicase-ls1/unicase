@@ -54,7 +54,8 @@ public final class Configuration {
 	 * @return the workspace directory path string
 	 */
 	public static String getWorkspaceDirectory() {
-		String workspaceDirectory = getLocationProvider().getWorkspaceDirectory();
+		String workspaceDirectory = getLocationProvider()
+				.getWorkspaceDirectory();
 		File workspace = new File(workspaceDirectory);
 		if (!workspace.exists()) {
 			workspace.mkdirs();
@@ -66,17 +67,21 @@ public final class Configuration {
 	}
 
 	/**
-	 * Returns the registered {@link LocationProvider} or if not existent, the {@link DefaultWorkspaceLocationProvider}.
+	 * Returns the registered {@link LocationProvider} or if not existent, the
+	 * {@link DefaultWorkspaceLocationProvider}.
 	 * 
 	 * @return workspace location provider
 	 */
 	public static LocationProvider getLocationProvider() {
 		if (locationProvider == null) {
-			IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				"org.eclipse.emf.emfstore.client.workspaceLocationProvider");
+			IConfigurationElement[] rawExtensions = Platform
+					.getExtensionRegistry()
+					.getConfigurationElementsFor(
+							"org.eclipse.emf.emfstore.client.workspaceLocationProvider");
 			for (IConfigurationElement extension : rawExtensions) {
 				try {
-					Object executableExtension = extension.createExecutableExtension("providerClass");
+					Object executableExtension = extension
+							.createExecutableExtension("providerClass");
 					if (executableExtension instanceof LocationProvider) {
 						locationProvider = (LocationProvider) executableExtension;
 					}
@@ -124,13 +129,16 @@ public final class Configuration {
 	 * @return server info
 	 */
 	public static List<ServerInfo> getDefaultServerInfos() {
-		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.eclipse.emf.emfstore.client.defaultConfigurationProvider");
+		IConfigurationElement[] rawExtensions = Platform
+				.getExtensionRegistry()
+				.getConfigurationElementsFor(
+						"org.eclipse.emf.emfstore.client.defaultConfigurationProvider");
 		for (IConfigurationElement extension : rawExtensions) {
 			try {
 				ConfigurationProvider provider = (ConfigurationProvider) extension
-					.createExecutableExtension("providerClass");
-				List<ServerInfo> defaultServerInfos = provider.getDefaultServerInfos();
+						.createExecutableExtension("providerClass");
+				List<ServerInfo> defaultServerInfos = provider
+						.getDefaultServerInfos();
 				if (defaultServerInfos != null) {
 					return defaultServerInfos;
 				}
@@ -151,7 +159,8 @@ public final class Configuration {
 		serverInfo.setUrl("localhost");
 		serverInfo.setCertificateAlias(KeyStoreManager.DEFAULT_CERTIFICATE);
 
-		Usersession superUsersession = ModelFactory.eINSTANCE.createUsersession();
+		Usersession superUsersession = ModelFactory.eINSTANCE
+				.createUsersession();
 		superUsersession.setServerInfo(serverInfo);
 		superUsersession.setPassword("super");
 		superUsersession.setSavePassword(true);
@@ -180,18 +189,20 @@ public final class Configuration {
 	}
 
 	/**
-	 * Get the client version as in the org.eclipse.emf.emfstore.client manifest file.
+	 * Get the client version as in the org.eclipse.emf.emfstore.client manifest
+	 * file.
 	 * 
 	 * @return the client version number
 	 */
 	public static ClientVersionInfo getClientVersion() {
 		ClientVersionInfo clientVersionInfo = org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE
-			.createClientVersionInfo();
+				.createClientVersionInfo();
 		clientVersionInfo.setName("unicase.org eclipse client");
 
-		Bundle emfStoreBundle = Platform.getBundle("org.eclipse.emf.emfstore.client");
-		String emfStoreVersionString = (String) emfStoreBundle.getHeaders().get(
-			org.osgi.framework.Constants.BUNDLE_VERSION);
+		Bundle emfStoreBundle = Platform
+				.getBundle("org.eclipse.emf.emfstore.client");
+		String emfStoreVersionString = (String) emfStoreBundle.getHeaders()
+				.get(org.osgi.framework.Constants.BUNDLE_VERSION);
 
 		clientVersionInfo.setVersion(emfStoreVersionString);
 		return clientVersionInfo;
@@ -203,7 +214,8 @@ public final class Configuration {
 	 * @return true if it is a release version
 	 */
 	public static boolean isReleaseVersion() {
-		return !isInternalReleaseVersion() && !getClientVersion().getVersion().endsWith("qualifier");
+		return !isInternalReleaseVersion()
+				&& !getClientVersion().getVersion().endsWith("qualifier");
 	}
 
 	/**
@@ -270,8 +282,8 @@ public final class Configuration {
 	}
 
 	/**
-	 * Return the name of the model release number file. This file identifies the release number of the model in the
-	 * workspace.
+	 * Return the name of the model release number file. This file identifies
+	 * the release number of the model in the workspace.
 	 * 
 	 * @return the file name
 	 */
@@ -280,23 +292,27 @@ public final class Configuration {
 	}
 
 	/**
-	 * If we are running tests. In this case the workspace will be created in USERHOME/.emfstore.test.
+	 * If we are running tests. In this case the workspace will be created in
+	 * USERHOME/.emfstore.test.
 	 * 
-	 * @param testing the testing to set
+	 * @param testing
+	 *            the testing to set
 	 */
 	public static void setTesting(boolean testing) {
 		Configuration.testing = testing;
 	}
 
 	/**
-	 * @return if we are running tests. In this case the workspace will be created in USERHOME/.emfstore.test.
+	 * @return if we are running tests. In this case the workspace will be
+	 *         created in USERHOME/.emfstore.test.
 	 */
 	public static boolean isTesting() {
 		return testing;
 	}
 
 	/**
-	 * Return the path of the plugin data directory inside the emfstore workspace (trailing file separator included).
+	 * Return the path of the plugin data directory inside the emfstore
+	 * workspace (trailing file separator included).
 	 * 
 	 * @return the plugin data directory absolute path as string
 	 */
@@ -305,7 +321,8 @@ public final class Configuration {
 	}
 
 	/**
-	 * Retrieve the editing domain. Will return null until the domain is initialized by the WorkspaceManager.
+	 * Retrieve the editing domain. Will return null until the domain is
+	 * initialized by the WorkspaceManager.
 	 * 
 	 * @return the workspace editing domain
 	 */
@@ -316,9 +333,25 @@ public final class Configuration {
 	/**
 	 * Sets the EditingDomain.
 	 * 
-	 * @param editingDomain new domain.
+	 * @param editingDomain
+	 *            new domain.
 	 */
 	public static void setEditingDomain(EditingDomain editingDomain) {
 		Configuration.editingDomain = editingDomain;
+	}
+
+	/**
+	 * Determines whehter to use resource splitting.
+	 * 
+	 * @result bool
+	 */
+	public static boolean useCrossResourceRefs() {
+		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry()
+				.getConfigurationElementsFor(
+						"org.eclipse.emf.emfstore.client.persistence.options");
+		for (IConfigurationElement extension : rawExtensions) {
+			return new Boolean(extension.getAttribute("crossReference"));
+		}
+		return true;
 	}
 }
