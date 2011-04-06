@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Navigatormeeditorbridge
+Bundle-Name: Navigator Editor-Bridge
 Bundle-SymbolicName: org.eclipse.emf.ecp.navigatoreditorbridge;singleton:=true
 Bundle-Version: 0.7.3
 Bundle-Activator: org.eclipse.emf.ecp.navigatoreditorbridge.Activator
