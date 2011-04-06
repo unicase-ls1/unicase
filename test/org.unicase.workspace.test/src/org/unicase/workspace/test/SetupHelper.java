@@ -13,44 +13,41 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.security.AccessControlException;
 import java.util.Calendar;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.emfstore.client.model.Configuration;
+import org.eclipse.emf.emfstore.client.model.ModelFactory;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.ServerInfo;
+import org.eclipse.emf.emfstore.client.model.Usersession;
+import org.eclipse.emf.emfstore.client.model.Workspace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.connectionmanager.AdminConnectionManager;
+import org.eclipse.emf.emfstore.client.model.connectionmanager.ConnectionManager;
+import org.eclipse.emf.emfstore.client.model.exceptions.NoLocalChangesException;
+import org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.FileUtil;
+import org.eclipse.emf.emfstore.server.EmfStoreController;
+import org.eclipse.emf.emfstore.server.ServerConfiguration;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.exceptions.FatalEmfStoreException;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
+import org.eclipse.emf.emfstore.server.model.ProjectInfo;
+import org.eclipse.emf.emfstore.server.model.SessionId;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId;
+import org.eclipse.emf.emfstore.server.model.versioning.LogMessage;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.emfstore.EmfStoreController;
-import org.unicase.emfstore.ServerConfiguration;
-import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
-import org.unicase.emfstore.esmodel.versioning.LogMessage;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.emfstore.exceptions.AccessControlException;
-import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.emfstore.exceptions.FatalEmfStoreException;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.FileUtil;
-import org.unicase.model.organization.User;
-import org.unicase.workspace.Configuration;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceFactory;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.connectionmanager.AdminConnectionManager;
-import org.unicase.workspace.connectionmanager.ConnectionManager;
-import org.unicase.workspace.exceptions.NoLocalChangesException;
-import org.unicase.workspace.impl.WorkspaceImpl;
 import org.unicase.workspace.test.integration.forward.IntegrationTestHelper;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Helper class for setup/cleanup test fixtures.
@@ -244,7 +241,7 @@ public class SetupHelper {
 	 */
 	public void loginServer() {
 		if (usersession == null) {
-			usersession = WorkspaceFactory.eINSTANCE.createUsersession();
+			usersession = ModelFactory.eINSTANCE.createUsersession();
 
 			ServerInfo serverInfo = getServerInfo();
 			usersession.setServerInfo(serverInfo);
@@ -269,7 +266,7 @@ public class SetupHelper {
 	 * @return server info
 	 */
 	public static ServerInfo getServerInfo() {
-		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+		ServerInfo serverInfo = ModelFactory.eINSTANCE.createServerInfo();
 		serverInfo.setPort(8080);
 		// serverInfo.setUrl("127.0.0.1");
 		serverInfo.setUrl("localhost");
@@ -294,15 +291,15 @@ public class SetupHelper {
 	 * Creates an empty project space.
 	 */
 	public void createEmptyTestProjectSpace() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
-				ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
-				projectSpace.setProject(MetamodelFactory.eINSTANCE.createProject());
+				ProjectSpace projectSpace = ModelFactory.eINSTANCE.createProjectSpace();
+				projectSpace.setProject(org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createProject());
 				projectSpace.setProjectName("Testproject");
 				projectSpace.setProjectDescription("Test description");
-				projectSpace.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
+				projectSpace.setLocalOperations(ModelFactory.eINSTANCE.createOperationComposite());
 
 				projectSpace.initResources(workSpace.eResource().getResourceSet());
 
@@ -397,7 +394,7 @@ public class SetupHelper {
 		// logging in on server
 		loginServer();
 		// create a new project id
-		projectId = EsmodelFactory.eINSTANCE.createProjectId();
+		projectId = org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createProjectId();
 		// visual check if null
 		System.out.println("-> Session id is: " + usersession.getSessionId().getId());
 		System.out.println("-> Project id is: " + projectId.getId());
@@ -516,11 +513,11 @@ public class SetupHelper {
 	 */
 	public void shareProject() {
 		LOGGER.log(Level.INFO, "sharing project...");
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				if (usersession == null) {
-					usersession = WorkspaceFactory.eINSTANCE.createUsersession();
+					usersession = ModelFactory.eINSTANCE.createUsersession();
 					ServerInfo serverInfo = getServerInfo();
 					usersession.setServerInfo(serverInfo);
 					usersession.setUsername("super");
@@ -550,8 +547,8 @@ public class SetupHelper {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				System.out.println(IntegrationTestHelper.getChangePackage(getTestProjectSpace().getOperations(), true,
-					false).getOperations().size()
+				System.out.println(IntegrationTestHelper
+					.getChangePackage(getTestProjectSpace().getOperations(), true, false).getOperations().size()
 					+ " operations.");
 				try {
 					getTestProjectSpace().commit(logMessage);
@@ -592,7 +589,8 @@ public class SetupHelper {
 	 */
 	public Project getCompareProject() throws EmfStoreException {
 		LOGGER.log(Level.INFO, "retrieving compare project...");
-		final ProjectInfo projectInfo = EsmodelFactory.eINSTANCE.createProjectInfo();
+		final ProjectInfo projectInfo = org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE
+			.createProjectInfo();
 		projectInfo.setName("CompareProject");
 		projectInfo.setDescription("compare project description");
 		projectInfo.setProjectId(projectId);
@@ -601,8 +599,8 @@ public class SetupHelper {
 			@Override
 			protected void doExecute() {
 				try {
-					compareProject = WorkspaceManager.getInstance().getCurrentWorkspace().checkout(usersession,
-						projectInfo).getProject();
+					compareProject = WorkspaceManager.getInstance().getCurrentWorkspace()
+						.checkout(usersession, projectInfo).getProject();
 					LOGGER.log(Level.INFO, "compare project checked out.");
 				} catch (EmfStoreException e) {
 					e.printStackTrace();
@@ -667,11 +665,11 @@ public class SetupHelper {
 	 * @param user the session is initialized with this User's name
 	 * @return the session
 	 */
-	public Usersession createUsersession(User user) {
-		Usersession session = WorkspaceFactory.eINSTANCE.createUsersession();
+	public Usersession createUsersession(String user) {
+		Usersession session = ModelFactory.eINSTANCE.createUsersession();
 		getWorkSpace().getUsersessions().add(session);
 		session.setServerInfo(getServerInfo());
-		session.setUsername(user.getName());
+		session.setUsername(user);
 		session.setPassword("foo");
 		return session;
 	}
@@ -684,7 +682,8 @@ public class SetupHelper {
 
 			@Override
 			protected void doExecute() {
-				testProjectSpace.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
+				testProjectSpace.setProjectId(org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE
+					.createProjectId());
 				projectId = testProjectSpace.getProjectId();
 			}
 		});

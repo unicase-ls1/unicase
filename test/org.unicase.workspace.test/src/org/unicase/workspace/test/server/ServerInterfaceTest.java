@@ -11,21 +11,21 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.server.connection.rmi.SerializationUtil;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.exceptions.UnknownSessionException;
+import org.eclipse.emf.emfstore.server.model.ProjectInfo;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.HistoryInfo;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.TagVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.VersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
 import org.junit.Assert;
 import org.junit.Test;
-import org.unicase.emfstore.connection.rmi.SerializationUtil;
-import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.VersionSpec;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
-import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.emfstore.exceptions.UnknownSessionException;
-import org.unicase.metamodel.Project;
 import org.unicase.workspace.test.SetupHelper;
 
 /**
@@ -106,8 +106,8 @@ public class ServerInterfaceTest extends ServerTests {
 
 		assertTrue(getConnectionManager().getProjectList(getSessionId()).size() == getProjectsOnServerBeforeTest() + 1);
 		assertNotNull(getGeneratedProject());
-		assertEqual(getGeneratedProject(), getConnectionManager().getProject(getSessionId(),
-			projectInfo.getProjectId(), VersionSpec.HEAD_VERSION));
+		assertEqual(getGeneratedProject(),
+			getConnectionManager().getProject(getSessionId(), projectInfo.getProjectId(), VersionSpec.HEAD_VERSION));
 	}
 
 	/**

@@ -14,29 +14,20 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.emfstore.client.model.exceptions.UnsupportedNotificationException;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceOperationImpl;
 import org.junit.Test;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.rationale.Issue;
-import org.unicase.model.rationale.Proposal;
-import org.unicase.model.rationale.RationaleFactory;
-import org.unicase.model.rationale.RationalePackage;
-import org.unicase.model.requirement.Actor;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.UseCase;
-import org.unicase.workspace.exceptions.UnsupportedNotificationException;
 import org.unicase.workspace.test.WorkspaceTest;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests the SingleReferenceOperation.
@@ -56,7 +47,7 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -129,28 +120,28 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 	// getProject().addModelElement(oldActor);
 	// Actor newActor = RequirementFactory.eINSTANCE.createActor();
 	// getProject().addModelElement(newActor);
-	//		
+	//
 	// clearOperations();
-	//		
+	//
 	// useCase.setInitiatingActor(oldActor);
 	// assertEquals(oldActor, useCase.getInitiatingActor());
 	// EList<UseCase> initiatedUseCases = oldActor.getInitiatedUseCases();
 	// assertEquals(1, initiatedUseCases.size());
 	// assertEquals(useCase, initiatedUseCases.get(0));
-	//		
+	//
 	// useCase.setInitiatingActor(newActor);
 	// assertEquals(newActor, useCase.getInitiatingActor());
 	// initiatedUseCases = newActor.getInitiatedUseCases();
 	// assertEquals(1, initiatedUseCases.size());
 	// assertEquals(useCase, initiatedUseCases.get(0));
-	//		
+	//
 	// List<AbstractOperation> operations = getProjectSpace().getOperations();
-	//		
+	//
 	// assertEquals(1, operations.size());
 	// AbstractOperation operation = operations.get(0);
 	// assertEquals(true, operation instanceof SingleReferenceOperation);
 	// SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) operation;
-	//		
+	//
 	// assertEquals(null, singleReferenceOperation.getOldValue());
 	// assertEquals(newActor.getModelElementId(), singleReferenceOperation.getNewValue());
 	// assertEquals("initiatingActor", singleReferenceOperation.getFeatureName());
@@ -174,7 +165,7 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 		final Actor oldActor = RequirementFactory.eINSTANCE.createActor();
 		final Actor newActor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -234,7 +225,7 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 		assertEquals(true, reverse instanceof SingleReferenceOperation);
 		final SingleReferenceOperation reversedSingleReferenceOperation = (SingleReferenceOperation) reverse;
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -267,7 +258,7 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final LeafSection oldSection = DocumentFactory.eINSTANCE.createLeafSection();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -307,7 +298,7 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 		final Issue newIssue = RationaleFactory.eINSTANCE.createIssue();
 		final Proposal proposal = RationaleFactory.eINSTANCE.createProposal();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -372,11 +363,11 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 
 		assertEquals(oldIssueId, singleReferenceOperation.getOldValue());
 		assertEquals(newIssueId, singleReferenceOperation.getNewValue());
-		assertEquals(RationalePackage.eINSTANCE.getProposal_Issue().getName(), singleReferenceOperation
-			.getFeatureName());
+		assertEquals(RationalePackage.eINSTANCE.getProposal_Issue().getName(),
+			singleReferenceOperation.getFeatureName());
 		assertEquals(proposalId, singleReferenceOperation.getModelElementId());
-		assertEquals(RationalePackage.eINSTANCE.getIssue_Proposals().getName(), singleReferenceOperation
-			.getOppositeFeatureName());
+		assertEquals(RationalePackage.eINSTANCE.getIssue_Proposals().getName(),
+			singleReferenceOperation.getOppositeFeatureName());
 		assertEquals(true, singleReferenceOperation.isBidirectional());
 		Set<ModelElementId> otherInvolvedModelElements = singleReferenceOperation.getOtherInvolvedModelElements();
 		assertEquals(2, otherInvolvedModelElements.size());
@@ -394,7 +385,7 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 		final Issue issue = RationaleFactory.eINSTANCE.createIssue();
 		final Proposal proposal = RationaleFactory.eINSTANCE.createProposal();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -418,7 +409,7 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 
 		ModelElementId proposalId = ModelUtil.getProject(proposal).getModelElementId(proposal);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -465,11 +456,11 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 
 		assertEquals(issueId, singleReferenceOperation.getOldValue());
 		assertEquals(null, singleReferenceOperation.getNewValue());
-		assertEquals(RationalePackage.eINSTANCE.getProposal_Issue().getName(), singleReferenceOperation
-			.getFeatureName());
+		assertEquals(RationalePackage.eINSTANCE.getProposal_Issue().getName(),
+			singleReferenceOperation.getFeatureName());
 		assertEquals(proposalId, singleReferenceOperation.getModelElementId());
-		assertEquals(RationalePackage.eINSTANCE.getIssue_Proposals().getName(), singleReferenceOperation
-			.getOppositeFeatureName());
+		assertEquals(RationalePackage.eINSTANCE.getIssue_Proposals().getName(),
+			singleReferenceOperation.getOppositeFeatureName());
 		assertEquals(true, singleReferenceOperation.isBidirectional());
 		Set<ModelElementId> otherInvolvedModelElements = singleReferenceOperation.getOtherInvolvedModelElements();
 		assertEquals(1, otherInvolvedModelElements.size());

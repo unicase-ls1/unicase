@@ -13,14 +13,11 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
+import org.eclipse.emf.emfstore.client.model.changeTracking.notification.NotificationInfo;
+import org.eclipse.emf.emfstore.client.model.changeTracking.notification.recording.NotificationRecording;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.unicase.model.requirement.Actor;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.UseCase;
-import org.unicase.workspace.changeTracking.notification.NotificationInfo;
-import org.unicase.workspace.changeTracking.notification.recording.NotificationRecording;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests the notification recording for attribute features.
@@ -36,7 +33,7 @@ public class ReferenceNotificationTest extends NotificationTest {
 	public void changeReference1toN() {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -99,7 +96,7 @@ public class ReferenceNotificationTest extends NotificationTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -150,7 +147,7 @@ public class ReferenceNotificationTest extends NotificationTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -198,7 +195,7 @@ public class ReferenceNotificationTest extends NotificationTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -248,7 +245,7 @@ public class ReferenceNotificationTest extends NotificationTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {

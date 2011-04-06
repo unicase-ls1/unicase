@@ -11,14 +11,8 @@ import java.util.List;
 import junit.framework.TestCase;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.junit.Test;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.Project;
-import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.TaskFactory;
-import org.unicase.model.task.WorkPackage;
-import org.unicase.model.task.util.EstimateHelper;
 
 /**
  * Test methods responsible for computation of estimates in WorkPackage and EstimateHelper.
@@ -179,8 +173,8 @@ public class TestEstimateComputation extends TestCase {
 	 */
 	@Test
 	public void testGetClosedAggregatedEstimate() {
-		assertEquals(closedEstimatesSum + leafOpenerClosedEstimatesSum, EstimateHelper
-			.getClosedAggregatedEstimate(wpRoot));
+		assertEquals(closedEstimatesSum + leafOpenerClosedEstimatesSum,
+			EstimateHelper.getClosedAggregatedEstimate(wpRoot));
 		assertEquals(closedEstimatesSum, wpRoot.getClosedAggregatedEstimate());
 	}
 

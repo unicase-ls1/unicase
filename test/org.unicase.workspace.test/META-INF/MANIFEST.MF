@@ -25,9 +25,10 @@ Export-Package: org.unicase.workspace.test,
  org.unicase.workspace.test.testmodel.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.unicase.metamodel;visibility:=reexport,
  org.junit4;visibility:=reexport,
- org.unicase.workspace,
- org.unicase.model,
- org.unicase.model.edit
+ org.eclipse.emf.emfstore.common.model;bundle-version="0.7.3",
+ org.eclipse.emf.emfstore.server.model;bundle-version="0.7.3",
+ org.eclipse.emf.emfstore.client;bundle-version="0.7.3",
+ org.eclipse.emf.emfstore.client.model.edit;bundle-version="0.7.3",
+ org.eclipse.emf.emfstore.client.transaction;bundle-version="0.7.3"
 Bundle-ActivationPolicy: lazy

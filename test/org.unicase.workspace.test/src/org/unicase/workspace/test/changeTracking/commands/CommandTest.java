@@ -32,33 +32,20 @@ import org.eclipse.emf.edit.command.PasteFromClipboardCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.emfstore.client.model.Configuration;
+import org.eclipse.emf.emfstore.client.model.exceptions.UnsupportedNotificationException;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
 import org.junit.Test;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.DocumentPackage;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.organization.OrganizationFactory;
-import org.unicase.model.organization.User;
-import org.unicase.model.rationale.Comment;
-import org.unicase.model.rationale.RationaleFactory;
-import org.unicase.model.requirement.Actor;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.UseCase;
-import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.TaskFactory;
-import org.unicase.model.task.WorkPackage;
-import org.unicase.workspace.Configuration;
-import org.unicase.workspace.exceptions.UnsupportedNotificationException;
 import org.unicase.workspace.test.WorkspaceTest;
-import org.unicase.workspace.util.UnicaseCommand;
+
+import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User;
 
 /**
  * Tests for the command recording to detect deletes, cuts and copies.
@@ -77,7 +64,7 @@ public class CommandTest extends WorkspaceTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		leafSection.getModelElements().add(actor);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
@@ -121,7 +108,7 @@ public class CommandTest extends WorkspaceTest {
 		final Comment createComment = RationaleFactory.eINSTANCE.createComment();
 		final User createUser = OrganizationFactory.eINSTANCE.createUser();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -156,7 +143,7 @@ public class CommandTest extends WorkspaceTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		leafSection.getModelElements().add(actor);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
@@ -200,7 +187,7 @@ public class CommandTest extends WorkspaceTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		leafSection.getModelElements().add(actor);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
@@ -235,7 +222,7 @@ public class CommandTest extends WorkspaceTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		leafSection.getModelElements().add(actor);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
@@ -276,7 +263,7 @@ public class CommandTest extends WorkspaceTest {
 	public void deleteCommandTest() throws UnsupportedOperationException, UnsupportedNotificationException {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -318,7 +305,7 @@ public class CommandTest extends WorkspaceTest {
 		final Actor newActor = RequirementFactory.eINSTANCE.createActor();
 		final Actor otherActor = RequirementFactory.eINSTANCE.createActor();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(section);
@@ -464,7 +451,7 @@ public class CommandTest extends WorkspaceTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		leafSection.getModelElements().add(actor);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
@@ -536,7 +523,7 @@ public class CommandTest extends WorkspaceTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		leafSection.getModelElements().add(actor);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
@@ -607,7 +594,7 @@ public class CommandTest extends WorkspaceTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		leafSection.getModelElements().add(actor);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
@@ -629,7 +616,7 @@ public class CommandTest extends WorkspaceTest {
 		assertTrue(editingDomain.getCommandStack().canUndo());
 
 		// undo the command
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				editingDomain.getCommandStack().undo();
@@ -649,7 +636,7 @@ public class CommandTest extends WorkspaceTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		leafSection.getModelElements().add(actor);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
@@ -689,7 +676,7 @@ public class CommandTest extends WorkspaceTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		leafSection.getModelElements().add(actor);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
@@ -732,7 +719,7 @@ public class CommandTest extends WorkspaceTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		leafSection.getModelElements().add(actor);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
@@ -773,7 +760,7 @@ public class CommandTest extends WorkspaceTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		leafSection.getModelElements().add(actor);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
@@ -831,7 +818,7 @@ public class CommandTest extends WorkspaceTest {
 		ai2.setContainingWorkpackage(workPackage);
 		leafSection.getModelElements().add(workPackage);
 		leafSection.getModelElements().add(user);
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
@@ -868,7 +855,7 @@ public class CommandTest extends WorkspaceTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		leafSection.getModelElements().add(actor);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(leafSection);
@@ -895,7 +882,7 @@ public class CommandTest extends WorkspaceTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		leafSection.getModelElements().add(actor);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(leafSection);

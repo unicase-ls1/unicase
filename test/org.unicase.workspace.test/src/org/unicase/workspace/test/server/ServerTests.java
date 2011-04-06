@@ -8,36 +8,35 @@ package org.unicase.workspace.test.server;
 import java.util.HashMap;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.emfstore.client.model.Configuration;
+import org.eclipse.emf.emfstore.client.model.ServerInfo;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.connectionmanager.ConnectionManager;
+import org.eclipse.emf.emfstore.client.model.connectionmanager.KeyStoreManager;
+import org.eclipse.emf.emfstore.common.model.ModelFactory;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.util.SerializationException;
+import org.eclipse.emf.emfstore.server.ServerConfiguration;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.exceptions.InvalidInputException;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
+import org.eclipse.emf.emfstore.server.model.ProjectInfo;
+import org.eclipse.emf.emfstore.server.model.SessionId;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolFactory;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.RolesPackage;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.HistoryQuery;
+import org.eclipse.emf.emfstore.server.model.versioning.LogMessage;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.TagVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.VersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.unicase.emfstore.ServerConfiguration;
-import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
-import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
-import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
-import org.unicase.emfstore.esmodel.versioning.LogMessage;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.VersionSpec;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.emfstore.exceptions.InvalidInputException;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.metamodel.util.SerializationException;
-import org.unicase.workspace.Configuration;
-import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.connectionmanager.ConnectionManager;
-import org.unicase.workspace.connectionmanager.KeyStoreManager;
 import org.unicase.workspace.test.SetupHelper;
 
 /**
@@ -231,8 +230,8 @@ public class ServerTests {
 	 */
 	public static HistoryQuery createHistoryQuery(PrimaryVersionSpec ver1, PrimaryVersionSpec ver2) {
 		HistoryQuery historyQuery = VersioningFactory.eINSTANCE.createHistoryQuery();
-		historyQuery.setSource((PrimaryVersionSpec) EcoreUtil.copy(ver1));
-		historyQuery.setTarget((PrimaryVersionSpec) EcoreUtil.copy(ver2));
+		historyQuery.setSource(EcoreUtil.copy(ver1));
+		historyQuery.setTarget(EcoreUtil.copy(ver2));
 		return historyQuery;
 	}
 
@@ -241,12 +240,12 @@ public class ServerTests {
 		arguments.put(boolean.class, false);
 		arguments.put(String.class, new String());
 		arguments.put(SessionId.class, EcoreUtil.copy(getSessionId()));
-		arguments.put(ProjectId.class, EsmodelFactory.eINSTANCE.createProjectId());
+		arguments.put(ProjectId.class, org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createProjectId());
 		arguments.put(PrimaryVersionSpec.class, VersioningFactory.eINSTANCE.createPrimaryVersionSpec());
 		arguments.put(VersionSpec.class, VersioningFactory.eINSTANCE.createPrimaryVersionSpec());
 		arguments.put(TagVersionSpec.class, VersioningFactory.eINSTANCE.createTagVersionSpec());
 		arguments.put(LogMessage.class, VersioningFactory.eINSTANCE.createLogMessage());
-		arguments.put(Project.class, MetamodelFactory.eINSTANCE.createProject());
+		arguments.put(Project.class, ModelFactory.eINSTANCE.createProject());
 		arguments.put(ChangePackage.class, VersioningFactory.eINSTANCE.createChangePackage());
 		arguments.put(HistoryQuery.class, VersioningFactory.eINSTANCE.createHistoryQuery());
 		arguments.put(ChangePackage.class, VersioningFactory.eINSTANCE.createChangePackage());

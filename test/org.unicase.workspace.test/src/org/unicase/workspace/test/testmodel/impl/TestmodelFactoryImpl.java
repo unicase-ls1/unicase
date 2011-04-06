@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.workspace.test.testmodel.*;
 import org.unicase.workspace.test.testmodel.TestElement;
 import org.unicase.workspace.test.testmodel.TestmodelFactory;
 import org.unicase.workspace.test.testmodel.TestmodelPackage;

@@ -10,19 +10,15 @@ import static org.junit.Assert.assertEquals;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.emfstore.client.model.exceptions.UnsupportedNotificationException;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceMoveOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
 import org.junit.Test;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.model.requirement.Actor;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.RequirementPackage;
-import org.unicase.model.requirement.UseCase;
-import org.unicase.workspace.exceptions.UnsupportedNotificationException;
 import org.unicase.workspace.test.WorkspaceTest;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests the MultiReferenceMoveOperation.
@@ -44,7 +40,7 @@ public class MultiReferenceMoveOperationTest extends WorkspaceTest {
 		final UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
 		final UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -71,7 +67,7 @@ public class MultiReferenceMoveOperationTest extends WorkspaceTest {
 		assertEquals(useCase2, initiatedUseCases.get(1));
 		assertEquals(useCase3, initiatedUseCases.get(2));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -121,7 +117,7 @@ public class MultiReferenceMoveOperationTest extends WorkspaceTest {
 		final UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
 		final UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				// useCase1.setIdentifier("usecase1");
@@ -139,7 +135,7 @@ public class MultiReferenceMoveOperationTest extends WorkspaceTest {
 			}
 		}.run(false);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				assertEquals(actor, useCase1.getInitiatingActor());
@@ -174,7 +170,7 @@ public class MultiReferenceMoveOperationTest extends WorkspaceTest {
 		assertEquals(2, multiReferenceMoveOperation.getOldIndex());
 		assertEquals(useCase2Id, multiReferenceMoveOperation.getReferencedModelElementId());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				reverse.apply(getProject());
@@ -202,7 +198,7 @@ public class MultiReferenceMoveOperationTest extends WorkspaceTest {
 		final UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
 		final UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(actor);
@@ -228,7 +224,7 @@ public class MultiReferenceMoveOperationTest extends WorkspaceTest {
 		assertEquals(useCase2, initiatedUseCases.get(1));
 		assertEquals(useCase3, initiatedUseCases.get(2));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -248,7 +244,7 @@ public class MultiReferenceMoveOperationTest extends WorkspaceTest {
 		multiReferenceMoveOperation.setOldIndex(0);
 		multiReferenceMoveOperation.setNewIndex(3);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				multiReferenceMoveOperation.apply(getProject());
@@ -275,7 +271,7 @@ public class MultiReferenceMoveOperationTest extends WorkspaceTest {
 		multiReferenceMoveOperation2.setOldIndex(0);
 		multiReferenceMoveOperation2.setNewIndex(-1);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				multiReferenceMoveOperation2.apply(getProject());
@@ -293,7 +289,7 @@ public class MultiReferenceMoveOperationTest extends WorkspaceTest {
 
 		final UseCase useCase4 = RequirementFactory.eINSTANCE.createUseCase();
 		// useCase4.setIdentifier("usecase4");
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -314,7 +310,7 @@ public class MultiReferenceMoveOperationTest extends WorkspaceTest {
 		multiReferenceMoveOperation3.setOldIndex(0);
 		multiReferenceMoveOperation3.setNewIndex(2);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				multiReferenceMoveOperation3.apply(getProject());

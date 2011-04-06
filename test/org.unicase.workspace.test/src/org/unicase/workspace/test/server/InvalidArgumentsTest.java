@@ -8,23 +8,23 @@ package org.unicase.workspace.test.server;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import org.eclipse.emf.emfstore.client.model.connectionmanager.rmi.RMIConnectionManagerImpl;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.server.connection.rmi.RMIEmfStoreFacade;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.exceptions.InvalidInputException;
+import org.eclipse.emf.emfstore.server.exceptions.UnknownSessionException;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
+import org.eclipse.emf.emfstore.server.model.SessionId;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.HistoryQuery;
+import org.eclipse.emf.emfstore.server.model.versioning.LogMessage;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.TagVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.VersionSpec;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade;
-import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
-import org.unicase.emfstore.esmodel.versioning.LogMessage;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.VersionSpec;
-import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.emfstore.exceptions.InvalidInputException;
-import org.unicase.emfstore.exceptions.UnknownSessionException;
-import org.unicase.metamodel.Project;
-import org.unicase.workspace.connectionmanager.rmi.RMIConnectionManagerImpl;
 import org.unicase.workspace.test.SetupHelper;
 
 /**

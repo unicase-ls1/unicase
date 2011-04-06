@@ -10,23 +10,13 @@ import static org.junit.Assert.assertEquals;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.server.conflictDetection.ConflictDetector;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.junit.Test;
-import org.unicase.emfstore.conflictDetection.ConflictDetector;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.model.bug.BugFactory;
-import org.unicase.model.bug.BugReport;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.requirement.Actor;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.UseCase;
-import org.unicase.model.task.Milestone;
-import org.unicase.model.task.TaskFactory;
-import org.unicase.model.task.WorkPackage;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests conflict detection behaviour on attributes.
@@ -45,7 +35,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		actor.setName("old name");
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -64,7 +54,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 		final Actor actor1 = (Actor) getProject().getModelElement(actorId);
 		final Actor actor2 = (Actor) project2.getModelElement(actorId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -94,7 +84,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		actor.setName("old name");
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -113,7 +103,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(section1Id);
 		final Actor actor2 = (Actor) project2.getModelElement(actorId);
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -141,7 +131,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 	public void conflictDeleteAttributeChangesInDelObject() {
 
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -158,7 +148,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 
 		final LeafSection section1 = (LeafSection) getProject().getModelElement(sectionId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -188,7 +178,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -207,7 +197,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 
 		final Actor actor1 = (Actor) getProject().getModelElement(actorId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -237,7 +227,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final WorkPackage pack = TaskFactory.eINSTANCE.createWorkPackage();
 		final BugReport br = BugFactory.eINSTANCE.createBugReport();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -259,7 +249,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 		final BugReport br1 = (BugReport) getProject().getModelElement(brId);
 		final WorkPackage pack1 = (WorkPackage) getProject().getModelElement(packId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -289,7 +279,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		final Milestone mileStone = TaskFactory.eINSTANCE.createMilestone();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -312,7 +302,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 		final Milestone mileStone1 = (Milestone) getProject().getModelElement(mileStoneId);
 		final UseCase useCase1 = (UseCase) getProject().getModelElement(useCaseId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -346,7 +336,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 		final WorkPackage pack = TaskFactory.eINSTANCE.createWorkPackage();
 		final BugReport br1 = BugFactory.eINSTANCE.createBugReport();
 		final BugReport br2 = BugFactory.eINSTANCE.createBugReport();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -362,7 +352,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 
 		assertEquals(pack.getContainedWorkItems().get(0), br1);
 		assertEquals(pack.getContainedWorkItems().get(1), br2);
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -382,7 +372,7 @@ public class ConflictDetectionDeleteTest extends ConflictDetectionTest {
 		final WorkPackage pack1 = (WorkPackage) getProject().getModelElement(packId);
 		final LeafSection section2 = (LeafSection) project2.getModelElement(sectionId);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {

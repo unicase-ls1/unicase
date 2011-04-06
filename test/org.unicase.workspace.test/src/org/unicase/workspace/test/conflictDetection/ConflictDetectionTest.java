@@ -8,16 +8,16 @@ package org.unicase.workspace.test.conflictDetection;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy;
-import org.unicase.emfstore.conflictDetection.IndexSensitiveConflictDetectionStrategy;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
+import org.eclipse.core.internal.resources.Workspace;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommandWithResult;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.conflictDetection.ConflictDetectionStrategy;
+import org.eclipse.emf.emfstore.server.conflictDetection.IndexSensitiveConflictDetectionStrategy;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.unicase.workspace.test.WorkspaceTest;
-import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**
  * Abstract super class for operation tests, contains setup.
@@ -35,7 +35,7 @@ public abstract class ConflictDetectionTest extends WorkspaceTest {
 	public ProjectSpace cloneProjectSpace(final ProjectSpace ps) {
 
 		final Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-		ProjectSpace result = new UnicaseCommandWithResult<ProjectSpace>() {
+		ProjectSpace result = new EMFStoreCommandWithResult<ProjectSpace>() {
 			@Override
 			protected ProjectSpace doRun() {
 				Project clonedProject = ModelUtil.clone(ps.getProject());

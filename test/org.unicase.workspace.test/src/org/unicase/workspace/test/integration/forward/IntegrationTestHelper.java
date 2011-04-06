@@ -33,23 +33,22 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.emfstore.client.model.Configuration;
+import org.eclipse.emf.emfstore.client.model.ModelFactory;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.util.SerializationException;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.metamodel.util.SerializationException;
-import org.unicase.workspace.Configuration;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceFactory;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.impl.ProjectSpaceImpl;
 
 /**
  * Helper class for testing.
@@ -93,8 +92,8 @@ public final class IntegrationTestHelper {
 	 */
 	public static ProjectSpace createEmptyProjectSpace(String name) {
 
-		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
-		ProjectId projectId = EsmodelFactory.eINSTANCE.createProjectId();
+		ProjectSpace projectSpace = ModelFactory.eINSTANCE.createProjectSpace();
+		ProjectId projectId = org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createProjectId();
 		projectId.setId(name);
 		projectSpace.setIdentifier(name);
 		projectSpace.setProjectId(projectId);
@@ -137,7 +136,7 @@ public final class IntegrationTestHelper {
 			@Override
 			protected void doExecute() {
 				for (AbstractOperation op : operations) {
-					changePackage.getOperations().add((AbstractOperation) EcoreUtil.copy(op));
+					changePackage.getOperations().add(EcoreUtil.copy(op));
 
 				}
 				if (clearOperations) {

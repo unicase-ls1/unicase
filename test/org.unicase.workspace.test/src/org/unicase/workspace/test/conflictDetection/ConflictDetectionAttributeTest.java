@@ -10,17 +10,13 @@ import static org.junit.Assert.assertEquals;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.server.conflictDetection.ConflictDetector;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.junit.Test;
-import org.unicase.emfstore.conflictDetection.ConflictDetector;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.requirement.Actor;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests conflict detection behaviour on attributes.
@@ -39,7 +35,7 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		actor.setName("old name");
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(section);
@@ -58,7 +54,7 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
 		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				actor1.setName("change 1");
@@ -86,7 +82,7 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 		final LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		actor.setName("old name");
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -104,7 +100,7 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 
 		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
 		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -134,7 +130,7 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 		final Actor actor = RequirementFactory.eINSTANCE.createActor();
 		actor.setName("old name");
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -154,7 +150,7 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 		final Actor actor1 = (Actor) getProject().getModelElement(actor1Id);
 		final Actor actor2 = (Actor) project2.getModelElement(actor2Id);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {

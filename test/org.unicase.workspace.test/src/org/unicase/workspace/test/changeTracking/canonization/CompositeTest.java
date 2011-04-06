@@ -11,18 +11,16 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
+import org.eclipse.emf.emfstore.client.model.CompositeOperationHandle;
+import org.eclipse.emf.emfstore.client.model.exceptions.InvalidHandleException;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationsCanonizer;
 import org.junit.Test;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCanonizer;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.UseCase;
-import org.unicase.workspace.CompositeOperationHandle;
-import org.unicase.workspace.exceptions.InvalidHandleException;
 import org.unicase.workspace.test.WorkspaceTest;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Tests canonization of composite operations.
@@ -39,7 +37,7 @@ public class CompositeTest extends WorkspaceTest {
 	@Test
 	public void emptyComposite() throws InvalidHandleException {
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				// create an empty composite, should be canonized out
@@ -56,7 +54,7 @@ public class CompositeTest extends WorkspaceTest {
 
 		assertEquals(operations.size(), 1);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
@@ -77,7 +75,7 @@ public class CompositeTest extends WorkspaceTest {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -88,7 +86,7 @@ public class CompositeTest extends WorkspaceTest {
 		final Project expectedProject = ModelUtil.clone(getProject());
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				clearOperations();
@@ -115,7 +113,7 @@ public class CompositeTest extends WorkspaceTest {
 		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 		assertEquals(operations.size(), 1);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
@@ -137,7 +135,7 @@ public class CompositeTest extends WorkspaceTest {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -149,7 +147,7 @@ public class CompositeTest extends WorkspaceTest {
 		final Project expectedProject = ModelUtil.clone(getProject());
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				clearOperations();
@@ -178,7 +176,7 @@ public class CompositeTest extends WorkspaceTest {
 		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 		assertEquals(operations.size(), 1);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				OperationsCanonizer.canonize(operations);
@@ -200,7 +198,7 @@ public class CompositeTest extends WorkspaceTest {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -225,7 +223,7 @@ public class CompositeTest extends WorkspaceTest {
 		assertEquals(operations.size(), 1);
 		final CompositeOperation comp = (CompositeOperation) operations.get(0);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				comp.setMainOperation(comp.getSubOperations().get(1)); // setName to from "A" to "B"
@@ -248,7 +246,7 @@ public class CompositeTest extends WorkspaceTest {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -274,7 +272,7 @@ public class CompositeTest extends WorkspaceTest {
 		assertEquals(operations.size(), 1);
 		final CompositeOperation comp = (CompositeOperation) operations.get(0);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				comp.setMainOperation(comp.getSubOperations().get(0)); // setName to from "oldName" to "A"
@@ -298,7 +296,7 @@ public class CompositeTest extends WorkspaceTest {
 
 		final UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProject().addModelElement(useCase);
@@ -323,7 +321,7 @@ public class CompositeTest extends WorkspaceTest {
 		final List<AbstractOperation> operations = getProjectSpace().getOperations();
 		assertEquals(operations.size(), 1);
 		final CompositeOperation comp = (CompositeOperation) operations.get(0);
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				comp.setMainOperation(comp.getSubOperations().get(1)); // setName to from "A" to "B"

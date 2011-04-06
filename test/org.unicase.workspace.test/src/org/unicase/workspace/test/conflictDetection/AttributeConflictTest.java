@@ -11,14 +11,12 @@ import static org.junit.Assert.assertEquals;
 import java.util.Date;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.server.conflictDetection.ConflictDetectionStrategy;
+import org.eclipse.emf.emfstore.server.conflictDetection.FineGrainedConflictDetectionStrategy;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
 import org.junit.Test;
-import org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy;
-import org.unicase.emfstore.conflictDetection.FineGrainedConflictDetectionStrategy;
-import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Test conflict detection for attributes.
@@ -33,7 +31,7 @@ public class AttributeConflictTest extends ConflictDetectionTest {
 	@Test
 	public void testAttributeWithAttributeConflict() {
 		final EObject modelElement = RequirementFactory.eINSTANCE.createActor();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -56,7 +54,8 @@ public class AttributeConflictTest extends ConflictDetectionTest {
 		attributeOperation2.setClientDate(new Date());
 		attributeOperation2.setFeatureName(featureName);
 		attributeOperation2.setIdentifier("id1");
-		attributeOperation2.setModelElementId(MetamodelFactory.eINSTANCE.createModelElementId());
+		attributeOperation2.setModelElementId(org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE
+			.createModelElementId());
 		attributeOperation2.setOldValue("oldValue");
 		attributeOperation2.setNewValue("oldeValue");
 
