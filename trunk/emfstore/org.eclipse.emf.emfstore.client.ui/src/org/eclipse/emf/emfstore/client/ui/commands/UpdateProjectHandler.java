@@ -91,7 +91,7 @@ public class UpdateProjectHandler extends ServerRequestCommandHandler implements
 			Display.getDefault().asyncExec(new Runnable() {
 				public void run() {
 					PlatformUI.getWorkbench().getDecoratorManager()
-						.update("org.eclipse.emf.ecp.common.decorators.VersionDecorator");
+						.update("org.eclipse.emf.emfstore.client.ui.decorators.VersionDecorator");
 				}
 			});
 		} catch (ChangeConflictException e1) {
