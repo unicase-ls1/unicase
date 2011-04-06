@@ -11,7 +11,7 @@
       <factory
             class="org.eclipse.emf.ecp.common.model.workSpaceModel.provider.WorkSpaceModelItemProviderAdapterFactory"
             supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
-            uri="http://eclipse.org/emf/ecp/workspaceModel">
+            uri="http://eclipse.org/emf/ecp/common/model/workspaceModel">
       </factory>
    </extension>
    <extension
@@ -19,7 +19,7 @@
       <package
             class="org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage"
             genModel="model/workspaceModel.gemodel"
-            uri="http://eclipse.org/emf/ecp/workspaceModel">
+            uri="http://eclipse.org/emf/ecp/common/model/workspaceModel">
       </package>
    </extension>
 </plugin>
