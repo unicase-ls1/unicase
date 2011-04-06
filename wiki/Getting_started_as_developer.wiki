@@ -13,6 +13,7 @@ We currently use the following development tools:
             NOTE: If you are not using Windows 32 Bit you might run into problems with Subclipse because Java is started in 64bit mode by default. Here is a possible solution for the problem http://subclipse.tigris.org/wiki/JavaHL <br>
 
                   o UNICASE: http://unicase.googlecode.com/svn/updatesite/internal/ <br>
+NOTE: Please do not install UNICASE in the same eclipse instance as the one you are using for developing it, else you might face confliciting plugin dependency issue.
 
                   o EMFStore and EMFCP : http://unicase.googlecode.com/svn/updatesite/emfstoreNightly <br>
 
