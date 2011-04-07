@@ -1,4 +1,5 @@
-package org.unicase.iterationplanner.entities;
+package org.unicase.iterationplanner.assigneeRecommender;
+
 
 
 /**

@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.unicase.iterationplanner.assigneeRecommender.IAssignee;
+
 
 /**
  * Before planner algorithm can begin, it needs to know how long every developer (assignee) will be available during

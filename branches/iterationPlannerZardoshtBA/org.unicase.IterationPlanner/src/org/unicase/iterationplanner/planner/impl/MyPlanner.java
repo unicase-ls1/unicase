@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
+import org.unicase.iterationplanner.assigneeRecommender.ITask;
+import org.unicase.iterationplanner.assigneeRecommender.TaskPotentialAssigneeList;
 import org.unicase.iterationplanner.entities.AssigneeAvailabilityManager;
-import org.unicase.iterationplanner.entities.AssigneeExpertise;
 import org.unicase.iterationplanner.entities.IPlannedTask;
-import org.unicase.iterationplanner.entities.ITask;
 import org.unicase.iterationplanner.entities.PlannerParameters;
-import org.unicase.iterationplanner.entities.TaskPotentialAssigneeList;
 import org.unicase.iterationplanner.planner.Planner;
 import org.unicase.iterationplanner.planner.PlannerUtil;
 

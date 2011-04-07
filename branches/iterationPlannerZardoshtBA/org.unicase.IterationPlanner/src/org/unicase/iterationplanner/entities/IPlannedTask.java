@@ -1,5 +1,7 @@
 package org.unicase.iterationplanner.entities;
 
+import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
+import org.unicase.iterationplanner.assigneeRecommender.ITask;
 import org.unicase.iterationplanner.planner.impl.PlannedTask;
 
 public interface IPlannedTask {
