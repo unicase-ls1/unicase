@@ -4,7 +4,7 @@
       label="EMFStore Backchannel"
       version="0.7.3"
       provider-name="Eclipse Modeling Project"
-      plugin="org.unicase.emfstore.branding">
+      plugin="org.eclipse.emf.emfstore.branding">
 
    <description url="http://emfstore.org a model that can be stored in the EMFStore repository.">
       The EMFStore Backchannels feature includes all plugins to enable
