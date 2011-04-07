@@ -12,4 +12,4 @@ Export-Package: org.eclipse.emf.ecp.common.model,
  org.eclipse.emf.ecp.common.model.workSpaceModel.impl,
  org.eclipse.emf.ecp.common.model.workSpaceModel.provider,
  org.eclipse.emf.ecp.common.model.workSpaceModel.util
-Bundle-Vendor: eclipse.org
+Bundle-Vendor: Eclipse Modeling Project

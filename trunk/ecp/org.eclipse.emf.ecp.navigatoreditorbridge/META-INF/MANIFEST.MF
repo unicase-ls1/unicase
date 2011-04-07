@@ -11,4 +11,4 @@ Require-Bundle: org.eclipse.ui,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.emf.ecp.navigatoreditorbridge
-Bundle-Vendor: eclipse.org
+Bundle-Vendor: Eclipse Modeling Project

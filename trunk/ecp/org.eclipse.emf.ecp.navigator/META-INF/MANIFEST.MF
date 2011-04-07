@@ -4,7 +4,7 @@ Bundle-Name: ECP Navigator Plug-in
 Bundle-SymbolicName: org.eclipse.emf.ecp.navigator;singleton:=true
 Bundle-Version: 0.7.3
 Bundle-Activator: org.eclipse.emf.ecp.navigator.Activator
-Bundle-Vendor: eclipse.org
+Bundle-Vendor: Eclipse Modeling Project
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.ecp.editor;visibility:=reexport

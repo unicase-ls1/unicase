@@ -4,7 +4,7 @@ Bundle-Name: ECP Editor Plug-in
 Bundle-SymbolicName: org.eclipse.emf.ecp.editor;singleton:=true
 Bundle-Version: 0.7.3
 Bundle-Activator: org.eclipse.emf.ecp.editor.Activator
-Bundle-Vendor: eclipse.org
+Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.emf.ecp.common;visibility:=reexport,
  org.eclipse.jface.text;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
