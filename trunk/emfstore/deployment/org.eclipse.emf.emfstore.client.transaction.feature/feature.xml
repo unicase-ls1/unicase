@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.unicase.emfstore.transaction.feature"
+      id="org.eclipse.emf.emfstore.client.transaction.feature"
       label="EMFStore Transaction Support"
       version="0.7.3"
       provider-name="Eclipse Modeling Project"
@@ -25,8 +25,8 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <requires>
-      <import plugin="org.unicase.workspace"/>
       <import plugin="org.eclipse.emf.transaction"/>
+      <import plugin="org.eclipse.emf.emfstore.client"/>
    </requires>
 
    <plugin
