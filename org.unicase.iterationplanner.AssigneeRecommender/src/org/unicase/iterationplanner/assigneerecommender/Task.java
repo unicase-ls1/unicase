@@ -1,6 +1,6 @@
 package org.unicase.iterationplanner.assigneerecommender;
 
-import org.unicase.iterationplanner.entities.ITask;
+import org.unicase.iterationplanner.assigneeRecommender.ITask;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
 
