@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.unicase.emfstore.backchannel"
+      id="org.eclipse.emf.emfstore.backchannel.feature"
       label="EMFStore Backchannel"
       version="0.7.3"
-      provider-name="unicase.org"
+      provider-name="Eclipse Modeling Project"
       plugin="org.unicase.emfstore.branding">
 
    <description url="http://emfstore.org a model that can be stored in the EMFStore repository.">
@@ -13,10 +13,13 @@ to register for events on the server.
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
-      Copyright (c) 2010 Jonas Helming, Maximilian Koegel. All rights
-reserved. This program and the accompanying materials are made
-available under the terms of the Eclipse Public License v1.0
-which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+      Copyright (c) 2008-2011 Chair for Applied Software Engineering,
+Technische Universitaet Muenchen.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License
+v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
    </copyright>
 
    <license url="http://www.eclipse.org/legal/epl-v10.html">
@@ -219,26 +222,27 @@ litigation.
    </license>
 
    <requires>
-      <import plugin="org.unicase.workspace"/>
-      <import plugin="org.unicase.emfstore"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.emf.emfstore.client" version="0.7.3" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.emfstore.server" version="0.7.3" match="greaterOrEqual"/>
    </requires>
 
    <plugin
-         id="org.unicase.backchannel.client"
+         id="org.eclipse.emf.emfstore.client.backchannel"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.emfstore.server.backchannel"
          download-size="0"
          install-size="0"
          version="0.0.0"/>
 
    <plugin
-         id="org.unicase.backchannel.server"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
-         id="org.unicase.emfstore.branding"
+         id="org.eclipse.emf.emfstore.branding"
          download-size="0"
          install-size="0"
          version="0.0.0"
