@@ -7,7 +7,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.unicase.iterationplanner.ui.wizard.ProjectBridge;
+import org.unicase.iterationplanner.ui.wizard.ProjectController;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.task.ActionItem;
@@ -17,9 +17,9 @@ import org.unicase.model.task.WorkPackage;
 public class SourceTasksContentProvider extends AdapterFactoryContentProvider {
 
 	private List<WorkItem> allUndoneWorkItems;
-	private ProjectBridge projectBridge;
+	private ProjectController projectBridge;
 	
-	public SourceTasksContentProvider(ProjectBridge projectBridge, AdapterFactory adapterFactory) {
+	public SourceTasksContentProvider(ProjectController projectBridge, AdapterFactory adapterFactory) {
 		super(adapterFactory);
 		this.projectBridge = projectBridge;
 	}

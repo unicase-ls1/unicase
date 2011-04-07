@@ -22,8 +22,8 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Spinner;
-import org.unicase.iterationplanner.ui.wizard.PlannerBridge;
-import org.unicase.iterationplanner.ui.wizard.ProjectBridge;
+import org.unicase.iterationplanner.ui.wizard.PlannerController;
+import org.unicase.iterationplanner.ui.wizard.ProjectController;
 import org.unicase.model.organization.OrgUnit;
 
 public class DefineAssigneesPage extends AbstractInputPage {
@@ -38,7 +38,7 @@ public class DefineAssigneesPage extends AbstractInputPage {
 	private UsersToPlanLabelProvider usersToPlanLabelProvider;
 	
 
-	public DefineAssigneesPage(String pageName, ProjectBridge projectBridge, PlannerBridge plannerBridge) {
+	public DefineAssigneesPage(String pageName, ProjectController projectBridge, PlannerController plannerBridge) {
 		super(pageName, projectBridge, plannerBridge);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);

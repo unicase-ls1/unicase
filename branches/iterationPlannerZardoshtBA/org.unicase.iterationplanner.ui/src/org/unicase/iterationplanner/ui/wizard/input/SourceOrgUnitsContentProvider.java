@@ -7,7 +7,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.unicase.iterationplanner.ui.wizard.ProjectBridge;
+import org.unicase.iterationplanner.ui.wizard.ProjectController;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
@@ -15,9 +15,9 @@ import org.unicase.model.organization.User;
 public class SourceOrgUnitsContentProvider extends AdapterFactoryContentProvider {
 	
 	private List<User> allUsers;
-	private ProjectBridge projectBridge;
+	private ProjectController projectBridge;
 
-	public SourceOrgUnitsContentProvider(ProjectBridge projectBridge, AdapterFactory adapterFactory) {
+	public SourceOrgUnitsContentProvider(ProjectController projectBridge, AdapterFactory adapterFactory) {
 		super(adapterFactory);
 		this.projectBridge = projectBridge;
 	}
