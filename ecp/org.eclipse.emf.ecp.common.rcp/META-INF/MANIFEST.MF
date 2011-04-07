@@ -5,4 +5,4 @@ Bundle-Version: 0.7.3
 Fragment-Host: org.eclipse.emf.ecp.common
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Name: ECP Common UI Plug-in RCP
-Bundle-Vendor: eclipse.org
+Bundle-Vendor: Eclipse Modeling Project

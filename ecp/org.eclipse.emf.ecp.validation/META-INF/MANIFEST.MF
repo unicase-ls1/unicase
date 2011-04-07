@@ -11,4 +11,4 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Import-Package: org.eclipse.emf.validation.model
 Export-Package: org.eclipse.emf.ecp.validation.filter,
  org.eclipse.emf.ecp.validation.refactoring.strategy
-Bundle-Vendor: eclipse.org
+Bundle-Vendor: Eclipse Modeling Project

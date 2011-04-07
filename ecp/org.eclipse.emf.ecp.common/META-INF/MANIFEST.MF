@@ -4,7 +4,7 @@ Bundle-Name: ECP Common UI Plug-in
 Bundle-SymbolicName: org.eclipse.emf.ecp.common;singleton:=true
 Bundle-Version: 0.7.3
 Bundle-Activator: org.eclipse.emf.ecp.common.Activator
-Bundle-Vendor: eclipse.org
+Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.emf.ecp.common.model;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
