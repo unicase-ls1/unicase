@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.unicase.emfstore.SDK"
+      id="org.eclipse.emf.emfstore.sdk.feature"
       label="EMFStore SDK"
       version="0.7.3"
-      provider-name="unicase.org"
-      plugin="org.unicase.emfstore.branding">
+      provider-name="Eclipse Modeling Project"
+      plugin="org.eclipse.emf.emfstore.branding">
 
    <description url="http://emfstore.org">
       This feature contains all features and plugins to develop an application based
@@ -12,10 +12,13 @@ on the EMFStore framework including the source code. If you are a developer then
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
-      Copyright (c) 2010 Jonas Helming, Maximilian Koegel. All rights
-reserved. This program and the accompanying materials are made
-available under the terms of the Eclipse Public License v1.0
-which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+      Copyright (c) 2008-2011 Chair for Applied Software Engineering,
+Technische Universitaet Muenchen.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License
+v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
    </copyright>
 
    <license url="http://www.eclipse.org/legal/epl-v10.html">
@@ -218,35 +221,19 @@ litigation.
    </license>
 
    <includes
-         id="org.unicase.emfstore.server.source"
-         version="0.0.0"/>
-
-   <includes
-         id="org.unicase.emfstore.client.ui.source"
-         version="0.0.0"/>
-
-   <includes
-         id="org.unicase.emfstore.client.source"
-         version="0.0.0"/>
-
-   <includes
-         id="org.unicase.emfstore.client"
-         version="0.0.0"/>
-
-   <includes
          id="org.unicase.emfstore.client.ui"
          version="0.0.0"/>
 
    <includes
-         id="org.unicase.emfstore.server"
+         id="org.eclipse.emf.emfstore.client.feature"
          version="0.0.0"/>
 
    <includes
-         id="org.unicase.emfstore.common"
+         id="org.eclipse.emf.emfstore.common.feature"
          version="0.0.0"/>
 
    <includes
-         id="org.unicase.emfstore.common.source"
+         id="org.eclipse.emf.emfstore.server.feature"
          version="0.0.0"/>
 
    <requires>
@@ -255,7 +242,7 @@ litigation.
    </requires>
 
    <plugin
-         id="org.unicase.emfstore.branding"
+         id="org.eclipse.emf.emfstore.branding"
          download-size="0"
          install-size="0"
          version="0.0.0"
