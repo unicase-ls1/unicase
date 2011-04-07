@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site
+      mirrorsURL="http://www1.in.tum.de/static/unicase/emfstoreNightly/">
+   <description name="EMFStore" url="http://unicase.googlecode.com/svn/updatesite/emfstore/">
+      Update Site for the EMFStore
+   </description>
+   <feature url="features/edu.tum.cs.cope.feature_0.2.15.jar" id="edu.tum.cs.cope.feature" version="0.2.15">
+      <category name="org.unicase.emfstore.other"/>
+   </feature>
+   <feature url="features/edu.tum.cs.cope.runtime.feature_0.2.15.jar" id="edu.tum.cs.cope.runtime.feature" version="0.2.15">
+      <category name="org.unicase.emfstore.other"/>
+   </feature>
+   <feature url="features/org.unicase.ecp.all_0.7.3.jar" id="org.unicase.ecp.all" version="0.7.3">
+      <category name="org.unicase.ecp"/>
+   </feature>
+   <feature url="features/org.eclipse.emf.ecp.common.feature_0.7.3.jar" id="org.eclipse.emf.ecp.common.feature" version="0.7.3">
+      <category name="org.unicase.ecp"/>
+   </feature>
+   <feature url="features/org.eclipse.emf.emfstore.client.feature_0.7.3.jar" id="org.eclipse.emf.emfstore.client.feature" version="0.7.3">
+      <category name="org.eclipse.emf.emfstore.core"/>
+   </feature>
+   <feature url="features/org.eclipse.emf.emfstore.client.ui.feature_0.7.3.jar" id="org.eclipse.emf.emfstore.client.ui.feature" version="0.7.3">
+      <category name="org.eclipse.emf.emfstore.core"/>
+   </feature>
+   <feature url="features/org.eclipse.emf.emfstore.server.feature_0.7.3.jar" id="org.eclipse.emf.emfstore.server.feature" version="0.7.3">
+      <category name="org.eclipse.emf.emfstore.core"/>
+   </feature>
+   <feature url="features/org.eclipse.emf.ecp.validation.feature_0.7.3.jar" id="org.eclipse.emf.ecp.validation.feature" version="0.7.3">
+      <category name="org.unicase.ecp"/>
+   </feature>
+   <feature url="features/org.eclipse.emf.ecp.navigator.feature_0.7.3.jar" id="org.eclipse.emf.ecp.navigator.feature" version="0.7.3">
+      <category name="org.unicase.ecp"/>
+   </feature>
+   <feature url="features/org.eclipse.emf.ecp.navigatoreditorbridge.feature_0.7.3.jar" id="org.eclipse.emf.ecp.navigatoreditorbridge.feature" version="0.7.3">
+      <category name="org.unicase.ecp"/>
+   </feature>
+   <feature url="features/org.eclipse.emf.ecp.editor.feature_0.7.3.jar" id="org.eclipse.emf.ecp.editor.feature" version="0.7.3">
+      <category name="org.unicase.ecp"/>
+   </feature>
+   <feature url="features/org.eclipse.emf.emfstore.common.feature_0.7.3.jar" id="org.eclipse.emf.emfstore.common.feature" version="0.7.3">
+      <category name="org.eclipse.emf.emfstore.core"/>
+   </feature>
+   <feature url="features/org.eclipse.emf.emfstore.backchannel.sdk.feature_0.7.3.jar" id="org.eclipse.emf.emfstore.backchannel.sdk.feature" version="0.7.3">
+      <category name="org.unicase.emfstore.sdk"/>
+   </feature>
+   <feature url="features/org.eclipse.emf.emfstore.sdk.feature_0.7.3.jar" id="org.eclipse.emf.emfstore.sdk.feature" version="0.7.3">
+      <category name="org.unicase.emfstore.sdk"/>
+   </feature>
+   <feature url="features/org.eclipse.emf.emfstore.copemigration.feature_0.7.3.jar" id="org.eclipse.emf.emfstore.copemigration.feature" version="0.7.3">
+      <category name="org.unicase.emfstore.other"/>
+   </feature>
+   <feature url="features/org.eclipse.emf.emfstore.client.transaction.feature_0.7.3.jar" id="org.eclipse.emf.emfstore.client.transaction.feature" version="0.7.3">
+      <category name="org.unicase.emfstore.other"/>
+   </feature>
+   <feature url="features/org.eclipse.emf.emfstore.backchannel.feature_0.7.3.jar" id="org.eclipse.emf.emfstore.backchannel.feature" version="0.7.3">
+      <category name="org.unicase.emfstore.other"/>
+   </feature>
+   <category-def name="org.eclipse.emf.emfstore.core" label="EMFStore Core Features">
+      <description>
+         Core Features of EMFStore, a model repository for EMF.
+      </description>
+   </category-def>
+   <category-def name="org.unicase.emfstore.other" label="EMFStore Additional Features">
+      <description>
+         Addtional Features of EMFStore, a model repository for EMF.
+      </description>
+   </category-def>
+   <category-def name="org.unicase.emfstore.sdk" label="EMFStore SDK">
+      <description>
+         SDK of EMFStore, a model repository for EMF.
+      </description>
+   </category-def>
+   <category-def name="org.unicase.ecp" label="EMF Client Platform"/>
+</site>
