@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.unicase.iterationplanner.entities.AssigneeExpertise;
+import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
+import org.unicase.iterationplanner.assigneeRecommender.AssigneeRecommendationStrategy;
+import org.unicase.iterationplanner.assigneeRecommender.ITask;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
 
@@ -15,13 +17,13 @@ public class ModelBasedAssigneeRecommendation extends AssigneeRecommendationStra
 	}
 
 	@Override
-	public List<AssigneeExpertise> getRecommendedAssignees(Task task) {
+	public List<AssigneeExpertise> getRecommendedAssignees(ITask task) {
 		List<AssigneeExpertise> recommendedAssignees = new ArrayList<AssigneeExpertise>();
 
 		// get related tasks
 		List<Task> relatedTasks = new ArrayList<Task>();
 		try {
-			relatedTasks.addAll(TaskPool.getInstance().getRelatedTasks(task));
+			relatedTasks.addAll(TaskPool.getInstance().getRelatedTasks((Task) task));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
