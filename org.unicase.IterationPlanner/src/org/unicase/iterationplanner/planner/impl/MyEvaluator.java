@@ -2,8 +2,8 @@ package org.unicase.iterationplanner.planner.impl;
 
 import java.util.Set;
 
+import org.unicase.iterationplanner.assigneeRecommender.IAssignee;
 import org.unicase.iterationplanner.entities.AssigneeAvailabilityManager;
-import org.unicase.iterationplanner.entities.IAssignee;
 import org.unicase.iterationplanner.entities.IIterationPlan;
 import org.unicase.iterationplanner.entities.IPlannedTask;
 import org.unicase.iterationplanner.entities.PlannerParameters;

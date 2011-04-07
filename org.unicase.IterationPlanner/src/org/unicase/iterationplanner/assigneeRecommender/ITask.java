@@ -1,4 +1,4 @@
-package org.unicase.iterationplanner.entities;
+package org.unicase.iterationplanner.assigneeRecommender;
 
 public interface ITask {
 

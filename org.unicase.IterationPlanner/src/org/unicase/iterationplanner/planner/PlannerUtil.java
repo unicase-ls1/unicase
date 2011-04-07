@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import org.unicase.iterationplanner.entities.AssigneeExpertise;
+import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
+import org.unicase.iterationplanner.assigneeRecommender.ITask;
 import org.unicase.iterationplanner.entities.IIterationPlan;
 import org.unicase.iterationplanner.entities.IPlannedTask;
-import org.unicase.iterationplanner.entities.ITask;
 import org.unicase.iterationplanner.planner.impl.PlannedTask;
 
 public class PlannerUtil {

@@ -4,6 +4,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
+import org.unicase.iterationplanner.assigneeRecommender.IAssignee;
+
 public interface IIterationPlan {
 
 	IIterationPlan clone();

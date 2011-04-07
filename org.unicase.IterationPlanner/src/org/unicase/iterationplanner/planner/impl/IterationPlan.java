@@ -7,9 +7,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
+import org.unicase.iterationplanner.assigneeRecommender.IAssignee;
 import org.unicase.iterationplanner.entities.AssigneeAvailabilityManager;
-import org.unicase.iterationplanner.entities.AssigneeExpertise;
-import org.unicase.iterationplanner.entities.IAssignee;
 import org.unicase.iterationplanner.entities.IIterationPlan;
 import org.unicase.iterationplanner.entities.IPlannedTask;
 
@@ -30,7 +30,7 @@ public class IterationPlan implements Comparable<IIterationPlan>, IIterationPlan
 	private Set<IPlannedTask> plannedTasks;
 	private boolean crossover = false;
 	private int numOfTasks;
-	//private boolean checkInvariants;
+	private boolean checkInvariants;
 
 	
 
@@ -44,18 +44,18 @@ public class IterationPlan implements Comparable<IIterationPlan>, IIterationPlan
 		this.numOfIterations = numOfIterations;
 		this.numOfTasks = numOfTasks;
 		this.assigneeAvailabilityManager = assigneeAvailabilityManager;
-		//this.checkInvariants = true;
+		this.checkInvariants = true;
 	}
 	
 	
 	@Override
 	public IterationPlan clone() {
-	//	this.checkAllInvariants();
+		this.checkAllInvariants();
 		IterationPlan clone = new IterationPlan(this.numOfIterations, this.numOfTasks, this.assigneeAvailabilityManager);
 		for(IPlannedTask plannedTask : this.plannedTasks){
 			clone.addPlannedTask(plannedTask.clone());
 		}
-	//	clone.checkAllInvariants();
+		clone.checkAllInvariants();
 		return clone;
 	}
 
@@ -100,7 +100,7 @@ public class IterationPlan implements Comparable<IIterationPlan>, IIterationPlan
 		// invariant: getSumOfEstimateForIterationAndAssignee(newIterationNumber, task.assignee) <=
 		// getAvailability(newIterationNumber, task.assignee);
 		// find the the lowest priority task in this iteration for this assignee and move it one iteration downward.
-		//doInvariantCorrection();
+		doInvariantCorrection();
 
 	}
 
@@ -135,7 +135,7 @@ public class IterationPlan implements Comparable<IIterationPlan>, IIterationPlan
 		((PlannedTask)plannedTask).setAssigneeExpertise(assignee);
 		// invariant: getSumOfEstimateForIterationAndAssignee(newIterationNumber, task.assignee) <=
 		// getAvailability(newIterationNumber, task.assignee);
-		//doInvariantCorrection();
+		doInvariantCorrection();
 
 	}
 
@@ -200,8 +200,8 @@ public class IterationPlan implements Comparable<IIterationPlan>, IIterationPlan
 	protected void setCrossover(boolean crossover) {
 		this.crossover = crossover;
 		if(crossover == false){
-			//doInvariantCorrection();
-			//checkAllInvariants();
+			doInvariantCorrection();
+			checkAllInvariants();
 		}
 	}
 
@@ -209,51 +209,50 @@ public class IterationPlan implements Comparable<IIterationPlan>, IIterationPlan
 	 * This goes through all tasks, and all assignees, and checks the invariant for this assignee. 
 	 * If needed the lowest priority task for this assignee is shifted down one iteration.
 	 */
-//	private void doInvariantCorrection() {
-//		if(!isCheckInvariants()){
-//			return;
-//		}
-//		Set<IAssignee> assignees = getAssignees();
-//		for(int i = 0; i < numOfIterations; i++){
-//			for(IAssignee assignee : assignees){
-//				while (getSumOfEstimateForIterationAndAssignee(i, assignee) > assigneeAvailabilityManager
-//					.getAvailability(i, assignee)) {
-//					IPlannedTask lowestPrioTask = findLowestPriorityTaskInIterationForAssignee(i, assignee);
-//					((PlannedTask)lowestPrioTask).setIterationNumber(i + 1);
-//				}
-//			}
-//		}
-//		checkDevLoadInvariantForAllAssignees();
-//		
-//	}
-//	
+	private void doInvariantCorrection() {
+		if(!isCheckInvariants()){
+			return;
+		}
+		Set<IAssignee> assignees = getAssignees();
+		for(int i = 0; i < numOfIterations; i++){
+			for(IAssignee assignee : assignees){
+				while (getSumOfEstimateForIterationAndAssignee(i, assignee) > assigneeAvailabilityManager
+					.getAvailability(i, assignee)) {
+					IPlannedTask lowestPrioTask = findLowestPriorityTaskInIterationForAssignee(i, assignee);
+					((PlannedTask)lowestPrioTask).setIterationNumber(i + 1);
+				}
+			}
+		}
+		checkDevLoadInvariantForAllAssignees();
+		
+	}
+	
 
-//	private boolean isCheckInvariants() {
-//		return checkInvariants;
-//	}
+	private boolean isCheckInvariants() {
+		return checkInvariants;
+	}
 
-//	public void setCheckInvariants(boolean checkInvariants) {
-//		this.checkInvariants = checkInvariants;
-//		if(checkInvariants){
-//			checkAllInvariants();
-//		}
-//	}
+	public void setCheckInvariants(boolean checkInvariants) {
+		this.checkInvariants = checkInvariants;
+		if(checkInvariants){
+			checkAllInvariants();
+		}
+	}
 
-//	public void checkAllInvariants() {
-//		if(!isCheckInvariants()){
-//			return;
-//		}
-//		checkDevLoadInvariantForAllAssignees();
-//		// also do some other checks to ensure that iteration plan is not corrupted.
-//		// check number of tasks
-//		checkNumOfTasks();
-//		
-//		//check for duplicate tasks 
-//		checkForDuplicateTasks();
-//		
-//		checkForTasksWithOutAssignee();
-//	
-//	}
+	public void checkAllInvariants() {
+		if(!isCheckInvariants()){
+			return;
+		}
+		checkDevLoadInvariantForAllAssignees();
+		// also do some other checks to ensure that iteration plan is not corrupted.
+		// check number of tasks
+		checkNumOfTasks();
+		
+		//check for duplicate tasks 
+		checkForDuplicateTasks();
+		
+		checkForTasksWithOutAssignee();
+	}
 
 	private void checkForTasksWithOutAssignee() {
 		for(IPlannedTask pt : plannedTasks){
@@ -275,14 +274,14 @@ public class IterationPlan implements Comparable<IIterationPlan>, IIterationPlan
 		assert(plannedTasks.size() == numOfTasks);
 	}
 
-//	private void checkDevLoadInvariantForAllAssignees() {
-//		if(checkInvariants){
-//			Set<IAssignee> assignees = getAssignees();
-//			for(IAssignee assignee : assignees){
-//				checkDevLoadInvariant(assignee);
-//			}
-//		}
-//	}
+	private void checkDevLoadInvariantForAllAssignees() {
+		if(checkInvariants){
+			Set<IAssignee> assignees = getAssignees();
+			for(IAssignee assignee : assignees){
+				checkDevLoadInvariant(assignee);
+			}
+		}
+	}
 
 	/**
 	 * returns if this iteration plan is in the state of bing created through crossover.

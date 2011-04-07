@@ -7,12 +7,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
+import org.unicase.iterationplanner.assigneeRecommender.ITask;
+import org.unicase.iterationplanner.assigneeRecommender.TaskPotentialAssigneeList;
 import org.unicase.iterationplanner.entities.AssigneeAvailabilityManager;
-import org.unicase.iterationplanner.entities.AssigneeExpertise;
 import org.unicase.iterationplanner.entities.IIterationPlan;
-import org.unicase.iterationplanner.entities.ITask;
 import org.unicase.iterationplanner.entities.PlannerParameters;
-import org.unicase.iterationplanner.entities.TaskPotentialAssigneeList;
 import org.unicase.iterationplanner.planner.impl.IterationPlan;
 import org.unicase.iterationplanner.planner.impl.MyEvaluator;
 import org.unicase.iterationplanner.planner.impl.MySelector;

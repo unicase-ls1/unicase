@@ -1,6 +1,7 @@
-package org.unicase.iterationplanner.entities;
+package org.unicase.iterationplanner.assigneeRecommender;
 
 import java.util.List;
+
 
 /**
  * This class represent a task along with a list of potential assignees. The assignee list is a list of (assignee,

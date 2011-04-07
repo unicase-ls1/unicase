@@ -2,9 +2,9 @@ package org.unicase.iterationplanner.planner;
 
 import java.util.List;
 
+import org.unicase.iterationplanner.assigneeRecommender.TaskPotentialAssigneeList;
 import org.unicase.iterationplanner.entities.AssigneeAvailabilityManager;
 import org.unicase.iterationplanner.entities.PlannerParameters;
-import org.unicase.iterationplanner.entities.TaskPotentialAssigneeList;
 import org.unicase.iterationplanner.planner.impl.MyPlanner;
 
 public class PlannerFactory {
