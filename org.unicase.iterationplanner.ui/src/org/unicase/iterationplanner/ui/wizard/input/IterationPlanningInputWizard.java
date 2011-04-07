@@ -9,8 +9,8 @@ import java.util.List;
 
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
-import org.unicase.iterationplanner.ui.wizard.PlannerBridge;
-import org.unicase.iterationplanner.ui.wizard.ProjectBridge;
+import org.unicase.iterationplanner.ui.wizard.PlannerController;
+import org.unicase.iterationplanner.ui.wizard.ProjectController;
 import org.unicase.metamodel.Project;
 import org.unicase.model.requirement.FunctionalRequirement;
 
@@ -19,8 +19,8 @@ import org.unicase.model.requirement.FunctionalRequirement;
  */
 public class IterationPlanningInputWizard extends Wizard {
 
-	private ProjectBridge projectBridge;
-	private PlannerBridge plannerBridge;
+	private ProjectController projectBridge;
+	private PlannerController plannerBridge;
 	private AbstractInputPage defineAssigneesPage;
 	private AbstractInputPage defineTasksPage;
 	private AbstractInputPage defineReqsPage;
@@ -32,8 +32,8 @@ public class IterationPlanningInputWizard extends Wizard {
 	 */
 	public IterationPlanningInputWizard(Project project) {
 		setWindowTitle("Define Inputs to Iteration Planning Algorithm");
-		this.projectBridge = new ProjectBridge(project);
-		this.plannerBridge = new PlannerBridge(project);
+		this.projectBridge = new ProjectController(project);
+		this.plannerBridge = new PlannerController(project);
 		this.saveSession = true;
 	
 	}

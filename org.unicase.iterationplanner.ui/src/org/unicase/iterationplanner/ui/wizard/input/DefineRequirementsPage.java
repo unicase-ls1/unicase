@@ -15,8 +15,8 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.unicase.iterationplanner.ui.wizard.PlannerBridge;
-import org.unicase.iterationplanner.ui.wizard.ProjectBridge;
+import org.unicase.iterationplanner.ui.wizard.PlannerController;
+import org.unicase.iterationplanner.ui.wizard.ProjectController;
 import org.unicase.model.requirement.FunctionalRequirement;
 
 public class DefineRequirementsPage extends AbstractInputPage {
@@ -28,7 +28,7 @@ public class DefineRequirementsPage extends AbstractInputPage {
 	private TreeViewer targetReqsTreeViewer;
 	
 	
-	public DefineRequirementsPage(String pageName, ProjectBridge projectBridge, PlannerBridge plannerBridge) {
+	public DefineRequirementsPage(String pageName, ProjectController projectBridge, PlannerController plannerBridge) {
 		super(pageName, projectBridge, plannerBridge);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);

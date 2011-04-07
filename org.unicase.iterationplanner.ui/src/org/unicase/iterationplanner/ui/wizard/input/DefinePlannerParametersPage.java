@@ -7,18 +7,18 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.iterationplanner.ui.wizard.PlannerBridge;
-import org.unicase.iterationplanner.ui.wizard.ProjectBridge;
+import org.unicase.iterationplanner.ui.wizard.PlannerController;
+import org.unicase.iterationplanner.ui.wizard.ProjectController;
 
 public class DefinePlannerParametersPage extends WizardPage {
 
 	private static final String PAGE_TITLE = "Define Planner Parameters";
 	private static final String PAGE_DESCRIPTION= "Define planner parameters page description";
-	private ProjectBridge projectBridge;
-	private PlannerBridge plannerBridge;
+	private ProjectController projectBridge;
+	private PlannerController plannerBridge;
 	
 	
-	protected DefinePlannerParametersPage(String pageName, ProjectBridge projectBridge, PlannerBridge plannerBridge) {
+	protected DefinePlannerParametersPage(String pageName, ProjectController projectBridge, PlannerController plannerBridge) {
 		super(pageName);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);

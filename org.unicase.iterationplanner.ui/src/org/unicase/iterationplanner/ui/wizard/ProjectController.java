@@ -14,12 +14,12 @@ import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 
-public class ProjectBridge {
+public class ProjectController {
 	
 	private Project project;
 	
 
-	public ProjectBridge(Project project){
+	public ProjectController(Project project){
 		this.project = project;
 	}
 

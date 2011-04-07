@@ -18,8 +18,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
-import org.unicase.iterationplanner.ui.wizard.PlannerBridge;
-import org.unicase.iterationplanner.ui.wizard.ProjectBridge;
+import org.unicase.iterationplanner.ui.wizard.PlannerController;
+import org.unicase.iterationplanner.ui.wizard.ProjectController;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
@@ -34,7 +34,7 @@ public class DefineTasksPage extends AbstractInputPage {
 	
 	
 	
-	public DefineTasksPage(String pageName, ProjectBridge projectBridge, PlannerBridge plannerBridge) {
+	public DefineTasksPage(String pageName, ProjectController projectBridge, PlannerController plannerBridge) {
 		super(pageName, projectBridge, plannerBridge);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);

@@ -9,15 +9,15 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.unicase.iterationplanner.ui.wizard.PlannerBridge;
-import org.unicase.iterationplanner.ui.wizard.ProjectBridge;
+import org.unicase.iterationplanner.ui.wizard.PlannerController;
+import org.unicase.iterationplanner.ui.wizard.ProjectController;
 
 public abstract class AbstractInputPage extends WizardPage {
 
-	ProjectBridge proejctBridge; 
-	PlannerBridge plnnerBridge;
+	ProjectController proejctBridge; 
+	PlannerController plnnerBridge;
 	
-	protected AbstractInputPage(String pageName, ProjectBridge projectBridge, PlannerBridge plannerBridge) {
+	protected AbstractInputPage(String pageName, ProjectController projectBridge, PlannerController plannerBridge) {
 		super(pageName);
 		this.proejctBridge = projectBridge;
 		this.plnnerBridge = plannerBridge;
@@ -109,11 +109,11 @@ public abstract class AbstractInputPage extends WizardPage {
 		}
 	}
 
-	public ProjectBridge getProejctBridge() {
+	public ProjectController getProejctBridge() {
 		return proejctBridge;
 	}
 
-	public PlannerBridge getPlannerBridge() {
+	public PlannerController getPlannerBridge() {
 		return plnnerBridge;
 	}
 

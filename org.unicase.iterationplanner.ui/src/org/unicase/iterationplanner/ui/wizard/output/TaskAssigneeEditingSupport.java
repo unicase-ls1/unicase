@@ -8,7 +8,7 @@ import org.eclipse.jface.viewers.ComboBoxCellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.unicase.iterationplanner.entities.AssigneeExpertise;
+import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
 import org.unicase.iterationplanner.entities.IIterationPlan;
 import org.unicase.iterationplanner.entities.IPlannedTask;
 import org.unicase.iterationplanner.planner.Planner;
