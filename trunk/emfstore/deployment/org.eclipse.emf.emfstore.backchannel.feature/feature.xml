@@ -6,7 +6,7 @@
       provider-name="Eclipse Modeling Project"
       plugin="org.eclipse.emf.emfstore.branding">
 
-   <description url="http://emfstore.org a model that can be stored in the EMFStore repository.">
+   <description url="http://emfstore.org ">
       The EMFStore Backchannels feature includes all plugins to enable
 a channel from server to client and an API for the EMFStore clients
 to register for events on the server.
