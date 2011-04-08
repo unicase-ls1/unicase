@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Proxy Client
+Bundle-SymbolicName: org.eclipse.emf.emfstore.client.proxy;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.eclipse.emf.emfstore.client.proxy.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.emfstore.client;bundle-version="0.7.3"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.emf.emfstore.client.proxy
+Bundle-Vendor: Eclipse Modeling Project
