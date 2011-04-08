@@ -4,7 +4,7 @@ Bundle-Name: EMFStore Model Plug-in
 Bundle-SymbolicName: org.eclipse.emf.emfstore.server.model;singleton:=true
 Bundle-Version: 0.7.3
 Bundle-ClassPath: .
-Bundle-Vendor: eclipse.org
+Bundle-Vendor: Eclipse Modeling Project
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.emf.emfstore.server.model,
