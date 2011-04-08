@@ -24,7 +24,7 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <includes
-         id="org.unicase.emfstore.backchannel"
+         id="org.eclipse.emf.emfstore.backchannel.feature"
          version="0.0.0"/>
 
 </feature>
