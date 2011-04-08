@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Metamodel plugin
+Bundle-Name: Common Model Plug-in
 Bundle-SymbolicName: org.eclipse.emf.emfstore.common.model;singleton:=true
 Bundle-Version: 0.7.3
 Bundle-ClassPath: .
-Bundle-Vendor: eclipse.org
+Bundle-Vendor: Eclipse Modeling Project
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.emf.emfstore.common.model,

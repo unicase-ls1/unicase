@@ -130,6 +130,6 @@ Export-Package: diff.match.patch,
    org.eclipse.emf.emfstore.client.ui.views.changes,
    org.eclipse.emf.emfstore.server.model.versioning,
    org.eclipse.emf.emfstore.client.model"
-Bundle-Vendor: eclipse.org
+Bundle-Vendor: Eclipse Modeling Project
 Bundle-ClassPath: .,
  lib/dmp.jar
