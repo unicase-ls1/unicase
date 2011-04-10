@@ -318,7 +318,7 @@ public class DefineAssigneesPage extends AbstractInputPage {
 	public IWizardPage getNextPage() {
 		 if (isEverythingOk()){
 			saveModel();
-			return ((IterationPlanningInputWizard)getWizard()).getDefinePlannerParametersPage();
+		//	return ((IterationPlanningInputWizard)getWizard()).getDefinePlannerParametersPage();
 		 }  
 		 return null;
 	}
