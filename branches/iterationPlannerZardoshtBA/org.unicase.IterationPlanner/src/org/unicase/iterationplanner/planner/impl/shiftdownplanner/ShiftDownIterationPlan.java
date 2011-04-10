@@ -1,4 +1,4 @@
-package org.unicase.iterationplanner.planner.impl;
+package org.unicase.iterationplanner.planner.impl.shiftdownplanner;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,12 +16,12 @@ import org.unicase.iterationplanner.planner.IPlannedTask;
 
 /**
  * This represents single individuals in population. Hence, this is the representation of our genome. Our genome is a
- * set of Iterations. An Iteration is itself as set of PlannedTasks, i.e. IterationPlan = {(task, assignee, iteration)}.
+ * set of Iterations. An Iteration is itself as set of PlannedTasks, i.e. ShiftDownIterationPlan = {(task, assignee, iteration)}.
  * The cardinality of this set is number of tasks that are to be planned.
  * 
  * @author zardosht
  */
-public class IterationPlan implements IIterationPlan {
+public class ShiftDownIterationPlan implements IIterationPlan {
 
 	// private final Iteration[] iterations;
 	private final int numOfIterations;
@@ -40,7 +40,7 @@ public class IterationPlan implements IIterationPlan {
 	 * @param numOfTasks is used just for checking invariants
 	 * @param assigneeAvailabilityManager
 	 */
-	public IterationPlan(int numOfIterations, int numOfTasks, AssigneeAvailabilityManager assigneeAvailabilityManager) {
+	public ShiftDownIterationPlan(int numOfIterations, int numOfTasks, AssigneeAvailabilityManager assigneeAvailabilityManager) {
 		this.numOfIterations = numOfIterations;
 		this.numOfTasks = numOfTasks;
 		this.assigneeAvailabilityManager = assigneeAvailabilityManager;
@@ -49,9 +49,9 @@ public class IterationPlan implements IIterationPlan {
 	
 	
 	@Override
-	public IterationPlan clone() {
+	public IIterationPlan clone() {
 		this.checkAllInvariants();
-		IterationPlan clone = new IterationPlan(this.numOfIterations, this.numOfTasks, this.assigneeAvailabilityManager);
+		ShiftDownIterationPlan clone = new ShiftDownIterationPlan(this.numOfIterations, this.numOfTasks, this.assigneeAvailabilityManager);
 		for(IPlannedTask plannedTask : this.plannedTasks){
 			clone.addPlannedTask(plannedTask.clone());
 		}
@@ -87,16 +87,16 @@ public class IterationPlan implements IIterationPlan {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof IterationPlan)) {
+		if (!(obj instanceof ShiftDownIterationPlan)) {
 			return false;
 		}
-		IterationPlan incomming = (IterationPlan) obj;
+		ShiftDownIterationPlan incomming = (ShiftDownIterationPlan) obj;
 		return this.plannedTasks.equals(incomming.plannedTasks);
 	}
 
 	public void setIterationNumberFor(IPlannedTask plannedTask, int newIterationNumber) {
 		
-		((PlannedTask)plannedTask).setIterationNumber(newIterationNumber);
+		((ShiftDownPlannedTask)plannedTask).setIterationNumber(newIterationNumber);
 		// invariant: getSumOfEstimateForIterationAndAssignee(newIterationNumber, task.assignee) <=
 		// getAvailability(newIterationNumber, task.assignee);
 		// find the the lowest priority task in this iteration for this assignee and move it one iteration downward.
@@ -132,7 +132,7 @@ public class IterationPlan implements IIterationPlan {
 	}
 
 	public void setAssigneeFor(IPlannedTask plannedTask, AssigneeExpertise assignee) {
-		((PlannedTask)plannedTask).setAssigneeExpertise(assignee);
+		((ShiftDownPlannedTask)plannedTask).setAssigneeExpertise(assignee);
 		// invariant: getSumOfEstimateForIterationAndAssignee(newIterationNumber, task.assignee) <=
 		// getAvailability(newIterationNumber, task.assignee);
 		doInvariantCorrection();
@@ -181,13 +181,13 @@ public class IterationPlan implements IIterationPlan {
 
 	public void addPlannedTask(IPlannedTask plannedTask) {
 		getPlannedTasks().add(plannedTask);
-		((PlannedTask)plannedTask).setIterationPlan(this);
+		((ShiftDownPlannedTask)plannedTask).setIterationPlan(this);
 	}
 	
 	public void addAll(Collection<IPlannedTask> plannedTasks) {
 		for(IPlannedTask pt : plannedTasks){
 			getPlannedTasks().add(pt);
-			((PlannedTask)pt).setIterationPlan(this);
+			((ShiftDownPlannedTask)pt).setIterationPlan(this);
 		}
 	}
 
@@ -219,7 +219,7 @@ public class IterationPlan implements IIterationPlan {
 				while (getSumOfEstimateForIterationAndAssignee(i, assignee) > assigneeAvailabilityManager
 					.getAvailability(i, assignee)) {
 					IPlannedTask lowestPrioTask = findLowestPriorityTaskInIterationForAssignee(i, assignee);
-					((PlannedTask)lowestPrioTask).setIterationNumber(i + 1);
+					((ShiftDownPlannedTask)lowestPrioTask).setIterationNumber(i + 1);
 				}
 			}
 		}
@@ -294,6 +294,5 @@ public class IterationPlan implements IIterationPlan {
 	public Set<IPlannedTask> getAllPlannedTasks(){
 		return Collections.unmodifiableSet(plannedTasks);
 	}
-	
 	
 }

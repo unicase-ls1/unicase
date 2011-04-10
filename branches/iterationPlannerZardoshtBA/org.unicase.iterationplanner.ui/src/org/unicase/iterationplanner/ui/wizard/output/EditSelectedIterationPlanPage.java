@@ -66,7 +66,7 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 		
 		iterations = createIterations();
 		
-		iterationsTreeViewer = new TreeViewer(container);
+		iterationsTreeViewer = new TreeViewer(container, SWT.FULL_SELECTION);
 		iterationsTreeViewer.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		
 		iterationsTreeViewer.setContentProvider(new IterationsContentProvider(iterationPlan.getBacklogNumber(), new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
@@ -212,7 +212,16 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 			public String getText(Object element) {
 				if(element instanceof IPlannedTask){
 					IPlannedTask pt = (IPlannedTask) element;
-					return pt.getTask().getName() + " (priority: " + pt.getTask().getPriority() + ", estimate: " + pt.getTask().getEstimate() + ")";
+					String name = pt.getTask().getName();
+					String result = "";
+					int priority = pt.getTask().getPriority();
+					int estimate = pt.getTask().getEstimate();
+					if(name.length() > 100){
+						result = String.format("%.100s... (priority: %d, estimate: %d)", name, priority, estimate);
+					}else{
+						result = String.format("%s (priority: %d, estimate: %d)", name, priority, estimate);
+					}
+					return result;
 				}
 				if(element instanceof Iteration){
 					if(((Iteration) element).getIterationNumber() == iterationPlan.getBacklogNumber()){
@@ -242,7 +251,8 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 			@Override
 			public String getText(Object element) {
 				if(element instanceof IPlannedTask){
-					return ((IPlannedTask) element).getAssigneeExpertise().getAssignee().getName() + " (expertise: " + ((IPlannedTask) element).getAssigneeExpertise().getExpertise() + ")";
+					double expertise = ((IPlannedTask) element).getAssigneeExpertise().getExpertise();
+					return String.format("%s (expertise: %1.3f)", ((IPlannedTask) element).getAssigneeExpertise().getAssignee().getName(),  expertise);
 				}
 				return "";
 			}

@@ -109,7 +109,7 @@ public class PlannerController {
 				Random random = new Random(1234567256L);
 				PlannerParameters plannerParameters = getPlannerParameters(random);
 
-				planner = PlannerFactory.getInstance().getDefaultPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, plannerParameters);
+				planner = PlannerFactory.getInstance().getShiftDownPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, plannerParameters);
 				result = planner.start();
 
 //				if (isModal(this)) {
@@ -203,7 +203,7 @@ public class PlannerController {
 	private PlannerParameters getPlannerParameters(Random random) {
 		int populationSize = 50;
 		int resultSize = 5;
-		int maxNumOfGenerations = 50;
+		int maxNumOfGenerations = 10;
 		int percentOfCrossOverChildren = 70;
 		int precentOfMutants = 15;
 		int percentOfClones = 15;

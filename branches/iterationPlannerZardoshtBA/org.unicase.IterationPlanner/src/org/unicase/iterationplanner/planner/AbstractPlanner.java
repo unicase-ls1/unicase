@@ -10,9 +10,7 @@ import java.util.Map;
 import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
 import org.unicase.iterationplanner.assigneeRecommender.ITask;
 import org.unicase.iterationplanner.assigneeRecommender.TaskPotentialAssigneeList;
-import org.unicase.iterationplanner.planner.impl.IterationPlan;
-import org.unicase.iterationplanner.planner.impl.MyEvaluator;
-import org.unicase.iterationplanner.planner.impl.MySelector;
+import org.unicase.iterationplanner.planner.impl.shiftdownplanner.ShiftDownIterationPlan;
 
 public abstract class AbstractPlanner {
 
@@ -20,10 +18,10 @@ public abstract class AbstractPlanner {
 	private final Map<ITask, List<AssigneeExpertise>> taskPotentialAssigneeListMap;
 	private final AssigneeAvailabilityManager assigneeAvailabilityManager;
 	private final AbstractEvaluationStrategy evaluator;
-	private final AbstractSelectionStrategy selector;
+	private final ISelectionStrategy selector;
 	private final PlannerParameters plannerParameters;
-	private List<IterationPlan> population;
-	private List<IterationPlan> nextGeneration;
+	private List<ShiftDownIterationPlan> population;
+	private List<ShiftDownIterationPlan> nextGeneration;
 
 	/**
 	 * @param numOfIterations
@@ -32,13 +30,13 @@ public abstract class AbstractPlanner {
 	 * @param plannerParameters
 	 */
 	public AbstractPlanner(int numOfIterations, List<TaskPotentialAssigneeList> taskPotentialAssigneeLists,
-		AssigneeAvailabilityManager assigneeAvailabilityManager, PlannerParameters plannerParameters) {
+		AssigneeAvailabilityManager assigneeAvailabilityManager, AbstractEvaluationStrategy evaluator, ISelectionStrategy selector, PlannerParameters plannerParameters) {
 		this.numOfIterations = numOfIterations;
 		this.taskPotentialAssigneeListMap = initTaskPotenitalAssigneeListMap(taskPotentialAssigneeLists);
 		this.assigneeAvailabilityManager = assigneeAvailabilityManager;
 		
-		this.evaluator = new MyEvaluator(plannerParameters, assigneeAvailabilityManager);;
-		this.selector = new MySelector(plannerParameters.getRandom());
+		this.evaluator = evaluator;
+		this.selector = selector;
 		this.plannerParameters = plannerParameters;
 
 	}
@@ -93,36 +91,36 @@ public abstract class AbstractPlanner {
 		return result;
 	}
 	
-	private double getBestIndividualFitness(List<IterationPlan> population2) {
+	private double getBestIndividualFitness(List<ShiftDownIterationPlan> population2) {
 		Collections.sort(population2);
 		return population2.get(0).getScore();
 	}
 
-	private double getAverageFitness(List<IterationPlan> population2) {
+	private double getAverageFitness(List<ShiftDownIterationPlan> population2) {
 		double result = 0.0;
 		double sum = 0.0;
-		for(IterationPlan iterPlan : population2){
+		for(ShiftDownIterationPlan iterPlan : population2){
 			sum += iterPlan.getScore();
 		}
 		result = sum / population2.size();
 		return result;
 	}
 
-	protected void addToNextGeneration(IterationPlan iterPlan){
+	protected void addToNextGeneration(ShiftDownIterationPlan iterPlan){
 		//iterPlan.checkAllInvariants();
 		nextGeneration.add(iterPlan);
 	}
 
-	public abstract void checkInvariants(List<IterationPlan> iterPlans);
+	public abstract void checkInvariants(List<ShiftDownIterationPlan> iterPlans);
 
 	private void createNextGeneration() {
-		nextGeneration = new ArrayList<IterationPlan>();
+		nextGeneration = new ArrayList<ShiftDownIterationPlan>();
 
-		List<IterationPlan> crossoverParents = selector.selectForCrossover(population, plannerParameters
+		List<ShiftDownIterationPlan> crossoverParents = selector.selectForCrossover(population, plannerParameters
 			.getPercentOfCrossOverParents());
-		List<IterationPlan> mutationCandidates = selector.selectForMutation(population, plannerParameters
+		List<ShiftDownIterationPlan> mutationCandidates = selector.selectForMutation(population, plannerParameters
 			.getPercentOfMutationCandidates());
-		List<IterationPlan> cloneCandidates = selector.selectForCloning(population, plannerParameters
+		List<ShiftDownIterationPlan> cloneCandidates = selector.selectForCloning(population, plannerParameters
 			.getPercentOfCloneCandidates());
 
 		copyIntoNextGeneration(cloneCandidates);
@@ -147,23 +145,23 @@ public abstract class AbstractPlanner {
 	 */
 	protected abstract boolean isBreakCretieriaMet();
 
-	protected abstract List<IterationPlan> createInitialPopulation();
+	protected abstract List<ShiftDownIterationPlan> createInitialPopulation();
 
-	protected abstract void trimNextGeneration(List<IterationPlan> nextGeneration);
+	protected abstract void trimNextGeneration(List<ShiftDownIterationPlan> nextGeneration);
 
-	protected abstract void completeNextGeneration(List<IterationPlan> nextGeneration);
+	protected abstract void completeNextGeneration(List<ShiftDownIterationPlan> nextGeneration);
 
-	protected abstract void copyIntoNextGeneration(List<IterationPlan> cloneCandidates);
+	protected abstract void copyIntoNextGeneration(List<ShiftDownIterationPlan> cloneCandidates);
 
-	protected abstract void mutateIntoNextGeneration(List<IterationPlan> mutationCandidates);
+	protected abstract void mutateIntoNextGeneration(List<ShiftDownIterationPlan> mutationCandidates);
 
-	protected abstract void crossoverIntoNextGeneration(List<IterationPlan> parentCandidates);
+	protected abstract void crossoverIntoNextGeneration(List<ShiftDownIterationPlan> parentCandidates);
 
 	/**
 	 * evaluate each iteration plan in population, and give it a score; so that population can be sorted.
 	 */
 	private void evalutate() {
-		for (IterationPlan iterationPlan : population) {
+		for (ShiftDownIterationPlan iterationPlan : population) {
 			double score = evaluator.evaluate(iterationPlan);
 			iterationPlan.setScore(score);
 		}
@@ -185,7 +183,7 @@ public abstract class AbstractPlanner {
 		return plannerParameters;
 	}
 
-	public AbstractSelectionStrategy getSelector() {
+	public ISelectionStrategy getSelector() {
 		return selector;
 	}
 

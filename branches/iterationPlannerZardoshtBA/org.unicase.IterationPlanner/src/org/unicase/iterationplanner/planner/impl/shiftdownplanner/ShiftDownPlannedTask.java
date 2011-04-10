@@ -1,4 +1,4 @@
-package org.unicase.iterationplanner.planner.impl;
+package org.unicase.iterationplanner.planner.impl.shiftdownplanner;
 
 import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
 import org.unicase.iterationplanner.assigneeRecommender.ITask;
@@ -12,21 +12,21 @@ import org.unicase.iterationplanner.planner.IPlannedTask;
  * 
  * @author zardosht
  */
-public class PlannedTask implements IPlannedTask {
+public class ShiftDownPlannedTask implements IPlannedTask {
 	private final ITask task;
 	private AssigneeExpertise assigneeExpertise;
 	private int iterationNumber = -1;
 	private boolean evaluateExperties = true;
-	private IterationPlan iterationPlan;
+	private ShiftDownIterationPlan iterationPlan;
 	private boolean clonning;
 
-	public PlannedTask(ITask task) {
+	public ShiftDownPlannedTask(ITask task) {
 		this.task = task;
 	}
 
 	@Override
-	public PlannedTask clone() {
-		PlannedTask clone = new PlannedTask(this.task);
+	public ShiftDownPlannedTask clone() {
+		ShiftDownPlannedTask clone = new ShiftDownPlannedTask(this.task);
 		clone.setClonning(true);
 		clone.setAssigneeExpertise(this.assigneeExpertise);
 		clone.setIterationNumber(this.iterationNumber);
@@ -83,10 +83,10 @@ public class PlannedTask implements IPlannedTask {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof PlannedTask)) {
+		if (!(obj instanceof ShiftDownPlannedTask)) {
 			return false;
 		}
-		PlannedTask incomming = (PlannedTask) obj;
+		ShiftDownPlannedTask incomming = (ShiftDownPlannedTask) obj;
 		if (!this.assigneeExpertise.equals(incomming.assigneeExpertise)) {
 			return false;
 		}
@@ -104,10 +104,10 @@ public class PlannedTask implements IPlannedTask {
 	 * true if Tasks in both instances are equal.
 	 */
 	public boolean equalsTask(Object obj) {
-		if (!(obj instanceof PlannedTask)) {
+		if (!(obj instanceof ShiftDownPlannedTask)) {
 			return false;
 		}
-		PlannedTask incomming = (PlannedTask) obj;
+		ShiftDownPlannedTask incomming = (ShiftDownPlannedTask) obj;
 		if (!this.task.equals(incomming.task)) {
 			return false;
 		}
@@ -134,8 +134,7 @@ public class PlannedTask implements IPlannedTask {
 		return evaluateExperties;
 	}
 
-	protected void setIterationPlan(IterationPlan iterationPlan) {
+	protected void setIterationPlan(ShiftDownIterationPlan iterationPlan) {
 		this.iterationPlan = iterationPlan;
 	}
-
 }

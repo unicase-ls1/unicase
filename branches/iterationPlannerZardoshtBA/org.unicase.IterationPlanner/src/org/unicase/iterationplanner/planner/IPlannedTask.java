@@ -2,11 +2,11 @@ package org.unicase.iterationplanner.planner;
 
 import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
 import org.unicase.iterationplanner.assigneeRecommender.ITask;
-import org.unicase.iterationplanner.planner.impl.PlannedTask;
+import org.unicase.iterationplanner.planner.impl.shiftdownplanner.ShiftDownPlannedTask;
 
 public interface IPlannedTask {
 
-	PlannedTask clone();
+	ShiftDownPlannedTask clone();
 
 	ITask getTask();
 
