@@ -10,14 +10,14 @@ import java.util.Set;
 import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
 import org.unicase.iterationplanner.assigneeRecommender.ITask;
 import org.unicase.iterationplanner.assigneeRecommender.TaskPotentialAssigneeList;
-import org.unicase.iterationplanner.entities.AssigneeAvailabilityManager;
-import org.unicase.iterationplanner.entities.IPlannedTask;
-import org.unicase.iterationplanner.entities.PlannerParameters;
-import org.unicase.iterationplanner.planner.Planner;
+import org.unicase.iterationplanner.planner.AbstractPlanner;
+import org.unicase.iterationplanner.planner.AssigneeAvailabilityManager;
+import org.unicase.iterationplanner.planner.IPlannedTask;
+import org.unicase.iterationplanner.planner.PlannerParameters;
 import org.unicase.iterationplanner.planner.PlannerUtil;
 
 
-public class MyPlanner extends Planner {
+public class MyPlanner extends AbstractPlanner {
 
 	public MyPlanner(int numOfIterations, List<TaskPotentialAssigneeList> taskPotentialAssigneeLists,
 		AssigneeAvailabilityManager assigneeAvailabilityManager, PlannerParameters plannerParameters) {

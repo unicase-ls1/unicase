@@ -12,7 +12,7 @@ import org.unicase.iterationplanner.ui.wizard.ProjectController;
 
 public class DefinePlannerParametersPage extends WizardPage {
 
-	private static final String PAGE_TITLE = "Define Planner Parameters";
+	private static final String PAGE_TITLE = "Define AbstractPlanner Parameters";
 	private static final String PAGE_DESCRIPTION= "Define planner parameters page description";
 	@SuppressWarnings("unused")
 	private ProjectController projectBridge;

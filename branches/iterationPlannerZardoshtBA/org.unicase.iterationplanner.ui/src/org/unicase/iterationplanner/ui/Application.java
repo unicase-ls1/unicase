@@ -17,12 +17,12 @@ import org.unicase.iterationplanner.assigneerecommender.AssigneePool;
 import org.unicase.iterationplanner.assigneerecommender.Task;
 import org.unicase.iterationplanner.assigneerecommender.TaskPool;
 import org.unicase.iterationplanner.assigneerecommender.UnicaseAssigneeRecommender;
-import org.unicase.iterationplanner.entities.AssigneeAvailabilityManager;
-import org.unicase.iterationplanner.entities.IIterationPlan;
-import org.unicase.iterationplanner.entities.IPlannedTask;
-import org.unicase.iterationplanner.entities.PlannerParameters;
-import org.unicase.iterationplanner.planner.Planner;
+import org.unicase.iterationplanner.planner.AbstractPlanner;
+import org.unicase.iterationplanner.planner.AssigneeAvailabilityManager;
+import org.unicase.iterationplanner.planner.IIterationPlan;
+import org.unicase.iterationplanner.planner.IPlannedTask;
 import org.unicase.iterationplanner.planner.PlannerFactory;
+import org.unicase.iterationplanner.planner.PlannerParameters;
 import org.unicase.metamodel.Project;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
@@ -49,7 +49,7 @@ public class Application implements IApplication {
 
 
 	private void startPlanning() throws Exception {
-		System.out.println("Iteration Planner started!");
+		System.out.println("Iteration AbstractPlanner started!");
 
 		unicase = true;
 		Project project = getProject();
@@ -99,7 +99,7 @@ public class Application implements IApplication {
 
 
 		// start planner
-		Planner myPlanner = PlannerFactory.getInstance().getDefaultPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, plannerParameters);
+		AbstractPlanner myPlanner = PlannerFactory.getInstance().getDefaultPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, plannerParameters);
 		List<IIterationPlan> result = myPlanner.start();
 
 		// output result
@@ -139,7 +139,7 @@ public class Application implements IApplication {
 		System.out.println("done!");
 	}
 
-	private void outputIterationPlannerResults(List<IIterationPlan> iterationPlans, Planner myPlanner) {
+	private void outputIterationPlannerResults(List<IIterationPlan> iterationPlans, AbstractPlanner myPlanner) {
 		for (int i = 0; i < iterationPlans.size(); i++) {
 			IIterationPlan iterPlan = iterationPlans.get(i);
 			System.out.println("\n");

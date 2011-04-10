@@ -2,15 +2,15 @@ package org.unicase.iterationplanner.ui.wizard.output;
 
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
-import org.unicase.iterationplanner.entities.IIterationPlan;
-import org.unicase.iterationplanner.planner.Planner;
+import org.unicase.iterationplanner.planner.AbstractPlanner;
+import org.unicase.iterationplanner.planner.IIterationPlan;
 
 public class IterationPlanningOutputWizard extends Wizard {
 
 	private IIterationPlan iterationPlan;
-	private Planner planner;
+	private AbstractPlanner planner;
 
-	public IterationPlanningOutputWizard(IIterationPlan iterationPlan2, Planner planner) {
+	public IterationPlanningOutputWizard(IIterationPlan iterationPlan2, AbstractPlanner planner) {
 		this.iterationPlan = iterationPlan2;
 		this.planner = planner;
 	

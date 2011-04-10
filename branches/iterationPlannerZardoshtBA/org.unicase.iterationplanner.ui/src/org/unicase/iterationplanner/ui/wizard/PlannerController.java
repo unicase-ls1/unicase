@@ -20,12 +20,12 @@ import org.unicase.iterationplanner.assigneerecommender.Assignee;
 import org.unicase.iterationplanner.assigneerecommender.AssigneePool;
 import org.unicase.iterationplanner.assigneerecommender.TaskPool;
 import org.unicase.iterationplanner.assigneerecommender.UnicaseAssigneeRecommender;
-import org.unicase.iterationplanner.entities.AssigneeAvailabilityManager;
-import org.unicase.iterationplanner.entities.IIterationPlan;
-import org.unicase.iterationplanner.entities.IPlannedTask;
-import org.unicase.iterationplanner.entities.PlannerParameters;
-import org.unicase.iterationplanner.planner.Planner;
+import org.unicase.iterationplanner.planner.AbstractPlanner;
+import org.unicase.iterationplanner.planner.AssigneeAvailabilityManager;
+import org.unicase.iterationplanner.planner.IIterationPlan;
+import org.unicase.iterationplanner.planner.IPlannedTask;
 import org.unicase.iterationplanner.planner.PlannerFactory;
+import org.unicase.iterationplanner.planner.PlannerParameters;
 import org.unicase.iterationplanner.ui.wizard.input.UserAvailability;
 import org.unicase.iterationplanner.ui.wizard.output.IterationPlanningOutputWizard;
 import org.unicase.metamodel.Project;
@@ -35,7 +35,7 @@ import org.unicase.model.task.WorkItem;
 
 public class PlannerController {
 
-	private Planner planner;
+	private AbstractPlanner planner;
 	private List<IIterationPlan> result;
 
 	private int numOfIterations;
@@ -83,7 +83,7 @@ public class PlannerController {
 		final Job job = new Job("Planning Iterations") {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
-				System.out.println("Iteration Planner started!");
+				System.out.println("Iteration AbstractPlanner started!");
 
 				// init task pool
 				TaskPool.getInstance().setTasksToPlan(getWorkItemsToPlan());
@@ -148,7 +148,7 @@ public class PlannerController {
 
 	}
 
-	private void openOutPutWizard(IIterationPlan iterationPlan, Planner planner) {
+	private void openOutPutWizard(IIterationPlan iterationPlan, AbstractPlanner planner) {
 		IterationPlanningOutputWizard outputWizard = new IterationPlanningOutputWizard(iterationPlan, planner);
 		WizardDialog dialog = new WizardDialog(Display.getCurrent().getActiveShell(), outputWizard);
 		dialog.open();
@@ -162,7 +162,7 @@ public class PlannerController {
 	}
 
 	@SuppressWarnings("unused")
-	private void outputIterationPlannerResults(List<IIterationPlan> result, Planner myPlanner) {
+	private void outputIterationPlannerResults(List<IIterationPlan> result, AbstractPlanner myPlanner) {
 		for (int i = 0; i < result.size(); i++) {
 			IIterationPlan iterPlan = result.get(i);
 			System.out.println("\n");

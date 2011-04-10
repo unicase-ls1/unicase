@@ -2,7 +2,7 @@ package org.unicase.iterationplanner.ui.wizard.output;
 
 import java.util.Set;
 
-import org.unicase.iterationplanner.entities.IPlannedTask;
+import org.unicase.iterationplanner.planner.IPlannedTask;
 
 public class Iteration {
 
