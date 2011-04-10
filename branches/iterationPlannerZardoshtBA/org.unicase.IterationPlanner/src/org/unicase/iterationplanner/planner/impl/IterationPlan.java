@@ -21,7 +21,7 @@ import org.unicase.iterationplanner.entities.IPlannedTask;
  * 
  * @author zardosht
  */
-public class IterationPlan implements Comparable<IIterationPlan>, IIterationPlan {
+public class IterationPlan implements IIterationPlan {
 
 	// private final Iteration[] iterations;
 	private final int numOfIterations;

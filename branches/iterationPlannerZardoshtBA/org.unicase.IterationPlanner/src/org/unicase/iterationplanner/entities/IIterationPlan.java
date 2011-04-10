@@ -7,7 +7,7 @@ import java.util.Set;
 import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
 import org.unicase.iterationplanner.assigneeRecommender.IAssignee;
 
-public interface IIterationPlan {
+public interface IIterationPlan extends Comparable<IIterationPlan> {
 
 	IIterationPlan clone();
 
@@ -16,10 +16,6 @@ public interface IIterationPlan {
 	void setScore(double score);
 
 	double getScore();
-
-	int compareTo(IIterationPlan otherPlan);
-
-	boolean equals(Object obj);
 
 	void setIterationNumberFor(IPlannedTask plannedTask, int newIterationNumber);
 
@@ -39,10 +35,6 @@ public interface IIterationPlan {
 
 	void addAll(Collection<IPlannedTask> plannedTasks);
 
-	//void checkAllInvariants();
-
 	Set<IPlannedTask> getAllPlannedTasks();
 	
-//	void setCheckInvariants(boolean checkInvariants);
-
 }

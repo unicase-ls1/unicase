@@ -13,10 +13,13 @@ import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
@@ -34,8 +37,10 @@ public class DefineAssigneesPage extends AbstractInputPage {
 	private TreeViewer srcOrgUnitTreeViewer;
 	private TableViewer usersToPlanTableViewer;
 	private Spinner spnrNumOfIterations;
+	private Spinner spnrDefaultAvailability;
 	private UsersToPlanContentProvier usersToPlanContentProvier;
 	private UsersToPlanLabelProvider usersToPlanLabelProvider;
+	private int defaultAvailability = 20;
 	
 
 	public DefineAssigneesPage(String pageName, ProjectController projectBridge, PlannerController plannerBridge) {
@@ -151,12 +156,16 @@ public class DefineAssigneesPage extends AbstractInputPage {
 		IStructuredSelection ssel = (IStructuredSelection) srcOrgUnitTreeViewer.getSelection();
 		for(Object obj : ssel.toList()){
 			OrgUnit ou = (OrgUnit) obj;
-			targetContentProvider.addOrgUnit(ou);
+			targetContentProvider.addOrgUnit(ou, getDefaultAvailability());
 			srcContentProvider.removeOrgUnit(ou);
 		}
 		usersToPlanTableViewer.refresh();
 		srcOrgUnitTreeViewer.refresh();
 		getWizard().getContainer().updateButtons();
+	}
+
+	private int getDefaultAvailability() {
+		return defaultAvailability; 
 	}
 
 	@Override
@@ -183,7 +192,7 @@ public class DefineAssigneesPage extends AbstractInputPage {
 	
 	@Override
 	protected void createExtraControls(Composite extraControlsComposite) {
-		extraControlsComposite.setLayout(new GridLayout(2, false));
+		extraControlsComposite.setLayout(new GridLayout(3, false));
 		
 		Label lblNumOfIterations = new Label(extraControlsComposite, SWT.NONE);
 		lblNumOfIterations.setLayoutData(new GridData(SWT.BEGINNING, SWT.TOP, false, false));
@@ -195,7 +204,6 @@ public class DefineAssigneesPage extends AbstractInputPage {
 		spnrNumOfIterations.setMinimum(1);
 		spnrNumOfIterations.setIncrement(1);
 		spnrNumOfIterations.addModifyListener(new ModifyListener() {
-			
 			public void modifyText(ModifyEvent e) {
 				getPlannerBridge().setNumOfIteations(Integer.valueOf(spnrNumOfIterations.getText()));
 				int numOfIteations = getPlannerBridge().getNumOfIteations();
@@ -203,7 +211,7 @@ public class DefineAssigneesPage extends AbstractInputPage {
 				if(numOfIteations > currentNumOfIterations){
 					for(int i = currentNumOfIterations; i < numOfIteations; i++){
 						//add iteration
-						usersToPlanContentProvier.addIteration();
+						usersToPlanContentProvier.addIteration(defaultAvailability);
 						//add column
 						addIterationColumn(i);
 					}
@@ -219,7 +227,46 @@ public class DefineAssigneesPage extends AbstractInputPage {
 				getWizard().getContainer().updateButtons();
 			}
 		});
-
+		
+		Label label = new Label(extraControlsComposite, SWT.NONE);
+		label.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		label.setText("");
+		
+		
+		
+		Label lblDefaultAvailability = new Label(extraControlsComposite, SWT.NONE);
+		lblDefaultAvailability.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		lblDefaultAvailability.setText("Set the default availability during iterations for all assignees: ");
+		
+		spnrDefaultAvailability = new Spinner(extraControlsComposite, SWT.BORDER);
+		spnrDefaultAvailability.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		spnrDefaultAvailability.setMaximum(1000);
+		spnrDefaultAvailability.setMinimum(defaultAvailability); //init = 20
+		spnrDefaultAvailability.setIncrement(1);
+		spnrDefaultAvailability.addModifyListener(new ModifyListener() {
+			
+			public void modifyText(ModifyEvent e) {
+				defaultAvailability = Integer.parseInt(spnrDefaultAvailability.getText());
+			}
+		});
+		
+		Button btnApplyToAll = new Button(extraControlsComposite, SWT.PUSH);
+		btnApplyToAll.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		btnApplyToAll.setText("Apply to All");
+		btnApplyToAll.addSelectionListener(new SelectionListener() {
+			
+			public void widgetSelected(SelectionEvent e) {
+				usersToPlanContentProvier.setAvailabilityForAll(defaultAvailability);
+				usersToPlanTableViewer.refresh();
+				getWizard().getContainer().updateButtons();
+			}
+			
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+		});
+		
+		
+		
 	}
 
 
