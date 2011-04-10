@@ -8,7 +8,7 @@ import java.util.Set;
 
 import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
 import org.unicase.iterationplanner.assigneeRecommender.ITask;
-import org.unicase.iterationplanner.planner.impl.PlannedTask;
+import org.unicase.iterationplanner.planner.impl.shiftdownplanner.ShiftDownPlannedTask;
 
 public class PlannerUtil {
 
@@ -84,7 +84,7 @@ public class PlannerUtil {
 		double sum = 0.0;
 		for (int i = 0; i < p.length; i++) {
 			if (measure >= sum && measure < sum + p[i]) {
-				return 0;
+				return i;
 			}
 			sum += p[i];
 		}
@@ -300,9 +300,9 @@ public class PlannerUtil {
 		return plannedTasks;
 	}
 
-	public Set<ITask> getTasks(Set<PlannedTask> plannedTasks) {
+	public Set<ITask> getTasks(Set<ShiftDownPlannedTask> plannedTasks) {
 		Set<ITask> result = new HashSet<ITask>();
-		for(PlannedTask pt : plannedTasks){
+		for(ShiftDownPlannedTask pt : plannedTasks){
 			result.add(pt.getTask());
 		}
 		
@@ -311,8 +311,8 @@ public class PlannerUtil {
 
 	/**
 	 * Unions the PlannedTasks in plannedTasks1 and plannedTasks2 based on their their Task.
-	 * That is, if two instances of PlannedTask have the same instance of Task only one of them will be in union.
-	 * The PlannedTask instance that survives is the one whose AssigneeExpertise have a less value of Expertise.
+	 * That is, if two instances of ShiftDownPlannedTask have the same instance of Task only one of them will be in union.
+	 * The ShiftDownPlannedTask instance that survives is the one whose AssigneeExpertise have a less value of Expertise.
 	 * This decision is made to add more variety in resulting sets of PlannedTasks and 
 	 * helps avoiding early convergence of populations.
 	 * @param plannedTasks1
@@ -327,7 +327,7 @@ public class PlannerUtil {
 		for(IPlannedTask pt1 : union){
 			for(IPlannedTask pt2 : union){
 				if(pt1.getTask().equals(pt2.getTask())){
-					// set the PlannedTask with higher AssigneeExpertise for deletion
+					// set the ShiftDownPlannedTask with higher AssigneeExpertise for deletion
 					if(pt1.getAssigneeExpertise().getExpertise() > pt2.getAssigneeExpertise().getExpertise()){
 						duplicates.add(pt1);
 					}else{
@@ -365,7 +365,7 @@ public class PlannerUtil {
 	
 	/**
 	 * Returns the intersection of two PlannedTasks in set1 and set2.
-	 * The PlannedTask instance that is added to result is the one whose AssigneeExpertise have a less 
+	 * The ShiftDownPlannedTask instance that is added to result is the one whose AssigneeExpertise have a less 
 	 * value of Expertise. This decision is made to add more variety in resulting sets of PlannedTasks and 
 	 * helps avoiding early convergence of populations.
 	 * 
@@ -373,11 +373,11 @@ public class PlannerUtil {
 	 * @param set2
 	 * @return
 	 */
-	public Set<PlannedTask> intersectOnTasks(Set<PlannedTask> set1, Set<PlannedTask> set2){
-		Set<PlannedTask> intersection = new HashSet<PlannedTask>();
+	public Set<ShiftDownPlannedTask> intersectOnTasks(Set<ShiftDownPlannedTask> set1, Set<ShiftDownPlannedTask> set2){
+		Set<ShiftDownPlannedTask> intersection = new HashSet<ShiftDownPlannedTask>();
 		// find those planned tasks that have equal tasks
-		for(PlannedTask pt1 : set1){
-			for(PlannedTask pt2 : set2){
+		for(ShiftDownPlannedTask pt1 : set1){
+			for(ShiftDownPlannedTask pt2 : set2){
 				if(pt1.equalsTask(pt2)){
 					if(pt1.getAssigneeExpertise().getExpertise() < pt2.getAssigneeExpertise().getExpertise()){
 						intersection.add(pt1);

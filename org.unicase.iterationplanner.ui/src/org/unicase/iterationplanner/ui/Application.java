@@ -99,7 +99,7 @@ public class Application implements IApplication {
 
 
 		// start planner
-		AbstractPlanner myPlanner = PlannerFactory.getInstance().getDefaultPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, plannerParameters);
+		AbstractPlanner myPlanner = PlannerFactory.getInstance().getShiftDownPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, plannerParameters);
 		List<IIterationPlan> result = myPlanner.start();
 
 		// output result

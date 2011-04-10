@@ -3,7 +3,9 @@ package org.unicase.iterationplanner.planner;
 import java.util.List;
 
 import org.unicase.iterationplanner.assigneeRecommender.TaskPotentialAssigneeList;
-import org.unicase.iterationplanner.planner.impl.MyPlanner;
+import org.unicase.iterationplanner.planner.impl.shiftdownplanner.ShiftDownEvaluator;
+import org.unicase.iterationplanner.planner.impl.shiftdownplanner.ShiftDownPlanner;
+import org.unicase.iterationplanner.planner.selectionstrategies.RankBasedSelectionStrategy;
 
 public class PlannerFactory {
 	
@@ -21,10 +23,12 @@ public class PlannerFactory {
 		return instance;
 	}
 	
-	public AbstractPlanner getDefaultPlanner(int numOfIterations, List<TaskPotentialAssigneeList> taskPotentialAssigneeLists,
+	public AbstractPlanner getShiftDownPlanner(int numOfIterations, List<TaskPotentialAssigneeList> taskPotentialAssigneeLists,
 		AssigneeAvailabilityManager assigneeAvailabilityManager, PlannerParameters plannerParameters){
 		
-		return new MyPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, plannerParameters);
+		ISelectionStrategy rankBasedSelectionStrategy = new RankBasedSelectionStrategy(plannerParameters.getRandom());
+		ShiftDownEvaluator evaluator = new ShiftDownEvaluator(plannerParameters, assigneeAvailabilityManager);
+		return new ShiftDownPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, evaluator, rankBasedSelectionStrategy, plannerParameters);
 		
 	}
 }

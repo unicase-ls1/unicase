@@ -1,24 +1,20 @@
-package org.unicase.iterationplanner.planner.impl;
+package org.unicase.iterationplanner.planner.impl.shiftdownplanner;
 
 import java.util.Set;
 
 import org.unicase.iterationplanner.assigneeRecommender.IAssignee;
-import org.unicase.iterationplanner.planner.AssigneeAvailabilityManager;
 import org.unicase.iterationplanner.planner.AbstractEvaluationStrategy;
+import org.unicase.iterationplanner.planner.AssigneeAvailabilityManager;
 import org.unicase.iterationplanner.planner.IIterationPlan;
 import org.unicase.iterationplanner.planner.IPlannedTask;
 import org.unicase.iterationplanner.planner.PlannerParameters;
 import org.unicase.iterationplanner.planner.PlannerUtil;
 
-public class MyEvaluator extends AbstractEvaluationStrategy {
+public class ShiftDownEvaluator extends AbstractEvaluationStrategy {
 
-	public MyEvaluator(PlannerParameters plannerParams, AssigneeAvailabilityManager assigneeAvailabilityManager) {
+	public ShiftDownEvaluator(PlannerParameters plannerParams, AssigneeAvailabilityManager assigneeAvailabilityManager) {
 		super(plannerParams, assigneeAvailabilityManager);
 	}
-
-
-
-	
 
 	@Override
 	public double evaluateExpertise(IIterationPlan iterPlan) {
@@ -66,10 +62,6 @@ public class MyEvaluator extends AbstractEvaluationStrategy {
 			* getPlannerParameters().getPriorityWeight() + devLoadScore
 			* getPlannerParameters().getDeveloperLoadWeight()) / 3.0;
 	}
-
-
-
-
 
 	@Override
 	public double evaluateAssigneeLoad(IIterationPlan iterPlan) {
