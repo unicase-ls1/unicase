@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Random;
 
 import org.unicase.iterationplanner.planner.PlannerUtil;
-import org.unicase.iterationplanner.planner.Selector;
+import org.unicase.iterationplanner.planner.AbstractSelectionStrategy;
 
-public class MySelector extends Selector {
+public class MySelector extends AbstractSelectionStrategy {
 
 	public MySelector(Random random) {
 		super(random);
@@ -20,7 +20,7 @@ public class MySelector extends Selector {
 	/**
 	 * population is sorted.
 	 * 
-	 * @see org.unicase.iterationplanner.planner.Selector#selectForCrossover(java.util.List, int)
+	 * @see org.unicase.iterationplanner.planner.AbstractSelectionStrategy#selectForCrossover(java.util.List, int)
 	 */
 	@Override
 	public List<IterationPlan> selectForCrossover(List<IterationPlan> population, int percentOfCrossOverParents) {

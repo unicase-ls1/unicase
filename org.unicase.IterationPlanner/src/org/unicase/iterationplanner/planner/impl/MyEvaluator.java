@@ -3,14 +3,14 @@ package org.unicase.iterationplanner.planner.impl;
 import java.util.Set;
 
 import org.unicase.iterationplanner.assigneeRecommender.IAssignee;
-import org.unicase.iterationplanner.entities.AssigneeAvailabilityManager;
-import org.unicase.iterationplanner.entities.IIterationPlan;
-import org.unicase.iterationplanner.entities.IPlannedTask;
-import org.unicase.iterationplanner.entities.PlannerParameters;
-import org.unicase.iterationplanner.planner.Evaluator;
+import org.unicase.iterationplanner.planner.AssigneeAvailabilityManager;
+import org.unicase.iterationplanner.planner.AbstractEvaluationStrategy;
+import org.unicase.iterationplanner.planner.IIterationPlan;
+import org.unicase.iterationplanner.planner.IPlannedTask;
+import org.unicase.iterationplanner.planner.PlannerParameters;
 import org.unicase.iterationplanner.planner.PlannerUtil;
 
-public class MyEvaluator extends Evaluator {
+public class MyEvaluator extends AbstractEvaluationStrategy {
 
 	public MyEvaluator(PlannerParameters plannerParams, AssigneeAvailabilityManager assigneeAvailabilityManager) {
 		super(plannerParams, assigneeAvailabilityManager);

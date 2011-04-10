@@ -5,11 +5,11 @@ import java.util.Random;
 
 import org.unicase.iterationplanner.planner.impl.IterationPlan;
 
-public abstract class Selector {
+public abstract class AbstractSelectionStrategy {
 
 	private final Random random;
 
-	public Selector(Random random) {
+	public AbstractSelectionStrategy(Random random) {
 		this.random = random;
 	}
 

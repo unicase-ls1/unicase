@@ -1,4 +1,4 @@
-package org.unicase.iterationplanner.entities;
+package org.unicase.iterationplanner.planner;
 
 import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
 import org.unicase.iterationplanner.assigneeRecommender.ITask;

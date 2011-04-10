@@ -9,18 +9,18 @@ import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
-import org.unicase.iterationplanner.entities.IIterationPlan;
-import org.unicase.iterationplanner.entities.IPlannedTask;
-import org.unicase.iterationplanner.planner.Planner;
+import org.unicase.iterationplanner.planner.AbstractPlanner;
+import org.unicase.iterationplanner.planner.IIterationPlan;
+import org.unicase.iterationplanner.planner.IPlannedTask;
 
 public class TaskAssigneeEditingSupport extends EditingSupport {
 
-	private Planner planner;
+	private AbstractPlanner planner;
 	private ComboBoxCellEditor comboBoxCellEditor;
 	private IIterationPlan iterationPlan;
 	private EditSelectedIterationPlanPage editingIterPlanWizardPage;
 
-	public TaskAssigneeEditingSupport(ColumnViewer viewer, Planner planner, IIterationPlan iterationPlan, EditSelectedIterationPlanPage editSelectedIterationPlanPage) {
+	public TaskAssigneeEditingSupport(ColumnViewer viewer, AbstractPlanner planner, IIterationPlan iterationPlan, EditSelectedIterationPlanPage editSelectedIterationPlanPage) {
 		super(viewer);
 		this.planner = planner;
 		this.iterationPlan = iterationPlan;

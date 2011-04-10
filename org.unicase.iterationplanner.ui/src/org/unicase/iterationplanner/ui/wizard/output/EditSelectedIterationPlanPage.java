@@ -30,14 +30,14 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.unicase.iterationplanner.assigneerecommender.Assignee;
 import org.unicase.iterationplanner.assigneerecommender.Task;
-import org.unicase.iterationplanner.entities.IIterationPlan;
-import org.unicase.iterationplanner.entities.IPlannedTask;
-import org.unicase.iterationplanner.planner.Planner;
+import org.unicase.iterationplanner.planner.AbstractPlanner;
+import org.unicase.iterationplanner.planner.IIterationPlan;
+import org.unicase.iterationplanner.planner.IPlannedTask;
 
 public class EditSelectedIterationPlanPage extends WizardPage {
 
 	private IIterationPlan iterationPlan;
-	private Planner planner;
+	private AbstractPlanner planner;
 	private IIterationPlan originalIterationPlan;
 	private TreeViewer iterationsTreeViewer;
 	private Text txtOverallScore;
@@ -47,7 +47,7 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 	private IPlannedTask dragSource;
 	private List<Iteration> iterations;
 
-	protected EditSelectedIterationPlanPage(String pageName, IIterationPlan iterationPlan, Planner planner) {
+	protected EditSelectedIterationPlanPage(String pageName, IIterationPlan iterationPlan, AbstractPlanner planner) {
 		super(pageName);
 		this.originalIterationPlan = iterationPlan;
 		this.iterationPlan = iterationPlan.clone();

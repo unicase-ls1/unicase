@@ -3,8 +3,6 @@ package org.unicase.iterationplanner.planner;
 import java.util.List;
 
 import org.unicase.iterationplanner.assigneeRecommender.TaskPotentialAssigneeList;
-import org.unicase.iterationplanner.entities.AssigneeAvailabilityManager;
-import org.unicase.iterationplanner.entities.PlannerParameters;
 import org.unicase.iterationplanner.planner.impl.MyPlanner;
 
 public class PlannerFactory {
@@ -23,7 +21,7 @@ public class PlannerFactory {
 		return instance;
 	}
 	
-	public Planner getDefaultPlanner(int numOfIterations, List<TaskPotentialAssigneeList> taskPotentialAssigneeLists,
+	public AbstractPlanner getDefaultPlanner(int numOfIterations, List<TaskPotentialAssigneeList> taskPotentialAssigneeLists,
 		AssigneeAvailabilityManager assigneeAvailabilityManager, PlannerParameters plannerParameters){
 		
 		return new MyPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, plannerParameters);

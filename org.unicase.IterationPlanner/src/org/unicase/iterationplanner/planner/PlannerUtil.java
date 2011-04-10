@@ -8,8 +8,6 @@ import java.util.Set;
 
 import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
 import org.unicase.iterationplanner.assigneeRecommender.ITask;
-import org.unicase.iterationplanner.entities.IIterationPlan;
-import org.unicase.iterationplanner.entities.IPlannedTask;
 import org.unicase.iterationplanner.planner.impl.PlannedTask;
 
 public class PlannerUtil {

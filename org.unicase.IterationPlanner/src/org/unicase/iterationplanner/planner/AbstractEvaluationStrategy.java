@@ -1,8 +1,5 @@
 package org.unicase.iterationplanner.planner;
 
-import org.unicase.iterationplanner.entities.AssigneeAvailabilityManager;
-import org.unicase.iterationplanner.entities.IIterationPlan;
-import org.unicase.iterationplanner.entities.PlannerParameters;
 
 /**
  * The evaluator evaluates an IterationPlan base on assignee expertise, task priorities, and assignee loads, and returns
@@ -10,13 +7,13 @@ import org.unicase.iterationplanner.entities.PlannerParameters;
  * 
  * @author zardosht
  */
-public abstract class Evaluator {
+public abstract class AbstractEvaluationStrategy {
 
 	private final PlannerParameters plannerParameters;
 	private IIterationPlan iterationPlan;
 	private AssigneeAvailabilityManager assigneeAvailabilityManager;
 
-	public Evaluator(PlannerParameters evaluationParameters, AssigneeAvailabilityManager aam) {
+	public AbstractEvaluationStrategy(PlannerParameters evaluationParameters, AssigneeAvailabilityManager aam) {
 		this.plannerParameters = evaluationParameters;
 		this.assigneeAvailabilityManager = aam;
 	}

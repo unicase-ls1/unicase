@@ -2,7 +2,7 @@ package org.unicase.iterationplanner.planner.impl;
 
 import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
 import org.unicase.iterationplanner.assigneeRecommender.ITask;
-import org.unicase.iterationplanner.entities.IPlannedTask;
+import org.unicase.iterationplanner.planner.IPlannedTask;
 
 
 /**

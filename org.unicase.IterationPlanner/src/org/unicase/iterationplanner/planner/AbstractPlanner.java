@@ -10,20 +10,17 @@ import java.util.Map;
 import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
 import org.unicase.iterationplanner.assigneeRecommender.ITask;
 import org.unicase.iterationplanner.assigneeRecommender.TaskPotentialAssigneeList;
-import org.unicase.iterationplanner.entities.AssigneeAvailabilityManager;
-import org.unicase.iterationplanner.entities.IIterationPlan;
-import org.unicase.iterationplanner.entities.PlannerParameters;
 import org.unicase.iterationplanner.planner.impl.IterationPlan;
 import org.unicase.iterationplanner.planner.impl.MyEvaluator;
 import org.unicase.iterationplanner.planner.impl.MySelector;
 
-public abstract class Planner {
+public abstract class AbstractPlanner {
 
 	private final int numOfIterations;
 	private final Map<ITask, List<AssigneeExpertise>> taskPotentialAssigneeListMap;
 	private final AssigneeAvailabilityManager assigneeAvailabilityManager;
-	private final Evaluator evaluator;
-	private final Selector selector;
+	private final AbstractEvaluationStrategy evaluator;
+	private final AbstractSelectionStrategy selector;
 	private final PlannerParameters plannerParameters;
 	private List<IterationPlan> population;
 	private List<IterationPlan> nextGeneration;
@@ -34,7 +31,7 @@ public abstract class Planner {
 	 * @param assigneeAvailabilities
 	 * @param plannerParameters
 	 */
-	public Planner(int numOfIterations, List<TaskPotentialAssigneeList> taskPotentialAssigneeLists,
+	public AbstractPlanner(int numOfIterations, List<TaskPotentialAssigneeList> taskPotentialAssigneeLists,
 		AssigneeAvailabilityManager assigneeAvailabilityManager, PlannerParameters plannerParameters) {
 		this.numOfIterations = numOfIterations;
 		this.taskPotentialAssigneeListMap = initTaskPotenitalAssigneeListMap(taskPotentialAssigneeLists);
@@ -185,7 +182,7 @@ public abstract class Planner {
 		return assigneeAvailabilityManager;
 	}
 
-	public Evaluator getEvaluator() {
+	public AbstractEvaluationStrategy getEvaluator() {
 		return evaluator;
 	}
 
@@ -193,7 +190,7 @@ public abstract class Planner {
 		return plannerParameters;
 	}
 
-	public Selector getSelector() {
+	public AbstractSelectionStrategy getSelector() {
 		return selector;
 	}
 
