@@ -12,10 +12,10 @@ public class UserAvailability {
 
 	private List<Integer> availabilities;
 	
-	public UserAvailability(User user) {
+	public UserAvailability(User user, int defaultAvailability) {
 		this.user = user;
 		availabilities = new ArrayList<Integer>();
-		availabilities.add(-1);
+		availabilities.add(defaultAvailability);
 	}
 	
 	
@@ -48,7 +48,7 @@ public class UserAvailability {
 	}
 
 
-	public void addIteration() {
-		availabilities.add(-1);
+	public void addIteration(int defaultAvailability) {
+		availabilities.add(defaultAvailability);
 	}	
 }

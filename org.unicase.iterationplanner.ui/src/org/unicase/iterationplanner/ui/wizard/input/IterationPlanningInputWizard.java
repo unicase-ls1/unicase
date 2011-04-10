@@ -23,7 +23,7 @@ public class IterationPlanningInputWizard extends Wizard {
 	private PlannerController plannerBridge;
 	private AbstractInputPage defineAssigneesPage;
 	private AbstractInputPage defineTasksPage;
-	private AbstractInputPage defineReqsPage;
+	//private AbstractInputPage defineReqsPage;
 	private WizardPage definePlannerParametersPage;
 	private boolean saveSession;
 
@@ -42,11 +42,11 @@ public class IterationPlanningInputWizard extends Wizard {
 	@Override
 	public void addPages() {
 		
-		defineReqsPage = new DefineRequirementsPage("defineRequirementsPage", projectBridge, plannerBridge);
+		//defineReqsPage = new DefineRequirementsPage("defineRequirementsPage", projectBridge, plannerBridge);
 		defineTasksPage = new DefineTasksPage("defineTasksPage", projectBridge, plannerBridge);
 		defineAssigneesPage = new DefineAssigneesPage("defineAssigneesPage", projectBridge, plannerBridge);
 		definePlannerParametersPage = new DefinePlannerParametersPage("definePlannerParametersPage", projectBridge, plannerBridge);
-		addPage(defineReqsPage);
+		//addPage(defineReqsPage);
 		addPage(defineTasksPage);
 		addPage(defineAssigneesPage);
 		addPage(definePlannerParametersPage);
@@ -92,9 +92,9 @@ public class IterationPlanningInputWizard extends Wizard {
 	}
 
 
-	public AbstractInputPage getDefineReqsPage() {
-		return defineReqsPage;
-	}
+//	public AbstractInputPage getDefineReqsPage() {
+//		return defineReqsPage;
+//	}
 
 
 	public WizardPage getDefinePlannerParametersPage() {

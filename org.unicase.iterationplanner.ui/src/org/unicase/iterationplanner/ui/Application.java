@@ -2,6 +2,7 @@ package org.unicase.iterationplanner.ui;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -19,7 +20,9 @@ import org.unicase.iterationplanner.assigneerecommender.UnicaseAssigneeRecommend
 import org.unicase.iterationplanner.entities.AssigneeAvailabilityManager;
 import org.unicase.iterationplanner.entities.IIterationPlan;
 import org.unicase.iterationplanner.entities.IPlannedTask;
+import org.unicase.iterationplanner.entities.PlannerParameters;
 import org.unicase.iterationplanner.planner.Planner;
+import org.unicase.iterationplanner.planner.PlannerFactory;
 import org.unicase.metamodel.Project;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
@@ -67,40 +70,40 @@ public class Application implements IApplication {
 		// print assignee recommendation results
 		outputAssigneeRecommendationResults(taskPotentialAssigneeLists);
 
-//		// prepare parameters for iteration planner
-//		int numOfIterations = 4;
-//		AssigneeAvailabilityManager assigneeAvailabilityManager = createAssigneeAvailabilityManager(numOfIterations,
-//			AssigneePool.getInstance().getAssignees());
-//
-//		Random random = new Random(1234567256L);
-//		
-//
-//		int populationSize = 10;
-//		int resultSize = 5;
-//		int maxNumOfGenerations = 10;
-//		int percentOfCrossOverChildren = 30;
-//		int precentOfMutants = 60;
-//		int percentOfClones = 10;
-//		int percentOfCrossOverParents = 30;
-//		int percentOfMutationCandidates = 30;
-//		int percentOfCloneCandidates = 30;
-//		int percentOfTasksToMutate = 10;
-//		
-//		double expertiesWeight = 1.0;
-//		double priorityWeight = 1.0;
-//		double developerLoadWeight = 1.0;
-//	
-//		PlannerParameters plannerParameters = new PlannerParameters(populationSize, resultSize, maxNumOfGenerations,
-//			percentOfCrossOverChildren, precentOfMutants, percentOfClones, percentOfCrossOverParents,
-//			percentOfMutationCandidates, percentOfCloneCandidates, percentOfTasksToMutate, random, expertiesWeight, priorityWeight, developerLoadWeight);
-//
-//
-//		// start planner
-//		Planner myPlanner = PlannerFactory.getInstance().getDefaultPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, plannerParameters);
-//		List<IIterationPlan> result = myPlanner.start();
-//
-//		// output result
-//		outputIterationPlannerResults(result, myPlanner);
+		// prepare parameters for iteration planner
+		int numOfIterations = 4;
+		AssigneeAvailabilityManager assigneeAvailabilityManager = createAssigneeAvailabilityManager(numOfIterations,
+			AssigneePool.getInstance().getAssignees());
+
+		Random random = new Random(1234567256L);
+		
+
+		int populationSize = 10;
+		int resultSize = 5;
+		int maxNumOfGenerations = 10;
+		int percentOfCrossOverChildren = 30;
+		int precentOfMutants = 60;
+		int percentOfClones = 10;
+		int percentOfCrossOverParents = 30;
+		int percentOfMutationCandidates = 30;
+		int percentOfCloneCandidates = 30;
+		int percentOfTasksToMutate = 10;
+		
+		double expertiesWeight = 1.0;
+		double priorityWeight = 1.0;
+		double developerLoadWeight = 1.0;
+	
+		PlannerParameters plannerParameters = new PlannerParameters(populationSize, resultSize, maxNumOfGenerations,
+			percentOfCrossOverChildren, precentOfMutants, percentOfClones, percentOfCrossOverParents,
+			percentOfMutationCandidates, percentOfCloneCandidates, percentOfTasksToMutate, random, expertiesWeight, priorityWeight, developerLoadWeight);
+
+
+		// start planner
+		Planner myPlanner = PlannerFactory.getInstance().getDefaultPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, plannerParameters);
+		List<IIterationPlan> result = myPlanner.start();
+
+		// output result
+		outputIterationPlannerResults(result, myPlanner);
 	}
 
 	private List<WorkItem> getTasksToPlan(Project project) {

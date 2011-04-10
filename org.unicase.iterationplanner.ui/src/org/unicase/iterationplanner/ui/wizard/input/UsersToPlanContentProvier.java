@@ -38,21 +38,21 @@ public class UsersToPlanContentProvier extends AdapterFactoryContentProvider {
 		userAvailabilities = new ArrayList<UserAvailability>();
 	}
 	
-	public void addOrgUnit(OrgUnit orgUnit){
+	public void addOrgUnit(OrgUnit orgUnit, int defaultAvailability){
 		if(orgUnit instanceof User){
-			UserAvailability ua = new UserAvailability((User) orgUnit);
+			UserAvailability ua = new UserAvailability((User) orgUnit, defaultAvailability);
 			for(int i = 0; i < numOfIterations -1; i++){
 				//-1 because a UserAvailability initializes with a first iteration (that is it already has a first iteration)
-				ua.addIteration();
+				ua.addIteration(defaultAvailability);
 			}
 			userAvailabilities.add(ua);
 		}else{
 			for(OrgUnit ou : ((Group)orgUnit).getOrgUnits()){
 				if(ou instanceof User){
-					UserAvailability ua = new UserAvailability((User)ou);
+					UserAvailability ua = new UserAvailability((User)ou, defaultAvailability);
 					for(int i = 0; i < numOfIterations - 1; i++){
 						//-1 because a UserAvailability initializes with a first iteration (that is it already has a first iteration)
-						ua.addIteration();
+						ua.addIteration(defaultAvailability);
 					}
 					userAvailabilities.add(ua);
 				}
@@ -64,9 +64,9 @@ public class UsersToPlanContentProvier extends AdapterFactoryContentProvider {
 		userAvailabilities.remove(ua);
 	}
 
-	public void addIteration() {
+	public void addIteration(int defaultAvailability) {
 		for(UserAvailability ua : userAvailabilities){
-			ua.addIteration();
+			ua.addIteration(defaultAvailability);
 		}
 		numOfIterations ++;
 		
@@ -78,6 +78,14 @@ public class UsersToPlanContentProvier extends AdapterFactoryContentProvider {
 		}
 		numOfIterations --;
 		
+	}
+
+	public void setAvailabilityForAll(int defaultAvailability) {
+		for(UserAvailability ua : userAvailabilities){
+			for(int i = 0; i < ua.getNumOfIterations(); i++){
+				ua.setAvailability(i, defaultAvailability);
+			}
+		}
 	}
 
 }

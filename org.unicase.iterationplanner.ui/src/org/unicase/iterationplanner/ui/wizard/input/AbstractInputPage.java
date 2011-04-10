@@ -103,9 +103,9 @@ public abstract class AbstractInputPage extends WizardPage {
 		createTargetControl(targetControlComposite);
 		
 		if(hasExtraControls()){
-			Composite extraControlsComposite = new Composite(container, SWT.NONE);
+			Composite extraControlsComposite = new Composite(container, SWT.BORDER);
 			extraControlsComposite.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false, 3, 1));
-			createExtraControls(extraControlsComposite);
+			createExtraControls(extraControlsComposite); 
 		}
 	}
 
