@@ -47,7 +47,7 @@ public class TaskAssigneeEditingSupport extends EditingSupport {
 	protected Object getValue(Object element) {
 		IPlannedTask pt = (IPlannedTask)element;
 		
-		return getIndexOf(pt.getAssigneeExpertise().getAssignee().getName() + " (expertise: " + pt.getAssigneeExpertise().getExpertise() + ")");
+		return getIndexOf(getAssigneeNameAndExpertise(pt.getAssigneeExpertise()));
 	}
 
 	private Integer getIndexOf(String string) {
@@ -66,10 +66,14 @@ public class TaskAssigneeEditingSupport extends EditingSupport {
 		String[] result = new String[assigneeExpertiseList.size()];
 		int i = 0;
 		for(AssigneeExpertise ae : assigneeExpertiseList){
-			result[i] = ae.getAssignee().getName() + " (expertise: " + ae.getExpertise() + ")";
+			result[i] = getAssigneeNameAndExpertise(ae);
 			i++;
 		}
 		return result;
+	}
+
+	private String getAssigneeNameAndExpertise(AssigneeExpertise ae) {
+		return String.format("%s (expertise: %1.3f)", ae.getAssignee().getName(), ae.getExpertise());
 	}
 
 	@Override

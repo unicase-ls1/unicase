@@ -26,4 +26,6 @@ public interface IIterationPlan extends Comparable<IIterationPlan> {
 	
 	void setIterationNumberFor(IPlannedTask plannedTask, int newIterationNumber);
 	void setAssigneeFor(IPlannedTask plannedTask, AssigneeExpertise assignee);
+
+	void setCheckInvariants(boolean b);
 }

@@ -8,7 +8,6 @@ package org.unicase.iterationplanner.ui.wizard.input;
 import java.util.List;
 
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.jface.wizard.WizardPage;
 import org.unicase.iterationplanner.ui.wizard.PlannerController;
 import org.unicase.iterationplanner.ui.wizard.ProjectController;
 import org.unicase.metamodel.Project;
@@ -24,7 +23,7 @@ public class IterationPlanningInputWizard extends Wizard {
 	private AbstractInputPage defineAssigneesPage;
 	private AbstractInputPage defineTasksPage;
 	//private AbstractInputPage defineReqsPage;
-	private WizardPage definePlannerParametersPage;
+	//private WizardPage definePlannerParametersPage;
 	private boolean saveSession;
 
 	/**
@@ -45,11 +44,11 @@ public class IterationPlanningInputWizard extends Wizard {
 		//defineReqsPage = new DefineRequirementsPage("defineRequirementsPage", projectBridge, plannerBridge);
 		defineTasksPage = new DefineTasksPage("defineTasksPage", projectBridge, plannerBridge);
 		defineAssigneesPage = new DefineAssigneesPage("defineAssigneesPage", projectBridge, plannerBridge);
-		definePlannerParametersPage = new DefinePlannerParametersPage("definePlannerParametersPage", projectBridge, plannerBridge);
+		//definePlannerParametersPage = new DefinePlannerParametersPage("definePlannerParametersPage", projectBridge, plannerBridge);
 		//addPage(defineReqsPage);
 		addPage(defineTasksPage);
 		addPage(defineAssigneesPage);
-		addPage(definePlannerParametersPage);
+		//addPage(definePlannerParametersPage);
 	}
 
 	@Override
@@ -64,9 +63,10 @@ public class IterationPlanningInputWizard extends Wizard {
 		boolean result = false;
 		if(getContainer().getCurrentPage().equals(getDefineAssigneesPage())){
 			result = getDefineAssigneesPage().isPageComplete();
-		}else if(getContainer().getCurrentPage().equals(getDefinePlannerParametersPage())){
-			result = getDefinePlannerParametersPage().isPageComplete();
 		}
+//		else if(getContainer().getCurrentPage().equals(getDefinePlannerParametersPage())){
+//			result = getDefinePlannerParametersPage().isPageComplete();
+//		}
 		
 		return result;
 	}
@@ -97,9 +97,9 @@ public class IterationPlanningInputWizard extends Wizard {
 //	}
 
 
-	public WizardPage getDefinePlannerParametersPage() {
-		return definePlannerParametersPage;
-	}
+//	public WizardPage getDefinePlannerParametersPage() {
+//		return definePlannerParametersPage;
+//	}
 
 
 	public void loadPreviousSession() {

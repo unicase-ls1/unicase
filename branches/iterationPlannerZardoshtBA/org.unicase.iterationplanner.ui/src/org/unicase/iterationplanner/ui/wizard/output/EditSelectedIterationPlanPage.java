@@ -62,7 +62,7 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 		container.setLayout(new GridLayout(1, false));
 		
 		//check invariants must be turned off, in order to manually change iteration plan.
-		//iterationPlan.setCheckInvariants(false);
+		iterationPlan.setCheckInvariants(false);
 		
 		iterations = createIterations();
 		
@@ -117,7 +117,7 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 			}
 			
 			public void dragOver(DropTargetEvent event) {
-				
+				event.feedback |= DND.FEEDBACK_SCROLL;
 			}
 			
 			public void dragOperationChanged(DropTargetEvent event) {
