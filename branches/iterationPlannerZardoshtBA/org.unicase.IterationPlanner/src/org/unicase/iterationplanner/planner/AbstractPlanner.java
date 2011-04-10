@@ -113,12 +113,7 @@ public abstract class AbstractPlanner {
 		nextGeneration.add(iterPlan);
 	}
 
-	private void checkInvariants(List<IterationPlan> iterPlans) {
-		for(IterationPlan iterPlan : iterPlans){
-			//iterPlan.checkAllInvariants();
-		}
-		
-	}
+	public abstract void checkInvariants(List<IterationPlan> iterPlans);
 
 	private void createNextGeneration() {
 		nextGeneration = new ArrayList<IterationPlan>();

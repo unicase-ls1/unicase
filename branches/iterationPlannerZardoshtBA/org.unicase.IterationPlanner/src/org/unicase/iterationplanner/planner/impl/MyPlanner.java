@@ -259,4 +259,10 @@ public class MyPlanner extends AbstractPlanner {
 			nextGeneration.remove(random.nextInt(currentSize));
 		}
 	}
+
+	@Override
+	public void checkInvariants(List<IterationPlan> iterPlans) {
+		// TODO Auto-generated method stub
+		
+	}
 }
