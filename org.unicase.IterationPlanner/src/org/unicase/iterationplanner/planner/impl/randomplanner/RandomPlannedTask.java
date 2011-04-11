@@ -1,39 +1,32 @@
-package org.unicase.iterationplanner.planner.impl.shiftdownplanner;
+package org.unicase.iterationplanner.planner.impl.randomplanner;
 
 import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
 import org.unicase.iterationplanner.assigneeRecommender.ITask;
 import org.unicase.iterationplanner.planner.IPlannedTask;
 
+public class RandomPlannedTask implements IPlannedTask {
 
-/**
- * This represents a task along with the assigneeExpertise chosen by planner algorithm to do this task. The
- * assigneeExpertise is actually an instance of AssigneeExperties, to experss its qualification for doing this task. The
- * expertise will then be used to evaluate IterationPlans.
- * 
- * @author zardosht
- */
-public class ShiftDownPlannedTask implements IPlannedTask {
 	private final ITask task;
 	private AssigneeExpertise assigneeExpertise;
 	private int iterationNumber = -1;
 	private boolean evaluateExperties = true;
-	private ShiftDownIterationPlan iterationPlan;
+	private RandomIterationPlan iterationPlan;
 	private boolean clonning;
-
-	public ShiftDownPlannedTask(ITask task) {
+	
+	public RandomPlannedTask(ITask task) {
 		this.task = task;
 	}
-
+	
 	@Override
-	public IPlannedTask clone() {
-		ShiftDownPlannedTask clone = new ShiftDownPlannedTask(this.task);
+	public IPlannedTask clone(){
+		RandomPlannedTask clone = new RandomPlannedTask(this.task);
 		clone.setClonning(true);
 		clone.setAssigneeExpertise(this.assigneeExpertise);
 		clone.setIterationNumber(this.iterationNumber);
 		clone.setClonning(false);
-		return clone;
-	}
-
+		return clone;	}
+	
+	
 	private void setClonning(boolean clonning) {
 		this.clonning = clonning;
 	}
@@ -83,10 +76,10 @@ public class ShiftDownPlannedTask implements IPlannedTask {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof ShiftDownPlannedTask)) {
+		if (!(obj instanceof RandomPlannedTask)) {
 			return false;
 		}
-		ShiftDownPlannedTask incomming = (ShiftDownPlannedTask) obj;
+		RandomPlannedTask incomming = (RandomPlannedTask) obj;
 		if (!this.assigneeExpertise.equals(incomming.assigneeExpertise)) {
 			return false;
 		}
@@ -104,10 +97,10 @@ public class ShiftDownPlannedTask implements IPlannedTask {
 	 * true if Tasks in both instances are equal.
 	 */
 	public boolean equalsTask(Object obj) {
-		if (!(obj instanceof ShiftDownPlannedTask)) {
+		if (!(obj instanceof RandomPlannedTask)) {
 			return false;
 		}
-		ShiftDownPlannedTask incomming = (ShiftDownPlannedTask) obj;
+		RandomPlannedTask incomming = (RandomPlannedTask) obj;
 		if (!this.task.equals(incomming.task)) {
 			return false;
 		}
@@ -134,7 +127,12 @@ public class ShiftDownPlannedTask implements IPlannedTask {
 		return evaluateExperties;
 	}
 
-	protected void setIterationPlan(ShiftDownIterationPlan iterationPlan) {
+	protected void setIterationPlan(RandomIterationPlan iterationPlan) {
 		this.iterationPlan = iterationPlan;
 	}
+	
+	
+
+
+
 }

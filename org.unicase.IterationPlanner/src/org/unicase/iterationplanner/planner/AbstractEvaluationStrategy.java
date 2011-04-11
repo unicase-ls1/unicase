@@ -2,8 +2,8 @@ package org.unicase.iterationplanner.planner;
 
 
 /**
- * The evaluator evaluates an ShiftDownIterationPlan base on assignee expertise, task priorities, and assignee loads, and returns
- * an overall score for ShiftDownIterationPlan.
+ * The evaluator evaluates an IIterationPlan base on assignee expertise, task priorities, and assignee loads, and returns
+ * an overall score for IIterationPlan.
  * 
  * @author zardosht
  */

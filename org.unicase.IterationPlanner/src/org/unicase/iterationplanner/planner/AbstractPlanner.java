@@ -10,7 +10,6 @@ import java.util.Map;
 import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
 import org.unicase.iterationplanner.assigneeRecommender.ITask;
 import org.unicase.iterationplanner.assigneeRecommender.TaskPotentialAssigneeList;
-import org.unicase.iterationplanner.planner.impl.shiftdownplanner.ShiftDownIterationPlan;
 
 public abstract class AbstractPlanner {
 
@@ -20,8 +19,8 @@ public abstract class AbstractPlanner {
 	private final AbstractEvaluationStrategy evaluator;
 	private final ISelectionStrategy selector;
 	private final PlannerParameters plannerParameters;
-	private List<ShiftDownIterationPlan> population;
-	private List<ShiftDownIterationPlan> nextGeneration;
+	private List<IIterationPlan> population;
+	private List<IIterationPlan> nextGeneration;
 
 	/**
 	 * @param numOfIterations
@@ -91,36 +90,36 @@ public abstract class AbstractPlanner {
 		return result;
 	}
 	
-	private double getBestIndividualFitness(List<ShiftDownIterationPlan> population2) {
+	private double getBestIndividualFitness(List<IIterationPlan> population2) {
 		Collections.sort(population2);
 		return population2.get(0).getScore();
 	}
 
-	private double getAverageFitness(List<ShiftDownIterationPlan> population2) {
+	private double getAverageFitness(List<IIterationPlan> population2) {
 		double result = 0.0;
 		double sum = 0.0;
-		for(ShiftDownIterationPlan iterPlan : population2){
+		for(IIterationPlan iterPlan : population2){
 			sum += iterPlan.getScore();
 		}
 		result = sum / population2.size();
 		return result;
 	}
 
-	protected void addToNextGeneration(ShiftDownIterationPlan iterPlan){
+	protected void addToNextGeneration(IIterationPlan iterPlan){
 		//iterPlan.checkAllInvariants();
 		nextGeneration.add(iterPlan);
 	}
 
-	public abstract void checkInvariants(List<ShiftDownIterationPlan> iterPlans);
+	public abstract void checkInvariants(List<IIterationPlan> iterPlans);
 
 	private void createNextGeneration() {
-		nextGeneration = new ArrayList<ShiftDownIterationPlan>();
+		nextGeneration = new ArrayList<IIterationPlan>();
 
-		List<ShiftDownIterationPlan> crossoverParents = selector.selectForCrossover(population, plannerParameters
+		List<IIterationPlan> crossoverParents = selector.selectForCrossover(population, plannerParameters
 			.getPercentOfCrossOverParents());
-		List<ShiftDownIterationPlan> mutationCandidates = selector.selectForMutation(population, plannerParameters
+		List<IIterationPlan> mutationCandidates = selector.selectForMutation(population, plannerParameters
 			.getPercentOfMutationCandidates());
-		List<ShiftDownIterationPlan> cloneCandidates = selector.selectForCloning(population, plannerParameters
+		List<IIterationPlan> cloneCandidates = selector.selectForCloning(population, plannerParameters
 			.getPercentOfCloneCandidates());
 
 		copyIntoNextGeneration(cloneCandidates);
@@ -145,23 +144,23 @@ public abstract class AbstractPlanner {
 	 */
 	protected abstract boolean isBreakCretieriaMet();
 
-	protected abstract List<ShiftDownIterationPlan> createInitialPopulation();
+	protected abstract List<IIterationPlan> createInitialPopulation();
 
-	protected abstract void trimNextGeneration(List<ShiftDownIterationPlan> nextGeneration);
+	protected abstract void trimNextGeneration(List<IIterationPlan> nextGeneration);
 
-	protected abstract void completeNextGeneration(List<ShiftDownIterationPlan> nextGeneration);
+	protected abstract void completeNextGeneration(List<IIterationPlan> nextGeneration);
 
-	protected abstract void copyIntoNextGeneration(List<ShiftDownIterationPlan> cloneCandidates);
+	protected abstract void copyIntoNextGeneration(List<IIterationPlan> cloneCandidates);
 
-	protected abstract void mutateIntoNextGeneration(List<ShiftDownIterationPlan> mutationCandidates);
+	protected abstract void mutateIntoNextGeneration(List<IIterationPlan> mutationCandidates);
 
-	protected abstract void crossoverIntoNextGeneration(List<ShiftDownIterationPlan> parentCandidates);
+	protected abstract void crossoverIntoNextGeneration(List<IIterationPlan> parentCandidates);
 
 	/**
 	 * evaluate each iteration plan in population, and give it a score; so that population can be sorted.
 	 */
 	private void evalutate() {
-		for (ShiftDownIterationPlan iterationPlan : population) {
+		for (IIterationPlan iterationPlan : population) {
 			double score = evaluator.evaluate(iterationPlan);
 			iterationPlan.setScore(score);
 		}

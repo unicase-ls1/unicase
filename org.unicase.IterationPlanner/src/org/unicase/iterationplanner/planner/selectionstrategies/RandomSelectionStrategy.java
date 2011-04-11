@@ -7,17 +7,17 @@ import org.unicase.iterationplanner.planner.IIterationPlan;
 import org.unicase.iterationplanner.planner.ISelectionStrategy;
 import org.unicase.iterationplanner.planner.PlannerUtil;
 
-public class RankBasedSelectionStrategy implements ISelectionStrategy {
+public class RandomSelectionStrategy implements ISelectionStrategy {
 
 	private Random random; 
 	
 	
-	public RankBasedSelectionStrategy(Random random) {
+	public RandomSelectionStrategy(Random random) {
 		this.random = random;
 	}
 
 	public List<IIterationPlan> selectForCloning(List<IIterationPlan> population, int percentOfCloneCandidates) {
-		return PlannerUtil.getInstance(getRandom()).selectFirstElementsFromSortedList(population, percentOfCloneCandidates);
+		return PlannerUtil.getInstance(getRandom()).selectRandomElementsFromList(population, percentOfCloneCandidates);
 	}
 
 	private Random getRandom() {
@@ -30,11 +30,11 @@ public class RankBasedSelectionStrategy implements ISelectionStrategy {
 	 * @see org.unicase.iterationplanner.planner.ISelectionStrategy#selectForCrossover(java.util.List, int)
 	 */
 	public List<IIterationPlan> selectForCrossover(List<IIterationPlan> population, int percentOfCrossOverParents) {
-		return PlannerUtil.getInstance(getRandom()).selectFirstElementsFromSortedList(population, percentOfCrossOverParents);
+		return PlannerUtil.getInstance(getRandom()).selectRandomElementsFromList(population, percentOfCrossOverParents);
 	}
 
 	public List<IIterationPlan> selectForMutation(List<IIterationPlan> population, int percentOfMutationsCandidates) {
-		return PlannerUtil.getInstance(getRandom()).selectFirstElementsFromSortedList(population, percentOfMutationsCandidates);
+		return PlannerUtil.getInstance(getRandom()).selectRandomElementsFromList(population, percentOfMutationsCandidates);
 	}
 
 }

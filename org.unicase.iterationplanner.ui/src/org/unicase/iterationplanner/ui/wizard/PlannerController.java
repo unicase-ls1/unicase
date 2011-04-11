@@ -110,6 +110,7 @@ public class PlannerController {
 				PlannerParameters plannerParameters = getPlannerParameters(random);
 
 				planner = PlannerFactory.getInstance().getShiftDownPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, plannerParameters);
+				//planner = PlannerFactory.getInstance().getRandomPlanner(numOfIterations, taskPotentialAssigneeLists, assigneeAvailabilityManager, plannerParameters);
 				result = planner.start();
 
 //				if (isModal(this)) {
