@@ -326,7 +326,7 @@ public class PlannerUtil {
 		union.addAll(plannedTasks2);
 		for(IPlannedTask pt1 : union){
 			for(IPlannedTask pt2 : union){
-				if(pt1.getTask().equals(pt2.getTask())){
+				if(!pt1.equals(pt2) && pt1.equalsTask(pt2)){
 					// set the ShiftDownPlannedTask with higher AssigneeExpertise for deletion
 					if(pt1.getAssigneeExpertise().getExpertise() > pt2.getAssigneeExpertise().getExpertise()){
 						duplicates.add(pt1);
@@ -338,7 +338,7 @@ public class PlannerUtil {
 			
 		}
 		union.removeAll(duplicates);
-		return union;
+		return union; 
 	}
 
 	/**
@@ -360,7 +360,7 @@ public class PlannerUtil {
 				}
 			}
 		}
-		return result;
+		return result; 
 	}
 	
 	/**

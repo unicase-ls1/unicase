@@ -35,7 +35,7 @@ public class ShiftDownEvaluator extends AbstractEvaluationStrategy {
 
 	
 	
-	
+	//
 	@Override
 	public double evaluateAssigneeLoad(IIterationPlan iterPlan) {
 		// for assignee wie viele tasks in iter? sum(estimate for tasks for assignee)

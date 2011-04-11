@@ -25,7 +25,7 @@ public class ShiftDownPlannedTask implements IPlannedTask {
 	}
 
 	@Override
-	public ShiftDownPlannedTask clone() {
+	public IPlannedTask clone() {
 		ShiftDownPlannedTask clone = new ShiftDownPlannedTask(this.task);
 		clone.setClonning(true);
 		clone.setAssigneeExpertise(this.assigneeExpertise);

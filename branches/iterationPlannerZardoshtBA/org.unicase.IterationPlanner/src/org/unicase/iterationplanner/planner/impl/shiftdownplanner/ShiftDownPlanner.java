@@ -12,6 +12,7 @@ import org.unicase.iterationplanner.assigneeRecommender.ITask;
 import org.unicase.iterationplanner.assigneeRecommender.TaskPotentialAssigneeList;
 import org.unicase.iterationplanner.planner.AbstractPlanner;
 import org.unicase.iterationplanner.planner.AssigneeAvailabilityManager;
+import org.unicase.iterationplanner.planner.IIterationPlan;
 import org.unicase.iterationplanner.planner.IPlannedTask;
 import org.unicase.iterationplanner.planner.ISelectionStrategy;
 import org.unicase.iterationplanner.planner.PlannerParameters;
@@ -29,19 +30,19 @@ public class ShiftDownPlanner extends AbstractPlanner {
 	}
 
 	@Override
-	protected void completeNextGeneration(List<ShiftDownIterationPlan> nextGeneration) {
+	protected void completeNextGeneration(List<IIterationPlan> nextGeneration) {
 		// for now just clone some of individuals
 		int numOfIndividualsToAdd = getPlannerParameters().getPopulationSize() - nextGeneration.size();
 		Random random = getPlannerParameters().getRandom();
 		for (int i = 0; i < numOfIndividualsToAdd; i++) {
-			ShiftDownIterationPlan cloneCandidate = nextGeneration.get(random.nextInt(nextGeneration.size()));
+			ShiftDownIterationPlan cloneCandidate = (ShiftDownIterationPlan) nextGeneration.get(random.nextInt(nextGeneration.size()));
 			ShiftDownIterationPlan clone = (ShiftDownIterationPlan) cloneCandidate.clone();
 			nextGeneration.add(clone);
 		}
 	}
 
 	@Override
-	protected void copyIntoNextGeneration(List<ShiftDownIterationPlan> cloneCandidates) {
+	protected void copyIntoNextGeneration(List<IIterationPlan> cloneCandidates) {
 		Random random = getPlannerParameters().getRandom();
 		int numOfClones = (int) ((getPlannerParameters().getPercentOfClones() / 100.0) * getPlannerParameters()
 			.getPopulationSize());
@@ -53,8 +54,8 @@ public class ShiftDownPlanner extends AbstractPlanner {
 	}
 
 	@Override
-	protected List<ShiftDownIterationPlan> createInitialPopulation() {
-		List<ShiftDownIterationPlan> initPopulation = new ArrayList<ShiftDownIterationPlan>();
+	protected List<IIterationPlan> createInitialPopulation() {
+		List<IIterationPlan> initPopulation = new ArrayList<IIterationPlan>();
 		int populationSize = getPlannerParameters().getPopulationSize();
 		for (int i = 0; i < populationSize; i++) {
 			ShiftDownIterationPlan iterPlan = createIterationPlan();
@@ -94,7 +95,7 @@ public class ShiftDownPlanner extends AbstractPlanner {
 	}
 
 	@Override
-	protected void crossoverIntoNextGeneration(List<ShiftDownIterationPlan> parentCandidates) {
+	protected void crossoverIntoNextGeneration(List<IIterationPlan> parentCandidates) {
 		// do for numOfChildren
 		// get two parents
 		// child = crossOver(parent1, parent2);
@@ -105,8 +106,8 @@ public class ShiftDownPlanner extends AbstractPlanner {
 
 		//crossover returns two children, therefore numOfChildren/2
 		for (int i = 0; i < numOfChildren / 2; i++) {
-			ShiftDownIterationPlan parent1 = parentCandidates.get(random.nextInt(parentCandidates.size()));
-			ShiftDownIterationPlan parent2 = parentCandidates.get(random.nextInt(parentCandidates.size()));
+			ShiftDownIterationPlan parent1 = (ShiftDownIterationPlan) parentCandidates.get(random.nextInt(parentCandidates.size()));
+			ShiftDownIterationPlan parent2 = (ShiftDownIterationPlan) parentCandidates.get(random.nextInt(parentCandidates.size()));
 			List<ShiftDownIterationPlan> children = crossover(parent1, parent2);
 			addToNextGeneration(children.get(0));
 			addToNextGeneration(children.get(1));
@@ -159,7 +160,7 @@ public class ShiftDownPlanner extends AbstractPlanner {
 		//Because tasksForI0 is union of I0 of both parents and we don't want these to be other iterations in children.
 		Set<IPlannedTask> restTasksForC1 = plannerUtil.subtractOnTasks(allPlannedTasksInP1, plannedTasksForI0);
 		Set<IPlannedTask> restTasksForC2 = plannerUtil.subtractOnTasks(allPlannedTasksInP2, plannedTasksForI0);
-		c1.addAll(restTasksForC1);
+		c1.addAll(restTasksForC1); 
 		c2.addAll(restTasksForC2);
 		
 		assert(plannerUtil.getPlannedTasks(c1).size() == getTaskPotentialAssigneeListMap().keySet().size());
@@ -185,13 +186,13 @@ public class ShiftDownPlanner extends AbstractPlanner {
 	}
 
 	@Override
-	protected void mutateIntoNextGeneration(List<ShiftDownIterationPlan> mutationCandidates) {
+	protected void mutateIntoNextGeneration(List<IIterationPlan> mutationCandidates) {
 		Random random = getPlannerParameters().getRandom();
 		int numOfMutants = (int) ((getPlannerParameters().getPrecentOfMutants() / 100.0) * getPlannerParameters()
 			.getPopulationSize());
 
 		for (int i = 0; i < numOfMutants; i++) {
-			ShiftDownIterationPlan mutationCandidate = mutationCandidates.get(random.nextInt(mutationCandidates.size()));
+			ShiftDownIterationPlan mutationCandidate = (ShiftDownIterationPlan) mutationCandidates.get(random.nextInt(mutationCandidates.size()));
 			ShiftDownIterationPlan mutant = mutate(mutationCandidate);
 			addToNextGeneration(mutant);
 		}
@@ -254,7 +255,7 @@ public class ShiftDownPlanner extends AbstractPlanner {
 	}
 
 	@Override
-	protected void trimNextGeneration(List<ShiftDownIterationPlan> nextGeneration) {
+	protected void trimNextGeneration(List<IIterationPlan> nextGeneration) {
 		//for now just delete some poor random individuals
 		int populationSize = getPlannerParameters().getPopulationSize();
 		Random random = getPlannerParameters().getRandom();
@@ -265,7 +266,7 @@ public class ShiftDownPlanner extends AbstractPlanner {
 	}
 
 	@Override
-	public void checkInvariants(List<ShiftDownIterationPlan> iterPlans) {
+	public void checkInvariants(List<IIterationPlan> iterPlans) {
 		
 	}
 }
