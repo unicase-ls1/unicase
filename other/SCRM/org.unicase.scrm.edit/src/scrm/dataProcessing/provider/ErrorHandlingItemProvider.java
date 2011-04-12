@@ -76,13 +76,11 @@ public class ErrorHandlingItemProvider extends SCRMModelElementItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ErrorHandling) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ErrorHandling_type")
-				: getString("_UI_ErrorHandling_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
