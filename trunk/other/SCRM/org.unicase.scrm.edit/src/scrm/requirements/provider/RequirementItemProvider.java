@@ -6,7 +6,6 @@
  */
 package scrm.requirements.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -33,22 +32,15 @@ import scrm.requirements.Requirement;
 import scrm.requirements.RequirementsFactory;
 import scrm.requirements.RequirementsPackage;
 
-import scrm.requirements.dataProcessing.DataProcessingFactory;
-
 /**
  * This is the item provider adapter for a {@link scrm.requirements.Requirement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class RequirementItemProvider
-	extends SCRMModelElementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class RequirementItemProvider extends SCRMModelElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -87,19 +79,18 @@ public class RequirementItemProvider
 	 * @generated
 	 */
 	protected void addContainingRequirementSpacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IRequirement_containingRequirementSpace_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IRequirement_containingRequirementSpace_feature", "_UI_IRequirement_type"),
-				 RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_IRequirement_containingRequirementSpace_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_IRequirement_containingRequirementSpace_feature",
+								"_UI_IRequirement_type"),
+						RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
+						true, false, false, null, null, null));
 	}
 
 	/**
@@ -109,19 +100,16 @@ public class RequirementItemProvider
 	 * @generated
 	 */
 	protected void addRefinementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Requirement_refinements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Requirement_refinements_feature", "_UI_Requirement_type"),
-				 RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Requirement_refinements_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Requirement_refinements_feature",
+						"_UI_Requirement_type"),
+				RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS, true,
+				false, false, null, null, null));
 	}
 
 	/**
@@ -131,19 +119,16 @@ public class RequirementItemProvider
 	 * @generated
 	 */
 	protected void addRefinedRequirementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Requirement_refinedRequirement_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Requirement_refinedRequirement_feature", "_UI_Requirement_type"),
-				 RequirementsPackage.Literals.REQUIREMENT__REFINED_REQUIREMENT,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Requirement_refinedRequirement_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Requirement_refinedRequirement_feature",
+						"_UI_Requirement_type"),
+				RequirementsPackage.Literals.REQUIREMENT__REFINED_REQUIREMENT,
+				true, false, false, null, null, null));
 	}
 
 	/**
@@ -153,19 +138,16 @@ public class RequirementItemProvider
 	 * @generated
 	 */
 	protected void addSpecifiedFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Requirement_specifiedFeature_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Requirement_specifiedFeature_feature", "_UI_Requirement_type"),
-				 RequirementsPackage.Literals.REQUIREMENT__SPECIFIED_FEATURE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Requirement_specifiedFeature_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Requirement_specifiedFeature_feature",
+						"_UI_Requirement_type"),
+				RequirementsPackage.Literals.REQUIREMENT__SPECIFIED_FEATURE,
+				true, false, false, null, null, null));
 	}
 
 	/**
@@ -175,19 +157,16 @@ public class RequirementItemProvider
 	 * @generated
 	 */
 	protected void addDefiningDataPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Requirement_definingData_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Requirement_definingData_feature", "_UI_Requirement_type"),
-				 RequirementsPackage.Literals.REQUIREMENT__DEFINING_DATA,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Requirement_definingData_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Requirement_definingData_feature",
+						"_UI_Requirement_type"),
+				RequirementsPackage.Literals.REQUIREMENT__DEFINING_DATA, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -197,19 +176,16 @@ public class RequirementItemProvider
 	 * @generated
 	 */
 	protected void addRealizedMethodPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Requirement_realizedMethod_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Requirement_realizedMethod_feature", "_UI_Requirement_type"),
-				 RequirementsPackage.Literals.REQUIREMENT__REALIZED_METHOD,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Requirement_realizedMethod_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Requirement_realizedMethod_feature",
+						"_UI_Requirement_type"),
+				RequirementsPackage.Literals.REQUIREMENT__REALIZED_METHOD,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -221,10 +197,12 @@ public class RequirementItemProvider
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS);
+			childrenFeatures
+					.add(RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -250,7 +228,8 @@ public class RequirementItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Requirement"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/Requirement"));
 	}
 
 	/**
@@ -276,9 +255,10 @@ public class RequirementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Requirement.class)) {
-			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case RequirementsPackage.REQUIREMENT__REFINEMENTS:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -291,48 +271,21 @@ public class RequirementItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
-				 RequirementsFactory.eINSTANCE.createRequirement()));
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
+				RequirementsFactory.eINSTANCE.createRequirement()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
-				 RequirementsFactory.eINSTANCE.createProcess()));
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
+				RequirementsFactory.eINSTANCE.createProcess()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
-				 RequirementsFactory.eINSTANCE.createPerformance()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
-				 DataProcessingFactory.eINSTANCE.createInputDataReading()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
-				 DataProcessingFactory.eINSTANCE.createDataHandling()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
-				 DataProcessingFactory.eINSTANCE.createResultsOutput()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
-				 DataProcessingFactory.eINSTANCE.createErrorHandling()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
-				 DataProcessingFactory.eINSTANCE.createStatusMonitoring()));
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
+				RequirementsFactory.eINSTANCE.createPerformance()));
 	}
 
 	/**

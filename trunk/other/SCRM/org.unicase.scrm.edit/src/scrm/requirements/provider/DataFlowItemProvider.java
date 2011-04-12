@@ -6,7 +6,6 @@
  */
 package scrm.requirements.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -33,14 +32,9 @@ import scrm.requirements.RequirementsPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DataFlowItemProvider
-	extends SCRMModelElementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class DataFlowItemProvider extends SCRMModelElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -75,19 +69,18 @@ public class DataFlowItemProvider
 	 * @generated
 	 */
 	protected void addContainingRequirementSpacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IRequirement_containingRequirementSpace_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IRequirement_containingRequirementSpace_feature", "_UI_IRequirement_type"),
-				 RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_IRequirement_containingRequirementSpace_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_IRequirement_containingRequirementSpace_feature",
+								"_UI_IRequirement_type"),
+						RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
+						true, false, false, null, null, null));
 	}
 
 	/**
@@ -97,19 +90,16 @@ public class DataFlowItemProvider
 	 * @generated
 	 */
 	protected void addSpecifiedProcessPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DataFlow_specifiedProcess_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DataFlow_specifiedProcess_feature", "_UI_DataFlow_type"),
-				 RequirementsPackage.Literals.DATA_FLOW__SPECIFIED_PROCESS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_DataFlow_specifiedProcess_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_DataFlow_specifiedProcess_feature",
+						"_UI_DataFlow_type"),
+				RequirementsPackage.Literals.DATA_FLOW__SPECIFIED_PROCESS,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -120,7 +110,8 @@ public class DataFlowItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DataFlow"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/DataFlow"));
 	}
 
 	/**
@@ -155,7 +146,8 @@ public class DataFlowItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

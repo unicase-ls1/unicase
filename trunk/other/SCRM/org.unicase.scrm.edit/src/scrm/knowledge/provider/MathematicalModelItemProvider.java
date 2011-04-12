@@ -6,7 +6,6 @@
  */
 package scrm.knowledge.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -34,24 +33,15 @@ import scrm.knowledge.MathematicalModel;
 import scrm.provider.SCRMModelElementItemProvider;
 import scrm.provider.ScrmEditPlugin;
 
-import scrm.requirements.RequirementsFactory;
-
-import scrm.requirements.dataProcessing.DataProcessingFactory;
-
 /**
  * This is the item provider adapter for a {@link scrm.knowledge.MathematicalModel} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MathematicalModelItemProvider
-	extends SCRMModelElementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class MathematicalModelItemProvider extends SCRMModelElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -92,19 +82,18 @@ public class MathematicalModelItemProvider
 	 * @generated
 	 */
 	protected void addContainingKnowledgeSpacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ScientificKnowledge_containingKnowledgeSpace_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ScientificKnowledge_containingKnowledgeSpace_feature", "_UI_ScientificKnowledge_type"),
-				 KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__CONTAINING_KNOWLEDGE_SPACE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_ScientificKnowledge_containingKnowledgeSpace_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_ScientificKnowledge_containingKnowledgeSpace_feature",
+								"_UI_ScientificKnowledge_type"),
+						KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__CONTAINING_KNOWLEDGE_SPACE,
+						true, false, false, null, null, null));
 	}
 
 	/**
@@ -114,19 +103,18 @@ public class MathematicalModelItemProvider
 	 * @generated
 	 */
 	protected void addRepresentedProblemPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MathematicalModel_representedProblem_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MathematicalModel_representedProblem_feature", "_UI_MathematicalModel_type"),
-				 KnowledgePackage.Literals.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_MathematicalModel_representedProblem_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_MathematicalModel_representedProblem_feature",
+								"_UI_MathematicalModel_type"),
+						KnowledgePackage.Literals.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM,
+						true, false, true, null, null, null));
 	}
 
 	/**
@@ -136,19 +124,16 @@ public class MathematicalModelItemProvider
 	 * @generated
 	 */
 	protected void addRefinementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MathematicalModel_refinements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MathematicalModel_refinements_feature", "_UI_MathematicalModel_type"),
-				 KnowledgePackage.Literals.MATHEMATICAL_MODEL__REFINEMENTS,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_MathematicalModel_refinements_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_MathematicalModel_refinements_feature",
+						"_UI_MathematicalModel_type"),
+				KnowledgePackage.Literals.MATHEMATICAL_MODEL__REFINEMENTS,
+				true, false, false, null, null, null));
 	}
 
 	/**
@@ -158,19 +143,16 @@ public class MathematicalModelItemProvider
 	 * @generated
 	 */
 	protected void addRefinedModelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MathematicalModel_refinedModel_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MathematicalModel_refinedModel_feature", "_UI_MathematicalModel_type"),
-				 KnowledgePackage.Literals.MATHEMATICAL_MODEL__REFINED_MODEL,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_MathematicalModel_refinedModel_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_MathematicalModel_refinedModel_feature",
+						"_UI_MathematicalModel_type"),
+				KnowledgePackage.Literals.MATHEMATICAL_MODEL__REFINED_MODEL,
+				true, false, false, null, null, null));
 	}
 
 	/**
@@ -180,19 +162,18 @@ public class MathematicalModelItemProvider
 	 * @generated
 	 */
 	protected void addNumericalMethodsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MathematicalModel_numericalMethods_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MathematicalModel_numericalMethods_feature", "_UI_MathematicalModel_type"),
-				 KnowledgePackage.Literals.MATHEMATICAL_MODEL__NUMERICAL_METHODS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_MathematicalModel_numericalMethods_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_MathematicalModel_numericalMethods_feature",
+								"_UI_MathematicalModel_type"),
+						KnowledgePackage.Literals.MATHEMATICAL_MODEL__NUMERICAL_METHODS,
+						true, false, true, null, null, null));
 	}
 
 	/**
@@ -202,19 +183,16 @@ public class MathematicalModelItemProvider
 	 * @generated
 	 */
 	protected void addDependenciesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MathematicalModel_dependencies_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MathematicalModel_dependencies_feature", "_UI_MathematicalModel_type"),
-				 KnowledgePackage.Literals.MATHEMATICAL_MODEL__DEPENDENCIES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_MathematicalModel_dependencies_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_MathematicalModel_dependencies_feature",
+						"_UI_MathematicalModel_type"),
+				KnowledgePackage.Literals.MATHEMATICAL_MODEL__DEPENDENCIES,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -224,19 +202,17 @@ public class MathematicalModelItemProvider
 	 * @generated
 	 */
 	protected void addTheoryPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MathematicalModel_theory_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MathematicalModel_theory_feature", "_UI_MathematicalModel_type"),
-				 KnowledgePackage.Literals.MATHEMATICAL_MODEL__THEORY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_MathematicalModel_theory_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_MathematicalModel_theory_feature",
+						"_UI_MathematicalModel_type"),
+				KnowledgePackage.Literals.MATHEMATICAL_MODEL__THEORY, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -246,19 +222,19 @@ public class MathematicalModelItemProvider
 	 * @generated
 	 */
 	protected void addMathematicalExpressionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MathematicalModel_mathematicalExpression_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MathematicalModel_mathematicalExpression_feature", "_UI_MathematicalModel_type"),
-				 KnowledgePackage.Literals.MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_MathematicalModel_mathematicalExpression_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_MathematicalModel_mathematicalExpression_feature",
+								"_UI_MathematicalModel_type"),
+						KnowledgePackage.Literals.MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION,
+						true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -270,10 +246,12 @@ public class MathematicalModelItemProvider
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(KnowledgePackage.Literals.MATHEMATICAL_MODEL__REFINEMENTS);
+			childrenFeatures
+					.add(KnowledgePackage.Literals.MATHEMATICAL_MODEL__REFINEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -299,7 +277,8 @@ public class MathematicalModelItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MathematicalModel"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/MathematicalModel"));
 	}
 
 	/**
@@ -325,13 +304,15 @@ public class MathematicalModelItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MathematicalModel.class)) {
-			case KnowledgePackage.MATHEMATICAL_MODEL__THEORY:
-			case KnowledgePackage.MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case KnowledgePackage.MATHEMATICAL_MODEL__REFINEMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case KnowledgePackage.MATHEMATICAL_MODEL__THEORY:
+		case KnowledgePackage.MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+			return;
+		case KnowledgePackage.MATHEMATICAL_MODEL__REFINEMENTS:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -344,13 +325,13 @@ public class MathematicalModelItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(KnowledgePackage.Literals.MATHEMATICAL_MODEL__REFINEMENTS,
-				 KnowledgeFactory.eINSTANCE.createMathematicalModel()));
+		newChildDescriptors.add(createChildParameter(
+				KnowledgePackage.Literals.MATHEMATICAL_MODEL__REFINEMENTS,
+				KnowledgeFactory.eINSTANCE.createMathematicalModel()));
 	}
 
 	/**

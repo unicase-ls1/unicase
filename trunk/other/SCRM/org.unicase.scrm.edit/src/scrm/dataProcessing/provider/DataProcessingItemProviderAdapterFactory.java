@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package scrm.requirements.dataProcessing.provider;
+package scrm.dataProcessing.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,7 +25,7 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import scrm.requirements.dataProcessing.util.DataProcessingAdapterFactory;
+import scrm.dataProcessing.util.DataProcessingAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -36,7 +36,9 @@ import scrm.requirements.dataProcessing.util.DataProcessingAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DataProcessingItemProviderAdapterFactory extends DataProcessingAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class DataProcessingItemProviderAdapterFactory extends
+		DataProcessingAdapterFactory implements ComposeableAdapterFactory,
+		IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -76,7 +78,7 @@ public class DataProcessingItemProviderAdapterFactory extends DataProcessingAdap
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link scrm.requirements.dataProcessing.InputDataReading} instances.
+	 * This keeps track of the one adapter used for all {@link scrm.dataProcessing.InputDataReading} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -84,7 +86,7 @@ public class DataProcessingItemProviderAdapterFactory extends DataProcessingAdap
 	protected InputDataReadingItemProvider inputDataReadingItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link scrm.requirements.dataProcessing.InputDataReading}.
+	 * This creates an adapter for a {@link scrm.dataProcessing.InputDataReading}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -92,14 +94,15 @@ public class DataProcessingItemProviderAdapterFactory extends DataProcessingAdap
 	@Override
 	public Adapter createInputDataReadingAdapter() {
 		if (inputDataReadingItemProvider == null) {
-			inputDataReadingItemProvider = new InputDataReadingItemProvider(this);
+			inputDataReadingItemProvider = new InputDataReadingItemProvider(
+					this);
 		}
 
 		return inputDataReadingItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link scrm.requirements.dataProcessing.DataHandling} instances.
+	 * This keeps track of the one adapter used for all {@link scrm.dataProcessing.DataHandling} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -107,7 +110,7 @@ public class DataProcessingItemProviderAdapterFactory extends DataProcessingAdap
 	protected DataHandlingItemProvider dataHandlingItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link scrm.requirements.dataProcessing.DataHandling}.
+	 * This creates an adapter for a {@link scrm.dataProcessing.DataHandling}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -122,7 +125,7 @@ public class DataProcessingItemProviderAdapterFactory extends DataProcessingAdap
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link scrm.requirements.dataProcessing.ResultsOutput} instances.
+	 * This keeps track of the one adapter used for all {@link scrm.dataProcessing.ResultsOutput} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -130,7 +133,7 @@ public class DataProcessingItemProviderAdapterFactory extends DataProcessingAdap
 	protected ResultsOutputItemProvider resultsOutputItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link scrm.requirements.dataProcessing.ResultsOutput}.
+	 * This creates an adapter for a {@link scrm.dataProcessing.ResultsOutput}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -145,7 +148,7 @@ public class DataProcessingItemProviderAdapterFactory extends DataProcessingAdap
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link scrm.requirements.dataProcessing.ErrorHandling} instances.
+	 * This keeps track of the one adapter used for all {@link scrm.dataProcessing.ErrorHandling} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -153,7 +156,7 @@ public class DataProcessingItemProviderAdapterFactory extends DataProcessingAdap
 	protected ErrorHandlingItemProvider errorHandlingItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link scrm.requirements.dataProcessing.ErrorHandling}.
+	 * This creates an adapter for a {@link scrm.dataProcessing.ErrorHandling}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -168,7 +171,7 @@ public class DataProcessingItemProviderAdapterFactory extends DataProcessingAdap
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link scrm.requirements.dataProcessing.StatusMonitoring} instances.
+	 * This keeps track of the one adapter used for all {@link scrm.dataProcessing.StatusMonitoring} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -176,7 +179,7 @@ public class DataProcessingItemProviderAdapterFactory extends DataProcessingAdap
 	protected StatusMonitoringItemProvider statusMonitoringItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link scrm.requirements.dataProcessing.StatusMonitoring}.
+	 * This creates an adapter for a {@link scrm.dataProcessing.StatusMonitoring}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -184,7 +187,8 @@ public class DataProcessingItemProviderAdapterFactory extends DataProcessingAdap
 	@Override
 	public Adapter createStatusMonitoringAdapter() {
 		if (statusMonitoringItemProvider == null) {
-			statusMonitoringItemProvider = new StatusMonitoringItemProvider(this);
+			statusMonitoringItemProvider = new StatusMonitoringItemProvider(
+					this);
 		}
 
 		return statusMonitoringItemProvider;
@@ -197,7 +201,8 @@ public class DataProcessingItemProviderAdapterFactory extends DataProcessingAdap
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory
+				.getRootAdapterFactory();
 	}
 
 	/**
@@ -206,7 +211,8 @@ public class DataProcessingItemProviderAdapterFactory extends DataProcessingAdap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
+	public void setParentAdapterFactory(
+			ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
 
@@ -240,7 +246,8 @@ public class DataProcessingItemProviderAdapterFactory extends DataProcessingAdap
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>)
+					|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -289,11 +296,16 @@ public class DataProcessingItemProviderAdapterFactory extends DataProcessingAdap
 	 * @generated
 	 */
 	public void dispose() {
-		if (inputDataReadingItemProvider != null) inputDataReadingItemProvider.dispose();
-		if (dataHandlingItemProvider != null) dataHandlingItemProvider.dispose();
-		if (resultsOutputItemProvider != null) resultsOutputItemProvider.dispose();
-		if (errorHandlingItemProvider != null) errorHandlingItemProvider.dispose();
-		if (statusMonitoringItemProvider != null) statusMonitoringItemProvider.dispose();
+		if (inputDataReadingItemProvider != null)
+			inputDataReadingItemProvider.dispose();
+		if (dataHandlingItemProvider != null)
+			dataHandlingItemProvider.dispose();
+		if (resultsOutputItemProvider != null)
+			resultsOutputItemProvider.dispose();
+		if (errorHandlingItemProvider != null)
+			errorHandlingItemProvider.dispose();
+		if (statusMonitoringItemProvider != null)
+			statusMonitoringItemProvider.dispose();
 	}
 
 }

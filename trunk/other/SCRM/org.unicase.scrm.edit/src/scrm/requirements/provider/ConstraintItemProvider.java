@@ -6,7 +6,6 @@
  */
 package scrm.requirements.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -35,14 +34,9 @@ import scrm.requirements.RequirementsPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ConstraintItemProvider
-	extends SCRMModelElementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class ConstraintItemProvider extends SCRMModelElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -77,19 +71,18 @@ public class ConstraintItemProvider
 	 * @generated
 	 */
 	protected void addContainingRequirementSpacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IRequirement_containingRequirementSpace_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IRequirement_containingRequirementSpace_feature", "_UI_IRequirement_type"),
-				 RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_IRequirement_containingRequirementSpace_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_IRequirement_containingRequirementSpace_feature",
+								"_UI_IRequirement_type"),
+						RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
+						true, false, false, null, null, null));
 	}
 
 	/**
@@ -99,19 +92,16 @@ public class ConstraintItemProvider
 	 * @generated
 	 */
 	protected void addRestrictedFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Constraint_restrictedFeature_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Constraint_restrictedFeature_feature", "_UI_Constraint_type"),
-				 RequirementsPackage.Literals.CONSTRAINT__RESTRICTED_FEATURE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Constraint_restrictedFeature_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Constraint_restrictedFeature_feature",
+						"_UI_Constraint_type"),
+				RequirementsPackage.Literals.CONSTRAINT__RESTRICTED_FEATURE,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -122,7 +112,8 @@ public class ConstraintItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Constraint"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/Constraint"));
 	}
 
 	/**
@@ -133,7 +124,8 @@ public class ConstraintItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);	}
+		return super.getText(object);
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -156,7 +148,8 @@ public class ConstraintItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

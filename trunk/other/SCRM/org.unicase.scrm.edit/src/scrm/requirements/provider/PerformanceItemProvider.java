@@ -6,7 +6,6 @@
  */
 package scrm.requirements.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -32,14 +31,9 @@ import scrm.requirements.RequirementsPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PerformanceItemProvider
-	extends RequirementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class PerformanceItemProvider extends RequirementItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -73,19 +67,17 @@ public class PerformanceItemProvider
 	 * @generated
 	 */
 	protected void addProblemSizePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Performance_problemSize_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Performance_problemSize_feature", "_UI_Performance_type"),
-				 RequirementsPackage.Literals.PERFORMANCE__PROBLEM_SIZE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Performance_problemSize_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Performance_problemSize_feature",
+						"_UI_Performance_type"),
+				RequirementsPackage.Literals.PERFORMANCE__PROBLEM_SIZE, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -96,7 +88,8 @@ public class PerformanceItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Performance"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/Performance"));
 	}
 
 	/**
@@ -122,9 +115,10 @@ public class PerformanceItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Performance.class)) {
-			case RequirementsPackage.PERFORMANCE__PROBLEM_SIZE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case RequirementsPackage.PERFORMANCE__PROBLEM_SIZE:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -137,7 +131,8 @@ public class PerformanceItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

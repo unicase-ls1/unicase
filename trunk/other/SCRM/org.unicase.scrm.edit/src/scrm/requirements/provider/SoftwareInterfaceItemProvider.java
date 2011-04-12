@@ -6,7 +6,6 @@
  */
 package scrm.requirements.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -35,14 +34,9 @@ import scrm.requirements.SoftwareInterface;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SoftwareInterfaceItemProvider
-	extends SCRMModelElementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class SoftwareInterfaceItemProvider extends SCRMModelElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -79,19 +73,18 @@ public class SoftwareInterfaceItemProvider
 	 * @generated
 	 */
 	protected void addContainingRequirementSpacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IRequirement_containingRequirementSpace_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IRequirement_containingRequirementSpace_feature", "_UI_IRequirement_type"),
-				 RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_IRequirement_containingRequirementSpace_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_IRequirement_containingRequirementSpace_feature",
+								"_UI_IRequirement_type"),
+						RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
+						true, false, false, null, null, null));
 	}
 
 	/**
@@ -101,19 +94,16 @@ public class SoftwareInterfaceItemProvider
 	 * @generated
 	 */
 	protected void addProvidingFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Interface_providingFeature_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Interface_providingFeature_feature", "_UI_Interface_type"),
-				 RequirementsPackage.Literals.INTERFACE__PROVIDING_FEATURE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Interface_providingFeature_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Interface_providingFeature_feature",
+						"_UI_Interface_type"),
+				RequirementsPackage.Literals.INTERFACE__PROVIDING_FEATURE,
+				true, false, false, null, null, null));
 	}
 
 	/**
@@ -123,19 +113,16 @@ public class SoftwareInterfaceItemProvider
 	 * @generated
 	 */
 	protected void addRequiringFeaturesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Interface_requiringFeatures_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Interface_requiringFeatures_feature", "_UI_Interface_type"),
-				 RequirementsPackage.Literals.INTERFACE__REQUIRING_FEATURES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Interface_requiringFeatures_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Interface_requiringFeatures_feature",
+						"_UI_Interface_type"),
+				RequirementsPackage.Literals.INTERFACE__REQUIRING_FEATURES,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -145,19 +132,17 @@ public class SoftwareInterfaceItemProvider
 	 * @generated
 	 */
 	protected void addDataTypesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SoftwareInterface_dataTypes_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SoftwareInterface_dataTypes_feature", "_UI_SoftwareInterface_type"),
-				 RequirementsPackage.Literals.SOFTWARE_INTERFACE__DATA_TYPES,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_SoftwareInterface_dataTypes_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_SoftwareInterface_dataTypes_feature",
+						"_UI_SoftwareInterface_type"),
+				RequirementsPackage.Literals.SOFTWARE_INTERFACE__DATA_TYPES,
+				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -168,7 +153,8 @@ public class SoftwareInterfaceItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SoftwareInterface"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/SoftwareInterface"));
 	}
 
 	/**
@@ -194,9 +180,10 @@ public class SoftwareInterfaceItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SoftwareInterface.class)) {
-			case RequirementsPackage.SOFTWARE_INTERFACE__DATA_TYPES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case RequirementsPackage.SOFTWARE_INTERFACE__DATA_TYPES:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -209,7 +196,8 @@ public class SoftwareInterfaceItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

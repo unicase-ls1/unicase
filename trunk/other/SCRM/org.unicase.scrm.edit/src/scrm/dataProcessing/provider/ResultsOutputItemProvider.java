@@ -4,8 +4,7 @@
  *
  * $Id$
  */
-package scrm.requirements.dataProcessing.provider;
-
+package scrm.dataProcessing.provider;
 
 import java.util.Collection;
 import java.util.List;
@@ -22,33 +21,27 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import scrm.dataProcessing.ResultsOutput;
+
+import scrm.provider.SCRMModelElementItemProvider;
 import scrm.provider.ScrmEditPlugin;
 
-import scrm.requirements.dataProcessing.DataHandling;
-
-import scrm.requirements.provider.RequirementItemProvider;
-
 /**
- * This is the item provider adapter for a {@link scrm.requirements.dataProcessing.DataHandling} object.
+ * This is the item provider adapter for a {@link scrm.dataProcessing.ResultsOutput} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DataHandlingItemProvider
-	extends RequirementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class ResultsOutputItemProvider extends SCRMModelElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataHandlingItemProvider(AdapterFactory adapterFactory) {
+	public ResultsOutputItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,25 +61,28 @@ public class DataHandlingItemProvider
 	}
 
 	/**
-	 * This returns DataHandling.gif.
+	 * This returns ResultsOutput.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DataHandling"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/ResultsOutput"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		String label = ((ResultsOutput) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_ResultsOutput_type")
+				: getString("_UI_ResultsOutput_type") + " " + label;
 	}
 
 	/**
@@ -110,7 +106,8 @@ public class DataHandlingItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

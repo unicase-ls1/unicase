@@ -36,7 +36,8 @@ import scrm.util.ScrmAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ScrmItemProviderAdapterFactory extends ScrmAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class ScrmItemProviderAdapterFactory extends ScrmAdapterFactory
+		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -105,7 +106,8 @@ public class ScrmItemProviderAdapterFactory extends ScrmAdapterFactory implement
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory
+				.getRootAdapterFactory();
 	}
 
 	/**
@@ -114,7 +116,8 @@ public class ScrmItemProviderAdapterFactory extends ScrmAdapterFactory implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
+	public void setParentAdapterFactory(
+			ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
 
@@ -148,7 +151,8 @@ public class ScrmItemProviderAdapterFactory extends ScrmAdapterFactory implement
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>)
+					|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -197,7 +201,8 @@ public class ScrmItemProviderAdapterFactory extends ScrmAdapterFactory implement
 	 * @generated
 	 */
 	public void dispose() {
-		if (scrmDiagramItemProvider != null) scrmDiagramItemProvider.dispose();
+		if (scrmDiagramItemProvider != null)
+			scrmDiagramItemProvider.dispose();
 	}
 
 }

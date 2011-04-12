@@ -6,7 +6,6 @@
  */
 package scrm.requirements.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -33,22 +32,15 @@ import scrm.requirements.Feature;
 import scrm.requirements.RequirementsFactory;
 import scrm.requirements.RequirementsPackage;
 
-import scrm.requirements.dataProcessing.DataProcessingFactory;
-
 /**
  * This is the item provider adapter for a {@link scrm.requirements.Feature} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class FeatureItemProvider
-	extends SCRMModelElementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class FeatureItemProvider extends SCRMModelElementItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -94,19 +86,18 @@ public class FeatureItemProvider
 	 * @generated
 	 */
 	protected void addContainingRequirementSpacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IRequirement_containingRequirementSpace_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IRequirement_containingRequirementSpace_feature", "_UI_IRequirement_type"),
-				 RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_IRequirement_containingRequirementSpace_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_IRequirement_containingRequirementSpace_feature",
+								"_UI_IRequirement_type"),
+						RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
+						true, false, false, null, null, null));
 	}
 
 	/**
@@ -116,19 +107,16 @@ public class FeatureItemProvider
 	 * @generated
 	 */
 	protected void addDetailedRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Feature_detailedRequirements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_detailedRequirements_feature", "_UI_Feature_type"),
-				 RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Feature_detailedRequirements_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Feature_detailedRequirements_feature",
+						"_UI_Feature_type"),
+				RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
+				true, false, false, null, null, null));
 	}
 
 	/**
@@ -138,19 +126,15 @@ public class FeatureItemProvider
 	 * @generated
 	 */
 	protected void addSubFeaturesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Feature_subFeatures_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_subFeatures_feature", "_UI_Feature_type"),
-				 RequirementsPackage.Literals.FEATURE__SUB_FEATURES,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Feature_subFeatures_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Feature_subFeatures_feature", "_UI_Feature_type"),
+				RequirementsPackage.Literals.FEATURE__SUB_FEATURES, true,
+				false, false, null, null, null));
 	}
 
 	/**
@@ -160,19 +144,17 @@ public class FeatureItemProvider
 	 * @generated
 	 */
 	protected void addSuperFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Feature_superFeature_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_superFeature_feature", "_UI_Feature_type"),
-				 RequirementsPackage.Literals.FEATURE__SUPER_FEATURE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_Feature_superFeature_feature"),
+						getString("_UI_PropertyDescriptor_description",
+								"_UI_Feature_superFeature_feature",
+								"_UI_Feature_type"),
+						RequirementsPackage.Literals.FEATURE__SUPER_FEATURE,
+						true, false, false, null, null, null));
 	}
 
 	/**
@@ -182,19 +164,15 @@ public class FeatureItemProvider
 	 * @generated
 	 */
 	protected void addConstraintsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Feature_constraints_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_constraints_feature", "_UI_Feature_type"),
-				 RequirementsPackage.Literals.FEATURE__CONSTRAINTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Feature_constraints_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Feature_constraints_feature", "_UI_Feature_type"),
+				RequirementsPackage.Literals.FEATURE__CONSTRAINTS, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -204,19 +182,17 @@ public class FeatureItemProvider
 	 * @generated
 	 */
 	protected void addDependenciesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Feature_dependencies_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_dependencies_feature", "_UI_Feature_type"),
-				 RequirementsPackage.Literals.FEATURE__DEPENDENCIES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_Feature_dependencies_feature"),
+						getString("_UI_PropertyDescriptor_description",
+								"_UI_Feature_dependencies_feature",
+								"_UI_Feature_type"),
+						RequirementsPackage.Literals.FEATURE__DEPENDENCIES,
+						true, false, true, null, null, null));
 	}
 
 	/**
@@ -226,19 +202,16 @@ public class FeatureItemProvider
 	 * @generated
 	 */
 	protected void addRequiredInterfacesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Feature_requiredInterfaces_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_requiredInterfaces_feature", "_UI_Feature_type"),
-				 RequirementsPackage.Literals.FEATURE__REQUIRED_INTERFACES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Feature_requiredInterfaces_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Feature_requiredInterfaces_feature",
+						"_UI_Feature_type"),
+				RequirementsPackage.Literals.FEATURE__REQUIRED_INTERFACES,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -248,19 +221,16 @@ public class FeatureItemProvider
 	 * @generated
 	 */
 	protected void addProvidedInterfacesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Feature_providedInterfaces_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_providedInterfaces_feature", "_UI_Feature_type"),
-				 RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Feature_providedInterfaces_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Feature_providedInterfaces_feature",
+						"_UI_Feature_type"),
+				RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES,
+				true, false, false, null, null, null));
 	}
 
 	/**
@@ -270,19 +240,16 @@ public class FeatureItemProvider
 	 * @generated
 	 */
 	protected void addInfluencingProblemPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Feature_influencingProblem_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_influencingProblem_feature", "_UI_Feature_type"),
-				 RequirementsPackage.Literals.FEATURE__INFLUENCING_PROBLEM,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Feature_influencingProblem_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Feature_influencingProblem_feature",
+						"_UI_Feature_type"),
+				RequirementsPackage.Literals.FEATURE__INFLUENCING_PROBLEM,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -292,19 +259,16 @@ public class FeatureItemProvider
 	 * @generated
 	 */
 	protected void addRequiredFeaturesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Feature_requiredFeatures_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_requiredFeatures_feature", "_UI_Feature_type"),
-				 RequirementsPackage.Literals.FEATURE__REQUIRED_FEATURES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Feature_requiredFeatures_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Feature_requiredFeatures_feature",
+						"_UI_Feature_type"),
+				RequirementsPackage.Literals.FEATURE__REQUIRED_FEATURES, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -314,19 +278,16 @@ public class FeatureItemProvider
 	 * @generated
 	 */
 	protected void addRequiringFeaturesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Feature_requiringFeatures_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_requiringFeatures_feature", "_UI_Feature_type"),
-				 RequirementsPackage.Literals.FEATURE__REQUIRING_FEATURES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Feature_requiringFeatures_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Feature_requiringFeatures_feature",
+						"_UI_Feature_type"),
+				RequirementsPackage.Literals.FEATURE__REQUIRING_FEATURES, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -336,19 +297,16 @@ public class FeatureItemProvider
 	 * @generated
 	 */
 	protected void addExcludedFeaturesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Feature_excludedFeatures_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_excludedFeatures_feature", "_UI_Feature_type"),
-				 RequirementsPackage.Literals.FEATURE__EXCLUDED_FEATURES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Feature_excludedFeatures_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Feature_excludedFeatures_feature",
+						"_UI_Feature_type"),
+				RequirementsPackage.Literals.FEATURE__EXCLUDED_FEATURES, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -358,19 +316,16 @@ public class FeatureItemProvider
 	 * @generated
 	 */
 	protected void addExcludingFeaturesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Feature_excludingFeatures_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_excludingFeatures_feature", "_UI_Feature_type"),
-				 RequirementsPackage.Literals.FEATURE__EXCLUDING_FEATURES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Feature_excludingFeatures_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Feature_excludingFeatures_feature",
+						"_UI_Feature_type"),
+				RequirementsPackage.Literals.FEATURE__EXCLUDING_FEATURES, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -382,12 +337,16 @@ public class FeatureItemProvider
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS);
-			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__SUB_FEATURES);
-			childrenFeatures.add(RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES);
+			childrenFeatures
+					.add(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS);
+			childrenFeatures
+					.add(RequirementsPackage.Literals.FEATURE__SUB_FEATURES);
+			childrenFeatures
+					.add(RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES);
 		}
 		return childrenFeatures;
 	}
@@ -413,7 +372,8 @@ public class FeatureItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Feature"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/Feature"));
 	}
 
 	/**
@@ -439,11 +399,12 @@ public class FeatureItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Feature.class)) {
-			case RequirementsPackage.FEATURE__DETAILED_REQUIREMENTS:
-			case RequirementsPackage.FEATURE__SUB_FEATURES:
-			case RequirementsPackage.FEATURE__PROVIDED_INTERFACES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case RequirementsPackage.FEATURE__DETAILED_REQUIREMENTS:
+		case RequirementsPackage.FEATURE__SUB_FEATURES:
+		case RequirementsPackage.FEATURE__PROVIDED_INTERFACES:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -456,63 +417,33 @@ public class FeatureItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createRequirement()));
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
+				RequirementsFactory.eINSTANCE.createRequirement()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createProcess()));
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
+				RequirementsFactory.eINSTANCE.createProcess()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
-				 RequirementsFactory.eINSTANCE.createPerformance()));
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
+				RequirementsFactory.eINSTANCE.createPerformance()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
-				 DataProcessingFactory.eINSTANCE.createInputDataReading()));
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.FEATURE__SUB_FEATURES,
+				RequirementsFactory.eINSTANCE.createFeature()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
-				 DataProcessingFactory.eINSTANCE.createDataHandling()));
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES,
+				RequirementsFactory.eINSTANCE.createUserInterface()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
-				 DataProcessingFactory.eINSTANCE.createResultsOutput()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
-				 DataProcessingFactory.eINSTANCE.createErrorHandling()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
-				 DataProcessingFactory.eINSTANCE.createStatusMonitoring()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.FEATURE__SUB_FEATURES,
-				 RequirementsFactory.eINSTANCE.createFeature()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES,
-				 RequirementsFactory.eINSTANCE.createUserInterface()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES,
-				 RequirementsFactory.eINSTANCE.createSoftwareInterface()));
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.FEATURE__PROVIDED_INTERFACES,
+				RequirementsFactory.eINSTANCE.createSoftwareInterface()));
 	}
 
 	/**
