@@ -6,7 +6,6 @@
  */
 package scrm.requirements.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -33,14 +32,9 @@ import scrm.requirements.UserInterface;
  * <!-- end-user-doc -->
  * @generated
  */
-public class UserInterfaceItemProvider
-	extends SCRMModelElementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class UserInterfaceItemProvider extends SCRMModelElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -76,19 +70,18 @@ public class UserInterfaceItemProvider
 	 * @generated
 	 */
 	protected void addContainingRequirementSpacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IRequirement_containingRequirementSpace_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IRequirement_containingRequirementSpace_feature", "_UI_IRequirement_type"),
-				 RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_IRequirement_containingRequirementSpace_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_IRequirement_containingRequirementSpace_feature",
+								"_UI_IRequirement_type"),
+						RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
+						true, false, false, null, null, null));
 	}
 
 	/**
@@ -98,19 +91,16 @@ public class UserInterfaceItemProvider
 	 * @generated
 	 */
 	protected void addProvidingFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Interface_providingFeature_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Interface_providingFeature_feature", "_UI_Interface_type"),
-				 RequirementsPackage.Literals.INTERFACE__PROVIDING_FEATURE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Interface_providingFeature_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Interface_providingFeature_feature",
+						"_UI_Interface_type"),
+				RequirementsPackage.Literals.INTERFACE__PROVIDING_FEATURE,
+				true, false, false, null, null, null));
 	}
 
 	/**
@@ -120,19 +110,16 @@ public class UserInterfaceItemProvider
 	 * @generated
 	 */
 	protected void addRequiringFeaturesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Interface_requiringFeatures_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Interface_requiringFeatures_feature", "_UI_Interface_type"),
-				 RequirementsPackage.Literals.INTERFACE__REQUIRING_FEATURES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Interface_requiringFeatures_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Interface_requiringFeatures_feature",
+						"_UI_Interface_type"),
+				RequirementsPackage.Literals.INTERFACE__REQUIRING_FEATURES,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -143,7 +130,8 @@ public class UserInterfaceItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/UserInterface"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/UserInterface"));
 	}
 
 	/**
@@ -178,7 +166,8 @@ public class UserInterfaceItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

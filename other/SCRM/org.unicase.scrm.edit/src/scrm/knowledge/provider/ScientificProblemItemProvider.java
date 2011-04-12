@@ -6,7 +6,6 @@
  */
 package scrm.knowledge.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -15,8 +14,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -24,18 +21,10 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import scrm.knowledge.KnowledgeFactory;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.ScientificProblem;
-
 import scrm.provider.SCRMModelElementItemProvider;
 import scrm.provider.ScrmEditPlugin;
-
-import scrm.requirements.RequirementsFactory;
-
-import scrm.requirements.dataProcessing.DataProcessingFactory;
 
 /**
  * This is the item provider adapter for a {@link scrm.knowledge.ScientificProblem} object.
@@ -43,14 +32,9 @@ import scrm.requirements.dataProcessing.DataProcessingFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ScientificProblemItemProvider
-	extends SCRMModelElementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class ScientificProblemItemProvider extends SCRMModelElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -87,19 +71,18 @@ public class ScientificProblemItemProvider
 	 * @generated
 	 */
 	protected void addContainingKnowledgeSpacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ScientificKnowledge_containingKnowledgeSpace_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ScientificKnowledge_containingKnowledgeSpace_feature", "_UI_ScientificKnowledge_type"),
-				 KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__CONTAINING_KNOWLEDGE_SPACE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_ScientificKnowledge_containingKnowledgeSpace_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_ScientificKnowledge_containingKnowledgeSpace_feature",
+								"_UI_ScientificKnowledge_type"),
+						KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__CONTAINING_KNOWLEDGE_SPACE,
+						true, false, false, null, null, null));
 	}
 
 	/**
@@ -109,19 +92,18 @@ public class ScientificProblemItemProvider
 	 * @generated
 	 */
 	protected void addRepresentingModelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ScientificProblem_representingModel_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ScientificProblem_representingModel_feature", "_UI_ScientificProblem_type"),
-				 KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_ScientificProblem_representingModel_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_ScientificProblem_representingModel_feature",
+								"_UI_ScientificProblem_type"),
+						KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL,
+						true, false, true, null, null, null));
 	}
 
 	/**
@@ -131,19 +113,16 @@ public class ScientificProblemItemProvider
 	 * @generated
 	 */
 	protected void addSolvingMethodsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ScientificProblem_solvingMethods_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ScientificProblem_solvingMethods_feature", "_UI_ScientificProblem_type"),
-				 KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__SOLVING_METHODS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ScientificProblem_solvingMethods_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ScientificProblem_solvingMethods_feature",
+						"_UI_ScientificProblem_type"),
+				KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__SOLVING_METHODS,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -153,19 +132,18 @@ public class ScientificProblemItemProvider
 	 * @generated
 	 */
 	protected void addInfluencedFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ScientificProblem_influencedFeature_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ScientificProblem_influencedFeature_feature", "_UI_ScientificProblem_type"),
-				 KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_ScientificProblem_influencedFeature_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_ScientificProblem_influencedFeature_feature",
+								"_UI_ScientificProblem_type"),
+						KnowledgePackage.Literals.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE,
+						true, false, true, null, null, null));
 	}
 
 	/**
@@ -176,7 +154,8 @@ public class ScientificProblemItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ScientificProblem"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/ScientificProblem"));
 	}
 
 	/**
@@ -211,7 +190,8 @@ public class ScientificProblemItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

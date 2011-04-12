@@ -6,7 +6,6 @@
  */
 package scrm.requirements.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -35,14 +34,9 @@ import scrm.requirements.RequirementsPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DataDefinitionItemProvider
-	extends SCRMModelElementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class DataDefinitionItemProvider extends SCRMModelElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -81,19 +75,18 @@ public class DataDefinitionItemProvider
 	 * @generated
 	 */
 	protected void addContainingRequirementSpacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IRequirement_containingRequirementSpace_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IRequirement_containingRequirementSpace_feature", "_UI_IRequirement_type"),
-				 RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_IRequirement_containingRequirementSpace_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_IRequirement_containingRequirementSpace_feature",
+								"_UI_IRequirement_type"),
+						RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
+						true, false, false, null, null, null));
 	}
 
 	/**
@@ -103,19 +96,18 @@ public class DataDefinitionItemProvider
 	 * @generated
 	 */
 	protected void addDefinedRequirementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DataDefinition_definedRequirement_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DataDefinition_definedRequirement_feature", "_UI_DataDefinition_type"),
-				 RequirementsPackage.Literals.DATA_DEFINITION__DEFINED_REQUIREMENT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_DataDefinition_definedRequirement_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_DataDefinition_definedRequirement_feature",
+								"_UI_DataDefinition_type"),
+						RequirementsPackage.Literals.DATA_DEFINITION__DEFINED_REQUIREMENT,
+						true, false, true, null, null, null));
 	}
 
 	/**
@@ -125,19 +117,17 @@ public class DataDefinitionItemProvider
 	 * @generated
 	 */
 	protected void addAccuracyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DataDefinition_accuracy_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DataDefinition_accuracy_feature", "_UI_DataDefinition_type"),
-				 RequirementsPackage.Literals.DATA_DEFINITION__ACCURACY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_DataDefinition_accuracy_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_DataDefinition_accuracy_feature",
+						"_UI_DataDefinition_type"),
+				RequirementsPackage.Literals.DATA_DEFINITION__ACCURACY, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -147,19 +137,17 @@ public class DataDefinitionItemProvider
 	 * @generated
 	 */
 	protected void addFormatPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DataDefinition_format_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DataDefinition_format_feature", "_UI_DataDefinition_type"),
-				 RequirementsPackage.Literals.DATA_DEFINITION__FORMAT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_DataDefinition_format_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_DataDefinition_format_feature",
+						"_UI_DataDefinition_type"),
+				RequirementsPackage.Literals.DATA_DEFINITION__FORMAT, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -169,19 +157,17 @@ public class DataDefinitionItemProvider
 	 * @generated
 	 */
 	protected void addRangePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DataDefinition_range_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DataDefinition_range_feature", "_UI_DataDefinition_type"),
-				 RequirementsPackage.Literals.DATA_DEFINITION__RANGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_DataDefinition_range_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_DataDefinition_range_feature",
+						"_UI_DataDefinition_type"),
+				RequirementsPackage.Literals.DATA_DEFINITION__RANGE, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -191,19 +177,17 @@ public class DataDefinitionItemProvider
 	 * @generated
 	 */
 	protected void addDataTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DataDefinition_dataType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DataDefinition_dataType_feature", "_UI_DataDefinition_type"),
-				 RequirementsPackage.Literals.DATA_DEFINITION__DATA_TYPE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_DataDefinition_dataType_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_DataDefinition_dataType_feature",
+						"_UI_DataDefinition_type"),
+				RequirementsPackage.Literals.DATA_DEFINITION__DATA_TYPE, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -214,7 +198,8 @@ public class DataDefinitionItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DataDefinition"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/DataDefinition"));
 	}
 
 	/**
@@ -240,12 +225,13 @@ public class DataDefinitionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(DataDefinition.class)) {
-			case RequirementsPackage.DATA_DEFINITION__ACCURACY:
-			case RequirementsPackage.DATA_DEFINITION__FORMAT:
-			case RequirementsPackage.DATA_DEFINITION__RANGE:
-			case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case RequirementsPackage.DATA_DEFINITION__ACCURACY:
+		case RequirementsPackage.DATA_DEFINITION__FORMAT:
+		case RequirementsPackage.DATA_DEFINITION__RANGE:
+		case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -258,7 +244,8 @@ public class DataDefinitionItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

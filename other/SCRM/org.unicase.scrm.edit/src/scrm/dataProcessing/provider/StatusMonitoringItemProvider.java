@@ -4,8 +4,7 @@
  *
  * $Id$
  */
-package scrm.requirements.dataProcessing.provider;
-
+package scrm.dataProcessing.provider;
 
 import java.util.Collection;
 import java.util.List;
@@ -22,35 +21,27 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import scrm.dataProcessing.StatusMonitoring;
+
+import scrm.provider.SCRMModelElementItemProvider;
 import scrm.provider.ScrmEditPlugin;
 
-import scrm.requirements.RequirementsPackage;
-
-import scrm.requirements.dataProcessing.InputDataReading;
-
-import scrm.requirements.provider.RequirementItemProvider;
-
 /**
- * This is the item provider adapter for a {@link scrm.requirements.dataProcessing.InputDataReading} object.
+ * This is the item provider adapter for a {@link scrm.dataProcessing.StatusMonitoring} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class InputDataReadingItemProvider
-	extends RequirementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class StatusMonitoringItemProvider extends SCRMModelElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputDataReadingItemProvider(AdapterFactory adapterFactory) {
+	public StatusMonitoringItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -70,25 +61,28 @@ public class InputDataReadingItemProvider
 	}
 
 	/**
-	 * This returns InputDataReading.gif.
+	 * This returns StatusMonitoring.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/InputDataReading"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/StatusMonitoring"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		String label = ((StatusMonitoring) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_StatusMonitoring_type")
+				: getString("_UI_StatusMonitoring_type") + " " + label;
 	}
 
 	/**
@@ -112,7 +106,8 @@ public class InputDataReadingItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

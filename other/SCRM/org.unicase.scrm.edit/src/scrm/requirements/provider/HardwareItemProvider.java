@@ -6,7 +6,6 @@
  */
 package scrm.requirements.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -37,14 +36,9 @@ import scrm.requirements.RequirementsPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class HardwareItemProvider
-	extends SCRMModelElementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class HardwareItemProvider extends SCRMModelElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -82,19 +76,18 @@ public class HardwareItemProvider
 	 * @generated
 	 */
 	protected void addContainingRequirementSpacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IRequirement_containingRequirementSpace_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_IRequirement_containingRequirementSpace_feature", "_UI_IRequirement_type"),
-				 RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_IRequirement_containingRequirementSpace_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_IRequirement_containingRequirementSpace_feature",
+								"_UI_IRequirement_type"),
+						RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
+						true, false, false, null, null, null));
 	}
 
 	/**
@@ -104,19 +97,16 @@ public class HardwareItemProvider
 	 * @generated
 	 */
 	protected void addDependingFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Hardware_dependingFeature_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Hardware_dependingFeature_feature", "_UI_Hardware_type"),
-				 RequirementsPackage.Literals.HARDWARE__DEPENDING_FEATURE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Hardware_dependingFeature_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Hardware_dependingFeature_feature",
+						"_UI_Hardware_type"),
+				RequirementsPackage.Literals.HARDWARE__DEPENDING_FEATURE, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -126,19 +116,15 @@ public class HardwareItemProvider
 	 * @generated
 	 */
 	protected void addProcessorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Hardware_processor_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Hardware_processor_feature", "_UI_Hardware_type"),
-				 RequirementsPackage.Literals.HARDWARE__PROCESSOR,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Hardware_processor_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Hardware_processor_feature", "_UI_Hardware_type"),
+				RequirementsPackage.Literals.HARDWARE__PROCESSOR, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -148,19 +134,15 @@ public class HardwareItemProvider
 	 * @generated
 	 */
 	protected void addPlatformPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Hardware_platform_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Hardware_platform_feature", "_UI_Hardware_type"),
-				 RequirementsPackage.Literals.HARDWARE__PLATFORM,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Hardware_platform_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Hardware_platform_feature", "_UI_Hardware_type"),
+				RequirementsPackage.Literals.HARDWARE__PLATFORM, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -170,19 +152,15 @@ public class HardwareItemProvider
 	 * @generated
 	 */
 	protected void addMemoryPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Hardware_memory_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Hardware_memory_feature", "_UI_Hardware_type"),
-				 RequirementsPackage.Literals.HARDWARE__MEMORY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Hardware_memory_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Hardware_memory_feature", "_UI_Hardware_type"),
+				RequirementsPackage.Literals.HARDWARE__MEMORY, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -193,7 +171,8 @@ public class HardwareItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Hardware"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/Hardware"));
 	}
 
 	/**
@@ -219,11 +198,12 @@ public class HardwareItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Hardware.class)) {
-			case RequirementsPackage.HARDWARE__PROCESSOR:
-			case RequirementsPackage.HARDWARE__PLATFORM:
-			case RequirementsPackage.HARDWARE__MEMORY:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case RequirementsPackage.HARDWARE__PROCESSOR:
+		case RequirementsPackage.HARDWARE__PLATFORM:
+		case RequirementsPackage.HARDWARE__MEMORY:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -236,7 +216,8 @@ public class HardwareItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

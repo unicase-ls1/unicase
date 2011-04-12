@@ -6,7 +6,6 @@
  */
 package scrm.knowledge.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -34,14 +33,9 @@ import scrm.provider.ScrmEditPlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AssumptionItemProvider
-	extends SCRMModelElementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class AssumptionItemProvider extends SCRMModelElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -77,19 +71,18 @@ public class AssumptionItemProvider
 	 * @generated
 	 */
 	protected void addContainingKnowledgeSpacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ScientificKnowledge_containingKnowledgeSpace_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ScientificKnowledge_containingKnowledgeSpace_feature", "_UI_ScientificKnowledge_type"),
-				 KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__CONTAINING_KNOWLEDGE_SPACE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_ScientificKnowledge_containingKnowledgeSpace_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_ScientificKnowledge_containingKnowledgeSpace_feature",
+								"_UI_ScientificKnowledge_type"),
+						KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__CONTAINING_KNOWLEDGE_SPACE,
+						true, false, false, null, null, null));
 	}
 
 	/**
@@ -99,19 +92,16 @@ public class AssumptionItemProvider
 	 * @generated
 	 */
 	protected void addDependingModelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Assumption_dependingModel_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Assumption_dependingModel_feature", "_UI_Assumption_type"),
-				 KnowledgePackage.Literals.ASSUMPTION__DEPENDING_MODEL,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Assumption_dependingModel_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Assumption_dependingModel_feature",
+						"_UI_Assumption_type"),
+				KnowledgePackage.Literals.ASSUMPTION__DEPENDING_MODEL, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -121,19 +111,16 @@ public class AssumptionItemProvider
 	 * @generated
 	 */
 	protected void addDependingMethodPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Assumption_dependingMethod_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Assumption_dependingMethod_feature", "_UI_Assumption_type"),
-				 KnowledgePackage.Literals.ASSUMPTION__DEPENDING_METHOD,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Assumption_dependingMethod_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Assumption_dependingMethod_feature",
+						"_UI_Assumption_type"),
+				KnowledgePackage.Literals.ASSUMPTION__DEPENDING_METHOD, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -144,7 +131,8 @@ public class AssumptionItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Assumption"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/Assumption"));
 	}
 
 	/**
@@ -179,7 +167,8 @@ public class AssumptionItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

@@ -4,8 +4,7 @@
  *
  * $Id$
  */
-package scrm.requirements.dataProcessing.provider;
-
+package scrm.dataProcessing.provider;
 
 import java.util.Collection;
 import java.util.List;
@@ -22,35 +21,27 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import scrm.dataProcessing.InputDataReading;
+
+import scrm.provider.SCRMModelElementItemProvider;
 import scrm.provider.ScrmEditPlugin;
 
-import scrm.requirements.RequirementsPackage;
-
-import scrm.requirements.dataProcessing.ResultsOutput;
-
-import scrm.requirements.provider.RequirementItemProvider;
-
 /**
- * This is the item provider adapter for a {@link scrm.requirements.dataProcessing.ResultsOutput} object.
+ * This is the item provider adapter for a {@link scrm.dataProcessing.InputDataReading} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ResultsOutputItemProvider
-	extends RequirementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class InputDataReadingItemProvider extends SCRMModelElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResultsOutputItemProvider(AdapterFactory adapterFactory) {
+	public InputDataReadingItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -70,25 +61,28 @@ public class ResultsOutputItemProvider
 	}
 
 	/**
-	 * This returns ResultsOutput.gif.
+	 * This returns InputDataReading.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ResultsOutput"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/InputDataReading"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		String label = ((InputDataReading) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_InputDataReading_type")
+				: getString("_UI_InputDataReading_type") + " " + label;
 	}
 
 	/**
@@ -112,7 +106,8 @@ public class ResultsOutputItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

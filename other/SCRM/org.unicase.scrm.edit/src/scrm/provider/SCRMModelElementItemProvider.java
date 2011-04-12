@@ -6,7 +6,6 @@
  */
 package scrm.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -35,14 +34,9 @@ import scrm.ScrmPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SCRMModelElementItemProvider
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class SCRMModelElementItemProvider extends ItemProviderAdapter implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -77,19 +71,16 @@ public class SCRMModelElementItemProvider
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SCRMModelElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_name_feature", "_UI_SCRMModelElement_type"),
-				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_SCRMModelElement_name_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_SCRMModelElement_name_feature",
+						"_UI_SCRMModelElement_type"),
+				ScrmPackage.Literals.SCRM_MODEL_ELEMENT__NAME, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -99,19 +90,17 @@ public class SCRMModelElementItemProvider
 	 * @generated
 	 */
 	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SCRMModelElement_description_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SCRMModelElement_description_feature", "_UI_SCRMModelElement_type"),
-				 ScrmPackage.Literals.SCRM_MODEL_ELEMENT__DESCRIPTION,
-				 true,
-				 true,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_SCRMModelElement_description_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_SCRMModelElement_description_feature",
+						"_UI_SCRMModelElement_type"),
+				ScrmPackage.Literals.SCRM_MODEL_ELEMENT__DESCRIPTION, true,
+				true, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -122,7 +111,7 @@ public class SCRMModelElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SCRMModelElement)object).getName();
+		String label = ((SCRMModelElement) object).getName();
 		return label;
 	}
 
@@ -138,10 +127,11 @@ public class SCRMModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SCRMModelElement.class)) {
-			case ScrmPackage.SCRM_MODEL_ELEMENT__NAME:
-			case ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case ScrmPackage.SCRM_MODEL_ELEMENT__NAME:
+		case ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -154,7 +144,8 @@ public class SCRMModelElementItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -168,5 +159,5 @@ public class SCRMModelElementItemProvider
 	public ResourceLocator getResourceLocator() {
 		return ScrmEditPlugin.INSTANCE;
 	}
-	
+
 }

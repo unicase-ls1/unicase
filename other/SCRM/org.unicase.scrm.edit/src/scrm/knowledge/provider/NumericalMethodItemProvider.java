@@ -6,7 +6,6 @@
  */
 package scrm.knowledge.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -14,8 +13,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -27,16 +24,11 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import scrm.knowledge.KnowledgeFactory;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.NumericalMethod;
 
 import scrm.provider.SCRMModelElementItemProvider;
 import scrm.provider.ScrmEditPlugin;
-
-import scrm.requirements.RequirementsFactory;
-
-import scrm.requirements.dataProcessing.DataProcessingFactory;
 
 /**
  * This is the item provider adapter for a {@link scrm.knowledge.NumericalMethod} object.
@@ -44,14 +36,9 @@ import scrm.requirements.dataProcessing.DataProcessingFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class NumericalMethodItemProvider
-	extends SCRMModelElementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class NumericalMethodItemProvider extends SCRMModelElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -92,19 +79,18 @@ public class NumericalMethodItemProvider
 	 * @generated
 	 */
 	protected void addContainingKnowledgeSpacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ScientificKnowledge_containingKnowledgeSpace_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ScientificKnowledge_containingKnowledgeSpace_feature", "_UI_ScientificKnowledge_type"),
-				 KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__CONTAINING_KNOWLEDGE_SPACE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_ScientificKnowledge_containingKnowledgeSpace_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_ScientificKnowledge_containingKnowledgeSpace_feature",
+								"_UI_ScientificKnowledge_type"),
+						KnowledgePackage.Literals.SCIENTIFIC_KNOWLEDGE__CONTAINING_KNOWLEDGE_SPACE,
+						true, false, false, null, null, null));
 	}
 
 	/**
@@ -114,19 +100,16 @@ public class NumericalMethodItemProvider
 	 * @generated
 	 */
 	protected void addSolvedProblemPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_NumericalMethod_solvedProblem_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NumericalMethod_solvedProblem_feature", "_UI_NumericalMethod_type"),
-				 KnowledgePackage.Literals.NUMERICAL_METHOD__SOLVED_PROBLEM,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_NumericalMethod_solvedProblem_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_NumericalMethod_solvedProblem_feature",
+						"_UI_NumericalMethod_type"),
+				KnowledgePackage.Literals.NUMERICAL_METHOD__SOLVED_PROBLEM,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -136,19 +119,16 @@ public class NumericalMethodItemProvider
 	 * @generated
 	 */
 	protected void addDependenciesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_NumericalMethod_dependencies_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NumericalMethod_dependencies_feature", "_UI_NumericalMethod_type"),
-				 KnowledgePackage.Literals.NUMERICAL_METHOD__DEPENDENCIES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_NumericalMethod_dependencies_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_NumericalMethod_dependencies_feature",
+						"_UI_NumericalMethod_type"),
+				KnowledgePackage.Literals.NUMERICAL_METHOD__DEPENDENCIES, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -158,19 +138,18 @@ public class NumericalMethodItemProvider
 	 * @generated
 	 */
 	protected void addRealizingRequirementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_NumericalMethod_realizingRequirement_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NumericalMethod_realizingRequirement_feature", "_UI_NumericalMethod_type"),
-				 KnowledgePackage.Literals.NUMERICAL_METHOD__REALIZING_REQUIREMENT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_NumericalMethod_realizingRequirement_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_NumericalMethod_realizingRequirement_feature",
+								"_UI_NumericalMethod_type"),
+						KnowledgePackage.Literals.NUMERICAL_METHOD__REALIZING_REQUIREMENT,
+						true, false, true, null, null, null));
 	}
 
 	/**
@@ -180,19 +159,16 @@ public class NumericalMethodItemProvider
 	 * @generated
 	 */
 	protected void addMathematicalModelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_NumericalMethod_mathematicalModel_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NumericalMethod_mathematicalModel_feature", "_UI_NumericalMethod_type"),
-				 KnowledgePackage.Literals.NUMERICAL_METHOD__MATHEMATICAL_MODEL,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_NumericalMethod_mathematicalModel_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_NumericalMethod_mathematicalModel_feature",
+						"_UI_NumericalMethod_type"),
+				KnowledgePackage.Literals.NUMERICAL_METHOD__MATHEMATICAL_MODEL,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -202,19 +178,16 @@ public class NumericalMethodItemProvider
 	 * @generated
 	 */
 	protected void addPerformancePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_NumericalMethod_performance_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NumericalMethod_performance_feature", "_UI_NumericalMethod_type"),
-				 KnowledgePackage.Literals.NUMERICAL_METHOD__PERFORMANCE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_NumericalMethod_performance_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_NumericalMethod_performance_feature",
+						"_UI_NumericalMethod_type"),
+				KnowledgePackage.Literals.NUMERICAL_METHOD__PERFORMANCE, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -224,19 +197,17 @@ public class NumericalMethodItemProvider
 	 * @generated
 	 */
 	protected void addTheoryPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_NumericalMethod_theory_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NumericalMethod_theory_feature", "_UI_NumericalMethod_type"),
-				 KnowledgePackage.Literals.NUMERICAL_METHOD__THEORY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_NumericalMethod_theory_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_NumericalMethod_theory_feature",
+						"_UI_NumericalMethod_type"),
+				KnowledgePackage.Literals.NUMERICAL_METHOD__THEORY, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -246,19 +217,17 @@ public class NumericalMethodItemProvider
 	 * @generated
 	 */
 	protected void addAlgorithmPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_NumericalMethod_algorithm_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NumericalMethod_algorithm_feature", "_UI_NumericalMethod_type"),
-				 KnowledgePackage.Literals.NUMERICAL_METHOD__ALGORITHM,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_NumericalMethod_algorithm_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_NumericalMethod_algorithm_feature",
+						"_UI_NumericalMethod_type"),
+				KnowledgePackage.Literals.NUMERICAL_METHOD__ALGORITHM, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -269,7 +238,8 @@ public class NumericalMethodItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/NumericalMethod"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/NumericalMethod"));
 	}
 
 	/**
@@ -295,10 +265,11 @@ public class NumericalMethodItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(NumericalMethod.class)) {
-			case KnowledgePackage.NUMERICAL_METHOD__THEORY:
-			case KnowledgePackage.NUMERICAL_METHOD__ALGORITHM:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case KnowledgePackage.NUMERICAL_METHOD__THEORY:
+		case KnowledgePackage.NUMERICAL_METHOD__ALGORITHM:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -311,7 +282,8 @@ public class NumericalMethodItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

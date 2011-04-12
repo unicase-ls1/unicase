@@ -36,7 +36,9 @@ import scrm.requirements.util.RequirementsAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class RequirementsItemProviderAdapterFactory extends
+		RequirementsAdapterFactory implements ComposeableAdapterFactory,
+		IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -207,7 +209,8 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	@Override
 	public Adapter createSoftwareInterfaceAdapter() {
 		if (softwareInterfaceItemProvider == null) {
-			softwareInterfaceItemProvider = new SoftwareInterfaceItemProvider(this);
+			softwareInterfaceItemProvider = new SoftwareInterfaceItemProvider(
+					this);
 		}
 
 		return softwareInterfaceItemProvider;
@@ -322,7 +325,8 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	@Override
 	public Adapter createRequirementSpaceAdapter() {
 		if (requirementSpaceItemProvider == null) {
-			requirementSpaceItemProvider = new RequirementSpaceItemProvider(this);
+			requirementSpaceItemProvider = new RequirementSpaceItemProvider(
+					this);
 		}
 
 		return requirementSpaceItemProvider;
@@ -335,7 +339,8 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory
+				.getRootAdapterFactory();
 	}
 
 	/**
@@ -344,7 +349,8 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
+	public void setParentAdapterFactory(
+			ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
 
@@ -378,7 +384,8 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>)
+					|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -427,17 +434,28 @@ public class RequirementsItemProviderAdapterFactory extends RequirementsAdapterF
 	 * @generated
 	 */
 	public void dispose() {
-		if (featureItemProvider != null) featureItemProvider.dispose();
-		if (hardwareItemProvider != null) hardwareItemProvider.dispose();
-		if (constraintItemProvider != null) constraintItemProvider.dispose();
-		if (requirementItemProvider != null) requirementItemProvider.dispose();
-		if (userInterfaceItemProvider != null) userInterfaceItemProvider.dispose();
-		if (softwareInterfaceItemProvider != null) softwareInterfaceItemProvider.dispose();
-		if (processItemProvider != null) processItemProvider.dispose();
-		if (performanceItemProvider != null) performanceItemProvider.dispose();
-		if (dataFlowItemProvider != null) dataFlowItemProvider.dispose();
-		if (dataDefinitionItemProvider != null) dataDefinitionItemProvider.dispose();
-		if (requirementSpaceItemProvider != null) requirementSpaceItemProvider.dispose();
+		if (requirementItemProvider != null)
+			requirementItemProvider.dispose();
+		if (requirementSpaceItemProvider != null)
+			requirementSpaceItemProvider.dispose();
+		if (featureItemProvider != null)
+			featureItemProvider.dispose();
+		if (hardwareItemProvider != null)
+			hardwareItemProvider.dispose();
+		if (constraintItemProvider != null)
+			constraintItemProvider.dispose();
+		if (userInterfaceItemProvider != null)
+			userInterfaceItemProvider.dispose();
+		if (softwareInterfaceItemProvider != null)
+			softwareInterfaceItemProvider.dispose();
+		if (processItemProvider != null)
+			processItemProvider.dispose();
+		if (performanceItemProvider != null)
+			performanceItemProvider.dispose();
+		if (dataFlowItemProvider != null)
+			dataFlowItemProvider.dispose();
+		if (dataDefinitionItemProvider != null)
+			dataDefinitionItemProvider.dispose();
 	}
 
 }

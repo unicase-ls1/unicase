@@ -36,7 +36,9 @@ import scrm.knowledge.util.KnowledgeAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class KnowledgeItemProviderAdapterFactory extends KnowledgeAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class KnowledgeItemProviderAdapterFactory extends
+		KnowledgeAdapterFactory implements ComposeableAdapterFactory,
+		IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -92,7 +94,8 @@ public class KnowledgeItemProviderAdapterFactory extends KnowledgeAdapterFactory
 	@Override
 	public Adapter createScientificProblemAdapter() {
 		if (scientificProblemItemProvider == null) {
-			scientificProblemItemProvider = new ScientificProblemItemProvider(this);
+			scientificProblemItemProvider = new ScientificProblemItemProvider(
+					this);
 		}
 
 		return scientificProblemItemProvider;
@@ -115,7 +118,8 @@ public class KnowledgeItemProviderAdapterFactory extends KnowledgeAdapterFactory
 	@Override
 	public Adapter createMathematicalModelAdapter() {
 		if (mathematicalModelItemProvider == null) {
-			mathematicalModelItemProvider = new MathematicalModelItemProvider(this);
+			mathematicalModelItemProvider = new MathematicalModelItemProvider(
+					this);
 		}
 
 		return mathematicalModelItemProvider;
@@ -197,7 +201,8 @@ public class KnowledgeItemProviderAdapterFactory extends KnowledgeAdapterFactory
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory
+				.getRootAdapterFactory();
 	}
 
 	/**
@@ -206,7 +211,8 @@ public class KnowledgeItemProviderAdapterFactory extends KnowledgeAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
+	public void setParentAdapterFactory(
+			ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
 
@@ -240,7 +246,8 @@ public class KnowledgeItemProviderAdapterFactory extends KnowledgeAdapterFactory
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>)
+					|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -289,11 +296,16 @@ public class KnowledgeItemProviderAdapterFactory extends KnowledgeAdapterFactory
 	 * @generated
 	 */
 	public void dispose() {
-		if (scientificProblemItemProvider != null) scientificProblemItemProvider.dispose();
-		if (mathematicalModelItemProvider != null) mathematicalModelItemProvider.dispose();
-		if (numericalMethodItemProvider != null) numericalMethodItemProvider.dispose();
-		if (assumptionItemProvider != null) assumptionItemProvider.dispose();
-		if (knowledgeSpaceItemProvider != null) knowledgeSpaceItemProvider.dispose();
+		if (knowledgeSpaceItemProvider != null)
+			knowledgeSpaceItemProvider.dispose();
+		if (scientificProblemItemProvider != null)
+			scientificProblemItemProvider.dispose();
+		if (mathematicalModelItemProvider != null)
+			mathematicalModelItemProvider.dispose();
+		if (numericalMethodItemProvider != null)
+			numericalMethodItemProvider.dispose();
+		if (assumptionItemProvider != null)
+			assumptionItemProvider.dispose();
 	}
 
 }

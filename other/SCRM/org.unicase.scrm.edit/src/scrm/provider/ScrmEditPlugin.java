@@ -46,11 +46,8 @@ public final class ScrmEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public ScrmEditPlugin() {
-		super
-		  (new ResourceLocator [] {
-		     EcoreEditPlugin.INSTANCE,
-		     NotationEditPlugin.INSTANCE,
-		   });
+		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
+				NotationEditPlugin.INSTANCE, });
 	}
 
 	/**

@@ -6,7 +6,6 @@
  */
 package scrm.requirements.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -33,14 +32,9 @@ import scrm.requirements.RequirementsPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ProcessItemProvider
-	extends RequirementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class ProcessItemProvider extends RequirementItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -74,19 +68,15 @@ public class ProcessItemProvider
 	 * @generated
 	 */
 	protected void addDataFlowPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Process_dataFlow_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Process_dataFlow_feature", "_UI_Process_type"),
-				 RequirementsPackage.Literals.PROCESS__DATA_FLOW,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Process_dataFlow_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Process_dataFlow_feature", "_UI_Process_type"),
+				RequirementsPackage.Literals.PROCESS__DATA_FLOW, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -97,7 +87,8 @@ public class ProcessItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Process"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/Process"));
 	}
 
 	/**
@@ -132,7 +123,8 @@ public class ProcessItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
