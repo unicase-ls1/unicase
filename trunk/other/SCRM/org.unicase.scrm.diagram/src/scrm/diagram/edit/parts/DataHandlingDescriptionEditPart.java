@@ -291,7 +291,7 @@ public class DataHandlingDescriptionEditPart extends
 		if (parser == null) {
 			parser = ScrmParserProvider
 					.getParser(
-							ScrmElementTypes.DataHandling_2019,
+							ScrmElementTypes.DataHandling_2024,
 							getParserElement(),
 							ScrmVisualIDRegistry
 									.getType(scrm.diagram.edit.parts.DataHandlingDescriptionEditPart.VISUAL_ID));

@@ -263,6 +263,11 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String DataProcessing3Group_title;
+
+	/**
+	 * @generated
+	 */
 	public static String ScientificProblem1CreationTool_title;
 
 	/**
@@ -333,27 +338,27 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String InputDataReading10CreationTool_title;
+	public static String InputDataReading1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String DataHandling11CreationTool_title;
+	public static String DataHandling2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ResultsOutput12CreationTool_title;
+	public static String ResultsOutput3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ErrorHandling13CreationTool_title;
+	public static String ErrorHandling4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String StatusMonitoring14CreationTool_title;
+	public static String StatusMonitoring5CreationTool_title;
 
 	/**
 	 * @generated

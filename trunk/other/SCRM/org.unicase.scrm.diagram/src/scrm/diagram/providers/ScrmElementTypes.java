@@ -145,23 +145,23 @@ public class ScrmElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputDataReading_2018 = getElementType("org.unicase.scrm.diagram.InputDataReading_2018"); //$NON-NLS-1$
+	public static final IElementType InputDataReading_2023 = getElementType("org.unicase.scrm.diagram.InputDataReading_2023"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DataHandling_2019 = getElementType("org.unicase.scrm.diagram.DataHandling_2019"); //$NON-NLS-1$
+	public static final IElementType DataHandling_2024 = getElementType("org.unicase.scrm.diagram.DataHandling_2024"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ResultsOutput_2020 = getElementType("org.unicase.scrm.diagram.ResultsOutput_2020"); //$NON-NLS-1$
+	public static final IElementType ResultsOutput_2025 = getElementType("org.unicase.scrm.diagram.ResultsOutput_2025"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ErrorHandling_2021 = getElementType("org.unicase.scrm.diagram.ErrorHandling_2021"); //$NON-NLS-1$
+	public static final IElementType ErrorHandling_2026 = getElementType("org.unicase.scrm.diagram.ErrorHandling_2026"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType StatusMonitoring_2022 = getElementType("org.unicase.scrm.diagram.StatusMonitoring_2022"); //$NON-NLS-1$
+	public static final IElementType StatusMonitoring_2027 = getElementType("org.unicase.scrm.diagram.StatusMonitoring_2027"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -170,7 +170,6 @@ public class ScrmElementTypes {
 	 * @generated
 	 */
 	public static final IElementType ScientificProblemSolvingMethods_4041 = getElementType("org.unicase.scrm.diagram.ScientificProblemSolvingMethods_4041"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
@@ -397,23 +396,23 @@ public class ScrmElementTypes {
 			elements.put(DataDefinition_2017,
 					RequirementsPackage.eINSTANCE.getDataDefinition());
 
-			elements.put(InputDataReading_2018,
+			elements.put(InputDataReading_2023,
 					scrm.dataProcessing.DataProcessingPackage.eINSTANCE
 							.getInputDataReading());
 
-			elements.put(DataHandling_2019,
+			elements.put(DataHandling_2024,
 					scrm.dataProcessing.DataProcessingPackage.eINSTANCE
 							.getDataHandling());
 
-			elements.put(ResultsOutput_2020,
+			elements.put(ResultsOutput_2025,
 					scrm.dataProcessing.DataProcessingPackage.eINSTANCE
 							.getResultsOutput());
 
-			elements.put(ErrorHandling_2021,
+			elements.put(ErrorHandling_2026,
 					scrm.dataProcessing.DataProcessingPackage.eINSTANCE
 							.getErrorHandling());
 
-			elements.put(StatusMonitoring_2022,
+			elements.put(StatusMonitoring_2027,
 					scrm.dataProcessing.DataProcessingPackage.eINSTANCE
 							.getStatusMonitoring());
 
@@ -517,11 +516,11 @@ public class ScrmElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Performance_2015);
 			KNOWN_ELEMENT_TYPES.add(DataFlow_2016);
 			KNOWN_ELEMENT_TYPES.add(DataDefinition_2017);
-			KNOWN_ELEMENT_TYPES.add(InputDataReading_2018);
-			KNOWN_ELEMENT_TYPES.add(DataHandling_2019);
-			KNOWN_ELEMENT_TYPES.add(ResultsOutput_2020);
-			KNOWN_ELEMENT_TYPES.add(ErrorHandling_2021);
-			KNOWN_ELEMENT_TYPES.add(StatusMonitoring_2022);
+			KNOWN_ELEMENT_TYPES.add(InputDataReading_2023);
+			KNOWN_ELEMENT_TYPES.add(DataHandling_2024);
+			KNOWN_ELEMENT_TYPES.add(ResultsOutput_2025);
+			KNOWN_ELEMENT_TYPES.add(ErrorHandling_2026);
+			KNOWN_ELEMENT_TYPES.add(StatusMonitoring_2027);
 			KNOWN_ELEMENT_TYPES.add(ScientificProblemRepresentingModel_4006);
 			KNOWN_ELEMENT_TYPES.add(ScientificProblemSolvingMethods_4041);
 			KNOWN_ELEMENT_TYPES.add(ScientificProblemInfluencedFeature_4008);
@@ -580,15 +579,15 @@ public class ScrmElementTypes {
 		case DataDefinitionEditPart.VISUAL_ID:
 			return DataDefinition_2017;
 		case InputDataReadingEditPart.VISUAL_ID:
-			return InputDataReading_2018;
+			return InputDataReading_2023;
 		case DataHandlingEditPart.VISUAL_ID:
-			return DataHandling_2019;
+			return DataHandling_2024;
 		case ResultsOutputEditPart.VISUAL_ID:
-			return ResultsOutput_2020;
+			return ResultsOutput_2025;
 		case ErrorHandlingEditPart.VISUAL_ID:
-			return ErrorHandling_2021;
+			return ErrorHandling_2026;
 		case StatusMonitoringEditPart.VISUAL_ID:
-			return StatusMonitoring_2022;
+			return StatusMonitoring_2027;
 		case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
 			return ScientificProblemRepresentingModel_4006;
 		case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:

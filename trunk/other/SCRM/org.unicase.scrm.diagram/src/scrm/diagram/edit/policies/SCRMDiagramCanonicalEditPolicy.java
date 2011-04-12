@@ -447,7 +447,7 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case InputDataReadingEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ScrmDiagramUpdater
-						.getInputDataReading_2018ContainedLinks(view));
+						.getInputDataReading_2023ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -458,7 +458,7 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case DataHandlingEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ScrmDiagramUpdater
-						.getDataHandling_2019ContainedLinks(view));
+						.getDataHandling_2024ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -469,7 +469,7 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ResultsOutputEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ScrmDiagramUpdater
-						.getResultsOutput_2020ContainedLinks(view));
+						.getResultsOutput_2025ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -480,7 +480,7 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ErrorHandlingEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ScrmDiagramUpdater
-						.getErrorHandling_2021ContainedLinks(view));
+						.getErrorHandling_2026ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -491,7 +491,7 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case StatusMonitoringEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ScrmDiagramUpdater
-						.getStatusMonitoring_2022ContainedLinks(view));
+						.getStatusMonitoring_2027ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$

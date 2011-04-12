@@ -47,7 +47,7 @@ public class InputDataReadingItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public InputDataReadingItemSemanticEditPolicy() {
-		super(ScrmElementTypes.InputDataReading_2018);
+		super(ScrmElementTypes.InputDataReading_2023);
 	}
 
 	/**

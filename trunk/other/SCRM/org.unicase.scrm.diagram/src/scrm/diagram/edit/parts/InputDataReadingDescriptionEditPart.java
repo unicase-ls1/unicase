@@ -291,7 +291,7 @@ public class InputDataReadingDescriptionEditPart extends
 		if (parser == null) {
 			parser = ScrmParserProvider
 					.getParser(
-							ScrmElementTypes.InputDataReading_2018,
+							ScrmElementTypes.InputDataReading_2023,
 							getParserElement(),
 							ScrmVisualIDRegistry
 									.getType(scrm.diagram.edit.parts.InputDataReadingDescriptionEditPart.VISUAL_ID));

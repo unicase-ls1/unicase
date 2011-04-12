@@ -291,7 +291,7 @@ public class ResultsOutputDescriptionEditPart extends
 		if (parser == null) {
 			parser = ScrmParserProvider
 					.getParser(
-							ScrmElementTypes.ResultsOutput_2020,
+							ScrmElementTypes.ResultsOutput_2025,
 							getParserElement(),
 							ScrmVisualIDRegistry
 									.getType(scrm.diagram.edit.parts.ResultsOutputDescriptionEditPart.VISUAL_ID));

@@ -47,7 +47,7 @@ public class ErrorHandlingItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public ErrorHandlingItemSemanticEditPolicy() {
-		super(ScrmElementTypes.ErrorHandling_2021);
+		super(ScrmElementTypes.ErrorHandling_2026);
 	}
 
 	/**

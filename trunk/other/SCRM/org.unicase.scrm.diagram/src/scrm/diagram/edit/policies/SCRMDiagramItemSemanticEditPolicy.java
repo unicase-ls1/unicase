@@ -83,19 +83,19 @@ public class SCRMDiagramItemSemanticEditPolicy extends
 		if (ScrmElementTypes.DataDefinition_2017 == req.getElementType()) {
 			return getGEFWrapper(new DataDefinitionCreateCommand(req));
 		}
-		if (ScrmElementTypes.InputDataReading_2018 == req.getElementType()) {
+		if (ScrmElementTypes.InputDataReading_2023 == req.getElementType()) {
 			return getGEFWrapper(new InputDataReadingCreateCommand(req));
 		}
-		if (ScrmElementTypes.DataHandling_2019 == req.getElementType()) {
+		if (ScrmElementTypes.DataHandling_2024 == req.getElementType()) {
 			return getGEFWrapper(new DataHandlingCreateCommand(req));
 		}
-		if (ScrmElementTypes.ResultsOutput_2020 == req.getElementType()) {
+		if (ScrmElementTypes.ResultsOutput_2025 == req.getElementType()) {
 			return getGEFWrapper(new ResultsOutputCreateCommand(req));
 		}
-		if (ScrmElementTypes.ErrorHandling_2021 == req.getElementType()) {
+		if (ScrmElementTypes.ErrorHandling_2026 == req.getElementType()) {
 			return getGEFWrapper(new ErrorHandlingCreateCommand(req));
 		}
-		if (ScrmElementTypes.StatusMonitoring_2022 == req.getElementType()) {
+		if (ScrmElementTypes.StatusMonitoring_2027 == req.getElementType()) {
 			return getGEFWrapper(new StatusMonitoringCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

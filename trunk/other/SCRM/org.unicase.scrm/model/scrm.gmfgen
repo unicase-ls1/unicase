@@ -1331,7 +1331,7 @@
       </labels>
     </topLevelNodes>
     <topLevelNodes
-        visualID="2018"
+        visualID="2023"
         editPartClassName="InputDataReadingEditPart"
         itemSemanticEditPolicyClassName="InputDataReadingItemSemanticEditPolicy"
         canonicalEditPolicyClassName="InputDataReadingCanonicalEditPolicy"
@@ -1366,7 +1366,7 @@
             href="scrm.genmodel#//scrm/SCRMDiagram/elements"/>
       </modelFacet>
       <labels
-          visualID="5014"
+          visualID="5050"
           editPartClassName="InputDataReadingNameEditPart"
           itemSemanticEditPolicyClassName="InputDataReadingNameItemSemanticEditPolicy"
           elementIcon="true">
@@ -1391,7 +1391,7 @@
         </modelFacet>
       </labels>
       <labels
-          visualID="5045"
+          visualID="5051"
           editPartClassName="InputDataReadingDescriptionEditPart"
           itemSemanticEditPolicyClassName="InputDataReadingDescriptionItemSemanticEditPolicy">
         <diagramRunTimeClass
@@ -1412,7 +1412,7 @@
       </labels>
     </topLevelNodes>
     <topLevelNodes
-        visualID="2019"
+        visualID="2024"
         editPartClassName="DataHandlingEditPart"
         itemSemanticEditPolicyClassName="DataHandlingItemSemanticEditPolicy"
         canonicalEditPolicyClassName="DataHandlingCanonicalEditPolicy"
@@ -1447,7 +1447,7 @@
             href="scrm.genmodel#//scrm/SCRMDiagram/elements"/>
       </modelFacet>
       <labels
-          visualID="5015"
+          visualID="5052"
           editPartClassName="DataHandlingNameEditPart"
           itemSemanticEditPolicyClassName="DataHandlingNameItemSemanticEditPolicy"
           elementIcon="true">
@@ -1472,7 +1472,7 @@
         </modelFacet>
       </labels>
       <labels
-          visualID="5046"
+          visualID="5053"
           editPartClassName="DataHandlingDescriptionEditPart"
           itemSemanticEditPolicyClassName="DataHandlingDescriptionItemSemanticEditPolicy">
         <diagramRunTimeClass
@@ -1493,7 +1493,7 @@
       </labels>
     </topLevelNodes>
     <topLevelNodes
-        visualID="2020"
+        visualID="2025"
         editPartClassName="ResultsOutputEditPart"
         itemSemanticEditPolicyClassName="ResultsOutputItemSemanticEditPolicy"
         canonicalEditPolicyClassName="ResultsOutputCanonicalEditPolicy"
@@ -1528,7 +1528,7 @@
             href="scrm.genmodel#//scrm/SCRMDiagram/elements"/>
       </modelFacet>
       <labels
-          visualID="5016"
+          visualID="5054"
           editPartClassName="ResultsOutputNameEditPart"
           itemSemanticEditPolicyClassName="ResultsOutputNameItemSemanticEditPolicy"
           elementIcon="true">
@@ -1553,7 +1553,7 @@
         </modelFacet>
       </labels>
       <labels
-          visualID="5047"
+          visualID="5055"
           editPartClassName="ResultsOutputDescriptionEditPart"
           itemSemanticEditPolicyClassName="ResultsOutputDescriptionItemSemanticEditPolicy">
         <diagramRunTimeClass
@@ -1574,7 +1574,7 @@
       </labels>
     </topLevelNodes>
     <topLevelNodes
-        visualID="2021"
+        visualID="2026"
         editPartClassName="ErrorHandlingEditPart"
         itemSemanticEditPolicyClassName="ErrorHandlingItemSemanticEditPolicy"
         canonicalEditPolicyClassName="ErrorHandlingCanonicalEditPolicy"
@@ -1609,7 +1609,7 @@
             href="scrm.genmodel#//scrm/SCRMDiagram/elements"/>
       </modelFacet>
       <labels
-          visualID="5017"
+          visualID="5056"
           editPartClassName="ErrorHandlingNameEditPart"
           itemSemanticEditPolicyClassName="ErrorHandlingNameItemSemanticEditPolicy"
           elementIcon="true">
@@ -1634,7 +1634,7 @@
         </modelFacet>
       </labels>
       <labels
-          visualID="5048"
+          visualID="5057"
           editPartClassName="ErrorHandlingDescriptionEditPart"
           itemSemanticEditPolicyClassName="ErrorHandlingDescriptionItemSemanticEditPolicy">
         <diagramRunTimeClass
@@ -1655,7 +1655,7 @@
       </labels>
     </topLevelNodes>
     <topLevelNodes
-        visualID="2022"
+        visualID="2027"
         editPartClassName="StatusMonitoringEditPart"
         itemSemanticEditPolicyClassName="StatusMonitoringItemSemanticEditPolicy"
         canonicalEditPolicyClassName="StatusMonitoringCanonicalEditPolicy"
@@ -1690,7 +1690,7 @@
             href="scrm.genmodel#//scrm/SCRMDiagram/elements"/>
       </modelFacet>
       <labels
-          visualID="5018"
+          visualID="5058"
           editPartClassName="StatusMonitoringNameEditPart"
           itemSemanticEditPolicyClassName="StatusMonitoringNameItemSemanticEditPolicy"
           elementIcon="true">
@@ -1715,7 +1715,7 @@
         </modelFacet>
       </labels>
       <labels
-          visualID="5049"
+          visualID="5059"
           editPartClassName="StatusMonitoringDescriptionEditPart"
           itemSemanticEditPolicyClassName="StatusMonitoringDescriptionItemSemanticEditPolicy">
         <diagramRunTimeClass
@@ -2565,6 +2565,10 @@
             xsi:type="gmfgen:ToolEntry"
             title="DataDefinition"
             genNodes="//@diagram/@topLevelNodes.12"/>
+      </groups>
+      <groups
+          title="DataProcessing"
+          collapse="true">
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="InputDataReading"

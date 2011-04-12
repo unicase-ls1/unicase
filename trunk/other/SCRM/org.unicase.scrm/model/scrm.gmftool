@@ -56,6 +56,11 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="DataDefinition"/>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="DataProcessing"
+        collapsible="true">
       <tools
           xsi:type="gmftool:CreationTool"
           title="InputDataReading"/>

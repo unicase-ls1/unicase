@@ -313,11 +313,6 @@ public class DataDefinitionEditPart extends SCRMModelElementEditPart {
 		if (relationshipType == ScrmElementTypes.RequirementDefiningData_4038) {
 			types.add(ScrmElementTypes.Process_2014);
 			types.add(ScrmElementTypes.Performance_2015);
-			types.add(ScrmElementTypes.InputDataReading_2018);
-			types.add(ScrmElementTypes.DataHandling_2019);
-			types.add(ScrmElementTypes.ResultsOutput_2020);
-			types.add(ScrmElementTypes.ErrorHandling_2021);
-			types.add(ScrmElementTypes.StatusMonitoring_2022);
 		}
 		return types;
 	}

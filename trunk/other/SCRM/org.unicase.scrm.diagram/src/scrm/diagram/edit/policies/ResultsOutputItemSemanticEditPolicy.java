@@ -47,7 +47,7 @@ public class ResultsOutputItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public ResultsOutputItemSemanticEditPolicy() {
-		super(ScrmElementTypes.ResultsOutput_2020);
+		super(ScrmElementTypes.ResultsOutput_2025);
 	}
 
 	/**
