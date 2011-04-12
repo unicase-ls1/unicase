@@ -84,9 +84,11 @@ public class DeleteElementAction extends AbstractDeleteFromAction {
 			if (element == null) {
 				return UnexecutableCommand.INSTANCE;
 			}
-			DestroyElementRequest destroyElementRequest = new DestroyElementRequest(element, false);
+			DestroyElementRequest destroyElementRequest = new DestroyElementRequest(
+					element, false);
 
-			DeleteFromModelCommand curCommand = new DeleteFromModelCommand(destroyElementRequest);
+			DeleteFromModelCommand curCommand = new DeleteFromModelCommand(
+					destroyElementRequest);
 			if (curCommand != null) {
 				command.compose(curCommand);
 			}

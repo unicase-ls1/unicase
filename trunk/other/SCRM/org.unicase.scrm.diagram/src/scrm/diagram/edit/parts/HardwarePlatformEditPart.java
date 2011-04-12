@@ -47,8 +47,8 @@ import scrm.diagram.providers.ScrmParserProvider;
 /**
  * @generated NOT
  */
-public class HardwarePlatformEditPart extends SCRMModelElementLabelEditPart implements
-		ITextAwareEditPart {
+public class HardwarePlatformEditPart extends SCRMModelElementLabelEditPart
+		implements ITextAwareEditPart {
 
 	/**
 	 * @generated

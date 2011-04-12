@@ -47,8 +47,8 @@ import scrm.diagram.providers.ScrmParserProvider;
 /**
  * @generated NOT
  */
-public class MathematicalModelNameEditPart extends SCRMModelElementLabelEditPart
-		implements ITextAwareEditPart {
+public class MathematicalModelNameEditPart extends
+		SCRMModelElementLabelEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated

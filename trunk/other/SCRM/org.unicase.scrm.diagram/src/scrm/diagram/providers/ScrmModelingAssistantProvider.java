@@ -107,26 +107,6 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((PerformanceEditPart) sourceEditPart)
 					.getMARelTypesOnSource();
 		}
-		if (sourceEditPart instanceof InputDataReadingEditPart) {
-			return ((InputDataReadingEditPart) sourceEditPart)
-					.getMARelTypesOnSource();
-		}
-		if (sourceEditPart instanceof DataHandlingEditPart) {
-			return ((DataHandlingEditPart) sourceEditPart)
-					.getMARelTypesOnSource();
-		}
-		if (sourceEditPart instanceof ResultsOutputEditPart) {
-			return ((ResultsOutputEditPart) sourceEditPart)
-					.getMARelTypesOnSource();
-		}
-		if (sourceEditPart instanceof ErrorHandlingEditPart) {
-			return ((ErrorHandlingEditPart) sourceEditPart)
-					.getMARelTypesOnSource();
-		}
-		if (sourceEditPart instanceof StatusMonitoringEditPart) {
-			return ((StatusMonitoringEditPart) sourceEditPart)
-					.getMARelTypesOnSource();
-		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -180,26 +160,6 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((DataDefinitionEditPart) targetEditPart)
 					.getMARelTypesOnTarget();
 		}
-		if (targetEditPart instanceof InputDataReadingEditPart) {
-			return ((InputDataReadingEditPart) targetEditPart)
-					.getMARelTypesOnTarget();
-		}
-		if (targetEditPart instanceof DataHandlingEditPart) {
-			return ((DataHandlingEditPart) targetEditPart)
-					.getMARelTypesOnTarget();
-		}
-		if (targetEditPart instanceof ResultsOutputEditPart) {
-			return ((ResultsOutputEditPart) targetEditPart)
-					.getMARelTypesOnTarget();
-		}
-		if (targetEditPart instanceof ErrorHandlingEditPart) {
-			return ((ErrorHandlingEditPart) targetEditPart)
-					.getMARelTypesOnTarget();
-		}
-		if (targetEditPart instanceof StatusMonitoringEditPart) {
-			return ((StatusMonitoringEditPart) targetEditPart)
-					.getMARelTypesOnTarget();
-		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -234,26 +194,6 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (sourceEditPart instanceof PerformanceEditPart) {
 			return ((PerformanceEditPart) sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if (sourceEditPart instanceof InputDataReadingEditPart) {
-			return ((InputDataReadingEditPart) sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if (sourceEditPart instanceof DataHandlingEditPart) {
-			return ((DataHandlingEditPart) sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if (sourceEditPart instanceof ResultsOutputEditPart) {
-			return ((ResultsOutputEditPart) sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if (sourceEditPart instanceof ErrorHandlingEditPart) {
-			return ((ErrorHandlingEditPart) sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if (sourceEditPart instanceof StatusMonitoringEditPart) {
-			return ((StatusMonitoringEditPart) sourceEditPart)
 					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		return Collections.EMPTY_LIST;
@@ -314,26 +254,6 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((DataDefinitionEditPart) targetEditPart)
 					.getMATypesForSource(relationshipType);
 		}
-		if (targetEditPart instanceof InputDataReadingEditPart) {
-			return ((InputDataReadingEditPart) targetEditPart)
-					.getMATypesForSource(relationshipType);
-		}
-		if (targetEditPart instanceof DataHandlingEditPart) {
-			return ((DataHandlingEditPart) targetEditPart)
-					.getMATypesForSource(relationshipType);
-		}
-		if (targetEditPart instanceof ResultsOutputEditPart) {
-			return ((ResultsOutputEditPart) targetEditPart)
-					.getMATypesForSource(relationshipType);
-		}
-		if (targetEditPart instanceof ErrorHandlingEditPart) {
-			return ((ErrorHandlingEditPart) targetEditPart)
-					.getMATypesForSource(relationshipType);
-		}
-		if (targetEditPart instanceof StatusMonitoringEditPart) {
-			return ((StatusMonitoringEditPart) targetEditPart)
-					.getMATypesForSource(relationshipType);
-		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -366,26 +286,6 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (sourceEditPart instanceof PerformanceEditPart) {
 			return ((PerformanceEditPart) sourceEditPart)
-					.getMATypesForTarget(relationshipType);
-		}
-		if (sourceEditPart instanceof InputDataReadingEditPart) {
-			return ((InputDataReadingEditPart) sourceEditPart)
-					.getMATypesForTarget(relationshipType);
-		}
-		if (sourceEditPart instanceof DataHandlingEditPart) {
-			return ((DataHandlingEditPart) sourceEditPart)
-					.getMATypesForTarget(relationshipType);
-		}
-		if (sourceEditPart instanceof ResultsOutputEditPart) {
-			return ((ResultsOutputEditPart) sourceEditPart)
-					.getMATypesForTarget(relationshipType);
-		}
-		if (sourceEditPart instanceof ErrorHandlingEditPart) {
-			return ((ErrorHandlingEditPart) sourceEditPart)
-					.getMATypesForTarget(relationshipType);
-		}
-		if (sourceEditPart instanceof StatusMonitoringEditPart) {
-			return ((StatusMonitoringEditPart) sourceEditPart)
 					.getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;

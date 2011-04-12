@@ -380,7 +380,7 @@ public class ScientificProblemEditPart extends SCRMModelElementEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 255, 0, 0);
+	static final Color THIS_BACK = new Color(null, 255, 79, 79);
 
 	/**
 	 * @generated

@@ -52,7 +52,7 @@ public class StatusMonitoringCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		scrm.requirements.dataProcessing.StatusMonitoring newElement = scrm.requirements.dataProcessing.DataProcessingFactory.eINSTANCE
+		scrm.dataProcessing.StatusMonitoring newElement = scrm.dataProcessing.DataProcessingFactory.eINSTANCE
 				.createStatusMonitoring();
 
 		SCRMDiagram owner = (SCRMDiagram) getElementToEdit();
@@ -69,8 +69,7 @@ public class StatusMonitoringCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(
-			scrm.requirements.dataProcessing.StatusMonitoring newElement,
+	protected void doConfigure(scrm.dataProcessing.StatusMonitoring newElement,
 			IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest())

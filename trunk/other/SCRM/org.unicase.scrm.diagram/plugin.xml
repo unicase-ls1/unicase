@@ -417,7 +417,7 @@
             <param name="semanticHint" value="2017"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcessing">
+      <metamodel nsURI="http://unicase.org/model/scrm/dataProcessing">
          <metamodelType
                id="org.unicase.scrm.diagram.InputDataReading_2018"
                name="%metatype.name.InputDataReading_2018"
@@ -427,7 +427,7 @@
             <param name="semanticHint" value="2018"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcessing">
+      <metamodel nsURI="http://unicase.org/model/scrm/dataProcessing">
          <metamodelType
                id="org.unicase.scrm.diagram.DataHandling_2019"
                name="%metatype.name.DataHandling_2019"
@@ -437,7 +437,7 @@
             <param name="semanticHint" value="2019"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcessing">
+      <metamodel nsURI="http://unicase.org/model/scrm/dataProcessing">
          <metamodelType
                id="org.unicase.scrm.diagram.ResultsOutput_2020"
                name="%metatype.name.ResultsOutput_2020"
@@ -447,7 +447,7 @@
             <param name="semanticHint" value="2020"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcessing">
+      <metamodel nsURI="http://unicase.org/model/scrm/dataProcessing">
          <metamodelType
                id="org.unicase.scrm.diagram.ErrorHandling_2021"
                name="%metatype.name.ErrorHandling_2021"
@@ -457,7 +457,7 @@
             <param name="semanticHint" value="2021"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcessing">
+      <metamodel nsURI="http://unicase.org/model/scrm/dataProcessing">
          <metamodelType
                id="org.unicase.scrm.diagram.StatusMonitoring_2022"
                name="%metatype.name.StatusMonitoring_2022"

@@ -397,29 +397,24 @@ public class ScrmElementTypes {
 			elements.put(DataDefinition_2017,
 					RequirementsPackage.eINSTANCE.getDataDefinition());
 
-			elements.put(
-					InputDataReading_2018,
-					scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
+			elements.put(InputDataReading_2018,
+					scrm.dataProcessing.DataProcessingPackage.eINSTANCE
 							.getInputDataReading());
 
-			elements.put(
-					DataHandling_2019,
-					scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
+			elements.put(DataHandling_2019,
+					scrm.dataProcessing.DataProcessingPackage.eINSTANCE
 							.getDataHandling());
 
-			elements.put(
-					ResultsOutput_2020,
-					scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
+			elements.put(ResultsOutput_2020,
+					scrm.dataProcessing.DataProcessingPackage.eINSTANCE
 							.getResultsOutput());
 
-			elements.put(
-					ErrorHandling_2021,
-					scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
+			elements.put(ErrorHandling_2021,
+					scrm.dataProcessing.DataProcessingPackage.eINSTANCE
 							.getErrorHandling());
 
-			elements.put(
-					StatusMonitoring_2022,
-					scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
+			elements.put(StatusMonitoring_2022,
+					scrm.dataProcessing.DataProcessingPackage.eINSTANCE
 							.getStatusMonitoring());
 
 			elements.put(ScientificProblemRepresentingModel_4006,

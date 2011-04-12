@@ -48,7 +48,7 @@ import scrm.diagram.providers.ScrmParserProvider;
  * @generated NOT
  */
 public class MathematicalModelMathematicalExpressionEditPart extends
- 	SCRMModelElementLabelEditPart implements ITextAwareEditPart {
+		SCRMModelElementLabelEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
