@@ -84,13 +84,10 @@ public class RequirementsSwitch<T> {
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
+		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(
+					eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -103,114 +100,157 @@ public class RequirementsSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case RequirementsPackage.IREQUIREMENT: {
-				IRequirement iRequirement = (IRequirement)theEObject;
-				T result = caseIRequirement(iRequirement);
-				if (result == null) result = caseSCRMModelElement(iRequirement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementsPackage.INTERFACE: {
-				Interface interface_ = (Interface)theEObject;
-				T result = caseInterface(interface_);
-				if (result == null) result = caseIRequirement(interface_);
-				if (result == null) result = caseSCRMModelElement(interface_);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementsPackage.FEATURE: {
-				Feature feature = (Feature)theEObject;
-				T result = caseFeature(feature);
-				if (result == null) result = caseIRequirement(feature);
-				if (result == null) result = caseSCRMModelElement(feature);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementsPackage.HARDWARE: {
-				Hardware hardware = (Hardware)theEObject;
-				T result = caseHardware(hardware);
-				if (result == null) result = caseIRequirement(hardware);
-				if (result == null) result = caseSCRMModelElement(hardware);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementsPackage.CONSTRAINT: {
-				Constraint constraint = (Constraint)theEObject;
-				T result = caseConstraint(constraint);
-				if (result == null) result = caseIRequirement(constraint);
-				if (result == null) result = caseSCRMModelElement(constraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementsPackage.REQUIREMENT: {
-				Requirement requirement = (Requirement)theEObject;
-				T result = caseRequirement(requirement);
-				if (result == null) result = caseIRequirement(requirement);
-				if (result == null) result = caseSCRMModelElement(requirement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementsPackage.USER_INTERFACE: {
-				UserInterface userInterface = (UserInterface)theEObject;
-				T result = caseUserInterface(userInterface);
-				if (result == null) result = caseInterface(userInterface);
-				if (result == null) result = caseIRequirement(userInterface);
-				if (result == null) result = caseSCRMModelElement(userInterface);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementsPackage.SOFTWARE_INTERFACE: {
-				SoftwareInterface softwareInterface = (SoftwareInterface)theEObject;
-				T result = caseSoftwareInterface(softwareInterface);
-				if (result == null) result = caseInterface(softwareInterface);
-				if (result == null) result = caseIRequirement(softwareInterface);
-				if (result == null) result = caseSCRMModelElement(softwareInterface);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementsPackage.PROCESS: {
-				scrm.requirements.Process process = (scrm.requirements.Process)theEObject;
-				T result = caseProcess(process);
-				if (result == null) result = caseRequirement(process);
-				if (result == null) result = caseIRequirement(process);
-				if (result == null) result = caseSCRMModelElement(process);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementsPackage.PERFORMANCE: {
-				Performance performance = (Performance)theEObject;
-				T result = casePerformance(performance);
-				if (result == null) result = caseRequirement(performance);
-				if (result == null) result = caseIRequirement(performance);
-				if (result == null) result = caseSCRMModelElement(performance);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementsPackage.DATA_FLOW: {
-				DataFlow dataFlow = (DataFlow)theEObject;
-				T result = caseDataFlow(dataFlow);
-				if (result == null) result = caseIRequirement(dataFlow);
-				if (result == null) result = caseSCRMModelElement(dataFlow);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementsPackage.DATA_DEFINITION: {
-				DataDefinition dataDefinition = (DataDefinition)theEObject;
-				T result = caseDataDefinition(dataDefinition);
-				if (result == null) result = caseIRequirement(dataDefinition);
-				if (result == null) result = caseSCRMModelElement(dataDefinition);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RequirementsPackage.REQUIREMENT_SPACE: {
-				RequirementSpace requirementSpace = (RequirementSpace)theEObject;
-				T result = caseRequirementSpace(requirementSpace);
-				if (result == null) result = caseIRequirement(requirementSpace);
-				if (result == null) result = caseSCRMModelElement(requirementSpace);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case RequirementsPackage.IREQUIREMENT: {
+			IRequirement iRequirement = (IRequirement) theEObject;
+			T result = caseIRequirement(iRequirement);
+			if (result == null)
+				result = caseSCRMModelElement(iRequirement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementsPackage.INTERFACE: {
+			Interface interface_ = (Interface) theEObject;
+			T result = caseInterface(interface_);
+			if (result == null)
+				result = caseIRequirement(interface_);
+			if (result == null)
+				result = caseSCRMModelElement(interface_);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementsPackage.REQUIREMENT: {
+			Requirement requirement = (Requirement) theEObject;
+			T result = caseRequirement(requirement);
+			if (result == null)
+				result = caseIRequirement(requirement);
+			if (result == null)
+				result = caseSCRMModelElement(requirement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementsPackage.REQUIREMENT_SPACE: {
+			RequirementSpace requirementSpace = (RequirementSpace) theEObject;
+			T result = caseRequirementSpace(requirementSpace);
+			if (result == null)
+				result = caseIRequirement(requirementSpace);
+			if (result == null)
+				result = caseSCRMModelElement(requirementSpace);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementsPackage.FEATURE: {
+			Feature feature = (Feature) theEObject;
+			T result = caseFeature(feature);
+			if (result == null)
+				result = caseIRequirement(feature);
+			if (result == null)
+				result = caseSCRMModelElement(feature);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementsPackage.HARDWARE: {
+			Hardware hardware = (Hardware) theEObject;
+			T result = caseHardware(hardware);
+			if (result == null)
+				result = caseIRequirement(hardware);
+			if (result == null)
+				result = caseSCRMModelElement(hardware);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementsPackage.CONSTRAINT: {
+			Constraint constraint = (Constraint) theEObject;
+			T result = caseConstraint(constraint);
+			if (result == null)
+				result = caseIRequirement(constraint);
+			if (result == null)
+				result = caseSCRMModelElement(constraint);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementsPackage.USER_INTERFACE: {
+			UserInterface userInterface = (UserInterface) theEObject;
+			T result = caseUserInterface(userInterface);
+			if (result == null)
+				result = caseInterface(userInterface);
+			if (result == null)
+				result = caseIRequirement(userInterface);
+			if (result == null)
+				result = caseSCRMModelElement(userInterface);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementsPackage.SOFTWARE_INTERFACE: {
+			SoftwareInterface softwareInterface = (SoftwareInterface) theEObject;
+			T result = caseSoftwareInterface(softwareInterface);
+			if (result == null)
+				result = caseInterface(softwareInterface);
+			if (result == null)
+				result = caseIRequirement(softwareInterface);
+			if (result == null)
+				result = caseSCRMModelElement(softwareInterface);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementsPackage.PROCESS: {
+			scrm.requirements.Process process = (scrm.requirements.Process) theEObject;
+			T result = caseProcess(process);
+			if (result == null)
+				result = caseRequirement(process);
+			if (result == null)
+				result = caseIRequirement(process);
+			if (result == null)
+				result = caseSCRMModelElement(process);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementsPackage.PERFORMANCE: {
+			Performance performance = (Performance) theEObject;
+			T result = casePerformance(performance);
+			if (result == null)
+				result = caseRequirement(performance);
+			if (result == null)
+				result = caseIRequirement(performance);
+			if (result == null)
+				result = caseSCRMModelElement(performance);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementsPackage.DATA_FLOW: {
+			DataFlow dataFlow = (DataFlow) theEObject;
+			T result = caseDataFlow(dataFlow);
+			if (result == null)
+				result = caseIRequirement(dataFlow);
+			if (result == null)
+				result = caseSCRMModelElement(dataFlow);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementsPackage.DATA_DEFINITION: {
+			DataDefinition dataDefinition = (DataDefinition) theEObject;
+			T result = caseDataDefinition(dataDefinition);
+			if (result == null)
+				result = caseIRequirement(dataDefinition);
+			if (result == null)
+				result = caseSCRMModelElement(dataDefinition);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

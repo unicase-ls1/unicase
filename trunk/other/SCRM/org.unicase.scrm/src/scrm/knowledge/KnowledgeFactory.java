@@ -23,7 +23,8 @@ public interface KnowledgeFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	KnowledgeFactory eINSTANCE = scrm.knowledge.impl.KnowledgeFactoryImpl.init();
+	KnowledgeFactory eINSTANCE = scrm.knowledge.impl.KnowledgeFactoryImpl
+			.init();
 
 	/**
 	 * Returns a new object of class '<em>Scientific Problem</em>'.

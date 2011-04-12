@@ -31,7 +31,8 @@ import scrm.ScrmPackage;
  *
  * @generated
  */
-public abstract class SCRMModelElementImpl extends EObjectImpl implements SCRMModelElement {
+public abstract class SCRMModelElementImpl extends EObjectImpl implements
+		SCRMModelElement {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -110,7 +111,8 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements SCRMMo
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScrmPackage.SCRM_MODEL_ELEMENT__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ScrmPackage.SCRM_MODEL_ELEMENT__NAME, oldName, name));
 	}
 
 	/**
@@ -131,7 +133,9 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements SCRMMo
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION, oldDescription, description));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION,
+					oldDescription, description));
 	}
 
 	/**
@@ -142,10 +146,10 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements SCRMMo
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ScrmPackage.SCRM_MODEL_ELEMENT__NAME:
-				return getName();
-			case ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION:
-				return getDescription();
+		case ScrmPackage.SCRM_MODEL_ELEMENT__NAME:
+			return getName();
+		case ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION:
+			return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -158,12 +162,12 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements SCRMMo
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ScrmPackage.SCRM_MODEL_ELEMENT__NAME:
-				setName((String)newValue);
-				return;
-			case ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
+		case ScrmPackage.SCRM_MODEL_ELEMENT__NAME:
+			setName((String) newValue);
+			return;
+		case ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION:
+			setDescription((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -176,12 +180,12 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements SCRMMo
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ScrmPackage.SCRM_MODEL_ELEMENT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
+		case ScrmPackage.SCRM_MODEL_ELEMENT__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION:
+			setDescription(DESCRIPTION_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -194,10 +198,12 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements SCRMMo
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ScrmPackage.SCRM_MODEL_ELEMENT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+		case ScrmPackage.SCRM_MODEL_ELEMENT__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT
+					.equals(name);
+		case ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION:
+			return DESCRIPTION_EDEFAULT == null ? description != null
+					: !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -209,7 +215,8 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements SCRMMo
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");

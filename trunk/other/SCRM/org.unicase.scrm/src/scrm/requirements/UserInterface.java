@@ -6,7 +6,6 @@
  */
 package scrm.requirements;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>User Interface</b></em>'.

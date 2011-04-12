@@ -55,15 +55,16 @@ import scrm.ScrmPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link scrm.impl.SCRMDiagramImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link scrm.impl.SCRMDiagramImpl#getGmfdiagram <em>Gmfdiagram</em>}</li>
  *   <li>{@link scrm.impl.SCRMDiagramImpl#getNewElements <em>New Elements</em>}</li>
  *   <li>{@link scrm.impl.SCRMDiagramImpl#getDiagramLayout <em>Diagram Layout</em>}</li>
- *   <li>{@link scrm.impl.SCRMDiagramImpl#getGmfdiagram <em>Gmfdiagram</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram {
+public class SCRMDiagramImpl extends SCRMModelElementImpl implements
+		SCRMDiagram {
 	/**
 	 * The cached value of the '{@link #getElements() <em>Elements</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -73,6 +74,16 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram
 	 * @ordered
 	 */
 	protected EList<SCRMModelElement> elements;
+
+	/**
+	 * The cached value of the '{@link #getGmfdiagram() <em>Gmfdiagram</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGmfdiagram()
+	 * @generated
+	 * @ordered
+	 */
+	protected Diagram gmfdiagram;
 
 	/**
 	 * The cached value of the '{@link #getNewElements() <em>New Elements</em>}' containment reference list.
@@ -105,16 +116,6 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram
 	protected String diagramLayout = DIAGRAM_LAYOUT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getGmfdiagram() <em>Gmfdiagram</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGmfdiagram()
-	 * @generated
-	 * @ordered
-	 */
-	protected Diagram gmfdiagram;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -140,7 +141,9 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram
 	 */
 	public EList<SCRMModelElement> getElements() {
 		if (elements == null) {
-			elements = new EObjectResolvingEList<SCRMModelElement>(SCRMModelElement.class, this, ScrmPackage.SCRM_DIAGRAM__ELEMENTS);
+			elements = new EObjectResolvingEList<SCRMModelElement>(
+					SCRMModelElement.class, this,
+					ScrmPackage.SCRM_DIAGRAM__ELEMENTS);
 		}
 		return elements;
 	}
@@ -176,7 +179,9 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram
 		String oldDiagramLayout = diagramLayout;
 		diagramLayout = newDiagramLayout;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScrmPackage.SCRM_DIAGRAM__DIAGRAM_LAYOUT, oldDiagramLayout, diagramLayout));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ScrmPackage.SCRM_DIAGRAM__DIAGRAM_LAYOUT, oldDiagramLayout,
+					diagramLayout));
 	}
 
 	/**
@@ -186,17 +191,26 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram
 	 */
 	public Diagram getGmfdiagram() {
 		if (gmfdiagram != null && gmfdiagram.eIsProxy()) {
-			InternalEObject oldGmfdiagram = (InternalEObject)gmfdiagram;
-			gmfdiagram = (Diagram)eResolveProxy(oldGmfdiagram);
+			InternalEObject oldGmfdiagram = (InternalEObject) gmfdiagram;
+			gmfdiagram = (Diagram) eResolveProxy(oldGmfdiagram);
 			if (gmfdiagram != oldGmfdiagram) {
-				InternalEObject newGmfdiagram = (InternalEObject)gmfdiagram;
-				NotificationChain msgs = oldGmfdiagram.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM, null, null);
+				InternalEObject newGmfdiagram = (InternalEObject) gmfdiagram;
+				NotificationChain msgs = oldGmfdiagram.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM, null,
+						null);
 				if (newGmfdiagram.eInternalContainer() == null) {
-					msgs = newGmfdiagram.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM, null, msgs);
+					msgs = newGmfdiagram.eInverseAdd(this,
+							EOPPOSITE_FEATURE_BASE
+									- ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM,
+							null, msgs);
 				}
-				if (msgs != null) msgs.dispatch();
+				if (msgs != null)
+					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM, oldGmfdiagram, gmfdiagram));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM,
+							oldGmfdiagram, gmfdiagram));
 			}
 		}
 		return gmfdiagram;
@@ -216,12 +230,18 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetGmfdiagram(Diagram newGmfdiagram, NotificationChain msgs) {
+	public NotificationChain basicSetGmfdiagram(Diagram newGmfdiagram,
+			NotificationChain msgs) {
 		Diagram oldGmfdiagram = gmfdiagram;
 		gmfdiagram = newGmfdiagram;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM, oldGmfdiagram, newGmfdiagram);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM,
+					oldGmfdiagram, newGmfdiagram);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -235,14 +255,22 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram
 		if (newGmfdiagram != gmfdiagram) {
 			NotificationChain msgs = null;
 			if (gmfdiagram != null)
-				msgs = ((InternalEObject)gmfdiagram).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM, null, msgs);
+				msgs = ((InternalEObject) gmfdiagram).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM, null,
+						msgs);
 			if (newGmfdiagram != null)
-				msgs = ((InternalEObject)newGmfdiagram).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM, null, msgs);
+				msgs = ((InternalEObject) newGmfdiagram).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE
+								- ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM, null,
+						msgs);
 			msgs = basicSetGmfdiagram(newGmfdiagram, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM, newGmfdiagram, newGmfdiagram));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM, newGmfdiagram,
+					newGmfdiagram));
 	}
 
 	/**
@@ -251,12 +279,14 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ScrmPackage.SCRM_DIAGRAM__NEW_ELEMENTS:
-				return ((InternalEList<?>)getNewElements()).basicRemove(otherEnd, msgs);
-			case ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM:
-				return basicSetGmfdiagram(null, msgs);
+		case ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM:
+			return basicSetGmfdiagram(null, msgs);
+		case ScrmPackage.SCRM_DIAGRAM__NEW_ELEMENTS:
+			return ((InternalEList<?>) getNewElements()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -269,15 +299,16 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ScrmPackage.SCRM_DIAGRAM__ELEMENTS:
-				return getElements();
-			case ScrmPackage.SCRM_DIAGRAM__NEW_ELEMENTS:
-				return getNewElements();
-			case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_LAYOUT:
-				return getDiagramLayout();
-			case ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM:
-				if (resolve) return getGmfdiagram();
-				return basicGetGmfdiagram();
+		case ScrmPackage.SCRM_DIAGRAM__ELEMENTS:
+			return getElements();
+		case ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM:
+			if (resolve)
+				return getGmfdiagram();
+			return basicGetGmfdiagram();
+		case ScrmPackage.SCRM_DIAGRAM__NEW_ELEMENTS:
+			return getNewElements();
+		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_LAYOUT:
+			return getDiagramLayout();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -291,20 +322,22 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ScrmPackage.SCRM_DIAGRAM__ELEMENTS:
-				getElements().clear();
-				getElements().addAll((Collection<? extends SCRMModelElement>)newValue);
-				return;
-			case ScrmPackage.SCRM_DIAGRAM__NEW_ELEMENTS:
-				getNewElements().clear();
-				getNewElements().addAll((Collection<? extends SCRMModelElement>)newValue);
-				return;
-			case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_LAYOUT:
-				setDiagramLayout((String)newValue);
-				return;
-			case ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM:
-				setGmfdiagram((Diagram)newValue);
-				return;
+		case ScrmPackage.SCRM_DIAGRAM__ELEMENTS:
+			getElements().clear();
+			getElements().addAll(
+					(Collection<? extends SCRMModelElement>) newValue);
+			return;
+		case ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM:
+			setGmfdiagram((Diagram) newValue);
+			return;
+		case ScrmPackage.SCRM_DIAGRAM__NEW_ELEMENTS:
+			getNewElements().clear();
+			getNewElements().addAll(
+					(Collection<? extends SCRMModelElement>) newValue);
+			return;
+		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_LAYOUT:
+			setDiagramLayout((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -317,18 +350,18 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ScrmPackage.SCRM_DIAGRAM__ELEMENTS:
-				getElements().clear();
-				return;
-			case ScrmPackage.SCRM_DIAGRAM__NEW_ELEMENTS:
-				getNewElements().clear();
-				return;
-			case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_LAYOUT:
-				setDiagramLayout(DIAGRAM_LAYOUT_EDEFAULT);
-				return;
-			case ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM:
-				setGmfdiagram((Diagram)null);
-				return;
+		case ScrmPackage.SCRM_DIAGRAM__ELEMENTS:
+			getElements().clear();
+			return;
+		case ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM:
+			setGmfdiagram((Diagram) null);
+			return;
+		case ScrmPackage.SCRM_DIAGRAM__NEW_ELEMENTS:
+			getNewElements().clear();
+			return;
+		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_LAYOUT:
+			setDiagramLayout(DIAGRAM_LAYOUT_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -341,14 +374,15 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ScrmPackage.SCRM_DIAGRAM__ELEMENTS:
-				return elements != null && !elements.isEmpty();
-			case ScrmPackage.SCRM_DIAGRAM__NEW_ELEMENTS:
-				return newElements != null && !newElements.isEmpty();
-			case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_LAYOUT:
-				return DIAGRAM_LAYOUT_EDEFAULT == null ? diagramLayout != null : !DIAGRAM_LAYOUT_EDEFAULT.equals(diagramLayout);
-			case ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM:
-				return gmfdiagram != null;
+		case ScrmPackage.SCRM_DIAGRAM__ELEMENTS:
+			return elements != null && !elements.isEmpty();
+		case ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM:
+			return gmfdiagram != null;
+		case ScrmPackage.SCRM_DIAGRAM__NEW_ELEMENTS:
+			return newElements != null && !newElements.isEmpty();
+		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_LAYOUT:
+			return DIAGRAM_LAYOUT_EDEFAULT == null ? diagramLayout != null
+					: !DIAGRAM_LAYOUT_EDEFAULT.equals(diagramLayout);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -360,7 +394,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (diagramLayout: ");
@@ -368,21 +403,25 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram
 		result.append(')');
 		return result.toString();
 	}
-	
-	private static final URI VIRTUAL_DIAGRAM_URI = URI.createURI("virtual.diagram.uri");
-	private static final URI VIRTUAL_DIAGRAM_ELEMENTS_URI = URI.createURI("virtual.diagram.elements.uri");
-	
+
+	private static final URI VIRTUAL_DIAGRAM_URI = URI
+			.createURI("virtual.diagram.uri");
+	private static final URI VIRTUAL_DIAGRAM_ELEMENTS_URI = URI
+			.createURI("virtual.diagram.elements.uri");
+
 	private void syncDiagramLayout(Diagram gmfDiagram) {
 		for (int i = 0; i < gmfDiagram.getPersistedChildren().size(); i++) {
 			Node node = (Node) gmfDiagram.getPersistedChildren().get(i);
-			if (node.getElement() != null && !this.getElements().contains(node.getElement())) {
+			if (node.getElement() != null
+					&& !this.getElements().contains(node.getElement())) {
 				gmfDiagram.getPersistedChildren().remove(node);
 				i--;
 			}
 		}
 		for (int i = 0; i < gmfDiagram.getPersistedEdges().size(); i++) {
 			Edge edge = (Edge) gmfDiagram.getPersistedEdges().get(i);
-			if (edge.getElement() != null && !this.getElements().contains(edge.getElement())) {
+			if (edge.getElement() != null
+					&& !this.getElements().contains(edge.getElement())) {
 				gmfDiagram.getPersistedEdges().remove(edge);
 				if (edge.getSource() != null) {
 					edge.getSource().getSourceEdges().remove(edge);
@@ -394,7 +433,7 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram
 			}
 		}
 	}
-	
+
 	public void loadDiagramLayout() throws DiagramLoadException {
 
 		// preserve original resource for all involved model elements
@@ -403,8 +442,10 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram
 
 		// put all involved elements into a virtual resource set
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource diagramResource = resourceSet.createResource(VIRTUAL_DIAGRAM_URI);
-		Resource elementsResource = resourceSet.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
+		Resource diagramResource = resourceSet
+				.createResource(VIRTUAL_DIAGRAM_URI);
+		Resource elementsResource = resourceSet
+				.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
 		elementsResource.getContents().addAll(elements);
 
 		String diagramLayout = getDiagramLayout();
@@ -418,19 +459,24 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram
 		 */
 		// load diagram
 		try {
-			diagramResource.load(new ByteArrayInputStream(diagramLayout.getBytes("UTF-8")), null);
+			diagramResource.load(
+					new ByteArrayInputStream(diagramLayout.getBytes("UTF-8")),
+					null);
 		} catch (UnsupportedEncodingException e) {
-			throw new DiagramLoadException("Diagram string encoding is malformed, load failed.", e);
+			throw new DiagramLoadException(
+					"Diagram string encoding is malformed, load failed.", e);
 		} catch (IOException e) {
 			throw new DiagramLoadException("Diagram load failed.", e);
 		}
 
 		if (diagramResource.getContents().size() < 1) {
-			throw new DiagramLoadException("Diagram String does not contain anything, load failed!");
+			throw new DiagramLoadException(
+					"Diagram String does not contain anything, load failed!");
 		}
 		EObject object = diagramResource.getContents().get(0);
 		if (!(object instanceof Diagram)) {
-			throw new DiagramLoadException("Diagram String contains unexpected content: first entry is not a diagram");
+			throw new DiagramLoadException(
+					"Diagram String contains unexpected content: first entry is not a diagram");
 		}
 
 		Diagram gmfDiagram = (Diagram) diagramResource.getContents().get(0);
@@ -440,32 +486,36 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram
 		setGmfdiagram(gmfDiagram);
 
 		// restore old resource for all model elements
-		restoreOldResources(elements, resourceMap, diagramResource, elementsResource);
+		restoreOldResources(elements, resourceMap, diagramResource,
+				elementsResource);
 		gmfDiagram.setElement(this);
 	}
-	
-	private Map<SCRMModelElement, Resource> preserveOldResources(EList<SCRMModelElement> elements) {
+
+	private Map<SCRMModelElement, Resource> preserveOldResources(
+			EList<SCRMModelElement> elements) {
 		Map<SCRMModelElement, Resource> resourceMap = new HashMap<SCRMModelElement, Resource>();
 		for (SCRMModelElement modelElement : elements) {
 			resourceMap.put(modelElement, modelElement.eResource());
 		}
 		return resourceMap;
 	}
-	
+
 	private void restoreOldResources(EList<SCRMModelElement> elements,
-			Map<SCRMModelElement, Resource> resourceMap, Resource diagramResource, Resource elementsResource) {
-			diagramResource.getContents().remove(gmfdiagram);
-			elementsResource.getContents().removeAll(elements);
-			for (SCRMModelElement modelElement : resourceMap.keySet()) {
-				Resource resource = resourceMap.get(modelElement);
-				resource.getContents().add(modelElement);
-				if (resource instanceof XMIResource) {
-					XMIResource xmiResource = (XMIResource) resource;
-					ModelElementId modelElementId = ModelUtil.getProject(modelElement).getModelElementId(modelElement);
-					xmiResource.setID(modelElement, modelElementId.getId());
-				}
+			Map<SCRMModelElement, Resource> resourceMap,
+			Resource diagramResource, Resource elementsResource) {
+		diagramResource.getContents().remove(gmfdiagram);
+		elementsResource.getContents().removeAll(elements);
+		for (SCRMModelElement modelElement : resourceMap.keySet()) {
+			Resource resource = resourceMap.get(modelElement);
+			resource.getContents().add(modelElement);
+			if (resource instanceof XMIResource) {
+				XMIResource xmiResource = (XMIResource) resource;
+				ModelElementId modelElementId = ModelUtil.getProject(
+						modelElement).getModelElementId(modelElement);
+				xmiResource.setID(modelElement, modelElementId.getId());
 			}
 		}
+	}
 
 	public void saveDiagramLayout() throws DiagramStoreException {
 		getGmfdiagram().setElement(null);
@@ -475,8 +525,10 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram
 
 		// put all involved elements into a virtual resource set
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource diagramResource = resourceSet.createResource(VIRTUAL_DIAGRAM_URI);
-		Resource elementsResource = resourceSet.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
+		Resource diagramResource = resourceSet
+				.createResource(VIRTUAL_DIAGRAM_URI);
+		Resource elementsResource = resourceSet
+				.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
 		elementsResource.getContents().addAll(elements);
 		diagramResource.getContents().add(getGmfdiagram());
 
@@ -488,7 +540,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements SCRMDiagram
 			throw new DiagramStoreException("Diagram resource save failed.", e);
 		}
 
-		restoreOldResources(elements, resourceMap, diagramResource, elementsResource);
+		restoreOldResources(elements, resourceMap, diagramResource,
+				elementsResource);
 
 		getGmfdiagram().setElement(this);
 

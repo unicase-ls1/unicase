@@ -21,15 +21,13 @@ import scrm.SCRMModelElement;
 import scrm.ScrmFactory;
 import scrm.ScrmPackage;
 
+import scrm.dataProcessing.DataProcessingPackage;
+import scrm.dataProcessing.impl.DataProcessingPackageImpl;
 import scrm.knowledge.KnowledgePackage;
 
 import scrm.knowledge.impl.KnowledgePackageImpl;
 
 import scrm.requirements.RequirementsPackage;
-
-import scrm.requirements.dataProcessing.DataProcessingPackage;
-
-import scrm.requirements.dataProcessing.impl.DataProcessingPackageImpl;
 
 import scrm.requirements.impl.RequirementsPackageImpl;
 
@@ -93,10 +91,14 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 	 * @generated
 	 */
 	public static ScrmPackage init() {
-		if (isInited) return (ScrmPackage)EPackage.Registry.INSTANCE.getEPackage(ScrmPackage.eNS_URI);
+		if (isInited)
+			return (ScrmPackage) EPackage.Registry.INSTANCE
+					.getEPackage(ScrmPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ScrmPackageImpl theScrmPackage = (ScrmPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ScrmPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ScrmPackageImpl());
+		ScrmPackageImpl theScrmPackage = (ScrmPackageImpl) (EPackage.Registry.INSTANCE
+				.get(eNS_URI) instanceof ScrmPackageImpl ? EPackage.Registry.INSTANCE
+				.get(eNS_URI) : new ScrmPackageImpl());
 
 		isInited = true;
 
@@ -104,9 +106,18 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		KnowledgePackageImpl theKnowledgePackage = (KnowledgePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(KnowledgePackage.eNS_URI) instanceof KnowledgePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(KnowledgePackage.eNS_URI) : KnowledgePackage.eINSTANCE);
-		RequirementsPackageImpl theRequirementsPackage = (RequirementsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RequirementsPackage.eNS_URI) instanceof RequirementsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RequirementsPackage.eNS_URI) : RequirementsPackage.eINSTANCE);
-		DataProcessingPackageImpl theDataProcessingPackage = (DataProcessingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DataProcessingPackage.eNS_URI) instanceof DataProcessingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DataProcessingPackage.eNS_URI) : DataProcessingPackage.eINSTANCE);
+		KnowledgePackageImpl theKnowledgePackage = (KnowledgePackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(KnowledgePackage.eNS_URI) instanceof KnowledgePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(KnowledgePackage.eNS_URI)
+				: KnowledgePackage.eINSTANCE);
+		RequirementsPackageImpl theRequirementsPackage = (RequirementsPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(RequirementsPackage.eNS_URI) instanceof RequirementsPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(RequirementsPackage.eNS_URI)
+				: RequirementsPackage.eINSTANCE);
+		DataProcessingPackageImpl theDataProcessingPackage = (DataProcessingPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(DataProcessingPackage.eNS_URI) instanceof DataProcessingPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(DataProcessingPackage.eNS_URI)
+				: DataProcessingPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theScrmPackage.createPackageContents();
@@ -123,7 +134,6 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 		// Mark meta-data to indicate it can't be changed
 		theScrmPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ScrmPackage.eNS_URI, theScrmPackage);
 		return theScrmPackage;
@@ -144,7 +154,8 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 	 * @generated
 	 */
 	public EAttribute getSCRMModelElement_Name() {
-		return (EAttribute)scrmModelElementEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) scrmModelElementEClass.getEStructuralFeatures()
+				.get(0);
 	}
 
 	/**
@@ -153,7 +164,8 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 	 * @generated
 	 */
 	public EAttribute getSCRMModelElement_Description() {
-		return (EAttribute)scrmModelElementEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) scrmModelElementEClass.getEStructuralFeatures()
+				.get(1);
 	}
 
 	/**
@@ -171,7 +183,7 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 	 * @generated
 	 */
 	public EReference getSCRMDiagram_Elements() {
-		return (EReference)scrmDiagramEClass.getEStructuralFeatures().get(0);
+		return (EReference) scrmDiagramEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -180,7 +192,7 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 	 * @generated
 	 */
 	public EReference getSCRMDiagram_NewElements() {
-		return (EReference)scrmDiagramEClass.getEStructuralFeatures().get(1);
+		return (EReference) scrmDiagramEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -189,7 +201,7 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 	 * @generated
 	 */
 	public EAttribute getSCRMDiagram_DiagramLayout() {
-		return (EAttribute)scrmDiagramEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) scrmDiagramEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -198,7 +210,7 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 	 * @generated
 	 */
 	public EReference getSCRMDiagram_Gmfdiagram() {
-		return (EReference)scrmDiagramEClass.getEStructuralFeatures().get(3);
+		return (EReference) scrmDiagramEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -207,7 +219,7 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 	 * @generated
 	 */
 	public ScrmFactory getScrmFactory() {
-		return (ScrmFactory)getEFactoryInstance();
+		return (ScrmFactory) getEFactoryInstance();
 	}
 
 	/**
@@ -225,19 +237,21 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if (isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
 		scrmModelElementEClass = createEClass(SCRM_MODEL_ELEMENT);
 		createEAttribute(scrmModelElementEClass, SCRM_MODEL_ELEMENT__NAME);
-		createEAttribute(scrmModelElementEClass, SCRM_MODEL_ELEMENT__DESCRIPTION);
+		createEAttribute(scrmModelElementEClass,
+				SCRM_MODEL_ELEMENT__DESCRIPTION);
 
 		scrmDiagramEClass = createEClass(SCRM_DIAGRAM);
 		createEReference(scrmDiagramEClass, SCRM_DIAGRAM__ELEMENTS);
+		createEReference(scrmDiagramEClass, SCRM_DIAGRAM__GMFDIAGRAM);
 		createEReference(scrmDiagramEClass, SCRM_DIAGRAM__NEW_ELEMENTS);
 		createEAttribute(scrmDiagramEClass, SCRM_DIAGRAM__DIAGRAM_LAYOUT);
-		createEReference(scrmDiagramEClass, SCRM_DIAGRAM__GMFDIAGRAM);
 	}
 
 	/**
@@ -255,7 +269,8 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if (isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package
@@ -264,14 +279,21 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		KnowledgePackage theKnowledgePackage = (KnowledgePackage)EPackage.Registry.INSTANCE.getEPackage(KnowledgePackage.eNS_URI);
-		RequirementsPackage theRequirementsPackage = (RequirementsPackage)EPackage.Registry.INSTANCE.getEPackage(RequirementsPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-		NotationPackage theNotationPackage = (NotationPackage)EPackage.Registry.INSTANCE.getEPackage(NotationPackage.eNS_URI);
+		KnowledgePackage theKnowledgePackage = (KnowledgePackage) EPackage.Registry.INSTANCE
+				.getEPackage(KnowledgePackage.eNS_URI);
+		RequirementsPackage theRequirementsPackage = (RequirementsPackage) EPackage.Registry.INSTANCE
+				.getEPackage(RequirementsPackage.eNS_URI);
+		DataProcessingPackage theDataProcessingPackage = (DataProcessingPackage) EPackage.Registry.INSTANCE
+				.getEPackage(DataProcessingPackage.eNS_URI);
+		NotationPackage theNotationPackage = (NotationPackage) EPackage.Registry.INSTANCE
+				.getEPackage(NotationPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
+				.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theKnowledgePackage);
 		getESubpackages().add(theRequirementsPackage);
+		getESubpackages().add(theDataProcessingPackage);
 
 		// Create type parameters
 
@@ -281,15 +303,40 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 		scrmDiagramEClass.getESuperTypes().add(this.getSCRMModelElement());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(scrmModelElementEClass, SCRMModelElement.class, "SCRMModelElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSCRMModelElement_Name(), ecorePackage.getEString(), "name", "", 0, 1, SCRMModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSCRMModelElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, SCRMModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(scrmModelElementEClass, SCRMModelElement.class,
+				"SCRMModelElement", IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSCRMModelElement_Name(), ecorePackage.getEString(),
+				"name", "", 0, 1, SCRMModelElement.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSCRMModelElement_Description(),
+				ecorePackage.getEString(), "description", null, 0, 1,
+				SCRMModelElement.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
-		initEClass(scrmDiagramEClass, SCRMDiagram.class, "SCRMDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSCRMDiagram_Elements(), this.getSCRMModelElement(), null, "elements", null, 0, -1, SCRMDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSCRMDiagram_NewElements(), this.getSCRMModelElement(), null, "newElements", null, 0, -1, SCRMDiagram.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSCRMDiagram_DiagramLayout(), theEcorePackage.getEString(), "diagramLayout", null, 0, 1, SCRMDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSCRMDiagram_Gmfdiagram(), theNotationPackage.getDiagram(), null, "gmfdiagram", null, 0, 1, SCRMDiagram.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(scrmDiagramEClass, SCRMDiagram.class, "SCRMDiagram",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSCRMDiagram_Elements(), this.getSCRMModelElement(),
+				null, "elements", null, 0, -1, SCRMDiagram.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getSCRMDiagram_Gmfdiagram(),
+				theNotationPackage.getDiagram(), null, "gmfdiagram", null, 0,
+				1, SCRMDiagram.class, IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSCRMDiagram_NewElements(),
+				this.getSCRMModelElement(), null, "newElements", null, 0, -1,
+				SCRMDiagram.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSCRMDiagram_DiagramLayout(),
+				theEcorePackage.getEString(), "diagramLayout", null, 0, 1,
+				SCRMDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -306,21 +353,11 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {
-		String source = "org.unicase.ui.meeditor";		
-		addAnnotation
-		  (getSCRMModelElement_Name(), 
-		   source, 
-		   new String[] {
-			 "position", "left",
-			 "priority", "1"
-		   });		
-		addAnnotation
-		  (getSCRMModelElement_Description(), 
-		   source, 
-		   new String[] {
-			 "position", "left",
-			 "priority", "2"
-		   });
+		String source = "org.unicase.ui.meeditor";
+		addAnnotation(getSCRMModelElement_Name(), source, new String[] {
+				"position", "left", "priority", "1" });
+		addAnnotation(getSCRMModelElement_Description(), source, new String[] {
+				"position", "left", "priority", "2" });
 	}
 
 } //ScrmPackageImpl

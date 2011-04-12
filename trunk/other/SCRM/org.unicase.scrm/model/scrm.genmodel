@@ -2,8 +2,9 @@
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.unicase.scrm/src"
-    modelPluginID="org.unicase.scrm" modelName="Scrm" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" runtimeVersion="2.2" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation">
+    modelPluginID="org.unicase.scrm" modelName="Scrm" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore"
+    containmentProxies="true" complianceLevel="5.0" copyrightFields="false" runtimeVersion="2.2"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation">
   <foreignModel>scrm.ecore</foreignModel>
   <genPackages prefix="Scrm" disposableProviderFactory="true" ecorePackage="scrm.ecore#/">
     <genClasses image="false" ecoreClass="scrm.ecore#//SCRMModelElement">
@@ -12,13 +13,16 @@
     </genClasses>
     <genClasses ecoreClass="scrm.ecore#//SCRMDiagram">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference scrm.ecore#//SCRMDiagram/elements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//SCRMDiagram/gmfdiagram"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//SCRMDiagram/newElements"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//SCRMDiagram/diagramLayout"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//SCRMDiagram/gmfdiagram"/>
     </genClasses>
     <nestedGenPackages prefix="Knowledge" disposableProviderFactory="true" ecorePackage="scrm.ecore#//knowledge">
       <genClasses image="false" ecoreClass="scrm.ecore#//knowledge/ScientificKnowledge">
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/ScientificKnowledge/containingKnowledgeSpace"/>
+      </genClasses>
+      <genClasses ecoreClass="scrm.ecore#//knowledge/KnowledgeSpace">
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/KnowledgeSpace/containedScientificProblem"/>
       </genClasses>
       <genClasses ecoreClass="scrm.ecore#//knowledge/ScientificProblem">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -60,9 +64,6 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference scrm.ecore#//knowledge/Assumption/dependingMethod"/>
       </genClasses>
-      <genClasses ecoreClass="scrm.ecore#//knowledge/KnowledgeSpace">
-        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/KnowledgeSpace/containedScientificProblem"/>
-      </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Requirements" disposableProviderFactory="true" ecorePackage="scrm.ecore#//requirements">
       <genClasses image="false" ecoreClass="scrm.ecore#//requirements/IRequirement">
@@ -72,6 +73,18 @@
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//requirements/Interface/providingFeature"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference scrm.ecore#//requirements/Interface/requiringFeatures"/>
+      </genClasses>
+      <genClasses ecoreClass="scrm.ecore#//requirements/Requirement">
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//requirements/Requirement/refinements"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//requirements/Requirement/refinedRequirement"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//requirements/Requirement/specifiedFeature"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Requirement/definingData"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Requirement/realizedMethod"/>
+      </genClasses>
+      <genClasses ecoreClass="scrm.ecore#//requirements/RequirementSpace">
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
       </genClasses>
       <genClasses ecoreClass="scrm.ecore#//requirements/Feature">
         <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//requirements/Feature/detailedRequirements"/>
@@ -106,15 +119,6 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference scrm.ecore#//requirements/Constraint/restrictedFeature"/>
       </genClasses>
-      <genClasses ecoreClass="scrm.ecore#//requirements/Requirement">
-        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//requirements/Requirement/refinements"/>
-        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//requirements/Requirement/refinedRequirement"/>
-        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//requirements/Requirement/specifiedFeature"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Requirement/definingData"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Requirement/realizedMethod"/>
-      </genClasses>
       <genClasses ecoreClass="scrm.ecore#//requirements/UserInterface"/>
       <genClasses ecoreClass="scrm.ecore#//requirements/SoftwareInterface">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//requirements/SoftwareInterface/dataTypes"/>
@@ -138,18 +142,14 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//requirements/DataDefinition/range"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//requirements/DataDefinition/dataType"/>
       </genClasses>
-      <genClasses ecoreClass="scrm.ecore#//requirements/RequirementSpace">
-        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
-      </genClasses>
-      <nestedGenPackages prefix="DataProcessing" disposableProviderFactory="true"
-          ecorePackage="scrm.ecore#//requirements/dataProcessing">
-        <genClasses image="false" ecoreClass="scrm.ecore#//requirements/dataProcessing/DataProcessing"/>
-        <genClasses ecoreClass="scrm.ecore#//requirements/dataProcessing/InputDataReading"/>
-        <genClasses ecoreClass="scrm.ecore#//requirements/dataProcessing/DataHandling"/>
-        <genClasses ecoreClass="scrm.ecore#//requirements/dataProcessing/ResultsOutput"/>
-        <genClasses ecoreClass="scrm.ecore#//requirements/dataProcessing/ErrorHandling"/>
-        <genClasses ecoreClass="scrm.ecore#//requirements/dataProcessing/StatusMonitoring"/>
-      </nestedGenPackages>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="DataProcessing" disposableProviderFactory="true" ecorePackage="scrm.ecore#//dataProcessing">
+      <genClasses image="false" ecoreClass="scrm.ecore#//dataProcessing/DataProcessing"/>
+      <genClasses ecoreClass="scrm.ecore#//dataProcessing/InputDataReading"/>
+      <genClasses ecoreClass="scrm.ecore#//dataProcessing/DataHandling"/>
+      <genClasses ecoreClass="scrm.ecore#//dataProcessing/ResultsOutput"/>
+      <genClasses ecoreClass="scrm.ecore#//dataProcessing/ErrorHandling"/>
+      <genClasses ecoreClass="scrm.ecore#//dataProcessing/StatusMonitoring"/>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

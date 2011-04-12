@@ -86,7 +86,9 @@ public class PerformanceImpl extends RequirementImpl implements Performance {
 		String oldProblemSize = problemSize;
 		problemSize = newProblemSize;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.PERFORMANCE__PROBLEM_SIZE, oldProblemSize, problemSize));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementsPackage.PERFORMANCE__PROBLEM_SIZE,
+					oldProblemSize, problemSize));
 	}
 
 	/**
@@ -97,8 +99,8 @@ public class PerformanceImpl extends RequirementImpl implements Performance {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RequirementsPackage.PERFORMANCE__PROBLEM_SIZE:
-				return getProblemSize();
+		case RequirementsPackage.PERFORMANCE__PROBLEM_SIZE:
+			return getProblemSize();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -111,9 +113,9 @@ public class PerformanceImpl extends RequirementImpl implements Performance {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RequirementsPackage.PERFORMANCE__PROBLEM_SIZE:
-				setProblemSize((String)newValue);
-				return;
+		case RequirementsPackage.PERFORMANCE__PROBLEM_SIZE:
+			setProblemSize((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -126,9 +128,9 @@ public class PerformanceImpl extends RequirementImpl implements Performance {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.PERFORMANCE__PROBLEM_SIZE:
-				setProblemSize(PROBLEM_SIZE_EDEFAULT);
-				return;
+		case RequirementsPackage.PERFORMANCE__PROBLEM_SIZE:
+			setProblemSize(PROBLEM_SIZE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -141,8 +143,9 @@ public class PerformanceImpl extends RequirementImpl implements Performance {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.PERFORMANCE__PROBLEM_SIZE:
-				return PROBLEM_SIZE_EDEFAULT == null ? problemSize != null : !PROBLEM_SIZE_EDEFAULT.equals(problemSize);
+		case RequirementsPackage.PERFORMANCE__PROBLEM_SIZE:
+			return PROBLEM_SIZE_EDEFAULT == null ? problemSize != null
+					: !PROBLEM_SIZE_EDEFAULT.equals(problemSize);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -154,7 +157,8 @@ public class PerformanceImpl extends RequirementImpl implements Performance {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (problemSize: ");

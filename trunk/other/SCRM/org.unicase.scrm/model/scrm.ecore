@@ -21,11 +21,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="SCRMDiagram" eSuperTypes="#//SCRMModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//SCRMModelElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gmfdiagram" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"
+        transient="true" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="newElements" upperBound="-1"
         eType="#//SCRMModelElement" transient="true" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramLayout" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="gmfdiagram" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"
-        transient="true" containment="true"/>
   </eClassifiers>
   <eSubpackages name="knowledge" nsURI="http://unicase.org/model/scrm/knowledge" nsPrefix="org.unicase.model.scrm.knowledge">
     <eClassifiers xsi:type="ecore:EClass" name="ScientificKnowledge" abstract="true"
@@ -34,6 +34,16 @@
           eType="#//knowledge/KnowledgeSpace" eOpposite="#//knowledge/KnowledgeSpace/containedScientificProblem">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="position" value="left"/>
+          <details key="priority" value="10"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="KnowledgeSpace" eSuperTypes="#//knowledge/ScientificKnowledge">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="containedScientificProblem"
+          upperBound="-1" eType="#//knowledge/ScientificKnowledge" containment="true"
+          eOpposite="#//knowledge/ScientificKnowledge/containingKnowledgeSpace">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="position" value="right"/>
           <details key="priority" value="10"/>
         </eAnnotations>
       </eStructuralFeatures>
@@ -175,16 +185,6 @@
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="KnowledgeSpace" eSuperTypes="#//knowledge/ScientificKnowledge">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="containedScientificProblem"
-          upperBound="-1" eType="#//knowledge/ScientificKnowledge" containment="true"
-          eOpposite="#//knowledge/ScientificKnowledge/containingKnowledgeSpace">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="position" value="right"/>
-          <details key="priority" value="10"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="requirements" nsURI="http://unicase.org/model/scrm/requirements"
       nsPrefix="org.unicase.model.scrm.requirements">
@@ -209,6 +209,53 @@
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="requiringFeatures" upperBound="-1"
           eType="#//requirements/Feature" eOpposite="#//requirements/Feature/requiredInterfaces">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="position" value="right"/>
+          <details key="priority" value="10"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Requirement" eSuperTypes="#//requirements/IRequirement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="refinements" upperBound="-1"
+          eType="#//requirements/Requirement" containment="true" eOpposite="#//requirements/Requirement/refinedRequirement">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="position" value="right"/>
+          <details key="priority" value="5"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="refinedRequirement" eType="#//requirements/Requirement"
+          eOpposite="#//requirements/Requirement/refinements">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="position" value="left"/>
+          <details key="priority" value="15"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="specifiedFeature" eType="#//requirements/Feature"
+          eOpposite="#//requirements/Feature/detailedRequirements">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="position" value="left"/>
+          <details key="priority" value="20"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="definingData" upperBound="-1"
+          eType="#//requirements/DataDefinition" eOpposite="#//requirements/DataDefinition/definedRequirement">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="position" value="right"/>
+          <details key="priority" value="10"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="realizedMethod" eType="#//knowledge/NumericalMethod"
+          eOpposite="#//knowledge/NumericalMethod/realizingRequirement">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="position" value="left"/>
+          <details key="priority" value="25"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RequirementSpace" eSuperTypes="#//requirements/IRequirement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="containedInformationofRequirements"
+          upperBound="-1" eType="#//requirements/IRequirement" containment="true"
+          eOpposite="#//requirements/IRequirement/containingRequirementSpace">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="position" value="right"/>
           <details key="priority" value="10"/>
@@ -337,43 +384,6 @@
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Requirement" eSuperTypes="#//requirements/IRequirement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="refinements" upperBound="-1"
-          eType="#//requirements/Requirement" containment="true" eOpposite="#//requirements/Requirement/refinedRequirement">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="position" value="right"/>
-          <details key="priority" value="5"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="refinedRequirement" eType="#//requirements/Requirement"
-          eOpposite="#//requirements/Requirement/refinements">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="position" value="left"/>
-          <details key="priority" value="15"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="specifiedFeature" eType="#//requirements/Feature"
-          eOpposite="#//requirements/Feature/detailedRequirements">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="position" value="left"/>
-          <details key="priority" value="20"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="definingData" upperBound="-1"
-          eType="#//requirements/DataDefinition" eOpposite="#//requirements/DataDefinition/definedRequirement">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="position" value="right"/>
-          <details key="priority" value="10"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="realizedMethod" eType="#//knowledge/NumericalMethod"
-          eOpposite="#//knowledge/NumericalMethod/realizingRequirement">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="position" value="left"/>
-          <details key="priority" value="25"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UserInterface" eSuperTypes="#//requirements/Interface"/>
     <eClassifiers xsi:type="ecore:EClass" name="SoftwareInterface" eSuperTypes="#//requirements/Interface">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataTypes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
@@ -442,25 +452,15 @@
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="RequirementSpace" eSuperTypes="#//requirements/IRequirement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="containedInformationofRequirements"
-          upperBound="-1" eType="#//requirements/IRequirement" containment="true"
-          eOpposite="#//requirements/IRequirement/containingRequirementSpace">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="position" value="right"/>
-          <details key="priority" value="10"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-    </eClassifiers>
-    <eSubpackages name="dataProcessing" nsURI="http://unicase.org/model/scrm/requirements/dataProcessing"
-        nsPrefix="org.unicase.model.scrm.requirements.dataProcessing">
-      <eClassifiers xsi:type="ecore:EClass" name="DataProcessing" abstract="true"
-          interface="true" eSuperTypes="#//requirements/Requirement"/>
-      <eClassifiers xsi:type="ecore:EClass" name="InputDataReading" eSuperTypes="#//requirements/dataProcessing/DataProcessing"/>
-      <eClassifiers xsi:type="ecore:EClass" name="DataHandling" eSuperTypes="#//requirements/dataProcessing/DataProcessing"/>
-      <eClassifiers xsi:type="ecore:EClass" name="ResultsOutput" eSuperTypes="#//requirements/dataProcessing/DataProcessing"/>
-      <eClassifiers xsi:type="ecore:EClass" name="ErrorHandling" eSuperTypes="#//requirements/dataProcessing/DataProcessing"/>
-      <eClassifiers xsi:type="ecore:EClass" name="StatusMonitoring" eSuperTypes="#//requirements/dataProcessing/DataProcessing"/>
-    </eSubpackages>
+  </eSubpackages>
+  <eSubpackages name="dataProcessing" nsURI="http://unicase.org/model/scrm/dataProcessing"
+      nsPrefix="org.unicase.model.scrm.dataProcessing">
+    <eClassifiers xsi:type="ecore:EClass" name="DataProcessing" abstract="true" interface="true"
+        eSuperTypes="#//SCRMModelElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="InputDataReading" eSuperTypes="#//dataProcessing/DataProcessing"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DataHandling" eSuperTypes="#//dataProcessing/DataProcessing"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ResultsOutput" eSuperTypes="#//dataProcessing/DataProcessing"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ErrorHandling" eSuperTypes="#//dataProcessing/DataProcessing"/>
+    <eClassifiers xsi:type="ecore:EClass" name="StatusMonitoring" eSuperTypes="#//dataProcessing/DataProcessing"/>
   </eSubpackages>
 </ecore:EPackage>

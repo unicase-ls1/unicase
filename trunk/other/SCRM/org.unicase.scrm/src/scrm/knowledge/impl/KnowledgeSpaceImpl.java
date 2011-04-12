@@ -42,7 +42,8 @@ import scrm.knowledge.ScientificKnowledge;
  *
  * @generated
  */
-public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements KnowledgeSpace {
+public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements
+		KnowledgeSpace {
 	/**
 	 * The cached value of the '{@link #getContainedScientificProblem() <em>Contained Scientific Problem</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -78,8 +79,9 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements Knowledg
 	 * @generated
 	 */
 	public KnowledgeSpace getContainingKnowledgeSpace() {
-		if (eContainerFeatureID() != KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE) return null;
-		return (KnowledgeSpace)eContainer();
+		if (eContainerFeatureID() != KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE)
+			return null;
+		return (KnowledgeSpace) eContainer();
 	}
 
 	/**
@@ -88,8 +90,9 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements Knowledg
 	 * @generated
 	 */
 	public KnowledgeSpace basicGetContainingKnowledgeSpace() {
-		if (eContainerFeatureID() != KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE) return null;
-		return (KnowledgeSpace)eInternalContainer();
+		if (eContainerFeatureID() != KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE)
+			return null;
+		return (KnowledgeSpace) eInternalContainer();
 	}
 
 	/**
@@ -97,8 +100,12 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements Knowledg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetContainingKnowledgeSpace(KnowledgeSpace newContainingKnowledgeSpace, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newContainingKnowledgeSpace, KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE, msgs);
+	public NotificationChain basicSetContainingKnowledgeSpace(
+			KnowledgeSpace newContainingKnowledgeSpace, NotificationChain msgs) {
+		msgs = eBasicSetContainer(
+				(InternalEObject) newContainingKnowledgeSpace,
+				KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE,
+				msgs);
 		return msgs;
 	}
 
@@ -107,20 +114,32 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements Knowledg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContainingKnowledgeSpace(KnowledgeSpace newContainingKnowledgeSpace) {
-		if (newContainingKnowledgeSpace != eInternalContainer() || (eContainerFeatureID() != KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE && newContainingKnowledgeSpace != null)) {
+	public void setContainingKnowledgeSpace(
+			KnowledgeSpace newContainingKnowledgeSpace) {
+		if (newContainingKnowledgeSpace != eInternalContainer()
+				|| (eContainerFeatureID() != KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE && newContainingKnowledgeSpace != null)) {
 			if (EcoreUtil.isAncestor(this, newContainingKnowledgeSpace))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newContainingKnowledgeSpace != null)
-				msgs = ((InternalEObject)newContainingKnowledgeSpace).eInverseAdd(this, KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM, KnowledgeSpace.class, msgs);
-			msgs = basicSetContainingKnowledgeSpace(newContainingKnowledgeSpace, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE, newContainingKnowledgeSpace, newContainingKnowledgeSpace));
+				msgs = ((InternalEObject) newContainingKnowledgeSpace)
+						.eInverseAdd(
+								this,
+								KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
+								KnowledgeSpace.class, msgs);
+			msgs = basicSetContainingKnowledgeSpace(
+					newContainingKnowledgeSpace, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(
+					this,
+					Notification.SET,
+					KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE,
+					newContainingKnowledgeSpace, newContainingKnowledgeSpace));
 	}
 
 	/**
@@ -130,7 +149,11 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements Knowledg
 	 */
 	public EList<ScientificKnowledge> getContainedScientificProblem() {
 		if (containedScientificProblem == null) {
-			containedScientificProblem = new EObjectContainmentWithInverseEList.Resolving<ScientificKnowledge>(ScientificKnowledge.class, this, KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM, KnowledgePackage.SCIENTIFIC_KNOWLEDGE__CONTAINING_KNOWLEDGE_SPACE);
+			containedScientificProblem = new EObjectContainmentWithInverseEList.Resolving<ScientificKnowledge>(
+					ScientificKnowledge.class,
+					this,
+					KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
+					KnowledgePackage.SCIENTIFIC_KNOWLEDGE__CONTAINING_KNOWLEDGE_SPACE);
 		}
 		return containedScientificProblem;
 	}
@@ -142,14 +165,17 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements Knowledg
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainingKnowledgeSpace((KnowledgeSpace)otherEnd, msgs);
-			case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getContainedScientificProblem()).basicAdd(otherEnd, msgs);
+		case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetContainingKnowledgeSpace((KnowledgeSpace) otherEnd,
+					msgs);
+		case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getContainedScientificProblem())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -160,12 +186,14 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements Knowledg
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE:
-				return basicSetContainingKnowledgeSpace(null, msgs);
-			case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM:
-				return ((InternalEList<?>)getContainedScientificProblem()).basicRemove(otherEnd, msgs);
+		case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE:
+			return basicSetContainingKnowledgeSpace(null, msgs);
+		case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM:
+			return ((InternalEList<?>) getContainedScientificProblem())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -176,10 +204,15 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements Knowledg
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE:
-				return eInternalContainer().eInverseRemove(this, KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM, KnowledgeSpace.class, msgs);
+		case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE:
+			return eInternalContainer()
+					.eInverseRemove(
+							this,
+							KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
+							KnowledgeSpace.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -192,11 +225,12 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements Knowledg
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE:
-				if (resolve) return getContainingKnowledgeSpace();
-				return basicGetContainingKnowledgeSpace();
-			case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM:
-				return getContainedScientificProblem();
+		case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE:
+			if (resolve)
+				return getContainingKnowledgeSpace();
+			return basicGetContainingKnowledgeSpace();
+		case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM:
+			return getContainedScientificProblem();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -210,13 +244,14 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements Knowledg
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE:
-				setContainingKnowledgeSpace((KnowledgeSpace)newValue);
-				return;
-			case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM:
-				getContainedScientificProblem().clear();
-				getContainedScientificProblem().addAll((Collection<? extends ScientificKnowledge>)newValue);
-				return;
+		case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE:
+			setContainingKnowledgeSpace((KnowledgeSpace) newValue);
+			return;
+		case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM:
+			getContainedScientificProblem().clear();
+			getContainedScientificProblem().addAll(
+					(Collection<? extends ScientificKnowledge>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -229,12 +264,12 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements Knowledg
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE:
-				setContainingKnowledgeSpace((KnowledgeSpace)null);
-				return;
-			case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM:
-				getContainedScientificProblem().clear();
-				return;
+		case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE:
+			setContainingKnowledgeSpace((KnowledgeSpace) null);
+			return;
+		case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM:
+			getContainedScientificProblem().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -247,10 +282,11 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements Knowledg
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE:
-				return basicGetContainingKnowledgeSpace() != null;
-			case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM:
-				return containedScientificProblem != null && !containedScientificProblem.isEmpty();
+		case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE:
+			return basicGetContainingKnowledgeSpace() != null;
+		case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM:
+			return containedScientificProblem != null
+					&& !containedScientificProblem.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

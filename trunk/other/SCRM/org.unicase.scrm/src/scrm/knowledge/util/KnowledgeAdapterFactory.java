@@ -60,7 +60,7 @@ public class KnowledgeAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -71,41 +71,47 @@ public class KnowledgeAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected KnowledgeSwitch<Adapter> modelSwitch =
-		new KnowledgeSwitch<Adapter>() {
-			@Override
-			public Adapter caseScientificKnowledge(ScientificKnowledge object) {
-				return createScientificKnowledgeAdapter();
-			}
-			@Override
-			public Adapter caseScientificProblem(ScientificProblem object) {
-				return createScientificProblemAdapter();
-			}
-			@Override
-			public Adapter caseMathematicalModel(MathematicalModel object) {
-				return createMathematicalModelAdapter();
-			}
-			@Override
-			public Adapter caseNumericalMethod(NumericalMethod object) {
-				return createNumericalMethodAdapter();
-			}
-			@Override
-			public Adapter caseAssumption(Assumption object) {
-				return createAssumptionAdapter();
-			}
-			@Override
-			public Adapter caseKnowledgeSpace(KnowledgeSpace object) {
-				return createKnowledgeSpaceAdapter();
-			}
-			@Override
-			public Adapter caseSCRMModelElement(SCRMModelElement object) {
-				return createSCRMModelElementAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+	protected KnowledgeSwitch<Adapter> modelSwitch = new KnowledgeSwitch<Adapter>() {
+		@Override
+		public Adapter caseScientificKnowledge(ScientificKnowledge object) {
+			return createScientificKnowledgeAdapter();
+		}
+
+		@Override
+		public Adapter caseKnowledgeSpace(KnowledgeSpace object) {
+			return createKnowledgeSpaceAdapter();
+		}
+
+		@Override
+		public Adapter caseScientificProblem(ScientificProblem object) {
+			return createScientificProblemAdapter();
+		}
+
+		@Override
+		public Adapter caseMathematicalModel(MathematicalModel object) {
+			return createMathematicalModelAdapter();
+		}
+
+		@Override
+		public Adapter caseNumericalMethod(NumericalMethod object) {
+			return createNumericalMethodAdapter();
+		}
+
+		@Override
+		public Adapter caseAssumption(Assumption object) {
+			return createAssumptionAdapter();
+		}
+
+		@Override
+		public Adapter caseSCRMModelElement(SCRMModelElement object) {
+			return createSCRMModelElementAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -117,9 +123,8 @@ public class KnowledgeAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
-
 
 	/**
 	 * Creates a new adapter for an object of class '{@link scrm.knowledge.ScientificKnowledge <em>Scientific Knowledge</em>}'.

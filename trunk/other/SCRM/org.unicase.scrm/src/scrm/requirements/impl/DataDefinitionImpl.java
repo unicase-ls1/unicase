@@ -42,7 +42,8 @@ import scrm.requirements.RequirementsPackage;
  *
  * @generated
  */
-public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefinition {
+public class DataDefinitionImpl extends SCRMModelElementImpl implements
+		DataDefinition {
 	/**
 	 * The cached value of the '{@link #getDefinedRequirement() <em>Defined Requirement</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -158,8 +159,9 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	 * @generated
 	 */
 	public RequirementSpace getContainingRequirementSpace() {
-		if (eContainerFeatureID() != RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE) return null;
-		return (RequirementSpace)eContainer();
+		if (eContainerFeatureID() != RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE)
+			return null;
+		return (RequirementSpace) eContainer();
 	}
 
 	/**
@@ -168,8 +170,9 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	 * @generated
 	 */
 	public RequirementSpace basicGetContainingRequirementSpace() {
-		if (eContainerFeatureID() != RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE) return null;
-		return (RequirementSpace)eInternalContainer();
+		if (eContainerFeatureID() != RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE)
+			return null;
+		return (RequirementSpace) eInternalContainer();
 	}
 
 	/**
@@ -177,8 +180,13 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetContainingRequirementSpace(RequirementSpace newContainingRequirementSpace, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newContainingRequirementSpace, RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE, msgs);
+	public NotificationChain basicSetContainingRequirementSpace(
+			RequirementSpace newContainingRequirementSpace,
+			NotificationChain msgs) {
+		msgs = eBasicSetContainer(
+				(InternalEObject) newContainingRequirementSpace,
+				RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE,
+				msgs);
 		return msgs;
 	}
 
@@ -187,20 +195,33 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContainingRequirementSpace(RequirementSpace newContainingRequirementSpace) {
-		if (newContainingRequirementSpace != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE && newContainingRequirementSpace != null)) {
+	public void setContainingRequirementSpace(
+			RequirementSpace newContainingRequirementSpace) {
+		if (newContainingRequirementSpace != eInternalContainer()
+				|| (eContainerFeatureID() != RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE && newContainingRequirementSpace != null)) {
 			if (EcoreUtil.isAncestor(this, newContainingRequirementSpace))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newContainingRequirementSpace != null)
-				msgs = ((InternalEObject)newContainingRequirementSpace).eInverseAdd(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
-			msgs = basicSetContainingRequirementSpace(newContainingRequirementSpace, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE, newContainingRequirementSpace, newContainingRequirementSpace));
+				msgs = ((InternalEObject) newContainingRequirementSpace)
+						.eInverseAdd(
+								this,
+								RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+								RequirementSpace.class, msgs);
+			msgs = basicSetContainingRequirementSpace(
+					newContainingRequirementSpace, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(
+					this,
+					Notification.SET,
+					RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE,
+					newContainingRequirementSpace,
+					newContainingRequirementSpace));
 	}
 
 	/**
@@ -210,11 +231,15 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	 */
 	public Requirement getDefinedRequirement() {
 		if (definedRequirement != null && definedRequirement.eIsProxy()) {
-			InternalEObject oldDefinedRequirement = (InternalEObject)definedRequirement;
-			definedRequirement = (Requirement)eResolveProxy(oldDefinedRequirement);
+			InternalEObject oldDefinedRequirement = (InternalEObject) definedRequirement;
+			definedRequirement = (Requirement) eResolveProxy(oldDefinedRequirement);
 			if (definedRequirement != oldDefinedRequirement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT, oldDefinedRequirement, definedRequirement));
+					eNotify(new ENotificationImpl(
+							this,
+							Notification.RESOLVE,
+							RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT,
+							oldDefinedRequirement, definedRequirement));
 			}
 		}
 		return definedRequirement;
@@ -234,12 +259,19 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDefinedRequirement(Requirement newDefinedRequirement, NotificationChain msgs) {
+	public NotificationChain basicSetDefinedRequirement(
+			Requirement newDefinedRequirement, NotificationChain msgs) {
 		Requirement oldDefinedRequirement = definedRequirement;
 		definedRequirement = newDefinedRequirement;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT, oldDefinedRequirement, newDefinedRequirement);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT,
+					oldDefinedRequirement, newDefinedRequirement);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -253,14 +285,20 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 		if (newDefinedRequirement != definedRequirement) {
 			NotificationChain msgs = null;
 			if (definedRequirement != null)
-				msgs = ((InternalEObject)definedRequirement).eInverseRemove(this, RequirementsPackage.REQUIREMENT__DEFINING_DATA, Requirement.class, msgs);
+				msgs = ((InternalEObject) definedRequirement).eInverseRemove(
+						this, RequirementsPackage.REQUIREMENT__DEFINING_DATA,
+						Requirement.class, msgs);
 			if (newDefinedRequirement != null)
-				msgs = ((InternalEObject)newDefinedRequirement).eInverseAdd(this, RequirementsPackage.REQUIREMENT__DEFINING_DATA, Requirement.class, msgs);
+				msgs = ((InternalEObject) newDefinedRequirement).eInverseAdd(
+						this, RequirementsPackage.REQUIREMENT__DEFINING_DATA,
+						Requirement.class, msgs);
 			msgs = basicSetDefinedRequirement(newDefinedRequirement, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT, newDefinedRequirement, newDefinedRequirement));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT,
+					newDefinedRequirement, newDefinedRequirement));
 	}
 
 	/**
@@ -281,7 +319,9 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 		String oldAccuracy = accuracy;
 		accuracy = newAccuracy;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.DATA_DEFINITION__ACCURACY, oldAccuracy, accuracy));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementsPackage.DATA_DEFINITION__ACCURACY, oldAccuracy,
+					accuracy));
 	}
 
 	/**
@@ -302,7 +342,9 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 		String oldFormat = format;
 		format = newFormat;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.DATA_DEFINITION__FORMAT, oldFormat, format));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementsPackage.DATA_DEFINITION__FORMAT, oldFormat,
+					format));
 	}
 
 	/**
@@ -323,7 +365,8 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 		String oldRange = range;
 		range = newRange;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.DATA_DEFINITION__RANGE, oldRange, range));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementsPackage.DATA_DEFINITION__RANGE, oldRange, range));
 	}
 
 	/**
@@ -344,7 +387,9 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 		String oldDataType = dataType;
 		dataType = newDataType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.DATA_DEFINITION__DATA_TYPE, oldDataType, dataType));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementsPackage.DATA_DEFINITION__DATA_TYPE,
+					oldDataType, dataType));
 	}
 
 	/**
@@ -353,16 +398,20 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainingRequirementSpace((RequirementSpace)otherEnd, msgs);
-			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
-				if (definedRequirement != null)
-					msgs = ((InternalEObject)definedRequirement).eInverseRemove(this, RequirementsPackage.REQUIREMENT__DEFINING_DATA, Requirement.class, msgs);
-				return basicSetDefinedRequirement((Requirement)otherEnd, msgs);
+		case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetContainingRequirementSpace(
+					(RequirementSpace) otherEnd, msgs);
+		case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
+			if (definedRequirement != null)
+				msgs = ((InternalEObject) definedRequirement).eInverseRemove(
+						this, RequirementsPackage.REQUIREMENT__DEFINING_DATA,
+						Requirement.class, msgs);
+			return basicSetDefinedRequirement((Requirement) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -373,12 +422,13 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
-				return basicSetContainingRequirementSpace(null, msgs);
-			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
-				return basicSetDefinedRequirement(null, msgs);
+		case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
+			return basicSetContainingRequirementSpace(null, msgs);
+		case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
+			return basicSetDefinedRequirement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -389,10 +439,15 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
-				return eInternalContainer().eInverseRemove(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
+		case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
+			return eInternalContainer()
+					.eInverseRemove(
+							this,
+							RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+							RequirementSpace.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -405,20 +460,22 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
-				if (resolve) return getContainingRequirementSpace();
-				return basicGetContainingRequirementSpace();
-			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
-				if (resolve) return getDefinedRequirement();
-				return basicGetDefinedRequirement();
-			case RequirementsPackage.DATA_DEFINITION__ACCURACY:
-				return getAccuracy();
-			case RequirementsPackage.DATA_DEFINITION__FORMAT:
-				return getFormat();
-			case RequirementsPackage.DATA_DEFINITION__RANGE:
-				return getRange();
-			case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
-				return getDataType();
+		case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
+			if (resolve)
+				return getContainingRequirementSpace();
+			return basicGetContainingRequirementSpace();
+		case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
+			if (resolve)
+				return getDefinedRequirement();
+			return basicGetDefinedRequirement();
+		case RequirementsPackage.DATA_DEFINITION__ACCURACY:
+			return getAccuracy();
+		case RequirementsPackage.DATA_DEFINITION__FORMAT:
+			return getFormat();
+		case RequirementsPackage.DATA_DEFINITION__RANGE:
+			return getRange();
+		case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
+			return getDataType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -431,24 +488,24 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
-				setContainingRequirementSpace((RequirementSpace)newValue);
-				return;
-			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
-				setDefinedRequirement((Requirement)newValue);
-				return;
-			case RequirementsPackage.DATA_DEFINITION__ACCURACY:
-				setAccuracy((String)newValue);
-				return;
-			case RequirementsPackage.DATA_DEFINITION__FORMAT:
-				setFormat((String)newValue);
-				return;
-			case RequirementsPackage.DATA_DEFINITION__RANGE:
-				setRange((String)newValue);
-				return;
-			case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
-				setDataType((String)newValue);
-				return;
+		case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
+			setContainingRequirementSpace((RequirementSpace) newValue);
+			return;
+		case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
+			setDefinedRequirement((Requirement) newValue);
+			return;
+		case RequirementsPackage.DATA_DEFINITION__ACCURACY:
+			setAccuracy((String) newValue);
+			return;
+		case RequirementsPackage.DATA_DEFINITION__FORMAT:
+			setFormat((String) newValue);
+			return;
+		case RequirementsPackage.DATA_DEFINITION__RANGE:
+			setRange((String) newValue);
+			return;
+		case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
+			setDataType((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -461,24 +518,24 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
-				setContainingRequirementSpace((RequirementSpace)null);
-				return;
-			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
-				setDefinedRequirement((Requirement)null);
-				return;
-			case RequirementsPackage.DATA_DEFINITION__ACCURACY:
-				setAccuracy(ACCURACY_EDEFAULT);
-				return;
-			case RequirementsPackage.DATA_DEFINITION__FORMAT:
-				setFormat(FORMAT_EDEFAULT);
-				return;
-			case RequirementsPackage.DATA_DEFINITION__RANGE:
-				setRange(RANGE_EDEFAULT);
-				return;
-			case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
-				setDataType(DATA_TYPE_EDEFAULT);
-				return;
+		case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
+			setContainingRequirementSpace((RequirementSpace) null);
+			return;
+		case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
+			setDefinedRequirement((Requirement) null);
+			return;
+		case RequirementsPackage.DATA_DEFINITION__ACCURACY:
+			setAccuracy(ACCURACY_EDEFAULT);
+			return;
+		case RequirementsPackage.DATA_DEFINITION__FORMAT:
+			setFormat(FORMAT_EDEFAULT);
+			return;
+		case RequirementsPackage.DATA_DEFINITION__RANGE:
+			setRange(RANGE_EDEFAULT);
+			return;
+		case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
+			setDataType(DATA_TYPE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -491,18 +548,22 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
-				return basicGetContainingRequirementSpace() != null;
-			case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
-				return definedRequirement != null;
-			case RequirementsPackage.DATA_DEFINITION__ACCURACY:
-				return ACCURACY_EDEFAULT == null ? accuracy != null : !ACCURACY_EDEFAULT.equals(accuracy);
-			case RequirementsPackage.DATA_DEFINITION__FORMAT:
-				return FORMAT_EDEFAULT == null ? format != null : !FORMAT_EDEFAULT.equals(format);
-			case RequirementsPackage.DATA_DEFINITION__RANGE:
-				return RANGE_EDEFAULT == null ? range != null : !RANGE_EDEFAULT.equals(range);
-			case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
-				return DATA_TYPE_EDEFAULT == null ? dataType != null : !DATA_TYPE_EDEFAULT.equals(dataType);
+		case RequirementsPackage.DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE:
+			return basicGetContainingRequirementSpace() != null;
+		case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
+			return definedRequirement != null;
+		case RequirementsPackage.DATA_DEFINITION__ACCURACY:
+			return ACCURACY_EDEFAULT == null ? accuracy != null
+					: !ACCURACY_EDEFAULT.equals(accuracy);
+		case RequirementsPackage.DATA_DEFINITION__FORMAT:
+			return FORMAT_EDEFAULT == null ? format != null : !FORMAT_EDEFAULT
+					.equals(format);
+		case RequirementsPackage.DATA_DEFINITION__RANGE:
+			return RANGE_EDEFAULT == null ? range != null : !RANGE_EDEFAULT
+					.equals(range);
+		case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
+			return DATA_TYPE_EDEFAULT == null ? dataType != null
+					: !DATA_TYPE_EDEFAULT.equals(dataType);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -514,7 +575,8 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements DataDefi
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (accuracy: ");

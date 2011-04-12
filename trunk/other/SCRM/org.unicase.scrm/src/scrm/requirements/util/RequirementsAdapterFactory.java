@@ -74,7 +74,7 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -85,69 +85,82 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RequirementsSwitch<Adapter> modelSwitch =
-		new RequirementsSwitch<Adapter>() {
-			@Override
-			public Adapter caseIRequirement(IRequirement object) {
-				return createIRequirementAdapter();
-			}
-			@Override
-			public Adapter caseInterface(Interface object) {
-				return createInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseFeature(Feature object) {
-				return createFeatureAdapter();
-			}
-			@Override
-			public Adapter caseHardware(Hardware object) {
-				return createHardwareAdapter();
-			}
-			@Override
-			public Adapter caseConstraint(Constraint object) {
-				return createConstraintAdapter();
-			}
-			@Override
-			public Adapter caseRequirement(Requirement object) {
-				return createRequirementAdapter();
-			}
-			@Override
-			public Adapter caseUserInterface(UserInterface object) {
-				return createUserInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseSoftwareInterface(SoftwareInterface object) {
-				return createSoftwareInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseProcess(scrm.requirements.Process object) {
-				return createProcessAdapter();
-			}
-			@Override
-			public Adapter casePerformance(Performance object) {
-				return createPerformanceAdapter();
-			}
-			@Override
-			public Adapter caseDataFlow(DataFlow object) {
-				return createDataFlowAdapter();
-			}
-			@Override
-			public Adapter caseDataDefinition(DataDefinition object) {
-				return createDataDefinitionAdapter();
-			}
-			@Override
-			public Adapter caseRequirementSpace(RequirementSpace object) {
-				return createRequirementSpaceAdapter();
-			}
-			@Override
-			public Adapter caseSCRMModelElement(SCRMModelElement object) {
-				return createSCRMModelElementAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+	protected RequirementsSwitch<Adapter> modelSwitch = new RequirementsSwitch<Adapter>() {
+		@Override
+		public Adapter caseIRequirement(IRequirement object) {
+			return createIRequirementAdapter();
+		}
+
+		@Override
+		public Adapter caseInterface(Interface object) {
+			return createInterfaceAdapter();
+		}
+
+		@Override
+		public Adapter caseRequirement(Requirement object) {
+			return createRequirementAdapter();
+		}
+
+		@Override
+		public Adapter caseRequirementSpace(RequirementSpace object) {
+			return createRequirementSpaceAdapter();
+		}
+
+		@Override
+		public Adapter caseFeature(Feature object) {
+			return createFeatureAdapter();
+		}
+
+		@Override
+		public Adapter caseHardware(Hardware object) {
+			return createHardwareAdapter();
+		}
+
+		@Override
+		public Adapter caseConstraint(Constraint object) {
+			return createConstraintAdapter();
+		}
+
+		@Override
+		public Adapter caseUserInterface(UserInterface object) {
+			return createUserInterfaceAdapter();
+		}
+
+		@Override
+		public Adapter caseSoftwareInterface(SoftwareInterface object) {
+			return createSoftwareInterfaceAdapter();
+		}
+
+		@Override
+		public Adapter caseProcess(scrm.requirements.Process object) {
+			return createProcessAdapter();
+		}
+
+		@Override
+		public Adapter casePerformance(Performance object) {
+			return createPerformanceAdapter();
+		}
+
+		@Override
+		public Adapter caseDataFlow(DataFlow object) {
+			return createDataFlowAdapter();
+		}
+
+		@Override
+		public Adapter caseDataDefinition(DataDefinition object) {
+			return createDataDefinitionAdapter();
+		}
+
+		@Override
+		public Adapter caseSCRMModelElement(SCRMModelElement object) {
+			return createSCRMModelElementAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -159,9 +172,8 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
-
 
 	/**
 	 * Creates a new adapter for an object of class '{@link scrm.requirements.IRequirement <em>IRequirement</em>}'.

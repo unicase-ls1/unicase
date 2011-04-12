@@ -70,13 +70,10 @@ public class KnowledgeSwitch<T> {
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
+		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(
+					eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -89,54 +86,72 @@ public class KnowledgeSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case KnowledgePackage.SCIENTIFIC_KNOWLEDGE: {
-				ScientificKnowledge scientificKnowledge = (ScientificKnowledge)theEObject;
-				T result = caseScientificKnowledge(scientificKnowledge);
-				if (result == null) result = caseSCRMModelElement(scientificKnowledge);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case KnowledgePackage.SCIENTIFIC_PROBLEM: {
-				ScientificProblem scientificProblem = (ScientificProblem)theEObject;
-				T result = caseScientificProblem(scientificProblem);
-				if (result == null) result = caseScientificKnowledge(scientificProblem);
-				if (result == null) result = caseSCRMModelElement(scientificProblem);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case KnowledgePackage.MATHEMATICAL_MODEL: {
-				MathematicalModel mathematicalModel = (MathematicalModel)theEObject;
-				T result = caseMathematicalModel(mathematicalModel);
-				if (result == null) result = caseScientificKnowledge(mathematicalModel);
-				if (result == null) result = caseSCRMModelElement(mathematicalModel);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case KnowledgePackage.NUMERICAL_METHOD: {
-				NumericalMethod numericalMethod = (NumericalMethod)theEObject;
-				T result = caseNumericalMethod(numericalMethod);
-				if (result == null) result = caseScientificKnowledge(numericalMethod);
-				if (result == null) result = caseSCRMModelElement(numericalMethod);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case KnowledgePackage.ASSUMPTION: {
-				Assumption assumption = (Assumption)theEObject;
-				T result = caseAssumption(assumption);
-				if (result == null) result = caseScientificKnowledge(assumption);
-				if (result == null) result = caseSCRMModelElement(assumption);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case KnowledgePackage.KNOWLEDGE_SPACE: {
-				KnowledgeSpace knowledgeSpace = (KnowledgeSpace)theEObject;
-				T result = caseKnowledgeSpace(knowledgeSpace);
-				if (result == null) result = caseScientificKnowledge(knowledgeSpace);
-				if (result == null) result = caseSCRMModelElement(knowledgeSpace);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case KnowledgePackage.SCIENTIFIC_KNOWLEDGE: {
+			ScientificKnowledge scientificKnowledge = (ScientificKnowledge) theEObject;
+			T result = caseScientificKnowledge(scientificKnowledge);
+			if (result == null)
+				result = caseSCRMModelElement(scientificKnowledge);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case KnowledgePackage.KNOWLEDGE_SPACE: {
+			KnowledgeSpace knowledgeSpace = (KnowledgeSpace) theEObject;
+			T result = caseKnowledgeSpace(knowledgeSpace);
+			if (result == null)
+				result = caseScientificKnowledge(knowledgeSpace);
+			if (result == null)
+				result = caseSCRMModelElement(knowledgeSpace);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case KnowledgePackage.SCIENTIFIC_PROBLEM: {
+			ScientificProblem scientificProblem = (ScientificProblem) theEObject;
+			T result = caseScientificProblem(scientificProblem);
+			if (result == null)
+				result = caseScientificKnowledge(scientificProblem);
+			if (result == null)
+				result = caseSCRMModelElement(scientificProblem);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case KnowledgePackage.MATHEMATICAL_MODEL: {
+			MathematicalModel mathematicalModel = (MathematicalModel) theEObject;
+			T result = caseMathematicalModel(mathematicalModel);
+			if (result == null)
+				result = caseScientificKnowledge(mathematicalModel);
+			if (result == null)
+				result = caseSCRMModelElement(mathematicalModel);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case KnowledgePackage.NUMERICAL_METHOD: {
+			NumericalMethod numericalMethod = (NumericalMethod) theEObject;
+			T result = caseNumericalMethod(numericalMethod);
+			if (result == null)
+				result = caseScientificKnowledge(numericalMethod);
+			if (result == null)
+				result = caseSCRMModelElement(numericalMethod);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case KnowledgePackage.ASSUMPTION: {
+			Assumption assumption = (Assumption) theEObject;
+			T result = caseAssumption(assumption);
+			if (result == null)
+				result = caseScientificKnowledge(assumption);
+			if (result == null)
+				result = caseSCRMModelElement(assumption);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

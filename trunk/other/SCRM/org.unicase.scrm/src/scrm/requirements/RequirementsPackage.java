@@ -59,7 +59,8 @@ public interface RequirementsPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	RequirementsPackage eINSTANCE = scrm.requirements.impl.RequirementsPackageImpl.init();
+	RequirementsPackage eINSTANCE = scrm.requirements.impl.RequirementsPackageImpl
+			.init();
 
 	/**
 	 * The meta object id for the '{@link scrm.requirements.IRequirement <em>IRequirement</em>}' class.
@@ -179,7 +180,233 @@ public interface RequirementsPackage extends EPackage {
 	 * @see scrm.requirements.impl.RequirementsPackageImpl#getFeature()
 	 * @generated
 	 */
-	int FEATURE = 2;
+	int FEATURE = 4;
+
+	/**
+	 * The meta object id for the '{@link scrm.requirements.impl.HardwareImpl <em>Hardware</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see scrm.requirements.impl.HardwareImpl
+	 * @see scrm.requirements.impl.RequirementsPackageImpl#getHardware()
+	 * @generated
+	 */
+	int HARDWARE = 5;
+
+	/**
+	 * The meta object id for the '{@link scrm.requirements.impl.ConstraintImpl <em>Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see scrm.requirements.impl.ConstraintImpl
+	 * @see scrm.requirements.impl.RequirementsPackageImpl#getConstraint()
+	 * @generated
+	 */
+	int CONSTRAINT = 6;
+
+	/**
+	 * The meta object id for the '{@link scrm.requirements.impl.RequirementImpl <em>Requirement</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see scrm.requirements.impl.RequirementImpl
+	 * @see scrm.requirements.impl.RequirementsPackageImpl#getRequirement()
+	 * @generated
+	 */
+	int REQUIREMENT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT__NAME = IREQUIREMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT__CONTAINING_REQUIREMENT_SPACE = IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE;
+
+	/**
+	 * The feature id for the '<em><b>Refinements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT__REFINEMENTS = IREQUIREMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Refined Requirement</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT__REFINED_REQUIREMENT = IREQUIREMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Specified Feature</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT__SPECIFIED_FEATURE = IREQUIREMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT__DEFINING_DATA = IREQUIREMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Realized Method</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT__REALIZED_METHOD = IREQUIREMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the '<em>Requirement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT_FEATURE_COUNT = IREQUIREMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The meta object id for the '{@link scrm.requirements.impl.UserInterfaceImpl <em>User Interface</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see scrm.requirements.impl.UserInterfaceImpl
+	 * @see scrm.requirements.impl.RequirementsPackageImpl#getUserInterface()
+	 * @generated
+	 */
+	int USER_INTERFACE = 7;
+
+	/**
+	 * The meta object id for the '{@link scrm.requirements.impl.SoftwareInterfaceImpl <em>Software Interface</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see scrm.requirements.impl.SoftwareInterfaceImpl
+	 * @see scrm.requirements.impl.RequirementsPackageImpl#getSoftwareInterface()
+	 * @generated
+	 */
+	int SOFTWARE_INTERFACE = 8;
+
+	/**
+	 * The meta object id for the '{@link scrm.requirements.impl.ProcessImpl <em>Process</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see scrm.requirements.impl.ProcessImpl
+	 * @see scrm.requirements.impl.RequirementsPackageImpl#getProcess()
+	 * @generated
+	 */
+	int PROCESS = 9;
+
+	/**
+	 * The meta object id for the '{@link scrm.requirements.impl.PerformanceImpl <em>Performance</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see scrm.requirements.impl.PerformanceImpl
+	 * @see scrm.requirements.impl.RequirementsPackageImpl#getPerformance()
+	 * @generated
+	 */
+	int PERFORMANCE = 10;
+
+	/**
+	 * The meta object id for the '{@link scrm.requirements.impl.DataFlowImpl <em>Data Flow</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see scrm.requirements.impl.DataFlowImpl
+	 * @see scrm.requirements.impl.RequirementsPackageImpl#getDataFlow()
+	 * @generated
+	 */
+	int DATA_FLOW = 11;
+
+	/**
+	 * The meta object id for the '{@link scrm.requirements.impl.DataDefinitionImpl <em>Data Definition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see scrm.requirements.impl.DataDefinitionImpl
+	 * @see scrm.requirements.impl.RequirementsPackageImpl#getDataDefinition()
+	 * @generated
+	 */
+	int DATA_DEFINITION = 12;
+
+	/**
+	 * The meta object id for the '{@link scrm.requirements.impl.RequirementSpaceImpl <em>Requirement Space</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see scrm.requirements.impl.RequirementSpaceImpl
+	 * @see scrm.requirements.impl.RequirementsPackageImpl#getRequirementSpace()
+	 * @generated
+	 */
+	int REQUIREMENT_SPACE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT_SPACE__NAME = IREQUIREMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT_SPACE__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE = IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE;
+
+	/**
+	 * The feature id for the '<em><b>Contained Informationof Requirements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS = IREQUIREMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Requirement Space</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT_SPACE_FEATURE_COUNT = IREQUIREMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -326,16 +553,6 @@ public interface RequirementsPackage extends EPackage {
 	int FEATURE_FEATURE_COUNT = IREQUIREMENT_FEATURE_COUNT + 12;
 
 	/**
-	 * The meta object id for the '{@link scrm.requirements.impl.HardwareImpl <em>Hardware</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see scrm.requirements.impl.HardwareImpl
-	 * @see scrm.requirements.impl.RequirementsPackageImpl#getHardware()
-	 * @generated
-	 */
-	int HARDWARE = 3;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -408,16 +625,6 @@ public interface RequirementsPackage extends EPackage {
 	int HARDWARE_FEATURE_COUNT = IREQUIREMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link scrm.requirements.impl.ConstraintImpl <em>Constraint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see scrm.requirements.impl.ConstraintImpl
-	 * @see scrm.requirements.impl.RequirementsPackageImpl#getConstraint()
-	 * @generated
-	 */
-	int CONSTRAINT = 4;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -461,107 +668,6 @@ public interface RequirementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSTRAINT_FEATURE_COUNT = IREQUIREMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link scrm.requirements.impl.RequirementImpl <em>Requirement</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see scrm.requirements.impl.RequirementImpl
-	 * @see scrm.requirements.impl.RequirementsPackageImpl#getRequirement()
-	 * @generated
-	 */
-	int REQUIREMENT = 5;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT__NAME = IREQUIREMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT__CONTAINING_REQUIREMENT_SPACE = IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE;
-
-	/**
-	 * The feature id for the '<em><b>Refinements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT__REFINEMENTS = IREQUIREMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Refined Requirement</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT__REFINED_REQUIREMENT = IREQUIREMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Specified Feature</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT__SPECIFIED_FEATURE = IREQUIREMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT__DEFINING_DATA = IREQUIREMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Realized Method</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT__REALIZED_METHOD = IREQUIREMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of structural features of the '<em>Requirement</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT_FEATURE_COUNT = IREQUIREMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The meta object id for the '{@link scrm.requirements.impl.UserInterfaceImpl <em>User Interface</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see scrm.requirements.impl.UserInterfaceImpl
-	 * @see scrm.requirements.impl.RequirementsPackageImpl#getUserInterface()
-	 * @generated
-	 */
-	int USER_INTERFACE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -616,16 +722,6 @@ public interface RequirementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER_INTERFACE_FEATURE_COUNT = INTERFACE_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link scrm.requirements.impl.SoftwareInterfaceImpl <em>Software Interface</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see scrm.requirements.impl.SoftwareInterfaceImpl
-	 * @see scrm.requirements.impl.RequirementsPackageImpl#getSoftwareInterface()
-	 * @generated
-	 */
-	int SOFTWARE_INTERFACE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -689,16 +785,6 @@ public interface RequirementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int SOFTWARE_INTERFACE_FEATURE_COUNT = INTERFACE_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link scrm.requirements.impl.ProcessImpl <em>Process</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see scrm.requirements.impl.ProcessImpl
-	 * @see scrm.requirements.impl.RequirementsPackageImpl#getProcess()
-	 * @generated
-	 */
-	int PROCESS = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -791,16 +877,6 @@ public interface RequirementsPackage extends EPackage {
 	int PROCESS_FEATURE_COUNT = REQUIREMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link scrm.requirements.impl.PerformanceImpl <em>Performance</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see scrm.requirements.impl.PerformanceImpl
-	 * @see scrm.requirements.impl.RequirementsPackageImpl#getPerformance()
-	 * @generated
-	 */
-	int PERFORMANCE = 9;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -891,16 +967,6 @@ public interface RequirementsPackage extends EPackage {
 	int PERFORMANCE_FEATURE_COUNT = REQUIREMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link scrm.requirements.impl.DataFlowImpl <em>Data Flow</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see scrm.requirements.impl.DataFlowImpl
-	 * @see scrm.requirements.impl.RequirementsPackageImpl#getDataFlow()
-	 * @generated
-	 */
-	int DATA_FLOW = 10;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -944,16 +1010,6 @@ public interface RequirementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATA_FLOW_FEATURE_COUNT = IREQUIREMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link scrm.requirements.impl.DataDefinitionImpl <em>Data Definition</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see scrm.requirements.impl.DataDefinitionImpl
-	 * @see scrm.requirements.impl.RequirementsPackageImpl#getDataDefinition()
-	 * @generated
-	 */
-	int DATA_DEFINITION = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1035,62 +1091,6 @@ public interface RequirementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATA_DEFINITION_FEATURE_COUNT = IREQUIREMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The meta object id for the '{@link scrm.requirements.impl.RequirementSpaceImpl <em>Requirement Space</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see scrm.requirements.impl.RequirementSpaceImpl
-	 * @see scrm.requirements.impl.RequirementsPackageImpl#getRequirementSpace()
-	 * @generated
-	 */
-	int REQUIREMENT_SPACE = 12;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT_SPACE__NAME = IREQUIREMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT_SPACE__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE = IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE;
-
-	/**
-	 * The feature id for the '<em><b>Contained Informationof Requirements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS = IREQUIREMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Requirement Space</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT_SPACE_FEATURE_COUNT = IREQUIREMENT_FEATURE_COUNT + 1;
-
 
 	/**
 	 * Returns the meta object for class '{@link scrm.requirements.IRequirement <em>IRequirement</em>}'.
@@ -1645,7 +1645,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE = eINSTANCE.getIRequirement_ContainingRequirementSpace();
+		EReference IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE = eINSTANCE
+				.getIRequirement_ContainingRequirementSpace();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.Interface <em>Interface</em>}' class.
@@ -1663,7 +1664,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INTERFACE__PROVIDING_FEATURE = eINSTANCE.getInterface_ProvidingFeature();
+		EReference INTERFACE__PROVIDING_FEATURE = eINSTANCE
+				.getInterface_ProvidingFeature();
 
 		/**
 		 * The meta object literal for the '<em><b>Requiring Features</b></em>' reference list feature.
@@ -1671,7 +1673,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INTERFACE__REQUIRING_FEATURES = eINSTANCE.getInterface_RequiringFeatures();
+		EReference INTERFACE__REQUIRING_FEATURES = eINSTANCE
+				.getInterface_RequiringFeatures();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.impl.FeatureImpl <em>Feature</em>}' class.
@@ -1705,7 +1708,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FEATURE__REQUIRED_INTERFACES = eINSTANCE.getFeature_RequiredInterfaces();
+		EReference FEATURE__REQUIRED_INTERFACES = eINSTANCE
+				.getFeature_RequiredInterfaces();
 
 		/**
 		 * The meta object literal for the '<em><b>Provided Interfaces</b></em>' containment reference list feature.
@@ -1713,7 +1717,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FEATURE__PROVIDED_INTERFACES = eINSTANCE.getFeature_ProvidedInterfaces();
+		EReference FEATURE__PROVIDED_INTERFACES = eINSTANCE
+				.getFeature_ProvidedInterfaces();
 
 		/**
 		 * The meta object literal for the '<em><b>Detailed Requirements</b></em>' containment reference list feature.
@@ -1721,7 +1726,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FEATURE__DETAILED_REQUIREMENTS = eINSTANCE.getFeature_DetailedRequirements();
+		EReference FEATURE__DETAILED_REQUIREMENTS = eINSTANCE
+				.getFeature_DetailedRequirements();
 
 		/**
 		 * The meta object literal for the '<em><b>Influencing Problem</b></em>' reference feature.
@@ -1729,7 +1735,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FEATURE__INFLUENCING_PROBLEM = eINSTANCE.getFeature_InfluencingProblem();
+		EReference FEATURE__INFLUENCING_PROBLEM = eINSTANCE
+				.getFeature_InfluencingProblem();
 
 		/**
 		 * The meta object literal for the '<em><b>Sub Features</b></em>' containment reference list feature.
@@ -1753,7 +1760,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FEATURE__REQUIRED_FEATURES = eINSTANCE.getFeature_RequiredFeatures();
+		EReference FEATURE__REQUIRED_FEATURES = eINSTANCE
+				.getFeature_RequiredFeatures();
 
 		/**
 		 * The meta object literal for the '<em><b>Requiring Features</b></em>' reference list feature.
@@ -1761,7 +1769,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FEATURE__REQUIRING_FEATURES = eINSTANCE.getFeature_RequiringFeatures();
+		EReference FEATURE__REQUIRING_FEATURES = eINSTANCE
+				.getFeature_RequiringFeatures();
 
 		/**
 		 * The meta object literal for the '<em><b>Excluded Features</b></em>' reference list feature.
@@ -1769,7 +1778,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FEATURE__EXCLUDED_FEATURES = eINSTANCE.getFeature_ExcludedFeatures();
+		EReference FEATURE__EXCLUDED_FEATURES = eINSTANCE
+				.getFeature_ExcludedFeatures();
 
 		/**
 		 * The meta object literal for the '<em><b>Excluding Features</b></em>' reference list feature.
@@ -1777,7 +1787,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FEATURE__EXCLUDING_FEATURES = eINSTANCE.getFeature_ExcludingFeatures();
+		EReference FEATURE__EXCLUDING_FEATURES = eINSTANCE
+				.getFeature_ExcludingFeatures();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.impl.HardwareImpl <em>Hardware</em>}' class.
@@ -1795,7 +1806,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference HARDWARE__DEPENDING_FEATURE = eINSTANCE.getHardware_DependingFeature();
+		EReference HARDWARE__DEPENDING_FEATURE = eINSTANCE
+				.getHardware_DependingFeature();
 
 		/**
 		 * The meta object literal for the '<em><b>Processor</b></em>' attribute feature.
@@ -1837,7 +1849,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONSTRAINT__RESTRICTED_FEATURE = eINSTANCE.getConstraint_RestrictedFeature();
+		EReference CONSTRAINT__RESTRICTED_FEATURE = eINSTANCE
+				.getConstraint_RestrictedFeature();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.impl.RequirementImpl <em>Requirement</em>}' class.
@@ -1855,7 +1868,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REQUIREMENT__REFINEMENTS = eINSTANCE.getRequirement_Refinements();
+		EReference REQUIREMENT__REFINEMENTS = eINSTANCE
+				.getRequirement_Refinements();
 
 		/**
 		 * The meta object literal for the '<em><b>Refined Requirement</b></em>' container reference feature.
@@ -1863,7 +1877,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REQUIREMENT__REFINED_REQUIREMENT = eINSTANCE.getRequirement_RefinedRequirement();
+		EReference REQUIREMENT__REFINED_REQUIREMENT = eINSTANCE
+				.getRequirement_RefinedRequirement();
 
 		/**
 		 * The meta object literal for the '<em><b>Specified Feature</b></em>' container reference feature.
@@ -1871,7 +1886,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REQUIREMENT__SPECIFIED_FEATURE = eINSTANCE.getRequirement_SpecifiedFeature();
+		EReference REQUIREMENT__SPECIFIED_FEATURE = eINSTANCE
+				.getRequirement_SpecifiedFeature();
 
 		/**
 		 * The meta object literal for the '<em><b>Defining Data</b></em>' reference list feature.
@@ -1879,7 +1895,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REQUIREMENT__DEFINING_DATA = eINSTANCE.getRequirement_DefiningData();
+		EReference REQUIREMENT__DEFINING_DATA = eINSTANCE
+				.getRequirement_DefiningData();
 
 		/**
 		 * The meta object literal for the '<em><b>Realized Method</b></em>' reference feature.
@@ -1887,7 +1904,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REQUIREMENT__REALIZED_METHOD = eINSTANCE.getRequirement_RealizedMethod();
+		EReference REQUIREMENT__REALIZED_METHOD = eINSTANCE
+				.getRequirement_RealizedMethod();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.impl.UserInterfaceImpl <em>User Interface</em>}' class.
@@ -1915,7 +1933,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SOFTWARE_INTERFACE__DATA_TYPES = eINSTANCE.getSoftwareInterface_DataTypes();
+		EAttribute SOFTWARE_INTERFACE__DATA_TYPES = eINSTANCE
+				.getSoftwareInterface_DataTypes();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.impl.ProcessImpl <em>Process</em>}' class.
@@ -1951,7 +1970,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PERFORMANCE__PROBLEM_SIZE = eINSTANCE.getPerformance_ProblemSize();
+		EAttribute PERFORMANCE__PROBLEM_SIZE = eINSTANCE
+				.getPerformance_ProblemSize();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.impl.DataFlowImpl <em>Data Flow</em>}' class.
@@ -1969,7 +1989,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DATA_FLOW__SPECIFIED_PROCESS = eINSTANCE.getDataFlow_SpecifiedProcess();
+		EReference DATA_FLOW__SPECIFIED_PROCESS = eINSTANCE
+				.getDataFlow_SpecifiedProcess();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.impl.DataDefinitionImpl <em>Data Definition</em>}' class.
@@ -1987,7 +2008,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DATA_DEFINITION__DEFINED_REQUIREMENT = eINSTANCE.getDataDefinition_DefinedRequirement();
+		EReference DATA_DEFINITION__DEFINED_REQUIREMENT = eINSTANCE
+				.getDataDefinition_DefinedRequirement();
 
 		/**
 		 * The meta object literal for the '<em><b>Accuracy</b></em>' attribute feature.
@@ -1995,7 +2017,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DATA_DEFINITION__ACCURACY = eINSTANCE.getDataDefinition_Accuracy();
+		EAttribute DATA_DEFINITION__ACCURACY = eINSTANCE
+				.getDataDefinition_Accuracy();
 
 		/**
 		 * The meta object literal for the '<em><b>Format</b></em>' attribute feature.
@@ -2003,7 +2026,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DATA_DEFINITION__FORMAT = eINSTANCE.getDataDefinition_Format();
+		EAttribute DATA_DEFINITION__FORMAT = eINSTANCE
+				.getDataDefinition_Format();
 
 		/**
 		 * The meta object literal for the '<em><b>Range</b></em>' attribute feature.
@@ -2019,7 +2043,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DATA_DEFINITION__DATA_TYPE = eINSTANCE.getDataDefinition_DataType();
+		EAttribute DATA_DEFINITION__DATA_TYPE = eINSTANCE
+				.getDataDefinition_DataType();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.impl.RequirementSpaceImpl <em>Requirement Space</em>}' class.
@@ -2037,7 +2062,8 @@ public interface RequirementsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS = eINSTANCE.getRequirementSpace_ContainedInformationofRequirements();
+		EReference REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS = eINSTANCE
+				.getRequirementSpace_ContainedInformationofRequirements();
 
 	}
 
