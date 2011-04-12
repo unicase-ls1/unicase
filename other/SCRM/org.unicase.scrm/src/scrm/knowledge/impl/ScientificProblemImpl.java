@@ -50,7 +50,8 @@ import scrm.requirements.RequirementsPackage;
  *
  * @generated
  */
-public class ScientificProblemImpl extends SCRMModelElementImpl implements ScientificProblem {
+public class ScientificProblemImpl extends SCRMModelElementImpl implements
+		ScientificProblem {
 	/**
 	 * The cached value of the '{@link #getRepresentingModel() <em>Representing Model</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -106,8 +107,9 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	 * @generated
 	 */
 	public KnowledgeSpace getContainingKnowledgeSpace() {
-		if (eContainerFeatureID() != KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE) return null;
-		return (KnowledgeSpace)eContainer();
+		if (eContainerFeatureID() != KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE)
+			return null;
+		return (KnowledgeSpace) eContainer();
 	}
 
 	/**
@@ -116,8 +118,9 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	 * @generated
 	 */
 	public KnowledgeSpace basicGetContainingKnowledgeSpace() {
-		if (eContainerFeatureID() != KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE) return null;
-		return (KnowledgeSpace)eInternalContainer();
+		if (eContainerFeatureID() != KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE)
+			return null;
+		return (KnowledgeSpace) eInternalContainer();
 	}
 
 	/**
@@ -125,8 +128,12 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetContainingKnowledgeSpace(KnowledgeSpace newContainingKnowledgeSpace, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newContainingKnowledgeSpace, KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE, msgs);
+	public NotificationChain basicSetContainingKnowledgeSpace(
+			KnowledgeSpace newContainingKnowledgeSpace, NotificationChain msgs) {
+		msgs = eBasicSetContainer(
+				(InternalEObject) newContainingKnowledgeSpace,
+				KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE,
+				msgs);
 		return msgs;
 	}
 
@@ -135,20 +142,32 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContainingKnowledgeSpace(KnowledgeSpace newContainingKnowledgeSpace) {
-		if (newContainingKnowledgeSpace != eInternalContainer() || (eContainerFeatureID() != KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE && newContainingKnowledgeSpace != null)) {
+	public void setContainingKnowledgeSpace(
+			KnowledgeSpace newContainingKnowledgeSpace) {
+		if (newContainingKnowledgeSpace != eInternalContainer()
+				|| (eContainerFeatureID() != KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE && newContainingKnowledgeSpace != null)) {
 			if (EcoreUtil.isAncestor(this, newContainingKnowledgeSpace))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newContainingKnowledgeSpace != null)
-				msgs = ((InternalEObject)newContainingKnowledgeSpace).eInverseAdd(this, KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM, KnowledgeSpace.class, msgs);
-			msgs = basicSetContainingKnowledgeSpace(newContainingKnowledgeSpace, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE, newContainingKnowledgeSpace, newContainingKnowledgeSpace));
+				msgs = ((InternalEObject) newContainingKnowledgeSpace)
+						.eInverseAdd(
+								this,
+								KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
+								KnowledgeSpace.class, msgs);
+			msgs = basicSetContainingKnowledgeSpace(
+					newContainingKnowledgeSpace, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(
+					this,
+					Notification.SET,
+					KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE,
+					newContainingKnowledgeSpace, newContainingKnowledgeSpace));
 	}
 
 	/**
@@ -158,11 +177,15 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	 */
 	public MathematicalModel getRepresentingModel() {
 		if (representingModel != null && representingModel.eIsProxy()) {
-			InternalEObject oldRepresentingModel = (InternalEObject)representingModel;
-			representingModel = (MathematicalModel)eResolveProxy(oldRepresentingModel);
+			InternalEObject oldRepresentingModel = (InternalEObject) representingModel;
+			representingModel = (MathematicalModel) eResolveProxy(oldRepresentingModel);
 			if (representingModel != oldRepresentingModel) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL, oldRepresentingModel, representingModel));
+					eNotify(new ENotificationImpl(
+							this,
+							Notification.RESOLVE,
+							KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL,
+							oldRepresentingModel, representingModel));
 			}
 		}
 		return representingModel;
@@ -182,12 +205,19 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRepresentingModel(MathematicalModel newRepresentingModel, NotificationChain msgs) {
+	public NotificationChain basicSetRepresentingModel(
+			MathematicalModel newRepresentingModel, NotificationChain msgs) {
 		MathematicalModel oldRepresentingModel = representingModel;
 		representingModel = newRepresentingModel;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL, oldRepresentingModel, newRepresentingModel);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL,
+					oldRepresentingModel, newRepresentingModel);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -201,14 +231,24 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 		if (newRepresentingModel != representingModel) {
 			NotificationChain msgs = null;
 			if (representingModel != null)
-				msgs = ((InternalEObject)representingModel).eInverseRemove(this, KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM, MathematicalModel.class, msgs);
+				msgs = ((InternalEObject) representingModel)
+						.eInverseRemove(
+								this,
+								KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM,
+								MathematicalModel.class, msgs);
 			if (newRepresentingModel != null)
-				msgs = ((InternalEObject)newRepresentingModel).eInverseAdd(this, KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM, MathematicalModel.class, msgs);
+				msgs = ((InternalEObject) newRepresentingModel)
+						.eInverseAdd(
+								this,
+								KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM,
+								MathematicalModel.class, msgs);
 			msgs = basicSetRepresentingModel(newRepresentingModel, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL, newRepresentingModel, newRepresentingModel));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL,
+					newRepresentingModel, newRepresentingModel));
 	}
 
 	/**
@@ -218,7 +258,10 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	 */
 	public EList<NumericalMethod> getSolvingMethods() {
 		if (solvingMethods == null) {
-			solvingMethods = new EObjectWithInverseResolvingEList<NumericalMethod>(NumericalMethod.class, this, KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS, KnowledgePackage.NUMERICAL_METHOD__SOLVED_PROBLEM);
+			solvingMethods = new EObjectWithInverseResolvingEList<NumericalMethod>(
+					NumericalMethod.class, this,
+					KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS,
+					KnowledgePackage.NUMERICAL_METHOD__SOLVED_PROBLEM);
 		}
 		return solvingMethods;
 	}
@@ -230,11 +273,15 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	 */
 	public Feature getInfluencedFeature() {
 		if (influencedFeature != null && influencedFeature.eIsProxy()) {
-			InternalEObject oldInfluencedFeature = (InternalEObject)influencedFeature;
-			influencedFeature = (Feature)eResolveProxy(oldInfluencedFeature);
+			InternalEObject oldInfluencedFeature = (InternalEObject) influencedFeature;
+			influencedFeature = (Feature) eResolveProxy(oldInfluencedFeature);
 			if (influencedFeature != oldInfluencedFeature) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE, oldInfluencedFeature, influencedFeature));
+					eNotify(new ENotificationImpl(
+							this,
+							Notification.RESOLVE,
+							KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE,
+							oldInfluencedFeature, influencedFeature));
 			}
 		}
 		return influencedFeature;
@@ -254,12 +301,19 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInfluencedFeature(Feature newInfluencedFeature, NotificationChain msgs) {
+	public NotificationChain basicSetInfluencedFeature(
+			Feature newInfluencedFeature, NotificationChain msgs) {
 		Feature oldInfluencedFeature = influencedFeature;
 		influencedFeature = newInfluencedFeature;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE, oldInfluencedFeature, newInfluencedFeature);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE,
+					oldInfluencedFeature, newInfluencedFeature);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -273,14 +327,20 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 		if (newInfluencedFeature != influencedFeature) {
 			NotificationChain msgs = null;
 			if (influencedFeature != null)
-				msgs = ((InternalEObject)influencedFeature).eInverseRemove(this, RequirementsPackage.FEATURE__INFLUENCING_PROBLEM, Feature.class, msgs);
+				msgs = ((InternalEObject) influencedFeature).eInverseRemove(
+						this, RequirementsPackage.FEATURE__INFLUENCING_PROBLEM,
+						Feature.class, msgs);
 			if (newInfluencedFeature != null)
-				msgs = ((InternalEObject)newInfluencedFeature).eInverseAdd(this, RequirementsPackage.FEATURE__INFLUENCING_PROBLEM, Feature.class, msgs);
+				msgs = ((InternalEObject) newInfluencedFeature).eInverseAdd(
+						this, RequirementsPackage.FEATURE__INFLUENCING_PROBLEM,
+						Feature.class, msgs);
 			msgs = basicSetInfluencedFeature(newInfluencedFeature, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE, newInfluencedFeature, newInfluencedFeature));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE,
+					newInfluencedFeature, newInfluencedFeature));
 	}
 
 	/**
@@ -290,22 +350,31 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainingKnowledgeSpace((KnowledgeSpace)otherEnd, msgs);
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
-				if (representingModel != null)
-					msgs = ((InternalEObject)representingModel).eInverseRemove(this, KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM, MathematicalModel.class, msgs);
-				return basicSetRepresentingModel((MathematicalModel)otherEnd, msgs);
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSolvingMethods()).basicAdd(otherEnd, msgs);
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE:
-				if (influencedFeature != null)
-					msgs = ((InternalEObject)influencedFeature).eInverseRemove(this, RequirementsPackage.FEATURE__INFLUENCING_PROBLEM, Feature.class, msgs);
-				return basicSetInfluencedFeature((Feature)otherEnd, msgs);
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetContainingKnowledgeSpace((KnowledgeSpace) otherEnd,
+					msgs);
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
+			if (representingModel != null)
+				msgs = ((InternalEObject) representingModel)
+						.eInverseRemove(
+								this,
+								KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM,
+								MathematicalModel.class, msgs);
+			return basicSetRepresentingModel((MathematicalModel) otherEnd, msgs);
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSolvingMethods())
+					.basicAdd(otherEnd, msgs);
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE:
+			if (influencedFeature != null)
+				msgs = ((InternalEObject) influencedFeature).eInverseRemove(
+						this, RequirementsPackage.FEATURE__INFLUENCING_PROBLEM,
+						Feature.class, msgs);
+			return basicSetInfluencedFeature((Feature) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -316,16 +385,18 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE:
-				return basicSetContainingKnowledgeSpace(null, msgs);
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
-				return basicSetRepresentingModel(null, msgs);
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
-				return ((InternalEList<?>)getSolvingMethods()).basicRemove(otherEnd, msgs);
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE:
-				return basicSetInfluencedFeature(null, msgs);
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE:
+			return basicSetContainingKnowledgeSpace(null, msgs);
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
+			return basicSetRepresentingModel(null, msgs);
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
+			return ((InternalEList<?>) getSolvingMethods()).basicRemove(
+					otherEnd, msgs);
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE:
+			return basicSetInfluencedFeature(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -336,10 +407,15 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE:
-				return eInternalContainer().eInverseRemove(this, KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM, KnowledgeSpace.class, msgs);
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE:
+			return eInternalContainer()
+					.eInverseRemove(
+							this,
+							KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
+							KnowledgeSpace.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -352,17 +428,20 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE:
-				if (resolve) return getContainingKnowledgeSpace();
-				return basicGetContainingKnowledgeSpace();
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
-				if (resolve) return getRepresentingModel();
-				return basicGetRepresentingModel();
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
-				return getSolvingMethods();
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE:
-				if (resolve) return getInfluencedFeature();
-				return basicGetInfluencedFeature();
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE:
+			if (resolve)
+				return getContainingKnowledgeSpace();
+			return basicGetContainingKnowledgeSpace();
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
+			if (resolve)
+				return getRepresentingModel();
+			return basicGetRepresentingModel();
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
+			return getSolvingMethods();
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE:
+			if (resolve)
+				return getInfluencedFeature();
+			return basicGetInfluencedFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -376,19 +455,20 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE:
-				setContainingKnowledgeSpace((KnowledgeSpace)newValue);
-				return;
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
-				setRepresentingModel((MathematicalModel)newValue);
-				return;
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
-				getSolvingMethods().clear();
-				getSolvingMethods().addAll((Collection<? extends NumericalMethod>)newValue);
-				return;
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE:
-				setInfluencedFeature((Feature)newValue);
-				return;
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE:
+			setContainingKnowledgeSpace((KnowledgeSpace) newValue);
+			return;
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
+			setRepresentingModel((MathematicalModel) newValue);
+			return;
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
+			getSolvingMethods().clear();
+			getSolvingMethods().addAll(
+					(Collection<? extends NumericalMethod>) newValue);
+			return;
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE:
+			setInfluencedFeature((Feature) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -401,18 +481,18 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE:
-				setContainingKnowledgeSpace((KnowledgeSpace)null);
-				return;
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
-				setRepresentingModel((MathematicalModel)null);
-				return;
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
-				getSolvingMethods().clear();
-				return;
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE:
-				setInfluencedFeature((Feature)null);
-				return;
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE:
+			setContainingKnowledgeSpace((KnowledgeSpace) null);
+			return;
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
+			setRepresentingModel((MathematicalModel) null);
+			return;
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
+			getSolvingMethods().clear();
+			return;
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE:
+			setInfluencedFeature((Feature) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -425,14 +505,14 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements Scien
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE:
-				return basicGetContainingKnowledgeSpace() != null;
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
-				return representingModel != null;
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
-				return solvingMethods != null && !solvingMethods.isEmpty();
-			case KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE:
-				return influencedFeature != null;
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__CONTAINING_KNOWLEDGE_SPACE:
+			return basicGetContainingKnowledgeSpace() != null;
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
+			return representingModel != null;
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
+			return solvingMethods != null && !solvingMethods.isEmpty();
+		case KnowledgePackage.SCIENTIFIC_PROBLEM__INFLUENCED_FEATURE:
+			return influencedFeature != null;
 		}
 		return super.eIsSet(featureID);
 	}

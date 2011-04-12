@@ -70,13 +70,10 @@ public class ScrmSwitch<T> {
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
+		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(
+					eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -89,20 +86,24 @@ public class ScrmSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case ScrmPackage.SCRM_MODEL_ELEMENT: {
-				SCRMModelElement scrmModelElement = (SCRMModelElement)theEObject;
-				T result = caseSCRMModelElement(scrmModelElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ScrmPackage.SCRM_DIAGRAM: {
-				SCRMDiagram scrmDiagram = (SCRMDiagram)theEObject;
-				T result = caseSCRMDiagram(scrmDiagram);
-				if (result == null) result = caseSCRMModelElement(scrmDiagram);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case ScrmPackage.SCRM_MODEL_ELEMENT: {
+			SCRMModelElement scrmModelElement = (SCRMModelElement) theEObject;
+			T result = caseSCRMModelElement(scrmModelElement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ScrmPackage.SCRM_DIAGRAM: {
+			SCRMDiagram scrmDiagram = (SCRMDiagram) theEObject;
+			T result = caseSCRMDiagram(scrmDiagram);
+			if (result == null)
+				result = caseSCRMModelElement(scrmDiagram);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

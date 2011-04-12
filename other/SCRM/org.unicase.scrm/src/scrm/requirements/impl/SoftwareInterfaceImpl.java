@@ -48,7 +48,8 @@ import scrm.requirements.SoftwareInterface;
  *
  * @generated
  */
-public class SoftwareInterfaceImpl extends SCRMModelElementImpl implements SoftwareInterface {
+public class SoftwareInterfaceImpl extends SCRMModelElementImpl implements
+		SoftwareInterface {
 	/**
 	 * The cached value of the '{@link #getRequiringFeatures() <em>Requiring Features</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -104,8 +105,9 @@ public class SoftwareInterfaceImpl extends SCRMModelElementImpl implements Softw
 	 * @generated
 	 */
 	public RequirementSpace getContainingRequirementSpace() {
-		if (eContainerFeatureID() != RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE) return null;
-		return (RequirementSpace)eContainer();
+		if (eContainerFeatureID() != RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE)
+			return null;
+		return (RequirementSpace) eContainer();
 	}
 
 	/**
@@ -114,8 +116,9 @@ public class SoftwareInterfaceImpl extends SCRMModelElementImpl implements Softw
 	 * @generated
 	 */
 	public RequirementSpace basicGetContainingRequirementSpace() {
-		if (eContainerFeatureID() != RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE) return null;
-		return (RequirementSpace)eInternalContainer();
+		if (eContainerFeatureID() != RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE)
+			return null;
+		return (RequirementSpace) eInternalContainer();
 	}
 
 	/**
@@ -123,8 +126,13 @@ public class SoftwareInterfaceImpl extends SCRMModelElementImpl implements Softw
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetContainingRequirementSpace(RequirementSpace newContainingRequirementSpace, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newContainingRequirementSpace, RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE, msgs);
+	public NotificationChain basicSetContainingRequirementSpace(
+			RequirementSpace newContainingRequirementSpace,
+			NotificationChain msgs) {
+		msgs = eBasicSetContainer(
+				(InternalEObject) newContainingRequirementSpace,
+				RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE,
+				msgs);
 		return msgs;
 	}
 
@@ -133,20 +141,33 @@ public class SoftwareInterfaceImpl extends SCRMModelElementImpl implements Softw
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContainingRequirementSpace(RequirementSpace newContainingRequirementSpace) {
-		if (newContainingRequirementSpace != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE && newContainingRequirementSpace != null)) {
+	public void setContainingRequirementSpace(
+			RequirementSpace newContainingRequirementSpace) {
+		if (newContainingRequirementSpace != eInternalContainer()
+				|| (eContainerFeatureID() != RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE && newContainingRequirementSpace != null)) {
 			if (EcoreUtil.isAncestor(this, newContainingRequirementSpace))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newContainingRequirementSpace != null)
-				msgs = ((InternalEObject)newContainingRequirementSpace).eInverseAdd(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
-			msgs = basicSetContainingRequirementSpace(newContainingRequirementSpace, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE, newContainingRequirementSpace, newContainingRequirementSpace));
+				msgs = ((InternalEObject) newContainingRequirementSpace)
+						.eInverseAdd(
+								this,
+								RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+								RequirementSpace.class, msgs);
+			msgs = basicSetContainingRequirementSpace(
+					newContainingRequirementSpace, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(
+					this,
+					Notification.SET,
+					RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE,
+					newContainingRequirementSpace,
+					newContainingRequirementSpace));
 	}
 
 	/**
@@ -155,8 +176,9 @@ public class SoftwareInterfaceImpl extends SCRMModelElementImpl implements Softw
 	 * @generated
 	 */
 	public Feature getProvidingFeature() {
-		if (eContainerFeatureID() != RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE) return null;
-		return (Feature)eContainer();
+		if (eContainerFeatureID() != RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE)
+			return null;
+		return (Feature) eContainer();
 	}
 
 	/**
@@ -165,8 +187,9 @@ public class SoftwareInterfaceImpl extends SCRMModelElementImpl implements Softw
 	 * @generated
 	 */
 	public Feature basicGetProvidingFeature() {
-		if (eContainerFeatureID() != RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE) return null;
-		return (Feature)eInternalContainer();
+		if (eContainerFeatureID() != RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE)
+			return null;
+		return (Feature) eInternalContainer();
 	}
 
 	/**
@@ -174,8 +197,10 @@ public class SoftwareInterfaceImpl extends SCRMModelElementImpl implements Softw
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetProvidingFeature(Feature newProvidingFeature, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newProvidingFeature, RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE, msgs);
+	public NotificationChain basicSetProvidingFeature(
+			Feature newProvidingFeature, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newProvidingFeature,
+				RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE, msgs);
 		return msgs;
 	}
 
@@ -185,19 +210,25 @@ public class SoftwareInterfaceImpl extends SCRMModelElementImpl implements Softw
 	 * @generated
 	 */
 	public void setProvidingFeature(Feature newProvidingFeature) {
-		if (newProvidingFeature != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE && newProvidingFeature != null)) {
+		if (newProvidingFeature != eInternalContainer()
+				|| (eContainerFeatureID() != RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE && newProvidingFeature != null)) {
 			if (EcoreUtil.isAncestor(this, newProvidingFeature))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newProvidingFeature != null)
-				msgs = ((InternalEObject)newProvidingFeature).eInverseAdd(this, RequirementsPackage.FEATURE__PROVIDED_INTERFACES, Feature.class, msgs);
+				msgs = ((InternalEObject) newProvidingFeature).eInverseAdd(
+						this, RequirementsPackage.FEATURE__PROVIDED_INTERFACES,
+						Feature.class, msgs);
 			msgs = basicSetProvidingFeature(newProvidingFeature, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE, newProvidingFeature, newProvidingFeature));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE,
+					newProvidingFeature, newProvidingFeature));
 	}
 
 	/**
@@ -207,7 +238,10 @@ public class SoftwareInterfaceImpl extends SCRMModelElementImpl implements Softw
 	 */
 	public EList<Feature> getRequiringFeatures() {
 		if (requiringFeatures == null) {
-			requiringFeatures = new EObjectWithInverseResolvingEList.ManyInverse<Feature>(Feature.class, this, RequirementsPackage.SOFTWARE_INTERFACE__REQUIRING_FEATURES, RequirementsPackage.FEATURE__REQUIRED_INTERFACES);
+			requiringFeatures = new EObjectWithInverseResolvingEList.ManyInverse<Feature>(
+					Feature.class, this,
+					RequirementsPackage.SOFTWARE_INTERFACE__REQUIRING_FEATURES,
+					RequirementsPackage.FEATURE__REQUIRED_INTERFACES);
 		}
 		return requiringFeatures;
 	}
@@ -230,7 +264,9 @@ public class SoftwareInterfaceImpl extends SCRMModelElementImpl implements Softw
 		String oldDataTypes = dataTypes;
 		dataTypes = newDataTypes;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.SOFTWARE_INTERFACE__DATA_TYPES, oldDataTypes, dataTypes));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementsPackage.SOFTWARE_INTERFACE__DATA_TYPES,
+					oldDataTypes, dataTypes));
 	}
 
 	/**
@@ -240,18 +276,21 @@ public class SoftwareInterfaceImpl extends SCRMModelElementImpl implements Softw
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainingRequirementSpace((RequirementSpace)otherEnd, msgs);
-			case RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetProvidingFeature((Feature)otherEnd, msgs);
-			case RequirementsPackage.SOFTWARE_INTERFACE__REQUIRING_FEATURES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRequiringFeatures()).basicAdd(otherEnd, msgs);
+		case RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetContainingRequirementSpace(
+					(RequirementSpace) otherEnd, msgs);
+		case RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetProvidingFeature((Feature) otherEnd, msgs);
+		case RequirementsPackage.SOFTWARE_INTERFACE__REQUIRING_FEATURES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRequiringFeatures())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -262,14 +301,16 @@ public class SoftwareInterfaceImpl extends SCRMModelElementImpl implements Softw
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
-				return basicSetContainingRequirementSpace(null, msgs);
-			case RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE:
-				return basicSetProvidingFeature(null, msgs);
-			case RequirementsPackage.SOFTWARE_INTERFACE__REQUIRING_FEATURES:
-				return ((InternalEList<?>)getRequiringFeatures()).basicRemove(otherEnd, msgs);
+		case RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
+			return basicSetContainingRequirementSpace(null, msgs);
+		case RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE:
+			return basicSetProvidingFeature(null, msgs);
+		case RequirementsPackage.SOFTWARE_INTERFACE__REQUIRING_FEATURES:
+			return ((InternalEList<?>) getRequiringFeatures()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -280,12 +321,19 @@ public class SoftwareInterfaceImpl extends SCRMModelElementImpl implements Softw
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
-				return eInternalContainer().eInverseRemove(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
-			case RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE:
-				return eInternalContainer().eInverseRemove(this, RequirementsPackage.FEATURE__PROVIDED_INTERFACES, Feature.class, msgs);
+		case RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
+			return eInternalContainer()
+					.eInverseRemove(
+							this,
+							RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+							RequirementSpace.class, msgs);
+		case RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE:
+			return eInternalContainer().eInverseRemove(this,
+					RequirementsPackage.FEATURE__PROVIDED_INTERFACES,
+					Feature.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -298,16 +346,18 @@ public class SoftwareInterfaceImpl extends SCRMModelElementImpl implements Softw
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
-				if (resolve) return getContainingRequirementSpace();
-				return basicGetContainingRequirementSpace();
-			case RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE:
-				if (resolve) return getProvidingFeature();
-				return basicGetProvidingFeature();
-			case RequirementsPackage.SOFTWARE_INTERFACE__REQUIRING_FEATURES:
-				return getRequiringFeatures();
-			case RequirementsPackage.SOFTWARE_INTERFACE__DATA_TYPES:
-				return getDataTypes();
+		case RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
+			if (resolve)
+				return getContainingRequirementSpace();
+			return basicGetContainingRequirementSpace();
+		case RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE:
+			if (resolve)
+				return getProvidingFeature();
+			return basicGetProvidingFeature();
+		case RequirementsPackage.SOFTWARE_INTERFACE__REQUIRING_FEATURES:
+			return getRequiringFeatures();
+		case RequirementsPackage.SOFTWARE_INTERFACE__DATA_TYPES:
+			return getDataTypes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -321,19 +371,20 @@ public class SoftwareInterfaceImpl extends SCRMModelElementImpl implements Softw
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
-				setContainingRequirementSpace((RequirementSpace)newValue);
-				return;
-			case RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE:
-				setProvidingFeature((Feature)newValue);
-				return;
-			case RequirementsPackage.SOFTWARE_INTERFACE__REQUIRING_FEATURES:
-				getRequiringFeatures().clear();
-				getRequiringFeatures().addAll((Collection<? extends Feature>)newValue);
-				return;
-			case RequirementsPackage.SOFTWARE_INTERFACE__DATA_TYPES:
-				setDataTypes((String)newValue);
-				return;
+		case RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
+			setContainingRequirementSpace((RequirementSpace) newValue);
+			return;
+		case RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE:
+			setProvidingFeature((Feature) newValue);
+			return;
+		case RequirementsPackage.SOFTWARE_INTERFACE__REQUIRING_FEATURES:
+			getRequiringFeatures().clear();
+			getRequiringFeatures().addAll(
+					(Collection<? extends Feature>) newValue);
+			return;
+		case RequirementsPackage.SOFTWARE_INTERFACE__DATA_TYPES:
+			setDataTypes((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -346,18 +397,18 @@ public class SoftwareInterfaceImpl extends SCRMModelElementImpl implements Softw
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
-				setContainingRequirementSpace((RequirementSpace)null);
-				return;
-			case RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE:
-				setProvidingFeature((Feature)null);
-				return;
-			case RequirementsPackage.SOFTWARE_INTERFACE__REQUIRING_FEATURES:
-				getRequiringFeatures().clear();
-				return;
-			case RequirementsPackage.SOFTWARE_INTERFACE__DATA_TYPES:
-				setDataTypes(DATA_TYPES_EDEFAULT);
-				return;
+		case RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
+			setContainingRequirementSpace((RequirementSpace) null);
+			return;
+		case RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE:
+			setProvidingFeature((Feature) null);
+			return;
+		case RequirementsPackage.SOFTWARE_INTERFACE__REQUIRING_FEATURES:
+			getRequiringFeatures().clear();
+			return;
+		case RequirementsPackage.SOFTWARE_INTERFACE__DATA_TYPES:
+			setDataTypes(DATA_TYPES_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -370,14 +421,15 @@ public class SoftwareInterfaceImpl extends SCRMModelElementImpl implements Softw
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
-				return basicGetContainingRequirementSpace() != null;
-			case RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE:
-				return basicGetProvidingFeature() != null;
-			case RequirementsPackage.SOFTWARE_INTERFACE__REQUIRING_FEATURES:
-				return requiringFeatures != null && !requiringFeatures.isEmpty();
-			case RequirementsPackage.SOFTWARE_INTERFACE__DATA_TYPES:
-				return DATA_TYPES_EDEFAULT == null ? dataTypes != null : !DATA_TYPES_EDEFAULT.equals(dataTypes);
+		case RequirementsPackage.SOFTWARE_INTERFACE__CONTAINING_REQUIREMENT_SPACE:
+			return basicGetContainingRequirementSpace() != null;
+		case RequirementsPackage.SOFTWARE_INTERFACE__PROVIDING_FEATURE:
+			return basicGetProvidingFeature() != null;
+		case RequirementsPackage.SOFTWARE_INTERFACE__REQUIRING_FEATURES:
+			return requiringFeatures != null && !requiringFeatures.isEmpty();
+		case RequirementsPackage.SOFTWARE_INTERFACE__DATA_TYPES:
+			return DATA_TYPES_EDEFAULT == null ? dataTypes != null
+					: !DATA_TYPES_EDEFAULT.equals(dataTypes);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -389,7 +441,8 @@ public class SoftwareInterfaceImpl extends SCRMModelElementImpl implements Softw
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (dataTypes: ");

@@ -31,12 +31,12 @@ public class ScrmFactoryImpl extends EFactoryImpl implements ScrmFactory {
 	 */
 	public static ScrmFactory init() {
 		try {
-			ScrmFactory theScrmFactory = (ScrmFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/scrm"); 
+			ScrmFactory theScrmFactory = (ScrmFactory) EPackage.Registry.INSTANCE
+					.getEFactory("http://unicase.org/model/scrm");
 			if (theScrmFactory != null) {
 				return theScrmFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ScrmFactoryImpl();
@@ -60,9 +60,11 @@ public class ScrmFactoryImpl extends EFactoryImpl implements ScrmFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ScrmPackage.SCRM_DIAGRAM: return createSCRMDiagram();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case ScrmPackage.SCRM_DIAGRAM:
+			return createSCRMDiagram();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
@@ -82,7 +84,7 @@ public class ScrmFactoryImpl extends EFactoryImpl implements ScrmFactory {
 	 * @generated
 	 */
 	public ScrmPackage getScrmPackage() {
-		return (ScrmPackage)getEPackage();
+		return (ScrmPackage) getEPackage();
 	}
 
 	/**

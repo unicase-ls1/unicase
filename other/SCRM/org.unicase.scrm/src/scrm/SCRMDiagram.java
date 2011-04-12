@@ -24,9 +24,9 @@ import scrm.impl.DiagramStoreException;
  * The following features are supported:
  * <ul>
  *   <li>{@link scrm.SCRMDiagram#getElements <em>Elements</em>}</li>
+ *   <li>{@link scrm.SCRMDiagram#getGmfdiagram <em>Gmfdiagram</em>}</li>
  *   <li>{@link scrm.SCRMDiagram#getNewElements <em>New Elements</em>}</li>
  *   <li>{@link scrm.SCRMDiagram#getDiagramLayout <em>Diagram Layout</em>}</li>
- *   <li>{@link scrm.SCRMDiagram#getGmfdiagram <em>Gmfdiagram</em>}</li>
  * </ul>
  * </p>
  *
@@ -118,7 +118,7 @@ public interface SCRMDiagram extends SCRMModelElement {
 	 * @generated
 	 */
 	void setGmfdiagram(Diagram value);
-	
+
 	void saveDiagramLayout() throws DiagramStoreException;
 
 	void loadDiagramLayout() throws DiagramLoadException;

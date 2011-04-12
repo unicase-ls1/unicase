@@ -7,6 +7,7 @@
 package scrm;
 
 import org.eclipse.emf.ecore.EObject;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>SCRM Model Element</b></em>'.

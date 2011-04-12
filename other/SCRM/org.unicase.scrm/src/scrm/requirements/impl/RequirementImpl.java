@@ -53,7 +53,8 @@ import scrm.requirements.RequirementsPackage;
  *
  * @generated
  */
-public class RequirementImpl extends SCRMModelElementImpl implements Requirement {
+public class RequirementImpl extends SCRMModelElementImpl implements
+		Requirement {
 	/**
 	 * The cached value of the '{@link #getRefinements() <em>Refinements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -109,8 +110,9 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 * @generated
 	 */
 	public RequirementSpace getContainingRequirementSpace() {
-		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE) return null;
-		return (RequirementSpace)eContainer();
+		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE)
+			return null;
+		return (RequirementSpace) eContainer();
 	}
 
 	/**
@@ -119,8 +121,9 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 * @generated
 	 */
 	public RequirementSpace basicGetContainingRequirementSpace() {
-		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE) return null;
-		return (RequirementSpace)eInternalContainer();
+		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE)
+			return null;
+		return (RequirementSpace) eInternalContainer();
 	}
 
 	/**
@@ -128,8 +131,13 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetContainingRequirementSpace(RequirementSpace newContainingRequirementSpace, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newContainingRequirementSpace, RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE, msgs);
+	public NotificationChain basicSetContainingRequirementSpace(
+			RequirementSpace newContainingRequirementSpace,
+			NotificationChain msgs) {
+		msgs = eBasicSetContainer(
+				(InternalEObject) newContainingRequirementSpace,
+				RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
+				msgs);
 		return msgs;
 	}
 
@@ -138,20 +146,33 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContainingRequirementSpace(RequirementSpace newContainingRequirementSpace) {
-		if (newContainingRequirementSpace != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE && newContainingRequirementSpace != null)) {
+	public void setContainingRequirementSpace(
+			RequirementSpace newContainingRequirementSpace) {
+		if (newContainingRequirementSpace != eInternalContainer()
+				|| (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE && newContainingRequirementSpace != null)) {
 			if (EcoreUtil.isAncestor(this, newContainingRequirementSpace))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newContainingRequirementSpace != null)
-				msgs = ((InternalEObject)newContainingRequirementSpace).eInverseAdd(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
-			msgs = basicSetContainingRequirementSpace(newContainingRequirementSpace, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE, newContainingRequirementSpace, newContainingRequirementSpace));
+				msgs = ((InternalEObject) newContainingRequirementSpace)
+						.eInverseAdd(
+								this,
+								RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+								RequirementSpace.class, msgs);
+			msgs = basicSetContainingRequirementSpace(
+					newContainingRequirementSpace, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(
+					this,
+					Notification.SET,
+					RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
+					newContainingRequirementSpace,
+					newContainingRequirementSpace));
 	}
 
 	/**
@@ -161,7 +182,10 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 */
 	public EList<Requirement> getRefinements() {
 		if (refinements == null) {
-			refinements = new EObjectContainmentWithInverseEList.Resolving<Requirement>(Requirement.class, this, RequirementsPackage.REQUIREMENT__REFINEMENTS, RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT);
+			refinements = new EObjectContainmentWithInverseEList.Resolving<Requirement>(
+					Requirement.class, this,
+					RequirementsPackage.REQUIREMENT__REFINEMENTS,
+					RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT);
 		}
 		return refinements;
 	}
@@ -172,8 +196,9 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 * @generated
 	 */
 	public Requirement getRefinedRequirement() {
-		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT) return null;
-		return (Requirement)eContainer();
+		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT)
+			return null;
+		return (Requirement) eContainer();
 	}
 
 	/**
@@ -182,8 +207,9 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 * @generated
 	 */
 	public Requirement basicGetRefinedRequirement() {
-		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT) return null;
-		return (Requirement)eInternalContainer();
+		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT)
+			return null;
+		return (Requirement) eInternalContainer();
 	}
 
 	/**
@@ -191,8 +217,10 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRefinedRequirement(Requirement newRefinedRequirement, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newRefinedRequirement, RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT, msgs);
+	public NotificationChain basicSetRefinedRequirement(
+			Requirement newRefinedRequirement, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newRefinedRequirement,
+				RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT, msgs);
 		return msgs;
 	}
 
@@ -202,19 +230,25 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 * @generated
 	 */
 	public void setRefinedRequirement(Requirement newRefinedRequirement) {
-		if (newRefinedRequirement != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT && newRefinedRequirement != null)) {
+		if (newRefinedRequirement != eInternalContainer()
+				|| (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT && newRefinedRequirement != null)) {
 			if (EcoreUtil.isAncestor(this, newRefinedRequirement))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newRefinedRequirement != null)
-				msgs = ((InternalEObject)newRefinedRequirement).eInverseAdd(this, RequirementsPackage.REQUIREMENT__REFINEMENTS, Requirement.class, msgs);
+				msgs = ((InternalEObject) newRefinedRequirement).eInverseAdd(
+						this, RequirementsPackage.REQUIREMENT__REFINEMENTS,
+						Requirement.class, msgs);
 			msgs = basicSetRefinedRequirement(newRefinedRequirement, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT, newRefinedRequirement, newRefinedRequirement));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT,
+					newRefinedRequirement, newRefinedRequirement));
 	}
 
 	/**
@@ -223,8 +257,9 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 * @generated
 	 */
 	public Feature getSpecifiedFeature() {
-		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE) return null;
-		return (Feature)eContainer();
+		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE)
+			return null;
+		return (Feature) eContainer();
 	}
 
 	/**
@@ -233,8 +268,9 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 * @generated
 	 */
 	public Feature basicGetSpecifiedFeature() {
-		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE) return null;
-		return (Feature)eInternalContainer();
+		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE)
+			return null;
+		return (Feature) eInternalContainer();
 	}
 
 	/**
@@ -242,8 +278,10 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSpecifiedFeature(Feature newSpecifiedFeature, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newSpecifiedFeature, RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE, msgs);
+	public NotificationChain basicSetSpecifiedFeature(
+			Feature newSpecifiedFeature, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newSpecifiedFeature,
+				RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE, msgs);
 		return msgs;
 	}
 
@@ -253,19 +291,26 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 * @generated
 	 */
 	public void setSpecifiedFeature(Feature newSpecifiedFeature) {
-		if (newSpecifiedFeature != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE && newSpecifiedFeature != null)) {
+		if (newSpecifiedFeature != eInternalContainer()
+				|| (eContainerFeatureID() != RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE && newSpecifiedFeature != null)) {
 			if (EcoreUtil.isAncestor(this, newSpecifiedFeature))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newSpecifiedFeature != null)
-				msgs = ((InternalEObject)newSpecifiedFeature).eInverseAdd(this, RequirementsPackage.FEATURE__DETAILED_REQUIREMENTS, Feature.class, msgs);
+				msgs = ((InternalEObject) newSpecifiedFeature).eInverseAdd(
+						this,
+						RequirementsPackage.FEATURE__DETAILED_REQUIREMENTS,
+						Feature.class, msgs);
 			msgs = basicSetSpecifiedFeature(newSpecifiedFeature, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE, newSpecifiedFeature, newSpecifiedFeature));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE,
+					newSpecifiedFeature, newSpecifiedFeature));
 	}
 
 	/**
@@ -275,7 +320,10 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 */
 	public EList<DataDefinition> getDefiningData() {
 		if (definingData == null) {
-			definingData = new EObjectWithInverseResolvingEList<DataDefinition>(DataDefinition.class, this, RequirementsPackage.REQUIREMENT__DEFINING_DATA, RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT);
+			definingData = new EObjectWithInverseResolvingEList<DataDefinition>(
+					DataDefinition.class, this,
+					RequirementsPackage.REQUIREMENT__DEFINING_DATA,
+					RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT);
 		}
 		return definingData;
 	}
@@ -287,11 +335,13 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 */
 	public NumericalMethod getRealizedMethod() {
 		if (realizedMethod != null && realizedMethod.eIsProxy()) {
-			InternalEObject oldRealizedMethod = (InternalEObject)realizedMethod;
-			realizedMethod = (NumericalMethod)eResolveProxy(oldRealizedMethod);
+			InternalEObject oldRealizedMethod = (InternalEObject) realizedMethod;
+			realizedMethod = (NumericalMethod) eResolveProxy(oldRealizedMethod);
 			if (realizedMethod != oldRealizedMethod) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RequirementsPackage.REQUIREMENT__REALIZED_METHOD, oldRealizedMethod, realizedMethod));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							RequirementsPackage.REQUIREMENT__REALIZED_METHOD,
+							oldRealizedMethod, realizedMethod));
 			}
 		}
 		return realizedMethod;
@@ -311,12 +361,19 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRealizedMethod(NumericalMethod newRealizedMethod, NotificationChain msgs) {
+	public NotificationChain basicSetRealizedMethod(
+			NumericalMethod newRealizedMethod, NotificationChain msgs) {
 		NumericalMethod oldRealizedMethod = realizedMethod;
 		realizedMethod = newRealizedMethod;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT__REALIZED_METHOD, oldRealizedMethod, newRealizedMethod);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					RequirementsPackage.REQUIREMENT__REALIZED_METHOD,
+					oldRealizedMethod, newRealizedMethod);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -330,14 +387,24 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 		if (newRealizedMethod != realizedMethod) {
 			NotificationChain msgs = null;
 			if (realizedMethod != null)
-				msgs = ((InternalEObject)realizedMethod).eInverseRemove(this, KnowledgePackage.NUMERICAL_METHOD__REALIZING_REQUIREMENT, NumericalMethod.class, msgs);
+				msgs = ((InternalEObject) realizedMethod)
+						.eInverseRemove(
+								this,
+								KnowledgePackage.NUMERICAL_METHOD__REALIZING_REQUIREMENT,
+								NumericalMethod.class, msgs);
 			if (newRealizedMethod != null)
-				msgs = ((InternalEObject)newRealizedMethod).eInverseAdd(this, KnowledgePackage.NUMERICAL_METHOD__REALIZING_REQUIREMENT, NumericalMethod.class, msgs);
+				msgs = ((InternalEObject) newRealizedMethod)
+						.eInverseAdd(
+								this,
+								KnowledgePackage.NUMERICAL_METHOD__REALIZING_REQUIREMENT,
+								NumericalMethod.class, msgs);
 			msgs = basicSetRealizedMethod(newRealizedMethod, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT__REALIZED_METHOD, newRealizedMethod, newRealizedMethod));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementsPackage.REQUIREMENT__REALIZED_METHOD,
+					newRealizedMethod, newRealizedMethod));
 	}
 
 	/**
@@ -347,28 +414,36 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainingRequirementSpace((RequirementSpace)otherEnd, msgs);
-			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRefinements()).basicAdd(otherEnd, msgs);
-			case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetRefinedRequirement((Requirement)otherEnd, msgs);
-			case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetSpecifiedFeature((Feature)otherEnd, msgs);
-			case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDefiningData()).basicAdd(otherEnd, msgs);
-			case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
-				if (realizedMethod != null)
-					msgs = ((InternalEObject)realizedMethod).eInverseRemove(this, KnowledgePackage.NUMERICAL_METHOD__REALIZING_REQUIREMENT, NumericalMethod.class, msgs);
-				return basicSetRealizedMethod((NumericalMethod)otherEnd, msgs);
+		case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetContainingRequirementSpace(
+					(RequirementSpace) otherEnd, msgs);
+		case RequirementsPackage.REQUIREMENT__REFINEMENTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRefinements())
+					.basicAdd(otherEnd, msgs);
+		case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetRefinedRequirement((Requirement) otherEnd, msgs);
+		case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetSpecifiedFeature((Feature) otherEnd, msgs);
+		case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDefiningData())
+					.basicAdd(otherEnd, msgs);
+		case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
+			if (realizedMethod != null)
+				msgs = ((InternalEObject) realizedMethod)
+						.eInverseRemove(
+								this,
+								KnowledgePackage.NUMERICAL_METHOD__REALIZING_REQUIREMENT,
+								NumericalMethod.class, msgs);
+			return basicSetRealizedMethod((NumericalMethod) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -379,20 +454,23 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
-				return basicSetContainingRequirementSpace(null, msgs);
-			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
-				return ((InternalEList<?>)getRefinements()).basicRemove(otherEnd, msgs);
-			case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
-				return basicSetRefinedRequirement(null, msgs);
-			case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
-				return basicSetSpecifiedFeature(null, msgs);
-			case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
-				return ((InternalEList<?>)getDefiningData()).basicRemove(otherEnd, msgs);
-			case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
-				return basicSetRealizedMethod(null, msgs);
+		case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
+			return basicSetContainingRequirementSpace(null, msgs);
+		case RequirementsPackage.REQUIREMENT__REFINEMENTS:
+			return ((InternalEList<?>) getRefinements()).basicRemove(otherEnd,
+					msgs);
+		case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
+			return basicSetRefinedRequirement(null, msgs);
+		case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
+			return basicSetSpecifiedFeature(null, msgs);
+		case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
+			return ((InternalEList<?>) getDefiningData()).basicRemove(otherEnd,
+					msgs);
+		case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
+			return basicSetRealizedMethod(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -403,14 +481,23 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
-				return eInternalContainer().eInverseRemove(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
-			case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
-				return eInternalContainer().eInverseRemove(this, RequirementsPackage.REQUIREMENT__REFINEMENTS, Requirement.class, msgs);
-			case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
-				return eInternalContainer().eInverseRemove(this, RequirementsPackage.FEATURE__DETAILED_REQUIREMENTS, Feature.class, msgs);
+		case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
+			return eInternalContainer()
+					.eInverseRemove(
+							this,
+							RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+							RequirementSpace.class, msgs);
+		case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
+			return eInternalContainer().eInverseRemove(this,
+					RequirementsPackage.REQUIREMENT__REFINEMENTS,
+					Requirement.class, msgs);
+		case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
+			return eInternalContainer().eInverseRemove(this,
+					RequirementsPackage.FEATURE__DETAILED_REQUIREMENTS,
+					Feature.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -423,22 +510,26 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
-				if (resolve) return getContainingRequirementSpace();
-				return basicGetContainingRequirementSpace();
-			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
-				return getRefinements();
-			case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
-				if (resolve) return getRefinedRequirement();
-				return basicGetRefinedRequirement();
-			case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
-				if (resolve) return getSpecifiedFeature();
-				return basicGetSpecifiedFeature();
-			case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
-				return getDefiningData();
-			case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
-				if (resolve) return getRealizedMethod();
-				return basicGetRealizedMethod();
+		case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
+			if (resolve)
+				return getContainingRequirementSpace();
+			return basicGetContainingRequirementSpace();
+		case RequirementsPackage.REQUIREMENT__REFINEMENTS:
+			return getRefinements();
+		case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
+			if (resolve)
+				return getRefinedRequirement();
+			return basicGetRefinedRequirement();
+		case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
+			if (resolve)
+				return getSpecifiedFeature();
+			return basicGetSpecifiedFeature();
+		case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
+			return getDefiningData();
+		case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
+			if (resolve)
+				return getRealizedMethod();
+			return basicGetRealizedMethod();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -452,26 +543,28 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
-				setContainingRequirementSpace((RequirementSpace)newValue);
-				return;
-			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
-				getRefinements().clear();
-				getRefinements().addAll((Collection<? extends Requirement>)newValue);
-				return;
-			case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
-				setRefinedRequirement((Requirement)newValue);
-				return;
-			case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
-				setSpecifiedFeature((Feature)newValue);
-				return;
-			case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
-				getDefiningData().clear();
-				getDefiningData().addAll((Collection<? extends DataDefinition>)newValue);
-				return;
-			case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
-				setRealizedMethod((NumericalMethod)newValue);
-				return;
+		case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
+			setContainingRequirementSpace((RequirementSpace) newValue);
+			return;
+		case RequirementsPackage.REQUIREMENT__REFINEMENTS:
+			getRefinements().clear();
+			getRefinements().addAll(
+					(Collection<? extends Requirement>) newValue);
+			return;
+		case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
+			setRefinedRequirement((Requirement) newValue);
+			return;
+		case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
+			setSpecifiedFeature((Feature) newValue);
+			return;
+		case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
+			getDefiningData().clear();
+			getDefiningData().addAll(
+					(Collection<? extends DataDefinition>) newValue);
+			return;
+		case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
+			setRealizedMethod((NumericalMethod) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -484,24 +577,24 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
-				setContainingRequirementSpace((RequirementSpace)null);
-				return;
-			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
-				getRefinements().clear();
-				return;
-			case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
-				setRefinedRequirement((Requirement)null);
-				return;
-			case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
-				setSpecifiedFeature((Feature)null);
-				return;
-			case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
-				getDefiningData().clear();
-				return;
-			case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
-				setRealizedMethod((NumericalMethod)null);
-				return;
+		case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
+			setContainingRequirementSpace((RequirementSpace) null);
+			return;
+		case RequirementsPackage.REQUIREMENT__REFINEMENTS:
+			getRefinements().clear();
+			return;
+		case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
+			setRefinedRequirement((Requirement) null);
+			return;
+		case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
+			setSpecifiedFeature((Feature) null);
+			return;
+		case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
+			getDefiningData().clear();
+			return;
+		case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
+			setRealizedMethod((NumericalMethod) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -514,18 +607,18 @@ public class RequirementImpl extends SCRMModelElementImpl implements Requirement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
-				return basicGetContainingRequirementSpace() != null;
-			case RequirementsPackage.REQUIREMENT__REFINEMENTS:
-				return refinements != null && !refinements.isEmpty();
-			case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
-				return basicGetRefinedRequirement() != null;
-			case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
-				return basicGetSpecifiedFeature() != null;
-			case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
-				return definingData != null && !definingData.isEmpty();
-			case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
-				return realizedMethod != null;
+		case RequirementsPackage.REQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
+			return basicGetContainingRequirementSpace() != null;
+		case RequirementsPackage.REQUIREMENT__REFINEMENTS:
+			return refinements != null && !refinements.isEmpty();
+		case RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT:
+			return basicGetRefinedRequirement() != null;
+		case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
+			return basicGetSpecifiedFeature() != null;
+		case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
+			return definingData != null && !definingData.isEmpty();
+		case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
+			return realizedMethod != null;
 		}
 		return super.eIsSet(featureID);
 	}

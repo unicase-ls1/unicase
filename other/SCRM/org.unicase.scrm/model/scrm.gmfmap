@@ -608,7 +608,7 @@
     <ownedChild
         relatedDiagrams="//@diagram">
       <domainMetaElement
-          href="scrm.ecore#//requirements/dataProcessing/InputDataReading"/>
+          href="scrm.ecore#//dataProcessing/InputDataReading"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern=""
@@ -644,7 +644,7 @@
     <ownedChild
         relatedDiagrams="//@diagram">
       <domainMetaElement
-          href="scrm.ecore#//requirements/dataProcessing/DataHandling"/>
+          href="scrm.ecore#//dataProcessing/DataHandling"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern=""
@@ -680,7 +680,7 @@
     <ownedChild
         relatedDiagrams="//@diagram">
       <domainMetaElement
-          href="scrm.ecore#//requirements/dataProcessing/ResultsOutput"/>
+          href="scrm.ecore#//dataProcessing/ResultsOutput"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern=""
@@ -716,7 +716,7 @@
     <ownedChild
         relatedDiagrams="//@diagram">
       <domainMetaElement
-          href="scrm.ecore#//requirements/dataProcessing/ErrorHandling"/>
+          href="scrm.ecore#//dataProcessing/ErrorHandling"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern=""
@@ -752,7 +752,7 @@
     <ownedChild
         relatedDiagrams="//@diagram">
       <domainMetaElement
-          href="scrm.ecore#//requirements/dataProcessing/StatusMonitoring"/>
+          href="scrm.ecore#//dataProcessing/StatusMonitoring"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern=""

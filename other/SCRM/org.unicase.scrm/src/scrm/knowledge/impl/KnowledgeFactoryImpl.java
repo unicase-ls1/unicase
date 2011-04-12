@@ -22,7 +22,8 @@ import scrm.knowledge.*;
  * <!-- end-user-doc -->
  * @generated
  */
-public class KnowledgeFactoryImpl extends EFactoryImpl implements KnowledgeFactory {
+public class KnowledgeFactoryImpl extends EFactoryImpl implements
+		KnowledgeFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -31,12 +32,12 @@ public class KnowledgeFactoryImpl extends EFactoryImpl implements KnowledgeFacto
 	 */
 	public static KnowledgeFactory init() {
 		try {
-			KnowledgeFactory theKnowledgeFactory = (KnowledgeFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/scrm/knowledge"); 
+			KnowledgeFactory theKnowledgeFactory = (KnowledgeFactory) EPackage.Registry.INSTANCE
+					.getEFactory("http://unicase.org/model/scrm/knowledge");
 			if (theKnowledgeFactory != null) {
 				return theKnowledgeFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new KnowledgeFactoryImpl();
@@ -60,13 +61,19 @@ public class KnowledgeFactoryImpl extends EFactoryImpl implements KnowledgeFacto
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case KnowledgePackage.SCIENTIFIC_PROBLEM: return createScientificProblem();
-			case KnowledgePackage.MATHEMATICAL_MODEL: return createMathematicalModel();
-			case KnowledgePackage.NUMERICAL_METHOD: return createNumericalMethod();
-			case KnowledgePackage.ASSUMPTION: return createAssumption();
-			case KnowledgePackage.KNOWLEDGE_SPACE: return createKnowledgeSpace();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case KnowledgePackage.KNOWLEDGE_SPACE:
+			return createKnowledgeSpace();
+		case KnowledgePackage.SCIENTIFIC_PROBLEM:
+			return createScientificProblem();
+		case KnowledgePackage.MATHEMATICAL_MODEL:
+			return createMathematicalModel();
+		case KnowledgePackage.NUMERICAL_METHOD:
+			return createNumericalMethod();
+		case KnowledgePackage.ASSUMPTION:
+			return createAssumption();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
@@ -126,7 +133,7 @@ public class KnowledgeFactoryImpl extends EFactoryImpl implements KnowledgeFacto
 	 * @generated
 	 */
 	public KnowledgePackage getKnowledgePackage() {
-		return (KnowledgePackage)getEPackage();
+		return (KnowledgePackage) getEPackage();
 	}
 
 	/**

@@ -45,7 +45,8 @@ import scrm.requirements.RequirementsPackage;
  *
  * @generated
  */
-public class RequirementSpaceImpl extends SCRMModelElementImpl implements RequirementSpace {
+public class RequirementSpaceImpl extends SCRMModelElementImpl implements
+		RequirementSpace {
 	/**
 	 * The cached value of the '{@link #getContainedInformationofRequirements() <em>Contained Informationof Requirements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -81,8 +82,9 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements Requir
 	 * @generated
 	 */
 	public RequirementSpace getContainingRequirementSpace() {
-		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE) return null;
-		return (RequirementSpace)eContainer();
+		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE)
+			return null;
+		return (RequirementSpace) eContainer();
 	}
 
 	/**
@@ -91,8 +93,9 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements Requir
 	 * @generated
 	 */
 	public RequirementSpace basicGetContainingRequirementSpace() {
-		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE) return null;
-		return (RequirementSpace)eInternalContainer();
+		if (eContainerFeatureID() != RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE)
+			return null;
+		return (RequirementSpace) eInternalContainer();
 	}
 
 	/**
@@ -100,8 +103,13 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements Requir
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetContainingRequirementSpace(RequirementSpace newContainingRequirementSpace, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newContainingRequirementSpace, RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE, msgs);
+	public NotificationChain basicSetContainingRequirementSpace(
+			RequirementSpace newContainingRequirementSpace,
+			NotificationChain msgs) {
+		msgs = eBasicSetContainer(
+				(InternalEObject) newContainingRequirementSpace,
+				RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE,
+				msgs);
 		return msgs;
 	}
 
@@ -110,20 +118,33 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements Requir
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContainingRequirementSpace(RequirementSpace newContainingRequirementSpace) {
-		if (newContainingRequirementSpace != eInternalContainer() || (eContainerFeatureID() != RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE && newContainingRequirementSpace != null)) {
+	public void setContainingRequirementSpace(
+			RequirementSpace newContainingRequirementSpace) {
+		if (newContainingRequirementSpace != eInternalContainer()
+				|| (eContainerFeatureID() != RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE && newContainingRequirementSpace != null)) {
 			if (EcoreUtil.isAncestor(this, newContainingRequirementSpace))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newContainingRequirementSpace != null)
-				msgs = ((InternalEObject)newContainingRequirementSpace).eInverseAdd(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
-			msgs = basicSetContainingRequirementSpace(newContainingRequirementSpace, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE, newContainingRequirementSpace, newContainingRequirementSpace));
+				msgs = ((InternalEObject) newContainingRequirementSpace)
+						.eInverseAdd(
+								this,
+								RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+								RequirementSpace.class, msgs);
+			msgs = basicSetContainingRequirementSpace(
+					newContainingRequirementSpace, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(
+					this,
+					Notification.SET,
+					RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE,
+					newContainingRequirementSpace,
+					newContainingRequirementSpace));
 	}
 
 	/**
@@ -133,7 +154,11 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements Requir
 	 */
 	public EList<IRequirement> getContainedInformationofRequirements() {
 		if (containedInformationofRequirements == null) {
-			containedInformationofRequirements = new EObjectContainmentWithInverseEList.Resolving<IRequirement>(IRequirement.class, this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementsPackage.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE);
+			containedInformationofRequirements = new EObjectContainmentWithInverseEList.Resolving<IRequirement>(
+					IRequirement.class,
+					this,
+					RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+					RequirementsPackage.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE);
 		}
 		return containedInformationofRequirements;
 	}
@@ -145,14 +170,17 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements Requir
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainingRequirementSpace((RequirementSpace)otherEnd, msgs);
-			case RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getContainedInformationofRequirements()).basicAdd(otherEnd, msgs);
+		case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetContainingRequirementSpace(
+					(RequirementSpace) otherEnd, msgs);
+		case RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getContainedInformationofRequirements())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -163,12 +191,14 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements Requir
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
-				return basicSetContainingRequirementSpace(null, msgs);
-			case RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS:
-				return ((InternalEList<?>)getContainedInformationofRequirements()).basicRemove(otherEnd, msgs);
+		case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
+			return basicSetContainingRequirementSpace(null, msgs);
+		case RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS:
+			return ((InternalEList<?>) getContainedInformationofRequirements())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -179,10 +209,15 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements Requir
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
-				return eInternalContainer().eInverseRemove(this, RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS, RequirementSpace.class, msgs);
+		case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
+			return eInternalContainer()
+					.eInverseRemove(
+							this,
+							RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+							RequirementSpace.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -195,11 +230,12 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements Requir
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
-				if (resolve) return getContainingRequirementSpace();
-				return basicGetContainingRequirementSpace();
-			case RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS:
-				return getContainedInformationofRequirements();
+		case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
+			if (resolve)
+				return getContainingRequirementSpace();
+			return basicGetContainingRequirementSpace();
+		case RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS:
+			return getContainedInformationofRequirements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -213,13 +249,14 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements Requir
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
-				setContainingRequirementSpace((RequirementSpace)newValue);
-				return;
-			case RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS:
-				getContainedInformationofRequirements().clear();
-				getContainedInformationofRequirements().addAll((Collection<? extends IRequirement>)newValue);
-				return;
+		case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
+			setContainingRequirementSpace((RequirementSpace) newValue);
+			return;
+		case RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS:
+			getContainedInformationofRequirements().clear();
+			getContainedInformationofRequirements().addAll(
+					(Collection<? extends IRequirement>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -232,12 +269,12 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements Requir
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
-				setContainingRequirementSpace((RequirementSpace)null);
-				return;
-			case RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS:
-				getContainedInformationofRequirements().clear();
-				return;
+		case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
+			setContainingRequirementSpace((RequirementSpace) null);
+			return;
+		case RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS:
+			getContainedInformationofRequirements().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -250,10 +287,11 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements Requir
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
-				return basicGetContainingRequirementSpace() != null;
-			case RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS:
-				return containedInformationofRequirements != null && !containedInformationofRequirements.isEmpty();
+		case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
+			return basicGetContainingRequirementSpace() != null;
+		case RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS:
+			return containedInformationofRequirements != null
+					&& !containedInformationofRequirements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

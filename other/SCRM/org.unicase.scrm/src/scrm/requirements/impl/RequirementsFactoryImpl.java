@@ -33,7 +33,8 @@ import scrm.requirements.UserInterface;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RequirementsFactoryImpl extends EFactoryImpl implements RequirementsFactory {
+public class RequirementsFactoryImpl extends EFactoryImpl implements
+		RequirementsFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -42,12 +43,12 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	 */
 	public static RequirementsFactory init() {
 		try {
-			RequirementsFactory theRequirementsFactory = (RequirementsFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/scrm/requirements"); 
+			RequirementsFactory theRequirementsFactory = (RequirementsFactory) EPackage.Registry.INSTANCE
+					.getEFactory("http://unicase.org/model/scrm/requirements");
 			if (theRequirementsFactory != null) {
 				return theRequirementsFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new RequirementsFactoryImpl();
@@ -71,19 +72,31 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case RequirementsPackage.FEATURE: return createFeature();
-			case RequirementsPackage.HARDWARE: return createHardware();
-			case RequirementsPackage.CONSTRAINT: return createConstraint();
-			case RequirementsPackage.REQUIREMENT: return createRequirement();
-			case RequirementsPackage.USER_INTERFACE: return createUserInterface();
-			case RequirementsPackage.SOFTWARE_INTERFACE: return createSoftwareInterface();
-			case RequirementsPackage.PROCESS: return createProcess();
-			case RequirementsPackage.PERFORMANCE: return createPerformance();
-			case RequirementsPackage.DATA_FLOW: return createDataFlow();
-			case RequirementsPackage.DATA_DEFINITION: return createDataDefinition();
-			case RequirementsPackage.REQUIREMENT_SPACE: return createRequirementSpace();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case RequirementsPackage.REQUIREMENT:
+			return createRequirement();
+		case RequirementsPackage.REQUIREMENT_SPACE:
+			return createRequirementSpace();
+		case RequirementsPackage.FEATURE:
+			return createFeature();
+		case RequirementsPackage.HARDWARE:
+			return createHardware();
+		case RequirementsPackage.CONSTRAINT:
+			return createConstraint();
+		case RequirementsPackage.USER_INTERFACE:
+			return createUserInterface();
+		case RequirementsPackage.SOFTWARE_INTERFACE:
+			return createSoftwareInterface();
+		case RequirementsPackage.PROCESS:
+			return createProcess();
+		case RequirementsPackage.PERFORMANCE:
+			return createPerformance();
+		case RequirementsPackage.DATA_FLOW:
+			return createDataFlow();
+		case RequirementsPackage.DATA_DEFINITION:
+			return createDataDefinition();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
@@ -203,7 +216,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	 * @generated
 	 */
 	public RequirementsPackage getRequirementsPackage() {
-		return (RequirementsPackage)getEPackage();
+		return (RequirementsPackage) getEPackage();
 	}
 
 	/**

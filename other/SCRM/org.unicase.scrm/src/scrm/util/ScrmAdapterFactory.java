@@ -60,7 +60,7 @@ public class ScrmAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -71,21 +71,22 @@ public class ScrmAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ScrmSwitch<Adapter> modelSwitch =
-		new ScrmSwitch<Adapter>() {
-			@Override
-			public Adapter caseSCRMModelElement(SCRMModelElement object) {
-				return createSCRMModelElementAdapter();
-			}
-			@Override
-			public Adapter caseSCRMDiagram(SCRMDiagram object) {
-				return createSCRMDiagramAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+	protected ScrmSwitch<Adapter> modelSwitch = new ScrmSwitch<Adapter>() {
+		@Override
+		public Adapter caseSCRMModelElement(SCRMModelElement object) {
+			return createSCRMModelElementAdapter();
+		}
+
+		@Override
+		public Adapter caseSCRMDiagram(SCRMDiagram object) {
+			return createSCRMDiagramAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -97,9 +98,8 @@ public class ScrmAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
-
 
 	/**
 	 * Creates a new adapter for an object of class '{@link scrm.SCRMModelElement <em>SCRM Model Element</em>}'.

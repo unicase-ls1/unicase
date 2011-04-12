@@ -17,7 +17,9 @@
             forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
-            red="255"/>
+            red="255"
+            green="79"
+            blue="79"/>
         <preferredSize
             dx="160"
             dy="65"/>
