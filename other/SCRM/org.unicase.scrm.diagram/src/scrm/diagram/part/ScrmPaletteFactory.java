@@ -25,6 +25,7 @@ public class ScrmPaletteFactory {
 	public void fillPalette(PaletteRoot paletteRoot) {
 		paletteRoot.add(createKnowledge1Group());
 		paletteRoot.add(createRequirements2Group());
+		paletteRoot.add(createDataProcessing3Group());
 	}
 
 	/**
@@ -61,11 +62,22 @@ public class ScrmPaletteFactory {
 		paletteContainer.add(createPerformance7CreationTool());
 		paletteContainer.add(createDataFlow8CreationTool());
 		paletteContainer.add(createDataDefinition9CreationTool());
-		paletteContainer.add(createInputDataReading10CreationTool());
-		paletteContainer.add(createDataHandling11CreationTool());
-		paletteContainer.add(createResultsOutput12CreationTool());
-		paletteContainer.add(createErrorHandling13CreationTool());
-		paletteContainer.add(createStatusMonitoring14CreationTool());
+		return paletteContainer;
+	}
+
+	/**
+	 * Creates "DataProcessing" palette tool group
+	 * @generated
+	 */
+	private PaletteContainer createDataProcessing3Group() {
+		PaletteDrawer paletteContainer = new PaletteDrawer(
+				Messages.DataProcessing3Group_title);
+		paletteContainer.setId("createDataProcessing3Group"); //$NON-NLS-1$
+		paletteContainer.add(createInputDataReading1CreationTool());
+		paletteContainer.add(createDataHandling2CreationTool());
+		paletteContainer.add(createResultsOutput3CreationTool());
+		paletteContainer.add(createErrorHandling4CreationTool());
+		paletteContainer.add(createStatusMonitoring5CreationTool());
 		return paletteContainer;
 	}
 
@@ -259,14 +271,14 @@ public class ScrmPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createInputDataReading10CreationTool() {
+	private ToolEntry createInputDataReading1CreationTool() {
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.InputDataReading10CreationTool_title, null,
+				Messages.InputDataReading1CreationTool_title, null,
 				Collections
-						.singletonList(ScrmElementTypes.InputDataReading_2018));
-		entry.setId("createInputDataReading10CreationTool"); //$NON-NLS-1$
+						.singletonList(ScrmElementTypes.InputDataReading_2023));
+		entry.setId("createInputDataReading1CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
-				.getImageDescriptor(ScrmElementTypes.InputDataReading_2018));
+				.getImageDescriptor(ScrmElementTypes.InputDataReading_2023));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -274,13 +286,13 @@ public class ScrmPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createDataHandling11CreationTool() {
+	private ToolEntry createDataHandling2CreationTool() {
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.DataHandling11CreationTool_title, null,
-				Collections.singletonList(ScrmElementTypes.DataHandling_2019));
-		entry.setId("createDataHandling11CreationTool"); //$NON-NLS-1$
+				Messages.DataHandling2CreationTool_title, null,
+				Collections.singletonList(ScrmElementTypes.DataHandling_2024));
+		entry.setId("createDataHandling2CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
-				.getImageDescriptor(ScrmElementTypes.DataHandling_2019));
+				.getImageDescriptor(ScrmElementTypes.DataHandling_2024));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -288,13 +300,13 @@ public class ScrmPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createResultsOutput12CreationTool() {
+	private ToolEntry createResultsOutput3CreationTool() {
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.ResultsOutput12CreationTool_title, null,
-				Collections.singletonList(ScrmElementTypes.ResultsOutput_2020));
-		entry.setId("createResultsOutput12CreationTool"); //$NON-NLS-1$
+				Messages.ResultsOutput3CreationTool_title, null,
+				Collections.singletonList(ScrmElementTypes.ResultsOutput_2025));
+		entry.setId("createResultsOutput3CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
-				.getImageDescriptor(ScrmElementTypes.ResultsOutput_2020));
+				.getImageDescriptor(ScrmElementTypes.ResultsOutput_2025));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -302,13 +314,13 @@ public class ScrmPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createErrorHandling13CreationTool() {
+	private ToolEntry createErrorHandling4CreationTool() {
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.ErrorHandling13CreationTool_title, null,
-				Collections.singletonList(ScrmElementTypes.ErrorHandling_2021));
-		entry.setId("createErrorHandling13CreationTool"); //$NON-NLS-1$
+				Messages.ErrorHandling4CreationTool_title, null,
+				Collections.singletonList(ScrmElementTypes.ErrorHandling_2026));
+		entry.setId("createErrorHandling4CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
-				.getImageDescriptor(ScrmElementTypes.ErrorHandling_2021));
+				.getImageDescriptor(ScrmElementTypes.ErrorHandling_2026));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -316,14 +328,14 @@ public class ScrmPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createStatusMonitoring14CreationTool() {
+	private ToolEntry createStatusMonitoring5CreationTool() {
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.StatusMonitoring14CreationTool_title, null,
+				Messages.StatusMonitoring5CreationTool_title, null,
 				Collections
-						.singletonList(ScrmElementTypes.StatusMonitoring_2022));
-		entry.setId("createStatusMonitoring14CreationTool"); //$NON-NLS-1$
+						.singletonList(ScrmElementTypes.StatusMonitoring_2027));
+		entry.setId("createStatusMonitoring5CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
-				.getImageDescriptor(ScrmElementTypes.StatusMonitoring_2022));
+				.getImageDescriptor(ScrmElementTypes.StatusMonitoring_2027));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

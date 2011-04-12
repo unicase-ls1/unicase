@@ -47,7 +47,7 @@ public class DataHandlingItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public DataHandlingItemSemanticEditPolicy() {
-		super(ScrmElementTypes.DataHandling_2019);
+		super(ScrmElementTypes.DataHandling_2024);
 	}
 
 	/**

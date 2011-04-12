@@ -295,7 +295,7 @@ public class ResultsOutputNameEditPart extends SCRMModelElementLabelEditPart
 		if (parser == null) {
 			parser = ScrmParserProvider
 					.getParser(
-							ScrmElementTypes.ResultsOutput_2020,
+							ScrmElementTypes.ResultsOutput_2025,
 							getParserElement(),
 							ScrmVisualIDRegistry
 									.getType(scrm.diagram.edit.parts.ResultsOutputNameEditPart.VISUAL_ID));

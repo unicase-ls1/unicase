@@ -49,7 +49,7 @@ public class DataHandlingEditPart extends SCRMModelElementEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2019;
+	public static final int VISUAL_ID = 2024;
 
 	/**
 	 * @generated
@@ -316,11 +316,6 @@ public class DataHandlingEditPart extends SCRMModelElementEditPart {
 		if (relationshipType == ScrmElementTypes.Requirement_4036) {
 			types.add(ScrmElementTypes.Process_2014);
 			types.add(ScrmElementTypes.Performance_2015);
-			types.add(ScrmElementTypes.InputDataReading_2018);
-			types.add(ScrmElementTypes.DataHandling_2019);
-			types.add(ScrmElementTypes.ResultsOutput_2020);
-			types.add(ScrmElementTypes.ErrorHandling_2021);
-			types.add(ScrmElementTypes.StatusMonitoring_2022);
 		} else if (relationshipType == ScrmElementTypes.RequirementDefiningData_4038) {
 			types.add(ScrmElementTypes.DataDefinition_2017);
 		}
@@ -350,11 +345,6 @@ public class DataHandlingEditPart extends SCRMModelElementEditPart {
 		} else if (relationshipType == ScrmElementTypes.Requirement_4036) {
 			types.add(ScrmElementTypes.Process_2014);
 			types.add(ScrmElementTypes.Performance_2015);
-			types.add(ScrmElementTypes.InputDataReading_2018);
-			types.add(ScrmElementTypes.DataHandling_2019);
-			types.add(ScrmElementTypes.ResultsOutput_2020);
-			types.add(ScrmElementTypes.ErrorHandling_2021);
-			types.add(ScrmElementTypes.StatusMonitoring_2022);
 		}
 		return types;
 	}

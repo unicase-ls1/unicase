@@ -47,7 +47,7 @@ public class StatusMonitoringItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public StatusMonitoringItemSemanticEditPolicy() {
-		super(ScrmElementTypes.StatusMonitoring_2022);
+		super(ScrmElementTypes.StatusMonitoring_2027);
 	}
 
 	/**

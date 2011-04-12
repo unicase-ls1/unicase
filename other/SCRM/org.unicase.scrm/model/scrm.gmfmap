@@ -631,7 +631,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.9"/>
+          href="scrm.gmftool#//@palette/@tools.2/@tools.0"/>
       <diagramNode
           href="scrm.gmfgraph#InputDataReadingNode"/>
     </ownedChild>
@@ -667,7 +667,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.10"/>
+          href="scrm.gmftool#//@palette/@tools.2/@tools.1"/>
       <diagramNode
           href="scrm.gmfgraph#DataHandlingNode"/>
     </ownedChild>
@@ -703,7 +703,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.11"/>
+          href="scrm.gmftool#//@palette/@tools.2/@tools.2"/>
       <diagramNode
           href="scrm.gmfgraph#ResultsOutputNode"/>
     </ownedChild>
@@ -739,7 +739,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.12"/>
+          href="scrm.gmftool#//@palette/@tools.2/@tools.3"/>
       <diagramNode
           href="scrm.gmfgraph#ErrorHandlingNode"/>
     </ownedChild>
@@ -775,7 +775,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.13"/>
+          href="scrm.gmftool#//@palette/@tools.2/@tools.4"/>
       <diagramNode
           href="scrm.gmfgraph#StatusMonitoringNode"/>
     </ownedChild>

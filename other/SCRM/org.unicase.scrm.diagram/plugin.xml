@@ -213,7 +213,7 @@
       <viewProvider class="scrm.diagram.providers.ScrmViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Scrm"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007,2005,2006,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007,2005,2006,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2023,2024,2025,2026,2027"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4006,4041,4008,4004,4011,4012,4015,4016,4017,4023,4024,4025,4026,4027,4029,4030,4032,4036,4038,4040"/>
       </viewProvider>
    </extension>
@@ -226,13 +226,13 @@
             <method name="getType()" value="Scrm"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2007,2005,2006,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022"/>
+            <method name="getType()" value="2007,2005,2006,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2023,2024,2025,2026,2027"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4006,4041,4008,4004,4011,4012,4015,4016,4017,4023,4024,4025,4026,4027,4029,4030,4032,4036,4038,4040"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5003,5019,5001,5020,5021,5022,5002,5023,5024,5025,5004,5026,5005,5027,5006,5028,5029,5030,5031,5007,5032,5008,5033,5009,5034,5035,5010,5036,5011,5037,5038,5012,5039,5013,5040,5041,5042,5043,5044,5014,5045,5015,5046,5016,5047,5017,5048,5018,5049"/>
+            <method name="getType()" value="5003,5019,5001,5020,5021,5022,5002,5023,5024,5025,5004,5026,5005,5027,5006,5028,5029,5030,5031,5007,5032,5008,5033,5009,5034,5035,5010,5036,5011,5037,5038,5012,5039,5013,5040,5041,5042,5043,5044,5050,5051,5052,5053,5054,5055,5056,5057,5058,5059"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value=""/>
@@ -259,12 +259,12 @@
          <object class="scrm.diagram.edit.parts.PerformanceEditPart" id="Performance_2015"/>
          <object class="scrm.diagram.edit.parts.DataFlowEditPart" id="DataFlow_2016"/>
          <object class="scrm.diagram.edit.parts.DataDefinitionEditPart" id="DataDefinition_2017"/>
-         <object class="scrm.diagram.edit.parts.InputDataReadingEditPart" id="InputDataReading_2018"/>
-         <object class="scrm.diagram.edit.parts.DataHandlingEditPart" id="DataHandling_2019"/>
-         <object class="scrm.diagram.edit.parts.ResultsOutputEditPart" id="ResultsOutput_2020"/>
-         <object class="scrm.diagram.edit.parts.ErrorHandlingEditPart" id="ErrorHandling_2021"/>
-         <object class="scrm.diagram.edit.parts.StatusMonitoringEditPart" id="StatusMonitoring_2022"/>
-         <context elements="SCRMDiagram_1000,ScientificProblem_2007,MathematicalModel_2005,NumericalMethod_2006,Assumption_2008,Feature_2009,Hardware_2010,Constraint_2011,UserInterface_2012,SoftwareInterface_2013,Process_2014,Performance_2015,DataFlow_2016,DataDefinition_2017,InputDataReading_2018,DataHandling_2019,ResultsOutput_2020,ErrorHandling_2021,StatusMonitoring_2022"/>
+         <object class="scrm.diagram.edit.parts.InputDataReadingEditPart" id="InputDataReading_2023"/>
+         <object class="scrm.diagram.edit.parts.DataHandlingEditPart" id="DataHandling_2024"/>
+         <object class="scrm.diagram.edit.parts.ResultsOutputEditPart" id="ResultsOutput_2025"/>
+         <object class="scrm.diagram.edit.parts.ErrorHandlingEditPart" id="ErrorHandling_2026"/>
+         <object class="scrm.diagram.edit.parts.StatusMonitoringEditPart" id="StatusMonitoring_2027"/>
+         <context elements="SCRMDiagram_1000,ScientificProblem_2007,MathematicalModel_2005,NumericalMethod_2006,Assumption_2008,Feature_2009,Hardware_2010,Constraint_2011,UserInterface_2012,SoftwareInterface_2013,Process_2014,Performance_2015,DataFlow_2016,DataDefinition_2017,InputDataReading_2023,DataHandling_2024,ResultsOutput_2025,ErrorHandling_2026,StatusMonitoring_2027"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -419,52 +419,52 @@
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/scrm/dataProcessing">
          <metamodelType
-               id="org.unicase.scrm.diagram.InputDataReading_2018"
-               name="%metatype.name.InputDataReading_2018"
+               id="org.unicase.scrm.diagram.InputDataReading_2023"
+               name="%metatype.name.InputDataReading_2023"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="InputDataReading"
                edithelper="scrm.diagram.edit.helpers.InputDataReadingEditHelper">
-            <param name="semanticHint" value="2018"/>
+            <param name="semanticHint" value="2023"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/scrm/dataProcessing">
          <metamodelType
-               id="org.unicase.scrm.diagram.DataHandling_2019"
-               name="%metatype.name.DataHandling_2019"
+               id="org.unicase.scrm.diagram.DataHandling_2024"
+               name="%metatype.name.DataHandling_2024"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="DataHandling"
                edithelper="scrm.diagram.edit.helpers.DataHandlingEditHelper">
-            <param name="semanticHint" value="2019"/>
+            <param name="semanticHint" value="2024"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/scrm/dataProcessing">
          <metamodelType
-               id="org.unicase.scrm.diagram.ResultsOutput_2020"
-               name="%metatype.name.ResultsOutput_2020"
+               id="org.unicase.scrm.diagram.ResultsOutput_2025"
+               name="%metatype.name.ResultsOutput_2025"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ResultsOutput"
                edithelper="scrm.diagram.edit.helpers.ResultsOutputEditHelper">
-            <param name="semanticHint" value="2020"/>
+            <param name="semanticHint" value="2025"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/scrm/dataProcessing">
          <metamodelType
-               id="org.unicase.scrm.diagram.ErrorHandling_2021"
-               name="%metatype.name.ErrorHandling_2021"
+               id="org.unicase.scrm.diagram.ErrorHandling_2026"
+               name="%metatype.name.ErrorHandling_2026"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ErrorHandling"
                edithelper="scrm.diagram.edit.helpers.ErrorHandlingEditHelper">
-            <param name="semanticHint" value="2021"/>
+            <param name="semanticHint" value="2026"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/scrm/dataProcessing">
          <metamodelType
-               id="org.unicase.scrm.diagram.StatusMonitoring_2022"
-               name="%metatype.name.StatusMonitoring_2022"
+               id="org.unicase.scrm.diagram.StatusMonitoring_2027"
+               name="%metatype.name.StatusMonitoring_2027"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="StatusMonitoring"
                edithelper="scrm.diagram.edit.helpers.StatusMonitoringEditHelper">
-            <param name="semanticHint" value="2022"/>
+            <param name="semanticHint" value="2027"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
@@ -674,11 +674,11 @@
          <elementType ref="org.unicase.scrm.diagram.Performance_2015"/>
          <elementType ref="org.unicase.scrm.diagram.DataFlow_2016"/>
          <elementType ref="org.unicase.scrm.diagram.DataDefinition_2017"/>
-         <elementType ref="org.unicase.scrm.diagram.InputDataReading_2018"/>
-         <elementType ref="org.unicase.scrm.diagram.DataHandling_2019"/>
-         <elementType ref="org.unicase.scrm.diagram.ResultsOutput_2020"/>
-         <elementType ref="org.unicase.scrm.diagram.ErrorHandling_2021"/>
-         <elementType ref="org.unicase.scrm.diagram.StatusMonitoring_2022"/>
+         <elementType ref="org.unicase.scrm.diagram.InputDataReading_2023"/>
+         <elementType ref="org.unicase.scrm.diagram.DataHandling_2024"/>
+         <elementType ref="org.unicase.scrm.diagram.ResultsOutput_2025"/>
+         <elementType ref="org.unicase.scrm.diagram.ErrorHandling_2026"/>
+         <elementType ref="org.unicase.scrm.diagram.StatusMonitoring_2027"/>
          <elementType ref="org.unicase.scrm.diagram.ScientificProblemRepresentingModel_4006"/>
          <elementType ref="org.unicase.scrm.diagram.ScientificProblemSolvingMethods_4041"/>
          <elementType ref="org.unicase.scrm.diagram.ScientificProblemInfluencedFeature_4008"/>

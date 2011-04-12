@@ -339,19 +339,19 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			return createDataDefinition_2017(domainElement, containerView,
 					index, persisted, preferencesHint);
 		case InputDataReadingEditPart.VISUAL_ID:
-			return createInputDataReading_2018(domainElement, containerView,
+			return createInputDataReading_2023(domainElement, containerView,
 					index, persisted, preferencesHint);
 		case DataHandlingEditPart.VISUAL_ID:
-			return createDataHandling_2019(domainElement, containerView, index,
+			return createDataHandling_2024(domainElement, containerView, index,
 					persisted, preferencesHint);
 		case ResultsOutputEditPart.VISUAL_ID:
-			return createResultsOutput_2020(domainElement, containerView,
+			return createResultsOutput_2025(domainElement, containerView,
 					index, persisted, preferencesHint);
 		case ErrorHandlingEditPart.VISUAL_ID:
-			return createErrorHandling_2021(domainElement, containerView,
+			return createErrorHandling_2026(domainElement, containerView,
 					index, persisted, preferencesHint);
 		case StatusMonitoringEditPart.VISUAL_ID:
-			return createStatusMonitoring_2022(domainElement, containerView,
+			return createStatusMonitoring_2027(domainElement, containerView,
 					index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
@@ -1124,7 +1124,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	/**
 	 * @generated
 	 */
-	public Node createInputDataReading_2018(EObject domainElement,
+	public Node createInputDataReading_2023(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
@@ -1163,10 +1163,10 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5014 = createLabel(node,
+		Node label5050 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(InputDataReadingNameEditPart.VISUAL_ID));
-		Node label5045 = createLabel(node,
+		Node label5051 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(InputDataReadingDescriptionEditPart.VISUAL_ID));
 		return node;
@@ -1175,7 +1175,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	/**
 	 * @generated
 	 */
-	public Node createDataHandling_2019(EObject domainElement,
+	public Node createDataHandling_2024(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
@@ -1214,10 +1214,10 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5015 = createLabel(node,
+		Node label5052 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(DataHandlingNameEditPart.VISUAL_ID));
-		Node label5046 = createLabel(node,
+		Node label5053 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(DataHandlingDescriptionEditPart.VISUAL_ID));
 		return node;
@@ -1226,7 +1226,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	/**
 	 * @generated
 	 */
-	public Node createResultsOutput_2020(EObject domainElement,
+	public Node createResultsOutput_2025(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
@@ -1265,10 +1265,10 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5016 = createLabel(node,
+		Node label5054 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(ResultsOutputNameEditPart.VISUAL_ID));
-		Node label5047 = createLabel(node,
+		Node label5055 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(ResultsOutputDescriptionEditPart.VISUAL_ID));
 		return node;
@@ -1277,7 +1277,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	/**
 	 * @generated
 	 */
-	public Node createErrorHandling_2021(EObject domainElement,
+	public Node createErrorHandling_2026(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
@@ -1316,10 +1316,10 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5017 = createLabel(node,
+		Node label5056 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(ErrorHandlingNameEditPart.VISUAL_ID));
-		Node label5048 = createLabel(node,
+		Node label5057 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(ErrorHandlingDescriptionEditPart.VISUAL_ID));
 		return node;
@@ -1328,7 +1328,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	/**
 	 * @generated
 	 */
-	public Node createStatusMonitoring_2022(EObject domainElement,
+	public Node createStatusMonitoring_2027(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
@@ -1367,10 +1367,10 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5018 = createLabel(node,
+		Node label5058 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(StatusMonitoringNameEditPart.VISUAL_ID));
-		Node label5049 = createLabel(node,
+		Node label5059 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(StatusMonitoringDescriptionEditPart.VISUAL_ID));
 		return node;

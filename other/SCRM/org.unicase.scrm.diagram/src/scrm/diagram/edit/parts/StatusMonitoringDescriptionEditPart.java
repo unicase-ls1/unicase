@@ -291,7 +291,7 @@ public class StatusMonitoringDescriptionEditPart extends
 		if (parser == null) {
 			parser = ScrmParserProvider
 					.getParser(
-							ScrmElementTypes.StatusMonitoring_2022,
+							ScrmElementTypes.StatusMonitoring_2027,
 							getParserElement(),
 							ScrmVisualIDRegistry
 									.getType(scrm.diagram.edit.parts.StatusMonitoringDescriptionEditPart.VISUAL_ID));

@@ -215,15 +215,15 @@ public class ScrmDiagramUpdater {
 		case DataDefinitionEditPart.VISUAL_ID:
 			return getDataDefinition_2017ContainedLinks(view);
 		case InputDataReadingEditPart.VISUAL_ID:
-			return getInputDataReading_2018ContainedLinks(view);
+			return getInputDataReading_2023ContainedLinks(view);
 		case DataHandlingEditPart.VISUAL_ID:
-			return getDataHandling_2019ContainedLinks(view);
+			return getDataHandling_2024ContainedLinks(view);
 		case ResultsOutputEditPart.VISUAL_ID:
-			return getResultsOutput_2020ContainedLinks(view);
+			return getResultsOutput_2025ContainedLinks(view);
 		case ErrorHandlingEditPart.VISUAL_ID:
-			return getErrorHandling_2021ContainedLinks(view);
+			return getErrorHandling_2026ContainedLinks(view);
 		case StatusMonitoringEditPart.VISUAL_ID:
-			return getStatusMonitoring_2022ContainedLinks(view);
+			return getStatusMonitoring_2027ContainedLinks(view);
 		case MathematicalModel2EditPart.VISUAL_ID:
 			return getMathematicalModel_4004ContainedLinks(view);
 		case Feature2EditPart.VISUAL_ID:
@@ -266,15 +266,15 @@ public class ScrmDiagramUpdater {
 		case DataDefinitionEditPart.VISUAL_ID:
 			return getDataDefinition_2017IncomingLinks(view);
 		case InputDataReadingEditPart.VISUAL_ID:
-			return getInputDataReading_2018IncomingLinks(view);
+			return getInputDataReading_2023IncomingLinks(view);
 		case DataHandlingEditPart.VISUAL_ID:
-			return getDataHandling_2019IncomingLinks(view);
+			return getDataHandling_2024IncomingLinks(view);
 		case ResultsOutputEditPart.VISUAL_ID:
-			return getResultsOutput_2020IncomingLinks(view);
+			return getResultsOutput_2025IncomingLinks(view);
 		case ErrorHandlingEditPart.VISUAL_ID:
-			return getErrorHandling_2021IncomingLinks(view);
+			return getErrorHandling_2026IncomingLinks(view);
 		case StatusMonitoringEditPart.VISUAL_ID:
-			return getStatusMonitoring_2022IncomingLinks(view);
+			return getStatusMonitoring_2027IncomingLinks(view);
 		case MathematicalModel2EditPart.VISUAL_ID:
 			return getMathematicalModel_4004IncomingLinks(view);
 		case Feature2EditPart.VISUAL_ID:
@@ -317,15 +317,15 @@ public class ScrmDiagramUpdater {
 		case DataDefinitionEditPart.VISUAL_ID:
 			return getDataDefinition_2017OutgoingLinks(view);
 		case InputDataReadingEditPart.VISUAL_ID:
-			return getInputDataReading_2018OutgoingLinks(view);
+			return getInputDataReading_2023OutgoingLinks(view);
 		case DataHandlingEditPart.VISUAL_ID:
-			return getDataHandling_2019OutgoingLinks(view);
+			return getDataHandling_2024OutgoingLinks(view);
 		case ResultsOutputEditPart.VISUAL_ID:
-			return getResultsOutput_2020OutgoingLinks(view);
+			return getResultsOutput_2025OutgoingLinks(view);
 		case ErrorHandlingEditPart.VISUAL_ID:
-			return getErrorHandling_2021OutgoingLinks(view);
+			return getErrorHandling_2026OutgoingLinks(view);
 		case StatusMonitoringEditPart.VISUAL_ID:
-			return getStatusMonitoring_2022OutgoingLinks(view);
+			return getStatusMonitoring_2027OutgoingLinks(view);
 		case MathematicalModel2EditPart.VISUAL_ID:
 			return getMathematicalModel_4004OutgoingLinks(view);
 		case Feature2EditPart.VISUAL_ID:
@@ -485,7 +485,7 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<ScrmLinkDescriptor> getInputDataReading_2018ContainedLinks(
+	public static List<ScrmLinkDescriptor> getInputDataReading_2023ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -493,7 +493,7 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<ScrmLinkDescriptor> getDataHandling_2019ContainedLinks(
+	public static List<ScrmLinkDescriptor> getDataHandling_2024ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -501,7 +501,7 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<ScrmLinkDescriptor> getResultsOutput_2020ContainedLinks(
+	public static List<ScrmLinkDescriptor> getResultsOutput_2025ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -509,7 +509,7 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<ScrmLinkDescriptor> getErrorHandling_2021ContainedLinks(
+	public static List<ScrmLinkDescriptor> getErrorHandling_2026ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -517,7 +517,7 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<ScrmLinkDescriptor> getStatusMonitoring_2022ContainedLinks(
+	public static List<ScrmLinkDescriptor> getStatusMonitoring_2027ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -770,7 +770,7 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<ScrmLinkDescriptor> getInputDataReading_2018IncomingLinks(
+	public static List<ScrmLinkDescriptor> getInputDataReading_2023IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -778,7 +778,7 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<ScrmLinkDescriptor> getDataHandling_2019IncomingLinks(
+	public static List<ScrmLinkDescriptor> getDataHandling_2024IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -786,7 +786,7 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<ScrmLinkDescriptor> getResultsOutput_2020IncomingLinks(
+	public static List<ScrmLinkDescriptor> getResultsOutput_2025IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -794,7 +794,7 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<ScrmLinkDescriptor> getErrorHandling_2021IncomingLinks(
+	public static List<ScrmLinkDescriptor> getErrorHandling_2026IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -802,7 +802,7 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<ScrmLinkDescriptor> getStatusMonitoring_2022IncomingLinks(
+	public static List<ScrmLinkDescriptor> getStatusMonitoring_2027IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -1002,7 +1002,7 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<ScrmLinkDescriptor> getInputDataReading_2018OutgoingLinks(
+	public static List<ScrmLinkDescriptor> getInputDataReading_2023OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -1010,7 +1010,7 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<ScrmLinkDescriptor> getDataHandling_2019OutgoingLinks(
+	public static List<ScrmLinkDescriptor> getDataHandling_2024OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -1018,7 +1018,7 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<ScrmLinkDescriptor> getResultsOutput_2020OutgoingLinks(
+	public static List<ScrmLinkDescriptor> getResultsOutput_2025OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -1026,7 +1026,7 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<ScrmLinkDescriptor> getErrorHandling_2021OutgoingLinks(
+	public static List<ScrmLinkDescriptor> getErrorHandling_2026OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -1034,7 +1034,7 @@ public class ScrmDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<ScrmLinkDescriptor> getStatusMonitoring_2022OutgoingLinks(
+	public static List<ScrmLinkDescriptor> getStatusMonitoring_2027OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}

@@ -295,7 +295,7 @@ public class ErrorHandlingNameEditPart extends SCRMModelElementLabelEditPart
 		if (parser == null) {
 			parser = ScrmParserProvider
 					.getParser(
-							ScrmElementTypes.ErrorHandling_2021,
+							ScrmElementTypes.ErrorHandling_2026,
 							getParserElement(),
 							ScrmVisualIDRegistry
 									.getType(scrm.diagram.edit.parts.ErrorHandlingNameEditPart.VISUAL_ID));
