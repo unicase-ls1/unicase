@@ -234,24 +234,24 @@ public class ScrmVisualIDRegistry {
 					.isSuperTypeOf(domainElement.eClass())) {
 				return DataDefinitionEditPart.VISUAL_ID;
 			}
-			if (scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
+			if (scrm.dataProcessing.DataProcessingPackage.eINSTANCE
 					.getInputDataReading()
 					.isSuperTypeOf(domainElement.eClass())) {
 				return InputDataReadingEditPart.VISUAL_ID;
 			}
-			if (scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
+			if (scrm.dataProcessing.DataProcessingPackage.eINSTANCE
 					.getDataHandling().isSuperTypeOf(domainElement.eClass())) {
 				return DataHandlingEditPart.VISUAL_ID;
 			}
-			if (scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
+			if (scrm.dataProcessing.DataProcessingPackage.eINSTANCE
 					.getResultsOutput().isSuperTypeOf(domainElement.eClass())) {
 				return ResultsOutputEditPart.VISUAL_ID;
 			}
-			if (scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
+			if (scrm.dataProcessing.DataProcessingPackage.eINSTANCE
 					.getErrorHandling().isSuperTypeOf(domainElement.eClass())) {
 				return ErrorHandlingEditPart.VISUAL_ID;
 			}
-			if (scrm.requirements.dataProcessing.DataProcessingPackage.eINSTANCE
+			if (scrm.dataProcessing.DataProcessingPackage.eINSTANCE
 					.getStatusMonitoring()
 					.isSuperTypeOf(domainElement.eClass())) {
 				return StatusMonitoringEditPart.VISUAL_ID;

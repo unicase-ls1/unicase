@@ -458,56 +458,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_InputDataReading_2018_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_InputDataReading_2018_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DataHandling_2019_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DataHandling_2019_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ResultsOutput_2020_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ResultsOutput_2020_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ErrorHandling_2021_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ErrorHandling_2021_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_StatusMonitoring_2022_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_StatusMonitoring_2022_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
 	public static String NavigatorGroupName_ScientificProblemRepresentingModel_4006_target;
 
 	/**

@@ -123,7 +123,7 @@ public class ScrmDiagramEditorPlugin extends AbstractUIPlugin {
 		factories.add(new KnowledgeItemProviderAdapterFactory());
 		factories.add(new RequirementsItemProviderAdapterFactory());
 		factories
-				.add(new scrm.requirements.dataProcessing.provider.DataProcessingItemProviderAdapterFactory());
+				.add(new scrm.dataProcessing.provider.DataProcessingItemProviderAdapterFactory());
 		factories.add(new EcoreItemProviderAdapterFactory());
 		factories.add(new NotationItemProviderAdapterFactory());
 		factories.add(new ResourceItemProviderAdapterFactory());

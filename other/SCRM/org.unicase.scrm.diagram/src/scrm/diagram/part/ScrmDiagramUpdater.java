@@ -487,12 +487,7 @@ public class ScrmDiagramUpdater {
 	 */
 	public static List<ScrmLinkDescriptor> getInputDataReading_2018ContainedLinks(
 			View view) {
-		scrm.requirements.dataProcessing.InputDataReading modelElement = (scrm.requirements.dataProcessing.InputDataReading) view
-				.getElement();
-		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**
@@ -500,12 +495,7 @@ public class ScrmDiagramUpdater {
 	 */
 	public static List<ScrmLinkDescriptor> getDataHandling_2019ContainedLinks(
 			View view) {
-		scrm.requirements.dataProcessing.DataHandling modelElement = (scrm.requirements.dataProcessing.DataHandling) view
-				.getElement();
-		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**
@@ -513,12 +503,7 @@ public class ScrmDiagramUpdater {
 	 */
 	public static List<ScrmLinkDescriptor> getResultsOutput_2020ContainedLinks(
 			View view) {
-		scrm.requirements.dataProcessing.ResultsOutput modelElement = (scrm.requirements.dataProcessing.ResultsOutput) view
-				.getElement();
-		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**
@@ -526,12 +511,7 @@ public class ScrmDiagramUpdater {
 	 */
 	public static List<ScrmLinkDescriptor> getErrorHandling_2021ContainedLinks(
 			View view) {
-		scrm.requirements.dataProcessing.ErrorHandling modelElement = (scrm.requirements.dataProcessing.ErrorHandling) view
-				.getElement();
-		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**
@@ -539,12 +519,7 @@ public class ScrmDiagramUpdater {
 	 */
 	public static List<ScrmLinkDescriptor> getStatusMonitoring_2022ContainedLinks(
 			View view) {
-		scrm.requirements.dataProcessing.StatusMonitoring modelElement = (scrm.requirements.dataProcessing.StatusMonitoring) view
-				.getElement();
-		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Requirement_4036(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**
@@ -797,18 +772,7 @@ public class ScrmDiagramUpdater {
 	 */
 	public static List<ScrmLinkDescriptor> getInputDataReading_2018IncomingLinks(
 			View view) {
-		scrm.requirements.dataProcessing.InputDataReading modelElement = (scrm.requirements.dataProcessing.InputDataReading) view
-				.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
-				.find(view.eResource().getResourceSet().getResources());
-		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
-				modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Requirement_4036(
-				modelElement, crossReferences));
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**
@@ -816,18 +780,7 @@ public class ScrmDiagramUpdater {
 	 */
 	public static List<ScrmLinkDescriptor> getDataHandling_2019IncomingLinks(
 			View view) {
-		scrm.requirements.dataProcessing.DataHandling modelElement = (scrm.requirements.dataProcessing.DataHandling) view
-				.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
-				.find(view.eResource().getResourceSet().getResources());
-		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
-				modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Requirement_4036(
-				modelElement, crossReferences));
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**
@@ -835,18 +788,7 @@ public class ScrmDiagramUpdater {
 	 */
 	public static List<ScrmLinkDescriptor> getResultsOutput_2020IncomingLinks(
 			View view) {
-		scrm.requirements.dataProcessing.ResultsOutput modelElement = (scrm.requirements.dataProcessing.ResultsOutput) view
-				.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
-				.find(view.eResource().getResourceSet().getResources());
-		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
-				modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Requirement_4036(
-				modelElement, crossReferences));
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**
@@ -854,18 +796,7 @@ public class ScrmDiagramUpdater {
 	 */
 	public static List<ScrmLinkDescriptor> getErrorHandling_2021IncomingLinks(
 			View view) {
-		scrm.requirements.dataProcessing.ErrorHandling modelElement = (scrm.requirements.dataProcessing.ErrorHandling) view
-				.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
-				.find(view.eResource().getResourceSet().getResources());
-		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
-				modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Requirement_4036(
-				modelElement, crossReferences));
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**
@@ -873,18 +804,7 @@ public class ScrmDiagramUpdater {
 	 */
 	public static List<ScrmLinkDescriptor> getStatusMonitoring_2022IncomingLinks(
 			View view) {
-		scrm.requirements.dataProcessing.StatusMonitoring modelElement = (scrm.requirements.dataProcessing.StatusMonitoring) view
-				.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
-				.find(view.eResource().getResourceSet().getResources());
-		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_RealizingRequirement_4016(
-				modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Feature_DetailedRequirements_4027(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Requirement_4036(
-				modelElement, crossReferences));
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**
@@ -1084,12 +1004,7 @@ public class ScrmDiagramUpdater {
 	 */
 	public static List<ScrmLinkDescriptor> getInputDataReading_2018OutgoingLinks(
 			View view) {
-		scrm.requirements.dataProcessing.InputDataReading modelElement = (scrm.requirements.dataProcessing.InputDataReading) view
-				.getElement();
-		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**
@@ -1097,12 +1012,7 @@ public class ScrmDiagramUpdater {
 	 */
 	public static List<ScrmLinkDescriptor> getDataHandling_2019OutgoingLinks(
 			View view) {
-		scrm.requirements.dataProcessing.DataHandling modelElement = (scrm.requirements.dataProcessing.DataHandling) view
-				.getElement();
-		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**
@@ -1110,12 +1020,7 @@ public class ScrmDiagramUpdater {
 	 */
 	public static List<ScrmLinkDescriptor> getResultsOutput_2020OutgoingLinks(
 			View view) {
-		scrm.requirements.dataProcessing.ResultsOutput modelElement = (scrm.requirements.dataProcessing.ResultsOutput) view
-				.getElement();
-		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**
@@ -1123,12 +1028,7 @@ public class ScrmDiagramUpdater {
 	 */
 	public static List<ScrmLinkDescriptor> getErrorHandling_2021OutgoingLinks(
 			View view) {
-		scrm.requirements.dataProcessing.ErrorHandling modelElement = (scrm.requirements.dataProcessing.ErrorHandling) view
-				.getElement();
-		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**
@@ -1136,12 +1036,7 @@ public class ScrmDiagramUpdater {
 	 */
 	public static List<ScrmLinkDescriptor> getStatusMonitoring_2022OutgoingLinks(
 			View view) {
-		scrm.requirements.dataProcessing.StatusMonitoring modelElement = (scrm.requirements.dataProcessing.StatusMonitoring) view
-				.getElement();
-		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Requirement_4036(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_DefiningData_4038(modelElement));
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**

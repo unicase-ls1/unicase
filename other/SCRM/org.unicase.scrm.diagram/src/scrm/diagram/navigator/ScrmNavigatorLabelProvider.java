@@ -143,123 +143,123 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 	 */
 	public Image getImage(View view) {
 		switch (ScrmVisualIDRegistry.getVisualID(view)) {
-		case MathematicalModelEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/knowledge?MathematicalModel", ScrmElementTypes.MathematicalModel_2005); //$NON-NLS-1$
-		case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/knowledge?ScientificProblem?representingModel", ScrmElementTypes.ScientificProblemRepresentingModel_4006); //$NON-NLS-1$
-		case NumericalMethodRealizingRequirementEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/knowledge?NumericalMethod?realizingRequirement", ScrmElementTypes.NumericalMethodRealizingRequirement_4016); //$NON-NLS-1$
-		case InputDataReadingEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements/dataProcessing?InputDataReading", ScrmElementTypes.InputDataReading_2018); //$NON-NLS-1$
-		case FeatureDetailedRequirementsEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?detailedRequirements", ScrmElementTypes.FeatureDetailedRequirements_4027); //$NON-NLS-1$
-		case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/knowledge?ScientificProblem?solvingMethods", ScrmElementTypes.ScientificProblemSolvingMethods_4041); //$NON-NLS-1$
-		case MathematicalModelNumericalMethodsEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/knowledge?MathematicalModel?numericalMethods", ScrmElementTypes.MathematicalModelNumericalMethods_4011); //$NON-NLS-1$
-		case NumericalMethodPerformanceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/knowledge?NumericalMethod?performance", ScrmElementTypes.NumericalMethodPerformance_4017); //$NON-NLS-1$
-		case NumericalMethodDependenciesEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/knowledge?NumericalMethod?dependencies", ScrmElementTypes.NumericalMethodDependencies_4015); //$NON-NLS-1$
-		case FeatureConstraintsEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?constraints", ScrmElementTypes.FeatureConstraints_4025); //$NON-NLS-1$
-		case ScientificProblemEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/knowledge?ScientificProblem", ScrmElementTypes.ScientificProblem_2007); //$NON-NLS-1$
-		case FeatureRequiredFeaturesEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?requiredFeatures", ScrmElementTypes.FeatureRequiredFeatures_4030); //$NON-NLS-1$
 		case UserInterfaceEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?UserInterface", ScrmElementTypes.UserInterface_2012); //$NON-NLS-1$
-		case FeatureProvidedInterfacesEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?providedInterfaces", ScrmElementTypes.FeatureProvidedInterfaces_4024); //$NON-NLS-1$
-		case StatusMonitoringEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements/dataProcessing?StatusMonitoring", ScrmElementTypes.StatusMonitoring_2022); //$NON-NLS-1$
-		case ConstraintEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?Constraint", ScrmElementTypes.Constraint_2011); //$NON-NLS-1$
-		case SCRMDiagramEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Diagram?http://unicase.org/model/scrm?SCRMDiagram", ScrmElementTypes.SCRMDiagram_1000); //$NON-NLS-1$
-		case MathematicalModel2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/knowledge?MathematicalModel", ScrmElementTypes.MathematicalModel_4004); //$NON-NLS-1$
-		case HardwareEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?Hardware", ScrmElementTypes.Hardware_2010); //$NON-NLS-1$
-		case ResultsOutputEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements/dataProcessing?ResultsOutput", ScrmElementTypes.ResultsOutput_2020); //$NON-NLS-1$
-		case DataDefinitionEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?DataDefinition", ScrmElementTypes.DataDefinition_2017); //$NON-NLS-1$
-		case AssumptionEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/knowledge?Assumption", ScrmElementTypes.Assumption_2008); //$NON-NLS-1$
-		case ProcessDataFlowEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/requirements?Process?dataFlow", ScrmElementTypes.ProcessDataFlow_4040); //$NON-NLS-1$
-		case FeatureExcludedFeaturesEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?excludedFeatures", ScrmElementTypes.FeatureExcludedFeatures_4032); //$NON-NLS-1$
-		case Feature2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature", ScrmElementTypes.Feature_4029); //$NON-NLS-1$
-		case DataHandlingEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements/dataProcessing?DataHandling", ScrmElementTypes.DataHandling_2019); //$NON-NLS-1$
-		case FeatureDependenciesEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?dependencies", ScrmElementTypes.FeatureDependencies_4026); //$NON-NLS-1$
-		case DataFlowEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?DataFlow", ScrmElementTypes.DataFlow_2016); //$NON-NLS-1$
-		case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/knowledge?ScientificProblem?influencedFeature", ScrmElementTypes.ScientificProblemInfluencedFeature_4008); //$NON-NLS-1$
-		case SoftwareInterfaceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?SoftwareInterface", ScrmElementTypes.SoftwareInterface_2013); //$NON-NLS-1$
-		case FeatureEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?Feature", ScrmElementTypes.Feature_2009); //$NON-NLS-1$
-		case MathematicalModelDependenciesEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/knowledge?MathematicalModel?dependencies", ScrmElementTypes.MathematicalModelDependencies_4012); //$NON-NLS-1$
 		case RequirementEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://unicase.org/model/scrm/requirements?Requirement", ScrmElementTypes.Requirement_4036); //$NON-NLS-1$
-		case RequirementDefiningDataEditPart.VISUAL_ID:
+		case FeatureExcludedFeaturesEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/requirements?Requirement?definingData", ScrmElementTypes.RequirementDefiningData_4038); //$NON-NLS-1$
-		case FeatureRequiredInterfacesEditPart.VISUAL_ID:
+					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?excludedFeatures", ScrmElementTypes.FeatureExcludedFeatures_4032); //$NON-NLS-1$
+		case FeatureConstraintsEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?requiredInterfaces", ScrmElementTypes.FeatureRequiredInterfaces_4023); //$NON-NLS-1$
-		case NumericalMethodEditPart.VISUAL_ID:
+					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?constraints", ScrmElementTypes.FeatureConstraints_4025); //$NON-NLS-1$
+		case MathematicalModelEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/knowledge?NumericalMethod", ScrmElementTypes.NumericalMethod_2006); //$NON-NLS-1$
-		case PerformanceEditPart.VISUAL_ID:
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/knowledge?MathematicalModel", ScrmElementTypes.MathematicalModel_2005); //$NON-NLS-1$
+		case StatusMonitoringEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?Performance", ScrmElementTypes.Performance_2015); //$NON-NLS-1$
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/dataProcessing?StatusMonitoring", ScrmElementTypes.StatusMonitoring_2022); //$NON-NLS-1$
+		case NumericalMethodPerformanceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/knowledge?NumericalMethod?performance", ScrmElementTypes.NumericalMethodPerformance_4017); //$NON-NLS-1$
+		case Feature2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature", ScrmElementTypes.Feature_4029); //$NON-NLS-1$
+		case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/knowledge?ScientificProblem?solvingMethods", ScrmElementTypes.ScientificProblemSolvingMethods_4041); //$NON-NLS-1$
+		case NumericalMethodRealizingRequirementEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/knowledge?NumericalMethod?realizingRequirement", ScrmElementTypes.NumericalMethodRealizingRequirement_4016); //$NON-NLS-1$
+		case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/knowledge?ScientificProblem?influencedFeature", ScrmElementTypes.ScientificProblemInfluencedFeature_4008); //$NON-NLS-1$
+		case FeatureDependenciesEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?dependencies", ScrmElementTypes.FeatureDependencies_4026); //$NON-NLS-1$
+		case AssumptionEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/knowledge?Assumption", ScrmElementTypes.Assumption_2008); //$NON-NLS-1$
+		case FeatureProvidedInterfacesEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?providedInterfaces", ScrmElementTypes.FeatureProvidedInterfaces_4024); //$NON-NLS-1$
+		case MathematicalModelNumericalMethodsEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/knowledge?MathematicalModel?numericalMethods", ScrmElementTypes.MathematicalModelNumericalMethods_4011); //$NON-NLS-1$
+		case SCRMDiagramEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Diagram?http://unicase.org/model/scrm?SCRMDiagram", ScrmElementTypes.SCRMDiagram_1000); //$NON-NLS-1$
+		case ScientificProblemEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/knowledge?ScientificProblem", ScrmElementTypes.ScientificProblem_2007); //$NON-NLS-1$
 		case ProcessEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?Process", ScrmElementTypes.Process_2014); //$NON-NLS-1$
+		case ProcessDataFlowEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/requirements?Process?dataFlow", ScrmElementTypes.ProcessDataFlow_4040); //$NON-NLS-1$
+		case FeatureEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?Feature", ScrmElementTypes.Feature_2009); //$NON-NLS-1$
+		case HardwareEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?Hardware", ScrmElementTypes.Hardware_2010); //$NON-NLS-1$
+		case ConstraintEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?Constraint", ScrmElementTypes.Constraint_2011); //$NON-NLS-1$
+		case DataDefinitionEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?DataDefinition", ScrmElementTypes.DataDefinition_2017); //$NON-NLS-1$
+		case PerformanceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?Performance", ScrmElementTypes.Performance_2015); //$NON-NLS-1$
+		case NumericalMethodEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/knowledge?NumericalMethod", ScrmElementTypes.NumericalMethod_2006); //$NON-NLS-1$
+		case RequirementDefiningDataEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/requirements?Requirement?definingData", ScrmElementTypes.RequirementDefiningData_4038); //$NON-NLS-1$
+		case DataHandlingEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/dataProcessing?DataHandling", ScrmElementTypes.DataHandling_2019); //$NON-NLS-1$
 		case ErrorHandlingEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements/dataProcessing?ErrorHandling", ScrmElementTypes.ErrorHandling_2021); //$NON-NLS-1$
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/dataProcessing?ErrorHandling", ScrmElementTypes.ErrorHandling_2021); //$NON-NLS-1$
+		case InputDataReadingEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/dataProcessing?InputDataReading", ScrmElementTypes.InputDataReading_2018); //$NON-NLS-1$
+		case FeatureRequiredInterfacesEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?requiredInterfaces", ScrmElementTypes.FeatureRequiredInterfaces_4023); //$NON-NLS-1$
+		case FeatureDetailedRequirementsEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?detailedRequirements", ScrmElementTypes.FeatureDetailedRequirements_4027); //$NON-NLS-1$
+		case ResultsOutputEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/dataProcessing?ResultsOutput", ScrmElementTypes.ResultsOutput_2020); //$NON-NLS-1$
+		case SoftwareInterfaceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?SoftwareInterface", ScrmElementTypes.SoftwareInterface_2013); //$NON-NLS-1$
+		case NumericalMethodDependenciesEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/knowledge?NumericalMethod?dependencies", ScrmElementTypes.NumericalMethodDependencies_4015); //$NON-NLS-1$
+		case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/knowledge?ScientificProblem?representingModel", ScrmElementTypes.ScientificProblemRepresentingModel_4006); //$NON-NLS-1$
+		case FeatureRequiredFeaturesEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/requirements?Feature?requiredFeatures", ScrmElementTypes.FeatureRequiredFeatures_4030); //$NON-NLS-1$
+		case MathematicalModel2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/knowledge?MathematicalModel", ScrmElementTypes.MathematicalModel_4004); //$NON-NLS-1$
+		case DataFlowEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://unicase.org/model/scrm/requirements?DataFlow", ScrmElementTypes.DataFlow_2016); //$NON-NLS-1$
+		case MathematicalModelDependenciesEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/scrm/knowledge?MathematicalModel?dependencies", ScrmElementTypes.MathematicalModelDependencies_4012); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -312,84 +312,84 @@ public class ScrmNavigatorLabelProvider extends LabelProvider implements
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch (ScrmVisualIDRegistry.getVisualID(view)) {
-		case MathematicalModelEditPart.VISUAL_ID:
-			return getMathematicalModel_2005Text(view);
-		case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
-			return getScientificProblemRepresentingModel_4006Text(view);
-		case NumericalMethodRealizingRequirementEditPart.VISUAL_ID:
-			return getNumericalMethodRealizingRequirement_4016Text(view);
-		case InputDataReadingEditPart.VISUAL_ID:
-			return getInputDataReading_2018Text(view);
-		case FeatureDetailedRequirementsEditPart.VISUAL_ID:
-			return getFeatureDetailedRequirements_4027Text(view);
-		case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
-			return getScientificProblemSolvingMethods_4041Text(view);
-		case MathematicalModelNumericalMethodsEditPart.VISUAL_ID:
-			return getMathematicalModelNumericalMethods_4011Text(view);
-		case NumericalMethodPerformanceEditPart.VISUAL_ID:
-			return getNumericalMethodPerformance_4017Text(view);
-		case NumericalMethodDependenciesEditPart.VISUAL_ID:
-			return getNumericalMethodDependencies_4015Text(view);
-		case FeatureConstraintsEditPart.VISUAL_ID:
-			return getFeatureConstraints_4025Text(view);
-		case ScientificProblemEditPart.VISUAL_ID:
-			return getScientificProblem_2007Text(view);
-		case FeatureRequiredFeaturesEditPart.VISUAL_ID:
-			return getFeatureRequiredFeatures_4030Text(view);
 		case UserInterfaceEditPart.VISUAL_ID:
 			return getUserInterface_2012Text(view);
-		case FeatureProvidedInterfacesEditPart.VISUAL_ID:
-			return getFeatureProvidedInterfaces_4024Text(view);
-		case StatusMonitoringEditPart.VISUAL_ID:
-			return getStatusMonitoring_2022Text(view);
-		case ConstraintEditPart.VISUAL_ID:
-			return getConstraint_2011Text(view);
-		case SCRMDiagramEditPart.VISUAL_ID:
-			return getSCRMDiagram_1000Text(view);
-		case MathematicalModel2EditPart.VISUAL_ID:
-			return getMathematicalModel_4004Text(view);
-		case HardwareEditPart.VISUAL_ID:
-			return getHardware_2010Text(view);
-		case ResultsOutputEditPart.VISUAL_ID:
-			return getResultsOutput_2020Text(view);
-		case DataDefinitionEditPart.VISUAL_ID:
-			return getDataDefinition_2017Text(view);
-		case AssumptionEditPart.VISUAL_ID:
-			return getAssumption_2008Text(view);
-		case ProcessDataFlowEditPart.VISUAL_ID:
-			return getProcessDataFlow_4040Text(view);
-		case FeatureExcludedFeaturesEditPart.VISUAL_ID:
-			return getFeatureExcludedFeatures_4032Text(view);
-		case Feature2EditPart.VISUAL_ID:
-			return getFeature_4029Text(view);
-		case DataHandlingEditPart.VISUAL_ID:
-			return getDataHandling_2019Text(view);
-		case FeatureDependenciesEditPart.VISUAL_ID:
-			return getFeatureDependencies_4026Text(view);
-		case DataFlowEditPart.VISUAL_ID:
-			return getDataFlow_2016Text(view);
-		case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID:
-			return getScientificProblemInfluencedFeature_4008Text(view);
-		case SoftwareInterfaceEditPart.VISUAL_ID:
-			return getSoftwareInterface_2013Text(view);
-		case FeatureEditPart.VISUAL_ID:
-			return getFeature_2009Text(view);
-		case MathematicalModelDependenciesEditPart.VISUAL_ID:
-			return getMathematicalModelDependencies_4012Text(view);
 		case RequirementEditPart.VISUAL_ID:
 			return getRequirement_4036Text(view);
-		case RequirementDefiningDataEditPart.VISUAL_ID:
-			return getRequirementDefiningData_4038Text(view);
-		case FeatureRequiredInterfacesEditPart.VISUAL_ID:
-			return getFeatureRequiredInterfaces_4023Text(view);
-		case NumericalMethodEditPart.VISUAL_ID:
-			return getNumericalMethod_2006Text(view);
-		case PerformanceEditPart.VISUAL_ID:
-			return getPerformance_2015Text(view);
+		case FeatureExcludedFeaturesEditPart.VISUAL_ID:
+			return getFeatureExcludedFeatures_4032Text(view);
+		case FeatureConstraintsEditPart.VISUAL_ID:
+			return getFeatureConstraints_4025Text(view);
+		case MathematicalModelEditPart.VISUAL_ID:
+			return getMathematicalModel_2005Text(view);
+		case StatusMonitoringEditPart.VISUAL_ID:
+			return getStatusMonitoring_2022Text(view);
+		case NumericalMethodPerformanceEditPart.VISUAL_ID:
+			return getNumericalMethodPerformance_4017Text(view);
+		case Feature2EditPart.VISUAL_ID:
+			return getFeature_4029Text(view);
+		case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
+			return getScientificProblemSolvingMethods_4041Text(view);
+		case NumericalMethodRealizingRequirementEditPart.VISUAL_ID:
+			return getNumericalMethodRealizingRequirement_4016Text(view);
+		case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID:
+			return getScientificProblemInfluencedFeature_4008Text(view);
+		case FeatureDependenciesEditPart.VISUAL_ID:
+			return getFeatureDependencies_4026Text(view);
+		case AssumptionEditPart.VISUAL_ID:
+			return getAssumption_2008Text(view);
+		case FeatureProvidedInterfacesEditPart.VISUAL_ID:
+			return getFeatureProvidedInterfaces_4024Text(view);
+		case MathematicalModelNumericalMethodsEditPart.VISUAL_ID:
+			return getMathematicalModelNumericalMethods_4011Text(view);
+		case SCRMDiagramEditPart.VISUAL_ID:
+			return getSCRMDiagram_1000Text(view);
+		case ScientificProblemEditPart.VISUAL_ID:
+			return getScientificProblem_2007Text(view);
 		case ProcessEditPart.VISUAL_ID:
 			return getProcess_2014Text(view);
+		case ProcessDataFlowEditPart.VISUAL_ID:
+			return getProcessDataFlow_4040Text(view);
+		case FeatureEditPart.VISUAL_ID:
+			return getFeature_2009Text(view);
+		case HardwareEditPart.VISUAL_ID:
+			return getHardware_2010Text(view);
+		case ConstraintEditPart.VISUAL_ID:
+			return getConstraint_2011Text(view);
+		case DataDefinitionEditPart.VISUAL_ID:
+			return getDataDefinition_2017Text(view);
+		case PerformanceEditPart.VISUAL_ID:
+			return getPerformance_2015Text(view);
+		case NumericalMethodEditPart.VISUAL_ID:
+			return getNumericalMethod_2006Text(view);
+		case RequirementDefiningDataEditPart.VISUAL_ID:
+			return getRequirementDefiningData_4038Text(view);
+		case DataHandlingEditPart.VISUAL_ID:
+			return getDataHandling_2019Text(view);
 		case ErrorHandlingEditPart.VISUAL_ID:
 			return getErrorHandling_2021Text(view);
+		case InputDataReadingEditPart.VISUAL_ID:
+			return getInputDataReading_2018Text(view);
+		case FeatureRequiredInterfacesEditPart.VISUAL_ID:
+			return getFeatureRequiredInterfaces_4023Text(view);
+		case FeatureDetailedRequirementsEditPart.VISUAL_ID:
+			return getFeatureDetailedRequirements_4027Text(view);
+		case ResultsOutputEditPart.VISUAL_ID:
+			return getResultsOutput_2020Text(view);
+		case SoftwareInterfaceEditPart.VISUAL_ID:
+			return getSoftwareInterface_2013Text(view);
+		case NumericalMethodDependenciesEditPart.VISUAL_ID:
+			return getNumericalMethodDependencies_4015Text(view);
+		case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
+			return getScientificProblemRepresentingModel_4006Text(view);
+		case FeatureRequiredFeaturesEditPart.VISUAL_ID:
+			return getFeatureRequiredFeatures_4030Text(view);
+		case MathematicalModel2EditPart.VISUAL_ID:
+			return getMathematicalModel_4004Text(view);
+		case DataFlowEditPart.VISUAL_ID:
+			return getDataFlow_2016Text(view);
+		case MathematicalModelDependenciesEditPart.VISUAL_ID:
+			return getMathematicalModelDependencies_4012Text(view);
 		}
 		return getUnknownElementText(view);
 	}
