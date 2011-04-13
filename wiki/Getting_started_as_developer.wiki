@@ -48,7 +48,7 @@ We currently use the following development tools:
 
 5. Configure Java and Checkstyle warnings as described in [http://code.google.com/p/unicase/wiki/Coding_Guidelines Coding Guidelines].
 
-6. Start the UNICASE server from Eclipse, see this [http://code.google.com/p/unicase/wiki/RunServerTutorial video tutorial].
+6. Start the UNICASE server from Eclipse, see this [http://code.google.com/p/unicase/wiki/RunEMFStoreWithCustomModel video tutorial][http://code.google.com/p/unicase/wiki/RunServerTutorial video tutorial].
 
 7. Start the UNICASE client from Eclipse, see this [http://code.google.com/p/unicase/wiki/RunClientTutorial video tutorial].
 
