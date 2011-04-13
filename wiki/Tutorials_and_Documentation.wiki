@@ -1,5 +1,8 @@
 This wiki page contains various tutorials and documentation for UNICASE development and certain features. 
 
+How Tos for Coding:
+
+
 How Tos for Modeling:
  * [UNICASE_Diagram_Editor_Document How to create a custom diagram editor in UNICASE based on GMF]<br>
  * [Generating_code_from_UNICASE_class_model How to create a custom model/generate code from a UNICASE class model]
