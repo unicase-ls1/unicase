@@ -120,24 +120,18 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 
 			public void projectChanged() {
 				Display.getDefault().asyncExec(new Runnable() {
-
 					public void run() {
-
 						viewer.refresh();
 					}
-
 				});
-
 			}
 
 			public void modelelementDeleted(EObject eobject) {
-				// Do nothing
-
+				projectChanged();
 			}
 
 			public void projectDeleted() {
-				// Do nothing
-
+				projectChanged();
 			}
 		};
 	}

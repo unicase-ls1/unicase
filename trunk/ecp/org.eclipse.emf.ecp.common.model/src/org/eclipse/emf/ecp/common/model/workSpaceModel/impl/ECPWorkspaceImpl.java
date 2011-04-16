@@ -233,8 +233,9 @@ public class ECPWorkspaceImpl extends EObjectImpl implements ECPWorkspace {
 	}
 
 	public void setActiveModelelement(EObject eobject) {
-		// TODO Auto-generated method stub
-
+		if(eobject instanceof ECPProject) {
+			setActiveProject((ECPProject) eobject);
+		}
 	}
 
 	public void setEditingDomain(EditingDomain editingDomain) {
