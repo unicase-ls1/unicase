@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.emf.emfstore.teamprovider.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.unicase.emfstore.jdt.ui.Activator
+Bundle-Activator: org.eclipse.emf.emfstore.teamprovider.ui.Activator
 Require-Bundle: org.eclipse.emf.emfstore.teamprovider,
  org.eclipse.emf.ecore.editor,
  org.eclipse.emf.codegen.ecore,
@@ -13,5 +13,5 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Import-Package: org.eclipse.emf.codegen.ecore.genmodel.presentation
 Bundle-Vendor: %providerName
-Export-Package: org.unicase.emfstore.jdt.ui,
- org.unicase.emfstore.jdt.ui.decorator
+Export-Package: org.eclipse.emf.emfstore.teamprovider.ui,
+ org.eclipse.emf.emfstore.teamprovider.ui.decorator
