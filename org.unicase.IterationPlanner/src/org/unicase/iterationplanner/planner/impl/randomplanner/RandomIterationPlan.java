@@ -34,7 +34,11 @@ public class RandomIterationPlan implements IIterationPlan {
 	public IIterationPlan clone(){
 		RandomIterationPlan clone = new RandomIterationPlan(this.numOfIterations, this.numOfTasks, this.assigneeAvailabilityManager);
 		for(IPlannedTask plannedTask : this.plannedTasks){
-			clone.addPlannedTask(plannedTask.clone());
+			try {
+				clone.addPlannedTask(plannedTask.clone());
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}
 		}
 		return clone;
 	}

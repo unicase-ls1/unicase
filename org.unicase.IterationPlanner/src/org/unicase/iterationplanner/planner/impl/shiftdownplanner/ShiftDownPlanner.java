@@ -150,8 +150,16 @@ public class ShiftDownPlanner extends AbstractPlanner {
 		c1.setCrossover(true);
 		c2.setCrossover(true);
 		for(IPlannedTask pt : plannedTasksForI0){
-			c1.addPlannedTask(pt.clone());
-			c2.addPlannedTask(pt.clone());
+			try {
+				c1.addPlannedTask(pt.clone());
+			} catch (CloneNotSupportedException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				c2.addPlannedTask(pt.clone());
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		

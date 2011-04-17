@@ -323,6 +323,9 @@ public class PlannerUtil {
 		Set<IPlannedTask> union = new HashSet<IPlannedTask>();
 		Set<IPlannedTask> duplicates = new HashSet<IPlannedTask>();
 		union.addAll(plannedTasks1);
+		for(IPlannedTask pt : plannedTasks2){
+			
+		}
 		union.addAll(plannedTasks2);
 		for(IPlannedTask pt1 : union){
 			for(IPlannedTask pt2 : union){

@@ -154,8 +154,16 @@ public class RandomPlanner extends AbstractPlanner {
 		RandomIterationPlan c1 = new RandomIterationPlan(clone1.getNumOfIterations(), getTaskPotentialAssigneeListMap().keySet().size(), getAssigneeAvailabilityManager());
 		RandomIterationPlan c2 = new RandomIterationPlan(clone2.getNumOfIterations(), getTaskPotentialAssigneeListMap().keySet().size(), getAssigneeAvailabilityManager());
 		for(IPlannedTask pt : plannedTasksForI0){
-			c1.addPlannedTask(pt.clone());
-			c2.addPlannedTask(pt.clone());
+			try {
+				c1.addPlannedTask(pt.clone());
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}
+			try {
+				c2.addPlannedTask(pt.clone());
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		

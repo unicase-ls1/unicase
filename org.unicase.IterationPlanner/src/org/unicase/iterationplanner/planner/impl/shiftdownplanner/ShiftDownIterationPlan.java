@@ -53,7 +53,12 @@ public class ShiftDownIterationPlan implements IIterationPlan {
 		this.checkAllInvariants();
 		ShiftDownIterationPlan clone = new ShiftDownIterationPlan(this.numOfIterations, this.numOfTasks, this.assigneeAvailabilityManager);
 		for(IPlannedTask plannedTask : this.plannedTasks){
-			clone.addPlannedTask(plannedTask.clone());
+			try {
+				clone.addPlannedTask(plannedTask.clone());
+			} catch (CloneNotSupportedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		clone.checkAllInvariants();
 		return clone;

@@ -2,6 +2,7 @@ package org.unicase.iterationplanner.planner.impl.shiftdownplanner;
 
 import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
 import org.unicase.iterationplanner.assigneeRecommender.ITask;
+import org.unicase.iterationplanner.planner.AbstractPlannedTask;
 import org.unicase.iterationplanner.planner.IPlannedTask;
 
 
@@ -12,7 +13,7 @@ import org.unicase.iterationplanner.planner.IPlannedTask;
  * 
  * @author zardosht
  */
-public class ShiftDownPlannedTask implements IPlannedTask {
+public class ShiftDownPlannedTask extends AbstractPlannedTask  {
 	private final ITask task;
 	private AssigneeExpertise assigneeExpertise;
 	private int iterationNumber = -1;
@@ -42,6 +43,7 @@ public class ShiftDownPlannedTask implements IPlannedTask {
 		return this.clonning;
 	}
 
+	@Override
 	public ITask getTask() {
 		return task;
 	}
@@ -57,13 +59,8 @@ public class ShiftDownPlannedTask implements IPlannedTask {
 		}
 	}
 
-	@Override
-	public String toString() {
-		String result = "Iteration: " + iterationNumber + " ---> " + assigneeExpertise.getAssignee().toString()
-			+ " ---> " + task.getName() + " (Obejct: " + super.toString() + ")";
-		return result;
-	}
 
+	@Override
 	public AssigneeExpertise getAssigneeExpertise() {
 		return assigneeExpertise;
 	}
@@ -73,6 +70,7 @@ public class ShiftDownPlannedTask implements IPlannedTask {
 		this.iterationNumber = iterationNumber;
 	}
 
+	@Override
 	public int getIterationNumber() {
 		return iterationNumber;
 	}
@@ -100,9 +98,13 @@ public class ShiftDownPlannedTask implements IPlannedTask {
 	}
 
 	
+	
+	
+
 	/**
 	 * true if Tasks in both instances are equal.
 	 */
+	@Override
 	public boolean equalsTask(Object obj) {
 		if (!(obj instanceof ShiftDownPlannedTask)) {
 			return false;
@@ -120,6 +122,7 @@ public class ShiftDownPlannedTask implements IPlannedTask {
 	 * 
 	 * @param evaluateExperties
 	 */
+	@Override
 	public void setEvaluateExperties(boolean evaluateExperties) {
 		this.evaluateExperties = evaluateExperties;
 	}
@@ -130,6 +133,7 @@ public class ShiftDownPlannedTask implements IPlannedTask {
 	 * 
 	 * @return
 	 */
+	@Override
 	public boolean isEvaluateExpertise() {
 		return evaluateExperties;
 	}
