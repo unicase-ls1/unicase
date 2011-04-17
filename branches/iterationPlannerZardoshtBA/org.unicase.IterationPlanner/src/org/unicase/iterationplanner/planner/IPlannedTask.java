@@ -5,7 +5,7 @@ import org.unicase.iterationplanner.assigneeRecommender.ITask;
 
 public interface IPlannedTask {
 
-	IPlannedTask clone();
+	IPlannedTask clone() throws CloneNotSupportedException;
 
 	ITask getTask();
 
@@ -19,6 +19,13 @@ public interface IPlannedTask {
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	boolean equals(Object obj);
+	
+	
+	/**
+	 * If two PlannedTask objects are equal (equals() method returns true for them) then their hashCode must be identical.
+	 * @return
+	 */
+	int hashCode();
 
 	/**
 	 * true if Tasks in both instances are equal.
