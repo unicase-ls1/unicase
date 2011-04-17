@@ -27,8 +27,8 @@ Of course you can also send direct email to one of the project leads:
 
 <img src="http://unicase.googlecode.com/files/jonas.jpg" height =210 />
 
-[mailto:helming@in.tum.de Jonas]
+[mailto:jonas@emfcp.org Jonas]
 
 [http://www1.in.tum.de/MaximilianKoegel http://unicase.googlecode.com/files/img_3999_small.jpg]
 
-[mailto:koegel@headstrong.de Maximilian]
+[mailto:maximilian@emfcp.org Maximilian]
