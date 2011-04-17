@@ -33,7 +33,7 @@ import org.eclipse.emf.emfstore.teamprovider.exception.CannotSyncFileException;
 import org.eclipse.emf.emfstore.teamprovider.exception.EntryNotFoundException;
 import org.eclipse.emf.emfstore.teamprovider.exception.NoEMFStoreTeamProviderConfigurationException;
 import org.eclipse.emf.emfstore.teamprovider.exception.NoSuitableTeamSynchronizerException;
-import org.eclipse.emf.emfstore.teamprovider.ui.decorator.EMFStoreJDTEntryDecorator;
+import org.eclipse.emf.emfstore.teamprovider.ui.decorator.EMFStoreTeamProviderEntryDecorator;
 
 /**
  * The available team provider offers to insufficient extension points. It is not possible to get be directly informed
@@ -124,7 +124,7 @@ public class WorkspaceObserver implements IResourceChangeListener {
 			ModelUtil.logException(e);
 		}
 
-		EMFStoreJDTEntryDecorator.refreshDecorator();
+		EMFStoreTeamProviderEntryDecorator.refreshDecorator();
 	}
 
 	private Set<IProject> getProjectsToSync(Collection<IFile> files) {

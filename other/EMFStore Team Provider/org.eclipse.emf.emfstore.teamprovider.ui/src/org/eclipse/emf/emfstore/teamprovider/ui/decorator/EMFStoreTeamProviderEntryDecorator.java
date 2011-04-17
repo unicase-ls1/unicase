@@ -1,10 +1,7 @@
 /*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
+ * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen. All rights
+ * reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public
+ * License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * Contributors:
  ******************************************************************************/
 package org.eclipse.emf.emfstore.teamprovider.ui.decorator;
@@ -42,12 +39,12 @@ import org.eclipse.ui.PlatformUI;
  * 
  * @author Adrian Staudt
  */
-public class EMFStoreJDTEntryDecorator extends LabelProvider implements ILightweightLabelDecorator {
+public class EMFStoreTeamProviderEntryDecorator extends LabelProvider implements ILightweightLabelDecorator {
 
 	/**
 	 * This decorator id is defined in the plugin.xml.
 	 */
-	private static final String DECORATOR_ID = "org.unicase.emfstore.jdt.ui.decorator";
+	private static final String DECORATOR_ID = "org.eclipse.emf.emfstore.teamprovider.ui.decorator";
 
 	private IDecoration decoration;
 	private ITeamSynchronizer teamSynchronizer;
@@ -79,8 +76,8 @@ public class EMFStoreJDTEntryDecorator extends LabelProvider implements ILightwe
 
 		fileToDecorate = (IFile) element;
 		try {
-			EMFStoreTeamProviderConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(fileToDecorate
-				.getProject());
+			EMFStoreTeamProviderConfiguration emfStoreJDTConfiguration = ConfigurationManager
+				.getConfiguration(fileToDecorate.getProject());
 			Entry entry = ConfigurationManager.getEntry(emfStoreJDTConfiguration, fileToDecorate);
 			if (!entry.isMarkedForDeletion()) {
 				try {

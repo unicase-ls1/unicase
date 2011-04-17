@@ -16,7 +16,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.teamprovider.configuration.ConfigurationManager;
-import org.eclipse.emf.emfstore.teamprovider.ui.decorator.EMFStoreJDTEntryDecorator;
+import org.eclipse.emf.emfstore.teamprovider.ui.decorator.EMFStoreTeamProviderEntryDecorator;
 
 /**
  * Common handler, that provides all handler the possibility to refresh the UI.
@@ -40,7 +40,7 @@ public abstract class AbstractCommanHandler extends AbstractHandler {
 			ModelUtil.logException(e);
 		}
 
-		EMFStoreJDTEntryDecorator.refreshDecorator();
+		EMFStoreTeamProviderEntryDecorator.refreshDecorator();
 	}
 
 }
