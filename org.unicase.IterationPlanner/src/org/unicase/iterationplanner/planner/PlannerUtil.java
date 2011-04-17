@@ -321,26 +321,19 @@ public class PlannerUtil {
 	 */
 	public Set<IPlannedTask> unionOnTasks(Set<IPlannedTask> plannedTasks1, Set<IPlannedTask> plannedTasks2) {
 		Set<IPlannedTask> union = new HashSet<IPlannedTask>();
-		Set<IPlannedTask> duplicates = new HashSet<IPlannedTask>();
 		union.addAll(plannedTasks1);
-		for(IPlannedTask pt : plannedTasks2){
-			
-		}
-		union.addAll(plannedTasks2);
-		for(IPlannedTask pt1 : union){
-			for(IPlannedTask pt2 : union){
-				if(!pt1.equals(pt2) && pt1.equalsTask(pt2)){
-					// set the ShiftDownPlannedTask with higher AssigneeExpertise for deletion
-					if(pt1.getAssigneeExpertise().getExpertise() > pt2.getAssigneeExpertise().getExpertise()){
-						duplicates.add(pt1);
-					}else{
-						duplicates.add(pt2);
-					}
+		for(IPlannedTask pt2 : plannedTasks2){
+			boolean exists = false;
+			for(IPlannedTask unionPt : union){
+				if(pt2.equalsTask(unionPt)){
+					exists = true;
+					break;
 				}
 			}
-			
+			if(!exists){
+				union.add(pt2);
+			}
 		}
-		union.removeAll(duplicates);
 		return union; 
 	}
 
@@ -353,44 +346,19 @@ public class PlannerUtil {
 	 */
 	public Set<IPlannedTask> subtractOnTasks(Set<IPlannedTask> fromSet, Set<IPlannedTask> subtractSet) {
 		Set<IPlannedTask> result = new HashSet<IPlannedTask>();
+		Set<IPlannedTask> remove = new HashSet<IPlannedTask>();
 		result.addAll(fromSet);
-		
-		//remove from fromSet the intersection of fromSet and subtractSet
-		for(IPlannedTask ptInFromSet : fromSet){
-			for(IPlannedTask ptInSubtractSet : subtractSet){
-				if(ptInFromSet.equalsTask(ptInSubtractSet)){
-					result.remove(ptInFromSet);
+		for(IPlannedTask subtractPt : subtractSet){
+			for(IPlannedTask pt : result){
+				if(subtractPt.equalsTask(pt)){
+					remove.add(pt);
+					break;
 				}
 			}
 		}
+		result.removeAll(remove);
 		return result; 
 	}
 	
-	/**
-	 * Returns the intersection of two PlannedTasks in set1 and set2.
-	 * The ShiftDownPlannedTask instance that is added to result is the one whose AssigneeExpertise have a less 
-	 * value of Expertise. This decision is made to add more variety in resulting sets of PlannedTasks and 
-	 * helps avoiding early convergence of populations.
-	 * 
-	 * @param set1
-	 * @param set2
-	 * @return
-	 */
-	public Set<ShiftDownPlannedTask> intersectOnTasks(Set<ShiftDownPlannedTask> set1, Set<ShiftDownPlannedTask> set2){
-		Set<ShiftDownPlannedTask> intersection = new HashSet<ShiftDownPlannedTask>();
-		// find those planned tasks that have equal tasks
-		for(ShiftDownPlannedTask pt1 : set1){
-			for(ShiftDownPlannedTask pt2 : set2){
-				if(pt1.equalsTask(pt2)){
-					if(pt1.getAssigneeExpertise().getExpertise() < pt2.getAssigneeExpertise().getExpertise()){
-						intersection.add(pt1);
-					}else{
-						intersection.add(pt2);
-					}
-				}
-			}
-		}
-		return intersection;
-	}
 
 }

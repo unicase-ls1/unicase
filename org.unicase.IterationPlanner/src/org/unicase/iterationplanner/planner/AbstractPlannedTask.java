@@ -10,7 +10,7 @@ public abstract class AbstractPlannedTask implements IPlannedTask {
 
 	@Override
 	public int hashCode() {
-		return this.toString().hashCode();
+		return this.getTask().getName().hashCode();
 	}
 
 	@Override
