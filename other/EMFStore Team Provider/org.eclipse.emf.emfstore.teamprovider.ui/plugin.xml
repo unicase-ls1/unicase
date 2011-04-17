@@ -28,7 +28,7 @@
  <extension
        point="org.eclipse.ui.handlers">
     <handler
-          class="org.unicase.emfstore.jdt.ui.menu.NoTeamProviderCommitHandler"
+          class="org.eclipse.emf.emfstore.teamprovider.ui.menu.NoTeamProviderCommitHandler"
           commandId="org.unicase.emfstore.jdt.ui.menu.NoTeamProviderCommitCommandID">
        <enabledWhen>
           <with
@@ -44,7 +44,7 @@
        </enabledWhen>
     </handler>
     <handler
-          class="org.unicase.emfstore.jdt.ui.menu.NoTeamProviderUpdateHandler"
+          class="org.eclipse.emf.emfstore.teamprovider.ui.menu.NoTeamProviderUpdateHandler"
           commandId="org.unicase.emfstore.jdt.ui.menu.NoTeamProviderUpdateCommandID">
        <enabledWhen>
           <with
@@ -60,7 +60,7 @@
        </enabledWhen>
     </handler>
     <handler
-          class="org.unicase.emfstore.jdt.ui.menu.PushToEMFStoreEcoreHandler"
+          class="org.eclipse.emf.emfstore.teamprovider.ui.menu.PushToEMFStoreEcoreHandler"
           commandId="org.unicase.emfstore.jdt.ui.menu.PushToEMFStoreEcoreCommandID">
        <enabledWhen>
           <with
@@ -76,11 +76,11 @@
        </enabledWhen>
     </handler>
     <handler
-          class="org.unicase.emfstore.jdt.ui.menu.PullFromEMFStoreEcoreHandler"
+          class="org.eclipse.emf.emfstore.teamprovider.ui.menu.PullFromEMFStoreEcoreHandler"
           commandId="org.unicase.emfstore.jdt.ui.menu.PullFromEMFStoreEcoreCommandID">
     </handler>
     <handler
-          class="org.unicase.emfstore.jdt.ui.menu.RejectFromEMFStoreEcoreHandler"
+          class="org.eclipse.emf.emfstore.teamprovider.ui.menu.RejectFromEMFStoreEcoreHandler"
           commandId="org.unicase.emfstore.jdt.ui.menu.RejectFromEMFStoreEcoreCommandID">
        <enabledWhen>
           <with
@@ -217,21 +217,21 @@
  <extension
        point="org.eclipse.core.expressions.propertyTesters">
     <propertyTester
-          class="org.unicase.emfstore.jdt.ui.menu.IFileStateEMFStorePropertyTester"
+          class="org.eclipse.emf.emfstore.teamprovider.ui.menu.IFileStateEMFStorePropertyTester"
           id="org.unicase.emfstore.jdt.ui.menu.IFileStateEMFStorePropertyTesterID"
           namespace="org.unicase.emfstore.jdt.ui.menu.IFileStateEMFStorePropertyTester"
           properties="type"
           type="org.eclipse.core.resources.IFile">
     </propertyTester>
     <propertyTester
-          class="org.unicase.emfstore.jdt.ui.menu.EObjectInstancePropertyTester"
+          class="org.eclipse.emf.emfstore.teamprovider.ui.menu.EObjectInstancePropertyTester"
           id="org.unicase.emfstore.jdt.ui.menu.EObjectInstancePropertyTesterID"
           namespace="org.unicase.emfstore.jdt.ui.menu.EObjectInstancePropertyTester"
           properties="type"
           type="org.eclipse.core.resources.IFile">
     </propertyTester>
     <propertyTester
-          class="org.unicase.emfstore.jdt.ui.menu.TeamSynchronizerAvailablePropertyTester"
+          class="org.eclipse.emf.emfstore.teamprovider.ui.menu.TeamSynchronizerAvailablePropertyTester"
           id="org.unicase.emfstore.jdt.ui.menu.TeamSynchronizerAvailablePropertyTesterID"
           namespace="org.unicase.emfstore.jdt.ui.menu.TeamSynchronizerAvailablePropertyTester"
           properties="type"
@@ -242,7 +242,7 @@
     <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="org.unicase.emfstore.jdt.ui.editor.EMFStoreEcoreEditor"
+            class="org.eclipse.emf.emfstore.teamprovider.ui.editor.EMFStoreEcoreEditor"
             contributorClass="org.eclipse.emf.ecore.presentation.EcoreActionBarContributor"
             default="true"
             extensions="ecore"
@@ -250,7 +250,7 @@
             id="org.unicase.emfstore.jdt.editor.ecore.EMFStoreEcoreEditorID"
             name="EMFStore EcoreEditor"/>
       <editor
-            class="org.unicase.emfstore.jdt.ui.editor.EMFStoreGenModelEditor"
+            class="org.eclipse.emf.emfstore.teamprovider.ui.editor.EMFStoreGenModelEditor"
             contributorClass="org.eclipse.emf.codegen.ecore.genmodel.presentation.GenModelActionBarContributor"
             default="true"
             extensions="genmodel"
@@ -263,7 +263,7 @@
           point="org.eclipse.ui.decorators">
        <decorator
              adaptable="false"
-             class="org.unicase.emfstore.jdt.ui.decorator.EMFStoreJDTEntryDecorator"
+             class="org.eclipse.emf.emfstore.teamprovider.ui.decorator.EMFStoreJDTEntryDecorator"
              id="org.unicase.emfstore.jdt.ui.decorator"
              label="EMFStore JDT"
              lightweight="true"
@@ -283,7 +283,7 @@
     <extension point="org.eclipse.ui.preferencePages">
        
        <page
-             class="org.unicase.emfstore.jdt.ui.preferences.FileExtensionPreferencePage"
+             class="org.eclipse.emf.emfstore.teamprovider.ui.preferences.FileExtensionPreferencePage"
              id="EDTFileExtensionPreferencePage"
              name="EMFStore TeamProvider">
        </page>
