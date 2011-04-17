@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.emfstore.jdt.svn;
+package org.eclipse.emf.emfstore.teamprovider.svn;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -19,6 +19,17 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.teamprovider.CommitHelper;
+import org.eclipse.emf.emfstore.teamprovider.configuration.ConfigurationFactory;
+import org.eclipse.emf.emfstore.teamprovider.configuration.Entry;
+import org.eclipse.emf.emfstore.teamprovider.configuration.HistoryVersionMapping;
+import org.eclipse.emf.emfstore.teamprovider.configuration.HistoryVersionMappingEntry;
+import org.eclipse.emf.emfstore.teamprovider.configuration.VersionMapping;
+import org.eclipse.emf.emfstore.teamprovider.eclipseworkspace.IFileEntryTuple;
+import org.eclipse.emf.emfstore.teamprovider.eclipseworkspace.ResourceCommitHolder;
+import org.eclipse.emf.emfstore.teamprovider.eclipseworkspace.emfstore.EMFStoreCommit;
+import org.eclipse.emf.emfstore.teamprovider.exception.CommitCannotCompleteException;
+import org.eclipse.emf.emfstore.teamprovider.ui.decorator.EMFStoreTeamProviderEntryDecorator;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.team.svn.core.connector.SVNChangeStatus;
 import org.eclipse.team.svn.core.connector.SVNEntryInfo;
@@ -38,17 +49,6 @@ import org.eclipse.team.svn.ui.extension.factory.ICommentDialogPanel;
 import org.eclipse.team.svn.ui.extension.factory.ICommitActionFactory;
 import org.eclipse.team.svn.ui.extension.factory.ICommitDialog;
 import org.eclipse.ui.IWorkbenchPart;
-import org.unicase.emfstore.jdt.CommitHelper;
-import org.unicase.emfstore.jdt.configuration.ConfigurationFactory;
-import org.unicase.emfstore.jdt.configuration.Entry;
-import org.unicase.emfstore.jdt.configuration.HistoryVersionMapping;
-import org.unicase.emfstore.jdt.configuration.HistoryVersionMappingEntry;
-import org.unicase.emfstore.jdt.configuration.VersionMapping;
-import org.unicase.emfstore.jdt.eclipseworkspace.IFileEntryTuple;
-import org.unicase.emfstore.jdt.eclipseworkspace.ResourceCommitHolder;
-import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.EMFStoreCommit;
-import org.unicase.emfstore.jdt.exception.CommitCannotCompleteException;
-import org.unicase.emfstore.jdt.ui.decorator.EMFStoreJDTEntryDecorator;
 
 /**
  * Implementation of the Subversive commit action factory. With this it is possible to hook into the commit process.
@@ -184,7 +184,7 @@ public class SVNCommitActionFactory implements ICommitActionFactory {
 			}
 
 			// refresh UI
-			EMFStoreJDTEntryDecorator.refreshDecorator();
+			EMFStoreTeamProviderEntryDecorator.refreshDecorator();
 
 		} else {
 			// EMFStore-Commit was canceled, cancel also SNVCommit
