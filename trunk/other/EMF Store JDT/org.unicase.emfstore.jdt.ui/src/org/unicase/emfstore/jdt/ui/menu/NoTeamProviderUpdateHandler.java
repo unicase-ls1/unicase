@@ -1,10 +1,7 @@
 /*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
+ * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen. All rights
+ * reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public
+ * License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * Contributors:
  ******************************************************************************/
 package org.unicase.emfstore.jdt.ui.menu;
@@ -15,7 +12,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.ui.commands.UpdateProjectHandler;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
@@ -55,7 +52,7 @@ public class NoTeamProviderUpdateHandler extends AbstractNoTeamProviderHandler {
 	/**
 	 * Updates a set of ProjectSpaces to the latest version into a transaction.
 	 */
-	private static class UpdateUnicaseCommand extends UnicaseCommand {
+	private static class UpdateUnicaseCommand extends EMFStoreCommand {
 
 		private final Collection<ProjectSpace> projectSpaces;
 

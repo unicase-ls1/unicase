@@ -18,6 +18,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.team.svn.core.connector.SVNChangeStatus;
 import org.eclipse.team.svn.core.connector.SVNEntryInfo;
@@ -48,7 +49,6 @@ import org.unicase.emfstore.jdt.eclipseworkspace.ResourceCommitHolder;
 import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.EMFStoreCommit;
 import org.unicase.emfstore.jdt.exception.CommitCannotCompleteException;
 import org.unicase.emfstore.jdt.ui.decorator.EMFStoreJDTEntryDecorator;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Implementation of the Subversive commit action factory. With this it is possible to hook into the commit process.

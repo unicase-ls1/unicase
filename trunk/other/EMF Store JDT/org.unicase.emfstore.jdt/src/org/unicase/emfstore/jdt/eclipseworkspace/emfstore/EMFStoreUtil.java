@@ -1,10 +1,7 @@
 /*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
+ * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen. All rights
+ * reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public
+ * License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * Contributors:
  ******************************************************************************/
 package org.unicase.emfstore.jdt.eclipseworkspace.emfstore;
@@ -18,8 +15,8 @@ import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.Usersession;
 import org.eclipse.emf.emfstore.client.model.Workspace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommandWithResult;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommandWithResult;
 import org.eclipse.emf.emfstore.client.ui.commands.UpdateProjectVersionHandler;
 import org.eclipse.emf.emfstore.client.ui.dialogs.LoginDialog;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
@@ -157,7 +154,7 @@ public final class EMFStoreUtil {
 		}
 
 		// the required ServerInfo wasn't found. Create this ServerInfo.
-		ServerInfo serverInfo = new UnicaseCommandWithResult<ServerInfo>() {
+		ServerInfo serverInfo = new EMFStoreCommandWithResult<ServerInfo>() {
 			@Override
 			protected ServerInfo doRun() {
 				ServerInfo serverInfo = ModelFactory.eINSTANCE.createServerInfo();
@@ -228,7 +225,7 @@ public final class EMFStoreUtil {
 	/**
 	 * A UnicaseCommand to checkout a project.
 	 */
-	private static final class CheckoutProjectSpaceCommand extends UnicaseCommandWithResult<ProjectSpace> {
+	private static final class CheckoutProjectSpaceCommand extends EMFStoreCommandWithResult<ProjectSpace> {
 
 		private final Usersession usersession;
 		private final ProjectInfo projectInfo;
@@ -275,7 +272,7 @@ public final class EMFStoreUtil {
 	/**
 	 * A UnicaseCommand to update a project to a certain version.
 	 */
-	private static final class UpdateProjectSpaceCommand extends UnicaseCommand {
+	private static final class UpdateProjectSpaceCommand extends EMFStoreCommand {
 
 		private final ProjectSpace projectSpace;
 		private final Integer emfStoreRevision;
@@ -318,7 +315,7 @@ public final class EMFStoreUtil {
 	/**
 	 * A UnicaseCommand that checks if the usersession is still valid.
 	 */
-	private static final class SanityCheckCommand extends UnicaseCommand {
+	private static final class SanityCheckCommand extends EMFStoreCommand {
 
 		private final Usersession usersession;
 

@@ -1,10 +1,7 @@
 /*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
+ * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen. All rights
+ * reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public
+ * License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * Contributors:
  ******************************************************************************/
 package org.unicase.emfstore.jdt.emf.resource;
@@ -26,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
@@ -148,7 +145,7 @@ public class EMFStoreResource extends ResourceImpl implements Resource, Resource
 
 	@Override
 	public void load(final Map<?, ?> options) throws IOException {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				try {

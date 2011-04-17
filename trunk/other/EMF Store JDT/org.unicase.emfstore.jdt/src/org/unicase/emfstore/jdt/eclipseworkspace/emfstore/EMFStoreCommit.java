@@ -1,10 +1,7 @@
 /*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
+ * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen. All rights
+ * reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public
+ * License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * Contributors:
  ******************************************************************************/
 package org.unicase.emfstore.jdt.eclipseworkspace.emfstore;
@@ -24,8 +21,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.exceptions.CommitCanceledException;
 import org.eclipse.emf.emfstore.client.model.exceptions.NoLocalChangesException;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommand;
-import org.eclipse.emf.emfstore.client.model.util.UnicaseCommandWithResult;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommandWithResult;
 import org.eclipse.emf.emfstore.client.ui.commands.CommitProjectHandler;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
@@ -97,7 +94,7 @@ public class EMFStoreCommit {
 	public void finaliceCommit() {
 		for (final FinalizeCommitTriple commitTriple : preparedCommitTripleList) {
 
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 				@Override
 				protected void doRun() {
 					try {
@@ -153,7 +150,7 @@ public class EMFStoreCommit {
 	/**
 	 * Shows the uses the changes and asks if the changes should be accepted.
 	 */
-	private class PrepareCommit extends UnicaseCommandWithResult<Boolean> {
+	private class PrepareCommit extends EMFStoreCommandWithResult<Boolean> {
 
 		private final CommitProjectHandler commitProjectHandler;
 		private final ProjectSpace projectSpace;
