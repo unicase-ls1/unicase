@@ -1,13 +1,12 @@
 #summary How to get in contact with us or receive news about EMFStore
 
-=== Mailinglists ===
+=== Mailinglists and Newsgroup ===
 
 Since EMFStore is a Eclipse project, we have an [http://www.eclipse.org/forums/eclipse.emfstore EMFStore Eclipse newsgroup].
 
 If you have feature requests, questions, bugs or if you want to discuss something, you can send us email to this mailinglist, where all EMFStore framework developers are subscribed to:
 
-[mailto:emfstore-dev@googlegroups.com emfstore-dev@googlegroups.com]
-
+[mailto:eemfstore-dev@eclipse.org emfstore-dev@eclipse.org]
 
 We also have a mailinglist to announce news about the EMFStore such as new releases. You can subscribe here:
 
@@ -17,7 +16,7 @@ We also have a mailinglist to announce news about the EMFStore such as new relea
 
 You can report bugs and feature requests in the [https://bugs.eclipse.org/bugs/enter_bug.cgi?product=EMFT.emf-store bugzilla of Eclipse].
 
-Also you can report bugs and feature requests to the [mailto:emfstore-dev@googlegroups.com developer mailinglist].
+Also you can report bugs and feature requests to the [mailto:emfstore-dev@eclipse.org developer mailinglist].
 
 === Twitter ===
 
@@ -36,9 +35,9 @@ Of course you can also send direct email to one of the project leads:
 
 [http://www1.in.tum.de/MaximilianKoegel http://unicase.googlecode.com/files/img_3999_small.jpg]
 
-[mailto:koegel@headstrong.de Maximilian]
+[mailto:maximilian@emfstore.org Maximilian]
 
 <img src="http://unicase.googlecode.com/files/jonas.jpg" height =210 />
 
 
-[mailto:helming@in.tum.de Jonas]
+[mailto:jonas@emfstore.org Jonas]
