@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Git
 Bundle-SymbolicName: org.eclipse.emf.emfstore.teamprovider.git;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.unicase.emfstore.jdt.git.Activator
+Bundle-Activator: org.eclipse.emf.emfstore.teamprovider.git.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.team.core,
  org.eclipse.emf.emfstore.teamprovider,

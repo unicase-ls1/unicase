@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.emfstore.jdt.git;
+package org.eclipse.emf.emfstore.teamprovider.git;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,6 +11,8 @@ import java.io.IOException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egit.core.project.RepositoryMapping;
+import org.eclipse.emf.emfstore.teamprovider.ITeamSynchronizer;
+import org.eclipse.emf.emfstore.teamprovider.exception.TeamSynchronizerException;
 import org.eclipse.jgit.dircache.DirCache;
 import org.eclipse.jgit.dircache.DirCacheEntry;
 import org.eclipse.jgit.errors.IncorrectObjectTypeException;
@@ -26,8 +28,6 @@ import org.eclipse.jgit.storage.file.FileRepository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.eclipse.jgit.treewalk.filter.PathFilter;
 import org.eclipse.team.core.history.IFileRevision;
-import org.unicase.emfstore.jdt.ITeamSynchronizer;
-import org.unicase.emfstore.jdt.exception.TeamSynchronizerException;
 
 /**
  * Provides information to be able to synchronize a file against SVN.
@@ -41,7 +41,7 @@ public class GitTeamSynchronizer implements ITeamSynchronizer {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.jdt.ITeamSynchronizer#getSupportedNatureID()
+	 * @see org.eclipse.emf.emfstore.teamprovider.ITeamSynchronizer#getSupportedNatureID()
 	 */
 	public String getSupportedNatureID() {
 		return NATURE_ID;
@@ -83,7 +83,7 @@ public class GitTeamSynchronizer implements ITeamSynchronizer {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.jdt.ITeamSynchronizer#isFileShared(org.eclipse.core.resources.IFile)
+	 * @see org.eclipse.emf.emfstore.teamprovider.ITeamSynchronizer#isFileShared(org.eclipse.core.resources.IFile)
 	 */
 	public boolean isFileShared(IFile file) {
 		try {
@@ -98,7 +98,7 @@ public class GitTeamSynchronizer implements ITeamSynchronizer {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.jdt.ITeamSynchronizer#getWorkingCopyRevision(org.eclipse.core.resources.IFile)
+	 * @see org.eclipse.emf.emfstore.teamprovider.ITeamSynchronizer#getWorkingCopyRevision(org.eclipse.core.resources.IFile)
 	 */
 	public String getWorkingCopyRevision(IFile file) throws TeamSynchronizerException {
 		IProject project = file.getProject();
@@ -136,7 +136,7 @@ public class GitTeamSynchronizer implements ITeamSynchronizer {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.jdt.ITeamSynchronizer#getHeadRevision(org.eclipse.core.resources.IFile)
+	 * @see org.eclipse.emf.emfstore.teamprovider.ITeamSynchronizer#getHeadRevision(org.eclipse.core.resources.IFile)
 	 */
 	public String getHeadRevision(IFile file) throws TeamSynchronizerException {
 		// try {
@@ -152,7 +152,7 @@ public class GitTeamSynchronizer implements ITeamSynchronizer {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.jdt.ITeamSynchronizer#isFileDirty(org.eclipse.core.resources.IFile)
+	 * @see org.eclipse.emf.emfstore.teamprovider.ITeamSynchronizer#isFileDirty(org.eclipse.core.resources.IFile)
 	 */
 	public boolean isFileDirty(IFile file) throws TeamSynchronizerException {
 		DirCacheEntry gitEntry = getGitEntry(file);
@@ -162,7 +162,7 @@ public class GitTeamSynchronizer implements ITeamSynchronizer {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.jdt.ITeamSynchronizer#getHistory(org.eclipse.core.resources.IFile)
+	 * @see org.eclipse.emf.emfstore.teamprovider.ITeamSynchronizer#getHistory(org.eclipse.core.resources.IFile)
 	 */
 	public IFileRevision[] getHistory(IFile file) {
 		// SVNFileHistoryProvider history = new SVNFileHistoryProvider();
@@ -177,7 +177,7 @@ public class GitTeamSynchronizer implements ITeamSynchronizer {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.jdt.ITeamSynchronizer#compare(java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.emfstore.teamprovider.ITeamSynchronizer#compare(java.lang.String, java.lang.String)
 	 */
 	public int compare(String revision1, String revision2) throws TeamSynchronizerException {
 		// this operation is not needed for git synchronization
@@ -190,7 +190,7 @@ public class GitTeamSynchronizer implements ITeamSynchronizer {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.jdt.ITeamSynchronizer#updateFile(org.eclipse.core.resources.IFile)
+	 * @see org.eclipse.emf.emfstore.teamprovider.ITeamSynchronizer#updateFile(org.eclipse.core.resources.IFile)
 	 */
 	public void updateFile(IFile file) {
 		// this operation is not needed for git synchronization
@@ -200,7 +200,7 @@ public class GitTeamSynchronizer implements ITeamSynchronizer {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.jdt.ITeamSynchronizer#handlePureTeamProviderChange(org.eclipse.core.resources.IFile)
+	 * @see org.eclipse.emf.emfstore.teamprovider.ITeamSynchronizer#handlePureTeamProviderChange(org.eclipse.core.resources.IFile)
 	 */
 	public void handlePureTeamProviderChange(final IFile file) throws TeamSynchronizerException {
 		// this operation is not yet applicable for git

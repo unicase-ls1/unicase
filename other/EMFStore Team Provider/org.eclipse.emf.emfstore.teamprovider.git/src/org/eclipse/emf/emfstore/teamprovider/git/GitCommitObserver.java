@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.emfstore.jdt.git;
+package org.eclipse.emf.emfstore.teamprovider.git;
 
 import java.util.Collection;
 import java.util.Set;
@@ -14,15 +14,15 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.emfstore.client.model.observers.CommitObserver;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.unicase.emfstore.jdt.CommitHelper;
-import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
-import org.unicase.emfstore.jdt.configuration.Entry;
-import org.unicase.emfstore.jdt.configuration.SimpleVersionMapping;
-import org.unicase.emfstore.jdt.eclipseworkspace.IFileEntryTuple;
-import org.unicase.emfstore.jdt.eclipseworkspace.ResourceCommitHolder;
-import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.EMFStoreCommit;
-import org.unicase.emfstore.jdt.exception.CommitCannotCompleteException;
-import org.unicase.emfstore.jdt.ui.decorator.EMFStoreJDTEntryDecorator;
+import org.eclipse.emf.emfstore.teamprovider.CommitHelper;
+import org.eclipse.emf.emfstore.teamprovider.configuration.ConfigurationManager;
+import org.eclipse.emf.emfstore.teamprovider.configuration.Entry;
+import org.eclipse.emf.emfstore.teamprovider.configuration.SimpleVersionMapping;
+import org.eclipse.emf.emfstore.teamprovider.eclipseworkspace.IFileEntryTuple;
+import org.eclipse.emf.emfstore.teamprovider.eclipseworkspace.ResourceCommitHolder;
+import org.eclipse.emf.emfstore.teamprovider.eclipseworkspace.emfstore.EMFStoreCommit;
+import org.eclipse.emf.emfstore.teamprovider.exception.CommitCannotCompleteException;
+import org.eclipse.emf.emfstore.teamprovider.ui.decorator.EMFStoreTeamProviderEntryDecorator;
 
 /**
  * An implementation for the EGit commit observer in order to be able to hook into the commit process.
@@ -104,7 +104,7 @@ public class GitCommitObserver implements CommitObserver {
 
 			} finally {
 				// refresh UI
-				EMFStoreJDTEntryDecorator.refreshDecorator();
+				EMFStoreTeamProviderEntryDecorator.refreshDecorator();
 			}
 		}
 
