@@ -13,7 +13,8 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Version Mapping</b></em>'. <!-- end-user-doc -->
- * 
+ *
+ *
  * @see org.eclipse.emf.emfstore.teamprovider.configuration.ConfigurationPackage#getVersionMapping()
  * @model abstract="true"
  * @generated

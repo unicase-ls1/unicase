@@ -13,7 +13,7 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.emfstore.teamprovider.configuration.ConfigurationManager;
-import org.eclipse.emf.emfstore.teamprovider.exception.NoEMFStoreJDTConfigurationException;
+import org.eclipse.emf.emfstore.teamprovider.exception.NoEMFStoreTeamProviderConfigurationException;
 
 /**
  * Helper class to find out (for the EMF Store).
@@ -40,7 +40,7 @@ public final class CommitHelper {
 				isEMFStoreJDTInvolved = true;
 				break;
 
-			} catch (NoEMFStoreJDTConfigurationException e) {
+			} catch (NoEMFStoreTeamProviderConfigurationException e) {
 				// ignore. Anyway this project is not involved.
 			}
 		}

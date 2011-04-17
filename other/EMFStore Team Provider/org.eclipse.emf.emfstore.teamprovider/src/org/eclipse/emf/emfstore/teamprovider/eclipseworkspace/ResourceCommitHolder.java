@@ -26,13 +26,13 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.teamprovider.configuration.ConfigurationManager;
-import org.eclipse.emf.emfstore.teamprovider.configuration.EMFStoreJDTConfiguration;
+import org.eclipse.emf.emfstore.teamprovider.configuration.EMFStoreTeamProviderConfiguration;
 import org.eclipse.emf.emfstore.teamprovider.configuration.EMFStoreLocation;
 import org.eclipse.emf.emfstore.teamprovider.configuration.EObjectLocation;
 import org.eclipse.emf.emfstore.teamprovider.configuration.Entry;
 import org.eclipse.emf.emfstore.teamprovider.eclipseworkspace.emfstore.ProjectSpaceUtil;
 import org.eclipse.emf.emfstore.teamprovider.exception.EntryNotFoundException;
-import org.eclipse.emf.emfstore.teamprovider.exception.NoEMFStoreJDTConfigurationException;
+import org.eclipse.emf.emfstore.teamprovider.exception.NoEMFStoreTeamProviderConfigurationException;
 import org.eclipse.emf.emfstore.teamprovider.exception.ProjectSpaceNotFoundException;
 
 /**
@@ -70,13 +70,13 @@ public class ResourceCommitHolder {
 		// classify files
 		for (IFile file : allFiles) {
 			try {
-				EMFStoreJDTConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(file
+				EMFStoreTeamProviderConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(file
 					.getProject());
 				Entry entry = ConfigurationManager.getEntry(emfStoreJDTConfiguration, file);
 				IFileEntryTuple tuple = new IFileEntryTuple(file, entry);
 				emfStoreManagedFETuples.add(tuple);
 
-			} catch (NoEMFStoreJDTConfigurationException e) {
+			} catch (NoEMFStoreTeamProviderConfigurationException e) {
 				// project has no configuration file => file cannot be managed by an EFMStore
 				emfStoreUnmanagedFiles.add(file);
 
@@ -95,7 +95,7 @@ public class ResourceCommitHolder {
 		// inspect also "AnyawayCommit"
 		for (IProject project : this.relevantProjects) {
 			try {
-				EMFStoreJDTConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(project);
+				EMFStoreTeamProviderConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(project);
 				EList<EMFStoreLocation> anywayCommits = emfStoreJDTConfiguration.getAnywayCommit();
 				EList<Entry> entries = emfStoreJDTConfiguration.getEntry();
 				for (Entry entry : entries) {
@@ -115,7 +115,7 @@ public class ResourceCommitHolder {
 					}
 				}
 
-			} catch (NoEMFStoreJDTConfigurationException e) {
+			} catch (NoEMFStoreTeamProviderConfigurationException e) {
 				// TODO Auto-generated catch block
 				// Do NOT catch all Exceptions ("catch (Exception e)")
 				// Log AND handle Exceptions if possible
@@ -179,14 +179,14 @@ public class ResourceCommitHolder {
 			IFile commitedFile = commitedFileEntryTuple.getFile();
 			IProject project = commitedFile.getProject();
 			try {
-				EMFStoreJDTConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(project);
+				EMFStoreTeamProviderConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(project);
 				Entry entry = ConfigurationManager.getEntry(emfStoreJDTConfiguration, commitedFile);
 				StructuredEMFStoreURI structuredEMFStoreURI = ConfigurationManager.getEMFStoreURI(entry);
 				ProjectSpace projectSpace = ProjectSpaceUtil.getProjectSpace(structuredEMFStoreURI.getProjectID());
 
 				projectsToCommit.put(projectSpace.getProjectId().getId(), projectSpace);
 
-			} catch (NoEMFStoreJDTConfigurationException e) {
+			} catch (NoEMFStoreTeamProviderConfigurationException e) {
 				// ignore this project
 			} catch (EntryNotFoundException e) {
 				// maybe there is an entry, but this entry is marked for deletion,
@@ -202,7 +202,7 @@ public class ResourceCommitHolder {
 		// get ProjectSpaces from "AnywayCommit"
 		for (IProject project : this.relevantProjects) {
 			try {
-				EMFStoreJDTConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(project);
+				EMFStoreTeamProviderConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(project);
 				EList<EMFStoreLocation> anywayCommits = emfStoreJDTConfiguration.getAnywayCommit();
 				for (EMFStoreLocation emfStoreLocation : anywayCommits) {
 					try {
@@ -214,7 +214,7 @@ public class ResourceCommitHolder {
 					}
 				}
 
-			} catch (NoEMFStoreJDTConfigurationException e) {
+			} catch (NoEMFStoreTeamProviderConfigurationException e) {
 				ModelUtil.logException(e);
 			}
 		}
@@ -246,11 +246,11 @@ public class ResourceCommitHolder {
 	public void cleanForcedEMFStoresToCommit() {
 		for (IProject project : this.relevantProjects) {
 			try {
-				EMFStoreJDTConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(project);
+				EMFStoreTeamProviderConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(project);
 				emfStoreJDTConfiguration.getAnywayCommit().clear();
 				emfStoreJDTConfiguration.save();
 
-			} catch (NoEMFStoreJDTConfigurationException e) {
+			} catch (NoEMFStoreTeamProviderConfigurationException e) {
 				ModelUtil.logException(e);
 			}
 		}
@@ -263,7 +263,7 @@ public class ResourceCommitHolder {
 		for (IProject project : this.relevantProjects) {
 			try {
 				boolean saveNeed = false;
-				EMFStoreJDTConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(project);
+				EMFStoreTeamProviderConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(project);
 				Iterator<Entry> entryIterator = emfStoreJDTConfiguration.getEntry().iterator();
 				while (entryIterator.hasNext()) {
 					Entry entry = entryIterator.next();
@@ -277,7 +277,7 @@ public class ResourceCommitHolder {
 					emfStoreJDTConfiguration.save();
 				}
 
-			} catch (NoEMFStoreJDTConfigurationException e) {
+			} catch (NoEMFStoreTeamProviderConfigurationException e) {
 				ModelUtil.logException(e);
 			}
 		}
@@ -313,7 +313,7 @@ public class ResourceCommitHolder {
 		IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
 		for (IProject project : projects) {
 			try {
-				EMFStoreJDTConfiguration configuration = ConfigurationManager.getConfiguration(project);
+				EMFStoreTeamProviderConfiguration configuration = ConfigurationManager.getConfiguration(project);
 				EList<Entry> entryList = configuration.getEntry();
 				for (Entry entry : entryList) {
 					EObjectLocation eObjectLocation = entry.getEObjectLocation();
@@ -324,7 +324,7 @@ public class ResourceCommitHolder {
 					}
 				}
 
-			} catch (NoEMFStoreJDTConfigurationException e) {
+			} catch (NoEMFStoreTeamProviderConfigurationException e) {
 				// can be ignored
 			}
 		}

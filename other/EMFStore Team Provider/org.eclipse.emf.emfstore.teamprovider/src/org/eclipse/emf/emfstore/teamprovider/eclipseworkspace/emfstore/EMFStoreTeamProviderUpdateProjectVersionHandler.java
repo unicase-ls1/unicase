@@ -21,7 +21,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
  * 
  * @author Adrian Staudt
  */
-public class EMFStoreJDTUpdateProjectVersionHandler extends UpdateProjectVersionHandler {
+public class EMFStoreTeamProviderUpdateProjectVersionHandler extends UpdateProjectVersionHandler {
 
 	/**
 	 * All changes are getting accepted, without asking the user. {@inheritDoc}

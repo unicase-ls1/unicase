@@ -28,13 +28,13 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface EObjectLocation extends EObject {
 	/**
-	 * Returns the value of the '<em><b>EMF Store Location</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>EMF Store Location</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>EMF Store Location</em>' reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>EMF Store Location</em>' containment reference.
 	 * @see #setEMFStoreLocation(EMFStoreLocation)
 	 * @see org.eclipse.emf.emfstore.teamprovider.configuration.ConfigurationPackage#getEObjectLocation_EMFStoreLocation()
@@ -44,9 +44,8 @@ public interface EObjectLocation extends EObject {
 	EMFStoreLocation getEMFStoreLocation();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.teamprovider.configuration.EObjectLocation#getEMFStoreLocation
-	 * <em>EMF Store Location</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.teamprovider.configuration.EObjectLocation#getEMFStoreLocation <em>EMF Store Location</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>EMF Store Location</em>' containment reference.
 	 * @see #getEMFStoreLocation()
 	 * @generated
@@ -54,13 +53,13 @@ public interface EObjectLocation extends EObject {
 	void setEMFStoreLocation(EMFStoreLocation value);
 
 	/**
-	 * Returns the value of the '<em><b>EObject ID</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>EObject ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>EObject ID</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>EObject ID</em>' attribute.
 	 * @see #setEObjectID(String)
 	 * @see org.eclipse.emf.emfstore.teamprovider.configuration.ConfigurationPackage#getEObjectLocation_EObjectID()
@@ -70,9 +69,8 @@ public interface EObjectLocation extends EObject {
 	String getEObjectID();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.teamprovider.configuration.EObjectLocation#getEObjectID
-	 * <em>EObject ID</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.teamprovider.configuration.EObjectLocation#getEObjectID <em>EObject ID</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>EObject ID</em>' attribute.
 	 * @see #getEObjectID()
 	 * @generated

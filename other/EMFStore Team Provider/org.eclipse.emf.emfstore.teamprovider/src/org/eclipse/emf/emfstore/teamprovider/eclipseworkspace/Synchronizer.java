@@ -19,7 +19,7 @@ import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.model.ProjectInfo;
 import org.eclipse.emf.emfstore.teamprovider.ITeamSynchronizer;
 import org.eclipse.emf.emfstore.teamprovider.configuration.ConfigurationManager;
-import org.eclipse.emf.emfstore.teamprovider.configuration.EMFStoreJDTConfiguration;
+import org.eclipse.emf.emfstore.teamprovider.configuration.EMFStoreTeamProviderConfiguration;
 import org.eclipse.emf.emfstore.teamprovider.configuration.Entry;
 import org.eclipse.emf.emfstore.teamprovider.configuration.HistoryVersionMapping;
 import org.eclipse.emf.emfstore.teamprovider.configuration.HistoryVersionMappingEntry;
@@ -30,7 +30,7 @@ import org.eclipse.emf.emfstore.teamprovider.eclipseworkspace.emfstore.ProjectSp
 import org.eclipse.emf.emfstore.teamprovider.exception.CannotSyncFileException;
 import org.eclipse.emf.emfstore.teamprovider.exception.EObjectNotFoundException;
 import org.eclipse.emf.emfstore.teamprovider.exception.EntryNotFoundException;
-import org.eclipse.emf.emfstore.teamprovider.exception.NoEMFStoreJDTConfigurationException;
+import org.eclipse.emf.emfstore.teamprovider.exception.NoEMFStoreTeamProviderConfigurationException;
 import org.eclipse.emf.emfstore.teamprovider.exception.ProjectInfoNotFoundException;
 import org.eclipse.emf.emfstore.teamprovider.exception.ProjectSpaceNotFoundException;
 import org.eclipse.emf.emfstore.teamprovider.exception.TeamSynchronizerException;
@@ -55,14 +55,14 @@ public final class Synchronizer {
 	 */
 	public static void sync(IProject project, ITeamSynchronizer teamSynchronizer) throws CannotSyncFileException {
 		try {
-			EMFStoreJDTConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(project);
+			EMFStoreTeamProviderConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(project);
 			EList<Entry> entryList = emfStoreJDTConfiguration.getEntry();
 			for (Entry entry : entryList) {
 				IFile file = project.getFile(entry.getProjectRelativeLocation());
 				sync(file, teamSynchronizer);
 			}
 
-		} catch (NoEMFStoreJDTConfigurationException e) {
+		} catch (NoEMFStoreTeamProviderConfigurationException e) {
 			// can be ignored
 		}
 
@@ -108,7 +108,7 @@ public final class Synchronizer {
 				}
 			}
 
-			EMFStoreJDTConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(project);
+			EMFStoreTeamProviderConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(project);
 			Entry entry = ConfigurationManager.getEntry(emfStoreJDTConfiguration, file);
 			StructuredEMFStoreURI structuredEMFStoreURI = ConfigurationManager.getEMFStoreURI(entry);
 
@@ -157,7 +157,7 @@ public final class Synchronizer {
 
 			updateEObject(structuredEMFStoreURI, emfStoreRevision, projectInfo, serverInfo, usersession);
 
-		} catch (NoEMFStoreJDTConfigurationException e) {
+		} catch (NoEMFStoreTeamProviderConfigurationException e) {
 			// can be ignored
 
 		} catch (EntryNotFoundException e) {

@@ -15,6 +15,6 @@ package org.eclipse.emf.emfstore.teamprovider.exception;
  * @author Adrian Staudt
  */
 @SuppressWarnings("serial")
-public class NoEMFStoreJDTConfigurationException extends Exception {
+public class NoEMFStoreTeamProviderConfigurationException extends Exception {
 
 }

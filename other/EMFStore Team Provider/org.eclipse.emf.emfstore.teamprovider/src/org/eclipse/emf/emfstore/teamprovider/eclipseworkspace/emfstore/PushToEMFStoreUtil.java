@@ -26,7 +26,7 @@ import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.model.ProjectId;
 import org.eclipse.emf.emfstore.teamprovider.configuration.ConfigurationFactory;
 import org.eclipse.emf.emfstore.teamprovider.configuration.ConfigurationManager;
-import org.eclipse.emf.emfstore.teamprovider.configuration.EMFStoreJDTConfiguration;
+import org.eclipse.emf.emfstore.teamprovider.configuration.EMFStoreTeamProviderConfiguration;
 import org.eclipse.emf.emfstore.teamprovider.configuration.EMFStoreLocation;
 import org.eclipse.emf.emfstore.teamprovider.configuration.EObjectLocation;
 import org.eclipse.emf.emfstore.teamprovider.configuration.Entry;
@@ -91,7 +91,7 @@ public final class PushToEMFStoreUtil {
 	 * @param projectId A project id (not a ProjectSpace id).
 	 * @param modelElementId An EObject id.
 	 */
-	public static void addEntry(EMFStoreJDTConfiguration emfStoreJDTConfiguration, IFile file, ServerInfo serverInfo,
+	public static void addEntry(EMFStoreTeamProviderConfiguration emfStoreJDTConfiguration, IFile file, ServerInfo serverInfo,
 		ProjectId projectId, ModelElementId modelElementId) {
 
 		String fileLocation = file.getProjectRelativePath().toString();

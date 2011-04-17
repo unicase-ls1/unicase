@@ -27,14 +27,14 @@ import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.teamprovider.configuration.ConfigurationManager;
-import org.eclipse.emf.emfstore.teamprovider.configuration.EMFStoreJDTConfiguration;
+import org.eclipse.emf.emfstore.teamprovider.configuration.EMFStoreTeamProviderConfiguration;
 import org.eclipse.emf.emfstore.teamprovider.configuration.Entry;
 import org.eclipse.emf.emfstore.teamprovider.eclipseworkspace.ResourceCommitHolder;
 import org.eclipse.emf.emfstore.teamprovider.eclipseworkspace.StructuredEMFStoreURI;
 import org.eclipse.emf.emfstore.teamprovider.eclipseworkspace.emfstore.ProjectSpaceUtil;
 import org.eclipse.emf.emfstore.teamprovider.exception.CannotOpenEObjectException;
 import org.eclipse.emf.emfstore.teamprovider.exception.EntryNotFoundException;
-import org.eclipse.emf.emfstore.teamprovider.exception.NoEMFStoreJDTConfigurationException;
+import org.eclipse.emf.emfstore.teamprovider.exception.NoEMFStoreTeamProviderConfigurationException;
 
 /**
  * An observer for the EMFStoreCommandStack. If the command invokes a commandCompleted the affected EObjects will be
@@ -135,11 +135,11 @@ public class EMFStoreCommandStackObserver implements CommandObserver {
 	private void removeIfNecessaryDeletionFlag(IFile file) {
 		IProject project = file.getProject();
 		try {
-			EMFStoreJDTConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(project);
+			EMFStoreTeamProviderConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(project);
 			Entry entry = ConfigurationManager.getEntry(emfStoreJDTConfiguration, file);
 			entry.setMarkedForDeletion(false);
 
-		} catch (NoEMFStoreJDTConfigurationException e) {
+		} catch (NoEMFStoreTeamProviderConfigurationException e) {
 			// ignore
 		} catch (EntryNotFoundException e) {
 			// ignore

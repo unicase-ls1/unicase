@@ -28,14 +28,14 @@ import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.teamprovider.configuration.ConfigurationManager;
-import org.eclipse.emf.emfstore.teamprovider.configuration.EMFStoreJDTConfiguration;
+import org.eclipse.emf.emfstore.teamprovider.configuration.EMFStoreTeamProviderConfiguration;
 import org.eclipse.emf.emfstore.teamprovider.configuration.Entry;
 import org.eclipse.emf.emfstore.teamprovider.eclipseworkspace.ResourceCommitHolder;
 import org.eclipse.emf.emfstore.teamprovider.exception.CannotOpenEObjectException;
 import org.eclipse.emf.emfstore.teamprovider.exception.EMFStoreURIMalformedException;
 import org.eclipse.emf.emfstore.teamprovider.exception.EObjectNotFoundException;
 import org.eclipse.emf.emfstore.teamprovider.exception.EntryNotFoundException;
-import org.eclipse.emf.emfstore.teamprovider.exception.NoEMFStoreJDTConfigurationException;
+import org.eclipse.emf.emfstore.teamprovider.exception.NoEMFStoreTeamProviderConfigurationException;
 import org.eclipse.emf.emfstore.teamprovider.exception.ProjectSpaceNotFoundException;
 
 /**
@@ -120,7 +120,7 @@ public class EMFStoreCommit {
 	public static void updateLocalContent(Set<IFile> files) {
 		for (IFile file : files) {
 			try {
-				EMFStoreJDTConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(file
+				EMFStoreTeamProviderConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(file
 					.getProject());
 				Entry entry = ConfigurationManager.getEntry(emfStoreJDTConfiguration, file);
 				URI emfStoreURI = ConfigurationManager.getEMFStoreURI(entry).getEMFURI();
@@ -129,7 +129,7 @@ public class EMFStoreCommit {
 
 				file.setContents(eObjectInputStream, true, true, new NullProgressMonitor());
 
-			} catch (NoEMFStoreJDTConfigurationException e) {
+			} catch (NoEMFStoreTeamProviderConfigurationException e) {
 				ModelUtil.logException(e);
 			} catch (EMFStoreURIMalformedException e) {
 				ModelUtil.logException(e);

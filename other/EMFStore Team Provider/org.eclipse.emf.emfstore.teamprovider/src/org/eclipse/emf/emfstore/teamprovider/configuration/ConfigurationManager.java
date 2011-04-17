@@ -1,10 +1,7 @@
 /*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
+ * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen. All rights
+ * reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public
+ * License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * Contributors:
  ******************************************************************************/
 package org.eclipse.emf.emfstore.teamprovider.configuration;
@@ -27,12 +24,12 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.teamprovider.eclipseworkspace.StructuredEMFStoreURI;
 import org.eclipse.emf.emfstore.teamprovider.exception.EntryNotFoundException;
-import org.eclipse.emf.emfstore.teamprovider.exception.NoEMFStoreJDTConfigurationException;
+import org.eclipse.emf.emfstore.teamprovider.exception.NoEMFStoreTeamProviderConfigurationException;
 
 /**
- * Manager class to handle with EMFStoreJDTConfigurations. A EMFStoreJDTConfiguration is only responsible for a project.
+ * Manager class to handle with EMFStoreTeamProviderConfigurations. A EMFStoreTeamProviderConfiguration is only responsible for a project.
  * This class provides an entry point for the whole workspace to get access to the project specific
- * EMFStoreJDTConfigurations. This class provides also caching functionality.
+ * EMFStoreTeamProviderConfigurations. This class provides also caching functionality.
  * 
  * @author Adrian Staudt
  */
@@ -47,7 +44,7 @@ public final class ConfigurationManager {
 	 * A map of configurations that can be accessed by an eclipse workspace project. This map is used as a cache, so the
 	 * configuration file does not need to be re-initialized.
 	 */
-	private static Map<IProject, EMFStoreJDTConfiguration> configurations = new HashMap<IProject, EMFStoreJDTConfiguration>();
+	private static Map<IProject, EMFStoreTeamProviderConfiguration> configurations = new HashMap<IProject, EMFStoreTeamProviderConfiguration>();
 
 	private ConfigurationManager() {
 	}
@@ -57,14 +54,14 @@ public final class ConfigurationManager {
 	 * 
 	 * @param project An eclipse workspace project.
 	 * @return An EMF Store JDT configuration.
-	 * @throws NoEMFStoreJDTConfigurationException Will be thrown if the project is not managed by an EMF Store.
+	 * @throws NoEMFStoreTeamProviderConfigurationException Will be thrown if the project is not managed by an EMF Store.
 	 */
-	public static EMFStoreJDTConfiguration getConfiguration(IProject project)
-		throws NoEMFStoreJDTConfigurationException {
+	public static EMFStoreTeamProviderConfiguration getConfiguration(IProject project)
+		throws NoEMFStoreTeamProviderConfigurationException {
 		// if( !configurations.containsKey(project) ) {
 		IFile confFile = project.getFile(EMFSTORECONF);
 		if (!confFile.exists()) {
-			throw new NoEMFStoreJDTConfigurationException();
+			throw new NoEMFStoreTeamProviderConfigurationException();
 		}
 
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -76,7 +73,7 @@ public final class ConfigurationManager {
 		try {
 			confResource.load(Collections.EMPTY_MAP);
 			if (confResource.getContents().size() > 0) {
-				EMFStoreJDTConfiguration emfStoreJDTConfiguration = (EMFStoreJDTConfiguration) confResource
+				EMFStoreTeamProviderConfiguration emfStoreJDTConfiguration = (EMFStoreTeamProviderConfiguration) confResource
 					.getContents().get(0);
 				configurations.put(project, emfStoreJDTConfiguration);
 
@@ -88,7 +85,7 @@ public final class ConfigurationManager {
 		}
 		// }
 
-		throw new NoEMFStoreJDTConfigurationException();
+		throw new NoEMFStoreTeamProviderConfigurationException();
 	}
 
 	/**
@@ -97,7 +94,7 @@ public final class ConfigurationManager {
 	 * @param project An eclipse workspace project.
 	 * @return An EMF Store JDT configuration.
 	 */
-	public static EMFStoreJDTConfiguration createConfiguration(IProject project) {
+	public static EMFStoreTeamProviderConfiguration createConfiguration(IProject project) {
 		IFile confFile = project.getFile(EMFSTORECONF);
 
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -106,8 +103,8 @@ public final class ConfigurationManager {
 		URI uri = URI.createURI(confFile.getLocationURI().toString());
 		Resource confResource = resourceSet.createResource(uri);
 
-		EMFStoreJDTConfiguration emfStoreJDTConfiguration = ConfigurationFactory.eINSTANCE
-			.createEMFStoreJDTConfiguration();
+		EMFStoreTeamProviderConfiguration emfStoreJDTConfiguration = ConfigurationFactory.eINSTANCE
+			.createEMFStoreTeamProviderConfiguration();
 		confResource.getContents().add(emfStoreJDTConfiguration);
 
 		configurations.put(project, emfStoreJDTConfiguration);
@@ -123,7 +120,7 @@ public final class ConfigurationManager {
 	 * @param emfStoreJDTConfiguration An EMF Store JDT configuration.
 	 * @param emfStoreLocation An EMF Store location.
 	 */
-	public static void addToAnywayCommit(EMFStoreJDTConfiguration emfStoreJDTConfiguration,
+	public static void addToAnywayCommit(EMFStoreTeamProviderConfiguration emfStoreJDTConfiguration,
 		EMFStoreLocation emfStoreLocation) {
 		EList<EMFStoreLocation> anywayCommits = emfStoreJDTConfiguration.getAnywayCommit();
 		for (EMFStoreLocation anywayCommit : anywayCommits) {
@@ -144,7 +141,7 @@ public final class ConfigurationManager {
 	 * @return The corresponding entry.
 	 * @throws EntryNotFoundException Will be thrown if no corresponding entry has been found.
 	 */
-	public static Entry getEntry(EMFStoreJDTConfiguration emfStoreJDTConfiguration, IFile file)
+	public static Entry getEntry(EMFStoreTeamProviderConfiguration emfStoreJDTConfiguration, IFile file)
 		throws EntryNotFoundException {
 
 		List<Entry> possibleEntries = new ArrayList<Entry>();
@@ -191,7 +188,7 @@ public final class ConfigurationManager {
 	 * @param emfStoreJDTConfiguration An EMF Store JDT configuration.
 	 * @param entry An EMF Store JDT entry.
 	 */
-	public static void rejectEntry(EMFStoreJDTConfiguration emfStoreJDTConfiguration, Entry entry) {
+	public static void rejectEntry(EMFStoreTeamProviderConfiguration emfStoreJDTConfiguration, Entry entry) {
 		emfStoreJDTConfiguration.getEntry().remove(entry);
 		emfStoreJDTConfiguration.save();
 	}
