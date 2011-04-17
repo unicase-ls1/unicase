@@ -2,15 +2,17 @@
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="&lt;copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the&#xD;&#xA;accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this&#xD;&#xA;distribution, and is available at http://www.eclipse.org/legal/epl-v10.html &lt;/copyright>"
-    modelDirectory="/org.unicase.emfstore.jdt/src" modelPluginID="org.unicase.emfstore.jdt"
+    modelDirectory="/org.eclipse.emf.emfstore.teamprovider/src" editDirectory="/org.eclipse.emf.emfstore.teamprovider.edit/src"
+    editorDirectory="/org.eclipse.emf.emfstore.teamprovider.editor/src" modelPluginID="org.eclipse.emf.emfstore.teamprovider"
     modelName="Configuration" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
-    copyrightFields="false">
+    copyrightFields="false" editPluginID="org.eclipse.emf.emfstore.teamprovider.edit"
+    editorPluginID="org.eclipse.emf.emfstore.teamprovider.editor">
   <foreignModel>Configuration.ecore</foreignModel>
-  <genPackages prefix="Configuration" basePackage="org.unicase.emfstore.jdt" disposableProviderFactory="true"
-      ecorePackage="Configuration.ecore#/">
-    <genClasses ecoreClass="Configuration.ecore#//EMFStoreJDTConfiguration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configuration.ecore#//EMFStoreJDTConfiguration/Entry"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configuration.ecore#//EMFStoreJDTConfiguration/AnywayCommit"/>
+  <genPackages prefix="Configuration" basePackage="org.eclipse.emf.emfstore.teamprovider"
+      disposableProviderFactory="true" ecorePackage="Configuration.ecore#/">
+    <genClasses ecoreClass="Configuration.ecore#//EMFStoreTeamProviderConfiguration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configuration.ecore#//EMFStoreTeamProviderConfiguration/Entry"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configuration.ecore#//EMFStoreTeamProviderConfiguration/AnywayCommit"/>
     </genClasses>
     <genClasses ecoreClass="Configuration.ecore#//EMFStoreLocation">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configuration.ecore#//EMFStoreLocation/Host"/>
@@ -23,14 +25,22 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configuration.ecore#//Entry/ProjectRelativeLocation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configuration.ecore#//Entry/EObjectLocation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configuration.ecore#//Entry/VersionMapping"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configuration.ecore#//Entry/MarkedForDeletion"/>
     </genClasses>
     <genClasses ecoreClass="Configuration.ecore#//EObjectLocation">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configuration.ecore#//EObjectLocation/EMFStoreLocation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configuration.ecore#//EObjectLocation/EObjectID"/>
     </genClasses>
-    <genClasses ecoreClass="Configuration.ecore#//VersionMapping">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configuration.ecore#//VersionMapping/TeamProviderRevision"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configuration.ecore#//VersionMapping/EMFStoreRevision"/>
+    <genClasses ecoreClass="Configuration.ecore#//VersionMapping"/>
+    <genClasses ecoreClass="Configuration.ecore#//HistoryVersionMapping">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configuration.ecore#//HistoryVersionMapping/hvmEntry"/>
+    </genClasses>
+    <genClasses ecoreClass="Configuration.ecore#//HistoryVersionMappingEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configuration.ecore#//HistoryVersionMappingEntry/TeamProviderRevision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configuration.ecore#//HistoryVersionMappingEntry/EMFStoreRevision"/>
+    </genClasses>
+    <genClasses ecoreClass="Configuration.ecore#//SimpleVersionMapping">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configuration.ecore#//SimpleVersionMapping/EMFStoreRevision"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
