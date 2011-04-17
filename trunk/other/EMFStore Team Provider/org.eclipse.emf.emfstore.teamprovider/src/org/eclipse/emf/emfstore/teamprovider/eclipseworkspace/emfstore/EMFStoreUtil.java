@@ -303,7 +303,7 @@ public final class EMFStoreUtil {
 					return;
 				}
 
-				UpdateProjectVersionHandler updateProjectVersionHandler = new EMFStoreJDTUpdateProjectVersionHandler();
+				UpdateProjectVersionHandler updateProjectVersionHandler = new EMFStoreTeamProviderUpdateProjectVersionHandler();
 				updateProjectVersionHandler.update(projectSpace, resolvedTargetVersion);
 
 			} catch (EmfStoreException e) {

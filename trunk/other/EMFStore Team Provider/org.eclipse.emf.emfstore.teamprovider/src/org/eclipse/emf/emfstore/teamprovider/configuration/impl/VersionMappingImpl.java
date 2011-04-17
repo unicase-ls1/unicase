@@ -32,7 +32,6 @@ import org.eclipse.emf.emfstore.teamprovider.configuration.VersionMapping;
 public abstract class VersionMappingImpl extends EObjectImpl implements VersionMapping {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected VersionMappingImpl() {
@@ -41,7 +40,6 @@ public abstract class VersionMappingImpl extends EObjectImpl implements VersionM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

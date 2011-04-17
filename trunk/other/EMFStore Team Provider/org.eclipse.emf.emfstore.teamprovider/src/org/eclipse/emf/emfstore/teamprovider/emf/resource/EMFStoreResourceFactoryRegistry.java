@@ -20,11 +20,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.emfstore.teamprovider.configuration.ConfigurationManager;
-import org.eclipse.emf.emfstore.teamprovider.configuration.EMFStoreJDTConfiguration;
+import org.eclipse.emf.emfstore.teamprovider.configuration.EMFStoreTeamProviderConfiguration;
 import org.eclipse.emf.emfstore.teamprovider.configuration.Entry;
 import org.eclipse.emf.emfstore.teamprovider.eclipseworkspace.StructuredEMFStoreURI;
 import org.eclipse.emf.emfstore.teamprovider.exception.EntryNotFoundException;
-import org.eclipse.emf.emfstore.teamprovider.exception.NoEMFStoreJDTConfigurationException;
+import org.eclipse.emf.emfstore.teamprovider.exception.NoEMFStoreTeamProviderConfigurationException;
 
 /**
  * This ResourceFactroy wrapper is used to loaded another resource than the default one. Ecore files have often links to
@@ -109,14 +109,14 @@ public class EMFStoreResourceFactoryRegistry implements Resource.Factory, Resour
 
 			// check if file is managed by an EMFStore
 			try {
-				EMFStoreJDTConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(file
+				EMFStoreTeamProviderConfiguration emfStoreJDTConfiguration = ConfigurationManager.getConfiguration(file
 					.getProject());
 				Entry entry = ConfigurationManager.getEntry(emfStoreJDTConfiguration, file);
 				StructuredEMFStoreURI structuredEMFStoreURI = new StructuredEMFStoreURI(entry.getEObjectLocation());
 				URI emfuri = structuredEMFStoreURI.getEMFURI();
 				return new EMFStoreResource(emfuri);
 
-			} catch (NoEMFStoreJDTConfigurationException e) {
+			} catch (NoEMFStoreTeamProviderConfigurationException e) {
 				// can be ignored
 			} catch (EntryNotFoundException e) {
 				// can be ignored too

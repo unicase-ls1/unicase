@@ -22,13 +22,11 @@ import org.eclipse.emf.emfstore.teamprovider.configuration.HistoryVersionMapping
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.teamprovider.configuration.impl.HistoryVersionMappingEntryImpl#getTeamProviderRevision <em>
- * Team Provider Revision</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.teamprovider.configuration.impl.HistoryVersionMappingEntryImpl#getEMFStoreRevision <em>EMF
- * Store Revision</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.teamprovider.configuration.impl.HistoryVersionMappingEntryImpl#getTeamProviderRevision <em>Team Provider Revision</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.teamprovider.configuration.impl.HistoryVersionMappingEntryImpl#getEMFStoreRevision <em>EMF Store Revision</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class HistoryVersionMappingEntryImpl extends EObjectImpl implements HistoryVersionMappingEntry {
@@ -74,7 +72,6 @@ public class HistoryVersionMappingEntryImpl extends EObjectImpl implements Histo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected HistoryVersionMappingEntryImpl() {
@@ -83,7 +80,6 @@ public class HistoryVersionMappingEntryImpl extends EObjectImpl implements Histo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -93,7 +89,6 @@ public class HistoryVersionMappingEntryImpl extends EObjectImpl implements Histo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getTeamProviderRevision() {
@@ -102,21 +97,17 @@ public class HistoryVersionMappingEntryImpl extends EObjectImpl implements Histo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTeamProviderRevision(String newTeamProviderRevision) {
 		String oldTeamProviderRevision = teamProviderRevision;
 		teamProviderRevision = newTeamProviderRevision;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY__TEAM_PROVIDER_REVISION, oldTeamProviderRevision,
-				teamProviderRevision));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY__TEAM_PROVIDER_REVISION, oldTeamProviderRevision, teamProviderRevision));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getEMFStoreRevision() {
@@ -125,96 +116,86 @@ public class HistoryVersionMappingEntryImpl extends EObjectImpl implements Histo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEMFStoreRevision(int newEMFStoreRevision) {
 		int oldEMFStoreRevision = emfStoreRevision;
 		emfStoreRevision = newEMFStoreRevision;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY__EMF_STORE_REVISION, oldEMFStoreRevision,
-				emfStoreRevision));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY__EMF_STORE_REVISION, oldEMFStoreRevision, emfStoreRevision));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY__TEAM_PROVIDER_REVISION:
-			return getTeamProviderRevision();
-		case ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY__EMF_STORE_REVISION:
-			return getEMFStoreRevision();
+			case ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY__TEAM_PROVIDER_REVISION:
+				return getTeamProviderRevision();
+			case ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY__EMF_STORE_REVISION:
+				return getEMFStoreRevision();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY__TEAM_PROVIDER_REVISION:
-			setTeamProviderRevision((String) newValue);
-			return;
-		case ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY__EMF_STORE_REVISION:
-			setEMFStoreRevision((Integer) newValue);
-			return;
+			case ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY__TEAM_PROVIDER_REVISION:
+				setTeamProviderRevision((String)newValue);
+				return;
+			case ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY__EMF_STORE_REVISION:
+				setEMFStoreRevision((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY__TEAM_PROVIDER_REVISION:
-			setTeamProviderRevision(TEAM_PROVIDER_REVISION_EDEFAULT);
-			return;
-		case ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY__EMF_STORE_REVISION:
-			setEMFStoreRevision(EMF_STORE_REVISION_EDEFAULT);
-			return;
+			case ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY__TEAM_PROVIDER_REVISION:
+				setTeamProviderRevision(TEAM_PROVIDER_REVISION_EDEFAULT);
+				return;
+			case ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY__EMF_STORE_REVISION:
+				setEMFStoreRevision(EMF_STORE_REVISION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY__TEAM_PROVIDER_REVISION:
-			return TEAM_PROVIDER_REVISION_EDEFAULT == null ? teamProviderRevision != null
-				: !TEAM_PROVIDER_REVISION_EDEFAULT.equals(teamProviderRevision);
-		case ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY__EMF_STORE_REVISION:
-			return emfStoreRevision != EMF_STORE_REVISION_EDEFAULT;
+			case ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY__TEAM_PROVIDER_REVISION:
+				return TEAM_PROVIDER_REVISION_EDEFAULT == null ? teamProviderRevision != null : !TEAM_PROVIDER_REVISION_EDEFAULT.equals(teamProviderRevision);
+			case ConfigurationPackage.HISTORY_VERSION_MAPPING_ENTRY__EMF_STORE_REVISION:
+				return emfStoreRevision != EMF_STORE_REVISION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (TeamProviderRevision: ");

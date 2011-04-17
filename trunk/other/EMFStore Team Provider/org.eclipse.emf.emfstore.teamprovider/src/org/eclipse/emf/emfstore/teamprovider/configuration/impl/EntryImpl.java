@@ -17,7 +17,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.emfstore.teamprovider.configuration.ConfigurationPackage;
-import org.eclipse.emf.emfstore.teamprovider.configuration.EMFStoreJDTConfiguration;
+import org.eclipse.emf.emfstore.teamprovider.configuration.EMFStoreTeamProviderConfiguration;
+import org.eclipse.emf.emfstore.teamprovider.configuration.EMFStoreTeamProviderConfiguration;
 import org.eclipse.emf.emfstore.teamprovider.configuration.EObjectLocation;
 import org.eclipse.emf.emfstore.teamprovider.configuration.Entry;
 import org.eclipse.emf.emfstore.teamprovider.configuration.VersionMapping;
@@ -27,22 +28,20 @@ import org.eclipse.emf.emfstore.teamprovider.configuration.VersionMapping;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.teamprovider.configuration.impl.EntryImpl#getConfiguration <em>Configuration</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.teamprovider.configuration.impl.EntryImpl#getProjectRelativeLocation <em>Project Relative
- * Location</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.teamprovider.configuration.impl.EntryImpl#getEObjectLocation <em>EObject Location</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.teamprovider.configuration.impl.EntryImpl#getVersionMapping <em>Version Mapping</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.teamprovider.configuration.impl.EntryImpl#isMarkedForDeletion <em>Marked For Deletion</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.teamprovider.configuration.impl.EntryImpl#getConfiguration <em>Configuration</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.teamprovider.configuration.impl.EntryImpl#getProjectRelativeLocation <em>Project Relative Location</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.teamprovider.configuration.impl.EntryImpl#getEObjectLocation <em>EObject Location</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.teamprovider.configuration.impl.EntryImpl#getVersionMapping <em>Version Mapping</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.teamprovider.configuration.impl.EntryImpl#isMarkedForDeletion <em>Marked For Deletion</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class EntryImpl extends EObjectImpl implements Entry {
 	/**
 	 * The default value of the '{@link #getProjectRelativeLocation() <em>Project Relative Location</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getProjectRelativeLocation()
 	 * @generated
 	 * @ordered
@@ -52,7 +51,6 @@ public class EntryImpl extends EObjectImpl implements Entry {
 	/**
 	 * The cached value of the '{@link #getProjectRelativeLocation() <em>Project Relative Location</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getProjectRelativeLocation()
 	 * @generated
 	 * @ordered
@@ -101,7 +99,6 @@ public class EntryImpl extends EObjectImpl implements Entry {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EntryImpl() {
@@ -110,7 +107,6 @@ public class EntryImpl extends EObjectImpl implements Entry {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -120,52 +116,46 @@ public class EntryImpl extends EObjectImpl implements Entry {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EMFStoreJDTConfiguration getConfiguration() {
-		if (eContainerFeatureID() != ConfigurationPackage.ENTRY__CONFIGURATION)
-			return null;
-		return (EMFStoreJDTConfiguration) eContainer();
+	public EMFStoreTeamProviderConfiguration getConfiguration() {
+		if (eContainerFeatureID() != ConfigurationPackage.ENTRY__CONFIGURATION) return null;
+		return (EMFStoreTeamProviderConfiguration)eContainer();
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetConfiguration(EMFStoreJDTConfiguration newConfiguration, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newConfiguration, ConfigurationPackage.ENTRY__CONFIGURATION, msgs);
+	public NotificationChain basicSetConfiguration(EMFStoreTeamProviderConfiguration newConfiguration, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newConfiguration, ConfigurationPackage.ENTRY__CONFIGURATION, msgs);
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConfiguration(EMFStoreJDTConfiguration newConfiguration) {
-		if (newConfiguration != eInternalContainer()
-			|| (eContainerFeatureID() != ConfigurationPackage.ENTRY__CONFIGURATION && newConfiguration != null)) {
+	public void setConfiguration(EMFStoreTeamProviderConfiguration newConfiguration) {
+		if (newConfiguration != eInternalContainer() || (eContainerFeatureID() != ConfigurationPackage.ENTRY__CONFIGURATION && newConfiguration != null)) {
 			if (EcoreUtil.isAncestor(this, newConfiguration))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newConfiguration != null)
-				msgs = ((InternalEObject) newConfiguration).eInverseAdd(this,
-					ConfigurationPackage.EMF_STORE_JDT_CONFIGURATION__ENTRY, EMFStoreJDTConfiguration.class, msgs);
+				msgs = ((InternalEObject)newConfiguration).eInverseAdd(this, ConfigurationPackage.EMF_STORE_TEAM_PROVIDER_CONFIGURATION__ENTRY, EMFStoreTeamProviderConfiguration.class, msgs);
 			msgs = basicSetConfiguration(newConfiguration, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.ENTRY__CONFIGURATION,
-				newConfiguration, newConfiguration));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.ENTRY__CONFIGURATION, newConfiguration, newConfiguration));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getProjectRelativeLocation() {
@@ -174,21 +164,17 @@ public class EntryImpl extends EObjectImpl implements Entry {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProjectRelativeLocation(String newProjectRelativeLocation) {
 		String oldProjectRelativeLocation = projectRelativeLocation;
 		projectRelativeLocation = newProjectRelativeLocation;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				ConfigurationPackage.ENTRY__PROJECT_RELATIVE_LOCATION, oldProjectRelativeLocation,
-				projectRelativeLocation));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.ENTRY__PROJECT_RELATIVE_LOCATION, oldProjectRelativeLocation, projectRelativeLocation));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EObjectLocation getEObjectLocation() {
@@ -197,48 +183,38 @@ public class EntryImpl extends EObjectImpl implements Entry {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetEObjectLocation(EObjectLocation newEObjectLocation, NotificationChain msgs) {
 		EObjectLocation oldEObjectLocation = eObjectLocation;
 		eObjectLocation = newEObjectLocation;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				ConfigurationPackage.ENTRY__EOBJECT_LOCATION, oldEObjectLocation, newEObjectLocation);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ConfigurationPackage.ENTRY__EOBJECT_LOCATION, oldEObjectLocation, newEObjectLocation);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEObjectLocation(EObjectLocation newEObjectLocation) {
 		if (newEObjectLocation != eObjectLocation) {
 			NotificationChain msgs = null;
 			if (eObjectLocation != null)
-				msgs = ((InternalEObject) eObjectLocation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- ConfigurationPackage.ENTRY__EOBJECT_LOCATION, null, msgs);
+				msgs = ((InternalEObject)eObjectLocation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ConfigurationPackage.ENTRY__EOBJECT_LOCATION, null, msgs);
 			if (newEObjectLocation != null)
-				msgs = ((InternalEObject) newEObjectLocation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- ConfigurationPackage.ENTRY__EOBJECT_LOCATION, null, msgs);
+				msgs = ((InternalEObject)newEObjectLocation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ConfigurationPackage.ENTRY__EOBJECT_LOCATION, null, msgs);
 			msgs = basicSetEObjectLocation(newEObjectLocation, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.ENTRY__EOBJECT_LOCATION,
-				newEObjectLocation, newEObjectLocation));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.ENTRY__EOBJECT_LOCATION, newEObjectLocation, newEObjectLocation));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public VersionMapping getVersionMapping() {
@@ -247,48 +223,38 @@ public class EntryImpl extends EObjectImpl implements Entry {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetVersionMapping(VersionMapping newVersionMapping, NotificationChain msgs) {
 		VersionMapping oldVersionMapping = versionMapping;
 		versionMapping = newVersionMapping;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				ConfigurationPackage.ENTRY__VERSION_MAPPING, oldVersionMapping, newVersionMapping);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ConfigurationPackage.ENTRY__VERSION_MAPPING, oldVersionMapping, newVersionMapping);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setVersionMapping(VersionMapping newVersionMapping) {
 		if (newVersionMapping != versionMapping) {
 			NotificationChain msgs = null;
 			if (versionMapping != null)
-				msgs = ((InternalEObject) versionMapping).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- ConfigurationPackage.ENTRY__VERSION_MAPPING, null, msgs);
+				msgs = ((InternalEObject)versionMapping).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ConfigurationPackage.ENTRY__VERSION_MAPPING, null, msgs);
 			if (newVersionMapping != null)
-				msgs = ((InternalEObject) newVersionMapping).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- ConfigurationPackage.ENTRY__VERSION_MAPPING, null, msgs);
+				msgs = ((InternalEObject)newVersionMapping).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ConfigurationPackage.ENTRY__VERSION_MAPPING, null, msgs);
 			msgs = basicSetVersionMapping(newVersionMapping, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.ENTRY__VERSION_MAPPING,
-				newVersionMapping, newVersionMapping));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.ENTRY__VERSION_MAPPING, newVersionMapping, newVersionMapping));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isMarkedForDeletion() {
@@ -297,174 +263,161 @@ public class EntryImpl extends EObjectImpl implements Entry {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setMarkedForDeletion(boolean newMarkedForDeletion) {
 		boolean oldMarkedForDeletion = markedForDeletion;
 		markedForDeletion = newMarkedForDeletion;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.ENTRY__MARKED_FOR_DELETION,
-				oldMarkedForDeletion, markedForDeletion));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.ENTRY__MARKED_FOR_DELETION, oldMarkedForDeletion, markedForDeletion));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ConfigurationPackage.ENTRY__CONFIGURATION:
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetConfiguration((EMFStoreJDTConfiguration) otherEnd, msgs);
+			case ConfigurationPackage.ENTRY__CONFIGURATION:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetConfiguration((EMFStoreTeamProviderConfiguration)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ConfigurationPackage.ENTRY__CONFIGURATION:
-			return basicSetConfiguration(null, msgs);
-		case ConfigurationPackage.ENTRY__EOBJECT_LOCATION:
-			return basicSetEObjectLocation(null, msgs);
-		case ConfigurationPackage.ENTRY__VERSION_MAPPING:
-			return basicSetVersionMapping(null, msgs);
+			case ConfigurationPackage.ENTRY__CONFIGURATION:
+				return basicSetConfiguration(null, msgs);
+			case ConfigurationPackage.ENTRY__EOBJECT_LOCATION:
+				return basicSetEObjectLocation(null, msgs);
+			case ConfigurationPackage.ENTRY__VERSION_MAPPING:
+				return basicSetVersionMapping(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-		case ConfigurationPackage.ENTRY__CONFIGURATION:
-			return eInternalContainer().eInverseRemove(this, ConfigurationPackage.EMF_STORE_JDT_CONFIGURATION__ENTRY,
-				EMFStoreJDTConfiguration.class, msgs);
+			case ConfigurationPackage.ENTRY__CONFIGURATION:
+				return eInternalContainer().eInverseRemove(this, ConfigurationPackage.EMF_STORE_TEAM_PROVIDER_CONFIGURATION__ENTRY, EMFStoreTeamProviderConfiguration.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ConfigurationPackage.ENTRY__CONFIGURATION:
-			return getConfiguration();
-		case ConfigurationPackage.ENTRY__PROJECT_RELATIVE_LOCATION:
-			return getProjectRelativeLocation();
-		case ConfigurationPackage.ENTRY__EOBJECT_LOCATION:
-			return getEObjectLocation();
-		case ConfigurationPackage.ENTRY__VERSION_MAPPING:
-			return getVersionMapping();
-		case ConfigurationPackage.ENTRY__MARKED_FOR_DELETION:
-			return isMarkedForDeletion();
+			case ConfigurationPackage.ENTRY__CONFIGURATION:
+				return getConfiguration();
+			case ConfigurationPackage.ENTRY__PROJECT_RELATIVE_LOCATION:
+				return getProjectRelativeLocation();
+			case ConfigurationPackage.ENTRY__EOBJECT_LOCATION:
+				return getEObjectLocation();
+			case ConfigurationPackage.ENTRY__VERSION_MAPPING:
+				return getVersionMapping();
+			case ConfigurationPackage.ENTRY__MARKED_FOR_DELETION:
+				return isMarkedForDeletion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ConfigurationPackage.ENTRY__CONFIGURATION:
-			setConfiguration((EMFStoreJDTConfiguration) newValue);
-			return;
-		case ConfigurationPackage.ENTRY__PROJECT_RELATIVE_LOCATION:
-			setProjectRelativeLocation((String) newValue);
-			return;
-		case ConfigurationPackage.ENTRY__EOBJECT_LOCATION:
-			setEObjectLocation((EObjectLocation) newValue);
-			return;
-		case ConfigurationPackage.ENTRY__VERSION_MAPPING:
-			setVersionMapping((VersionMapping) newValue);
-			return;
-		case ConfigurationPackage.ENTRY__MARKED_FOR_DELETION:
-			setMarkedForDeletion((Boolean) newValue);
-			return;
+			case ConfigurationPackage.ENTRY__CONFIGURATION:
+				setConfiguration((EMFStoreTeamProviderConfiguration)newValue);
+				return;
+			case ConfigurationPackage.ENTRY__PROJECT_RELATIVE_LOCATION:
+				setProjectRelativeLocation((String)newValue);
+				return;
+			case ConfigurationPackage.ENTRY__EOBJECT_LOCATION:
+				setEObjectLocation((EObjectLocation)newValue);
+				return;
+			case ConfigurationPackage.ENTRY__VERSION_MAPPING:
+				setVersionMapping((VersionMapping)newValue);
+				return;
+			case ConfigurationPackage.ENTRY__MARKED_FOR_DELETION:
+				setMarkedForDeletion((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ConfigurationPackage.ENTRY__CONFIGURATION:
-			setConfiguration((EMFStoreJDTConfiguration) null);
-			return;
-		case ConfigurationPackage.ENTRY__PROJECT_RELATIVE_LOCATION:
-			setProjectRelativeLocation(PROJECT_RELATIVE_LOCATION_EDEFAULT);
-			return;
-		case ConfigurationPackage.ENTRY__EOBJECT_LOCATION:
-			setEObjectLocation((EObjectLocation) null);
-			return;
-		case ConfigurationPackage.ENTRY__VERSION_MAPPING:
-			setVersionMapping((VersionMapping) null);
-			return;
-		case ConfigurationPackage.ENTRY__MARKED_FOR_DELETION:
-			setMarkedForDeletion(MARKED_FOR_DELETION_EDEFAULT);
-			return;
+			case ConfigurationPackage.ENTRY__CONFIGURATION:
+				setConfiguration((EMFStoreTeamProviderConfiguration)null);
+				return;
+			case ConfigurationPackage.ENTRY__PROJECT_RELATIVE_LOCATION:
+				setProjectRelativeLocation(PROJECT_RELATIVE_LOCATION_EDEFAULT);
+				return;
+			case ConfigurationPackage.ENTRY__EOBJECT_LOCATION:
+				setEObjectLocation((EObjectLocation)null);
+				return;
+			case ConfigurationPackage.ENTRY__VERSION_MAPPING:
+				setVersionMapping((VersionMapping)null);
+				return;
+			case ConfigurationPackage.ENTRY__MARKED_FOR_DELETION:
+				setMarkedForDeletion(MARKED_FOR_DELETION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ConfigurationPackage.ENTRY__CONFIGURATION:
-			return getConfiguration() != null;
-		case ConfigurationPackage.ENTRY__PROJECT_RELATIVE_LOCATION:
-			return PROJECT_RELATIVE_LOCATION_EDEFAULT == null ? projectRelativeLocation != null
-				: !PROJECT_RELATIVE_LOCATION_EDEFAULT.equals(projectRelativeLocation);
-		case ConfigurationPackage.ENTRY__EOBJECT_LOCATION:
-			return eObjectLocation != null;
-		case ConfigurationPackage.ENTRY__VERSION_MAPPING:
-			return versionMapping != null;
-		case ConfigurationPackage.ENTRY__MARKED_FOR_DELETION:
-			return markedForDeletion != MARKED_FOR_DELETION_EDEFAULT;
+			case ConfigurationPackage.ENTRY__CONFIGURATION:
+				return getConfiguration() != null;
+			case ConfigurationPackage.ENTRY__PROJECT_RELATIVE_LOCATION:
+				return PROJECT_RELATIVE_LOCATION_EDEFAULT == null ? projectRelativeLocation != null : !PROJECT_RELATIVE_LOCATION_EDEFAULT.equals(projectRelativeLocation);
+			case ConfigurationPackage.ENTRY__EOBJECT_LOCATION:
+				return eObjectLocation != null;
+			case ConfigurationPackage.ENTRY__VERSION_MAPPING:
+				return versionMapping != null;
+			case ConfigurationPackage.ENTRY__MARKED_FOR_DELETION:
+				return markedForDeletion != MARKED_FOR_DELETION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (ProjectRelativeLocation: ");
