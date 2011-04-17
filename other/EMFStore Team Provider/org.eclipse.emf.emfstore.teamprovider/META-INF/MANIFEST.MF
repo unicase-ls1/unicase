@@ -7,16 +7,16 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.unicase.emfstore.jdt,
- org.unicase.emfstore.jdt.configuration,
- org.unicase.emfstore.jdt.configuration.impl,
- org.unicase.emfstore.jdt.configuration.util,
- org.unicase.emfstore.jdt.eclipseworkspace,
- org.unicase.emfstore.jdt.eclipseworkspace.emfstore,
- org.unicase.emfstore.jdt.emf.resource,
- org.unicase.emfstore.jdt.exception
+Export-Package: org.eclipse.emf.emfstore.teamprovider,
+ org.eclipse.emf.emfstore.teamprovider.configuration,
+ org.eclipse.emf.emfstore.teamprovider.configuration.impl,
+ org.eclipse.emf.emfstore.teamprovider.configuration.util,
+ org.eclipse.emf.emfstore.teamprovider.eclipseworkspace,
+ org.eclipse.emf.emfstore.teamprovider.eclipseworkspace.emfstore,
+ org.eclipse.emf.emfstore.teamprovider.emf.resource,
+ org.eclipse.emf.emfstore.teamprovider.exception
 Require-Bundle: org.eclipse.team.core,
  org.eclipse.ui,
  org.eclipse.emf.emfstore.client.ui;bundle-version="0.7.3"
 Bundle-ActivationPolicy: lazy
-Bundle-Activator: org.unicase.emfstore.jdt.Activator
+Bundle-Activator: org.eclipse.emf.emfstore.teamprovider.Activator

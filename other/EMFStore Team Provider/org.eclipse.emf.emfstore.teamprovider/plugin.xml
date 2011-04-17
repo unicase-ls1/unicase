@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://emfstore.org/jdt"
-            class="org.unicase.emfstore.jdt.configuration.ConfigurationPackage"
+            class="org.eclipse.emf.emfstore.teamprovider.configuration.ConfigurationPackage"
             genModel="model/Configuration.genmodel"/>
    </extension>
 
