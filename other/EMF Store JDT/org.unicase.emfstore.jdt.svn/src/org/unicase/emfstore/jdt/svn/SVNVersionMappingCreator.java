@@ -6,6 +6,9 @@
 package org.unicase.emfstore.jdt.svn;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.client.model.ModifiedModelElementsCache;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.unicase.emfstore.jdt.ITeamSynchronizer;
 import org.unicase.emfstore.jdt.configuration.ConfigurationFactory;
 import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
@@ -18,9 +21,6 @@ import org.unicase.emfstore.jdt.exception.CommitCannotCompleteException;
 import org.unicase.emfstore.jdt.exception.EObjectNotFoundException;
 import org.unicase.emfstore.jdt.exception.ProjectSpaceNotFoundException;
 import org.unicase.emfstore.jdt.exception.TeamSynchronizerException;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.workspace.ModifiedModelElementsCache;
-import org.unicase.workspace.ProjectSpace;
 
 /**
  * Creates a VersionMapping for the new committed file. For SVN the next version is predictable, so a

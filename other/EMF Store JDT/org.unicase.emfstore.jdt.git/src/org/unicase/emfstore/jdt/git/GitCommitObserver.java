@@ -12,7 +12,8 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.egit.ui.CommitObserver;
+import org.eclipse.emf.emfstore.client.model.observers.CommitObserver;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.emfstore.jdt.CommitHelper;
 import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
 import org.unicase.emfstore.jdt.configuration.Entry;
@@ -22,7 +23,6 @@ import org.unicase.emfstore.jdt.eclipseworkspace.ResourceCommitHolder;
 import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.EMFStoreCommit;
 import org.unicase.emfstore.jdt.exception.CommitCannotCompleteException;
 import org.unicase.emfstore.jdt.ui.decorator.EMFStoreJDTEntryDecorator;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * An implementation for the EGit commit observer in order to be able to hook into the commit process.
