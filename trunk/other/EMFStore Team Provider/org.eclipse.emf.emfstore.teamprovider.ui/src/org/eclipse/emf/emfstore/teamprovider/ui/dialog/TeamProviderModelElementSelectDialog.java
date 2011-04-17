@@ -21,7 +21,7 @@ import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
  * 
  * @author Adrian Staudt
  */
-public class JDTModelElementSelectDialog extends ElementTreeSelectionDialog {
+public class TeamProviderModelElementSelectDialog extends ElementTreeSelectionDialog {
 
 	/**
 	 * Constructor.
@@ -29,7 +29,7 @@ public class JDTModelElementSelectDialog extends ElementTreeSelectionDialog {
 	 * @param shell The parent shell.
 	 * @param project The context, that defines which objects can be selected.
 	 */
-	public JDTModelElementSelectDialog(Shell shell, Project project) {
+	public TeamProviderModelElementSelectDialog(Shell shell, Project project) {
 		super(shell, new TreeLabelProvider(), new TreeContentProvider());
 		setTitle("Tree Selection");
 		setMessage("Select the elements from the tree:");

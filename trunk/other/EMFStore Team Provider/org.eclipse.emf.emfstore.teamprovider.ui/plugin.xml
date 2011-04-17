@@ -263,7 +263,7 @@
           point="org.eclipse.ui.decorators">
        <decorator
              adaptable="false"
-             class="org.eclipse.emf.emfstore.teamprovider.ui.decorator.EMFStoreJDTEntryDecorator"
+             class="org.eclipse.emf.emfstore.teamprovider.ui.decorator.EMFStoreTeamProviderEntryDecorator"
              id="org.unicase.emfstore.jdt.ui.decorator"
              label="EMFStore JDT"
              lightweight="true"

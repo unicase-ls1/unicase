@@ -34,7 +34,7 @@ import org.eclipse.emf.emfstore.teamprovider.eclipseworkspace.emfstore.PushToEMF
 import org.eclipse.emf.emfstore.teamprovider.exception.CannotOpenEObjectException;
 import org.eclipse.emf.emfstore.teamprovider.exception.NoEMFStoreTeamProviderConfigurationException;
 import org.eclipse.emf.emfstore.teamprovider.exception.ProjectSpaceNotFoundException;
-import org.eclipse.emf.emfstore.teamprovider.ui.dialog.JDTModelElementSelectDialog;
+import org.eclipse.emf.emfstore.teamprovider.ui.dialog.TeamProviderModelElementSelectDialog;
 import org.eclipse.emf.emfstore.teamprovider.ui.exception.NoProjectSelectedException;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -118,7 +118,7 @@ public class PullFromEMFStoreEcoreHandler extends AbstractEMFStoreInteractionHan
 	}
 
 	private EObject selectModelElementToPull(ProjectSpace selectProjectSpace) {
-		JDTModelElementSelectDialog meSelectionDialog = new JDTModelElementSelectDialog(shell, selectProjectSpace
+		TeamProviderModelElementSelectDialog meSelectionDialog = new TeamProviderModelElementSelectDialog(shell, selectProjectSpace
 			.getProject());
 		if (meSelectionDialog.open() == Window.OK) {
 			if (meSelectionDialog.getFirstResult() != null) {
