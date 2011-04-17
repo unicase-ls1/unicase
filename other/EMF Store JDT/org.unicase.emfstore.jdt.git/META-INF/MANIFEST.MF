@@ -1,13 +1,13 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Git
-Bundle-SymbolicName: org.unicase.emfstore.jdt.git;singleton:=true
+Bundle-SymbolicName: org.eclipse.emf.emfstore.teamprovider.git;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.emfstore.jdt.git.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.team.core,
- org.unicase.emfstore.jdt,
- org.unicase.emfstore.jdt.ui,
+ org.eclipse.emf.emfstore.teamprovider,
+ org.eclipse.emf.emfstore.teamprovider.ui,
  org.eclipse.egit.core,
  org.eclipse.egit.ui,
  org.eclipse.jgit,

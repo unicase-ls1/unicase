@@ -1,12 +1,12 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Svn
-Bundle-SymbolicName: org.unicase.emfstore.jdt.svn;singleton:=true
+Bundle-SymbolicName: org.eclipse.emf.emfstore.teamprovider.svn;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.emfstore.jdt.svn.Activator
 Require-Bundle: org.eclipse.ui,
- org.unicase.emfstore.jdt,
- org.unicase.emfstore.jdt.ui,
+ org.eclipse.emf.emfstore.teamprovider,
+ org.eclipse.emf.emfstore.teamprovider.ui,
  org.eclipse.team.svn.core,
  org.eclipse.team.svn.ui,
  org.eclipse.team.ui,
