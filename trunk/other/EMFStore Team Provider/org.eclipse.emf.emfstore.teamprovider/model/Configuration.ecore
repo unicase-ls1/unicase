@@ -2,8 +2,8 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="configuration"
-    nsURI="http://emfstore.org/jdt" nsPrefix="org.unicase.emfstore.jdt.configuration">
-  <eClassifiers xsi:type="ecore:EClass" name="EMFStoreJDTConfiguration">
+    nsURI="http://emfstore.org/teamprovider" nsPrefix="org.eclipse.emf.emfstore.teamprovider.configuration">
+  <eClassifiers xsi:type="ecore:EClass" name="EMFStoreTeamProviderConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Entry" upperBound="-1"
         eType="#//Entry" containment="true" eOpposite="#//Entry/Configuration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="AnywayCommit" upperBound="-1"
@@ -19,7 +19,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Entry">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Configuration" lowerBound="1"
-        eType="#//EMFStoreJDTConfiguration" eOpposite="#//EMFStoreJDTConfiguration/Entry"/>
+        eType="#//EMFStoreTeamProviderConfiguration" eOpposite="#//EMFStoreTeamProviderConfiguration/Entry"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ProjectRelativeLocation"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="EObjectLocation" lowerBound="1"
