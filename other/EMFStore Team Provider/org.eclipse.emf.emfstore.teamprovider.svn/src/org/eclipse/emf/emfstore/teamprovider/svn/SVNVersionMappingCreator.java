@@ -3,24 +3,24 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.emfstore.jdt.svn;
+package org.eclipse.emf.emfstore.teamprovider.svn;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.ModifiedModelElementsCache;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.unicase.emfstore.jdt.ITeamSynchronizer;
-import org.unicase.emfstore.jdt.configuration.ConfigurationFactory;
-import org.unicase.emfstore.jdt.configuration.ConfigurationManager;
-import org.unicase.emfstore.jdt.configuration.HistoryVersionMappingEntry;
-import org.unicase.emfstore.jdt.eclipseworkspace.IFileEntryTuple;
-import org.unicase.emfstore.jdt.eclipseworkspace.StructuredEMFStoreURI;
-import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.EMFStoreUtil;
-import org.unicase.emfstore.jdt.eclipseworkspace.emfstore.ProjectSpaceUtil;
-import org.unicase.emfstore.jdt.exception.CommitCannotCompleteException;
-import org.unicase.emfstore.jdt.exception.EObjectNotFoundException;
-import org.unicase.emfstore.jdt.exception.ProjectSpaceNotFoundException;
-import org.unicase.emfstore.jdt.exception.TeamSynchronizerException;
+import org.eclipse.emf.emfstore.teamprovider.ITeamSynchronizer;
+import org.eclipse.emf.emfstore.teamprovider.configuration.ConfigurationFactory;
+import org.eclipse.emf.emfstore.teamprovider.configuration.ConfigurationManager;
+import org.eclipse.emf.emfstore.teamprovider.configuration.HistoryVersionMappingEntry;
+import org.eclipse.emf.emfstore.teamprovider.eclipseworkspace.IFileEntryTuple;
+import org.eclipse.emf.emfstore.teamprovider.eclipseworkspace.StructuredEMFStoreURI;
+import org.eclipse.emf.emfstore.teamprovider.eclipseworkspace.emfstore.EMFStoreUtil;
+import org.eclipse.emf.emfstore.teamprovider.eclipseworkspace.emfstore.ProjectSpaceUtil;
+import org.eclipse.emf.emfstore.teamprovider.exception.CommitCannotCompleteException;
+import org.eclipse.emf.emfstore.teamprovider.exception.EObjectNotFoundException;
+import org.eclipse.emf.emfstore.teamprovider.exception.ProjectSpaceNotFoundException;
+import org.eclipse.emf.emfstore.teamprovider.exception.TeamSynchronizerException;
 
 /**
  * Creates a VersionMapping for the new committed file. For SVN the next version is predictable, so a
