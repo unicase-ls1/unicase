@@ -1,19 +1,17 @@
 /*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering,
- * Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
+ * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen. All rights
+ * reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public
+ * License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * Contributors:
  ******************************************************************************/
 package org.eclipse.emf.ecp.common.commands;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
@@ -62,12 +60,13 @@ public final class DeleteModelElementCommand {
 	 */
 	public void run() {
 		// remove already contained model elements to prevent double deletes -> exception
-		removeDoubleDeleteCandidates();
+		removeAnchestorDuplicates(toBeDeleted);
+
 		// collect all association classes to be deleted
 		Set<EObject> additionalMEs = new HashSet<EObject>();
 		for (EObject eObject : toBeDeleted) {
-			additionalMEs.addAll(AssociationClassHelper.getRelatedAssociationClassToDelete(eObject, context
-				.getMetaModelElementContext()));
+			additionalMEs.addAll(AssociationClassHelper.getRelatedAssociationClassToDelete(eObject,
+				context.getMetaModelElementContext()));
 		}
 		toBeDeleted.addAll(additionalMEs);
 		// now delete
@@ -76,8 +75,10 @@ public final class DeleteModelElementCommand {
 				.getActiveWorkbenchWindow().getShell());
 			progressDialog.open();
 			try {
-				context.getEditingDomain().getCommandStack().execute(
-					DeleteCommand.create(context.getEditingDomain(), toBeDeleted));
+				removeElementsWithoutRoot(toBeDeleted);
+
+				Command deleteCommand = DeleteCommand.create(context.getEditingDomain(), toBeDeleted);
+				context.getEditingDomain().getCommandStack().execute(deleteCommand);
 			} finally {
 				progressDialog.getProgressMonitor().done();
 				progressDialog.close();
@@ -85,25 +86,36 @@ public final class DeleteModelElementCommand {
 		}
 	}
 
-	private void removeDoubleDeleteCandidates() {
-		Set<EObject> toBeDeletedTemp = new HashSet<EObject>();
-		for (EObject toBeDeletedEObject : toBeDeleted) {
-			for (EObject toBeDeletedEObject2 : toBeDeleted) {
-				TreeIterator<EObject> iterator = toBeDeletedEObject.eAllContents();
-				if (toBeDeletedEObject != toBeDeletedEObject2) {
-					while (iterator.hasNext()) {
-						EObject eObject = iterator.next();
-						if (eObject == toBeDeletedEObject2) {
-							toBeDeletedTemp.add(toBeDeletedEObject2);
-							continue;
-						}
-					}
-				}
+	private void removeElementsWithoutRoot(Set<EObject> toBeDeleted) {
+		HashSet<EObject> tmpRemove = new HashSet<EObject>();
+		for (EObject obj : toBeDeleted) {
+			if (obj.eContainer() == null) {
+				obj.eResource().getContents().remove(obj);
+				tmpRemove.add(obj);
 			}
 		}
-		for (EObject eObject : toBeDeletedTemp) {
-			toBeDeleted.remove(eObject);
+		toBeDeleted.removeAll(tmpRemove);
+	}
+
+	private void removeAnchestorDuplicates(Set<EObject> toBeDeleted) {
+		HashSet<EObject> toBeRemoved = new HashSet<EObject>();
+		for (EObject obj : toBeDeleted) {
+			if (parentIsContained(toBeDeleted, obj)) {
+				toBeRemoved.add(obj);
+			}
 		}
+		toBeDeleted.removeAll(toBeRemoved);
+	}
+
+	private boolean parentIsContained(Set<EObject> toBeDeleted, EObject obj) {
+		EObject container = obj.eContainer();
+		if (container == null) {
+			return false;
+		}
+		if (toBeDeleted.contains(container)) {
+			return true;
+		}
+		return parentIsContained(toBeDeleted, container);
 	}
 
 	private boolean askConfirmation() {
