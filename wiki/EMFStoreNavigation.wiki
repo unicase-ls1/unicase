@@ -28,4 +28,4 @@ More information and news also available on our [http://unicase.blogspot.com/ bl
 
 [http://www.eclipse.org/donate/images/friendslogo200.jpg]
 
-[http://www.eclipse.org/emfstore/images/logos_exist.jpg]
+[http://www.eclipse.org/emf-store/images/logos_exist.png]
