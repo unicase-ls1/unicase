@@ -23,4 +23,5 @@ More information and news also available on our  [http://twitter.com/emfcp ECP T
 [http://www.eclipsecon.org/2011/ http://www.eclipsecon.org/2011/static/image/friends/130x100_speaking.gif]
 
 [http://www.eclipse.org/donate/images/friendslogo200.jpg]
+
 [http://www.eclipse.org/emf-store/images/logos_exist.png]
