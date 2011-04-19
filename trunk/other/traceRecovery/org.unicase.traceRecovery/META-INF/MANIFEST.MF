@@ -10,6 +10,7 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: traceRecovery,
  traceRecovery.impl,
  traceRecovery.util,
+ traceability.fortran,
  traceability.java
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
@@ -19,5 +20,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui;bundle-version="3.6.1",
  org.apache.lucene;bundle-version="1.9.1",
  org.apache.lucene.analysis;bundle-version="1.9.1",
- org.eclipse.jdt.core;bundle-version="3.6.2"
+ org.eclipse.jdt.core;bundle-version="3.6.2",
+ org.eclipse.photran.core;bundle-version="6.0.0",
+ org.eclipse.photran.core.vpg;bundle-version="6.0.0"
 Bundle-ActivationPolicy: lazy
