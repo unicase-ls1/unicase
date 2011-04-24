@@ -2,10 +2,12 @@ package org.unicase.iterationplanner.ui.wizard.output;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -46,6 +48,13 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 	private Text txtDevLoad;
 	private IPlannedTask dragSource;
 	private List<Iteration> iterations;
+	
+	private Stack<AbstractChangeIterationPlanCommand> commandStack = new Stack<AbstractChangeIterationPlanCommand>();
+	public Stack<AbstractChangeIterationPlanCommand> getCommandStack() {
+		return commandStack;
+	}
+
+	private Stack<AbstractChangeIterationPlanCommand> undoneCommandStack = new Stack<AbstractChangeIterationPlanCommand>();
 
 	protected EditSelectedIterationPlanPage(String pageName, IIterationPlan iterationPlan, AbstractPlanner planner) {
 		super(pageName);
@@ -91,28 +100,37 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 		
 		iterationsTreeViewer.addDropSupport(ops, transfers, new DropTargetListener() {
 			
+			
+
 			public void dropAccept(DropTargetEvent event) {
 			}
 			
 			public void drop(DropTargetEvent event) {
+				int oldIterationNumber = dragSource.getIterationNumber();
+				Iteration oldIteration = iterations.get(oldIterationNumber);
+				int newIterationNumber = 0;
+				Iteration newIteration = null;
 				if(event.item.getData() instanceof Iteration){
-					Iteration targetIter = (Iteration)event.item.getData();
-					if(dragSource.getIterationNumber() != targetIter.getIterationNumber()){
-						iterations.get(dragSource.getIterationNumber()).getPlannedTasks().remove(dragSource);
-						targetIter.getPlannedTasks().add(dragSource);
-						iterationPlan.setIterationNumberFor(dragSource, targetIter.getIterationNumber());
+					newIteration = (Iteration)event.item.getData();
+					newIterationNumber = newIteration.getIterationNumber();
+					if(oldIterationNumber != newIterationNumber){
+						oldIteration.getPlannedTasks().remove(dragSource);
+						newIteration.getPlannedTasks().add(dragSource);
+						iterationPlan.setIterationNumberFor(dragSource, newIterationNumber);
 						
 					}
 				}
 				if(event.item.getData() instanceof IPlannedTask){
 					IPlannedTask pt = (IPlannedTask)event.item.getData();
-					int targetIterationNumber = pt.getIterationNumber();
-					if(dragSource.getIterationNumber() != targetIterationNumber){
-						iterations.get(dragSource.getIterationNumber()).getPlannedTasks().remove(dragSource);
-						iterations.get(targetIterationNumber).getPlannedTasks().add(dragSource);
-						iterationPlan.setIterationNumberFor(dragSource, targetIterationNumber);
+					newIterationNumber = pt.getIterationNumber();
+					newIteration = iterations.get(newIterationNumber);
+					if(oldIterationNumber != newIterationNumber){
+						oldIteration.getPlannedTasks().remove(dragSource);
+						newIteration.getPlannedTasks().add(dragSource);
+						iterationPlan.setIterationNumberFor(dragSource, newIterationNumber);
 					}
 				}
+				commandStack.push(new ChangeIterationCommand(dragSource, newIterationNumber, oldIterationNumber, newIteration, oldIteration, iterationPlan));
 				update();
 			}
 			
@@ -184,9 +202,50 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 		btnReset.addSelectionListener(new SelectionListener() {
 			
 			public void widgetSelected(SelectionEvent e) {
-				iterationPlan = originalIterationPlan.clone();
-				iterations = createIterations();
-				iterationsTreeViewer.setInput(iterations);
+				boolean yes = MessageDialog.openQuestion(getShell(), "Reset Iteration Plan", "Are you sure you want to reset your changes? This cannot be undone.");
+				if(yes){
+					iterationPlan = originalIterationPlan.clone();
+					iterations = createIterations();
+					iterationsTreeViewer.setInput(iterations);
+					commandStack.empty();
+					undoneCommandStack.empty();
+					update();
+				}
+			}
+			
+			public void widgetDefaultSelected(SelectionEvent e) {
+				
+			}
+		});
+		
+		org.eclipse.swt.widgets.Button btnUndo = new org.eclipse.swt.widgets.Button(indicatorsComposite, SWT.PUSH);
+		btnUndo.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		btnUndo.setText("Undo");
+		btnUndo.addSelectionListener(new SelectionListener() {
+			
+			public void widgetSelected(SelectionEvent e) {
+				AbstractChangeIterationPlanCommand lastCommand = commandStack.pop();
+				lastCommand.undo();
+				undoneCommandStack.push(lastCommand);
+				update();
+			}
+			
+			public void widgetDefaultSelected(SelectionEvent e) {
+				
+			}
+		});
+		
+		org.eclipse.swt.widgets.Button btnRedo = new org.eclipse.swt.widgets.Button(indicatorsComposite, SWT.PUSH);
+		btnRedo.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		btnRedo.setText("Redo");
+		btnRedo.addSelectionListener(new SelectionListener() {
+			
+			
+
+			public void widgetSelected(SelectionEvent e) {
+				AbstractChangeIterationPlanCommand lastUndoneCommand = undoneCommandStack.pop();
+				lastUndoneCommand.redo();
+				commandStack.push(lastUndoneCommand);
 				update();
 			}
 			

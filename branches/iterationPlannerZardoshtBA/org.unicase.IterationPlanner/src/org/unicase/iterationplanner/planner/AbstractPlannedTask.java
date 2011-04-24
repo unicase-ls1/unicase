@@ -3,6 +3,11 @@ package org.unicase.iterationplanner.planner;
 import org.unicase.iterationplanner.assigneeRecommender.AssigneeExpertise;
 import org.unicase.iterationplanner.assigneeRecommender.ITask;
 
+/**
+ * This class is introduced to force the implementors of PlannedTask to override equals();
+ * @author zardosht
+ *
+ */
 public abstract class AbstractPlannedTask implements IPlannedTask {
 
 	@Override
