@@ -79,8 +79,10 @@ public class TaskAssigneeEditingSupport extends EditingSupport {
 	@Override
 	protected void setValue(Object element, Object value) {
 		IPlannedTask pt = (IPlannedTask)element;
-		AssigneeExpertise ae = findAssigneeExpertise(comboBoxCellEditor.getItems()[(Integer)value], pt);
-		iterationPlan.setAssigneeFor(pt, ae);
+		AssigneeExpertise oldAssignee = pt.getAssigneeExpertise();
+		AssigneeExpertise newAssignee = findAssigneeExpertise(comboBoxCellEditor.getItems()[(Integer)value], pt);
+		iterationPlan.setAssigneeFor(pt, newAssignee);
+		editingIterPlanWizardPage.getCommandStack().push(new ChangeAssigneeCommand(pt, newAssignee, oldAssignee, iterationPlan));
 		editingIterPlanWizardPage.update();
 		
 	}
