@@ -3,6 +3,9 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="diagram"
     nsURI="http://unicase.org/model/diagram" nsPrefix="org.unicase.model.diagram">
+  <eAnnotations source="http://www.cs.tum.edu/cope">
+    <details key="historyURI" value="../../org.unicase.model/model/model.history"/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="MEDiagram" abstract="true" eSuperTypes="../../org.unicase.model/model/model.ecore#//Attachment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//UnicaseModelElement"/>

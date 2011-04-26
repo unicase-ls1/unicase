@@ -1352,71 +1352,71 @@
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eSubpackages"
-          element="#//@releases.8/@changes.0/@element">
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element"
+          element="#//@releases.7/@changes.9/@element">
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element"
             featureName="name" dataValue="diagram"/>
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element"
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element"
             featureName="nsURI" dataValue="http://unicase.org/model/diagram"/>
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element"
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element"
             featureName="nsPrefix" dataValue="org.unicase.model.diagram"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.8/@changes.0/@element"
-          referenceName="eClassifiers" element="#//@releases.8/@changes.0/@element/MEDiagram">
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/MEDiagram"
+      <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@element"
+          referenceName="eClassifiers" element="#//@releases.7/@changes.9/@element/MEDiagram">
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/MEDiagram"
             featureName="name" dataValue="MEDiagram"/>
-        <changes xsi:type="history:Add" element="#//@releases.8/@changes.0/@element/MEDiagram"
+        <changes xsi:type="history:Add" element="#//@releases.7/@changes.9/@element/MEDiagram"
             featureName="eSuperTypes" referenceValue="model.ecore#//Attachment"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.8/@changes.0/@element/MEDiagram"
-          referenceName="eStructuralFeatures" element="#//@releases.8/@changes.0/@element/MEDiagram/elements">
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/MEDiagram/elements"
+      <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@element/MEDiagram"
+          referenceName="eStructuralFeatures" element="#//@releases.7/@changes.9/@element/MEDiagram/elements">
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/MEDiagram/elements"
             featureName="name" dataValue="elements"/>
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/MEDiagram/elements"
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/MEDiagram/elements"
             featureName="upperBound" dataValue="-1" oldDataValue="1"/>
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/MEDiagram/elements"
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/MEDiagram/elements"
             featureName="eType" referenceValue="model.ecore#//UnicaseModelElement"/>
-        <changes xsi:type="history:Add" element="#//@releases.8/@changes.0/@element/MEDiagram/elements"
+        <changes xsi:type="history:Add" element="#//@releases.7/@changes.9/@element/MEDiagram/elements"
             featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.8/@changes.0/@element/MEDiagram"
-          referenceName="eStructuralFeatures" element="#//@releases.8/@changes.0/@element/MEDiagram/gmfdiagram">
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/MEDiagram/gmfdiagram"
+      <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@element/MEDiagram"
+          referenceName="eStructuralFeatures" element="#//@releases.7/@changes.9/@element/MEDiagram/gmfdiagram">
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/MEDiagram/gmfdiagram"
             featureName="name" dataValue="gmfdiagram"/>
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/MEDiagram/gmfdiagram"
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/MEDiagram/gmfdiagram"
             featureName="transient" dataValue="true" oldDataValue="false"/>
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/MEDiagram/gmfdiagram"
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/MEDiagram/gmfdiagram"
             featureName="containment" dataValue="true" oldDataValue="false"/>
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/MEDiagram/gmfdiagram"
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/MEDiagram/gmfdiagram"
             featureName="eType" referenceValue="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.8/@changes.0/@element/MEDiagram"
-          referenceName="eStructuralFeatures" element="#//@releases.8/@changes.0/@element/MEDiagram/newElements">
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/MEDiagram/newElements"
+      <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@element/MEDiagram"
+          referenceName="eStructuralFeatures" element="#//@releases.7/@changes.9/@element/MEDiagram/newElements">
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/MEDiagram/newElements"
             featureName="name" dataValue="newElements"/>
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/MEDiagram/newElements"
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/MEDiagram/newElements"
             featureName="upperBound" dataValue="-1" oldDataValue="1"/>
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/MEDiagram/newElements"
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/MEDiagram/newElements"
             featureName="transient" dataValue="true" oldDataValue="false"/>
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/MEDiagram/newElements"
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/MEDiagram/newElements"
             featureName="containment" dataValue="true" oldDataValue="false"/>
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/MEDiagram/newElements"
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/MEDiagram/newElements"
             featureName="eType" referenceValue="model.ecore#//UnicaseModelElement"/>
-        <changes xsi:type="history:Add" element="#//@releases.8/@changes.0/@element/MEDiagram/newElements"
+        <changes xsi:type="history:Add" element="#//@releases.7/@changes.9/@element/MEDiagram/newElements"
             featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.8/@changes.0/@element/MEDiagram"
-          referenceName="eStructuralFeatures" element="#//@releases.8/@changes.0/@element/MEDiagram/diagramLayout">
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/MEDiagram/diagramLayout"
+      <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@element/MEDiagram"
+          referenceName="eStructuralFeatures" element="#//@releases.7/@changes.9/@element/MEDiagram/diagramLayout">
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/MEDiagram/diagramLayout"
             featureName="name" dataValue="diagramLayout"/>
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/MEDiagram/diagramLayout"
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/MEDiagram/diagramLayout"
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.8/@changes.0/@element"
+      <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@element"
           referenceName="eClassifiers" element="#//@releases.6/@changes.0/@changes.7/@element">
         <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.7/@element"
             featureName="name" dataValue="DiagramType"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.8/@changes.0/@element/MEDiagram"
+      <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@element/MEDiagram"
           referenceName="eStructuralFeatures" element="#//@releases.6/@changes.0/@changes.6/@element">
         <changes xsi:type="history:Set" element="#//@releases.6/@changes.0/@changes.6/@element"
             featureName="name" dataValue="type"/>
@@ -6394,9 +6394,9 @@
           featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//task/Milestone/containedModelElements"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
-      <changes xsi:type="history:Remove" element="#//@releases.8/@changes.0/@element/MEDiagram/elements"
+      <changes xsi:type="history:Remove" element="#//@releases.7/@changes.9/@element/MEDiagram/elements"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
-      <changes xsi:type="history:Remove" element="#//@releases.8/@changes.0/@element/MEDiagram/newElements"
+      <changes xsi:type="history:Remove" element="#//@releases.7/@changes.9/@element/MEDiagram/newElements"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/subClasses"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
@@ -6737,9 +6737,9 @@
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//task/Milestone/containedModelElements"
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <changes xsi:type="history:Add" element="#//@releases.8/@changes.0/@element/MEDiagram/elements"
+      <changes xsi:type="history:Add" element="#//@releases.7/@changes.9/@element/MEDiagram/elements"
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <changes xsi:type="history:Add" element="#//@releases.8/@changes.0/@element/MEDiagram/newElements"
+      <changes xsi:type="history:Add" element="#//@releases.7/@changes.9/@element/MEDiagram/newElements"
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Class/participatedUseCases"
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
@@ -6983,10 +6983,10 @@
   </releases>
   <releases date="2009-06-15T16:43:42.953+0200" label="1 (0.3.25.internal)">
     <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachment"
-        referenceName="eStructuralFeatures" element="#//@releases.8/@changes.3/@element">
-      <changes xsi:type="history:Set" element="#//@releases.8/@changes.3/@element"
+        referenceName="eStructuralFeatures" element="#//@releases.8/@changes.2/@element">
+      <changes xsi:type="history:Set" element="#//@releases.8/@changes.2/@element"
           featureName="name" dataValue="requiredOffline"/>
-      <changes xsi:type="history:Set" element="#//@releases.8/@changes.3/@element"
+      <changes xsi:type="history:Set" element="#//@releases.8/@changes.2/@element"
           featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </changes>
     <changes xsi:type="history:Add" element="model.ecore#//rationale/Comment" featureName="eSuperTypes"
@@ -7101,17 +7101,17 @@
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
     </changes>
     <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachment"
-        referenceName="eStructuralFeatures" element="#//@releases.8/@changes.1/@element">
-      <changes xsi:type="history:Set" element="#//@releases.8/@changes.1/@element"
+        referenceName="eStructuralFeatures" element="#//@releases.8/@changes.0/@element">
+      <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element"
           featureName="name" dataValue="uploading"/>
-      <changes xsi:type="history:Set" element="#//@releases.8/@changes.1/@element"
+      <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element"
           featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </changes>
     <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachment"
-        referenceName="eStructuralFeatures" element="#//@releases.8/@changes.2/@element">
-      <changes xsi:type="history:Set" element="#//@releases.8/@changes.2/@element"
+        referenceName="eStructuralFeatures" element="#//@releases.8/@changes.1/@element">
+      <changes xsi:type="history:Set" element="#//@releases.8/@changes.1/@element"
           featureName="name" dataValue="downloading"/>
-      <changes xsi:type="history:Set" element="#//@releases.8/@changes.2/@element"
+      <changes xsi:type="history:Set" element="#//@releases.8/@changes.1/@element"
           featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </changes>
     <changes xsi:type="history:MigrationChange" migration="import org.eclipse.emf.ecore.*&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * Converts the rich text string as generated by the MERichTextContol to HTML.&#xD;&#xA; * &#xD;&#xA; * @param richText the input string&#xD;&#xA; * @return the converted HTML text&#xD;&#xA; */&#xD;&#xA;public static String getHTMLFromRichText(String richText) {&#xD;&#xA;&#x9;if (richText == null) {&#xD;&#xA;&#x9;&#x9;return &quot;&quot;;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;String[] split = richText.split(&quot;%BEGINNTEXT%&quot;);&#xD;&#xA;&#xD;&#xA;&#x9;if (split.length == 1) {&#xD;&#xA;&#x9;&#x9;return &quot;&quot;;&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;List&lt;Integer> bulletedLines = new ArrayList&lt;Integer>();&#xD;&#xA;&#x9;&#x9;try {&#xD;&#xA;&#x9;&#x9;&#x9;StringTokenizer stringTokenizer = new StringTokenizer(split[0], &quot;,&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;while (stringTokenizer.hasMoreElements()) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;String nextElement = (String) stringTokenizer.nextElement();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if (nextElement.equals(&quot;;&quot;)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;bulletedLines.add(Integer.parseInt(nextElement));&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;} catch (RuntimeException e) {&#xD;&#xA;&#x9;&#x9;&#x9;e.printStackTrace();&#xD;&#xA;&#x9;&#x9;&#x9;return &quot;&quot;;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;String text = split[1];&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;try {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;// normalize line feeds&#xD;&#xA;&#x9;&#x9;&#x9;text.replaceAll(&quot;\n\r&quot;, &quot;\n&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;text.replaceAll(&quot;\r\n&quot;, &quot;\n&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;text.replaceAll(&quot;\r&quot;, &quot;\n&quot;);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;String[] lines = text.split(&quot;\n&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;StringBuilder newString = new StringBuilder();&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;for (int i = 0; i &lt; lines.length; i++) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if (bulletedLines.contains(i)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(&quot;\n&lt;ul>&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(&quot;&lt;li>&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(lines[i]);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(&quot;&lt;/li>&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(&quot;&lt;/ul>&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(lines[i]);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(&quot;&lt;br/>\n&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;String newDesc = newString.toString();&#xD;&#xA;&#x9;&#x9;&#x9;return newDesc;&#xD;&#xA;&#x9;&#x9;} catch (RuntimeException e) {&#xD;&#xA;&#x9;&#x9;&#x9;e.printStackTrace();&#xD;&#xA;&#x9;&#x9;&#x9;return text;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;//change migration&#xD;&#xA;getElementById = { id ->&#xD;&#xA;&#x9;def element = model.UnicaseModelElement.allInstances.find{e -> id.equals(e.identifier)} &#xD;&#xA;&#x9;if(element == null) {&#xD;&#xA;&#x9;&#x9;println &quot;id &quot; + id + &quot; not found&quot;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return element&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;isFeatureChange = { operation, EStructuralFeature feature ->&#xD;&#xA;&#x9;if(feature.name.equals(operation.featureName)) {&#xD;&#xA;&#x9;&#x9;def id = operation.modelElementId.id&#xD;&#xA;&#x9;&#x9;def element = getElementById(id)&#xD;&#xA;&#x9;&#x9;if(element == null || element.instanceOf(feature.eContainingClass)) {&#xD;&#xA;&#x9;&#x9;&#x9;return true&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return false&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;for(operation in esmodel.versioning.operations.AttributeOperation.allInstances) {&#xD;&#xA;&#x9;if(isFeatureChange(operation, model.UnicaseModelElement.description)) {&#xD;&#xA;&#x9;&#x9;if(operation.oldValue != null) {&#xD;&#xA;&#x9;&#x9;&#x9;operation.oldValue = getHTMLFromRichText(operation.oldValue)&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;if(operation.newValue != null) {&#xD;&#xA;&#x9;&#x9;&#x9;operation.newValue = getHTMLFromRichText(operation.newValue)&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// model migration&#xD;&#xA;for(m in model.UnicaseModelElement.allInstances) {&#xD;&#xA;&#x9;if(m.description != null) {&#xD;&#xA;&#x9;&#x9;m.description = getHTMLFromRichText(m.description)&#xD;&#xA;&#x9;}&#xD;&#xA;}"/>
@@ -7889,53 +7889,53 @@
   </releases>
   <releases date="2010-03-28T11:49:07.828+0200" label="">
     <changes xsi:type="history:OperationChange">
-      <changes xsi:type="history:Create" target="#//@releases.8/@changes.0/@element"
-          referenceName="eClassifiers" element="#//@releases.8/@changes.0/@element/ClassDiagram">
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/ClassDiagram"
+      <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@element"
+          referenceName="eClassifiers" element="#//@releases.7/@changes.9/@element/ClassDiagram">
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/ClassDiagram"
             featureName="name" dataValue="CLASS_DIAGRAM"/>
-        <changes xsi:type="history:Add" element="#//@releases.8/@changes.0/@element/ClassDiagram"
-            featureName="eSuperTypes" referenceValue="#//@releases.8/@changes.0/@element/MEDiagram"/>
+        <changes xsi:type="history:Add" element="#//@releases.7/@changes.9/@element/ClassDiagram"
+            featureName="eSuperTypes" referenceValue="#//@releases.7/@changes.9/@element/MEDiagram"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.8/@changes.0/@element"
-          referenceName="eClassifiers" element="#//@releases.8/@changes.0/@element/UseCaseDiagram">
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/UseCaseDiagram"
+      <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@element"
+          referenceName="eClassifiers" element="#//@releases.7/@changes.9/@element/UseCaseDiagram">
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/UseCaseDiagram"
             featureName="name" dataValue="USECASE_DIAGRAM"/>
-        <changes xsi:type="history:Add" element="#//@releases.8/@changes.0/@element/UseCaseDiagram"
-            featureName="eSuperTypes" referenceValue="#//@releases.8/@changes.0/@element/MEDiagram"/>
+        <changes xsi:type="history:Add" element="#//@releases.7/@changes.9/@element/UseCaseDiagram"
+            featureName="eSuperTypes" referenceValue="#//@releases.7/@changes.9/@element/MEDiagram"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.8/@changes.0/@element"
-          referenceName="eClassifiers" element="#//@releases.8/@changes.0/@element/ComponentDiagram">
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/ComponentDiagram"
+      <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@element"
+          referenceName="eClassifiers" element="#//@releases.7/@changes.9/@element/ComponentDiagram">
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/ComponentDiagram"
             featureName="name" dataValue="COMPONENT_DIAGRAM"/>
-        <changes xsi:type="history:Add" element="#//@releases.8/@changes.0/@element/ComponentDiagram"
-            featureName="eSuperTypes" referenceValue="#//@releases.8/@changes.0/@element/MEDiagram"/>
+        <changes xsi:type="history:Add" element="#//@releases.7/@changes.9/@element/ComponentDiagram"
+            featureName="eSuperTypes" referenceValue="#//@releases.7/@changes.9/@element/MEDiagram"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.8/@changes.0/@element"
-          referenceName="eClassifiers" element="#//@releases.8/@changes.0/@element/StateDiagram">
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/StateDiagram"
+      <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@element"
+          referenceName="eClassifiers" element="#//@releases.7/@changes.9/@element/StateDiagram">
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/StateDiagram"
             featureName="name" dataValue="STATE_DIAGRAM"/>
-        <changes xsi:type="history:Add" element="#//@releases.8/@changes.0/@element/StateDiagram"
-            featureName="eSuperTypes" referenceValue="#//@releases.8/@changes.0/@element/MEDiagram"/>
+        <changes xsi:type="history:Add" element="#//@releases.7/@changes.9/@element/StateDiagram"
+            featureName="eSuperTypes" referenceValue="#//@releases.7/@changes.9/@element/MEDiagram"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.8/@changes.0/@element"
-          referenceName="eClassifiers" element="#//@releases.8/@changes.0/@element/ActivityDiagram">
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/ActivityDiagram"
+      <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@element"
+          referenceName="eClassifiers" element="#//@releases.7/@changes.9/@element/ActivityDiagram">
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/ActivityDiagram"
             featureName="name" dataValue="ACTIVITY_DIAGRAM"/>
-        <changes xsi:type="history:Add" element="#//@releases.8/@changes.0/@element/ActivityDiagram"
-            featureName="eSuperTypes" referenceValue="#//@releases.8/@changes.0/@element/MEDiagram"/>
+        <changes xsi:type="history:Add" element="#//@releases.7/@changes.9/@element/ActivityDiagram"
+            featureName="eSuperTypes" referenceValue="#//@releases.7/@changes.9/@element/MEDiagram"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.8/@changes.0/@element"
-          referenceName="eClassifiers" element="#//@releases.8/@changes.0/@element/WorkItemDiagram">
-        <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/WorkItemDiagram"
+      <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@element"
+          referenceName="eClassifiers" element="#//@releases.7/@changes.9/@element/WorkItemDiagram">
+        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/WorkItemDiagram"
             featureName="name" dataValue="WORKITEM_DIAGRAM"/>
-        <changes xsi:type="history:Add" element="#//@releases.8/@changes.0/@element/WorkItemDiagram"
-            featureName="eSuperTypes" referenceValue="#//@releases.8/@changes.0/@element/MEDiagram"/>
+        <changes xsi:type="history:Add" element="#//@releases.7/@changes.9/@element/WorkItemDiagram"
+            featureName="eSuperTypes" referenceValue="#//@releases.7/@changes.9/@element/MEDiagram"/>
       </changes>
-      <changes xsi:type="history:Delete" target="#//@releases.8/@changes.0/@element/MEDiagram"
+      <changes xsi:type="history:Delete" target="#//@releases.7/@changes.9/@element/MEDiagram"
           referenceName="eStructuralFeatures">
         <element xsi:type="ecore:EAttribute" name="type" eType="#//@releases.6/@changes.0/@changes.7/@element"/>
       </changes>
-      <changes xsi:type="history:Delete" target="#//@releases.8/@changes.0/@element"
+      <changes xsi:type="history:Delete" target="#//@releases.7/@changes.9/@element"
           referenceName="eClassifiers">
         <element xsi:type="ecore:EEnum" name="DiagramType">
           <eLiterals name="CLASS_DIAGRAM" literal="CLASS_DIAGRAM"/>
@@ -7946,23 +7946,23 @@
           <eLiterals name="WORKITEM_DIAGRAM" value="5" literal="WORKITEM_DIAGRAM"/>
         </element>
       </changes>
-      <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/MEDiagram"
+      <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/MEDiagram"
           featureName="abstract" dataValue="true" oldDataValue="false"/>
       <operation name="enumerationToSubClasses">
         <parameters name="enumAttribute">
           <referenceValue element="#//@releases.6/@changes.0/@changes.6/@element"/>
         </parameters>
         <parameters name="ePackage">
-          <referenceValue element="#//@releases.8/@changes.0/@element"/>
+          <referenceValue element="#//@releases.7/@changes.9/@element"/>
         </parameters>
       </operation>
     </changes>
     <changes xsi:type="history:OperationChange">
-      <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/ClassDiagram"
+      <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/ClassDiagram"
           featureName="name" dataValue="ClassDiagram" oldDataValue="CLASS_DIAGRAM"/>
       <operation name="rename">
         <parameters name="element">
-          <referenceValue element="#//@releases.8/@changes.0/@element/ClassDiagram"/>
+          <referenceValue element="#//@releases.7/@changes.9/@element/ClassDiagram"/>
         </parameters>
         <parameters name="name">
           <dataValue>ClassDiagram</dataValue>
@@ -7970,11 +7970,11 @@
       </operation>
     </changes>
     <changes xsi:type="history:OperationChange">
-      <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/ComponentDiagram"
+      <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/ComponentDiagram"
           featureName="name" dataValue="ComponentDiagram" oldDataValue="COMPONENT_DIAGRAM"/>
       <operation name="rename">
         <parameters name="element">
-          <referenceValue element="#//@releases.8/@changes.0/@element/ComponentDiagram"/>
+          <referenceValue element="#//@releases.7/@changes.9/@element/ComponentDiagram"/>
         </parameters>
         <parameters name="name">
           <dataValue>ComponentDiagram</dataValue>
@@ -7982,11 +7982,11 @@
       </operation>
     </changes>
     <changes xsi:type="history:OperationChange">
-      <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/StateDiagram"
+      <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/StateDiagram"
           featureName="name" dataValue="StateDiagram" oldDataValue="STATE_DIAGRAM"/>
       <operation name="rename">
         <parameters name="element">
-          <referenceValue element="#//@releases.8/@changes.0/@element/StateDiagram"/>
+          <referenceValue element="#//@releases.7/@changes.9/@element/StateDiagram"/>
         </parameters>
         <parameters name="name">
           <dataValue>StateDiagram</dataValue>
@@ -7994,11 +7994,11 @@
       </operation>
     </changes>
     <changes xsi:type="history:OperationChange">
-      <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/ActivityDiagram"
+      <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/ActivityDiagram"
           featureName="name" dataValue="ActivityDiagram" oldDataValue="ACTIVITY_DIAGRAM"/>
       <operation name="rename">
         <parameters name="element">
-          <referenceValue element="#//@releases.8/@changes.0/@element/ActivityDiagram"/>
+          <referenceValue element="#//@releases.7/@changes.9/@element/ActivityDiagram"/>
         </parameters>
         <parameters name="name">
           <dataValue>ActivityDiagram</dataValue>
@@ -8006,11 +8006,11 @@
       </operation>
     </changes>
     <changes xsi:type="history:OperationChange">
-      <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/WorkItemDiagram"
+      <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/WorkItemDiagram"
           featureName="name" dataValue="WorkItemDiagram" oldDataValue="WORKITEM_DIAGRAM"/>
       <operation name="rename">
         <parameters name="element">
-          <referenceValue element="#//@releases.8/@changes.0/@element/WorkItemDiagram"/>
+          <referenceValue element="#//@releases.7/@changes.9/@element/WorkItemDiagram"/>
         </parameters>
         <parameters name="name">
           <dataValue>WorkItemDiagram</dataValue>
@@ -8018,11 +8018,11 @@
       </operation>
     </changes>
     <changes xsi:type="history:OperationChange">
-      <changes xsi:type="history:Set" element="#//@releases.8/@changes.0/@element/UseCaseDiagram"
+      <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/UseCaseDiagram"
           featureName="name" dataValue="UseCaseDiagram" oldDataValue="USECASE_DIAGRAM"/>
       <operation name="rename">
         <parameters name="element">
-          <referenceValue element="#//@releases.8/@changes.0/@element/UseCaseDiagram"/>
+          <referenceValue element="#//@releases.7/@changes.9/@element/UseCaseDiagram"/>
         </parameters>
         <parameters name="name">
           <dataValue>UseCaseDiagram</dataValue>
@@ -8093,9 +8093,9 @@
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//task/Milestone/containedModelElements"
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <changes xsi:type="history:Remove" element="#//@releases.8/@changes.0/@element/MEDiagram/elements"
+      <changes xsi:type="history:Remove" element="#//@releases.7/@changes.9/@element/MEDiagram/elements"
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <changes xsi:type="history:Remove" element="#//@releases.8/@changes.0/@element/MEDiagram/newElements"
+      <changes xsi:type="history:Remove" element="#//@releases.7/@changes.9/@element/MEDiagram/newElements"
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/participatedUseCases"
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
@@ -8389,8 +8389,6 @@
         </parameters>
       </operation>
     </changes>
-  </releases>
-  <releases>
     <changes xsi:type="history:Delete" target="model.ecore#/" referenceName="eSubpackages">
       <element xsi:type="ecore:EPackage" name="diagram" nsURI="http://unicase.org/model/diagram"
           nsPrefix="org.unicase.model.diagram">
@@ -8404,14 +8402,129 @@
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramLayout" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
-        <eClassifiers xsi:type="ecore:EClass" name="ClassDiagram" eSuperTypes="#//@releases.8/@changes.0/@element/MEDiagram"/>
-        <eClassifiers xsi:type="ecore:EClass" name="UseCaseDiagram" eSuperTypes="#//@releases.8/@changes.0/@element/MEDiagram"/>
-        <eClassifiers xsi:type="ecore:EClass" name="ComponentDiagram" eSuperTypes="#//@releases.8/@changes.0/@element/MEDiagram"/>
-        <eClassifiers xsi:type="ecore:EClass" name="StateDiagram" eSuperTypes="#//@releases.8/@changes.0/@element/MEDiagram"/>
-        <eClassifiers xsi:type="ecore:EClass" name="ActivityDiagram" eSuperTypes="#//@releases.8/@changes.0/@element/MEDiagram"/>
-        <eClassifiers xsi:type="ecore:EClass" name="WorkItemDiagram" eSuperTypes="#//@releases.8/@changes.0/@element/MEDiagram"/>
+        <eClassifiers xsi:type="ecore:EClass" name="ClassDiagram" eSuperTypes="#//@releases.7/@changes.9/@element/MEDiagram"/>
+        <eClassifiers xsi:type="ecore:EClass" name="UseCaseDiagram" eSuperTypes="#//@releases.7/@changes.9/@element/MEDiagram"/>
+        <eClassifiers xsi:type="ecore:EClass" name="ComponentDiagram" eSuperTypes="#//@releases.7/@changes.9/@element/MEDiagram"/>
+        <eClassifiers xsi:type="ecore:EClass" name="StateDiagram" eSuperTypes="#//@releases.7/@changes.9/@element/MEDiagram"/>
+        <eClassifiers xsi:type="ecore:EClass" name="ActivityDiagram" eSuperTypes="#//@releases.7/@changes.9/@element/MEDiagram"/>
+        <eClassifiers xsi:type="ecore:EClass" name="WorkItemDiagram" eSuperTypes="#//@releases.7/@changes.9/@element/MEDiagram"/>
       </element>
     </changes>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Create" element="../../org.unicase.diagram/model/diagram.ecore#/">
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#/"
+            featureName="name" dataValue="diagram"/>
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#/"
+            featureName="nsURI" dataValue="http://unicase.org/model/diagram"/>
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#/"
+            featureName="nsPrefix" dataValue="org.unicase.model.diagram"/>
+      </changes>
+      <changes xsi:type="history:Create" target="../../org.unicase.diagram/model/diagram.ecore#/"
+          referenceName="eAnnotations" element="../../org.unicase.diagram/model/diagram.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%">
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%"
+            featureName="source" dataValue="http://www.cs.tum.edu/cope"/>
+      </changes>
+      <changes xsi:type="history:Create" target="../../org.unicase.diagram/model/diagram.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%"
+          referenceName="details" element="../../org.unicase.diagram/model/diagram.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%/@details.0">
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%/@details.0"
+            featureName="key" dataValue="historyURI"/>
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%/@details.0"
+            featureName="value" dataValue="../../org.unicase.model/model/model.history"/>
+      </changes>
+      <changes xsi:type="history:Create" target="../../org.unicase.diagram/model/diagram.ecore#/"
+          referenceName="eClassifiers" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram">
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram"
+            featureName="name" dataValue="MEDiagram"/>
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram"
+            featureName="abstract" dataValue="true" oldDataValue="false"/>
+        <changes xsi:type="history:Add" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram"
+            featureName="eSuperTypes" referenceValue="model.ecore#//Attachment"/>
+      </changes>
+      <changes xsi:type="history:Create" target="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram"
+          referenceName="eStructuralFeatures" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/elements">
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/elements"
+            featureName="name" dataValue="elements"/>
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/elements"
+            featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/elements"
+            featureName="eType" referenceValue="model.ecore#//UnicaseModelElement"/>
+      </changes>
+      <changes xsi:type="history:Create" target="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram"
+          referenceName="eStructuralFeatures" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/gmfdiagram">
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/gmfdiagram"
+            featureName="name" dataValue="gmfdiagram"/>
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/gmfdiagram"
+            featureName="transient" dataValue="true" oldDataValue="false"/>
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/gmfdiagram"
+            featureName="containment" dataValue="true" oldDataValue="false"/>
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/gmfdiagram"
+            featureName="eType" referenceValue="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"/>
+      </changes>
+      <changes xsi:type="history:Create" target="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram"
+          referenceName="eStructuralFeatures" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements">
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"
+            featureName="name" dataValue="newElements"/>
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"
+            featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"
+            featureName="transient" dataValue="true" oldDataValue="false"/>
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"
+            featureName="containment" dataValue="true" oldDataValue="false"/>
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"
+            featureName="eType" referenceValue="model.ecore#//UnicaseModelElement"/>
+      </changes>
+      <changes xsi:type="history:Create" target="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram"
+          referenceName="eStructuralFeatures" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/diagramLayout">
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/diagramLayout"
+            featureName="name" dataValue="diagramLayout"/>
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/diagramLayout"
+            featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </changes>
+      <changes xsi:type="history:Create" target="../../org.unicase.diagram/model/diagram.ecore#/"
+          referenceName="eClassifiers" element="../../org.unicase.diagram/model/diagram.ecore#//ClassDiagram">
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//ClassDiagram"
+            featureName="name" dataValue="ClassDiagram"/>
+        <changes xsi:type="history:Add" element="../../org.unicase.diagram/model/diagram.ecore#//ClassDiagram"
+            featureName="eSuperTypes" referenceValue="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram"/>
+      </changes>
+      <changes xsi:type="history:Create" target="../../org.unicase.diagram/model/diagram.ecore#/"
+          referenceName="eClassifiers" element="../../org.unicase.diagram/model/diagram.ecore#//UseCaseDiagram">
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//UseCaseDiagram"
+            featureName="name" dataValue="UseCaseDiagram"/>
+        <changes xsi:type="history:Add" element="../../org.unicase.diagram/model/diagram.ecore#//UseCaseDiagram"
+            featureName="eSuperTypes" referenceValue="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram"/>
+      </changes>
+      <changes xsi:type="history:Create" target="../../org.unicase.diagram/model/diagram.ecore#/"
+          referenceName="eClassifiers" element="../../org.unicase.diagram/model/diagram.ecore#//ComponentDiagram">
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//ComponentDiagram"
+            featureName="name" dataValue="ComponentDiagram"/>
+        <changes xsi:type="history:Add" element="../../org.unicase.diagram/model/diagram.ecore#//ComponentDiagram"
+            featureName="eSuperTypes" referenceValue="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram"/>
+      </changes>
+      <changes xsi:type="history:Create" target="../../org.unicase.diagram/model/diagram.ecore#/"
+          referenceName="eClassifiers" element="../../org.unicase.diagram/model/diagram.ecore#//StateDiagram">
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//StateDiagram"
+            featureName="name" dataValue="StateDiagram"/>
+        <changes xsi:type="history:Add" element="../../org.unicase.diagram/model/diagram.ecore#//StateDiagram"
+            featureName="eSuperTypes" referenceValue="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram"/>
+      </changes>
+      <changes xsi:type="history:Create" target="../../org.unicase.diagram/model/diagram.ecore#/"
+          referenceName="eClassifiers" element="../../org.unicase.diagram/model/diagram.ecore#//ActivityDiagram">
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//ActivityDiagram"
+            featureName="name" dataValue="ActivityDiagram"/>
+        <changes xsi:type="history:Add" element="../../org.unicase.diagram/model/diagram.ecore#//ActivityDiagram"
+            featureName="eSuperTypes" referenceValue="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram"/>
+      </changes>
+      <changes xsi:type="history:Create" target="../../org.unicase.diagram/model/diagram.ecore#/"
+          referenceName="eClassifiers" element="../../org.unicase.diagram/model/diagram.ecore#//WorkItemDiagram">
+        <changes xsi:type="history:Set" element="../../org.unicase.diagram/model/diagram.ecore#//WorkItemDiagram"
+            featureName="name" dataValue="WorkItemDiagram"/>
+        <changes xsi:type="history:Add" element="../../org.unicase.diagram/model/diagram.ecore#//WorkItemDiagram"
+            featureName="eSuperTypes" referenceValue="../../org.unicase.diagram/model/diagram.ecore#//MEDiagram"/>
+      </changes>
+    </changes>
+  </releases>
+  <releases>
     <changes xsi:type="history:Delete" target="model.ecore#//attachment/FileAttachment"
         referenceName="eStructuralFeatures">
       <element xsi:type="ecore:EAttribute" name="uploading" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -8423,6 +8536,144 @@
     <changes xsi:type="history:Delete" target="model.ecore#//attachment/FileAttachment"
         referenceName="eStructuralFeatures">
       <element xsi:type="ecore:EAttribute" name="requiredOffline" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//attachment" referenceName="eClassifiers"
+        element="model.ecore#//attachment/PatchAttachment">
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/PatchAttachment"
+          featureName="name" dataValue="PatchAttachment"/>
+      <changes xsi:type="history:Add" element="model.ecore#//attachment/PatchAttachment"
+          featureName="eSuperTypes" referenceValue="model.ecore#//attachment/FileAttachment"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eSubpackages"
+        element="model.ecore#//release">
+      <changes xsi:type="history:Set" element="model.ecore#//release" featureName="name"
+          dataValue="release"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release" featureName="nsURI"
+          dataValue="http://unicase.org/model/release"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release" featureName="nsPrefix"
+          dataValue="org.unicase.model.release"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//release" referenceName="eClassifiers"
+        element="model.ecore#//release/Stream">
+      <changes xsi:type="history:Set" element="model.ecore#//release/Stream" featureName="name"
+          dataValue="Stream"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//release" referenceName="eClassifiers"
+        element="model.ecore#//release/Release">
+      <changes xsi:type="history:Set" element="model.ecore#//release/Release" featureName="name"
+          dataValue="Release"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//attachment/PatchAttachment"
+        referenceName="eStructuralFeatures" element="model.ecore#//attachment/PatchAttachment/appliedTo">
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/PatchAttachment/appliedTo"
+          featureName="name" dataValue="appliedTo"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/PatchAttachment/appliedTo"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/PatchAttachment/appliedTo"
+          featureName="eType" referenceValue="model.ecore#//release/Release"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//release/Release" referenceName="eStructuralFeatures"
+        element="model.ecore#//release/Release/appliedPatches">
+      <changes xsi:type="history:Set" element="model.ecore#//release/Release/appliedPatches"
+          featureName="name" dataValue="appliedPatches"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release/Release/appliedPatches"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release/Release/appliedPatches"
+          featureName="eType" referenceValue="model.ecore#//attachment/PatchAttachment"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release/Release/appliedPatches"
+          featureName="eOpposite" referenceValue="model.ecore#//attachment/PatchAttachment/appliedTo"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/PatchAttachment/appliedTo"
+          featureName="eOpposite" referenceValue="model.ecore#//release/Release/appliedPatches"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//release/Release" referenceName="eStructuralFeatures"
+        element="model.ecore#//release/Release/stream">
+      <changes xsi:type="history:Set" element="model.ecore#//release/Release/stream"
+          featureName="name" dataValue="stream"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release/Release/stream"
+          featureName="eType" referenceValue="model.ecore#//release/Stream"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//release/Stream" referenceName="eStructuralFeatures"
+        element="model.ecore#//release/Stream/releases">
+      <changes xsi:type="history:Set" element="model.ecore#//release/Stream/releases"
+          featureName="name" dataValue="releases"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release/Stream/releases"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release/Stream/releases"
+          featureName="containment" dataValue="true" oldDataValue="false"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release/Stream/releases"
+          featureName="eType" referenceValue="model.ecore#//release/Release"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release/Stream/releases"
+          featureName="eOpposite" referenceValue="model.ecore#//release/Release/stream"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release/Release/stream"
+          featureName="eOpposite" referenceValue="model.ecore#//release/Stream/releases"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//release/Release" referenceName="eStructuralFeatures"
+        element="model.ecore#//release/Release/predecessor">
+      <changes xsi:type="history:Set" element="model.ecore#//release/Release/predecessor"
+          featureName="name" dataValue="predecessor"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release/Release/predecessor"
+          featureName="eType" referenceValue="model.ecore#//release/Release"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//task/WorkItem" referenceName="eStructuralFeatures"
+        element="model.ecore#//task/WorkItem/includingReleases">
+      <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/includingReleases"
+          featureName="name" dataValue="includingReleases"/>
+      <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/includingReleases"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/includingReleases"
+          featureName="eType" referenceValue="model.ecore#//release/Release"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//release/Release" referenceName="eStructuralFeatures"
+        element="model.ecore#//release/Release/successor">
+      <changes xsi:type="history:Set" element="model.ecore#//release/Release/successor"
+          featureName="name" dataValue="successor"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release/Release/successor"
+          featureName="eType" referenceValue="model.ecore#//release/Release"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release/Release/successor"
+          featureName="eOpposite" referenceValue="model.ecore#//release/Release/predecessor"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release/Release/predecessor"
+          featureName="eOpposite" referenceValue="model.ecore#//release/Release/successor"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//release/Release" referenceName="eStructuralFeatures"
+        element="model.ecore#//release/Release/includedWorkItems">
+      <changes xsi:type="history:Set" element="model.ecore#//release/Release/includedWorkItems"
+          featureName="name" dataValue="includedWorkItems"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release/Release/includedWorkItems"
+          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release/Release/includedWorkItems"
+          featureName="eType" referenceValue="model.ecore#//task/WorkItem"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release/Release/includedWorkItems"
+          featureName="eOpposite" referenceValue="model.ecore#//task/WorkItem/includingReleases"/>
+      <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/includingReleases"
+          featureName="eOpposite" referenceValue="model.ecore#//release/Release/includedWorkItems"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//release" referenceName="eClassifiers"
+        element="model.ecore#//release/SourceCodeRepositoryRevision">
+      <changes xsi:type="history:Set" element="model.ecore#//release/SourceCodeRepositoryRevision"
+          featureName="name" dataValue="SourceCodeRepositoryRevision"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release/SourceCodeRepositoryRevision"
+          featureName="abstract" dataValue="true" oldDataValue="false"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//release/Release" referenceName="eStructuralFeatures"
+        element="model.ecore#//release/Release/sourceCodeRepositoryRevision">
+      <changes xsi:type="history:Set" element="model.ecore#//release/Release/sourceCodeRepositoryRevision"
+          featureName="name" dataValue="sourceCodeRepositoryRevision"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release/Release/sourceCodeRepositoryRevision"
+          featureName="eType" referenceValue="model.ecore#//release/SourceCodeRepositoryRevision"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//release" referenceName="eClassifiers"
+        element="model.ecore#//release/SourceCodeRepositoryStream">
+      <changes xsi:type="history:Set" element="model.ecore#//release/SourceCodeRepositoryStream"
+          featureName="name" dataValue="SourceCodeRepositoryStream"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release/SourceCodeRepositoryStream"
+          featureName="abstract" dataValue="true" oldDataValue="false"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//release/Stream" referenceName="eStructuralFeatures"
+        element="model.ecore#//release/Stream/sourceCodeRepositoryStream">
+      <changes xsi:type="history:Set" element="model.ecore#//release/Stream/sourceCodeRepositoryStream"
+          featureName="name" dataValue="sourceCodeRepositoryStream"/>
+      <changes xsi:type="history:Set" element="model.ecore#//release/Stream/sourceCodeRepositoryStream"
+          featureName="eType" referenceValue="model.ecore#//release/SourceCodeRepositoryStream"/>
     </changes>
   </releases>
 </history:History>
