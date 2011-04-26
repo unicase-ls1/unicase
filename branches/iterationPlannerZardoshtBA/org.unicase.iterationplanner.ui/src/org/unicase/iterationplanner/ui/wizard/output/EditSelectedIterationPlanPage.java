@@ -55,6 +55,8 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 	}
 
 	private Stack<AbstractChangeIterationPlanCommand> undoneCommandStack = new Stack<AbstractChangeIterationPlanCommand>();
+	private org.eclipse.swt.widgets.Button btnRedo;
+	private org.eclipse.swt.widgets.Button btnUndo;
 
 	protected EditSelectedIterationPlanPage(String pageName, IIterationPlan iterationPlan, AbstractPlanner planner) {
 		super(pageName);
@@ -131,6 +133,7 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 					}
 				}
 				commandStack.push(new ChangeIterationCommand(dragSource, newIterationNumber, oldIterationNumber, newIteration, oldIteration, iterationPlan));
+				btnUndo.setEnabled(true);
 				update();
 			}
 			
@@ -209,6 +212,8 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 					iterationsTreeViewer.setInput(iterations);
 					commandStack.empty();
 					undoneCommandStack.empty();
+					btnUndo.setEnabled(false);
+					btnRedo.setEnabled(false);
 					update();
 				}
 			}
@@ -218,15 +223,20 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 			}
 		});
 		
-		org.eclipse.swt.widgets.Button btnUndo = new org.eclipse.swt.widgets.Button(indicatorsComposite, SWT.PUSH);
+		btnUndo = new org.eclipse.swt.widgets.Button(indicatorsComposite, SWT.PUSH);
+		btnUndo.setEnabled(false);
 		btnUndo.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
 		btnUndo.setText("Undo");
 		btnUndo.addSelectionListener(new SelectionListener() {
 			
 			public void widgetSelected(SelectionEvent e) {
 				AbstractChangeIterationPlanCommand lastCommand = commandStack.pop();
+				if(commandStack.size() == 0){
+					btnUndo.setEnabled(false);
+				}
 				lastCommand.undo();
 				undoneCommandStack.push(lastCommand);
+				btnRedo.setEnabled(true);
 				update();
 			}
 			
@@ -235,7 +245,8 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 			}
 		});
 		
-		org.eclipse.swt.widgets.Button btnRedo = new org.eclipse.swt.widgets.Button(indicatorsComposite, SWT.PUSH);
+		btnRedo = new org.eclipse.swt.widgets.Button(indicatorsComposite, SWT.PUSH);
+		btnRedo.setEnabled(false);
 		btnRedo.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
 		btnRedo.setText("Redo");
 		btnRedo.addSelectionListener(new SelectionListener() {
@@ -244,8 +255,12 @@ public class EditSelectedIterationPlanPage extends WizardPage {
 
 			public void widgetSelected(SelectionEvent e) {
 				AbstractChangeIterationPlanCommand lastUndoneCommand = undoneCommandStack.pop();
+				if(undoneCommandStack.size() == 0){
+					btnRedo.setEnabled(false);
+				}
 				lastUndoneCommand.redo();
 				commandStack.push(lastUndoneCommand);
+				btnUndo.setEnabled(true);
 				update();
 			}
 			
