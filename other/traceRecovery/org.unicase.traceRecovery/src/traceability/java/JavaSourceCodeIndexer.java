@@ -3,6 +3,8 @@
  */
 package traceability.java;
 
+import static org.junit.Assert.fail;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,6 +13,10 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.index.IndexWriter;
 
+import traceRecovery.Directory;
+import traceRecovery.TraceRecoveryFactory;
+import traceability.fortran.FortranSourceCodeParser;
+import traceability.handler.Indexer;
 import traceability.java.JavaParser.JClass;
 import traceability.java.JavaParser.JMethod;
 
@@ -18,7 +24,13 @@ import traceability.java.JavaParser.JMethod;
  * @author liya
  *
  */
-public class JavaSourceCodeIndexer {
+public class JavaSourceCodeIndexer extends Indexer{
+	public JavaSourceCodeIndexer() {
+		super();
+		
+		
+	}
+
 	private static final String IMPLEMENTS = "implements";
 	private static final String IMPORT = "import";
 	private static final String CLASS = "class";
@@ -29,42 +41,48 @@ public class JavaSourceCodeIndexer {
 	private static final String PARAMETER = "parameter";
 	private static final String EXTENDS = "extends";
 
-	public JavaSourceCodeIndexer() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 
-	public static void main(String[] args) {
+//	public static void main(String[] args) {
+//
+//		try {
+//			File indexDir = new File(
+//					"lucene-index");
+//			File dataDir = new File(
+//					"code");
+//			Directory d = TraceRecoveryFactory.eINSTANCE.createDirectory();
+//			d.setPath("code");
+//			IndexWriter writer = new IndexWriter(indexDir,
+//					new JavaSourceCodeAnalyzer(), true);
+//			indexDirectory(writer, d);
+////			indexDirectory(writer, dataDir);
+//			int numFiles = writer.docCount();
+//			writer.close();
+//			System.out.println("Indexing "+ numFiles);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
-		try {
-			File indexDir = new File(
-					"lucene-index");
-			File dataDir = new File(
-					"code");
-			IndexWriter writer = new IndexWriter(indexDir,
-					new JavaSourceCodeAnalyzer(), true);
-			indexDirectory(writer, dataDir);
-			int numFiles = writer.docCount();
-			writer.close();
-			System.out.println("Indexing "+ numFiles);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	public static  void indexDirectory(IndexWriter writer, Directory directory)
+//			throws IOException {
+//		File dir = new File(directory.getPath());
+//		File[] files = dir.listFiles();
+//		for (int i = 0; i < files.length; i++) {
+//			File f = files[i];
+//			Directory d = TraceRecoveryFactory.eINSTANCE.createDirectory();
+//				d.setPath(f.getAbsolutePath());
+//			if (f.isDirectory())
+//				indexDirectory(writer, d);
+//			else if (f.getName().endsWith(".java"))
+//				indexFileJava(writer, f);
+////			else if(f.getName().endsWith(".f") || f.getName().endsWith("for") || f.getName().endsWith("f90") || f.getName().endsWith("f95")){
+////				indexFileFortran(writer,f);
+////			}
+//		}
+//	}
 
-	public static void indexDirectory(IndexWriter writer, File dir)
-			throws IOException {
-		File[] files = dir.listFiles();
-		for (int i = 0; i < files.length; i++) {
-			File f = files[i];
-			if (f.isDirectory())
-				indexDirectory(writer, f);
-			else if (f.getName().endsWith(".java"))
-				indexFile(writer, f);
-		}
-	}
-
-	public static void indexFile(IndexWriter writer, File f) {
+	public static  void indexFileJava(IndexWriter writer, File f) {
 		if (f.isHidden() || !f.exists() || !f.canRead())
 			return;
 		Document doc = new Document();
