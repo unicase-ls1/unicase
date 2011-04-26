@@ -21,6 +21,8 @@ import org.eclipse.jdt.core.dom.Name;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
+import traceability.handler.Parser;
+
 
 
 
@@ -28,7 +30,7 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
  * @author liya
  *
  */
-public class JavaParser {
+public class JavaParser extends Parser {
 	
 	private ASTParser _parser;
 	private CompilationUnit _unit;
