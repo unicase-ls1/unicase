@@ -42,7 +42,7 @@ public class JavaSourceCodeIndexer extends Indexer{
 	private static final String EXTENDS = "extends";
 
 	
-
+//
 //	public static void main(String[] args) {
 //
 //		try {
@@ -63,7 +63,7 @@ public class JavaSourceCodeIndexer extends Indexer{
 //			e.printStackTrace();
 //		}
 //	}
-
+//
 //	public static  void indexDirectory(IndexWriter writer, Directory directory)
 //			throws IOException {
 //		File dir = new File(directory.getPath());
@@ -152,9 +152,9 @@ public class JavaSourceCodeIndexer extends Indexer{
 				doc.add(Field.Text(PARAMETER, paramType));
 			}
 			String code = method.codeBlock;
-			if (code != null)
+			if (code != null){	
 				doc.add(Field.UnStored(CODE, code));
-
+			}
 		}
 	}
 
