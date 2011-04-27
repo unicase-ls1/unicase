@@ -51,7 +51,7 @@ public class Search {
 	 * @throws IOException
 	 *             could throw an IOException
 	 */
-	public ArrayList<Link> runRecovery(Query query, Directory dir)
+	public ArrayList<Link> runRecoveryMEToCode(Query query, Directory dir)
 			throws IOException {
 		try {
 			File indexDir = new File(dir.getPath());
@@ -80,6 +80,43 @@ public class Search {
 			return null;
 		}
 
+	}
+
+	public ArrayList<File> searchForWordInCode(Query query, Directory dir) {
+		try {
+			File indexDir = new File(dir.getPath());
+			analyzer.addAnalyzer("import", new KeywordAnalyzer());
+			org.apache.lucene.store.Directory fsDir = FSDirectory.getDirectory(
+					indexDir, false);
+
+			IndexSearcher is = new IndexSearcher(fsDir);
+
+			QueryParser parser = new QueryParser("code", analyzer);
+
+			ArrayList<Hits> hits = new ArrayList<Hits>();
+
+			for (int i = 0; i < query.getModelElement().size(); i++) {
+				hits.add(is.search(parser.parse(query.getModelElement().get(i)
+						.getDescription())));
+			}
+
+			ArrayList<File> result = new ArrayList<File>();
+
+			for (int i = 0; i < hits.size(); i++) {
+				for (int j = 0; j < hits.get(i).length(); j++) {
+					File f = new File(hits.get(i).doc(j).get("filename"));
+					result.add(f);
+				}
+			}
+
+			return null;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+			return null;
+		}
 	}
 
 	/**
@@ -140,7 +177,7 @@ public class Search {
 	public void setIndexer(String indexer, Directory codeDir,
 			Directory sourceDir) {
 		try {
-			this.dir =sourceDir;
+			this.dir = sourceDir;
 			File file = new File(dir.getPath());
 			if (indexer.toLowerCase() == "java") {
 				IndexWriter writer = new IndexWriter(file,
@@ -163,10 +200,11 @@ public class Search {
 
 	}
 
-	public void index(){
-		try{
-			index.indexDir(this.index.getWriter(), this.index.getCodeDir(), this.index.getIndexDir());
-		}catch(IOException e){
+	public void index() {
+		try {
+			index.indexDir(this.index.getWriter(), this.index.getCodeDir(),
+					this.index.getIndexDir());
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
