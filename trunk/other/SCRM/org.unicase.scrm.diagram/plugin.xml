@@ -852,6 +852,65 @@
             </visibleWhen>
          </command>
       </menuContribution>
+       <menuContribution
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <command
+               commandId="org.unicase.scrm.diagram.SaveTemplateCommand"
+               style="push">
+            <visibleWhen>
+               <with
+                     variable="activePartId">
+                  <equals
+                        value="scrm.diagram.part.ScrmDiagramEditorID">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+         <command
+               commandId="org.unicase.scrm.diagram.LoadTemplateCommand"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <count
+                        value="1">
+                  </count>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <instanceof
+                           value="org.unicase.workspace.ProjectSpace">
+                     </instanceof>
+                  </iterate>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+         <command
+               commandId="org.unicase.scrm.diagram.SaveTemplateCommand"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <instanceof
+                           value="scrm.SCRMDiagram">
+                     </instanceof>
+                  </iterate>
+                  <count
+                        value="1">
+                  </count>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
    </extension>
 
    <extension point="org.eclipse.ui.commands" id="menu-commands">
@@ -861,6 +920,16 @@
          name="Load Resource"
          categoryId="scrm.diagram.part.ScrmDiagramEditorID"
          defaultHandler="scrm.diagram.part.LoadResourceAction"/>
+      <command
+            defaultHandler="scrm.diagram.commands.SaveTemplateHandler"
+            id="org.unicase.scrm.diagram.SaveTemplateCommand"
+            name="Save Template">
+      </command>
+      <command
+            defaultHandler="scrm.diagram.commands.LoadTemplateHandler"
+            id="org.unicase.scrm.diagram.LoadTemplateCommand"
+            name="Load Template">
+      </command>
    </extension>
 
    <extension point="org.eclipse.ui.handlers" id="menu-handlers">
