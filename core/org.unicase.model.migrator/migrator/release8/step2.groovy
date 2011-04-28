@@ -1,1 +1,1 @@
-deleteFeature2(model.attachment.FileAttachment.downloading)
+deleteFeature2(model.attachment.FileAttachment.uploading)
