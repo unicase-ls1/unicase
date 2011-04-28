@@ -1,1 +1,1 @@
-deleteFeature2(model.attachment.FileAttachment.requiredOffline)
+deleteFeature2(model.attachment.FileAttachment.downloading)
