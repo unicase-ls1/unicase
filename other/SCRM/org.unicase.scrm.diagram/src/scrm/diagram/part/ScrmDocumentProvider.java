@@ -873,8 +873,8 @@ public class ScrmDocumentProvider extends AbstractDocumentProvider implements
 		 * @generated NOT
 		 */
 		public void dispose() {
-			//			stopResourceListening();
-			//			getResourceSet().eAdapters().remove(myResourceSetListener);
+			stopResourceListening();
+			getResourceSet().eAdapters().remove(myResourceSetListener);
 			//			for (Iterator<Resource> it = getLoadedResourcesIterator(); it
 			//					.hasNext();) {
 			//				Resource resource = it.next();

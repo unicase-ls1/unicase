@@ -45,7 +45,7 @@ public class RequirementDefiningDataEditPart extends ConnectionNodeEditPart
 		if (childEditPart instanceof WrappingLabel19EditPart) {
 			((WrappingLabel19EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
-							.getFigureRequirements_DefiningDataLabel());
+							.getFigureRequirement_DefiningDataLabel());
 			return true;
 		}
 		return false;
@@ -91,30 +91,30 @@ public class RequirementDefiningDataEditPart extends ConnectionNodeEditPart
 	 */
 
 	protected Connection createConnectionFigure() {
-		return new Requirements_DefiningDataFigure();
+		return new Requirement_DefiningDataFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public Requirements_DefiningDataFigure getPrimaryShape() {
-		return (Requirements_DefiningDataFigure) getFigure();
+	public Requirement_DefiningDataFigure getPrimaryShape() {
+		return (Requirement_DefiningDataFigure) getFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public class Requirements_DefiningDataFigure extends PolylineConnectionEx {
+	public class Requirement_DefiningDataFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureRequirements_DefiningDataLabel;
+		private WrappingLabel fFigureRequirement_DefiningDataLabel;
 
 		/**
 		 * @generated
 		 */
-		public Requirements_DefiningDataFigure() {
+		public Requirement_DefiningDataFigure() {
 
 			createContents();
 		}
@@ -124,18 +124,18 @@ public class RequirementDefiningDataEditPart extends ConnectionNodeEditPart
 		 */
 		private void createContents() {
 
-			fFigureRequirements_DefiningDataLabel = new WrappingLabel();
-			fFigureRequirements_DefiningDataLabel.setText("defines");
+			fFigureRequirement_DefiningDataLabel = new WrappingLabel();
+			fFigureRequirement_DefiningDataLabel.setText("defines");
 
-			this.add(fFigureRequirements_DefiningDataLabel);
+			this.add(fFigureRequirement_DefiningDataLabel);
 
 		}
 
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureRequirements_DefiningDataLabel() {
-			return fFigureRequirements_DefiningDataLabel;
+		public WrappingLabel getFigureRequirement_DefiningDataLabel() {
+			return fFigureRequirement_DefiningDataLabel;
 		}
 
 	}

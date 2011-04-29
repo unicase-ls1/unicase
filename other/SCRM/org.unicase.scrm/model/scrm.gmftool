@@ -45,10 +45,6 @@
           title="SoftwareInterface"/>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Process"
-          description=""/>
-      <tools
-          xsi:type="gmftool:CreationTool"
           title="Performance"/>
       <tools
           xsi:type="gmftool:CreationTool"
@@ -56,11 +52,12 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="DataDefinition"/>
-    </tools>
-    <tools
-        xsi:type="gmftool:ToolGroup"
-        title="DataProcessing"
-        collapsible="true">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Requirement"/>
+      <tools
+          xsi:type="gmftool:PaletteSeparator"
+          title="SEPARATOR"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="InputDataReading"/>
@@ -76,6 +73,12 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="StatusMonitoring"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Process"/>
     </tools>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="KnowledgeSpace"/>
   </palette>
 </gmftool:ToolRegistry>

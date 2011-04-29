@@ -16,11 +16,14 @@ import scrm.diagram.edit.commands.ErrorHandlingCreateCommand;
 import scrm.diagram.edit.commands.FeatureCreateCommand;
 import scrm.diagram.edit.commands.HardwareCreateCommand;
 import scrm.diagram.edit.commands.InputDataReadingCreateCommand;
+import scrm.diagram.edit.commands.KnowledgeSpaceCreateCommand;
 import scrm.diagram.edit.commands.MathematicalModelCreateCommand;
 import scrm.diagram.edit.commands.NumericalMethodCreateCommand;
 import scrm.diagram.edit.commands.PerformanceCreateCommand;
 import scrm.diagram.edit.commands.ProcessCreateCommand;
+import scrm.diagram.edit.commands.RequirementCreateCommand;
 import scrm.diagram.edit.commands.ResultsOutputCreateCommand;
+import scrm.diagram.edit.commands.SCRMDiagramCreateCommand;
 import scrm.diagram.edit.commands.ScientificProblemCreateCommand;
 import scrm.diagram.edit.commands.SoftwareInterfaceCreateCommand;
 import scrm.diagram.edit.commands.StatusMonitoringCreateCommand;
@@ -71,7 +74,7 @@ public class SCRMDiagramItemSemanticEditPolicy extends
 		if (ScrmElementTypes.SoftwareInterface_2013 == req.getElementType()) {
 			return getGEFWrapper(new SoftwareInterfaceCreateCommand(req));
 		}
-		if (ScrmElementTypes.Process_2014 == req.getElementType()) {
+		if (ScrmElementTypes.Process_2035 == req.getElementType()) {
 			return getGEFWrapper(new ProcessCreateCommand(req));
 		}
 		if (ScrmElementTypes.Performance_2015 == req.getElementType()) {
@@ -83,20 +86,26 @@ public class SCRMDiagramItemSemanticEditPolicy extends
 		if (ScrmElementTypes.DataDefinition_2017 == req.getElementType()) {
 			return getGEFWrapper(new DataDefinitionCreateCommand(req));
 		}
-		if (ScrmElementTypes.InputDataReading_2023 == req.getElementType()) {
+		if (ScrmElementTypes.InputDataReading_2036 == req.getElementType()) {
 			return getGEFWrapper(new InputDataReadingCreateCommand(req));
 		}
-		if (ScrmElementTypes.DataHandling_2024 == req.getElementType()) {
+		if (ScrmElementTypes.DataHandling_2037 == req.getElementType()) {
 			return getGEFWrapper(new DataHandlingCreateCommand(req));
 		}
-		if (ScrmElementTypes.ResultsOutput_2025 == req.getElementType()) {
+		if (ScrmElementTypes.ResultsOutput_2038 == req.getElementType()) {
 			return getGEFWrapper(new ResultsOutputCreateCommand(req));
 		}
-		if (ScrmElementTypes.ErrorHandling_2026 == req.getElementType()) {
+		if (ScrmElementTypes.ErrorHandling_2039 == req.getElementType()) {
 			return getGEFWrapper(new ErrorHandlingCreateCommand(req));
 		}
-		if (ScrmElementTypes.StatusMonitoring_2027 == req.getElementType()) {
+		if (ScrmElementTypes.StatusMonitoring_2040 == req.getElementType()) {
 			return getGEFWrapper(new StatusMonitoringCreateCommand(req));
+		}
+		if (ScrmElementTypes.Requirement_2034 == req.getElementType()) {
+			return getGEFWrapper(new RequirementCreateCommand(req));
+		}
+		if (ScrmElementTypes.KnowledgeSpace_2044 == req.getElementType()) {
+			return getGEFWrapper(new KnowledgeSpaceCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

@@ -10,7 +10,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import scrm.diagram.edit.policies.ScrmBaseItemSemanticEditPolicy;
 import scrm.requirements.DataFlow;
-import scrm.requirements.Process;
 
 /**
  * @generated
@@ -44,7 +43,8 @@ public class ProcessDataFlowCreateCommand extends EditElementCommand {
 		if (source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof Process) {
+		if (source != null
+				&& false == source instanceof scrm.requirements.dataProcess.Process) {
 			return false;
 		}
 		if (target != null && false == target instanceof DataFlow) {
@@ -55,7 +55,7 @@ public class ProcessDataFlowCreateCommand extends EditElementCommand {
 		}
 		// target may be null here but it's possible to check constraint
 		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canCreateProcessDataFlow_4040(getSource(), getTarget());
+				.canCreateProcessDataFlow_4045(getSource(), getTarget());
 	}
 
 	/**
@@ -85,8 +85,8 @@ public class ProcessDataFlowCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Process getSource() {
-		return (Process) source;
+	protected scrm.requirements.dataProcess.Process getSource() {
+		return (scrm.requirements.dataProcess.Process) source;
 	}
 
 	/**

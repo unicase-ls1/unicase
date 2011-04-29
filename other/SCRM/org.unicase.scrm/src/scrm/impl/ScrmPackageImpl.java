@@ -21,14 +21,14 @@ import scrm.SCRMModelElement;
 import scrm.ScrmFactory;
 import scrm.ScrmPackage;
 
-import scrm.dataProcessing.DataProcessingPackage;
-import scrm.dataProcessing.impl.DataProcessingPackageImpl;
 import scrm.knowledge.KnowledgePackage;
 
 import scrm.knowledge.impl.KnowledgePackageImpl;
 
 import scrm.requirements.RequirementsPackage;
 
+import scrm.requirements.dataProcess.DataProcessPackage;
+import scrm.requirements.dataProcess.impl.DataProcessPackageImpl;
 import scrm.requirements.impl.RequirementsPackageImpl;
 
 /**
@@ -114,22 +114,22 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 				.getEPackage(RequirementsPackage.eNS_URI) instanceof RequirementsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(RequirementsPackage.eNS_URI)
 				: RequirementsPackage.eINSTANCE);
-		DataProcessingPackageImpl theDataProcessingPackage = (DataProcessingPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(DataProcessingPackage.eNS_URI) instanceof DataProcessingPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(DataProcessingPackage.eNS_URI)
-				: DataProcessingPackage.eINSTANCE);
+		DataProcessPackageImpl theDataProcessPackage = (DataProcessPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(DataProcessPackage.eNS_URI) instanceof DataProcessPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(DataProcessPackage.eNS_URI)
+				: DataProcessPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theScrmPackage.createPackageContents();
 		theKnowledgePackage.createPackageContents();
 		theRequirementsPackage.createPackageContents();
-		theDataProcessingPackage.createPackageContents();
+		theDataProcessPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theScrmPackage.initializePackageContents();
 		theKnowledgePackage.initializePackageContents();
 		theRequirementsPackage.initializePackageContents();
-		theDataProcessingPackage.initializePackageContents();
+		theDataProcessPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theScrmPackage.freeze();
@@ -283,8 +283,6 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 				.getEPackage(KnowledgePackage.eNS_URI);
 		RequirementsPackage theRequirementsPackage = (RequirementsPackage) EPackage.Registry.INSTANCE
 				.getEPackage(RequirementsPackage.eNS_URI);
-		DataProcessingPackage theDataProcessingPackage = (DataProcessingPackage) EPackage.Registry.INSTANCE
-				.getEPackage(DataProcessingPackage.eNS_URI);
 		NotationPackage theNotationPackage = (NotationPackage) EPackage.Registry.INSTANCE
 				.getEPackage(NotationPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
@@ -293,7 +291,6 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 		// Add subpackages
 		getESubpackages().add(theKnowledgePackage);
 		getESubpackages().add(theRequirementsPackage);
-		getESubpackages().add(theDataProcessingPackage);
 
 		// Create type parameters
 

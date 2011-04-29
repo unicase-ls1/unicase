@@ -8,8 +8,6 @@ package scrm.requirements;
 
 import scrm.SCRMModelElement;
 
-import scrm.knowledge.ScientificKnowledge;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>IRequirement</b></em>'.

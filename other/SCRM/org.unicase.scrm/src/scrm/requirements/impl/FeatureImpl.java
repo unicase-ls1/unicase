@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import scrm.impl.SCRMModelElementImpl;
 
 import scrm.knowledge.KnowledgePackage;
-import scrm.knowledge.ScientificKnowledge;
 import scrm.knowledge.ScientificProblem;
 
 import scrm.requirements.Constraint;

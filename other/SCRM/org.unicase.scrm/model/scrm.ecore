@@ -316,7 +316,7 @@
           eOpposite="#//knowledge/ScientificProblem/influencedFeature">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="position" value="left"/>
-          <details key="priority" value="20"/>
+          <details key="priority" value="25"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="requiredFeatures" upperBound="-1"
@@ -393,15 +393,6 @@
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Process" eSuperTypes="#//requirements/Requirement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="dataFlow" eType="#//requirements/DataFlow"
-          eOpposite="#//requirements/DataFlow/specifiedProcess">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="position" value="left"/>
-          <details key="priority" value="15"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Performance" eSuperTypes="#//requirements/Requirement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="problemSize" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
         <eAnnotations source="org.unicase.ui.meeditor">
@@ -411,8 +402,8 @@
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DataFlow" eSuperTypes="#//requirements/IRequirement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="specifiedProcess" eType="#//requirements/Process"
-          eOpposite="#//requirements/Process/dataFlow">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="specifiedProcess" eType="#//requirements/dataProcess/Process"
+          eOpposite="#//requirements/dataProcess/Process/dataFlow">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="position" value="left"/>
           <details key="priority" value="15"/>
@@ -433,34 +424,72 @@
           <details key="priority" value="5"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="format" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="range" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="position" value="left"/>
           <details key="priority" value="6"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="range" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="position" value="left"/>
           <details key="priority" value="7"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="format" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="position" value="left"/>
           <details key="priority" value="8"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
-  </eSubpackages>
-  <eSubpackages name="dataProcessing" nsURI="http://unicase.org/model/scrm/dataProcessing"
-      nsPrefix="org.unicase.model.scrm.dataProcessing">
-    <eClassifiers xsi:type="ecore:EClass" name="DataProcessing" abstract="true" interface="true"
-        eSuperTypes="#//SCRMModelElement"/>
-    <eClassifiers xsi:type="ecore:EClass" name="InputDataReading" eSuperTypes="#//dataProcessing/DataProcessing"/>
-    <eClassifiers xsi:type="ecore:EClass" name="DataHandling" eSuperTypes="#//dataProcessing/DataProcessing"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ResultsOutput" eSuperTypes="#//dataProcessing/DataProcessing"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ErrorHandling" eSuperTypes="#//dataProcessing/DataProcessing"/>
-    <eClassifiers xsi:type="ecore:EClass" name="StatusMonitoring" eSuperTypes="#//dataProcessing/DataProcessing"/>
+    <eSubpackages name="dataProcess" nsURI="http://unicase.org/model/scrm/requirements/dataProcess"
+        nsPrefix="org.unicase.model.scrm.requirements.dataProcess">
+      <eClassifiers xsi:type="ecore:EClass" name="Process" eSuperTypes="#//requirements/Requirement">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="dataFlow" eType="#//requirements/DataFlow"
+            eOpposite="#//requirements/DataFlow/specifiedProcess">
+          <eAnnotations source="org.unicase.ui.meeditor">
+            <details key="position" value="left"/>
+            <details key="priority" value="15"/>
+          </eAnnotations>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="predecessor" eType="#//requirements/dataProcess/Process"
+            eOpposite="#//requirements/dataProcess/Process/successor">
+          <eAnnotations source="org.unicase.ui.meeditor">
+            <details key="position" value="left"/>
+            <details key="priority" value="15"/>
+          </eAnnotations>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="successor" eType="#//requirements/dataProcess/Process"
+            eOpposite="#//requirements/dataProcess/Process/predecessor">
+          <eAnnotations source="org.unicase.ui.meeditor">
+            <details key="position" value="left"/>
+            <details key="priority" value="20"/>
+          </eAnnotations>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="containingDataProcessSpace"
+            eType="#//requirements/dataProcess/DataProcessSpace" eOpposite="#//requirements/dataProcess/DataProcessSpace/containedDataProcessSteps">
+          <eAnnotations source="org.unicase.ui.meeditor">
+            <details key="position" value="left"/>
+            <details key="priority" value="10"/>
+          </eAnnotations>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="InputDataReading" eSuperTypes="#//requirements/dataProcess/Process"/>
+      <eClassifiers xsi:type="ecore:EClass" name="DataHandling" eSuperTypes="#//requirements/dataProcess/Process"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ResultsOutput" eSuperTypes="#//requirements/dataProcess/Process"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ErrorHandling" eSuperTypes="#//requirements/dataProcess/Process"/>
+      <eClassifiers xsi:type="ecore:EClass" name="StatusMonitoring" eSuperTypes="#//requirements/dataProcess/Process"/>
+      <eClassifiers xsi:type="ecore:EClass" name="DataProcessSpace" eSuperTypes="#//requirements/dataProcess/Process">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="containedDataProcessSteps"
+            upperBound="-1" eType="#//requirements/dataProcess/Process" containment="true"
+            eOpposite="#//requirements/dataProcess/Process/containingDataProcessSpace">
+          <eAnnotations source="org.unicase.ui.meeditor">
+            <details key="position" value="right"/>
+            <details key="priority" value="5"/>
+          </eAnnotations>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </eSubpackages>
   </eSubpackages>
 </ecore:EPackage>

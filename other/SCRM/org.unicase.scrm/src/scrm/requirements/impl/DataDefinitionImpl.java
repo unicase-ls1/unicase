@@ -17,8 +17,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import scrm.impl.SCRMModelElementImpl;
-import scrm.knowledge.KnowledgePackage;
-import scrm.knowledge.ScientificKnowledge;
 import scrm.requirements.DataDefinition;
 import scrm.requirements.Requirement;
 import scrm.requirements.RequirementSpace;
@@ -34,9 +32,9 @@ import scrm.requirements.RequirementsPackage;
  *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getContainingRequirementSpace <em>Containing Requirement Space</em>}</li>
  *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getDefinedRequirement <em>Defined Requirement</em>}</li>
  *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getAccuracy <em>Accuracy</em>}</li>
- *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getFormat <em>Format</em>}</li>
  *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getRange <em>Range</em>}</li>
  *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getDataType <em>Data Type</em>}</li>
+ *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getFormat <em>Format</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,26 +71,6 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements
 	 * @ordered
 	 */
 	protected String accuracy = ACCURACY_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getFormat() <em>Format</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFormat()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String FORMAT_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getFormat() <em>Format</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFormat()
-	 * @generated
-	 * @ordered
-	 */
-	protected String format = FORMAT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getRange() <em>Range</em>}' attribute.
@@ -133,6 +111,26 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements
 	 * @ordered
 	 */
 	protected String dataType = DATA_TYPE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFormat() <em>Format</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFormat()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String FORMAT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getFormat() <em>Format</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFormat()
+	 * @generated
+	 * @ordered
+	 */
+	protected String format = FORMAT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -470,12 +468,12 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements
 			return basicGetDefinedRequirement();
 		case RequirementsPackage.DATA_DEFINITION__ACCURACY:
 			return getAccuracy();
-		case RequirementsPackage.DATA_DEFINITION__FORMAT:
-			return getFormat();
 		case RequirementsPackage.DATA_DEFINITION__RANGE:
 			return getRange();
 		case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
 			return getDataType();
+		case RequirementsPackage.DATA_DEFINITION__FORMAT:
+			return getFormat();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -497,14 +495,14 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements
 		case RequirementsPackage.DATA_DEFINITION__ACCURACY:
 			setAccuracy((String) newValue);
 			return;
-		case RequirementsPackage.DATA_DEFINITION__FORMAT:
-			setFormat((String) newValue);
-			return;
 		case RequirementsPackage.DATA_DEFINITION__RANGE:
 			setRange((String) newValue);
 			return;
 		case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
 			setDataType((String) newValue);
+			return;
+		case RequirementsPackage.DATA_DEFINITION__FORMAT:
+			setFormat((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -527,14 +525,14 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements
 		case RequirementsPackage.DATA_DEFINITION__ACCURACY:
 			setAccuracy(ACCURACY_EDEFAULT);
 			return;
-		case RequirementsPackage.DATA_DEFINITION__FORMAT:
-			setFormat(FORMAT_EDEFAULT);
-			return;
 		case RequirementsPackage.DATA_DEFINITION__RANGE:
 			setRange(RANGE_EDEFAULT);
 			return;
 		case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
 			setDataType(DATA_TYPE_EDEFAULT);
+			return;
+		case RequirementsPackage.DATA_DEFINITION__FORMAT:
+			setFormat(FORMAT_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -555,15 +553,15 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements
 		case RequirementsPackage.DATA_DEFINITION__ACCURACY:
 			return ACCURACY_EDEFAULT == null ? accuracy != null
 					: !ACCURACY_EDEFAULT.equals(accuracy);
-		case RequirementsPackage.DATA_DEFINITION__FORMAT:
-			return FORMAT_EDEFAULT == null ? format != null : !FORMAT_EDEFAULT
-					.equals(format);
 		case RequirementsPackage.DATA_DEFINITION__RANGE:
 			return RANGE_EDEFAULT == null ? range != null : !RANGE_EDEFAULT
 					.equals(range);
 		case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
 			return DATA_TYPE_EDEFAULT == null ? dataType != null
 					: !DATA_TYPE_EDEFAULT.equals(dataType);
+		case RequirementsPackage.DATA_DEFINITION__FORMAT:
+			return FORMAT_EDEFAULT == null ? format != null : !FORMAT_EDEFAULT
+					.equals(format);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -581,12 +579,12 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (accuracy: ");
 		result.append(accuracy);
-		result.append(", format: ");
-		result.append(format);
 		result.append(", range: ");
 		result.append(range);
 		result.append(", dataType: ");
 		result.append(dataType);
+		result.append(", format: ");
+		result.append(format);
 		result.append(')');
 		return result.toString();
 	}

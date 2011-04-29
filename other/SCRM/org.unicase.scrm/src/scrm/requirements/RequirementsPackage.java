@@ -314,16 +314,6 @@ public interface RequirementsPackage extends EPackage {
 	int SOFTWARE_INTERFACE = 8;
 
 	/**
-	 * The meta object id for the '{@link scrm.requirements.impl.ProcessImpl <em>Process</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see scrm.requirements.impl.ProcessImpl
-	 * @see scrm.requirements.impl.RequirementsPackageImpl#getProcess()
-	 * @generated
-	 */
-	int PROCESS = 9;
-
-	/**
 	 * The meta object id for the '{@link scrm.requirements.impl.PerformanceImpl <em>Performance</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -331,7 +321,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @see scrm.requirements.impl.RequirementsPackageImpl#getPerformance()
 	 * @generated
 	 */
-	int PERFORMANCE = 10;
+	int PERFORMANCE = 9;
 
 	/**
 	 * The meta object id for the '{@link scrm.requirements.impl.DataFlowImpl <em>Data Flow</em>}' class.
@@ -341,7 +331,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @see scrm.requirements.impl.RequirementsPackageImpl#getDataFlow()
 	 * @generated
 	 */
-	int DATA_FLOW = 11;
+	int DATA_FLOW = 10;
 
 	/**
 	 * The meta object id for the '{@link scrm.requirements.impl.DataDefinitionImpl <em>Data Definition</em>}' class.
@@ -351,7 +341,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @see scrm.requirements.impl.RequirementsPackageImpl#getDataDefinition()
 	 * @generated
 	 */
-	int DATA_DEFINITION = 12;
+	int DATA_DEFINITION = 11;
 
 	/**
 	 * The meta object id for the '{@link scrm.requirements.impl.RequirementSpaceImpl <em>Requirement Space</em>}' class.
@@ -793,96 +783,6 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS__NAME = REQUIREMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS__DESCRIPTION = REQUIREMENT__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS__CONTAINING_REQUIREMENT_SPACE = REQUIREMENT__CONTAINING_REQUIREMENT_SPACE;
-
-	/**
-	 * The feature id for the '<em><b>Refinements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS__REFINEMENTS = REQUIREMENT__REFINEMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Refined Requirement</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS__REFINED_REQUIREMENT = REQUIREMENT__REFINED_REQUIREMENT;
-
-	/**
-	 * The feature id for the '<em><b>Specified Feature</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS__SPECIFIED_FEATURE = REQUIREMENT__SPECIFIED_FEATURE;
-
-	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS__DEFINING_DATA = REQUIREMENT__DEFINING_DATA;
-
-	/**
-	 * The feature id for the '<em><b>Realized Method</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS__REALIZED_METHOD = REQUIREMENT__REALIZED_METHOD;
-
-	/**
-	 * The feature id for the '<em><b>Data Flow</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS__DATA_FLOW = REQUIREMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Process</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS_FEATURE_COUNT = REQUIREMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
 	int PERFORMANCE__NAME = REQUIREMENT__NAME;
 
 	/**
@@ -1057,22 +957,13 @@ public interface RequirementsPackage extends EPackage {
 	int DATA_DEFINITION__ACCURACY = IREQUIREMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Format</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_DEFINITION__FORMAT = IREQUIREMENT_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Range</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_DEFINITION__RANGE = IREQUIREMENT_FEATURE_COUNT + 3;
+	int DATA_DEFINITION__RANGE = IREQUIREMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Data Type</b></em>' attribute.
@@ -1081,7 +972,16 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_DEFINITION__DATA_TYPE = IREQUIREMENT_FEATURE_COUNT + 4;
+	int DATA_DEFINITION__DATA_TYPE = IREQUIREMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Format</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_DEFINITION__FORMAT = IREQUIREMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Data Definition</em>' class.
@@ -1457,27 +1357,6 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSoftwareInterface_DataTypes();
-
-	/**
-	 * Returns the meta object for class '{@link scrm.requirements.Process <em>Process</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Process</em>'.
-	 * @see scrm.requirements.Process
-	 * @generated
-	 */
-	EClass getProcess();
-
-	/**
-	 * Returns the meta object for the reference '{@link scrm.requirements.Process#getDataFlow <em>Data Flow</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Data Flow</em>'.
-	 * @see scrm.requirements.Process#getDataFlow()
-	 * @see #getProcess()
-	 * @generated
-	 */
-	EReference getProcess_DataFlow();
 
 	/**
 	 * Returns the meta object for class '{@link scrm.requirements.Performance <em>Performance</em>}'.
@@ -1935,24 +1814,6 @@ public interface RequirementsPackage extends EPackage {
 		 */
 		EAttribute SOFTWARE_INTERFACE__DATA_TYPES = eINSTANCE
 				.getSoftwareInterface_DataTypes();
-
-		/**
-		 * The meta object literal for the '{@link scrm.requirements.impl.ProcessImpl <em>Process</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see scrm.requirements.impl.ProcessImpl
-		 * @see scrm.requirements.impl.RequirementsPackageImpl#getProcess()
-		 * @generated
-		 */
-		EClass PROCESS = eINSTANCE.getProcess();
-
-		/**
-		 * The meta object literal for the '<em><b>Data Flow</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROCESS__DATA_FLOW = eINSTANCE.getProcess_DataFlow();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.impl.PerformanceImpl <em>Performance</em>}' class.

@@ -61,7 +61,6 @@ import scrm.diagram.edit.parts.WrappingLabel18EditPart;
 import scrm.diagram.edit.parts.WrappingLabel19EditPart;
 import scrm.diagram.edit.parts.WrappingLabel20EditPart;
 import scrm.diagram.edit.parts.WrappingLabel21EditPart;
-import scrm.diagram.edit.parts.WrappingLabel22EditPart;
 import scrm.diagram.edit.parts.WrappingLabel2EditPart;
 import scrm.diagram.edit.parts.WrappingLabel3EditPart;
 import scrm.diagram.edit.parts.WrappingLabel4EditPart;
@@ -218,8 +217,8 @@ public class ScrmVisualIDRegistry {
 					.isSuperTypeOf(domainElement.eClass())) {
 				return SoftwareInterfaceEditPart.VISUAL_ID;
 			}
-			if (RequirementsPackage.eINSTANCE.getProcess().isSuperTypeOf(
-					domainElement.eClass())) {
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
+					.getProcess().isSuperTypeOf(domainElement.eClass())) {
 				return ProcessEditPart.VISUAL_ID;
 			}
 			if (RequirementsPackage.eINSTANCE.getPerformance().isSuperTypeOf(
@@ -234,27 +233,35 @@ public class ScrmVisualIDRegistry {
 					.isSuperTypeOf(domainElement.eClass())) {
 				return DataDefinitionEditPart.VISUAL_ID;
 			}
-			if (scrm.dataProcessing.DataProcessingPackage.eINSTANCE
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
 					.getInputDataReading()
 					.isSuperTypeOf(domainElement.eClass())) {
 				return InputDataReadingEditPart.VISUAL_ID;
 			}
-			if (scrm.dataProcessing.DataProcessingPackage.eINSTANCE
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
 					.getDataHandling().isSuperTypeOf(domainElement.eClass())) {
 				return DataHandlingEditPart.VISUAL_ID;
 			}
-			if (scrm.dataProcessing.DataProcessingPackage.eINSTANCE
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
 					.getResultsOutput().isSuperTypeOf(domainElement.eClass())) {
 				return ResultsOutputEditPart.VISUAL_ID;
 			}
-			if (scrm.dataProcessing.DataProcessingPackage.eINSTANCE
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
 					.getErrorHandling().isSuperTypeOf(domainElement.eClass())) {
 				return ErrorHandlingEditPart.VISUAL_ID;
 			}
-			if (scrm.dataProcessing.DataProcessingPackage.eINSTANCE
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
 					.getStatusMonitoring()
 					.isSuperTypeOf(domainElement.eClass())) {
 				return StatusMonitoringEditPart.VISUAL_ID;
+			}
+			if (RequirementsPackage.eINSTANCE.getRequirement().isSuperTypeOf(
+					domainElement.eClass())) {
+				return RequirementEditPart.VISUAL_ID;
+			}
+			if (KnowledgePackage.eINSTANCE.getKnowledgeSpace().isSuperTypeOf(
+					domainElement.eClass())) {
+				return KnowledgeSpaceEditPart.VISUAL_ID;
 			}
 			break;
 		}
@@ -335,6 +342,12 @@ public class ScrmVisualIDRegistry {
 				return true;
 			}
 			if (StatusMonitoringEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (RequirementEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (KnowledgeSpaceEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -521,6 +534,14 @@ public class ScrmVisualIDRegistry {
 				return true;
 			}
 			break;
+		case RequirementEditPart.VISUAL_ID:
+			if (RequirementNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (RequirementDescriptionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
 			if (WrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -606,7 +627,7 @@ public class ScrmVisualIDRegistry {
 				return true;
 			}
 			break;
-		case RequirementEditPart.VISUAL_ID:
+		case Requirement2EditPart.VISUAL_ID:
 			if (WrappingLabel18EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -618,6 +639,11 @@ public class ScrmVisualIDRegistry {
 			break;
 		case ProcessDataFlowEditPart.VISUAL_ID:
 			if (WrappingLabel20EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ProcessSuccessorEditPart.VISUAL_ID:
+			if (WrappingLabel21EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -642,7 +668,7 @@ public class ScrmVisualIDRegistry {
 		}
 		if (RequirementsPackage.eINSTANCE.getRequirement().isSuperTypeOf(
 				domainElement.eClass())) {
-			return RequirementEditPart.VISUAL_ID;
+			return Requirement2EditPart.VISUAL_ID;
 		}
 		return -1;
 	}

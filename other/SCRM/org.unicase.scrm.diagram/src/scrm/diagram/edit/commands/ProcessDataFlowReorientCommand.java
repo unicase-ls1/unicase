@@ -11,7 +11,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 
 import scrm.diagram.edit.policies.ScrmBaseItemSemanticEditPolicy;
 import scrm.requirements.DataFlow;
-import scrm.requirements.Process;
 
 /**
  * @generated
@@ -54,7 +53,7 @@ public class ProcessDataFlowReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == referenceOwner instanceof Process) {
+		if (false == referenceOwner instanceof scrm.requirements.dataProcess.Process) {
 			return false;
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
@@ -70,11 +69,11 @@ public class ProcessDataFlowReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof DataFlow && newEnd instanceof Process)) {
+		if (!(oldEnd instanceof DataFlow && newEnd instanceof scrm.requirements.dataProcess.Process)) {
 			return false;
 		}
 		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistProcessDataFlow_4040(getNewSource(), getOldTarget());
+				.canExistProcessDataFlow_4045(getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -85,7 +84,7 @@ public class ProcessDataFlowReorientCommand extends EditElementCommand {
 			return false;
 		}
 		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistProcessDataFlow_4040(getOldSource(), getNewTarget());
+				.canExistProcessDataFlow_4045(getOldSource(), getNewTarget());
 	}
 
 	/**
@@ -126,15 +125,15 @@ public class ProcessDataFlowReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Process getOldSource() {
-		return (Process) referenceOwner;
+	protected scrm.requirements.dataProcess.Process getOldSource() {
+		return (scrm.requirements.dataProcess.Process) referenceOwner;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Process getNewSource() {
-		return (Process) newEnd;
+	protected scrm.requirements.dataProcess.Process getNewSource() {
+		return (scrm.requirements.dataProcess.Process) newEnd;
 	}
 
 	/**

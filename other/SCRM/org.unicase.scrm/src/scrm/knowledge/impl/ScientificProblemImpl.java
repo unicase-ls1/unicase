@@ -31,7 +31,6 @@ import scrm.knowledge.NumericalMethod;
 import scrm.knowledge.ScientificProblem;
 
 import scrm.requirements.Feature;
-import scrm.requirements.IRequirement;
 import scrm.requirements.RequirementsPackage;
 
 /**

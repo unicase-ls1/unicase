@@ -31,6 +31,7 @@ import scrm.provider.ScrmEditPlugin;
 import scrm.requirements.Requirement;
 import scrm.requirements.RequirementsFactory;
 import scrm.requirements.RequirementsPackage;
+import scrm.requirements.dataProcess.DataProcessFactory;
 
 /**
  * This is the item provider adapter for a {@link scrm.requirements.Requirement} object.
@@ -281,11 +282,35 @@ public class RequirementItemProvider extends SCRMModelElementItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 				RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
-				RequirementsFactory.eINSTANCE.createProcess()));
+				RequirementsFactory.eINSTANCE.createPerformance()));
 
 		newChildDescriptors.add(createChildParameter(
 				RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
-				RequirementsFactory.eINSTANCE.createPerformance()));
+				DataProcessFactory.eINSTANCE.createProcess()));
+
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
+				DataProcessFactory.eINSTANCE.createInputDataReading()));
+
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
+				DataProcessFactory.eINSTANCE.createDataHandling()));
+
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
+				DataProcessFactory.eINSTANCE.createResultsOutput()));
+
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
+				DataProcessFactory.eINSTANCE.createErrorHandling()));
+
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
+				DataProcessFactory.eINSTANCE.createStatusMonitoring()));
+
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.REQUIREMENT__REFINEMENTS,
+				DataProcessFactory.eINSTANCE.createDataProcessSpace()));
 	}
 
 	/**

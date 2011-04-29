@@ -4,13 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -21,7 +18,6 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredLayoutCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetViewMutabilityCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalConnectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
@@ -43,11 +39,13 @@ import scrm.diagram.edit.parts.Feature2EditPart;
 import scrm.diagram.edit.parts.FeatureEditPart;
 import scrm.diagram.edit.parts.HardwareEditPart;
 import scrm.diagram.edit.parts.InputDataReadingEditPart;
+import scrm.diagram.edit.parts.KnowledgeSpaceEditPart;
 import scrm.diagram.edit.parts.MathematicalModel2EditPart;
 import scrm.diagram.edit.parts.MathematicalModelEditPart;
 import scrm.diagram.edit.parts.NumericalMethodEditPart;
 import scrm.diagram.edit.parts.PerformanceEditPart;
 import scrm.diagram.edit.parts.ProcessEditPart;
+import scrm.diagram.edit.parts.Requirement2EditPart;
 import scrm.diagram.edit.parts.RequirementEditPart;
 import scrm.diagram.edit.parts.ResultsOutputEditPart;
 import scrm.diagram.edit.parts.SCRMDiagramEditPart;
@@ -132,6 +130,8 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ResultsOutputEditPart.VISUAL_ID:
 		case ErrorHandlingEditPart.VISUAL_ID:
 		case StatusMonitoringEditPart.VISUAL_ID:
+		case RequirementEditPart.VISUAL_ID:
+		case KnowledgeSpaceEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;
@@ -403,7 +403,7 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ProcessEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ScrmDiagramUpdater
-						.getProcess_2014ContainedLinks(view));
+						.getProcess_2035ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -447,7 +447,7 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case InputDataReadingEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ScrmDiagramUpdater
-						.getInputDataReading_2023ContainedLinks(view));
+						.getInputDataReading_2036ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -458,7 +458,7 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case DataHandlingEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ScrmDiagramUpdater
-						.getDataHandling_2024ContainedLinks(view));
+						.getDataHandling_2037ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -469,7 +469,7 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ResultsOutputEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ScrmDiagramUpdater
-						.getResultsOutput_2025ContainedLinks(view));
+						.getResultsOutput_2038ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -480,7 +480,7 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ErrorHandlingEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ScrmDiagramUpdater
-						.getErrorHandling_2026ContainedLinks(view));
+						.getErrorHandling_2039ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -491,7 +491,29 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case StatusMonitoringEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ScrmDiagramUpdater
-						.getStatusMonitoring_2027ContainedLinks(view));
+						.getStatusMonitoring_2040ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case RequirementEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater
+						.getRequirement_2034ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case KnowledgeSpaceEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(ScrmDiagramUpdater
+						.getKnowledgeSpace_2044ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -521,7 +543,7 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			break;
 		}
-		case RequirementEditPart.VISUAL_ID: {
+		case Requirement2EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ScrmDiagramUpdater
 						.getRequirement_4036ContainedLinks(view));

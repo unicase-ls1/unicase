@@ -217,29 +217,6 @@ public class RequirementsItemProviderAdapterFactory extends
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link scrm.requirements.Process} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ProcessItemProvider processItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link scrm.requirements.Process}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createProcessAdapter() {
-		if (processItemProvider == null) {
-			processItemProvider = new ProcessItemProvider(this);
-		}
-
-		return processItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link scrm.requirements.Performance} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -448,8 +425,6 @@ public class RequirementsItemProviderAdapterFactory extends
 			userInterfaceItemProvider.dispose();
 		if (softwareInterfaceItemProvider != null)
 			softwareInterfaceItemProvider.dispose();
-		if (processItemProvider != null)
-			processItemProvider.dispose();
 		if (performanceItemProvider != null)
 			performanceItemProvider.dispose();
 		if (dataFlowItemProvider != null)

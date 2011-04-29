@@ -80,7 +80,7 @@ public class DataFlowItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.ProcessDataFlow_4040 == req.getElementType()) {
+		if (ScrmElementTypes.ProcessDataFlow_4045 == req.getElementType()) {
 			return null;
 		}
 		return null;
@@ -91,7 +91,7 @@ public class DataFlowItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.ProcessDataFlow_4040 == req.getElementType()) {
+		if (ScrmElementTypes.ProcessDataFlow_4045 == req.getElementType()) {
 			return getGEFWrapper(new ProcessDataFlowCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}

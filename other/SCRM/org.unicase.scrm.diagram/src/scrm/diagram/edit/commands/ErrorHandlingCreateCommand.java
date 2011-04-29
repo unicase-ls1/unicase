@@ -52,7 +52,7 @@ public class ErrorHandlingCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		scrm.dataProcessing.ErrorHandling newElement = scrm.dataProcessing.DataProcessingFactory.eINSTANCE
+		scrm.requirements.dataProcess.ErrorHandling newElement = scrm.requirements.dataProcess.DataProcessFactory.eINSTANCE
 				.createErrorHandling();
 
 		SCRMDiagram owner = (SCRMDiagram) getElementToEdit();
@@ -69,7 +69,8 @@ public class ErrorHandlingCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(scrm.dataProcessing.ErrorHandling newElement,
+	protected void doConfigure(
+			scrm.requirements.dataProcess.ErrorHandling newElement,
 			IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest())

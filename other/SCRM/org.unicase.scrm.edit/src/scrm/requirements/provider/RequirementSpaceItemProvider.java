@@ -31,6 +31,7 @@ import scrm.provider.ScrmEditPlugin;
 import scrm.requirements.RequirementSpace;
 import scrm.requirements.RequirementsFactory;
 import scrm.requirements.RequirementsPackage;
+import scrm.requirements.dataProcess.DataProcessFactory;
 
 /**
  * This is the item provider adapter for a {@link scrm.requirements.RequirementSpace} object.
@@ -236,11 +237,6 @@ public class RequirementSpaceItemProvider extends SCRMModelElementItemProvider
 		newChildDescriptors
 				.add(createChildParameter(
 						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
-						RequirementsFactory.eINSTANCE.createProcess()));
-
-		newChildDescriptors
-				.add(createChildParameter(
-						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
 						RequirementsFactory.eINSTANCE.createPerformance()));
 
 		newChildDescriptors
@@ -252,6 +248,41 @@ public class RequirementSpaceItemProvider extends SCRMModelElementItemProvider
 				.add(createChildParameter(
 						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
 						RequirementsFactory.eINSTANCE.createDataDefinition()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+						DataProcessFactory.eINSTANCE.createProcess()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+						DataProcessFactory.eINSTANCE.createInputDataReading()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+						DataProcessFactory.eINSTANCE.createDataHandling()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+						DataProcessFactory.eINSTANCE.createResultsOutput()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+						DataProcessFactory.eINSTANCE.createErrorHandling()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+						DataProcessFactory.eINSTANCE.createStatusMonitoring()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+						DataProcessFactory.eINSTANCE.createDataProcessSpace()));
 	}
 
 	/**

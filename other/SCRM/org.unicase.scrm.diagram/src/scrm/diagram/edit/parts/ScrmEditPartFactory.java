@@ -233,6 +233,18 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case StatusMonitoringDescriptionEditPart.VISUAL_ID:
 				return new StatusMonitoringDescriptionEditPart(view);
 
+			case RequirementEditPart.VISUAL_ID:
+				return new RequirementEditPart(view);
+
+			case RequirementNameEditPart.VISUAL_ID:
+				return new RequirementNameEditPart(view);
+
+			case RequirementDescriptionEditPart.VISUAL_ID:
+				return new RequirementDescriptionEditPart(view);
+
+			case KnowledgeSpaceEditPart.VISUAL_ID:
+				return new KnowledgeSpaceEditPart(view);
+
 			case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
 				return new ScientificProblemRepresentingModelEditPart(view);
 
@@ -335,8 +347,8 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case WrappingLabel17EditPart.VISUAL_ID:
 				return new WrappingLabel17EditPart(view);
 
-			case RequirementEditPart.VISUAL_ID:
-				return new RequirementEditPart(view);
+			case Requirement2EditPart.VISUAL_ID:
+				return new Requirement2EditPart(view);
 
 			case WrappingLabel18EditPart.VISUAL_ID:
 				return new WrappingLabel18EditPart(view);
@@ -352,6 +364,12 @@ public class ScrmEditPartFactory implements EditPartFactory {
 
 			case WrappingLabel20EditPart.VISUAL_ID:
 				return new WrappingLabel20EditPart(view);
+
+			case ProcessSuccessorEditPart.VISUAL_ID:
+				return new ProcessSuccessorEditPart(view);
+
+			case WrappingLabel21EditPart.VISUAL_ID:
+				return new WrappingLabel21EditPart(view);
 
 			}
 		}

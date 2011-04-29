@@ -6,11 +6,7 @@
  */
 package scrm.knowledge;
 
-import org.eclipse.emf.common.util.EList;
-
 import scrm.SCRMModelElement;
-
-import scrm.requirements.IRequirement;
 
 /**
  * <!-- begin-user-doc -->

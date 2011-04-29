@@ -414,7 +414,7 @@
     <ownedChild
         relatedDiagrams="//@diagram">
       <domainMetaElement
-          href="scrm.ecore#//requirements/Process"/>
+          href="scrm.ecore#//requirements/dataProcess/Process"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern=""
@@ -437,7 +437,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.5"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.15"/>
       <diagramNode
           href="scrm.gmfgraph#ProcessNode"/>
     </ownedChild>
@@ -483,7 +483,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.6"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.5"/>
       <diagramNode
           href="scrm.gmfgraph#PerformanceNode"/>
     </ownedChild>
@@ -519,7 +519,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.7"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.6"/>
       <diagramNode
           href="scrm.gmfgraph#DataFlowNode"/>
     </ownedChild>
@@ -595,7 +595,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.8"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.7"/>
       <diagramNode
           href="scrm.gmfgraph#DataDefinitionNode"/>
     </ownedChild>
@@ -608,7 +608,7 @@
     <ownedChild
         relatedDiagrams="//@diagram">
       <domainMetaElement
-          href="scrm.ecore#//dataProcessing/InputDataReading"/>
+          href="scrm.ecore#//requirements/dataProcess/InputDataReading"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern=""
@@ -631,7 +631,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.2/@tools.0"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.10"/>
       <diagramNode
           href="scrm.gmfgraph#InputDataReadingNode"/>
     </ownedChild>
@@ -644,7 +644,7 @@
     <ownedChild
         relatedDiagrams="//@diagram">
       <domainMetaElement
-          href="scrm.ecore#//dataProcessing/DataHandling"/>
+          href="scrm.ecore#//requirements/dataProcess/DataHandling"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern=""
@@ -667,7 +667,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.2/@tools.1"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.11"/>
       <diagramNode
           href="scrm.gmfgraph#DataHandlingNode"/>
     </ownedChild>
@@ -680,7 +680,7 @@
     <ownedChild
         relatedDiagrams="//@diagram">
       <domainMetaElement
-          href="scrm.ecore#//dataProcessing/ResultsOutput"/>
+          href="scrm.ecore#//requirements/dataProcess/ResultsOutput"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern=""
@@ -703,7 +703,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.2/@tools.2"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.12"/>
       <diagramNode
           href="scrm.gmfgraph#ResultsOutputNode"/>
     </ownedChild>
@@ -716,7 +716,7 @@
     <ownedChild
         relatedDiagrams="//@diagram">
       <domainMetaElement
-          href="scrm.ecore#//dataProcessing/ErrorHandling"/>
+          href="scrm.ecore#//requirements/dataProcess/ErrorHandling"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern=""
@@ -739,7 +739,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.2/@tools.3"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.13"/>
       <diagramNode
           href="scrm.gmfgraph#ErrorHandlingNode"/>
     </ownedChild>
@@ -752,7 +752,7 @@
     <ownedChild
         relatedDiagrams="//@diagram">
       <domainMetaElement
-          href="scrm.ecore#//dataProcessing/StatusMonitoring"/>
+          href="scrm.ecore#//requirements/dataProcess/StatusMonitoring"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern=""
@@ -775,9 +775,58 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.2/@tools.4"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.14"/>
       <diagramNode
           href="scrm.gmfgraph#StatusMonitoringNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="scrm.ecore#//SCRMDiagram/newElements"/>
+    <childrenFeature
+        href="scrm.ecore#//SCRMDiagram/elements"/>
+    <ownedChild
+        relatedDiagrams="//@diagram">
+      <domainMetaElement
+          href="scrm.ecore#//requirements/Requirement"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping">
+        <diagramLabel
+            href="scrm.gmfgraph#RequirementNode_name"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#RequirementNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="scrm.gmftool#//@palette/@tools.1/@tools.8"/>
+      <diagramNode
+          href="scrm.gmfgraph#RequirementNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="scrm.ecore#//SCRMDiagram/newElements"/>
+    <childrenFeature
+        href="scrm.ecore#//SCRMDiagram/elements"/>
+    <ownedChild
+        relatedDiagrams="//@diagram">
+      <domainMetaElement
+          href="scrm.ecore#//knowledge/KnowledgeSpace"/>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="scrm.gmftool#//@palette/@tools.2"/>
+      <diagramNode
+          href="scrm.gmfgraph#KnowledgeSpaceNode"/>
     </ownedChild>
   </nodes>
   <links
@@ -1004,12 +1053,12 @@
         href="scrm.ecore#//requirements/Requirement"/>
     <labelMappings>
       <diagramLabel
-          href="scrm.gmfgraph#Requirements_RefinementsConnectionLabel"/>
+          href="scrm.gmfgraph#Requirement_RefinementsConnectionLabel"/>
     </labelMappings>
     <containmentFeature
         href="scrm.ecore#//requirements/Requirement/refinements"/>
     <diagramLink
-        href="scrm.gmfgraph#Requirements_RefinementsConnection"/>
+        href="scrm.gmfgraph#Requirement_RefinementsConnection"/>
     <sourceMetaFeature
         xsi:type="ecore:EReference"
         href="scrm.ecore#//requirements/Requirement/refinedRequirement"/>
@@ -1021,10 +1070,10 @@
       relatedDiagrams="//@diagram">
     <labelMappings>
       <diagramLabel
-          href="scrm.gmfgraph#Requirements_DefiningDataConnectionLabel"/>
+          href="scrm.gmfgraph#Requirement_DefiningDataConnectionLabel"/>
     </labelMappings>
     <diagramLink
-        href="scrm.gmfgraph#Requirements_DefiningDataConnection"/>
+        href="scrm.gmfgraph#Requirement_DefiningDataConnection"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="scrm.ecore#//requirements/Requirement/definingData"/>
@@ -1039,7 +1088,19 @@
         href="scrm.gmfgraph#Process_DataFlowConnection"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="scrm.ecore#//requirements/Process/dataFlow"/>
+        href="scrm.ecore#//requirements/dataProcess/Process/dataFlow"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <labelMappings>
+      <diagramLabel
+          href="scrm.gmfgraph#DataProcess_SuccessorConnectionLabel"/>
+    </labelMappings>
+    <diagramLink
+        href="scrm.gmfgraph#DataProcess_SuccessorConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="scrm.ecore#//requirements/dataProcess/Process/successor"/>
   </links>
   <diagram>
     <diagramCanvas

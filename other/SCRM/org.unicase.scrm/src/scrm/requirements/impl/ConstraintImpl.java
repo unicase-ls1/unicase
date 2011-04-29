@@ -18,9 +18,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import scrm.impl.SCRMModelElementImpl;
 
-import scrm.knowledge.KnowledgePackage;
-import scrm.knowledge.ScientificKnowledge;
-
 import scrm.requirements.Constraint;
 import scrm.requirements.Feature;
 import scrm.requirements.RequirementSpace;

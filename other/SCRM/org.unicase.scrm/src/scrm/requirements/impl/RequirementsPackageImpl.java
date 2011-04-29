@@ -16,12 +16,8 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 
-import org.unicase.metamodel.MetamodelPackage;
-
 import scrm.ScrmPackage;
 
-import scrm.dataProcessing.DataProcessingPackage;
-import scrm.dataProcessing.impl.DataProcessingPackageImpl;
 import scrm.impl.ScrmPackageImpl;
 
 import scrm.knowledge.KnowledgePackage;
@@ -42,6 +38,8 @@ import scrm.requirements.RequirementsFactory;
 import scrm.requirements.RequirementsPackage;
 import scrm.requirements.SoftwareInterface;
 import scrm.requirements.UserInterface;
+import scrm.requirements.dataProcess.DataProcessPackage;
+import scrm.requirements.dataProcess.impl.DataProcessPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -106,13 +104,6 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	private EClass softwareInterfaceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass processEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -203,22 +194,22 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 				.getEPackage(KnowledgePackage.eNS_URI) instanceof KnowledgePackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(KnowledgePackage.eNS_URI)
 				: KnowledgePackage.eINSTANCE);
-		DataProcessingPackageImpl theDataProcessingPackage = (DataProcessingPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(DataProcessingPackage.eNS_URI) instanceof DataProcessingPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(DataProcessingPackage.eNS_URI)
-				: DataProcessingPackage.eINSTANCE);
+		DataProcessPackageImpl theDataProcessPackage = (DataProcessPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(DataProcessPackage.eNS_URI) instanceof DataProcessPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(DataProcessPackage.eNS_URI)
+				: DataProcessPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRequirementsPackage.createPackageContents();
 		theScrmPackage.createPackageContents();
 		theKnowledgePackage.createPackageContents();
-		theDataProcessingPackage.createPackageContents();
+		theDataProcessPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theRequirementsPackage.initializePackageContents();
 		theScrmPackage.initializePackageContents();
 		theKnowledgePackage.initializePackageContents();
-		theDataProcessingPackage.initializePackageContents();
+		theDataProcessPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theRequirementsPackage.freeze();
@@ -541,24 +532,6 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getProcess() {
-		return processEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getProcess_DataFlow() {
-		return (EReference) processEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getPerformance() {
 		return performanceEClass;
 	}
@@ -626,7 +599,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 	 */
 	public EAttribute getDataDefinition_Format() {
 		return (EAttribute) dataDefinitionEClass.getEStructuralFeatures()
-				.get(2);
+				.get(4);
 	}
 
 	/**
@@ -636,7 +609,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 	 */
 	public EAttribute getDataDefinition_Range() {
 		return (EAttribute) dataDefinitionEClass.getEStructuralFeatures()
-				.get(3);
+				.get(2);
 	}
 
 	/**
@@ -646,7 +619,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 	 */
 	public EAttribute getDataDefinition_DataType() {
 		return (EAttribute) dataDefinitionEClass.getEStructuralFeatures()
-				.get(4);
+				.get(3);
 	}
 
 	/**
@@ -745,9 +718,6 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 		createEAttribute(softwareInterfaceEClass,
 				SOFTWARE_INTERFACE__DATA_TYPES);
 
-		processEClass = createEClass(PROCESS);
-		createEReference(processEClass, PROCESS__DATA_FLOW);
-
 		performanceEClass = createEClass(PERFORMANCE);
 		createEAttribute(performanceEClass, PERFORMANCE__PROBLEM_SIZE);
 
@@ -758,9 +728,9 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 		createEReference(dataDefinitionEClass,
 				DATA_DEFINITION__DEFINED_REQUIREMENT);
 		createEAttribute(dataDefinitionEClass, DATA_DEFINITION__ACCURACY);
-		createEAttribute(dataDefinitionEClass, DATA_DEFINITION__FORMAT);
 		createEAttribute(dataDefinitionEClass, DATA_DEFINITION__RANGE);
 		createEAttribute(dataDefinitionEClass, DATA_DEFINITION__DATA_TYPE);
+		createEAttribute(dataDefinitionEClass, DATA_DEFINITION__FORMAT);
 	}
 
 	/**
@@ -788,12 +758,17 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		DataProcessPackage theDataProcessPackage = (DataProcessPackage) EPackage.Registry.INSTANCE
+				.getEPackage(DataProcessPackage.eNS_URI);
 		ScrmPackage theScrmPackage = (ScrmPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ScrmPackage.eNS_URI);
 		KnowledgePackage theKnowledgePackage = (KnowledgePackage) EPackage.Registry.INSTANCE
 				.getEPackage(KnowledgePackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
 				.getEPackage(EcorePackage.eNS_URI);
+
+		// Add subpackages
+		getESubpackages().add(theDataProcessPackage);
 
 		// Create type parameters
 
@@ -810,7 +785,6 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 		constraintEClass.getESuperTypes().add(this.getIRequirement());
 		userInterfaceEClass.getESuperTypes().add(this.getInterface());
 		softwareInterfaceEClass.getESuperTypes().add(this.getInterface());
-		processEClass.getESuperTypes().add(this.getRequirement());
 		performanceEClass.getESuperTypes().add(this.getRequirement());
 		dataFlowEClass.getESuperTypes().add(this.getIRequirement());
 		dataDefinitionEClass.getESuperTypes().add(this.getIRequirement());
@@ -986,14 +960,6 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
-		initEClass(processEClass, scrm.requirements.Process.class, "Process",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProcess_DataFlow(), this.getDataFlow(),
-				this.getDataFlow_SpecifiedProcess(), "dataFlow", null, 0, 1,
-				scrm.requirements.Process.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(performanceEClass, Performance.class, "Performance",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPerformance_ProblemSize(),
@@ -1003,11 +969,12 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 
 		initEClass(dataFlowEClass, DataFlow.class, "DataFlow", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDataFlow_SpecifiedProcess(), this.getProcess(),
-				this.getProcess_DataFlow(), "specifiedProcess", null, 0, 1,
-				DataFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEReference(getDataFlow_SpecifiedProcess(),
+				theDataProcessPackage.getProcess(),
+				theDataProcessPackage.getProcess_DataFlow(),
+				"specifiedProcess", null, 0, 1, DataFlow.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dataDefinitionEClass, DataDefinition.class,
 				"DataDefinition", !IS_ABSTRACT, !IS_INTERFACE,
@@ -1023,16 +990,16 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 				DataDefinition.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEAttribute(getDataDefinition_Format(), ecorePackage.getEString(),
-				"format", null, 0, 1, DataDefinition.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDataDefinition_Range(), ecorePackage.getEString(),
 				"range", null, 0, 1, DataDefinition.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDataDefinition_DataType(), ecorePackage.getEString(),
 				"dataType", null, 0, 1, DataDefinition.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataDefinition_Format(), ecorePackage.getEString(),
+				"format", null, 0, 1, DataDefinition.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 
@@ -1082,7 +1049,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 		addAnnotation(getFeature_ProvidedInterfaces(), source, new String[] {
 				"position", "right", "priority", "25" });
 		addAnnotation(getFeature_InfluencingProblem(), source, new String[] {
-				"position", "left", "priority", "20" });
+				"position", "left", "priority", "25" });
 		addAnnotation(getFeature_RequiredFeatures(), source, new String[] {
 				"position", "right", "priority", "30" });
 		addAnnotation(getFeature_RequiringFeatures(), source, new String[] {
@@ -1103,8 +1070,6 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 				"position", "left", "priority", "15" });
 		addAnnotation(getSoftwareInterface_DataTypes(), source, new String[] {
 				"position", "left", "priority", "5" });
-		addAnnotation(getProcess_DataFlow(), source, new String[] { "position",
-				"left", "priority", "15" });
 		addAnnotation(getPerformance_ProblemSize(), source, new String[] {
 				"position", "left", "priority", "5" });
 		addAnnotation(getDataFlow_SpecifiedProcess(), source, new String[] {
@@ -1113,11 +1078,11 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 				new String[] { "position", "left", "priority", "15" });
 		addAnnotation(getDataDefinition_Accuracy(), source, new String[] {
 				"position", "left", "priority", "5" });
-		addAnnotation(getDataDefinition_Format(), source, new String[] {
-				"position", "left", "priority", "6" });
 		addAnnotation(getDataDefinition_Range(), source, new String[] {
-				"position", "left", "priority", "7" });
+				"position", "left", "priority", "6" });
 		addAnnotation(getDataDefinition_DataType(), source, new String[] {
+				"position", "left", "priority", "7" });
+		addAnnotation(getDataDefinition_Format(), source, new String[] {
 				"position", "left", "priority", "8" });
 	}
 
