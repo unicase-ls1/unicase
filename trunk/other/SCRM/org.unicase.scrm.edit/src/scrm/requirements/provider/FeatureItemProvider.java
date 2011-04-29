@@ -31,6 +31,7 @@ import scrm.provider.ScrmEditPlugin;
 import scrm.requirements.Feature;
 import scrm.requirements.RequirementsFactory;
 import scrm.requirements.RequirementsPackage;
+import scrm.requirements.dataProcess.DataProcessFactory;
 
 /**
  * This is the item provider adapter for a {@link scrm.requirements.Feature} object.
@@ -427,11 +428,35 @@ public class FeatureItemProvider extends SCRMModelElementItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(
 				RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
-				RequirementsFactory.eINSTANCE.createProcess()));
+				RequirementsFactory.eINSTANCE.createPerformance()));
 
 		newChildDescriptors.add(createChildParameter(
 				RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
-				RequirementsFactory.eINSTANCE.createPerformance()));
+				DataProcessFactory.eINSTANCE.createProcess()));
+
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
+				DataProcessFactory.eINSTANCE.createInputDataReading()));
+
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
+				DataProcessFactory.eINSTANCE.createDataHandling()));
+
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
+				DataProcessFactory.eINSTANCE.createResultsOutput()));
+
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
+				DataProcessFactory.eINSTANCE.createErrorHandling()));
+
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
+				DataProcessFactory.eINSTANCE.createStatusMonitoring()));
+
+		newChildDescriptors.add(createChildParameter(
+				RequirementsPackage.Literals.FEATURE__DETAILED_REQUIREMENTS,
+				DataProcessFactory.eINSTANCE.createDataProcessSpace()));
 
 		newChildDescriptors.add(createChildParameter(
 				RequirementsPackage.Literals.FEATURE__SUB_FEATURES,

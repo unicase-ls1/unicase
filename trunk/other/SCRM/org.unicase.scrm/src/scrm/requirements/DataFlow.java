@@ -25,7 +25,7 @@ package scrm.requirements;
 public interface DataFlow extends IRequirement {
 	/**
 	 * Returns the value of the '<em><b>Specified Process</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link scrm.requirements.Process#getDataFlow <em>Data Flow</em>}'.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.dataProcess.Process#getDataFlow <em>Data Flow</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Specified Process</em>' container reference isn't clear,
@@ -33,14 +33,14 @@ public interface DataFlow extends IRequirement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Specified Process</em>' reference.
-	 * @see #setSpecifiedProcess(scrm.requirements.Process)
+	 * @see #setSpecifiedProcess(scrm.requirements.dataProcess.Process)
 	 * @see scrm.requirements.RequirementsPackage#getDataFlow_SpecifiedProcess()
-	 * @see scrm.requirements.Process#getDataFlow
+	 * @see scrm.requirements.dataProcess.Process#getDataFlow
 	 * @model opposite="dataFlow"
 	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
 	 * @generated
 	 */
-	scrm.requirements.Process getSpecifiedProcess();
+	scrm.requirements.dataProcess.Process getSpecifiedProcess();
 
 	/**
 	 * Sets the value of the '{@link scrm.requirements.DataFlow#getSpecifiedProcess <em>Specified Process</em>}' reference.
@@ -50,6 +50,6 @@ public interface DataFlow extends IRequirement {
 	 * @see #getSpecifiedProcess()
 	 * @generated
 	 */
-	void setSpecifiedProcess(scrm.requirements.Process value);
+	void setSpecifiedProcess(scrm.requirements.dataProcess.Process value);
 
 } // DataFlow

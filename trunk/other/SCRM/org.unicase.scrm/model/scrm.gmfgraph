@@ -817,39 +817,78 @@
           accessor="getFigureStatusMonitoring_description"
           figure="//@figures.1/@descriptors.13/@actualFigure/@children.1"/>
     </descriptors>
+    <descriptors
+        name="RequirementFigure">
+      <actualFigure
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="RequirementShape"
+          cornerWidth="32"
+          cornerHeight="32">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
+        <backgroundColor
+            xsi:type="gmfgraph:RGBColor"
+            green="255"/>
+        <preferredSize
+            dx="130"
+            dy="65"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="Requirement_name">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              style="BOLD"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="Requirement_description"/>
+      </actualFigure>
+      <accessors
+          accessor="getFigureRequirement_name"
+          figure="//@figures.1/@descriptors.14/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureRequirement_description"
+          figure="//@figures.1/@descriptors.14/@actualFigure/@children.1"/>
+    </descriptors>
+  </figures>
+  <figures
+      name="PackageNodes">
+    <descriptors
+        name="KnowledgeSpaceFigure">
+      <actualFigure
+          xsi:type="gmfgraph:LabeledContainer"
+          name="KnowledgeSpaceShape"/>
+    </descriptors>
   </figures>
   <figures
       name="KnowledgeConnections">
     <descriptors
-        name="ScientificKnowledge_RequirementsFigure">
-      <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
-        <children
-            xsi:type="gmfgraph:Label"
-            name="ScientificKnowledge_RequirementsLabel"
-            text="requires"/>
-      </actualFigure>
-      <accessors
-          accessor="getFigureScientificKnowledge_RequirementsLabel"
-          figure="//@figures.2/@descriptors.0/@actualFigure/@children.0"/>
-    </descriptors>
-    <descriptors
         name="ScientificProblem_RepresentingModelFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="ScientificProblem_RepresentingModelPolylineConnection"
+          targetDecoration="//@figures.3/@descriptors.0/@actualFigure/@children.1">
         <children
             xsi:type="gmfgraph:Label"
             name="ScientificProblem_RepresentingModelLabel"
             text="represents"/>
+        <children
+            xsi:type="gmfgraph:PolylineDecoration"
+            name="ScientificProblem_RepresentingModelTargetDecoration"/>
       </actualFigure>
       <accessors
           accessor="getFigureScientificProblem_RepresentingModelLabel"
-          figure="//@figures.2/@descriptors.1/@actualFigure/@children.0"/>
+          figure="//@figures.3/@descriptors.0/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="ScientificProblem_SolvingMethodsFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="ScientificProblem_SolvingMethodsPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="ScientificProblem_SolvingMethodsLabel"
@@ -857,12 +896,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureScientificProblem_SolvingMethodsLabel"
-          figure="//@figures.2/@descriptors.2/@actualFigure/@children.0"/>
+          figure="//@figures.3/@descriptors.1/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="ScientificProblem_InfluencedFeatureFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="ScientificProblem_InfluencedFeaturePolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="ScientificProblem_InfluencedFeatureLabel"
@@ -870,12 +910,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureScientificProblem_InfluencedFeatureLabel"
-          figure="//@figures.2/@descriptors.3/@actualFigure/@children.0"/>
+          figure="//@figures.3/@descriptors.2/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="MathematicalModel_RepresentedProblemFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="MathematicalModel_RepresentedProblemPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="MathematicalModel_RepresentedProblemLabel"
@@ -883,12 +924,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureMathematicalModel_RepresentedProblemLabel"
-          figure="//@figures.2/@descriptors.4/@actualFigure/@children.0"/>
+          figure="//@figures.3/@descriptors.3/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="MathematicalModel_RefinementsFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="MathematicalModel_RefinementsPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="MathematicalModel_RefinementsLabel"
@@ -896,12 +938,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureMathematicalModel_RefinementsLabel"
-          figure="//@figures.2/@descriptors.5/@actualFigure/@children.0"/>
+          figure="//@figures.3/@descriptors.4/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="MathematicalModel_SubMathematicalModelsFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="MathematicalModel_SubMathematicalModelsPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="MathematicalModel_SubMathematicalModelsLabel"
@@ -909,12 +952,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureMathematicalModel_SubMathematicalModelsLabel"
-          figure="//@figures.2/@descriptors.6/@actualFigure/@children.0"/>
+          figure="//@figures.3/@descriptors.5/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="MathematicalModel_NumericalMethodsFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="MathematicalModel_NumericalMethodsPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="MathematicalModel_NumericalMethodsLabel"
@@ -922,12 +966,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureMathematicalModel_NumericalMethodsLabel"
-          figure="//@figures.2/@descriptors.7/@actualFigure/@children.0"/>
+          figure="//@figures.3/@descriptors.6/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="MathematicalModel_DependenciesFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="MathematicalModel_DependenciesPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="MathematicalModel_DependenciesLabel"
@@ -935,12 +980,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureMathematicalModel_DependenciesLabel"
-          figure="//@figures.2/@descriptors.8/@actualFigure/@children.0"/>
+          figure="//@figures.3/@descriptors.7/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="NumericalMethod_SolvedProblemFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="NumericalMethod_SolvedProblemPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="NumericalMethod_SolvedProblemLabel"
@@ -948,12 +994,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureNumericalMethod_SolvedProblemLabel"
-          figure="//@figures.2/@descriptors.9/@actualFigure/@children.0"/>
+          figure="//@figures.3/@descriptors.8/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="NumericalMethod_MathematicalModelFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="NumericalMethod_MathematicalModelPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="NumericalMethod_MathematicalModelLabel"
@@ -961,12 +1008,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureNumericalMethod_MathematicalModelLabel"
-          figure="//@figures.2/@descriptors.10/@actualFigure/@children.0"/>
+          figure="//@figures.3/@descriptors.9/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="NumericalMethod_DependenciesFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="NumericalMethod_DependenciesPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="NumericalMethods_DependenciesLabel"
@@ -974,12 +1022,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureNumericalMethod_DependenciesLabel"
-          figure="//@figures.2/@descriptors.11/@actualFigure/@children.0"/>
+          figure="//@figures.3/@descriptors.10/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="NumericalMethod_RealizingRequirementFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="NumericalMethod_RealizingRequirementPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="NumericalMethod_RealizingRequirementLabel"
@@ -987,12 +1036,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureNumericalMethod_RealizingRequirementLabel"
-          figure="//@figures.2/@descriptors.12/@actualFigure/@children.0"/>
+          figure="//@figures.3/@descriptors.11/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="NumericalMethod_PerformanceFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="NumericalMethod_PerformancePolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="NumericalMethod_PerformanceLabel"
@@ -1000,12 +1050,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureNumericalMethod_PerformanceLabel"
-          figure="//@figures.2/@descriptors.13/@actualFigure/@children.0"/>
+          figure="//@figures.3/@descriptors.12/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="Assumption_DependingModelFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Assumption_DependingModelPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Assumption_DependingModelLabel"
@@ -1013,12 +1064,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureAssumption_DependingModelLabel"
-          figure="//@figures.2/@descriptors.14/@actualFigure/@children.0"/>
+          figure="//@figures.3/@descriptors.13/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="Assumption_DependingMethodFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Assumption_DependingMethodPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Assumption_DependingMethodLabel"
@@ -1026,28 +1078,16 @@
       </actualFigure>
       <accessors
           accessor="getFigureAssumption_DependingMethodLabel"
-          figure="//@figures.2/@descriptors.15/@actualFigure/@children.0"/>
+          figure="//@figures.3/@descriptors.14/@actualFigure/@children.0"/>
     </descriptors>
   </figures>
   <figures
       name="RequirementsConnections">
     <descriptors
-        name="IRequirement_UsedKnowledgeFigure">
-      <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
-        <children
-            xsi:type="gmfgraph:Label"
-            name="IRequirement_UsedKnowledgeLabel"
-            text="requires"/>
-      </actualFigure>
-      <accessors
-          accessor="getFigureIRequirement_UsedKnowledgeLabel"
-          figure="//@figures.3/@descriptors.0/@actualFigure/@children.0"/>
-    </descriptors>
-    <descriptors
         name="Interface_ProvidingFeatureFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Interface_ProvidingFeaturePolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Interface_ProvidingFeatureLabel"
@@ -1055,12 +1095,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureInterface_ProvidingFeatureLabel"
-          figure="//@figures.3/@descriptors.1/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.0/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="Interface_RequiringFeaturesFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Interface_RequiringFeaturesPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Interface_RequiringFeaturesLabel"
@@ -1068,12 +1109,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureInterface_RequiringFeaturesLabel"
-          figure="//@figures.3/@descriptors.2/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.1/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="Feature_RequiredInterfacesFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Feature_RequiredInterfacesPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_RequiredInterfacesLabel"
@@ -1081,12 +1123,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureFeature_RequiredInterfacesLabel"
-          figure="//@figures.3/@descriptors.3/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.2/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="Feature_ProvidedInterfacesFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Feature_ProvidedInterfacesPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_ProvidedInterfacesLabel"
@@ -1094,12 +1137,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureFeature_ProvidedInterfacesLabel"
-          figure="//@figures.3/@descriptors.4/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.3/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="Feature_ConstraintsFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Feature_ConstraintsPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_ConstraintsLabel"
@@ -1107,12 +1151,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureFeature_ConstraintsLabel"
-          figure="//@figures.3/@descriptors.5/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.4/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="Feature_DependenciesFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Feature_DependenciesPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_DependenciesLabel"
@@ -1120,12 +1165,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureFeature_DependenciesLabel"
-          figure="//@figures.3/@descriptors.6/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.5/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="Feature_DetailedRequirementsFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Feature_DetailedRequirementsPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_DetailedRequirementsLabel"
@@ -1133,12 +1179,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureFeature_DetailedRequirementsLabel"
-          figure="//@figures.3/@descriptors.7/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.6/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="Feature_InfluencingProblemFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Feature_InfluencingProblemPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_InfluencingProblemLabel"
@@ -1146,12 +1193,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureFeature_InfluencingProblemLabel"
-          figure="//@figures.3/@descriptors.8/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.7/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="Feature_SubFeaturesFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Feature_SubFeaturesPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_SubFeaturesLabel"
@@ -1159,12 +1207,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureFeature_SubFeaturesLabel"
-          figure="//@figures.3/@descriptors.9/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.8/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="Feature_RequiredFeaturesFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Feature_RequiredFeaturesPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_RequiredFeaturesLabel"
@@ -1172,12 +1221,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureFeature_RequiredFeaturesLabel"
-          figure="//@figures.3/@descriptors.10/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.9/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="Feature_RequiringFeaturesFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Feature_RequiringFeaturesPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_RequiringFeaturesLabel"
@@ -1185,12 +1235,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureFeature_RequiringFeaturesLabel"
-          figure="//@figures.3/@descriptors.11/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.10/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="Feature_ExcludedFeaturesFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Feature_ExcludedFeaturesPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_ExcludedFeaturesLabel"
@@ -1198,12 +1249,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureFeature_ExcludedFeaturesLabel"
-          figure="//@figures.3/@descriptors.12/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.11/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="Feature_ExcludingFeaturesFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Feature_ExcludingFeaturesPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_ExcludingFeaturesLabel"
@@ -1211,12 +1263,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureFeature_ExcludingFeaturesLabel"
-          figure="//@figures.3/@descriptors.13/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.12/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="Hardware_DependendingFeatureFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Hardware_DependingFeaturePolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Hardware_DependendingFeatureLabel"
@@ -1224,12 +1277,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureHardware_DependendingFeatureLabel"
-          figure="//@figures.3/@descriptors.14/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.13/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="Constraint_RestrictedFeatureFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Hardware_RestrictedFeaturePolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Constraint_RestrictedFeatureLabel"
@@ -1237,64 +1291,69 @@
       </actualFigure>
       <accessors
           accessor="getFigureConstraint_RestrictedFeatureLabel"
-          figure="//@figures.3/@descriptors.15/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.14/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
-        name="Requirements_RefinementsFigure">
+        name="Requirement_RefinementsFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Requirement_RefinementsPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
-            name="Requirements_RefinementsLabel"
+            name="Requirement_RefinementsLabel"
             text="refines"/>
       </actualFigure>
       <accessors
-          accessor="getFigureRequirements_RefinementsLabel"
-          figure="//@figures.3/@descriptors.16/@actualFigure/@children.0"/>
+          accessor="getFigureRequirement_RefinementsLabel"
+          figure="//@figures.4/@descriptors.15/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
-        name="Requirements_SpecifiedFeatureFigure">
+        name="Requirement_SpecifiedFeatureFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Requirement_SpecifiedFeaturePolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
-            name="Requirements_SpecifiedFeatureLabel"
+            name="Requirement_SpecifiedFeatureLabel"
             text="details"/>
       </actualFigure>
       <accessors
-          accessor="getFigureRequirements_SpecifiedFeatureLabel"
-          figure="//@figures.3/@descriptors.17/@actualFigure/@children.0"/>
+          accessor="getFigureRequirement_SpecifiedFeatureLabel"
+          figure="//@figures.4/@descriptors.16/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
-        name="Requirements_DefiningDataFigure">
+        name="Requirement_DefiningDataFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Requirement_DefiningDataPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
-            name="Requirements_DefiningDataLabel"
+            name="Requirement_DefiningDataLabel"
             text="defines"/>
       </actualFigure>
       <accessors
-          accessor="getFigureRequirements_DefiningDataLabel"
-          figure="//@figures.3/@descriptors.18/@actualFigure/@children.0"/>
+          accessor="getFigureRequirement_DefiningDataLabel"
+          figure="//@figures.4/@descriptors.17/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
-        name="Requirements_RealizedMethodFigure">
+        name="Requirement_RealizedMethodFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Requirement_RealizedMethodPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
-            name="Requirements_RealizedMethodLabel"
+            name="Requirement_RealizedMethodLabel"
             text="realizes"/>
       </actualFigure>
       <accessors
-          accessor="getFigureRequirements_RealizedMethodLabel"
-          figure="//@figures.3/@descriptors.19/@actualFigure/@children.0"/>
+          accessor="getFigureRequirement_RealizedMethodLabel"
+          figure="//@figures.4/@descriptors.18/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="Process_DataFlowFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Process_DataFlowPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Process_DataFlowLabel"
@@ -1302,12 +1361,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureProcess_DataFlowLabel"
-          figure="//@figures.3/@descriptors.20/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.19/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="Performance_NumericalMethodFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Performance_NumericalMethodPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Performance_NumericalMethodLabel"
@@ -1315,12 +1375,13 @@
       </actualFigure>
       <accessors
           accessor="getFigurePerformance_NumericalMethodLabel"
-          figure="//@figures.3/@descriptors.21/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.20/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="DataFlow_SpecifiedProcessFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="DataFlow_SpecifiedProcessPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="DataFlow_SpecifiedProcessLabel"
@@ -1328,12 +1389,13 @@
       </actualFigure>
       <accessors
           accessor="getFigureDataFlow_SpecifiedProcessLabel"
-          figure="//@figures.3/@descriptors.22/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.21/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="DataDefinition_DefinedRequirementFigure">
       <actualFigure
-          xsi:type="gmfgraph:PolylineConnection">
+          xsi:type="gmfgraph:PolylineConnection"
+          name="DataDefinition_DefinedRequirementPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="DataDefinition_DefinedRequirementLabel"
@@ -1341,9 +1403,26 @@
       </actualFigure>
       <accessors
           accessor="getFigureDataDefinition_DefinedRequirementLabel"
-          figure="//@figures.3/@descriptors.23/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.22/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="DataProcess_SuccessorFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="DataProcess_SuccessorPolylineConnection">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="DataProcess_SuccessorLabel"
+            text="next step"/>
+      </actualFigure>
+      <accessors
+          accessor="getFigureDataProcess_SuccessorLabel"
+          figure="//@figures.4/@descriptors.23/@actualFigure/@children.0"/>
     </descriptors>
   </figures>
+  <nodes
+      name="KnowledgeSpaceNode"
+      figure="KnowledgeSpaceFigure"/>
   <nodes
       name="MathematicalModelNode"
       figure="MathematicalModelFigure"/>
@@ -1398,9 +1477,9 @@
   <nodes
       name="StatusMonitoringNode"
       figure="StatusMonitoringFigure"/>
-  <connections
-      name="ScientificKnowledge_RequirementsConnection"
-      figure="ScientificKnowledge_RequirementsFigure"/>
+  <nodes
+      name="RequirementNode"
+      figure="RequirementFigure"/>
   <connections
       name="ScientificProblem_RepresentingModelConnection"
       figure="ScientificProblem_RepresentingModelFigure"/>
@@ -1447,9 +1526,6 @@
       name="Assumption_DependingMethodConnection"
       figure="Assumption_DependingMethodFigure"/>
   <connections
-      name="IRequirement_UsedKnowledgeConnection"
-      figure="IRequirement_UsedKnowledgeFigure"/>
-  <connections
       name="Interface_ProvidingFeatureConnection"
       figure="Interface_ProvidingFeatureFigure"/>
   <connections
@@ -1495,17 +1571,17 @@
       name="Constraint_RestrictedFeatureConnection"
       figure="Constraint_RestrictedFeatureFigure"/>
   <connections
-      name="Requirements_RefinementsConnection"
-      figure="Requirements_RefinementsFigure"/>
+      name="Requirement_RefinementsConnection"
+      figure="Requirement_RefinementsFigure"/>
   <connections
-      name="Requirements_SpecifiedFeatureConnection"
-      figure="Requirements_SpecifiedFeatureFigure"/>
+      name="Requirement_SpecifiedFeatureConnection"
+      figure="Requirement_SpecifiedFeatureFigure"/>
   <connections
-      name="Requirements_DefiningDataConnection"
-      figure="Requirements_DefiningDataFigure"/>
+      name="Requirement_DefiningDataConnection"
+      figure="Requirement_DefiningDataFigure"/>
   <connections
-      name="Requirements_RealizedMethodConnection"
-      figure="Requirements_RealizedMethodFigure"/>
+      name="Requirement_RealizedMethodConnection"
+      figure="Requirement_RealizedMethodFigure"/>
   <connections
       name="Process_DataFlowConnection"
       figure="Process_DataFlowFigure"/>
@@ -1518,6 +1594,9 @@
   <connections
       name="DataDefinition_DefinedRequirementConnection"
       figure="DataDefinition_DefinedRequirementFigure"/>
+  <connections
+      name="DataProcess_SuccessorConnection"
+      figure="DataProcess_SuccessorFigure"/>
   <labels
       name="MathematicalModelNode_name"
       figure="MathematicalModelFigure"
@@ -1746,22 +1825,19 @@
       elementIcon="false"
       accessor="//@figures.1/@descriptors.13/@accessors.1"/>
   <labels
-      name="ScientificKnowledge_RequirementsConnectionLabel"
-      figure="ScientificKnowledge_RequirementsFigure"
+      name="RequirementNode_name"
+      figure="RequirementFigure"
+      accessor="//@figures.1/@descriptors.14/@accessors.0"/>
+  <labels
+      name="RequirementNode_description"
+      figure="RequirementFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.0/@accessors.0">
-    <facets
-        xsi:type="gmfgraph:LabelOffsetFacet"
-        y="10"/>
-    <facets
-        xsi:type="gmfgraph:AlignmentFacet"
-        alignment="CENTER"/>
-  </labels>
+      accessor="//@figures.1/@descriptors.14/@accessors.1"/>
   <labels
       name="ScientificProblem_RepresentingModelConnectionLabel"
       figure="ScientificProblem_RepresentingModelFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.1/@accessors.0">
+      accessor="//@figures.3/@descriptors.0/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -1773,7 +1849,7 @@
       name="ScientificProblem_SolvingMethodsConnectionLabel"
       figure="ScientificProblem_SolvingMethodsFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.2/@accessors.0">
+      accessor="//@figures.3/@descriptors.1/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -1785,7 +1861,7 @@
       name="ScientificProblem_InfluencedFeatureConnectionLabel"
       figure="ScientificProblem_InfluencedFeatureFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.3/@accessors.0">
+      accessor="//@figures.3/@descriptors.2/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -1797,7 +1873,7 @@
       name="MathematicalModel_RepresentedProblemConnectionLabel"
       figure="MathematicalModel_RepresentedProblemFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.4/@accessors.0">
+      accessor="//@figures.3/@descriptors.3/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -1809,7 +1885,7 @@
       name="MathematicalModel_RefinementsConnectionLabel"
       figure="MathematicalModel_RefinementsFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.5/@accessors.0">
+      accessor="//@figures.3/@descriptors.4/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -1821,7 +1897,7 @@
       name="MathematicalModel_SubMathematicalModelsConnectionLabel"
       figure="MathematicalModel_SubMathematicalModelsFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.6/@accessors.0">
+      accessor="//@figures.3/@descriptors.5/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -1833,7 +1909,7 @@
       name="MathematicalModel_NumericalMethodsConnectionLabel"
       figure="MathematicalModel_NumericalMethodsFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.7/@accessors.0">
+      accessor="//@figures.3/@descriptors.6/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -1845,7 +1921,7 @@
       name="MathematicalModel_DependenciesConnectionLabel"
       figure="MathematicalModel_DependenciesFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.8/@accessors.0">
+      accessor="//@figures.3/@descriptors.7/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -1857,7 +1933,7 @@
       name="NumericalMethod_SolvedProblemConnectionLabel"
       figure="NumericalMethod_SolvedProblemFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.9/@accessors.0">
+      accessor="//@figures.3/@descriptors.8/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -1869,7 +1945,7 @@
       name="NumericalMethod_MathematicalModelConnectionLabel"
       figure="NumericalMethod_MathematicalModelFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.10/@accessors.0">
+      accessor="//@figures.3/@descriptors.9/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -1881,7 +1957,7 @@
       name="NumericalMethod_DependenciesConnectionLabel"
       figure="NumericalMethod_DependenciesFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.11/@accessors.0">
+      accessor="//@figures.3/@descriptors.10/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -1893,7 +1969,7 @@
       name="NumericalMethod_RealizingRequirementConnectionLabel"
       figure="NumericalMethod_RealizingRequirementFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.12/@accessors.0">
+      accessor="//@figures.3/@descriptors.11/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -1905,7 +1981,7 @@
       name="NumericalMethod_PerformanceConnectionLabel"
       figure="NumericalMethod_PerformanceFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.13/@accessors.0">
+      accessor="//@figures.3/@descriptors.12/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -1917,7 +1993,7 @@
       name="Assumption_DependingModelConnectionLabel"
       figure="Assumption_DependingModelFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.14/@accessors.0">
+      accessor="//@figures.3/@descriptors.13/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -1929,19 +2005,7 @@
       name="Assumption_DependingMethodConnectionLabel"
       figure="Assumption_DependingMethodFigure"
       elementIcon="false"
-      accessor="//@figures.2/@descriptors.15/@accessors.0">
-    <facets
-        xsi:type="gmfgraph:LabelOffsetFacet"
-        y="10"/>
-    <facets
-        xsi:type="gmfgraph:AlignmentFacet"
-        alignment="CENTER"/>
-  </labels>
-  <labels
-      name="IRequirement_UsedKnowledgeConnectionLabel"
-      figure="IRequirement_UsedKnowledgeFigure"
-      elementIcon="false"
-      accessor="//@figures.3/@descriptors.0/@accessors.0">
+      accessor="//@figures.3/@descriptors.14/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -1953,7 +2017,7 @@
       name="Interface_ProvidingFeatureConnectionLabel"
       figure="Interface_ProvidingFeatureFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.1/@accessors.0">
+      accessor="//@figures.4/@descriptors.0/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -1965,7 +2029,7 @@
       name="Interface_RequiringFeaturesConnectionLabel"
       figure="Interface_RequiringFeaturesFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.2/@accessors.0">
+      accessor="//@figures.4/@descriptors.1/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -1977,7 +2041,7 @@
       name="Feature_RequiredInterfacesConnectionLabel"
       figure="Feature_RequiredInterfacesFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.3/@accessors.0">
+      accessor="//@figures.4/@descriptors.2/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -1989,7 +2053,7 @@
       name="Feature_ProvidedInterfacesConnectionLabel"
       figure="Feature_ProvidedInterfacesFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.4/@accessors.0">
+      accessor="//@figures.4/@descriptors.3/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2001,7 +2065,7 @@
       name="Feature_ConstraintsConnectionLabel"
       figure="Feature_ConstraintsFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.5/@accessors.0">
+      accessor="//@figures.4/@descriptors.4/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2013,7 +2077,7 @@
       name="Feature_DependenciesConnectionLabel"
       figure="Feature_DependenciesFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.6/@accessors.0">
+      accessor="//@figures.4/@descriptors.5/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2025,7 +2089,7 @@
       name="Feature_DetailedRequirementsConnectionLabel"
       figure="Feature_DetailedRequirementsFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.7/@accessors.0">
+      accessor="//@figures.4/@descriptors.6/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2037,7 +2101,7 @@
       name="Feature_InfluencingProblemConnectionLabel"
       figure="Feature_InfluencingProblemFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.8/@accessors.0">
+      accessor="//@figures.4/@descriptors.7/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2049,7 +2113,7 @@
       name="Feature_SubFeaturesConnectionLabel"
       figure="Feature_SubFeaturesFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.9/@accessors.0">
+      accessor="//@figures.4/@descriptors.8/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2061,7 +2125,7 @@
       name="Feature_RequiredFeaturesConnectionLabel"
       figure="Feature_RequiredFeaturesFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.10/@accessors.0">
+      accessor="//@figures.4/@descriptors.9/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2073,7 +2137,7 @@
       name="Feature_RequiringFeaturesConnectionLabel"
       figure="Feature_RequiringFeaturesFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.11/@accessors.0">
+      accessor="//@figures.4/@descriptors.10/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2085,7 +2149,7 @@
       name="Feature_ExcludedFeaturesConnectionLabel"
       figure="Feature_ExcludedFeaturesFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.12/@accessors.0">
+      accessor="//@figures.4/@descriptors.11/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2097,7 +2161,7 @@
       name="Feature_ExcludingFeaturesConnectionLabel"
       figure="Feature_ExcludingFeaturesFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.13/@accessors.0">
+      accessor="//@figures.4/@descriptors.12/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2109,7 +2173,7 @@
       name="Hardware_DependendingFeatureConnectionLabel"
       figure="Hardware_DependendingFeatureFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.14/@accessors.0">
+      accessor="//@figures.4/@descriptors.13/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2121,7 +2185,7 @@
       name="Constraint_RestrictedFeatureConnectionLabel"
       figure="Constraint_RestrictedFeatureFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.15/@accessors.0">
+      accessor="//@figures.4/@descriptors.14/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2130,10 +2194,10 @@
         alignment="CENTER"/>
   </labels>
   <labels
-      name="Requirements_RefinementsConnectionLabel"
-      figure="Requirements_RefinementsFigure"
+      name="Requirement_RefinementsConnectionLabel"
+      figure="Requirement_RefinementsFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.16/@accessors.0">
+      accessor="//@figures.4/@descriptors.15/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2142,10 +2206,10 @@
         alignment="CENTER"/>
   </labels>
   <labels
-      name="Requirements_SpecifiedFeatureConnectionLabel"
-      figure="Requirements_SpecifiedFeatureFigure"
+      name="Requirement_SpecifiedFeatureConnectionLabel"
+      figure="Requirement_SpecifiedFeatureFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.17/@accessors.0">
+      accessor="//@figures.4/@descriptors.16/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2154,10 +2218,10 @@
         alignment="CENTER"/>
   </labels>
   <labels
-      name="Requirements_DefiningDataConnectionLabel"
-      figure="Requirements_DefiningDataFigure"
+      name="Requirement_DefiningDataConnectionLabel"
+      figure="Requirement_DefiningDataFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.18/@accessors.0">
+      accessor="//@figures.4/@descriptors.17/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2166,10 +2230,10 @@
         alignment="CENTER"/>
   </labels>
   <labels
-      name="Requirements_RealizedMethodConnectionLabel"
-      figure="Requirements_RealizedMethodFigure"
+      name="Requirement_RealizedMethodConnectionLabel"
+      figure="Requirement_RealizedMethodFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.19/@accessors.0">
+      accessor="//@figures.4/@descriptors.18/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2181,7 +2245,7 @@
       name="Process_DataFlowConnectionLabel"
       figure="Process_DataFlowFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.20/@accessors.0">
+      accessor="//@figures.4/@descriptors.19/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2193,7 +2257,7 @@
       name="Performance_NumericalMethodConnectionLabel"
       figure="Performance_NumericalMethodFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.21/@accessors.0">
+      accessor="//@figures.4/@descriptors.20/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2205,7 +2269,7 @@
       name="DataFlow_SpecifiedProcessConnectionLabel"
       figure="DataFlow_SpecifiedProcessFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.22/@accessors.0">
+      accessor="//@figures.4/@descriptors.21/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2217,7 +2281,19 @@
       name="DataDefinition_DefinedRequirementsConnectionLabel"
       figure="DataDefinition_DefinedRequirementFigure"
       elementIcon="false"
-      accessor="//@figures.3/@descriptors.23/@accessors.0">
+      accessor="//@figures.4/@descriptors.22/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
+  <labels
+      name="DataProcess_SuccessorConnectionLabel"
+      figure="DataProcess_SuccessorFigure"
+      elementIcon="false"
+      accessor="//@figures.4/@descriptors.23/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>

@@ -13,8 +13,6 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.unicase.metamodel.IdentifiableElement;
-
 import scrm.SCRMModelElement;
 
 import scrm.requirements.Constraint;
@@ -129,11 +127,6 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseSoftwareInterface(SoftwareInterface object) {
 			return createSoftwareInterfaceAdapter();
-		}
-
-		@Override
-		public Adapter caseProcess(scrm.requirements.Process object) {
-			return createProcessAdapter();
 		}
 
 		@Override
@@ -284,20 +277,6 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSoftwareInterfaceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link scrm.requirements.Process <em>Process</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see scrm.requirements.Process
-	 * @generated
-	 */
-	public Adapter createProcessAdapter() {
 		return null;
 	}
 

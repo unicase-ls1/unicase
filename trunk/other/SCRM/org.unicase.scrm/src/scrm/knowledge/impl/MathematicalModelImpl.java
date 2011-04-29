@@ -32,9 +32,6 @@ import scrm.knowledge.MathematicalModel;
 import scrm.knowledge.NumericalMethod;
 import scrm.knowledge.ScientificProblem;
 
-import scrm.requirements.IRequirement;
-import scrm.requirements.RequirementsPackage;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Mathematical Model</b></em>'.

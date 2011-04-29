@@ -38,17 +38,14 @@ import scrm.diagram.providers.ScrmElementTypes;
 import scrm.knowledge.Assumption;
 import scrm.knowledge.MathematicalModel;
 import scrm.knowledge.NumericalMethod;
-import scrm.knowledge.ScientificKnowledge;
 import scrm.knowledge.ScientificProblem;
 import scrm.requirements.Constraint;
 import scrm.requirements.DataDefinition;
 import scrm.requirements.DataFlow;
 import scrm.requirements.Feature;
 import scrm.requirements.Hardware;
-import scrm.requirements.IRequirement;
 import scrm.requirements.Interface;
 import scrm.requirements.Performance;
-import scrm.requirements.Process;
 import scrm.requirements.Requirement;
 
 /**
@@ -645,8 +642,8 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateProcessDataFlow_4040(Process source,
-				DataFlow target) {
+		public boolean canCreateProcessDataFlow_4045(
+				scrm.requirements.dataProcess.Process source, DataFlow target) {
 			if (source != null) {
 				if (source.getDataFlow() != null) {
 					return false;
@@ -656,7 +653,25 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				return false;
 			}
 
-			return canExistProcessDataFlow_4040(source, target);
+			return canExistProcessDataFlow_4045(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canCreateProcessSuccessor_4047(
+				scrm.requirements.dataProcess.Process source,
+				scrm.requirements.dataProcess.Process target) {
+			if (source != null) {
+				if (source.getSuccessor() != null) {
+					return false;
+				}
+			}
+			if (target != null && (target.getPredecessor() != null)) {
+				return false;
+			}
+
+			return canExistProcessSuccessor_4047(source, target);
 		}
 
 		/**
@@ -815,8 +830,17 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canExistProcessDataFlow_4040(Process source,
-				DataFlow target) {
+		public boolean canExistProcessDataFlow_4045(
+				scrm.requirements.dataProcess.Process source, DataFlow target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistProcessSuccessor_4047(
+				scrm.requirements.dataProcess.Process source,
+				scrm.requirements.dataProcess.Process target) {
 			return true;
 		}
 	}

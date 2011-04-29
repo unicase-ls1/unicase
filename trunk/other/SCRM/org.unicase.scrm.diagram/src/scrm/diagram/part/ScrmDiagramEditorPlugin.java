@@ -22,7 +22,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-import org.unicase.metamodel.provider.MetamodelItemProviderAdapterFactory;
 import scrm.diagram.edit.policies.ScrmBaseItemSemanticEditPolicy;
 import scrm.diagram.providers.ElementInitializers;
 import scrm.knowledge.provider.KnowledgeItemProviderAdapterFactory;
@@ -123,7 +122,7 @@ public class ScrmDiagramEditorPlugin extends AbstractUIPlugin {
 		factories.add(new KnowledgeItemProviderAdapterFactory());
 		factories.add(new RequirementsItemProviderAdapterFactory());
 		factories
-				.add(new scrm.dataProcessing.provider.DataProcessingItemProviderAdapterFactory());
+				.add(new scrm.requirements.dataProcess.provider.DataProcessItemProviderAdapterFactory());
 		factories.add(new EcoreItemProviderAdapterFactory());
 		factories.add(new NotationItemProviderAdapterFactory());
 		factories.add(new ResourceItemProviderAdapterFactory());

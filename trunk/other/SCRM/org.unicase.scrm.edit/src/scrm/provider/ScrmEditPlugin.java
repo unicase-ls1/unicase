@@ -14,8 +14,6 @@ import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
 import org.eclipse.gmf.runtime.notation.NotationEditPlugin;
 
-import org.unicase.metamodel.provider.MetamodelEditPlugin;
-
 /**
  * This is the central singleton for the Scrm edit plugin.
  * <!-- begin-user-doc -->

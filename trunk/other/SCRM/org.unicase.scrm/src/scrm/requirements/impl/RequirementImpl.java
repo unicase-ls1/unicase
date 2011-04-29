@@ -27,8 +27,6 @@ import scrm.impl.SCRMModelElementImpl;
 
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.NumericalMethod;
-import scrm.knowledge.ScientificKnowledge;
-
 import scrm.requirements.DataDefinition;
 import scrm.requirements.Feature;
 import scrm.requirements.Requirement;

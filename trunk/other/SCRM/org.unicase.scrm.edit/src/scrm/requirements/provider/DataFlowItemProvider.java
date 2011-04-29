@@ -23,7 +23,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import scrm.provider.SCRMModelElementItemProvider;
 import scrm.provider.ScrmEditPlugin;
-import scrm.requirements.DataFlow;
 import scrm.requirements.RequirementsPackage;
 
 /**

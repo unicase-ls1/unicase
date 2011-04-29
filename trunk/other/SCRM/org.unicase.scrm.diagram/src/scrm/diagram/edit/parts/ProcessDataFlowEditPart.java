@@ -12,7 +12,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import scrm.diagram.edit.policies.ProcessDataFlowItemSemanticEditPolicy;
 
 /**
- * @generated NOT
+ * @generated
  */
 public class ProcessDataFlowEditPart extends ConnectionNodeEditPart implements
 		ITreeBranchEditPart {
@@ -20,7 +20,7 @@ public class ProcessDataFlowEditPart extends ConnectionNodeEditPart implements
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4040;
+	public static final int VISUAL_ID = 4045;
 
 	/**
 	 * @generated

@@ -61,9 +61,9 @@ public class DataDefinitionItemProvider extends SCRMModelElementItemProvider
 			addContainingRequirementSpacePropertyDescriptor(object);
 			addDefinedRequirementPropertyDescriptor(object);
 			addAccuracyPropertyDescriptor(object);
-			addFormatPropertyDescriptor(object);
 			addRangePropertyDescriptor(object);
 			addDataTypePropertyDescriptor(object);
+			addFormatPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -226,9 +226,9 @@ public class DataDefinitionItemProvider extends SCRMModelElementItemProvider
 
 		switch (notification.getFeatureID(DataDefinition.class)) {
 		case RequirementsPackage.DATA_DEFINITION__ACCURACY:
-		case RequirementsPackage.DATA_DEFINITION__FORMAT:
 		case RequirementsPackage.DATA_DEFINITION__RANGE:
 		case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
+		case RequirementsPackage.DATA_DEFINITION__FORMAT:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), false, true));
 			return;

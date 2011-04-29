@@ -37,9 +37,9 @@ import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
 /**
- * @generated NOT
+ * @generated
  */
-public class NumericalMethodEditPart extends SCRMModelElementEditPart {
+public class NumericalMethodEditPart extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
@@ -64,13 +64,14 @@ public class NumericalMethodEditPart extends SCRMModelElementEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new NumericalMethodItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new MEEditorOpenerPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -319,6 +320,9 @@ public class NumericalMethodEditPart extends SCRMModelElementEditPart {
 		if (targetEditPart instanceof StatusMonitoringEditPart) {
 			types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
 		}
+		if (targetEditPart instanceof RequirementEditPart) {
+			types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
+		}
 		if (targetEditPart instanceof PerformanceEditPart) {
 			types.add(ScrmElementTypes.NumericalMethodPerformance_4017);
 		}
@@ -333,8 +337,14 @@ public class NumericalMethodEditPart extends SCRMModelElementEditPart {
 		if (relationshipType == ScrmElementTypes.NumericalMethodDependencies_4015) {
 			types.add(ScrmElementTypes.Assumption_2008);
 		} else if (relationshipType == ScrmElementTypes.NumericalMethodRealizingRequirement_4016) {
-			types.add(ScrmElementTypes.Process_2014);
+			types.add(ScrmElementTypes.Process_2035);
 			types.add(ScrmElementTypes.Performance_2015);
+			types.add(ScrmElementTypes.InputDataReading_2036);
+			types.add(ScrmElementTypes.DataHandling_2037);
+			types.add(ScrmElementTypes.ResultsOutput_2038);
+			types.add(ScrmElementTypes.ErrorHandling_2039);
+			types.add(ScrmElementTypes.StatusMonitoring_2040);
+			types.add(ScrmElementTypes.Requirement_2034);
 		} else if (relationshipType == ScrmElementTypes.NumericalMethodPerformance_4017) {
 			types.add(ScrmElementTypes.Performance_2015);
 		}

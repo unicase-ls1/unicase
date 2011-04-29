@@ -74,7 +74,7 @@ public class CommandFactory {
 		 * @param adapter The class that should be adapted
 		 * @return The {@link Object} adapting to class adapter
 		 */
-		@SuppressWarnings("unchecked")
+		@SuppressWarnings("rawtypes")
 		@Override
 		public Object getAdapter(java.lang.Class adapter) {
 			Object object = super.getAdapter(adapter);
@@ -297,7 +297,7 @@ public class CommandFactory {
 	 * @param viewKind The viewKind of the object
 	 * @return A {@link ViewDescriptor} for the object
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public ViewDescriptor createViewDescriptorForObject(EObject object, java.lang.Class viewKind) {
 		IAdaptable objectAdapter = new ElementTypeAdapter(object);
 

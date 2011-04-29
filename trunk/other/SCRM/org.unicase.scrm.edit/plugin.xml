@@ -36,8 +36,8 @@
    <extension
          point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            class="scrm.dataProcessing.provider.DataProcessingItemProviderAdapterFactory"
-            uri="http://unicase.org/model/scrm/dataProcessing"
+            class="scrm.requirements.dataProcess.provider.DataProcessItemProviderAdapterFactory"
+            uri="http://unicase.org/model/scrm/requirements/dataProcess"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

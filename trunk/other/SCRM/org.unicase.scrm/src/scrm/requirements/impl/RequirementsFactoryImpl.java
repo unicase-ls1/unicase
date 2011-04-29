@@ -86,8 +86,6 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements
 			return createUserInterface();
 		case RequirementsPackage.SOFTWARE_INTERFACE:
 			return createSoftwareInterface();
-		case RequirementsPackage.PROCESS:
-			return createProcess();
 		case RequirementsPackage.PERFORMANCE:
 			return createPerformance();
 		case RequirementsPackage.DATA_FLOW:
@@ -158,16 +156,6 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements
 	public SoftwareInterface createSoftwareInterface() {
 		SoftwareInterfaceImpl softwareInterface = new SoftwareInterfaceImpl();
 		return softwareInterface;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public scrm.requirements.Process createProcess() {
-		ProcessImpl process = new ProcessImpl();
-		return process;
 	}
 
 	/**

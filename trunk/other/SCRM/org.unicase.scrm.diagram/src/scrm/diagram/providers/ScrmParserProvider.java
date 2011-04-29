@@ -52,6 +52,8 @@ import scrm.diagram.edit.parts.PerformanceNameEditPart;
 import scrm.diagram.edit.parts.PerformanceProblemSizeEditPart;
 import scrm.diagram.edit.parts.ProcessDescriptionEditPart;
 import scrm.diagram.edit.parts.ProcessNameEditPart;
+import scrm.diagram.edit.parts.RequirementDescriptionEditPart;
+import scrm.diagram.edit.parts.RequirementNameEditPart;
 import scrm.diagram.edit.parts.ResultsOutputDescriptionEditPart;
 import scrm.diagram.edit.parts.ResultsOutputNameEditPart;
 import scrm.diagram.edit.parts.ScientificProblemDescriptionEditPart;
@@ -596,40 +598,40 @@ public class ScrmParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser processName_5010Parser;
+	private IParser processName_5074Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getProcessName_5010Parser() {
-		if (processName_5010Parser == null) {
+	private IParser getProcessName_5074Parser() {
+		if (processName_5074Parser == null) {
 			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
 					.getSCRMModelElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			processName_5010Parser = parser;
+			processName_5074Parser = parser;
 		}
-		return processName_5010Parser;
+		return processName_5074Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser processDescription_5036Parser;
+	private IParser processDescription_5075Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getProcessDescription_5036Parser() {
-		if (processDescription_5036Parser == null) {
+	private IParser getProcessDescription_5075Parser() {
+		if (processDescription_5075Parser == null) {
 			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
 					.getSCRMModelElement_Description() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
 			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			processDescription_5036Parser = parser;
+			processDescription_5075Parser = parser;
 		}
-		return processDescription_5036Parser;
+		return processDescription_5075Parser;
 	}
 
 	/**
@@ -857,196 +859,235 @@ public class ScrmParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser inputDataReadingName_5050Parser;
+	private IParser inputDataReadingName_5076Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getInputDataReadingName_5050Parser() {
-		if (inputDataReadingName_5050Parser == null) {
+	private IParser getInputDataReadingName_5076Parser() {
+		if (inputDataReadingName_5076Parser == null) {
 			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
 					.getSCRMModelElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			inputDataReadingName_5050Parser = parser;
+			inputDataReadingName_5076Parser = parser;
 		}
-		return inputDataReadingName_5050Parser;
+		return inputDataReadingName_5076Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser inputDataReadingDescription_5051Parser;
+	private IParser inputDataReadingDescription_5077Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getInputDataReadingDescription_5051Parser() {
-		if (inputDataReadingDescription_5051Parser == null) {
+	private IParser getInputDataReadingDescription_5077Parser() {
+		if (inputDataReadingDescription_5077Parser == null) {
 			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
 					.getSCRMModelElement_Description() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
 			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			inputDataReadingDescription_5051Parser = parser;
+			inputDataReadingDescription_5077Parser = parser;
 		}
-		return inputDataReadingDescription_5051Parser;
+		return inputDataReadingDescription_5077Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser dataHandlingName_5052Parser;
+	private IParser dataHandlingName_5078Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDataHandlingName_5052Parser() {
-		if (dataHandlingName_5052Parser == null) {
+	private IParser getDataHandlingName_5078Parser() {
+		if (dataHandlingName_5078Parser == null) {
 			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
 					.getSCRMModelElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			dataHandlingName_5052Parser = parser;
+			dataHandlingName_5078Parser = parser;
 		}
-		return dataHandlingName_5052Parser;
+		return dataHandlingName_5078Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser dataHandlingDescription_5053Parser;
+	private IParser dataHandlingDescription_5079Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDataHandlingDescription_5053Parser() {
-		if (dataHandlingDescription_5053Parser == null) {
+	private IParser getDataHandlingDescription_5079Parser() {
+		if (dataHandlingDescription_5079Parser == null) {
 			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
 					.getSCRMModelElement_Description() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
 			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			dataHandlingDescription_5053Parser = parser;
+			dataHandlingDescription_5079Parser = parser;
 		}
-		return dataHandlingDescription_5053Parser;
+		return dataHandlingDescription_5079Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser resultsOutputName_5054Parser;
+	private IParser resultsOutputName_5080Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getResultsOutputName_5054Parser() {
-		if (resultsOutputName_5054Parser == null) {
+	private IParser getResultsOutputName_5080Parser() {
+		if (resultsOutputName_5080Parser == null) {
 			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
 					.getSCRMModelElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			resultsOutputName_5054Parser = parser;
+			resultsOutputName_5080Parser = parser;
 		}
-		return resultsOutputName_5054Parser;
+		return resultsOutputName_5080Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser resultsOutputDescription_5055Parser;
+	private IParser resultsOutputDescription_5081Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getResultsOutputDescription_5055Parser() {
-		if (resultsOutputDescription_5055Parser == null) {
+	private IParser getResultsOutputDescription_5081Parser() {
+		if (resultsOutputDescription_5081Parser == null) {
 			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
 					.getSCRMModelElement_Description() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
 			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			resultsOutputDescription_5055Parser = parser;
+			resultsOutputDescription_5081Parser = parser;
 		}
-		return resultsOutputDescription_5055Parser;
+		return resultsOutputDescription_5081Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser errorHandlingName_5056Parser;
+	private IParser errorHandlingName_5082Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getErrorHandlingName_5056Parser() {
-		if (errorHandlingName_5056Parser == null) {
+	private IParser getErrorHandlingName_5082Parser() {
+		if (errorHandlingName_5082Parser == null) {
 			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
 					.getSCRMModelElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			errorHandlingName_5056Parser = parser;
+			errorHandlingName_5082Parser = parser;
 		}
-		return errorHandlingName_5056Parser;
+		return errorHandlingName_5082Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser errorHandlingDescription_5057Parser;
+	private IParser errorHandlingDescription_5083Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getErrorHandlingDescription_5057Parser() {
-		if (errorHandlingDescription_5057Parser == null) {
+	private IParser getErrorHandlingDescription_5083Parser() {
+		if (errorHandlingDescription_5083Parser == null) {
 			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
 					.getSCRMModelElement_Description() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
 			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			errorHandlingDescription_5057Parser = parser;
+			errorHandlingDescription_5083Parser = parser;
 		}
-		return errorHandlingDescription_5057Parser;
+		return errorHandlingDescription_5083Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser statusMonitoringName_5058Parser;
+	private IParser statusMonitoringName_5084Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getStatusMonitoringName_5058Parser() {
-		if (statusMonitoringName_5058Parser == null) {
+	private IParser getStatusMonitoringName_5084Parser() {
+		if (statusMonitoringName_5084Parser == null) {
 			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
 					.getSCRMModelElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			statusMonitoringName_5058Parser = parser;
+			statusMonitoringName_5084Parser = parser;
 		}
-		return statusMonitoringName_5058Parser;
+		return statusMonitoringName_5084Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser statusMonitoringDescription_5059Parser;
+	private IParser statusMonitoringDescription_5085Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getStatusMonitoringDescription_5059Parser() {
-		if (statusMonitoringDescription_5059Parser == null) {
+	private IParser getStatusMonitoringDescription_5085Parser() {
+		if (statusMonitoringDescription_5085Parser == null) {
 			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
 					.getSCRMModelElement_Description() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
 			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			statusMonitoringDescription_5059Parser = parser;
+			statusMonitoringDescription_5085Parser = parser;
 		}
-		return statusMonitoringDescription_5059Parser;
+		return statusMonitoringDescription_5085Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser requirementName_5072Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getRequirementName_5072Parser() {
+		if (requirementName_5072Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			requirementName_5072Parser = parser;
+		}
+		return requirementName_5072Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser requirementDescription_5073Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getRequirementDescription_5073Parser() {
+		if (requirementDescription_5073Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			requirementDescription_5073Parser = parser;
+		}
+		return requirementDescription_5073Parser;
 	}
 
 	/**
@@ -1107,9 +1148,9 @@ public class ScrmParserProvider extends AbstractProvider implements
 		case SoftwareInterfaceDataTypesEditPart.VISUAL_ID:
 			return getSoftwareInterfaceDataTypes_5035Parser();
 		case ProcessNameEditPart.VISUAL_ID:
-			return getProcessName_5010Parser();
+			return getProcessName_5074Parser();
 		case ProcessDescriptionEditPart.VISUAL_ID:
-			return getProcessDescription_5036Parser();
+			return getProcessDescription_5075Parser();
 		case PerformanceNameEditPart.VISUAL_ID:
 			return getPerformanceName_5011Parser();
 		case PerformanceDescriptionEditPart.VISUAL_ID:
@@ -1133,25 +1174,29 @@ public class ScrmParserProvider extends AbstractProvider implements
 		case DataDefinitionDataTypeEditPart.VISUAL_ID:
 			return getDataDefinitionDataType_5044Parser();
 		case InputDataReadingNameEditPart.VISUAL_ID:
-			return getInputDataReadingName_5050Parser();
+			return getInputDataReadingName_5076Parser();
 		case InputDataReadingDescriptionEditPart.VISUAL_ID:
-			return getInputDataReadingDescription_5051Parser();
+			return getInputDataReadingDescription_5077Parser();
 		case DataHandlingNameEditPart.VISUAL_ID:
-			return getDataHandlingName_5052Parser();
+			return getDataHandlingName_5078Parser();
 		case DataHandlingDescriptionEditPart.VISUAL_ID:
-			return getDataHandlingDescription_5053Parser();
+			return getDataHandlingDescription_5079Parser();
 		case ResultsOutputNameEditPart.VISUAL_ID:
-			return getResultsOutputName_5054Parser();
+			return getResultsOutputName_5080Parser();
 		case ResultsOutputDescriptionEditPart.VISUAL_ID:
-			return getResultsOutputDescription_5055Parser();
+			return getResultsOutputDescription_5081Parser();
 		case ErrorHandlingNameEditPart.VISUAL_ID:
-			return getErrorHandlingName_5056Parser();
+			return getErrorHandlingName_5082Parser();
 		case ErrorHandlingDescriptionEditPart.VISUAL_ID:
-			return getErrorHandlingDescription_5057Parser();
+			return getErrorHandlingDescription_5083Parser();
 		case StatusMonitoringNameEditPart.VISUAL_ID:
-			return getStatusMonitoringName_5058Parser();
+			return getStatusMonitoringName_5084Parser();
 		case StatusMonitoringDescriptionEditPart.VISUAL_ID:
-			return getStatusMonitoringDescription_5059Parser();
+			return getStatusMonitoringDescription_5085Parser();
+		case RequirementNameEditPart.VISUAL_ID:
+			return getRequirementName_5072Parser();
+		case RequirementDescriptionEditPart.VISUAL_ID:
+			return getRequirementDescription_5073Parser();
 		}
 		return null;
 	}

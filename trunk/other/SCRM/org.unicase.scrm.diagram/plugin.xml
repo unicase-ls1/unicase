@@ -213,8 +213,8 @@
       <viewProvider class="scrm.diagram.providers.ScrmViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Scrm"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007,2005,2006,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2023,2024,2025,2026,2027"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4006,4041,4008,4004,4011,4012,4015,4016,4017,4023,4024,4025,4026,4027,4029,4030,4032,4036,4038,4040"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007,2005,2006,2008,2009,2010,2011,2012,2013,2035,2015,2016,2017,2036,2037,2038,2039,2040,2034,2044"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4006,4041,4008,4004,4011,4012,4015,4016,4017,4023,4024,4025,4026,4027,4029,4030,4032,4036,4038,4045,4047"/>
       </viewProvider>
    </extension>
 
@@ -226,13 +226,13 @@
             <method name="getType()" value="Scrm"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2007,2005,2006,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2023,2024,2025,2026,2027"/>
+            <method name="getType()" value="2007,2005,2006,2008,2009,2010,2011,2012,2013,2035,2015,2016,2017,2036,2037,2038,2039,2040,2034,2044"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4006,4041,4008,4004,4011,4012,4015,4016,4017,4023,4024,4025,4026,4027,4029,4030,4032,4036,4038,4040"/>
+            <method name="getType()" value="4006,4041,4008,4004,4011,4012,4015,4016,4017,4023,4024,4025,4026,4027,4029,4030,4032,4036,4038,4045,4047"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5003,5019,5001,5020,5021,5022,5002,5023,5024,5025,5004,5026,5005,5027,5006,5028,5029,5030,5031,5007,5032,5008,5033,5009,5034,5035,5010,5036,5011,5037,5038,5012,5039,5013,5040,5041,5042,5043,5044,5050,5051,5052,5053,5054,5055,5056,5057,5058,5059"/>
+            <method name="getType()" value="5003,5019,5001,5020,5021,5022,5002,5023,5024,5025,5004,5026,5005,5027,5006,5028,5029,5030,5031,5007,5032,5008,5033,5009,5034,5035,5074,5075,5011,5037,5038,5012,5039,5013,5040,5041,5042,5043,5044,5076,5077,5078,5079,5080,5081,5082,5083,5084,5085,5072,5073"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value=""/>
@@ -255,16 +255,18 @@
          <object class="scrm.diagram.edit.parts.ConstraintEditPart" id="Constraint_2011"/>
          <object class="scrm.diagram.edit.parts.UserInterfaceEditPart" id="UserInterface_2012"/>
          <object class="scrm.diagram.edit.parts.SoftwareInterfaceEditPart" id="SoftwareInterface_2013"/>
-         <object class="scrm.diagram.edit.parts.ProcessEditPart" id="Process_2014"/>
+         <object class="scrm.diagram.edit.parts.ProcessEditPart" id="Process_2035"/>
          <object class="scrm.diagram.edit.parts.PerformanceEditPart" id="Performance_2015"/>
          <object class="scrm.diagram.edit.parts.DataFlowEditPart" id="DataFlow_2016"/>
          <object class="scrm.diagram.edit.parts.DataDefinitionEditPart" id="DataDefinition_2017"/>
-         <object class="scrm.diagram.edit.parts.InputDataReadingEditPart" id="InputDataReading_2023"/>
-         <object class="scrm.diagram.edit.parts.DataHandlingEditPart" id="DataHandling_2024"/>
-         <object class="scrm.diagram.edit.parts.ResultsOutputEditPart" id="ResultsOutput_2025"/>
-         <object class="scrm.diagram.edit.parts.ErrorHandlingEditPart" id="ErrorHandling_2026"/>
-         <object class="scrm.diagram.edit.parts.StatusMonitoringEditPart" id="StatusMonitoring_2027"/>
-         <context elements="SCRMDiagram_1000,ScientificProblem_2007,MathematicalModel_2005,NumericalMethod_2006,Assumption_2008,Feature_2009,Hardware_2010,Constraint_2011,UserInterface_2012,SoftwareInterface_2013,Process_2014,Performance_2015,DataFlow_2016,DataDefinition_2017,InputDataReading_2023,DataHandling_2024,ResultsOutput_2025,ErrorHandling_2026,StatusMonitoring_2027"/>
+         <object class="scrm.diagram.edit.parts.InputDataReadingEditPart" id="InputDataReading_2036"/>
+         <object class="scrm.diagram.edit.parts.DataHandlingEditPart" id="DataHandling_2037"/>
+         <object class="scrm.diagram.edit.parts.ResultsOutputEditPart" id="ResultsOutput_2038"/>
+         <object class="scrm.diagram.edit.parts.ErrorHandlingEditPart" id="ErrorHandling_2039"/>
+         <object class="scrm.diagram.edit.parts.StatusMonitoringEditPart" id="StatusMonitoring_2040"/>
+         <object class="scrm.diagram.edit.parts.RequirementEditPart" id="Requirement_2034"/>
+         <object class="scrm.diagram.edit.parts.KnowledgeSpaceEditPart" id="KnowledgeSpace_2044"/>
+         <context elements="SCRMDiagram_1000,ScientificProblem_2007,MathematicalModel_2005,NumericalMethod_2006,Assumption_2008,Feature_2009,Hardware_2010,Constraint_2011,UserInterface_2012,SoftwareInterface_2013,Process_2035,Performance_2015,DataFlow_2016,DataDefinition_2017,InputDataReading_2036,DataHandling_2037,ResultsOutput_2038,ErrorHandling_2039,StatusMonitoring_2040,Requirement_2034,KnowledgeSpace_2044"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -377,14 +379,14 @@
             <param name="semanticHint" value="2013"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
          <metamodelType
-               id="org.unicase.scrm.diagram.Process_2014"
-               name="%metatype.name.Process_2014"
+               id="org.unicase.scrm.diagram.Process_2035"
+               name="%metatype.name.Process_2035"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Process"
                edithelper="scrm.diagram.edit.helpers.ProcessEditHelper">
-            <param name="semanticHint" value="2014"/>
+            <param name="semanticHint" value="2035"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/scrm/requirements">
@@ -417,54 +419,74 @@
             <param name="semanticHint" value="2017"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://unicase.org/model/scrm/dataProcessing">
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
          <metamodelType
-               id="org.unicase.scrm.diagram.InputDataReading_2023"
-               name="%metatype.name.InputDataReading_2023"
+               id="org.unicase.scrm.diagram.InputDataReading_2036"
+               name="%metatype.name.InputDataReading_2036"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="InputDataReading"
                edithelper="scrm.diagram.edit.helpers.InputDataReadingEditHelper">
-            <param name="semanticHint" value="2023"/>
+            <param name="semanticHint" value="2036"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://unicase.org/model/scrm/dataProcessing">
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
          <metamodelType
-               id="org.unicase.scrm.diagram.DataHandling_2024"
-               name="%metatype.name.DataHandling_2024"
+               id="org.unicase.scrm.diagram.DataHandling_2037"
+               name="%metatype.name.DataHandling_2037"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="DataHandling"
                edithelper="scrm.diagram.edit.helpers.DataHandlingEditHelper">
-            <param name="semanticHint" value="2024"/>
+            <param name="semanticHint" value="2037"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://unicase.org/model/scrm/dataProcessing">
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
          <metamodelType
-               id="org.unicase.scrm.diagram.ResultsOutput_2025"
-               name="%metatype.name.ResultsOutput_2025"
+               id="org.unicase.scrm.diagram.ResultsOutput_2038"
+               name="%metatype.name.ResultsOutput_2038"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ResultsOutput"
                edithelper="scrm.diagram.edit.helpers.ResultsOutputEditHelper">
-            <param name="semanticHint" value="2025"/>
+            <param name="semanticHint" value="2038"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://unicase.org/model/scrm/dataProcessing">
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
          <metamodelType
-               id="org.unicase.scrm.diagram.ErrorHandling_2026"
-               name="%metatype.name.ErrorHandling_2026"
+               id="org.unicase.scrm.diagram.ErrorHandling_2039"
+               name="%metatype.name.ErrorHandling_2039"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ErrorHandling"
                edithelper="scrm.diagram.edit.helpers.ErrorHandlingEditHelper">
-            <param name="semanticHint" value="2026"/>
+            <param name="semanticHint" value="2039"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://unicase.org/model/scrm/dataProcessing">
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
          <metamodelType
-               id="org.unicase.scrm.diagram.StatusMonitoring_2027"
-               name="%metatype.name.StatusMonitoring_2027"
+               id="org.unicase.scrm.diagram.StatusMonitoring_2040"
+               name="%metatype.name.StatusMonitoring_2040"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="StatusMonitoring"
                edithelper="scrm.diagram.edit.helpers.StatusMonitoringEditHelper">
-            <param name="semanticHint" value="2027"/>
+            <param name="semanticHint" value="2040"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <metamodelType
+               id="org.unicase.scrm.diagram.Requirement_2034"
+               name="%metatype.name.Requirement_2034"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Requirement"
+               edithelper="scrm.diagram.edit.helpers.RequirementEditHelper">
+            <param name="semanticHint" value="2034"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
+         <metamodelType
+               id="org.unicase.scrm.diagram.KnowledgeSpace_2044"
+               name="%metatype.name.KnowledgeSpace_2044"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="KnowledgeSpace"
+               edithelper="scrm.diagram.edit.helpers.KnowledgeSpaceEditHelper">
+            <param name="semanticHint" value="2044"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
@@ -621,14 +643,13 @@
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/scrm/requirements">
-         <metamodelType
+         <specializationType
                id="org.unicase.scrm.diagram.Requirement_4036"
                name="%metatype.name.Requirement_4036"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Requirement"
-               edithelper="scrm.diagram.edit.helpers.RequirementEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.Requirement_2034"/>
             <param name="semanticHint" value="4036"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/scrm/requirements">
          <specializationType
@@ -639,13 +660,22 @@
             <param name="semanticHint" value="4038"/>
          </specializationType>
       </metamodel>
-      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
          <specializationType
-               id="org.unicase.scrm.diagram.ProcessDataFlow_4040"
-               name="%metatype.name.ProcessDataFlow_4040"
+               id="org.unicase.scrm.diagram.ProcessDataFlow_4045"
+               name="%metatype.name.ProcessDataFlow_4045"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4040"/>
+            <param name="semanticHint" value="4045"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
+         <specializationType
+               id="org.unicase.scrm.diagram.ProcessSuccessor_4047"
+               name="%metatype.name.ProcessSuccessor_4047"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4047"/>
          </specializationType>
       </metamodel>
    </extension>
@@ -670,15 +700,17 @@
          <elementType ref="org.unicase.scrm.diagram.Constraint_2011"/>
          <elementType ref="org.unicase.scrm.diagram.UserInterface_2012"/>
          <elementType ref="org.unicase.scrm.diagram.SoftwareInterface_2013"/>
-         <elementType ref="org.unicase.scrm.diagram.Process_2014"/>
+         <elementType ref="org.unicase.scrm.diagram.Process_2035"/>
          <elementType ref="org.unicase.scrm.diagram.Performance_2015"/>
          <elementType ref="org.unicase.scrm.diagram.DataFlow_2016"/>
          <elementType ref="org.unicase.scrm.diagram.DataDefinition_2017"/>
-         <elementType ref="org.unicase.scrm.diagram.InputDataReading_2023"/>
-         <elementType ref="org.unicase.scrm.diagram.DataHandling_2024"/>
-         <elementType ref="org.unicase.scrm.diagram.ResultsOutput_2025"/>
-         <elementType ref="org.unicase.scrm.diagram.ErrorHandling_2026"/>
-         <elementType ref="org.unicase.scrm.diagram.StatusMonitoring_2027"/>
+         <elementType ref="org.unicase.scrm.diagram.InputDataReading_2036"/>
+         <elementType ref="org.unicase.scrm.diagram.DataHandling_2037"/>
+         <elementType ref="org.unicase.scrm.diagram.ResultsOutput_2038"/>
+         <elementType ref="org.unicase.scrm.diagram.ErrorHandling_2039"/>
+         <elementType ref="org.unicase.scrm.diagram.StatusMonitoring_2040"/>
+         <elementType ref="org.unicase.scrm.diagram.Requirement_2034"/>
+         <elementType ref="org.unicase.scrm.diagram.KnowledgeSpace_2044"/>
          <elementType ref="org.unicase.scrm.diagram.ScientificProblemRepresentingModel_4006"/>
          <elementType ref="org.unicase.scrm.diagram.ScientificProblemSolvingMethods_4041"/>
          <elementType ref="org.unicase.scrm.diagram.ScientificProblemInfluencedFeature_4008"/>
@@ -698,7 +730,8 @@
          <elementType ref="org.unicase.scrm.diagram.FeatureExcludedFeatures_4032"/>
          <elementType ref="org.unicase.scrm.diagram.Requirement_4036"/>
          <elementType ref="org.unicase.scrm.diagram.RequirementDefiningData_4038"/>
-         <elementType ref="org.unicase.scrm.diagram.ProcessDataFlow_4040"/>
+         <elementType ref="org.unicase.scrm.diagram.ProcessDataFlow_4045"/>
+         <elementType ref="org.unicase.scrm.diagram.ProcessSuccessor_4047"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>

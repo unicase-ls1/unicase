@@ -13,8 +13,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
 import scrm.SCRMDiagram;
-import scrm.requirements.Process;
-import scrm.requirements.RequirementsFactory;
 
 /**
  * @generated
@@ -54,7 +52,8 @@ public class ProcessCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		Process newElement = RequirementsFactory.eINSTANCE.createProcess();
+		scrm.requirements.dataProcess.Process newElement = scrm.requirements.dataProcess.DataProcessFactory.eINSTANCE
+				.createProcess();
 
 		SCRMDiagram owner = (SCRMDiagram) getElementToEdit();
 		owner.getNewElements().add(newElement);
@@ -70,8 +69,10 @@ public class ProcessCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(Process newElement, IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected void doConfigure(
+			scrm.requirements.dataProcess.Process newElement,
+			IProgressMonitor monitor, IAdaptable info)
+			throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest())
 				.getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(

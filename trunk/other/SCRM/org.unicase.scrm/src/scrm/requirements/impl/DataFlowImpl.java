@@ -17,11 +17,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import scrm.impl.SCRMModelElementImpl;
-import scrm.knowledge.KnowledgePackage;
-import scrm.knowledge.ScientificKnowledge;
 import scrm.requirements.DataFlow;
 import scrm.requirements.RequirementSpace;
 import scrm.requirements.RequirementsPackage;
+import scrm.requirements.dataProcess.DataProcessPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,7 +45,7 @@ public class DataFlowImpl extends SCRMModelElementImpl implements DataFlow {
 	 * @generated
 	 * @ordered
 	 */
-	protected scrm.requirements.Process specifiedProcess;
+	protected scrm.requirements.dataProcess.Process specifiedProcess;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -143,10 +142,10 @@ public class DataFlowImpl extends SCRMModelElementImpl implements DataFlow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public scrm.requirements.Process getSpecifiedProcess() {
+	public scrm.requirements.dataProcess.Process getSpecifiedProcess() {
 		if (specifiedProcess != null && specifiedProcess.eIsProxy()) {
 			InternalEObject oldSpecifiedProcess = (InternalEObject) specifiedProcess;
-			specifiedProcess = (scrm.requirements.Process) eResolveProxy(oldSpecifiedProcess);
+			specifiedProcess = (scrm.requirements.dataProcess.Process) eResolveProxy(oldSpecifiedProcess);
 			if (specifiedProcess != oldSpecifiedProcess) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
@@ -162,7 +161,7 @@ public class DataFlowImpl extends SCRMModelElementImpl implements DataFlow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public scrm.requirements.Process basicGetSpecifiedProcess() {
+	public scrm.requirements.dataProcess.Process basicGetSpecifiedProcess() {
 		return specifiedProcess;
 	}
 
@@ -172,9 +171,9 @@ public class DataFlowImpl extends SCRMModelElementImpl implements DataFlow {
 	 * @generated
 	 */
 	public NotificationChain basicSetSpecifiedProcess(
-			scrm.requirements.Process newSpecifiedProcess,
+			scrm.requirements.dataProcess.Process newSpecifiedProcess,
 			NotificationChain msgs) {
-		scrm.requirements.Process oldSpecifiedProcess = specifiedProcess;
+		scrm.requirements.dataProcess.Process oldSpecifiedProcess = specifiedProcess;
 		specifiedProcess = newSpecifiedProcess;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this,
@@ -195,17 +194,17 @@ public class DataFlowImpl extends SCRMModelElementImpl implements DataFlow {
 	 * @generated
 	 */
 	public void setSpecifiedProcess(
-			scrm.requirements.Process newSpecifiedProcess) {
+			scrm.requirements.dataProcess.Process newSpecifiedProcess) {
 		if (newSpecifiedProcess != specifiedProcess) {
 			NotificationChain msgs = null;
 			if (specifiedProcess != null)
 				msgs = ((InternalEObject) specifiedProcess).eInverseRemove(
-						this, RequirementsPackage.PROCESS__DATA_FLOW,
-						scrm.requirements.Process.class, msgs);
+						this, DataProcessPackage.PROCESS__DATA_FLOW,
+						scrm.requirements.dataProcess.Process.class, msgs);
 			if (newSpecifiedProcess != null)
 				msgs = ((InternalEObject) newSpecifiedProcess).eInverseAdd(
-						this, RequirementsPackage.PROCESS__DATA_FLOW,
-						scrm.requirements.Process.class, msgs);
+						this, DataProcessPackage.PROCESS__DATA_FLOW,
+						scrm.requirements.dataProcess.Process.class, msgs);
 			msgs = basicSetSpecifiedProcess(newSpecifiedProcess, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -232,10 +231,10 @@ public class DataFlowImpl extends SCRMModelElementImpl implements DataFlow {
 		case RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS:
 			if (specifiedProcess != null)
 				msgs = ((InternalEObject) specifiedProcess).eInverseRemove(
-						this, RequirementsPackage.PROCESS__DATA_FLOW,
-						scrm.requirements.Process.class, msgs);
+						this, DataProcessPackage.PROCESS__DATA_FLOW,
+						scrm.requirements.dataProcess.Process.class, msgs);
 			return basicSetSpecifiedProcess(
-					(scrm.requirements.Process) otherEnd, msgs);
+					(scrm.requirements.dataProcess.Process) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -308,7 +307,7 @@ public class DataFlowImpl extends SCRMModelElementImpl implements DataFlow {
 			setContainingRequirementSpace((RequirementSpace) newValue);
 			return;
 		case RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS:
-			setSpecifiedProcess((scrm.requirements.Process) newValue);
+			setSpecifiedProcess((scrm.requirements.dataProcess.Process) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -326,7 +325,7 @@ public class DataFlowImpl extends SCRMModelElementImpl implements DataFlow {
 			setContainingRequirementSpace((RequirementSpace) null);
 			return;
 		case RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS:
-			setSpecifiedProcess((scrm.requirements.Process) null);
+			setSpecifiedProcess((scrm.requirements.dataProcess.Process) null);
 			return;
 		}
 		super.eUnset(featureID);

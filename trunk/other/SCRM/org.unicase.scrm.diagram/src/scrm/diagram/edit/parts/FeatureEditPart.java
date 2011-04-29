@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.draw2d.Ellipse;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
@@ -38,9 +37,9 @@ import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
 /**
- * @generated NOT
+ * @generated
  */
-public class FeatureEditPart extends SCRMModelElementEditPart {
+public class FeatureEditPart extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
@@ -65,13 +64,14 @@ public class FeatureEditPart extends SCRMModelElementEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new FeatureItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new MEEditorOpenerPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -321,6 +321,9 @@ public class FeatureEditPart extends SCRMModelElementEditPart {
 		if (targetEditPart instanceof StatusMonitoringEditPart) {
 			types.add(ScrmElementTypes.FeatureDetailedRequirements_4027);
 		}
+		if (targetEditPart instanceof RequirementEditPart) {
+			types.add(ScrmElementTypes.FeatureDetailedRequirements_4027);
+		}
 		if (targetEditPart instanceof scrm.diagram.edit.parts.FeatureEditPart) {
 			types.add(ScrmElementTypes.Feature_4029);
 		}
@@ -349,8 +352,14 @@ public class FeatureEditPart extends SCRMModelElementEditPart {
 		} else if (relationshipType == ScrmElementTypes.FeatureDependencies_4026) {
 			types.add(ScrmElementTypes.Hardware_2010);
 		} else if (relationshipType == ScrmElementTypes.FeatureDetailedRequirements_4027) {
-			types.add(ScrmElementTypes.Process_2014);
+			types.add(ScrmElementTypes.Process_2035);
 			types.add(ScrmElementTypes.Performance_2015);
+			types.add(ScrmElementTypes.InputDataReading_2036);
+			types.add(ScrmElementTypes.DataHandling_2037);
+			types.add(ScrmElementTypes.ResultsOutput_2038);
+			types.add(ScrmElementTypes.ErrorHandling_2039);
+			types.add(ScrmElementTypes.StatusMonitoring_2040);
+			types.add(ScrmElementTypes.Requirement_2034);
 		} else if (relationshipType == ScrmElementTypes.Feature_4029) {
 			types.add(ScrmElementTypes.Feature_2009);
 		} else if (relationshipType == ScrmElementTypes.FeatureRequiredFeatures_4030) {

@@ -28,15 +28,15 @@ import scrm.diagram.edit.commands.NumericalMethodPerformanceCreateCommand;
 import scrm.diagram.edit.commands.NumericalMethodPerformanceReorientCommand;
 import scrm.diagram.edit.commands.NumericalMethodRealizingRequirementCreateCommand;
 import scrm.diagram.edit.commands.NumericalMethodRealizingRequirementReorientCommand;
-import scrm.diagram.edit.commands.RequirementCreateCommand;
+import scrm.diagram.edit.commands.Requirement2CreateCommand;
 import scrm.diagram.edit.commands.RequirementDefiningDataCreateCommand;
 import scrm.diagram.edit.commands.RequirementDefiningDataReorientCommand;
 import scrm.diagram.edit.commands.RequirementReorientCommand;
 import scrm.diagram.edit.parts.FeatureDetailedRequirementsEditPart;
 import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
 import scrm.diagram.edit.parts.NumericalMethodRealizingRequirementEditPart;
+import scrm.diagram.edit.parts.Requirement2EditPart;
 import scrm.diagram.edit.parts.RequirementDefiningDataEditPart;
-import scrm.diagram.edit.parts.RequirementEditPart;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -100,7 +100,7 @@ public class PerformanceItemSemanticEditPolicy extends
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == RequirementEditPart.VISUAL_ID) {
+			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == Requirement2EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
 						incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
@@ -110,7 +110,7 @@ public class PerformanceItemSemanticEditPolicy extends
 		}
 		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
-			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementEditPart.VISUAL_ID) {
+			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == Requirement2EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
 						outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
@@ -166,7 +166,7 @@ public class PerformanceItemSemanticEditPolicy extends
 			return null;
 		}
 		if (ScrmElementTypes.Requirement_4036 == req.getElementType()) {
-			return getGEFWrapper(new RequirementCreateCommand(req,
+			return getGEFWrapper(new Requirement2CreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.RequirementDefiningData_4038 == req
@@ -198,7 +198,7 @@ public class PerformanceItemSemanticEditPolicy extends
 					req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.Requirement_4036 == req.getElementType()) {
-			return getGEFWrapper(new RequirementCreateCommand(req,
+			return getGEFWrapper(new Requirement2CreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.RequirementDefiningData_4038 == req
@@ -217,7 +217,7 @@ public class PerformanceItemSemanticEditPolicy extends
 	protected Command getReorientRelationshipCommand(
 			ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case RequirementEditPart.VISUAL_ID:
+		case Requirement2EditPart.VISUAL_ID:
 			return getGEFWrapper(new RequirementReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);

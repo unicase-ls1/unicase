@@ -28,15 +28,18 @@ import scrm.diagram.edit.commands.NumericalMethodRealizingRequirementCreateComma
 import scrm.diagram.edit.commands.NumericalMethodRealizingRequirementReorientCommand;
 import scrm.diagram.edit.commands.ProcessDataFlowCreateCommand;
 import scrm.diagram.edit.commands.ProcessDataFlowReorientCommand;
-import scrm.diagram.edit.commands.RequirementCreateCommand;
+import scrm.diagram.edit.commands.ProcessSuccessorCreateCommand;
+import scrm.diagram.edit.commands.ProcessSuccessorReorientCommand;
+import scrm.diagram.edit.commands.Requirement2CreateCommand;
 import scrm.diagram.edit.commands.RequirementDefiningDataCreateCommand;
 import scrm.diagram.edit.commands.RequirementDefiningDataReorientCommand;
 import scrm.diagram.edit.commands.RequirementReorientCommand;
 import scrm.diagram.edit.parts.FeatureDetailedRequirementsEditPart;
 import scrm.diagram.edit.parts.NumericalMethodRealizingRequirementEditPart;
 import scrm.diagram.edit.parts.ProcessDataFlowEditPart;
+import scrm.diagram.edit.parts.ProcessSuccessorEditPart;
+import scrm.diagram.edit.parts.Requirement2EditPart;
 import scrm.diagram.edit.parts.RequirementDefiningDataEditPart;
-import scrm.diagram.edit.parts.RequirementEditPart;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -50,7 +53,7 @@ public class ProcessItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public ProcessItemSemanticEditPolicy() {
-		super(ScrmElementTypes.Process_2014);
+		super(ScrmElementTypes.Process_2035);
 	}
 
 	/**
@@ -92,17 +95,25 @@ public class ProcessItemSemanticEditPolicy extends
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == RequirementEditPart.VISUAL_ID) {
+			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == Requirement2EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
 						incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
+			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ProcessSuccessorEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(
+						incomingLink.getSource().getElement(), null,
+						incomingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
 		}
 		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
-			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementEditPart.VISUAL_ID) {
+			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == Requirement2EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
 						outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
@@ -118,6 +129,14 @@ public class ProcessItemSemanticEditPolicy extends
 				continue;
 			}
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == ProcessDataFlowEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(
+						outgoingLink.getSource().getElement(), null,
+						outgoingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
+			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == ProcessSuccessorEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						outgoingLink.getSource().getElement(), null,
 						outgoingLink.getTarget().getElement(), false);
@@ -162,7 +181,7 @@ public class ProcessItemSemanticEditPolicy extends
 			return null;
 		}
 		if (ScrmElementTypes.Requirement_4036 == req.getElementType()) {
-			return getGEFWrapper(new RequirementCreateCommand(req,
+			return getGEFWrapper(new Requirement2CreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.RequirementDefiningData_4038 == req
@@ -170,8 +189,12 @@ public class ProcessItemSemanticEditPolicy extends
 			return getGEFWrapper(new RequirementDefiningDataCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.ProcessDataFlow_4040 == req.getElementType()) {
+		if (ScrmElementTypes.ProcessDataFlow_4045 == req.getElementType()) {
 			return getGEFWrapper(new ProcessDataFlowCreateCommand(req,
+					req.getSource(), req.getTarget()));
+		}
+		if (ScrmElementTypes.ProcessSuccessor_4047 == req.getElementType()) {
+			return getGEFWrapper(new ProcessSuccessorCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -193,15 +216,19 @@ public class ProcessItemSemanticEditPolicy extends
 					req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.Requirement_4036 == req.getElementType()) {
-			return getGEFWrapper(new RequirementCreateCommand(req,
+			return getGEFWrapper(new Requirement2CreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.RequirementDefiningData_4038 == req
 				.getElementType()) {
 			return null;
 		}
-		if (ScrmElementTypes.ProcessDataFlow_4040 == req.getElementType()) {
+		if (ScrmElementTypes.ProcessDataFlow_4045 == req.getElementType()) {
 			return null;
+		}
+		if (ScrmElementTypes.ProcessSuccessor_4047 == req.getElementType()) {
+			return getGEFWrapper(new ProcessSuccessorCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -215,7 +242,7 @@ public class ProcessItemSemanticEditPolicy extends
 	protected Command getReorientRelationshipCommand(
 			ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case RequirementEditPart.VISUAL_ID:
+		case Requirement2EditPart.VISUAL_ID:
 			return getGEFWrapper(new RequirementReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
@@ -240,6 +267,8 @@ public class ProcessItemSemanticEditPolicy extends
 			return getGEFWrapper(new RequirementDefiningDataReorientCommand(req));
 		case ProcessDataFlowEditPart.VISUAL_ID:
 			return getGEFWrapper(new ProcessDataFlowReorientCommand(req));
+		case ProcessSuccessorEditPart.VISUAL_ID:
+			return getGEFWrapper(new ProcessSuccessorReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

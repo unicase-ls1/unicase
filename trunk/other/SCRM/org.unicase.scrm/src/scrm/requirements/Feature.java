@@ -147,7 +147,7 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_InfluencingProblem()
 	 * @see scrm.knowledge.ScientificProblem#getInfluencedFeature
 	 * @model opposite="influencedFeature"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='20'"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='25'"
 	 * @generated
 	 */
 	ScientificProblem getInfluencingProblem();

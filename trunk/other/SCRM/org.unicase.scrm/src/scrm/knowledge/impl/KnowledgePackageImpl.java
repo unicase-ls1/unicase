@@ -17,8 +17,6 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 
 import scrm.ScrmPackage;
 
-import scrm.dataProcessing.DataProcessingPackage;
-import scrm.dataProcessing.impl.DataProcessingPackageImpl;
 import scrm.impl.ScrmPackageImpl;
 
 import scrm.knowledge.Assumption;
@@ -32,6 +30,8 @@ import scrm.knowledge.ScientificProblem;
 
 import scrm.requirements.RequirementsPackage;
 
+import scrm.requirements.dataProcess.DataProcessPackage;
+import scrm.requirements.dataProcess.impl.DataProcessPackageImpl;
 import scrm.requirements.impl.RequirementsPackageImpl;
 
 /**
@@ -145,22 +145,22 @@ public class KnowledgePackageImpl extends EPackageImpl implements
 				.getEPackage(RequirementsPackage.eNS_URI) instanceof RequirementsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(RequirementsPackage.eNS_URI)
 				: RequirementsPackage.eINSTANCE);
-		DataProcessingPackageImpl theDataProcessingPackage = (DataProcessingPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(DataProcessingPackage.eNS_URI) instanceof DataProcessingPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(DataProcessingPackage.eNS_URI)
-				: DataProcessingPackage.eINSTANCE);
+		DataProcessPackageImpl theDataProcessPackage = (DataProcessPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(DataProcessPackage.eNS_URI) instanceof DataProcessPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(DataProcessPackage.eNS_URI)
+				: DataProcessPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theKnowledgePackage.createPackageContents();
 		theScrmPackage.createPackageContents();
 		theRequirementsPackage.createPackageContents();
-		theDataProcessingPackage.createPackageContents();
+		theDataProcessPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theKnowledgePackage.initializePackageContents();
 		theScrmPackage.initializePackageContents();
 		theRequirementsPackage.initializePackageContents();
-		theDataProcessingPackage.initializePackageContents();
+		theDataProcessPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theKnowledgePackage.freeze();

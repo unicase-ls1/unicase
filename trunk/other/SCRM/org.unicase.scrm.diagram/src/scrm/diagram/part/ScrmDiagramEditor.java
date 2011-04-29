@@ -215,8 +215,7 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 	 */
 	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
-		final SCRMDiagram scrmDiagram = (SCRMDiagram) ScrmDiagramEditor.this
-				.getDiagram().eContainer();
+		final SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagram().eContainer();
 		new ECPCommand(scrmDiagram.getGmfdiagram()) {
 			@Override
 			protected void doRun() {
