@@ -257,7 +257,6 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 			return;
 		}
 
-		// hack
 		if (!viewer.getExpandedState(me)) {
 			viewer.expandToLevel(2);
 		}
