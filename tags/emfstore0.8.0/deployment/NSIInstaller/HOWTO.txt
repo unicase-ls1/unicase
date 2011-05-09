@@ -1,0 +1,9 @@
+- fill the unicase folder with the RCP application
+- fill the .unicase folder with the stuff from you home directory
+- compile the -nsi script
+
+files used to be in same path:
+* splash.bmp
+* header.bmp
+* unicase.ico
+* license.txt

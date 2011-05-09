@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Git
+Bundle-SymbolicName: org.unicase.changetracking.git;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.unicase.changetracking.git.Activator
+Require-Bundle: org.eclipse.jgit;visibility:=reexport,
+ org.eclipse.egit.core,
+ org.unicase.changetracking.ui
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: 
+ org.unicase.changetracking.git,
+ org.unicase.changetracking.git.commands,
+ org.unicase.changetracking.git.exceptions

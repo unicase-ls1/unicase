@@ -1,0 +1,7 @@
+# Tracing options for the org.unicase.ui.tom.classDiagram plug-in
+
+# Common issues
+org.unicase.ui.tom.classDiagram/debug=false
+
+# Visual IDs
+org.unicase.ui.tom.classDiagram/debug/visualID=false

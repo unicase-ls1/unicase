@@ -1,0 +1,3 @@
+check migrator
+check changes in emfstore
+model: check fileAttachment. How to make methods in a generated class deprecated

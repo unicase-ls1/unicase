@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMFStore Team Provider Subversion Plug-in
+Bundle-SymbolicName: org.eclipse.emf.emfstore.teamprovider.svn;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.eclipse.emf.emfstore.teamprovider.svn.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.emf.emfstore.teamprovider,
+ org.eclipse.emf.emfstore.teamprovider.ui,
+ org.eclipse.team.svn.core,
+ org.eclipse.team.svn.ui,
+ org.eclipse.team.ui,
+ org.eclipse.team.core,
+ org.eclipse.core.filesystem,
+ org.eclipse.emf.emfstore.client;bundle-version="0.7.3"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

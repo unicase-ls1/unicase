@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="org.unicase.rap.ui.view" name="org.unicase.rap.ui.view" 
+   schema="schema/org.unicase.rap.ui.view.exsd"/>
+   <extension-point id="org.unicase.rap.ui.config.tab" name="org.unicase.rap.ui.config.tabs" schema="schema/org.unicase.rap.ui.config.tab.exsd"/>
+
+   <extension
+         point="org.eclipse.rap.ui.entrypoint">
+      <entrypoint
+            class="org.unicase.rap.Application"
+            parameter="unicase"
+            id="org.unicase.ui.web.Application">
+      </entrypoint>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="org.unicase.rap.ViewDispatcher"
+            fixed="false"
+            id="org.unicase.ui.web.perspective"
+            name="UNICASE Web Perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="org.unicase.rap.ui.views.AbstractView"
+            id="org.unicase.ui.web.views.AbstractView"
+            name="AbstractView"
+            restorable="true">
+      </view>
+      <view
+            class="org.unicase.rap.ui.views.ConfigurationView"
+            id="org.unicase.rap.ui.views.ConfigurationView"
+            name="Configuration view"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.rap.ui.branding">
+      <branding
+            body="html/body.html"
+            defaultEntrypointId="org.unicase.ui.web.Application"
+            favicon="icons/unicase.png"
+            id="org.unicase.ui.web.branding"
+            servletName="unicase"
+            themeId="org.unicase.ui.web.theme"
+            title="UNICASE Web View">
+      </branding>
+      <branding
+            body="html/body.html"
+            defaultEntrypointId="org.unicase.ui.web.Application"
+            favicon="icons/unicase.png"
+            id="org.unicase.ui.web.branding1"
+            servletName="rap"
+            themeId="org.unicase.ui.web.theme"
+            title="UNICASE Web View">
+      </branding>
+   </extension>
+   <extension
+         point="org.eclipse.equinox.http.registry.resources">
+      <resource
+            alias="/loading.gif"
+            base-name="/html/loading.gif">
+      </resource>
+   </extension>
+   <extension
+         point="org.eclipse.rap.ui.themes">
+      <theme
+            file="theme/business/unicase-theme.css"
+            id="org.unicase.ui.web.theme"
+            name="UNICASE Web Theme">
+      </theme>
+   </extension>
+   <extension
+         point="org.unicase.rap.ui.view">
+      <view
+            class="org.unicase.rap.ui.views.ConfigurationView"
+            name="Configuration view"
+            url="config">
+      </view>
+   </extension>
+   <extension
+         point="org.unicase.rap.ui.config.tab">
+      <config
+            class="org.unicase.rap.ui.tabs.ProjectKeysTab"
+            name="Project Activation">
+      </config>
+      <config
+            class="org.unicase.rap.ui.tabs.EMFServerSettingsTab"
+            name="EMFServer Settings">
+      </config>
+      <config
+            class="org.unicase.rap.ui.tabs.GeneralSettingsTab"
+            name="General Settings">
+      </config>
+   </extension>
+
+</plugin>
