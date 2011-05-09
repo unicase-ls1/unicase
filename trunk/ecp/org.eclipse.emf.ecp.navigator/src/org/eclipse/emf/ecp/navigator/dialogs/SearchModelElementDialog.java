@@ -21,14 +21,14 @@ import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
  * 
  * @author mkagel
  */
-public class OpenMeShortcutDialog extends ModelElementSelectionDialog {
+public class SearchModelElementDialog extends ModelElementSelectionDialog {
 
 	/**
 	 * The constructor.
 	 * 
-	 * @param project The project, which contains the model elements for listing
+	 * @param project the project, which contains all the model elements that can be searched for 
 	 */
-	public OpenMeShortcutDialog(ECPProject project) {
+	public SearchModelElementDialog(ECPProject project) {
 		super(project);
 	}
 

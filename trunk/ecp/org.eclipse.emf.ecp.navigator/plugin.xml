@@ -112,7 +112,7 @@
          point="org.eclipse.ui.commands">
               <command
             categoryId="org.eclipse.emf.ecp.navigator"
-            defaultHandler="org.eclipse.emf.ecp.navigator.handler.OpenMEShortcutHandler"
+            defaultHandler="org.eclipse.emf.ecp.navigator.handler.SearchModelElementHandler"
             id="org.eclipse.emf.ecp.common.handlers.open_me_ID"
             name="Search for Modelelement">
       </command>
