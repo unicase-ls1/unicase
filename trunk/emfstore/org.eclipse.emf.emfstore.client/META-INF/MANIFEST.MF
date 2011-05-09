@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: EMFStore Client
 Bundle-SymbolicName: org.eclipse.emf.emfstore.client;singleton:=true
-Bundle-Version: 0.7.3
+Bundle-Version: 0.8.0
 Bundle-ClassPath: .
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-Localization: plugin
