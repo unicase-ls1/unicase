@@ -11,26 +11,29 @@
 package org.eclipse.emf.emfstore.server.exceptions;
 
 /**
- * This exception is throw if there is a problem with the decryption.
+ * This exception is thrown whenever there occurs a problem while performing
+ * decryption.
  * 
- * @author hamidmomeny
+ * @author emueller
  */
 @SuppressWarnings("serial")
 public class ServerKeyStoreException extends AccessControlException {
 
 	/**
-	 * Default constructor.
+	 * Constructor for wrapping an already existing exception.
 	 * 
-	 * @param e exception
+	 * @param exception
+	 *            the exception that should get wrapped
 	 */
-	public ServerKeyStoreException(Exception e) {
-		super("A server keystore related problem occured.", e);
+	public ServerKeyStoreException(Exception exception) {
+		super("A server keystore related problem occured.", exception);
 	}
 
 	/**
-	 * Constructor with message.
+	 * Constructor with an additional error message.
 	 * 
-	 * @param message message.
+	 * @param message
+	 *            an error message
 	 */
 	public ServerKeyStoreException(String message) {
 		super(message);
