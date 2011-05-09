@@ -20,55 +20,52 @@ import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
 import org.eclipse.emf.ecp.common.util.ActionHelper;
 import org.eclipse.emf.ecp.navigator.Activator;
-import org.eclipse.emf.ecp.navigator.dialogs.OpenMeShortcutDialog;
+import org.eclipse.emf.ecp.navigator.dialogs.SearchModelElementDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * This is the (ShortcutCommand)-Handler to select model elements out of a list of elements.
+ * This is the handler to search and select a model element out of a list of model elements.
  * 
- * @author Hamid
+ * @author emueller
  */
-
-public class OpenMEShortcutHandler extends AbstractHandler implements IHandler {
+public class SearchModelElementHandler extends AbstractHandler implements IHandler {
 
 	/**
 	 * Default constructor.
 	 */
-	public OpenMEShortcutHandler() {
-
-	}
+	public SearchModelElementHandler() { }
 
 	/**
-	 * Opens a element selection dialog. {@inheritDoc}
+	 * Opens a element selection dialog.
 	 */
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+	public Object execute(ExecutionEvent event) throws ExecutionException {	
+		
 		ECPProject project = null;
+		
 		try {
-			project = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject();
+			 project = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject();
 		} catch (NoWorkspaceException e) {
 			Activator.getDefault().logException(e.getMessage(), e);
-		}
-		if (project == null) {
-			MessageDialog.openInformation(shell, "Information", "You must select the Project");
-		} else {
+		}		
 
-			OpenMeShortcutDialog dialog = new OpenMeShortcutDialog(project);
+		if (project == null) {
+			MessageDialog.openInformation(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), 
+				"Information", "You must first select the Project.");
+		} else {
+			SearchModelElementDialog dialog = new SearchModelElementDialog(project);
 
 			if (dialog.open() == Window.OK) {
-				Object[] result = dialog.getResult();
+				Object[] selections = dialog.getResult();
 
-				if (result.length == 1 && result[0] instanceof EObject) {
-					EObject modelElement = (EObject) result[0];
-					ActionHelper.openModelElement(modelElement, "org.eclipse.emf.ecp.navigator.handler.OpenMEShortcutHandler");
+				if (selections != null && selections.length == 1 && selections[0] instanceof EObject) {
+					ActionHelper.openModelElement((EObject) selections[0], 
+						"org.eclipse.emf.ecp.navigator.handler.SearchModelElementHandler");
 				}
 			}
 		}
 
 		return null;
 	}
-
 }
