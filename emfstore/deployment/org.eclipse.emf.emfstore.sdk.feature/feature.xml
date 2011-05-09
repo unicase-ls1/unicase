@@ -221,10 +221,6 @@ litigation.
    </license>
 
    <includes
-         id="org.unicase.emfstore.client.ui"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.emf.emfstore.client.feature"
          version="0.0.0"/>
 
@@ -234,6 +230,10 @@ litigation.
 
    <includes
          id="org.eclipse.emf.emfstore.server.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.emf.emfstore.client.ui.feature"
          version="0.0.0"/>
 
    <requires>
