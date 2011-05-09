@@ -6,7 +6,7 @@
    <extension-point id="org.eclipse.emf.emfstore.server.authenticationfactory" name="Authentication Factory" schema="schema/org.eclipse.emf.emfstore.server.authenticationfactory.exsd"/>
    <extension-point id="org.eclipse.emf.emfstore.server.locationprovider" name="Location Provider" schema="schema/org.eclipse.emf.emfstore.server.locationprovider.exsd"/>
    <extension
-         id="server"
+         id="application"
          name="EMFStore server"
          point="org.eclipse.core.runtime.applications">
       <application
@@ -24,7 +24,7 @@
          name="EMFStore"
          point="org.eclipse.core.runtime.products">
       <product
-            application="org.eclipse.emf.emfstore.server"
+            application="org.eclipse.emf.emfstore.server.application"
             description="Server Application of EMFStore"
             name="EMFStore Server">
          <property
