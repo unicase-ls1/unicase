@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.emfstore.client.transaction.feature"
       label="EMFStore Transaction Support"
-      version="0.7.3"
+      version="0.8.0"
       provider-name="Eclipse Modeling Project"
       plugin="org.eclipse.emf.emfstore.branding">
 

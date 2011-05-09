@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.emfstore.backchannel.sdk.feature"
       label="EMFStore Backchannel SDK"
-      version="0.7.3"
+      version="0.8.0"
       provider-name="Eclipse Modeling Project">
 
    <description url="http://www.example.com/description">
