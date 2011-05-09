@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.unicase.ui.meeditor.melinkcontrols">
+      <widget
+            class="org.unicase.changetracking.ui.MEChangePackageControl"
+            name="org.unicase.changetracking.ui.MEChangePackageControl"
+            type="org.eclipse.emf.ecore.EObject">
+      </widget>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.unicase.changetracking.ui.commands.BuildReleaseHandler"
+            id="org.unicase.changetracking.ui.buildReleaseCommand"
+            name="Build Release">
+      </command>
+      <command
+            defaultHandler="org.unicase.changetracking.ui.commands.CheckReleaseHandler"
+            id="org.unicase.changetracking.ui.checkReleaseCommand"
+            name="Check Release">
+      </command>
+      <command
+            defaultHandler="org.unicase.changetracking.ui.commands.ApplyChangePackageHandler"
+            id="org.unicase.changetracking.ui.applyChangePackageCommand"
+            name="Apply Change Package">
+      </command>
+      <command
+            defaultHandler="org.unicase.changetracking.ui.commands.CreateChangePackageHandler"
+            id="org.unicase.changetracking.ui.createChangePackageCommand"
+            name="Create Change Package">
+      </command>
+      <command
+            defaultHandler="org.unicase.changetracking.ui.commands.ContinueReleaseBuildingHandler"
+            id="org.unicase.changetracking.ui.continueReleaseBuildingCommand"
+            name="Continue Release Building">
+      </command>
+      <command
+            defaultHandler="org.unicase.changetracking.ui.commands.CreateStreamFromCurrentBranchHandler"
+            id="org.unicase.changetracking.ui.createStreamFromCurrentBranchCommand"
+            name="Create Stream From Current Branch">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="org.unicase.changetracking.ui.definitions.isRelease">
+         <instanceof
+               value="org.unicase.model.changetracking.ChangeTrackingRelease">
+         </instanceof>
+      </definition>
+   </extension>
+   
+   
+   <extension point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
+         <command
+               commandId="org.unicase.changetracking.ui.buildReleaseCommand"
+               icon="icons/buildRelease2.gif"
+               label="Build Release"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="meToOpen">
+                  <instanceof
+                        value="org.unicase.model.changetracking.ChangeTrackingRelease">
+                  </instanceof>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.changetracking.ui.checkReleaseCommand"
+               icon="icons/checkRelease2.gif"
+               label="Check Release"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="meToOpen">
+                  <instanceof
+                        value="org.unicase.model.changetracking.ChangeTrackingRelease">
+                  </instanceof>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.changetracking.ui.applyChangePackageCommand"
+               icon="icons/apply_package.gif"
+               label="Apply Change Package"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="meToOpen">
+                  <instanceof
+                        value="org.unicase.model.changetracking.ChangePackage">
+                  </instanceof>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+       <menuContribution
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <menu
+               icon="icons/unicase.png"
+               label="Unicase Change Tracking">
+            <visibleWhen>
+               <with
+                     variable="selection">
+                  <count
+                        value="+">
+                  </count>
+                  <iterate>
+                     <adapt
+                           type="org.eclipse.core.resources.IProject">
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen>
+            <command
+                  commandId="org.unicase.changetracking.ui.createChangePackageCommand"
+                  icon="icons/createChangePackage.png"
+                  label="Create Change Package"
+                  style="push"
+                  tooltip="Creates a new change package by creating a new branch and commiting all local changes to it">
+            </command>
+            <command
+                  commandId="org.unicase.changetracking.ui.continueReleaseBuildingCommand"
+                  icon="icons/buildRelease2.gif"
+                  label="Continue Release Building"
+                  style="push"
+                  tooltip="Continues a previously interrupted release building process.">
+            </command>
+            <command
+                  commandId="org.unicase.changetracking.ui.createStreamFromCurrentBranchCommand"
+                  helpContextId="variable_watch_action_context"
+                  icon="icons/createStream.gif"
+                  label="Create Stream From Current Branch"
+                  tooltip="Creates a repository location in unicase based on the repository of the selected resource">
+            </command>
+         </menu>
+       </menuContribution>
+   </extension>
+
+</plugin>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.unicase.model.usecase/src"
+    modelPluginID="org.unicase.model.usecase" modelName="Usecase" editPluginClass="org.unicase.model.usecase.provider.UsecaseEditPlugin"
+    editorPluginClass="org.unicase.model.usecase.presentation.UsecaseEditorPlugin"
+    testSuiteClass="org.unicase.model.usecase.tests.UsecaseAllTests" importerID="org.eclipse.emf.importer.ecore"
+    containmentProxies="true" complianceLevel="6.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.genmodel#//esmodel platform:/plugin/org.unicase.metamodel/model/metamodel.genmodel#//metamodel platform:/plugin/org.unicase.model/model/model.genmodel#//model platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation">
+  <foreignModel>usecase.ecore</foreignModel>
+  <genPackages prefix="Usecase" basePackage="org.unicase.model" resource="XML" disposableProviderFactory="true"
+      ecorePackage="usecase.ecore#/">
+    <genClasses ecoreClass="usecase.ecore#//UseCase">
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference usecase.ecore#//UseCase/actorSteps"/>
+      <genFeatures property="None" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference usecase.ecore#//UseCase/systemSteps"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//UseCase/precon"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//UseCase/postcon"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//UseCase/rul"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//UseCase/exc"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//UseCase/sync"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//UseCase/useCases"/>
+    </genClasses>
+    <genClasses ecoreClass="usecase.ecore#//Option">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Option/targetStep"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Option/sourceStep"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Option/includedUseCase"/>
+    </genClasses>
+    <genClasses ecoreClass="usecase.ecore#//ActorStep">
+      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//ActorStep/options"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference usecase.ecore#//ActorStep/useCase"/>
+    </genClasses>
+    <genClasses ecoreClass="usecase.ecore#//SystemStep">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//SystemStep/exception"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//SystemStep/includedSystemFunction"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//SystemStep/linkedStep"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference usecase.ecore#//SystemStep/useCase"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

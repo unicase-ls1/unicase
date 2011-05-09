@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension-point id="org.eclipse.emf.ecp.navigator.menuconfiguration" name="Menu Configuration" schema="schema/org.eclipse.emf.ecp.navigator.menuconfiguration.exsd"/>
+   <extension-point id="org.eclipse.emf.ecp.navigator.replaceContentProvider" name="Replace Content Provider" schema="schema/org.eclipse.emf.ecp.navigator.replaceContentProvider.exsd"/>
+   
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="org.eclipse.emf.ecp"
+            class="org.eclipse.emf.ecp.navigator.TreeView"
+            icon="icons/unicase.png"
+            id="org.eclipse.emf.ecp.navigator.viewer"
+            name="Navigator"
+            restorable="true">
+      </view>
+   </extension>
+   
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.eclipse.emf.ecp.navigator.MenuConfigurationEnablementTester"
+            id="org.eclipse.emf.ecp.navigator.menucontributionenablementtester"
+            namespace="org.eclipse.emf.ecp.navigator"
+            properties="isActionEnabled"
+            type="java.lang.Object">
+      </propertyTester>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="org.eclipse.emf.ecp.navigator.project"
+            name="Project and Model Element Commands">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=additions">
+         <dynamic
+               class="org.eclipse.emf.ecp.navigator.commands.DynamicContainmentCommands"
+               id="org.eclipse.emf.ecp.navigator.dynamicMECreationCommands">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <or>
+                        
+                        <instanceof
+                              value="org.eclipse.emf.ecore.EObject">
+                        </instanceof>
+                     </or>
+                     <test
+                           args="ContainmentCreationActions"
+                           forcePluginActivation="true"
+                           property="org.eclipse.emf.ecp.navigator.isActionEnabled"
+                           value="true">
+                     </test>
+                  </iterate>
+                  <count
+                        value="1">
+                  </count>
+               </and>
+            </visibleWhen>
+         </dynamic>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=additions">
+         <command
+               commandId="org.eclipse.emf.ecp.navigator.exportModel"
+               icon="icons/export.gif"
+               label="Export Model Element"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate>
+                  <and>
+                  <instanceof
+                        value="org.eclipse.emf.ecore.EObject">
+                  </instanceof>
+                
+	            </and>
+               </iterate>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.emf.ecp.navigator.importModel"
+               icon="icons/import.gif"
+               label="Import Model Element"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate>
+                  <and>
+                     <instanceof
+                           value="org.eclipse.emf.ecore.EObject">
+                     </instanceof>
+                  </and>
+               </iterate>
+            </visibleWhen>
+         </command>
+         <separator
+               name="org.eclipse.emf.ecp.navigator.exportImportSeperator"
+               visible="true">
+         </separator>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+              <command
+            categoryId="org.eclipse.emf.ecp.navigator"
+            defaultHandler="org.eclipse.emf.ecp.navigator.handler.SearchModelElementHandler"
+            id="org.eclipse.emf.ecp.common.handlers.open_me_ID"
+            name="Search for Modelelement">
+      </command>
+           <command
+            categoryId="org.eclipse.emf.ecp.navigator"
+            defaultHandler="org.eclipse.emf.ecp.navigator.handler.DeleteModelelementHandler"
+            id="org.eclipse.emf.ecp.common.deleteModelelement"
+            name="Delete Modelelement">
+      </command>
+      <command
+            categoryId="org.eclipse.emf.ecp.navigator"
+            defaultHandler="org.eclipse.emf.ecp.navigator.handler.NewModelElementWizardHandler"
+            id="org.eclipse.emf.ecp.navigator.newModelElementWizard"
+            name="New ModelElement Wizard">
+         <commandParameter
+               id="org.eclipse.emf.ecp.navigator.eClassParameter"
+               name="eClassParameter"
+               optional="true"
+               typeId="org.eclipse.emf.ecp.navigator.eClassType">
+         </commandParameter>
+      </command>
+          <command
+            defaultHandler="org.eclipse.emf.ecp.navigator.handler.CreateContainmentHandler"
+            description="This generic command is used by dynamic commands to create containment MEs"
+            id="org.eclipse.emf.ecp.navigator.createContaiment"
+            name="New Containment ME">
+         <commandParameter
+               id="org.eclipse.emf.ecp.navigator.eClassParameter"
+               name="eClassParameter"
+               optional="true"
+               typeId="org.eclipse.emf.ecp.navigator.eClassType">
+         </commandParameter>
+  
+      </command>
+             <command
+            defaultHandler="org.eclipse.emf.ecp.navigator.handler.ImportModelHandler"
+            id="org.eclipse.emf.ecp.navigator.importModel"
+            name="Import model">
+      </command>
+      <category
+            id="org.eclipse.emf.ecp.navigator"
+            name="Navigator">
+      </category>
+            <commandParameterType
+            converter="org.eclipse.emf.ecp.navigator.commands.EClassTypeConverter"
+            id="org.eclipse.emf.ecp.navigator.eClassType"
+            type="org.eclipse.emf.ecore.EClass">
+      </commandParameterType>
+            <command
+                  defaultHandler="org.eclipse.emf.ecp.navigator.handler.ExportModelHandler"
+                  id="org.eclipse.emf.ecp.navigator.exportModel"
+                  name="Export model">
+            </command>
+
+   </extension>
+</plugin>

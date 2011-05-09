@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Util
+Bundle-SymbolicName: org.unicase.util
+Bundle-Version: 0.4.8.qualifier
+Bundle-Activator: org.unicase.util.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore
+Bundle-ActivationPolicy: lazy
+Export-Package: org.unicase.util,
+ org.unicase.util.observer
+Bundle-Vendor: unicase.org

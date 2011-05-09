@@ -1,0 +1,163 @@
+/*
+ * Copyright (c) 2007, 2008 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Dmitry Stadnik (Borland) - initial API and implementation
+ */
+
+«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+«IMPORT "http://www.eclipse.org/emf/2002/Ecore"»
+«IMPORT "http://www.eclipse.org/emf/2002/GenModel"»
+
+«EXTENSION xpt::GenModelUtils»
+«EXTENSION xpt::diagram::Utils»
+
+«REM»
+	Check whether link may be created.
+«ENDREM»
+«DEFINE canCreate(gmfgen::GenLink link) FOR gmfgen::LinkModelFacet-»
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public boolean canExecute() {
+		if (source == null && target == null) {
+			return false;
+		}
+		if (source != null && «EXPAND MetaModel::NotInstance("source") FOR getSourceType()») {
+			return false;
+		}
+		if (target != null && «EXPAND MetaModel::NotInstance("target") FOR getTargetType()») {
+			return false;
+		}
+		if (getSource() == null) {
+			return true; // link creation is in progress; source is not defined yet
+		}
+		// target may be null here but it's possible to check constraint
+		«EXPAND canCreateElement(link)-»
+	}
+«ENDDEFINE»
+
+«DEFINE canCreateElement(gmfgen::GenLink link) FOR gmfgen::LinkModelFacet-»
+	return «EXPAND validatorInvocation FOR link»(getSource(), getTarget());
+«ENDDEFINE»
+
+«DEFINE canCreateElement(gmfgen::GenLink link) FOR gmfgen::TypeLinkModelFacet-»
+	«IF sourceMetaFeature != null-»
+	if (getContainer() == null) {
+		return false;
+	}
+	«ENDIF-»
+	return «EXPAND validatorInvocation FOR link»(
+			«IF sourceMetaFeature != null»getContainer(), «ENDIF»getSource(), getTarget());
+«ENDDEFINE»
+
+«DEFINE validatorInvocation FOR gmfgen::GenLink-»
+«diagram.getBaseItemSemanticEditPolicyQualifiedClassName()».
+	«diagram.getLinkCreationConstraintsClassName()».canCreate«getUniqueIdentifier()-»
+«ENDDEFINE»
+
+«REM»
+	Fields of command that creates link.
+«ENDREM»
+«DEFINE fields FOR gmfgen::LinkModelFacet-»
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	private final org.eclipse.emf.ecore.EObject source;
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	private final org.eclipse.emf.ecore.EObject target;
+	«EXPAND containerField-»
+«ENDDEFINE»
+
+«DEFINE containerField FOR gmfgen::LinkModelFacet-»
+«ENDDEFINE»
+
+«DEFINE containerField FOR gmfgen::TypeLinkModelFacet-»
+	«IF sourceMetaFeature != null-»
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	private «EXPAND MetaModel::QualifiedClassName FOR containmentMetaFeature.genClass» container;
+	«ENDIF-»
+«ENDDEFINE»
+
+«REM»
+	Field accessors of command that creates link.
+«ENDREM»
+«DEFINE accessors FOR gmfgen::LinkModelFacet-»
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected «EXPAND MetaModel::QualifiedClassName FOR getSourceType()» getSource() {
+		return «EXPAND MetaModel::CastEObject("source") FOR getSourceType()»;
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected «EXPAND MetaModel::QualifiedClassName FOR getTargetType()» getTarget() {
+		return «EXPAND MetaModel::CastEObject("target") FOR getTargetType()»;
+	}
+	«EXPAND containerAccessor-»
+«ENDDEFINE»
+
+«DEFINE containerAccessor FOR gmfgen::LinkModelFacet-»
+«ENDDEFINE»
+
+«DEFINE containerAccessor FOR gmfgen::TypeLinkModelFacet-»
+	«IF sourceMetaFeature != null-»
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public «EXPAND MetaModel::QualifiedClassName FOR containmentMetaFeature.genClass» getContainer() {
+		return container;
+	}
+	«ENDIF-»
+«ENDDEFINE»
+
+«REM»
+	Part of the constructor that performs initialization.
+«ENDREM»
+«DEFINE init FOR gmfgen::LinkModelFacet-»
+	this.source = source;
+	this.target = target;
+	«EXPAND initContainment-»
+«ENDDEFINE»
+
+«DEFINE initContainment FOR gmfgen::LinkModelFacet-»
+«ENDDEFINE»
+
+«DEFINE initContainment FOR gmfgen::TypeLinkModelFacet-»
+	if (request.getContainmentFeature() == null) {
+		setContainmentFeature(«EXPAND MetaModel::MetaFeature FOR containmentMetaFeature»);
+	}
+	«REM»XXX!!! 
+	(1) why getContainer() only when sourceMetaFeature is set 
+	(2) FIXME - do not need to setElementToEdit unless use doDefaultElementCreation (no) and canExecute from [Create|Edit]ElementCommand (no, IMO)
+	«ENDREM»
+	«IF sourceMetaFeature != null-»
+	// Find container element for the new link.
+	// Climb up by containment hierarchy starting from the source
+	// and return the first element that is instance of the container class.
+	for (org.eclipse.emf.ecore.EObject element = source; element != null; element = element.eContainer()) {
+		if («EXPAND MetaModel::IsInstance("element") FOR containmentMetaFeature.genClass») {
+			container = «EXPAND MetaModel::CastEObject("element") FOR containmentMetaFeature.genClass»;
+			super.«EXPAND setElementToEdit("container") FOR containmentMetaFeature-»
+			break;
+		}
+	}
+	«ELSE-»
+	super.«EXPAND setElementToEdit("source") FOR containmentMetaFeature-»
+	«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE setElementToEdit(String elementVar) FOR genmodel::GenFeature-»
+	setElementToEdit(«EXPAND MetaModel::DowncastToEObject(elementVar) FOR genClass»);
+«ENDDEFINE»
+
+«DEFINE addValue(String containerVar, genmodel::GenClass containerClass, String valueVar) FOR genmodel::GenFeature-»
+«IF isListType()-»
+	«EXPAND MetaModel::getFeatureValue(containerVar, containerClass)».add(«valueVar»);
+«ELSE-»
+	«EXPAND MetaModel::setFeatureValue(containerVar, containerClass, valueVar)»;
+«ENDIF-»
+«ENDDEFINE»

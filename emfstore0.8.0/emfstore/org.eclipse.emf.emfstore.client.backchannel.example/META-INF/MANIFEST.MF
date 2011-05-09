@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Backchannel Example Client
+Bundle-SymbolicName: org.eclipse.emf.emfstore.client.backchannel.example;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.unicase.backchannel.example.client.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.emfstore.client.proxy,
+ org.eclipse.emf.emfstore.client.backchannel
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: Eclipse Modeling Project
+Export-Package: org.unicase.backchannel.example.client

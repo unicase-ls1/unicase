@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: unicase Navigator Plug-in
+Bundle-SymbolicName: org.unicase.ui.navigator;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.unicase.ui.navigator.Activator
+Bundle-Vendor: unicase.org
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.unicase.ui.meeditor;visibility:=reexport
+Export-Package: org.unicase.ui.navigator,
+ org.unicase.ui.navigator.commands,
+ org.unicase.ui.navigator.handler,
+ org.unicase.ui.navigator.wizards
+
