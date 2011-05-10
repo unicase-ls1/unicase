@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.emfstore.common.model.*;
 import org.eclipse.emf.emfstore.common.model.AssociationClassElement;
 import org.eclipse.emf.emfstore.common.model.IdentifiableElement;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
