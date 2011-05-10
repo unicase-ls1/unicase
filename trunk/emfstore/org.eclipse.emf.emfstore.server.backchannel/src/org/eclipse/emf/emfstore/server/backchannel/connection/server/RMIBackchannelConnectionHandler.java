@@ -11,7 +11,6 @@ import org.eclipse.emf.emfstore.server.backchannel.Activator;
 import org.eclipse.emf.emfstore.server.backchannel.BackchannelConfiguration;
 import org.eclipse.emf.emfstore.server.backchannel.BackchannelInterface;
 import org.eclipse.emf.emfstore.server.connection.ConnectionHandler;
-import org.eclipse.emf.emfstore.server.connection.rmi.EMFStoreSecurityManager;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.emf.emfstore.server.exceptions.FatalEmfStoreException;
 

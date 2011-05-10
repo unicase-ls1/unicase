@@ -5,10 +5,10 @@ import org.eclipse.emf.emfstore.client.model.ModelFactory;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.connectionmanager.KeyStoreManager;
 import org.eclipse.emf.emfstore.client.proxy.ProxyClient;
-import org.eclipse.emf.emfstore.server.connection.rmi.SerializationUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.util.SerializationException;
 import org.eclipse.emf.emfstore.server.eventmanager.EMFStoreEventListener;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
-import org.eclipse.emf.emfstore.server.exceptions.RMISerializationException;
 import org.eclipse.emf.emfstore.server.model.ProjectInfo;
 import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerEvent;
 
@@ -24,9 +24,9 @@ public class DemoBackchannelClient extends ProxyClient {
 			EMFStoreEventListener listener = new EMFStoreEventListener() {
 				public boolean handleEvent(ServerEvent event) {
 					try {
-						System.out.println(SerializationUtil
+						System.out.println(ModelUtil
 								.eObjectToString(event));
-					} catch (RMISerializationException e) {
+					} catch (SerializationException e) {
 						e.printStackTrace();
 					}
 					return true;
