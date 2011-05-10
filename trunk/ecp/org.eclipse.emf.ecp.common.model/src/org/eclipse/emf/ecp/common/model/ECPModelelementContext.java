@@ -22,28 +22,28 @@ import org.eclipse.emf.edit.domain.EditingDomain;
  * @author helming
  */
 public interface ECPModelelementContext {
-	
+
 	/**
 	 * Adds a {@link ModelElementContextListener}.
 	 * 
 	 * @param modelElementContextListener the {@link ModelElementContextListener}
 	 */
 	void addModelElementContextListener(ModelElementContextListener modelElementContextListener);
-	
+
 	/**
 	 * Removes a {@link ModelElementContextListener}.
 	 * 
 	 * @param modelElementContextListener the {@link ModelElementContextListener}
 	 */
 	void removeModelElementContextListener(ModelElementContextListener modelElementContextListener);
-	
+
 	/**
 	 * Returns all model elements in this context.
 	 * 
 	 * @return a list of model elements
 	 */
 	Collection<EObject> getAllModelElements();
-	
+
 	/**
 	 * Returns all {@link EObject} in the context, which are of a certain type. Could exclude
 	 * {@link AssociationClassElement}'s.
@@ -67,16 +67,15 @@ public interface ECPModelelementContext {
 	 * @return the {@link ECPMetaModelElementContext}.
 	 */
 	ECPMetaModelElementContext getMetaModelElementContext();
-	
+
 	/**
-	 * If a {@link EObject} is contained in this context and can be therefore referenced by the
-	 * {@link EObject} defining the context.
+	 * If a {@link EObject} is contained in this context and can be therefore referenced by the {@link EObject} defining
+	 * the context.
 	 * 
 	 * @param eObject the {@link EObject}
 	 * @return if the {@link EObject} is contained in the context
 	 */
 	boolean contains(EObject eObject);
-	
 
 	/**
 	 * Called if the context is not used anymore. Use for cleanup.

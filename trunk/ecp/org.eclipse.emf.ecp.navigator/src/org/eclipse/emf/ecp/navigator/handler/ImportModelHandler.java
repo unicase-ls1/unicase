@@ -1,11 +1,7 @@
 /*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering,
- * Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
+ * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen. All rights
+ * reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public
+ * License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * Contributors:
  ******************************************************************************/
 package org.eclipse.emf.ecp.navigator.handler;
@@ -41,7 +37,7 @@ import org.eclipse.ui.PlatformUI;
  * Handles the import of ModelElements into a project.
  */
 public class ImportModelHandler extends AbstractHandler {
-	
+
 	/**
 	 * These filter extensions are used to filter which files are displayed.
 	 */
@@ -51,7 +47,7 @@ public class ImportModelHandler extends AbstractHandler {
 	 * These filter names are used to filter which files are displayed.
 	 */
 	public static final String[] FILTER_NAMES = { "EMFStore Project Files (*.ecm)", "All Files (*.*)" };
-	
+
 	private static final String IMPORT_MODEL_PATH = "org.eclipse.emf.emfstore.client.ui.importModelPath";
 
 	/**

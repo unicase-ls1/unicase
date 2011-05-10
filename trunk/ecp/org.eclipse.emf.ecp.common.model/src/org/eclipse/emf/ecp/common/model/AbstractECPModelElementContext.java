@@ -16,7 +16,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * The context of a certain {@link EObject}. 
+ * The context of a certain {@link EObject}.
  * Subclasses shall call modelelementDeleted and contextDeleted.
  * 
  * @author helming

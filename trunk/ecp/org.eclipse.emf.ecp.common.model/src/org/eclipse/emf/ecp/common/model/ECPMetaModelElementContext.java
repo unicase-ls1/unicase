@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 public interface ECPMetaModelElementContext {
 
-	
 	/**
 	 * Returns all types of model elements in this context. Could exclude {@link AssociationClassElement}s.
 	 * 
@@ -27,9 +26,9 @@ public interface ECPMetaModelElementContext {
 	 * @return a set of {@link EClass}es
 	 */
 	Set<EClass> getAllModelElementEClasses(boolean association);
-	
+
 	/**
-	 * Retrieve all EClasses from the {@link EcorePackage} registry that are subclasses of the given {@link EClass}. 
+	 * Retrieve all EClasses from the {@link EcorePackage} registry that are subclasses of the given {@link EClass}.
 	 * Does not include abstract classes or interfaces. Could exclude {@link AssociationClassElement}s.
 	 * 
 	 * @param eClass the superClass of the subClasses to retrieve
@@ -40,15 +39,16 @@ public interface ECPMetaModelElementContext {
 
 	/**
 	 * Whether a {@link EClass} is a domain element. Non Domain Elements are not root nodes of the model and
-	 * do not exist on their own. They have the following characteristic behavior: they don't appear in the openME dialog,
-	 * they are deleted if the last link to them is deleted, and they are not shown in the new element wizard and 
+	 * do not exist on their own. They have the following characteristic behavior: they don't appear in the openME
+	 * dialog,
+	 * they are deleted if the last link to them is deleted, and they are not shown in the new element wizard and
 	 * the METyselection dialog (Table View).
 	 * 
 	 * @param eObject the {@link EObject}
 	 * @return whether the given class is is a non domain element
 	 */
 	boolean isNonDomainElement(EClass clazz);
-	
+
 	/**
 	 * Whether a {@link EObject} is a association class. Association classes are not displayed as dedicated elements. A
 	 * link from one element to another which goes over an association class is displayed by a dedicated widget. This
@@ -68,7 +68,7 @@ public interface ECPMetaModelElementContext {
 	 * @return true, if it is an association
 	 */
 	boolean isAssociationClassElement(EClass eClazz);
-	
+
 	/**
 	 * Returns an {@link ECPAssociationClassElement} wrapper for a {@link EObject}.
 	 * 
@@ -76,14 +76,14 @@ public interface ECPMetaModelElementContext {
 	 * @return the wrapper, {@code null} if {@link EObject} not exists
 	 */
 	ECPAssociationClassElement getAssociationClassElement(EObject eObject);
-	
+
 	/**
 	 * @param newMEInstance {@link EObject} the new modelElement instance.
 	 * @return EReference the Container
 	 * @param parent The EObject to get containment references from
 	 */
 	EReference getPossibleContainingReference(final EObject newMEInstance, EObject parent);
-	
+
 	/**
 	 * If the meta model context is guessing the packages. Happens if no model package is registered for EMF Client
 	 * Platform.

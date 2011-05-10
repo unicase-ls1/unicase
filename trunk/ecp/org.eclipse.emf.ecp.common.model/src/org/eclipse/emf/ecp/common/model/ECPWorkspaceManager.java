@@ -47,25 +47,24 @@ public final class ECPWorkspaceManager {
 	}
 
 	private void init() {
-		IConfigurationElement[] confs = Platform.getExtensionRegistry()
-				.getConfigurationElementsFor(
-						"org.eclipse.emf.ecp.model.workspaceprovider");
+		IConfigurationElement[] confs = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.eclipse.emf.ecp.model.workspaceprovider");
 		if (confs.length == 1) {
 			try {
-				currentWorkspace = ((ECPWorkspaceProvider) confs[0]
-						.createExecutableExtension("class")).getECPWorkspace();
+				currentWorkspace = ((ECPWorkspaceProvider) confs[0].createExecutableExtension("class"))
+					.getECPWorkspace();
 			} catch (CoreException e) {
 				Activator.getDefault().logException(e.getMessage(), e);
 			}
 		}
 		if (confs.length > 1) {
 			try {
-				currentWorkspace = ((ECPWorkspaceProvider) confs[0]
-						.createExecutableExtension("class")).getECPWorkspace();
-				Exception exception = new IllegalStateException(
-						"Duplicate Workspace registered. Default selected: "+currentWorkspace.getClass().getName()+" Please make sure to only include one Workspace in your target platform.");
-				Activator.getDefault().logException(exception.getMessage(),
-						exception);
+				currentWorkspace = ((ECPWorkspaceProvider) confs[0].createExecutableExtension("class"))
+					.getECPWorkspace();
+				Exception exception = new IllegalStateException("Duplicate Workspace registered. Default selected: "
+					+ currentWorkspace.getClass().getName()
+					+ " Please make sure to only include one Workspace in your target platform.");
+				Activator.getDefault().logException(exception.getMessage(), exception);
 			} catch (CoreException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -80,11 +79,9 @@ public final class ECPWorkspaceManager {
 
 	private void initObserverBus() {
 		// TODO make more general
-		if ("org.eclipse.emf.ecp.emfstorebridge.EMFECPWorkspace"
-				.equals(currentWorkspace.getClass().getName())) {
+		if ("org.eclipse.emf.ecp.emfstorebridge.EMFECPWorkspace".equals(currentWorkspace.getClass().getName())) {
 			try {
-				Method method = currentWorkspace.getClass().getMethod(
-						"getObserverBus");
+				Method method = currentWorkspace.getClass().getMethod("getObserverBus");
 				Object invoke = method.invoke(currentWorkspace);
 				if (invoke instanceof ObserverBus) {
 					observerBus = (ObserverBus) invoke;
@@ -118,8 +115,7 @@ public final class ECPWorkspaceManager {
 	}
 
 	/**
-	 * Uses the Workspace to lookup a modelement. This method delegates to
-	 * {@link ECPWorkspace#getProject(EObject)}.
+	 * Uses the Workspace to lookup a modelement. This method delegates to {@link ECPWorkspace#getProject(EObject)}.
 	 * 
 	 * @param modelElement
 	 *            me
@@ -140,13 +136,12 @@ public final class ECPWorkspaceManager {
 	}
 
 	private void notifyECPPostWorkspaceInitiators() {
-		IConfigurationElement[] workspaceObservers = Platform
-				.getExtensionRegistry().getConfigurationElementsFor(
-						"org.eclipse.emf.ecp.model.postinit");
+		IConfigurationElement[] workspaceObservers = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.eclipse.emf.ecp.model.postinit");
 		for (IConfigurationElement element : workspaceObservers) {
 			try {
 				PostECPWorkspaceInitiator workspaceObserver = (PostECPWorkspaceInitiator) element
-						.createExecutableExtension("class");
+					.createExecutableExtension("class");
 				workspaceObserver.workspaceInitComplete(currentWorkspace);
 			} catch (CoreException e) {
 				Activator.getDefault().logException(e.getMessage(), e);

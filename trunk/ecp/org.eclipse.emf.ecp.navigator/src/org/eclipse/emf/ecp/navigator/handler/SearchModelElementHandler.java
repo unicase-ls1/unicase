@@ -1,11 +1,7 @@
 /*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering,
- * Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
+ * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen. All rights
+ * reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public
+ * License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * Contributors:
  ******************************************************************************/
 package org.eclipse.emf.ecp.navigator.handler;
@@ -35,23 +31,24 @@ public class SearchModelElementHandler extends AbstractHandler implements IHandl
 	/**
 	 * Default constructor.
 	 */
-	public SearchModelElementHandler() { }
+	public SearchModelElementHandler() {
+	}
 
 	/**
 	 * Opens a element selection dialog.
 	 */
-	public Object execute(ExecutionEvent event) throws ExecutionException {	
-		
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+
 		ECPProject project = null;
-		
+
 		try {
-			 project = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject();
+			project = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject();
 		} catch (NoWorkspaceException e) {
 			Activator.getDefault().logException(e.getMessage(), e);
-		}		
+		}
 
 		if (project == null) {
-			MessageDialog.openInformation(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), 
+			MessageDialog.openInformation(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
 				"Information", "You must first select the Project.");
 		} else {
 			SearchModelElementDialog dialog = new SearchModelElementDialog(project);
@@ -60,7 +57,7 @@ public class SearchModelElementHandler extends AbstractHandler implements IHandl
 				Object[] selections = dialog.getResult();
 
 				if (selections != null && selections.length == 1 && selections[0] instanceof EObject) {
-					ActionHelper.openModelElement((EObject) selections[0], 
+					ActionHelper.openModelElement((EObject) selections[0],
 						"org.eclipse.emf.ecp.navigator.handler.SearchModelElementHandler");
 				}
 			}

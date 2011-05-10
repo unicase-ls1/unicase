@@ -42,7 +42,7 @@ public final class UiUtil {
 	private UiUtil() {
 		// do nothing
 	}
-	
+
 	/**
 	 * This extracts active model element. From MEEditor or from any view which is a selection provider.
 	 * 
@@ -135,12 +135,12 @@ public final class UiUtil {
 	 * Constant for the modelelement context.
 	 */
 	public static final String MECONTEXT_EVALUATIONCONTEXT_VARIABLE = "meContext";
-	
+
 	/**
 	 * Constant for the modelelement to be opened.
 	 */
 	public static final String ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE = "meToOpen";
-	
+
 	/**
 	 * Extract the selected ModelElement from a viewer which is selection provider. This will be called from Handler
 	 * classes, which pass the ExecutionEvent.
@@ -206,7 +206,7 @@ public final class UiUtil {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Extract the selected ModelElements from a viewer which is selection provider. This will be called from Handler
 	 * classes, which pass the ExecutionEvent.
@@ -232,7 +232,6 @@ public final class UiUtil {
 		}
 		return result;
 	}
-
 
 	/**
 	 * Extract the selected ModelElement in navigator or other StructuredViewer. This method uses the general
@@ -261,7 +260,7 @@ public final class UiUtil {
 	 * Extracts element from event.
 	 * 
 	 * @param event the event
-	 * @param clazz class type of the object to extract 
+	 * @param clazz class type of the object to extract
 	 * @param <T> the type of the object to extract
 	 * @return the object
 	 */

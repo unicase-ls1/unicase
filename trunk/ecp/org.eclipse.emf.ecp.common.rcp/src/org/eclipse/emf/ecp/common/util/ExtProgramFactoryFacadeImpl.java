@@ -14,9 +14,9 @@ import org.eclipse.swt.program.Program;
 
 /**
  * @author stefan.bleibinhaus
- *
+ * 
  */
-public class ExtProgramFactoryFacadeImpl extends ExtProgramFactoryFacade{
+public class ExtProgramFactoryFacadeImpl extends ExtProgramFactoryFacade {
 
 	@Override
 	boolean useEmailIntern(String mailto) {
@@ -27,7 +27,7 @@ public class ExtProgramFactoryFacadeImpl extends ExtProgramFactoryFacade{
 	boolean launchURLIntern(String url) {
 		return launch(url);
 	}
-	
+
 	private boolean launch(String url) {
 		return Program.launch(url);
 	}

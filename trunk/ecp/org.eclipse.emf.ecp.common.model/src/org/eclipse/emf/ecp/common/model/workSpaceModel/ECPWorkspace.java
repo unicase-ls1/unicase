@@ -16,15 +16,15 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>ECP Workspace</b></em>'. <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace#getProjects <em>Projects</em>}</li>
- *   <li>{@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace#getActiveProject <em>Active Project</em>}</li>
+ * <li>{@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace#getProjects <em>Projects</em>}</li>
+ * <li>{@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace#getActiveProject <em>Active Project</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage#getECPWorkspace()
  * @model
  * @generated
@@ -33,7 +33,8 @@ public interface ECPWorkspace extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Projects</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject#getWorkspace <em>Workspace</em>}'.
+	 * It is bidirectional and its opposite is '
+	 * {@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject#getWorkspace <em>Workspace</em>}'.
 	 * <!-- begin-user-doc
 	 * -->
 	 * <p>
@@ -41,6 +42,7 @@ public interface ECPWorkspace extends EObject {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Projects</em>' containment reference list.
 	 * @see org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage#getECPWorkspace_Projects()
 	 * @see org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject#getWorkspace
@@ -49,14 +51,15 @@ public interface ECPWorkspace extends EObject {
 	 */
 	EList<ECPProject> getProjects();
 
-	
 	public ECPProject getProject(EObject me);
 
 	public ECPProject getActiveProject();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace#getActiveProject <em>Active Project</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace#getActiveProject
+	 * <em>Active Project</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Active Project</em>' reference.
 	 * @see #getActiveProject()
 	 * @generated

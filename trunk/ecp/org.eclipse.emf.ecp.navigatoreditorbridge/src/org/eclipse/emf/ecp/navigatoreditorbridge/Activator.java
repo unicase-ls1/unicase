@@ -25,12 +25,13 @@ public class Activator extends AbstractECPPlugin {
 
 	// The shared instance
 	private static Activator plugin;
-	
+
 	/**
 	 * The constructor.
 	 */
 	public Activator() {
 	}
+
 	// BEGIN SUPRESS CATCH EXCEPTION
 	/**
 	 * {@inheritDoc}
@@ -47,10 +48,11 @@ public class Activator extends AbstractECPPlugin {
 		plugin = null;
 		super.stop(context);
 	}
+
 	// END SUPRESS CATCH EXCEPTION
 	/**
 	 * Returns the shared instance.
-	 *
+	 * 
 	 * @return the shared instance
 	 */
 	public static Activator getDefault() {

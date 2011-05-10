@@ -1,11 +1,7 @@
 /*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering,
- * Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
+ * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen. All rights
+ * reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public
+ * License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * Contributors:
  ******************************************************************************/
 package org.eclipse.emf.ecp.navigator.dialogs;
@@ -26,7 +22,7 @@ public class SearchModelElementDialog extends ModelElementSelectionDialog {
 	/**
 	 * The constructor.
 	 * 
-	 * @param project the project, which contains all the model elements that can be searched for 
+	 * @param project the project, which contains all the model elements that can be searched for
 	 */
 	public SearchModelElementDialog(ECPProject project) {
 		super(project);

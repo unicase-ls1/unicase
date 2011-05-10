@@ -29,12 +29,12 @@ import org.eclipse.ui.handlers.IHandlerService;
  * @author helming
  */
 public class ModelElementOpener implements org.eclipse.emf.ecp.common.util.ModelElementOpener {
-	
+
 	/**
 	 * Default constructor.
 	 */
 	public ModelElementOpener() {
-		
+
 	}
 
 	/**
@@ -52,11 +52,10 @@ public class ModelElementOpener implements org.eclipse.emf.ecp.common.util.Model
 
 		IEvaluationContext context = handlerService.getCurrentState();
 		context.addVariable(ActionHelper.ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE, modelElement);
-	
 
 		try {
-			context.addVariable(ActionHelper.MECONTEXT_EVALUATIONCONTEXT_VARIABLE, 
-					ECPWorkspaceManager.getInstance().getWorkSpace().getProject(modelElement));
+			context.addVariable(ActionHelper.MECONTEXT_EVALUATIONCONTEXT_VARIABLE, ECPWorkspaceManager.getInstance()
+				.getWorkSpace().getProject(modelElement));
 			handlerService.executeCommand(ActionHelper.MEEDITOR_OPENMODELELEMENT_COMMAND_ID, null);
 
 		} catch (ExecutionException e) {

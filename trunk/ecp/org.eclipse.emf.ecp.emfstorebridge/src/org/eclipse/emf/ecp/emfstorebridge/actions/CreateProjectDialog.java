@@ -1,11 +1,7 @@
 /*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering,
- * Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
+ * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen. All rights
+ * reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public
+ * License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * Contributors:
  ******************************************************************************/
 package org.eclipse.emf.ecp.emfstorebridge.actions;
@@ -73,8 +69,8 @@ public class CreateProjectDialog extends TitleAreaDialog {
 		txtProjectDesc.setSize(150, 60);
 
 		Point defaultMargins = LayoutConstants.getMargins();
-		GridLayoutFactory.fillDefaults().numColumns(2).margins(defaultMargins.x, defaultMargins.y).generateLayout(
-			contents);
+		GridLayoutFactory.fillDefaults().numColumns(2).margins(defaultMargins.x, defaultMargins.y)
+			.generateLayout(contents);
 
 		return contents;
 	}
@@ -102,8 +98,8 @@ public class CreateProjectDialog extends TitleAreaDialog {
 					if (session != null) {
 						session.createProject(txtProjectName.getText(), txtProjectDesc.getText());
 					} else {
-						projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().createLocalProject(
-							txtProjectName.getText(), txtProjectDesc.getText());
+						projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+							.createLocalProject(txtProjectName.getText(), txtProjectDesc.getText());
 					}
 
 				} catch (AccessControlException e) {

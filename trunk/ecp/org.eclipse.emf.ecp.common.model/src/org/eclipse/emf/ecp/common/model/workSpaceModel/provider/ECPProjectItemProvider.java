@@ -27,7 +27,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject} object. <!--
+ * This is the item provider adapter for a {@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject} object.
+ * <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
@@ -37,6 +38,7 @@ public class ECPProjectItemProvider extends ItemProviderAdapter implements IEdit
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ECPProjectItemProvider(AdapterFactory adapterFactory) {
@@ -46,6 +48,7 @@ public class ECPProjectItemProvider extends ItemProviderAdapter implements IEdit
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -62,27 +65,24 @@ public class ECPProjectItemProvider extends ItemProviderAdapter implements IEdit
 	 * This adds a property descriptor for the Root Object feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addRootObjectPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ECPProject_rootObject_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ECPProject_rootObject_feature", "_UI_ECPProject_type"),
-				 WorkSpaceModelPackage.Literals.ECP_PROJECT__ROOT_OBJECT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ECPProject_rootObject_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ECPProject_rootObject_feature",
+					"_UI_ECPProject_type"), WorkSpaceModelPackage.Literals.ECP_PROJECT__ROOT_OBJECT, true, false, true,
+				null, null, null));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -107,6 +107,7 @@ public class ECPProjectItemProvider extends ItemProviderAdapter implements IEdit
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,6 +118,7 @@ public class ECPProjectItemProvider extends ItemProviderAdapter implements IEdit
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
