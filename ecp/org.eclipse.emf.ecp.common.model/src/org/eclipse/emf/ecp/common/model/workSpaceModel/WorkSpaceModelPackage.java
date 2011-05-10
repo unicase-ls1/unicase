@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelFactory
  * @model kind="package"
  * @generated
@@ -31,6 +32,7 @@ public interface WorkSpaceModelPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNAME = "workSpaceModel";
@@ -38,6 +40,7 @@ public interface WorkSpaceModelPackage extends EPackage {
 	/**
 	 * The package namespace URI.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://eclipse.org/emf/ecp/common/model/workspaceModel";
@@ -45,6 +48,7 @@ public interface WorkSpaceModelPackage extends EPackage {
 	/**
 	 * The package namespace name.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.eclipse.emf.ecp.common.model";
@@ -52,13 +56,17 @@ public interface WorkSpaceModelPackage extends EPackage {
 	/**
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	WorkSpaceModelPackage eINSTANCE = org.eclipse.emf.ecp.common.model.workSpaceModel.impl.WorkSpaceModelPackageImpl.init();
+	WorkSpaceModelPackage eINSTANCE = org.eclipse.emf.ecp.common.model.workSpaceModel.impl.WorkSpaceModelPackageImpl
+		.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ecp.common.model.workSpaceModel.impl.ECPWorkspaceImpl <em>ECP Workspace</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.emf.ecp.common.model.workSpaceModel.impl.ECPWorkspaceImpl
+	 * <em>ECP Workspace</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecp.common.model.workSpaceModel.impl.ECPWorkspaceImpl
 	 * @see org.eclipse.emf.ecp.common.model.workSpaceModel.impl.WorkSpaceModelPackageImpl#getECPWorkspace()
 	 * @generated
@@ -69,6 +77,7 @@ public interface WorkSpaceModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Projects</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -78,6 +87,7 @@ public interface WorkSpaceModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Active Project</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -87,14 +97,17 @@ public interface WorkSpaceModelPackage extends EPackage {
 	 * The number of structural features of the '<em>ECP Workspace</em>' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ECP_WORKSPACE_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ecp.common.model.workSpaceModel.impl.ECPProjectImpl <em>ECP Project</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.emf.ecp.common.model.workSpaceModel.impl.ECPProjectImpl
+	 * <em>ECP Project</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecp.common.model.workSpaceModel.impl.ECPProjectImpl
 	 * @see org.eclipse.emf.ecp.common.model.workSpaceModel.impl.WorkSpaceModelPackageImpl#getECPProject()
 	 * @generated
@@ -105,6 +118,7 @@ public interface WorkSpaceModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Workspace</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -114,6 +128,7 @@ public interface WorkSpaceModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Root Object</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -129,8 +144,10 @@ public interface WorkSpaceModelPackage extends EPackage {
 	int ECP_PROJECT_FEATURE_COUNT = 2;
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace <em>ECP Workspace</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace
+	 * <em>ECP Workspace</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>ECP Workspace</em>'.
 	 * @see org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace
 	 * @generated
@@ -138,9 +155,11 @@ public interface WorkSpaceModelPackage extends EPackage {
 	EClass getECPWorkspace();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace#getProjects <em>Projects</em>}'.
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace#getProjects <em>Projects</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the containment reference list '<em>Projects</em>'.
 	 * @see org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace#getProjects()
 	 * @see #getECPWorkspace()
@@ -149,9 +168,11 @@ public interface WorkSpaceModelPackage extends EPackage {
 	EReference getECPWorkspace_Projects();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace#getActiveProject <em>Active Project</em>}'.
+	 * Returns the meta object for the reference '
+	 * {@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace#getActiveProject <em>Active Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Active Project</em>'.
 	 * @see org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace#getActiveProject()
 	 * @see #getECPWorkspace()
@@ -160,8 +181,10 @@ public interface WorkSpaceModelPackage extends EPackage {
 	EReference getECPWorkspace_ActiveProject();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject <em>ECP Project</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject
+	 * <em>ECP Project</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>ECP Project</em>'.
 	 * @see org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject
 	 * @generated
@@ -169,9 +192,11 @@ public interface WorkSpaceModelPackage extends EPackage {
 	EClass getECPProject();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject#getWorkspace <em>Workspace</em>}'.
+	 * Returns the meta object for the container reference '
+	 * {@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject#getWorkspace <em>Workspace</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the container reference '<em>Workspace</em>'.
 	 * @see org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject#getWorkspace()
 	 * @see #getECPProject()
@@ -180,9 +205,11 @@ public interface WorkSpaceModelPackage extends EPackage {
 	EReference getECPProject_Workspace();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject#getRootObject <em>Root Object</em>}'.
+	 * Returns the meta object for the reference '
+	 * {@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject#getRootObject <em>Root Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Root Object</em>'.
 	 * @see org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject#getRootObject()
 	 * @see #getECPProject()
@@ -193,6 +220,7 @@ public interface WorkSpaceModelPackage extends EPackage {
 	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -207,12 +235,15 @@ public interface WorkSpaceModelPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.ecp.common.model.workSpaceModel.impl.ECPWorkspaceImpl <em>ECP Workspace</em>}' class.
+		 * The meta object literal for the '
+		 * {@link org.eclipse.emf.ecp.common.model.workSpaceModel.impl.ECPWorkspaceImpl <em>ECP Workspace</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.emf.ecp.common.model.workSpaceModel.impl.ECPWorkspaceImpl
 		 * @see org.eclipse.emf.ecp.common.model.workSpaceModel.impl.WorkSpaceModelPackageImpl#getECPWorkspace()
 		 * @generated
@@ -223,6 +254,7 @@ public interface WorkSpaceModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Projects</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference ECP_WORKSPACE__PROJECTS = eINSTANCE.getECPWorkspace_Projects();
@@ -231,13 +263,16 @@ public interface WorkSpaceModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Active Project</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference ECP_WORKSPACE__ACTIVE_PROJECT = eINSTANCE.getECPWorkspace_ActiveProject();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.ecp.common.model.workSpaceModel.impl.ECPProjectImpl <em>ECP Project</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.emf.ecp.common.model.workSpaceModel.impl.ECPProjectImpl
+		 * <em>ECP Project</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.emf.ecp.common.model.workSpaceModel.impl.ECPProjectImpl
 		 * @see org.eclipse.emf.ecp.common.model.workSpaceModel.impl.WorkSpaceModelPackageImpl#getECPProject()
 		 * @generated
@@ -248,6 +283,7 @@ public interface WorkSpaceModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Workspace</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference ECP_PROJECT__WORKSPACE = eINSTANCE.getECPProject_Workspace();
@@ -256,6 +292,7 @@ public interface WorkSpaceModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Root Object</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference ECP_PROJECT__ROOT_OBJECT = eINSTANCE.getECPProject_RootObject();

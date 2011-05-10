@@ -34,7 +34,8 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace} object. <!--
+ * This is the item provider adapter for a {@link org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace} object.
+ * <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
@@ -57,6 +58,7 @@ public class ECPWorkspaceItemProvider extends ItemProviderAdapter implements IEd
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ECPWorkspaceItemProvider(AdapterFactory adapterFactory) {
@@ -66,6 +68,7 @@ public class ECPWorkspaceItemProvider extends ItemProviderAdapter implements IEd
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -82,43 +85,33 @@ public class ECPWorkspaceItemProvider extends ItemProviderAdapter implements IEd
 	/**
 	 * This adds a property descriptor for the Projects feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addProjectsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ECPWorkspace_projects_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ECPWorkspace_projects_feature", "_UI_ECPWorkspace_type"),
-				 WorkSpaceModelPackage.Literals.ECP_WORKSPACE__PROJECTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ECPWorkspace_projects_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ECPWorkspace_projects_feature",
+				"_UI_ECPWorkspace_type"), WorkSpaceModelPackage.Literals.ECP_WORKSPACE__PROJECTS, true, false, true,
+			null, null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Active Project feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addActiveProjectPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ECPWorkspace_activeProject_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ECPWorkspace_activeProject_feature", "_UI_ECPWorkspace_type"),
-				 WorkSpaceModelPackage.Literals.ECP_WORKSPACE__ACTIVE_PROJECT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ECPWorkspace_activeProject_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ECPWorkspace_activeProject_feature",
+				"_UI_ECPWorkspace_type"), WorkSpaceModelPackage.Literals.ECP_WORKSPACE__ACTIVE_PROJECT, true, false,
+			true, null, null, null));
 	}
 
 	/**
@@ -127,6 +120,7 @@ public class ECPWorkspaceItemProvider extends ItemProviderAdapter implements IEd
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -140,6 +134,7 @@ public class ECPWorkspaceItemProvider extends ItemProviderAdapter implements IEd
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -153,6 +148,7 @@ public class ECPWorkspaceItemProvider extends ItemProviderAdapter implements IEd
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -172,9 +168,9 @@ public class ECPWorkspaceItemProvider extends ItemProviderAdapter implements IEd
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ECPWorkspace.class)) {
-			case WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -183,6 +179,7 @@ public class ECPWorkspaceItemProvider extends ItemProviderAdapter implements IEd
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -193,6 +190,7 @@ public class ECPWorkspaceItemProvider extends ItemProviderAdapter implements IEd
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -1,11 +1,7 @@
 /*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering,
- * Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
+ * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen. All rights
+ * reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public
+ * License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * Contributors:
  ******************************************************************************/
 package org.eclipse.emf.ecp.common.util;
@@ -119,8 +115,8 @@ public final class ActionHelper {
 			openModelElement(me, sourceView);
 		}
 
-		ECPWorkspaceManager.getObserverBus().notify(ModelElementOpenObserver.class).onOpen(me, sourceView,
-			"org.eclipse.emf.ecp.editor.MEEditor");
+		ECPWorkspaceManager.getObserverBus().notify(ModelElementOpenObserver.class)
+			.onOpen(me, sourceView, "org.eclipse.emf.ecp.editor.MEEditor");
 		openAndMarkMEWithMEEditor(me, problemFeature, context);
 	}
 
@@ -148,6 +144,5 @@ public final class ActionHelper {
 			DialogHandler.showExceptionDialog(e);
 		}
 	}
-	
-	
+
 }

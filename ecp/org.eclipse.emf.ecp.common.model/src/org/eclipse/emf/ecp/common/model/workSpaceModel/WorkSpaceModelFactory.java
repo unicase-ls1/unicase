@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EFactory;
 /**
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a create method for each non-abstract class of
  * the model. <!-- end-user-doc -->
+ * 
  * @see org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage
  * @generated
  */
@@ -22,14 +23,17 @@ public interface WorkSpaceModelFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	WorkSpaceModelFactory eINSTANCE = org.eclipse.emf.ecp.common.model.workSpaceModel.impl.WorkSpaceModelFactoryImpl.init();
+	WorkSpaceModelFactory eINSTANCE = org.eclipse.emf.ecp.common.model.workSpaceModel.impl.WorkSpaceModelFactoryImpl
+		.init();
 
 	/**
 	 * Returns a new object of class '<em>ECP Workspace</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>ECP Workspace</em>'.
 	 * @generated
 	 */
@@ -38,6 +42,7 @@ public interface WorkSpaceModelFactory extends EFactory {
 	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

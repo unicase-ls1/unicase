@@ -29,7 +29,7 @@ import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
  * @author Michael Haeger
  */
 public final class AssociationClassHelper {
-	
+
 	/**
 	 * Private constructor.
 	 */
@@ -52,8 +52,7 @@ public final class AssociationClassHelper {
 			EList<EStructuralFeature> features = objectToDrop.eClass().getEAllStructuralFeatures();
 			for (EStructuralFeature feature : features) {
 				if (feature instanceof EReference
-					&& context.isAssociationClassElement(
-						((EReference) feature).getEReferenceType())) {
+					&& context.isAssociationClassElement(((EReference) feature).getEReferenceType())) {
 					// get the value of the feature
 					Object evaluatedFeatures = objectToDrop.eGet(feature);
 					// feature value is a list
@@ -75,15 +74,14 @@ public final class AssociationClassHelper {
 
 	private static void handleAssociationClass(EObject objectToDrop, List<EObject> objectsToDrop, EObject association,
 		List<EObject> elements, List<EObject> result, ECPMetaModelElementContext context) {
-		
-		ECPAssociationClassElement ecpAssociation = 
-			context.getAssociationClassElement(association);
-		
+
+		ECPAssociationClassElement ecpAssociation = context.getAssociationClassElement(association);
+
 		if (!result.contains(association) && !elements.contains(association)) {
 			// if source and target are on the diagram add also the AssociationClassElement
 			Object source = association.eGet(ecpAssociation.getSourceFeature());
 			Object target = association.eGet(ecpAssociation.getTargetFeature());
-			
+
 			if (source.equals(objectToDrop)) {
 				if (elements.contains(target) || objectsToDrop.contains(target)) {
 					result.add(association);
@@ -110,11 +108,10 @@ public final class AssociationClassHelper {
 		EList<EStructuralFeature> features = objectToDelete.eClass().getEAllStructuralFeatures();
 		for (EStructuralFeature feature : features) {
 			if (feature instanceof EReference
-				&& context.isAssociationClassElement(
-					((EReference) feature).getEReferenceType())) {
+				&& context.isAssociationClassElement(((EReference) feature).getEReferenceType())) {
 				// get the value of the feature
 				Object evaluatedFeatures = objectToDelete.eGet(feature);
-				if(evaluatedFeatures == null) {
+				if (evaluatedFeatures == null) {
 					continue;
 				}
 				// feature value is a list
@@ -126,7 +123,7 @@ public final class AssociationClassHelper {
 						}
 					}
 				} // feature value is a single AssociationClassElement
-				// TODO: Chainsaw - review this part
+					// TODO: Chainsaw - review this part
 				else if (context.isAssociationClassElement((EObject) evaluatedFeatures)) {
 					result.add((EObject) evaluatedFeatures);
 				}
@@ -144,19 +141,19 @@ public final class AssociationClassHelper {
 	 * @return The other side of the association or {@code null} if the element not belongs to the association
 	 */
 	public static EObject getRelatedModelElement(EObject element, EObject association, ECPModelelementContext context) {
-		
-		ECPAssociationClassElement ecpAssociation = 
-			context.getMetaModelElementContext().getAssociationClassElement(association);
-		
+
+		ECPAssociationClassElement ecpAssociation = context.getMetaModelElementContext().getAssociationClassElement(
+			association);
+
 		Object source = association.eGet(ecpAssociation.getSourceFeature());
 		Object target = association.eGet(ecpAssociation.getTargetFeature());
-		
+
 		if (element.equals(source)) {
 			return (EObject) target;
 		} else if (element.equals(target)) {
 			return (EObject) source;
 		}
-		
+
 		return null;
 	}
 
@@ -187,12 +184,11 @@ public final class AssociationClassHelper {
 	 * @param context the context.
 	 * @return a list of features.
 	 */
-	public static List<EStructuralFeature> getAssociationFeatures(EObject association, 
-			ECPMetaModelElementContext context) {
-		
-		ECPAssociationClassElement ecpAssociation = 
-			context.getAssociationClassElement(association);
-		
+	public static List<EStructuralFeature> getAssociationFeatures(EObject association,
+		ECPMetaModelElementContext context) {
+
+		ECPAssociationClassElement ecpAssociation = context.getAssociationClassElement(association);
+
 		return ecpAssociation.getAssociationFeatures();
 	}
 
@@ -207,14 +203,13 @@ public final class AssociationClassHelper {
 	 */
 	public static void createAssociation(EReference eReference, EObject modelElement, EObject relatedModelElement,
 		ECPMetaModelElementContext context) {
-		
+
 		EClass eClazz = eReference.getEReferenceType();
 		EPackage ePackage = eClazz.getEPackage();
 		final EObject association = ePackage.getEFactoryInstance().create(eClazz);
-		
-		ECPAssociationClassElement ecpAssociation = 
-			context.getAssociationClassElement(association);
-		
+
+		ECPAssociationClassElement ecpAssociation = context.getAssociationClassElement(association);
+
 		if (ecpAssociation.getSourceFeature().getEOpposite().equals(eReference)) {
 			association.eSet(ecpAssociation.getSourceFeature(), modelElement);
 			association.eSet(ecpAssociation.getTargetFeature(), relatedModelElement);
@@ -233,12 +228,12 @@ public final class AssociationClassHelper {
 	 * @return all association features without source and target
 	 */
 	public static List<EStructuralFeature> getAssociationFeatures(EClass eClazz, EReference source, EReference target) {
-		
+
 		LinkedList<EStructuralFeature> result = new LinkedList<EStructuralFeature>();
 		result.addAll(eClazz.getEStructuralFeatures());
 		result.remove(source);
 		result.remove(target);
-		
+
 		return result;
 	}
 }

@@ -18,12 +18,12 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  * Base class for ECP plugin. Provides logging capabilities.
  * 
  * @author emueller
- *
+ * 
  */
 public abstract class AbstractECPPlugin extends AbstractUIPlugin implements ILog {
-	
+
 	private LogAdapter logAdapter;
-	
+
 	/**
 	 * Default constructor.
 	 */

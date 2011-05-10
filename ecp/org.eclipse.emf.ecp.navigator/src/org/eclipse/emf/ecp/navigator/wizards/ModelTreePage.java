@@ -1,11 +1,7 @@
 /*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering,
- * Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
+ * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen. All rights
+ * reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public
+ * License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * Contributors:
  ******************************************************************************/
 package org.eclipse.emf.ecp.navigator.wizards;
@@ -105,8 +101,8 @@ public class ModelTreePage extends WizardPage implements Listener {
 		});
 
 		treeViewer = new TreeViewer(tree);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).minSize(0, 150).span(2, 1).applyTo(
-			treeViewer.getControl());
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).minSize(0, 150).span(2, 1)
+			.applyTo(treeViewer.getControl());
 		treeViewer.setContentProvider(new ModelTreeContentProvider(selected));
 		treeViewer.setLabelProvider(new MEClassLabelProvider());
 		treeViewer.setComparator(new ViewerComparator());

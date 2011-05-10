@@ -32,11 +32,12 @@ import org.eclipse.emf.edit.domain.EditingDomain;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.ecp.common.model.workSpaceModel.impl.ECPWorkspaceImpl#getProjects <em>Projects</em>}</li>
- *   <li>{@link org.eclipse.emf.ecp.common.model.workSpaceModel.impl.ECPWorkspaceImpl#getActiveProject <em>Active Project</em>}</li>
+ * <li>{@link org.eclipse.emf.ecp.common.model.workSpaceModel.impl.ECPWorkspaceImpl#getProjects <em>Projects</em>}</li>
+ * <li>{@link org.eclipse.emf.ecp.common.model.workSpaceModel.impl.ECPWorkspaceImpl#getActiveProject <em>Active Project
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ECPWorkspaceImpl extends EObjectImpl implements ECPWorkspace {
@@ -54,6 +55,7 @@ public class ECPWorkspaceImpl extends EObjectImpl implements ECPWorkspace {
 	 * The cached value of the '{@link #getActiveProject() <em>Active Project</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getActiveProject()
 	 * @generated
 	 * @ordered
@@ -64,6 +66,7 @@ public class ECPWorkspaceImpl extends EObjectImpl implements ECPWorkspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ECPWorkspaceImpl() {
@@ -72,6 +75,7 @@ public class ECPWorkspaceImpl extends EObjectImpl implements ECPWorkspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -81,26 +85,30 @@ public class ECPWorkspaceImpl extends EObjectImpl implements ECPWorkspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ECPProject> getProjects() {
 		if (projects == null) {
-			projects = new EObjectContainmentWithInverseEList<ECPProject>(ECPProject.class, this, WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS, WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE);
+			projects = new EObjectContainmentWithInverseEList<ECPProject>(ECPProject.class, this,
+				WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS, WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE);
 		}
 		return projects;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ECPProject getActiveProject() {
 		if (activeProject != null && activeProject.eIsProxy()) {
-			InternalEObject oldActiveProject = (InternalEObject)activeProject;
-			activeProject = (ECPProject)eResolveProxy(oldActiveProject);
+			InternalEObject oldActiveProject = (InternalEObject) activeProject;
+			activeProject = (ECPProject) eResolveProxy(oldActiveProject);
 			if (activeProject != oldActiveProject) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT, oldActiveProject, activeProject));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT, oldActiveProject, activeProject));
 			}
 		}
 		return activeProject;
@@ -108,6 +116,7 @@ public class ECPWorkspaceImpl extends EObjectImpl implements ECPWorkspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ECPProject basicGetActiveProject() {
@@ -116,105 +125,114 @@ public class ECPWorkspaceImpl extends EObjectImpl implements ECPWorkspace {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setActiveProject(ECPProject newActiveProject) {
 		ECPProject oldActiveProject = activeProject;
 		activeProject = newActiveProject;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT, oldActiveProject, activeProject));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT,
+				oldActiveProject, activeProject));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getProjects()).basicAdd(otherEnd, msgs);
+		case WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getProjects()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS:
-				return ((InternalEList<?>)getProjects()).basicRemove(otherEnd, msgs);
+		case WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS:
+			return ((InternalEList<?>) getProjects()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS:
-				return getProjects();
-			case WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT:
-				if (resolve) return getActiveProject();
-				return basicGetActiveProject();
+		case WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS:
+			return getProjects();
+		case WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT:
+			if (resolve)
+				return getActiveProject();
+			return basicGetActiveProject();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS:
-				getProjects().clear();
-				getProjects().addAll((Collection<? extends ECPProject>)newValue);
-				return;
-			case WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT:
-				setActiveProject((ECPProject)newValue);
-				return;
+		case WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS:
+			getProjects().clear();
+			getProjects().addAll((Collection<? extends ECPProject>) newValue);
+			return;
+		case WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT:
+			setActiveProject((ECPProject) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS:
-				getProjects().clear();
-				return;
-			case WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT:
-				setActiveProject((ECPProject)null);
-				return;
+		case WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS:
+			getProjects().clear();
+			return;
+		case WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT:
+			setActiveProject((ECPProject) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS:
-				return projects != null && !projects.isEmpty();
-			case WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT:
-				return activeProject != null;
+		case WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS:
+			return projects != null && !projects.isEmpty();
+		case WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT:
+			return activeProject != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -233,7 +251,7 @@ public class ECPWorkspaceImpl extends EObjectImpl implements ECPWorkspace {
 	}
 
 	public void setActiveModelelement(EObject eobject) {
-		if(eobject instanceof ECPProject) {
+		if (eobject instanceof ECPProject) {
 			setActiveProject((ECPProject) eobject);
 		}
 	}

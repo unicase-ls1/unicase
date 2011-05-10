@@ -54,17 +54,17 @@ public abstract class AbstractECPMetaModelElementContext implements ECPMetaModel
 	 * {@inheritDoc}
 	 */
 	public Set<EClass> getAllSubEClasses(EClass eClass, boolean association) {
-		
+
 		Set<EClass> allEClasses = getAllModelElementEClasses(association);
 		Set<EClass> result = new HashSet<EClass>();
-		
+
 		for (EClass subClass : allEClasses) {
 			if ((eClass.equals(EcorePackage.eINSTANCE.getEObject()) || eClass.isSuperTypeOf(subClass))
 				&& (!subClass.isAbstract()) && (!subClass.isInterface())) {
 				result.add(subClass);
 			}
 		}
-		
+
 		return result;
 	}
 
@@ -72,18 +72,18 @@ public abstract class AbstractECPMetaModelElementContext implements ECPMetaModel
 	 * {@inheritDoc}
 	 */
 	public Set<EClass> getAllModelElementEClasses(boolean association) {
-		
+
 		Set<EClass> result = new HashSet<EClass>();
-		
+
 		for (EClass subClass : getAllModelElementEClassesImpl()) {
 			if (association || !isAssociationClassElement(subClass)) {
 				result.add(subClass);
 			}
 		}
-		
+
 		return result;
 	}
-	
+
 	/**
 	 * @param newMEInstance {@link EObject} the new modelElement instance.
 	 * @return EReference the Container
@@ -124,32 +124,32 @@ public abstract class AbstractECPMetaModelElementContext implements ECPMetaModel
 	 * @return a set of {@link EClass}es
 	 */
 	protected Set<EClass> getAllModelElementEClassesImpl() {
-		
+
 		if (modelElementEClasses != null) {
 			return new HashSet<EClass>(modelElementEClasses);
 		}
-		
+
 		Set<EClass> result = new HashSet<EClass>();
 		Set<String> registeredPackages = new HashSet<String>();
 		Registry registry = EPackage.Registry.INSTANCE;
 		IConfigurationElement[] packages = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			"org.eclipse.emf.ecp.model.ecppackage");
-		
+
 		for (IConfigurationElement element : packages) {
 			String packageName = element.getAttribute("modelPackage");
 			registeredPackages.add(packageName);
 		}
-		
+
 		if (registeredPackages.isEmpty()) {
 			return guessPackages(new HashSet<Entry<String, Object>>(registry.entrySet()));
 		}
 
 		for (Entry<String, Object> entry : new HashSet<Entry<String, Object>>(registry.entrySet())) {
-			
+
 			if (!registeredPackages.contains(entry.getKey())) {
 				continue;
 			}
-			
+
 			try {
 				EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
 				result.addAll(getAllModelElementEClasses(ePackage));
@@ -161,7 +161,7 @@ public abstract class AbstractECPMetaModelElementContext implements ECPMetaModel
 				Activator.getDefault().logException(message, exception);
 			}
 		}
-		
+
 		modelElementEClasses = result;
 		return result;
 	}
@@ -192,8 +192,7 @@ public abstract class AbstractECPMetaModelElementContext implements ECPMetaModel
 
 	private boolean isKnownPackage(String key) {
 
-		String[] elements = { 
-			"http://www.eclipse.org/m2t/xpand/Trace",
+		String[] elements = { "http://www.eclipse.org/m2t/xpand/Trace",
 			"http://www.eclipse.org/emf/eef/mapping/filters/1.0.0", "http://www.cs.tum.edu/cope/history/0.1.42",
 			"http://www.eclipse.org/acceleo/profiler/3.0", "http://www.eclipse.org/emf/compare/epatch/0.1",
 			"http://www.eclipse.org/ocl/1.1.0/UML", "http://www.eclipse.org/emf/eef/components/1.0.0",
@@ -248,7 +247,6 @@ public abstract class AbstractECPMetaModelElementContext implements ECPMetaModel
 		return knownPackages.contains(key);
 	}
 
-	
 	/**
 	 * Retrieve all EClasses from the Ecore package that are model element subclasses.
 	 * 

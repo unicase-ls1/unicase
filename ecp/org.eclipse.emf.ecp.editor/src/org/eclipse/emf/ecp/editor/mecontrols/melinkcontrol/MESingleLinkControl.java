@@ -1,11 +1,7 @@
 /*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering,
- * Technische Universitaet Muenchen.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
+ * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen. All rights
+ * reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public
+ * License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * Contributors:
  ******************************************************************************/
 package org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol;
@@ -100,7 +96,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 	/**
 	 * Creates the actions for the control.
 	 * 
-	 * @return list of actions 
+	 * @return list of actions
 	 */
 	protected List<Action> initActions() {
 		List<Action> result = new ArrayList<Action>();
@@ -145,7 +141,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 		if (labelWidget != null) {
 			labelWidget.dispose();
 		}
-	
+
 		EObject opposite = (EObject) getModelElement().eGet(eReference);
 		if (opposite != null) {
 			MELinkControlFactory meLinkControlFactory = new MELinkControlFactory();
