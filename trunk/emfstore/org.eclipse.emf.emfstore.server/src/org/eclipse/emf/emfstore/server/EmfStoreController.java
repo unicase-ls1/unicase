@@ -35,8 +35,6 @@ import org.eclipse.emf.emfstore.common.model.util.FileUtil;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.accesscontrol.AccessControlImpl;
 import org.eclipse.emf.emfstore.server.connection.ConnectionHandler;
-import org.eclipse.emf.emfstore.server.connection.rmi.RMIAdminConnectionHandler;
-import org.eclipse.emf.emfstore.server.connection.rmi.RMIConnectionHandler;
 import org.eclipse.emf.emfstore.server.connection.xmlrpc.XmlRpcAdminConnectionHander;
 import org.eclipse.emf.emfstore.server.connection.xmlrpc.XmlRpcConnectionHandler;
 import org.eclipse.emf.emfstore.server.core.AdminEmfStoreImpl;
@@ -205,16 +203,6 @@ public class EmfStoreController implements IApplication, Runnable {
 
 	private Set<ConnectionHandler<? extends EmfStoreInterface>> initConnectionHandlers() throws FatalEmfStoreException {
 		Set<ConnectionHandler<? extends EmfStoreInterface>> connectionHandlers = new HashSet<ConnectionHandler<? extends EmfStoreInterface>>();
-
-		// create RMI connection handler for emfstore
-		RMIConnectionHandler rmiConnectionHandler = new RMIConnectionHandler();
-		rmiConnectionHandler.init(emfStore, accessControl);
-		connectionHandlers.add(rmiConnectionHandler);
-
-		// create RMI connection handler for admin emfstore
-		RMIAdminConnectionHandler rmiAdminConnectionHandler = new RMIAdminConnectionHandler();
-		rmiAdminConnectionHandler.init(adminEmfStore, accessControl);
-		connectionHandlers.add(rmiAdminConnectionHandler);
 
 		// crate XML RPC connection handlers
 		XmlRpcConnectionHandler xmlRpcConnectionHander = new XmlRpcConnectionHandler();
