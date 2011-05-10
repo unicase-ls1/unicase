@@ -25,17 +25,17 @@ public final class EMFStoreMigratorUtil {
 	private static final String MIGRATOR_CLASS = "migratorClass";
 	private static EMFStoreMigrator migrator;
 
-	
 	private EMFStoreMigratorUtil() {
-		//private constructor of utility class
+		// private constructor of utility class
 	}
-	
+
 	/**
 	 * Check if any migrators are registered.
+	 * 
 	 * @return true, if migrators are available.
 	 */
-	public static boolean isMigratorAvailable() { 
-		if (migrator!=null) {
+	public static boolean isMigratorAvailable() {
+		if (migrator != null) {
 			return true;
 		}
 		try {
@@ -48,12 +48,13 @@ public final class EMFStoreMigratorUtil {
 
 	/**
 	 * Retrieve a migrator. Will default to the first loadable migrator if multiple migrators are available.
+	 * 
 	 * @return the migrator
 	 * @throws EMFStoreMigrationException if no migrators are available or can be loaded.
 	 */
 	public static EMFStoreMigrator getEMFStoreMigrator() throws EMFStoreMigrationException {
 
-		if (migrator!=null) {
+		if (migrator != null) {
 			return migrator;
 		}
 		return loadMigrator();

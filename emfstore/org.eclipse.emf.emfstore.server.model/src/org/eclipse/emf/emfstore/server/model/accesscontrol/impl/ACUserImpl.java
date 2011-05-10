@@ -21,11 +21,11 @@ import org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.accesscontrol.impl.ACUserImpl#getFirstName <em>First Name</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.accesscontrol.impl.ACUserImpl#getLastName <em>Last Name</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.accesscontrol.impl.ACUserImpl#getFirstName <em>First Name</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.accesscontrol.impl.ACUserImpl#getLastName <em>Last Name</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
@@ -33,6 +33,7 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	 * The default value of the '{@link #getFirstName() <em>First Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getFirstName()
 	 * @generated
 	 * @ordered
@@ -43,6 +44,7 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	 * The cached value of the '{@link #getFirstName() <em>First Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getFirstName()
 	 * @generated
 	 * @ordered
@@ -53,6 +55,7 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	 * The default value of the '{@link #getLastName() <em>Last Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getLastName()
 	 * @generated
 	 * @ordered
@@ -63,6 +66,7 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	 * The cached value of the '{@link #getLastName() <em>Last Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getLastName()
 	 * @generated
 	 * @ordered
@@ -71,6 +75,7 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ACUserImpl() {
@@ -79,6 +84,7 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -88,6 +94,7 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getFirstName() {
@@ -96,17 +103,20 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setFirstName(String newFirstName) {
 		String oldFirstName = firstName;
 		firstName = newFirstName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AccesscontrolPackage.AC_USER__FIRST_NAME, oldFirstName, firstName));
+			eNotify(new ENotificationImpl(this, Notification.SET, AccesscontrolPackage.AC_USER__FIRST_NAME,
+				oldFirstName, firstName));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLastName() {
@@ -115,86 +125,94 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setLastName(String newLastName) {
 		String oldLastName = lastName;
 		lastName = newLastName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AccesscontrolPackage.AC_USER__LAST_NAME, oldLastName, lastName));
+			eNotify(new ENotificationImpl(this, Notification.SET, AccesscontrolPackage.AC_USER__LAST_NAME, oldLastName,
+				lastName));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case AccesscontrolPackage.AC_USER__FIRST_NAME:
-				return getFirstName();
-			case AccesscontrolPackage.AC_USER__LAST_NAME:
-				return getLastName();
+		case AccesscontrolPackage.AC_USER__FIRST_NAME:
+			return getFirstName();
+		case AccesscontrolPackage.AC_USER__LAST_NAME:
+			return getLastName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case AccesscontrolPackage.AC_USER__FIRST_NAME:
-				setFirstName((String)newValue);
-				return;
-			case AccesscontrolPackage.AC_USER__LAST_NAME:
-				setLastName((String)newValue);
-				return;
+		case AccesscontrolPackage.AC_USER__FIRST_NAME:
+			setFirstName((String) newValue);
+			return;
+		case AccesscontrolPackage.AC_USER__LAST_NAME:
+			setLastName((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case AccesscontrolPackage.AC_USER__FIRST_NAME:
-				setFirstName(FIRST_NAME_EDEFAULT);
-				return;
-			case AccesscontrolPackage.AC_USER__LAST_NAME:
-				setLastName(LAST_NAME_EDEFAULT);
-				return;
+		case AccesscontrolPackage.AC_USER__FIRST_NAME:
+			setFirstName(FIRST_NAME_EDEFAULT);
+			return;
+		case AccesscontrolPackage.AC_USER__LAST_NAME:
+			setLastName(LAST_NAME_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case AccesscontrolPackage.AC_USER__FIRST_NAME:
-				return FIRST_NAME_EDEFAULT == null ? firstName != null : !FIRST_NAME_EDEFAULT.equals(firstName);
-			case AccesscontrolPackage.AC_USER__LAST_NAME:
-				return LAST_NAME_EDEFAULT == null ? lastName != null : !LAST_NAME_EDEFAULT.equals(lastName);
+		case AccesscontrolPackage.AC_USER__FIRST_NAME:
+			return FIRST_NAME_EDEFAULT == null ? firstName != null : !FIRST_NAME_EDEFAULT.equals(firstName);
+		case AccesscontrolPackage.AC_USER__LAST_NAME:
+			return LAST_NAME_EDEFAULT == null ? lastName != null : !LAST_NAME_EDEFAULT.equals(lastName);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (firstName: ");

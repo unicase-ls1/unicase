@@ -14,16 +14,18 @@ import org.eclipse.emf.emfstore.common.model.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Trace Event</b></em>'. <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getSourceElement <em>Source Element</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getTargetElement <em>Target Element</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getFeatureName <em>Feature Name</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getSourceElement <em>Source Element
+ * </em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getTargetElement <em>Target Element
+ * </em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getFeatureName <em>Feature Name</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getTraceEvent()
  * @model
  * @generated
@@ -37,6 +39,7 @@ public interface TraceEvent extends Event {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Source Element</em>' containment reference.
 	 * @see #setSourceElement(ModelElementId)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getTraceEvent_SourceElement()
@@ -46,8 +49,11 @@ public interface TraceEvent extends Event {
 	ModelElementId getSourceElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getSourceElement <em>Source Element</em>}' containment reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getSourceElement
+	 * <em>Source Element</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Source Element</em>' containment reference.
 	 * @see #getSourceElement()
 	 * @generated
@@ -62,6 +68,7 @@ public interface TraceEvent extends Event {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Target Element</em>' containment reference.
 	 * @see #setTargetElement(ModelElementId)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getTraceEvent_TargetElement()
@@ -71,8 +78,11 @@ public interface TraceEvent extends Event {
 	ModelElementId getTargetElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getTargetElement <em>Target Element</em>}' containment reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getTargetElement
+	 * <em>Target Element</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Target Element</em>' containment reference.
 	 * @see #getTargetElement()
 	 * @generated
@@ -87,6 +97,7 @@ public interface TraceEvent extends Event {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Feature Name</em>' attribute.
 	 * @see #setFeatureName(String)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getTraceEvent_FeatureName()
@@ -96,8 +107,10 @@ public interface TraceEvent extends Event {
 	String getFeatureName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getFeatureName <em>Feature Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent#getFeatureName
+	 * <em>Feature Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Feature Name</em>' attribute.
 	 * @see #getFeatureName()
 	 * @generated

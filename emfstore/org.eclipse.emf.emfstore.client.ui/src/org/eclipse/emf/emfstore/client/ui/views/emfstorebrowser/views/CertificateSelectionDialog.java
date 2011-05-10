@@ -83,8 +83,7 @@ public class CertificateSelectionDialog extends ElementListSelectionDialog {
 
 		// two column layout composite
 		Composite grid = new Composite(parent, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false)
-				.applyTo(grid);
+		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).applyTo(grid);
 
 		// left column composite
 		Composite left = new Composite(grid, SWT.NONE);
@@ -92,26 +91,20 @@ public class CertificateSelectionDialog extends ElementListSelectionDialog {
 
 		// right column composite
 		Composite right = new Composite(grid, SWT.NONE);
-		GridLayoutFactory.createFrom(layout).margins(layout.marginWidth, 35)
-				.applyTo(right);
-		GridDataFactory.fillDefaults().grab(true, true).hint(300, 200).applyTo(
-				right);
+		GridLayoutFactory.createFrom(layout).margins(layout.marginWidth, 35).applyTo(right);
+		GridDataFactory.fillDefaults().grab(true, true).hint(300, 200).applyTo(right);
 		applyDialogFont(right);
 
 		// right column: certificate details
 		new Label(right, SWT.NONE).setText("Certificate Alias: ");
 		final Text certAlias = new Text(right, SWT.NONE);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(certAlias);
-		certAlias.setBackground(Display.getCurrent().getSystemColor(
-				SWT.COLOR_WHITE));
+		certAlias.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		certAlias.setEditable(false);
 		new Label(right, SWT.NONE).setText("Certificate Details: ");
-		final Text certDetails = new Text(right, SWT.MULTI | SWT.WRAP
-				| SWT.V_SCROLL);
-		GridDataFactory.fillDefaults().grab(true, false).hint(300, 230)
-				.applyTo(certDetails);
-		certDetails.setBackground(Display.getCurrent().getSystemColor(
-				SWT.COLOR_WHITE));
+		final Text certDetails = new Text(right, SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
+		GridDataFactory.fillDefaults().grab(true, false).hint(300, 230).applyTo(certDetails);
+		certDetails.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		certDetails.setEditable(false);
 
 		// left column: dialogue area composite (displays certificates and
@@ -124,8 +117,8 @@ public class CertificateSelectionDialog extends ElementListSelectionDialog {
 		// left column: import button, composite used to ensure correct
 		// alignment
 		Composite certButtonsComposite = new Composite(grid, SWT.NONE);
-		GridLayoutFactory.createFrom(layout).numColumns(3).equalWidth(true)
-				.margins(layout.marginWidth, 0).applyTo(certButtonsComposite);
+		GridLayoutFactory.createFrom(layout).numColumns(3).equalWidth(true).margins(layout.marginWidth, 0)
+			.applyTo(certButtonsComposite);
 		applyDialogFont(certButtonsComposite);
 		Button browse = new Button(certButtonsComposite, SWT.NONE);
 		browse.setText("Import...");
@@ -145,16 +138,14 @@ public class CertificateSelectionDialog extends ElementListSelectionDialog {
 					String alias = selectedTableItem.getText();
 					try {
 						KeyStoreManager.getInstance().deleteCertificate(alias);
-						setListElements(KeyStoreManager.getInstance()
-								.getCertificates().toArray());
+						setListElements(KeyStoreManager.getInstance().getCertificates().toArray());
 					} catch (CertificateStoreException e1) {
 						setErrorMessage(e1.getMessage());
 					}
 				}
 			}
 		});
-		fFilteredList.addSelectionListener(new SelectionListenerImplementation(
-				certDetails, certAlias));
+		fFilteredList.addSelectionListener(new SelectionListenerImplementation(certDetails, certAlias));
 		return control;
 	}
 
@@ -170,8 +161,7 @@ public class CertificateSelectionDialog extends ElementListSelectionDialog {
 	 *            error message
 	 */
 	protected void setErrorMessage(String message) {
-		MessageDialog.openInformation(Display.getDefault().getActiveShell(),
-				"Attention", message);
+		MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Attention", message);
 	}
 
 	/**
@@ -180,8 +170,7 @@ public class CertificateSelectionDialog extends ElementListSelectionDialog {
 	 * @author koegel
 	 * 
 	 */
-	private final class SelectionListenerImplementation implements
-			SelectionListener {
+	private final class SelectionListenerImplementation implements SelectionListener {
 		private final Text certDetails;
 		private final Text certAlias;
 
@@ -196,18 +185,15 @@ public class CertificateSelectionDialog extends ElementListSelectionDialog {
 
 		public void widgetSelected(SelectionEvent e) {
 			if (((Table) e.getSource()).getItems().length > 0) {
-				selectedTableItem = ((Table) e.getSource()).getItems()[((Table) e
-						.getSource()).getSelectionIndex()];
+				selectedTableItem = ((Table) e.getSource()).getItems()[((Table) e.getSource()).getSelectionIndex()];
 				alias = selectedTableItem.getText();
 				try {
-					X509Certificate selectedCertificate = (X509Certificate) KeyStoreManager
-							.getInstance().getCertificate(alias);
-					String[] details = selectedCertificate.toString().split(
-							"\n");
+					X509Certificate selectedCertificate = (X509Certificate) KeyStoreManager.getInstance()
+						.getCertificate(alias);
+					String[] details = selectedCertificate.toString().split("\n");
 					String tmp = "";
 					for (int i = 2; i < 14; i++) {
-						tmp += (i == 7 || i == 8) ? "" : details[i].trim()
-								+ "\n";
+						tmp += (i == 7 || i == 8) ? "" : details[i].trim() + "\n";
 					}
 					certAlias.setText(alias);
 					certDetails.setText(tmp);
@@ -231,19 +217,15 @@ public class CertificateSelectionDialog extends ElementListSelectionDialog {
 		 *            selection event
 		 */
 		public void widgetSelected(SelectionEvent e) {
-			FileDialog fileDialog = new FileDialog(Display.getCurrent()
-					.getActiveShell());
+			FileDialog fileDialog = new FileDialog(Display.getCurrent().getActiveShell());
 			fileDialog.open();
 			if (!fileDialog.getFileName().equals("")) {
-				String location = fileDialog.getFilterPath()
-						+ System.getProperty("file.separator")
-						+ fileDialog.getFileName();
+				String location = fileDialog.getFilterPath() + System.getProperty("file.separator")
+					+ fileDialog.getFileName();
 
-				InputDialog inputDialog = new InputDialog(
-						Display.getCurrent().getActiveShell(),
-						"Select certificate designation",
-						"Please choose a designation for the previously selected certificate: ",
-						"", null);
+				InputDialog inputDialog = new InputDialog(Display.getCurrent().getActiveShell(),
+					"Select certificate designation",
+					"Please choose a designation for the previously selected certificate: ", "", null);
 
 				inputDialog.setBlockOnOpen(true);
 				if (inputDialog.open() != Window.OK) {
@@ -255,16 +237,14 @@ public class CertificateSelectionDialog extends ElementListSelectionDialog {
 					alias = "unnamed:" + EcoreUtil.generateUUID();
 				}
 				try {
-					KeyStoreManager.getInstance().addCertificate(alias,
-							location);
+					KeyStoreManager.getInstance().addCertificate(alias, location);
 				} catch (final InvalidCertificateException e1) {
 					setErrorMessage("Invalid certificate!");
 				} catch (CertificateStoreException e1) {
 					setErrorMessage(e1.getMessage());
 				}
 				try {
-					setListElements(KeyStoreManager.getInstance()
-							.getCertificates().toArray());
+					setListElements(KeyStoreManager.getInstance().getCertificates().toArray());
 				} catch (CertificateStoreException e1) {
 					setErrorMessage(e1.getMessage());
 				}

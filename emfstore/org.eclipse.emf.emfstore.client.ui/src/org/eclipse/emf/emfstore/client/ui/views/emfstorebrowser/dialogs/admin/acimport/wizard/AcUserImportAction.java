@@ -30,8 +30,7 @@ public class AcUserImportAction extends Action {
 	public AcUserImportAction(AdminBroker broker) {
 		super("Import user or group");
 		this.broker = broker;
-		this.setImageDescriptor(Activator
-				.getImageDescriptor("icons/importuser.png"));
+		this.setImageDescriptor(Activator.getImageDescriptor("icons/importuser.png"));
 		this.setToolTipText("Import user or group");
 	}
 
@@ -41,8 +40,7 @@ public class AcUserImportAction extends Action {
 	@Override
 	public void run() {
 		AcUserImportWizard wizard = new AcUserImportWizard(broker);
-		WizardDialog dialog = new WizardDialog(Display.getCurrent()
-				.getActiveShell(), wizard);
+		WizardDialog dialog = new WizardDialog(Display.getCurrent().getActiveShell(), wizard);
 		dialog.create();
 		dialog.open();
 

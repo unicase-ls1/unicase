@@ -92,8 +92,8 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 				return ((PrimaryVersionSpec) versionSpec);
 				// HeadVersionSpec
 			} else if (versionSpec instanceof HeadVersionSpec) {
-				return EcoreUtil.copy(getSubInterface(ProjectSubInterfaceImpl.class)
-					.getProject(projectId).getLastVersion().getPrimarySpec());
+				return EcoreUtil.copy(getSubInterface(ProjectSubInterfaceImpl.class).getProject(projectId)
+					.getLastVersion().getPrimarySpec());
 				// DateVersionSpec
 			} else if (versionSpec instanceof DateVersionSpec) {
 				for (Version version : projectHistory.getVersions()) {

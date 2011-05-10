@@ -16,8 +16,10 @@ package org.eclipse.emf.emfstore.server.model.versioning.operations;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation#getOldValue <em>Old Value</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation#getNewValue <em>New Value</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation#getOldValue <em>Old Value
+ * </em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation#getNewValue <em>New Value
+ * </em>}</li>
  * </ul>
  * </p>
  * 
@@ -34,6 +36,7 @@ public interface AttributeOperation extends FeatureOperation {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Old Value</em>' attribute.
 	 * @see #setOldValue(Object)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getAttributeOperation_OldValue()
@@ -43,8 +46,11 @@ public interface AttributeOperation extends FeatureOperation {
 	Object getOldValue();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation#getOldValue <em>Old Value</em>}' attribute.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation#getOldValue
+	 * <em>Old Value</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Old Value</em>' attribute.
 	 * @see #getOldValue()
 	 * @generated
@@ -59,6 +65,7 @@ public interface AttributeOperation extends FeatureOperation {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>New Value</em>' attribute.
 	 * @see #setNewValue(Object)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getAttributeOperation_NewValue()
@@ -68,8 +75,11 @@ public interface AttributeOperation extends FeatureOperation {
 	Object getNewValue();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation#getNewValue <em>New Value</em>}' attribute.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation#getNewValue
+	 * <em>New Value</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>New Value</em>' attribute.
 	 * @see #getNewValue()
 	 * @generated

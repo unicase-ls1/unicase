@@ -43,6 +43,7 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UsersessionItemProvider(AdapterFactory adapterFactory) {
@@ -52,6 +53,7 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -72,6 +74,7 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	/**
 	 * This adds a property descriptor for the Username feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addUsernamePropertyDescriptor(Object object) {
@@ -88,6 +91,7 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	/**
 	 * This adds a property descriptor for the Password feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addPasswordPropertyDescriptor(Object object) {
@@ -104,6 +108,7 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	/**
 	 * This adds a property descriptor for the Session Id feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addSessionIdPropertyDescriptor(Object object) {
@@ -136,6 +141,7 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	/**
 	 * This adds a property descriptor for the Server Info feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addServerInfoPropertyDescriptor(Object object) {
@@ -151,6 +157,7 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	/**
 	 * This adds a property descriptor for the Save Password feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addSavePasswordPropertyDescriptor(Object object) {
@@ -169,6 +176,7 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -183,6 +191,7 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -196,6 +205,7 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	/**
 	 * This returns Usersession.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -247,6 +257,7 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -263,6 +274,7 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

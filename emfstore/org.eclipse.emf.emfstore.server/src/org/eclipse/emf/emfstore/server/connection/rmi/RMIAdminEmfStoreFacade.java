@@ -113,7 +113,8 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#addParticipant(org.eclipse.emf.emfstore.server.model.SessionId, org.eclipse.emf.emfstore.server.model.ProjectId,
+	 * @see AdminEmfStore#addParticipant(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.ProjectId,
 	 *      org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId)
 	 * @param sessionId the session id
 	 * @param projectId the project id
@@ -128,7 +129,8 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
 	 * @see AdminEmfStore#removeParticipant(org.eclipse.emf.emfstore.server.model.SessionId,
-	 *      org.eclipse.emf.emfstore.server.model.ProjectId, org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId)
+	 *      org.eclipse.emf.emfstore.server.model.ProjectId,
+	 *      org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId)
 	 * @param sessionId the session id
 	 * @param projectId the project id
 	 * @param participant the orgUnit
@@ -141,7 +143,8 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#getRole(org.eclipse.emf.emfstore.server.model.SessionId, org.eclipse.emf.emfstore.server.model.ProjectId,
+	 * @see AdminEmfStore#getRole(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.ProjectId,
 	 *      org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId)
 	 * @param sessionId the session id
 	 * @param projectId the project id
@@ -155,7 +158,8 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
 	 * 
-	 * @see AdminEmfStore#changeRole(org.eclipse.emf.emfstore.server.model.SessionId, org.eclipse.emf.emfstore.server.model.ProjectId,
+	 * @see AdminEmfStore#changeRole(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.ProjectId,
 	 *      org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId, org.eclipse.emf.ecore.EClass)
 	 * @param sessionId the session id
 	 * @param projectId the project id

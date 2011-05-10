@@ -13,8 +13,8 @@ package org.eclipse.emf.emfstore.server.model.versioning.operations;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Diagram Layout Operation</b></em>'. <!--
  * end-user-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getDiagramLayoutOperation()
  * @model
  * @generated

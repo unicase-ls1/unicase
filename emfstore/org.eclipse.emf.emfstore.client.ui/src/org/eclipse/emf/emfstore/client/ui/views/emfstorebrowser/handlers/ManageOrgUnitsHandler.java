@@ -38,10 +38,8 @@ public class ManageOrgUnitsHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ManageOrgUnitsDialog dialog;
 		try {
-			IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow();
-			ISelection selection = activeWorkbenchWindow.getSelectionService()
-					.getSelection();
+			IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+			ISelection selection = activeWorkbenchWindow.getSelectionService().getSelection();
 			Object obj = ((IStructuredSelection) selection).getFirstElement();
 			if (!(obj instanceof TreeNode)) {
 				return null;
@@ -51,8 +49,7 @@ public class ManageOrgUnitsHandler extends AbstractHandler {
 			ServerInfo serverInfo = (ServerInfo) node.getValue();
 			Usersession session = serverInfo.getLastUsersession();
 			AdminBroker adminBroker = session.getAdminBroker();
-			dialog = new ManageOrgUnitsDialog(PlatformUI.getWorkbench()
-					.getDisplay().getActiveShell(), adminBroker);
+			dialog = new ManageOrgUnitsDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), adminBroker);
 			dialog.create();
 			dialog.open();
 		} catch (EmfStoreException e) {

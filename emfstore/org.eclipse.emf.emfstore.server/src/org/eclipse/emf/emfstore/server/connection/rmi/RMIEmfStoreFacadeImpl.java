@@ -73,8 +73,8 @@ public class RMIEmfStoreFacadeImpl extends AbstractEMFStoreRMIFacade implements 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.server.connection.rmi.RMIEmfStoreFacade#createVersion(java.lang.String, java.lang.String,
-	 *      java.lang.String, java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.emfstore.server.connection.rmi.RMIEmfStoreFacade#createVersion(java.lang.String,
+	 *      java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	public String createVersion(String sessionId, String projectId, String baseVersionSpec, String changePackage,
 		String logMessage) throws RemoteException, EmfStoreException {
@@ -91,8 +91,8 @@ public class RMIEmfStoreFacadeImpl extends AbstractEMFStoreRMIFacade implements 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.server.connection.rmi.RMIEmfStoreFacade#getChanges(java.lang.String, java.lang.String,
-	 *      java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.emfstore.server.connection.rmi.RMIEmfStoreFacade#getChanges(java.lang.String,
+	 *      java.lang.String, java.lang.String, java.lang.String)
 	 */
 	public List<String> getChanges(String sessionId, String projectId, String source, String target)
 		throws RemoteException, EmfStoreException {
@@ -146,8 +146,8 @@ public class RMIEmfStoreFacadeImpl extends AbstractEMFStoreRMIFacade implements 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.server.connection.rmi.RMIEmfStoreFacade#getProject(java.lang.String, java.lang.String,
-	 *      java.lang.String)
+	 * @see org.eclipse.emf.emfstore.server.connection.rmi.RMIEmfStoreFacade#getProject(java.lang.String,
+	 *      java.lang.String, java.lang.String)
 	 */
 	public String getProject(String sessionId, String projectId, String versionSpec) throws RemoteException,
 		EmfStoreException {
@@ -202,8 +202,8 @@ public class RMIEmfStoreFacadeImpl extends AbstractEMFStoreRMIFacade implements 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.server.connection.rmi.RMIEmfStoreFacade#resolveVersionSpec(java.lang.String, java.lang.String,
-	 *      java.lang.String)
+	 * @see org.eclipse.emf.emfstore.server.connection.rmi.RMIEmfStoreFacade#resolveVersionSpec(java.lang.String,
+	 *      java.lang.String, java.lang.String)
 	 */
 	public String resolveVersionSpec(String sessionId, String projectId, String versionSpec) throws RemoteException,
 		EmfStoreException {
@@ -216,8 +216,8 @@ public class RMIEmfStoreFacadeImpl extends AbstractEMFStoreRMIFacade implements 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.server.connection.rmi.RMIEmfStoreFacade#createProject(java.lang.String, java.lang.String,
-	 *      java.lang.String, java.lang.String)
+	 * @see org.eclipse.emf.emfstore.server.connection.rmi.RMIEmfStoreFacade#createProject(java.lang.String,
+	 *      java.lang.String, java.lang.String, java.lang.String)
 	 */
 	public String createProject(String sessionId, String name, String description, String logMessage)
 		throws RemoteException, EmfStoreException {

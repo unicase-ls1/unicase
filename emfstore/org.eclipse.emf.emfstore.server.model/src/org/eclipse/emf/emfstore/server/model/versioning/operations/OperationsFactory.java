@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EFactory;
 /**
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a create method for each non-abstract class of
  * the model. <!-- end-user-doc -->
+ * 
  * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage
  * @generated
  */
@@ -22,13 +23,16 @@ public interface OperationsFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	OperationsFactory eINSTANCE = org.eclipse.emf.emfstore.server.model.versioning.operations.impl.OperationsFactoryImpl.init();
+	OperationsFactory eINSTANCE = org.eclipse.emf.emfstore.server.model.versioning.operations.impl.OperationsFactoryImpl
+		.init();
 
 	/**
 	 * Returns a new object of class '<em>Composite Operation</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Composite Operation</em>'.
 	 * @generated
 	 */
@@ -37,6 +41,7 @@ public interface OperationsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Create Delete Operation</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Create Delete Operation</em>'.
 	 * @generated
 	 */
@@ -45,6 +50,7 @@ public interface OperationsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Attribute Operation</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Attribute Operation</em>'.
 	 * @generated
 	 */
@@ -53,6 +59,7 @@ public interface OperationsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Multi Attribute Operation</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Multi Attribute Operation</em>'.
 	 * @generated
 	 */
@@ -71,6 +78,7 @@ public interface OperationsFactory extends EFactory {
 	 * Returns a new object of class '<em>Multi Attribute Move Operation</em>'.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Multi Attribute Move Operation</em>'.
 	 * @generated
 	 */
@@ -88,6 +96,7 @@ public interface OperationsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Multi Reference Operation</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Multi Reference Operation</em>'.
 	 * @generated
 	 */
@@ -106,6 +115,7 @@ public interface OperationsFactory extends EFactory {
 	 * Returns a new object of class '<em>Multi Reference Move Operation</em>'.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Multi Reference Move Operation</em>'.
 	 * @generated
 	 */
@@ -114,6 +124,7 @@ public interface OperationsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Diagram Layout Operation</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Diagram Layout Operation</em>'.
 	 * @generated
 	 */
@@ -122,6 +133,7 @@ public interface OperationsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Operation Id</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Operation Id</em>'.
 	 * @generated
 	 */
@@ -130,6 +142,7 @@ public interface OperationsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Operation Group</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Operation Group</em>'.
 	 * @generated
 	 */
@@ -138,6 +151,7 @@ public interface OperationsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Model Element Group</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Model Element Group</em>'.
 	 * @generated
 	 */
@@ -146,6 +160,7 @@ public interface OperationsFactory extends EFactory {
 	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

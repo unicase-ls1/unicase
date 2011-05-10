@@ -50,7 +50,7 @@ import java.util.List;
  * 
  * ObserverBus.send(B.class).say(&quot;w00t&quot;);
  * 
- * // Output: 
+ * // Output:
  * 
  * // B says: h??
  * // A says: go!
@@ -151,6 +151,7 @@ public class ObserverBus {
 		}
 		return handler;
 	}
+
 	/**
 	 * Proxyobserver which notifies all observers.
 	 * 
@@ -161,7 +162,7 @@ public class ObserverBus {
 		private Object proxy;
 		private ArrayList<IObserver> observers;
 
-		public ProxyHandler() { 
+		public ProxyHandler() {
 			observers = new ArrayList<IObserver>();
 		}
 
@@ -181,9 +182,9 @@ public class ObserverBus {
 		public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 			for (IObserver observer : observers) {
 				try {
-				method.invoke(observer, args);
+					method.invoke(observer, args);
 				} catch (Throwable e) {
-					//TODO:  handle exception
+					// TODO: handle exception
 				}
 			}
 			// TODO: handle return values

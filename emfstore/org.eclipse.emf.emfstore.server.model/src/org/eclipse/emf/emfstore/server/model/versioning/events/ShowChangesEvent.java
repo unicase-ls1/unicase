@@ -18,8 +18,10 @@ import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowChangesEvent#getSourceVersion <em>Source Version</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowChangesEvent#getTargetVersion <em>Target Version</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowChangesEvent#getSourceVersion <em>Source
+ * Version</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowChangesEvent#getTargetVersion <em>Target
+ * Version</em>}</li>
  * </ul>
  * </p>
  * 
@@ -36,6 +38,7 @@ public interface ShowChangesEvent extends Event {
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Source Version</em>' containment reference.
 	 * @see #setSourceVersion(PrimaryVersionSpec)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getShowChangesEvent_SourceVersion()
@@ -45,8 +48,11 @@ public interface ShowChangesEvent extends Event {
 	PrimaryVersionSpec getSourceVersion();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowChangesEvent#getSourceVersion <em>Source Version</em>}' containment reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowChangesEvent#getSourceVersion
+	 * <em>Source Version</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Source Version</em>' containment reference.
 	 * @see #getSourceVersion()
 	 * @generated
@@ -61,6 +67,7 @@ public interface ShowChangesEvent extends Event {
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Target Version</em>' containment reference.
 	 * @see #setTargetVersion(PrimaryVersionSpec)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getShowChangesEvent_TargetVersion()
@@ -70,8 +77,11 @@ public interface ShowChangesEvent extends Event {
 	PrimaryVersionSpec getTargetVersion();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowChangesEvent#getTargetVersion <em>Target Version</em>}' containment reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowChangesEvent#getTargetVersion
+	 * <em>Target Version</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Target Version</em>' containment reference.
 	 * @see #getTargetVersion()
 	 * @generated

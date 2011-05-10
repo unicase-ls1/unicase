@@ -19,8 +19,8 @@ import org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser;
 
 /**
- * This subinterfaces implements all user related functionality for the {@link org.eclipse.emf.emfstore.server.core.EmfStoreImpl}
- * interface.
+ * This subinterfaces implements all user related functionality for the
+ * {@link org.eclipse.emf.emfstore.server.core.EmfStoreImpl} interface.
  * 
  * @author wesendon
  */

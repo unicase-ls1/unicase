@@ -47,8 +47,7 @@ public class LoginHandler extends AbstractHandler {
 	 */
 	public LoginHandler(ProjectSpace projectSpace) {
 		if (projectSpace.getUsersession() == null) {
-			throw new IllegalArgumentException(
-					"The project space is not associated with a usersession");
+			throw new IllegalArgumentException("The project space is not associated with a usersession");
 		}
 		usersession = projectSpace.getUsersession();
 	}
@@ -60,8 +59,7 @@ public class LoginHandler extends AbstractHandler {
 	 *         canceled.
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		Shell parentShell = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell();
+		Shell parentShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		LoginDialog loginDialog = new LoginDialog(parentShell, usersession);
 		loginDialog.open();
 		return loginDialog.getReturnCode();

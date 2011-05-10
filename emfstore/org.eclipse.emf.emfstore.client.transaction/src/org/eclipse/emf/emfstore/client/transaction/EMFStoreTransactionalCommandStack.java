@@ -10,7 +10,6 @@
  ******************************************************************************/
 package org.eclipse.emf.emfstore.client.transaction;
 
-
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.emfstore.client.model.Configuration;
@@ -52,16 +51,17 @@ public class EMFStoreTransactionalCommandStack extends TransactionalCommandStack
 
 	private void runEMFStoreCommand(final AbstractEMFStoreCommand cmd) {
 		// wrap EMFStoreCommands in RecordingCommands
-		RecordingCommand recordingCommand = new RecordingCommand((TransactionalEditingDomain) Configuration.getEditingDomain()) {
+		RecordingCommand recordingCommand = new RecordingCommand(
+			(TransactionalEditingDomain) Configuration.getEditingDomain()) {
 			@Override
 			protected void doExecute() {
 				cmd.execute();
 			}
 		};
 		super.execute(recordingCommand);
-		
+
 		// rethrow runtime exceptions if neccessary
-		if (!cmd.shouldIgnoreExceptions() && cmd.getRuntimeException()!=null) {
+		if (!cmd.shouldIgnoreExceptions() && cmd.getRuntimeException() != null) {
 			throw cmd.getRuntimeException();
 		}
 	}

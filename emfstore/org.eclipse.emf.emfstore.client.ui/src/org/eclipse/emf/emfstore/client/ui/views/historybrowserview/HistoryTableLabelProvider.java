@@ -33,8 +33,7 @@ public class HistoryTableLabelProvider extends AdapterFactoryLabelProvider {
 	 * . Constructor
 	 */
 	public HistoryTableLabelProvider() {
-		super(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	/**
@@ -46,8 +45,7 @@ public class HistoryTableLabelProvider extends AdapterFactoryLabelProvider {
 			HistoryInfo historyInfo = (HistoryInfo) object;
 			switch (columnIndex) {
 			case REVISION_COLUMN:
-				return Integer.toString(historyInfo.getPrimerySpec()
-						.getIdentifier());
+				return Integer.toString(historyInfo.getPrimerySpec().getIdentifier());
 			case TAG_COLUMN:
 				String tags = "";
 				for (TagVersionSpec tag : historyInfo.getTagSpecs()) {

@@ -25,7 +25,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.emfstore.server.model.versioning.events.Validate;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.Validate} object. <!--
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.Validate}
+ * object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
@@ -35,6 +36,7 @@ public class ValidateItemProvider extends EventItemProvider implements IEditingD
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ValidateItemProvider(AdapterFactory adapterFactory) {
@@ -44,6 +46,7 @@ public class ValidateItemProvider extends EventItemProvider implements IEditingD
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -58,6 +61,7 @@ public class ValidateItemProvider extends EventItemProvider implements IEditingD
 	/**
 	 * This returns Validate.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,15 +72,15 @@ public class ValidateItemProvider extends EventItemProvider implements IEditingD
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((Validate)object).getTimestamp();
+		Date labelValue = ((Validate) object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Validate_type") :
-			getString("_UI_Validate_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Validate_type") : getString("_UI_Validate_type")
+			+ " " + label;
 	}
 
 	/**
@@ -96,6 +100,7 @@ public class ValidateItemProvider extends EventItemProvider implements IEditingD
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -21,8 +21,8 @@ import org.eclipse.jface.viewers.ILightweightLabelDecorator;
  */
 public class ProjectDirtyDecorator implements ILightweightLabelDecorator {
 
-	//	private String dirtyPath = "icons/dirty.jpg";
-	//	private ImageDescriptor descriptor;
+	// private String dirtyPath = "icons/dirty.jpg";
+	// private ImageDescriptor descriptor;
 
 	/**
 	 * {@inheritDoc}
@@ -38,20 +38,21 @@ public class ProjectDirtyDecorator implements ILightweightLabelDecorator {
 		 * specified image description and the integer representation of the placement option.
 		 */
 
-		//		URL url = null;
-		//		boolean dirty = false;
-		//		ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
-		//		if (activeProjectSpace == null) {
-		//			return;
-		//		}
-		//		if (element instanceof Project) {
-		//			return;
-		//		}
-		//		if (dirty) {
-		//			url = FileLocator.find(Platform.getBundle("org.eclipse.emf.ecp.common"), new Path(dirtyPath), null);
-		//			descriptor = ImageDescriptor.createFromURL(url);
-		//			decoration.addOverlay(descriptor, IDecoration.BOTTOM_LEFT);
-		//		}
+		// URL url = null;
+		// boolean dirty = false;
+		// ProjectSpace activeProjectSpace =
+		// WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
+		// if (activeProjectSpace == null) {
+		// return;
+		// }
+		// if (element instanceof Project) {
+		// return;
+		// }
+		// if (dirty) {
+		// url = FileLocator.find(Platform.getBundle("org.eclipse.emf.ecp.common"), new Path(dirtyPath), null);
+		// descriptor = ImageDescriptor.createFromURL(url);
+		// decoration.addOverlay(descriptor, IDecoration.BOTTOM_LEFT);
+		// }
 	}
 
 	/**

@@ -58,8 +58,7 @@ public class ImportItemWrapper {
 	 * @param parentOrgUnit
 	 *            The parent orgUnit of this object.
 	 */
-	public ImportItemWrapper(Object sourceObj, ACOrgUnit orgUnit,
-			ImportItemWrapper parentOrgUnit) {
+	public ImportItemWrapper(Object sourceObj, ACOrgUnit orgUnit, ImportItemWrapper parentOrgUnit) {
 		super();
 		this.sourceObj = sourceObj;
 		this.orgUnit = orgUnit;

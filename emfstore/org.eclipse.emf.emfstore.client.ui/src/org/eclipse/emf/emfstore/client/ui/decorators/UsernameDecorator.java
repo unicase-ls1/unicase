@@ -36,8 +36,8 @@ public class UsernameDecorator extends AdapterImpl implements ILightweightLabelD
 	public void decorate(Object element, final IDecoration decoration) {
 		if (element instanceof ProjectSpace) {
 			ProjectSpace projectSpace = (ProjectSpace) element;
-			if(projectSpace.getUsersession() != null){
-				String string = " "+projectSpace.getUsersession().getUsername();
+			if (projectSpace.getUsersession() != null) {
+				String string = " " + projectSpace.getUsersession().getUsername();
 				decoration.addSuffix(string);
 			}
 		}
@@ -51,7 +51,7 @@ public class UsernameDecorator extends AdapterImpl implements ILightweightLabelD
 	}
 
 	/**
-	 *  {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void dispose() {
 		listeners.removeAll(listeners);
@@ -59,21 +59,21 @@ public class UsernameDecorator extends AdapterImpl implements ILightweightLabelD
 	}
 
 	/**
-	 *  {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public boolean isLabelProperty(Object element, String property) {
 		return false;
 	}
 
 	/**
-	 *  {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void removeListener(ILabelProviderListener listener) {
 		listeners.remove(listener);
 	}
 
 	/**
-	 *  {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void decorationChanged() {
 		LabelProviderChangedEvent event = new LabelProviderChangedEvent(this, element);
@@ -83,7 +83,7 @@ public class UsernameDecorator extends AdapterImpl implements ILightweightLabelD
 	}
 
 	/**
-	 *  {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void notifyChanged(Notification msg) {

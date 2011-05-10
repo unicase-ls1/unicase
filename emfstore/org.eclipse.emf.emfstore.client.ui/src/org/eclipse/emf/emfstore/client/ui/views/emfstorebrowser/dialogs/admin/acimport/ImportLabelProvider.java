@@ -42,10 +42,8 @@ public class ImportLabelProvider implements ILabelProvider {
 		this.setSource(controller.getImportSource());
 		this.listeners = new ArrayList<ILabelProviderListener>();
 
-		this.userImage = Activator.getImageDescriptor("icons/user.png")
-				.createImage();
-		this.groupImage = Activator.getImageDescriptor("icons/Group.gif")
-				.createImage();
+		this.userImage = Activator.getImageDescriptor("icons/user.png").createImage();
+		this.groupImage = Activator.getImageDescriptor("icons/Group.gif").createImage();
 	}
 
 	/**

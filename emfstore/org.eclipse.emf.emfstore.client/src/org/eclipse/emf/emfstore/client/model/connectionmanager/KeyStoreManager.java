@@ -90,15 +90,12 @@ public final class KeyStoreManager {
 	}
 
 	private void loadConfiguration() {
-		IConfigurationElement[] rawExtensions = Platform
-				.getExtensionRegistry()
-				.getConfigurationElementsFor(
-						"org.eclipse.emf.emfstore.client.defaultConfigurationProvider");
+		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.eclipse.emf.emfstore.client.defaultConfigurationProvider");
 		ConfigurationProvider provider = null;
 		for (IConfigurationElement extension : rawExtensions) {
 			try {
-				provider = (ConfigurationProvider) extension
-						.createExecutableExtension("providerClass");
+				provider = (ConfigurationProvider) extension.createExecutableExtension("providerClass");
 			} catch (CoreException e) {
 				// fail silently
 			}
@@ -135,10 +132,8 @@ public final class KeyStoreManager {
 			}
 			try {
 				// configure file
-				InputStream inputStream = getClass().getResourceAsStream(
-						KEYSTORENAME);
-				File clientKeyTarget = new File(
-						Configuration.getWorkspaceDirectory() + KEYSTORENAME);
+				InputStream inputStream = getClass().getResourceAsStream(KEYSTORENAME);
+				File clientKeyTarget = new File(Configuration.getWorkspaceDirectory() + KEYSTORENAME);
 				// copy to destination
 				FileUtil.copyFile(inputStream, clientKeyTarget);
 			} catch (IOException e) {
@@ -187,11 +182,9 @@ public final class KeyStoreManager {
 	 *             is thrown when problems occur with the CertificateStore, i.e.
 	 *             illegal operations.
 	 */
-	public void deleteCertificate(String alias)
-			throws CertificateStoreException {
+	public void deleteCertificate(String alias) throws CertificateStoreException {
 		if (isDefaultCertificate(alias)) {
-			throw new CertificateStoreException(
-					"Cannot delete default certificate!");
+			throw new CertificateStoreException("Cannot delete default certificate!");
 		} else {
 			loadKeyStore();
 			try {
@@ -218,8 +211,7 @@ public final class KeyStoreManager {
 	 *             is thrown when problems occur with the CertificateStore, i.e.
 	 *             illegal operations.
 	 */
-	public void addCertificate(String alias, String path)
-			throws InvalidCertificateException, CertificateStoreException {
+	public void addCertificate(String alias, String path) throws InvalidCertificateException, CertificateStoreException {
 		try {
 			addCertificate(alias, new FileInputStream(path));
 		} catch (FileNotFoundException e) {
@@ -243,15 +235,13 @@ public final class KeyStoreManager {
 	 *             is thrown when problems occur with the CertificateStore, i.e.
 	 *             illegal operations
 	 */
-	public void addCertificate(String alias, InputStream certificate)
-			throws InvalidCertificateException, CertificateStoreException {
+	public void addCertificate(String alias, InputStream certificate) throws InvalidCertificateException,
+		CertificateStoreException {
 		if (!isDefaultCertificate(alias)) {
 			loadKeyStore();
 			try {
-				CertificateFactory factory = CertificateFactory
-						.getInstance(CERTIFICATE_TYPE);
-				Certificate newCertificate = factory
-						.generateCertificate(certificate);
+				CertificateFactory factory = CertificateFactory.getInstance(CERTIFICATE_TYPE);
+				Certificate newCertificate = factory.generateCertificate(certificate);
 				keyStore.setCertificateEntry(alias, newCertificate);
 				storeKeyStore();
 			} catch (CertificateException e) {
@@ -268,8 +258,7 @@ public final class KeyStoreManager {
 	private void storeKeyStore() throws CertificateStoreException {
 		loadKeyStore();
 		try {
-			keyStore.store(new FileOutputStream(getPathToKeyStore()),
-					KEYSTOREPASSWORD.toCharArray());
+			keyStore.store(new FileOutputStream(getPathToKeyStore()), KEYSTOREPASSWORD.toCharArray());
 		} catch (KeyStoreException e) {
 			String message = "Storing certificate failed!";
 			WorkspaceUtil.logWarning(message, e);
@@ -308,8 +297,7 @@ public final class KeyStoreManager {
 		if (keyStore == null) {
 			try {
 				keyStore = KeyStore.getInstance("JKS");
-				keyStore.load(new FileInputStream(getPathToKeyStore()),
-						KEYSTOREPASSWORD.toCharArray());
+				keyStore.load(new FileInputStream(getPathToKeyStore()), KEYSTOREPASSWORD.toCharArray());
 			} catch (KeyStoreException e) {
 				String message = "Loading certificate failed!";
 				WorkspaceUtil.logWarning(message, e);
@@ -345,37 +333,28 @@ public final class KeyStoreManager {
 	public SSLContext getSSLContext() throws CertificateStoreException {
 		try {
 			loadKeyStore();
-			KeyManagerFactory managerFactory = KeyManagerFactory
-					.getInstance("SunX509");
+			KeyManagerFactory managerFactory = KeyManagerFactory.getInstance("SunX509");
 			managerFactory.init(keyStore, KEYSTOREPASSWORD.toCharArray());
-			TrustManagerFactory trustManagerFactory = TrustManagerFactory
-					.getInstance("SunX509");
+			TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("SunX509");
 			trustManagerFactory.init(keyStore);
 			SSLContext sslContext = SSLContext.getInstance("TLS");
-			sslContext.init(managerFactory.getKeyManagers(),
-					trustManagerFactory.getTrustManagers(), null);
+			sslContext.init(managerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), null);
 
-			HttpsURLConnection
-					.setDefaultHostnameVerifier(new HostnameVerifier() {
-						public boolean verify(String hostname,
-								SSLSession session) {
-							return true;
-						}
-					});
+			HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+				public boolean verify(String hostname, SSLSession session) {
+					return true;
+				}
+			});
 
 			return sslContext;
 		} catch (NoSuchAlgorithmException e) {
-			throw new CertificateStoreException("Loading certificate failed!",
-					e);
+			throw new CertificateStoreException("Loading certificate failed!", e);
 		} catch (UnrecoverableKeyException e) {
-			throw new CertificateStoreException("Loading certificate failed!",
-					e);
+			throw new CertificateStoreException("Loading certificate failed!", e);
 		} catch (KeyStoreException e) {
-			throw new CertificateStoreException("Loading certificate failed!",
-					e);
+			throw new CertificateStoreException("Loading certificate failed!", e);
 		} catch (KeyManagementException e) {
-			throw new CertificateStoreException("Loading certificate failed!",
-					e);
+			throw new CertificateStoreException("Loading certificate failed!", e);
 		}
 	}
 
@@ -439,13 +418,12 @@ public final class KeyStoreManager {
 			// Auto-generated catch block
 			e.printStackTrace();
 		}
-		WorkspaceUtil.logException("Couldn't encrypt password.",
-				new CertificateStoreException("Couldn't encrypt password."));
+		WorkspaceUtil.logException("Couldn't encrypt password.", new CertificateStoreException(
+			"Couldn't encrypt password."));
 		return "";
 	}
 
-	private Certificate getCertificateForEncryption(ServerInfo serverInfo)
-			throws CertificateStoreException {
+	private Certificate getCertificateForEncryption(ServerInfo serverInfo) throws CertificateStoreException {
 		if (serverInfo == null) {
 			throw new CertificateStoreException("Server info is null.");
 		}
@@ -453,8 +431,7 @@ public final class KeyStoreManager {
 		if (publicKey == null) {
 			publicKey = getCertificate(getDefaultCertificate());
 			if (publicKey == null) {
-				throw new CertificateStoreException(
-						"Unable to get certificate for password encryption.");
+				throw new CertificateStoreException("Unable to get certificate for password encryption.");
 			}
 		}
 		return publicKey;
@@ -524,8 +501,7 @@ public final class KeyStoreManager {
 	 *             is thrown when problems occur with the CertificateStore, i.e.
 	 *             illegal operations.
 	 */
-	public Certificate getCertificate(String alias)
-			throws CertificateStoreException {
+	public Certificate getCertificate(String alias) throws CertificateStoreException {
 		if (alias == null) {
 			return null;
 		}
@@ -546,8 +522,7 @@ public final class KeyStoreManager {
 	 * @throws CertificateStoreException
 	 *             in case of failure
 	 */
-	public boolean certificateExists(String alias)
-			throws CertificateStoreException {
+	public boolean certificateExists(String alias) throws CertificateStoreException {
 		try {
 			return getCertificate(alias) != null;
 		} catch (CertificateStoreException e) {

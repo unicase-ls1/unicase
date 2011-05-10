@@ -124,8 +124,7 @@ public class LdapImportSource extends ImportSource {
 
 				Attributes attr = new BasicAttributes();
 				try {
-					attr = this.dirContext.getAttributes(nameInNamespace,
-							attrSet);
+					attr = this.dirContext.getAttributes(nameInNamespace, attrSet);
 				} catch (NamingException exc) {
 					// do nothing at all, attributes couldn't be fetched
 				}
@@ -140,8 +139,8 @@ public class LdapImportSource extends ImportSource {
 				} else if (isPerson(objectclasses)) {
 					orgUnit = AccesscontrolFactory.eINSTANCE.createACUser();
 					// if we can't get "uid", we take "cn" instead.
-					String username = attr.get("uid") != null ? (String) attr
-							.get("uid").get() : (String) attr.get("cn").get();
+					String username = attr.get("uid") != null ? (String) attr.get("uid").get() : (String) attr
+						.get("cn").get();
 					orgUnit.setName(username);
 				} else {
 					orgUnit = AccesscontrolFactory.eINSTANCE.createACOrgUnit();
@@ -156,8 +155,7 @@ public class LdapImportSource extends ImportSource {
 				// couldn't do this in the getChildren-method,
 				// because in this case we would lose the wrappedObject - it
 				// would vanish, as it is just a parameter!
-				arrayList.add(new ImportItemWrapper(nameInNamespace, orgUnit,
-						wrappedObject));
+				arrayList.add(new ImportItemWrapper(nameInNamespace, orgUnit, wrappedObject));
 			}
 
 			wrappedObject.setChildOrgUnits(arrayList);
@@ -179,16 +177,14 @@ public class LdapImportSource extends ImportSource {
 	@Override
 	public Object[] getElements(Object arg0) {
 		try {
-			NamingEnumeration<NameClassPair> list = dirContext.list(properties
-					.getProperty(LdapImportSource.LDAP_BASE));
+			NamingEnumeration<NameClassPair> list = dirContext.list(properties.getProperty(LdapImportSource.LDAP_BASE));
 
 			ArrayList<ImportItemWrapper> arrayList = new ArrayList<ImportItemWrapper>();
 
 			while (list.hasMore()) {
 
 				String nameInNamespace = list.next().getNameInNamespace();
-				Attributes attr = this.dirContext.getAttributes(
-						nameInNamespace, attrSet);
+				Attributes attr = this.dirContext.getAttributes(nameInNamespace, attrSet);
 
 				ACOrgUnit orgUnit;
 
@@ -200,8 +196,8 @@ public class LdapImportSource extends ImportSource {
 				} else if (isPerson(objectclasses)) { // if we got a user
 					orgUnit = AccesscontrolFactory.eINSTANCE.createACUser();
 					// if we can't get "uid", we take "cn" instead.
-					String username = attr.get("uid") != null ? (String) attr
-							.get("uid").get() : (String) attr.get("cn").get();
+					String username = attr.get("uid") != null ? (String) attr.get("uid").get() : (String) attr
+						.get("cn").get();
 					orgUnit.setName(username);
 				} else {
 					orgUnit = AccesscontrolFactory.eINSTANCE.createACOrgUnit();
@@ -256,8 +252,8 @@ public class LdapImportSource extends ImportSource {
 	 * @throws NamingException
 	 *             throws an exception
 	 */
-	public ArrayList<NameClassPair> namingEnumerationToArrayList(
-			NamingEnumeration<NameClassPair> list) throws NamingException {
+	public ArrayList<NameClassPair> namingEnumerationToArrayList(NamingEnumeration<NameClassPair> list)
+		throws NamingException {
 		ArrayList<NameClassPair> arrayList = new ArrayList<NameClassPair>();
 		while (list.hasMore()) {
 			arrayList.add(list.next());
@@ -302,8 +298,8 @@ public class LdapImportSource extends ImportSource {
 	 */
 	@Override
 	public String getMessage() {
-		return "Import from " + properties.getProperty(Context.PROVIDER_URL)
-				+ " with base: " + properties.getProperty(LDAP_BASE);
+		return "Import from " + properties.getProperty(Context.PROVIDER_URL) + " with base: "
+			+ properties.getProperty(LDAP_BASE);
 	}
 
 	/**

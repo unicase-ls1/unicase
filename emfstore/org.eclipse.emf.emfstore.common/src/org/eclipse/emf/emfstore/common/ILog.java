@@ -10,15 +10,14 @@
  ******************************************************************************/
 package org.eclipse.emf.emfstore.common;
 
-
 /**
  * Logger to log warnings and exceptions.
  * 
  * @author Koegel
- *
+ * 
  */
 public interface ILog {
-	
+
 	/**
 	 * Log an error.
 	 * 
@@ -30,6 +29,7 @@ public interface ILog {
 
 	/**
 	 * Log an exception as an error.
+	 * 
 	 * @param message the message
 	 * @param e the causing exception.
 	 */
@@ -37,9 +37,10 @@ public interface ILog {
 
 	/**
 	 * Log an exception as a warning.
+	 * 
 	 * @param message the message
 	 * @param e the causing exception
 	 */
 	void logWarning(String message, Exception e);
-	
+
 }

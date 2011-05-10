@@ -29,10 +29,11 @@ import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.NotificationCompositeImpl#getNotifications <em>Notifications</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.impl.NotificationCompositeImpl#getNotifications <em>Notifications
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class NotificationCompositeImpl extends EObjectImpl implements NotificationComposite {
@@ -48,6 +49,7 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected NotificationCompositeImpl() {
@@ -56,6 +58,7 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,6 +68,7 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ESNotification> getNotifications() {
@@ -77,6 +81,7 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,6 +95,7 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,6 +109,7 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -119,6 +126,7 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -133,6 +141,7 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

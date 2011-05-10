@@ -120,13 +120,11 @@ public class OrgUnitManagementGUI {
 
 	}
 
-	private PropertiesForm createPropertiesForm(SashForm sash,
-			AdminBroker adminBroker) {
+	private PropertiesForm createPropertiesForm(SashForm sash, AdminBroker adminBroker) {
 
 		FormToolkit toolkit = new FormToolkit(sash.getDisplay());
 
-		PropertiesForm frm = new PropertiesForm(sash, SWT.NONE, adminBroker,
-				this);
+		PropertiesForm frm = new PropertiesForm(sash, SWT.NONE, adminBroker, this);
 		frm.setText("Properties");
 		frm.setFont(JFaceResources.getHeaderFont());
 
@@ -147,8 +145,7 @@ public class OrgUnitManagementGUI {
 	private void initTabFolder(AdminBroker adminBroker, PropertiesForm frm) {
 
 		TabItem projectsTab = new TabItem(tabFolder, SWT.NONE);
-		projectsTabContents = new ProjectTabContent("Projects", adminBroker,
-				frm);
+		projectsTabContents = new ProjectTabContent("Projects", adminBroker, frm);
 		projectsTab.setControl(projectsTabContents.createContents(tabFolder));
 		projectsTab.setText("Projects");
 

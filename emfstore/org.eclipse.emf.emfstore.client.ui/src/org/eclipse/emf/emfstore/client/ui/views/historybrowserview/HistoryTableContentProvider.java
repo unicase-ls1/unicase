@@ -28,8 +28,7 @@ public class HistoryTableContentProvider extends AdapterFactoryContentProvider {
 	 * . Constructor
 	 */
 	public HistoryTableContentProvider() {
-		super(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 	}
 

@@ -29,8 +29,8 @@ public class TreeNodeClassTester extends PropertyTester {
 			TreeNode node = (TreeNode) receiver;
 			Class<?> clazz;
 			try {
-				clazz = Class.forName((String)expectedValue);
-				if(clazz.isAssignableFrom(node.getValue().getClass())){
+				clazz = Class.forName((String) expectedValue);
+				if (clazz.isAssignableFrom(node.getValue().getClass())) {
 					return true;
 				}
 			} catch (ClassNotFoundException e) {

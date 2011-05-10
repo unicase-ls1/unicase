@@ -30,9 +30,11 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenc
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceSetOperation} object.
+ * This is the item provider adapter for a
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceSetOperation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class MultiReferenceSetOperationItemProvider extends ReferenceOperationItemProvider implements
@@ -41,6 +43,7 @@ public class MultiReferenceSetOperationItemProvider extends ReferenceOperationIt
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MultiReferenceSetOperationItemProvider(AdapterFactory adapterFactory) {
@@ -50,6 +53,7 @@ public class MultiReferenceSetOperationItemProvider extends ReferenceOperationIt
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,22 +69,18 @@ public class MultiReferenceSetOperationItemProvider extends ReferenceOperationIt
 	/**
 	 * This adds a property descriptor for the Index feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addIndexPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MultiReferenceSetOperation_index_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MultiReferenceSetOperation_index_feature", "_UI_MultiReferenceSetOperation_type"),
-				 OperationsPackage.Literals.MULTI_REFERENCE_SET_OPERATION__INDEX,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_MultiReferenceSetOperation_index_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_MultiReferenceSetOperation_index_feature",
+				"_UI_MultiReferenceSetOperation_type"),
+			OperationsPackage.Literals.MULTI_REFERENCE_SET_OPERATION__INDEX, true, false, false,
+			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -89,6 +89,7 @@ public class MultiReferenceSetOperationItemProvider extends ReferenceOperationIt
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,6 +104,7 @@ public class MultiReferenceSetOperationItemProvider extends ReferenceOperationIt
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -116,6 +118,7 @@ public class MultiReferenceSetOperationItemProvider extends ReferenceOperationIt
 	/**
 	 * This returns MultiReferenceSetOperation.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -126,14 +129,14 @@ public class MultiReferenceSetOperationItemProvider extends ReferenceOperationIt
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MultiReferenceSetOperation)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_MultiReferenceSetOperation_type") :
-			getString("_UI_MultiReferenceSetOperation_type") + " " + label;
+		String label = ((MultiReferenceSetOperation) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_MultiReferenceSetOperation_type")
+			: getString("_UI_MultiReferenceSetOperation_type") + " " + label;
 	}
 
 	/**
@@ -148,13 +151,13 @@ public class MultiReferenceSetOperationItemProvider extends ReferenceOperationIt
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MultiReferenceSetOperation.class)) {
-			case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__INDEX:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE:
-			case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__INDEX:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE:
+		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -163,27 +166,27 @@ public class MultiReferenceSetOperationItemProvider extends ReferenceOperationIt
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(OperationsPackage.Literals.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE,
-				 ModelFactory.eINSTANCE.createModelElementId()));
+		newChildDescriptors.add(createChildParameter(
+			OperationsPackage.Literals.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE,
+			ModelFactory.eINSTANCE.createModelElementId()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(OperationsPackage.Literals.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE,
-				 ModelFactory.eINSTANCE.createModelElementId()));
+		newChildDescriptors.add(createChildParameter(
+			OperationsPackage.Literals.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE,
+			ModelFactory.eINSTANCE.createModelElementId()));
 	}
 
 	/**
 	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -191,14 +194,12 @@ public class MultiReferenceSetOperationItemProvider extends ReferenceOperationIt
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify =
-			childFeature == OperationsPackage.Literals.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE ||
-			childFeature == OperationsPackage.Literals.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE;
+		boolean qualify = childFeature == OperationsPackage.Literals.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE
+			|| childFeature == OperationsPackage.Literals.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE;
 
 		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
+				getFeatureText(childFeature), getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

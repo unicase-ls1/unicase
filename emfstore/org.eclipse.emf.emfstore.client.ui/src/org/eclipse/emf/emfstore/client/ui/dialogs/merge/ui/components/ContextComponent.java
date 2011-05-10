@@ -72,10 +72,8 @@ public class ContextComponent extends Composite {
 
 		CLabel meLabel = new CLabel(this, SWT.NONE);
 		meLabel.setImage(provider.getImage(context.getModelElement()));
-		meLabel.setText(DecisionUtil.cutString(provider.getText(context
-				.getModelElement()), 40, true));
-		meLabel.setToolTipText(DecisionUtil.getClassAndName(context
-				.getModelElement()));
+		meLabel.setText(DecisionUtil.cutString(provider.getText(context.getModelElement()), 40, true));
+		meLabel.setToolTipText(DecisionUtil.getClassAndName(context.getModelElement()));
 		meLabel.setFont(fontRegistry.get("content"));
 		meLabel.setBackground(getBackground());
 

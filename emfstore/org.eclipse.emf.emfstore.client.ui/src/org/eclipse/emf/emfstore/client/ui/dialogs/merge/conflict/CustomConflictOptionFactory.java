@@ -28,8 +28,8 @@ public interface CustomConflictOptionFactory {
 	boolean isApplicableConflict(Conflict conflict);
 
 	/**
-	 * Creates the custom option. This method is called if
-	 * {@link #isApplicableConflict(Conflict)} has returned true and only then.
+	 * Creates the custom option. This method is called if {@link #isApplicableConflict(Conflict)} has returned true and
+	 * only then.
 	 * 
 	 * @param conflict
 	 *            parent conflict

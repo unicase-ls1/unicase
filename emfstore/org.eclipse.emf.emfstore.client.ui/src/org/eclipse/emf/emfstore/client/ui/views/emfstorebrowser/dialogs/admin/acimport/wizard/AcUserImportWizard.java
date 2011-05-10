@@ -58,14 +58,11 @@ public class AcUserImportWizard extends Wizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		ArrayList<ImportItemWrapper> wrappedOrgUnits = ((AcUserImportPageTwo) this
-				.getPages()[1]).getCheckedItems();
+		ArrayList<ImportItemWrapper> wrappedOrgUnits = ((AcUserImportPageTwo) this.getPages()[1]).getCheckedItems();
 		if (wrappedOrgUnits.size() > 0) {
-			ProgressMonitorDialog progressMonitorDialog = new ProgressMonitorDialog(
-					getShell());
+			ProgressMonitorDialog progressMonitorDialog = new ProgressMonitorDialog(getShell());
 			progressMonitorDialog.open();
-			progressMonitorDialog.getProgressMonitor().beginTask(
-					"Importing users", IProgressMonitor.UNKNOWN);
+			progressMonitorDialog.getProgressMonitor().beginTask("Importing users", IProgressMonitor.UNKNOWN);
 
 			importController.importOrgUnits(wrappedOrgUnits);
 
