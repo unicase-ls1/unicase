@@ -27,8 +27,20 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 
 
-public class CommonUtil {
+/**
+ * Utility class to retrieve meta model information.
+ * @author koegel
+ *
+ */
+public final class CommonUtil {
 	
+	/**
+	 * Private constructor since this is a utility class.
+	 */
+	private CommonUtil() {
+		//nothing to do
+	}
+		
 	private static Set<EClass> modelElementEClasses;
 
 	/**
@@ -146,6 +158,7 @@ public class CommonUtil {
 	/**
 	 * Get the EContainer that contains the given model element and whose EContainer is null.
 	 * 
+	 * @param <T> parent type
 	 * @param parent the Class of the parent
 	 * @param child the model element whose container should get returned
 	 * @return the container
@@ -280,6 +293,10 @@ public class CommonUtil {
 	/**
 	 * Determines whether an EObject is a singleton object. All EObjects being children of ECorePackage are considered
 	 * as singletons.
+	 * 
+	 * @param eObject the Eobject in question
+	 * 
+	 * @return true if it is a singleton
 	 */
 	public static boolean isSingletonEObject(EObject eObject) {
 		if (eObject.eContainer() != null && eObject.eContainer().equals(EcorePackage.eINSTANCE)) {

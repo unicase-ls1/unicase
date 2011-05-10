@@ -123,7 +123,7 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Object[] getElements(Object inputElement) {
 		if (inputElement instanceof ChangePackage) {
 			return nodify(null, Arrays.asList((ChangePackage) inputElement)).toArray();
@@ -230,7 +230,7 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Get the children nodes of a history info.
 	 * 
 	 * @return an array of {@link AbstractOperation}s
 	 */
@@ -358,7 +358,7 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 	}
 
 	/**
-	 * Sets the ProjectSpace
+	 * Sets the ProjectSpace.
 	 * 
 	 * @param projectSpace the projectspace
 	 */

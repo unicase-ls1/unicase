@@ -24,25 +24,22 @@ public class ProjectHasLocalChangesTester extends PropertyTester {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object,
-	 *      java.lang.String, java.lang.Object[], java.lang.Object)
+	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object, java.lang.String, java.lang.Object[],
+	 *      java.lang.Object)
 	 */
-	public boolean test(Object receiver, String property, Object[] args,
-			final Object expectedValue) {
-		if (receiver instanceof ProjectSpace
-				&& expectedValue instanceof Boolean) {
+	public boolean test(Object receiver, String property, Object[] args, final Object expectedValue) {
+		if (receiver instanceof ProjectSpace && expectedValue instanceof Boolean) {
 			final ProjectSpace projectSpace = (ProjectSpace) receiver;
 
 			EMFStoreCommandWithResult<Boolean> command = new EMFStoreCommandWithResult<Boolean>() {
 				@Override
 				protected Boolean doRun() {
-					Boolean hasLocalChanges = new Boolean(projectSpace
-							.isDirty());
+					Boolean hasLocalChanges = new Boolean(projectSpace.isDirty());
 					return hasLocalChanges.equals(expectedValue);
 				}
 			};
 
-			return command.run();
+			return command.run(false);
 		}
 		return false;
 	}

@@ -54,7 +54,9 @@ public final class ElementOpenerHelper {
 
 		try {
 			bestCandidate.openModelElement(me);
+			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
+			// END SUPRESS CATCH EXCEPTION
 			WorkspaceUtil.logException(e.getMessage(), e);
 		}
 	}

@@ -123,6 +123,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -132,6 +133,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<EObject> getModelElements() {
@@ -144,6 +146,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<EObject> getCutElements() {
@@ -255,6 +258,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -270,6 +274,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -285,6 +290,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -305,6 +311,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -322,6 +329,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -344,8 +352,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @return the adapter
 	 * @author shterev
 	 */
-	@SuppressWarnings("unchecked")
-	public Object getAdapter(Class adapter) {
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
 		return Platform.getAdapterManager().getAdapter(this, adapter);
 	}
 

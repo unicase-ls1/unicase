@@ -163,15 +163,30 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 				oldDescription, description));
 	}
 
+	// begin of custom code
 	/**
+	 * Return a copy of the id.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
+	 * @return the id
 	 * @generated NOT
 	 */
 	public ProjectId getProjectId() {
 		return EcoreUtil.copy(getProjectIdGen());
 	}
 
+	/**
+	 * Set a copy of the given id.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param newProjectId the id.
+	 * @generated NOT
+	 */
+	public void setProjectId(ProjectId newProjectId) {
+		setProjectIdGen(EcoreUtil.copy(newProjectId));
+	}
+
+	// end of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -225,15 +240,6 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 				msgs.add(notification);
 		}
 		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	public void setProjectId(ProjectId newProjectId) {
-		setProjectIdGen(EcoreUtil.copy(newProjectId));
 	}
 
 	/**

@@ -23,6 +23,11 @@ import org.eclipse.swt.graphics.Image;
  */
 public class LogMessageColumnLabelProvider extends SCMLabelProvider {
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param project the project
+	 */
 	public LogMessageColumnLabelProvider(Project project) {
 		super(project);
 	}

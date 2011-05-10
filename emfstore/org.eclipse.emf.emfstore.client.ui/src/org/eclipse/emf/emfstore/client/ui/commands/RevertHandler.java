@@ -86,7 +86,7 @@ public class RevertHandler extends AbstractHandler {
 			.getActiveWorkbenchWindow().getShell());
 		RevertCommand command = new RevertCommand(progressDialog, projectSpace);
 
-		if (command.run()) {
+		if (command.run(false)) {
 			MessageDialog.openInformation(null, "Revert", "Reverted project ");
 		}
 		return null;
