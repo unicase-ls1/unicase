@@ -26,6 +26,7 @@ import org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolPackage;
 public class ACOrgUnitIdImpl extends UniqueIdentifierImpl implements ACOrgUnitId {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ACOrgUnitIdImpl() {
@@ -34,6 +35,7 @@ public class ACOrgUnitIdImpl extends UniqueIdentifierImpl implements ACOrgUnitId
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

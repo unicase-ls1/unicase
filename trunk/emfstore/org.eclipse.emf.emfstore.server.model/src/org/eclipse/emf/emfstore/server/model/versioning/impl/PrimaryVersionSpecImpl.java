@@ -23,10 +23,11 @@ import org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.PrimaryVersionSpecImpl#getIdentifier <em>Identifier</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.PrimaryVersionSpecImpl#getIdentifier <em>Identifier
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersionSpec {
@@ -34,6 +35,7 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -44,6 +46,7 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -52,6 +55,7 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PrimaryVersionSpecImpl() {
@@ -60,6 +64,7 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,6 +74,7 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getIdentifier() {
@@ -77,76 +83,84 @@ public class PrimaryVersionSpecImpl extends EObjectImpl implements PrimaryVersio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIdentifier(int newIdentifier) {
 		int oldIdentifier = identifier;
 		identifier = newIdentifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER, oldIdentifier, identifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER,
+				oldIdentifier, identifier));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
-				return getIdentifier();
+		case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
+			return getIdentifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
-				setIdentifier((Integer)newValue);
-				return;
+		case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
+			setIdentifier((Integer) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
-				setIdentifier(IDENTIFIER_EDEFAULT);
-				return;
+		case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
+			setIdentifier(IDENTIFIER_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
-				return identifier != IDENTIFIER_EDEFAULT;
+		case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
+			return identifier != IDENTIFIER_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (identifier: ");

@@ -63,8 +63,7 @@ public class AcUserImportPageOne extends WizardPage {
 		// See:
 		// http://stackoverflow.com/questions/1012929/eclipse-contextual-help/1021718
 		// http://dev.eclipse.org/newslists/news.eclipse.platform.ua/msg00359.html
-		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
-				Activator.PLUGIN_ID + ".help_import_wizard_page_one");
+		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, Activator.PLUGIN_ID + ".help_import_wizard_page_one");
 
 		final Composite composite = new Composite(parent, SWT.NONE);
 
@@ -83,19 +82,15 @@ public class AcUserImportPageOne extends WizardPage {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
 					// do this only if item gets checked, not unchecked!
-					boolean isCurrentrlySelected = ((Button) e.getSource())
-							.getSelection();
+					boolean isCurrentrlySelected = ((Button) e.getSource()).getSelection();
 					if (isCurrentrlySelected) {
 						AcUserImportPageTwo nextPage = (AcUserImportPageTwo) getNextPage();
 						AcUserImportWizard wizard = (AcUserImportWizard) getWizard();
 						wizard.getController().setImportSource(src);
 						if (src.init(getShell())) {
-							ProgressMonitorDialog progressMonitorDialog = new ProgressMonitorDialog(
-									getShell());
+							ProgressMonitorDialog progressMonitorDialog = new ProgressMonitorDialog(getShell());
 							progressMonitorDialog.open();
-							progressMonitorDialog.getProgressMonitor()
-									.beginTask("loading",
-											IProgressMonitor.UNKNOWN);
+							progressMonitorDialog.getProgressMonitor().beginTask("loading", IProgressMonitor.UNKNOWN);
 							nextPage.init(src);
 							progressMonitorDialog.close();
 							setPageComplete(true);

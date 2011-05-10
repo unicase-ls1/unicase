@@ -31,7 +31,8 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage;
 import org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent} object. <!--
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent}
+ * object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
@@ -41,6 +42,7 @@ public class URLEventItemProvider extends EventItemProvider implements IEditingD
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public URLEventItemProvider(AdapterFactory adapterFactory) {
@@ -50,6 +52,7 @@ public class URLEventItemProvider extends EventItemProvider implements IEditingD
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,22 +68,16 @@ public class URLEventItemProvider extends EventItemProvider implements IEditingD
 	/**
 	 * This adds a property descriptor for the Source View feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addSourceViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_URLEvent_sourceView_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_URLEvent_sourceView_feature", "_UI_URLEvent_type"),
-				 EventsPackage.Literals.URL_EVENT__SOURCE_VIEW,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_URLEvent_sourceView_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_URLEvent_sourceView_feature", "_UI_URLEvent_type"),
+			EventsPackage.Literals.URL_EVENT__SOURCE_VIEW, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -89,6 +86,7 @@ public class URLEventItemProvider extends EventItemProvider implements IEditingD
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,6 +101,7 @@ public class URLEventItemProvider extends EventItemProvider implements IEditingD
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -116,6 +115,7 @@ public class URLEventItemProvider extends EventItemProvider implements IEditingD
 	/**
 	 * This returns URLEvent.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -126,15 +126,15 @@ public class URLEventItemProvider extends EventItemProvider implements IEditingD
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((URLEvent)object).getTimestamp();
+		Date labelValue = ((URLEvent) object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_URLEvent_type") :
-			getString("_UI_URLEvent_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_URLEvent_type") : getString("_UI_URLEvent_type")
+			+ " " + label;
 	}
 
 	/**
@@ -149,13 +149,13 @@ public class URLEventItemProvider extends EventItemProvider implements IEditingD
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(URLEvent.class)) {
-			case EventsPackage.URL_EVENT__SOURCE_VIEW:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case EventsPackage.URL_EVENT__SOURCE_MODEL_ELEMENT:
-			case EventsPackage.URL_EVENT__SOURCE_URL:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case EventsPackage.URL_EVENT__SOURCE_VIEW:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case EventsPackage.URL_EVENT__SOURCE_MODEL_ELEMENT:
+		case EventsPackage.URL_EVENT__SOURCE_URL:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -164,27 +164,25 @@ public class URLEventItemProvider extends EventItemProvider implements IEditingD
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(EventsPackage.Literals.URL_EVENT__SOURCE_MODEL_ELEMENT,
-				 ModelFactory.eINSTANCE.createModelElementId()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.URL_EVENT__SOURCE_MODEL_ELEMENT,
+			ModelFactory.eINSTANCE.createModelElementId()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(EventsPackage.Literals.URL_EVENT__SOURCE_URL,
-				 ModelFactory.eINSTANCE.createModelElementId()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.URL_EVENT__SOURCE_URL,
+			ModelFactory.eINSTANCE.createModelElementId()));
 	}
 
 	/**
 	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -192,14 +190,12 @@ public class URLEventItemProvider extends EventItemProvider implements IEditingD
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify =
-			childFeature == EventsPackage.Literals.URL_EVENT__SOURCE_MODEL_ELEMENT ||
-			childFeature == EventsPackage.Literals.URL_EVENT__SOURCE_URL;
+		boolean qualify = childFeature == EventsPackage.Literals.URL_EVENT__SOURCE_MODEL_ELEMENT
+			|| childFeature == EventsPackage.Literals.URL_EVENT__SOURCE_URL;
 
 		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
+				getFeatureText(childFeature), getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

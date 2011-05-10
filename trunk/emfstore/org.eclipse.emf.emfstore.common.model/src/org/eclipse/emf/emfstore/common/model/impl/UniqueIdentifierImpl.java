@@ -34,6 +34,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getId()
 	 * @generated
 	 * @ordered
@@ -43,6 +44,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 	/**
 	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getId()
 	 * @generated
 	 * @ordered
@@ -64,6 +66,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,6 +76,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getId() {
@@ -81,6 +85,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setId(String newId) {
@@ -92,6 +97,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,6 +111,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -119,6 +126,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -133,6 +141,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -32,6 +32,7 @@ import org.eclipse.emf.emfstore.common.model.UniqueIdentifier;
  * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.common.model.UniqueIdentifier} object.
  * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class UniqueIdentifierItemProvider extends RootElementItemProvider implements IEditingDomainItemProvider,
@@ -39,6 +40,7 @@ public class UniqueIdentifierItemProvider extends RootElementItemProvider implem
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UniqueIdentifierItemProvider(AdapterFactory adapterFactory) {
@@ -48,6 +50,7 @@ public class UniqueIdentifierItemProvider extends RootElementItemProvider implem
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,6 +66,7 @@ public class UniqueIdentifierItemProvider extends RootElementItemProvider implem
 	/**
 	 * This adds a property descriptor for the Id feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addIdPropertyDescriptor(Object object) {
@@ -78,6 +82,7 @@ public class UniqueIdentifierItemProvider extends RootElementItemProvider implem
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -110,6 +115,7 @@ public class UniqueIdentifierItemProvider extends RootElementItemProvider implem
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -120,6 +126,7 @@ public class UniqueIdentifierItemProvider extends RootElementItemProvider implem
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -14,13 +14,14 @@ package org.eclipse.emf.emfstore.migration;
  * Represents a failure in migrating models to more recent versions.
  * 
  * @author mkoegel
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class EMFStoreMigrationException extends Exception {
 
 	/**
 	 * Default constructor.
+	 * 
 	 * @param message the message.
 	 * @param cause the cause
 	 */
@@ -30,10 +31,11 @@ public class EMFStoreMigrationException extends Exception {
 
 	/**
 	 * Default constructor.
+	 * 
 	 * @param message the message.
 	 */
 	public EMFStoreMigrationException(String message) {
 		super(message);
 	}
-	
+
 }

@@ -24,30 +24,31 @@ public class Activator extends AbstractPlugin {
 
 	// The shared instance
 	private static Activator plugin;
-	
+
 	/**
 	 * The constructor.
 	 */
 	public Activator() {
 	}
 
-	
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.core.runtime.Plugin#start(org.osgi.framework.BundleContext)
 	 */
-		// BEGIN SUPRESS CATCH EXCEPTION
+	// BEGIN SUPRESS CATCH EXCEPTION
 	public void start(BundleContext context) throws Exception {
 		// END SUPRESS CATCH EXCEPTION
 		super.start(context);
 		plugin = this;
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
-		// BEGIN SUPRESS CATCH EXCEPTION
+	// BEGIN SUPRESS CATCH EXCEPTION
 	public void stop(BundleContext context) throws Exception {
 		// END SUPRESS CATCH EXCEPTION
 		plugin = null;
@@ -56,7 +57,7 @@ public class Activator extends AbstractPlugin {
 
 	/**
 	 * Returns the shared instance.
-	 *
+	 * 
 	 * @return the shared instance
 	 */
 	public static Activator getDefault() {

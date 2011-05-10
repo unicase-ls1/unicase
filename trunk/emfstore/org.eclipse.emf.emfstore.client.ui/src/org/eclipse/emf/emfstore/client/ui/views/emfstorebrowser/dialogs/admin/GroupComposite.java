@@ -54,8 +54,7 @@ public class GroupComposite extends PropertiesComposite {
 	 *            used to find out what which tab is active, so that if needed
 	 *            update its list viewer
 	 */
-	public GroupComposite(Composite parent, int style, AdminBroker adminBroker,
-			OrgUnitManagementGUI orgUnitMgmtGUI) {
+	public GroupComposite(Composite parent, int style, AdminBroker adminBroker, OrgUnitManagementGUI orgUnitMgmtGUI) {
 		super(parent, style, adminBroker);
 		this.orgUnitMgmtGUI = orgUnitMgmtGUI;
 		createControls();
@@ -168,9 +167,7 @@ public class GroupComposite extends PropertiesComposite {
 			this.group = (ACGroup) input;
 
 			getTxtName().setText(group.getName());
-			getTxtDescription().setText(
-					(group.getDescription() == null) ? "" : group
-							.getDescription());
+			getTxtDescription().setText((group.getDescription() == null) ? "" : group.getDescription());
 			getTableViewer().setInput(group);
 
 		}
@@ -188,13 +185,11 @@ public class GroupComposite extends PropertiesComposite {
 		if (group == null) {
 			return;
 		}
-		if (!(group.getName().equals(getTxtName().getText()) && group
-				.getDescription().equals(getTxtDescription().getText()))) {
+		if (!(group.getName().equals(getTxtName().getText()) && group.getDescription().equals(
+			getTxtDescription().getText()))) {
 			try {
-				getAdminBroker().changeOrgUnit(group.getId(),
-						getTxtName().getText(), getTxtDescription().getText());
-				((Form) (this.getParent().getParent())).setText("Group: "
-						+ getTxtName().getText());
+				getAdminBroker().changeOrgUnit(group.getId(), getTxtName().getText(), getTxtDescription().getText());
+				((Form) (this.getParent().getParent())).setText("Group: " + getTxtName().getText());
 				orgUnitMgmtGUI.getActiveTabContent().getTableViewer().refresh();
 			} catch (EmfStoreException e) {
 				DialogHandler.showExceptionDialog(e);
@@ -214,8 +209,7 @@ public class GroupComposite extends PropertiesComposite {
 
 		// add drop support
 		int ops = DND.DROP_COPY;
-		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer
-				.getTransfer() };
+		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer.getTransfer() };
 		DropTargetListener dropListener = new DropTargetAdapter() {
 			@Override
 			public void dragEnter(DropTargetEvent event) {
@@ -230,8 +224,7 @@ public class GroupComposite extends PropertiesComposite {
 			public void drop(DropTargetEvent event) {
 				if (PropertiesForm.getDragNDropObject() != null) {
 					if (PropertiesForm.getDragNDropObject() instanceof ACOrgUnit) {
-						ACOrgUnit orgUnit = (ACOrgUnit) PropertiesForm
-								.getDragNDropObject();
+						ACOrgUnit orgUnit = (ACOrgUnit) PropertiesForm.getDragNDropObject();
 						addExistingOrgUnit(orgUnit);
 						PropertiesForm.setDragNDropObject(null);
 						getTableViewer().refresh();

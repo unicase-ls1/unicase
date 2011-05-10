@@ -33,8 +33,8 @@ public class NewLocalProjectHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		CreateProjectDialog dialog = new CreateProjectDialog(PlatformUI
-				.getWorkbench().getDisplay().getActiveShell(), null);
+		CreateProjectDialog dialog = new CreateProjectDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(),
+			null);
 
 		dialog.open();
 

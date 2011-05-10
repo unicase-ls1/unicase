@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EFactory;
 /**
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a create method for each non-abstract class of
  * the model. <!-- end-user-doc -->
+ * 
  * @see org.eclipse.emf.emfstore.client.model.ModelPackage
  * @generated
  */
@@ -22,6 +23,7 @@ public interface ModelFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	ModelFactory eINSTANCE = org.eclipse.emf.emfstore.client.model.impl.ModelFactoryImpl.init();
@@ -29,6 +31,7 @@ public interface ModelFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Workspace</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Workspace</em>'.
 	 * @generated
 	 */
@@ -37,6 +40,7 @@ public interface ModelFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Server Info</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Server Info</em>'.
 	 * @generated
 	 */
@@ -45,6 +49,7 @@ public interface ModelFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Usersession</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Usersession</em>'.
 	 * @generated
 	 */
@@ -53,6 +58,7 @@ public interface ModelFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Project Space</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Project Space</em>'.
 	 * @generated
 	 */
@@ -61,6 +67,7 @@ public interface ModelFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Operation Composite</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Operation Composite</em>'.
 	 * @generated
 	 */
@@ -69,6 +76,7 @@ public interface ModelFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Pending File Transfer</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Pending File Transfer</em>'.
 	 * @generated
 	 */
@@ -77,6 +85,7 @@ public interface ModelFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Event Composite</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Event Composite</em>'.
 	 * @generated
 	 */
@@ -85,6 +94,7 @@ public interface ModelFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Notification Composite</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Notification Composite</em>'.
 	 * @generated
 	 */
@@ -93,6 +103,7 @@ public interface ModelFactory extends EFactory {
 	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

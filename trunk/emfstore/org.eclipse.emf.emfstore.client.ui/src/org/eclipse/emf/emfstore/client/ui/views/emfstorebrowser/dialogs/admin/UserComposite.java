@@ -157,7 +157,7 @@ public class UserComposite extends PropertiesComposite {
 			getTxtDescription().setText((user.getDescription() == null) ? "" : user.getDescription());
 			getTableViewer().setInput(user);
 
-			//disable the text fields for editing name and description when displaying the super user
+			// disable the text fields for editing name and description when displaying the super user
 			String superUserName = ServerConfiguration.getProperties().getProperty(ServerConfiguration.SUPER_USER,
 				ServerConfiguration.SUPER_USER_DEFAULT);
 

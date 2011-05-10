@@ -29,6 +29,7 @@ import org.eclipse.emf.emfstore.server.model.ProjectId;
  * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.ProjectId} object.
  * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ProjectIdItemProvider extends UniqueIdentifierItemProvider implements IEditingDomainItemProvider,
@@ -36,6 +37,7 @@ public class ProjectIdItemProvider extends UniqueIdentifierItemProvider implemen
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectIdItemProvider(AdapterFactory adapterFactory) {
@@ -45,6 +47,7 @@ public class ProjectIdItemProvider extends UniqueIdentifierItemProvider implemen
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,6 +62,7 @@ public class ProjectIdItemProvider extends UniqueIdentifierItemProvider implemen
 	/**
 	 * This returns ProjectId.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,14 +73,14 @@ public class ProjectIdItemProvider extends UniqueIdentifierItemProvider implemen
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ProjectId)object).getId();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ProjectId_type") :
-			getString("_UI_ProjectId_type") + " " + label;
+		String label = ((ProjectId) object).getId();
+		return label == null || label.length() == 0 ? getString("_UI_ProjectId_type") : getString("_UI_ProjectId_type")
+			+ " " + label;
 	}
 
 	/**
@@ -96,6 +100,7 @@ public class ProjectIdItemProvider extends UniqueIdentifierItemProvider implemen
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -106,6 +111,7 @@ public class ProjectIdItemProvider extends UniqueIdentifierItemProvider implemen
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

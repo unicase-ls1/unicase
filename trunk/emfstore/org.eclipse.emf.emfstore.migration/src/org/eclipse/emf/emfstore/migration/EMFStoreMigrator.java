@@ -15,21 +15,23 @@ import java.util.List;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 
-
 /**
  * Migrates models in the given URIs to the most recent version.
+ * 
  * @author koegel
- *
+ * 
  */
 public interface EMFStoreMigrator {
 
 	/**
 	 * Migrate the models in the given URIs from the given source version to the most recent version.
+	 * 
 	 * @param resources the URIs of the contents to migrate
 	 * @param sourceModelReleaseNumber the source version number
 	 * @param monitor a progress monitor
 	 * 
 	 * @throws EMFStoreMigrationException if the migration fails.
 	 */
-	void migrate(List<URI> resources, int sourceModelReleaseNumber, IProgressMonitor monitor) throws EMFStoreMigrationException;
+	void migrate(List<URI> resources, int sourceModelReleaseNumber, IProgressMonitor monitor)
+		throws EMFStoreMigrationException;
 }

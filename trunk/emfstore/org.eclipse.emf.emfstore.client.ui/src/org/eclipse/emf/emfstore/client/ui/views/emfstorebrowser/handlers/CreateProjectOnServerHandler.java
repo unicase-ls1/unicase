@@ -32,10 +32,8 @@ public class CreateProjectOnServerHandler extends AbstractHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow();
-		ISelection selection = activeWorkbenchWindow.getSelectionService()
-				.getSelection();
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		ISelection selection = activeWorkbenchWindow.getSelectionService().getSelection();
 		Object obj = ((IStructuredSelection) selection).getFirstElement();
 
 		if (!(obj instanceof TreeNode)) {
@@ -44,9 +42,8 @@ public class CreateProjectOnServerHandler extends AbstractHandler {
 		TreeNode node = (TreeNode) obj;
 		ServerInfo serverInfo = ((ServerInfo) node.getValue());
 		if (serverInfo.getLastUsersession().isLoggedIn()) {
-			CreateProjectDialog dialog = new CreateProjectDialog(PlatformUI
-					.getWorkbench().getDisplay().getActiveShell(), serverInfo
-					.getLastUsersession());
+			CreateProjectDialog dialog = new CreateProjectDialog(PlatformUI.getWorkbench().getDisplay()
+				.getActiveShell(), serverInfo.getLastUsersession());
 			dialog.open();
 		}
 		return null;

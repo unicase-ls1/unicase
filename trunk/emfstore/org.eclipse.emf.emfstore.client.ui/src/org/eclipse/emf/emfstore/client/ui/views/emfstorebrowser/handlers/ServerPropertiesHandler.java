@@ -33,17 +33,14 @@ public class ServerPropertiesHandler extends AbstractHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow();
-		ISelection selection = activeWorkbenchWindow.getSelectionService()
-				.getSelection();
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		ISelection selection = activeWorkbenchWindow.getSelectionService().getSelection();
 		Object obj = ((IStructuredSelection) selection).getFirstElement();
 		TreeNode node = (TreeNode) obj;
 		ServerInfo serverInfo = (ServerInfo) node.getValue();
 		NewRepositoryWizard wizard = new NewRepositoryWizard();
 		wizard.setServerInfo(serverInfo);
-		WizardDialog dialog = new WizardDialog(
-				activeWorkbenchWindow.getShell(), wizard);
+		WizardDialog dialog = new WizardDialog(activeWorkbenchWindow.getShell(), wizard);
 		dialog.create();
 		dialog.open();
 		return null;

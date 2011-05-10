@@ -34,6 +34,7 @@ public interface PluginStartEvent extends Event {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Plugin Id</em>' attribute.
 	 * @see #setPluginId(String)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getPluginStartEvent_PluginId()
@@ -43,8 +44,11 @@ public interface PluginStartEvent extends Event {
 	String getPluginId();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.PluginStartEvent#getPluginId <em>Plugin Id</em>}' attribute.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.PluginStartEvent#getPluginId <em>Plugin Id</em>}'
+	 * attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Plugin Id</em>' attribute.
 	 * @see #getPluginId()
 	 * @generated

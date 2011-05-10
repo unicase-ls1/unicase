@@ -45,6 +45,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.Validate;
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code>
  * method for each class of the model. <!-- end-user-doc -->
+ * 
  * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage
  * @generated
  */
@@ -52,6 +53,7 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected static EventsPackage modelPackage;
@@ -59,6 +61,7 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * Creates an instance of the adapter factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EventsAdapterFactory() {
@@ -72,6 +75,7 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc --> This
 	 * implementation returns <code>true</code> if the object is either the model's package or is an instance object of
 	 * the model. <!-- end-user-doc -->
+	 * 
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
@@ -81,7 +85,7 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -89,135 +93,165 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The switch that delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected EventsSwitch<Adapter> modelSwitch = new EventsSwitch<Adapter>() {
-			@Override
-			public Adapter caseEvent(Event object) {
-				return createEventAdapter();
-			}
-			@Override
-			public Adapter caseReadEvent(ReadEvent object) {
-				return createReadEventAdapter();
-			}
-			@Override
-			public Adapter caseMergeEvent(MergeEvent object) {
-				return createMergeEventAdapter();
-			}
-			@Override
-			public Adapter caseCheckoutEvent(CheckoutEvent object) {
-				return createCheckoutEventAdapter();
-			}
-			@Override
-			public Adapter caseExceptionEvent(ExceptionEvent object) {
-				return createExceptionEventAdapter();
-			}
-			@Override
-			public Adapter casePluginStartEvent(PluginStartEvent object) {
-				return createPluginStartEventAdapter();
-			}
-			@Override
-			public Adapter caseUpdateEvent(UpdateEvent object) {
-				return createUpdateEventAdapter();
-			}
-			@Override
-			public Adapter caseAnnotationEvent(AnnotationEvent object) {
-				return createAnnotationEventAdapter();
-			}
-			@Override
-			public Adapter caseRevertEvent(RevertEvent object) {
-				return createRevertEventAdapter();
-			}
-			@Override
-			public Adapter caseShowHistoryEvent(ShowHistoryEvent object) {
-				return createShowHistoryEventAdapter();
-			}
-			@Override
-			public Adapter casePerspectiveEvent(PerspectiveEvent object) {
-				return createPerspectiveEventAdapter();
-			}
-			@Override
-			public Adapter caseDNDEvent(DNDEvent object) {
-				return createDNDEventAdapter();
-			}
-			@Override
-			public Adapter caseLinkEvent(LinkEvent object) {
-				return createLinkEventAdapter();
-			}
-			@Override
-			public Adapter caseTraceEvent(TraceEvent object) {
-				return createTraceEventAdapter();
-			}
-			@Override
-			public Adapter caseNavigatorCreateEvent(NavigatorCreateEvent object) {
-				return createNavigatorCreateEventAdapter();
-			}
-			@Override
-			public Adapter casePluginFocusEvent(PluginFocusEvent object) {
-				return createPluginFocusEventAdapter();
-			}
-			@Override
-			public Adapter casePresentationSwitchEvent(PresentationSwitchEvent object) {
-				return createPresentationSwitchEventAdapter();
-			}
-			@Override
-			public Adapter caseUndoEvent(UndoEvent object) {
-				return createUndoEventAdapter();
-			}
-			@Override
-			public Adapter caseValidate(Validate object) {
-				return createValidateAdapter();
-			}
-			@Override
-			public Adapter caseShowChangesEvent(ShowChangesEvent object) {
-				return createShowChangesEventAdapter();
-			}
-			@Override
-			public Adapter caseNotificationReadEvent(NotificationReadEvent object) {
-				return createNotificationReadEventAdapter();
-			}
-			@Override
-			public Adapter caseNotificationGenerationEvent(NotificationGenerationEvent object) {
-				return createNotificationGenerationEventAdapter();
-			}
-			@Override
-			public Adapter caseNotificationIgnoreEvent(NotificationIgnoreEvent object) {
-				return createNotificationIgnoreEventAdapter();
-			}
-			@Override
-			public Adapter caseURLEvent(URLEvent object) {
-				return createURLEventAdapter();
-			}
-			@Override
-			public Adapter caseMergeChoiceEvent(MergeChoiceEvent object) {
-				return createMergeChoiceEventAdapter();
-			}
-			@Override
-			public Adapter caseMergeGlobalChoiceEvent(MergeGlobalChoiceEvent object) {
-				return createMergeGlobalChoiceEventAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+		@Override
+		public Adapter caseEvent(Event object) {
+			return createEventAdapter();
+		}
+
+		@Override
+		public Adapter caseReadEvent(ReadEvent object) {
+			return createReadEventAdapter();
+		}
+
+		@Override
+		public Adapter caseMergeEvent(MergeEvent object) {
+			return createMergeEventAdapter();
+		}
+
+		@Override
+		public Adapter caseCheckoutEvent(CheckoutEvent object) {
+			return createCheckoutEventAdapter();
+		}
+
+		@Override
+		public Adapter caseExceptionEvent(ExceptionEvent object) {
+			return createExceptionEventAdapter();
+		}
+
+		@Override
+		public Adapter casePluginStartEvent(PluginStartEvent object) {
+			return createPluginStartEventAdapter();
+		}
+
+		@Override
+		public Adapter caseUpdateEvent(UpdateEvent object) {
+			return createUpdateEventAdapter();
+		}
+
+		@Override
+		public Adapter caseAnnotationEvent(AnnotationEvent object) {
+			return createAnnotationEventAdapter();
+		}
+
+		@Override
+		public Adapter caseRevertEvent(RevertEvent object) {
+			return createRevertEventAdapter();
+		}
+
+		@Override
+		public Adapter caseShowHistoryEvent(ShowHistoryEvent object) {
+			return createShowHistoryEventAdapter();
+		}
+
+		@Override
+		public Adapter casePerspectiveEvent(PerspectiveEvent object) {
+			return createPerspectiveEventAdapter();
+		}
+
+		@Override
+		public Adapter caseDNDEvent(DNDEvent object) {
+			return createDNDEventAdapter();
+		}
+
+		@Override
+		public Adapter caseLinkEvent(LinkEvent object) {
+			return createLinkEventAdapter();
+		}
+
+		@Override
+		public Adapter caseTraceEvent(TraceEvent object) {
+			return createTraceEventAdapter();
+		}
+
+		@Override
+		public Adapter caseNavigatorCreateEvent(NavigatorCreateEvent object) {
+			return createNavigatorCreateEventAdapter();
+		}
+
+		@Override
+		public Adapter casePluginFocusEvent(PluginFocusEvent object) {
+			return createPluginFocusEventAdapter();
+		}
+
+		@Override
+		public Adapter casePresentationSwitchEvent(PresentationSwitchEvent object) {
+			return createPresentationSwitchEventAdapter();
+		}
+
+		@Override
+		public Adapter caseUndoEvent(UndoEvent object) {
+			return createUndoEventAdapter();
+		}
+
+		@Override
+		public Adapter caseValidate(Validate object) {
+			return createValidateAdapter();
+		}
+
+		@Override
+		public Adapter caseShowChangesEvent(ShowChangesEvent object) {
+			return createShowChangesEventAdapter();
+		}
+
+		@Override
+		public Adapter caseNotificationReadEvent(NotificationReadEvent object) {
+			return createNotificationReadEventAdapter();
+		}
+
+		@Override
+		public Adapter caseNotificationGenerationEvent(NotificationGenerationEvent object) {
+			return createNotificationGenerationEventAdapter();
+		}
+
+		@Override
+		public Adapter caseNotificationIgnoreEvent(NotificationIgnoreEvent object) {
+			return createNotificationIgnoreEventAdapter();
+		}
+
+		@Override
+		public Adapter caseURLEvent(URLEvent object) {
+			return createURLEventAdapter();
+		}
+
+		@Override
+		public Adapter caseMergeChoiceEvent(MergeChoiceEvent object) {
+			return createMergeChoiceEventAdapter();
+		}
+
+		@Override
+		public Adapter caseMergeGlobalChoiceEvent(MergeGlobalChoiceEvent object) {
+			return createMergeGlobalChoiceEventAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param target the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.emfstore.server.model.versioning.events.Event <em>Event</em>}'.
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.Event <em>Event</em>}'.
 	 * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
 	 * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.Event
 	 * @generated
@@ -227,7 +261,8 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.emfstore.server.model.versioning.events.ReadEvent
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.ReadEvent
 	 * <em>Read Event</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
 	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
 	 * -->
@@ -241,7 +276,8 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent
 	 * <em>Merge Event</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
 	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
 	 * -->
@@ -284,7 +320,8 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.PluginStartEvent <em>Plugin Start Event</em>}'. <!--
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.PluginStartEvent <em>Plugin Start Event</em>}'.
+	 * <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
 	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -297,7 +334,8 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.emfstore.server.model.versioning.events.UpdateEvent
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.UpdateEvent
 	 * <em>Update Event</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
 	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
 	 * -->
@@ -325,7 +363,8 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.emfstore.server.model.versioning.events.RevertEvent
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.RevertEvent
 	 * <em>Revert Event</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
 	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
 	 * -->
@@ -340,7 +379,8 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowHistoryEvent <em>Show History Event</em>}'. <!--
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowHistoryEvent <em>Show History Event</em>}'.
+	 * <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
 	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -354,7 +394,8 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.PerspectiveEvent <em>Perspective Event</em>}'. <!--
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.PerspectiveEvent <em>Perspective Event</em>}'.
+	 * <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
 	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -367,7 +408,8 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.emfstore.server.model.versioning.events.DNDEvent
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.DNDEvent
 	 * <em>DND Event</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
 	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
 	 * -->
@@ -381,7 +423,8 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent
 	 * <em>Link Event</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
 	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
 	 * -->
@@ -395,7 +438,8 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent
 	 * <em>Trace Event</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
 	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
 	 * -->
@@ -409,9 +453,12 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.emfstore.server.model.versioning.events.NavigatorCreateEvent <em>Navigator Create Event</em>}'.
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.NavigatorCreateEvent
+	 * <em>Navigator Create Event</em>}'.
 	 * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful
 	 * to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.NavigatorCreateEvent
 	 * @generated
@@ -422,7 +469,8 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.PluginFocusEvent <em>Plugin Focus Event</em>}'. <!--
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.PluginFocusEvent <em>Plugin Focus Event</em>}'.
+	 * <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
 	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -435,9 +483,12 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.emfstore.server.model.versioning.events.PresentationSwitchEvent <em>Presentation Switch Event</em>}'.
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.PresentationSwitchEvent
+	 * <em>Presentation Switch Event</em>}'.
 	 * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.PresentationSwitchEvent
 	 * @generated
@@ -447,7 +498,8 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.emfstore.server.model.versioning.events.UndoEvent
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.UndoEvent
 	 * <em>Undo Event</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
 	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
 	 * -->
@@ -461,7 +513,8 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.emfstore.server.model.versioning.events.Validate
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.Validate
 	 * <em>Validate</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
 	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
 	 * -->
@@ -476,7 +529,8 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowChangesEvent <em>Show Changes Event</em>}'. <!--
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowChangesEvent <em>Show Changes Event</em>}'.
+	 * <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
 	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -489,9 +543,12 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.emfstore.server.model.versioning.events.NotificationReadEvent <em>Notification Read Event</em>}'.
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.NotificationReadEvent
+	 * <em>Notification Read Event</em>}'.
 	 * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful
 	 * to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.NotificationReadEvent
 	 * @generated
@@ -501,10 +558,13 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.emfstore.server.model.versioning.events.NotificationGenerationEvent <em>Notification Generation Event</em>}'.
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.NotificationGenerationEvent
+	 * <em>Notification Generation Event</em>}'.
 	 * <!-- begin-user-doc --> This default implementation returns null so
 	 * that we can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.NotificationGenerationEvent
 	 * @generated
@@ -514,9 +574,12 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.emfstore.server.model.versioning.events.NotificationIgnoreEvent <em>Notification Ignore Event</em>}'.
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.NotificationIgnoreEvent
+	 * <em>Notification Ignore Event</em>}'.
 	 * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.NotificationIgnoreEvent
 	 * @generated
@@ -526,7 +589,8 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent
 	 * <em>URL Event</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
 	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
 	 * -->
@@ -541,7 +605,8 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeChoiceEvent <em>Merge Choice Event</em>}'. <!--
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeChoiceEvent <em>Merge Choice Event</em>}'.
+	 * <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
 	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
@@ -554,9 +619,12 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeGlobalChoiceEvent <em>Merge Global Choice Event</em>}'.
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeGlobalChoiceEvent
+	 * <em>Merge Global Choice Event</em>}'.
 	 * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.MergeGlobalChoiceEvent
 	 * @generated
@@ -569,6 +637,7 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	 * Creates a new adapter for the default case.
 	 * <!-- begin-user-doc --> This default implementation returns null.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @generated
 	 */

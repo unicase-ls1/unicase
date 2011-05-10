@@ -35,7 +35,8 @@ public class ChildrenDecorator implements ILightweightLabelDecorator {
 	 *      org.eclipse.jface.viewers.IDecoration)
 	 */
 	public void decorate(Object element, IDecoration decoration) {
-		URL url = FileLocator.find(Platform.getBundle("org.eclipse.emf.ecp.common"), new Path("icons/shortcut.png"), null);
+		URL url = FileLocator.find(Platform.getBundle("org.eclipse.emf.ecp.common"), new Path("icons/shortcut.png"),
+			null);
 		ImageDescriptor imageDescriptor = ImageDescriptor.createFromURL(url);
 		decoration.addOverlay(imageDescriptor, IDecoration.BOTTOM_RIGHT);
 

@@ -99,11 +99,9 @@ public class CSVImportSource extends ImportSource {
 		groups = new ArrayList<ImportItemWrapper>();
 		users = new ArrayList<ImportItemWrapper>();
 
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.OPEN);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.OPEN);
 		dialog.setText("Choose import file");
-		String initialPath = PreferenceHelper.getPreference(
-				CSV_IMPORT_SOURCE_PATH, System.getProperty("user.home"));
+		String initialPath = PreferenceHelper.getPreference(CSV_IMPORT_SOURCE_PATH, System.getProperty("user.home"));
 		dialog.setFilterPath(initialPath);
 		String fn = dialog.open();
 		if (fn == null) {
@@ -141,8 +139,7 @@ public class CSVImportSource extends ImportSource {
 				ImportItemWrapper importWrapper = null;
 				ArrayList<ImportItemWrapper> childOrgUnits;
 				if (groupMap.get(groupName) == null) {
-					ACGroup group = AccesscontrolFactory.eINSTANCE
-							.createACGroup();
+					ACGroup group = AccesscontrolFactory.eINSTANCE.createACGroup();
 					importWrapper = new ImportItemWrapper(null, group);
 
 					group.setName(groupName);
@@ -156,8 +153,7 @@ public class CSVImportSource extends ImportSource {
 
 				ACUser user = AccesscontrolFactory.eINSTANCE.createACUser();
 				user.setName(userName);
-				ImportItemWrapper userImportWrapper = new ImportItemWrapper(
-						null, user, importWrapper);
+				ImportItemWrapper userImportWrapper = new ImportItemWrapper(null, user, importWrapper);
 				users.add(userImportWrapper);
 
 				childOrgUnits.add(userImportWrapper);
@@ -180,8 +176,7 @@ public class CSVImportSource extends ImportSource {
 			return false;
 		} catch (ArrayIndexOutOfBoundsException e) {
 			WorkspaceUtil.logWarning(e.getMessage(), e);
-			DialogHandler.showExceptionDialog("ArrayIndexOutOfBoundsException",
-					e);
+			DialogHandler.showExceptionDialog("ArrayIndexOutOfBoundsException", e);
 			return false;
 		}
 

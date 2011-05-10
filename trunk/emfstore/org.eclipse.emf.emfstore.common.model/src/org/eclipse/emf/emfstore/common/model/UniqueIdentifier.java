@@ -36,6 +36,7 @@ public interface UniqueIdentifier extends EObject {
 	 * If the meaning of the '<em>Id</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
 	 * @see org.eclipse.emf.emfstore.common.model.ModelPackage#getUniqueIdentifier_Id()

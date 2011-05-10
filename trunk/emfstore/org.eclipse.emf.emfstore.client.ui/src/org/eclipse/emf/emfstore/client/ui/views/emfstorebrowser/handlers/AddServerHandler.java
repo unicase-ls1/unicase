@@ -31,13 +31,10 @@ public class AddServerHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		NewRepositoryWizard wizard = new NewRepositoryWizard();
-		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow();
-		wizard.init(activeWorkbenchWindow.getWorkbench(),
-				(IStructuredSelection) activeWorkbenchWindow
-						.getSelectionService().getSelection());
-		WizardDialog dialog = new WizardDialog(
-				activeWorkbenchWindow.getShell(), wizard);
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		wizard.init(activeWorkbenchWindow.getWorkbench(), (IStructuredSelection) activeWorkbenchWindow
+			.getSelectionService().getSelection());
+		WizardDialog dialog = new WizardDialog(activeWorkbenchWindow.getShell(), wizard);
 		dialog.create();
 		dialog.open();
 		return null;

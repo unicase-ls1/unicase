@@ -48,6 +48,7 @@ public interface AbstractOperation extends IdentifiableElement {
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getAbstractOperation_Name()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
@@ -79,6 +80,7 @@ public interface AbstractOperation extends IdentifiableElement {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Model Element Id</em>' containment reference.
 	 * @see #setModelElementId(ModelElementId)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getAbstractOperation_ModelElementId()
@@ -88,8 +90,11 @@ public interface AbstractOperation extends IdentifiableElement {
 	ModelElementId getModelElementId();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getModelElementId <em>Model Element Id</em>}' containment reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getModelElementId
+	 * <em>Model Element Id</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Model Element Id</em>' containment reference.
 	 * @see #getModelElementId()
 	 * @generated
@@ -104,6 +109,7 @@ public interface AbstractOperation extends IdentifiableElement {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Accepted</em>' attribute.
 	 * @see #setAccepted(boolean)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getAbstractOperation_Accepted()
@@ -113,8 +119,11 @@ public interface AbstractOperation extends IdentifiableElement {
 	boolean isAccepted();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#isAccepted <em>Accepted</em>}' attribute.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#isAccepted
+	 * <em>Accepted</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Accepted</em>' attribute.
 	 * @see #isAccepted()
 	 * @generated
@@ -129,6 +138,7 @@ public interface AbstractOperation extends IdentifiableElement {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Client Date</em>' attribute.
 	 * @see #setClientDate(Date)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getAbstractOperation_ClientDate()
@@ -138,8 +148,11 @@ public interface AbstractOperation extends IdentifiableElement {
 	Date getClientDate();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getClientDate <em>Client Date</em>}' attribute.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getClientDate
+	 * <em>Client Date</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Client Date</em>' attribute.
 	 * @see #getClientDate()
 	 * @generated

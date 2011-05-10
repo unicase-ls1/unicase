@@ -47,8 +47,8 @@ public class ShowHistoryHandler extends ServerRequestCommandHandler {
 		ProjectSpace projectSpace = getProjectSpace();
 		EObject modelElement = getModelElement();
 		if (projectSpace == null) {
-			projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpace(
-				ModelUtil.getProject(modelElement));
+			projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+				.getProjectSpace(ModelUtil.getProject(modelElement));
 		}
 
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();

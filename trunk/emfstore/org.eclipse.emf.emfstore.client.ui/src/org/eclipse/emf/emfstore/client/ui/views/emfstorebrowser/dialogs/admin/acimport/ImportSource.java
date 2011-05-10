@@ -37,8 +37,7 @@ public abstract class ImportSource implements ITreeContentProvider {
 	public Object getParent(Object obj) {
 		if (obj instanceof TreeItem) {
 			if ((ImportItemWrapper) ((TreeItem) obj).getData() != null) {
-				return ((ImportItemWrapper) ((TreeItem) obj).getData())
-						.getParentOrgUnit();
+				return ((ImportItemWrapper) ((TreeItem) obj).getData()).getParentOrgUnit();
 			}
 		}
 		if (obj instanceof ImportItemWrapper) {

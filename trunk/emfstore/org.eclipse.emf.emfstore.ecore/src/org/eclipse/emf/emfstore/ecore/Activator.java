@@ -27,7 +27,7 @@ public class Activator extends Plugin {
 	 * The shared instance.
 	 */
 	private static Activator plugin;
-	
+
 	/**
 	 * The constructor.
 	 */
@@ -36,6 +36,7 @@ public class Activator extends Plugin {
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
 	 */
 	// BEGIN SUPRESS CATCH EXCEPTION
@@ -43,22 +44,25 @@ public class Activator extends Plugin {
 		super.start(context);
 		plugin = this;
 	}
+
 	// END SUPRESS CATCH EXCEPTION
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
 	 */
 	// BEGIN SUPRESS CATCH EXCEPTION
-	public void stop(BundleContext context) throws Exception {		
+	public void stop(BundleContext context) throws Exception {
 		plugin = null;
 		super.stop(context);
 	}
+
 	// END SUPRESS CATCH EXCEPTION
 
 	/**
 	 * Returns the shared instance.
-	 *
+	 * 
 	 * @return the shared instance
 	 */
 	public static Activator getDefault() {

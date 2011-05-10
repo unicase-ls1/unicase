@@ -64,8 +64,7 @@ public class CertificateAliasDialog extends Dialog {
 	 *            the initial input value, or <code>null</code> if none
 	 *            (equivalent to the empty string)
 	 */
-	public CertificateAliasDialog(Shell parentShell, String dialogTitle,
-			String dialogMessage, String initialValue) {
+	public CertificateAliasDialog(Shell parentShell, String dialogTitle, String dialogMessage, String initialValue) {
 		super(parentShell);
 		this.dialogTitle = dialogTitle;
 		configureShell(parentShell);
@@ -91,16 +90,14 @@ public class CertificateAliasDialog extends Dialog {
 		if (message != null) {
 			Label label = new Label(composite, SWT.WRAP);
 			label.setText(message);
-			GridData data = new GridData(GridData.GRAB_HORIZONTAL
-					| GridData.GRAB_VERTICAL | GridData.HORIZONTAL_ALIGN_FILL
-					| GridData.VERTICAL_ALIGN_CENTER);
+			GridData data = new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL
+				| GridData.HORIZONTAL_ALIGN_FILL | GridData.VERTICAL_ALIGN_CENTER);
 			data.widthHint = convertHorizontalDLUsToPixels(IDialogConstants.MINIMUM_MESSAGE_AREA_WIDTH);
 			label.setLayoutData(data);
 			label.setFont(parent.getFont());
 		}
 		text = new Text(composite, SWT.SINGLE | SWT.BORDER);
-		text.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL
-				| GridData.HORIZONTAL_ALIGN_FILL));
+		text.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL | GridData.HORIZONTAL_ALIGN_FILL));
 		applyDialogFont(composite);
 		return composite;
 	}

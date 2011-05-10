@@ -64,8 +64,7 @@ public class LdapSourceDialog extends TitleAreaDialog {
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		// Set the specific help for this Composite
-		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
-				Activator.PLUGIN_ID + ".help_import_ldap");
+		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, Activator.PLUGIN_ID + ".help_import_ldap");
 
 		Composite contents = new Composite(parent, SWT.NONE);
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -84,8 +83,8 @@ public class LdapSourceDialog extends TitleAreaDialog {
 		ldapBase.setSize(350, 20);
 
 		Point defaultMargins = LayoutConstants.getMargins();
-		GridLayoutFactory.fillDefaults().numColumns(2).margins(
-				defaultMargins.x, defaultMargins.y).generateLayout(contents);
+		GridLayoutFactory.fillDefaults().numColumns(2).margins(defaultMargins.x, defaultMargins.y)
+			.generateLayout(contents);
 
 		return contents;
 	}
@@ -95,11 +94,9 @@ public class LdapSourceDialog extends TitleAreaDialog {
 	 */
 	@Override
 	public void okPressed() {
-		ProgressMonitorDialog progressMonitorDialog = new ProgressMonitorDialog(
-				getShell());
+		ProgressMonitorDialog progressMonitorDialog = new ProgressMonitorDialog(getShell());
 		progressMonitorDialog.open();
-		progressMonitorDialog.getProgressMonitor().beginTask("connecting",
-				IProgressMonitor.UNKNOWN);
+		progressMonitorDialog.getProgressMonitor().beginTask("connecting", IProgressMonitor.UNKNOWN);
 
 		Properties serverProperties = new Properties();
 

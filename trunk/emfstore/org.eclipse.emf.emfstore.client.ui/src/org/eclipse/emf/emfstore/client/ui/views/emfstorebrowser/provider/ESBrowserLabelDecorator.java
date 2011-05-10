@@ -32,15 +32,12 @@ public class ESBrowserLabelDecorator implements ILightweightLabelDecorator {
 			TreeNode node = (TreeNode) element;
 			if (node.getValue() instanceof ServerInfo) {
 				ServerInfo server = (ServerInfo) node.getValue();
-				if (server.getLastUsersession() != null
-						&& server.getLastUsersession().isLoggedIn()) {
-					decoration.addOverlay(Activator
-							.getImageDescriptor("icons/bullet_green.png"),
-							IDecoration.BOTTOM_RIGHT);
+				if (server.getLastUsersession() != null && server.getLastUsersession().isLoggedIn()) {
+					decoration.addOverlay(Activator.getImageDescriptor("icons/bullet_green.png"),
+						IDecoration.BOTTOM_RIGHT);
 				} else {
-					decoration.addOverlay(Activator
-							.getImageDescriptor("icons/bullet_delete.png"),
-							IDecoration.BOTTOM_RIGHT);
+					decoration.addOverlay(Activator.getImageDescriptor("icons/bullet_delete.png"),
+						IDecoration.BOTTOM_RIGHT);
 				}
 			}
 		}

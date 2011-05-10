@@ -26,21 +26,21 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 
-
 /**
  * Utility class to retrieve meta model information.
+ * 
  * @author koegel
- *
+ * 
  */
 public final class CommonUtil {
-	
+
 	/**
 	 * Private constructor since this is a utility class.
 	 */
 	private CommonUtil() {
-		//nothing to do
+		// nothing to do
 	}
-		
+
 	private static Set<EClass> modelElementEClasses;
 
 	/**
@@ -67,7 +67,7 @@ public final class CommonUtil {
 		}
 		return reference;
 	}
-	
+
 	/**
 	 * Gives all eClasses which can be contained in a given eClass.
 	 * 
@@ -83,7 +83,7 @@ public final class CommonUtil {
 		}
 		return eClazz;
 	}
-	
+
 	/**
 	 * Retrieve all EClasses from the Ecore package registry that are subclasses of the given EClass. Does not include
 	 * abstract classes or interfaces.
@@ -106,7 +106,7 @@ public final class CommonUtil {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * Retrieve all EClasses from the Ecore package registry that are model element subclasses.
 	 * 
@@ -134,7 +134,7 @@ public final class CommonUtil {
 		modelElementEClasses = result;
 		return result;
 	}
-	
+
 	/**
 	 * Retrieve all EClasses from the Ecore package that are model element subclasses.
 	 * 
@@ -154,7 +154,7 @@ public final class CommonUtil {
 		}
 		return result;
 	}
-		
+
 	/**
 	 * Get the EContainer that contains the given model element and whose EContainer is null.
 	 * 
@@ -163,7 +163,7 @@ public final class CommonUtil {
 	 * @param child the model element whose container should get returned
 	 * @return the container
 	 */
-	public static <T extends EObject>  T getParent(Class<T> parent, EObject child) {
+	public static <T extends EObject> T getParent(Class<T> parent, EObject child) {
 		Set<EObject> seenModelElements = new HashSet<EObject>();
 		seenModelElements.add(child);
 		return getParent(parent, child, seenModelElements);
@@ -186,7 +186,6 @@ public final class CommonUtil {
 			return getParent(parent, child.eContainer(), seenModelElements);
 		}
 	}
-
 
 	/**
 	 * Check an Eobject and its containment tree whether it is selfcontained. A containment tree is self contained if it
@@ -229,7 +228,7 @@ public final class CommonUtil {
 		// }
 		return true;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private static Set<EObject> getNonTransientContents(EObject object) {
 		Set<EObject> result = new HashSet<EObject>();
@@ -289,7 +288,7 @@ public final class CommonUtil {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * Determines whether an EObject is a singleton object. All EObjects being children of ECorePackage are considered
 	 * as singletons.
@@ -343,7 +342,6 @@ public final class CommonUtil {
 
 		return rootNodes;
 	}
-	
 
 	/**
 	 * Loads a Set of EObject from a given resource. Content which couldn't be loaded creates a error string which will

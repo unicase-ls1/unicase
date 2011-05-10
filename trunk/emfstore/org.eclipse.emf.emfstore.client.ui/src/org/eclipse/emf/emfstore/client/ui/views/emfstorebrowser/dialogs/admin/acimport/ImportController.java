@@ -67,9 +67,7 @@ public class ImportController {
 				try {
 					String username = wrappedOrgUnit.getOrgUnit().getName();
 					if (null == existUser(username)) {
-						this.importedUnits.put(
-								adminBroker.createUser(username),
-								wrappedOrgUnit);
+						this.importedUnits.put(adminBroker.createUser(username), wrappedOrgUnit);
 					}
 				} catch (EmfStoreException e) {
 					WorkspaceUtil.logWarning(e.getMessage(), e);
@@ -87,8 +85,7 @@ public class ImportController {
 				try {
 					String groupname = wrappedOrgUnit.getOrgUnit().getName();
 					if (null == existGroup(groupname)) {
-						this.importedUnits.put(adminBroker
-								.createGroup(groupname), wrappedOrgUnit);
+						this.importedUnits.put(adminBroker.createGroup(groupname), wrappedOrgUnit);
 					}
 				} catch (EmfStoreException e) {
 					WorkspaceUtil.logWarning(e.getMessage(), e);
@@ -102,8 +99,8 @@ public class ImportController {
 		for (ACOrgUnitId unitId : importedUnits.keySet()) {
 			if (this.importedUnits.get(unitId).getParentOrgUnit() != null) {
 
-				ACOrgUnitId existGroup = existGroup(this.importedUnits.get(
-						unitId).getParentOrgUnit().getOrgUnit().getName());
+				ACOrgUnitId existGroup = existGroup(this.importedUnits.get(unitId).getParentOrgUnit().getOrgUnit()
+					.getName());
 
 				// we do not want self-containment
 				if (existGroup != null && !existGroup.equals(unitId)) {

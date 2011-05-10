@@ -12,17 +12,21 @@ package org.eclipse.emf.emfstore.server.model.versioning.events;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Exception Event</b></em>'. <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent#getExceptionTitle <em>Exception Title</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent#getExceptionStackTrace <em>Exception Stack Trace</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent#getExceptionCauseTitle <em>Exception Cause Title</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent#getExceptionCauseStackTrace <em>Exception Cause Stack Trace</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent#getExceptionTitle <em>Exception
+ * Title</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent#getExceptionStackTrace <em>
+ * Exception Stack Trace</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent#getExceptionCauseTitle <em>
+ * Exception Cause Title</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent#getExceptionCauseStackTrace <em>
+ * Exception Cause Stack Trace</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getExceptionEvent()
  * @model
  * @generated
@@ -36,6 +40,7 @@ public interface ExceptionEvent extends Event {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Exception Title</em>' attribute.
 	 * @see #setExceptionTitle(String)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getExceptionEvent_ExceptionTitle()
@@ -45,8 +50,11 @@ public interface ExceptionEvent extends Event {
 	String getExceptionTitle();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent#getExceptionTitle <em>Exception Title</em>}' attribute.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent#getExceptionTitle
+	 * <em>Exception Title</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Exception Title</em>' attribute.
 	 * @see #getExceptionTitle()
 	 * @generated
@@ -61,6 +69,7 @@ public interface ExceptionEvent extends Event {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Exception Stack Trace</em>' attribute.
 	 * @see #setExceptionStackTrace(String)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getExceptionEvent_ExceptionStackTrace()
@@ -70,8 +79,11 @@ public interface ExceptionEvent extends Event {
 	String getExceptionStackTrace();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent#getExceptionStackTrace <em>Exception Stack Trace</em>}' attribute.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent#getExceptionStackTrace
+	 * <em>Exception Stack Trace</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Exception Stack Trace</em>' attribute.
 	 * @see #getExceptionStackTrace()
 	 * @generated
@@ -86,6 +98,7 @@ public interface ExceptionEvent extends Event {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Exception Cause Title</em>' attribute.
 	 * @see #setExceptionCauseTitle(String)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getExceptionEvent_ExceptionCauseTitle()
@@ -95,8 +108,11 @@ public interface ExceptionEvent extends Event {
 	String getExceptionCauseTitle();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent#getExceptionCauseTitle <em>Exception Cause Title</em>}' attribute.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent#getExceptionCauseTitle
+	 * <em>Exception Cause Title</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Exception Cause Title</em>' attribute.
 	 * @see #getExceptionCauseTitle()
 	 * @generated
@@ -111,6 +127,7 @@ public interface ExceptionEvent extends Event {
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Exception Cause Stack Trace</em>' attribute.
 	 * @see #setExceptionCauseStackTrace(String)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getExceptionEvent_ExceptionCauseStackTrace()
@@ -120,8 +137,11 @@ public interface ExceptionEvent extends Event {
 	String getExceptionCauseStackTrace();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent#getExceptionCauseStackTrace <em>Exception Cause Stack Trace</em>}' attribute.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent#getExceptionCauseStackTrace
+	 * <em>Exception Cause Stack Trace</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Exception Cause Stack Trace</em>' attribute.
 	 * @see #getExceptionCauseStackTrace()
 	 * @generated

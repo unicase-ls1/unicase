@@ -42,12 +42,10 @@ public class ImportProjectSpaceHandler extends AbstractHandler {
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.OPEN);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.OPEN);
 		dialog.setFilterNames(ImportProjectHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ImportProjectHandler.FILTER_EXTS);
-		String initialPath = PreferenceHelper.getPreference(
-				IMPORT_PROJECTSPACE_PATH, System.getProperty("user.home"));
+		String initialPath = PreferenceHelper.getPreference(IMPORT_PROJECTSPACE_PATH, System.getProperty("user.home"));
 		dialog.setFilterPath(initialPath);
 		String fn = dialog.open();
 		if (fn == null) {
@@ -55,22 +53,19 @@ public class ImportProjectSpaceHandler extends AbstractHandler {
 		}
 
 		final File file = new File(dialog.getFilterPath(), dialog.getFileName());
-		PreferenceHelper.setPreference(IMPORT_PROJECTSPACE_PATH, file
-				.getParent());
+		PreferenceHelper.setPreference(IMPORT_PROJECTSPACE_PATH, file.getParent());
 
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+			.getActiveWorkbenchWindow().getShell());
 
 		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				try {
 					progressDialog.open();
-					progressDialog.getProgressMonitor().beginTask(
-							"Export project...", 100);
+					progressDialog.getProgressMonitor().beginTask("Export project...", 100);
 					progressDialog.getProgressMonitor().worked(10);
-					Workspace currentWorkspace = WorkspaceManager.getInstance()
-							.getCurrentWorkspace();
+					Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 					currentWorkspace.importProjectSpace(file.getAbsolutePath());
 
 				} catch (IOException e) {
@@ -82,8 +77,7 @@ public class ImportProjectSpaceHandler extends AbstractHandler {
 			}
 		}.run();
 
-		MessageDialog.openInformation(null, "Import",
-				"Imported project space from file: " + file.getAbsolutePath());
+		MessageDialog.openInformation(null, "Import", "Imported project space from file: " + file.getAbsolutePath());
 		return null;
 	}
 
