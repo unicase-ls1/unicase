@@ -15,7 +15,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.ecp.common.model.workSpaceModel.*;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelFactory;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
