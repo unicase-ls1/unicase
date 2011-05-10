@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.ecp.navigator.feature"
       label="ECP Navigator"
-      version="0.7.3"
+      version="0.8.0"
       provider-name="Eclipse Modeling Project">
 
    <description url="http://emfcp.org">
