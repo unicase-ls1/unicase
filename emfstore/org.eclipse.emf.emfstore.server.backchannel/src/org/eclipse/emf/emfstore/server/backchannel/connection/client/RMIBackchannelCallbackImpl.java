@@ -8,8 +8,9 @@ package org.eclipse.emf.emfstore.server.backchannel.connection.client;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.util.SerializationException;
 import org.eclipse.emf.emfstore.server.backchannel.BackchannelConfiguration;
-import org.eclipse.emf.emfstore.server.connection.rmi.SerializationUtil;
 import org.eclipse.emf.emfstore.server.eventmanager.EMFStoreEventListener;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerEvent;
@@ -46,8 +47,12 @@ public class RMIBackchannelCallbackImpl extends UnicastRemoteObject implements
 	 */
 	public boolean handleEvent(String event) throws RemoteException,
 			EmfStoreException {
-		return listener.handleEvent((ServerEvent) SerializationUtil
-				.stringToEObject(event));
+		try {
+			return listener.handleEvent((ServerEvent) ModelUtil
+					.stringToEObject(event));
+		} catch (SerializationException e) {
+			throw new EmfStoreException(e);
+		}
 	}
 
 }
