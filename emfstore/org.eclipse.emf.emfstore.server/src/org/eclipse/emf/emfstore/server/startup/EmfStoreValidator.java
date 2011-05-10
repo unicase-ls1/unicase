@@ -23,9 +23,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.server.connection.rmi.SerializationUtil;
+import org.eclipse.emf.emfstore.common.model.util.SerializationException;
 import org.eclipse.emf.emfstore.server.exceptions.FatalEmfStoreException;
-import org.eclipse.emf.emfstore.server.exceptions.RMISerializationException;
 import org.eclipse.emf.emfstore.server.model.ProjectHistory;
 import org.eclipse.emf.emfstore.server.model.ServerSpace;
 import org.eclipse.emf.emfstore.server.model.versioning.Version;
@@ -276,10 +275,12 @@ public class EmfStoreValidator {
 		String stringB = "";
 
 		try {
-			stringA = SerializationUtil.eObjectToString(projectA);
-			stringB = SerializationUtil.eObjectToString(projectB);
-		} catch (RMISerializationException e) {
-			e.printStackTrace();
+			stringA = ModelUtil.eObjectToString(projectA);
+			stringB = ModelUtil.eObjectToString(projectB);
+		} catch (SerializationException e) {
+			ModelUtil.logException(e);
+			result[areEqual] = 0;
+			return result;
 		}
 
 		int length = Math.min(stringA.length(), stringB.length());
