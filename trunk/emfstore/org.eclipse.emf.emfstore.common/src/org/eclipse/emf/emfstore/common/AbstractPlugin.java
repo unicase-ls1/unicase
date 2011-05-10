@@ -12,14 +12,29 @@ package org.eclipse.emf.emfstore.common;
 
 import org.eclipse.core.runtime.Plugin;
 
+/**
+ * Plugin class for emfstore common.
+ * 
+ * @author Koegel
+ *
+ */
 public abstract class AbstractPlugin extends Plugin {
 	
 	private LogAdapter logAdapter;
 	
+	/**
+	 * Constructor.
+	 */
 	public AbstractPlugin() {
 		logAdapter = new LogAdapter();
 	}
 
+	/**
+	 * Log an error.
+	 * @param message the message
+	 * @param exception the causing exception
+	 * @param statusInt a status code
+	 */
 	public void log(String message, Exception exception, int statusInt) {
 		logAdapter.log(message, exception, statusInt);
 	}

@@ -51,7 +51,9 @@ public class ForceRevertHandler extends AbstractHistoryViewHandler {
 	/**
 	 * Reverts the commit from a certain revision in a local workspace on the HEAD version that can be committed later.
 	 * 
+	 * @param projectSpace the project space to revert the commit on.
 	 * @param versionSpec the version of the commit to revert
+	 * 
 	 */
 	public void forceRevertCommit(final ProjectSpace projectSpace, final PrimaryVersionSpec versionSpec) {
 		ServerRequestCommandHandler handler = new ServerRequestCommandHandler() {

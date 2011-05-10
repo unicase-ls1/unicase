@@ -713,8 +713,11 @@ public final class ModelUtil {
 	}
 
 	/**
-     * 
-     */
+	 * Get the container of an EObject.
+	 * 
+	 * @param modelElement the model element
+	 * @return the container
+	 */
 	public static EObject getContainerModelElement(EObject modelElement) {
 		EObject container = modelElement.eContainer();
 		if (container == null) {
@@ -922,7 +925,10 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Get the singleton instance for a given model element id.
+	 * 
+	 * @param singletonId the id
+	 * @return the singleton instance
 	 * 
 	 * @see org.eclipse.emf.emfstore.common.model.SingletonIdResolver#getSingleton(org.eclipse.emf.emfstore.common.model.ModelElementId)
 	 */
@@ -941,7 +947,10 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Get the singleton id for a singleton instance.
+	 * 
+	 * @param singleton the singleton
+	 * @return the id
 	 * 
 	 * @see org.eclipse.emf.emfstore.common.model.SingletonIdResolver#getSingletonModelElementId(org.eclipse.emf.ecore.EObject)
 	 */
@@ -960,7 +969,10 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Return whether the given eObject instance is a singelton.
+	 * 
+	 * @param eObject the instance
+	 * @return true if it is a singleton
 	 * 
 	 * @see org.eclipse.emf.emfstore.common.model.SingletonIdResolver#isSingleton(org.eclipse.emf.ecore.EObject)
 	 */

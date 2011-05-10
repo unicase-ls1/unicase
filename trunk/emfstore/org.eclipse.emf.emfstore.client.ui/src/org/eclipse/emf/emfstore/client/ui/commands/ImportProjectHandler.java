@@ -95,7 +95,9 @@ public class ImportProjectHandler extends AbstractHandler {
 					}
 				}
 			}.run(false);
-		} catch (Throwable t) {
+			// BEGIN SUPRESS CATCH EXCEPTION
+		} catch (RuntimeException t) {
+			// END SUPRESS CATCH EXCEPTION
 			new EMFStoreCommand() {
 				@Override
 				protected void doRun() {

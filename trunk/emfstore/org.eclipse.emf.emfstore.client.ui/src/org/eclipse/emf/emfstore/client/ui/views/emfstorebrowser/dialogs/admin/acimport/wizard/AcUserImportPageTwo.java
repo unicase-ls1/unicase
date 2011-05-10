@@ -78,6 +78,7 @@ public class AcUserImportPageTwo extends WizardPage {
 		// http://jmesnil.net/weblog/2007/02/26/add-a-filter-to-a-treeviewer/
 		// Due to compatibility to ganymede
 		final PatternFilter patternFilter = new PatternFilter();
+		@SuppressWarnings("deprecation")
 		final FilteredTree filter = new FilteredTree(composite, SWT.CHECK | SWT.BORDER | SWT.MULTI | SWT.H_SCROLL
 			| SWT.V_SCROLL, patternFilter);
 

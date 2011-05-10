@@ -26,9 +26,8 @@ public class EObjectTypeConverterFactory extends TypeConverterFactoryImpl {
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
-	public TypeConverter getTypeConverter(Class pClass) {
+	public TypeConverter getTypeConverter(@SuppressWarnings("rawtypes") Class pClass) {
 		if (EObject.class.isAssignableFrom(pClass)) {
 			return EOBJECTCONVERTER;
 		}
