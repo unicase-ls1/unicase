@@ -14,7 +14,9 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecp.common.model.workSpaceModel.*;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the call

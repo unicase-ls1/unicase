@@ -14,7 +14,9 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecp.common.model.workSpaceModel.*;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code>
