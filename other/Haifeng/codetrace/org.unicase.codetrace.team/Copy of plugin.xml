@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="org.unicase.codetrace.teamAdapters" name="Team Adapters" schema="schema/org.unicase.codetrace.teamAdapters.exsd"/>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.unicase.masterarbeit.ui.command.category"
+            id="org.unicase.masterarbeit.ui.command.SendPatchCommand"
+            name="Send Patch to Unicase">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            id="org.unicase.masterarbeit.ui.ResourceContributions"
+            objectClass="org.eclipse.core.resources.mapping.ResourceMapping">
+         <action
+               class="org.unicase.masterarbeit.ui.action.SendPatchActionDelegate"
+               definitionId="org.unicase.masterarbeit.ui.action.SendPatchAction"
+               id="org.unicase.masterarbeit.ui.action.SendPatchAction"
+               label="Send Patch to Unicase"
+               menubarPath="team.main/group1"
+               tooltip="Creates a patch and sends it to a unicase project.">
+         </action>
+         <action
+               class="org.unicase.masterarbeit.ui.action.ApplyPatchActionDelegate"
+               definitionId="org.unicase.masterarbeit.ui.action.ApplyPatchAction"
+               id="org.unicase.masterarbeit.ui.action.ApplyPatchAction"
+               label="Apply Patch from Unicase"
+               menubarPath="team.main/group1"
+               tooltip="Applies a patch from unicase onto this resouce">
+         </action>
+         <enablement>
+            <adapt
+                  type="org.eclipse.core.resources.mapping.ResourceMapping">
+               <test
+                     args="org.eclipse.team.core.repository,org.eclipse.team.svn.core.svnnature"
+                     property="org.eclipse.core.resources.projectPersistentProperty">
+               </test>
+            </adapt>
+         </enablement>
+      </objectContribution>
+   </extension>
+
+</plugin>
