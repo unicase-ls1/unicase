@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="&lt;copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html &lt;/copyright>&#xA;"
+    modelDirectory="/org.unicase.ecp.model/src" editDirectory="/org.unicase.ecp.model/src/"
+    modelPluginID="org.unicase.ecp.model" modelName="WorkspaceModel" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false">
+  <foreignModel>workspaceModel.ecore</foreignModel>
+  <genPackages prefix="WorkSpaceModel" basePackage="org.unicase.ecp.model" disposableProviderFactory="true"
+      ecorePackage="workspaceModel.ecore#/">
+    <genClasses image="false" ecoreClass="workspaceModel.ecore#//ECPWorkspace">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference workspaceModel.ecore#//ECPWorkspace/projects"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workspaceModel.ecore#//ECPWorkspace/activeProject"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="workspaceModel.ecore#//ECPProject">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference workspaceModel.ecore#//ECPProject/workspace"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
