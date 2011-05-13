@@ -75,7 +75,6 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 	 * Constructor.
 	 */
 	public TreeView() {
-		createOperationListener();
 		try {
 			currentWorkspace = ECPWorkspaceManager.getInstance().getWorkSpace();
 		} catch (NoWorkspaceException e) {
@@ -100,39 +99,13 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 						projectSpace.removeECPProjectListener(simpleOperationListener);
 					}
 				}
-				super.notifyChanged(msg);
 			}
 		};
 		currentWorkspace.eAdapters().add(workspaceListenerAdapter);
 
 	}
 
-	/**
-	 * We need to refresh the Navigator on every Operation so that dirty decorators on individual model elements are
-	 * updated. The refresh happens asynchronously and currently is no performance problem.
-	 */
-	private void createOperationListener() {
-		simpleOperationListener = new ECPProjectListener() {
-
-			public void projectChanged() {
-				Display.getDefault().asyncExec(new Runnable() {
-					public void run() {
-						viewer.refresh();
-					}
-				});
-			}
-
-			public void modelelementDeleted(EObject eobject) {
-				projectChanged();
-			}
-
-			public void projectDeleted() {
-				projectChanged();
-			}
-		};
-	}
-
-	/**
+		/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.ui.part.WorkbenchPart#dispose()
@@ -157,7 +130,9 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 			IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
 			viewer.setLabelProvider(new DecoratingLabelProvider(new TreeLabelProvider(), decoratorManager
 				.getLabelDecorator()));
+//			viewer.setLabelProvider(new TreeLabelProvider());
 			viewer.setContentProvider(new TreeContentProvider());
+			viewer.setUseHashlookup(true);
 			viewer.setInput(workSpace);
 			// viewer.setInput(currentWorkspace);
 		} catch (NoWorkspaceException e) {
