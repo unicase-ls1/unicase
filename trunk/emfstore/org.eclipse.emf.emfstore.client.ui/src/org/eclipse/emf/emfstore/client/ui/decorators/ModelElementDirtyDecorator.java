@@ -33,7 +33,7 @@ import org.eclipse.jface.viewers.ILightweightLabelDecorator;
  */
 public class ModelElementDirtyDecorator implements ILightweightLabelDecorator {
 
-	private static final String dirtyPath = "icons/dirty.png";
+	private static final String DIRTY_ICON_PATH = "icons/dirty.png";
 	private static ImageDescriptor descriptor;
 
 	/**
@@ -67,7 +67,7 @@ public class ModelElementDirtyDecorator implements ILightweightLabelDecorator {
 		}
 		if (dirty) {
 			if (descriptor == null) {
-				url = FileLocator.find(Platform.getBundle("org.eclipse.emf.ecp.common"), new Path(dirtyPath), null);
+				url = FileLocator.find(Platform.getBundle("org.eclipse.emf.ecp.common"), new Path(DIRTY_ICON_PATH), null);
 				descriptor = ImageDescriptor.createFromURL(url);
 			}
 			decoration.addOverlay(descriptor, IDecoration.BOTTOM_LEFT);
