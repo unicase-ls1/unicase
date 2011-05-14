@@ -1,8 +1,7 @@
-package org.unicase.changetracking.git.n;
+package org.unicase.changetracking.adapter.subclipse;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.egit.core.GitTag;
-import org.unicase.changetracking.git.GitRepoFindUtil;
+import org.eclipse.team.core.RepositoryProvider;
 import org.unicase.changetracking.vcs.VCSAdapter;
 import org.unicase.changetracking.vcs.VCSAdapterProvider;
 import org.unicase.model.changetracking.ChangePackage;
@@ -10,32 +9,37 @@ import org.unicase.model.changetracking.RepositoryRevision;
 import org.unicase.model.changetracking.RepositoryStream;
 import org.unicase.model.changetracking.git.GitBranch;
 import org.unicase.model.changetracking.git.GitBranchChangePackage;
+import org.unicase.model.changetracking.patch.PatchChangePackage;
 
-public class GitVCSAdapterProvider implements VCSAdapterProvider {
+public class SubclipseVCSAdapterProvider implements VCSAdapterProvider {
 
-	@Override
+	public static final String SUBCLIPSE_REPO_PROVIDER_ID = "org.tigris.subversion.subclipse.core.svnnature";
+	
 	public boolean providesForStream(RepositoryStream stream) {
-		return stream instanceof GitBranch;
+		return false; /* Not implemented for this provider */
 	}
 
-	@Override
 	public boolean providesForRevision(RepositoryRevision revision) {
-		return revision instanceof GitTag;
+		return false; /* Not implemented for this provider */
 	}
 
-	@Override
 	public boolean providesForChangePackage(ChangePackage pkg) {
-		return pkg instanceof GitBranchChangePackage;
+		return pkg instanceof PatchChangePackage;
 	}
 
-	@Override
 	public boolean providesForProject(IProject project) {
-		return null != GitRepoFindUtil.findRepository(project.getFullPath().toFile());
+		RepositoryProvider provider = RepositoryProvider.getProvider(project);
+		if(provider == null){
+			return false;
+		}
+		if(SUBCLIPSE_REPO_PROVIDER_ID.equals(provider.getID())){
+			return true;
+		}
+		return false;
 	}
 
-	@Override
 	public VCSAdapter create() {
-		return new GitVCSAdapter();
+		return new SubclipseVCSAdapter();
 	}
 
 }

@@ -2,9 +2,13 @@ package org.unicase.changetracking.ui;
 
 import java.lang.reflect.InvocationTargetException;
 
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.swt.custom.BusyIndicator;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.WorkbenchException;
@@ -12,6 +16,7 @@ import org.unicase.changetracking.commands.ChangeTrackingCommand;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 public class UIUtil {
 
@@ -64,7 +69,7 @@ public class UIUtil {
 					getActiveWorkbenchWindow().getShell());
 			try{
 				progressMonitor.run(true, true, command);
-				result = command.getResult();	
+				result = command.getCTResult();	
 			} catch (RuntimeException e){
 				handleException(e);
 			} catch (InvocationTargetException e) {
@@ -73,6 +78,7 @@ public class UIUtil {
 				handleException(e);
 			}
 		} else {
+			
 			result = command.run();
 		}
 		
@@ -115,6 +121,47 @@ public class UIUtil {
 
 	public static void errorMessage(String message) {
 		errorMessage("Error",message);
+	}
+
+	public static enum ProgressKind{
+		DIALOG,BUSYCURSOR;
+	}
+	
+	/**
+	 * Runs a runnable either with a progress monitor or a busy cursor.
+	 * @param runnable the runnable to run
+	 * @param progressKind with cursor or dialog?
+	 */
+	 public static void run(final IRunnableWithProgress runnable, ProgressKind progressKind) {
+		final Exception[] exceptions = new Exception[] {null};
+		switch (progressKind) {
+			case BUSYCURSOR :
+				BusyIndicator.showWhile(Display.getCurrent(), new Runnable() {
+					public void run() {
+						try {
+							runnable.run(new NullProgressMonitor());
+						} catch (InvocationTargetException e) {
+							exceptions[0] = e;
+						} catch (InterruptedException e) {
+							exceptions[0] = null;
+						}
+					}
+				});
+				break;
+			default :
+			case DIALOG :
+				try {
+					new ProgressMonitorDialog(getActiveShell()).run(true, true, runnable);
+				} catch (InvocationTargetException e) {
+					exceptions[0] = e;
+				} catch (InterruptedException e) {
+					exceptions[0] = null;
+				}
+				break;
+		}
+		if (exceptions[0] != null) {
+			WorkspaceUtil.logException("An exception has occurred", exceptions[0]);
+		}
 	}
 
 

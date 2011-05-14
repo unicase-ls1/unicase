@@ -11,10 +11,12 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.changetracking.ChangetrackingPackage;
 import org.unicase.model.changetracking.git.GitPackage;
 import org.unicase.model.changetracking.git.impl.GitPackageImpl;
 import org.unicase.model.changetracking.impl.ChangetrackingPackageImpl;
+import org.unicase.model.changetracking.patch.PatchChangePackage;
 import org.unicase.model.changetracking.patch.Patch;
 import org.unicase.model.changetracking.patch.PatchFactory;
 import org.unicase.model.changetracking.patch.PatchPackage;
@@ -38,7 +40,7 @@ public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass patchEClass = null;
+	private EClass patchChangePackageEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -86,8 +88,7 @@ public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
 		// Obtain or create and register package
 		PatchPackageImpl thePatchPackage = (PatchPackageImpl) (EPackage.Registry.INSTANCE
 				.get(eNS_URI) instanceof PatchPackageImpl ? EPackage.Registry.INSTANCE
-				.get(eNS_URI)
-				: new PatchPackageImpl());
+				.get(eNS_URI) : new PatchPackageImpl());
 
 		isInited = true;
 
@@ -102,8 +103,7 @@ public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
 				: ChangetrackingPackage.eINSTANCE);
 		GitPackageImpl theGitPackage = (GitPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(GitPackage.eNS_URI) instanceof GitPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(GitPackage.eNS_URI)
-				: GitPackage.eINSTANCE);
+				.getEPackage(GitPackage.eNS_URI) : GitPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		thePatchPackage.createPackageContents();
@@ -128,8 +128,8 @@ public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPatch() {
-		return patchEClass;
+	public EClass getPatchChangePackage() {
+		return patchChangePackageEClass;
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
 		isCreated = true;
 
 		// Create classes and their features
-		patchEClass = createEClass(PATCH);
+		patchChangePackageEClass = createEClass(PATCH_CHANGE_PACKAGE);
 	}
 
 	/**
@@ -188,15 +188,26 @@ public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		ChangetrackingPackage theChangetrackingPackage = (ChangetrackingPackage) EPackage.Registry.INSTANCE
+				.getEPackage(ChangetrackingPackage.eNS_URI);
+		AttachmentPackage theAttachmentPackage = (AttachmentPackage) EPackage.Registry.INSTANCE
+				.getEPackage(AttachmentPackage.eNS_URI);
+
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		patchChangePackageEClass.getESuperTypes().add(
+				theChangetrackingPackage.getChangePackage());
+		patchChangePackageEClass.getESuperTypes().add(
+				theAttachmentPackage.getFileAttachment());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(patchEClass, Patch.class, "Patch", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(patchChangePackageEClass, PatchChangePackage.class,
+				"PatchChangePackage", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } //PatchPackageImpl

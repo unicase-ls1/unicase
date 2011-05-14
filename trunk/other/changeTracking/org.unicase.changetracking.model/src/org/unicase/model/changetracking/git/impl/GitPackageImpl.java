@@ -112,8 +112,7 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 		// Obtain or create and register package
 		GitPackageImpl theGitPackage = (GitPackageImpl) (EPackage.Registry.INSTANCE
 				.get(eNS_URI) instanceof GitPackageImpl ? EPackage.Registry.INSTANCE
-				.get(eNS_URI)
-				: new GitPackageImpl());
+				.get(eNS_URI) : new GitPackageImpl());
 
 		isInited = true;
 
@@ -128,8 +127,7 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 				: ChangetrackingPackage.eINSTANCE);
 		PatchPackageImpl thePatchPackage = (PatchPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(PatchPackage.eNS_URI) instanceof PatchPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(PatchPackage.eNS_URI)
-				: PatchPackage.eINSTANCE);
+				.getEPackage(PatchPackage.eNS_URI) : PatchPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theGitPackage.createPackageContents();
@@ -352,12 +350,13 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 
 		initEClass(gitBranchEClass, GitBranch.class, "GitBranch", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGitBranch_ReferringChangePackages(), this
-				.getGitBranchChangePackage(), this
-				.getGitBranchChangePackage_Branch(), "referringChangePackages",
-				null, 0, -1, GitBranch.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGitBranch_ReferringChangePackages(),
+				this.getGitBranchChangePackage(),
+				this.getGitBranchChangePackage_Branch(),
+				"referringChangePackages", null, 0, -1, GitBranch.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 		initEAttribute(getGitBranch_BranchName(), theEcorePackage.getEString(),
 				"branchName", null, 0, 1, GitBranch.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,

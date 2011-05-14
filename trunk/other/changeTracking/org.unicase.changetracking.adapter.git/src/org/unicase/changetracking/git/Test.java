@@ -24,6 +24,12 @@ import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.RefSpec;
 import org.eclipse.swt.widgets.Shell;
+import org.unicase.changetracking.git.common.GitPushBuilder;
+import org.unicase.changetracking.git.common.GitPushOperation;
+import org.unicase.changetracking.git.common.GitRemoteUrlHandler;
+import org.unicase.changetracking.git.common.GitRepoFindUtil;
+import org.unicase.changetracking.git.common.GitUtil;
+import org.unicase.changetracking.git.common.SayYesCredentialsProvider;
 import org.unicase.model.changetracking.git.GitFactory;
 import org.unicase.model.changetracking.git.GitRepository;
 
@@ -37,7 +43,6 @@ public class Test {
 			    String version = System.getProperty("java.home");
 			    System.out.println("JDK version "+ version + " found");
 	
-		if(true) return;
 		Repository r = GitRepoFindUtil.findRepository(new File(
 						"E:\\Programming\\unicase\\runtime-EclipseApplication\\GitTest"
 						//"E:\\Programming\\unicase\\repos\\egit"

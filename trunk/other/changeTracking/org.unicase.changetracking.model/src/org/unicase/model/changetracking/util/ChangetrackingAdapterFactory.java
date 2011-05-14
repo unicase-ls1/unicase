@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.changetracking.*;
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.ChangeTrackingRelease;
 import org.unicase.model.changetracking.ChangetrackingPackage;

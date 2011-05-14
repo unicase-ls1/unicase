@@ -114,8 +114,8 @@ public class ChangePackageItemProvider extends AttachmentItemProvider implements
 
 		switch (notification.getFeatureID(ChangePackage.class)) {
 		case ChangetrackingPackage.CHANGE_PACKAGE__SHORT_DESCRIPTION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

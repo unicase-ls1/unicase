@@ -1,4 +1,4 @@
-package org.unicase.changetracking.git;
+package org.unicase.changetracking.git.common;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,6 +17,7 @@ import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
+import org.unicase.changetracking.git.Activator;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
 import org.unicase.metamodel.Project;
 import org.unicase.model.changetracking.git.GitPackage;

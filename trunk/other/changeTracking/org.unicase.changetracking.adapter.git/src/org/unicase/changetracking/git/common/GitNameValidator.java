@@ -1,7 +1,5 @@
-package org.unicase.changetracking.git.n;
+package org.unicase.changetracking.git.common;
 
-import org.unicase.changetracking.git.GitNameUtil;
-import org.unicase.changetracking.git.GitRepoFindUtil;
 import org.unicase.changetracking.vcs.NameValidator;
 import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.git.GitRepository;

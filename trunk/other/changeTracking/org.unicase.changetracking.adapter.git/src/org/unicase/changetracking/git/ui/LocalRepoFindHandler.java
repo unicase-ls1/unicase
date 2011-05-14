@@ -8,7 +8,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.changetracking.exceptions.CancelledByUserException;
-import org.unicase.changetracking.git.GitRepoFindUtil;
+import org.unicase.changetracking.git.common.GitRepoFindUtil;
 import org.unicase.changetracking.ui.AdvancedMessageDialog;
 import org.unicase.changetracking.ui.AdvancedMessageDialog.NoLocalRepoChoices;
 import org.unicase.changetracking.ui.UIUtil;

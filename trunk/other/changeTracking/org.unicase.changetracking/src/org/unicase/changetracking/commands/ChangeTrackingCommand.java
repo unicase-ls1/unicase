@@ -39,7 +39,7 @@ public abstract class ChangeTrackingCommand extends UnicaseCommandWithResult<Cha
 
 	public void run(IProgressMonitor monitor) {
 		this.progressMonitor = monitor;
-		this.setResult(run());
+		this.setResult(run(true));
 	}
 	
 	protected IProgressMonitor getProgressMonitor(){
@@ -53,24 +53,37 @@ public abstract class ChangeTrackingCommand extends UnicaseCommandWithResult<Cha
 		this.result = result;
 	}
 
-	public ChangeTrackingCommandResult getResult() {
-		return result;
-	}
+	
+//	@Override
+//	public ChangeTrackingCommandResult run() {
+//		try{
+//		return super.run(false);
+//		} catch(MisuseException e){
+//			return misuseResult(e.getMessage());
+//		} catch (RuntimeException e){
+//			return errorResult(e);
+//		}
+//	}
 	
 	@Override
-	public ChangeTrackingCommandResult run() {
+	protected void commandBody() {
 		try{
-		return super.run(false);
+			result = doRun();
 		} catch(MisuseException e){
-			return misuseResult(e.getMessage());
+			result = misuseResult(e.getMessage());
 		} catch (RuntimeException e){
-			return errorResult(e);
+			result = errorResult(e);
 		}
 	}
 	
-	@Override
-	public ChangeTrackingCommandResult run(boolean ignoreExceptions) {
-		return run();
+
+
+	public ChangeTrackingCommandResult getCTResult() {
+		return result;
 	}
 
+	public ChangeTrackingCommandResult run(boolean ignoreExceptions) {
+		super.aRun(ignoreExceptions);
+		return this.result;
+	}
 }

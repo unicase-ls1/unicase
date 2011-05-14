@@ -75,9 +75,10 @@ public class RepositoryLocationItemProvider extends
 	protected void addStreamsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_RepositoryLocation_streams_feature"), getString(
-						"_UI_PropertyDescriptor_description",
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_RepositoryLocation_streams_feature"),
+				getString("_UI_PropertyDescriptor_description",
 						"_UI_RepositoryLocation_streams_feature",
 						"_UI_RepositoryLocation_type"),
 				ChangetrackingPackage.Literals.REPOSITORY_LOCATION__STREAMS,

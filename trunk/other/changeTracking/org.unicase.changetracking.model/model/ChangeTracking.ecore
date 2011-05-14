@@ -66,6 +66,6 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="patch" nsURI="http://unicase.org/changetracking/patch" nsPrefix="org.unicase.model.changetracking.patch">
-    <eClassifiers xsi:type="ecore:EClass" name="Patch"/>
+    <eClassifiers xsi:type="ecore:EClass" name="PatchChangePackage" eSuperTypes="#//ChangePackage platform:/plugin/org.unicase.model/model/model.ecore#//attachment/FileAttachment"/>
   </eSubpackages>
 </ecore:EPackage>

@@ -81,7 +81,8 @@ public class ChangeTrackingReleaseItemProvider extends ReleaseItemProvider
 	protected void addStreamPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
+						.getRootAdapterFactory(),
+				getResourceLocator(),
 				getString("_UI_ChangeTrackingRelease_stream_feature"),
 				getString("_UI_PropertyDescriptor_description",
 						"_UI_ChangeTrackingRelease_stream_feature",
@@ -99,7 +100,8 @@ public class ChangeTrackingReleaseItemProvider extends ReleaseItemProvider
 	protected void addBuiltPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
+						.getRootAdapterFactory(),
+				getResourceLocator(),
 				getString("_UI_ChangeTrackingRelease_built_feature"),
 				getString("_UI_PropertyDescriptor_description",
 						"_UI_ChangeTrackingRelease_built_feature",
@@ -237,8 +239,8 @@ public class ChangeTrackingReleaseItemProvider extends ReleaseItemProvider
 		switch (notification.getFeatureID(ChangeTrackingRelease.class)) {
 		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__BUILT:
 		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE__BUILD_DATE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

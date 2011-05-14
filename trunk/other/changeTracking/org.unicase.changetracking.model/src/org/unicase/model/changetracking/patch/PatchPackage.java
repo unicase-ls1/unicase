@@ -8,6 +8,7 @@ package org.unicase.model.changetracking.patch;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.unicase.model.changetracking.ChangetrackingPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -66,33 +67,195 @@ public interface PatchPackage extends EPackage {
 			.init();
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.changetracking.patch.impl.PatchImpl <em>Patch</em>}' class.
+	 * The meta object id for the '{@link org.unicase.model.changetracking.patch.impl.PatchChangePackageImpl <em>Change Package</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.unicase.model.changetracking.patch.impl.PatchImpl
-	 * @see org.unicase.model.changetracking.patch.impl.PatchPackageImpl#getPatch()
+	 * @see org.unicase.model.changetracking.patch.impl.PatchChangePackageImpl
+	 * @see org.unicase.model.changetracking.patch.impl.PatchPackageImpl#getPatchChangePackage()
 	 * @generated
 	 */
-	int PATCH = 0;
+	int PATCH_CHANGE_PACKAGE = 0;
 
 	/**
-	 * The number of structural features of the '<em>Patch</em>' class.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATCH_FEATURE_COUNT = 0;
+	int PATCH_CHANGE_PACKAGE__NAME = ChangetrackingPackage.CHANGE_PACKAGE__NAME;
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.changetracking.patch.Patch <em>Patch</em>}'.
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Patch</em>'.
-	 * @see org.unicase.model.changetracking.patch.Patch
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_CHANGE_PACKAGE__DESCRIPTION = ChangetrackingPackage.CHANGE_PACKAGE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_CHANGE_PACKAGE__ANNOTATIONS = ChangetrackingPackage.CHANGE_PACKAGE__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_CHANGE_PACKAGE__ATTACHMENTS = ChangetrackingPackage.CHANGE_PACKAGE__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_CHANGE_PACKAGE__INCOMING_DOCUMENT_REFERENCES = ChangetrackingPackage.CHANGE_PACKAGE__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_CHANGE_PACKAGE__LEAF_SECTION = ChangetrackingPackage.CHANGE_PACKAGE__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_CHANGE_PACKAGE__STATE = ChangetrackingPackage.CHANGE_PACKAGE__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_CHANGE_PACKAGE__APPLIED_STEREOTYPE_INSTANCES = ChangetrackingPackage.CHANGE_PACKAGE__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_CHANGE_PACKAGE__COMMENTS = ChangetrackingPackage.CHANGE_PACKAGE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_CHANGE_PACKAGE__CREATION_DATE = ChangetrackingPackage.CHANGE_PACKAGE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_CHANGE_PACKAGE__CREATOR = ChangetrackingPackage.CHANGE_PACKAGE__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Referring Model Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_CHANGE_PACKAGE__REFERRING_MODEL_ELEMENTS = ChangetrackingPackage.CHANGE_PACKAGE__REFERRING_MODEL_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Short Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_CHANGE_PACKAGE__SHORT_DESCRIPTION = ChangetrackingPackage.CHANGE_PACKAGE__SHORT_DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>File Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_CHANGE_PACKAGE__FILE_NAME = ChangetrackingPackage.CHANGE_PACKAGE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>File Hash</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_CHANGE_PACKAGE__FILE_HASH = ChangetrackingPackage.CHANGE_PACKAGE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>File ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_CHANGE_PACKAGE__FILE_ID = ChangetrackingPackage.CHANGE_PACKAGE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>File Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_CHANGE_PACKAGE__FILE_SIZE = ChangetrackingPackage.CHANGE_PACKAGE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>File Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_CHANGE_PACKAGE__FILE_TYPE = ChangetrackingPackage.CHANGE_PACKAGE_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the '<em>Change Package</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATCH_CHANGE_PACKAGE_FEATURE_COUNT = ChangetrackingPackage.CHANGE_PACKAGE_FEATURE_COUNT + 5;
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.changetracking.patch.PatchChangePackage <em>Change Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Change Package</em>'.
+	 * @see org.unicase.model.changetracking.patch.PatchChangePackage
 	 * @generated
 	 */
-	EClass getPatch();
+	EClass getPatchChangePackage();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -117,14 +280,14 @@ public interface PatchPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.changetracking.patch.impl.PatchImpl <em>Patch</em>}' class.
+		 * The meta object literal for the '{@link org.unicase.model.changetracking.patch.impl.PatchChangePackageImpl <em>Change Package</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.unicase.model.changetracking.patch.impl.PatchImpl
-		 * @see org.unicase.model.changetracking.patch.impl.PatchPackageImpl#getPatch()
+		 * @see org.unicase.model.changetracking.patch.impl.PatchChangePackageImpl
+		 * @see org.unicase.model.changetracking.patch.impl.PatchPackageImpl#getPatchChangePackage()
 		 * @generated
 		 */
-		EClass PATCH = eINSTANCE.getPatch();
+		EClass PATCH_CHANGE_PACKAGE = eINSTANCE.getPatchChangePackage();
 
 	}
 
