@@ -5,8 +5,7 @@ Bundle-SymbolicName: org.unicase.changetracking.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.changetracking.ui.Activator
 Require-Bundle: org.unicase.changetracking;visibility:=reexport,
- org.unicase.ui.common;visibility:=reexport,
- org.unicase.ui.unicasecommon;visibility:=reexport
+ org.unicase.ui.unicasecommon
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.unicase.changetracking.ui,

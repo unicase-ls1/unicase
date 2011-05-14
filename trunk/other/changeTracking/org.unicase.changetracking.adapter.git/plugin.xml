@@ -1,3 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
+   <extension
+         point="org.unicase.changetracking.vcsadapters">
+   </extension>
+   <extension
+         point="org.unicase.changetracking.vcsadapters">
+      <adapterProvider
+            class="org.unicase.changetracking.git.n.GitVCSAdapterProvider">
+      </adapterProvider>
+   </extension>
 </plugin>
