@@ -10,6 +10,4 @@ Require-Bundle: org.eclipse.jgit;visibility:=reexport,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: 
- org.unicase.changetracking.git,
- org.unicase.changetracking.git.commands,
- org.unicase.changetracking.git.exceptions
+ org.unicase.changetracking.git

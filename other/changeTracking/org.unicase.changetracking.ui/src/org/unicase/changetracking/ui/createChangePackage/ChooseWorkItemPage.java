@@ -123,32 +123,34 @@ public class ChooseWorkItemPage extends WizardPage{
 		new Composite(composite,descriptionStyleBits);
 
 		//Third line
-		label = new Label(composite, descriptionStyleBits);
-		label.setText("Repository:");
-		label.setToolTipText(REPOSITORY_TOOLTIP);
-		notFillOneColLayout.applyTo(label);
-		remoteRepoLabel = new ImageAndTextLabel(composite, labelStyleBits, labelProvider);
-		remoteRepoLabel.setToolTipText(REPOSITORY_TOOLTIP);
-		fillTwoColsLayout.applyTo(remoteRepoLabel);
-		createRepoButton = new Button(composite, SWT.PUSH);
-		createRepoButton.setText("Create");
-		createRepoButton.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				try {
-					selectedRepository = vcs.createRepositoryLocation(workspaceProject);
-					ChangeTrackingUtil.addToProjectRelative(selectedRepository, selectedWorkItem == null ? selectedProject : selectedWorkItem , true);
-					updateFields();
-				} catch (VCSException e1) {
-					UIUtil.handleException("The repository could not be created", e1);
-				} catch (CancelledByUserException e1) {
+		if(vcs.doesChangePackageNeedRepoLocation()){
+			label = new Label(composite, descriptionStyleBits);
+			label.setText("Repository:");
+			label.setToolTipText(REPOSITORY_TOOLTIP);
+			notFillOneColLayout.applyTo(label);
+			remoteRepoLabel = new ImageAndTextLabel(composite, labelStyleBits, labelProvider);
+			remoteRepoLabel.setToolTipText(REPOSITORY_TOOLTIP);
+			fillTwoColsLayout.applyTo(remoteRepoLabel);
+			createRepoButton = new Button(composite, SWT.PUSH);
+			createRepoButton.setText("Create");
+			createRepoButton.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					try {
+						selectedRepository = vcs.createRepositoryLocation(workspaceProject);
+						ChangeTrackingUtil.addToProjectRelative(selectedRepository, selectedWorkItem == null ? selectedProject : selectedWorkItem , true);
+						updateFields();
+					} catch (VCSException e1) {
+						UIUtil.handleException("The repository could not be created", e1);
+					} catch (CancelledByUserException e1) {
+					}
+					
 				}
-				
-			}
-		});
-		createRepoButton.setEnabled(false);
-		notFillOneColLayout.applyTo(createRepoButton);
-
+			});
+			createRepoButton.setEnabled(false);
+			notFillOneColLayout.applyTo(createRepoButton);
+		}
+		
 		//Open MESelection Dialog
 		openDialog();
 	}
@@ -159,10 +161,12 @@ public class ChooseWorkItemPage extends WizardPage{
 			selectedProject = attacheeDialog.getSelectedProjectSpace().getProject();
 			selectedProjectName = attacheeDialog.getSelectedProjectSpace().getProjectName();
 			selectedWorkItem = attacheeDialog.getSelectedModelElementNoCreate();
-			try {
-				selectedRepository = vcs.findRepoLocation(workspaceProject, selectedProject);
-			} catch (VCSException e) {
-				UIUtil.handleException(e);
+			if(vcs.doesChangePackageNeedRepoLocation()){
+				try {
+					selectedRepository = vcs.findRepoLocation(workspaceProject, selectedProject);
+				} catch (VCSException e) {
+					UIUtil.handleException(e);
+				}
 			}
 		}
 		updateFields();
@@ -172,14 +176,19 @@ public class ChooseWorkItemPage extends WizardPage{
 		if(selectedWorkItem == null){
 			workItemLabel.setContent(NO_SELECTION_IMAGE,"<< No workitem chosen >>");
 			projectLabel.setContent(NO_SELECTION_IMAGE,"<< No workitem chosen >>");
-			remoteRepoLabel.setContent(NO_SELECTION_IMAGE,"<< No workitem chosen >>");
-			createRepoButton.setEnabled(false);
+			if(vcs.doesChangePackageNeedRepoLocation()){
+				remoteRepoLabel.setContent(NO_SELECTION_IMAGE,"<< No workitem chosen >>");
+				createRepoButton.setEnabled(false);
+			}
 			setPageComplete(false);
 			setMessage("Choose a model element to attach the change package to.", DialogPage.ERROR);
 		} else {
 			workItemLabel.setInput(selectedWorkItem);
 			projectLabel.setContent(PROJECT_IMAGE, selectedProjectName);
-			if(selectedRepository == null){
+			if(!vcs.doesChangePackageNeedRepoLocation()){
+				setPageComplete(true);
+				setMessage("",DialogPage.NONE);
+			} else if(selectedRepository == null){
 				remoteRepoLabel.setContent(NO_SELECTION_IMAGE,"<< No matching repository in project >>");
 				createRepoButton.setEnabled(true);
 				setPageComplete(false);

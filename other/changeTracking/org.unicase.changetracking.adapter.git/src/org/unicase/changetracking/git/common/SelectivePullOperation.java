@@ -8,7 +8,7 @@
  * Contributors:
  *    Mathias Kinzler <mathias.kinzler@sap.com> - initial implementation
  *******************************************************************************/
-package org.unicase.changetracking.git;
+package org.unicase.changetracking.git.common;
 
 import org.eclipse.core.resources.IWorkspaceRunnable;
 import org.eclipse.core.resources.ResourcesPlugin;

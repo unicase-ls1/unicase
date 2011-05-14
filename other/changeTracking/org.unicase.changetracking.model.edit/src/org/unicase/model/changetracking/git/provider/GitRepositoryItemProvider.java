@@ -78,9 +78,10 @@ public class GitRepositoryItemProvider extends RepositoryLocationItemProvider
 	protected void addUrlPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_GitRepository_url_feature"), getString(
-						"_UI_PropertyDescriptor_description",
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_GitRepository_url_feature"),
+				getString("_UI_PropertyDescriptor_description",
 						"_UI_GitRepository_url_feature",
 						"_UI_GitRepository_type"),
 				GitPackage.Literals.GIT_REPOSITORY__URL, true, false, false,
@@ -96,7 +97,8 @@ public class GitRepositoryItemProvider extends RepositoryLocationItemProvider
 	protected void addIdentifyingCommitHashPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
+						.getRootAdapterFactory(),
+				getResourceLocator(),
 				getString("_UI_GitRepository_identifyingCommitHash_feature"),
 				getString("_UI_PropertyDescriptor_description",
 						"_UI_GitRepository_identifyingCommitHash_feature",
@@ -114,8 +116,8 @@ public class GitRepositoryItemProvider extends RepositoryLocationItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/GitRepository"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/GitRepository"));
 	}
 
 	/**
@@ -145,8 +147,8 @@ public class GitRepositoryItemProvider extends RepositoryLocationItemProvider
 		switch (notification.getFeatureID(GitRepository.class)) {
 		case GitPackage.GIT_REPOSITORY__URL:
 		case GitPackage.GIT_REPOSITORY__IDENTIFYING_COMMIT_HASH:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

@@ -9,7 +9,9 @@ Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
  org.unicase.changetracking.model;visibility:=reexport,
  org.eclipse.ui;visibility:=reexport,
  org.unicase.workspace;visibility:=reexport,
- org.eclipse.team.core;visibility:=reexport
+ org.eclipse.team.core;visibility:=reexport,
+ org.eclipse.compare,
+ org.eclipse.debug.core
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.unicase.changetracking.commands,

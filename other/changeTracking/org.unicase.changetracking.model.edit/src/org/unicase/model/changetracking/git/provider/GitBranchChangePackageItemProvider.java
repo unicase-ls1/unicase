@@ -76,7 +76,8 @@ public class GitBranchChangePackageItemProvider extends
 	protected void addBranchPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
+						.getRootAdapterFactory(),
+				getResourceLocator(),
 				getString("_UI_GitBranchChangePackage_branch_feature"),
 				getString("_UI_PropertyDescriptor_description",
 						"_UI_GitBranchChangePackage_branch_feature",
@@ -93,8 +94,10 @@ public class GitBranchChangePackageItemProvider extends
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/GitBranchChangePackage"));
+		return overlayImage(
+				object,
+				getResourceLocator().getImage(
+						"full/obj16/GitBranchChangePackage"));
 	}
 
 	/**

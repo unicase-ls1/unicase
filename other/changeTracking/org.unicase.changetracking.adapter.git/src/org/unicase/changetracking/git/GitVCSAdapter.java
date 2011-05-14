@@ -1,4 +1,4 @@
-package org.unicase.changetracking.git.n;
+package org.unicase.changetracking.git;
 
 import java.io.IOException;
 
@@ -11,12 +11,13 @@ import org.unicase.changetracking.common.IDecisionProvider;
 import org.unicase.changetracking.exceptions.CancelledByUserException;
 import org.unicase.changetracking.exceptions.UnexpectedChangeTrackingException;
 import org.unicase.changetracking.exceptions.VCSException;
-import org.unicase.changetracking.git.GitRepoFindUtil;
-import org.unicase.changetracking.git.GitUtil;
 import org.unicase.changetracking.git.commands.GitApplyChangePackageCommand;
 import org.unicase.changetracking.git.commands.GitBuildReleaseCommand;
 import org.unicase.changetracking.git.commands.GitCheckReleaseCommand;
 import org.unicase.changetracking.git.commands.GitCreateChangePackageCommand;
+import org.unicase.changetracking.git.common.GitNameValidator;
+import org.unicase.changetracking.git.common.GitRepoFindUtil;
+import org.unicase.changetracking.git.common.GitUtil;
 import org.unicase.changetracking.git.release.GitReport;
 import org.unicase.changetracking.git.ui.RemoteURLInput;
 import org.unicase.changetracking.release.ReleaseCheckReport;
@@ -131,6 +132,12 @@ public class GitVCSAdapter extends BasicVCSAdapter {
 	@Override
 	public ChangeTrackingCommand applyChangePackage(ChangePackage changePackage) {
 		return new GitApplyChangePackageCommand((GitBranchChangePackage) changePackage);
+	}
+
+
+	@Override
+	public boolean doesChangePackageNeedRepoLocation() {
+		return true;
 	}
 
 }

@@ -1,5 +1,5 @@
 
-package org.unicase.changetracking.git;
+package org.unicase.changetracking.git.common;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;

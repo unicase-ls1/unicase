@@ -7,6 +7,7 @@ import org.unicase.changetracking.commands.CheckReleaseCommand;
 import org.unicase.changetracking.commands.CreateStreamCommand;
 import org.unicase.changetracking.common.IDecisionProvider;
 import org.unicase.changetracking.exceptions.CancelledByUserException;
+import org.unicase.changetracking.exceptions.NotSupportedByAdapterException;
 import org.unicase.changetracking.exceptions.VCSException;
 import org.unicase.changetracking.release.ReleaseCheckReport;
 import org.unicase.metamodel.Project;
@@ -43,9 +44,12 @@ public interface VCSAdapter {
 	 * @param localProject
 	 * @param repoLocation
 	 * @return fully set-up repository stream matching the local project.
+	 * @throws NotSupportedByAdapterException 
 	 */
-	RepositoryStream createRepositoryStream(IProject localProject, RepositoryLocation repoLocation);
+	RepositoryStream createRepositoryStream(IProject localProject, RepositoryLocation repoLocation) throws NotSupportedByAdapterException;
 
 	ChangeTrackingCommand applyChangePackage(ChangePackage changePackage);
+
+	boolean doesChangePackageNeedRepoLocation();
 	
 }

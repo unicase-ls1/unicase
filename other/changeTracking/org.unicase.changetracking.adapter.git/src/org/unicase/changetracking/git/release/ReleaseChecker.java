@@ -17,7 +17,7 @@ import org.eclipse.jgit.lib.RepositoryState;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.unicase.changetracking.common.PrintfFormat;
-import org.unicase.changetracking.git.GitUtil;
+import org.unicase.changetracking.git.common.GitUtil;
 import org.unicase.changetracking.release.ChangePackageState;
 import org.unicase.changetracking.release.Problem;
 import org.unicase.changetracking.release.Problem.Severity;

@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.changetracking.patch.*;
 import org.unicase.model.changetracking.patch.Patch;
 import org.unicase.model.changetracking.patch.PatchFactory;
 import org.unicase.model.changetracking.patch.PatchPackage;
@@ -66,8 +67,8 @@ public class PatchFactoryImpl extends EFactoryImpl implements PatchFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case PatchPackage.PATCH:
-			return createPatch();
+		case PatchPackage.PATCH_CHANGE_PACKAGE:
+			return createPatchChangePackage();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -79,9 +80,9 @@ public class PatchFactoryImpl extends EFactoryImpl implements PatchFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Patch createPatch() {
-		PatchImpl patch = new PatchImpl();
-		return patch;
+	public PatchChangePackage createPatchChangePackage() {
+		PatchChangePackageImpl patchChangePackage = new PatchChangePackageImpl();
+		return patchChangePackage;
 	}
 
 	/**

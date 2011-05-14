@@ -82,26 +82,27 @@ public class PatchItemProviderAdapterFactory extends PatchAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.changetracking.patch.Patch} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.changetracking.patch.PatchChangePackage} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PatchItemProvider patchItemProvider;
+	protected PatchChangePackageItemProvider patchChangePackageItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.changetracking.patch.Patch}.
+	 * This creates an adapter for a {@link org.unicase.model.changetracking.patch.PatchChangePackage}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createPatchAdapter() {
-		if (patchItemProvider == null) {
-			patchItemProvider = new PatchItemProvider(this);
+	public Adapter createPatchChangePackageAdapter() {
+		if (patchChangePackageItemProvider == null) {
+			patchChangePackageItemProvider = new PatchChangePackageItemProvider(
+					this);
 		}
 
-		return patchItemProvider;
+		return patchChangePackageItemProvider;
 	}
 
 	/**
@@ -206,8 +207,8 @@ public class PatchItemProviderAdapterFactory extends PatchAdapterFactory
 	 * @generated
 	 */
 	public void dispose() {
-		if (patchItemProvider != null)
-			patchItemProvider.dispose();
+		if (patchChangePackageItemProvider != null)
+			patchChangePackageItemProvider.dispose();
 	}
 
 }

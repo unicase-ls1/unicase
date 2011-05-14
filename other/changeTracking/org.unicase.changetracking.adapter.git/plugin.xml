@@ -6,7 +6,7 @@
    <extension
          point="org.unicase.changetracking.vcsadapters">
       <adapterProvider
-            class="org.unicase.changetracking.git.n.GitVCSAdapterProvider">
+            class="org.unicase.changetracking.git.GitVCSAdapterProvider">
       </adapterProvider>
    </extension>
 </plugin>

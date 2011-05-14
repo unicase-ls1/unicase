@@ -79,9 +79,10 @@ public class GitRevisionItemProvider extends RepositoryRevisionItemProvider
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(
 						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(), getResourceLocator(),
-						getString("_UI_GitRevision_hash_feature"), getString(
-								"_UI_PropertyDescriptor_description",
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_GitRevision_hash_feature"),
+						getString("_UI_PropertyDescriptor_description",
 								"_UI_GitRevision_hash_feature",
 								"_UI_GitRevision_type"),
 						GitPackage.Literals.GIT_REVISION__HASH, true, false,
@@ -98,9 +99,10 @@ public class GitRevisionItemProvider extends RepositoryRevisionItemProvider
 	protected void addTagNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_GitRevision_tagName_feature"), getString(
-						"_UI_PropertyDescriptor_description",
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_GitRevision_tagName_feature"),
+				getString("_UI_PropertyDescriptor_description",
 						"_UI_GitRevision_tagName_feature",
 						"_UI_GitRevision_type"),
 				GitPackage.Literals.GIT_REVISION__TAG_NAME, true, false, false,
@@ -115,8 +117,8 @@ public class GitRevisionItemProvider extends RepositoryRevisionItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/GitRevision"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/GitRevision"));
 	}
 
 	/**
@@ -146,8 +148,8 @@ public class GitRevisionItemProvider extends RepositoryRevisionItemProvider
 		switch (notification.getFeatureID(GitRevision.class)) {
 		case GitPackage.GIT_REVISION__HASH:
 		case GitPackage.GIT_REVISION__TAG_NAME:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

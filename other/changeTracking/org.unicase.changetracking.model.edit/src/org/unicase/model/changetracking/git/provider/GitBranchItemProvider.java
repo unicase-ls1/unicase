@@ -82,9 +82,10 @@ public class GitBranchItemProvider extends UnicaseModelElementItemProvider
 	protected void addLocationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_RepositoryStream_location_feature"), getString(
-						"_UI_PropertyDescriptor_description",
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_RepositoryStream_location_feature"),
+				getString("_UI_PropertyDescriptor_description",
 						"_UI_RepositoryStream_location_feature",
 						"_UI_RepositoryStream_type"),
 				ChangetrackingPackage.Literals.REPOSITORY_STREAM__LOCATION,
@@ -100,9 +101,10 @@ public class GitBranchItemProvider extends UnicaseModelElementItemProvider
 	protected void addRevisionsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_RepositoryStream_revisions_feature"), getString(
-						"_UI_PropertyDescriptor_description",
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_RepositoryStream_revisions_feature"),
+				getString("_UI_PropertyDescriptor_description",
 						"_UI_RepositoryStream_revisions_feature",
 						"_UI_RepositoryStream_type"),
 				ChangetrackingPackage.Literals.REPOSITORY_STREAM__REVISIONS,
@@ -138,7 +140,8 @@ public class GitBranchItemProvider extends UnicaseModelElementItemProvider
 	protected void addReferringChangePackagesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
+						.getRootAdapterFactory(),
+				getResourceLocator(),
 				getString("_UI_GitBranch_referringChangePackages_feature"),
 				getString("_UI_PropertyDescriptor_description",
 						"_UI_GitBranch_referringChangePackages_feature",
@@ -156,9 +159,10 @@ public class GitBranchItemProvider extends UnicaseModelElementItemProvider
 	protected void addBranchNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_GitBranch_branchName_feature"), getString(
-						"_UI_PropertyDescriptor_description",
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_GitBranch_branchName_feature"),
+				getString("_UI_PropertyDescriptor_description",
 						"_UI_GitBranch_branchName_feature",
 						"_UI_GitBranch_type"),
 				GitPackage.Literals.GIT_BRANCH__BRANCH_NAME, true, false,
@@ -173,8 +177,8 @@ public class GitBranchItemProvider extends UnicaseModelElementItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/GitBranch"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/GitBranch"));
 	}
 
 	/**
@@ -203,8 +207,8 @@ public class GitBranchItemProvider extends UnicaseModelElementItemProvider
 
 		switch (notification.getFeatureID(GitBranch.class)) {
 		case GitPackage.GIT_BRANCH__BRANCH_NAME:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

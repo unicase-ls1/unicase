@@ -10,6 +10,11 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.Attachment;
+import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.attachment.FileAttachment;
+import org.unicase.model.changetracking.ChangePackage;
+import org.unicase.model.changetracking.patch.*;
 import org.unicase.model.changetracking.patch.Patch;
 import org.unicase.model.changetracking.patch.PatchPackage;
 
@@ -76,8 +81,28 @@ public class PatchAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected PatchSwitch<Adapter> modelSwitch = new PatchSwitch<Adapter>() {
 		@Override
-		public Adapter casePatch(Patch object) {
-			return createPatchAdapter();
+		public Adapter casePatchChangePackage(PatchChangePackage object) {
+			return createPatchChangePackageAdapter();
+		}
+
+		@Override
+		public Adapter caseUnicaseModelElement(UnicaseModelElement object) {
+			return createUnicaseModelElementAdapter();
+		}
+
+		@Override
+		public Adapter caseAttachment(Attachment object) {
+			return createAttachmentAdapter();
+		}
+
+		@Override
+		public Adapter caseChangePackage(ChangePackage object) {
+			return createChangePackageAdapter();
+		}
+
+		@Override
+		public Adapter caseFileAttachment(FileAttachment object) {
+			return createFileAttachmentAdapter();
 		}
 
 		@Override
@@ -100,16 +125,72 @@ public class PatchAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.changetracking.patch.Patch <em>Patch</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.changetracking.patch.PatchChangePackage <em>Change Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.unicase.model.changetracking.patch.Patch
+	 * @see org.unicase.model.changetracking.patch.PatchChangePackage
 	 * @generated
 	 */
-	public Adapter createPatchAdapter() {
+	public Adapter createPatchChangePackageAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.UnicaseModelElement <em>Unicase Model Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.UnicaseModelElement
+	 * @generated
+	 */
+	public Adapter createUnicaseModelElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.Attachment <em>Attachment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.Attachment
+	 * @generated
+	 */
+	public Adapter createAttachmentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.changetracking.ChangePackage <em>Change Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.changetracking.ChangePackage
+	 * @generated
+	 */
+	public Adapter createChangePackageAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.attachment.FileAttachment <em>File Attachment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.attachment.FileAttachment
+	 * @generated
+	 */
+	public Adapter createFileAttachmentAdapter() {
 		return null;
 	}
 

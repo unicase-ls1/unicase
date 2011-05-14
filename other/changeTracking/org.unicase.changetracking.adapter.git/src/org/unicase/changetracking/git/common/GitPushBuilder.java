@@ -1,4 +1,4 @@
-package org.unicase.changetracking.git;
+package org.unicase.changetracking.git.common;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;

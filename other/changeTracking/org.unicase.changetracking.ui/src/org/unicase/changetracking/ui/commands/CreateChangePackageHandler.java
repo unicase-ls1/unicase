@@ -11,6 +11,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.changetracking.exceptions.MisuseException;
 import org.unicase.changetracking.exceptions.VCSException;
 import org.unicase.changetracking.ui.UIUtil;
 import org.unicase.changetracking.ui.createChangePackage.CreateChangePackageWizard;
@@ -34,9 +35,14 @@ public class CreateChangePackageHandler extends ResourceCommandHandler {
 		}	   
 		
 		IProject project = resources[0];
+		VCSAdapter vcs;
+		try{
+			vcs = new VCSAdapterFactory().createFromProject(project);
+		} catch (MisuseException e){
+			UIUtil.handleException(e);
+			return null;
+		}
 		
-		VCSAdapter vcs = new VCSAdapterFactory().createFromProject(project);
-
 		//Save dirty editors
 		if(!PlatformUI.getWorkbench().saveAllEditors(true)){
 			return null;

@@ -34,13 +34,13 @@ public interface PatchFactory extends EFactory {
 			.init();
 
 	/**
-	 * Returns a new object of class '<em>Patch</em>'.
+	 * Returns a new object of class '<em>Change Package</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Patch</em>'.
+	 * @return a new object of class '<em>Change Package</em>'.
 	 * @generated
 	 */
-	Patch createPatch();
+	PatchChangePackage createPatchChangePackage();
 
 	/**
 	 * Returns the package supported by this factory.

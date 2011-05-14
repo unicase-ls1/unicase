@@ -26,7 +26,7 @@ public final class VCSAdapterRegistry {
 		
 		for(IConfigurationElement ext : extensions){
 			try {
-				VCSAdapterProvider p = (VCSAdapterProvider) ext.createExecutableExtension("adapterProvider");
+				VCSAdapterProvider p = (VCSAdapterProvider) ext.createExecutableExtension("class");
 				providers.add(p);
 			} catch (ClassCastException e){
 				ModelUtil.logException(e);

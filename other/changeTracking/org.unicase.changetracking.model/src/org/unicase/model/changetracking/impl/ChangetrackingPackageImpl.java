@@ -130,8 +130,7 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 		// Obtain or create and register package
 		ChangetrackingPackageImpl theChangetrackingPackage = (ChangetrackingPackageImpl) (EPackage.Registry.INSTANCE
 				.get(eNS_URI) instanceof ChangetrackingPackageImpl ? EPackage.Registry.INSTANCE
-				.get(eNS_URI)
-				: new ChangetrackingPackageImpl());
+				.get(eNS_URI) : new ChangetrackingPackageImpl());
 
 		isInited = true;
 
@@ -142,12 +141,10 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 		// Obtain or create and register interdependencies
 		GitPackageImpl theGitPackage = (GitPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(GitPackage.eNS_URI) instanceof GitPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(GitPackage.eNS_URI)
-				: GitPackage.eINSTANCE);
+				.getEPackage(GitPackage.eNS_URI) : GitPackage.eINSTANCE);
 		PatchPackageImpl thePatchPackage = (PatchPackageImpl) (EPackage.Registry.INSTANCE
 				.getEPackage(PatchPackage.eNS_URI) instanceof PatchPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(PatchPackage.eNS_URI)
-				: PatchPackage.eINSTANCE);
+				.getEPackage(PatchPackage.eNS_URI) : PatchPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theChangetrackingPackage.createPackageContents();
@@ -502,32 +499,33 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 				ChangeTrackingRelease.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getChangeTrackingRelease_Built(), theEcorePackage
-				.getEBoolean(), "built", null, 0, 1,
+		initEAttribute(getChangeTrackingRelease_Built(),
+				theEcorePackage.getEBoolean(), "built", null, 0, 1,
 				ChangeTrackingRelease.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEReference(getChangeTrackingRelease_BuiltRevision(), this
-				.getRepositoryRevision(), this
-				.getRepositoryRevision_BuiltWithReleases(), "builtRevision",
-				null, 0, 1, ChangeTrackingRelease.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getChangeTrackingRelease_BuildDate(), theEcorePackage
-				.getEDate(), "buildDate", null, 0, 1,
+		initEReference(getChangeTrackingRelease_BuiltRevision(),
+				this.getRepositoryRevision(),
+				this.getRepositoryRevision_BuiltWithReleases(),
+				"builtRevision", null, 0, 1, ChangeTrackingRelease.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getChangeTrackingRelease_BuildDate(),
+				theEcorePackage.getEDate(), "buildDate", null, 0, 1,
 				ChangeTrackingRelease.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEReference(getChangeTrackingRelease_Successor(), this
-				.getChangeTrackingRelease(), this
-				.getChangeTrackingRelease_Predecessor(), "successor", null, 0,
-				1, ChangeTrackingRelease.class, !IS_TRANSIENT, !IS_VOLATILE,
+		initEReference(getChangeTrackingRelease_Successor(),
+				this.getChangeTrackingRelease(),
+				this.getChangeTrackingRelease_Predecessor(), "successor", null,
+				0, 1, ChangeTrackingRelease.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getChangeTrackingRelease_Predecessor(), this
-				.getChangeTrackingRelease(), this
-				.getChangeTrackingRelease_Successor(), "predecessor", null, 0,
-				1, ChangeTrackingRelease.class, !IS_TRANSIENT, !IS_VOLATILE,
+		initEReference(getChangeTrackingRelease_Predecessor(),
+				this.getChangeTrackingRelease(),
+				this.getChangeTrackingRelease_Successor(), "predecessor", null,
+				0, 1, ChangeTrackingRelease.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -539,16 +537,16 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEReference(getStream_RepositoryStream(),
-				this.getRepositoryStream(), this
-						.getRepositoryStream_UsingStreams(),
-				"repositoryStream", null, 0, 1, Stream.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				this.getRepositoryStream(),
+				this.getRepositoryStream_UsingStreams(), "repositoryStream",
+				null, 0, 1, Stream.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(changePackageEClass, ChangePackage.class, "ChangePackage",
 				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getChangePackage_ShortDescription(), theEcorePackage
-				.getEString(), "shortDescription", null, 0, 1,
+		initEAttribute(getChangePackage_ShortDescription(),
+				theEcorePackage.getEString(), "shortDescription", null, 0, 1,
 				ChangePackage.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
@@ -556,32 +554,34 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 		initEClass(repositoryRevisionEClass, RepositoryRevision.class,
 				"RepositoryRevision", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRepositoryRevision_RepositoryStream(), this
-				.getRepositoryStream(), this.getRepositoryStream_Revisions(),
-				"repositoryStream", null, 0, 1, RepositoryRevision.class,
+		initEReference(getRepositoryRevision_RepositoryStream(),
+				this.getRepositoryStream(),
+				this.getRepositoryStream_Revisions(), "repositoryStream", null,
+				0, 1, RepositoryRevision.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRepositoryRevision_BuiltWithReleases(),
+				this.getChangeTrackingRelease(),
+				this.getChangeTrackingRelease_BuiltRevision(),
+				"builtWithReleases", null, 0, -1, RepositoryRevision.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEReference(getRepositoryRevision_BuiltWithReleases(), this
-				.getChangeTrackingRelease(), this
-				.getChangeTrackingRelease_BuiltRevision(), "builtWithReleases",
-				null, 0, -1, RepositoryRevision.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(repositoryStreamEClass, RepositoryStream.class,
 				"RepositoryStream", IS_ABSTRACT, IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRepositoryStream_Location(), this
-				.getRepositoryLocation(), this.getRepositoryLocation_Streams(),
-				"location", null, 0, 1, RepositoryStream.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRepositoryStream_Revisions(), this
-				.getRepositoryRevision(), this
-				.getRepositoryRevision_RepositoryStream(), "revisions", null,
-				0, -1, RepositoryStream.class, !IS_TRANSIENT, !IS_VOLATILE,
+		initEReference(getRepositoryStream_Location(),
+				this.getRepositoryLocation(),
+				this.getRepositoryLocation_Streams(), "location", null, 0, 1,
+				RepositoryStream.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRepositoryStream_Revisions(),
+				this.getRepositoryRevision(),
+				this.getRepositoryRevision_RepositoryStream(), "revisions",
+				null, 0, -1, RepositoryStream.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRepositoryStream_UsingStreams(), this.getStream(),
 				this.getStream_RepositoryStream(), "usingStreams", null, 0, -1,
@@ -592,12 +592,12 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 		initEClass(repositoryLocationEClass, RepositoryLocation.class,
 				"RepositoryLocation", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRepositoryLocation_Streams(), this
-				.getRepositoryStream(), this.getRepositoryStream_Location(),
-				"streams", null, 0, -1, RepositoryLocation.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEReference(getRepositoryLocation_Streams(),
+				this.getRepositoryStream(),
+				this.getRepositoryStream_Location(), "streams", null, 0, -1,
+				RepositoryLocation.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

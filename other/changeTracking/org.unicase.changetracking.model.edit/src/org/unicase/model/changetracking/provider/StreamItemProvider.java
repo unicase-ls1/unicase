@@ -75,9 +75,10 @@ public class StreamItemProvider extends UnicaseModelElementItemProvider
 	protected void addReleasesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Stream_releases_feature"), getString(
-						"_UI_PropertyDescriptor_description",
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Stream_releases_feature"),
+				getString("_UI_PropertyDescriptor_description",
 						"_UI_Stream_releases_feature", "_UI_Stream_type"),
 				ChangetrackingPackage.Literals.STREAM__RELEASES, true, false,
 				true, null, null, null));
@@ -92,9 +93,10 @@ public class StreamItemProvider extends UnicaseModelElementItemProvider
 	protected void addRepositoryStreamPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Stream_repositoryStream_feature"), getString(
-						"_UI_PropertyDescriptor_description",
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Stream_repositoryStream_feature"),
+				getString("_UI_PropertyDescriptor_description",
 						"_UI_Stream_repositoryStream_feature",
 						"_UI_Stream_type"),
 				ChangetrackingPackage.Literals.STREAM__REPOSITORY_STREAM, true,
@@ -109,8 +111,8 @@ public class StreamItemProvider extends UnicaseModelElementItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Stream"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/Stream"));
 	}
 
 	/**

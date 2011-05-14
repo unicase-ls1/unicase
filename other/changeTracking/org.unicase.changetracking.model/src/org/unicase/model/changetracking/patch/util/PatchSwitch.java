@@ -10,6 +10,11 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.Attachment;
+import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.attachment.FileAttachment;
+import org.unicase.model.changetracking.ChangePackage;
+import org.unicase.model.changetracking.patch.*;
 import org.unicase.model.changetracking.patch.Patch;
 import org.unicase.model.changetracking.patch.PatchPackage;
 
@@ -91,9 +96,17 @@ public class PatchSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-		case PatchPackage.PATCH: {
-			Patch patch = (Patch) theEObject;
-			T result = casePatch(patch);
+		case PatchPackage.PATCH_CHANGE_PACKAGE: {
+			PatchChangePackage patchChangePackage = (PatchChangePackage) theEObject;
+			T result = casePatchChangePackage(patchChangePackage);
+			if (result == null)
+				result = caseChangePackage(patchChangePackage);
+			if (result == null)
+				result = caseFileAttachment(patchChangePackage);
+			if (result == null)
+				result = caseAttachment(patchChangePackage);
+			if (result == null)
+				result = caseUnicaseModelElement(patchChangePackage);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -104,17 +117,77 @@ public class PatchSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Patch</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Change Package</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Patch</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Change Package</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePatch(Patch object) {
+	public T casePatchChangePackage(PatchChangePackage object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnicaseModelElement(UnicaseModelElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attachment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attachment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttachment(Attachment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Change Package</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Change Package</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseChangePackage(ChangePackage object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>File Attachment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>File Attachment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFileAttachment(FileAttachment object) {
 		return null;
 	}
 

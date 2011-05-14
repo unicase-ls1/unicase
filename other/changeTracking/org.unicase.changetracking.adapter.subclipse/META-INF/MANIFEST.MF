@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Unicase ChangeTracking Subclipse Adapter
+Bundle-SymbolicName: org.unicase.changetracking.adapter.subclipse;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.unicase.changetracking.adapter.subclipse.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.tigris.subversion.subclipse.core,
+ org.tigris.subversion.subclipse.ui,
+ org.unicase.changetracking.ui
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.unicase.changetracking.adapter.subclipse
