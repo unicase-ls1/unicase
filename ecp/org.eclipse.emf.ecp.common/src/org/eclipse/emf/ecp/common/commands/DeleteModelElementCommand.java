@@ -1,7 +1,11 @@
 /*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen. All rights
- * reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public
- * License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * Copyright (c) 2008-2011 Chair for Applied Software Engineering,
+ * Technische Universitaet Muenchen.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
  * Contributors:
  ******************************************************************************/
 package org.eclipse.emf.ecp.common.commands;
@@ -35,7 +39,7 @@ public final class DeleteModelElementCommand {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param opposite the model element to be deleted.
+	 * @param element the model element to be deleted.
 	 * @param context the model element context
 	 */
 	public DeleteModelElementCommand(EObject element, ECPModelelementContext context) {
@@ -45,7 +49,7 @@ public final class DeleteModelElementCommand {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param opposite the model elements to be deleted.
+	 * @param elements the model elements to be deleted.
 	 * @param context the model element context
 	 */
 	public DeleteModelElementCommand(Set<EObject> elements, ECPModelelementContext context) {

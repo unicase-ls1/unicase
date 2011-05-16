@@ -29,8 +29,17 @@ import org.eclipse.swt.widgets.Composite;
  * @param <T> the type of elements in the Combo.
  */
 public class ComboView<T> {
-
+	/**
+	 * Listener to track selection changed events.
+	 * 
+	 * @author Jonas
+	 * @param <T>
+	 */
 	public static interface IComboChangeListener<T> {
+		/**
+		 * called if the selection of the combobox is changed.
+		 * @param newSelection the new selection
+		 */
 		void selectionChanged(T newSelection);
 	}
 
@@ -55,7 +64,7 @@ public class ComboView<T> {
 	private SelectionListener listener;
 
 	/**
-	 * The currently used label Provider
+	 * The currently used label Provider.
 	 */
 	private ILabelProvider labelProvider;
 
@@ -93,8 +102,8 @@ public class ComboView<T> {
 	/**
 	 * Creates a new combo box set and the wrapped combo element.
 	 * 
-	 * @param parent
-	 * @param style
+	 * @param parent the paren composite
+	 * @param style the SWT style
 	 */
 	public ComboView(Composite parent, int style) {
 		this(new Combo(parent, style));
@@ -104,7 +113,7 @@ public class ComboView<T> {
 	 * Sets the input of this combo box. Will have the first element selected by default. and will not fire a selection
 	 * changed event.
 	 * 
-	 * @param entries
+	 * @param entries the entries shown in the combobox
 	 */
 	public void setInput(Collection<? extends T> entries) {
 		setInput(entries, null, false);
@@ -185,7 +194,7 @@ public class ComboView<T> {
 	}
 
 	/**
-	 * Returns the combo element wrapped by this object
+	 * Returns the combo element wrapped by this object.
 	 * 
 	 * @return the wrapped combo element
 	 */
