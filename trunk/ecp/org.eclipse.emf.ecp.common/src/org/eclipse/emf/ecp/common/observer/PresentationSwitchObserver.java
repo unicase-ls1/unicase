@@ -8,8 +8,18 @@ package org.eclipse.emf.ecp.common.observer;
 
 import org.eclipse.emf.emfstore.common.observer.IObserver;
 
+/**
+ * Observer for events when the presentation within a view is switched, e.g. to another tab.
+ * 
+ * @author Jonas
+ */
 public interface PresentationSwitchObserver extends IObserver {
-
+	/**
+	 * called if the presentation is switched.
+	 * 
+	 * @param viewID the ID of the focused view
+	 * @param presentationID the idea of the activated presnetation
+	 */
 	void onPresentationSwitchEvent(String viewID, String presentationID);
 
 }

@@ -8,8 +8,17 @@ package org.eclipse.emf.ecp.common.observer;
 
 import org.eclipse.emf.emfstore.common.observer.IObserver;
 
+/**
+ * Observer for the event when a specific view is focused.
+ * 
+ * @author Jonas
+ */
 public interface FocusEventObserver extends IObserver {
-
+	/**
+	 * called if a view is focused.
+	 * 
+	 * @param viewId the ID of the focused view
+	 */
 	void onFocusEvent(String viewId);
 
 }
