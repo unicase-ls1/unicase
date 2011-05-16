@@ -12,7 +12,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
-import org.unicase.changetracking.commands.ChangeTrackingCommandResult.Result;
+import org.unicase.changetracking.commands.ChangeTrackingCommandResult.ResultType;
 import org.unicase.changetracking.commands.CheckReleaseCommand;
 import org.unicase.changetracking.release.ReleaseCheckReport;
 import org.unicase.changetracking.ui.UIDecisionProvider;
@@ -63,7 +63,7 @@ public class BuildReleaseHandler extends AbstractHandler {
 		
 		CheckReleaseCommand command = vcs.checkRelease(new UIDecisionProvider(), r);
 		ChangeTrackingCommandResult result = UIUtil.runCommand(command);
-		if(result.getResult() != Result.SUCCESS){
+		if(result.getResultType() != ResultType.SUCCESS){
 			return null;
 		}
 	

@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.changetracking.common;
 
 import java.util.List;
@@ -10,9 +15,26 @@ import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.util.UnicaseCommand;
 
-public class ChangeTrackingUtil {
+/**
+ * Main utility class of the changetracking plug-in.
+ * 
+ * @author gex
+ *
+ */
+public final class ChangeTrackingUtil {
 	
+	private ChangeTrackingUtil(){}
 	
+	/**
+	 * Adds a model element to a project, relative to another model element:
+	 * The model element tree is walked upwards from the model element until
+	 * a place where the new model element can be inserted is found.
+	 * 
+	 * @param toAdd model element to add
+	 * @param relativeTo target model element
+	 * @param wrapInUnicaseCommand if true, the operation will be wrapped in a
+	 * unicase command.
+	 */
 	public static void addToProjectRelative(final EObject toAdd, final EObject relativeTo, boolean wrapInUnicaseCommand) {
 		if(wrapInUnicaseCommand){
 			new UnicaseCommand() {
@@ -53,6 +75,13 @@ public class ChangeTrackingUtil {
 		return reference;
 	}
 	
+	/**
+	 * Places a model element in a project, relative to another one.
+	 * @param newMEInstance model element to be placed
+	 * @param parent target model eleent.
+	 * @return whether the model element could be placed in the project.
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private static boolean placeRelative(final EObject newMEInstance, EObject parent){
 		EReference ref = getPossibleContainingReference(newMEInstance, parent);
 		if(ref != null){
@@ -69,7 +98,16 @@ public class ChangeTrackingUtil {
 		}
 		
 	}
-	
+
+	/**
+	 * Places a model element "in" another one.
+	 * I.e. it is checked if the target model element has a containment reference
+	 * which can contain the new model element.
+	 * @param newMEInstance model element to be placed
+	 * @param parent target for the model element
+	 * @return whether the model element could be placed in the model element
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static boolean putInto(final EObject newMEInstance, EObject parent){
 		EReference ref = getPossibleContainingReference(newMEInstance, parent);
 		if(ref != null){

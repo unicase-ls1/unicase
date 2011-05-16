@@ -11,7 +11,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
-import org.unicase.changetracking.commands.ChangeTrackingCommandResult.Result;
+import org.unicase.changetracking.commands.ChangeTrackingCommandResult.ResultType;
 import org.unicase.changetracking.commands.CheckReleaseCommand;
 import org.unicase.changetracking.ui.UIDecisionProvider;
 import org.unicase.changetracking.ui.UIUtil;
@@ -41,7 +41,7 @@ public class CheckReleaseHandler extends AbstractHandler {
 		
 		CheckReleaseCommand command = vcs.checkRelease(new UIDecisionProvider(), r);
 		ChangeTrackingCommandResult result = UIUtil.runCommand(command);
-		if(result.getResult() != Result.SUCCESS){
+		if(result.getResultType() != ResultType.SUCCESS){
 			return null;
 		}
 		

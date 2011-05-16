@@ -11,7 +11,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
-import org.unicase.changetracking.commands.ChangeTrackingCommandResult.Result;
+import org.unicase.changetracking.commands.ChangeTrackingCommandResult.ResultType;
 import org.unicase.changetracking.commands.CreateStreamCommand;
 import org.unicase.changetracking.ui.UIDecisionProvider;
 import org.unicase.changetracking.ui.UIUtil;
@@ -45,7 +45,7 @@ public class CreateStreamFromCurrentBranchHandler extends ResourceCommandHandler
 		ChangeTrackingCommandResult result = UIUtil.runCommand(cmd);
 
 		//Finally, open the stream in the unicase perspective
-		if(result.getResult() == Result.SUCCESS){
+		if(result.getResultType() == ResultType.SUCCESS){
 			UIUtil.openUnicaseAndModelElement(cmd.getCreatedStream());
 		}
 		
