@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 /*******************************************************************************
  * Copyright (c) 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
@@ -30,15 +35,15 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.debug.core.sourcelookup.containers.LocalFileStorage;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.swt.custom.BusyIndicator;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.debug.core.sourcelookup.containers.LocalFileStorage;
 
 /**
  * An operation that provides an interface to the Apply Patch Wizard. Users specify
@@ -70,7 +75,7 @@ public class ApplyPatchOperation implements Runnable {
 	private CompareConfiguration configuration;
 	
 	/**
-	 * The patch to use as an input into the Apply Patch wizard
+	 * The patch to use as an input into the Apply Patch wizard.
 	 */
 	private IStorage patch;
 	
@@ -80,17 +85,19 @@ public class ApplyPatchOperation implements Runnable {
 	private IResource target;
 	
 	/**
-	 * An optional image for the patch wizard
+	 * An optional image for the patch wizard.
 	 */
 	private ImageDescriptor patchWizardImage;
 	
 	
 	/**
-	 * An optional title for the patchWizard
+	 * An optional title for the patchWizard.
 	 */
 	private String patchWizardTitle;
 
 	private boolean saveAllEditors = true;
+
+	private int dialogResult;
 	
 	/**
 	 * Return whether the given storage contains a patch.
@@ -152,24 +159,29 @@ public class ApplyPatchOperation implements Runnable {
 	/**
 	 * Open the Apply Patch wizard using the values associated with this operation.
 	 * This method must be called from the UI thread.
+	 * @return whether the dialog was canceled or finished
 	 */
-	public void openWizard() {
+	public int openWizard() {
 		saveAllEditors();
 
 		if (saveAllEditors) {
 			PatchWizard wizard = createPatchWizard(patch, target, configuration);
-			if (patchWizardImage != null)
+			if (patchWizardImage != null){
 				wizard.setDefaultPageImageDescriptor(patchWizardImage);
-			if (patchWizardTitle != null)
+			}
+			if (patchWizardTitle != null){
 				wizard.setWindowTitle(patchWizardTitle);
+			}
 			wizard.setNeedsProgressMonitor(true);
-
-				new PatchWizardDialog(getShell(), wizard).open();
+			
+				return new PatchWizardDialog(getShell(), wizard).open();
+		} else {
+			return Window.CANCEL;
 		}
 	}
 
 	private PatchWizard createPatchWizard(IStorage patch, IResource target,
-			CompareConfiguration configuration) {;
+			CompareConfiguration configuration) {
 		return new PatchWizard(patch, target, configuration);
 	}
 
@@ -181,8 +193,9 @@ public class ApplyPatchOperation implements Runnable {
 	 * @return the parent shell to be used when the wizard is opened
 	 */
 	protected Shell getShell() {
-		if (part == null)
+		if (part == null){
 			return CompareUIPlugin.getShell();
+		}
 		return part.getSite().getShell();
 	}
 	
@@ -214,8 +227,11 @@ public class ApplyPatchOperation implements Runnable {
 	/* (non-Javadoc)
 	 * @see java.lang.Runnable#run()
 	 */
+	/**
+	 * Opens the apply patch wizard.
+	 */
 	public void run() {
-		openWizard();
+		dialogResult = openWizard();
 	}
 	
 	private static IFilePatch[] internalParsePatch(IStorage storage)
@@ -255,7 +271,9 @@ public class ApplyPatchOperation implements Runnable {
 	private static IWorkbenchPart getTargetPart() {
 		
 		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		if (window == null) return null;
+		if (window == null){
+			return null;
+		}
 		window.getActivePage();
         IWorkbenchPage  page = window.getActivePage();
         if (page != null) {
@@ -275,9 +293,8 @@ public class ApplyPatchOperation implements Runnable {
 	 */
 	public static boolean applyPatch(File patch, IResource target) {
 		ApplyPatchOperation op = new ApplyPatchOperation(getTargetPart(), new LocalFileStorage(patch), target, new CompareConfiguration());
-		BusyIndicator.showWhile(Display.getDefault(), op); 
-		
-		return true;
+		Display.getDefault().syncExec(op);
+		return op.dialogResult == Window.OK;
 	}
 
 }

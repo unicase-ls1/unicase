@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.changetracking.vcs;
 
 import java.util.ArrayList;
@@ -9,8 +14,20 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.unicase.metamodel.util.ModelUtil;
 
+/**
+ * The singleton registry class reads
+ * the org.unicase.changetracking.vcsadapters
+ * extension point to provide a list of available
+ * adapter plug-ins.
+ * 
+ * @author gex
+ *
+ */
 public final class VCSAdapterRegistry {
 	
+	/**
+	 * The singleton instance.
+	 */
 	public static final VCSAdapterRegistry INSTANCE = new VCSAdapterRegistry();
 	
 	private List<VCSAdapterProvider> providers = new ArrayList<VCSAdapterProvider>();
@@ -36,6 +53,10 @@ public final class VCSAdapterRegistry {
 		}
 	}
 
+	/**
+	 * Retrieves the list of registered adapter providers. (usually one provider per adapter plug-in).
+	 * @return list of adapter providers
+	 */
 	public List<VCSAdapterProvider> getProviders() {
 		return unmodifiableList;
 	}

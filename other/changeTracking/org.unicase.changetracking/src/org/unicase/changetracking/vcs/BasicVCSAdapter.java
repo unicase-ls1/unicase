@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.changetracking.vcs;
 
 import org.eclipse.core.resources.IProject;
@@ -19,8 +24,27 @@ import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.RepositoryStream;
 import org.unicase.model.task.WorkItem;
 
+/**
+ * Basic implemenation of a VCS adapter which does not
+ * support any opperation. All operations will either directly
+ * throw a not supported exception or return a command which
+ * throws this exception upon execution.
+ * 
+ * Check methods do not throw an exception but return the default
+ * case.
+ * 
+ * The only meaningful implementation provided by this adapter is
+ * for the createStreamFromCurrentBranch method, which can be realized
+ * independently of the VCS. However, it can be overridden for further
+ * individualization
+ * @author gex
+ *
+ */
 public abstract class BasicVCSAdapter implements VCSAdapter{
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public CreateStreamCommand createStreamFromCurrentBranch(
 			IDecisionProvider decisionProvider, IProject workspaceProject) {
@@ -41,11 +65,17 @@ public abstract class BasicVCSAdapter implements VCSAdapter{
 		};
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ChangeTrackingCommand applyChangePackage(ChangePackage changePackage) {
 		return notSupportedCommand("change package application");
 	}
-	
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public BuildReleaseCommand buildRelease(ChangeTrackingRelease release,
 			String tagName, ReleaseCheckReport checkReport) {
@@ -62,7 +92,10 @@ public abstract class BasicVCSAdapter implements VCSAdapter{
 			}
 		};
 	}
-	
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public CheckReleaseCommand checkRelease(IDecisionProvider decisionProvider,
 			ChangeTrackingRelease release) {
@@ -74,32 +107,47 @@ public abstract class BasicVCSAdapter implements VCSAdapter{
 			}
 		};
 	}
-	
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ChangeTrackingCommand createChangePackage(IProject localProject,
 			WorkItem workItem, RepositoryLocation remoteRepo, String name,
 			String shortDescription, String longDescription) {
 		return notSupportedCommand("change package creation");
 	}
-	
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public RepositoryLocation createRepositoryLocation(IProject workspaceProject)
 			throws VCSException, CancelledByUserException {
 		throw new NotSupportedByAdapterException("repository location creation");
 	}
-	
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public RepositoryStream createRepositoryStream(IProject localProject,
 			RepositoryLocation repoLocation) throws NotSupportedByAdapterException {
 		throw new NotSupportedByAdapterException("repository stream creation");
 	}
-	
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public RepositoryLocation findRepoLocation(IProject workspaceProject,
 			Project unicaseProject) throws VCSException {
 		throw new NotSupportedByAdapterException("repository location retrieval");
 	}
-	
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public NameValidator getNameValidator() {
 		return new NameValidator() {
@@ -115,7 +163,10 @@ public abstract class BasicVCSAdapter implements VCSAdapter{
 			}
 		};
 	}
-	
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String performEarlyCreateChangePackageChecks(IProject localProject)
 			throws VCSException {

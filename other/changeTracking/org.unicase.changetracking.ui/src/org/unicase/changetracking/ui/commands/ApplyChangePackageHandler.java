@@ -14,6 +14,7 @@ import org.unicase.changetracking.ui.UIUtil;
 import org.unicase.changetracking.vcs.VCSAdapter;
 import org.unicase.changetracking.vcs.VCSAdapterFactory;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.git.GitBranchChangePackage;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
@@ -26,14 +27,11 @@ public class ApplyChangePackageHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		UnicaseModelElement elem = UnicaseActionHelper.getModelElement(event);
-		if(!(elem instanceof GitBranchChangePackage)){
-			throw new ExecutionException("The model element for an apply change package action was no GitBranchChangePackage!");
-		}
-		applyChangePackage((GitBranchChangePackage) elem);
+		applyChangePackage((ChangePackage) elem);
 		return null;
 	}
 	
-	public void applyChangePackage(GitBranchChangePackage changePackage){
+	public void applyChangePackage(ChangePackage changePackage){
 		VCSAdapter vcs = new VCSAdapterFactory().createFromChangePackage(changePackage);
 		
 		ChangeTrackingCommand cmd = vcs.applyChangePackage(changePackage);
