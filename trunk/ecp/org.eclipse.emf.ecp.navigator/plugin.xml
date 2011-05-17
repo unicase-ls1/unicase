@@ -71,7 +71,7 @@
             locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=additions">
          <command
                commandId="org.eclipse.emf.ecp.navigator.exportModel"
-               icon="icons/export.gif"
+               icon="icons/database_go.png"
                label="Export Model Element"
                style="push">
             <visibleWhen
@@ -88,7 +88,7 @@
          </command>
          <command
                commandId="org.eclipse.emf.ecp.navigator.importModel"
-               icon="icons/import.gif"
+               icon="icons/folder_go.png"
                label="Import Model Element"
                style="push">
             <visibleWhen
