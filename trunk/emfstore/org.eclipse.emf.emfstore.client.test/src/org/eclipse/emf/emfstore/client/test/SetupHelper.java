@@ -8,17 +8,14 @@ package org.eclipse.emf.emfstore.client.test;
 
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.security.AccessControlException;
 import java.util.Calendar;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.apache.commons.io.FileUtils;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.emfstore.client.model.Configuration;
 import org.eclipse.emf.emfstore.client.model.ModelFactory;
@@ -162,33 +159,6 @@ public class SetupHelper {
 		adminConnectionManager.changeRole(sessionId, projectId, orgUnitId, role);
 	}
 
-	private static void copyDirectory(File sourceLocation, File targetLocation) throws IOException {
-
-		if (sourceLocation.isDirectory()) {
-			if (!targetLocation.exists()) {
-				targetLocation.mkdir();
-			}
-
-			String[] children = sourceLocation.list();
-			for (int i = 0; i < children.length; i++) {
-				copyDirectory(new File(sourceLocation, children[i]), new File(targetLocation, children[i]));
-			}
-		} else {
-
-			InputStream in = new FileInputStream(sourceLocation);
-			OutputStream out = new FileOutputStream(targetLocation);
-
-			// Copy the bits from instream to outstream
-			byte[] buf = new byte[1024];
-			int len;
-			while ((len = in.read(buf)) > 0) {
-				out.write(buf, 0, len);
-			}
-			in.close();
-			out.close();
-		}
-	}
-
 	/**
 	 * Setups server space.
 	 */
@@ -218,7 +188,7 @@ public class SetupHelper {
 		File sourceLocation = new File(srcPath);
 
 		try {
-			copyDirectory(sourceLocation, targetLocation);
+			FileUtils.copyDirectory(sourceLocation, targetLocation);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
