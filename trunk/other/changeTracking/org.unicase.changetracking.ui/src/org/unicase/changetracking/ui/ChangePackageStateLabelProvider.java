@@ -54,7 +54,6 @@ public class ChangePackageStateLabelProvider implements ILabelProvider{
 		this.report = report;
 	}
 
-	@Override
 	public Image getImage(Object element) {
 		if(element instanceof ChangePackage){
 			Image img = wrappedProvider.getImage(element);
@@ -77,27 +76,22 @@ public class ChangePackageStateLabelProvider implements ILabelProvider{
 		}
 	}
 
-	@Override
 	public String getText(Object element) {
 		return wrappedProvider.getText(element);
 	}
 
-	@Override
 	public void addListener(ILabelProviderListener listener) {
 		wrappedProvider.addListener(listener);
 	}
 
-	@Override
 	public void dispose() {
 		wrappedProvider.dispose();
 	}
-
-	@Override
+	
 	public boolean isLabelProperty(Object element, String property) {
 		return wrappedProvider.isLabelProperty(element, property);
 	}
 
-	@Override
 	public void removeListener(ILabelProviderListener listener) {
 		wrappedProvider.removeListener(listener);
 	}

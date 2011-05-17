@@ -11,12 +11,10 @@ import org.unicase.model.changetracking.git.GitRepository;
 
 public class GitNameValidator implements NameValidator{
 
-	@Override
 	public String cleanName(String name) {
 		return GitNameUtil.cleanName(name);
 	}
 
-	@Override
 	public String isNewTagNameValid(String text, RepositoryLocation repoLoc) {
 		return GitNameUtil.isNewTagNameValid(text, GitRepoFindUtil.findAssociatedLocalRepo((GitRepository) repoLoc));
 	}

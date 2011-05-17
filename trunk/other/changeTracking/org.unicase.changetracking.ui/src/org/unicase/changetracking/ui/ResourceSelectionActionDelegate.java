@@ -25,10 +25,8 @@ public abstract class ResourceSelectionActionDelegate implements IObjectActionDe
 	
 	private ISelection selection;
 	
-	@Override
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {}
 
-	@Override
 	public void selectionChanged(IAction action, ISelection selection) {
 		this.selection = selection;
 	}

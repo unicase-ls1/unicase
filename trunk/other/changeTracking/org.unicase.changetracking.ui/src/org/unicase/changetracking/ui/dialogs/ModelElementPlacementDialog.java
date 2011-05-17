@@ -213,7 +213,7 @@ public class ModelElementPlacementDialog extends TitleAreaDialog{
 		});
 		
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {	
-			@Override
+			
 			public void selectionChanged(SelectionChangedEvent event) {
 				updateSelection(event.getSelection());
 			}

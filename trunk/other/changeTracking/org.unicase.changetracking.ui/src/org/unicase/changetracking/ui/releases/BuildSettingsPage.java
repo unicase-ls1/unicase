@@ -39,7 +39,6 @@ public class BuildSettingsPage extends WizardPage implements IDialogHead{
 		this.repoLoc = repoLoc;
 	}
 
-	@Override
 	public void createControl(Composite parent) {
 		Composite c = new Composite(parent, SWT.NONE);
 		GridDataFactory.swtDefaults().grab(true, true).applyTo(c);
@@ -58,7 +57,7 @@ public class BuildSettingsPage extends WizardPage implements IDialogHead{
 		tagNameText = new Text(c, SWT.SINGLE);
 		tagNameText.setText(validator.cleanName(release.getName()));
 		tagNameText.addModifyListener(new ModifyListener() {
-			@Override
+			
 			public void modifyText(ModifyEvent e) {
 				refreshStatus();
 			}

@@ -48,7 +48,7 @@ public class BuildReleaseWizard extends Wizard{
 		final IWizardContainer container = getContainer();
 		if(container instanceof IPageChangeProvider){
 			((IPageChangeProvider) container).addPageChangedListener(new IPageChangedListener() {
-				@Override
+
 				public void pageChanged(PageChangedEvent event) {
 					container.getShell().pack();
 				}

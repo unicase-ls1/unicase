@@ -21,7 +21,6 @@ public class UIDecisionProvider implements IDecisionProvider {
 		getActiveWorkbenchWindow().getShell();
 	}
 
-	@Override
 	public PlacementAndNameDecision decideModelElementPlacementAndName (
 			UnicaseModelElement elementToPlace, String defaultName) throws CancelledByUserException{;
 		final ModelElementPlacementDialog placementDialog = new ModelElementPlacementDialog(getShell(), elementToPlace, true);
@@ -33,7 +32,6 @@ public class UIDecisionProvider implements IDecisionProvider {
 	}
 
 	
-	@Override
 	public boolean decideCreateRepoLocation()
 			throws CancelledByUserException {
 		NoRemoteRepoChoices choice = AdvancedMessageDialog.openNoRemoteRepoFoundDialog(getShell());
@@ -47,8 +45,7 @@ public class UIDecisionProvider implements IDecisionProvider {
 			return false;
 		}
 	}
-
-	@Override
+	
 	public boolean decideUpdateFromRemote() {
 		return UIUtil.askForRefreshing();
 	}

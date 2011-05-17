@@ -12,26 +12,56 @@ import org.unicase.changetracking.vcs.VCSAdapterProvider;
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.RepositoryRevision;
 import org.unicase.model.changetracking.RepositoryStream;
-import org.unicase.model.changetracking.git.GitBranch;
-import org.unicase.model.changetracking.git.GitBranchChangePackage;
 import org.unicase.model.changetracking.patch.PatchChangePackage;
 
+/**
+ * The adapter provider for the subclipse adapter.
+ * Currenlty most method return false, as many use cases
+ * are not yet provided by this adapter.
+ * @author gex
+ *
+ */
 public class SubclipseVCSAdapterProvider implements VCSAdapterProvider {
 
+	/**
+	 * Team provider id of the Subclipse provider. This indicates whether
+	 * a project is under subclipse version control.
+	 */
 	public static final String SUBCLIPSE_REPO_PROVIDER_ID = "org.tigris.subversion.subclipse.core.svnnature";
 	
+	/**
+	 * Not implemented for this provider.
+	 * 
+	 * {@inheritDoc}
+	 */
 	public boolean providesForStream(RepositoryStream stream) {
 		return false; /* Not implemented for this provider */
 	}
 
+	/**
+	 * Not implemented for this provider.
+	 * 
+	 * {@inheritDoc}
+	 */
 	public boolean providesForRevision(RepositoryRevision revision) {
 		return false; /* Not implemented for this provider */
 	}
 
+	/**
+	 * Provides for patch change packages.
+	 * 
+	 * {@inheritDoc}
+	 */
 	public boolean providesForChangePackage(ChangePackage pkg) {
 		return pkg instanceof PatchChangePackage;
 	}
 
+	/**
+	 * Provides for projects for which subclipse is used as repo
+	 * provider.
+	 * 
+	 * {@inheritDoc}
+	 */
 	public boolean providesForProject(IProject project) {
 		RepositoryProvider provider = RepositoryProvider.getProvider(project);
 		if(provider == null){
@@ -43,6 +73,9 @@ public class SubclipseVCSAdapterProvider implements VCSAdapterProvider {
 		return false;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public VCSAdapter create() {
 		return new SubclipseVCSAdapter();
 	}
