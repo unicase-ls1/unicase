@@ -262,7 +262,7 @@
         <command
               commandId="org.eclipse.emf.emfstore.client.ui.commitProject"
               disabledIcon="icons/advanced.gif"
-              icon="icons/commit.gif"
+              icon="icons/arrow_right.png"
               label="Commit Project"
               style="push">
            <visibleWhen
@@ -288,7 +288,7 @@
         </command>
         <command
               commandId="org.eclipse.emf.emfstore.client.ui.updateProject"
-              icon="icons/update.gif"
+              icon="icons/arrow_up.png"
               label="Update Project"
               style="push">
            <visibleWhen
@@ -314,7 +314,7 @@
         </command>
         <command
               commandId="org.eclipse.emf.emfstore.client.ui.updateProjectVersion"
-              icon="icons/update.gif"
+              icon="icons/arrow_up.png"
               label="Update to version..."
               style="push">
            <visibleWhen
@@ -345,7 +345,7 @@
         </command>
         <command
               commandId="org.eclipse.emf.emfstore.client.ui.shareProject"
-              icon="icons/relocate.gif"
+              icon="icons/arrow_out.png"
               label="Share  Project"
               style="push">
            <visibleWhen
@@ -375,7 +375,7 @@
         </separator>
         <command
               commandId="org.eclipse.emf.emfstore.client.ui.undoLastOperation"
-              icon="icons/arrow_left.png"
+              icon="icons/arrow_undo.png"
               label="Undo Last Operation"
               style="push"
               tooltip="Undo the last executed operation">
@@ -478,11 +478,11 @@
               id="org.eclipse.emf.emfstore.client.ui.Other"
               label="Other...">
            <menu
-                 icon="icons/export.gif"
+                 icon="icons/database_go.png"
                  label="Export">
               <command
                     commandId="org.eclipse.emf.emfstore.client.ui.exportProject"
-                    icon="icons/export.gif"
+                    icon="icons/database_go.png"
                     label="Export Project"
                     style="push">
                  <visibleWhen
@@ -503,7 +503,7 @@
               </command>
               <command
                     commandId="org.eclipse.emf.emfstore.client.ui.exportChanges"
-                    icon="icons/export.gif"
+                    icon="icons/database_go.png"
                     label="Export Changes"
                     style="push">
                  <visibleWhen
@@ -529,7 +529,7 @@
               </command>
               <command
                     commandId="org.eclipse.emf.emfstore.client.ui.exportProjectSpace"
-                    icon="icons/export.gif"
+                    icon="icons/database_go.png"
                     label="Export Projectspace"
                     style="push">
                  <visibleWhen
@@ -550,7 +550,7 @@
               </command>
               <command
                     commandId="org.eclipse.emf.emfstore.client.ui.exportWorkSpace"
-                    icon="icons/export.gif"
+                    icon="icons/database_go.png"
                     label="Export Workspace"
                     style="push">
                  <visibleWhen
@@ -576,11 +576,11 @@
               </command>
            </menu>
            <menu
-                 icon="icons/import.gif"
+                 icon="icons/folder_go.png"
                  label="Import">
               <command
                     commandId="org.eclipse.emf.emfstore.client.ui.importChanges"
-                    icon="icons/import.gif"
+                    icon="icons/folder_go.png"
                     label="Import Changes"
                     style="push">
                  <visibleWhen
@@ -606,7 +606,7 @@
               </command>
               <command
                     commandId="org.eclipse.emf.emfstore.client.ui.importProject"
-                    icon="icons/import.gif"
+                    icon="icons/folder_go.png"
                     label="Import Project"
                     style="push">
                  <visibleWhen
@@ -625,7 +625,7 @@
               </command>
               <command
                     commandId="org.eclipse.emf.emfstore.client.ui.importProjectSpace"
-                    icon="icons/import.gif"
+                    icon="icons/folder_go.png"
                     label="Import Projectspace"
                     style="push">
                  <visibleWhen
@@ -651,7 +651,7 @@
               </command>
               <command
                     commandId="org.eclipse.emf.ecp.navigator.importModel"
-                    icon="icons/import.gif"
+                    icon="icons/folder_go.png"
                     label="Import Model Element"
                     style="push">
                  <visibleWhen
@@ -917,7 +917,7 @@
         </command>
         <command
               commandId="org.eclipse.emf.emfstore.client.ui.repositorybrowser.ExportProjectHistory"
-              icon="icons/export.gif"
+              icon="icons/database_go.png"
               label="Export project history"
               style="push">
            <visibleWhen
@@ -940,7 +940,7 @@
         </command>
         <command
               commandId="org.eclipse.emf.emfstore.client.ui.repositorybrowser.ImportProjectHistory"
-              icon="icons/import.gif"
+              icon="icons/folder_go.png"
               label="Import Project History"
               style="push">
            <visibleWhen
