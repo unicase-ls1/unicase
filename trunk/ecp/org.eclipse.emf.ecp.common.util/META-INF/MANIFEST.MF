@@ -15,10 +15,6 @@ Require-Bundle: org.eclipse.core.expressions;visibility:=reexport,
  org.eclipse.ui.ide.application
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.emf.ecp.common.util,
- org.sharemedia.ui.sat,
- org.sharemedia.ui.sat.effects,
- org.sharemedia.ui.sat.movement
-Bundle-ClassPath: lib/org.sharemedia.ui.sat.jar,
- .
+Export-Package: org.eclipse.emf.ecp.common.util
+Bundle-ClassPath: .
 Bundle-Vendor: Eclipse Modeling Project
