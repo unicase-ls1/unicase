@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMFStore Cope Migration Integration
+Bundle-SymbolicName: org.eclipse.emf.emfstore.migration.cope;singleton:=true
+Bundle-Version: 0.8.0
+Bundle-Vendor: Eclipse Modeling Project
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.emfstore.migration,
+ edu.tum.cs.cope.migration.execution
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
