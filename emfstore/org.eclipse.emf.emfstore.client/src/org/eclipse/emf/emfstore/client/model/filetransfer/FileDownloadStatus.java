@@ -20,8 +20,9 @@ import org.eclipse.emf.emfstore.server.exceptions.FileTransferException;
 import org.eclipse.emf.emfstore.server.model.FileIdentifier;
 
 /**
- * An object of this class is returned from any workspace method that starts a file transfer. It provides information
- * about this file transfer and allows to add Progressmonitors and Observers
+ * An object of this class is returned from any workspace method that starts a
+ * file transfer. It provides information about this file transfer and allows to
+ * add Progressmonitors and Observers
  * 
  * @author jfinis
  */
@@ -38,8 +39,8 @@ public final class FileDownloadStatus {
 	private FileIdentifier id;
 	private Exception exception;
 
-	private FileDownloadStatus(ProjectSpace transferringProjectSpace, FileIdentifier id, Status status,
-		File transferredFile) {
+	private FileDownloadStatus(ProjectSpace transferringProjectSpace,
+			FileIdentifier id, Status status, File transferredFile) {
 		this.transferringProjectSpace = transferringProjectSpace;
 		this.status = status;
 		this.id = id;
@@ -73,7 +74,8 @@ public final class FileDownloadStatus {
 		CANCELLED,
 
 		/**
-		 * If an exception was thrown. The exception can then be retrieved by calling getException()
+		 * If an exception was thrown. The exception can then be retrieved by
+		 * calling getException()
 		 */
 		FAILED
 	}
@@ -93,8 +95,9 @@ public final class FileDownloadStatus {
 	}
 
 	/**
-	 * This is the ultimate method for checking in which "stage" a file transfer currently is. i.e. if it is still
-	 * waiting, transferring or finished. See the enum Status for possible values.
+	 * This is the ultimate method for checking in which "stage" a file transfer
+	 * currently is. i.e. if it is still waiting, transferring or finished. See
+	 * the enum Status for possible values.
 	 * 
 	 * @return the stage in which the file transfer currently is
 	 */
@@ -103,11 +106,13 @@ public final class FileDownloadStatus {
 	}
 
 	/**
-	 * Adds an observer that is notified once the transfer is finished. If the transfer is already finished at the
-	 * moment when this method is called, then the observer is instantly notified. The object that is passed to the
+	 * Adds an observer that is notified once the transfer is finished. If the
+	 * transfer is already finished at the moment when this method is called,
+	 * then the observer is instantly notified. The object that is passed to the
 	 * observer's update message is this instance of FileTransferStatus
 	 * 
-	 * @param o an observer to be notified when the transfer is finished
+	 * @param o
+	 *            an observer to be notified when the transfer is finished
 	 */
 	public void addTransferFinishedObserver(Observer o) {
 		// Add
@@ -120,10 +125,12 @@ public final class FileDownloadStatus {
 	}
 
 	/**
-	 * Adds an observer which is notified if the transfer fails due to an exception. The getException method can then be
-	 * used to retrieve the thrown exception.
+	 * Adds an observer which is notified if the transfer fails due to an
+	 * exception. The getException method can then be used to retrieve the
+	 * thrown exception.
 	 * 
-	 * @param o an observer that is notified if the transfer fails
+	 * @param o
+	 *            an observer that is notified if the transfer fails
 	 */
 	public void addTransferFailedObserver(Observer o) {
 
@@ -136,7 +143,8 @@ public final class FileDownloadStatus {
 	}
 
 	/**
-	 * Adds a default observer that is notified when the transfer fails. This observer logs the failure.
+	 * Adds a default observer that is notified when the transfer fails. This
+	 * observer logs the failure.
 	 */
 	public void addDefaultFailObserver() {
 		addTransferFailedObserver(new Observer() {
@@ -153,7 +161,8 @@ public final class FileDownloadStatus {
 	/**
 	 * Removes a transfer observer from the list of observers.
 	 * 
-	 * @param o an observer to be removed
+	 * @param o
+	 *            an observer to be removed
 	 */
 	public void deleteTransferFinishedObserver(Observer o) {
 		finishedObservable.deleteObserver(o);
@@ -169,9 +178,10 @@ public final class FileDownloadStatus {
 	}
 
 	/**
-	 * Gets the statistics object for this file transfer, which provides useful information, especially while the
-	 * transfer is active. It provides information like the file size, the amount of already transfered bytes the
-	 * estimated remaining time and more.
+	 * Gets the statistics object for this file transfer, which provides useful
+	 * information, especially while the transfer is active. It provides
+	 * information like the file size, the amount of already transfered bytes
+	 * the estimated remaining time and more.
 	 * 
 	 * @return the statistics for this transfer
 	 */
@@ -180,17 +190,58 @@ public final class FileDownloadStatus {
 	}
 
 	/**
-	 * Returns the transferred file. If this is a download, then the file is only available, if the download is
-	 * finished. If it is not finished yet, an file transfer exception is thrown.
+	 * Returns the transferred file. If this is a download, then the file is
+	 * only available, if the download is finished. If it is not finished yet,
+	 * an file transfer exception is thrown.
 	 * 
-	 * @return the transferred file or a FileTransferException exception if the file is not yet transferred.
-	 * @throws FileTransferException if the file is not yet fully transferred
+	 * @return the transferred file or a FileTransferException exception if the
+	 *         file is not yet transferred.
+	 * @throws FileTransferException
+	 *             if the file is not yet fully transferred
 	 */
 	public File getTransferredFile() throws FileTransferException {
 		if (!isTransferFinished()) {
-			throw new FileTransferException("Trying to get a transferred file while transfer is not yet finished");
+			throw new FileTransferException(
+					"Trying to get a transferred file while transfer is not yet finished");
 		}
 		return transferredFile;
+	}
+
+	/**
+	 * Similar to {@link #getTransferredFile()}, but this method blocks the
+	 * client thread.
+	 * 
+	 * @param block
+	 *            block or not
+	 * @return File
+	 * @throws FileTransferException
+	 *             in case of an error
+	 */
+	public File getTransferredFile(boolean block) throws FileTransferException {
+
+		if (!isTransferFinished() && block) {
+			/**
+			 * TODO: Double-check this code
+			 */
+			final Observer observer = new Observer() {
+				public void update(Observable arg0, Object arg1) {
+					synchronized (this) {
+						notifyAll();
+					}
+				}
+			};
+			addTransferFailedObserver(observer);
+			addTransferFinishedObserver(observer);
+			try {
+				synchronized (observer) {
+					observer.wait();
+				}
+			} catch (InterruptedException e) {
+				throw new FileTransferException(
+						"Failed to initialize blocked get.", e);
+			}
+		}
+		return getTransferredFile();
 	}
 
 	/**
@@ -203,7 +254,8 @@ public final class FileDownloadStatus {
 	}
 
 	/**
-	 * Returns the exception that caused the download to fail, if the status == FAILED. Otherwise, returns null
+	 * Returns the exception that caused the download to fail, if the status ==
+	 * FAILED. Otherwise, returns null
 	 * 
 	 * @return the exception that caused the failure or null if not failed
 	 */
@@ -225,12 +277,15 @@ public final class FileDownloadStatus {
 	/**
 	 * Called internally when the transfer is started.
 	 * 
-	 * @param fileSize the file size
-	 * @throws FileTransferException if the transfer has already been started
+	 * @param fileSize
+	 *            the file size
+	 * @throws FileTransferException
+	 *             if the transfer has already been started
 	 */
 	void transferStarted(int fileSize) throws FileTransferException {
 		if (status != Status.NOT_STARTED) {
-			throw new FileTransferException("Cannot start a job that is " + status.name());
+			throw new FileTransferException("Cannot start a job that is "
+					+ status.name());
 		}
 		statistics.registerStart(fileSize);
 		status = Status.TRANSFERING;
@@ -239,7 +294,8 @@ public final class FileDownloadStatus {
 	/**
 	 * Called internally when the transfer is finished.
 	 * 
-	 * @param result the resulting file in the cache
+	 * @param result
+	 *            the resulting file in the cache
 	 */
 	void transferFinished(File result) {
 		status = Status.FINISHED;
@@ -251,7 +307,8 @@ public final class FileDownloadStatus {
 	/**
 	 * Called internally if the transfer fails.
 	 * 
-	 * @param ex the exception that caused the failure
+	 * @param ex
+	 *            the exception that caused the failure
 	 */
 	void transferFailed(Exception ex) {
 		status = Status.FAILED;
@@ -261,7 +318,8 @@ public final class FileDownloadStatus {
 	}
 
 	/**
-	 * This observerable is always changed, so notifying will always notify Observers.
+	 * This observerable is always changed, so notifying will always notify
+	 * Observers.
 	 * 
 	 * @author jfinis
 	 */
@@ -284,23 +342,32 @@ public final class FileDownloadStatus {
 		/**
 		 * Creates an already finished download status (status FINISHED).
 		 * 
-		 * @param p the project space containing the download
-		 * @param id the identifier of the download
-		 * @param transferredFile the file where the download can be found
+		 * @param p
+		 *            the project space containing the download
+		 * @param id
+		 *            the identifier of the download
+		 * @param transferredFile
+		 *            the file where the download can be found
 		 * @return the created status object
 		 */
-		public static FileDownloadStatus createAlreadyFinished(ProjectSpace p, FileIdentifier id, File transferredFile) {
-			return new FileDownloadStatus(p, id, Status.FINISHED, transferredFile);
+		public static FileDownloadStatus createAlreadyFinished(ProjectSpace p,
+				FileIdentifier id, File transferredFile) {
+			return new FileDownloadStatus(p, id, Status.FINISHED,
+					transferredFile);
 		}
 
 		/**
-		 * Creates a new download status which is initially in the NOT_STARTED state.
+		 * Creates a new download status which is initially in the NOT_STARTED
+		 * state.
 		 * 
-		 * @param p the project space containing the download
-		 * @param id the identifier of the file to be downloaded
+		 * @param p
+		 *            the project space containing the download
+		 * @param id
+		 *            the identifier of the file to be downloaded
 		 * @return the created status object
 		 */
-		public static FileDownloadStatus createNew(ProjectSpace p, FileIdentifier id) {
+		public static FileDownloadStatus createNew(ProjectSpace p,
+				FileIdentifier id) {
 			return new FileDownloadStatus(p, id, Status.NOT_STARTED, null);
 		}
 	}
