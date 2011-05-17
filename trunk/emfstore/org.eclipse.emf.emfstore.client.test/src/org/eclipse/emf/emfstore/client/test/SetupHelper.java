@@ -96,7 +96,7 @@ public class SetupHelper {
 		try {
 			ServerConfiguration.setTesting(true);
 			// Properties properties = ServerConfiguration.getProperties();
-			// little hack, there is a flaw in server configuration
+			// little workaround, there is a flaw in server configuration
 			// properties.setProperty(ServerConfiguration.RMI_ENCRYPTION, ServerConfiguration.FALSE);
 			EmfStoreController.runAsNewThread();
 			LOGGER.log(Level.INFO, "server started. ");

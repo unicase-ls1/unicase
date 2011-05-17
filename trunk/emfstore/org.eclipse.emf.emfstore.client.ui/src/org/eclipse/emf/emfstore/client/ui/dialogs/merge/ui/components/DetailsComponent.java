@@ -75,13 +75,16 @@ public class DetailsComponent extends Section {
 			if (!option.isDetailsProvider()) {
 				continue;
 			}
-			if (option.getDetailProvider().startsWith(DecisionConfig.WIDGET_MULTILINE)) {
+			if (option.getDetailProvider().startsWith(
+					DecisionConfig.WIDGET_MULTILINE)) {
 				if (multiWidget == null) {
 					multiWidget = new MergeTextWidget(decisionBox, this);
 				}
 				multiWidget.addOption(option);
-			} else if (option.getDetailProvider().startsWith(DecisionConfig.WIDGET_OTHERINVOLVED)) {
-				new OtherInvolvedWidget(client, decisionBox.getDecisionManager(), option);
+			} else if (option.getDetailProvider().startsWith(
+					DecisionConfig.WIDGET_OTHERINVOLVED)) {
+				new OtherInvolvedWidget(client,
+						decisionBox.getDecisionManager(), option);
 			}
 		}
 
@@ -92,7 +95,7 @@ public class DetailsComponent extends Section {
 		setClient(client);
 		addExpansionListener(new IExpansionListener() {
 
-			// hack: assuming initial size
+			// FIXME: assuming initial size
 			private Rectangle bounds = new Rectangle(0, 0, 0, 20);
 
 			public void expansionStateChanged(ExpansionEvent e) {
