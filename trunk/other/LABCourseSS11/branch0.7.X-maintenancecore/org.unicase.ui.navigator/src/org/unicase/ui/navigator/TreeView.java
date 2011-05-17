@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.ContributionManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
@@ -40,6 +41,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.menus.IMenuService;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.NoWorkspaceException;
@@ -224,16 +226,27 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 
 		};
 
+		IToolBarManager toolBarManager = getViewSite().getActionBars().getToolBarManager();
+
+		IMenuService menuService = (IMenuService) PlatformUI.getWorkbench().getService(IMenuService.class);
+
+		menuService.populateContributionManager((ContributionManager) toolBarManager,
+			"toolbar:org.eclipse.emf.ecp.editor.TreeView");
+
+		Separator shortcutsSeperator = new Separator("shortcuts");
+		shortcutsSeperator.setVisible(true);
+		toolBarManager.add(shortcutsSeperator);
+
 		linkWithEditor.setImageDescriptor(Activator.getImageDescriptor("icons/link_with_editor.gif"));
 		linkWithEditor.setToolTipText("Link with editor");
 		linkWithEditor.setChecked(getDialogSettings().getBoolean("LinkWithEditor"));
 
-		IToolBarManager toolBarManager = getViewSite().getActionBars().getToolBarManager();
 		Separator additionsSeperator = new Separator("additions");
 		additionsSeperator.setVisible(true);
 		toolBarManager.add(additionsSeperator);
 		toolBarManager.insertAfter("additions", linkWithEditor);
 
+		toolBarManager.update(true);
 	}
 
 	private IDialogSettings getDialogSettings() {
