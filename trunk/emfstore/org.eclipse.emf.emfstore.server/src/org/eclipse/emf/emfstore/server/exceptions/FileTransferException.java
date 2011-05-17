@@ -13,22 +13,25 @@ package org.eclipse.emf.emfstore.server.exceptions;
 /**
  * Exception class for file transfers.
  * 
- * @author C
+ * @author Carl Pfeiffer
  */
 public class FileTransferException extends EmfStoreException {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @param message Error message
+	 * @param message
+	 *            Error message
 	 */
 	public FileTransferException(String message) {
 		super(message);
 	}
 
 	/**
-	 * @param e exception originally thrown
-	 * @param message Error message
+	 * @param e
+	 *            exception originally thrown
+	 * @param message
+	 *            Error message
 	 */
 	public FileTransferException(String message, Throwable e) {
 		super(message, e);
