@@ -32,17 +32,18 @@ import org.eclipse.emf.emfstore.common.model.ModelPackage;
 import org.eclipse.emf.emfstore.common.model.Project;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.common.model.Project} object.
- * <!-- begin-user-doc --> <!--
- * end-user-doc -->
+ * This is the item provider adapter for a
+ * {@link org.eclipse.emf.emfstore.common.model.Project} object. <!--
+ * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
-public class ProjectItemProvider extends RootElementItemProvider implements IEditingDomainItemProvider,
-	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ProjectItemProvider extends RootElementItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -51,8 +52,8 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -66,16 +67,18 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to
+	 * deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand},
+	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
+	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS);
@@ -91,16 +94,18 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
+		// Check the type of the specified child object and return the proper
+		// feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -111,67 +116,77 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 		switch (notification.getFeatureID(Project.class)) {
 		case ModelPackage.PROJECT__MODEL_ELEMENTS:
 		case ModelPackage.PROJECT__CUT_ELEMENTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ModelFactory.eINSTANCE.createProject()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ModelFactory.eINSTANCE.createProject()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ModelFactory.eINSTANCE.createModelElementId()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ModelFactory.eINSTANCE.createModelElementId()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ModelFactory.eINSTANCE.createModelVersion()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+				ModelFactory.eINSTANCE.createModelVersion()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ModelFactory.eINSTANCE.createProject()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+				ModelFactory.eINSTANCE.createProject()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ModelFactory.eINSTANCE.createModelElementId()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+				ModelFactory.eINSTANCE.createModelElementId()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ModelFactory.eINSTANCE.createModelVersion()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+				ModelFactory.eINSTANCE.createModelVersion()));
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label text for
+	 * {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+	public String getCreateChildText(Object owner, Object feature,
+			Object child, Collection<?> selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
 		boolean qualify = childFeature == ModelPackage.Literals.PROJECT__MODEL_ELEMENTS
-			|| childFeature == ModelPackage.Literals.PROJECT__CUT_ELEMENTS;
+				|| childFeature == ModelPackage.Literals.PROJECT__CUT_ELEMENTS;
 
 		if (qualify) {
-			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
-				getFeatureText(childFeature), getTypeText(owner) });
+			return getString("_UI_CreateChild_text2", new Object[] {
+					getTypeText(childObject), getFeatureText(childFeature),
+					getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -187,11 +202,13 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/project.png"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/project.png"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * --> .<!-- end-user-doc -->
 	 * 
 	 * @generated NOT {@inheritDoc}
 	 */
@@ -200,7 +217,8 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 		if (object instanceof Project) {
 			Project project = (Project) object;
 			boolean isInProjectSpace = project.eContainer() != null
-				&& project.eContainer().eClass().getName().equals("ProjectSpace");
+					&& project.eContainer().eClass().getName()
+							.equals("ProjectSpace");
 			if (isInProjectSpace) {
 				return "Orphans";
 			}
@@ -209,7 +227,8 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * --> .<!-- end-user-doc -->
 	 * 
 	 * @generated NOT {@inheritDoc}
 	 */
@@ -220,16 +239,17 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 			final Collection<EObject> ret = new ArrayList<EObject>();
 			EObject econtainer = null;
 			Set<EObject> allmes = project.getAllModelElements();
-			// FIXME: ugly hack to avoid dependency to workspace
+			// FIXME: ugly workarounds to avoid dependencies to workspace and
+			// model
 			boolean isInProjectSpace = project.eContainer() != null
-				&& project.eContainer().eClass().getName().equals("ProjectSpace");
-			// FIXME: ugly hack to avoid dependency to model
+					&& project.eContainer().eClass().getName()
+							.equals("ProjectSpace");
 			for (EObject temp : allmes) {
 				econtainer = temp.eContainer();
-				if ((!isInProjectSpace && (econtainer instanceof Project) && (temp.eClass().getName()
-					.equals("CompositeSection")))
-					|| (isInProjectSpace && (econtainer instanceof Project) && !(temp.eClass().getName()
-						.equals("CompositeSection")))) {
+				if ((!isInProjectSpace && (econtainer instanceof Project) && (temp
+						.eClass().getName().equals("CompositeSection")))
+						|| (isInProjectSpace && (econtainer instanceof Project) && !(temp
+								.eClass().getName().equals("CompositeSection")))) {
 					ret.add(temp);
 				}
 			}
