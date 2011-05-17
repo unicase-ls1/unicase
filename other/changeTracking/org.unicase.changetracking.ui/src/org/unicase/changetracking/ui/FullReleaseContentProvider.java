@@ -23,7 +23,6 @@ public class FullReleaseContentProvider implements ITreeContentProvider{
 	private boolean showWorkItems = true;
 	
 
-	@Override
 	public Object[] getChildren(Object parentElement) {
 		if(parentElement instanceof ChangeTrackingRelease){
 			EList<WorkItem> workItems = ((ChangeTrackingRelease) parentElement).getIncludedWorkItems();
@@ -52,12 +51,10 @@ public class FullReleaseContentProvider implements ITreeContentProvider{
 		return EMPTY;
 	}
 
-	@Override
 	public Object getParent(Object element) {
 		return null;
 	}
-
-	@Override
+	
 	public boolean hasChildren(Object element) {
 		if(element instanceof ChangeTrackingRelease){
 			EList<WorkItem> workItems = ((ChangeTrackingRelease) element).getIncludedWorkItems();
@@ -82,7 +79,6 @@ public class FullReleaseContentProvider implements ITreeContentProvider{
 		return false;
 	}
 
-	@Override
 	public Object[] getElements(Object inputElement) {
 		if(inputElement instanceof Object[]){
 			Object[] input = (Object[]) inputElement;
@@ -105,12 +101,10 @@ public class FullReleaseContentProvider implements ITreeContentProvider{
 		}
 		return EMPTY;
 	}
-
-	@Override
+	
 	public void dispose() {
 	}
 
-	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 	}
 

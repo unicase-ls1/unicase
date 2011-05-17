@@ -15,12 +15,29 @@ import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.patch.PatchChangePackage;
 import org.unicase.model.task.WorkItem;
 
+/**
+ * The VCS adapter for the suclipse plug-in.
+ * 
+ * Currenlty only supports change package creation and application.
+ * 
+ * @author gex
+ *
+ */
 public class SubclipseVCSAdapter extends BasicVCSAdapter {
 
+	/**
+	 * Patches do not need a repo location to be created.
+	 * @return false
+	 */
 	public boolean doesChangePackageNeedRepoLocation() {
 		return false;
 	}
 	
+	/**
+	 * Creates a patch change package.
+	 * 
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ChangeTrackingCommand createChangePackage(IProject localProject,
 			WorkItem workItem, RepositoryLocation remoteRepo, String name,
@@ -28,6 +45,11 @@ public class SubclipseVCSAdapter extends BasicVCSAdapter {
 		return new SubclipseCreateChangePackageCommand(localProject, workItem, name, shortDescription, longDescription);
 	}
 	
+	/**
+	 * Applies a patch change package.
+	 * 
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ChangeTrackingCommand applyChangePackage(ChangePackage changePackage) {
 		return new BasicApplyPatchChangePackageCommand((PatchChangePackage) changePackage);

@@ -42,17 +42,31 @@ import org.tigris.subversion.svnclientadapter.utils.SVNStatusUtils;
 import org.unicase.changetracking.exceptions.VCSException;
 import org.unicase.changetracking.ui.UIUtil;
 
+
+/**
+ * Subclipse implementation for creating a patch.
+ * 
+ * @author gex
+ *
+ */
 public class SubclipseCreatePatchAction {
 	
-	private static String ECLIPSE_PATCH_HEADER = "### Eclipse Workspace Patch 1.0"; //$NON-NLS-1$
-	private static String ECLIPSE_PROJECT_MARKER = "#P "; //$NON-NLS-1$
-	private static String EOL = System.getProperty("line.separator");
+	private static final String ECLIPSE_PATCH_HEADER = "### Eclipse Workspace Patch 1.0"; //$NON-NLS-1$
+	private static final String ECLIPSE_PROJECT_MARKER = "#P "; //$NON-NLS-1$
+	private static final String EOL = System.getProperty("line.separator");
 	
 
 	private ArrayList<IResource> unaddedList;
 	private HashMap<IResource,SVNStatusKind> statusMap;
 
 	
+	/**
+	 * Creates a patch from a set of input sources.
+	 * @param sources set of input sources
+	 * @param recurse whether to recurse into sub directories
+	 * @return a file containing the patch.
+	 * @throws VCSException if Subclipse throws an exception.
+	 */
 	public File createPatch(final IResource[] sources, boolean recurse) throws VCSException{
 		
 		//Step 1: Find resources
@@ -99,22 +113,39 @@ public class SubclipseCreatePatchAction {
 			fos = new FileOutputStream(f);
 			createEclipsePatch(sources, fos, recurse);
 			fos.close();
-		} catch (Exception e) {
+		} catch (SVNClientException e) {
+			throw new VCSException(e);
+		} catch (IOException e){
 			throw new VCSException(e);
 		} finally {
-			if(fos != null) try{ fos.close(); } catch(IOException e){}
+			if(fos != null) {
+				try{ fos.close(); } catch(IOException e){}
+			}
 		}
 		return (f);
 	}
 	
+	/**
+	 * Create a sub progress monitor for another monitor.
+	 * @param monitor parent monitor
+	 * @param ticks amount of ticks in the subprogress
+	 * @return sub progress monitor
+	 */
 	public static IProgressMonitor subMonitorFor(IProgressMonitor monitor, int ticks) {
-		if (monitor == null)
+		if (monitor == null) {
 			return new NullProgressMonitor();
-		if (monitor instanceof NullProgressMonitor)
+		}
+		if (monitor instanceof NullProgressMonitor) {
 			return monitor;
+		}
 		return new SubProgressMonitor(monitor, ticks);
 	}
 
+	/**
+	 * Retrieves a map from provider to the resources provided by them.
+	 * @param resources input resources
+	 * @return map
+	 */
 	protected HashMap<RepositoryProvider,List<IResource>> getProviderMapping(List<IResource> resources) {
 		HashMap<RepositoryProvider,List<IResource>> result = new HashMap<RepositoryProvider, List<IResource>>();
 		for(IResource r: resources){
@@ -129,6 +160,9 @@ public class SubclipseCreatePatchAction {
 		return result;
 	}	
 	
+	/**
+	 * conducts the patch creation.
+	 */
 	private void createEclipsePatch(IResource[] paths, OutputStream os, boolean recurse) throws SVNClientException {
 		
 		InputStream is = null;
@@ -172,22 +206,36 @@ public class SubclipseCreatePatchAction {
 				try {
 					is = new FileInputStream(tempFile);
 					
-					int bytes_read;
-					while ((bytes_read = is.read(buffer)) != -1)
-						os.write(buffer, 0, bytes_read);				
+					int bytesRead;
+					while ((bytesRead = is.read(buffer)) != -1) {
+						os.write(buffer, 0, bytesRead);
+					}				
 				} finally {
-					if (is != null) try {is.close();} catch (IOException e) {}
+					if (is != null) {
+						try {is.close();} catch (IOException e) {}
+					}
 				}
 			}
-		} catch (Exception e) {
+		} catch (IOException e) {
+			throw new SVNClientException(e);
+		} catch (SVNException e) {
 			throw new SVNClientException(e);
 		} finally {
-			if (os != null) try {os.close();} catch (IOException e) {}
+			if (os != null) {
+				try {os.close();} catch (IOException e) {}
+			}
 		}
 	}
 	
-	
-	protected IResource[] getModifiedResources(IResource[] resources, IProgressMonitor monitor) throws SVNException {
+// BEGIN COMPLEX CODE
+	/**
+	 * Retrieves the set of modified resources from a set of resources.
+	 * @param resources input resources (as array)
+	 * @param monitor progress monitor
+	 * @return set of modified resources (as array)
+	 * @throws SVNException thrown for various reasons.
+	 */
+	private IResource[] getModifiedResources(IResource[] resources, IProgressMonitor monitor) throws SVNException {
 	    final List<IResource> modified = new ArrayList<IResource>();
 	    List<IResource> unversionedFolders = new ArrayList<IResource>();
 	    for (int i = 0; i < resources.length; i++) {
@@ -245,6 +293,7 @@ public class SubclipseCreatePatchAction {
 	    }
 	    return (IResource[]) modified.toArray(new IResource[modified.size()]);
 	}	
+//END COMPLEX CODE
 	
 	private IResource[] getUnaddedResources(List<IResource> resources, IProgressMonitor iProgressMonitor) throws SVNException {
 		final List<IResource> unadded = new ArrayList<IResource>();
@@ -283,7 +332,11 @@ public class SubclipseCreatePatchAction {
 		return (IResource[]) unadded.toArray(new IResource[unadded.size()]);
 	}
 		
-	
+	/**
+	 * Tests whether a file is a sym link
+	 * @param resource resource
+	 * @return whether resource is sym link
+	 */
 	protected boolean isSymLink(IResource resource) {
 		File file = resource.getLocation().toFile();
 	    try {

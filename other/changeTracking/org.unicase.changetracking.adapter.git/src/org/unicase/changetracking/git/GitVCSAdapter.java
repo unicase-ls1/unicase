@@ -140,7 +140,6 @@ public class GitVCSAdapter extends BasicVCSAdapter {
 	}
 
 
-	@Override
 	public boolean doesChangePackageNeedRepoLocation() {
 		return true;
 	}

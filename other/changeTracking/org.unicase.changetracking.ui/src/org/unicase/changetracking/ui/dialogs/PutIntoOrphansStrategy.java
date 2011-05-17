@@ -11,7 +11,6 @@ import org.unicase.workspace.util.UnicaseCommand;
 
 public class PutIntoOrphansStrategy implements IModelElementPlacementStrategy{
 
-	@Override
 	public void placeModelElementInProject(final Project project,
 			final UnicaseModelElement modelElement) {
 		new UnicaseCommand() {

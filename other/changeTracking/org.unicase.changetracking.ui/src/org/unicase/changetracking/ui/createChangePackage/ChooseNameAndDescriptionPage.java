@@ -54,7 +54,6 @@ public class ChooseNameAndDescriptionPage extends WizardPage{
 		
 	}
 
-	@Override
 	public void createControl(Composite parent) {
 		composite = new Composite(parent, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).margins(10, 10).spacing(5, 5).applyTo(composite);
@@ -70,7 +69,6 @@ public class ChooseNameAndDescriptionPage extends WizardPage{
 		//Listeners
 		ModifyListener updateListener = new ModifyListener() {
 			
-			@Override
 			public void modifyText(ModifyEvent e) {
 				updateFields();
 				

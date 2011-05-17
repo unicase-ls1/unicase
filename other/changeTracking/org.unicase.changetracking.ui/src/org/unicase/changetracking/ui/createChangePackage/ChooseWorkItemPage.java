@@ -84,7 +84,6 @@ public class ChooseWorkItemPage extends WizardPage{
 		
 	}
 
-	@Override
 	public void createControl(Composite parent) {
 		composite = new Composite(parent, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).margins(10, 0).spacing(5, 5).applyTo(composite);

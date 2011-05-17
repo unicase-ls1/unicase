@@ -13,7 +13,7 @@ Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
  org.eclipse.compare,
  org.eclipse.debug.core
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.changetracking.commands,
  org.unicase.changetracking.common,
  org.unicase.changetracking.exceptions,

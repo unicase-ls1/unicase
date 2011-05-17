@@ -45,7 +45,6 @@ public abstract class BasicVCSAdapter implements VCSAdapter{
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public CreateStreamCommand createStreamFromCurrentBranch(
 			IDecisionProvider decisionProvider, IProject workspaceProject) {
 		return new CreateStreamFromCurrentBranchCommand(this, decisionProvider, workspaceProject);
@@ -68,7 +67,6 @@ public abstract class BasicVCSAdapter implements VCSAdapter{
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public ChangeTrackingCommand applyChangePackage(ChangePackage changePackage) {
 		return notSupportedCommand("change package application");
 	}
@@ -76,7 +74,6 @@ public abstract class BasicVCSAdapter implements VCSAdapter{
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public BuildReleaseCommand buildRelease(ChangeTrackingRelease release,
 			String tagName, ReleaseCheckReport checkReport) {
 		return new BuildReleaseCommand() {
@@ -96,7 +93,6 @@ public abstract class BasicVCSAdapter implements VCSAdapter{
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public CheckReleaseCommand checkRelease(IDecisionProvider decisionProvider,
 			ChangeTrackingRelease release) {
 		return new CheckReleaseCommand() {
@@ -111,7 +107,6 @@ public abstract class BasicVCSAdapter implements VCSAdapter{
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public ChangeTrackingCommand createChangePackage(IProject localProject,
 			WorkItem workItem, RepositoryLocation remoteRepo, String name,
 			String shortDescription, String longDescription) {
@@ -121,7 +116,6 @@ public abstract class BasicVCSAdapter implements VCSAdapter{
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public RepositoryLocation createRepositoryLocation(IProject workspaceProject)
 			throws VCSException, CancelledByUserException {
 		throw new NotSupportedByAdapterException("repository location creation");
@@ -130,7 +124,6 @@ public abstract class BasicVCSAdapter implements VCSAdapter{
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public RepositoryStream createRepositoryStream(IProject localProject,
 			RepositoryLocation repoLocation) throws NotSupportedByAdapterException {
 		throw new NotSupportedByAdapterException("repository stream creation");
@@ -139,7 +132,6 @@ public abstract class BasicVCSAdapter implements VCSAdapter{
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public RepositoryLocation findRepoLocation(IProject workspaceProject,
 			Project unicaseProject) throws VCSException {
 		throw new NotSupportedByAdapterException("repository location retrieval");
@@ -148,16 +140,13 @@ public abstract class BasicVCSAdapter implements VCSAdapter{
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public NameValidator getNameValidator() {
 		return new NameValidator() {
 			
-			@Override
 			public String isNewTagNameValid(String text, RepositoryLocation repoLoc) {
 				return null;
 			}
 			
-			@Override
 			public String cleanName(String name) {
 				return name;
 			}
@@ -167,7 +156,6 @@ public abstract class BasicVCSAdapter implements VCSAdapter{
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public String performEarlyCreateChangePackageChecks(IProject localProject)
 			throws VCSException {
 		return null;

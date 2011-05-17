@@ -25,6 +25,12 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
+/**
+ * Subclipse implementation of the create change package command.
+ * 
+ * @author gex
+ *
+ */
 public class SubclipseCreateChangePackageCommand extends ChangeTrackingCommand {
 
 	private IProject localProject;
@@ -33,6 +39,14 @@ public class SubclipseCreateChangePackageCommand extends ChangeTrackingCommand {
 	private String shortDescription;
 	private String longDescription;
 
+	/**
+	 * Default constructor.
+	 * @param localProject local project
+	 * @param workItem work item
+	 * @param name name for the change package
+	 * @param shortDescription short description
+	 * @param longDescription long description
+	 */
 	public SubclipseCreateChangePackageCommand(IProject localProject,
 			WorkItem workItem, String name,
 			String shortDescription, String longDescription) {
@@ -43,6 +57,10 @@ public class SubclipseCreateChangePackageCommand extends ChangeTrackingCommand {
 		this.longDescription = longDescription;
 	}
 	
+	/**
+	 * Performs the creation.
+	 * @return execution result.
+	 */
 	@Override
 	protected ChangeTrackingCommandResult doRun() {
 		
@@ -61,7 +79,7 @@ public class SubclipseCreateChangePackageCommand extends ChangeTrackingCommand {
 		PatchChangePackage changePackage = PatchFactory.eINSTANCE.createPatchChangePackage();
 		changePackage.setName(name);
 		changePackage.setShortDescription(shortDescription);
-		changePackage.setDescription(description);
+		changePackage.setDescription(longDescription);
 		
 		Project p = ModelUtil.getProject(workItem);
 		if(p == null){
