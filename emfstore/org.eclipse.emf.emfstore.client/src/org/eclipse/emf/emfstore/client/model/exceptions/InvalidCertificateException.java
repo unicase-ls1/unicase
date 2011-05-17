@@ -11,10 +11,10 @@
 package org.eclipse.emf.emfstore.client.model.exceptions;
 
 /**
- * Exception that is thrown when the specified certificate can not be found, or when the specified path does not point
- * at a valid certificate.
+ * Exception that is thrown when the specified certificate can not be found, or
+ * when the specified path does not point at a valid certificate.
  * 
- * @author C
+ * @author Carl Pfeiffer
  */
 public class InvalidCertificateException extends Exception {
 
@@ -23,7 +23,8 @@ public class InvalidCertificateException extends Exception {
 	private String errorString;
 
 	/**
-	 * @param string error string
+	 * @param string
+	 *            error string
 	 */
 	public InvalidCertificateException(String string) {
 		this.errorString = string;
