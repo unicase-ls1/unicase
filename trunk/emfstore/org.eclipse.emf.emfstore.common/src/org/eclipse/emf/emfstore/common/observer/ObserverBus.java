@@ -179,16 +179,21 @@ public class ObserverBus {
 		}
 
 		// BEGIN SUPRESS CATCH EXCEPTION
+		// TODO: handle exception
+		// TODO: handle return values
 		public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+			Object firstResult = null;
 			for (IObserver observer : observers) {
 				try {
-					method.invoke(observer, args);
+					if(firstResult == null) {
+						firstResult = method.invoke(observer, args);
+					} else {
+						method.invoke(observer, args);
+					}
 				} catch (Throwable e) {
-					// TODO: handle exception
 				}
 			}
-			// TODO: handle return values
-			return null;
+			return firstResult;
 		}
 		// END SUPRESS CATCH EXCEPTION
 	}
