@@ -123,8 +123,7 @@ public class NewRepositoryWizardPageOne extends WizardPage {
 			port.setSelection(serverInfo.getPort());
 			if (serverInfo.getCertificateAlias() != null) {
 				try {
-					if (KeyStoreManager.getInstance().contains(
-							serverInfo.getCertificateAlias())) {
+					if (KeyStoreManager.getInstance().contains(serverInfo.getCertificateAlias())) {
 						cert.setText(serverInfo.getCertificateAlias());
 					} else {
 						cert.setText("");
@@ -205,17 +204,17 @@ public class NewRepositoryWizardPageOne extends WizardPage {
 		 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 		 */
 		public void widgetSelected(SelectionEvent e) {
-			CertificateSelectionDialog csd = new CertificateSelectionDialog(
-					Display.getCurrent().getActiveShell(), new LabelProvider() {
-						@Override
-						public String getText(Object element) {
-							if (element instanceof String) {
-								return element.toString();
-							} else {
-								return "";
-							}
+			CertificateSelectionDialog csd = new CertificateSelectionDialog(Display.getCurrent().getActiveShell(),
+				new LabelProvider() {
+					@Override
+					public String getText(Object element) {
+						if (element instanceof String) {
+							return element.toString();
+						} else {
+							return "";
 						}
-					});
+					}
+				});
 			ArrayList<String> certificates;
 			try {
 				certificates = KeyStoreManager.getInstance().getCertificates();
