@@ -29,6 +29,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.VersionSpec;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Usersession</b></em>'. <!-- end-user-doc -->
+ * 
  * <p>
  * The following features are supported:
  * <ul>
@@ -49,7 +50,8 @@ import org.eclipse.emf.emfstore.server.model.versioning.VersionSpec;
  */
 public interface Usersession extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Username</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Username</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Username</em>' attribute isn't clear, there really should be more of a description
 	 * here...
@@ -66,7 +68,8 @@ public interface Usersession extends EObject {
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getUsername <em>Username</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Username</em>' attribute.
 	 * @see #getUsername()
@@ -75,7 +78,8 @@ public interface Usersession extends EObject {
 	void setUsername(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Password</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Password</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Password</em>' attribute isn't clear, there really should be more of a description
 	 * here...
@@ -92,7 +96,8 @@ public interface Usersession extends EObject {
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getPassword <em>Password</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Password</em>' attribute.
 	 * @see #getPassword()
@@ -101,7 +106,8 @@ public interface Usersession extends EObject {
 	void setPassword(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Session Id</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Session Id</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Session Id</em>' reference isn't clear, there really should be more of a description
 	 * here...
@@ -118,7 +124,8 @@ public interface Usersession extends EObject {
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getSessionId <em>Session Id</em>}
-	 * ' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * ' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Session Id</em>' reference.
 	 * @see #getSessionId()
@@ -127,7 +134,8 @@ public interface Usersession extends EObject {
 	void setSessionId(SessionId value);
 
 	/**
-	 * Returns the value of the '<em><b>Persistent Password</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Persistent Password</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Persistent Password</em>' attribute isn't clear, there really should be more of a
 	 * description here...
@@ -144,7 +152,8 @@ public interface Usersession extends EObject {
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getPersistentPassword
-	 * <em>Persistent Password</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <em>Persistent Password</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Persistent Password</em>' attribute.
 	 * @see #getPersistentPassword()
@@ -153,7 +162,8 @@ public interface Usersession extends EObject {
 	void setPersistentPassword(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Server Info</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Server Info</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Server Info</em>' reference isn't clear, there really should be more of a description
 	 * here...
@@ -170,7 +180,8 @@ public interface Usersession extends EObject {
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getServerInfo
-	 * <em>Server Info</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <em>Server Info</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Server Info</em>' reference.
 	 * @see #getServerInfo()
@@ -179,7 +190,8 @@ public interface Usersession extends EObject {
 	void setServerInfo(ServerInfo value);
 
 	/**
-	 * Returns the value of the '<em><b>Save Password</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Save Password</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Save Password</em>' attribute isn't clear, there really should be more of a
 	 * description here...
@@ -196,7 +208,8 @@ public interface Usersession extends EObject {
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#isSavePassword
-	 * <em>Save Password</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <em>Save Password</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Save Password</em>' attribute.
 	 * @see #isSavePassword()
@@ -205,7 +218,8 @@ public interface Usersession extends EObject {
 	void setSavePassword(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>AC User</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>AC User</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>AC User</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
@@ -222,7 +236,8 @@ public interface Usersession extends EObject {
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getACUser <em>AC User</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>AC User</em>' containment reference.
 	 * @see #getACUser()
@@ -231,8 +246,9 @@ public interface Usersession extends EObject {
 	void setACUser(ACUser value);
 
 	/**
-	 * Returns the value of the '<em><b>Changed Properties</b></em>' containment reference list. The list contents are
-	 * of type {@link org.eclipse.emf.emfstore.server.model.accesscontrol.OrgUnitProperty}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Changed Properties</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.emfstore.server.model.accesscontrol.OrgUnitProperty}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Changed Properties</em>' containment reference list isn't clear, there really should
 	 * be more of a description here...

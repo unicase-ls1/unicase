@@ -833,7 +833,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 			Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkspace_ActiveProjectSpace(), this.getProjectSpace(), null, "activeProjectSpace", null, 0,
-			1, Workspace.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			1, Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getWorkspace_ActiveProjectSpace().getEKeys().add(theModelPackage_2.getIdentifiableElement_Identifier());
 

@@ -39,8 +39,8 @@ public final class FileDownloadStatus {
 	private FileIdentifier id;
 	private Exception exception;
 
-	private FileDownloadStatus(ProjectSpace transferringProjectSpace,
-			FileIdentifier id, Status status, File transferredFile) {
+	private FileDownloadStatus(ProjectSpace transferringProjectSpace, FileIdentifier id, Status status,
+		File transferredFile) {
 		this.transferringProjectSpace = transferringProjectSpace;
 		this.status = status;
 		this.id = id;
@@ -201,8 +201,7 @@ public final class FileDownloadStatus {
 	 */
 	public File getTransferredFile() throws FileTransferException {
 		if (!isTransferFinished()) {
-			throw new FileTransferException(
-					"Trying to get a transferred file while transfer is not yet finished");
+			throw new FileTransferException("Trying to get a transferred file while transfer is not yet finished");
 		}
 		return transferredFile;
 	}
@@ -237,8 +236,7 @@ public final class FileDownloadStatus {
 					observer.wait();
 				}
 			} catch (InterruptedException e) {
-				throw new FileTransferException(
-						"Failed to initialize blocked get.", e);
+				throw new FileTransferException("Failed to initialize blocked get.", e);
 			}
 		}
 		return getTransferredFile();
@@ -284,8 +282,7 @@ public final class FileDownloadStatus {
 	 */
 	void transferStarted(int fileSize) throws FileTransferException {
 		if (status != Status.NOT_STARTED) {
-			throw new FileTransferException("Cannot start a job that is "
-					+ status.name());
+			throw new FileTransferException("Cannot start a job that is " + status.name());
 		}
 		statistics.registerStart(fileSize);
 		status = Status.TRANSFERING;
@@ -350,10 +347,8 @@ public final class FileDownloadStatus {
 		 *            the file where the download can be found
 		 * @return the created status object
 		 */
-		public static FileDownloadStatus createAlreadyFinished(ProjectSpace p,
-				FileIdentifier id, File transferredFile) {
-			return new FileDownloadStatus(p, id, Status.FINISHED,
-					transferredFile);
+		public static FileDownloadStatus createAlreadyFinished(ProjectSpace p, FileIdentifier id, File transferredFile) {
+			return new FileDownloadStatus(p, id, Status.FINISHED, transferredFile);
 		}
 
 		/**
@@ -366,8 +361,7 @@ public final class FileDownloadStatus {
 		 *            the identifier of the file to be downloaded
 		 * @return the created status object
 		 */
-		public static FileDownloadStatus createNew(ProjectSpace p,
-				FileIdentifier id) {
+		public static FileDownloadStatus createNew(ProjectSpace p, FileIdentifier id) {
 			return new FileDownloadStatus(p, id, Status.NOT_STARTED, null);
 		}
 	}

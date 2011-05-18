@@ -70,7 +70,8 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature. <!-- begin-user-doc
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -85,7 +86,8 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	/**
-	 * This adds a property descriptor for the Url feature. <!-- begin-user-doc
+	 * This adds a property descriptor for the Url feature.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -100,7 +102,8 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	/**
-	 * This adds a property descriptor for the Port feature. <!-- begin-user-doc
+	 * This adds a property descriptor for the Port feature.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -147,10 +150,10 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to
-	 * deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand},
-	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or {@link org.eclipse.emf.edit.command.MoveCommand} in
-	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -170,8 +173,7 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper
-		// feature to use for
+		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
@@ -189,7 +191,8 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -197,13 +200,14 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements IEdit
 	@Override
 	public String getText(Object object) {
 		String label = ((ServerInfo) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ServerInfo_type") : label;
+		return label == null || label.length() == 0 ? getString("_UI_ServerInfo_type")
+			: getString("_UI_ServerInfo_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
