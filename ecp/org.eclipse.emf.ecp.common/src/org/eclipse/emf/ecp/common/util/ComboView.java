@@ -38,6 +38,7 @@ public class ComboView<T> {
 	public static interface IComboChangeListener<T> {
 		/**
 		 * called if the selection of the combobox is changed.
+		 * 
 		 * @param newSelection the new selection
 		 */
 		void selectionChanged(T newSelection);

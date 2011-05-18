@@ -219,7 +219,7 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 		MEDropAdapter ret = dropAdapters.get(targetEClass);
 		if (ret == null) {
 			EClass superTypeHavingADropAdapter = getSuperTypeHavingADropAdapter(targetEClass.getESuperTypes());
-			if (superTypeHavingADropAdapter != null && superTypeHavingADropAdapter!=targetEClass) {
+			if (superTypeHavingADropAdapter != null && superTypeHavingADropAdapter != targetEClass) {
 				ret = getTargetDropAdapter(superTypeHavingADropAdapter);
 			}
 		}

@@ -105,7 +105,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 
 	}
 
-		/**
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.ui.part.WorkbenchPart#dispose()
@@ -130,7 +130,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 			IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
 			viewer.setLabelProvider(new DecoratingLabelProvider(new TreeLabelProvider(), decoratorManager
 				.getLabelDecorator()));
-//			viewer.setLabelProvider(new TreeLabelProvider());
+			// viewer.setLabelProvider(new TreeLabelProvider());
 			viewer.setContentProvider(new TreeContentProvider());
 			viewer.setUseHashlookup(true);
 			viewer.setInput(workSpace);
