@@ -30,6 +30,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.common.model.ModelFactory;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.provider.IdentifiableElementItemProvider;
 import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
@@ -46,7 +47,8 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerFact
 public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -55,7 +57,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -76,7 +79,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Project Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Project Name feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -107,7 +111,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Usersession feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Usersession feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -122,7 +127,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Last Updated feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Last Updated feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -137,7 +143,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Resource Count feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Resource Count feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -152,7 +159,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Dirty feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Dirty feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -166,7 +174,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Old Log Messages feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Old Log Messages feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -183,7 +192,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -293,8 +303,9 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -303,7 +314,7 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__PROJECT,
-			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createProject()));
+			ModelFactory.eINSTANCE.createProject()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__PROJECT_ID,
 			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createProjectId()));
@@ -409,7 +420,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

@@ -80,11 +80,13 @@ public class FileTransferCacheManager {
 
 	/**
 	 * Returns the default file cache folder of a given projectspace.
+	 * 
+	 * @param projectSpace the projectSpace
+	 * @return the name of the cache folder
 	 */
 	public static String getCacheFolder(ProjectSpace projectSpace) {
-		return Configuration.getWorkspaceDirectory() + "ps-"
-				+ projectSpace.getIdentifier() + File.separatorChar + "files"
-				+ File.separatorChar;
+		return Configuration.getWorkspaceDirectory() + "ps-" + projectSpace.getIdentifier() + File.separatorChar
+			+ "files" + File.separatorChar;
 	}
 
 	/**
@@ -111,12 +113,10 @@ public class FileTransferCacheManager {
 	 * @throws FileTransferException
 	 *             if the file is not present in the cache
 	 */
-	public File getCachedFile(FileIdentifier identifier)
-			throws FileTransferException {
+	public File getCachedFile(FileIdentifier identifier) throws FileTransferException {
 		File f = getFileFromId(cacheFolder, identifier);
 		if (!f.exists()) {
-			throw new FileTransferException("The file with the id "
-					+ identifier + " is not in the cache");
+			throw new FileTransferException("The file with the id " + identifier + " is not in the cache");
 		}
 		return f;
 	}
@@ -179,24 +179,22 @@ public class FileTransferCacheManager {
 	 *             already exists, or if the rename operation which moves the
 	 *             file fails
 	 */
-	public File moveTempFileToCache(FileIdentifier id)
-			throws FileTransferException {
+	public File moveTempFileToCache(FileIdentifier id) throws FileTransferException {
 		mkdirs();
 		File cacheFile = getFileFromId(cacheFolder, id);
 		File tmpFile = getFileFromId(tempCacheFolder, id);
 		if (!tmpFile.exists()) {
 			throw new FileTransferException(
-					"Could not move temp file to cache folder. The file does not exist in the temp folder. FileId: "
-							+ id.getIdentifier());
+				"Could not move temp file to cache folder. The file does not exist in the temp folder. FileId: "
+					+ id.getIdentifier());
 		}
 		if (cacheFile.exists()) {
 			throw new FileTransferException(
-					"Could not move temp file to cache folder. The file already exists in the cache folder"
-							+ id.getIdentifier());
+				"Could not move temp file to cache folder. The file already exists in the cache folder"
+					+ id.getIdentifier());
 		}
 		if (!tmpFile.renameTo(cacheFile)) {
-			throw new FileTransferException(
-					"Could not move temp file to cache folder. The move operation failed");
+			throw new FileTransferException("Could not move temp file to cache folder. The move operation failed");
 		}
 		return cacheFile;
 	}

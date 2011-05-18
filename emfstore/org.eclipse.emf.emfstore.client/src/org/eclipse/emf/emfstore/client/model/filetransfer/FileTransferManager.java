@@ -65,25 +65,20 @@ public class FileTransferManager {
 	/**
 	 * {@inheritDoc}
 	 */
-	public FileIdentifier addFile(File file, String id)
-			throws FileTransferException {
+	public FileIdentifier addFile(File file, String id) throws FileTransferException {
 		if (file == null) {
 			throw new FileTransferException("File to be added is null!");
 		}
 		if (file.isDirectory()) {
-			throw new FileTransferException(
-					"Can only upload files! File is a directory.\nPath:"
-							+ file.getAbsolutePath());
+			throw new FileTransferException("Can only upload files! File is a directory.\nPath:"
+				+ file.getAbsolutePath());
 		}
 		if (!file.exists()) {
-			throw new FileTransferException(
-					"The file to be uploaded does not exist.\nPath:"
-							+ file.getAbsolutePath());
+			throw new FileTransferException("The file to be uploaded does not exist.\nPath:" + file.getAbsolutePath());
 		}
 
 		// Create the file identifier
-		FileIdentifier identifier = ModelFactory.eINSTANCE
-				.createFileIdentifier();
+		FileIdentifier identifier = ModelFactory.eINSTANCE.createFileIdentifier();
 		if (id != null) {
 			identifier.setIdentifier(id);
 		}
@@ -92,9 +87,8 @@ public class FileTransferManager {
 		try {
 			cacheManager.cacheFile(file, identifier);
 		} catch (IOException e) {
-			throw new FileTransferException(
-					"An exception occurred while trying to cache an incoming file:\n"
-							+ e.getMessage(), e);
+			throw new FileTransferException("An exception occurred while trying to cache an incoming file:\n"
+				+ e.getMessage(), e);
 		}
 
 		// Add the file to the queue for files that should be
@@ -145,13 +139,9 @@ public class FileTransferManager {
 				// (it should be, unless there is a severe bug or the user has
 				// manually deleted it)
 				if (!cacheManager.hasCachedFile(fi)) {
-					WorkspaceUtil
-							.logException(
-									"The file with the id "
-											+ fi.getIdentifier()
-											+ " was not found in cache. It was queued for upload but"
-											+ " is now removed from the queue. The file will NOT be on the server.",
-									null);
+					WorkspaceUtil.logException("The file with the id " + fi.getIdentifier()
+						+ " was not found in cache. It was queued for upload but"
+						+ " is now removed from the queue. The file will NOT be on the server.", null);
 					// Remove from commit queue
 					new EMFStoreCommand() {
 						@Override
@@ -167,10 +157,8 @@ public class FileTransferManager {
 				IStatus result = job.run(progress);
 
 				if (job.getException() != null) {
-					WorkspaceUtil
-							.logException(
-									"An exception occurred while trying to upload a file to the server",
-									job.getException());
+					WorkspaceUtil.logException("An exception occurred while trying to upload a file to the server",
+						job.getException());
 					return;
 				}
 
@@ -179,8 +167,7 @@ public class FileTransferManager {
 				}
 			}
 		} catch (FileTransferException e) {
-			WorkspaceUtil.logException(
-					"Uploading the waiting files did not succeed", e);
+			WorkspaceUtil.logException("Uploading the waiting files did not succeed", e);
 		}
 	}
 
@@ -189,8 +176,7 @@ public class FileTransferManager {
 	 * 
 	 * @param monitor
 	 */
-	public FileDownloadStatus getFile(FileIdentifier fileIdentifier)
-			throws FileTransferException {
+	public FileDownloadStatus getFile(FileIdentifier fileIdentifier) throws FileTransferException {
 
 		if (fileIdentifier == null) {
 			throw new FileTransferException("File identifier may not be null,");
@@ -198,9 +184,8 @@ public class FileTransferManager {
 
 		// If the file is cached locally, get it
 		if (cacheManager.hasCachedFile(fileIdentifier)) {
-			return FileDownloadStatus.Factory.createAlreadyFinished(
-					projectSpace, fileIdentifier,
-					cacheManager.getCachedFile(fileIdentifier));
+			return FileDownloadStatus.Factory.createAlreadyFinished(projectSpace, fileIdentifier,
+				cacheManager.getCachedFile(fileIdentifier));
 		}
 
 		// Otherwise, start a download
@@ -218,11 +203,9 @@ public class FileTransferManager {
 	 * @return the status
 	 */
 	private FileDownloadStatus startDownload(FileIdentifier fileIdentifier) {
-		FileDownloadStatus fds = FileDownloadStatus.Factory.createNew(
-				projectSpace, fileIdentifier);
+		FileDownloadStatus fds = FileDownloadStatus.Factory.createNew(projectSpace, fileIdentifier);
 		// TODO Check if true is correct here
-		FileDownloadJob job = new FileDownloadJob(fds, this, fileIdentifier,
-				true);
+		FileDownloadJob job = new FileDownloadJob(fds, this, fileIdentifier, true);
 		job.schedule();
 		return fds;
 	}
@@ -275,8 +258,7 @@ public class FileTransferManager {
 	 * @throws FileTransferException
 	 *             if the file is not in the queue
 	 */
-	void removeWaitingUpload(FileIdentifier fileId)
-			throws FileTransferException {
+	void removeWaitingUpload(FileIdentifier fileId) throws FileTransferException {
 		int index = getWaitingUploadIndex(fileId);
 		if (index != -1) {
 			projectSpace.getWaitingUploads().remove(index);
@@ -284,9 +266,8 @@ public class FileTransferManager {
 
 		} else {
 			// Not found in list? exception!
-			throw new FileTransferException(
-					"Could not remove pending upload with id " + fileId
-							+ ": No upload with that id is pending");
+			throw new FileTransferException("Could not remove pending upload with id " + fileId
+				+ ": No upload with that id is pending");
 		}
 	}
 
