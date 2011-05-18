@@ -67,7 +67,8 @@ public class ModelElementDirtyDecorator implements ILightweightLabelDecorator {
 		}
 		if (dirty) {
 			if (descriptor == null) {
-				url = FileLocator.find(Platform.getBundle("org.eclipse.emf.ecp.common"), new Path(DIRTY_ICON_PATH), null);
+				url = FileLocator.find(Platform.getBundle("org.eclipse.emf.ecp.common"), new Path(DIRTY_ICON_PATH),
+					null);
 				descriptor = ImageDescriptor.createFromURL(url);
 			}
 			decoration.addOverlay(descriptor, IDecoration.BOTTOM_LEFT);

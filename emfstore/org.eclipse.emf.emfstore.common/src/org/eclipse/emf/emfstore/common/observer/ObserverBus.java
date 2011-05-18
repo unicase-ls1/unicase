@@ -185,7 +185,7 @@ public class ObserverBus {
 			Object firstResult = null;
 			for (IObserver observer : observers) {
 				try {
-					if(firstResult == null) {
+					if (firstResult == null) {
 						firstResult = method.invoke(observer, args);
 					} else {
 						method.invoke(observer, args);

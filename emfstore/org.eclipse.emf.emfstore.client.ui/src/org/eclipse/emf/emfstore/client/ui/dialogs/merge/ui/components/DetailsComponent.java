@@ -75,16 +75,13 @@ public class DetailsComponent extends Section {
 			if (!option.isDetailsProvider()) {
 				continue;
 			}
-			if (option.getDetailProvider().startsWith(
-					DecisionConfig.WIDGET_MULTILINE)) {
+			if (option.getDetailProvider().startsWith(DecisionConfig.WIDGET_MULTILINE)) {
 				if (multiWidget == null) {
 					multiWidget = new MergeTextWidget(decisionBox, this);
 				}
 				multiWidget.addOption(option);
-			} else if (option.getDetailProvider().startsWith(
-					DecisionConfig.WIDGET_OTHERINVOLVED)) {
-				new OtherInvolvedWidget(client,
-						decisionBox.getDecisionManager(), option);
+			} else if (option.getDetailProvider().startsWith(DecisionConfig.WIDGET_OTHERINVOLVED)) {
+				new OtherInvolvedWidget(client, decisionBox.getDecisionManager(), option);
 			}
 		}
 
