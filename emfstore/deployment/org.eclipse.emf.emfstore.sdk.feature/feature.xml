@@ -236,6 +236,22 @@ litigation.
          id="org.eclipse.emf.emfstore.client.ui.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.emf.emfstore.client.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.emf.emfstore.client.ui.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.emf.emfstore.common.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.emf.emfstore.server.feature.source"
+         version="0.0.0"/>
+
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
