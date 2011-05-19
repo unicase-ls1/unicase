@@ -10,7 +10,7 @@
 ===Initial Setup:===
 
  * Download eclipse for RCP/Plug-in development from the eclipse project home page.
- * Download delta-pack from the link given above. Note: If you run another version than Helios 3.6.2 you need another matching delta pack. Just google for "eclipse delta pack download <version>" and you should be able to find it on the Eclipse project homepage. Using the wrong delta pack for your Eclipse version will lead to errors during deploy!
+ * Download delta-pack from the link given above. Note: If you run another version than Helios 3.6.2 you need another matching delta pack. Just google for "eclipse delta pack download &ltversion&gt" and you should be able to find it on the Eclipse project homepage. Using the wrong delta pack for your Eclipse version will lead to errors during deploy!
 
 This is one of the core part in deploying the standalone product and the one which results in subsequent problems and issues if not done correctly.
 You have to setup the build environment properly to build the product for different platform, else with the default eclipse configuration you can only build the product for that particular development environment as you are currently working on.
