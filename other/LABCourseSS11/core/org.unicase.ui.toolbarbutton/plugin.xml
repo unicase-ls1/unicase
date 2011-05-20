@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="toolbar:org.eclipse.emf.ecp.editor.TreeView">
+            locationURI="toolbar:org.eclipse.emf.ecp.Navigator">
          <command
                commandId="org.unicase.ui.toolbarbutton.commands.createActionItem"
                icon="icons/ActionItem.png"
