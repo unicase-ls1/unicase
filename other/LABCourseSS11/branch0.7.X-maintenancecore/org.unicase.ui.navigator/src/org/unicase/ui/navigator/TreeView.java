@@ -231,7 +231,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 		IMenuService menuService = (IMenuService) PlatformUI.getWorkbench().getService(IMenuService.class);
 
 		menuService.populateContributionManager((ContributionManager) toolBarManager,
-			"toolbar:org.eclipse.emf.ecp.editor.TreeView");
+			"toolbar:org.eclipse.emf.ecp.Navigator");
 
 		Separator shortcutsSeperator = new Separator("shortcuts");
 		shortcutsSeperator.setVisible(true);
