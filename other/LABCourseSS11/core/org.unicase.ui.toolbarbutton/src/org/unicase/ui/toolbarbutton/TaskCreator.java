@@ -15,6 +15,13 @@ import org.unicase.workspace.preferences.PropertyKey;
 
 public class TaskCreator {
 
+	/**
+	 * Creates a new task under the modelElement which is retrieved from the preferences over the
+	 * property key. The saved preference value has to be a ModelElementId.
+	 * @param projectSpace - the ProjectSpace where the task will be created
+	 * @param key - the PropertyKey under which the ModelElementId can be found in the PreferenceManager
+	 * @param task - the WorkItem which will be added under the retrieved ModelElement
+	 */
 	static public void addTask(ProjectSpace projectSpace, PropertyKey key, WorkItem task){
 		final OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, key);
 
