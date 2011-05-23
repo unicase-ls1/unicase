@@ -14,9 +14,9 @@ import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 public interface RMIBackchannelInterface extends Remote {
 
 	/**
-	 * @see org.unicase.backchannel.server.BackchannelInterface#registerRemoteListener(org.unicase.emfstore.esmodel.SessionId,
+	 * @see org.unicase.backchannel.server.BackchannelInterface#registerRemoteListener(org.eclipse.emf.emfstore.server.model.SessionId,
 	 *      org.unicase.emfstore.eventmanager.EMFStoreEventListener,
-	 *      org.unicase.emfstore.esmodel.ProjectId)
+	 *      org.eclipse.emf.emfstore.server.model.ProjectId)
 	 * 
 	 * @param sessionId
 	 *            as string
@@ -34,9 +34,9 @@ public interface RMIBackchannelInterface extends Remote {
 			throws RemoteException, EmfStoreException;
 
 	/**
-	 * @see org.unicase.backchannel.server.BackchannelInterface#sendEvent(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.versioning.events.server.ServerEvent,
-	 *      org.unicase.emfstore.esmodel.ProjectId)
+	 * @see org.unicase.backchannel.server.BackchannelInterface#sendEvent(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerEvent,
+	 *      org.eclipse.emf.emfstore.server.model.ProjectId)
 	 * 
 	 * @param sessionId
 	 *            as string
