@@ -7,38 +7,55 @@ package org.unicase.changetracking.git.exceptions;
 
 import org.unicase.changetracking.exceptions.UnexpectedChangeTrackingException;
 
-
 /**
- * This exception may be thrown by all parts of the git plugin.
- * It signalizes that something has gone wrong which shouldn't under normal
- * circumstances. Because it is not usual that this will ever happen,
- * this exception is a runtime exception.
+ * This exception may be thrown by all parts of the git plugin. It signalizes
+ * that something has gone wrong which shouldn't under usual circumstances.
+ * Because it is not usual that this will ever happen, this exception is a
+ * runtime exception.
+ * 
  * @author jfinis
- *
+ * 
  */
-public class UnexpectedGitException extends UnexpectedChangeTrackingException{
+public class UnexpectedGitException extends UnexpectedChangeTrackingException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * .
+	 */
 	public UnexpectedGitException() {
 		super();
 	}
 
+	/**
+	 * .
+	 * 
+	 * @param arg0 exception message
+	 * @param arg1 cause
+	 */
 	public UnexpectedGitException(String arg0, Throwable arg1) {
 		super(arg0, arg1);
 	}
 
+	/**
+	 * .
+	 * 
+	 * @param arg0 Exception message
+	 */
 	public UnexpectedGitException(String arg0) {
 		super(arg0);
 	}
 
+	/**
+	 * .
+	 * 
+	 * @param arg0 cause
+	 */
 	public UnexpectedGitException(Throwable arg0) {
 		super(arg0);
 	}
 
-	
-	
 }

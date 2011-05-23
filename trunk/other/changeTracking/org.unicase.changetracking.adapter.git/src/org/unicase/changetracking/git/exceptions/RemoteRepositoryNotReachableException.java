@@ -5,15 +5,26 @@
  */
 package org.unicase.changetracking.git.exceptions;
 
-public class RemoteRepositoryNotReachableException  extends Exception {
+/**
+ * Exception stating that the communication with the remote repository could not
+ * be conducted.
+ * 
+ * @author jfinis
+ * 
+ */
+public class RemoteRepositoryNotReachableException extends Exception {
 
 	/**
 	 * .
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param message problem message
+	 */
 	public RemoteRepositoryNotReachableException(String message) {
 		super(message);
 	}
 }
-

@@ -5,6 +5,13 @@
  */
 package org.unicase.changetracking.git.exceptions;
 
+/**
+ * Exception stating that no matching repository for a specific remote
+ * repository or other entity exists.
+ * 
+ * @author jfinis
+ * 
+ */
 public class NoMatchingLocalRepositoryInWorkspace extends Exception {
 
 	/**
@@ -13,8 +20,9 @@ public class NoMatchingLocalRepositoryInWorkspace extends Exception {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * .
-	 * @param message
+	 * Default constructor.
+	 * 
+	 * @param message problem message
 	 */
 	public NoMatchingLocalRepositoryInWorkspace(String message) {
 		super(message);

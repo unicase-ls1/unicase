@@ -27,7 +27,6 @@ import org.eclipse.jgit.api.FetchCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.MergeCommand;
 import org.eclipse.jgit.api.MergeResult;
-import org.eclipse.jgit.api.PullCommand;
 import org.eclipse.jgit.api.errors.CheckoutConflictException;
 import org.eclipse.jgit.api.errors.ConcurrentRefUpdateException;
 import org.eclipse.jgit.api.errors.InvalidMergeHeadsException;
@@ -47,8 +46,13 @@ import org.eclipse.jgit.transport.URIish;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
 
 /**
- * Wraps the JGit API {@link PullCommand} into an operation
+ * Wraps the JGit API {@link PullCommand} into an operation.
+ * 
+ * C&P'ed from EGit
+ * 
+ * @author jfinis
  */
+
 public class SelectivePullOperation implements IEGitOperation {
 	private final Repository repository;
 
@@ -63,10 +67,12 @@ public class SelectivePullOperation implements IEGitOperation {
 	private RefSpec refSpec;
 
 	/**
-	 * @param repository
-	 *            the repository
-	 * @param timeout
-	 *            in seconds
+	 * Default constructor.
+	 * 
+	 * @param repository local repository to pull into
+	 * @param remoteRepo the repository to pull from
+	 * @param timeout in seconds
+	 * @param refSpec ref spec to specify what to pull
 	 */
 	public SelectivePullOperation(Repository repository, URIish remoteRepo, int timeout, RefSpec refSpec) {
 		this.timeout = timeout;
@@ -75,41 +81,41 @@ public class SelectivePullOperation implements IEGitOperation {
 		this.repository = repository;
 	}
 
+	// BEGIN COMPLEX CODE
 	public void execute(IProgressMonitor m) {
 		IProgressMonitor monitor;
-		if (m == null)
+		if (m == null) {
 			monitor = new NullProgressMonitor();
-		else
+		} else {
 			monitor = m;
+		}
 		IWorkspaceRunnable action = new IWorkspaceRunnable() {
 			public void run(IProgressMonitor mymonitor) throws CoreException {
 				EclipseGitProgressTransformer gitMonitor = new EclipseGitProgressTransformer(mymonitor);
-				
+
 				mymonitor.beginTask("Pulling from remote repository", 2);
 
 				if (!repository.getRepositoryState().equals(RepositoryState.SAFE))
 					throw new UnexpectedGitException("Cannot pull if the repository is not in a safe state!");
 
-	
-					
-					FetchCommand fetch = new Git(repository).fetch();
-					fetch.setRemote(remote.toString());
-					fetch.setProgressMonitor(gitMonitor);
-					fetch.setTimeout(timeout);
-					fetch.setRefSpecs(refSpecs);
-					FetchResult fetchRes;
-					try {
-						fetchRes = fetch.call();
-					} catch (JGitInternalException e1) {
-						throw new UnexpectedGitException(e1);
-					} catch (InvalidRemoteException e1) {
-						throw new UnexpectedGitException(e1);
-					}
-			
+				FetchCommand fetch = new Git(repository).fetch();
+				fetch.setRemote(remote.toString());
+				fetch.setProgressMonitor(gitMonitor);
+				fetch.setTimeout(timeout);
+				fetch.setRefSpecs(refSpecs);
+				FetchResult fetchRes;
+				try {
+					fetchRes = fetch.call();
+				} catch (JGitInternalException e1) {
+					throw new UnexpectedGitException(e1);
+				} catch (InvalidRemoteException e1) {
+					throw new UnexpectedGitException(e1);
+				}
 
 				gitMonitor.update(1);
 
-				// we check the updates to see which of the updated branches corresponds
+				// we check the updates to see which of the updated branches
+				// corresponds
 				// to the remote branch name
 
 				AnyObjectId commitToMerge;
@@ -118,21 +124,18 @@ public class SelectivePullOperation implements IEGitOperation {
 				if (fetchRes != null) {
 					r = fetchRes.getAdvertisedRef(refSpec.getSource());
 					if (r == null)
-						r = fetchRes.getAdvertisedRef(Constants.R_HEADS
-								+ refSpec.getSource());
+						r = fetchRes.getAdvertisedRef(Constants.R_HEADS + refSpec.getSource());
 				}
 				if (r == null)
 					throw new UnexpectedGitException("Remote repository does not have the expected branch");
 				else
 					commitToMerge = r.getObjectId();
-		
 
 				if (gitMonitor.isCancelled())
 					throw new UnexpectedGitException("Operation canceled by user");
 
 				MergeCommand merge = new Git(repository).merge();
-				merge.include("branch \'" + refSpec.getSource() + "\' of " + refSpec.getDestination(),
-						commitToMerge);
+				merge.include("branch \'" + refSpec.getSource() + "\' of " + refSpec.getDestination(), commitToMerge);
 				MergeResult mergeRes;
 				try {
 					mergeRes = merge.call();
@@ -162,6 +165,8 @@ public class SelectivePullOperation implements IEGitOperation {
 		}
 	}
 
+	// END COMPLEX CODE
+
 	/**
 	 * @return the merge result, or <code>null</code> if this has not been
 	 *         executed or if an exception occurred
@@ -170,6 +175,9 @@ public class SelectivePullOperation implements IEGitOperation {
 		return this.pullResult;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public ISchedulingRule getSchedulingRule() {
 		return ResourcesPlugin.getWorkspace().getRoot();
 	}

@@ -48,11 +48,14 @@
 package org.unicase.changetracking.git.common;
 
 import org.eclipse.jgit.api.MergeResult;
-import org.eclipse.jgit.api.PullCommand;
 import org.eclipse.jgit.transport.FetchResult;
 
 /**
- * Encapsulates the result of a {@link PullCommand}
+ * Encapsulates the result of a {@link PullCommand}.
+ * 
+ * C&Ped from EGit
+ * 
+ * @author jfinis
  */
 public class SelectivePullResult {
 	private final FetchResult fetchResult;
@@ -61,8 +64,14 @@ public class SelectivePullResult {
 
 	private final String fetchedFrom;
 
-	SelectivePullResult(FetchResult fetchResult, String fetchedFrom,
-			MergeResult mergeResult) {
+	/**
+	 * Default constructor.
+	 * 
+	 * @param fetchResult fetch result
+	 * @param fetchedFrom uri from which the fetch was conducted
+	 * @param mergeResult merge result
+	 */
+	SelectivePullResult(FetchResult fetchResult, String fetchedFrom, MergeResult mergeResult) {
 		this.fetchResult = fetchResult;
 		this.fetchedFrom = fetchedFrom;
 		this.mergeResult = mergeResult;
@@ -93,15 +102,17 @@ public class SelectivePullResult {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		if (fetchResult != null)
+		if (fetchResult != null) {
 			sb.append(fetchResult.toString());
-		else
+		} else {
 			sb.append("No fetch result");
+		}
 		sb.append("\n");
-		if (mergeResult != null)
+		if (mergeResult != null) {
 			sb.append(mergeResult.toString());
-		else
+		} else {
 			sb.append("No merge result");
+		}
 		return sb.toString();
 	}
 }

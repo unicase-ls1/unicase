@@ -28,76 +28,103 @@ import org.unicase.model.changetracking.git.GitBranch;
 import org.unicase.model.changetracking.git.GitFactory;
 import org.unicase.model.changetracking.git.GitRepository;
 
+/**
+ * Utility class for Git related operations.
+ * 
+ * Operations for Git naming and repository finding are located in dedicated
+ * Util classes which are GitNameUtil and GitRepoFindUtil, respectively.
+ * 
+ * @author jfinis
+ * 
+ */
 public final class GitUtil {
 
-	private GitUtil(){}
-	
+	private GitUtil() {}
+
+	/**
+	 * Converts a string which must contain a 40 byte SHA hash in hex to a
+	 * mutable object id.
+	 * 
+	 * @param s string containing a 40 byte SHA hash
+	 * @return correspondent object id
+	 */
 	public static MutableObjectId stringToObjectId(String s) {
 		MutableObjectId mo = new MutableObjectId();
 		mo.fromString(s);
 		return mo;
 	}
-	
-	public static RefSpec getRefSpecFromGitBranch(GitBranch branch){
+
+	/**
+	 * Retrieves a RefSpec correspondent to a Git branch model element.
+	 * 
+	 * @param branch Git branch model element
+	 * @return corresponding RefSpec
+	 */
+	public static RefSpec getRefSpecFromGitBranch(GitBranch branch) {
 		return new RefSpec(Constants.R_HEADS + branch.getBranchName());
 	}
-	
-	public static RevCommit getCommitByHash(String hash, Repository repo) {
+
+	/**
+	 * Retrieves a thoroughly parsed commit from a repository with a specified
+	 * hash.
+	 * 
+	 * @param hash hash of the commit
+	 * @param repo Git repository
+	 * @return the parsed commit
+	 * @throws UnexpectedGitException if the commit cannot be retrieved for
+	 *             various reasons
+	 */
+	public static RevCommit getCommitByHash(String hash, Repository repo) throws UnexpectedGitException {
 		MutableObjectId objId = stringToObjectId(hash);
 		RevWalk r = new RevWalk(repo);
 		try {
 			RevCommit c = r.parseCommit(objId);
 			return c;
 		} catch (MissingObjectException e) {
-			throw new UnexpectedGitException(
-					"Could not obtain a commit from a repository", e);
+			throw new UnexpectedGitException("Could not obtain a commit from a repository", e);
 		} catch (IncorrectObjectTypeException e) {
-			throw new UnexpectedGitException(
-					"Could not obtain a commit from a repository", e);
+			throw new UnexpectedGitException("Could not obtain a commit from a repository", e);
 		} catch (IOException e) {
-			throw new UnexpectedGitException(
-					"Could not obtain a commit from a repository", e);
+			throw new UnexpectedGitException("Could not obtain a commit from a repository", e);
 		}
 
 	}
-	
+
 	/**
-	 * Checks whether there are no changes in the working directory
-	 * and the index. This method is computationally intensive as it
-	 * checks the whole repository. Cache the result rather than calling
-	 * it more than once.
+	 * Checks whether there are no changes in the working directory and the
+	 * index. This method is computationally intensive as it checks the whole
+	 * repository. Cache the result rather than calling it more than once.
 	 * 
 	 * @param repository local repository to check
 	 * @return true iff no changes exist in the index and the working directory
 	 */
-	public static boolean isIndexAndWorkDirClean(Repository repository){
+	public static boolean isIndexAndWorkDirClean(Repository repository) {
 		IndexDiff indexDiff;
 		try {
-			indexDiff = new IndexDiff(repository, Constants.HEAD,
-					IteratorService.createInitialIterator(repository));
+			indexDiff = new IndexDiff(repository, Constants.HEAD, IteratorService.createInitialIterator(repository));
 			indexDiff.diff();
 		} catch (IOException e) {
-			throw new UnexpectedGitException(
-					"IO Exception while examining local repository", e);
+			throw new UnexpectedGitException("IO Exception while examining local repository", e);
 		}
-		
-		return indexDiff.getAdded().isEmpty()
-			&& indexDiff.getChanged().isEmpty()
-			&& indexDiff.getMissing().isEmpty()
-			&& indexDiff.getModified().isEmpty()
-			&& indexDiff.getRemoved().isEmpty()
-			&& indexDiff.getUntracked().isEmpty();
+
+		return indexDiff.getAdded().isEmpty() && indexDiff.getChanged().isEmpty() && indexDiff.getMissing().isEmpty() && indexDiff.getModified().isEmpty() && indexDiff.getRemoved().isEmpty() && indexDiff.getUntracked().isEmpty();
 	}
-	
-	public static List<String> getModifications(Repository repository){
+
+	/**
+	 * Retrieves all modifications contained in the working copy of a local
+	 * repository. Retrieves them as a list of strings with each string
+	 * corresponding to one modification.
+	 * 
+	 * @param repository local Git repository
+	 * @return list of modifications
+	 */
+	public static List<String> getModifications(Repository repository) {
 		IndexDiff indexDiff;
 		try {
-			indexDiff = new IndexDiff(repository, Constants.HEAD,
-					IteratorService.createInitialIterator(repository));
+			indexDiff = new IndexDiff(repository, Constants.HEAD, IteratorService.createInitialIterator(repository));
 			indexDiff.diff();
 		} catch (IOException e) {
-			throw new UnexpectedGitException(
-					"IO Exception while examining local repository", e);
+			throw new UnexpectedGitException("IO Exception while examining local repository", e);
 		}
 		List<String> result = new ArrayList<String>();
 		result.addAll(indexDiff.getAdded());
@@ -107,25 +134,46 @@ public final class GitUtil {
 		result.addAll(indexDiff.getUntracked());
 		return result;
 	}
-	
-	public static String getModificationsAsString(Repository repository, int max){
+
+	/**
+	 * Retrieves all modifications contained in the working copy of a local
+	 * repository. Retrieves the modifications as one string where each line
+	 * contains one modification. The maximum amount of modifications can be
+	 * chosen. If the number of modifications exceeds this maximum, it the
+	 * exceeding modifications are omitted and a "(... X more)" line is appended
+	 * to the string, with X being the number of omitted changes.
+	 * 
+	 * This method can be used for conveniently printing the list of
+	 * modifications to the user.
+	 * 
+	 * @param repository local Git repository
+	 * @param max maximum amount of displayed modifications
+	 * @return modifications as a multi-line string (one modification per line)
+	 */
+	public static String getModificationsAsString(Repository repository, int max) {
 		List<String> mods = getModifications(repository);
 		StringBuilder result = new StringBuilder();
 		int count = 0;
-		for(Iterator<String> it = mods.iterator();it.hasNext();){
+		for (Iterator<String> it = mods.iterator(); it.hasNext();) {
 			String s = it.next();
 			result.append(s);
-			if(it.hasNext()){
+			if (it.hasNext()) {
 				result.append("\n");
 			}
-			if(++count >= max){
-				result.append("... (" + (mods.size()-max) + " more)");
+			if (++count >= max) {
+				result.append("... (" + (mods.size() - max) + " more)");
 				break;
 			}
 		}
 		return result.toString();
 	}
-	
+
+	/**
+	 * Returns all commits in a local Git repository.
+	 * 
+	 * @param repository local Git repository
+	 * @return all commits.
+	 */
 	public static Iterable<RevCommit> getAllCommits(Repository repository) {
 		try {
 			RevWalk rw = new RevWalk(repository);
@@ -145,31 +193,56 @@ public final class GitUtil {
 		}
 	}
 
+	/**
+	 * Returns the identifying commit hash of this repository. This hash is used
+	 * to identify the repository to link it to a repository location. It
+	 * represents the commit hash of the earliest commit in the repository. Note
+	 * that this earliest commit should not be deleted from the repository, as
+	 * this would change the identifying hash.
+	 * 
+	 * The repository must contain at least one commit. If it doesn't, null is
+	 * returned.
+	 * 
+	 * @param repository local Git repository
+	 * @return identifying commit hash
+	 */
 	public static String getIdentifyingCommitHash(Repository repository) {
 		RevCommit lastCommit = null;
 		for (RevCommit c : getAllCommits(repository)) {
 			lastCommit = c;
 		}
-		
-		if(lastCommit == null)
+
+		if (lastCommit == null) {
 			return null;
-		
+		}
+
 		return lastCommit.getId().getName();
 	}
-	
-	public static GitRepository initGitRepoModelFromRepo(Repository repo){
+
+	/**
+	 * Creates and initializes a Git repository location from a local
+	 * repository. This is done by retrieving the identifying hash of this
+	 * repository and entering it into the newly created loation.
+	 * 
+	 * @param repo local Git repository
+	 * @return repository location corresponding to the local repository
+	 */
+	public static GitRepository initGitRepoModelFromRepo(Repository repo) {
 		GitRepository gitRepoModel = GitFactory.eINSTANCE.createGitRepository();
 		gitRepoModel.setIdentifyingCommitHash(getIdentifyingCommitHash(repo));
 		return gitRepoModel;
 	}
-	
-	public static URIish getUriFromRemote(GitRepository remote) throws URISyntaxException{
+
+	/**
+	 * Retrieves the URI from a repository location.
+	 * 
+	 * @param remote Git repository location
+	 * @return the URI of that remote repository
+	 * @throws URISyntaxException if the string contained in the repository
+	 *             location is no valid URI
+	 */
+	public static URIish getUriFromRemote(GitRepository remote) throws URISyntaxException {
 		return new URIish(remote.getUrl());
 	}
-
-	
-
-
-	
 
 }
