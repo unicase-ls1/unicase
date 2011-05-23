@@ -15,31 +15,38 @@ import org.unicase.changetracking.vcs.VCSAdapter;
 import org.unicase.changetracking.vcs.VCSAdapterFactory;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.changetracking.ChangePackage;
-import org.unicase.model.changetracking.git.GitBranchChangePackage;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
+/**
+ * Handler for the "apply change package" command.
+ * 
+ * @author jfinis
+ * 
+ */
 public class ApplyChangePackageHandler extends AbstractHandler {
-	
 
 	/**
-	 * . {@inheritDoc}
+	 * Applies the currently selected change package.
+	 * 
+	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-
+		// Retrieve selected element and apply it
 		UnicaseModelElement elem = UnicaseActionHelper.getModelElement(event);
 		applyChangePackage((ChangePackage) elem);
 		return null;
 	}
-	
-	public void applyChangePackage(ChangePackage changePackage){
+
+	/**
+	 * Performs the application by getting the appropriate adapter and making it
+	 * perform the command.
+	 * 
+	 * @param changePackage change package to be applied
+	 */
+	public void applyChangePackage(ChangePackage changePackage) {
 		VCSAdapter vcs = new VCSAdapterFactory().createFromChangePackage(changePackage);
-		
 		ChangeTrackingCommand cmd = vcs.applyChangePackage(changePackage);
 		UIUtil.runCommand(cmd);
-		
-	
 	}
-
-	
 
 }

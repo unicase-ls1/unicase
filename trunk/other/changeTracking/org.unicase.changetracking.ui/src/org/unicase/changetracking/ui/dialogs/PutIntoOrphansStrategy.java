@@ -9,12 +9,24 @@ import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.util.UnicaseCommand;
 
-public class PutIntoOrphansStrategy implements IModelElementPlacementStrategy{
+/**
+ * Most simple strategy for placing a model element into a project. Simply puts
+ * the element into the orphans. The placement is wrapped in a unicase commmand.
+ * 
+ * @author jfinis
+ * 
+ */
+public class PutIntoOrphansStrategy implements IModelElementPlacementStrategy {
 
-	public void placeModelElementInProject(final Project project,
-			final UnicaseModelElement modelElement) {
+	/**
+	 * Puts the model element into the orphans of the project. This action is
+	 * encapsulated by a unicase command.
+	 * 
+	 * {@inheritDoc}
+	 */
+	public void placeModelElementInProject(final Project project, final UnicaseModelElement modelElement) {
 		new UnicaseCommand() {
-			
+
 			@Override
 			protected void doRun() {
 				project.addModelElement(modelElement);

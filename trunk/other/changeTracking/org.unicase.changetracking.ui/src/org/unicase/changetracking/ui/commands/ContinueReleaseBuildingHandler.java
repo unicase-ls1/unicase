@@ -11,38 +11,40 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.changetracking.commands.BuildReleaseCommand;
-import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
 import org.unicase.changetracking.ui.Activator;
 import org.unicase.changetracking.ui.UIUtil;
 import org.unicase.changetracking.ui.releases.BuildReleaseOperation;
 
+/**
+ * Handler for the "continue release building" command.
+ * 
+ * @author jfinis
+ * 
+ */
 public class ContinueReleaseBuildingHandler extends AbstractHandler {
-	
 
 	/**
-	 * . {@inheritDoc}
+	 * Continues the building of a release after a conflict has been resolved.
+	 * 
+	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		
-		//Save dirty editors
-		if(!PlatformUI.getWorkbench().saveAllEditors(true)){
+		// Save dirty editors
+		if (!PlatformUI.getWorkbench().saveAllEditors(true)) {
 			return null;
 		}
-		
-		//Get the git repo the resource belongs to
-		
+
+		// Retrieve the last conflicting command
 		BuildReleaseCommand command = Activator.getLastConflictingCommand();
-		
-		if(command == null){
+		if (command == null) {
 			UIUtil.errorMessage("You are currently not building a release or you have restarted eclipse since your last build. Restart the build process.");
 			return null;
 		}
-		
-		ChangeTrackingCommandResult result = new BuildReleaseOperation(command,true).run();
+
+		// continue the release building
+		new BuildReleaseOperation(command, true).run();
 		return null;
 	}
-
-	
 
 }

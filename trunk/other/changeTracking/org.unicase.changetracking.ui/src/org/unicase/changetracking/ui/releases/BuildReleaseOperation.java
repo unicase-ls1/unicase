@@ -12,26 +12,47 @@ import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
 import org.unicase.changetracking.ui.Activator;
 import org.unicase.changetracking.ui.UIUtil;
 
+/**
+ * Operation executing a buid release command. If the command yields conflict,
+ * the operation switches to the java perspective.
+ * 
+ * @author jfinis
+ * 
+ */
 public class BuildReleaseOperation {
 
 	private static final String JAVA_PERSPECTIVE_ID = "org.eclipse.jdt.ui.JavaPerspective";
 	private boolean isContinueing;
 	private BuildReleaseCommand command;
 
+	/**
+	 * Default constructor.
+	 * 
+	 * @param command command to be executed
+	 * @param isContinueing whether this build is a continued one after a
+	 *            conflict.
+	 */
 	public BuildReleaseOperation(BuildReleaseCommand command, boolean isContinueing) {
 		this.command = command;
 		this.isContinueing = isContinueing;
 	}
-	
-	public ChangeTrackingCommandResult run(){
+
+	/**
+	 * Runs the command. If it has conflicts, the command is set as last
+	 * conflicting one in the activator and the java perspective is opened.
+	 * 
+	 * The result of the command is returned.
+	 * 
+	 * @return command execution result.
+	 */
+	public ChangeTrackingCommandResult run() {
 		command.setContinue(isContinueing);
 		ChangeTrackingCommandResult result = UIUtil.runCommand(command);
-		if(command.hadConflicts()){
+		if (command.hadConflicts()) {
 			Activator.setLastConflictingCommand(command);
 			try {
 				PlatformUI.getWorkbench().showPerspective(JAVA_PERSPECTIVE_ID, PlatformUI.getWorkbench().getActiveWorkbenchWindow());
-			} catch (WorkbenchException e) {
-			}
+			} catch (WorkbenchException e) {}
 		} else {
 			Activator.setLastConflictingCommand(null);
 		}

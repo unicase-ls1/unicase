@@ -5,43 +5,45 @@
  */
 package org.unicase.changetracking.ui;
 
-import java.io.File;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.swt.widgets.Display;
 import org.unicase.changetracking.commands.ChangeTrackingCommand;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
 import org.unicase.changetracking.common.ApplyPatchOperation;
 import org.unicase.changetracking.exceptions.UnexpectedChangeTrackingException;
 import org.unicase.emfstore.esmodel.FileIdentifier;
 import org.unicase.emfstore.exceptions.FileTransferException;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.changetracking.patch.PatchChangePackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.filetransfer.FileDownloadStatus;
 
-public class BasicApplyPatchChangePackageCommand extends ChangeTrackingCommand{
-
+/**
+ * The basic command for applying a patch change package. Since eclipse allows
+ * the application of patches in unified diff format regardless of the used team
+ * provider, this command can be implemented here and does not have to be
+ * provided by adapter plug-ins. It can be used by the adapters if they use
+ * patches as change package representation.
+ * 
+ * @author jfinis
+ * 
+ */
+public class BasicApplyPatchChangePackageCommand extends ChangeTrackingCommand {
 
 	private PatchChangePackage fileAttachment;
 	private boolean resumed;
 
 	/**
-	 * Default constructor creating a command from a patch attachment.
+	 * Default constructor creating a command from a patch change package.
+	 * 
 	 * @param attachment the attachment
 	 */
 	public BasicApplyPatchChangePackageCommand(PatchChangePackage attachment) {
 		super();
 		this.fileAttachment = attachment;
 	}
-	
+
 	private void resume() {
 		synchronized (this) {
 			resumed = true;
@@ -58,10 +60,8 @@ public class BasicApplyPatchChangePackageCommand extends ChangeTrackingCommand{
 			throw new UnexpectedChangeTrackingException("No patch saved here.");
 		}
 
+		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(fileAttachment);
 
-		ProjectSpace projectSpace = WorkspaceManager
-		.getProjectSpace(fileAttachment);
-		
 		// Get the file
 
 		FileDownloadStatus status;
@@ -79,10 +79,10 @@ public class BasicApplyPatchChangePackageCommand extends ChangeTrackingCommand{
 		};
 		status.addTransferFinishedObserver(resumeObserver);
 		status.addTransferFailedObserver(resumeObserver);
-		
-		//sleep until resumed
-		synchronized(this){
-			if(!resumed){
+
+		// sleep until resumed
+		synchronized (this) {
+			if (!resumed) {
 				try {
 					this.wait();
 				} catch (InterruptedException e) {
@@ -90,32 +90,32 @@ public class BasicApplyPatchChangePackageCommand extends ChangeTrackingCommand{
 				}
 			}
 		}
-		
-		//check if an exception occurred
-		switch(status.getStatus()){
-		case CANCELLED: return cancelResult();
-		case FAILED: throw new UnexpectedChangeTrackingException(status.getException());
-		case FINISHED: break;
+
+		// check if an exception occurred
+		switch (status.getStatus()) {
+		case CANCELLED:
+			return cancelResult();
+		case FAILED:
+			throw new UnexpectedChangeTrackingException(status.getException());
+		case FINISHED:
+			break;
 		default:
 			throw new UnexpectedChangeTrackingException("Invalid file download status");
 		}
-		
-		//file donwload finished successfully, apply the patch now
+
+		// file donwload finished successfully, apply the patch now
 		boolean success;
 		try {
 			success = ApplyPatchOperation.applyPatch(status.getTransferredFile(), null);
 		} catch (FileTransferException e) {
 			throw new UnexpectedChangeTrackingException(e);
 		}
-		
-		if(success){
+
+		if (success) {
 			return successResult("Change package successfully applied.");
 		}
 		return cancelResult();
-		 
-		
-			
+
 	}
-	
 
 }

@@ -41,74 +41,102 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
-public class ModelElementPlacementDialog extends TitleAreaDialog{
+/**
+ * Dialog which allows to choose a location in which a newly created model
+ * element is to be stored.
+ * 
+ * The dialog checks that the new model element can actually be put in a
+ * location. If not, then the dialog does not allow to choose this location.
+ * 
+ * In addition, the name for the newly created element can be set here.
+ * 
+ * @author jfinis
+ * 
+ */
+public class ModelElementPlacementDialog extends TitleAreaDialog {
 
+	private static final Image PAGE_IMAGE = Activator.getImageDescriptor("icons/wizard/select_model_location.png").createImage();
+	private static final Image NO_IMAGE = Activator.getImageDescriptor("icons/empty.png").createImage();
+	private static final Object[] EMPTY = new Object[0];
 
 	private UnicaseModelElement modelElement;
-
-
 	private ImageAndTextLabel currentSelectionLabel;
-
-
 	private EObject selection;
-
-
 	private boolean allowNameChoosing;
-
-
 	private Text nameInput;
-
-
 	private String nameText;
-
-
 	private ProjectSpace[] projects;
-
-
 	private String defaultName;
-	
 
+	/**
+	 * Retrieves the default name for the model element.
+	 * 
+	 * @return model element default name
+	 */
 	public String getDefaultName() {
 		return defaultName;
 	}
 
+	/**
+	 * Sets the default name for the model element. The default name is placed
+	 * in the name field when the dialog is opened.
+	 * 
+	 * @param defaultName default name for the newly created element
+	 */
 	public void setDefaultName(String defaultName) {
 		this.defaultName = defaultName;
 	}
 
-	private static final Image PAGE_IMAGE = Activator.getImageDescriptor("icons/wizard/select_model_location.png").createImage();
-
-	private static final Image NO_IMAGE = Activator.getImageDescriptor("icons/empty.png").createImage();
-
-
+	/**
+	 * Constructor with explicitly specified project spaces to be shown.
+	 * 
+	 * @param parentShell parent shell
+	 * @param projects project space in which the model element can be placed
+	 *            in.
+	 * @param modelElement the model element to be placed.
+	 * @param allowNameChoosing whether name choosing should be allowed.
+	 */
 	public ModelElementPlacementDialog(Shell parentShell, ProjectSpace[] projects, UnicaseModelElement modelElement, boolean allowNameChoosing) {
 		super(parentShell);
 		this.projects = projects;
 		setBlockOnOpen(true);
-		setShellStyle(getShellStyle() | SWT.RESIZE);	
+		setShellStyle(getShellStyle() | SWT.RESIZE);
 		this.modelElement = modelElement;
 		this.allowNameChoosing = allowNameChoosing;
 		this.defaultName = "New " + modelElement.eClass().getName();
 	}
-	
+
+	/**
+	 * Constructor which shows all project spaces in the current workspace, thus
+	 * allowing to place the model element in any of the projects.
+	 * 
+	 * @param parentShell parent shell
+	 * @param modelElement model element to be placed
+	 * @param allowNameChoosing whether name choosing should be allowed.
+	 */
 	public ModelElementPlacementDialog(Shell parentShell, UnicaseModelElement modelElement, boolean allowNameChoosing) {
-		this(parentShell,WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces().toArray(new ProjectSpace[0]),modelElement,allowNameChoosing);
+		this(parentShell, WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces().toArray(new ProjectSpace[0]), modelElement, allowNameChoosing);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Point getInitialSize() {
 		Point size = super.getInitialSize();
-		if(size.y < 500){
+		if (size.y < 500) {
 			size.y = 500;
 		}
 		return size;
 	}
-	
-	
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		
-		if(allowNameChoosing){
+
+		if (allowNameChoosing) {
 			setTitle("Select Name and Location");
 			setMessage("Select a name and location for the newly created " + modelElement.eClass().getName());
 		} else {
@@ -116,24 +144,23 @@ public class ModelElementPlacementDialog extends TitleAreaDialog{
 			setMessage("Select location for the newly created " + modelElement.eClass().getName());
 		}
 		setTitleImage(PAGE_IMAGE);
-		
+
 		Composite outerWrap = (Composite) super.createDialogArea(parent);
 		Composite wrap = createContentComposite(outerWrap, false, false);
-		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(wrap);		
-		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		
-		if(allowNameChoosing){
+		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(wrap);
+		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+
+		if (allowNameChoosing) {
 			ImageAndTextLabel nameLabel = new ImageAndTextLabel(wrap, SWT.NONE);
 			nameLabel.setContent(labelProvider.getImage(modelElement), "Name:");
 			nameInput = new Text(wrap, SWT.BORDER);
-			GridDataFactory.fillDefaults().grab(true,false).applyTo(nameInput);
+			GridDataFactory.fillDefaults().grab(true, false).applyTo(nameInput);
 			nameInput.setText(defaultName);
-			
+
 			wrap = createContentComposite(outerWrap, true, true);
 			GridLayoutFactory.swtDefaults().numColumns(2).applyTo(wrap);
 		}
-		
+
 		Label location = new Label(wrap, SWT.NONE);
 		location.setText("Select location");
 		GridDataFactory.swtDefaults().span(2, 1).applyTo(location);
@@ -141,105 +168,33 @@ public class ModelElementPlacementDialog extends TitleAreaDialog{
 		GridDataFactory.swtDefaults().grab(true, true).span(2, 1).align(SWT.FILL, SWT.FILL).applyTo(viewer.getControl());
 
 		viewer.setLabelProvider(labelProvider);
-		viewer.setContentProvider(new AdapterFactoryContentProvider(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE)){
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.unicase.ui.navigator.ContentProvider#getChildren(org.unicase.workspace.ProjectSpace)
-			 */
-			private Object[] EMPTY = new Object[0];
-			@Override
-			public Object[] getElements(Object rootObject) {
-				ProjectSpace[] projectSpaces;
-				if (rootObject instanceof ProjectSpace[]) {
-					projectSpaces = (ProjectSpace[]) rootObject;
-				} else {
-					return EMPTY;
-				}
-				return projectSpaces;
-//				final Project project = projectSpace.getProject();
-//				if (project == null) {
-//					return EMPTY;
-//				}
-//				
-//				for(ProjectSpace p : projectSpaces){
-//
-//					Collection<EObject> ret = new ArrayList<EObject>();
-//					EList<EObject> modelElements = project.getModelElementsByClass(EcoreFactory.eINSTANCE.createEObject().eClass(),
-//						new BasicEList<EObject>());
-//					// ugly hack to avoid dependency to model
-//					for (EObject modelElement : modelElements) {
-//						EObject econtainer = modelElement.eContainer();
-//						if ((econtainer instanceof Project) && modelElement.eClass().getName().equals("CompositeSection")) {
-//							ret.add(modelElement);
-//						}
-//					}
-//					ret.add(project);
-//				}
-//				return ret.toArray();
-				
-				
+		viewer.setContentProvider(new ContentProvider());
 
-			}
-			
-			@Override
-			public Object[] getChildren(Object object) {
-				if(object instanceof ProjectSpace){
-					ProjectSpace projectSpace = (ProjectSpace) object;
-					final Project project = projectSpace .getProject();
-					if (project == null) {
-						return EMPTY;
-					}
-					
-	
-					Collection<EObject> ret = new ArrayList<EObject>();
-					EList<EObject> modelElements = project.getModelElementsByClass(EcoreFactory.eINSTANCE.createEObject().eClass(),
-						new BasicEList<EObject>());
-					// ugly hack to avoid dependency to model
-					for (EObject modelElement : modelElements) {
-						EObject econtainer = modelElement.eContainer();
-						if ((econtainer instanceof Project) && modelElement.eClass().getName().equals("CompositeSection")) {
-							ret.add(modelElement);
-						}
-					}
-					ret.add(project);
+		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
-					return ret.toArray();
-					
-				}
-				return super.getChildren(object);
-			}
-		});
-		
-		viewer.addSelectionChangedListener(new ISelectionChangedListener() {	
-			
 			public void selectionChanged(SelectionChangedEvent event) {
 				updateSelection(event.getSelection());
 			}
 
-		
-		}); 
+		});
 		viewer.setInput(projects);
-	
-		currentSelectionLabel = new ImageAndTextLabel(wrap, SWT.NONE,labelProvider);
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).span(2,1).applyTo(currentSelectionLabel);
+
+		currentSelectionLabel = new ImageAndTextLabel(wrap, SWT.NONE, labelProvider);
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).span(2, 1).applyTo(currentSelectionLabel);
 		currentSelectionLabel.setContent(NO_IMAGE, "");
-		
-		Label titleBarSeparator = new Label(outerWrap, SWT.HORIZONTAL
-				| SWT.SEPARATOR);
+
+		Label titleBarSeparator = new Label(outerWrap, SWT.HORIZONTAL | SWT.SEPARATOR);
 		titleBarSeparator.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		
+
 		return wrap;
 	}
-	
+
 	private Composite createContentComposite(Composite outerWrap, boolean addSeperatorBefore, boolean grabVSpace) {
-		if(addSeperatorBefore){
-			Label titleBarSeparator = new Label(outerWrap, SWT.HORIZONTAL
-					| SWT.SEPARATOR);
+		if (addSeperatorBefore) {
+			Label titleBarSeparator = new Label(outerWrap, SWT.HORIZONTAL | SWT.SEPARATOR);
 			titleBarSeparator.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		}
-		Composite wrap = new Composite(outerWrap,SWT.NONE);
+		Composite wrap = new Composite(outerWrap, SWT.NONE);
 		GridDataFactory.fillDefaults().grab(true, grabVSpace).applyTo(wrap);
 		return wrap;
 	}
@@ -250,58 +205,108 @@ public class ModelElementPlacementDialog extends TitleAreaDialog{
 		getButton(Window.OK).setEnabled(false);
 		return bar;
 	}
-	
+
 	private void updateSelection(ISelection selection) {
-		if(selection instanceof IStructuredSelection){
+		if (selection instanceof IStructuredSelection) {
 			Object elem = ((IStructuredSelection) selection).getFirstElement();
-			if(elem == null){
+			if (elem == null) {
 				getButton(Window.OK).setEnabled(false);
 				return;
 			}
-			EObject obj = (EObject)elem;
+			EObject obj = (EObject) elem;
 			this.selection = obj;
 			currentSelectionLabel.setInput(obj);
-			if(ChangeTrackingUtil.getPossibleContainingReference(modelElement,obj) == null){
+			if (ChangeTrackingUtil.getPossibleContainingReference(modelElement, obj) == null) {
 				setErrorMessage("The model element cannot be placed here.");
 				getButton(Window.OK).setEnabled(false);
-				
+
 			} else {
 				setErrorMessage(null);
 				getButton(Window.OK).setEnabled(true);
 			}
 		}
 	}
-	
+
 	@Override
 	public boolean close() {
-		//Save text so we can use it even after the widget is disposed
+		// Save text so we can use it even after the widget is disposed
 		this.nameText = nameInput.getText();
 		return super.close();
 	}
 
-//	public void doPlacement() {
-//		new UnicaseCommand() {
-//			@Override
-//			protected void doRun() {
-//				String name;
-//				if(allowNameChoosing){
-//					name = nameText;
-//				} else {
-//					name = "New " + modelElement.eClass().getName();
-//				}
-//				modelElement.setName(name);
-//				ChangeTrackingUtil.putInto(modelElement, selection);
-//			}
-//		}.run(false);
-//	}
-	
+	/**
+	 * Returns the model element into which the user decided to place the newly
+	 * created element.
+	 * 
+	 * @return target model element for the placeent.
+	 */
 	public EObject getSelection() {
 		return selection;
 	}
 
-
-	public String getSelectedName(){
+	/**
+	 * Returns the selected name. If name selection was disabled, this is equal
+	 * to the previously set default name.
+	 * 
+	 * @return name for the newly created element.
+	 */
+	public String getSelectedName() {
 		return nameText;
 	}
-	
+
+	/**
+	 * Content provider for displaying an array of project spaces and their
+	 * contained projects.
+	 * 
+	 * @author jfinis
+	 * 
+	 */
+	private static class ContentProvider extends AdapterFactoryContentProvider {
+
+		public ContentProvider() {
+			super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.unicase.ui.navigator.ContentProvider#getChildren(org.unicase.workspace.ProjectSpace)
+		 */
+		@Override
+		public Object[] getElements(Object rootObject) {
+			ProjectSpace[] projectSpaces;
+			if (rootObject instanceof ProjectSpace[]) {
+				projectSpaces = (ProjectSpace[]) rootObject;
+			} else {
+				return EMPTY;
+			}
+			return projectSpaces;
+		}
+
+		@Override
+		public Object[] getChildren(Object object) {
+			if (object instanceof ProjectSpace) {
+				ProjectSpace projectSpace = (ProjectSpace) object;
+				final Project project = projectSpace.getProject();
+				if (project == null) {
+					return EMPTY;
+				}
+
+				Collection<EObject> ret = new ArrayList<EObject>();
+				EList<EObject> modelElements = project.getModelElementsByClass(EcoreFactory.eINSTANCE.createEObject().eClass(), new BasicEList<EObject>());
+				// ugly hack to avoid dependency to model
+				for (EObject modelElement : modelElements) {
+					EObject econtainer = modelElement.eContainer();
+					if ((econtainer instanceof Project) && modelElement.eClass().getName().equals("CompositeSection")) {
+						ret.add(modelElement);
+					}
+				}
+				ret.add(project);
+
+				return ret.toArray();
+
+			}
+			return super.getChildren(object);
+		}
+	}
 }
