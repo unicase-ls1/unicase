@@ -37,8 +37,8 @@ import org.eclipse.emf.emfstore.client.model.util.ModelAdapterFactory;
  * 
  * @generated
  */
-public class ModelItemProviderAdapterFactory extends ModelAdapterFactory implements ComposeableAdapterFactory,
-	IChangeNotifier, IDisposable {
+public class ModelItemProviderAdapterFactory extends ModelAdapterFactory
+		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc --> <!--
@@ -197,7 +197,8 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	@Override
 	public Adapter createOperationCompositeAdapter() {
 		if (operationCompositeItemProvider == null) {
-			operationCompositeItemProvider = new OperationCompositeItemProvider(this);
+			operationCompositeItemProvider = new OperationCompositeItemProvider(
+					this);
 		}
 
 		return operationCompositeItemProvider;
@@ -222,7 +223,8 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	@Override
 	public Adapter createPendingFileTransferAdapter() {
 		if (pendingFileTransferItemProvider == null) {
-			pendingFileTransferItemProvider = new PendingFileTransferItemProvider(this);
+			pendingFileTransferItemProvider = new PendingFileTransferItemProvider(
+					this);
 		}
 
 		return pendingFileTransferItemProvider;
@@ -272,7 +274,8 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	@Override
 	public Adapter createNotificationCompositeAdapter() {
 		if (notificationCompositeItemProvider == null) {
-			notificationCompositeItemProvider = new NotificationCompositeItemProvider(this);
+			notificationCompositeItemProvider = new NotificationCompositeItemProvider(
+					this);
 		}
 
 		return notificationCompositeItemProvider;
@@ -285,7 +288,8 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory
+				.getRootAdapterFactory();
 	}
 
 	/**
@@ -294,7 +298,8 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	 * 
 	 * @generated
 	 */
-	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
+	public void setParentAdapterFactory(
+			ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
 
@@ -329,7 +334,8 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>)
+					|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}

@@ -45,7 +45,8 @@ public final class ClientModelEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public ClientModelEditPlugin() {
-		super(new ResourceLocator[] { CommonEditPlugin.INSTANCE, ServerEditPlugin.INSTANCE, });
+		super(new ResourceLocator[] { CommonEditPlugin.INSTANCE,
+				ServerEditPlugin.INSTANCE, });
 	}
 
 	/**
