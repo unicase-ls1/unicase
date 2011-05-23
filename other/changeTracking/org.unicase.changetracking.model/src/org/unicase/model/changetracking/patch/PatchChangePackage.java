@@ -5,7 +5,6 @@
 package org.unicase.model.changetracking.patch;
 
 import org.unicase.model.attachment.FileAttachment;
-
 import org.unicase.model.changetracking.ChangePackage;
 
 /**

@@ -11,8 +11,13 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.unicase.changetracking.exceptions.ErrorInModelException;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.model.changetracking.Release;
+import org.unicase.model.changetracking.RepositoryLocation;
+import org.unicase.model.changetracking.RepositoryStream;
+import org.unicase.model.changetracking.Stream;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -22,6 +27,10 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  */
 public final class ChangeTrackingUtil {
+
+	private static final String ERROR_RELEASE_HAS_NO_STREAM = "No stream is assigned to the release.";
+	private static final String ERROR_STREAM_HAS_NO_REPO_STREAM = "The stream %s of the release has not associated a repository stream.";
+	private static final String ERROR_RELEASE_STREAM_IS_MISSING_LOCATION = "The repository stream '%s' which is associated with the stream of the release has no repository location.";
 
 	private ChangeTrackingUtil() {}
 
@@ -123,4 +132,57 @@ public final class ChangeTrackingUtil {
 		}
 
 	}
+
+	/**
+	 * Returns the repository stream associated to a release by following the
+	 * link chain release -> stream -> repository stream.
+	 * 
+	 * If one of the elements of the chain is missing, an ErrorInModelException
+	 * is thrown.
+	 * 
+	 * @param release release
+	 * @return the release's repository stream
+	 * @throws ErrorInModelException if the release is not connected to a
+	 *             repository stream.
+	 */
+	public static RepositoryStream getRepoStreamOfRelease(Release release) throws ErrorInModelException {
+		// Release has a stream assigned?
+		Stream stream = release.getStream();
+		if (stream == null) {
+			throw new ErrorInModelException(ERROR_RELEASE_HAS_NO_STREAM);
+		}
+
+		// Stream has a repository stream?
+		RepositoryStream repoStream = stream.getRepositoryStream();
+		if (repoStream == null) {
+			throw new ErrorInModelException(new PrintfFormat(ERROR_STREAM_HAS_NO_REPO_STREAM).sprintf(stream.getName()));
+		}
+
+		return repoStream;
+	}
+
+	/**
+	 * Returns the repository location associated to a release by following the
+	 * link chain release -> stream -> repository stream -> repository location.
+	 * 
+	 * If one of the elements of the chain is missing, an ErrorInModelException
+	 * is thrown.
+	 * 
+	 * @param release release
+	 * @return the release's repository location
+	 * @throws ErrorInModelException if the release is not connected to a
+	 *             repository location.
+	 */
+	public static RepositoryLocation getRepoLocationOfRelease(Release release) throws ErrorInModelException {
+		RepositoryStream repoStream = getRepoStreamOfRelease(release);
+
+		// Repo stream has a location?
+		RepositoryLocation releaseStreamLocation = repoStream.getLocation();
+		if (releaseStreamLocation == null) {
+			throw new ErrorInModelException(new PrintfFormat(ERROR_RELEASE_STREAM_IS_MISSING_LOCATION).sprintf(repoStream.getName()));
+		}
+
+		return releaseStreamLocation;
+	}
+
 }

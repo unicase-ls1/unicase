@@ -6,7 +6,6 @@ package org.unicase.model.changetracking.patch;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.unicase.model.changetracking.ChangetrackingPackage;
 
 /**

@@ -9,11 +9,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.unicase.model.ModelPackage;
-
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.ChangetrackingFactory;
 import org.unicase.model.changetracking.ChangetrackingPackage;
@@ -22,15 +19,10 @@ import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.RepositoryRevision;
 import org.unicase.model.changetracking.RepositoryStream;
 import org.unicase.model.changetracking.Stream;
-
 import org.unicase.model.changetracking.git.GitPackage;
-
 import org.unicase.model.changetracking.git.impl.GitPackageImpl;
-
 import org.unicase.model.changetracking.patch.PatchPackage;
-
 import org.unicase.model.changetracking.patch.impl.PatchPackageImpl;
-
 import org.unicase.model.release.ReleasePackage;
 
 /**

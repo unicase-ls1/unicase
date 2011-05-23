@@ -34,16 +34,6 @@ public class BuildReleaseHandler extends AbstractHandler {
 
 	@Override
 	public void setEnabled(Object evaluationContext) {
-		// FIXME: Make this called when the build state changes
-		// if(evaluationContext instanceof EvaluationContext){
-		// EObject e = (EObject) ((EvaluationContext)
-		// evaluationContext).getVariable("meToOpen");
-		// if(e instanceof ChangeTrackingRelease &&
-		// !((ChangeTrackingRelease)e).isBuilt()){
-		// setBaseEnabled(true);
-		// return;
-		// }
-		// }
 		setBaseEnabled(true);
 	}
 

@@ -62,9 +62,8 @@ public class SelectivePullOperation implements IEGitOperation {
 
 	private URIish remote;
 
-	private RefSpec refSpecs;
 
-	private RefSpec refSpec;
+	private RefSpec refSpecs;
 
 	/**
 	 * Default constructor.
@@ -74,10 +73,10 @@ public class SelectivePullOperation implements IEGitOperation {
 	 * @param timeout in seconds
 	 * @param refSpec ref spec to specify what to pull
 	 */
-	public SelectivePullOperation(Repository repository, URIish remoteRepo, int timeout, RefSpec refSpec) {
+	public SelectivePullOperation(Repository repository, URIish remoteRepo, int timeout, RefSpec refSpecs) {
 		this.timeout = timeout;
 		this.remote = remoteRepo;
-		this.refSpec = refSpec;
+		this.refSpecs = refSpecs;
 		this.repository = repository;
 	}
 
@@ -99,6 +98,7 @@ public class SelectivePullOperation implements IEGitOperation {
 					throw new UnexpectedGitException("Cannot pull if the repository is not in a safe state!");
 
 				FetchCommand fetch = new Git(repository).fetch();
+
 				fetch.setRemote(remote.toString());
 				fetch.setProgressMonitor(gitMonitor);
 				fetch.setTimeout(timeout);
@@ -111,6 +111,7 @@ public class SelectivePullOperation implements IEGitOperation {
 				} catch (InvalidRemoteException e1) {
 					throw new UnexpectedGitException(e1);
 				}
+				
 
 				gitMonitor.update(1);
 
@@ -122,9 +123,9 @@ public class SelectivePullOperation implements IEGitOperation {
 
 				Ref r = null;
 				if (fetchRes != null) {
-					r = fetchRes.getAdvertisedRef(refSpec.getSource());
+					r = fetchRes.getAdvertisedRef(refSpecs.getSource());
 					if (r == null)
-						r = fetchRes.getAdvertisedRef(Constants.R_HEADS + refSpec.getSource());
+						r = fetchRes.getAdvertisedRef(Constants.R_HEADS + refSpecs.getSource());
 				}
 				if (r == null)
 					throw new UnexpectedGitException("Remote repository does not have the expected branch");
@@ -135,7 +136,7 @@ public class SelectivePullOperation implements IEGitOperation {
 					throw new UnexpectedGitException("Operation canceled by user");
 
 				MergeCommand merge = new Git(repository).merge();
-				merge.include("branch \'" + refSpec.getSource() + "\' of " + refSpec.getDestination(), commitToMerge);
+				merge.include("branch \'" + refSpecs.getSource() + "\' of " + refSpecs.getDestination(), commitToMerge);
 				MergeResult mergeRes;
 				try {
 					mergeRes = merge.call();

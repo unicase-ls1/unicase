@@ -130,7 +130,7 @@ public class GitVCSAdapter extends BasicVCSAdapter {
 
 	@Override
 	public CheckReleaseCommand checkRelease(IDecisionProvider decisionProvider, Release release) {
-		return new GitCheckReleaseCommand(release);
+		return new GitCheckReleaseCommand(decisionProvider, release);
 	}
 
 	@Override

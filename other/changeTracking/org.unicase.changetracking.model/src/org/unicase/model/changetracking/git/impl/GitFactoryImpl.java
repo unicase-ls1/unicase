@@ -7,12 +7,14 @@ package org.unicase.model.changetracking.git.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.unicase.model.changetracking.git.*;
+import org.unicase.model.changetracking.git.GitBranch;
+import org.unicase.model.changetracking.git.GitBranchChangePackage;
+import org.unicase.model.changetracking.git.GitFactory;
+import org.unicase.model.changetracking.git.GitPackage;
+import org.unicase.model.changetracking.git.GitRepository;
+import org.unicase.model.changetracking.git.GitRevision;
 
 /**
  * <!-- begin-user-doc -->

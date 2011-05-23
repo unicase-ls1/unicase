@@ -5,15 +5,10 @@
 package org.unicase.model.changetracking.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
-
 import org.unicase.metamodel.provider.MetamodelEditPlugin;
-
 import org.unicase.model.provider.ModelEditPlugin;
 
 /**

@@ -60,10 +60,6 @@ import org.eclipse.ui.PlatformUI;
  * additionally honors the preference whether to show the patch in a wizard or
  * in the Synchronize view.
  * </p>
- * <p>
- * FIXME: This class will be removed with the fix for
- * https://bugs.eclipse.org/309803
- * </p>
  * 
  * @since 3.3
  * 

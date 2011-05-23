@@ -6,19 +6,14 @@ package org.unicase.model.changetracking.patch.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
-
 import org.unicase.model.attachment.FileAttachment;
-
 import org.unicase.model.changetracking.ChangePackage;
-
-import org.unicase.model.changetracking.patch.*;
+import org.unicase.model.changetracking.patch.PatchChangePackage;
+import org.unicase.model.changetracking.patch.PatchPackage;
 
 /**
  * <!-- begin-user-doc -->
