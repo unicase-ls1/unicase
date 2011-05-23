@@ -2,8 +2,8 @@ package otherworkspacelocation;
 
 import java.io.File;
 
-import org.unicase.emfstore.LocationProvider;
-import org.unicase.workspace.util.DefaultWorkspaceLocationProvider;
+import org.eclipse.emf.emfstore.client.model.util.DefaultWorkspaceLocationProvider;
+import org.eclipse.emf.emfstore.server.LocationProvider;
 
 public class OtherLocationProvider extends DefaultWorkspaceLocationProvider implements LocationProvider {
 
