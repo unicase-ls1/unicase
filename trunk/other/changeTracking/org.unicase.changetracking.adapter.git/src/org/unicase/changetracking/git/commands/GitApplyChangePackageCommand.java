@@ -5,18 +5,17 @@
  */
 package org.unicase.changetracking.git.commands;
 
-import java.net.URISyntaxException;
-
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.lib.RepositoryState;
+import org.eclipse.jgit.transport.FetchResult;
+import org.eclipse.jgit.transport.TrackingRefUpdate;
 import org.unicase.changetracking.commands.ChangeTrackingCommand;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
 import org.unicase.changetracking.exceptions.MisuseException;
+import org.unicase.changetracking.git.common.GitFetchOperation;
 import org.unicase.changetracking.git.common.GitRepoFindUtil;
 import org.unicase.changetracking.git.common.GitUtil;
 import org.unicase.changetracking.git.common.GitWrapper;
-import org.unicase.changetracking.git.common.SelectivePullOperation;
 import org.unicase.changetracking.git.exceptions.NoMatchingLocalRepositoryInWorkspace;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
 import org.unicase.model.changetracking.RepositoryLocation;
@@ -95,13 +94,16 @@ public class GitApplyChangePackageCommand extends ChangeTrackingCommand {
 		}
 
 		// 2. Pull the branch from remote
-		try {
-			// FIXME correct progress monitor support
-			new SelectivePullOperation(repo, GitUtil.getUriFromRemote(gitRepoLocation), 20, GitUtil.getRefSpecFromGitBranch(branch)).execute(new NullProgressMonitor());
-		} catch (URISyntaxException e1) {
-			throw new UnexpectedGitException("The URL of the repository location '" + gitRepoLocation.getUrl() + "' is no valid URI");
-		}
 
+		// FIXME correct progress monitor support
+		//FIXME correct credentials provider
+		FetchResult fetchResult = new GitFetchOperation(gitRepoLocation, repo, null, 15000, GitUtil.getRefSpecFromGitBranch(branch)).run();
+		for(TrackingRefUpdate updateResult : fetchResult.getTrackingRefUpdates()){
+			if(!GitUtil.isRefUpdateSuccessful(updateResult)){
+				throw new UnexpectedGitException("The branch could not be fetched from the remote repository.");
+			}
+		}
+	
 		// 3. Checkout the branch
 		new GitWrapper(repo).checkout(branch.getBranchName());
 

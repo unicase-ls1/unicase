@@ -7,12 +7,11 @@ package org.unicase.model.changetracking.patch.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.unicase.model.changetracking.patch.*;
+import org.unicase.model.changetracking.patch.PatchChangePackage;
+import org.unicase.model.changetracking.patch.PatchFactory;
+import org.unicase.model.changetracking.patch.PatchPackage;
 
 /**
  * <!-- begin-user-doc -->

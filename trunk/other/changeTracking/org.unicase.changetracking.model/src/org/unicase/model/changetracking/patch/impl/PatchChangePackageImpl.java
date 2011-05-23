@@ -5,19 +5,14 @@
 package org.unicase.model.changetracking.patch.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.FileIdentifier;
 import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.attachment.FileAttachmentType;
-
 import org.unicase.model.changetracking.impl.ChangePackageImpl;
-
 import org.unicase.model.changetracking.patch.PatchChangePackage;
 import org.unicase.model.changetracking.patch.PatchPackage;
 

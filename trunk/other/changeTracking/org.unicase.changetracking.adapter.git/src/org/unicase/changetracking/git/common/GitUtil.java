@@ -18,10 +18,16 @@ import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.IndexDiff;
 import org.eclipse.jgit.lib.MutableObjectId;
 import org.eclipse.jgit.lib.Ref;
+import org.eclipse.jgit.lib.RefUpdate.Result;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
+import org.eclipse.jgit.transport.CredentialItem;
+import org.eclipse.jgit.transport.CredentialItem.Password;
+import org.eclipse.jgit.transport.CredentialItem.Username;
+import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.RefSpec;
+import org.eclipse.jgit.transport.TrackingRefUpdate;
 import org.eclipse.jgit.transport.URIish;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
 import org.unicase.model.changetracking.git.GitBranch;
@@ -61,7 +67,8 @@ public final class GitUtil {
 	 * @return corresponding RefSpec
 	 */
 	public static RefSpec getRefSpecFromGitBranch(GitBranch branch) {
-		return new RefSpec(Constants.R_HEADS + branch.getBranchName());
+		String refSpec = Constants.R_HEADS + branch.getBranchName();
+		return new RefSpec(refSpec + ":" + refSpec);
 	}
 
 	/**
@@ -243,6 +250,44 @@ public final class GitUtil {
 	 */
 	public static URIish getUriFromRemote(GitRepository remote) throws URISyntaxException {
 		return new URIish(remote.getUrl());
+	}
+
+	/**
+	 * Returns an URIish object populated from an repository location and
+	 * the user name and password from a credentials provider.
+	 * @param remote a repository location
+	 * @param provider credentials provider
+	 * @throws URISyntaxException if the uri in the location is malformed
+	 * @return uri with user and password set
+	 */
+	public static URIish getURIFromCredentials(GitRepository remote, CredentialsProvider provider) throws URISyntaxException{
+		Username usr = new CredentialItem.Username();
+		Password pass = new CredentialItem.Password();
+		URIish result = new URIish(remote.getUrl());
+		provider.get(result, usr, pass);
+		result.setPass(new String(pass.getValue()));
+		result.setUser(usr.getValue());
+		
+		return result;
+	}
+	
+	/**
+	 * Returns whether a ref update was successful.
+	 * 
+	 * @param updateResult the result of a ref update
+	 * @return whether the update was successful
+	 */
+	public static boolean isRefUpdateSuccessful(TrackingRefUpdate updateResult){
+		Result res = updateResult.getResult();
+		switch(res){
+		case IO_FAILURE:
+		case LOCK_FAILURE:
+		case REJECTED:
+		case REJECTED_CURRENT_BRANCH:
+			return false;
+		default:
+			return true;
+		}
 	}
 
 }

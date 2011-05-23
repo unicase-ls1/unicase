@@ -8,10 +8,10 @@ package org.unicase.changetracking.git.commands;
 import org.eclipse.jgit.lib.Repository;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
 import org.unicase.changetracking.commands.CheckReleaseCommand;
+import org.unicase.changetracking.common.IDecisionProvider;
 import org.unicase.changetracking.exceptions.CancelledByUserException;
 import org.unicase.changetracking.git.release.ReleaseChecker;
 import org.unicase.changetracking.git.ui.LocalRepoFindHandler;
-import org.unicase.changetracking.ui.UIUtil;
 import org.unicase.model.changetracking.Release;
 
 /**
@@ -23,14 +23,17 @@ import org.unicase.model.changetracking.Release;
 public class GitCheckReleaseCommand extends CheckReleaseCommand {
 
 	private Release release;
+	private IDecisionProvider decisionProvider;
 
 	/**
 	 * Default constructor.
 	 * 
+	 * @param decisionProvider decision provider
 	 * @param r release to be checked
 	 */
-	public GitCheckReleaseCommand(Release r) {
+	public GitCheckReleaseCommand(IDecisionProvider decisionProvider, Release r) {
 		this.release = r;
+		this.decisionProvider = decisionProvider;
 	}
 
 	@Override
@@ -45,9 +48,9 @@ public class GitCheckReleaseCommand extends CheckReleaseCommand {
 		}
 
 		// Ask the user to refresh his repo
-		boolean upToDate = true;
+		boolean upToDate = false;
 		if (localRepo != null) {
-			upToDate = UIUtil.askForRefreshing();
+			upToDate = decisionProvider.decideUpdateFromRemote();
 		}
 
 		// Create a report

@@ -8,12 +8,15 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
-
-import org.unicase.model.changetracking.*;
-
+import org.unicase.model.changetracking.ChangePackage;
+import org.unicase.model.changetracking.ChangetrackingPackage;
+import org.unicase.model.changetracking.Release;
+import org.unicase.model.changetracking.RepositoryLocation;
+import org.unicase.model.changetracking.RepositoryRevision;
+import org.unicase.model.changetracking.RepositoryStream;
+import org.unicase.model.changetracking.Stream;
 import org.unicase.model.release.AbstractRelease;
 
 /**

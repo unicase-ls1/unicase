@@ -5,7 +5,6 @@
 package org.unicase.model.changetracking.git;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.unicase.model.changetracking.RepositoryStream;
 
 /**

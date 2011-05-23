@@ -21,7 +21,13 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.lib.RepositoryState;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
+import org.eclipse.jgit.transport.FetchResult;
+import org.eclipse.jgit.transport.RefSpec;
+import org.eclipse.jgit.transport.TrackingRefUpdate;
+import org.unicase.changetracking.common.ChangeTrackingUtil;
 import org.unicase.changetracking.common.PrintfFormat;
+import org.unicase.changetracking.exceptions.ErrorInModelException;
+import org.unicase.changetracking.git.common.GitFetchOperation;
 import org.unicase.changetracking.git.common.GitUtil;
 import org.unicase.changetracking.release.ChangePackageState;
 import org.unicase.changetracking.release.Problem;
@@ -33,9 +39,9 @@ import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.Release;
 import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.RepositoryStream;
-import org.unicase.model.changetracking.Stream;
 import org.unicase.model.changetracking.git.GitBranch;
 import org.unicase.model.changetracking.git.GitBranchChangePackage;
+import org.unicase.model.changetracking.git.GitRepository;
 import org.unicase.model.task.WorkItem;
 
 /**
@@ -58,8 +64,10 @@ public final class ReleaseChecker {
 	private static final String ERROR_LOCAL_REPO_STATE_NOT_SAFE = "Your local repository is not in a safe state. Put it into a safe state before building a release.\nCurrent state: %s";
 	private static final String ERROR_UNCOMMITED_CHANGES_IN_WORKSPACE = "Your working directory or index contains uncommited changes. Revert or commit the changes before building a release.\n\nFollowing changes were found:\n%s";
 	private static final String ERROR_RELEASE_ALREADY_BUILT = "The release has already been built.";
+	private static final String WARNING_THE_BRANCH_COULD_NOT_BE_UPDATED = "The branch '%s' could not be updated(%s). Its content might be out of date.";
 	private static final String WARNING_LONELY_WORK_ITEM = "The %s '%s' is resolved but has no change package attached.";
 	private static final String WARNING_REPO_NOT_UP_TO_DATE = "Your local repository is not up to date. Some information might be outdated.";
+	private static final String WARNING_NOT_ALL_BRANCHES_UPDATED = "Not all branches of the release could be updated. Some data might be out of date.\nPossible reason: %s";
 	private static final String ERROR_INCOMPATIBLE_CHANGE_PACKAGE = "The change package '%s' is not a Git branch change package." + "Only these are allowed at the moment";
 	private static final String ERROR_MISSING_BRANCH = "The change package '%s' has no branch set.";
 	private static final String ERROR_MISSING_LOCATION = "The branch '%s' which is used by the change package '%s' has no repository location.";
@@ -67,11 +75,8 @@ public final class ReleaseChecker {
 	private static final String ERROR_BRANCH_NOT_IN_LOCAL_REPO = "The branch 'refs/heads/%s' (label: '%s', used by change package '%s') was not found in the local repository. If you haven't updated, the branch might not be pulled yet. Please update.";
 	private static final String ERROR_DUPLICATE_BRANCH = "The branch '%s' is used by more than one change package (%s, %s).";
 	private static final String ERROR_DUPLICATE_BRANCH_MAPPING = "Two unicase branches (%s, %s) use the same git branch (%s).";
-	private static final String ERROR_RELEASE_HAS_NO_STREAM = "No stream is assigned to the release.";
-	private static final String ERROR_STREAM_HAS_NO_REPO_STREAM = "The stream %s of the release has not associated a repository stream.";
 	private static final String ERROR_INCOMPATIBLE_REPO_STREAM = "The repository stream '%s' associated with the stream of the release is no Git branch. Only these are supported at the moment.";
 	private static final String ERROR_LOCATION_MISMATCH = "The repository location '%s' used for the change packages is not the same as the stream location of the release (%s).";
-	private static final String ERROR_RELEASE_STREAM_IS_MISSING_LOCATION = "The repository stream '%s' which is associated with the stream of the release has no repository location.";
 	private static final String ERROR_IO_EXCEPTION_WHILE_PARSING_COMMIT = "An IO Exception occurred while parsing the branch '%s' from the local repository. Retry and check that the local repository is not inaccessible.";
 	private static final String ERROR_REF_IS_NO_COMMIT = "The branch head '%s' is no commit. Your local repository seems to be severly damaged. Reclone from remote.";
 	private static final String ERROR_MISSING_COMMIT = "The commit to which the branch head '%s' points is missing.  Your local repository seems to be severly damaged. Reclone from remote.";
@@ -80,11 +85,11 @@ public final class ReleaseChecker {
 	private Release release;
 	private Repository localRepo;
 	private List<Problem> errorMessages = new ArrayList<Problem>();
-	private RepositoryLocation releaseStreamLocation;
+	private RepositoryLocation releaseRepoLoc;
 	private GitBranch releaseBranch;
 	private RevWalk revWalk;
 	private Map<String, Ref> refMap;
-	private boolean repoIsUpToDate;
+	private boolean wantUpdateBeforeCheck;
 	private HashMap<ChangePackage, ChangePackageCheckEntry> changePackageResults;
 	private CheckEntry releaseBase;
 
@@ -94,18 +99,18 @@ public final class ReleaseChecker {
 	 * 
 	 * @param localRepo local repository containing the release code
 	 * @param release the release to be checked
-	 * @param repoIsUpToDate whether the repository was updated before the
-	 *            checking
+	 * @param wantUpdateBeforeCheck whether the repository should be updated before the
+	 *            checking is conducted
 	 * @return the report
 	 */
-	public static ReleaseCheckReport check(Repository localRepo, Release release, boolean repoIsUpToDate) {
-		return new ReleaseChecker(localRepo, release, repoIsUpToDate).check();
+	public static ReleaseCheckReport check(Repository localRepo, Release release, boolean wantUpdateBeforeCheck) {
+		return new ReleaseChecker(localRepo, release, wantUpdateBeforeCheck).check();
 	}
 
-	private ReleaseChecker(Repository localRepo, Release release, boolean repoIsUpToDate) {
+	private ReleaseChecker(Repository localRepo, Release release, boolean wantUpdateBeforeCheck) {
 		this.localRepo = localRepo;
 		this.release = release;
-		this.repoIsUpToDate = repoIsUpToDate;
+		this.wantUpdateBeforeCheck = wantUpdateBeforeCheck;
 		if (localRepo != null) {
 			this.revWalk = new RevWalk(localRepo);
 			this.refMap = localRepo.getAllRefs();
@@ -171,8 +176,11 @@ public final class ReleaseChecker {
 
 		// If the repository is not checked out, we cannot do further checks.
 		if (localRepo == null) {
-			return new GitReport(releaseStreamLocation, workItemStats, changePackages.keySet(), errorMessages, false);
+			return new GitReport(releaseRepoLoc, workItemStats, changePackages.keySet(), errorMessages, false);
 		}
+
+		// Now, the release and change package contents can be update if desired
+		featchIfDesired(branchMap);
 
 		// If a repo exists and is not up to date, add this as error Message
 		addWarning(WARNING_REPO_NOT_UP_TO_DATE);
@@ -199,9 +207,41 @@ public final class ReleaseChecker {
 
 		// All relevant information has been gathered, create and return a
 		// report
-		GitReport report = new GitReport(releaseStreamLocation, workItemStats, errorMessages, true, repoIsUpToDate, getChangePackageStates(changePackageResults));
+		GitReport report = new GitReport(releaseRepoLoc, workItemStats, errorMessages, true, wantUpdateBeforeCheck, getChangePackageStates(changePackageResults));
 		setGitData(report);
 		return report;
+	}
+
+	private void featchIfDesired(Map<GitBranch, ChangePackage> branchMap) {
+		// Return if no update is desired
+		if (!wantUpdateBeforeCheck) {
+			return;
+		}
+
+		ArrayList<RefSpec> branchesToFetch = new ArrayList<RefSpec>();
+		// Add the release branch
+		branchesToFetch.add(GitUtil.getRefSpecFromGitBranch(releaseBranch));
+
+		// Add all change package branches
+		for (GitBranch branch : branchMap.keySet()) {
+			branchesToFetch.add(GitUtil.getRefSpecFromGitBranch(branch));
+		}
+
+		// Perform the update
+		//FIXME insert correct credentials provider
+		FetchResult updates = new GitFetchOperation((GitRepository) releaseRepoLoc, localRepo, null, 30000, branchesToFetch).run();
+
+		//check the result
+		boolean warning = false;
+		for(TrackingRefUpdate updateResult : updates.getTrackingRefUpdates()){
+			if(!GitUtil.isRefUpdateSuccessful(updateResult)){
+				addWarning(WARNING_THE_BRANCH_COULD_NOT_BE_UPDATED,updateResult.getLocalName(),updateResult.getResult().toString());
+				warning = true;
+			}
+		}
+		if(warning){
+			addWarning(WARNING_NOT_ALL_BRANCHES_UPDATED,updates.getMessages());
+		}
 	}
 
 	/**
@@ -336,7 +376,7 @@ public final class ReleaseChecker {
 	private CheckEntry checkReleaseBranch() {
 		// If either the release branch or its location couldn't be calculated,
 		// the commit cannot be inferred.
-		if (releaseBranch == null || releaseStreamLocation == null) {
+		if (releaseBranch == null || releaseRepoLoc == null) {
 			return null;
 		}
 
@@ -434,32 +474,20 @@ public final class ReleaseChecker {
 	 */
 	private void checkReleaseModel() {
 
-		// Release has a stream assigned?
-		Stream stream = release.getStream();
-		if (stream == null) {
-			addError(ERROR_RELEASE_HAS_NO_STREAM);
-			return;
-		}
+		try {
+			RepositoryStream repoStream = ChangeTrackingUtil.getRepoStreamOfRelease(release);
 
-		// Stream has a repository stream?
-		RepositoryStream repoStream = stream.getRepositoryStream();
-		if (repoStream == null) {
-			addError(ERROR_STREAM_HAS_NO_REPO_STREAM, stream.getName());
-			return;
-		}
+			// Repo stream is a git branch?
+			if (!(repoStream instanceof GitBranch)) {
+				addError(ERROR_INCOMPATIBLE_REPO_STREAM, repoStream.getName());
+				return;
+			}
+			releaseBranch = (GitBranch) repoStream;
 
-		// Repo stream is a git branch?
-		if (!(repoStream instanceof GitBranch)) {
-			addError(ERROR_INCOMPATIBLE_REPO_STREAM, repoStream.getName());
-			return;
-		}
-		releaseBranch = (GitBranch) repoStream;
-
-		// Repo stream has a location?
-		releaseStreamLocation = repoStream.getLocation();
-		if (releaseStreamLocation == null) {
-			addError(ERROR_RELEASE_STREAM_IS_MISSING_LOCATION, repoStream.getName());
-			return;
+			// Repo stream has a location?
+			releaseRepoLoc = ChangeTrackingUtil.getRepoLocationOfRelease(release);
+		} catch (ErrorInModelException m) {
+			addError(m.getMessage());
 		}
 
 	}
@@ -511,8 +539,8 @@ public final class ReleaseChecker {
 
 			// Check that the locations of the branches match the location of
 			// the release stream.
-			if (releaseStreamLocation != null && location != releaseStreamLocation) {
-				addError(ERROR_LOCATION_MISMATCH, lastLocation.getName(), releaseStreamLocation.getName());
+			if (releaseRepoLoc != null && location != releaseRepoLoc) {
+				addError(ERROR_LOCATION_MISMATCH, lastLocation.getName(), releaseRepoLoc.getName());
 			}
 
 			// No two changepackages may use the same branch
