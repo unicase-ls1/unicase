@@ -136,9 +136,6 @@ public class AudioCommentItemProvider extends RootElementItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(RationalePackage.Literals.AUDIO_COMMENT__AUDIO_FILE,
 			AttachmentFactory.eINSTANCE.createFileAttachment()));
-
-		newChildDescriptors.add(createChildParameter(RationalePackage.Literals.AUDIO_COMMENT__AUDIO_FILE,
-			AttachmentFactory.eINSTANCE.createPatchAttachment()));
 	}
 
 	/**

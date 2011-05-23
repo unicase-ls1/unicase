@@ -9,12 +9,9 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.model.release.*;
-import org.unicase.model.release.Release;
+import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.release.AbstractRelease;
 import org.unicase.model.release.ReleasePackage;
-import org.unicase.model.release.SourceCodeRepositoryRevision;
-import org.unicase.model.release.SourceCodeRepositoryStream;
-import org.unicase.model.release.Stream;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the call
@@ -76,30 +73,11 @@ public class ReleaseSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-		case ReleasePackage.STREAM: {
-			Stream stream = (Stream) theEObject;
-			T result = caseStream(stream);
+		case ReleasePackage.ABSTRACT_RELEASE: {
+			AbstractRelease abstractRelease = (AbstractRelease) theEObject;
+			T result = caseAbstractRelease(abstractRelease);
 			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ReleasePackage.RELEASE: {
-			Release release = (Release) theEObject;
-			T result = caseRelease(release);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ReleasePackage.SOURCE_CODE_REPOSITORY_REVISION: {
-			SourceCodeRepositoryRevision sourceCodeRepositoryRevision = (SourceCodeRepositoryRevision) theEObject;
-			T result = caseSourceCodeRepositoryRevision(sourceCodeRepositoryRevision);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ReleasePackage.SOURCE_CODE_REPOSITORY_STREAM: {
-			SourceCodeRepositoryStream sourceCodeRepositoryStream = (SourceCodeRepositoryStream) theEObject;
-			T result = caseSourceCodeRepositoryStream(sourceCodeRepositoryStream);
+				result = caseUnicaseModelElement(abstractRelease);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -110,56 +88,32 @@ public class ReleaseSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Stream</em>'.
-	 * <!-- begin-user-doc --> This
-	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Release</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Stream</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Release</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStream(Stream object) {
+	public T caseAbstractRelease(AbstractRelease object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Release</em>'.
-	 * <!-- begin-user-doc --> This
-	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Release</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRelease(Release object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Source Code Repository Revision</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Source Code Repository Revision</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSourceCodeRepositoryRevision(SourceCodeRepositoryRevision object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Source Code Repository Stream</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Source Code Repository Stream</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSourceCodeRepositoryStream(SourceCodeRepositoryStream object) {
+	public T caseUnicaseModelElement(UnicaseModelElement object) {
 		return null;
 	}
 

@@ -10,7 +10,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.state.*;
 import org.unicase.model.state.State;
 import org.unicase.model.state.StateEnd;
 import org.unicase.model.state.StateInitial;

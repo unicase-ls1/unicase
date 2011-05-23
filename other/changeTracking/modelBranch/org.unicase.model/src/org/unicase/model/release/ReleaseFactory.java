@@ -22,22 +22,6 @@ public interface ReleaseFactory extends EFactory {
 	ReleaseFactory eINSTANCE = org.unicase.model.release.impl.ReleaseFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Stream</em>'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return a new object of class '<em>Stream</em>'.
-	 * @generated
-	 */
-	Stream createStream();
-
-	/**
-	 * Returns a new object of class '<em>Release</em>'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return a new object of class '<em>Release</em>'.
-	 * @generated
-	 */
-	Release createRelease();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the package supported by this factory.
