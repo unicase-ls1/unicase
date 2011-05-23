@@ -20,31 +20,30 @@ import org.unicase.model.task.WorkItem;
  * 
  * Currenlty only supports change package creation and application.
  * 
- * @author gex
- *
+ * @author jfinis
+ * 
  */
 public class SubclipseVCSAdapter extends BasicVCSAdapter {
 
 	/**
 	 * Patches do not need a repo location to be created.
+	 * 
 	 * @return false
 	 */
 	public boolean doesChangePackageNeedRepoLocation() {
 		return false;
 	}
-	
+
 	/**
 	 * Creates a patch change package.
 	 * 
 	 * {@inheritDoc}
 	 */
 	@Override
-	public ChangeTrackingCommand createChangePackage(IProject localProject,
-			WorkItem workItem, RepositoryLocation remoteRepo, String name,
-			String shortDescription, String longDescription) {
+	public ChangeTrackingCommand createChangePackage(IProject localProject, WorkItem workItem, RepositoryLocation remoteRepo, String name, String shortDescription, String longDescription) {
 		return new SubclipseCreateChangePackageCommand(localProject, workItem, name, shortDescription, longDescription);
 	}
-	
+
 	/**
 	 * Applies a patch change package.
 	 * 
@@ -54,9 +53,5 @@ public class SubclipseVCSAdapter extends BasicVCSAdapter {
 	public ChangeTrackingCommand applyChangePackage(ChangePackage changePackage) {
 		return new BasicApplyPatchChangePackageCommand((PatchChangePackage) changePackage);
 	}
-
-
-
-
 
 }

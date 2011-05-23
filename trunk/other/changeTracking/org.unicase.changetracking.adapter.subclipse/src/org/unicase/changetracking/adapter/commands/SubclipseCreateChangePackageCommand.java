@@ -28,8 +28,8 @@ import org.unicase.workspace.WorkspaceManager;
 /**
  * Subclipse implementation of the create change package command.
  * 
- * @author gex
- *
+ * @author jfinis
+ * 
  */
 public class SubclipseCreateChangePackageCommand extends ChangeTrackingCommand {
 
@@ -41,54 +41,53 @@ public class SubclipseCreateChangePackageCommand extends ChangeTrackingCommand {
 
 	/**
 	 * Default constructor.
+	 * 
 	 * @param localProject local project
 	 * @param workItem work item
 	 * @param name name for the change package
 	 * @param shortDescription short description
 	 * @param longDescription long description
 	 */
-	public SubclipseCreateChangePackageCommand(IProject localProject,
-			WorkItem workItem, String name,
-			String shortDescription, String longDescription) {
+	public SubclipseCreateChangePackageCommand(IProject localProject, WorkItem workItem, String name, String shortDescription, String longDescription) {
 		this.localProject = localProject;
 		this.workItem = workItem;
 		this.name = name;
 		this.shortDescription = shortDescription;
 		this.longDescription = longDescription;
 	}
-	
+
 	/**
 	 * Performs the creation.
+	 * 
 	 * @return execution result.
 	 */
 	@Override
 	protected ChangeTrackingCommandResult doRun() {
-		
-		//1) **** Create the patch ****
+
+		// 1) **** Create the patch ****
 		File patch;
 		try {
-			patch = new SubclipseCreatePatchAction().createPatch(new IResource[]{localProject}, true);
-			if(patch == null){
+			patch = new SubclipseCreatePatchAction().createPatch(new IResource[] { localProject }, true);
+			if (patch == null) {
 				throw new UnexpectedChangeTrackingException("No patch was created.");
 			}
 		} catch (VCSException e) {
-			throw new UnexpectedChangeTrackingException(e.getMessage(),e.getCause());
+			throw new UnexpectedChangeTrackingException(e.getMessage(), e.getCause());
 		}
-		
-		//2) **** Upload the patch ****
+
+		// 2) **** Upload the patch ****
 		PatchChangePackage changePackage = PatchFactory.eINSTANCE.createPatchChangePackage();
 		changePackage.setName(name);
 		changePackage.setShortDescription(shortDescription);
 		changePackage.setDescription(longDescription);
-		
+
 		Project p = ModelUtil.getProject(workItem);
-		if(p == null){
+		if (p == null) {
 			throw new MisuseException("The supplied work item does not belong to a project");
 		}
-		
-		final ProjectSpace projectSpace = WorkspaceManager
-				.getProjectSpace(p);
-		
+
+		final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(p);
+
 		FileIdentifier fid;
 		try {
 			fid = projectSpace.addFile(patch);
@@ -99,14 +98,13 @@ public class SubclipseCreateChangePackageCommand extends ChangeTrackingCommand {
 		changePackage.setFileSize(patch.length());
 		changePackage.setFileIdentifier(fid);
 
-
-		//3) **** Add the change package to the project and attach to work item ****
+		// 3) **** Add the change package to the project and attach to work item
+		// ****
 		ChangeTrackingUtil.addToProjectRelative(changePackage, workItem, false);
 		workItem.getAttachments().add(changePackage);
-		
+
 		return successResult("Change package created successfully");
-		
-		
+
 	}
 
 }
