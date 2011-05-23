@@ -35,7 +35,8 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOpera
  * 
  * @generated
  */
-public class OperationCompositeImpl extends EObjectImpl implements OperationComposite {
+public class OperationCompositeImpl extends EObjectImpl implements
+		OperationComposite {
 	/**
 	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -72,8 +73,9 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 	 */
 	public EList<AbstractOperation> getOperations() {
 		if (operations == null) {
-			operations = new EObjectContainmentEList.Resolving<AbstractOperation>(AbstractOperation.class, this,
-				ModelPackage.OPERATION_COMPOSITE__OPERATIONS);
+			operations = new EObjectContainmentEList.Resolving<AbstractOperation>(
+					AbstractOperation.class, this,
+					ModelPackage.OPERATION_COMPOSITE__OPERATIONS);
 		}
 		return operations;
 	}
@@ -84,10 +86,12 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.OPERATION_COMPOSITE__OPERATIONS:
-			return ((InternalEList<?>) getOperations()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getOperations()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -117,7 +121,8 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 		switch (featureID) {
 		case ModelPackage.OPERATION_COMPOSITE__OPERATIONS:
 			getOperations().clear();
-			getOperations().addAll((Collection<? extends AbstractOperation>) newValue);
+			getOperations().addAll(
+					(Collection<? extends AbstractOperation>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

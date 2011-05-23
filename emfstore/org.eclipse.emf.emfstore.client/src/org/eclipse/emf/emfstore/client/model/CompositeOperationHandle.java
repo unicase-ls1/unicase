@@ -16,7 +16,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.exceptions.InvalidHandleException;
-import org.eclipse.emf.emfstore.client.model.impl.ProjectChangeTracker;
+import org.eclipse.emf.emfstore.client.model.impl.OperationRecorder;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.SemanticCompositeOperation;
@@ -30,19 +30,22 @@ public class CompositeOperationHandle {
 
 	private boolean isValid;
 	private CompositeOperation compositeOperation;
-	private ProjectChangeTracker changeTracker;
+	private OperationRecorder operationRecorder;
 	private Set<EObject> removedElements;
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param changeTracker the change tracker this composite is tracked on
-	 * @param compositeOperation the composite operation to be handled
+	 * @param operationManager
+	 *            the change tracker this composite is tracked on
+	 * @param compositeOperation
+	 *            the composite operation to be handled
 	 */
-	public CompositeOperationHandle(ProjectChangeTracker changeTracker, CompositeOperation compositeOperation) {
-		this.changeTracker = changeTracker;
+	public CompositeOperationHandle(OperationRecorder operationRecorder,
+			CompositeOperation compositeOperation) {
+		this.operationRecorder = operationRecorder;
 		removedElements = new HashSet<EObject>();
-		removedElements.addAll(changeTracker.getRemovedElements());
+		removedElements.addAll(operationRecorder.getRemovedElements());
 		this.compositeOperation = compositeOperation;
 		isValid = true;
 	}
@@ -57,20 +60,22 @@ public class CompositeOperationHandle {
 	}
 
 	/**
-	 * Aborts a composite operation. The state before starting the composite operation will be recovered.
+	 * Aborts a composite operation. The state before starting the composite
+	 * operation will be recovered.
 	 * 
-	 * @throws InvalidHandleException if the handle is invalid
+	 * @throws InvalidHandleException
+	 *             if the handle is invalid
 	 */
 	public void abort() throws InvalidHandleException {
 		checkAndCloseHandle();
-		changeTracker.getRemovedElements().retainAll(removedElements);
-		changeTracker.abortCompositeOperation();
+		operationRecorder.getRemovedElements().retainAll(removedElements);
+		operationRecorder.abortCompositeOperation();
 		dropAllReferences();
 	}
 
 	private void dropAllReferences() {
 		compositeOperation = null;
-		changeTracker = null;
+		operationRecorder = null;
 		removedElements = null;
 
 	}
@@ -85,33 +90,44 @@ public class CompositeOperationHandle {
 	/**
 	 * Completes a composite operation.
 	 * 
-	 * @param name the name for the operation
-	 * @param description the description of the operation
-	 * @param modelElementId the id of the model element that is most important for the operation
-	 * @throws InvalidHandleException if the handle is invalid
+	 * @param name
+	 *            the name for the operation
+	 * @param description
+	 *            the description of the operation
+	 * @param modelElementId
+	 *            the id of the model element that is most important for the
+	 *            operation
+	 * @throws InvalidHandleException
+	 *             if the handle is invalid
 	 */
-	public void end(String name, String description, ModelElementId modelElementId) throws InvalidHandleException {
+	public void end(String name, String description,
+			ModelElementId modelElementId) throws InvalidHandleException {
 		checkAndCloseHandle();
 		compositeOperation.setCompositeName(name);
 		compositeOperation.setCompositeDescription(description);
 		compositeOperation.setClientDate(new Date());
 		compositeOperation.setReversed(false);
 		compositeOperation.setModelElementId(modelElementId);
-		changeTracker.endCompositeOperation();
+		operationRecorder.endCompositeOperation();
 		dropAllReferences();
 	}
 
 	/**
 	 * Completes a the given semantic composite operation.
 	 * 
-	 * @param semanticCompositeOperation a semanticCompositeOperation that was executed and represents the composite
-	 * @throws InvalidHandleException if the handle is invalid
+	 * @param semanticCompositeOperation
+	 *            a semanticCompositeOperation that was executed and represents
+	 *            the composite
+	 * @throws InvalidHandleException
+	 *             if the handle is invalid
 	 */
-	public void end(SemanticCompositeOperation semanticCompositeOperation) throws InvalidHandleException {
+	public void end(SemanticCompositeOperation semanticCompositeOperation)
+			throws InvalidHandleException {
 		checkAndCloseHandle();
 		semanticCompositeOperation.setClientDate(new Date());
 		semanticCompositeOperation.setReversed(false);
-		semanticCompositeOperation.getSubOperations().addAll(compositeOperation.getSubOperations());
-		changeTracker.endCompositeOperation(semanticCompositeOperation);
+		semanticCompositeOperation.getSubOperations().addAll(
+				compositeOperation.getSubOperations());
+		operationRecorder.endCompositeOperation(semanticCompositeOperation);
 	}
 }
