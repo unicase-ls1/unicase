@@ -5,7 +5,6 @@
  */
 package org.unicase.changetracking.ui.createChangePackage;
 
-
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -34,7 +33,17 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.task.WorkItem;
 
-public class ChooseWorkItemPage extends WizardPage{
+/**
+ * Wizard page of the "create change package" wizard.
+ * 
+ * Allows to choose a work item and a repository location for the change
+ * package. If the version control adapter specifies that no repository location
+ * is needed, then only the work item can be chosen.
+ * 
+ * @author jfinis
+ * 
+ */
+public class ChooseWorkItemPage extends WizardPage {
 
 	private static final Image PROJECT_IMAGE = Activator.getImageDescriptor("icons/cprj_obj.gif").createImage();
 	private static final Image NO_SELECTION_IMAGE = Activator.getImageDescriptor("icons/error.gif").createImage();
@@ -54,50 +63,80 @@ public class ChooseWorkItemPage extends WizardPage{
 	private String selectedProjectName;
 	private VCSAdapter vcs;
 	private IProject workspaceProject;
-	
-	
 
+	/**
+	 * Returns the selected project. I.e. the project in which the selected work
+	 * item resides.
+	 * 
+	 * @return selected project
+	 */
 	public Project getSelectedProject() {
 		return selectedProject;
 	}
 
+	/**
+	 * Returns the selected work item.
+	 * 
+	 * @return the selected work item
+	 */
 	public WorkItem getSelectedWorkItem() {
 		return (WorkItem) selectedWorkItem;
 	}
 
+	/**
+	 * Returns the selected repository location.
+	 * 
+	 * @return the selected repository location
+	 */
 	public RepositoryLocation getSelectedRepository() {
 		return selectedRepository;
 	}
 
+	/**
+	 * Returns the name of the selected project.
+	 * 
+	 * @return selected project name
+	 */
 	public String getSelectedProjectName() {
 		return selectedProjectName;
 	}
 
-	protected ChooseWorkItemPage(String pageName, String title,
-			ImageDescriptor titleImage, VCSAdapter vcs, IProject workspaceProject) {
+	/**
+	 * Default constructor.
+	 * 
+	 * @param pageName page name
+	 * @param title page title
+	 * @param titleImage page title image
+	 * @param vcs VCS adapter
+	 * @param workspaceProject project from which the change package is to be
+	 *            created.
+	 */
+	protected ChooseWorkItemPage(String pageName, String title, ImageDescriptor titleImage, VCSAdapter vcs, IProject workspaceProject) {
 		super(pageName, title, titleImage);
-		
-		attacheeDialog = new AttacheeSelectionDialog("Choose work item","Choose a work item to attach the change package to.");
+
+		attacheeDialog = new AttacheeSelectionDialog("Choose work item", "Choose a work item to attach the change package to.");
 		this.vcs = vcs;
 		this.workspaceProject = workspaceProject;
 		labelProvider = attacheeDialog.getLabelProvider();
-		
+
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void createControl(Composite parent) {
 		composite = new Composite(parent, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).margins(10, 0).spacing(5, 5).applyTo(composite);
 		setControl(composite);
-		
-		//Layout datas
+
+		// Layout datas
 		GridDataFactory fillTwoColsLayout = GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).span(1, 1);
 		GridDataFactory fillOneColLayout = GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true);
 		GridDataFactory notFillOneColLayout = GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(false, true);
 		int labelStyleBits = SWT.BORDER;
 		int descriptionStyleBits = SWT.NONE;
-		
-		
-		//First line
+
+		// First line
 		Label label = new Label(composite, descriptionStyleBits);
 		label.setText("Attach to:");
 		label.setToolTipText(WORK_ITEM_TOOLTIP);
@@ -114,8 +153,8 @@ public class ChooseWorkItemPage extends WizardPage{
 			}
 		});
 		notFillOneColLayout.applyTo(button);
-		
-		//Second line
+
+		// Second line
 		label = new Label(composite, descriptionStyleBits);
 		label.setText("Project:");
 		label.setToolTipText(PROJECT_TOOLTIP);
@@ -123,11 +162,11 @@ public class ChooseWorkItemPage extends WizardPage{
 		projectLabel = new ImageAndTextLabel(composite, labelStyleBits, labelProvider);
 		fillTwoColsLayout.applyTo(projectLabel);
 		projectLabel.setToolTipText(PROJECT_TOOLTIP);
-		//Composite for taking place, only for layouting
-		new Composite(composite,descriptionStyleBits);
+		// Composite for taking place, only for layouting
+		new Composite(composite, descriptionStyleBits);
 
-		//Third line
-		if(vcs.doesChangePackageNeedRepoLocation()){
+		// Third line
+		if (vcs.doesChangePackageNeedRepoLocation()) {
 			label = new Label(composite, descriptionStyleBits);
 			label.setText("Repository:");
 			label.setToolTipText(REPOSITORY_TOOLTIP);
@@ -142,30 +181,29 @@ public class ChooseWorkItemPage extends WizardPage{
 				public void widgetSelected(SelectionEvent e) {
 					try {
 						selectedRepository = vcs.createRepositoryLocation(workspaceProject);
-						ChangeTrackingUtil.addToProjectRelative(selectedRepository, selectedWorkItem == null ? selectedProject : selectedWorkItem , true);
+						ChangeTrackingUtil.addToProjectRelative(selectedRepository, selectedWorkItem == null ? selectedProject : selectedWorkItem, true);
 						updateFields();
 					} catch (VCSException e1) {
 						UIUtil.handleException("The repository could not be created", e1);
-					} catch (CancelledByUserException e1) {
-					}
-					
+					} catch (CancelledByUserException e1) {}
+
 				}
 			});
 			createRepoButton.setEnabled(false);
 			notFillOneColLayout.applyTo(createRepoButton);
 		}
-		
-		//Open MESelection Dialog
+
+		// Open MESelection Dialog
 		openDialog();
 	}
 
 	private void openDialog() {
 		attacheeDialog.open();
-		if(attacheeDialog.getReturnCode() == Window.OK){
+		if (attacheeDialog.getReturnCode() == Window.OK) {
 			selectedProject = attacheeDialog.getSelectedProjectSpace().getProject();
 			selectedProjectName = attacheeDialog.getSelectedProjectSpace().getProjectName();
 			selectedWorkItem = attacheeDialog.getSelectedModelElementNoCreate();
-			if(vcs.doesChangePackageNeedRepoLocation()){
+			if (vcs.doesChangePackageNeedRepoLocation()) {
 				try {
 					selectedRepository = vcs.findRepoLocation(workspaceProject, selectedProject);
 				} catch (VCSException e) {
@@ -175,13 +213,13 @@ public class ChooseWorkItemPage extends WizardPage{
 		}
 		updateFields();
 	}
-	
-	private void updateFields(){
-		if(selectedWorkItem == null){
-			workItemLabel.setContent(NO_SELECTION_IMAGE,"<< No workitem chosen >>");
-			projectLabel.setContent(NO_SELECTION_IMAGE,"<< No workitem chosen >>");
-			if(vcs.doesChangePackageNeedRepoLocation()){
-				remoteRepoLabel.setContent(NO_SELECTION_IMAGE,"<< No workitem chosen >>");
+
+	private void updateFields() {
+		if (selectedWorkItem == null) {
+			workItemLabel.setContent(NO_SELECTION_IMAGE, "<< No workitem chosen >>");
+			projectLabel.setContent(NO_SELECTION_IMAGE, "<< No workitem chosen >>");
+			if (vcs.doesChangePackageNeedRepoLocation()) {
+				remoteRepoLabel.setContent(NO_SELECTION_IMAGE, "<< No workitem chosen >>");
 				createRepoButton.setEnabled(false);
 			}
 			setPageComplete(false);
@@ -189,11 +227,11 @@ public class ChooseWorkItemPage extends WizardPage{
 		} else {
 			workItemLabel.setInput(selectedWorkItem);
 			projectLabel.setContent(PROJECT_IMAGE, selectedProjectName);
-			if(!vcs.doesChangePackageNeedRepoLocation()){
+			if (!vcs.doesChangePackageNeedRepoLocation()) {
 				setPageComplete(true);
-				setMessage("",DialogPage.NONE);
-			} else if(selectedRepository == null){
-				remoteRepoLabel.setContent(NO_SELECTION_IMAGE,"<< No matching repository in project >>");
+				setMessage("", DialogPage.NONE);
+			} else if (selectedRepository == null) {
+				remoteRepoLabel.setContent(NO_SELECTION_IMAGE, "<< No matching repository in project >>");
 				createRepoButton.setEnabled(true);
 				setPageComplete(false);
 				setMessage("The chosen project does not contain a remote repository matching the local repository. Create one first.", DialogPage.ERROR);
@@ -201,17 +239,11 @@ public class ChooseWorkItemPage extends WizardPage{
 				remoteRepoLabel.setInput(selectedRepository);
 				createRepoButton.setEnabled(false);
 				setPageComplete(true);
-				setMessage("",DialogPage.NONE);
+				setMessage("", DialogPage.NONE);
 			}
 		}
 		composite.redraw();
-		
-		
-		
-	}
 
-	
-	
-	
+	}
 
 }

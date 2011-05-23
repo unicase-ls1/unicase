@@ -56,74 +56,89 @@ import org.unicase.workspace.util.NoCurrentUserException;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
- * The attachee selection dialog allows to select a work item to attach a source change to.
+ * The attachee selection dialog allows to select a work item to attach a source
+ * change to.
  * 
- * It allows to filter the shown work items by project and by user to whom they are associated.
- * It also allows to create a new action item on the fly.
+ * It allows to filter the shown work items by project and by user to whom they
+ * are associated. It also allows to create a new action item on the fly.
  * 
  * @author jfinis
- *
+ * 
  */
-public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDialog{
-	
-	
+public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDialog {
+
 	/**
 	 * The image with which "create new xxx" entries are decorated.
 	 */
 	private static final ImageData DECORATION_IMAGE = Activator.getImageDescriptor("icons/cross8x8.png").getImageData();
-	
 
-	
 	/**
-	 * Set containing the model elements that represent creating a new work item.
+	 * Set containing the model elements that represent creating a new work
+	 * item.
 	 */
 	private Set<EObject> createElements = new HashSet<EObject>();
-	
+
 	/**
 	 * The user selection combo box.
 	 */
 	private ComboView<User> userBar;
-	
+
 	/**
 	 * The project selection combo box.
 	 */
 	private ComboView<ProjectSpace> projectBar;
-	
+
 	/**
-	 * This variable is part of a hack which is used to inject new content during runtime into the dialog.
-	 * This is needed when the project or user is changed. Basically, the super class does not allow
-	 * to swap content. This moves around this limitation.
+	 * This variable is part of a hack which is used to inject new content
+	 * during runtime into the dialog. This is needed when the project or user
+	 * is changed. Basically, the super class does not allow to swap content.
+	 * This moves around this limitation.
 	 */
 	private boolean isInRefreshMode;
-	
-	public AdvancedMESelectionDialog(){
+
+	/**
+	 * Default constructor without any class bound, i.e. all model elements can
+	 * be chosen.
+	 */
+	public AdvancedMESelectionDialog() {
 		this(null);
 	}
-	
-	public AdvancedMESelectionDialog(EClass classBound, String title, String message){
+
+	/**
+	 * Constructor with specific class bound, title, and message.
+	 * 
+	 * @param classBound only model elements which are subclasses of this class
+	 *            are displayed. Use null for showing all elements.
+	 * @param title dialog title
+	 * @param message dialog message
+	 */
+	public AdvancedMESelectionDialog(EClass classBound, String title, String message) {
 		this(classBound);
 		this.setTitle(title);
 		this.setMessage(message);
 	}
-	
+
 	/**
-	 * Default constructor.
+	 * Constructor with custom class bound.
+	 * 
+	 * @param classBound only model elements which are subclasses of this class
+	 *            are displayed. Use null for showing all elements.
 	 */
 	public AdvancedMESelectionDialog(EClass classBound) {
 		super(false);
 		setBlockOnOpen(true);
-		
-		//Create the "create new" entries
+
+		// Create the "create new" entries
 		Set<EClass> classes = ModelUtil.getSubclasses(TaskPackage.eINSTANCE.getWorkItem());
-		for(EClass cls : classes){
-			
-			//Only add class if it is in the list of elements to show
+		for (EClass cls : classes) {
+
+			// Only add class if it is in the list of elements to show
 			String name = cls.getName();
 			boolean allowed = false;
 			Collection<String> allowedCreation = getAllowedClassesForCreation();
-			if(allowedCreation != null){
-				for(String s: allowedCreation){
-					if(s.equals(name)){
+			if (allowedCreation != null) {
+				for (String s : allowedCreation) {
+					if (s.equals(name)) {
 						allowed = true;
 						break;
 					}
@@ -131,92 +146,142 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 			} else {
 				allowed = true;
 			}
-			if(!allowed){
+			if (!allowed) {
 				continue;
 			}
-			
-			//Create the itm and add it to the set
+
+			// Create the itm and add it to the set
 			EObject e = cls.getEPackage().getEFactoryInstance().create(cls);
 			((WorkItem) e).setName("<< create new " + cls.getName() + " >>");
 			createElements.add(e);
 		}
 	}
-	
+
+	/**
+	 * Must be implemented by subclasses to return the classes allowed for
+	 * creation. The dialog will contain a <<create new X>> element for each
+	 * class X returned by this method. If the user selects one of them, a new
+	 * model element of this type is created.
+	 * 
+	 * @return allowed classes for creation
+	 */
 	protected abstract Collection<String> getAllowedClassesForCreation();
-	
+
+	/**
+	 * Must be implemented by subclasses to return the user based viewer filter.
+	 * This filter must filter the content according to the selected user. The
+	 * meaning of "filtering according to the selected user" must be chosen by
+	 * the implementation. For example, a possible implementation could show
+	 * only action items which have the user as assignee.
+	 * 
+	 * The dialog contains a user field where a user can be chosen. Once one is
+	 * chosen, this method is called and the returned filter is used by the
+	 * dialog.
+	 * 
+	 * @param user user for which to filter the content
+	 * @return a filter
+	 */
 	protected abstract ViewerFilter getUserFilter(User user);
 
-	public UnicaseModelElement getSelectedModelElementNoCreate(){
+	/**
+	 * Returns the selected model element rawly. Even if a <<create new X>>
+	 * entry is chosen, this entry is returned instead of really creating a new
+	 * class.
+	 * 
+	 * Thus, this method should be handled with care as its result could be a
+	 * model element which does not really exist in the project. If you want to
+	 * create a model element and return it if a <<create X>> entry is chosen,
+	 * use getOrCreateSelectedModelElement instead.
+	 * 
+	 * @return the selected model element
+	 */
+	public UnicaseModelElement getSelectedModelElementNoCreate() {
 		return (UnicaseModelElement) getFirstResult();
 	}
-	public UnicaseModelElement getOrCreateSelectedModelElement(){
+
+	/**
+	 * Retrieves the selected model element. If a <<create new X>> entry is
+	 * chosen, then a new model element of the chosen class is created, put into
+	 * the orphans of the selected project, and is returned.
+	 * 
+	 * @return selected or newly created model element
+	 */
+	public UnicaseModelElement getOrCreateSelectedModelElement() {
 		return getOrCreateSelectedModelElement(new PutIntoOrphansStrategy());
 	}
 
-	public UnicaseModelElement getOrCreateSelectedModelElement(IModelElementPlacementStrategy strategy){
+	/**
+	 * Retrieves the selected model element. If a <<create new X>> entry is
+	 * chosen, then a new model element is created. Afterwards, the model
+	 * element is put into the project using the provided model element
+	 * placement strategy. Then, the newly created model element is returned.
+	 * 
+	 * @param strategy strategy to place a newly created element in the project.
+	 * @return selected or newly created model element
+	 */
+	public UnicaseModelElement getOrCreateSelectedModelElement(IModelElementPlacementStrategy strategy) {
 		UnicaseModelElement element = (UnicaseModelElement) getFirstResult();
-		if(elementIsCreateEntry(element)){
+		if (elementIsCreateEntry(element)) {
 			element.setName("new " + element.eClass().getName());
 			strategy.placeModelElementInProject(getSelectedProjectSpace().getProject(), element);
 		}
 		return element;
 	}
-	
-	
-	
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean close() {
 		final UnicaseModelElement selectedElement = getSelectedModelElementNoCreate();
-		
-		if(getReturnCode() == Window.OK && elementIsCreateEntry(selectedElement)){
-				final ModelElementPlacementDialog placementDialog = new ModelElementPlacementDialog(getShell(), getSelectedModelElementNoCreate(), true);
-				if(placementDialog.open() == Window.OK){
-					new UnicaseCommand() {
-						@Override
-						protected void doRun() {
-							ChangeTrackingUtil.putInto(selectedElement, placementDialog.getSelection());
-							selectedElement.setName(placementDialog.getSelectedName());
-						}
-					};
-				} else {
-					setReturnCode(Window.CANCEL);
-				}
+
+		if (getReturnCode() == Window.OK && elementIsCreateEntry(selectedElement)) {
+			final ModelElementPlacementDialog placementDialog = new ModelElementPlacementDialog(getShell(), getSelectedModelElementNoCreate(), true);
+			if (placementDialog.open() == Window.OK) {
+				new UnicaseCommand() {
+					@Override
+					protected void doRun() {
+						ChangeTrackingUtil.putInto(selectedElement, placementDialog.getSelection());
+						selectedElement.setName(placementDialog.getSelectedName());
+					}
+				};
+			} else {
+				setReturnCode(Window.CANCEL);
+			}
 		}
 		return super.close();
 	}
-	
 
-
-	
 	/**
 	 * Returns whether a model element is a "create new xxx" entry.
+	 * 
 	 * @param element element to test
 	 * @return true, iff the model element is a "create new xxx" element.
 	 */
-	public boolean elementIsCreateEntry(Object element){
+	public boolean elementIsCreateEntry(Object element) {
 		return createElements.contains(element);
 	}
-	
+
 	/**
 	 * Gets the currently selected project space.
+	 * 
 	 * @return the selected project space
 	 */
-	public ProjectSpace getSelectedProjectSpace(){
+	public ProjectSpace getSelectedProjectSpace() {
 		return projectBar.getSelection();
 	}
 
 	/**
-	 * Sets the margins of a layout to 0. Is needed to make
-	 * the layout look good.
+	 * Sets the margins of a layout to 0. Is needed to make the layout look
+	 * good.
+	 * 
 	 * @param l
 	 */
-	private void removeMargin(GridLayout l){
+	private void removeMargin(GridLayout l) {
 		l.marginHeight = 0;
 		l.marginWidth = 0;
 	}
-	
 
-	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -225,27 +290,30 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		ILabelProvider lp = super.createLabelProvider();
 		return new AdvancedLabelProvider(lp);
 	}
-	
+
 	/**
-	 * Creates a composite with a specific layout. The layout gets its margins removed.
-	 * @param parent parent composite in which to add the newly created composite.
+	 * Creates a composite with a specific layout. The layout gets its margins
+	 * removed.
+	 * 
+	 * @param parent parent composite in which to add the newly created
+	 *            composite.
 	 * @param layout layout to use for the new composite
 	 * @return
 	 */
-	private Composite createComposite(Composite parent, GridLayout layout){
+	private Composite createComposite(Composite parent, GridLayout layout) {
 		Composite composite = new Composite(parent, SWT.NONE);
 		composite.setLayout(layout);
 		removeMargin(layout);
 		return composite;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		
-		//Main composite
+
+		// Main composite
 		Composite composite = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.marginHeight = convertVerticalDLUsToPixels(IDialogConstants.VERTICAL_MARGIN);
@@ -254,15 +322,15 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		layout.horizontalSpacing = convertHorizontalDLUsToPixels(IDialogConstants.HORIZONTAL_SPACING);
 		composite.setLayout(layout);
 		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
-		
-		//Sub composite
-		Composite subComposite = createComposite(composite, new GridLayout(4,false));
-		
-		//Project selection combo box
+
+		// Sub composite
+		Composite subComposite = createComposite(composite, new GridLayout(4, false));
+
+		// Project selection combo box
 		Label l = new Label(subComposite, SWT.NONE);
 		l.setText("Select project:");
 		l.setLayoutData(new GridData(SWT.LEFT));
-		Combo combo = new Combo (subComposite, SWT.READ_ONLY);
+		Combo combo = new Combo(subComposite, SWT.READ_ONLY);
 		combo.setLayoutData(new GridData(SWT.LEFT));
 		projectBar = new ComboView<ProjectSpace>(combo);
 		projectBar.addSelectionChangedListener(new ComboView.IComboChangeListener<ProjectSpace>() {
@@ -270,19 +338,19 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 				populateUserBar(newSelection, userBar.getSelection(), true);
 			}
 		});
-		
-		projectBar.setLabelProvider(new LabelProvider(){
+
+		projectBar.setLabelProvider(new LabelProvider() {
 			@Override
 			public String getText(Object element) {
-				return ((ProjectSpace)element).getProjectName();
+				return ((ProjectSpace) element).getProjectName();
 			}
 		});
-		
-		//User selection combo box
+
+		// User selection combo box
 		l = new Label(subComposite, SWT.NONE);
 		l.setText(" Select user:");
 		l.setLayoutData(new GridData(SWT.LEFT));
-		combo = new Combo (subComposite, SWT.READ_ONLY);
+		combo = new Combo(subComposite, SWT.READ_ONLY);
 		combo.setLayoutData(new GridData(SWT.LEFT));
 		userBar = new ComboView<User>(combo);
 		userBar.addSelectionChangedListener(new ComboView.IComboChangeListener<User>() {
@@ -291,25 +359,25 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 				doRefresh();
 			}
 		});
-		userBar.setLabelProvider(new LabelProvider(){
+		userBar.setLabelProvider(new LabelProvider() {
 			@Override
 			public String getText(Object element) {
-				return ((User)element).getName();
+				return ((User) element).getName();
 			}
 		});
-		
-		//Create the rest of the dialog
+
+		// Create the rest of the dialog
 		Composite dialogArea = (Composite) super.createDialogArea(composite);
 		GridLayout dialogLayout = (GridLayout) dialogArea.getLayout();
 		removeMargin(dialogLayout);
-		
+
 		return dialogArea;
 	}
-	
+
 	/**
-	 * Refreshes the set of model elements. Is called whenever the set of model elements
-	 * to be displayed changes, i.e. when the project or user is switched.
-	 * Uses a hack to replace the model elements...
+	 * Refreshes the set of model elements. Is called whenever the set of model
+	 * elements to be displayed changes, i.e. when the project or user is
+	 * switched. Uses a hack to replace the model elements...
 	 */
 	private void doRefresh() {
 		isInRefreshMode = true;
@@ -318,34 +386,34 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		refresh();
 		isInRefreshMode = false;
 	}
-	
+
 	/**
 	 * Populates the set of model elements to be displayed.
+	 * 
 	 * @param projectSpace the project space for which to get the model elements
-	 * @param user 
+	 * @param user
 	 */
-	private void populateEntries(ProjectSpace projectSpace, User user){
+	private void populateEntries(ProjectSpace projectSpace, User user) {
 		ViewerFilter filter = user == null ? null : getUserFilter(user);
-		List<WorkItem> projectItems = projectSpace.getProject().getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(),new BasicEList<WorkItem>(),true);
-		
+		List<WorkItem> projectItems = projectSpace.getProject().getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(), new BasicEList<WorkItem>(), true);
+
 		BasicEList<EObject> elementsToShow = new BasicEList<EObject>();
-		
-		for(WorkItem elem: projectItems){
-			
-			//Add only work items that pass the filter, if there is one
-			if(filter == null || filter.select(null, null, elem)){
+
+		for (WorkItem elem : projectItems) {
+
+			// Add only work items that pass the filter, if there is one
+			if (filter == null || filter.select(null, null, elem)) {
 				elementsToShow.add(elem);
 			}
 		}
-		
-		//Add the "create new" entries
+
+		// Add the "create new" entries
 		elementsToShow.addAll(createElements);
-	
-		
+
 		setModelElements(elementsToShow);
-		
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -353,66 +421,65 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 	protected void storeDialog(IDialogSettings settings) {
 		// Store super settings
 		super.storeDialog(settings);
-		
+
 		// Store project and user
 		settings.put("LAST_PROJECT", projectBar.getSelection().getIdentifier());
-		
+
 		User user = getSelectedUserOrNoUser(userBar.getSelection());
-		if(user == null){
+		if (user == null) {
 			settings.put("LAST_USER", (String) null);
 		} else {
 			settings.put("LAST_USER", projectBar.getSelection().getProject().getModelElementId(user).getId());
-			
+
 		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected void restoreDialog(IDialogSettings settings) {
 		super.restoreDialog(settings);
-		
-		//--- project ---
+
+		// --- project ---
 		String lastProj = settings.get("LAST_PROJECT");
 		Workspace w = WorkspaceManager.getInstance().getCurrentWorkspace();
 
 		ProjectSpace selectedProject = getDefaultProject();
-		
-		//Find the last project
-		if(lastProj != null){
-			for(ProjectSpace ps : w.getProjectSpaces()){
-				if(lastProj.equals(ps.getIdentifier())){
+
+		// Find the last project
+		if (lastProj != null) {
+			for (ProjectSpace ps : w.getProjectSpaces()) {
+				if (lastProj.equals(ps.getIdentifier())) {
 					selectedProject = ps;
 				}
 			}
 		}
-		
+
 		populateProjectBar(selectedProject, false);
-		
-		//--- user ---
+
+		// --- user ---
 		User selectedUser = null;
-		
+
 		String lastUser = settings.get("LAST_USER");
-		if(lastUser != null){
+		if (lastUser != null) {
 			ModelElementId userId = MetamodelFactory.eINSTANCE.createModelElementId();
 			userId.setId(lastUser);
 			selectedUser = (User) selectedProject.getProject().getModelElement(userId);
-			
+
 		}
-	
+
 		populateUserBar(projectBar.getSelection(), selectedUser, false);
-		
+
 		populateEntries(projectBar.getSelection(), getSelectedUserOrNoUser(userBar.getSelection()));
 	}
-	
-	
+
 	/**
-	 * Returns the input user, unless it is the [no user] user.
-	 * If it is the [no user], null is returned.
+	 * Returns the input user, unless it is the [no user] user. If it is the [no
+	 * user], null is returned.
 	 */
 	private User getSelectedUserOrNoUser(User user) {
-		if(user == null || user.getName().equals("[no user]")){
+		if (user == null || user.getName().equals("[no user]")) {
 			return null;
 		}
 		return user;
@@ -425,84 +492,83 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 	 * @param selectedUser2 the user to be selected
 	 * @param fireChangeEvents if a change event should be fired
 	 */
-	private void populateUserBar(ProjectSpace selectedProject2,
-			User selectedUser2, boolean fireChangeEvents) {
-		//If no user is stated, we try the current user, if he is in the selected project
-		if(selectedUser2 == null){
+	private void populateUserBar(ProjectSpace selectedProject2, User selectedUser2, boolean fireChangeEvents) {
+		// If no user is stated, we try the current user, if he is in the
+		// selected project
+		if (selectedUser2 == null) {
 			try {
 				selectedUser2 = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance().getCurrentWorkspace());
 			} catch (NoCurrentUserException e) {
-				
+
 			} catch (CannotMatchUserInProjectException e) {}
 		}
-		
-		//Build list of users
+
+		// Build list of users
 		List<User> users = new ArrayList<User>();
-		List<User> projectUsers = selectedProject2.getProject().getAllModelElementsbyClass(OrganizationPackage.eINSTANCE
-			.getUser(), new BasicEList<User>());
+		List<User> projectUsers = selectedProject2.getProject().getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(), new BasicEList<User>());
 		User noUser = OrganizationFactory.eINSTANCE.createUser();
 		noUser.setName("[no user]");
 		users.add(noUser);
 		users.addAll(projectUsers);
-		
+
 		userBar.setInput(users, selectedUser2, fireChangeEvents);
-		
+
 	}
 
 	/**
 	 * Populates the project combo box.
+	 * 
 	 * @param selectedProject2 the project to select
 	 * @param fireChangeEvents if a change event should be fired
 	 */
 	private void populateProjectBar(ProjectSpace selectedProject2, boolean fireChangeEvents) {
 		Workspace w = WorkspaceManager.getInstance().getCurrentWorkspace();
 		EList<ProjectSpace> spaces = w.getProjectSpaces();
-		
+
 		projectBar.setInput(spaces, selectedProject2, fireChangeEvents);
 	}
-	
+
 	/**
-	 * Returns a default project space. This is just the first project in the workspace.
+	 * Returns a default project space. This is just the first project in the
+	 * workspace.
+	 * 
 	 * @return the first project in the workspace.
 	 */
-	private ProjectSpace getDefaultProject(){
+	private ProjectSpace getDefaultProject() {
 		Workspace w = WorkspaceManager.getInstance().getCurrentWorkspace();
 		return w.getProjectSpaces().get(0);
 	}
-	
-	
 
 	/**
 	 * {@inheritDoc}
-	 */	
+	 */
 	@Override
 	protected ItemsFilter createFilter() {
 		return new AdvancedModelElementFilter();
 	}
-	
 
-	
 	/**
-	 * Model element filter that differs from its super class by:
-	 * -providing the "hack" that is used to refresh the content (i.e. change the model elements to be displayed)
-	 * -showing all model elements if no pattern is chosen.
+	 * Model element filter that differs from its super class by: -providing the
+	 * "hack" that is used to refresh the content (i.e. change the model
+	 * elements to be displayed) -showing all model elements if no pattern is
+	 * chosen.
+	 * 
 	 * @author jfinis
-	 *
+	 * 
 	 */
-	protected class AdvancedModelElementFilter extends ModelElementFilter{
-		
+	protected class AdvancedModelElementFilter extends ModelElementFilter {
+
 		/**
-		 * Used for the hack. Besides that, same as super method.
-		 * {@inheritDoc}
+		 * Used for the hack. Besides that, same as super method. {@inheritDoc}
 		 */
 		@Override
 		public boolean isSubFilter(ItemsFilter filter) {
-			if(isInRefreshMode){
+			if (isInRefreshMode) {
 				return false;
 			}
 			return super.isSubFilter(filter);
 		}
-		
+
 		/**
 		 * Used for the hack. Besides that, same as super method.
 		 * 
@@ -510,44 +576,42 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		 **/
 		@Override
 		public boolean equalsFilter(ItemsFilter filter) {
-			if(isInRefreshMode){
+			if (isInRefreshMode) {
 				return false;
 			}
 			return super.equalsFilter(filter);
 		}
-		
+
 		/**
-		 * Used to display all elements if no pattern is chosen.
-		 * Besides that, same as super method.
+		 * Used to display all elements if no pattern is chosen. Besides that,
+		 * same as super method.
 		 * 
 		 * {@inheritDoc}
 		 */
 		@Override
 		public String getPattern() {
 			String pattern = super.getPattern();
-			if("".equals(pattern)){
+			if ("".equals(pattern)) {
 				return "**";
 			}
 			return pattern;
 		}
-	
-		
+
 	}
 
-
 	/**
-	 *	Label provider that forwards most calls to another label provider,
-	 *  but decorates "create new xxx" entries with a special image.
+	 * Label provider that forwards most calls to another label provider, but
+	 * decorates "create new xxx" entries with a special image.
 	 * 
 	 * @author jfinis
 	 */
-	private final class AdvancedLabelProvider implements ILabelProvider{
-		
+	private final class AdvancedLabelProvider implements ILabelProvider {
+
 		private ILabelProvider wrappedProvider;
 
-		private AdvancedLabelProvider(ILabelProvider wrappedProvider){
+		private AdvancedLabelProvider(ILabelProvider wrappedProvider) {
 			this.wrappedProvider = wrappedProvider;
-			
+
 		}
 
 		/**
@@ -555,8 +619,8 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		 */
 		public Image getImage(Object element) {
 			Image img = wrappedProvider.getImage(element);
-			
-			if(elementIsCreateEntry(element)){
+
+			if (elementIsCreateEntry(element)) {
 				img = new Image(img.getDevice(), new DecorationImageDescriptor(img).getImageData());
 			}
 			return img;
@@ -596,20 +660,21 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		public void removeListener(ILabelProviderListener listener) {
 			wrappedProvider.removeListener(listener);
 		}
-		
+
 	}
 
 	/**
 	 * 
 	 * Decorator that adds the decorating image to an image.
+	 * 
 	 * @author jfinis
-	 *
+	 * 
 	 */
-	private final class DecorationImageDescriptor extends CompositeImageDescriptor{
-		
+	private final class DecorationImageDescriptor extends CompositeImageDescriptor {
+
 		private Image image;
 
-		private DecorationImageDescriptor(Image image){
+		private DecorationImageDescriptor(Image image) {
 			this.image = image;
 		}
 
@@ -618,12 +683,12 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		 */
 		@Override
 		protected void drawCompositeImage(int width, int height) {
-			
-			//Draw base image.
+
+			// Draw base image.
 			drawImage(image.getImageData(), 0, 0);
-			
-			//Add decoration
-			drawImage(DECORATION_IMAGE,0,0);
+
+			// Add decoration
+			drawImage(DECORATION_IMAGE, 0, 0);
 		}
 
 		/**
@@ -631,12 +696,9 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		 */
 		@Override
 		protected Point getSize() {
-			return new Point(image.getBounds().width,image.getBounds().height);
+			return new Point(image.getBounds().width, image.getBounds().height);
 		}
-		
+
 	}
 
-
-	
-	
 }

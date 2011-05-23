@@ -17,22 +17,37 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 
-public abstract class ResourceCommandHandler extends AbstractHandler{
-	protected IProject[] getSelectedProjects(ExecutionEvent event){
+/**
+ * Abstract base class for all command handlers which run on Eclipse resources.
+ * Provides convenience methods for retrieving the set of selected projects
+ * quickly.
+ * 
+ * @author jfinis
+ * 
+ */
+public abstract class ResourceCommandHandler extends AbstractHandler {
+
+	/**
+	 * Retrieves the selected projects.
+	 * 
+	 * @param event execution event
+	 * @return selected projects
+	 */
+	protected IProject[] getSelectedProjects(ExecutionEvent event) {
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
-		//Get the selected resource
-		if(selection.isEmpty() || !(selection instanceof StructuredSelection)){
+		// Get the selected resource
+		if (selection.isEmpty() || !(selection instanceof StructuredSelection)) {
 			return new IProject[0];
 		}
-		StructuredSelection struct = (StructuredSelection)selection;
+		StructuredSelection struct = (StructuredSelection) selection;
 		Object[] select = struct.toArray();
 		IProject[] resources = getProjects(select);
 		return resources;
 	}
-	
-    
+
 	/**
 	 * Returns the list of resources contained in the given elements.
+	 * 
 	 * @param elements
 	 * @return the list of resources contained in the given elements.
 	 */
@@ -40,11 +55,11 @@ public abstract class ResourceCommandHandler extends AbstractHandler{
 		List<IResource> resources = new ArrayList<IResource>();
 		for (int i = 0; i < elements.length; i++) {
 			Object element = elements[i];
-			if(element instanceof IAdaptable){
-				//FIXME test this
+			if (element instanceof IAdaptable) {
 				IProject r = (IProject) ((IAdaptable) element).getAdapter(IProject.class);
-				
-				resources.add(r);
+				if (r != null) {
+					resources.add(r);
+				}
 			}
 		}
 		return (IProject[]) resources.toArray(new IProject[resources.size()]);

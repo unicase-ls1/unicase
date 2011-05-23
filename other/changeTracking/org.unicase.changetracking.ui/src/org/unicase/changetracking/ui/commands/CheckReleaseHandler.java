@@ -22,36 +22,44 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.changetracking.ChangeTrackingRelease;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
+/**
+ * Handler for the "check release" command.
+ * 
+ * @author jfinis
+ * 
+ */
 public class CheckReleaseHandler extends AbstractHandler {
 
 	/**
-	 * . {@inheritDoc}
+	 * Performs the release checking and then shows the results in the check
+	 * release dialog.
+	 * 
+	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		//Retrieve selected release
+		// Retrieve selected release
 		UnicaseModelElement me = UnicaseActionHelper.getModelElement(event);
-		if(!(me instanceof ChangeTrackingRelease)){
+		if (!(me instanceof ChangeTrackingRelease)) {
 			UIUtil.errorMessage("The selected model element is no change tracking release");
 			return null;
 		}
 		ChangeTrackingRelease r = (ChangeTrackingRelease) me;
-		
+
+		// Retrieve correspondent adapter
 		VCSAdapter vcs = new VCSAdapterFactory().createFromRelease(r);
-		
+
+		// Perform checking
 		CheckReleaseCommand command = vcs.checkRelease(new UIDecisionProvider(), r);
 		ChangeTrackingCommandResult result = UIUtil.runCommand(command);
-		if(result.getResultType() != ResultType.SUCCESS){
+		if (result.getResultType() != ResultType.SUCCESS) {
 			return null;
 		}
-		
+
+		// Show the dialog
 		CheckReleaseDialog dialog = new CheckReleaseDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), r, command.getReport());
 		dialog.open();
 		return null;
 	}
-
-
-
-	
 
 }

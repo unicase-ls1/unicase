@@ -17,41 +17,50 @@ import org.unicase.changetracking.ui.UIUtil;
 import org.unicase.changetracking.ui.createChangePackage.CreateChangePackageWizard;
 import org.unicase.changetracking.vcs.VCSAdapter;
 import org.unicase.changetracking.vcs.VCSAdapterFactory;
-import org.unicase.metamodel.util.ModelUtil;
 
+/**
+ * Handler for the "create change package" command.
+ * 
+ * @author jfinis
+ * 
+ */
 public class CreateChangePackageHandler extends ResourceCommandHandler {
-	
 
-	
 	/**
-	 * . {@inheritDoc}
+	 * Opens the "create change package" wizard after performing some
+	 * pre-checks.
+	 * 
+	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-	
+
+		// Retrieve selected project
 		IProject[] resources = getSelectedProjects(event);
-		if(resources.length == 0){
+		if (resources.length == 0) {
 			UIUtil.errorMessage("No project selected.");
 			return null;
-		}	   
-		
+		}
 		IProject project = resources[0];
+
+		// Retrieve correspondent adapter
 		VCSAdapter vcs;
-		try{
+		try {
 			vcs = new VCSAdapterFactory().createFromProject(project);
-		} catch (MisuseException e){
+		} catch (MisuseException e) {
 			UIUtil.handleException(e);
 			return null;
 		}
-		
-		//Save dirty editors
-		if(!PlatformUI.getWorkbench().saveAllEditors(true)){
+
+		// Save dirty editors
+		if (!PlatformUI.getWorkbench().saveAllEditors(true)) {
 			return null;
 		}
-		
+
+		// Perform early checks (adapter dependent)
 		String problem;
 		try {
 			problem = vcs.performEarlyCreateChangePackageChecks(project);
-			if(problem != null){
+			if (problem != null) {
 				UIUtil.errorMessage(problem);
 				return null;
 			}
@@ -59,18 +68,12 @@ public class CreateChangePackageHandler extends ResourceCommandHandler {
 			UIUtil.handleException(e);
 			return null;
 		}
-		
-		try{
-			WizardDialog dlg = new WizardDialog(PlatformUI.getWorkbench().
-					getActiveWorkbenchWindow().getShell(), new CreateChangePackageWizard(vcs,project));
-		    dlg.open();
-		} catch (Throwable t){
-			ModelUtil.logException(t);
-			return null;
-		}
+
+		// Open the create work item dialog
+		WizardDialog dlg = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), new CreateChangePackageWizard(vcs, project));
+		dlg.open();
+
 		return null;
 	}
-
-	
 
 }

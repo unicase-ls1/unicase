@@ -17,7 +17,14 @@ import org.unicase.changetracking.vcs.VCSAdapter;
 import org.unicase.model.changetracking.ChangeTrackingRelease;
 import org.unicase.model.changetracking.RepositoryLocation;
 
-public class BuildReleaseWizard extends Wizard{
+/**
+ * Wizard for building a release. On the first page, the release check report is
+ * displayed. On the next page, properties of the build can be altered.
+ * 
+ * @author jfinis
+ * 
+ */
+public class BuildReleaseWizard extends Wizard {
 
 	private ChangeTrackingRelease release;
 	private ReleaseCheckReport report;
@@ -25,6 +32,14 @@ public class BuildReleaseWizard extends Wizard{
 	private BuildSettingsPage buildSettingsPage;
 	private RepositoryLocation repoLocation;
 	private VCSAdapter vcs;
+
+	/**
+	 * Default constructor.
+	 * 
+	 * @param release release to be built
+	 * @param report report from checking the release
+	 * @param vcs VCS adapter to be used
+	 */
 	public BuildReleaseWizard(ChangeTrackingRelease release, ReleaseCheckReport report, VCSAdapter vcs) {
 		this.release = release;
 		this.report = report;
@@ -32,21 +47,21 @@ public class BuildReleaseWizard extends Wizard{
 		this.repoLocation = report.getRepoLocation();
 		this.vcs = vcs;
 	}
-	
+
 	@Override
 	public void addPages() {
 		ReviewReleasePage reviewReleasePage = new ReviewReleasePage("Build Release", "Review Release", null, release, report);
 		addPage(reviewReleasePage);
-		buildSettingsPage = new BuildSettingsPage("Build Release", "Review Release", null, release, report, vcs, repoLocation);
+		buildSettingsPage = new BuildSettingsPage("Build Release", "Review Release", null, release, vcs, repoLocation);
 		addPage(buildSettingsPage);
-		
+
 	}
-	
+
 	@Override
 	public void setContainer(IWizardContainer wizardContainer) {
 		super.setContainer(wizardContainer);
 		final IWizardContainer container = getContainer();
-		if(container instanceof IPageChangeProvider){
+		if (container instanceof IPageChangeProvider) {
 			((IPageChangeProvider) container).addPageChangedListener(new IPageChangedListener() {
 
 				public void pageChanged(PageChangedEvent event) {
@@ -56,22 +71,21 @@ public class BuildReleaseWizard extends Wizard{
 		}
 	}
 
-	
 	@Override
 	public boolean performFinish() {
 		boolean wantBuild = false;
-		if(report.hasWarnings()){
-			if (UIUtil.openQuestion("Build with warnings?", "The release contains warnings. Do you really want to build it?")){
+		if (report.hasWarnings()) {
+			if (UIUtil.openQuestion("Build with warnings?", "The release contains warnings. Do you really want to build it?")) {
 				wantBuild = true;
 			}
 		} else {
 			wantBuild = true;
 		}
-		
-		if(wantBuild){
-			
+
+		if (wantBuild) {
+
 			BuildReleaseCommand command = vcs.buildRelease(release, buildSettingsPage.getTagName(), report);
-			new BuildReleaseOperation(command,false).run();
+			new BuildReleaseOperation(command, false).run();
 		}
 		return true;
 	}
@@ -80,13 +94,18 @@ public class BuildReleaseWizard extends Wizard{
 	public boolean canFinish() {
 		return canFinish && getContainer().getCurrentPage() == buildSettingsPage;
 	}
-	
-	void setFinishable(boolean finishable){
+
+	/**
+	 * Sets whether this dialog is able to be finished (i.e. whether the finish
+	 * button is enabled)
+	 * 
+	 * @param finishable whether dialog may be finished
+	 */
+	void setFinishable(boolean finishable) {
 		canFinish = finishable;
-		if(getContainer() != null && getContainer().getCurrentPage() != null){
+		if (getContainer() != null && getContainer().getCurrentPage() != null) {
 			getContainer().updateButtons();
 		}
 	}
-	
-	
+
 }

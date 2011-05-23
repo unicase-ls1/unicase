@@ -18,41 +18,48 @@ import org.unicase.changetracking.ui.UIUtil;
 import org.unicase.changetracking.vcs.VCSAdapter;
 import org.unicase.changetracking.vcs.VCSAdapterFactory;
 
+/**
+ * Handler for the "create stream from current branch" command.
+ * 
+ * @author jfinis
+ * 
+ */
 public class CreateStreamFromCurrentBranchHandler extends ResourceCommandHandler {
-	
 
 	/**
-	 * . {@inheritDoc}
+	 * Creates the stream and opens it in the unicase perspective.
+	 * 
+	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
+		// Get selected project
 		IProject[] projects = getSelectedProjects(event);
-		if(projects.length == 0){
-			UIUtil.errorMessage("Error","No project selected.");
+		if (projects.length == 0) {
+			UIUtil.errorMessage("Error", "No project selected.");
 			return null;
 		}
-	
-		//Save dirty editors
-		if(!PlatformUI.getWorkbench().saveAllEditors(true)){
-			return null;
-		}
-		
 		IProject project = projects[0];
-		
+
+		// Save dirty editors
+		if (!PlatformUI.getWorkbench().saveAllEditors(true)) {
+			return null;
+		}
+
+		// Retrieve correspondent adapter
 		VCSAdapter vcs = new VCSAdapterFactory().createFromProject(project);
-		
+
+		// Create the stream
 		CreateStreamCommand cmd = vcs.createStreamFromCurrentBranch(new UIDecisionProvider(), project);
 		ChangeTrackingCommandResult result = UIUtil.runCommand(cmd);
 
-		//Finally, open the stream in the unicase perspective
-		if(result.getResultType() == ResultType.SUCCESS){
+		// Finally, open the stream in the unicase perspective
+		if (result.getResultType() == ResultType.SUCCESS) {
 			UIUtil.openUnicaseAndModelElement(cmd.getCreatedStream());
 		}
-		
-		return null;
-		
-	}
 
-	
+		return null;
+
+	}
 
 }
