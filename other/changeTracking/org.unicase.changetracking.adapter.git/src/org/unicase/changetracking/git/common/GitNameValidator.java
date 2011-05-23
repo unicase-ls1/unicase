@@ -9,12 +9,27 @@ import org.unicase.changetracking.vcs.NameValidator;
 import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.git.GitRepository;
 
-public class GitNameValidator implements NameValidator{
+/**
+ * Git implementation of a name validator.
+ * 
+ * Validates name to be suitable for git.
+ * 
+ * 
+ * @author jfinis
+ * 
+ */
+public class GitNameValidator implements NameValidator {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String cleanName(String name) {
 		return GitNameUtil.cleanName(name);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String isNewTagNameValid(String text, RepositoryLocation repoLoc) {
 		return GitNameUtil.isNewTagNameValid(text, GitRepoFindUtil.findAssociatedLocalRepo((GitRepository) repoLoc));
 	}

@@ -37,69 +37,118 @@ import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevTag;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
 
+/**
+ * Wrapper class which eases the use of Git functions. Mainly catches all
+ * exceptions and wraps them in an unexpected exception.
+ * 
+ * @author jfinis
+ * 
+ */
 public class GitWrapper {
 
 	private Repository repo;
 	private Git git;
 
-	public GitWrapper(Repository repo){
+	/**
+	 * Creates a wrapper from a repository.
+	 * 
+	 * @param repo repo to be wrapped
+	 */
+	public GitWrapper(Repository repo) {
 		this.repo = repo;
 		this.git = new Git(repo);
 	}
-	
-	public Ref checkout(String nameToCheckout, boolean createBranch){
+
+	/**
+	 * Executes a Git checkout.
+	 * 
+	 * @param nameToCheckout name of the branch to be checked out
+	 * @param createBranch whether a new branch should be created
+	 * @return a ref to the checked out branch
+	 */
+	public Ref checkout(String nameToCheckout, boolean createBranch) {
 		try {
 			return git.checkout().setCreateBranch(createBranch).setName(nameToCheckout).call();
 		} catch (JGitInternalException e) {
-			throw new UnexpectedGitException("Checking out the branch failed.",e);
+			throw new UnexpectedGitException("Checking out the branch failed.", e);
 		} catch (RefAlreadyExistsException e) {
-			throw new UnexpectedGitException("Checking out the branch failed.",e);
+			throw new UnexpectedGitException("Checking out the branch failed.", e);
 		} catch (RefNotFoundException e) {
-			throw new UnexpectedGitException("Checking out the branch failed.",e);
+			throw new UnexpectedGitException("Checking out the branch failed.", e);
 		} catch (InvalidRefNameException e) {
-			throw new UnexpectedGitException("Checking out the branch failed.",e);
+			throw new UnexpectedGitException("Checking out the branch failed.", e);
 		}
 	}
-	
-	public Ref checkout(String nameToCheckout){
+
+	/**
+	 * Executes a Git checkout.
+	 * 
+	 * @param nameToCheckout name of the branch to be checked out
+	 * @return a ref to the checked out branch
+	 */
+	public Ref checkout(String nameToCheckout) {
 		return checkout(nameToCheckout, false);
 	}
-	
-	public RevCommit commit(String shortDescription, String longDescription){
+
+	/**
+	 * Executes a Git commit.
+	 * 
+	 * @param shortDescription short description of the commit
+	 * @param longDescription long description of the commit
+	 * @return the commit
+	 */
+	public RevCommit commit(String shortDescription, String longDescription) {
 		return commit(shortDescription + "\n\n" + longDescription);
 	}
-	
-	public RevCommit commitResolvedMergeConflicts(){
-		if(repo.getRepositoryState() != RepositoryState.MERGING_RESOLVED){
+
+	/**
+	 * Commits resolved conflicts with a default commit message. Can only be
+	 * used if the repository is in the MERGING_RESOLVED state.
+	 * 
+	 * @return the commit
+	 */
+	public RevCommit commitResolvedMergeConflicts() {
+		if (repo.getRepositoryState() != RepositoryState.MERGING_RESOLVED) {
 			throw new UnexpectedGitException("Cannot do a resolved merge commit if the repo is not in the MERGING_RESOLVED state");
 		}
-		
-		return commit(getMergeResolveMessage(repo));
+
+		return commit(getMergeResolveMessage());
 	}
-	
-	private RevCommit commit(String message){
-		//Commit changes
+
+	/**
+	 * Executes a git commit.
+	 * 
+	 * @param message commit message
+	 * @return the commit
+	 */
+	private RevCommit commit(String message) {
+		// Commit changes
 		RevCommit commit = null;
 		try {
 			commit = git.commit().setAll(true).setMessage(message).call();
 		} catch (NoHeadException e) {
-			throw new UnexpectedGitException("Could not create new branch",e);
+			throw new UnexpectedGitException("Could not create new branch", e);
 		} catch (NoMessageException e) {
-			throw new UnexpectedGitException("Could not create new branch",e);
+			throw new UnexpectedGitException("Could not create new branch", e);
 		} catch (UnmergedPathException e) {
-			throw new UnexpectedGitException("Could not create new branch",e);
+			throw new UnexpectedGitException("Could not create new branch", e);
 		} catch (ConcurrentRefUpdateException e) {
-			throw new UnexpectedGitException("Could not create new branch",e);
+			throw new UnexpectedGitException("Could not create new branch", e);
 		} catch (JGitInternalException e) {
-			throw new UnexpectedGitException("Could not create new branch",e);
+			throw new UnexpectedGitException("Could not create new branch", e);
 		} catch (WrongRepositoryStateException e) {
-			throw new UnexpectedGitException("Could not create new branch",e);
+			throw new UnexpectedGitException("Could not create new branch", e);
 		}
 		return commit;
 	}
-	
-	private String getMergeResolveMessage(Repository mergeRepository) {
-		File mergeMsg = new File(mergeRepository.getDirectory(), Constants.MERGE_MSG);
+
+	/**
+	 * Builds the commit message for a resolved merge conflicts commit.
+	 * 
+	 * @return the commit message
+	 */
+	private String getMergeResolveMessage() {
+		File mergeMsg = new File(repo.getDirectory(), Constants.MERGE_MSG);
 		FileReader reader;
 		try {
 			reader = new FileReader(mergeMsg);
@@ -129,11 +178,17 @@ public class GitWrapper {
 	private String newLine() {
 		return System.getProperty("line.separator"); //$NON-NLS-1$
 	}
-	
-	public MergeResult mergeWithResolve(Ref branchToMerge){
+
+	/**
+	 * Performs a git merge of the current branch with the specified one.
+	 * 
+	 * @param branchToMerge branch to be merged.
+	 * @return the merge result
+	 */
+	public MergeResult mergeWithResolve(Ref branchToMerge) {
 		MergeCommand merge = git.merge();
 		merge.setStrategy(MergeStrategy.RESOLVE);
-		merge.include(branchToMerge);			
+		merge.include(branchToMerge);
 		MergeResult mergeRes;
 		try {
 			mergeRes = merge.call();
@@ -152,31 +207,39 @@ public class GitWrapper {
 		}
 		return mergeRes;
 	}
-	
-	public RevTag createTag(String tagName, String message){
+
+	/**
+	 * Creates a Git tag from the current HEAD revision.
+	 * 
+	 * @param tagName tag name
+	 * @param message tag message
+	 * @return the tag
+	 */
+	public RevTag createTag(String tagName, String message) {
 		TagCommand tagCommand = git.tag().setName(tagName);
 		tagCommand.setMessage(message);
 		RevTag tag;
 		try {
 			tag = tagCommand.call();
 		} catch (JGitInternalException e) {
-			throw new UnexpectedGitException("Creating a tag failed.",e);
+			throw new UnexpectedGitException("Creating a tag failed.", e);
 		} catch (ConcurrentRefUpdateException e) {
-			throw new UnexpectedGitException("Creating a tag failed.",e);
+			throw new UnexpectedGitException("Creating a tag` failed.", e);
 		} catch (InvalidTagNameException e) {
-			throw new UnexpectedGitException("Creating a tag failed.",e);
+			throw new UnexpectedGitException("Creating a tag failed.", e);
 		} catch (NoHeadException e) {
-			throw new UnexpectedGitException("Creating a tag failed.",e);
+			throw new UnexpectedGitException("Creating a tag failed.", e);
 		}
 		return tag;
 	}
-	
-	public void addAllFiles(){
+
+	/**
+	 * Performs a Git add on all unadded files in the working copy.
+	 */
+	public void addAllFiles() {
 		try {
 			git.add().addFilepattern(".").call();
-		} catch (NoFilepatternException e1) {
-		}
+		} catch (NoFilepatternException e1) {}
 	}
-	
 
 }

@@ -8,27 +8,51 @@ package org.unicase.changetracking.git.release;
 import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.revwalk.RevCommit;
 
+/**
+ * Data structure for storing information during the release checking process.
+ * 
+ * @author jfinis
+ * 
+ */
 public class CheckEntry {
 
 	private Ref ref;
 	private RevCommit commit;
-	
 
+	/**
+	 * Returns the ref.
+	 * 
+	 * @return ref
+	 */
 	public Ref getRef() {
 		return ref;
 	}
 
+	/**
+	 * Sets the ref.
+	 * 
+	 * @param ref ref
+	 */
 	public void setRef(Ref ref) {
 		this.ref = ref;
 	}
 
+	/**
+	 * Returns the commit.
+	 * 
+	 * @return commit
+	 */
 	public RevCommit getCommit() {
 		return commit;
 	}
 
+	/**
+	 * Sets the commit.
+	 * 
+	 * @param commit commit
+	 */
 	public void setCommit(RevCommit commit) {
 		this.commit = commit;
 	}
-	
-	
+
 }

@@ -16,24 +16,54 @@ import org.unicase.model.changetracking.RepositoryStream;
 import org.unicase.model.changetracking.git.GitBranch;
 import org.unicase.model.changetracking.git.GitBranchChangePackage;
 
+/**
+ * Adapter provider for Git. Mainly identifies the different objects by their
+ * class.
+ * 
+ * @author jfinis
+ * 
+ */
 public class GitVCSAdapterProvider implements VCSAdapterProvider {
 
+	/**
+	 * Is able to provide if repo stream is a git branch.
+	 * 
+	 * {@inheritDoc}
+	 */
 	public boolean providesForStream(RepositoryStream stream) {
 		return stream instanceof GitBranch;
 	}
 
+	/**
+	 * Is able to provide if revision is a git tag.
+	 * 
+	 * {@inheritDoc}
+	 */
 	public boolean providesForRevision(RepositoryRevision revision) {
 		return revision instanceof GitTag;
 	}
 
+	/**
+	 * Is able to provide if the change package is a git branch change package.
+	 * 
+	 * {@inheritDoc}
+	 */
 	public boolean providesForChangePackage(ChangePackage pkg) {
 		return pkg instanceof GitBranchChangePackage;
 	}
 
+	/**
+	 * Is able to provide if the project is under git version control.
+	 * 
+	 * {@inheritDoc}
+	 */
 	public boolean providesForProject(IProject project) {
 		return null != GitRepoFindUtil.findRepository(project.getFullPath().toFile());
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public VCSAdapter create() {
 		return new GitVCSAdapter();
 	}
