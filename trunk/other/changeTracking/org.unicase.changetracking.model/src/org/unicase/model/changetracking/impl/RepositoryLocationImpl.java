@@ -1,22 +1,25 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.unicase.model.changetracking.ChangetrackingPackage;
 import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.RepositoryStream;
+
 import org.unicase.model.impl.UnicaseModelElementImpl;
 
 /**
@@ -32,15 +35,7 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  *
  * @generated
  */
-public abstract class RepositoryLocationImpl extends UnicaseModelElementImpl
-		implements RepositoryLocation {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
+public abstract class RepositoryLocationImpl extends UnicaseModelElementImpl implements RepositoryLocation {
 	/**
 	 * The cached value of the '{@link #getStreams() <em>Streams</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -77,10 +72,7 @@ public abstract class RepositoryLocationImpl extends UnicaseModelElementImpl
 	 */
 	public EList<RepositoryStream> getStreams() {
 		if (streams == null) {
-			streams = new EObjectWithInverseResolvingEList<RepositoryStream>(
-					RepositoryStream.class, this,
-					ChangetrackingPackage.REPOSITORY_LOCATION__STREAMS,
-					ChangetrackingPackage.REPOSITORY_STREAM__LOCATION);
+			streams = new EObjectWithInverseResolvingEList<RepositoryStream>(RepositoryStream.class, this, ChangetrackingPackage.REPOSITORY_LOCATION__STREAMS, ChangetrackingPackage.REPOSITORY_STREAM__LOCATION);
 		}
 		return streams;
 	}
@@ -92,12 +84,10 @@ public abstract class RepositoryLocationImpl extends UnicaseModelElementImpl
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ChangetrackingPackage.REPOSITORY_LOCATION__STREAMS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getStreams())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getStreams()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -108,12 +98,10 @@ public abstract class RepositoryLocationImpl extends UnicaseModelElementImpl
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ChangetrackingPackage.REPOSITORY_LOCATION__STREAMS:
-			return ((InternalEList<?>) getStreams())
-					.basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getStreams()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -143,8 +131,7 @@ public abstract class RepositoryLocationImpl extends UnicaseModelElementImpl
 		switch (featureID) {
 		case ChangetrackingPackage.REPOSITORY_LOCATION__STREAMS:
 			getStreams().clear();
-			getStreams().addAll(
-					(Collection<? extends RepositoryStream>) newValue);
+			getStreams().addAll((Collection<? extends RepositoryStream>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

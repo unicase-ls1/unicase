@@ -19,7 +19,7 @@ import org.unicase.changetracking.ui.releases.CheckReleaseDialog;
 import org.unicase.changetracking.vcs.VCSAdapter;
 import org.unicase.changetracking.vcs.VCSAdapterFactory;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
+import org.unicase.model.changetracking.Release;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 /**
@@ -40,11 +40,11 @@ public class CheckReleaseHandler extends AbstractHandler {
 
 		// Retrieve selected release
 		UnicaseModelElement me = UnicaseActionHelper.getModelElement(event);
-		if (!(me instanceof ChangeTrackingRelease)) {
+		if (!(me instanceof Release)) {
 			UIUtil.errorMessage("The selected model element is no change tracking release");
 			return null;
 		}
-		ChangeTrackingRelease r = (ChangeTrackingRelease) me;
+		Release r = (Release) me;
 
 		// Retrieve correspondent adapter
 		VCSAdapter vcs = new VCSAdapterFactory().createFromRelease(r);

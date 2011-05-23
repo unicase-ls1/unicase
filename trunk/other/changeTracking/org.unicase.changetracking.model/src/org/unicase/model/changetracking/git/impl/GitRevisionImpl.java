@@ -1,16 +1,18 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.git.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.unicase.model.changetracking.git.GitPackage;
 import org.unicase.model.changetracking.git.GitRevision;
+
 import org.unicase.model.changetracking.impl.RepositoryRevisionImpl;
 
 /**
@@ -27,15 +29,7 @@ import org.unicase.model.changetracking.impl.RepositoryRevisionImpl;
  *
  * @generated
  */
-public class GitRevisionImpl extends RepositoryRevisionImpl implements
-		GitRevision {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
+public class GitRevisionImpl extends RepositoryRevisionImpl implements GitRevision {
 	/**
 	 * The default value of the '{@link #getHash() <em>Hash</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -45,6 +39,7 @@ public class GitRevisionImpl extends RepositoryRevisionImpl implements
 	 * @ordered
 	 */
 	protected static final String HASH_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getHash() <em>Hash</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -112,8 +107,7 @@ public class GitRevisionImpl extends RepositoryRevisionImpl implements
 		String oldHash = hash;
 		hash = newHash;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					GitPackage.GIT_REVISION__HASH, oldHash, hash));
+			eNotify(new ENotificationImpl(this, Notification.SET, GitPackage.GIT_REVISION__HASH, oldHash, hash));
 	}
 
 	/**
@@ -134,8 +128,7 @@ public class GitRevisionImpl extends RepositoryRevisionImpl implements
 		String oldTagName = tagName;
 		tagName = newTagName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					GitPackage.GIT_REVISION__TAG_NAME, oldTagName, tagName));
+			eNotify(new ENotificationImpl(this, Notification.SET, GitPackage.GIT_REVISION__TAG_NAME, oldTagName, tagName));
 	}
 
 	/**
@@ -199,11 +192,9 @@ public class GitRevisionImpl extends RepositoryRevisionImpl implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case GitPackage.GIT_REVISION__HASH:
-			return HASH_EDEFAULT == null ? hash != null : !HASH_EDEFAULT
-					.equals(hash);
+			return HASH_EDEFAULT == null ? hash != null : !HASH_EDEFAULT.equals(hash);
 		case GitPackage.GIT_REVISION__TAG_NAME:
-			return TAG_NAME_EDEFAULT == null ? tagName != null
-					: !TAG_NAME_EDEFAULT.equals(tagName);
+			return TAG_NAME_EDEFAULT == null ? tagName != null : !TAG_NAME_EDEFAULT.equals(tagName);
 		}
 		return super.eIsSet(featureID);
 	}

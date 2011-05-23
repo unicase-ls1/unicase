@@ -19,7 +19,7 @@ import org.unicase.changetracking.exceptions.VCSException;
 import org.unicase.changetracking.release.ReleaseCheckReport;
 import org.unicase.metamodel.Project;
 import org.unicase.model.changetracking.ChangePackage;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
+import org.unicase.model.changetracking.Release;
 import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.RepositoryStream;
 import org.unicase.model.task.WorkItem;
@@ -71,7 +71,7 @@ public abstract class BasicVCSAdapter implements VCSAdapter {
 	/**
 	 * {@inheritDoc}
 	 */
-	public BuildReleaseCommand buildRelease(ChangeTrackingRelease release, String tagName, ReleaseCheckReport checkReport) {
+	public BuildReleaseCommand buildRelease(Release release, String tagName, ReleaseCheckReport checkReport) {
 		return new BuildReleaseCommand() {
 
 			@Override
@@ -89,7 +89,7 @@ public abstract class BasicVCSAdapter implements VCSAdapter {
 	/**
 	 * {@inheritDoc}
 	 */
-	public CheckReleaseCommand checkRelease(IDecisionProvider decisionProvider, ChangeTrackingRelease release) {
+	public CheckReleaseCommand checkRelease(IDecisionProvider decisionProvider, Release release) {
 		return new CheckReleaseCommand() {
 
 			@Override

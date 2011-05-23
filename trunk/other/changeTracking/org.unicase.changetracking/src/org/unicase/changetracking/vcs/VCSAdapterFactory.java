@@ -10,7 +10,7 @@ import java.util.List;
 import org.eclipse.core.resources.IProject;
 import org.unicase.changetracking.exceptions.MisuseException;
 import org.unicase.model.changetracking.ChangePackage;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
+import org.unicase.model.changetracking.Release;
 import org.unicase.model.changetracking.RepositoryStream;
 import org.unicase.model.changetracking.Stream;
 
@@ -81,7 +81,7 @@ public class VCSAdapterFactory {
 	 * @throws MisuseException if no matching adapter was found or if the
 	 *             release doesn't have a stream or repository stream assigned
 	 */
-	public VCSAdapter createFromRelease(ChangeTrackingRelease r) throws MisuseException {
+	public VCSAdapter createFromRelease(Release r) throws MisuseException {
 		Stream s = r.getStream();
 		if (s == null) {
 			throw new MisuseException("The release has no stream attached.");

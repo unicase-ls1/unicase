@@ -36,16 +36,7 @@ import org.unicase.model.changetracking.provider.ChangeTrackingEditPlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PatchChangePackageItemProvider extends ChangePackageItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
+public class PatchChangePackageItemProvider extends ChangePackageItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -81,17 +72,7 @@ public class PatchChangePackageItemProvider extends ChangePackageItemProvider
 	 * @generated
 	 */
 	protected void addFileNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_FileAttachment_fileName_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_FileAttachment_fileName_feature",
-						"_UI_FileAttachment_type"),
-				AttachmentPackage.Literals.FILE_ATTACHMENT__FILE_NAME, false,
-				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FileAttachment_fileName_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FileAttachment_fileName_feature", "_UI_FileAttachment_type"), AttachmentPackage.Literals.FILE_ATTACHMENT__FILE_NAME, false, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -101,17 +82,7 @@ public class PatchChangePackageItemProvider extends ChangePackageItemProvider
 	 * @generated
 	 */
 	protected void addFileSizePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_FileAttachment_fileSize_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_FileAttachment_fileSize_feature",
-						"_UI_FileAttachment_type"),
-				AttachmentPackage.Literals.FILE_ATTACHMENT__FILE_SIZE, false,
-				false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FileAttachment_fileSize_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FileAttachment_fileSize_feature", "_UI_FileAttachment_type"), AttachmentPackage.Literals.FILE_ATTACHMENT__FILE_SIZE, false, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -121,17 +92,7 @@ public class PatchChangePackageItemProvider extends ChangePackageItemProvider
 	 * @generated
 	 */
 	protected void addFileTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_FileAttachment_fileType_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_FileAttachment_fileType_feature",
-						"_UI_FileAttachment_type"),
-				AttachmentPackage.Literals.FILE_ATTACHMENT__FILE_TYPE, true,
-				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FileAttachment_fileType_feature"), getString("_UI_PropertyDescriptor_description", "_UI_FileAttachment_fileType_feature", "_UI_FileAttachment_type"), AttachmentPackage.Literals.FILE_ATTACHMENT__FILE_TYPE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -142,8 +103,7 @@ public class PatchChangePackageItemProvider extends ChangePackageItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/PatchChangePackage"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PatchChangePackage"));
 	}
 
 	/**
@@ -155,8 +115,7 @@ public class PatchChangePackageItemProvider extends ChangePackageItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((PatchChangePackage) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_PatchChangePackage_type")
-				: getString("_UI_PatchChangePackage_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_PatchChangePackage_type") : getString("_UI_PatchChangePackage_type") + " " + label;
 	}
 
 	/**
@@ -176,8 +135,7 @@ public class PatchChangePackageItemProvider extends ChangePackageItemProvider
 		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_ID:
 		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_SIZE:
 		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_TYPE:
-			fireNotifyChanged(new ViewerNotification(notification,
-					notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -191,8 +149,7 @@ public class PatchChangePackageItemProvider extends ChangePackageItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

@@ -1,19 +1,21 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.git.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.unicase.model.changetracking.git.GitBranch;
 import org.unicase.model.changetracking.git.GitBranchChangePackage;
 import org.unicase.model.changetracking.git.GitPackage;
+
 import org.unicase.model.changetracking.impl.ChangePackageImpl;
 
 /**
@@ -29,15 +31,7 @@ import org.unicase.model.changetracking.impl.ChangePackageImpl;
  *
  * @generated
  */
-public class GitBranchChangePackageImpl extends ChangePackageImpl implements
-		GitBranchChangePackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
+public class GitBranchChangePackageImpl extends ChangePackageImpl implements GitBranchChangePackage {
 	/**
 	 * The cached value of the '{@link #getBranch() <em>Branch</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -78,9 +72,7 @@ public class GitBranchChangePackageImpl extends ChangePackageImpl implements
 			branch = (GitBranch) eResolveProxy(oldBranch);
 			if (branch != oldBranch) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							GitPackage.GIT_BRANCH_CHANGE_PACKAGE__BRANCH,
-							oldBranch, branch));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GitPackage.GIT_BRANCH_CHANGE_PACKAGE__BRANCH, oldBranch, branch));
 			}
 		}
 		return branch;
@@ -100,15 +92,11 @@ public class GitBranchChangePackageImpl extends ChangePackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBranch(GitBranch newBranch,
-			NotificationChain msgs) {
+	public NotificationChain basicSetBranch(GitBranch newBranch, NotificationChain msgs) {
 		GitBranch oldBranch = branch;
 		branch = newBranch;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET,
-					GitPackage.GIT_BRANCH_CHANGE_PACKAGE__BRANCH, oldBranch,
-					newBranch);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GitPackage.GIT_BRANCH_CHANGE_PACKAGE__BRANCH, oldBranch, newBranch);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -126,20 +114,14 @@ public class GitBranchChangePackageImpl extends ChangePackageImpl implements
 		if (newBranch != branch) {
 			NotificationChain msgs = null;
 			if (branch != null)
-				msgs = ((InternalEObject) branch).eInverseRemove(this,
-						GitPackage.GIT_BRANCH__REFERRING_CHANGE_PACKAGES,
-						GitBranch.class, msgs);
+				msgs = ((InternalEObject) branch).eInverseRemove(this, GitPackage.GIT_BRANCH__REFERRING_CHANGE_PACKAGES, GitBranch.class, msgs);
 			if (newBranch != null)
-				msgs = ((InternalEObject) newBranch).eInverseAdd(this,
-						GitPackage.GIT_BRANCH__REFERRING_CHANGE_PACKAGES,
-						GitBranch.class, msgs);
+				msgs = ((InternalEObject) newBranch).eInverseAdd(this, GitPackage.GIT_BRANCH__REFERRING_CHANGE_PACKAGES, GitBranch.class, msgs);
 			msgs = basicSetBranch(newBranch, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					GitPackage.GIT_BRANCH_CHANGE_PACKAGE__BRANCH, newBranch,
-					newBranch));
+			eNotify(new ENotificationImpl(this, Notification.SET, GitPackage.GIT_BRANCH_CHANGE_PACKAGE__BRANCH, newBranch, newBranch));
 	}
 
 	/**
@@ -148,14 +130,11 @@ public class GitBranchChangePackageImpl extends ChangePackageImpl implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case GitPackage.GIT_BRANCH_CHANGE_PACKAGE__BRANCH:
 			if (branch != null)
-				msgs = ((InternalEObject) branch).eInverseRemove(this,
-						GitPackage.GIT_BRANCH__REFERRING_CHANGE_PACKAGES,
-						GitBranch.class, msgs);
+				msgs = ((InternalEObject) branch).eInverseRemove(this, GitPackage.GIT_BRANCH__REFERRING_CHANGE_PACKAGES, GitBranch.class, msgs);
 			return basicSetBranch((GitBranch) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -167,8 +146,7 @@ public class GitBranchChangePackageImpl extends ChangePackageImpl implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case GitPackage.GIT_BRANCH_CHANGE_PACKAGE__BRANCH:
 			return basicSetBranch(null, msgs);

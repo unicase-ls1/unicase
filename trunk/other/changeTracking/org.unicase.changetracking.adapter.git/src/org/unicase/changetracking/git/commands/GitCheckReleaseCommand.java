@@ -12,7 +12,7 @@ import org.unicase.changetracking.exceptions.CancelledByUserException;
 import org.unicase.changetracking.git.release.ReleaseChecker;
 import org.unicase.changetracking.git.ui.LocalRepoFindHandler;
 import org.unicase.changetracking.ui.UIUtil;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
+import org.unicase.model.changetracking.Release;
 
 /**
  * Git implementation of the "check release" use case.
@@ -22,14 +22,14 @@ import org.unicase.model.changetracking.ChangeTrackingRelease;
  */
 public class GitCheckReleaseCommand extends CheckReleaseCommand {
 
-	private ChangeTrackingRelease release;
+	private Release release;
 
 	/**
 	 * Default constructor.
 	 * 
 	 * @param r release to be checked
 	 */
-	public GitCheckReleaseCommand(ChangeTrackingRelease r) {
+	public GitCheckReleaseCommand(Release r) {
 		this.release = r;
 	}
 

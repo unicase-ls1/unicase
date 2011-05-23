@@ -13,7 +13,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.Attachment;
 import org.unicase.model.changetracking.ChangePackage;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
+import org.unicase.model.changetracking.Release;
 import org.unicase.model.task.WorkItem;
 
 /**
@@ -38,7 +38,7 @@ public final class ReleaseUtil {
 	 * @param release the release
 	 * @return a mapping from change package to work item
 	 */
-	public static Map<ChangePackage, WorkItem> getChangePackagesFromRelease(ChangeTrackingRelease release) {
+	public static Map<ChangePackage, WorkItem> getChangePackagesFromRelease(Release release) {
 		LinkedHashMap<ChangePackage, WorkItem> result = new LinkedHashMap<ChangePackage, WorkItem>();
 		EList<WorkItem> workItems = release.getIncludedWorkItems();
 		for (WorkItem w : workItems) {
@@ -58,7 +58,7 @@ public final class ReleaseUtil {
 	 * @param release the release
 	 * @return list of work items without change packages
 	 */
-	public static List<WorkItem> getWorkItemsWithoutChangePackagesFromRelease(ChangeTrackingRelease release) {
+	public static List<WorkItem> getWorkItemsWithoutChangePackagesFromRelease(Release release) {
 		List<WorkItem> result = new ArrayList<WorkItem>();
 		EList<WorkItem> workItems = release.getIncludedWorkItems();
 		outer: for (WorkItem w : workItems) {
@@ -79,7 +79,7 @@ public final class ReleaseUtil {
 	 * @param release the release
 	 * @return work item statistics
 	 */
-	public static WorkItemStatistics getWorkItemStatisticsFromRelease(ChangeTrackingRelease release) {
+	public static WorkItemStatistics getWorkItemStatisticsFromRelease(Release release) {
 		EList<WorkItem> workItems = release.getIncludedWorkItems();
 		int num = workItems.size();
 		int numResolved = 0;

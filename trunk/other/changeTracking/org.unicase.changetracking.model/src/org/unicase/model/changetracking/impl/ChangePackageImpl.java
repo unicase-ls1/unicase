@@ -1,16 +1,18 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.ChangetrackingPackage;
+
 import org.unicase.model.impl.AttachmentImpl;
 
 /**
@@ -26,15 +28,7 @@ import org.unicase.model.impl.AttachmentImpl;
  *
  * @generated
  */
-public abstract class ChangePackageImpl extends AttachmentImpl implements
-		ChangePackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
+public abstract class ChangePackageImpl extends AttachmentImpl implements ChangePackage {
 	/**
 	 * The default value of the '{@link #getShortDescription() <em>Short Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -44,6 +38,7 @@ public abstract class ChangePackageImpl extends AttachmentImpl implements
 	 * @ordered
 	 */
 	protected static final String SHORT_DESCRIPTION_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getShortDescription() <em>Short Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -91,9 +86,7 @@ public abstract class ChangePackageImpl extends AttachmentImpl implements
 		String oldShortDescription = shortDescription;
 		shortDescription = newShortDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ChangetrackingPackage.CHANGE_PACKAGE__SHORT_DESCRIPTION,
-					oldShortDescription, shortDescription));
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangetrackingPackage.CHANGE_PACKAGE__SHORT_DESCRIPTION, oldShortDescription, shortDescription));
 	}
 
 	/**
@@ -149,8 +142,7 @@ public abstract class ChangePackageImpl extends AttachmentImpl implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ChangetrackingPackage.CHANGE_PACKAGE__SHORT_DESCRIPTION:
-			return SHORT_DESCRIPTION_EDEFAULT == null ? shortDescription != null
-					: !SHORT_DESCRIPTION_EDEFAULT.equals(shortDescription);
+			return SHORT_DESCRIPTION_EDEFAULT == null ? shortDescription != null : !SHORT_DESCRIPTION_EDEFAULT.equals(shortDescription);
 		}
 		return super.eIsSet(featureID);
 	}

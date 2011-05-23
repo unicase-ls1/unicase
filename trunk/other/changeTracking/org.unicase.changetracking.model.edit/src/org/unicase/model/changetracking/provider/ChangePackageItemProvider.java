@@ -1,8 +1,6 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.provider;
 
@@ -11,7 +9,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -21,8 +21,10 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.ChangetrackingPackage;
+
 import org.unicase.model.provider.AttachmentItemProvider;
 
 /**
@@ -31,16 +33,7 @@ import org.unicase.model.provider.AttachmentItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ChangePackageItemProvider extends AttachmentItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
+public class ChangePackageItemProvider extends AttachmentItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -74,31 +67,19 @@ public class ChangePackageItemProvider extends AttachmentItemProvider implements
 	 * @generated
 	 */
 	protected void addShortDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ChangePackage_shortDescription_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_ChangePackage_shortDescription_feature",
-								"_UI_ChangePackage_type"),
-						ChangetrackingPackage.Literals.CHANGE_PACKAGE__SHORT_DESCRIPTION,
-						true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ChangePackage_shortDescription_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ChangePackage_shortDescription_feature", "_UI_ChangePackage_type"), ChangetrackingPackage.Literals.CHANGE_PACKAGE__SHORT_DESCRIPTION, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((ChangePackage) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ChangePackage_type")
-				: label;
+		return label == null || label.length() == 0 ? getString("_UI_ChangePackage_type") : getString("_UI_ChangePackage_type") + " " + label;
 	}
 
 	/**
@@ -114,8 +95,7 @@ public class ChangePackageItemProvider extends AttachmentItemProvider implements
 
 		switch (notification.getFeatureID(ChangePackage.class)) {
 		case ChangetrackingPackage.CHANGE_PACKAGE__SHORT_DESCRIPTION:
-			fireNotifyChanged(new ViewerNotification(notification,
-					notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -129,8 +109,7 @@ public class ChangePackageItemProvider extends AttachmentItemProvider implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

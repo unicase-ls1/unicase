@@ -1,8 +1,6 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.git;
 
@@ -10,6 +8,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.unicase.model.changetracking.ChangetrackingPackage;
 
 /**
@@ -28,13 +27,6 @@ import org.unicase.model.changetracking.ChangetrackingPackage;
  * @generated
  */
 public interface GitPackage extends EPackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -65,8 +57,7 @@ public interface GitPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	GitPackage eINSTANCE = org.unicase.model.changetracking.git.impl.GitPackageImpl
-			.init();
+	GitPackage eINSTANCE = org.unicase.model.changetracking.git.impl.GitPackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.changetracking.git.impl.GitBranchChangePackageImpl <em>Branch Change Package</em>}' class.
@@ -822,8 +813,7 @@ public interface GitPackage extends EPackage {
 		 * @see org.unicase.model.changetracking.git.impl.GitPackageImpl#getGitBranchChangePackage()
 		 * @generated
 		 */
-		EClass GIT_BRANCH_CHANGE_PACKAGE = eINSTANCE
-				.getGitBranchChangePackage();
+		EClass GIT_BRANCH_CHANGE_PACKAGE = eINSTANCE.getGitBranchChangePackage();
 
 		/**
 		 * The meta object literal for the '<em><b>Branch</b></em>' reference feature.
@@ -831,8 +821,7 @@ public interface GitPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GIT_BRANCH_CHANGE_PACKAGE__BRANCH = eINSTANCE
-				.getGitBranchChangePackage_Branch();
+		EReference GIT_BRANCH_CHANGE_PACKAGE__BRANCH = eINSTANCE.getGitBranchChangePackage_Branch();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.changetracking.git.impl.GitBranchImpl <em>Branch</em>}' class.
@@ -850,8 +839,7 @@ public interface GitPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GIT_BRANCH__REFERRING_CHANGE_PACKAGES = eINSTANCE
-				.getGitBranch_ReferringChangePackages();
+		EReference GIT_BRANCH__REFERRING_CHANGE_PACKAGES = eINSTANCE.getGitBranch_ReferringChangePackages();
 
 		/**
 		 * The meta object literal for the '<em><b>Branch Name</b></em>' attribute feature.
@@ -859,8 +847,7 @@ public interface GitPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GIT_BRANCH__BRANCH_NAME = eINSTANCE
-				.getGitBranch_BranchName();
+		EAttribute GIT_BRANCH__BRANCH_NAME = eINSTANCE.getGitBranch_BranchName();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.changetracking.git.impl.GitRevisionImpl <em>Revision</em>}' class.
@@ -912,8 +899,7 @@ public interface GitPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GIT_REPOSITORY__IDENTIFYING_COMMIT_HASH = eINSTANCE
-				.getGitRepository_IdentifyingCommitHash();
+		EAttribute GIT_REPOSITORY__IDENTIFYING_COMMIT_HASH = eINSTANCE.getGitRepository_IdentifyingCommitHash();
 
 	}
 

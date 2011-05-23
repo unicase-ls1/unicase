@@ -18,7 +18,7 @@ import org.unicase.changetracking.ui.AdvancedMessageDialog;
 import org.unicase.changetracking.ui.AdvancedMessageDialog.NoLocalRepoChoices;
 import org.unicase.changetracking.ui.UIUtil;
 import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
+import org.unicase.model.changetracking.Release;
 import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.RepositoryStream;
 import org.unicase.model.changetracking.Stream;
@@ -34,14 +34,14 @@ import org.unicase.model.changetracking.git.GitRepository;
  */
 public class LocalRepoFindHandler {
 
-	private ChangeTrackingRelease release;
+	private Release release;
 
 	/**
 	 * Default constructor.
 	 * 
 	 * @param release release for which to find the local repository
 	 */
-	public LocalRepoFindHandler(ChangeTrackingRelease release) {
+	public LocalRepoFindHandler(Release release) {
 		this.release = release;
 	}
 

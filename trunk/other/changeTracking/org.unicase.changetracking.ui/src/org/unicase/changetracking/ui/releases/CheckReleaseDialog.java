@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.changetracking.release.ReleaseCheckReport;
 import org.unicase.changetracking.ui.Activator;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
+import org.unicase.model.changetracking.Release;
 
 /**
  * Dialog used when the release is to be checked without being built.
@@ -31,7 +31,7 @@ public class CheckReleaseDialog extends TitleAreaDialog implements IDialogHead {
 
 	private static final Image PAGE_IMAGE = Activator.getImageDescriptor("icons/wizard/check_release.png").createImage();
 
-	private ChangeTrackingRelease release;
+	private Release release;
 	private ReleaseCheckReport report;
 
 	/**
@@ -41,7 +41,7 @@ public class CheckReleaseDialog extends TitleAreaDialog implements IDialogHead {
 	 * @param release release which was checked
 	 * @param report result of the checking
 	 */
-	public CheckReleaseDialog(Shell parentShell, ChangeTrackingRelease release, ReleaseCheckReport report) {
+	public CheckReleaseDialog(Shell parentShell, Release release, ReleaseCheckReport report) {
 		super(parentShell);
 		this.release = release;
 		this.report = report;

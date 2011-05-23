@@ -1,8 +1,6 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.impl;
 
@@ -10,16 +8,22 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
+
 import org.unicase.model.changetracking.ChangetrackingPackage;
+import org.unicase.model.changetracking.Release;
 import org.unicase.model.changetracking.RepositoryRevision;
 import org.unicase.model.changetracking.RepositoryStream;
+
 import org.unicase.model.impl.UnicaseModelElementImpl;
 
 /**
@@ -36,15 +40,7 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  *
  * @generated
  */
-public abstract class RepositoryRevisionImpl extends UnicaseModelElementImpl
-		implements RepositoryRevision {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
+public abstract class RepositoryRevisionImpl extends UnicaseModelElementImpl implements RepositoryRevision {
 	/**
 	 * The cached value of the '{@link #getRepositoryStream() <em>Repository Stream</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -63,7 +59,7 @@ public abstract class RepositoryRevisionImpl extends UnicaseModelElementImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ChangeTrackingRelease> builtWithReleases;
+	protected EList<Release> builtWithReleases;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -95,11 +91,7 @@ public abstract class RepositoryRevisionImpl extends UnicaseModelElementImpl
 			repositoryStream = (RepositoryStream) eResolveProxy(oldRepositoryStream);
 			if (repositoryStream != oldRepositoryStream) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(
-							this,
-							Notification.RESOLVE,
-							ChangetrackingPackage.REPOSITORY_REVISION__REPOSITORY_STREAM,
-							oldRepositoryStream, repositoryStream));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ChangetrackingPackage.REPOSITORY_REVISION__REPOSITORY_STREAM, oldRepositoryStream, repositoryStream));
 			}
 		}
 		return repositoryStream;
@@ -119,16 +111,11 @@ public abstract class RepositoryRevisionImpl extends UnicaseModelElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRepositoryStream(
-			RepositoryStream newRepositoryStream, NotificationChain msgs) {
+	public NotificationChain basicSetRepositoryStream(RepositoryStream newRepositoryStream, NotificationChain msgs) {
 		RepositoryStream oldRepositoryStream = repositoryStream;
 		repositoryStream = newRepositoryStream;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(
-					this,
-					Notification.SET,
-					ChangetrackingPackage.REPOSITORY_REVISION__REPOSITORY_STREAM,
-					oldRepositoryStream, newRepositoryStream);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ChangetrackingPackage.REPOSITORY_REVISION__REPOSITORY_STREAM, oldRepositoryStream, newRepositoryStream);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -146,24 +133,14 @@ public abstract class RepositoryRevisionImpl extends UnicaseModelElementImpl
 		if (newRepositoryStream != repositoryStream) {
 			NotificationChain msgs = null;
 			if (repositoryStream != null)
-				msgs = ((InternalEObject) repositoryStream).eInverseRemove(
-						this,
-						ChangetrackingPackage.REPOSITORY_STREAM__REVISIONS,
-						RepositoryStream.class, msgs);
+				msgs = ((InternalEObject) repositoryStream).eInverseRemove(this, ChangetrackingPackage.REPOSITORY_STREAM__REVISIONS, RepositoryStream.class, msgs);
 			if (newRepositoryStream != null)
-				msgs = ((InternalEObject) newRepositoryStream).eInverseAdd(
-						this,
-						ChangetrackingPackage.REPOSITORY_STREAM__REVISIONS,
-						RepositoryStream.class, msgs);
+				msgs = ((InternalEObject) newRepositoryStream).eInverseAdd(this, ChangetrackingPackage.REPOSITORY_STREAM__REVISIONS, RepositoryStream.class, msgs);
 			msgs = basicSetRepositoryStream(newRepositoryStream, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(
-					this,
-					Notification.SET,
-					ChangetrackingPackage.REPOSITORY_REVISION__REPOSITORY_STREAM,
-					newRepositoryStream, newRepositoryStream));
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangetrackingPackage.REPOSITORY_REVISION__REPOSITORY_STREAM, newRepositoryStream, newRepositoryStream));
 	}
 
 	/**
@@ -171,13 +148,9 @@ public abstract class RepositoryRevisionImpl extends UnicaseModelElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ChangeTrackingRelease> getBuiltWithReleases() {
+	public EList<Release> getBuiltWithReleases() {
 		if (builtWithReleases == null) {
-			builtWithReleases = new EObjectWithInverseResolvingEList<ChangeTrackingRelease>(
-					ChangeTrackingRelease.class,
-					this,
-					ChangetrackingPackage.REPOSITORY_REVISION__BUILT_WITH_RELEASES,
-					ChangetrackingPackage.CHANGE_TRACKING_RELEASE__BUILT_REVISION);
+			builtWithReleases = new EObjectWithInverseResolvingEList<Release>(Release.class, this, ChangetrackingPackage.REPOSITORY_REVISION__BUILT_WITH_RELEASES, ChangetrackingPackage.RELEASE__BUILT_REVISION);
 		}
 		return builtWithReleases;
 	}
@@ -189,19 +162,14 @@ public abstract class RepositoryRevisionImpl extends UnicaseModelElementImpl
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ChangetrackingPackage.REPOSITORY_REVISION__REPOSITORY_STREAM:
 			if (repositoryStream != null)
-				msgs = ((InternalEObject) repositoryStream).eInverseRemove(
-						this,
-						ChangetrackingPackage.REPOSITORY_STREAM__REVISIONS,
-						RepositoryStream.class, msgs);
+				msgs = ((InternalEObject) repositoryStream).eInverseRemove(this, ChangetrackingPackage.REPOSITORY_STREAM__REVISIONS, RepositoryStream.class, msgs);
 			return basicSetRepositoryStream((RepositoryStream) otherEnd, msgs);
 		case ChangetrackingPackage.REPOSITORY_REVISION__BUILT_WITH_RELEASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getBuiltWithReleases())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getBuiltWithReleases()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -212,14 +180,12 @@ public abstract class RepositoryRevisionImpl extends UnicaseModelElementImpl
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ChangetrackingPackage.REPOSITORY_REVISION__REPOSITORY_STREAM:
 			return basicSetRepositoryStream(null, msgs);
 		case ChangetrackingPackage.REPOSITORY_REVISION__BUILT_WITH_RELEASES:
-			return ((InternalEList<?>) getBuiltWithReleases()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getBuiltWithReleases()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -256,8 +222,7 @@ public abstract class RepositoryRevisionImpl extends UnicaseModelElementImpl
 			return;
 		case ChangetrackingPackage.REPOSITORY_REVISION__BUILT_WITH_RELEASES:
 			getBuiltWithReleases().clear();
-			getBuiltWithReleases().addAll(
-					(Collection<? extends ChangeTrackingRelease>) newValue);
+			getBuiltWithReleases().addAll((Collection<? extends Release>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

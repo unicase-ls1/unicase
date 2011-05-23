@@ -1,26 +1,22 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
+
 import org.unicase.model.changetracking.*;
-import org.unicase.model.changetracking.ChangePackage;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
-import org.unicase.model.changetracking.ChangetrackingPackage;
-import org.unicase.model.changetracking.RepositoryLocation;
-import org.unicase.model.changetracking.RepositoryRevision;
-import org.unicase.model.changetracking.RepositoryStream;
-import org.unicase.model.changetracking.Stream;
-import org.unicase.model.release.Release;
+
+import org.unicase.model.release.AbstractRelease;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,13 +27,6 @@ import org.unicase.model.release.Release;
  * @generated
  */
 public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -85,8 +74,8 @@ public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected ChangetrackingSwitch<Adapter> modelSwitch = new ChangetrackingSwitch<Adapter>() {
 		@Override
-		public Adapter caseChangeTrackingRelease(ChangeTrackingRelease object) {
-			return createChangeTrackingReleaseAdapter();
+		public Adapter caseRelease(Release object) {
+			return createReleaseAdapter();
 		}
 
 		@Override
@@ -120,8 +109,8 @@ public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseRelease(Release object) {
-			return createReleaseAdapter();
+		public Adapter caseAbstractRelease(AbstractRelease object) {
+			return createAbstractReleaseAdapter();
 		}
 
 		@Override
@@ -149,16 +138,16 @@ public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.changetracking.ChangeTrackingRelease <em>Change Tracking Release</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.changetracking.Release <em>Release</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.unicase.model.changetracking.ChangeTrackingRelease
+	 * @see org.unicase.model.changetracking.Release
 	 * @generated
 	 */
-	public Adapter createChangeTrackingReleaseAdapter() {
+	public Adapter createReleaseAdapter() {
 		return null;
 	}
 
@@ -247,16 +236,16 @@ public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.release.Release <em>Release</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.release.AbstractRelease <em>Abstract Release</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.unicase.model.release.Release
+	 * @see org.unicase.model.release.AbstractRelease
 	 * @generated
 	 */
-	public Adapter createReleaseAdapter() {
+	public Adapter createAbstractReleaseAdapter() {
 		return null;
 	}
 

@@ -1,8 +1,6 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking;
 
@@ -10,7 +8,9 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.unicase.model.ModelPackage;
+
 import org.unicase.model.release.ReleasePackage;
 
 /**
@@ -29,13 +29,6 @@ import org.unicase.model.release.ReleasePackage;
  * @generated
  */
 public interface ChangetrackingPackage extends EPackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -66,18 +59,17 @@ public interface ChangetrackingPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ChangetrackingPackage eINSTANCE = org.unicase.model.changetracking.impl.ChangetrackingPackageImpl
-			.init();
+	ChangetrackingPackage eINSTANCE = org.unicase.model.changetracking.impl.ChangetrackingPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.changetracking.impl.ChangeTrackingReleaseImpl <em>Change Tracking Release</em>}' class.
+	 * The meta object id for the '{@link org.unicase.model.changetracking.impl.ReleaseImpl <em>Release</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.unicase.model.changetracking.impl.ChangeTrackingReleaseImpl
-	 * @see org.unicase.model.changetracking.impl.ChangetrackingPackageImpl#getChangeTrackingRelease()
+	 * @see org.unicase.model.changetracking.impl.ReleaseImpl
+	 * @see org.unicase.model.changetracking.impl.ChangetrackingPackageImpl#getRelease()
 	 * @generated
 	 */
-	int CHANGE_TRACKING_RELEASE = 0;
+	int RELEASE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -86,7 +78,7 @@ public interface ChangetrackingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE__NAME = ReleasePackage.RELEASE__NAME;
+	int RELEASE__NAME = ReleasePackage.ABSTRACT_RELEASE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -95,7 +87,7 @@ public interface ChangetrackingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE__DESCRIPTION = ReleasePackage.RELEASE__DESCRIPTION;
+	int RELEASE__DESCRIPTION = ReleasePackage.ABSTRACT_RELEASE__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
@@ -104,7 +96,7 @@ public interface ChangetrackingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE__ANNOTATIONS = ReleasePackage.RELEASE__ANNOTATIONS;
+	int RELEASE__ANNOTATIONS = ReleasePackage.ABSTRACT_RELEASE__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
@@ -113,7 +105,7 @@ public interface ChangetrackingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE__ATTACHMENTS = ReleasePackage.RELEASE__ATTACHMENTS;
+	int RELEASE__ATTACHMENTS = ReleasePackage.ABSTRACT_RELEASE__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -122,7 +114,7 @@ public interface ChangetrackingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE__INCOMING_DOCUMENT_REFERENCES = ReleasePackage.RELEASE__INCOMING_DOCUMENT_REFERENCES;
+	int RELEASE__INCOMING_DOCUMENT_REFERENCES = ReleasePackage.ABSTRACT_RELEASE__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
@@ -131,7 +123,7 @@ public interface ChangetrackingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE__LEAF_SECTION = ReleasePackage.RELEASE__LEAF_SECTION;
+	int RELEASE__LEAF_SECTION = ReleasePackage.ABSTRACT_RELEASE__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -140,7 +132,7 @@ public interface ChangetrackingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE__STATE = ReleasePackage.RELEASE__STATE;
+	int RELEASE__STATE = ReleasePackage.ABSTRACT_RELEASE__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
@@ -149,7 +141,7 @@ public interface ChangetrackingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE__APPLIED_STEREOTYPE_INSTANCES = ReleasePackage.RELEASE__APPLIED_STEREOTYPE_INSTANCES;
+	int RELEASE__APPLIED_STEREOTYPE_INSTANCES = ReleasePackage.ABSTRACT_RELEASE__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -158,7 +150,7 @@ public interface ChangetrackingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE__COMMENTS = ReleasePackage.RELEASE__COMMENTS;
+	int RELEASE__COMMENTS = ReleasePackage.ABSTRACT_RELEASE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
@@ -167,7 +159,7 @@ public interface ChangetrackingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE__CREATION_DATE = ReleasePackage.RELEASE__CREATION_DATE;
+	int RELEASE__CREATION_DATE = ReleasePackage.ABSTRACT_RELEASE__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute.
@@ -176,16 +168,7 @@ public interface ChangetrackingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE__CREATOR = ReleasePackage.RELEASE__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Applied Patches</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHANGE_TRACKING_RELEASE__APPLIED_PATCHES = ReleasePackage.RELEASE__APPLIED_PATCHES;
+	int RELEASE__CREATOR = ReleasePackage.ABSTRACT_RELEASE__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Included Work Items</b></em>' reference list.
@@ -194,7 +177,7 @@ public interface ChangetrackingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE__INCLUDED_WORK_ITEMS = ReleasePackage.RELEASE__INCLUDED_WORK_ITEMS;
+	int RELEASE__INCLUDED_WORK_ITEMS = ReleasePackage.ABSTRACT_RELEASE__INCLUDED_WORK_ITEMS;
 
 	/**
 	 * The feature id for the '<em><b>Stream</b></em>' reference.
@@ -203,7 +186,7 @@ public interface ChangetrackingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE__STREAM = ReleasePackage.RELEASE_FEATURE_COUNT + 0;
+	int RELEASE__STREAM = ReleasePackage.ABSTRACT_RELEASE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Built</b></em>' attribute.
@@ -212,7 +195,7 @@ public interface ChangetrackingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE__BUILT = ReleasePackage.RELEASE_FEATURE_COUNT + 1;
+	int RELEASE__BUILT = ReleasePackage.ABSTRACT_RELEASE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Built Revision</b></em>' reference.
@@ -221,7 +204,7 @@ public interface ChangetrackingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE__BUILT_REVISION = ReleasePackage.RELEASE_FEATURE_COUNT + 2;
+	int RELEASE__BUILT_REVISION = ReleasePackage.ABSTRACT_RELEASE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Build Date</b></em>' attribute.
@@ -230,7 +213,7 @@ public interface ChangetrackingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE__BUILD_DATE = ReleasePackage.RELEASE_FEATURE_COUNT + 3;
+	int RELEASE__BUILD_DATE = ReleasePackage.ABSTRACT_RELEASE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Successor</b></em>' reference.
@@ -239,7 +222,7 @@ public interface ChangetrackingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE__SUCCESSOR = ReleasePackage.RELEASE_FEATURE_COUNT + 4;
+	int RELEASE__SUCCESSOR = ReleasePackage.ABSTRACT_RELEASE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Predecessor</b></em>' reference.
@@ -248,16 +231,16 @@ public interface ChangetrackingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE__PREDECESSOR = ReleasePackage.RELEASE_FEATURE_COUNT + 5;
+	int RELEASE__PREDECESSOR = ReleasePackage.ABSTRACT_RELEASE_FEATURE_COUNT + 5;
 
 	/**
-	 * The number of structural features of the '<em>Change Tracking Release</em>' class.
+	 * The number of structural features of the '<em>Release</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_TRACKING_RELEASE_FEATURE_COUNT = ReleasePackage.RELEASE_FEATURE_COUNT + 6;
+	int RELEASE_FEATURE_COUNT = ReleasePackage.ABSTRACT_RELEASE_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.changetracking.impl.StreamImpl <em>Stream</em>}' class.
@@ -940,80 +923,80 @@ public interface ChangetrackingPackage extends EPackage {
 	int REPOSITORY_LOCATION_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.changetracking.ChangeTrackingRelease <em>Change Tracking Release</em>}'.
+	 * Returns the meta object for class '{@link org.unicase.model.changetracking.Release <em>Release</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Change Tracking Release</em>'.
-	 * @see org.unicase.model.changetracking.ChangeTrackingRelease
+	 * @return the meta object for class '<em>Release</em>'.
+	 * @see org.unicase.model.changetracking.Release
 	 * @generated
 	 */
-	EClass getChangeTrackingRelease();
+	EClass getRelease();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.changetracking.ChangeTrackingRelease#getStream <em>Stream</em>}'.
+	 * Returns the meta object for the reference '{@link org.unicase.model.changetracking.Release#getStream <em>Stream</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Stream</em>'.
-	 * @see org.unicase.model.changetracking.ChangeTrackingRelease#getStream()
-	 * @see #getChangeTrackingRelease()
+	 * @see org.unicase.model.changetracking.Release#getStream()
+	 * @see #getRelease()
 	 * @generated
 	 */
-	EReference getChangeTrackingRelease_Stream();
+	EReference getRelease_Stream();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.changetracking.ChangeTrackingRelease#isBuilt <em>Built</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.model.changetracking.Release#isBuilt <em>Built</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Built</em>'.
-	 * @see org.unicase.model.changetracking.ChangeTrackingRelease#isBuilt()
-	 * @see #getChangeTrackingRelease()
+	 * @see org.unicase.model.changetracking.Release#isBuilt()
+	 * @see #getRelease()
 	 * @generated
 	 */
-	EAttribute getChangeTrackingRelease_Built();
+	EAttribute getRelease_Built();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.changetracking.ChangeTrackingRelease#getBuiltRevision <em>Built Revision</em>}'.
+	 * Returns the meta object for the reference '{@link org.unicase.model.changetracking.Release#getBuiltRevision <em>Built Revision</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Built Revision</em>'.
-	 * @see org.unicase.model.changetracking.ChangeTrackingRelease#getBuiltRevision()
-	 * @see #getChangeTrackingRelease()
+	 * @see org.unicase.model.changetracking.Release#getBuiltRevision()
+	 * @see #getRelease()
 	 * @generated
 	 */
-	EReference getChangeTrackingRelease_BuiltRevision();
+	EReference getRelease_BuiltRevision();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.changetracking.ChangeTrackingRelease#getBuildDate <em>Build Date</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.model.changetracking.Release#getBuildDate <em>Build Date</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Build Date</em>'.
-	 * @see org.unicase.model.changetracking.ChangeTrackingRelease#getBuildDate()
-	 * @see #getChangeTrackingRelease()
+	 * @see org.unicase.model.changetracking.Release#getBuildDate()
+	 * @see #getRelease()
 	 * @generated
 	 */
-	EAttribute getChangeTrackingRelease_BuildDate();
+	EAttribute getRelease_BuildDate();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.changetracking.ChangeTrackingRelease#getSuccessor <em>Successor</em>}'.
+	 * Returns the meta object for the reference '{@link org.unicase.model.changetracking.Release#getSuccessor <em>Successor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Successor</em>'.
-	 * @see org.unicase.model.changetracking.ChangeTrackingRelease#getSuccessor()
-	 * @see #getChangeTrackingRelease()
+	 * @see org.unicase.model.changetracking.Release#getSuccessor()
+	 * @see #getRelease()
 	 * @generated
 	 */
-	EReference getChangeTrackingRelease_Successor();
+	EReference getRelease_Successor();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.changetracking.ChangeTrackingRelease#getPredecessor <em>Predecessor</em>}'.
+	 * Returns the meta object for the reference '{@link org.unicase.model.changetracking.Release#getPredecessor <em>Predecessor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Predecessor</em>'.
-	 * @see org.unicase.model.changetracking.ChangeTrackingRelease#getPredecessor()
-	 * @see #getChangeTrackingRelease()
+	 * @see org.unicase.model.changetracking.Release#getPredecessor()
+	 * @see #getRelease()
 	 * @generated
 	 */
-	EReference getChangeTrackingRelease_Predecessor();
+	EReference getRelease_Predecessor();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.changetracking.Stream <em>Stream</em>}'.
@@ -1187,14 +1170,14 @@ public interface ChangetrackingPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.changetracking.impl.ChangeTrackingReleaseImpl <em>Change Tracking Release</em>}' class.
+		 * The meta object literal for the '{@link org.unicase.model.changetracking.impl.ReleaseImpl <em>Release</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.unicase.model.changetracking.impl.ChangeTrackingReleaseImpl
-		 * @see org.unicase.model.changetracking.impl.ChangetrackingPackageImpl#getChangeTrackingRelease()
+		 * @see org.unicase.model.changetracking.impl.ReleaseImpl
+		 * @see org.unicase.model.changetracking.impl.ChangetrackingPackageImpl#getRelease()
 		 * @generated
 		 */
-		EClass CHANGE_TRACKING_RELEASE = eINSTANCE.getChangeTrackingRelease();
+		EClass RELEASE = eINSTANCE.getRelease();
 
 		/**
 		 * The meta object literal for the '<em><b>Stream</b></em>' reference feature.
@@ -1202,8 +1185,7 @@ public interface ChangetrackingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CHANGE_TRACKING_RELEASE__STREAM = eINSTANCE
-				.getChangeTrackingRelease_Stream();
+		EReference RELEASE__STREAM = eINSTANCE.getRelease_Stream();
 
 		/**
 		 * The meta object literal for the '<em><b>Built</b></em>' attribute feature.
@@ -1211,8 +1193,7 @@ public interface ChangetrackingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CHANGE_TRACKING_RELEASE__BUILT = eINSTANCE
-				.getChangeTrackingRelease_Built();
+		EAttribute RELEASE__BUILT = eINSTANCE.getRelease_Built();
 
 		/**
 		 * The meta object literal for the '<em><b>Built Revision</b></em>' reference feature.
@@ -1220,8 +1201,7 @@ public interface ChangetrackingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CHANGE_TRACKING_RELEASE__BUILT_REVISION = eINSTANCE
-				.getChangeTrackingRelease_BuiltRevision();
+		EReference RELEASE__BUILT_REVISION = eINSTANCE.getRelease_BuiltRevision();
 
 		/**
 		 * The meta object literal for the '<em><b>Build Date</b></em>' attribute feature.
@@ -1229,8 +1209,7 @@ public interface ChangetrackingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CHANGE_TRACKING_RELEASE__BUILD_DATE = eINSTANCE
-				.getChangeTrackingRelease_BuildDate();
+		EAttribute RELEASE__BUILD_DATE = eINSTANCE.getRelease_BuildDate();
 
 		/**
 		 * The meta object literal for the '<em><b>Successor</b></em>' reference feature.
@@ -1238,8 +1217,7 @@ public interface ChangetrackingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CHANGE_TRACKING_RELEASE__SUCCESSOR = eINSTANCE
-				.getChangeTrackingRelease_Successor();
+		EReference RELEASE__SUCCESSOR = eINSTANCE.getRelease_Successor();
 
 		/**
 		 * The meta object literal for the '<em><b>Predecessor</b></em>' reference feature.
@@ -1247,8 +1225,7 @@ public interface ChangetrackingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CHANGE_TRACKING_RELEASE__PREDECESSOR = eINSTANCE
-				.getChangeTrackingRelease_Predecessor();
+		EReference RELEASE__PREDECESSOR = eINSTANCE.getRelease_Predecessor();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.changetracking.impl.StreamImpl <em>Stream</em>}' class.
@@ -1274,8 +1251,7 @@ public interface ChangetrackingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STREAM__REPOSITORY_STREAM = eINSTANCE
-				.getStream_RepositoryStream();
+		EReference STREAM__REPOSITORY_STREAM = eINSTANCE.getStream_RepositoryStream();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.changetracking.impl.ChangePackageImpl <em>Change Package</em>}' class.
@@ -1293,8 +1269,7 @@ public interface ChangetrackingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CHANGE_PACKAGE__SHORT_DESCRIPTION = eINSTANCE
-				.getChangePackage_ShortDescription();
+		EAttribute CHANGE_PACKAGE__SHORT_DESCRIPTION = eINSTANCE.getChangePackage_ShortDescription();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.changetracking.impl.RepositoryRevisionImpl <em>Repository Revision</em>}' class.
@@ -1312,8 +1287,7 @@ public interface ChangetrackingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REPOSITORY_REVISION__REPOSITORY_STREAM = eINSTANCE
-				.getRepositoryRevision_RepositoryStream();
+		EReference REPOSITORY_REVISION__REPOSITORY_STREAM = eINSTANCE.getRepositoryRevision_RepositoryStream();
 
 		/**
 		 * The meta object literal for the '<em><b>Built With Releases</b></em>' reference list feature.
@@ -1321,8 +1295,7 @@ public interface ChangetrackingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REPOSITORY_REVISION__BUILT_WITH_RELEASES = eINSTANCE
-				.getRepositoryRevision_BuiltWithReleases();
+		EReference REPOSITORY_REVISION__BUILT_WITH_RELEASES = eINSTANCE.getRepositoryRevision_BuiltWithReleases();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.changetracking.RepositoryStream <em>Repository Stream</em>}' class.
@@ -1340,8 +1313,7 @@ public interface ChangetrackingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REPOSITORY_STREAM__LOCATION = eINSTANCE
-				.getRepositoryStream_Location();
+		EReference REPOSITORY_STREAM__LOCATION = eINSTANCE.getRepositoryStream_Location();
 
 		/**
 		 * The meta object literal for the '<em><b>Revisions</b></em>' reference list feature.
@@ -1349,8 +1321,7 @@ public interface ChangetrackingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REPOSITORY_STREAM__REVISIONS = eINSTANCE
-				.getRepositoryStream_Revisions();
+		EReference REPOSITORY_STREAM__REVISIONS = eINSTANCE.getRepositoryStream_Revisions();
 
 		/**
 		 * The meta object literal for the '<em><b>Using Streams</b></em>' reference list feature.
@@ -1358,8 +1329,7 @@ public interface ChangetrackingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REPOSITORY_STREAM__USING_STREAMS = eINSTANCE
-				.getRepositoryStream_UsingStreams();
+		EReference REPOSITORY_STREAM__USING_STREAMS = eINSTANCE.getRepositoryStream_UsingStreams();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.changetracking.impl.RepositoryLocationImpl <em>Repository Location</em>}' class.
@@ -1377,8 +1347,7 @@ public interface ChangetrackingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REPOSITORY_LOCATION__STREAMS = eINSTANCE
-				.getRepositoryLocation_Streams();
+		EReference REPOSITORY_LOCATION__STREAMS = eINSTANCE.getRepositoryLocation_Streams();
 
 	}
 

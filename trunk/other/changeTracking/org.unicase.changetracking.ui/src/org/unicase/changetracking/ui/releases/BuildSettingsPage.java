@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.changetracking.vcs.NameValidator;
 import org.unicase.changetracking.vcs.VCSAdapter;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
+import org.unicase.model.changetracking.Release;
 import org.unicase.model.changetracking.RepositoryLocation;
 
 /**
@@ -32,7 +32,7 @@ import org.unicase.model.changetracking.RepositoryLocation;
  */
 public class BuildSettingsPage extends WizardPage implements IDialogHead {
 
-	private ChangeTrackingRelease release;
+	private Release release;
 	private Text tagNameText;
 	private NameValidator validator;
 	private RepositoryLocation repoLoc;
@@ -48,7 +48,7 @@ public class BuildSettingsPage extends WizardPage implements IDialogHead {
 	 * @param repoLoc repository location of the remote repository on which the
 	 *            release code lies
 	 */
-	protected BuildSettingsPage(String pageName, String title, ImageDescriptor titleImage, ChangeTrackingRelease release, VCSAdapter vcs, RepositoryLocation repoLoc) {
+	protected BuildSettingsPage(String pageName, String title, ImageDescriptor titleImage, Release release, VCSAdapter vcs, RepositoryLocation repoLoc) {
 		super(pageName, title, titleImage);
 		this.release = release;
 		validator = vcs.getNameValidator();

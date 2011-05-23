@@ -18,7 +18,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
+import org.unicase.model.changetracking.Release;
 
 /**
  * 
@@ -123,7 +123,7 @@ public class ReleaseTreeViewer extends Composite {
 	 * 
 	 * @param release input release
 	 */
-	public void setInput(ChangeTrackingRelease release) {
+	public void setInput(Release release) {
 		treeViewer.setInput(new Object[] { release });
 		captionLabel.setInput(release);
 	}
