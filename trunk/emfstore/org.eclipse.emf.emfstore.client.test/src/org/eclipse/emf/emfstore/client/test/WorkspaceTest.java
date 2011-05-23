@@ -110,6 +110,7 @@ public abstract class WorkspaceTest {
 	 */
 	protected void clearOperations() {
 		getProjectSpace().getOperations().clear();
+		getProjectSpace().getOperationManager().clearOperations();
 	}
 
 	/**

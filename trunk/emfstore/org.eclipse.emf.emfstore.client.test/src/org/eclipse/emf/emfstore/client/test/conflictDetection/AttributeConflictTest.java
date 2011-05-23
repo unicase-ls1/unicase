@@ -17,6 +17,7 @@ import org.eclipse.emf.emfstore.server.conflictDetection.FineGrainedConflictDete
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
 import org.junit.Test;
+import org.unicase.model.requirement.RequirementFactory;
 
 /**
  * Test conflict detection for attributes.

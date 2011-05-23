@@ -19,6 +19,10 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOpera
 import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
 import org.junit.Test;
+import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.model.requirement.UseCase;
+import org.unicase.model.task.Milestone;
+import org.unicase.model.task.TaskFactory;
 
 /**
  * Tests operations in n:n topologies.

@@ -10,6 +10,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.junit.Test;
+import org.unicase.model.rationale.Issue;
+import org.unicase.model.rationale.RationaleFactory;
+import org.unicase.model.rationale.Solution;
 
 /**
  * Tests the Attribute Operation.

@@ -38,8 +38,8 @@ public class ServerInterfaceTest extends ServerTests {
 	/**
 	 * If the user is logged in, the result of resolve user mustn't be null.
 	 * 
-	 * @see org.unicase.emfstore.EmfStore#resolveUser(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId)
+	 * @see org.unicase.emfstore.EmfStore#resolveUser(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId)
 	 * @throws EmfStoreException in case of failure
 	 */
 	@Test
@@ -74,9 +74,9 @@ public class ServerInterfaceTest extends ServerTests {
 	/**
 	 * Creates a project on the server and then deletes it.
 	 * 
-	 * @see org.unicase.emfstore.EmfStore#createProject(org.unicase.emfstore.esmodel.SessionId, String, String,
-	 *      org.unicase.emfstore.esmodel.versioning.LogMessage)
-	 * @see org.unicase.emfstore.EmfStore#getProjectList(org.unicase.emfstore.esmodel.SessionId)
+	 * @see org.unicase.emfstore.EmfStore#createProject(org.eclipse.emf.emfstore.server.model.SessionId, String, String,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.LogMessage)
+	 * @see org.unicase.emfstore.EmfStore#getProjectList(org.eclipse.emf.emfstore.server.model.SessionId)
 	 * @throws EmfStoreException in case of failure.
 	 */
 	@Test
@@ -92,9 +92,9 @@ public class ServerInterfaceTest extends ServerTests {
 	/**
 	 * Creates a project, shares it with the server and then deletes it.
 	 * 
-	 * @see org.unicase.emfstore.EmfStore#createProject(org.unicase.emfstore.esmodel.SessionId, String, String,
-	 *      org.unicase.emfstore.esmodel.versioning.LogMessage, Project)
-	 * @see org.unicase.emfstore.EmfStore#getProjectList(org.unicase.emfstore.esmodel.SessionId)
+	 * @see org.unicase.emfstore.EmfStore#createProject(org.eclipse.emf.emfstore.server.model.SessionId, String, String,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.LogMessage, Project)
+	 * @see org.unicase.emfstore.EmfStore#getProjectList(org.eclipse.emf.emfstore.server.model.SessionId)
 	 * @throws EmfStoreException in case of failure.
 	 */
 	@Test

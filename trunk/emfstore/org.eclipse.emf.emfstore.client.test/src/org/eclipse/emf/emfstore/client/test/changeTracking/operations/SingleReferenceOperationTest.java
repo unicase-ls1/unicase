@@ -14,11 +14,11 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.exceptions.UnsupportedNotificationException;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.test.WorkspaceTest;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
@@ -28,6 +28,15 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOper
 import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceOperationImpl;
 import org.junit.Test;
+import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.document.LeafSection;
+import org.unicase.model.rationale.Issue;
+import org.unicase.model.rationale.Proposal;
+import org.unicase.model.rationale.RationaleFactory;
+import org.unicase.model.rationale.RationalePackage;
+import org.unicase.model.requirement.Actor;
+import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.model.requirement.UseCase;
 
 /**
  * Tests the SingleReferenceOperation.
@@ -35,6 +44,8 @@ import org.junit.Test;
  * @author koegel
  */
 public class SingleReferenceOperationTest extends WorkspaceTest {
+
+	private EObject expectedProject;
 
 	/**
 	 * Change a single reference and check the generated operation.
@@ -269,21 +280,28 @@ public class SingleReferenceOperationTest extends WorkspaceTest {
 				useCase.setLeafSection(oldSection);
 				actor.setLeafSection(oldSection);
 
-				Project expectedProject = ModelUtil.clone(getProject());
+				expectedProject = ModelUtil.clone(getProject());
 				assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
 				clearOperations();
 				useCase.setLeafSection(section);
-				List<AbstractOperation> operations = getProjectSpace().getOperations();
-				// composite operation containing a multiref operation and a singleref operation expected
-				assertEquals(operations.size(), 1);
-				AbstractOperation reverse = operations.get(0).reverse();
-				reverse.apply(getProject());
-
-				assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 			}
 		}.run(false);
 
+		final List<AbstractOperation> operations = getProjectSpace().getOperations();
+		// composite operation containing a multiref operation and a singleref operation expected
+		assertEquals(operations.size(), 1);
+
+		new EMFStoreCommand() {
+
+			@Override
+			protected void doRun() {
+				AbstractOperation reverse = operations.get(0).reverse();
+				reverse.apply(getProject());
+			}
+		}.run(false);
+
+		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 	}
 
 	/**

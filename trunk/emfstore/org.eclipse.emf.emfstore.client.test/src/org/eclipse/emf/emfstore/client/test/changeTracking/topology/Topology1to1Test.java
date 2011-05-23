@@ -22,6 +22,11 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOper
 import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
 import org.junit.Test;
+import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.document.LeafSection;
+import org.unicase.model.rationale.Issue;
+import org.unicase.model.rationale.RationaleFactory;
+import org.unicase.model.rationale.Solution;
 
 /**
  * Tests operations in 1:1 topologies.

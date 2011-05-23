@@ -25,6 +25,12 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteO
 import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
 import org.junit.Test;
+import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.document.LeafSection;
+import org.unicase.model.requirement.Actor;
+import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.TaskFactory;
 
 /**
  * Test conflict detection behaviour during a selective commit.
