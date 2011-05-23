@@ -6,33 +6,30 @@
 package org.unicase.changetracking.release;
 
 /**
- * This class depicts a problem which occurred during the
- * checking of a release.
+ * This class depicts a problem which occurred during the checking of a release.
  * 
- * A problem is either an error or a warning.
- * While an error makes release building impossible, a warning
- * just discourages it.
+ * A problem is either an error or a warning. While an error makes release
+ * building impossible, a warning just discourages it.
  * 
- * @author gex
- *
+ * @author jfinis
+ * 
  */
 public class Problem {
-	
+
 	/**
 	 * The severity of a problem, either a warning or an error.
 	 * 
-	 * @author gex
-	 *
+	 * @author jfinis
+	 * 
 	 */
-	public static enum Severity{
+	public static enum Severity {
 		/**
 		 * An ERROR prevents the release from being built.
 		 */
-		ERROR, 
-		
+		ERROR,
+
 		/**
-		 * A warning does not prevent the build process but
-		 * discourages it.
+		 * A warning does not prevent the build process but discourages it.
 		 */
 		WARNING;
 	}
@@ -42,16 +39,18 @@ public class Problem {
 
 	/**
 	 * Default constructor.
+	 * 
 	 * @param s problem severity.
 	 * @param message problem message.
 	 */
-	public Problem(Severity s, String message){
+	public Problem(Severity s, String message) {
 		this.severity = s;
 		this.message = message;
 	}
-	
+
 	/**
 	 * Returns the severity of the problem.
+	 * 
 	 * @return severity
 	 */
 	public Severity getSeverity() {
@@ -59,10 +58,9 @@ public class Problem {
 	}
 
 	/**
-	 * Returns the problem message,
-	 * stating the fact causing the problem
-	 * and maybe a hint how to solve it. 
-	 * The message will be displayed to the user.
+	 * Returns the problem message, stating the fact causing the problem and
+	 * maybe a hint how to solve it. The message will be displayed to the user.
+	 * 
 	 * @return problem message.
 	 */
 	public String getMessage() {

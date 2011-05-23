@@ -6,12 +6,13 @@
 package org.unicase.changetracking.exceptions;
 
 /**
- * This general exception class depicts any exception which may
- * happen when a VCSAdapter's method is called.
- * @author gex
- *
+ * This general exception class depicts any exception which may happen when a
+ * VCSAdapter's method is called.
+ * 
+ * @author jfinis
+ * 
  */
-public class VCSException extends Exception{
+public class VCSException extends Exception {
 
 	/**
 	 * .
@@ -27,6 +28,7 @@ public class VCSException extends Exception{
 
 	/**
 	 * Standard exception constructor.
+	 * 
 	 * @param arg0 message
 	 * @param arg1 cause
 	 */
@@ -36,6 +38,7 @@ public class VCSException extends Exception{
 
 	/**
 	 * Standard exception constructor.
+	 * 
 	 * @param arg0 message
 	 */
 	public VCSException(String arg0) {
@@ -44,13 +47,11 @@ public class VCSException extends Exception{
 
 	/**
 	 * Standard exception constructor.
+	 * 
 	 * @param arg0 cause
 	 */
 	public VCSException(Throwable arg0) {
 		super(arg0);
 	}
-	
-	
-	
 
 }

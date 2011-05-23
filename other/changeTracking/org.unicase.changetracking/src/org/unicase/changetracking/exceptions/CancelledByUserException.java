@@ -8,8 +8,8 @@ package org.unicase.changetracking.exceptions;
 /**
  * This exception is thrown if a user has manually cancelled an action.
  * 
- * @author gex
- *
+ * @author jfinis
+ * 
  */
 public class CancelledByUserException extends Exception {
 
@@ -23,5 +23,14 @@ public class CancelledByUserException extends Exception {
 	 */
 	public CancelledByUserException() {
 		super("User has canceled the process");
+	}
+
+	/**
+	 * Skip stack trace assembling. Since this exception is not used for
+	 * debugging, stack trace assembling would just lower performance.
+	 * @return this
+	 */
+	public synchronized Throwable fillInStackTrace() {
+		return this;
 	}
 }

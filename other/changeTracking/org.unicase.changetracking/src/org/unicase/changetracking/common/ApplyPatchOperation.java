@@ -46,50 +46,53 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * An operation that provides an interface to the Apply Patch Wizard. Users specify
- * the input in terms of an <code>IStorage</code> (note: input must be in unified diff
- * format), an <code>IResource</code> target to apply the patch to and can provide <code>CompareConfiguration</code>
- * elements to supply the label and images used on the preview page and hunk merge page. Finally, the
- * user can also supply a title and image to override the default ones provided by the Apply Patch Wizard.
- * Note that the Apply Patch Wizard does not require any particular set of inputs, and in the absence of
- * any user supplied values, it will work in default mode.
+ * An operation that provides an interface to the Apply Patch Wizard. Users
+ * specify the input in terms of an <code>IStorage</code> (note: input must be
+ * in unified diff format), an <code>IResource</code> target to apply the patch
+ * to and can provide <code>CompareConfiguration</code> elements to supply the
+ * label and images used on the preview page and hunk merge page. Finally, the
+ * user can also supply a title and image to override the default ones provided
+ * by the Apply Patch Wizard. Note that the Apply Patch Wizard does not require
+ * any particular set of inputs, and in the absence of any user supplied values,
+ * it will work in default mode.
  * <p>
- * This is copy of {@link org.eclipse.compare.patch.ApplyPatchOperation} which additionally honors
- * the preference whether to show the patch in a wizard or in the Synchronize view.
+ * This is copy of {@link org.eclipse.compare.patch.ApplyPatchOperation} which
+ * additionally honors the preference whether to show the patch in a wizard or
+ * in the Synchronize view.
  * </p>
  * <p>
- * FIXME: This class will be removed with the fix for https://bugs.eclipse.org/309803
+ * FIXME: This class will be removed with the fix for
+ * https://bugs.eclipse.org/309803
  * </p>
  * 
  * @since 3.3
- *
+ * 
  */
 @SuppressWarnings("restriction")
 public class ApplyPatchOperation implements Runnable {
 
 	private IWorkbenchPart part;
-	
+
 	/**
 	 * Used for the Preview Patch page.
 	 */
 	private CompareConfiguration configuration;
-	
+
 	/**
 	 * The patch to use as an input into the Apply Patch wizard.
 	 */
 	private IStorage patch;
-	
+
 	/**
 	 * Specific <code>IResource</code> target to patch.
 	 */
 	private IResource target;
-	
+
 	/**
 	 * An optional image for the patch wizard.
 	 */
 	private ImageDescriptor patchWizardImage;
-	
-	
+
 	/**
 	 * An optional title for the patchWizard.
 	 */
@@ -98,43 +101,52 @@ public class ApplyPatchOperation implements Runnable {
 	private boolean saveAllEditors = true;
 
 	private int dialogResult;
-	
+
 	/**
 	 * Return whether the given storage contains a patch.
+	 * 
 	 * @param storage the storage
 	 * @return whether the given storage contains a patch
-	 * @throws CoreException if an error occurs reading the contents from the storage
+	 * @throws CoreException if an error occurs reading the contents from the
+	 *             storage
 	 */
 	public static boolean isPatch(IStorage storage) throws CoreException {
 		return internalParsePatch(storage).length > 0;
 	}
-	
+
 	/**
-	 * Parse the given patch and return the set of file patches that it contains.
+	 * Parse the given patch and return the set of file patches that it
+	 * contains.
+	 * 
 	 * @param storage the storage that contains the patch
 	 * @return the set of file patches that the storage contains
-	 * @throws CoreException if an error occurs reading the contents from the storage
+	 * @throws CoreException if an error occurs reading the contents from the
+	 *             storage
 	 */
 	public static IFilePatch[] parsePatch(IStorage storage) throws CoreException {
 		return internalParsePatch(storage);
 	}
-	
+
 	/**
-	 * Creates a new ApplyPatchOperation with the supplied compare configuration, patch and target.
-	 * The behaviour of the Apply Patch wizard is controlled by the number of parameters supplied:
+	 * Creates a new ApplyPatchOperation with the supplied compare
+	 * configuration, patch and target. The behaviour of the Apply Patch wizard
+	 * is controlled by the number of parameters supplied:
 	 * <ul>
-	 * <li>If a patch is supplied, the initial input page is skipped. If a patch is not supplied the wizard
-	 * will open on the input page.</li>
-	 * <li>If the patch is a workspace patch, the target selection page is skipped and the preview page is 
-	 * displayed.</li>
-	 * <li>If the patch is not a workspace patch and the target is specified, the target page is still
-	 * shown with the target selected.</li>
-	 * </ul> 
+	 * <li>If a patch is supplied, the initial input page is skipped. If a patch
+	 * is not supplied the wizard will open on the input page.</li>
+	 * <li>If the patch is a workspace patch, the target selection page is
+	 * skipped and the preview page is displayed.</li>
+	 * <li>If the patch is not a workspace patch and the target is specified,
+	 * the target page is still shown with the target selected.</li>
+	 * </ul>
 	 * 
-	 * @param part 	an IWorkbenchPart or <code>null</code>
-	 * @param patch		an IStorage containing a patch in unified diff format or <code>null</code>
-	 * @param target	an IResource which the patch is to be applied to or <code>null</code>
-	 * @param configuration	a CompareConfiguration supplying the labels and images for the preview patch page
+	 * @param part an IWorkbenchPart or <code>null</code>
+	 * @param patch an IStorage containing a patch in unified diff format or
+	 *            <code>null</code>
+	 * @param target an IResource which the patch is to be applied to or
+	 *            <code>null</code>
+	 * @param configuration a CompareConfiguration supplying the labels and
+	 *            images for the preview patch page
 	 */
 	public ApplyPatchOperation(IWorkbenchPart part, IStorage patch, IResource target, CompareConfiguration configuration) {
 		Assert.isNotNull(configuration);
@@ -143,22 +155,28 @@ public class ApplyPatchOperation implements Runnable {
 		this.target = target;
 		this.configuration = configuration;
 	}
-	
+
 	/**
-	 * Create an operation for the given part and resource. This method is a convenience
-	 * method that calls {@link #ApplyPatchOperation(IWorkbenchPart, IStorage, IResource, CompareConfiguration)}
+	 * Create an operation for the given part and resource. This method is a
+	 * convenience method that calls
+	 * {@link #ApplyPatchOperation(IWorkbenchPart, IStorage, IResource, CompareConfiguration)}
 	 * with appropriate defaults for the other parameters.
-	 * @param targetPart an IResource which the patch is to be applied to or <code>null</code>
-	 * @param resource an IResource which the patch is to be applied to or <code>null</code>
-	 * @see #ApplyPatchOperation(IWorkbenchPart, IStorage, IResource, CompareConfiguration)
+	 * 
+	 * @param targetPart an IResource which the patch is to be applied to or
+	 *            <code>null</code>
+	 * @param resource an IResource which the patch is to be applied to or
+	 *            <code>null</code>
+	 * @see #ApplyPatchOperation(IWorkbenchPart, IStorage, IResource,
+	 *      CompareConfiguration)
 	 */
 	public ApplyPatchOperation(IWorkbenchPart targetPart, IResource resource) {
 		this(targetPart, null, resource, new CompareConfiguration());
 	}
 
 	/**
-	 * Open the Apply Patch wizard using the values associated with this operation.
-	 * This method must be called from the UI thread.
+	 * Open the Apply Patch wizard using the values associated with this
+	 * operation. This method must be called from the UI thread.
+	 * 
 	 * @return whether the dialog was canceled or finished
 	 */
 	public int openWizard() {
@@ -166,65 +184,70 @@ public class ApplyPatchOperation implements Runnable {
 
 		if (saveAllEditors) {
 			PatchWizard wizard = createPatchWizard(patch, target, configuration);
-			if (patchWizardImage != null){
+			if (patchWizardImage != null) {
 				wizard.setDefaultPageImageDescriptor(patchWizardImage);
 			}
-			if (patchWizardTitle != null){
+			if (patchWizardTitle != null) {
 				wizard.setWindowTitle(patchWizardTitle);
 			}
 			wizard.setNeedsProgressMonitor(true);
-			
-				return new PatchWizardDialog(getShell(), wizard).open();
+
+			return new PatchWizardDialog(getShell(), wizard).open();
 		} else {
 			return Window.CANCEL;
 		}
 	}
 
-	private PatchWizard createPatchWizard(IStorage patch, IResource target,
-			CompareConfiguration configuration) {
+	private PatchWizard createPatchWizard(IStorage patch, IResource target, CompareConfiguration configuration) {
 		return new PatchWizard(patch, target, configuration);
 	}
 
-	
 	/**
-	 * Return the parent shell to be used when the wizard is opened.
-	 * By default, the site of the part is used to get the shell.
-	 * Subclasses may override.
+	 * Return the parent shell to be used when the wizard is opened. By default,
+	 * the site of the part is used to get the shell. Subclasses may override.
+	 * 
 	 * @return the parent shell to be used when the wizard is opened
 	 */
 	protected Shell getShell() {
-		if (part == null){
+		if (part == null) {
 			return CompareUIPlugin.getShell();
 		}
 		return part.getSite().getShell();
 	}
-	
+
 	/**
-	 * This method will save all dirty editors. It will prompt the user if the Compare preference to save
-	 * dirty editors before viewing a patch is <code>false</code>. Clients can use this or provide their own
+	 * This method will save all dirty editors. It will prompt the user if the
+	 * Compare preference to save dirty editors before viewing a patch is
+	 * <code>false</code>. Clients can use this or provide their own
 	 * implementation.
 	 */
-	protected void saveAllEditors(){
+	protected void saveAllEditors() {
 		saveAllEditors = PlatformUI.getWorkbench().saveAllEditors(true);
 	}
-	
+
 	/**
-	 * Sets the title of the patch wizard. Needs to be set before {@link #openWizard()} is called.
-	 * @param title	a string to display in the title bar
+	 * Sets the title of the patch wizard. Needs to be set before
+	 * {@link #openWizard()} is called.
+	 * 
+	 * @param title a string to display in the title bar
 	 */
-	public void setPatchWizardTitle(String title){
+	public void setPatchWizardTitle(String title) {
 		this.patchWizardTitle = title;
 	}
-	
+
 	/**
-	 * Sets the image descriptor to use in the patch wizard. Needs to be set before  {@link #openWizard()} is called.
+	 * Sets the image descriptor to use in the patch wizard. Needs to be set
+	 * before {@link #openWizard()} is called.
+	 * 
 	 * @param descriptor an image descriptor
 	 */
-	public void setPatchWizardImageDescriptor(ImageDescriptor descriptor){
+	public void setPatchWizardImageDescriptor(ImageDescriptor descriptor) {
 		this.patchWizardImage = descriptor;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Runnable#run()
 	 */
 	/**
@@ -233,16 +256,13 @@ public class ApplyPatchOperation implements Runnable {
 	public void run() {
 		dialogResult = openWizard();
 	}
-	
-	private static IFilePatch[] internalParsePatch(IStorage storage)
-			throws CoreException {
+
+	private static IFilePatch[] internalParsePatch(IStorage storage) throws CoreException {
 		BufferedReader reader = Utilities.createReader(storage);
 		try {
 			PatchReader patchReader = new PatchReader() {
-				protected FilePatch2 createFileDiff(IPath oldPath, long oldDate,
-						IPath newPath, long newDate) {
-					return new FilePatch(oldPath, oldDate, newPath,
-							newDate);
+				protected FilePatch2 createFileDiff(IPath oldPath, long oldDate, IPath newPath, long newDate) {
+					return new FilePatch(oldPath, oldDate, newPath, newDate);
 				}
 			};
 			patchReader.parse(reader);
@@ -255,8 +275,7 @@ public class ApplyPatchOperation implements Runnable {
 
 			return filePatch;
 		} catch (IOException e) {
-			throw new CoreException(new Status(IStatus.ERROR,
-					CompareUIPlugin.PLUGIN_ID, 0, e.getMessage(), e));
+			throw new CoreException(new Status(IStatus.ERROR, CompareUIPlugin.PLUGIN_ID, 0, e.getMessage(), e));
 		} finally {
 			try {
 				reader.close();
@@ -264,28 +283,28 @@ public class ApplyPatchOperation implements Runnable {
 			}
 		}
 	}
-	
+
 	/**
 	 * @return IWorkbenchPart
 	 */
 	private static IWorkbenchPart getTargetPart() {
-		
+
 		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		if (window == null){
+		if (window == null) {
 			return null;
 		}
 		window.getActivePage();
-        IWorkbenchPage  page = window.getActivePage();
-        if (page != null) {
-            return page.getActivePart();
-        }
-        
+		IWorkbenchPage page = window.getActivePage();
+		if (page != null) {
+			return page.getActivePart();
+		}
+
 		return null;
 	}
-	
+
 	/**
-	 * Applies a patch onto a target. Target may be null.
-	 * Returns true if the patch was applied and false if the user canceled
+	 * Applies a patch onto a target. Target may be null. Returns true if the
+	 * patch was applied and false if the user canceled
 	 * 
 	 * @param patch storage containing the patch
 	 * @param target target for the patch

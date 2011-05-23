@@ -8,26 +8,25 @@ package org.unicase.changetracking.release;
 /**
  * The state of a change package, during a release check.
  * 
- * @author gex
- *
+ * @author jfinis
+ * 
  */
 public enum ChangePackageState {
-	
+
 	/**
-	 * The package is not included in the source code.
-	 * I.e. it is not merged in yet.
+	 * The package is not included in the source code. I.e. it is not merged in
+	 * yet.
 	 */
 	UNMERGED,
-	
+
 	/**
 	 * The package is contained in the source code.
 	 */
-	MERGED, 
-	
+	MERGED,
+
 	/**
-	 * The package is erroneous.
-	 * E.g. the patch for a patch change package or the
-	 * branch for a branch change package is missing.
+	 * The package is erroneous. E.g. the patch for a patch change package or
+	 * the branch for a branch change package is missing.
 	 */
 	ERROR;
 
