@@ -15,20 +15,20 @@ import org.unicase.model.changetracking.RepositoryStream;
 import org.unicase.model.changetracking.patch.PatchChangePackage;
 
 /**
- * The adapter provider for the subclipse adapter.
- * Currenlty most method return false, as many use cases
- * are not yet provided by this adapter.
- * @author gex
- *
+ * The adapter provider for the subclipse adapter. Currenlty most method return
+ * false, as many use cases are not yet provided by this adapter.
+ * 
+ * @author jfinis
+ * 
  */
 public class SubclipseVCSAdapterProvider implements VCSAdapterProvider {
 
 	/**
-	 * Team provider id of the Subclipse provider. This indicates whether
-	 * a project is under subclipse version control.
+	 * Team provider id of the Subclipse provider. This indicates whether a
+	 * project is under subclipse version control.
 	 */
 	public static final String SUBCLIPSE_REPO_PROVIDER_ID = "org.tigris.subversion.subclipse.core.svnnature";
-	
+
 	/**
 	 * Not implemented for this provider.
 	 * 
@@ -57,17 +57,16 @@ public class SubclipseVCSAdapterProvider implements VCSAdapterProvider {
 	}
 
 	/**
-	 * Provides for projects for which subclipse is used as repo
-	 * provider.
+	 * Provides for projects for which subclipse is used as repo provider.
 	 * 
 	 * {@inheritDoc}
 	 */
 	public boolean providesForProject(IProject project) {
 		RepositoryProvider provider = RepositoryProvider.getProvider(project);
-		if(provider == null){
+		if (provider == null) {
 			return false;
 		}
-		if(SUBCLIPSE_REPO_PROVIDER_ID.equals(provider.getID())){
+		if (SUBCLIPSE_REPO_PROVIDER_ID.equals(provider.getID())) {
 			return true;
 		}
 		return false;
