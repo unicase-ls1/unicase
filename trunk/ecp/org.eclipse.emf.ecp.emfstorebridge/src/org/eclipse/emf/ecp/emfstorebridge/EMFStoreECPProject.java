@@ -18,7 +18,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.emfstore.client.model.Configuration;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.observers.SimpleOperationListener;
-import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
 import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.swt.widgets.Display;
@@ -60,7 +60,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 			}
 
 		};
-		projectSpace.addOperationListener(simpleOperationListener);
+		projectSpace.getOperationManager().addOperationListener(simpleOperationListener);
 		projectSpace.getProject().addProjectChangeObserver(this);
 	}
 
@@ -108,7 +108,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	 * @see org.eclipse.emf.ecp.model.workSpaceModel.ECPProject#dispose()
 	 */
 	public void dispose() {
-		projectSpace.removeOperationListener(simpleOperationListener);
+		projectSpace.getOperationManager().removeOperationListener(simpleOperationListener);
 		projectSpace.getProject().removeProjectChangeObserver(this);
 
 	}
@@ -119,7 +119,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#modelElementAdded(org.eclipse.emf.emfstore.common.model.Project,
 	 *      org.eclipse.emf.ecore.EObject)
 	 */
-	public void modelElementAdded(Project project, EObject modelElement) {
+	public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
 		// Do nothing
 
 	}
@@ -130,7 +130,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#modelElementRemoved(org.eclipse.emf.emfstore.common.model.Project,
 	 *      org.eclipse.emf.ecore.EObject)
 	 */
-	public void modelElementRemoved(Project project, EObject modelElement) {
+	public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
 		super.modelelementDeleted(modelElement);
 
 	}
@@ -141,21 +141,11 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.eclipse.emf.emfstore.common.model.Project, org.eclipse.emf.ecore.EObject)
 	 */
-	public void notify(Notification notification, Project project, EObject modelElement) {
+	public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
 		// Do nothing
 
 	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#projectDeleted(org.eclipse.emf.emfstore.common.model.Project)
-	 */
-	public void projectDeleted(Project project) {
-		super.projectDeleted();
-
-	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -163,5 +153,9 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 	 */
 	public void addModelElementToRoot(EObject eObject) {
 		projectSpace.getProject().getModelElements().add(eObject);
+	}
+
+	public void projectDeleted(IdEObjectCollection project) {
+		super.projectDeleted();
 	}
 }

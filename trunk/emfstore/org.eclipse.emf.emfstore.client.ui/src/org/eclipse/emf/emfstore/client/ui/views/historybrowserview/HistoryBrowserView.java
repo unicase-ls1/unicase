@@ -88,15 +88,19 @@ import org.eclipse.ui.part.ViewPart;
  * @author Wesendonk
  * @author Shterev
  */
-public class HistoryBrowserView extends ViewPart implements ProjectSpaceContainer {
+public class HistoryBrowserView extends ViewPart implements
+		ProjectSpaceContainer {
 
 	/**
-	 * Treeviewer that provides a model element selection for selected operations and mode element ids.
+	 * Treeviewer that provides a model element selection for selected
+	 * operations and mode element ids.
 	 * 
 	 * @author koegel
 	 */
-	private final class TreeViewerWithModelElementSelectionProvider extends TreeViewer {
-		private TreeViewerWithModelElementSelectionProvider(Composite parent, int style) {
+	private final class TreeViewerWithModelElementSelectionProvider extends
+			TreeViewer {
+		private TreeViewerWithModelElementSelectionProvider(Composite parent,
+				int style) {
 			super(parent, style);
 		}
 
@@ -133,24 +137,33 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 				CompositeOperation comop = (CompositeOperation) element;
 				AbstractOperation mainOperation = comop.getMainOperation();
 				if (mainOperation != null) {
-					ModelElementId modelElementId = mainOperation.getModelElementId();
-					selectedModelElement = projectSpace.getProject().getModelElement(modelElementId);
+					ModelElementId modelElementId = mainOperation
+							.getModelElementId();
+					selectedModelElement = projectSpace.getProject()
+							.getModelElement(modelElementId);
 					return new StructuredSelection(selectedModelElement);
 				}
 			} else if (element instanceof AbstractOperation) {
-				ModelElementId modelElementId = ((AbstractOperation) element).getModelElementId();
-				selectedModelElement = projectSpace.getProject().getModelElement(modelElementId);
+				ModelElementId modelElementId = ((AbstractOperation) element)
+						.getModelElementId();
+				selectedModelElement = projectSpace.getProject()
+						.getModelElement(modelElementId);
 				return new StructuredSelection(selectedModelElement);
 			} else if (element instanceof EObject) {
 				if (element instanceof ProjectSpace) {
-					selectedModelElement = ((ProjectSpace) element).getProject();
+					selectedModelElement = ((ProjectSpace) element)
+							.getProject();
 				} else if (element instanceof ModelElementId
-					&& projectSpace.getProject().contains((ModelElementId) element)) {
-					selectedModelElement = projectSpace.getProject().getModelElement((ModelElementId) element);
-				} else if (projectSpace.getProject().containsInstance((EObject) element)) {
+						&& projectSpace.getProject().contains(
+								(ModelElementId) element)) {
+					selectedModelElement = projectSpace.getProject()
+							.getModelElement((ModelElementId) element);
+				} else if (projectSpace.getProject().containsInstance(
+						(EObject) element)) {
 					selectedModelElement = (EObject) element;
 				} else {
-					// TODO: PlainEObjectMode, what happens with deleted elements and stuff like the HistoryInfo node?
+					// TODO: PlainEObjectMode, what happens with deleted
+					// elements and stuff like the HistoryInfo node?
 					return super.getSelection();
 				}
 
@@ -220,10 +233,13 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		this.parent = parent;
 
 		noProjectHint = new Label(parent, SWT.WRAP);
-		GridDataFactory.fillDefaults().align(SWT.CENTER, SWT.CENTER).grab(true, true).applyTo(noProjectHint);
-		noProjectHint.setText("Please call 'Show history' from the context menu of an element in the navigator.");
+		GridDataFactory.fillDefaults().align(SWT.CENTER, SWT.CENTER)
+				.grab(true, true).applyTo(noProjectHint);
+		noProjectHint
+				.setText("Please call 'Show history' from the context menu of an element in the navigator.");
 
-		viewer = new TreeViewerWithModelElementSelectionProvider(parent, SWT.NONE);
+		viewer = new TreeViewerWithModelElementSelectionProvider(parent,
+				SWT.NONE);
 
 		MenuManager menuMgr = new MenuManager("#PopupMenu");
 		menuMgr.add(new Separator("additions"));
@@ -234,15 +250,18 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 
 		getSite().setSelectionProvider(viewer);
 
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(viewer.getControl());
+		GridDataFactory.fillDefaults().grab(true, true)
+				.applyTo(viewer.getControl());
 		ColumnViewerToolTipSupport.enableFor(viewer);
 		viewer.addDoubleClickListener(new IDoubleClickListener() {
 
 			public void doubleClick(DoubleClickEvent event) {
 				if (event.getSelection() instanceof IStructuredSelection) {
-					TreeNode node = (TreeNode) ((IStructuredSelection) event.getSelection()).getFirstElement();
+					TreeNode node = (TreeNode) ((IStructuredSelection) event
+							.getSelection()).getFirstElement();
 					if (node.getValue() instanceof EObject) {
-						ElementOpenerHelper.openModelElement((EObject) node.getValue(), VIEW_ID);
+						ElementOpenerHelper.openModelElement(
+								(EObject) node.getValue(), VIEW_ID);
 					}
 				}
 
@@ -284,8 +303,10 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	}
 
 	private void addExpandAllAndCollapseAllAction(IToolBarManager menuManager) {
-		final ImageDescriptor expandImg = Activator.getImageDescriptor("icons/expandall.gif");
-		final ImageDescriptor collapseImg = Activator.getImageDescriptor("icons/collapseall.gif");
+		final ImageDescriptor expandImg = Activator
+				.getImageDescriptor("icons/expandall.gif");
+		final ImageDescriptor collapseImg = Activator
+				.getImageDescriptor("icons/collapseall.gif");
 
 		Action expandAndCollapse = new Action("", SWT.TOGGLE) {
 			@Override
@@ -301,7 +322,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 
 		};
 		expandAndCollapse.setImageDescriptor(expandImg);
-		expandAndCollapse.setToolTipText("Use this toggle to expand or collapse all elements");
+		expandAndCollapse
+				.setToolTipText("Use this toggle to expand or collapse all elements");
 		menuManager.add(expandAndCollapse);
 	}
 
@@ -313,18 +335,21 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			}
 
 		};
-		refresh.setImageDescriptor(Activator.getImageDescriptor("/icons/refresh.png"));
+		refresh.setImageDescriptor(Activator
+				.getImageDescriptor("/icons/refresh.png"));
 		refresh.setToolTipText("Refresh");
 		menuManager.add(refresh);
 	}
 
 	private void addGroupByModelElementButton(IToolBarManager menuManager) {
-		boolean isGroupByME = Activator.getDefault().getDialogSettings().getBoolean("GroupByModelElement");
+		boolean isGroupByME = Activator.getDefault().getDialogSettings()
+				.getBoolean("GroupByModelElement");
 		groupByMe = new Action("", SWT.TOGGLE) {
 			@Override
 			public void run() {
 				boolean showRootsCache = contentProvider.showRootNodes();
-				Activator.getDefault().getDialogSettings().put("GroupByModelElement", isChecked());
+				Activator.getDefault().getDialogSettings()
+						.put("GroupByModelElement", isChecked());
 				if (isChecked()) {
 					contentProvider = new SCMContentProvider.Compact(viewer);
 				} else {
@@ -337,7 +362,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 
 		};
 
-		groupByMe.setImageDescriptor(Activator.getImageDescriptor("/icons/groupByME.png"));
+		groupByMe.setImageDescriptor(Activator
+				.getImageDescriptor("/icons/groupByME.png"));
 		groupByMe.setToolTipText("Group by model element");
 		groupByMe.setChecked(isGroupByME);
 		menuManager.add(groupByMe);
@@ -358,9 +384,12 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 
 		};
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		showRoots.setImageDescriptor(ImageDescriptor.createFromImage(adapterFactoryLabelProvider
-			.getImage(VersioningFactory.eINSTANCE.createChangePackage())));
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		showRoots.setImageDescriptor(ImageDescriptor
+				.createFromImage(adapterFactoryLabelProvider
+						.getImage(VersioningFactory.eINSTANCE
+								.createChangePackage())));
 		showRoots.setToolTipText("Show revision nodes");
 		showRoots.setChecked(true);
 		menuManager.add(showRoots);
@@ -402,37 +431,43 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		Action jumpTo = new Action() {
 			@Override
 			public void run() {
-				InputDialog inputDialog = new InputDialog(getSite().getShell(), "Go to revision", "Revision", "", null);
+				InputDialog inputDialog = new InputDialog(getSite().getShell(),
+						"Go to revision", "Revision", "", null);
 				if (inputDialog.open() == Window.OK) {
 					try {
 						int temp = Integer.parseInt(inputDialog.getValue());
 						currentEnd = temp;
 						refresh();
 					} catch (NumberFormatException e) {
-						MessageDialog.openError(getSite().getShell(), "Error", "A numeric value was expected!");
+						MessageDialog.openError(getSite().getShell(), "Error",
+								"A numeric value was expected!");
 						run();
 					}
 				}
 			}
 
 		};
-		jumpTo.setImageDescriptor(Activator.getImageDescriptor("/icons/magnifier.png"));
+		jumpTo.setImageDescriptor(Activator
+				.getImageDescriptor("/icons/magnifier.png"));
 		jumpTo.setToolTipText("Go to revision...");
 		menuManager.add(jumpTo);
 	}
 
 	private void addLinkWithNavigatorAction(IToolBarManager menuManager) {
-		isUnlinkedFromNavigator = Activator.getDefault().getDialogSettings().getBoolean("LinkWithNavigator");
+		isUnlinkedFromNavigator = Activator.getDefault().getDialogSettings()
+				.getBoolean("LinkWithNavigator");
 		Action linkWithNavigator = new Action("Link with navigator", SWT.TOGGLE) {
 
 			@Override
 			public void run() {
-				Activator.getDefault().getDialogSettings().put("LinkWithNavigator", !this.isChecked());
+				Activator.getDefault().getDialogSettings()
+						.put("LinkWithNavigator", !this.isChecked());
 				isUnlinkedFromNavigator = (!this.isChecked());
 			}
 
 		};
-		linkWithNavigator.setImageDescriptor(Activator.getImageDescriptor("icons/link_with_editor.gif"));
+		linkWithNavigator.setImageDescriptor(Activator
+				.getImageDescriptor("icons/link_with_editor.gif"));
 		linkWithNavigator.setToolTipText("Link with Navigator");
 		linkWithNavigator.setChecked(!isUnlinkedFromNavigator);
 		menuManager.add(linkWithNavigator);
@@ -455,7 +490,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 				try {
 					loadContent(end);
 				} catch (InvalidVersionSpecException e) {
-					MessageDialog.openError(getShell(), "Invalid revision", "The requested revision was invalid");
+					MessageDialog.openError(getShell(), "Invalid revision",
+							"The requested revision was invalid");
 					currentEnd = projectSpace.getBaseVersion().getIdentifier();
 					refresh();
 				}
@@ -481,17 +517,19 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		}
 		HistoryQuery query = getQuery(end);
 		List<HistoryInfo> historyInfo = projectSpace.getUsersession()
-			.getHistoryInfo(projectSpace.getProjectId(), query);
+				.getHistoryInfo(projectSpace.getProjectId(), query);
 
 		// Event logging
-		ShowHistoryEvent historyEvent = EventsFactory.eINSTANCE.createShowHistoryEvent();
+		ShowHistoryEvent historyEvent = EventsFactory.eINSTANCE
+				.createShowHistoryEvent();
 		historyEvent.setSourceVersion(query.getSource());
 		historyEvent.setTargetVersion(query.getTarget());
 		historyEvent.setTimestamp(new Date());
 		EList<ModelElementId> modelElements = query.getModelElements();
 		if (modelElements != null) {
 			for (ModelElementId modelElementId : modelElements) {
-				historyEvent.getModelElement().add(ModelUtil.clone(modelElementId));
+				historyEvent.getModelElement().add(
+						ModelUtil.clone(modelElementId));
 			}
 		}
 		projectSpace.addEvent(historyEvent);
@@ -499,7 +537,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		if (historyInfo != null) {
 			for (HistoryInfo hi : historyInfo) {
 				if (hi.getPrimerySpec().equals(projectSpace.getBaseVersion())) {
-					TagVersionSpec spec = VersioningFactory.eINSTANCE.createTagVersionSpec();
+					TagVersionSpec spec = VersioningFactory.eINSTANCE
+							.createTagVersionSpec();
 					spec.setName(VersionSpec.BASE);
 					hi.getTagSpecs().add(spec);
 					break;
@@ -508,26 +547,34 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			historyInfos.clear();
 			historyInfos.addAll(historyInfo);
 		}
-		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
-		changePackage.getOperations().addAll(ModelUtil.clone(projectSpace.getOperations()));
+		ChangePackage changePackage = VersioningFactory.eINSTANCE
+				.createChangePackage();
+		changePackage.getOperations().addAll(
+				ModelUtil.clone(projectSpace.getOperations()));
 		changePackageCache.put(-1, changePackage);
 		for (HistoryInfo hi : historyInfos) {
 			if (hi.getChangePackage() != null) {
-				changePackageCache.put(hi.getPrimerySpec().getIdentifier(), hi.getChangePackage());
+				changePackageCache.put(hi.getPrimerySpec().getIdentifier(),
+						hi.getChangePackage());
 			}
 		}
-		changePackageVisualizationHelper = new ChangePackageVisualizationHelper(new ArrayList<ChangePackage>(
-			changePackageCache.values()), projectSpace.getProject());
-		labelProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
-		logLabelProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
-		contentProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
+		changePackageVisualizationHelper = new ChangePackageVisualizationHelper(
+				new ArrayList<ChangePackage>(changePackageCache.values()),
+				projectSpace.getProject());
+		labelProvider
+				.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
+		logLabelProvider
+				.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
+		contentProvider
+				.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
 		contentProvider.setProjectSpace(projectSpace);
 	}
 
 	/**
 	 * Set the input for the History Browser.
 	 * 
-	 * @param projectSpace the input project space
+	 * @param projectSpace
+	 *            the input project space
 	 */
 	public void setInput(ProjectSpace projectSpace) {
 		setInput(projectSpace, null);
@@ -536,8 +583,10 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	/**
 	 * Set the input for the History Browser.
 	 * 
-	 * @param projectSpace the input project space
-	 * @param me the input model element
+	 * @param projectSpace
+	 *            the input project space
+	 * @param me
+	 *            the input model element
 	 */
 	public void setInput(ProjectSpace projectSpace, EObject me) {
 		noProjectHint.dispose();
@@ -555,7 +604,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			contentProvider.setShowRootNodes(false);
 		} else {
 			label += projectSpace.getProjectName();
-			boolean isGroupedByME = Activator.getDefault().getDialogSettings().getBoolean("GroupByModelElement");
+			boolean isGroupedByME = Activator.getDefault().getDialogSettings()
+					.getBoolean("GroupByModelElement");
 			groupByMe.setChecked(isGroupedByME);
 			showRoots.setChecked(true);
 			if (isGroupedByME) {
@@ -576,7 +626,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	}
 
 	private void getHeadVersionIdentifier() throws EmfStoreException {
-		PrimaryVersionSpec resolveVersionSpec = projectSpace.resolveVersionSpec(VersionSpec.HEAD_VERSION);
+		PrimaryVersionSpec resolveVersionSpec = projectSpace
+				.resolveVersionSpec(VersionSpec.HEAD_VERSION);
 		int identifier = resolveVersionSpec.getIdentifier();
 		headVersion = identifier;
 	}
@@ -590,23 +641,29 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			currentEnd = -1;
 		} else {
 			currentEnd = end;
-			PrimaryVersionSpec tempVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+			PrimaryVersionSpec tempVersionSpec = VersioningFactory.eINSTANCE
+					.createPrimaryVersionSpec();
 			tempVersionSpec.setIdentifier(end);
-			end = projectSpace.resolveVersionSpec(tempVersionSpec).getIdentifier();
+			end = projectSpace.resolveVersionSpec(tempVersionSpec)
+					.getIdentifier();
 		}
 
 		int temp = end - startOffset;
 		int start = (temp > 0 ? temp : 0);
 
-		PrimaryVersionSpec source = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+		PrimaryVersionSpec source = VersioningFactory.eINSTANCE
+				.createPrimaryVersionSpec();
 		source.setIdentifier(start);
-		PrimaryVersionSpec target = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+		PrimaryVersionSpec target = VersioningFactory.eINSTANCE
+				.createPrimaryVersionSpec();
 		target.setIdentifier(end);
 		query.setSource(source);
 		query.setTarget(target);
 		query.setIncludeChangePackage(true);
 		if (modelElement != null && !(modelElement instanceof ProjectSpace)) {
-			query.getModelElements().add(ModelUtil.getProject(modelElement).getModelElementId(modelElement));
+			query.getModelElements().add(
+					ModelUtil.getProject(modelElement).getModelElementId(
+							modelElement));
 		}
 
 		return query;
@@ -622,21 +679,27 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 		ArrayList<HistoryInfo> revisions = new ArrayList<HistoryInfo>();
 		if (projectSpace != null) {
 			// TODO: add a feature "hide local revision"
-			HistoryInfo localHistoryInfo = VersioningFactory.eINSTANCE.createHistoryInfo();
-			ChangePackage changePackage = projectSpace.getLocalChangePackage(false);
-			// filter for modelelement, do additional sanity check as the project space could've been also selected
-			if (modelElement != null && projectSpace.getProject().containsInstance(modelElement)) {
+			HistoryInfo localHistoryInfo = VersioningFactory.eINSTANCE
+					.createHistoryInfo();
+			ChangePackage changePackage = projectSpace
+					.getLocalChangePackage(false);
+			// filter for modelelement, do additional sanity check as the
+			// project space could've been also selected
+			if (modelElement != null
+					&& projectSpace.getProject().containsInstance(modelElement)) {
 				Set<AbstractOperation> operationsToRemove = new HashSet<AbstractOperation>();
 				for (AbstractOperation ao : changePackage.getOperations()) {
 					if (!ao.getAllInvolvedModelElements().contains(
-						ModelUtil.getProject(modelElement).getModelElementId(modelElement))) {
+							ModelUtil.getProject(modelElement)
+									.getModelElementId(modelElement))) {
 						operationsToRemove.add(ao);
 					}
 				}
 				changePackage.getOperations().removeAll(operationsToRemove);
 			}
 			localHistoryInfo.setChangePackage(changePackage);
-			PrimaryVersionSpec versionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+			PrimaryVersionSpec versionSpec = VersioningFactory.eINSTANCE
+					.createPrimaryVersionSpec();
 			versionSpec.setIdentifier(-1);
 			localHistoryInfo.setPrimerySpec(versionSpec);
 			revisions.add(localHistoryInfo);
@@ -652,7 +715,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	@Override
 	public void setFocus() {
 		viewer.getControl().setFocus();
-		WorkspaceUtil.logFocusEvent("org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView");
+		WorkspaceUtil
+				.logFocusEvent("org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView");
 	}
 
 	/**
@@ -665,7 +729,8 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	/**
 	 * Highlights the given operations.
 	 * 
-	 * @param operations the operations
+	 * @param operations
+	 *            the operations
 	 */
 	public void highlightOperations(List<OperationId> operations) {
 		labelProvider.getHighlighted().clear();
