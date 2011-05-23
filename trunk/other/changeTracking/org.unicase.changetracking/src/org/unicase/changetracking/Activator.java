@@ -14,22 +14,19 @@ import org.osgi.framework.BundleContext;
 public class Activator extends Plugin {
 
 	/**
-	 *  The plug-in ID.
+	 * The plug-in ID.
 	 */
 	public static final String PLUGIN_ID = "org.unicase.changetracking"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
-	
+
 	/**
 	 * The constructor.
 	 */
-	public Activator() {
-	}
-	
+	public Activator() {}
 
 	// BEGIN SUPRESS CATCH EXCEPTION
-
 
 	/**
 	 * {@inheritDoc}
@@ -51,7 +48,7 @@ public class Activator extends Plugin {
 
 	/**
 	 * Returns the shared instance.
-	 *
+	 * 
 	 * @return the shared instance
 	 */
 	public static Activator getDefault() {

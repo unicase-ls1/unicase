@@ -7,8 +7,9 @@ package org.unicase.changetracking.commands;
 
 /**
  * Abstract base class for all build release commands supplied by adapters.
- * @author gex
- *
+ * 
+ * @author jfinis
+ * 
  */
 public abstract class BuildReleaseCommand extends ChangeTrackingCommand {
 
@@ -16,17 +17,19 @@ public abstract class BuildReleaseCommand extends ChangeTrackingCommand {
 	 * States if this command is a continued one after conflict resolution.
 	 */
 	private boolean isContinue;
-	
+
 	/**
 	 * Must be overridden by subclasses and return whether conflicts happend
 	 * during the build process.
+	 * 
 	 * @return whether conflicts happend.
 	 */
 	public abstract boolean hadConflicts();
 
 	/**
-	 * Sets the continue flag. This flag states if the command continues
-	 * after a resolved conflict.
+	 * Sets the continue flag. This flag states if the command continues after a
+	 * resolved conflict.
+	 * 
 	 * @param isContinue new value for the isContinue flag.
 	 */
 	public void setContinue(boolean isContinue) {
@@ -35,10 +38,11 @@ public abstract class BuildReleaseCommand extends ChangeTrackingCommand {
 
 	/**
 	 * Returns whether this command has continued after a conflict resolution.
+	 * 
 	 * @return whether command is continued.
 	 */
 	public boolean isContinue() {
 		return isContinue;
 	}
-	
+
 }

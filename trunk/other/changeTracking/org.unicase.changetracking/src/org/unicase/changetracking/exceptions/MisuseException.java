@@ -7,13 +7,13 @@ package org.unicase.changetracking.exceptions;
 
 /**
  * A misuse exception is an exception which may occur during command execution
- * and is caused by a misuse of the program. Thus, it is no real exception to
- * be logged but rather only be displayed to the user in a message box.
+ * and is caused by a misuse of the program. Thus, it is no real exception to be
+ * logged but rather only be displayed to the user in a message box.
  * 
  * @author jfinis
- *
+ * 
  */
-public class MisuseException extends RuntimeException{
+public class MisuseException extends RuntimeException {
 
 	/**
 	 * .
@@ -29,6 +29,7 @@ public class MisuseException extends RuntimeException{
 
 	/**
 	 * Standard exception constructor.
+	 * 
 	 * @param arg0 message
 	 * @param arg1 cause
 	 */
@@ -38,6 +39,7 @@ public class MisuseException extends RuntimeException{
 
 	/**
 	 * Standard exception constructor.
+	 * 
 	 * @param arg0 message
 	 */
 	public MisuseException(String arg0) {
@@ -46,12 +48,11 @@ public class MisuseException extends RuntimeException{
 
 	/**
 	 * Standard exception constructor.
+	 * 
 	 * @param arg0 cause
 	 */
 	public MisuseException(Throwable arg0) {
 		super(arg0);
 	}
-	
-	
 
 }

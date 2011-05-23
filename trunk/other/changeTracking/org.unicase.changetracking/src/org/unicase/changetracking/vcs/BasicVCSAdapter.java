@@ -25,45 +25,42 @@ import org.unicase.model.changetracking.RepositoryStream;
 import org.unicase.model.task.WorkItem;
 
 /**
- * Basic implemenation of a VCS adapter which does not
- * support any opperation. All operations will either directly
- * throw a not supported exception or return a command which
- * throws this exception upon execution.
+ * Basic implemenation of a VCS adapter which does not support any opperation.
+ * All operations will either directly throw a not supported exception or return
+ * a command which throws this exception upon execution.
  * 
- * Check methods do not throw an exception but return the default
- * case.
+ * Check methods do not throw an exception but return the default case.
  * 
- * The only meaningful implementation provided by this adapter is
- * for the createStreamFromCurrentBranch method, which can be realized
- * independently of the VCS. However, it can be overridden for further
- * individualization
- * @author gex
- *
+ * The only meaningful implementation provided by this adapter is for the
+ * createStreamFromCurrentBranch method, which can be realized independently of
+ * the VCS. However, it can be overridden for further individualization
+ * 
+ * @author jfinis
+ * 
  */
-public abstract class BasicVCSAdapter implements VCSAdapter{
+public abstract class BasicVCSAdapter implements VCSAdapter {
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public CreateStreamCommand createStreamFromCurrentBranch(
-			IDecisionProvider decisionProvider, IProject workspaceProject) {
+	public CreateStreamCommand createStreamFromCurrentBranch(IDecisionProvider decisionProvider, IProject workspaceProject) {
 		return new CreateStreamFromCurrentBranchCommand(this, decisionProvider, workspaceProject);
 	}
-	
-	private RuntimeException notSupported(String s){
+
+	private RuntimeException notSupported(String s) {
 		return new RuntimeException(new NotSupportedByAdapterException(s));
 	}
-	
-	private ChangeTrackingCommand notSupportedCommand(final String s){
+
+	private ChangeTrackingCommand notSupportedCommand(final String s) {
 		return new ChangeTrackingCommand() {
-			
+
 			@Override
 			protected ChangeTrackingCommandResult doRun() {
 				throw notSupported(s);
 			}
 		};
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -74,15 +71,14 @@ public abstract class BasicVCSAdapter implements VCSAdapter{
 	/**
 	 * {@inheritDoc}
 	 */
-	public BuildReleaseCommand buildRelease(ChangeTrackingRelease release,
-			String tagName, ReleaseCheckReport checkReport) {
+	public BuildReleaseCommand buildRelease(ChangeTrackingRelease release, String tagName, ReleaseCheckReport checkReport) {
 		return new BuildReleaseCommand() {
-			
+
 			@Override
 			protected ChangeTrackingCommandResult doRun() {
 				throw notSupported("release building");
 			}
-			
+
 			@Override
 			public boolean hadConflicts() {
 				return false;
@@ -93,10 +89,9 @@ public abstract class BasicVCSAdapter implements VCSAdapter{
 	/**
 	 * {@inheritDoc}
 	 */
-	public CheckReleaseCommand checkRelease(IDecisionProvider decisionProvider,
-			ChangeTrackingRelease release) {
+	public CheckReleaseCommand checkRelease(IDecisionProvider decisionProvider, ChangeTrackingRelease release) {
 		return new CheckReleaseCommand() {
-			
+
 			@Override
 			protected ChangeTrackingCommandResult doRun() {
 				throw notSupported("release checking");
@@ -107,33 +102,28 @@ public abstract class BasicVCSAdapter implements VCSAdapter{
 	/**
 	 * {@inheritDoc}
 	 */
-	public ChangeTrackingCommand createChangePackage(IProject localProject,
-			WorkItem workItem, RepositoryLocation remoteRepo, String name,
-			String shortDescription, String longDescription) {
+	public ChangeTrackingCommand createChangePackage(IProject localProject, WorkItem workItem, RepositoryLocation remoteRepo, String name, String shortDescription, String longDescription) {
 		return notSupportedCommand("change package creation");
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public RepositoryLocation createRepositoryLocation(IProject workspaceProject)
-			throws VCSException, CancelledByUserException {
+	public RepositoryLocation createRepositoryLocation(IProject workspaceProject) throws VCSException, CancelledByUserException {
 		throw new NotSupportedByAdapterException("repository location creation");
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public RepositoryStream createRepositoryStream(IProject localProject,
-			RepositoryLocation repoLocation) throws NotSupportedByAdapterException {
+	public RepositoryStream createRepositoryStream(IProject localProject, RepositoryLocation repoLocation) throws NotSupportedByAdapterException {
 		throw new NotSupportedByAdapterException("repository stream creation");
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public RepositoryLocation findRepoLocation(IProject workspaceProject,
-			Project unicaseProject) throws VCSException {
+	public RepositoryLocation findRepoLocation(IProject workspaceProject, Project unicaseProject) throws VCSException {
 		throw new NotSupportedByAdapterException("repository location retrieval");
 	}
 
@@ -142,11 +132,11 @@ public abstract class BasicVCSAdapter implements VCSAdapter{
 	 */
 	public NameValidator getNameValidator() {
 		return new NameValidator() {
-			
+
 			public String isNewTagNameValid(String text, RepositoryLocation repoLoc) {
 				return null;
 			}
-			
+
 			public String cleanName(String name) {
 				return name;
 			}
@@ -156,10 +146,8 @@ public abstract class BasicVCSAdapter implements VCSAdapter{
 	/**
 	 * {@inheritDoc}
 	 */
-	public String performEarlyCreateChangePackageChecks(IProject localProject)
-			throws VCSException {
+	public String performEarlyCreateChangePackageChecks(IProject localProject) throws VCSException {
 		return null;
 	}
-	
-	
+
 }

@@ -6,15 +6,15 @@
 package org.unicase.changetracking.exceptions;
 
 /**
- * This exception may be thrown by an adapter or the commands it
- * produces. If it is thrown, it signals that this adapter does not
- * support the invoked operation.
- * @author gex
- *
+ * This exception may be thrown by an adapter or the commands it produces. If it
+ * is thrown, it signals that this adapter does not support the invoked
+ * operation.
+ * 
+ * @author jfinis
+ * 
  */
 public class NotSupportedByAdapterException extends VCSException {
 
-	
 	/**
 	 * .
 	 */
@@ -22,10 +22,11 @@ public class NotSupportedByAdapterException extends VCSException {
 
 	/**
 	 * Default constructor.
+	 * 
 	 * @param arg0 description of the not supported feature.
 	 */
 	public NotSupportedByAdapterException(String arg0) {
 		super(arg0 + " is not supported by this VCS adapter.");
 	}
-	
+
 }

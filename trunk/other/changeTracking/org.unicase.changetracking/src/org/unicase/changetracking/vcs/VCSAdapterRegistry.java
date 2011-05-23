@@ -15,37 +15,34 @@ import org.eclipse.core.runtime.Platform;
 import org.unicase.metamodel.util.ModelUtil;
 
 /**
- * The singleton registry class reads
- * the org.unicase.changetracking.vcsadapters
- * extension point to provide a list of available
- * adapter plug-ins.
+ * The singleton registry class reads the org.unicase.changetracking.vcsadapters
+ * extension point to provide a list of available adapter plug-ins.
  * 
- * @author gex
- *
+ * @author jfinis
+ * 
  */
 public final class VCSAdapterRegistry {
-	
+
 	/**
 	 * The singleton instance.
 	 */
 	public static final VCSAdapterRegistry INSTANCE = new VCSAdapterRegistry();
-	
+
 	private List<VCSAdapterProvider> providers = new ArrayList<VCSAdapterProvider>();
 	private List<VCSAdapterProvider> unmodifiableList = Collections.unmodifiableList(providers);
 
-	private VCSAdapterRegistry(){
+	private VCSAdapterRegistry() {
 		readExtension();
 	}
-	
-	private void readExtension(){
-		IConfigurationElement[] extensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-		"org.unicase.changetracking.vcsadapters");
-		
-		for(IConfigurationElement ext : extensions){
+
+	private void readExtension() {
+		IConfigurationElement[] extensions = Platform.getExtensionRegistry().getConfigurationElementsFor("org.unicase.changetracking.vcsadapters");
+
+		for (IConfigurationElement ext : extensions) {
 			try {
 				VCSAdapterProvider p = (VCSAdapterProvider) ext.createExecutableExtension("class");
 				providers.add(p);
-			} catch (ClassCastException e){
+			} catch (ClassCastException e) {
 				ModelUtil.logException(e);
 			} catch (CoreException e) {
 				ModelUtil.logException(e);
@@ -54,12 +51,13 @@ public final class VCSAdapterRegistry {
 	}
 
 	/**
-	 * Retrieves the list of registered adapter providers. (usually one provider per adapter plug-in).
+	 * Retrieves the list of registered adapter providers. (usually one provider
+	 * per adapter plug-in).
+	 * 
 	 * @return list of adapter providers
 	 */
 	public List<VCSAdapterProvider> getProviders() {
 		return unmodifiableList;
 	}
-	
-	
+
 }

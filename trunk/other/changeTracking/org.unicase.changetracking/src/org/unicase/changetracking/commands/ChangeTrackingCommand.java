@@ -7,88 +7,86 @@ package org.unicase.changetracking.commands;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.unicase.changetracking.exceptions.MisuseException;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**
- * Abstract base class of all commands used by the change tracking
- * plug-in and its adapters.
- * It is a subclass of Unicase command and thus is able to alter model
- * elements of a Unicase project.
+ * Abstract base class of all commands used by the change tracking plug-in and
+ * its adapters. It is a subclass of Unicase command and thus is able to alter
+ * model elements of a Unicase project.
  * 
- * It mainly adds the behaviour that a change tracking result can
- * be obtained after the command has run. In addition, ALL runtime
- * exceptions which may be thrown by the command execution are
- * caught and saved in an error result.
+ * It mainly adds the behaviour that a change tracking result can be obtained
+ * after the command has run. In addition, ALL runtime exceptions which may be
+ * thrown by the command execution are caught and saved in an error result.
  * 
- * @author gex
- *
+ * @author jfinis
+ * 
  */
-public abstract class ChangeTrackingCommand extends UnicaseCommandWithResult<ChangeTrackingCommandResult> implements IRunnableWithProgress{
+public abstract class ChangeTrackingCommand extends UnicaseCommandWithResult<ChangeTrackingCommandResult> implements IUserInterfaceRunnable {
 
-	
 	/**
 	 * Creates a new CANCEL result.
+	 * 
 	 * @return CANCEL result.
 	 */
-	protected ChangeTrackingCommandResult cancelResult(){
+	protected ChangeTrackingCommandResult cancelResult() {
 		return new ChangeTrackingCommandResult(ChangeTrackingCommandResult.ResultType.CANCELLED, null);
 	}
-	
+
 	/**
 	 * Returns a new ERROR result from an exception.
+	 * 
 	 * @param e exception which caused the error.
 	 * @return ERROR result.
 	 */
 	protected ChangeTrackingCommandResult errorResult(Throwable e) {
 		return new ChangeTrackingCommandResult(e);
 	}
-	
+
 	/**
 	 * Returns a SUCCESS result.
+	 * 
 	 * @param message The success message which will be shown in a message box.
-	 * If now message should be shown, use null.
+	 *            If now message should be shown, use null.
 	 * @return SUCCESS result.
 	 */
 	protected ChangeTrackingCommandResult successResult(String message) {
 		return new ChangeTrackingCommandResult(ChangeTrackingCommandResult.ResultType.SUCCESS, message);
 	}
-	
+
 	/**
-	 * Returns a new MISUSE result, stating that the user
-	 * used the tool wrongly.
+	 * Returns a new MISUSE result, stating that the user used the tool wrongly.
+	 * 
 	 * @param message Message stating the misuse.
 	 * @return MISUSE result.
 	 */
 	protected ChangeTrackingCommandResult misuseResult(String message) {
-		return new ChangeTrackingCommandResult(ChangeTrackingCommandResult.ResultType.MISUSE,message);
+		return new ChangeTrackingCommandResult(ChangeTrackingCommandResult.ResultType.MISUSE, message);
 	}
-	
+
 	/**
-	 * Returns a new WARNING result, stating that the command
-	 * was executed but a warning occurred.
+	 * Returns a new WARNING result, stating that the command was executed but a
+	 * warning occurred.
+	 * 
 	 * @param message the warning message.
 	 * @return WARNING result.
 	 */
 	protected ChangeTrackingCommandResult warningResult(String message) {
-		return new ChangeTrackingCommandResult(ChangeTrackingCommandResult.ResultType.WARNING,message);
+		return new ChangeTrackingCommandResult(ChangeTrackingCommandResult.ResultType.WARNING, message);
 	}
-	
+
 	/**
-	 * States if this command needs a progress monitor.
-	 * Operations which take longer should use one.
-	 * @return whether progress monitor is needed.
+	 * {@inheritDoc}
 	 */
-	public boolean needsProgressMonitor(){
-		return true;
+	public ProgressDisplayKind getPreferredProgressDisplayKind() {
+		return ProgressDisplayKind.PROGRESS_MONITOR;
 	}
-	
+
 	/**
 	 * The progress monitor of this command.
 	 */
 	private IProgressMonitor progressMonitor;
-	
+
 	/**
 	 * The result of this command.
 	 */
@@ -101,14 +99,15 @@ public abstract class ChangeTrackingCommand extends UnicaseCommandWithResult<Cha
 		this.progressMonitor = monitor;
 		this.setResult(run(true));
 	}
-	
+
 	/**
-	 * Returns the progress monitor which was set for this command.
-	 * If no monitor was set, a NullProgressMonitor is returned.
+	 * Returns the progress monitor which was set for this command. If no
+	 * monitor was set, a NullProgressMonitor is returned.
+	 * 
 	 * @return progress monitor
 	 */
-	protected IProgressMonitor getProgressMonitor(){
-		if(progressMonitor == null){
+	protected IProgressMonitor getProgressMonitor() {
+		if (progressMonitor == null) {
 			progressMonitor = new NullProgressMonitor();
 		}
 		return progressMonitor;
@@ -116,33 +115,33 @@ public abstract class ChangeTrackingCommand extends UnicaseCommandWithResult<Cha
 
 	/**
 	 * Sets the result for this command.
+	 * 
 	 * @param result the result
 	 */
 	public void setResult(ChangeTrackingCommandResult result) {
 		this.result = result;
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected void commandBody() {
-		try{
+		try {
 			result = doRun();
-		} catch(MisuseException e){
+		} catch (MisuseException e) {
 			result = misuseResult(e.getMessage());
-		// BEGIN SUPRESS CATCH EXCEPTION
-		} catch (RuntimeException e){
-		// END SUPRESS CATCH EXCEPTION
+			// BEGIN SUPRESS CATCH EXCEPTION
+		} catch (RuntimeException e) {
+			// END SUPRESS CATCH EXCEPTION
 			result = errorResult(e);
 		}
 	}
-	
 
 	/**
-	 * Returns the change tracking result which was the
-	 * result of the command's execution.
+	 * Returns the change tracking result which was the result of the command's
+	 * execution.
+	 * 
 	 * @return result
 	 */
 	public ChangeTrackingCommandResult getCTResult() {

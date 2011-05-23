@@ -20,12 +20,12 @@ import org.unicase.model.changetracking.RepositoryStream;
 import org.unicase.model.changetracking.Stream;
 
 /**
- * Command to create a stream from the currently checked out branch,
- * or more general repository stream.
- * The version control adapter is responsible for determining this stream.
+ * Command to create a stream from the currently checked out branch, or more
+ * general repository stream. The version control adapter is responsible for
+ * determining this stream.
  * 
- * @author gex
- *
+ * @author jfinis
+ * 
  */
 public class CreateStreamFromCurrentBranchCommand extends CreateStreamCommand {
 
@@ -36,49 +36,49 @@ public class CreateStreamFromCurrentBranchCommand extends CreateStreamCommand {
 
 	/**
 	 * Standard constructor.
+	 * 
 	 * @param vcs adapter to be used.
 	 * @param decisionProvider decision provider to be used.
 	 * @param workspaceProject the project from which to create the stream.
 	 */
-	public CreateStreamFromCurrentBranchCommand(VCSAdapter vcs, IDecisionProvider decisionProvider,IProject workspaceProject) {
+	public CreateStreamFromCurrentBranchCommand(VCSAdapter vcs, IDecisionProvider decisionProvider, IProject workspaceProject) {
 		this.workspaceProject = workspaceProject;
 		this.decisionProvider = decisionProvider;
 		this.vcs = vcs;
 	}
-	
+
 	@Override
 	protected ChangeTrackingCommandResult doRun() {
-		
+
 		try {
-			
+
 			stream = ChangetrackingFactory.eINSTANCE.createStream();
-			
+
 			PlacementAndNameDecision placementDecision = decisionProvider.decideModelElementPlacementAndName(stream, "");
-		
-			
+
 			Project project = ModelUtil.getProject(placementDecision.getDestination());
-			
-			//Find a matching repository location in the project
+
+			// Find a matching repository location in the project
 			RepositoryLocation repoLocation = vcs.findRepoLocation(workspaceProject, project);
-			
-			//Ask the version control adapter to create a repository stream from the current branch
+
+			// Ask the version control adapter to create a repository stream
+			// from the current branch
 			RepositoryStream repoStream = vcs.createRepositoryStream(workspaceProject, repoLocation);
-			
-			
-			//No repo found? Ask the user what to do...
-			if(repoLocation == null){
-				if(decisionProvider.decideCreateRepoLocation()){
+
+			// No repo found? Ask the user what to do...
+			if (repoLocation == null) {
+				if (decisionProvider.decideCreateRepoLocation()) {
 					repoLocation = vcs.createRepositoryLocation(workspaceProject);
 					ChangeTrackingUtil.putInto(repoLocation, placementDecision.getDestination());
-					
+
 				}
 			}
-			
-			//*** Create and add the stream and the branch.
-			//1. place the stream
+
+			// *** Create and add the stream and the branch.
+			// 1. place the stream
 			placementDecision.executeDecision();
-			
-			//2. link and place the branch (in the same folder)
+
+			// 2. link and place the branch (in the same folder)
 			repoStream.setLocation(repoLocation);
 			stream.setRepositoryStream(repoStream);
 			ChangeTrackingUtil.putInto(repoStream, placementDecision.getDestination());
@@ -91,13 +91,15 @@ public class CreateStreamFromCurrentBranchCommand extends CreateStreamCommand {
 
 		return successResult("Stream successfully created.");
 	}
-	
 
-
-
+	/**
+	 * This command needs no progress monitor as it is very fast.
+	 * 
+	 * @return NONE
+	 */
 	@Override
-	public boolean needsProgressMonitor() {
-		return false;
+	public ProgressDisplayKind getPreferredProgressDisplayKind() {
+		return ProgressDisplayKind.NONE;
 	}
 
 	@Override

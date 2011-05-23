@@ -10,11 +10,11 @@ package org.unicase.changetracking.exceptions;
  * execution. Since this usually should not happen, this exception is a subclass
  * of runtime exception and does not have to be declared.
  * 
- * It is thrown for example when an underlying system (like the version control system)
- * raises an unexpected error.
+ * It is thrown for example when an underlying system (like the version control
+ * system) raises an unexpected error.
  * 
- * @author gex
- *
+ * @author jfinis
+ * 
  */
 public class UnexpectedChangeTrackingException extends RuntimeException {
 
@@ -32,6 +32,7 @@ public class UnexpectedChangeTrackingException extends RuntimeException {
 
 	/**
 	 * Standard exception constructor.
+	 * 
 	 * @param arg0 message
 	 * @param arg1 cause
 	 */
@@ -41,6 +42,7 @@ public class UnexpectedChangeTrackingException extends RuntimeException {
 
 	/**
 	 * Standard exception constructor.
+	 * 
 	 * @param arg0 message
 	 */
 	public UnexpectedChangeTrackingException(String arg0) {
@@ -49,11 +51,11 @@ public class UnexpectedChangeTrackingException extends RuntimeException {
 
 	/**
 	 * Standard exception constructor.
+	 * 
 	 * @param arg0 cause
 	 */
 	public UnexpectedChangeTrackingException(Throwable arg0) {
 		super(arg0);
 	}
 
-	
 }
