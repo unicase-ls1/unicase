@@ -25,7 +25,7 @@ import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
-import org.unicase.model.release.Release;
+import org.unicase.model.release.AbstractRelease;
 import org.unicase.model.release.ReleasePackage;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
@@ -202,7 +202,7 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Release> includingReleases;
+	protected EList<AbstractRelease> includingReleases;
 	/**
 	 * The cached value of the '{@link #getContainedWorkItems() <em>Contained Work Items</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -637,10 +637,11 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Release> getIncludingReleases() {
+	public EList<AbstractRelease> getIncludingReleases() {
 		if (includingReleases == null) {
-			includingReleases = new EObjectWithInverseResolvingEList.ManyInverse<Release>(Release.class, this,
-				TaskPackage.WORK_PACKAGE__INCLUDING_RELEASES, ReleasePackage.RELEASE__INCLUDED_WORK_ITEMS);
+			includingReleases = new EObjectWithInverseResolvingEList.ManyInverse<AbstractRelease>(
+				AbstractRelease.class, this, TaskPackage.WORK_PACKAGE__INCLUDING_RELEASES,
+				ReleasePackage.ABSTRACT_RELEASE__INCLUDED_WORK_ITEMS);
 		}
 		return includingReleases;
 	}
@@ -817,7 +818,7 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 			return;
 		case TaskPackage.WORK_PACKAGE__INCLUDING_RELEASES:
 			getIncludingReleases().clear();
-			getIncludingReleases().addAll((Collection<? extends Release>) newValue);
+			getIncludingReleases().addAll((Collection<? extends AbstractRelease>) newValue);
 			return;
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			getContainedWorkItems().clear();

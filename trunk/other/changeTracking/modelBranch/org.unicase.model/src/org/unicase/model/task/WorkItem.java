@@ -11,7 +11,7 @@ import org.eclipse.emf.common.util.EList;
 import org.unicase.model.Annotation;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
-import org.unicase.model.release.Release;
+import org.unicase.model.release.AbstractRelease;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Work Item</b></em>'. <!-- end-user-doc -->
@@ -316,8 +316,8 @@ public interface WorkItem extends Annotation {
 
 	/**
 	 * Returns the value of the '<em><b>Including Releases</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.release.Release}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.release.Release#getIncludedWorkItems <em>Included Work Items</em>}'.
+	 * The list contents are of type {@link org.unicase.model.release.AbstractRelease}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.release.AbstractRelease#getIncludedWorkItems <em>Included Work Items</em>}'.
 	 * <!-- begin-user-doc
 	 * -->
 	 * <p>
@@ -327,10 +327,10 @@ public interface WorkItem extends Annotation {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Including Releases</em>' reference list.
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_IncludingReleases()
-	 * @see org.unicase.model.release.Release#getIncludedWorkItems
+	 * @see org.unicase.model.release.AbstractRelease#getIncludedWorkItems
 	 * @model opposite="includedWorkItems"
 	 * @generated
 	 */
-	EList<Release> getIncludingReleases();
+	EList<AbstractRelease> getIncludingReleases();
 
 } // WorkItem

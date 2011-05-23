@@ -21,7 +21,7 @@ import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
-import org.unicase.model.release.Release;
+import org.unicase.model.release.AbstractRelease;
 import org.unicase.model.release.ReleasePackage;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.ActivityType;
@@ -214,7 +214,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Release> includingReleases;
+	protected EList<AbstractRelease> includingReleases;
 
 	/**
 	 * The default value of the '{@link #isChecked() <em>Checked</em>}' attribute.
@@ -645,10 +645,11 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Release> getIncludingReleases() {
+	public EList<AbstractRelease> getIncludingReleases() {
 		if (includingReleases == null) {
-			includingReleases = new EObjectWithInverseResolvingEList.ManyInverse<Release>(Release.class, this,
-				TaskPackage.ACTION_ITEM__INCLUDING_RELEASES, ReleasePackage.RELEASE__INCLUDED_WORK_ITEMS);
+			includingReleases = new EObjectWithInverseResolvingEList.ManyInverse<AbstractRelease>(
+				AbstractRelease.class, this, TaskPackage.ACTION_ITEM__INCLUDING_RELEASES,
+				ReleasePackage.ABSTRACT_RELEASE__INCLUDED_WORK_ITEMS);
 		}
 		return includingReleases;
 	}
@@ -840,7 +841,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 			return;
 		case TaskPackage.ACTION_ITEM__INCLUDING_RELEASES:
 			getIncludingReleases().clear();
-			getIncludingReleases().addAll((Collection<? extends Release>) newValue);
+			getIncludingReleases().addAll((Collection<? extends AbstractRelease>) newValue);
 			return;
 		case TaskPackage.ACTION_ITEM__CHECKED:
 			setChecked((Boolean) newValue);

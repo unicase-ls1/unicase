@@ -9,12 +9,9 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.model.release.*;
-import org.unicase.model.release.Release;
+import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.release.AbstractRelease;
 import org.unicase.model.release.ReleasePackage;
-import org.unicase.model.release.SourceCodeRepositoryRevision;
-import org.unicase.model.release.SourceCodeRepositoryStream;
-import org.unicase.model.release.Stream;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code>
@@ -67,23 +64,13 @@ public class ReleaseAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected ReleaseSwitch<Adapter> modelSwitch = new ReleaseSwitch<Adapter>() {
 		@Override
-		public Adapter caseStream(Stream object) {
-			return createStreamAdapter();
+		public Adapter caseAbstractRelease(AbstractRelease object) {
+			return createAbstractReleaseAdapter();
 		}
 
 		@Override
-		public Adapter caseRelease(Release object) {
-			return createReleaseAdapter();
-		}
-
-		@Override
-		public Adapter caseSourceCodeRepositoryRevision(SourceCodeRepositoryRevision object) {
-			return createSourceCodeRepositoryRevisionAdapter();
-		}
-
-		@Override
-		public Adapter caseSourceCodeRepositoryStream(SourceCodeRepositoryStream object) {
-			return createSourceCodeRepositoryStreamAdapter();
+		public Adapter caseUnicaseModelElement(UnicaseModelElement object) {
+			return createUnicaseModelElementAdapter();
 		}
 
 		@Override
@@ -105,54 +92,30 @@ public class ReleaseAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.release.Stream <em>Stream</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
-	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.unicase.model.release.Stream
-	 * @generated
-	 */
-	public Adapter createStreamAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.release.Release <em>Release</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
-	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.unicase.model.release.Release
-	 * @generated
-	 */
-	public Adapter createReleaseAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.release.SourceCodeRepositoryRevision <em>Source Code Repository Revision</em>}'.
-	 * <!-- begin-user-doc --> This default implementation returns null so
-	 * that we can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.release.AbstractRelease <em>Abstract Release</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.unicase.model.release.SourceCodeRepositoryRevision
+	 * @see org.unicase.model.release.AbstractRelease
 	 * @generated
 	 */
-	public Adapter createSourceCodeRepositoryRevisionAdapter() {
+	public Adapter createAbstractReleaseAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.release.SourceCodeRepositoryStream <em>Source Code Repository Stream</em>}'.
-	 * <!-- begin-user-doc --> This default implementation returns null so
-	 * that we can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.UnicaseModelElement <em>Unicase Model Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.unicase.model.release.SourceCodeRepositoryStream
+	 * @see org.unicase.model.UnicaseModelElement
 	 * @generated
 	 */
-	public Adapter createSourceCodeRepositoryStreamAdapter() {
+	public Adapter createUnicaseModelElementAdapter() {
 		return null;
 	}
 

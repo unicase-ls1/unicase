@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.model.profile.*;
 import org.unicase.model.profile.Profile;
 import org.unicase.model.profile.ProfileFactory;
 import org.unicase.model.profile.ProfilePackage;
