@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceSetOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
@@ -30,12 +30,13 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPac
 import org.eclipse.emf.emfstore.server.model.versioning.operations.UnkownFeatureException;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Multi Reference Set Operation</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Multi Reference Set Operation</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceSetOperationImpl#getIndex
+ * <li>
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceSetOperationImpl#getIndex
  * <em>Index</em>}</li>
  * <li>
  * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceSetOperationImpl#getOldValue
@@ -48,11 +49,11 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.UnkownFeature
  * 
  * @generated
  */
-public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl implements MultiReferenceSetOperation {
+public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl
+		implements MultiReferenceSetOperation {
 	/**
 	 * The default value of the '{@link #getIndex() <em>Index</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getIndex()
 	 * @generated
@@ -61,8 +62,8 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 	protected static final int INDEX_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getIndex() <em>Index</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * The cached value of the '{@link #getIndex() <em>Index</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getIndex()
 	 * @generated
@@ -71,9 +72,8 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 	protected int index = INDEX_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOldValue() <em>Old Value</em>}' containment reference.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getOldValue() <em>Old Value</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getOldValue()
 	 * @generated
@@ -82,9 +82,8 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 	protected ModelElementId oldValue;
 
 	/**
-	 * The cached value of the '{@link #getNewValue() <em>New Value</em>}' containment reference.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getNewValue() <em>New Value</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getNewValue()
 	 * @generated
@@ -130,7 +129,8 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 		index = newIndex;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.MULTI_REFERENCE_SET_OPERATION__INDEX, oldIndex, index));
+					OperationsPackage.MULTI_REFERENCE_SET_OPERATION__INDEX,
+					oldIndex, index));
 	}
 
 	/**
@@ -144,17 +144,28 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 			oldValue = (ModelElementId) eResolveProxy(oldOldValue);
 			if (oldValue != oldOldValue) {
 				InternalEObject newOldValue = (InternalEObject) oldValue;
-				NotificationChain msgs = oldOldValue.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, null, null);
+				NotificationChain msgs = oldOldValue
+						.eInverseRemove(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE,
+								null, null);
 				if (newOldValue.eInternalContainer() == null) {
-					msgs = newOldValue.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, null, msgs);
+					msgs = newOldValue
+							.eInverseAdd(
+									this,
+									EOPPOSITE_FEATURE_BASE
+											- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE,
+									null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, oldOldValue, oldValue));
+					eNotify(new ENotificationImpl(
+							this,
+							Notification.RESOLVE,
+							OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE,
+							oldOldValue, oldValue));
 			}
 		}
 		return oldValue;
@@ -174,12 +185,15 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetOldValue(ModelElementId newOldValue, NotificationChain msgs) {
+	public NotificationChain basicSetOldValue(ModelElementId newOldValue,
+			NotificationChain msgs) {
 		ModelElementId oldOldValue = oldValue;
 		oldValue = newOldValue;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, oldOldValue, newOldValue);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE,
+					oldOldValue, newOldValue);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -197,17 +211,26 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 		if (newOldValue != oldValue) {
 			NotificationChain msgs = null;
 			if (oldValue != null)
-				msgs = ((InternalEObject) oldValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, null, msgs);
+				msgs = ((InternalEObject) oldValue)
+						.eInverseRemove(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE,
+								null, msgs);
 			if (newOldValue != null)
-				msgs = ((InternalEObject) newOldValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, null, msgs);
+				msgs = ((InternalEObject) newOldValue)
+						.eInverseAdd(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE,
+								null, msgs);
 			msgs = basicSetOldValue(newOldValue, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE, newOldValue, newOldValue));
+					OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE,
+					newOldValue, newOldValue));
 	}
 
 	/**
@@ -221,17 +244,28 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 			newValue = (ModelElementId) eResolveProxy(oldNewValue);
 			if (newValue != oldNewValue) {
 				InternalEObject newNewValue = (InternalEObject) newValue;
-				NotificationChain msgs = oldNewValue.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, null, null);
+				NotificationChain msgs = oldNewValue
+						.eInverseRemove(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE,
+								null, null);
 				if (newNewValue.eInternalContainer() == null) {
-					msgs = newNewValue.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, null, msgs);
+					msgs = newNewValue
+							.eInverseAdd(
+									this,
+									EOPPOSITE_FEATURE_BASE
+											- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE,
+									null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, oldNewValue, newValue));
+					eNotify(new ENotificationImpl(
+							this,
+							Notification.RESOLVE,
+							OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE,
+							oldNewValue, newValue));
 			}
 		}
 		return newValue;
@@ -251,12 +285,15 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetNewValue(ModelElementId newNewValue, NotificationChain msgs) {
+	public NotificationChain basicSetNewValue(ModelElementId newNewValue,
+			NotificationChain msgs) {
 		ModelElementId oldNewValue = newValue;
 		newValue = newNewValue;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, oldNewValue, newNewValue);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE,
+					oldNewValue, newNewValue);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -274,17 +311,26 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 		if (newNewValue != newValue) {
 			NotificationChain msgs = null;
 			if (newValue != null)
-				msgs = ((InternalEObject) newValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, null, msgs);
+				msgs = ((InternalEObject) newValue)
+						.eInverseRemove(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE,
+								null, msgs);
 			if (newNewValue != null)
-				msgs = ((InternalEObject) newNewValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, null, msgs);
+				msgs = ((InternalEObject) newNewValue)
+						.eInverseAdd(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE,
+								null, msgs);
 			msgs = basicSetNewValue(newNewValue, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE, newNewValue, newNewValue));
+					OperationsPackage.MULTI_REFERENCE_SET_OPERATION__NEW_VALUE,
+					newNewValue, newNewValue));
 	}
 
 	/**
@@ -293,7 +339,8 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION__OLD_VALUE:
 			return basicSetOldValue(null, msgs);
@@ -407,7 +454,7 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 	 * 
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#apply(org.eclipse.emf.emfstore.common.model.Project)
 	 */
-	public void apply(Project project) {
+	public void apply(IdEObjectCollection project) {
 		EObject parentElement = project.getModelElement(getModelElementId());
 		if (parentElement == null) {
 			// fail silently
@@ -443,7 +490,8 @@ public class MultiReferenceSetOperationImpl extends ReferenceOperationImpl imple
 
 	@Override
 	public AbstractOperation reverse() {
-		MultiReferenceSetOperation operation = OperationsFactory.eINSTANCE.createMultiReferenceSetOperation();
+		MultiReferenceSetOperation operation = OperationsFactory.eINSTANCE
+				.createMultiReferenceSetOperation();
 		super.reverse(operation);
 		operation.setIndex(getIndex());
 		// swap old and new value

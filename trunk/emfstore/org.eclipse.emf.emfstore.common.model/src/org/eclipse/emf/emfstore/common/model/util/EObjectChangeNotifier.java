@@ -23,9 +23,9 @@ import org.eclipse.emf.emfstore.common.model.impl.ProjectImpl;
  * 
  * @author koegel
  */
-public class ProjectChangeNotifier extends EContentAdapter {
+public class EObjectChangeNotifier extends EContentAdapter {
 
-	private final ProjectImpl projectImpl;
+	private final NotifiableIdEObjectCollection collection;
 	private boolean isInitializing;
 	private EObject removedModelElement;
 	private Notification currentNotification;
@@ -35,12 +35,13 @@ public class ProjectChangeNotifier extends EContentAdapter {
 	/**
 	 * Constructor. Attaches the Adapter to the given {@link ProjectImpl}.
 	 * 
-	 * @param projectImpl the project
+	 * @param collection
+	 *            the project
 	 */
-	public ProjectChangeNotifier(ProjectImpl projectImpl) {
-		this.projectImpl = projectImpl;
+	public EObjectChangeNotifier(NotifiableIdEObjectCollection collection) {
+		this.collection = collection;
 		isInitializing = true;
-		projectImpl.eAdapters().add(this);
+		collection.eAdapters().add(this);
 		isInitializing = false;
 		reentrantCallToAddAdapterCounter = 0;
 		notificationDisabled = false;
@@ -64,14 +65,17 @@ public class ProjectChangeNotifier extends EContentAdapter {
 			reentrantCallToAddAdapterCounter -= 1;
 		}
 		if (reentrantCallToAddAdapterCounter > 0) {
-			// any other than the first call in re-entrant calls to addAdapter are going to call the project
+			// any other than the first call in re-entrant calls to addAdapter
+			// are going to call the project
 			return;
 		}
 
-		if (!isInitializing && notifier instanceof EObject && !ModelUtil.isIgnoredDatatype((EObject) notifier)) {
+		if (!isInitializing && notifier instanceof EObject
+				&& !ModelUtil.isIgnoredDatatype((EObject) notifier)) {
 			EObject modelElement = (EObject) notifier;
-			if (!projectImpl.containsInstance(modelElement) && isInProject(modelElement)) {
-				projectImpl.handleEMFModelElementAdded(projectImpl, modelElement);
+			if (!collection.containsInstance(modelElement)
+					&& isInProject(modelElement)) {
+				collection.modelElementAdded(collection, modelElement);
 			}
 		}
 	}
@@ -87,17 +91,20 @@ public class ProjectChangeNotifier extends EContentAdapter {
 			return;
 		}
 
-		if (currentNotification != null && currentNotification.getFeature() instanceof EReference) {
-			EReference eReference = (EReference) currentNotification.getFeature();
+		if (currentNotification != null
+				&& currentNotification.getFeature() instanceof EReference) {
+			EReference eReference = (EReference) currentNotification
+					.getFeature();
 			if (eReference.isContainment() && eReference.getEOpposite() != null
-				&& !eReference.getEOpposite().isTransient()) {
+					&& !eReference.getEOpposite().isTransient()) {
 				return;
 			}
 		}
 
 		if (notifier instanceof EObject) {
 			EObject modelElement = (EObject) notifier;
-			if (!isInProject(modelElement) && projectImpl.containsInstance(modelElement)) {
+			if (!isInProject(modelElement)
+					&& collection.containsInstance(modelElement)) {
 				removedModelElement = modelElement;
 			}
 		}
@@ -110,11 +117,11 @@ public class ProjectChangeNotifier extends EContentAdapter {
 			return false;
 		}
 
-		if (parent == projectImpl) {
+		if (parent == collection) {
 			return true;
 		}
 
-		if (projectImpl.containsInstance(parent)) {
+		if (collection.containsInstance(parent)) {
 			return true;
 		}
 
@@ -153,11 +160,12 @@ public class ProjectChangeNotifier extends EContentAdapter {
 		super.notifyChanged(notification);
 
 		// project is not a valid model element
-		if (!notification.isTouch() && notifier instanceof EObject && !(notifier instanceof Project)) {
-			projectImpl.handleEMFNotification(notification, projectImpl, (EObject) notifier);
+		if (!notification.isTouch() && notifier instanceof EObject
+				&& !(notifier instanceof Project)) {
+			collection.notify(notification, collection, (EObject) notifier);
 		}
 		if (removedModelElement != null) {
-			projectImpl.handleEMFModelElementRemoved(projectImpl, removedModelElement);
+			collection.modelElementRemoved(collection, removedModelElement);
 			removedModelElement = null;
 		}
 	}
@@ -165,7 +173,8 @@ public class ProjectChangeNotifier extends EContentAdapter {
 	/**
 	 * @param notification
 	 */
-	private void handleContainer(Notification notification, EReference eReference) {
+	private void handleContainer(Notification notification,
+			EReference eReference) {
 		if (notification.getEventType() == Notification.SET) {
 			Object newValue = notification.getNewValue();
 			Object oldValue = notification.getOldValue();
@@ -176,7 +185,8 @@ public class ProjectChangeNotifier extends EContentAdapter {
 	}
 
 	/**
-	 * @param notificationDisabled the notificationDisabled to set
+	 * @param notificationDisabled
+	 *            the notificationDisabled to set
 	 */
 	public void disableNotifications(boolean notificationDisabled) {
 		this.notificationDisabled = notificationDisabled;
