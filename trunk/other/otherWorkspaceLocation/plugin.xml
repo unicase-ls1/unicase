@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.unicase.workspace.workspaceLocationProvider">
+         point="org.eclipse.emf.emfstore.client.workspaceLocationProvider">
              <LocationProvider
             providerClass="otherworkspacelocation.OtherLocationProvider">
       </LocationProvider>
