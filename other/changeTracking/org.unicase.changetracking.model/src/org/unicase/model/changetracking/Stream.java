@@ -1,12 +1,11 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.unicase.model.UnicaseModelElement;
 
 /**
@@ -28,16 +27,9 @@ import org.unicase.model.UnicaseModelElement;
  */
 public interface Stream extends UnicaseModelElement {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
-	/**
 	 * Returns the value of the '<em><b>Releases</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.changetracking.ChangeTrackingRelease}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.changetracking.ChangeTrackingRelease#getStream <em>Stream</em>}'.
+	 * The list contents are of type {@link org.unicase.model.changetracking.Release}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.changetracking.Release#getStream <em>Stream</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Releases</em>' reference list isn't clear,
@@ -46,11 +38,11 @@ public interface Stream extends UnicaseModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Releases</em>' reference list.
 	 * @see org.unicase.model.changetracking.ChangetrackingPackage#getStream_Releases()
-	 * @see org.unicase.model.changetracking.ChangeTrackingRelease#getStream
+	 * @see org.unicase.model.changetracking.Release#getStream
 	 * @model opposite="stream"
 	 * @generated
 	 */
-	EList<ChangeTrackingRelease> getReleases();
+	EList<Release> getReleases();
 
 	/**
 	 * Returns the value of the '<em><b>Repository Stream</b></em>' reference.

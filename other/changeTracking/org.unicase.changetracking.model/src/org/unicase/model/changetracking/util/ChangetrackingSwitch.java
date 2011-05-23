@@ -1,8 +1,6 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.util;
 
@@ -10,17 +8,13 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
+
 import org.unicase.model.changetracking.*;
-import org.unicase.model.changetracking.ChangePackage;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
-import org.unicase.model.changetracking.ChangetrackingPackage;
-import org.unicase.model.changetracking.RepositoryLocation;
-import org.unicase.model.changetracking.RepositoryRevision;
-import org.unicase.model.changetracking.RepositoryStream;
-import org.unicase.model.changetracking.Stream;
-import org.unicase.model.release.Release;
+
+import org.unicase.model.release.AbstractRelease;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,13 +30,6 @@ import org.unicase.model.release.Release;
  * @generated
  */
 public class ChangetrackingSwitch<T> {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -86,8 +73,7 @@ public class ChangetrackingSwitch<T> {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(
-					eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -100,13 +86,13 @@ public class ChangetrackingSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-		case ChangetrackingPackage.CHANGE_TRACKING_RELEASE: {
-			ChangeTrackingRelease changeTrackingRelease = (ChangeTrackingRelease) theEObject;
-			T result = caseChangeTrackingRelease(changeTrackingRelease);
+		case ChangetrackingPackage.RELEASE: {
+			Release release = (Release) theEObject;
+			T result = caseRelease(release);
 			if (result == null)
-				result = caseRelease(changeTrackingRelease);
+				result = caseAbstractRelease(release);
 			if (result == null)
-				result = caseUnicaseModelElement(changeTrackingRelease);
+				result = caseUnicaseModelElement(release);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -164,17 +150,17 @@ public class ChangetrackingSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Change Tracking Release</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Release</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Change Tracking Release</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Release</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseChangeTrackingRelease(ChangeTrackingRelease object) {
+	public T caseRelease(Release object) {
 		return null;
 	}
 
@@ -269,17 +255,17 @@ public class ChangetrackingSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Release</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Release</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Release</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Release</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRelease(Release object) {
+	public T caseAbstractRelease(AbstractRelease object) {
 		return null;
 	}
 

@@ -1,27 +1,25 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.git.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
+
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.RepositoryRevision;
 import org.unicase.model.changetracking.RepositoryStream;
+
 import org.unicase.model.changetracking.git.*;
-import org.unicase.model.changetracking.git.GitBranch;
-import org.unicase.model.changetracking.git.GitBranchChangePackage;
-import org.unicase.model.changetracking.git.GitPackage;
-import org.unicase.model.changetracking.git.GitRepository;
-import org.unicase.model.changetracking.git.GitRevision;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,13 +30,6 @@ import org.unicase.model.changetracking.git.GitRevision;
  * @generated
  */
 public class GitAdapterFactory extends AdapterFactoryImpl {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->

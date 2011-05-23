@@ -1,8 +1,6 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.provider;
 
@@ -12,6 +10,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -23,6 +22,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
 import org.unicase.model.changetracking.util.ChangetrackingAdapterFactory;
 
 /**
@@ -34,16 +34,7 @@ import org.unicase.model.changetracking.util.ChangetrackingAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ChangetrackingItemProviderAdapterFactory extends
-		ChangetrackingAdapterFactory implements ComposeableAdapterFactory,
-		IChangeNotifier, IDisposable {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
+public class ChangetrackingItemProviderAdapterFactory extends ChangetrackingAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -83,27 +74,26 @@ public class ChangetrackingItemProviderAdapterFactory extends
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.changetracking.ChangeTrackingRelease} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.changetracking.Release} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ChangeTrackingReleaseItemProvider changeTrackingReleaseItemProvider;
+	protected ReleaseItemProvider releaseItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.changetracking.ChangeTrackingRelease}.
+	 * This creates an adapter for a {@link org.unicase.model.changetracking.Release}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createChangeTrackingReleaseAdapter() {
-		if (changeTrackingReleaseItemProvider == null) {
-			changeTrackingReleaseItemProvider = new ChangeTrackingReleaseItemProvider(
-					this);
+	public Adapter createReleaseAdapter() {
+		if (releaseItemProvider == null) {
+			releaseItemProvider = new ReleaseItemProvider(this);
 		}
 
-		return changeTrackingReleaseItemProvider;
+		return releaseItemProvider;
 	}
 
 	/**
@@ -136,8 +126,7 @@ public class ChangetrackingItemProviderAdapterFactory extends
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory
-				.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
 
 	/**
@@ -146,8 +135,7 @@ public class ChangetrackingItemProviderAdapterFactory extends
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParentAdapterFactory(
-			ComposedAdapterFactory parentAdapterFactory) {
+	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
 
@@ -181,8 +169,7 @@ public class ChangetrackingItemProviderAdapterFactory extends
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>)
-					|| (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -231,8 +218,8 @@ public class ChangetrackingItemProviderAdapterFactory extends
 	 * @generated
 	 */
 	public void dispose() {
-		if (changeTrackingReleaseItemProvider != null)
-			changeTrackingReleaseItemProvider.dispose();
+		if (releaseItemProvider != null)
+			releaseItemProvider.dispose();
 		if (streamItemProvider != null)
 			streamItemProvider.dispose();
 	}

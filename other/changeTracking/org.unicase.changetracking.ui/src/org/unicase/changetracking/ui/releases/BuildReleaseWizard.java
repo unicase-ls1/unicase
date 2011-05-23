@@ -14,7 +14,7 @@ import org.unicase.changetracking.commands.BuildReleaseCommand;
 import org.unicase.changetracking.release.ReleaseCheckReport;
 import org.unicase.changetracking.ui.UIUtil;
 import org.unicase.changetracking.vcs.VCSAdapter;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
+import org.unicase.model.changetracking.Release;
 import org.unicase.model.changetracking.RepositoryLocation;
 
 /**
@@ -26,7 +26,7 @@ import org.unicase.model.changetracking.RepositoryLocation;
  */
 public class BuildReleaseWizard extends Wizard {
 
-	private ChangeTrackingRelease release;
+	private Release release;
 	private ReleaseCheckReport report;
 	private boolean canFinish;
 	private BuildSettingsPage buildSettingsPage;
@@ -40,7 +40,7 @@ public class BuildReleaseWizard extends Wizard {
 	 * @param report report from checking the release
 	 * @param vcs VCS adapter to be used
 	 */
-	public BuildReleaseWizard(ChangeTrackingRelease release, ReleaseCheckReport report, VCSAdapter vcs) {
+	public BuildReleaseWizard(Release release, ReleaseCheckReport report, VCSAdapter vcs) {
 		this.release = release;
 		this.report = report;
 		canFinish = false;

@@ -1,16 +1,18 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.git.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.unicase.model.changetracking.git.GitPackage;
 import org.unicase.model.changetracking.git.GitRepository;
+
 import org.unicase.model.changetracking.impl.RepositoryLocationImpl;
 
 /**
@@ -27,15 +29,7 @@ import org.unicase.model.changetracking.impl.RepositoryLocationImpl;
  *
  * @generated
  */
-public class GitRepositoryImpl extends RepositoryLocationImpl implements
-		GitRepository {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
+public class GitRepositoryImpl extends RepositoryLocationImpl implements GitRepository {
 	/**
 	 * The default value of the '{@link #getUrl() <em>Url</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -45,6 +39,7 @@ public class GitRepositoryImpl extends RepositoryLocationImpl implements
 	 * @ordered
 	 */
 	protected static final String URL_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getUrl() <em>Url</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -54,6 +49,7 @@ public class GitRepositoryImpl extends RepositoryLocationImpl implements
 	 * @ordered
 	 */
 	protected String url = URL_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getIdentifyingCommitHash() <em>Identifying Commit Hash</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -63,6 +59,7 @@ public class GitRepositoryImpl extends RepositoryLocationImpl implements
 	 * @ordered
 	 */
 	protected static final String IDENTIFYING_COMMIT_HASH_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getIdentifyingCommitHash() <em>Identifying Commit Hash</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -110,8 +107,7 @@ public class GitRepositoryImpl extends RepositoryLocationImpl implements
 		String oldUrl = url;
 		url = newUrl;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					GitPackage.GIT_REPOSITORY__URL, oldUrl, url));
+			eNotify(new ENotificationImpl(this, Notification.SET, GitPackage.GIT_REPOSITORY__URL, oldUrl, url));
 	}
 
 	/**
@@ -132,9 +128,7 @@ public class GitRepositoryImpl extends RepositoryLocationImpl implements
 		String oldIdentifyingCommitHash = identifyingCommitHash;
 		identifyingCommitHash = newIdentifyingCommitHash;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					GitPackage.GIT_REPOSITORY__IDENTIFYING_COMMIT_HASH,
-					oldIdentifyingCommitHash, identifyingCommitHash));
+			eNotify(new ENotificationImpl(this, Notification.SET, GitPackage.GIT_REPOSITORY__IDENTIFYING_COMMIT_HASH, oldIdentifyingCommitHash, identifyingCommitHash));
 	}
 
 	/**
@@ -198,12 +192,9 @@ public class GitRepositoryImpl extends RepositoryLocationImpl implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case GitPackage.GIT_REPOSITORY__URL:
-			return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT
-					.equals(url);
+			return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT.equals(url);
 		case GitPackage.GIT_REPOSITORY__IDENTIFYING_COMMIT_HASH:
-			return IDENTIFYING_COMMIT_HASH_EDEFAULT == null ? identifyingCommitHash != null
-					: !IDENTIFYING_COMMIT_HASH_EDEFAULT
-							.equals(identifyingCommitHash);
+			return IDENTIFYING_COMMIT_HASH_EDEFAULT == null ? identifyingCommitHash != null : !IDENTIFYING_COMMIT_HASH_EDEFAULT.equals(identifyingCommitHash);
 		}
 		return super.eIsSet(featureID);
 	}

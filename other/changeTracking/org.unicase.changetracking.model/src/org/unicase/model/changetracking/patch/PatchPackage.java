@@ -1,13 +1,12 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.patch;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.unicase.model.changetracking.ChangetrackingPackage;
 
 /**
@@ -26,13 +25,6 @@ import org.unicase.model.changetracking.ChangetrackingPackage;
  * @generated
  */
 public interface PatchPackage extends EPackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -63,8 +55,7 @@ public interface PatchPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	PatchPackage eINSTANCE = org.unicase.model.changetracking.patch.impl.PatchPackageImpl
-			.init();
+	PatchPackage eINSTANCE = org.unicase.model.changetracking.patch.impl.PatchPackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.changetracking.patch.impl.PatchChangePackageImpl <em>Change Package</em>}' class.

@@ -1,12 +1,11 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.unicase.model.UnicaseModelElement;
 
 /**
@@ -26,13 +25,6 @@ import org.unicase.model.UnicaseModelElement;
  * @generated
  */
 public interface RepositoryLocation extends UnicaseModelElement {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
 	/**
 	 * Returns the value of the '<em><b>Streams</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.changetracking.RepositoryStream}.

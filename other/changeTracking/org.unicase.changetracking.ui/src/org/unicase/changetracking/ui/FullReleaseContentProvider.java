@@ -13,7 +13,7 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.unicase.model.Attachment;
 import org.unicase.model.changetracking.ChangePackage;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
+import org.unicase.model.changetracking.Release;
 import org.unicase.model.task.WorkItem;
 
 /**
@@ -48,8 +48,8 @@ public class FullReleaseContentProvider implements ITreeContentProvider {
 	 * {@inheritDoc}
 	 */
 	public Object[] getChildren(Object parentElement) {
-		if (parentElement instanceof ChangeTrackingRelease) {
-			EList<WorkItem> workItems = ((ChangeTrackingRelease) parentElement).getIncludedWorkItems();
+		if (parentElement instanceof Release) {
+			EList<WorkItem> workItems = ((Release) parentElement).getIncludedWorkItems();
 			if (showWorkItems) {
 				return workItems.toArray();
 			} else {
@@ -89,8 +89,8 @@ public class FullReleaseContentProvider implements ITreeContentProvider {
 	 * {@inheritDoc}
 	 */
 	public boolean hasChildren(Object element) {
-		if (element instanceof ChangeTrackingRelease) {
-			EList<WorkItem> workItems = ((ChangeTrackingRelease) element).getIncludedWorkItems();
+		if (element instanceof Release) {
+			EList<WorkItem> workItems = ((Release) element).getIncludedWorkItems();
 			if (showWorkItems) {
 				return !workItems.isEmpty();
 			} else {

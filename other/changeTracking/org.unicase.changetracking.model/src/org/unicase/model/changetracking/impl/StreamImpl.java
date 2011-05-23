@@ -1,8 +1,6 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.impl;
 
@@ -10,16 +8,22 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
+
 import org.unicase.model.changetracking.ChangetrackingPackage;
+import org.unicase.model.changetracking.Release;
 import org.unicase.model.changetracking.RepositoryStream;
 import org.unicase.model.changetracking.Stream;
+
 import org.unicase.model.impl.UnicaseModelElementImpl;
 
 /**
@@ -38,13 +42,6 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  */
 public class StreamImpl extends UnicaseModelElementImpl implements Stream {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
-	/**
 	 * The cached value of the '{@link #getReleases() <em>Releases</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -52,7 +49,7 @@ public class StreamImpl extends UnicaseModelElementImpl implements Stream {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ChangeTrackingRelease> releases;
+	protected EList<Release> releases;
 
 	/**
 	 * The cached value of the '{@link #getRepositoryStream() <em>Repository Stream</em>}' reference.
@@ -88,12 +85,9 @@ public class StreamImpl extends UnicaseModelElementImpl implements Stream {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ChangeTrackingRelease> getReleases() {
+	public EList<Release> getReleases() {
 		if (releases == null) {
-			releases = new EObjectWithInverseResolvingEList<ChangeTrackingRelease>(
-					ChangeTrackingRelease.class, this,
-					ChangetrackingPackage.STREAM__RELEASES,
-					ChangetrackingPackage.CHANGE_TRACKING_RELEASE__STREAM);
+			releases = new EObjectWithInverseResolvingEList<Release>(Release.class, this, ChangetrackingPackage.STREAM__RELEASES, ChangetrackingPackage.RELEASE__STREAM);
 		}
 		return releases;
 	}
@@ -109,9 +103,7 @@ public class StreamImpl extends UnicaseModelElementImpl implements Stream {
 			repositoryStream = (RepositoryStream) eResolveProxy(oldRepositoryStream);
 			if (repositoryStream != oldRepositoryStream) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ChangetrackingPackage.STREAM__REPOSITORY_STREAM,
-							oldRepositoryStream, repositoryStream));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ChangetrackingPackage.STREAM__REPOSITORY_STREAM, oldRepositoryStream, repositoryStream));
 			}
 		}
 		return repositoryStream;
@@ -131,15 +123,11 @@ public class StreamImpl extends UnicaseModelElementImpl implements Stream {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRepositoryStream(
-			RepositoryStream newRepositoryStream, NotificationChain msgs) {
+	public NotificationChain basicSetRepositoryStream(RepositoryStream newRepositoryStream, NotificationChain msgs) {
 		RepositoryStream oldRepositoryStream = repositoryStream;
 		repositoryStream = newRepositoryStream;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET,
-					ChangetrackingPackage.STREAM__REPOSITORY_STREAM,
-					oldRepositoryStream, newRepositoryStream);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ChangetrackingPackage.STREAM__REPOSITORY_STREAM, oldRepositoryStream, newRepositoryStream);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -157,22 +145,14 @@ public class StreamImpl extends UnicaseModelElementImpl implements Stream {
 		if (newRepositoryStream != repositoryStream) {
 			NotificationChain msgs = null;
 			if (repositoryStream != null)
-				msgs = ((InternalEObject) repositoryStream).eInverseRemove(
-						this,
-						ChangetrackingPackage.REPOSITORY_STREAM__USING_STREAMS,
-						RepositoryStream.class, msgs);
+				msgs = ((InternalEObject) repositoryStream).eInverseRemove(this, ChangetrackingPackage.REPOSITORY_STREAM__USING_STREAMS, RepositoryStream.class, msgs);
 			if (newRepositoryStream != null)
-				msgs = ((InternalEObject) newRepositoryStream).eInverseAdd(
-						this,
-						ChangetrackingPackage.REPOSITORY_STREAM__USING_STREAMS,
-						RepositoryStream.class, msgs);
+				msgs = ((InternalEObject) newRepositoryStream).eInverseAdd(this, ChangetrackingPackage.REPOSITORY_STREAM__USING_STREAMS, RepositoryStream.class, msgs);
 			msgs = basicSetRepositoryStream(newRepositoryStream, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ChangetrackingPackage.STREAM__REPOSITORY_STREAM,
-					newRepositoryStream, newRepositoryStream));
+			eNotify(new ENotificationImpl(this, Notification.SET, ChangetrackingPackage.STREAM__REPOSITORY_STREAM, newRepositoryStream, newRepositoryStream));
 	}
 
 	/**
@@ -182,18 +162,13 @@ public class StreamImpl extends UnicaseModelElementImpl implements Stream {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ChangetrackingPackage.STREAM__RELEASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getReleases())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getReleases()).basicAdd(otherEnd, msgs);
 		case ChangetrackingPackage.STREAM__REPOSITORY_STREAM:
 			if (repositoryStream != null)
-				msgs = ((InternalEObject) repositoryStream).eInverseRemove(
-						this,
-						ChangetrackingPackage.REPOSITORY_STREAM__USING_STREAMS,
-						RepositoryStream.class, msgs);
+				msgs = ((InternalEObject) repositoryStream).eInverseRemove(this, ChangetrackingPackage.REPOSITORY_STREAM__USING_STREAMS, RepositoryStream.class, msgs);
 			return basicSetRepositoryStream((RepositoryStream) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -205,12 +180,10 @@ public class StreamImpl extends UnicaseModelElementImpl implements Stream {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ChangetrackingPackage.STREAM__RELEASES:
-			return ((InternalEList<?>) getReleases()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getReleases()).basicRemove(otherEnd, msgs);
 		case ChangetrackingPackage.STREAM__REPOSITORY_STREAM:
 			return basicSetRepositoryStream(null, msgs);
 		}
@@ -246,8 +219,7 @@ public class StreamImpl extends UnicaseModelElementImpl implements Stream {
 		switch (featureID) {
 		case ChangetrackingPackage.STREAM__RELEASES:
 			getReleases().clear();
-			getReleases().addAll(
-					(Collection<? extends ChangeTrackingRelease>) newValue);
+			getReleases().addAll((Collection<? extends Release>) newValue);
 			return;
 		case ChangetrackingPackage.STREAM__REPOSITORY_STREAM:
 			setRepositoryStream((RepositoryStream) newValue);

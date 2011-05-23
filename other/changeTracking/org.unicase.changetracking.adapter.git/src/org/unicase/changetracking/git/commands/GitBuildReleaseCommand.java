@@ -23,7 +23,7 @@ import org.unicase.changetracking.git.common.GitUtil;
 import org.unicase.changetracking.git.common.GitWrapper;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
 import org.unicase.changetracking.git.release.GitReport;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
+import org.unicase.model.changetracking.Release;
 import org.unicase.model.changetracking.git.GitFactory;
 import org.unicase.model.changetracking.git.GitRevision;
 
@@ -35,7 +35,7 @@ import org.unicase.model.changetracking.git.GitRevision;
  */
 public class GitBuildReleaseCommand extends BuildReleaseCommand {
 
-	private ChangeTrackingRelease release;
+	private Release release;
 	private Repository localRepo;
 	private Ref baseBranch;
 	private List<Ref> branchesToMerge;
@@ -59,7 +59,7 @@ public class GitBuildReleaseCommand extends BuildReleaseCommand {
 	 * @param tagName2 name of the tag to be created for the relase
 	 * @param checkReport the report from the previous release check
 	 */
-	public GitBuildReleaseCommand(ChangeTrackingRelease release2, String tagName2, GitReport checkReport) {
+	public GitBuildReleaseCommand(Release release2, String tagName2, GitReport checkReport) {
 		this.release = release2;
 		this.tagName = tagName2;
 		this.localRepo = checkReport.getLocalRepo();

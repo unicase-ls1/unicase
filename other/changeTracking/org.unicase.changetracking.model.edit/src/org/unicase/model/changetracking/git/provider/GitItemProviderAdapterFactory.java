@@ -1,8 +1,6 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.git.provider;
 
@@ -12,6 +10,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -23,6 +22,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
 import org.unicase.model.changetracking.git.util.GitAdapterFactory;
 
 /**
@@ -34,15 +34,7 @@ import org.unicase.model.changetracking.git.util.GitAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class GitItemProviderAdapterFactory extends GitAdapterFactory implements
-		ComposeableAdapterFactory, IChangeNotifier, IDisposable {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
+public class GitItemProviderAdapterFactory extends GitAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -98,8 +90,7 @@ public class GitItemProviderAdapterFactory extends GitAdapterFactory implements
 	@Override
 	public Adapter createGitBranchChangePackageAdapter() {
 		if (gitBranchChangePackageItemProvider == null) {
-			gitBranchChangePackageItemProvider = new GitBranchChangePackageItemProvider(
-					this);
+			gitBranchChangePackageItemProvider = new GitBranchChangePackageItemProvider(this);
 		}
 
 		return gitBranchChangePackageItemProvider;
@@ -181,8 +172,7 @@ public class GitItemProviderAdapterFactory extends GitAdapterFactory implements
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory
-				.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
 
 	/**
@@ -191,8 +181,7 @@ public class GitItemProviderAdapterFactory extends GitAdapterFactory implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParentAdapterFactory(
-			ComposedAdapterFactory parentAdapterFactory) {
+	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
 
@@ -226,8 +215,7 @@ public class GitItemProviderAdapterFactory extends GitAdapterFactory implements
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>)
-					|| (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}

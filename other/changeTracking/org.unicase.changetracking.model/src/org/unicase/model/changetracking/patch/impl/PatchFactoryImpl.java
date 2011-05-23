@@ -1,20 +1,18 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.patch.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import org.unicase.model.changetracking.patch.*;
-import org.unicase.model.changetracking.patch.Patch;
-import org.unicase.model.changetracking.patch.PatchFactory;
-import org.unicase.model.changetracking.patch.PatchPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,13 +22,6 @@ import org.unicase.model.changetracking.patch.PatchPackage;
  */
 public class PatchFactoryImpl extends EFactoryImpl implements PatchFactory {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
-	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -38,8 +29,7 @@ public class PatchFactoryImpl extends EFactoryImpl implements PatchFactory {
 	 */
 	public static PatchFactory init() {
 		try {
-			PatchFactory thePatchFactory = (PatchFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://unicase.org/changetracking/patch");
+			PatchFactory thePatchFactory = (PatchFactory) EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/changetracking/patch");
 			if (thePatchFactory != null) {
 				return thePatchFactory;
 			}
@@ -70,8 +60,7 @@ public class PatchFactoryImpl extends EFactoryImpl implements PatchFactory {
 		case PatchPackage.PATCH_CHANGE_PACKAGE:
 			return createPatchChangePackage();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 

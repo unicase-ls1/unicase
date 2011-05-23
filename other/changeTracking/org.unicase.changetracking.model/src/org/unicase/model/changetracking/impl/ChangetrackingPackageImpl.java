@@ -1,8 +1,6 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.impl;
 
@@ -11,20 +9,28 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.unicase.model.ModelPackage;
+
 import org.unicase.model.changetracking.ChangePackage;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
 import org.unicase.model.changetracking.ChangetrackingFactory;
 import org.unicase.model.changetracking.ChangetrackingPackage;
+import org.unicase.model.changetracking.Release;
 import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.RepositoryRevision;
 import org.unicase.model.changetracking.RepositoryStream;
 import org.unicase.model.changetracking.Stream;
+
 import org.unicase.model.changetracking.git.GitPackage;
+
 import org.unicase.model.changetracking.git.impl.GitPackageImpl;
+
 import org.unicase.model.changetracking.patch.PatchPackage;
+
 import org.unicase.model.changetracking.patch.impl.PatchPackageImpl;
+
 import org.unicase.model.release.ReleasePackage;
 
 /**
@@ -33,21 +39,13 @@ import org.unicase.model.release.ReleasePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ChangetrackingPackageImpl extends EPackageImpl implements
-		ChangetrackingPackage {
+public class ChangetrackingPackageImpl extends EPackageImpl implements ChangetrackingPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass changeTrackingReleaseEClass = null;
+	private EClass releaseEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -124,13 +122,10 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 	 */
 	public static ChangetrackingPackage init() {
 		if (isInited)
-			return (ChangetrackingPackage) EPackage.Registry.INSTANCE
-					.getEPackage(ChangetrackingPackage.eNS_URI);
+			return (ChangetrackingPackage) EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ChangetrackingPackageImpl theChangetrackingPackage = (ChangetrackingPackageImpl) (EPackage.Registry.INSTANCE
-				.get(eNS_URI) instanceof ChangetrackingPackageImpl ? EPackage.Registry.INSTANCE
-				.get(eNS_URI) : new ChangetrackingPackageImpl());
+		ChangetrackingPackageImpl theChangetrackingPackage = (ChangetrackingPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ChangetrackingPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ChangetrackingPackageImpl());
 
 		isInited = true;
 
@@ -139,12 +134,8 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		GitPackageImpl theGitPackage = (GitPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(GitPackage.eNS_URI) instanceof GitPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(GitPackage.eNS_URI) : GitPackage.eINSTANCE);
-		PatchPackageImpl thePatchPackage = (PatchPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(PatchPackage.eNS_URI) instanceof PatchPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(PatchPackage.eNS_URI) : PatchPackage.eINSTANCE);
+		GitPackageImpl theGitPackage = (GitPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(GitPackage.eNS_URI) instanceof GitPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GitPackage.eNS_URI) : GitPackage.eINSTANCE);
+		PatchPackageImpl thePatchPackage = (PatchPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(PatchPackage.eNS_URI) instanceof PatchPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PatchPackage.eNS_URI) : PatchPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theChangetrackingPackage.createPackageContents();
@@ -160,8 +151,7 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 		theChangetrackingPackage.freeze();
 
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(ChangetrackingPackage.eNS_URI,
-				theChangetrackingPackage);
+		EPackage.Registry.INSTANCE.put(ChangetrackingPackage.eNS_URI, theChangetrackingPackage);
 		return theChangetrackingPackage;
 	}
 
@@ -170,8 +160,8 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getChangeTrackingRelease() {
-		return changeTrackingReleaseEClass;
+	public EClass getRelease() {
+		return releaseEClass;
 	}
 
 	/**
@@ -179,9 +169,8 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getChangeTrackingRelease_Stream() {
-		return (EReference) changeTrackingReleaseEClass
-				.getEStructuralFeatures().get(0);
+	public EReference getRelease_Stream() {
+		return (EReference) releaseEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -189,9 +178,8 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getChangeTrackingRelease_Built() {
-		return (EAttribute) changeTrackingReleaseEClass
-				.getEStructuralFeatures().get(1);
+	public EAttribute getRelease_Built() {
+		return (EAttribute) releaseEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -199,9 +187,8 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getChangeTrackingRelease_BuiltRevision() {
-		return (EReference) changeTrackingReleaseEClass
-				.getEStructuralFeatures().get(2);
+	public EReference getRelease_BuiltRevision() {
+		return (EReference) releaseEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -209,9 +196,8 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getChangeTrackingRelease_BuildDate() {
-		return (EAttribute) changeTrackingReleaseEClass
-				.getEStructuralFeatures().get(3);
+	public EAttribute getRelease_BuildDate() {
+		return (EAttribute) releaseEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -219,9 +205,8 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getChangeTrackingRelease_Successor() {
-		return (EReference) changeTrackingReleaseEClass
-				.getEStructuralFeatures().get(4);
+	public EReference getRelease_Successor() {
+		return (EReference) releaseEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -229,9 +214,8 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getChangeTrackingRelease_Predecessor() {
-		return (EReference) changeTrackingReleaseEClass
-				.getEStructuralFeatures().get(5);
+	public EReference getRelease_Predecessor() {
+		return (EReference) releaseEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -294,8 +278,7 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getRepositoryRevision_RepositoryStream() {
-		return (EReference) repositoryRevisionEClass.getEStructuralFeatures()
-				.get(0);
+		return (EReference) repositoryRevisionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -304,8 +287,7 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getRepositoryRevision_BuiltWithReleases() {
-		return (EReference) repositoryRevisionEClass.getEStructuralFeatures()
-				.get(1);
+		return (EReference) repositoryRevisionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -323,8 +305,7 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getRepositoryStream_Location() {
-		return (EReference) repositoryStreamEClass.getEStructuralFeatures()
-				.get(0);
+		return (EReference) repositoryStreamEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -333,8 +314,7 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getRepositoryStream_Revisions() {
-		return (EReference) repositoryStreamEClass.getEStructuralFeatures()
-				.get(1);
+		return (EReference) repositoryStreamEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -343,8 +323,7 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getRepositoryStream_UsingStreams() {
-		return (EReference) repositoryStreamEClass.getEStructuralFeatures()
-				.get(2);
+		return (EReference) repositoryStreamEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -362,8 +341,7 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getRepositoryLocation_Streams() {
-		return (EReference) repositoryLocationEClass.getEStructuralFeatures()
-				.get(0);
+		return (EReference) repositoryLocationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -395,19 +373,13 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 		isCreated = true;
 
 		// Create classes and their features
-		changeTrackingReleaseEClass = createEClass(CHANGE_TRACKING_RELEASE);
-		createEReference(changeTrackingReleaseEClass,
-				CHANGE_TRACKING_RELEASE__STREAM);
-		createEAttribute(changeTrackingReleaseEClass,
-				CHANGE_TRACKING_RELEASE__BUILT);
-		createEReference(changeTrackingReleaseEClass,
-				CHANGE_TRACKING_RELEASE__BUILT_REVISION);
-		createEAttribute(changeTrackingReleaseEClass,
-				CHANGE_TRACKING_RELEASE__BUILD_DATE);
-		createEReference(changeTrackingReleaseEClass,
-				CHANGE_TRACKING_RELEASE__SUCCESSOR);
-		createEReference(changeTrackingReleaseEClass,
-				CHANGE_TRACKING_RELEASE__PREDECESSOR);
+		releaseEClass = createEClass(RELEASE);
+		createEReference(releaseEClass, RELEASE__STREAM);
+		createEAttribute(releaseEClass, RELEASE__BUILT);
+		createEReference(releaseEClass, RELEASE__BUILT_REVISION);
+		createEAttribute(releaseEClass, RELEASE__BUILD_DATE);
+		createEReference(releaseEClass, RELEASE__SUCCESSOR);
+		createEReference(releaseEClass, RELEASE__PREDECESSOR);
 
 		streamEClass = createEClass(STREAM);
 		createEReference(streamEClass, STREAM__RELEASES);
@@ -417,16 +389,13 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 		createEAttribute(changePackageEClass, CHANGE_PACKAGE__SHORT_DESCRIPTION);
 
 		repositoryRevisionEClass = createEClass(REPOSITORY_REVISION);
-		createEReference(repositoryRevisionEClass,
-				REPOSITORY_REVISION__REPOSITORY_STREAM);
-		createEReference(repositoryRevisionEClass,
-				REPOSITORY_REVISION__BUILT_WITH_RELEASES);
+		createEReference(repositoryRevisionEClass, REPOSITORY_REVISION__REPOSITORY_STREAM);
+		createEReference(repositoryRevisionEClass, REPOSITORY_REVISION__BUILT_WITH_RELEASES);
 
 		repositoryStreamEClass = createEClass(REPOSITORY_STREAM);
 		createEReference(repositoryStreamEClass, REPOSITORY_STREAM__LOCATION);
 		createEReference(repositoryStreamEClass, REPOSITORY_STREAM__REVISIONS);
-		createEReference(repositoryStreamEClass,
-				REPOSITORY_STREAM__USING_STREAMS);
+		createEReference(repositoryStreamEClass, REPOSITORY_STREAM__USING_STREAMS);
 
 		repositoryLocationEClass = createEClass(REPOSITORY_LOCATION);
 		createEReference(repositoryLocationEClass, REPOSITORY_LOCATION__STREAMS);
@@ -457,16 +426,11 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		GitPackage theGitPackage = (GitPackage) EPackage.Registry.INSTANCE
-				.getEPackage(GitPackage.eNS_URI);
-		PatchPackage thePatchPackage = (PatchPackage) EPackage.Registry.INSTANCE
-				.getEPackage(PatchPackage.eNS_URI);
-		ReleasePackage theReleasePackage = (ReleasePackage) EPackage.Registry.INSTANCE
-				.getEPackage(ReleasePackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
-				.getEPackage(EcorePackage.eNS_URI);
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
-				.getEPackage(ModelPackage.eNS_URI);
+		GitPackage theGitPackage = (GitPackage) EPackage.Registry.INSTANCE.getEPackage(GitPackage.eNS_URI);
+		PatchPackage thePatchPackage = (PatchPackage) EPackage.Registry.INSTANCE.getEPackage(PatchPackage.eNS_URI);
+		ReleasePackage theReleasePackage = (ReleasePackage) EPackage.Registry.INSTANCE.getEPackage(ReleasePackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theGitPackage);
@@ -477,127 +441,40 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		changeTrackingReleaseEClass.getESuperTypes().add(
-				theReleasePackage.getRelease());
-		streamEClass.getESuperTypes().add(
-				theModelPackage.getUnicaseModelElement());
-		changePackageEClass.getESuperTypes().add(
-				theModelPackage.getAttachment());
-		repositoryRevisionEClass.getESuperTypes().add(
-				theModelPackage.getUnicaseModelElement());
-		repositoryStreamEClass.getESuperTypes().add(
-				theModelPackage.getUnicaseModelElement());
-		repositoryLocationEClass.getESuperTypes().add(
-				theModelPackage.getUnicaseModelElement());
+		releaseEClass.getESuperTypes().add(theReleasePackage.getAbstractRelease());
+		streamEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		changePackageEClass.getESuperTypes().add(theModelPackage.getAttachment());
+		repositoryRevisionEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		repositoryStreamEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		repositoryLocationEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(changeTrackingReleaseEClass, ChangeTrackingRelease.class,
-				"ChangeTrackingRelease", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getChangeTrackingRelease_Stream(), this.getStream(),
-				this.getStream_Releases(), "stream", null, 0, 1,
-				ChangeTrackingRelease.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getChangeTrackingRelease_Built(),
-				theEcorePackage.getEBoolean(), "built", null, 0, 1,
-				ChangeTrackingRelease.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getChangeTrackingRelease_BuiltRevision(),
-				this.getRepositoryRevision(),
-				this.getRepositoryRevision_BuiltWithReleases(),
-				"builtRevision", null, 0, 1, ChangeTrackingRelease.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getChangeTrackingRelease_BuildDate(),
-				theEcorePackage.getEDate(), "buildDate", null, 0, 1,
-				ChangeTrackingRelease.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getChangeTrackingRelease_Successor(),
-				this.getChangeTrackingRelease(),
-				this.getChangeTrackingRelease_Predecessor(), "successor", null,
-				0, 1, ChangeTrackingRelease.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getChangeTrackingRelease_Predecessor(),
-				this.getChangeTrackingRelease(),
-				this.getChangeTrackingRelease_Successor(), "predecessor", null,
-				0, 1, ChangeTrackingRelease.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(releaseEClass, Release.class, "Release", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRelease_Stream(), this.getStream(), this.getStream_Releases(), "stream", null, 0, 1, Release.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRelease_Built(), theEcorePackage.getEBoolean(), "built", null, 0, 1, Release.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRelease_BuiltRevision(), this.getRepositoryRevision(), this.getRepositoryRevision_BuiltWithReleases(), "builtRevision", null, 0, 1, Release.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRelease_BuildDate(), theEcorePackage.getEDate(), "buildDate", null, 0, 1, Release.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRelease_Successor(), this.getRelease(), this.getRelease_Predecessor(), "successor", null, 0, 1, Release.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRelease_Predecessor(), this.getRelease(), this.getRelease_Successor(), "predecessor", null, 0, 1, Release.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(streamEClass, Stream.class, "Stream", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStream_Releases(), this.getChangeTrackingRelease(),
-				this.getChangeTrackingRelease_Stream(), "releases", null, 0,
-				-1, Stream.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getStream_RepositoryStream(),
-				this.getRepositoryStream(),
-				this.getRepositoryStream_UsingStreams(), "repositoryStream",
-				null, 0, 1, Stream.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(streamEClass, Stream.class, "Stream", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStream_Releases(), this.getRelease(), this.getRelease_Stream(), "releases", null, 0, -1, Stream.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStream_RepositoryStream(), this.getRepositoryStream(), this.getRepositoryStream_UsingStreams(), "repositoryStream", null, 0, 1, Stream.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(changePackageEClass, ChangePackage.class, "ChangePackage",
-				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getChangePackage_ShortDescription(),
-				theEcorePackage.getEString(), "shortDescription", null, 0, 1,
-				ChangePackage.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEClass(changePackageEClass, ChangePackage.class, "ChangePackage", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getChangePackage_ShortDescription(), theEcorePackage.getEString(), "shortDescription", null, 0, 1, ChangePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(repositoryRevisionEClass, RepositoryRevision.class,
-				"RepositoryRevision", IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRepositoryRevision_RepositoryStream(),
-				this.getRepositoryStream(),
-				this.getRepositoryStream_Revisions(), "repositoryStream", null,
-				0, 1, RepositoryRevision.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRepositoryRevision_BuiltWithReleases(),
-				this.getChangeTrackingRelease(),
-				this.getChangeTrackingRelease_BuiltRevision(),
-				"builtWithReleases", null, 0, -1, RepositoryRevision.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEClass(repositoryRevisionEClass, RepositoryRevision.class, "RepositoryRevision", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRepositoryRevision_RepositoryStream(), this.getRepositoryStream(), this.getRepositoryStream_Revisions(), "repositoryStream", null, 0, 1, RepositoryRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRepositoryRevision_BuiltWithReleases(), this.getRelease(), this.getRelease_BuiltRevision(), "builtWithReleases", null, 0, -1, RepositoryRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(repositoryStreamEClass, RepositoryStream.class,
-				"RepositoryStream", IS_ABSTRACT, IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRepositoryStream_Location(),
-				this.getRepositoryLocation(),
-				this.getRepositoryLocation_Streams(), "location", null, 0, 1,
-				RepositoryStream.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRepositoryStream_Revisions(),
-				this.getRepositoryRevision(),
-				this.getRepositoryRevision_RepositoryStream(), "revisions",
-				null, 0, -1, RepositoryStream.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRepositoryStream_UsingStreams(), this.getStream(),
-				this.getStream_RepositoryStream(), "usingStreams", null, 0, -1,
-				RepositoryStream.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(repositoryStreamEClass, RepositoryStream.class, "RepositoryStream", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRepositoryStream_Location(), this.getRepositoryLocation(), this.getRepositoryLocation_Streams(), "location", null, 0, 1, RepositoryStream.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRepositoryStream_Revisions(), this.getRepositoryRevision(), this.getRepositoryRevision_RepositoryStream(), "revisions", null, 0, -1, RepositoryStream.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRepositoryStream_UsingStreams(), this.getStream(), this.getStream_RepositoryStream(), "usingStreams", null, 0, -1, RepositoryStream.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(repositoryLocationEClass, RepositoryLocation.class,
-				"RepositoryLocation", IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRepositoryLocation_Streams(),
-				this.getRepositoryStream(),
-				this.getRepositoryStream_Location(), "streams", null, 0, -1,
-				RepositoryLocation.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(repositoryLocationEClass, RepositoryLocation.class, "RepositoryLocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRepositoryLocation_Streams(), this.getRepositoryStream(), this.getRepositoryStream_Location(), "streams", null, 0, -1, RepositoryLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

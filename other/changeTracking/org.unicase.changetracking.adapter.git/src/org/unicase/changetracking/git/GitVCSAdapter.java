@@ -30,7 +30,7 @@ import org.unicase.changetracking.vcs.BasicVCSAdapter;
 import org.unicase.changetracking.vcs.NameValidator;
 import org.unicase.metamodel.Project;
 import org.unicase.model.changetracking.ChangePackage;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
+import org.unicase.model.changetracking.Release;
 import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.RepositoryStream;
 import org.unicase.model.changetracking.git.GitBranch;
@@ -105,7 +105,7 @@ public class GitVCSAdapter extends BasicVCSAdapter {
 	}
 
 	@Override
-	public BuildReleaseCommand buildRelease(ChangeTrackingRelease release, String tagName, ReleaseCheckReport checkReport) {
+	public BuildReleaseCommand buildRelease(Release release, String tagName, ReleaseCheckReport checkReport) {
 		return new GitBuildReleaseCommand(release, tagName, (GitReport) checkReport);
 	}
 
@@ -129,7 +129,7 @@ public class GitVCSAdapter extends BasicVCSAdapter {
 	}
 
 	@Override
-	public CheckReleaseCommand checkRelease(IDecisionProvider decisionProvider, ChangeTrackingRelease release) {
+	public CheckReleaseCommand checkRelease(IDecisionProvider decisionProvider, Release release) {
 		return new GitCheckReleaseCommand(release);
 	}
 

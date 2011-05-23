@@ -47,7 +47,7 @@
       <definition
             id="org.unicase.changetracking.ui.definitions.isRelease">
          <instanceof
-               value="org.unicase.model.changetracking.ChangeTrackingRelease">
+               value="org.unicase.model.changetracking.Release">
          </instanceof>
       </definition>
    </extension>
@@ -66,7 +66,7 @@
                <with
                      variable="meToOpen">
                   <instanceof
-                        value="org.unicase.model.changetracking.ChangeTrackingRelease">
+                        value="org.unicase.model.changetracking.Release">
                   </instanceof>
                </with>
             </visibleWhen>
@@ -81,7 +81,7 @@
                <with
                      variable="meToOpen">
                   <instanceof
-                        value="org.unicase.model.changetracking.ChangeTrackingRelease">
+                        value="org.unicase.model.changetracking.Release">
                   </instanceof>
                </with>
             </visibleWhen>

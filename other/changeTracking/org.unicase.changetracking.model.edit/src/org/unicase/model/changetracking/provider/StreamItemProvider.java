@@ -1,8 +1,6 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.provider;
 
@@ -11,7 +9,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -19,8 +19,10 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
 import org.unicase.model.changetracking.ChangetrackingPackage;
 import org.unicase.model.changetracking.Stream;
+
 import org.unicase.model.provider.UnicaseModelElementItemProvider;
 
 /**
@@ -29,16 +31,7 @@ import org.unicase.model.provider.UnicaseModelElementItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class StreamItemProvider extends UnicaseModelElementItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
+public class StreamItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -73,15 +66,7 @@ public class StreamItemProvider extends UnicaseModelElementItemProvider
 	 * @generated
 	 */
 	protected void addReleasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Stream_releases_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Stream_releases_feature", "_UI_Stream_type"),
-				ChangetrackingPackage.Literals.STREAM__RELEASES, true, false,
-				true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Stream_releases_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Stream_releases_feature", "_UI_Stream_type"), ChangetrackingPackage.Literals.STREAM__RELEASES, true, false, true, null, null, null));
 	}
 
 	/**
@@ -91,16 +76,7 @@ public class StreamItemProvider extends UnicaseModelElementItemProvider
 	 * @generated
 	 */
 	protected void addRepositoryStreamPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Stream_repositoryStream_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Stream_repositoryStream_feature",
-						"_UI_Stream_type"),
-				ChangetrackingPackage.Literals.STREAM__REPOSITORY_STREAM, true,
-				false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Stream_repositoryStream_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Stream_repositoryStream_feature", "_UI_Stream_type"), ChangetrackingPackage.Literals.STREAM__REPOSITORY_STREAM, true, false, true, null, null, null));
 	}
 
 	/**
@@ -111,21 +87,19 @@ public class StreamItemProvider extends UnicaseModelElementItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/Stream"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Stream"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((Stream) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Stream_type")
-				: label;
+		return label == null || label.length() == 0 ? getString("_UI_Stream_type") : getString("_UI_Stream_type") + " " + label;
 	}
 
 	/**
@@ -149,8 +123,7 @@ public class StreamItemProvider extends UnicaseModelElementItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

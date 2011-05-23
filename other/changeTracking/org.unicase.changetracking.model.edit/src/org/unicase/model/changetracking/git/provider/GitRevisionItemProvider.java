@@ -1,8 +1,6 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.git.provider;
 
@@ -11,7 +9,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -21,8 +21,10 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.unicase.model.changetracking.git.GitPackage;
 import org.unicase.model.changetracking.git.GitRevision;
+
 import org.unicase.model.changetracking.provider.ChangeTrackingEditPlugin;
 import org.unicase.model.changetracking.provider.RepositoryRevisionItemProvider;
 
@@ -32,16 +34,7 @@ import org.unicase.model.changetracking.provider.RepositoryRevisionItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class GitRevisionItemProvider extends RepositoryRevisionItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
+public class GitRevisionItemProvider extends RepositoryRevisionItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -76,18 +69,7 @@ public class GitRevisionItemProvider extends RepositoryRevisionItemProvider
 	 * @generated
 	 */
 	protected void addHashPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_GitRevision_hash_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_GitRevision_hash_feature",
-								"_UI_GitRevision_type"),
-						GitPackage.Literals.GIT_REVISION__HASH, true, false,
-						false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_GitRevision_hash_feature"), getString("_UI_PropertyDescriptor_description", "_UI_GitRevision_hash_feature", "_UI_GitRevision_type"), GitPackage.Literals.GIT_REVISION__HASH, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -97,16 +79,7 @@ public class GitRevisionItemProvider extends RepositoryRevisionItemProvider
 	 * @generated
 	 */
 	protected void addTagNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_GitRevision_tagName_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_GitRevision_tagName_feature",
-						"_UI_GitRevision_type"),
-				GitPackage.Literals.GIT_REVISION__TAG_NAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_GitRevision_tagName_feature"), getString("_UI_PropertyDescriptor_description", "_UI_GitRevision_tagName_feature", "_UI_GitRevision_type"), GitPackage.Literals.GIT_REVISION__TAG_NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -117,21 +90,19 @@ public class GitRevisionItemProvider extends RepositoryRevisionItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/GitRevision"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/GitRevision"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((GitRevision) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_GitRevision_type")
-				: label;
+		return label == null || label.length() == 0 ? getString("_UI_GitRevision_type") : getString("_UI_GitRevision_type") + " " + label;
 	}
 
 	/**
@@ -148,8 +119,7 @@ public class GitRevisionItemProvider extends RepositoryRevisionItemProvider
 		switch (notification.getFeatureID(GitRevision.class)) {
 		case GitPackage.GIT_REVISION__HASH:
 		case GitPackage.GIT_REVISION__TAG_NAME:
-			fireNotifyChanged(new ViewerNotification(notification,
-					notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -163,8 +133,7 @@ public class GitRevisionItemProvider extends RepositoryRevisionItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

@@ -30,7 +30,7 @@ import org.unicase.changetracking.release.ReleaseCheckReport;
 import org.unicase.changetracking.release.ReleaseUtil;
 import org.unicase.changetracking.release.WorkItemStatistics;
 import org.unicase.model.changetracking.ChangePackage;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
+import org.unicase.model.changetracking.Release;
 import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.RepositoryStream;
 import org.unicase.model.changetracking.Stream;
@@ -77,7 +77,7 @@ public final class ReleaseChecker {
 	private static final String ERROR_MISSING_COMMIT = "The commit to which the branch head '%s' points is missing.  Your local repository seems to be severly damaged. Reclone from remote.";
 	private static final String ERROR_RELEASE_BRANCH_NOT_FOUND = "The git branch associated with the stream of the release does not exist in the local repository.";
 
-	private ChangeTrackingRelease release;
+	private Release release;
 	private Repository localRepo;
 	private List<Problem> errorMessages = new ArrayList<Problem>();
 	private RepositoryLocation releaseStreamLocation;
@@ -98,11 +98,11 @@ public final class ReleaseChecker {
 	 *            checking
 	 * @return the report
 	 */
-	public static ReleaseCheckReport check(Repository localRepo, ChangeTrackingRelease release, boolean repoIsUpToDate) {
+	public static ReleaseCheckReport check(Repository localRepo, Release release, boolean repoIsUpToDate) {
 		return new ReleaseChecker(localRepo, release, repoIsUpToDate).check();
 	}
 
-	private ReleaseChecker(Repository localRepo, ChangeTrackingRelease release, boolean repoIsUpToDate) {
+	private ReleaseChecker(Repository localRepo, Release release, boolean repoIsUpToDate) {
 		this.localRepo = localRepo;
 		this.release = release;
 		this.repoIsUpToDate = repoIsUpToDate;

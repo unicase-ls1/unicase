@@ -3,21 +3,21 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="changetracking"
     nsURI="http://unicase.org/changetracking" nsPrefix="org.unicase.model.changetracking">
-  <eClassifiers xsi:type="ecore:EClass" name="ChangeTrackingRelease" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//release/Release">
+  <eClassifiers xsi:type="ecore:EClass" name="Release" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//release/AbstractRelease">
     <eStructuralFeatures xsi:type="ecore:EReference" name="stream" eType="#//Stream"
         eOpposite="#//Stream/releases"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="built" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="builtRevision" eType="#//RepositoryRevision"
         eOpposite="#//RepositoryRevision/builtWithReleases"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="buildDate" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDate"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="successor" eType="#//ChangeTrackingRelease"
-        eOpposite="#//ChangeTrackingRelease/predecessor"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="predecessor" eType="#//ChangeTrackingRelease"
-        eOpposite="#//ChangeTrackingRelease/successor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="successor" eType="#//Release"
+        eOpposite="#//Release/predecessor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predecessor" eType="#//Release"
+        eOpposite="#//Release/successor"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Stream" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//UnicaseModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="releases" upperBound="-1"
-        eType="#//ChangeTrackingRelease" eOpposite="#//ChangeTrackingRelease/stream"/>
+        eType="#//Release" eOpposite="#//Release/stream"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="repositoryStream" eType="#//RepositoryStream"
         eOpposite="#//RepositoryStream/usingStreams"/>
   </eClassifiers>
@@ -29,7 +29,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="repositoryStream" eType="#//RepositoryStream"
         eOpposite="#//RepositoryStream/revisions"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="builtWithReleases" upperBound="-1"
-        eType="#//ChangeTrackingRelease" eOpposite="#//ChangeTrackingRelease/builtRevision"/>
+        eType="#//Release" eOpposite="#//Release/builtRevision"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RepositoryStream" abstract="true" interface="true"
       eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//UnicaseModelElement">

@@ -1,23 +1,28 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.patch.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.unicase.model.ModelPackage;
+
 import org.unicase.model.attachment.AttachmentPackage;
+
 import org.unicase.model.changetracking.ChangetrackingPackage;
+
 import org.unicase.model.changetracking.git.GitPackage;
+
 import org.unicase.model.changetracking.git.impl.GitPackageImpl;
+
 import org.unicase.model.changetracking.impl.ChangetrackingPackageImpl;
+
 import org.unicase.model.changetracking.patch.PatchChangePackage;
-import org.unicase.model.changetracking.patch.Patch;
 import org.unicase.model.changetracking.patch.PatchFactory;
 import org.unicase.model.changetracking.patch.PatchPackage;
 
@@ -28,13 +33,6 @@ import org.unicase.model.changetracking.patch.PatchPackage;
  * @generated
  */
 public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,13 +80,10 @@ public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
 	 */
 	public static PatchPackage init() {
 		if (isInited)
-			return (PatchPackage) EPackage.Registry.INSTANCE
-					.getEPackage(PatchPackage.eNS_URI);
+			return (PatchPackage) EPackage.Registry.INSTANCE.getEPackage(PatchPackage.eNS_URI);
 
 		// Obtain or create and register package
-		PatchPackageImpl thePatchPackage = (PatchPackageImpl) (EPackage.Registry.INSTANCE
-				.get(eNS_URI) instanceof PatchPackageImpl ? EPackage.Registry.INSTANCE
-				.get(eNS_URI) : new PatchPackageImpl());
+		PatchPackageImpl thePatchPackage = (PatchPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof PatchPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new PatchPackageImpl());
 
 		isInited = true;
 
@@ -97,13 +92,8 @@ public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
 		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ChangetrackingPackageImpl theChangetrackingPackage = (ChangetrackingPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ChangetrackingPackage.eNS_URI) instanceof ChangetrackingPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ChangetrackingPackage.eNS_URI)
-				: ChangetrackingPackage.eINSTANCE);
-		GitPackageImpl theGitPackage = (GitPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(GitPackage.eNS_URI) instanceof GitPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(GitPackage.eNS_URI) : GitPackage.eINSTANCE);
+		ChangetrackingPackageImpl theChangetrackingPackage = (ChangetrackingPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI) instanceof ChangetrackingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI) : ChangetrackingPackage.eINSTANCE);
+		GitPackageImpl theGitPackage = (GitPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(GitPackage.eNS_URI) instanceof GitPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GitPackage.eNS_URI) : GitPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		thePatchPackage.createPackageContents();
@@ -189,25 +179,19 @@ public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ChangetrackingPackage theChangetrackingPackage = (ChangetrackingPackage) EPackage.Registry.INSTANCE
-				.getEPackage(ChangetrackingPackage.eNS_URI);
-		AttachmentPackage theAttachmentPackage = (AttachmentPackage) EPackage.Registry.INSTANCE
-				.getEPackage(AttachmentPackage.eNS_URI);
+		ChangetrackingPackage theChangetrackingPackage = (ChangetrackingPackage) EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI);
+		AttachmentPackage theAttachmentPackage = (AttachmentPackage) EPackage.Registry.INSTANCE.getEPackage(AttachmentPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		patchChangePackageEClass.getESuperTypes().add(
-				theChangetrackingPackage.getChangePackage());
-		patchChangePackageEClass.getESuperTypes().add(
-				theAttachmentPackage.getFileAttachment());
+		patchChangePackageEClass.getESuperTypes().add(theChangetrackingPackage.getChangePackage());
+		patchChangePackageEClass.getESuperTypes().add(theAttachmentPackage.getFileAttachment());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(patchChangePackageEClass, PatchChangePackage.class,
-				"PatchChangePackage", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
+		initEClass(patchChangePackageEClass, PatchChangePackage.class, "PatchChangePackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } //PatchPackageImpl

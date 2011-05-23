@@ -1,8 +1,6 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.git.impl;
 
@@ -11,17 +9,24 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.unicase.model.ModelPackage;
+
 import org.unicase.model.changetracking.ChangetrackingPackage;
+
 import org.unicase.model.changetracking.git.GitBranch;
 import org.unicase.model.changetracking.git.GitBranchChangePackage;
 import org.unicase.model.changetracking.git.GitFactory;
 import org.unicase.model.changetracking.git.GitPackage;
 import org.unicase.model.changetracking.git.GitRepository;
 import org.unicase.model.changetracking.git.GitRevision;
+
 import org.unicase.model.changetracking.impl.ChangetrackingPackageImpl;
+
 import org.unicase.model.changetracking.patch.PatchPackage;
+
 import org.unicase.model.changetracking.patch.impl.PatchPackageImpl;
 
 /**
@@ -31,13 +36,6 @@ import org.unicase.model.changetracking.patch.impl.PatchPackageImpl;
  * @generated
  */
 public class GitPackageImpl extends EPackageImpl implements GitPackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -106,13 +104,10 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 	 */
 	public static GitPackage init() {
 		if (isInited)
-			return (GitPackage) EPackage.Registry.INSTANCE
-					.getEPackage(GitPackage.eNS_URI);
+			return (GitPackage) EPackage.Registry.INSTANCE.getEPackage(GitPackage.eNS_URI);
 
 		// Obtain or create and register package
-		GitPackageImpl theGitPackage = (GitPackageImpl) (EPackage.Registry.INSTANCE
-				.get(eNS_URI) instanceof GitPackageImpl ? EPackage.Registry.INSTANCE
-				.get(eNS_URI) : new GitPackageImpl());
+		GitPackageImpl theGitPackage = (GitPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof GitPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new GitPackageImpl());
 
 		isInited = true;
 
@@ -121,13 +116,8 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ChangetrackingPackageImpl theChangetrackingPackage = (ChangetrackingPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(ChangetrackingPackage.eNS_URI) instanceof ChangetrackingPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(ChangetrackingPackage.eNS_URI)
-				: ChangetrackingPackage.eINSTANCE);
-		PatchPackageImpl thePatchPackage = (PatchPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(PatchPackage.eNS_URI) instanceof PatchPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(PatchPackage.eNS_URI) : PatchPackage.eINSTANCE);
+		ChangetrackingPackageImpl theChangetrackingPackage = (ChangetrackingPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI) instanceof ChangetrackingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI) : ChangetrackingPackage.eINSTANCE);
+		PatchPackageImpl thePatchPackage = (PatchPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(PatchPackage.eNS_URI) instanceof PatchPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PatchPackage.eNS_URI) : PatchPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theGitPackage.createPackageContents();
@@ -162,8 +152,7 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 	 * @generated
 	 */
 	public EReference getGitBranchChangePackage_Branch() {
-		return (EReference) gitBranchChangePackageEClass
-				.getEStructuralFeatures().get(0);
+		return (EReference) gitBranchChangePackageEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -277,8 +266,7 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 
 		// Create classes and their features
 		gitBranchChangePackageEClass = createEClass(GIT_BRANCH_CHANGE_PACKAGE);
-		createEReference(gitBranchChangePackageEClass,
-				GIT_BRANCH_CHANGE_PACKAGE__BRANCH);
+		createEReference(gitBranchChangePackageEClass, GIT_BRANCH_CHANGE_PACKAGE__BRANCH);
 
 		gitBranchEClass = createEClass(GIT_BRANCH);
 		createEReference(gitBranchEClass, GIT_BRANCH__REFERRING_CHANGE_PACKAGES);
@@ -290,8 +278,7 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 
 		gitRepositoryEClass = createEClass(GIT_REPOSITORY);
 		createEAttribute(gitRepositoryEClass, GIT_REPOSITORY__URL);
-		createEAttribute(gitRepositoryEClass,
-				GIT_REPOSITORY__IDENTIFYING_COMMIT_HASH);
+		createEAttribute(gitRepositoryEClass, GIT_REPOSITORY__IDENTIFYING_COMMIT_HASH);
 	}
 
 	/**
@@ -319,71 +306,34 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ChangetrackingPackage theChangetrackingPackage = (ChangetrackingPackage) EPackage.Registry.INSTANCE
-				.getEPackage(ChangetrackingPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE
-				.getEPackage(EcorePackage.eNS_URI);
+		ChangetrackingPackage theChangetrackingPackage = (ChangetrackingPackage) EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		gitBranchChangePackageEClass.getESuperTypes().add(
-				theChangetrackingPackage.getChangePackage());
-		gitBranchEClass.getESuperTypes().add(
-				theChangetrackingPackage.getRepositoryStream());
-		gitRevisionEClass.getESuperTypes().add(
-				theChangetrackingPackage.getRepositoryRevision());
-		gitRepositoryEClass.getESuperTypes().add(
-				theChangetrackingPackage.getRepositoryLocation());
+		gitBranchChangePackageEClass.getESuperTypes().add(theChangetrackingPackage.getChangePackage());
+		gitBranchEClass.getESuperTypes().add(theChangetrackingPackage.getRepositoryStream());
+		gitRevisionEClass.getESuperTypes().add(theChangetrackingPackage.getRepositoryRevision());
+		gitRepositoryEClass.getESuperTypes().add(theChangetrackingPackage.getRepositoryLocation());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(gitBranchChangePackageEClass, GitBranchChangePackage.class,
-				"GitBranchChangePackage", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGitBranchChangePackage_Branch(), this.getGitBranch(),
-				this.getGitBranch_ReferringChangePackages(), "branch", null, 0,
-				1, GitBranchChangePackage.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(gitBranchChangePackageEClass, GitBranchChangePackage.class, "GitBranchChangePackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGitBranchChangePackage_Branch(), this.getGitBranch(), this.getGitBranch_ReferringChangePackages(), "branch", null, 0, 1, GitBranchChangePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(gitBranchEClass, GitBranch.class, "GitBranch", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGitBranch_ReferringChangePackages(),
-				this.getGitBranchChangePackage(),
-				this.getGitBranchChangePackage_Branch(),
-				"referringChangePackages", null, 0, -1, GitBranch.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getGitBranch_BranchName(), theEcorePackage.getEString(),
-				"branchName", null, 0, 1, GitBranch.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEClass(gitBranchEClass, GitBranch.class, "GitBranch", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGitBranch_ReferringChangePackages(), this.getGitBranchChangePackage(), this.getGitBranchChangePackage_Branch(), "referringChangePackages", null, 0, -1, GitBranch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGitBranch_BranchName(), theEcorePackage.getEString(), "branchName", null, 0, 1, GitBranch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(gitRevisionEClass, GitRevision.class, "GitRevision",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getGitRevision_Hash(), theEcorePackage.getEString(),
-				"hash", null, 0, 1, GitRevision.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getGitRevision_TagName(), theEcorePackage.getEString(),
-				"tagName", null, 0, 1, GitRevision.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEClass(gitRevisionEClass, GitRevision.class, "GitRevision", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGitRevision_Hash(), theEcorePackage.getEString(), "hash", null, 0, 1, GitRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGitRevision_TagName(), theEcorePackage.getEString(), "tagName", null, 0, 1, GitRevision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(gitRepositoryEClass, GitRepository.class, "GitRepository",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getGitRepository_Url(), theEcorePackage.getEString(),
-				"url", null, 0, 1, GitRepository.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getGitRepository_IdentifyingCommitHash(),
-				theEcorePackage.getEString(), "identifyingCommitHash", null, 0,
-				1, GitRepository.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEClass(gitRepositoryEClass, GitRepository.class, "GitRepository", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGitRepository_Url(), theEcorePackage.getEString(), "url", null, 0, 1, GitRepository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGitRepository_IdentifyingCommitHash(), theEcorePackage.getEString(), "identifyingCommitHash", null, 0, 1, GitRepository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //GitPackageImpl

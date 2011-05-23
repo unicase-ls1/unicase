@@ -11,7 +11,7 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.changetracking.release.ReleaseCheckReport;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
+import org.unicase.model.changetracking.Release;
 
 /**
  * Review release page of the build release wizard.
@@ -27,7 +27,7 @@ import org.unicase.model.changetracking.ChangeTrackingRelease;
  */
 public class ReviewReleasePage extends WizardPage implements IDialogHead {
 
-	private ChangeTrackingRelease release;
+	private Release release;
 	private ReleaseCheckReport report;
 
 	/**
@@ -39,7 +39,7 @@ public class ReviewReleasePage extends WizardPage implements IDialogHead {
 	 * @param release release which was checked
 	 * @param report resulting report of the check
 	 */
-	protected ReviewReleasePage(String pageName, String title, ImageDescriptor titleImage, ChangeTrackingRelease release, ReleaseCheckReport report) {
+	protected ReviewReleasePage(String pageName, String title, ImageDescriptor titleImage, Release release, ReleaseCheckReport report) {
 		super(pageName, title, titleImage);
 		this.release = release;
 		this.report = report;

@@ -1,23 +1,18 @@
 /**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  * 
- *
- * $Id$
  */
 package org.unicase.model.changetracking.git.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import org.unicase.model.changetracking.git.*;
-import org.unicase.model.changetracking.git.GitBranch;
-import org.unicase.model.changetracking.git.GitBranchChangePackage;
-import org.unicase.model.changetracking.git.GitFactory;
-import org.unicase.model.changetracking.git.GitPackage;
-import org.unicase.model.changetracking.git.GitRepository;
-import org.unicase.model.changetracking.git.GitRevision;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,13 +22,6 @@ import org.unicase.model.changetracking.git.GitRevision;
  */
 public class GitFactoryImpl extends EFactoryImpl implements GitFactory {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
-	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -41,8 +29,7 @@ public class GitFactoryImpl extends EFactoryImpl implements GitFactory {
 	 */
 	public static GitFactory init() {
 		try {
-			GitFactory theGitFactory = (GitFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://unicase.org/changetracking/git");
+			GitFactory theGitFactory = (GitFactory) EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/changetracking/git");
 			if (theGitFactory != null) {
 				return theGitFactory;
 			}
@@ -79,8 +66,7 @@ public class GitFactoryImpl extends EFactoryImpl implements GitFactory {
 		case GitPackage.GIT_REPOSITORY:
 			return createGitRepository();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 

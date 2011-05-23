@@ -29,7 +29,7 @@ import org.unicase.changetracking.ui.ChangePackageStateLabelProvider;
 import org.unicase.changetracking.ui.ImageAndTextLabel;
 import org.unicase.changetracking.ui.ReleaseTreeViewer;
 import org.unicase.model.changetracking.ChangePackage;
-import org.unicase.model.changetracking.ChangeTrackingRelease;
+import org.unicase.model.changetracking.Release;
 
 /**
  * 
@@ -75,7 +75,7 @@ public class ReleaseOverviewWidget extends Composite {
 	 * @param release release to be displayed
 	 * @param report checking report to be displayed
 	 */
-	public ReleaseOverviewWidget(Composite parent, int style, ChangeTrackingRelease release, ReleaseCheckReport report) {
+	public ReleaseOverviewWidget(Composite parent, int style, Release release, ReleaseCheckReport report) {
 		super(parent, style);
 
 		GridLayoutFactory.fillDefaults().margins(0, 0).spacing(2, 2).numColumns(2).applyTo(this);
@@ -108,7 +108,7 @@ public class ReleaseOverviewWidget extends Composite {
 		errorImage = labelProvider.generateImage(ChangePackageState.ERROR);
 	}
 
-	private void createOverviewTab(ChangeTrackingRelease release, ReleaseCheckReport report, TabFolder tabFolder) {
+	private void createOverviewTab(Release release, ReleaseCheckReport report, TabFolder tabFolder) {
 		TabItem t = new TabItem(tabFolder, SWT.NONE);
 		t.setText("Overview");
 		t.setImage(TAB_IMAGE_OVERVIEW);
@@ -172,7 +172,7 @@ public class ReleaseOverviewWidget extends Composite {
 
 	}
 
-	private void createContentTab(ChangeTrackingRelease release, TabFolder tabFolder) {
+	private void createContentTab(Release release, TabFolder tabFolder) {
 		TabItem t;
 		t = new TabItem(tabFolder, SWT.NONE);
 		t.setText("Release Content");
@@ -240,7 +240,7 @@ public class ReleaseOverviewWidget extends Composite {
 		}
 	}
 
-	private void createChangelogTab(TabFolder tabFolder, ReleaseCheckReport report, ChangeTrackingRelease release) {
+	private void createChangelogTab(TabFolder tabFolder, ReleaseCheckReport report, Release release) {
 		TabItem t = new TabItem(tabFolder, SWT.NONE);
 		t.setText("Changelog");
 		t.setImage(TAB_IMAGE_CHANGELOG);
