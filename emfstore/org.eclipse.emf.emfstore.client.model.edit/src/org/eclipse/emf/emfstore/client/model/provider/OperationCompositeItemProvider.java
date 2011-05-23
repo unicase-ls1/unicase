@@ -35,8 +35,9 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFac
  * 
  * @generated
  */
-public class OperationCompositeItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class OperationCompositeItemProvider extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -72,10 +73,12 @@ public class OperationCompositeItemProvider extends ItemProviderAdapter implemen
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS);
+			childrenFeatures
+					.add(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -101,7 +104,8 @@ public class OperationCompositeItemProvider extends ItemProviderAdapter implemen
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OperationComposite"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/OperationComposite"));
 	}
 
 	/**
@@ -128,7 +132,8 @@ public class OperationCompositeItemProvider extends ItemProviderAdapter implemen
 
 		switch (notification.getFeatureID(OperationComposite.class)) {
 		case ModelPackage.OPERATION_COMPOSITE__OPERATIONS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -142,41 +147,61 @@ public class OperationCompositeItemProvider extends ItemProviderAdapter implemen
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createCompositeOperation()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createCompositeOperation()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createAttributeOperation()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createAttributeOperation()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiAttributeSetOperation()));
+		newChildDescriptors
+				.add(createChildParameter(
+						ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+						OperationsFactory.eINSTANCE
+								.createMultiAttributeSetOperation()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
+		newChildDescriptors
+				.add(createChildParameter(
+						ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+						OperationsFactory.eINSTANCE
+								.createMultiAttributeMoveOperation()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiReferenceSetOperation()));
+		newChildDescriptors
+				.add(createChildParameter(
+						ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+						OperationsFactory.eINSTANCE
+								.createMultiReferenceSetOperation()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
+		newChildDescriptors
+				.add(createChildParameter(
+						ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+						OperationsFactory.eINSTANCE
+								.createMultiReferenceMoveOperation()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
+				OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
 	}
 
 	/**

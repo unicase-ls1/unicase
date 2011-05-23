@@ -38,8 +38,9 @@ import org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolFactory;
  * 
  * @generated
  */
-public class UsersessionItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class UsersessionItemProvider extends ItemProviderAdapter implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -78,14 +79,16 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addUsernamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
 				getResourceLocator(),
 				getString("_UI_Usersession_username_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Usersession_username_feature",
-					"_UI_Usersession_type"), ModelPackage.Literals.USERSESSION__USERNAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Usersession_username_feature",
+						"_UI_Usersession_type"),
+				ModelPackage.Literals.USERSESSION__USERNAME, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -95,14 +98,16 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addPasswordPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
 				getResourceLocator(),
 				getString("_UI_Usersession_password_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Usersession_password_feature",
-					"_UI_Usersession_type"), ModelPackage.Literals.USERSESSION__PASSWORD, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Usersession_password_feature",
+						"_UI_Usersession_type"),
+				ModelPackage.Literals.USERSESSION__PASSWORD, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -112,14 +117,16 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	protected void addSessionIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
 				getResourceLocator(),
 				getString("_UI_Usersession_sessionId_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Usersession_sessionId_feature",
-					"_UI_Usersession_type"), ModelPackage.Literals.USERSESSION__SESSION_ID, true, false, true, null,
-				null, null));
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Usersession_sessionId_feature",
+						"_UI_Usersession_type"),
+				ModelPackage.Literals.USERSESSION__SESSION_ID, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -130,12 +137,16 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addPersistentPasswordPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_Usersession_persistentPassword_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Usersession_persistentPassword_feature",
-				"_UI_Usersession_type"), ModelPackage.Literals.USERSESSION__PERSISTENT_PASSWORD, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Usersession_persistentPassword_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Usersession_persistentPassword_feature",
+						"_UI_Usersession_type"),
+				ModelPackage.Literals.USERSESSION__PERSISTENT_PASSWORD, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -146,12 +157,15 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addServerInfoPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_Usersession_serverInfo_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Usersession_serverInfo_feature",
-				"_UI_Usersession_type"), ModelPackage.Literals.USERSESSION__SERVER_INFO, true, false, true, null, null,
-			null));
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Usersession_serverInfo_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Usersession_serverInfo_feature",
+						"_UI_Usersession_type"),
+				ModelPackage.Literals.USERSESSION__SERVER_INFO, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -162,12 +176,15 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	protected void addSavePasswordPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_Usersession_savePassword_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Usersession_savePassword_feature",
-				"_UI_Usersession_type"), ModelPackage.Literals.USERSESSION__SAVE_PASSWORD, true, false, false,
-			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Usersession_savePassword_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Usersession_savePassword_feature",
+						"_UI_Usersession_type"),
+				ModelPackage.Literals.USERSESSION__SAVE_PASSWORD, true, false,
+				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -180,11 +197,13 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ModelPackage.Literals.USERSESSION__AC_USER);
-			childrenFeatures.add(ModelPackage.Literals.USERSESSION__CHANGED_PROPERTIES);
+			childrenFeatures
+					.add(ModelPackage.Literals.USERSESSION__CHANGED_PROPERTIES);
 		}
 		return childrenFeatures;
 	}
@@ -210,7 +229,8 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Usersession"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/Usersession"));
 	}
 
 	/**
@@ -224,7 +244,8 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	public String getText(Object object) {
 		Usersession session = ((Usersession) object);
 		ServerInfo server = session.getServerInfo();
-		return session.getUsername() + "@" + (server != null ? server.getName() : "unknown");
+		return session.getUsername() + "@"
+				+ (server != null ? server.getName() : "unknown");
 	}
 
 	/**
@@ -243,11 +264,13 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 		case ModelPackage.USERSESSION__PASSWORD:
 		case ModelPackage.USERSESSION__PERSISTENT_PASSWORD:
 		case ModelPackage.USERSESSION__SAVE_PASSWORD:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		case ModelPackage.USERSESSION__AC_USER:
 		case ModelPackage.USERSESSION__CHANGED_PROPERTIES:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -261,14 +284,17 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.USERSESSION__AC_USER,
-			AccesscontrolFactory.eINSTANCE.createACUser()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.USERSESSION__AC_USER,
+				AccesscontrolFactory.eINSTANCE.createACUser()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.USERSESSION__CHANGED_PROPERTIES,
-			AccesscontrolFactory.eINSTANCE.createOrgUnitProperty()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.USERSESSION__CHANGED_PROPERTIES,
+				AccesscontrolFactory.eINSTANCE.createOrgUnitProperty()));
 	}
 
 	/**
