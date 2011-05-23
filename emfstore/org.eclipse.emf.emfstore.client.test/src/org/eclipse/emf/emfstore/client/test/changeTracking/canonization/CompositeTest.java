@@ -21,6 +21,8 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOpera
 import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationsCanonizer;
 import org.junit.Test;
+import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.model.requirement.UseCase;
 
 /**
  * Tests canonization of composite operations.

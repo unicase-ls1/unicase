@@ -15,6 +15,11 @@ import org.eclipse.emf.emfstore.client.model.changeTracking.notification.Notific
 import org.eclipse.emf.emfstore.client.model.changeTracking.notification.recording.NotificationRecording;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.junit.Test;
+import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.document.LeafSection;
+import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.model.requirement.UseCase;
 
 /**
  * Tests the notification recording for attribute features.

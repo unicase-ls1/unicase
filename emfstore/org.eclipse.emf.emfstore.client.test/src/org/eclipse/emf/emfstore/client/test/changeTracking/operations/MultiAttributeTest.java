@@ -25,6 +25,8 @@ import org.junit.Test;
  */
 public class MultiAttributeTest extends WorkspaceTest {
 
+	protected TestElement testElement;
+
 	/**
 	 * Add value to empty list.
 	 */
@@ -148,30 +150,31 @@ public class MultiAttributeTest extends WorkspaceTest {
 		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
-				TestElement testElement = getTestElement();
-				getProjectSpace().getOperations().clear();
+				testElement = getTestElement();
+				clearOperations();
 				testElement.getStrings().add("first");
 				testElement.getStrings().addAll(Arrays.asList("second", "third"));
-
-				AbstractOperation abstractOperation = getProjectSpace().getOperations().get(0);
-				assertTrue(abstractOperation instanceof MultiAttributeOperation);
-				MultiAttributeOperation ao = (MultiAttributeOperation) abstractOperation;
-				assertTrue(ao.getIndexes().size() == 1);
-				assertTrue(ao.getIndexes().get(0) == 0);
-				assertTrue(ao.getReferencedValues().get(0).equals("first"));
-				assertTrue(ao.isAdd());
-
-				abstractOperation = getProjectSpace().getOperations().get(1);
-				assertTrue(abstractOperation instanceof MultiAttributeOperation);
-				ao = (MultiAttributeOperation) abstractOperation;
-				assertTrue(ao.getIndexes().size() == 2);
-				assertTrue(ao.getIndexes().get(0) == 1);
-				assertTrue(ao.getIndexes().get(1) == 2);
-				assertTrue(ao.getReferencedValues().get(0).equals("second"));
-				assertTrue(ao.getReferencedValues().get(1).equals("third"));
-				assertTrue(ao.isAdd());
 			}
 		}.run(false);
+
+		AbstractOperation abstractOperation = getProjectSpace().getOperations().get(0);
+		assertTrue(abstractOperation instanceof MultiAttributeOperation);
+		MultiAttributeOperation ao = (MultiAttributeOperation) abstractOperation;
+		assertTrue(ao.getIndexes().size() == 1);
+		assertTrue(ao.getIndexes().get(0) == 0);
+		assertTrue(ao.getReferencedValues().get(0).equals("first"));
+		assertTrue(ao.isAdd());
+
+		abstractOperation = getProjectSpace().getOperations().get(1);
+		assertTrue(abstractOperation instanceof MultiAttributeOperation);
+		ao = (MultiAttributeOperation) abstractOperation;
+		assertTrue(ao.getIndexes().size() == 2);
+		assertTrue(ao.getIndexes().get(0) == 1);
+		assertTrue(ao.getIndexes().get(1) == 2);
+		assertTrue(ao.getReferencedValues().get(0).equals("second"));
+		assertTrue(ao.getReferencedValues().get(1).equals("third"));
+		assertTrue(ao.isAdd());
+
 	}
 
 	/**
@@ -182,27 +185,25 @@ public class MultiAttributeTest extends WorkspaceTest {
 		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
-				TestElement testElement = getTestElement();
+				testElement = getTestElement();
 
 				testElement.getStrings().add("first");
 				testElement.getStrings().addAll(Arrays.asList("second", "third"));
 
-				getProjectSpace().getOperations().clear();
-
+				clearOperations();
 				testElement.getStrings().removeAll(Arrays.asList("second", "third"));
-
-				assertTrue(getProjectSpace().getOperations().size() == 1);
-
-				AbstractOperation abstractOperation = getProjectSpace().getOperations().get(0);
-				assertTrue(abstractOperation instanceof MultiAttributeOperation);
-				MultiAttributeOperation ao = (MultiAttributeOperation) abstractOperation;
-				assertTrue(ao.getIndexes().get(0) == 1);
-				assertTrue(ao.getIndexes().get(1) == 2);
-				assertTrue(ao.getReferencedValues().get(0).equals("second"));
-				assertTrue(ao.getReferencedValues().get(1).equals("third"));
-				assertTrue(!ao.isAdd());
 			}
 		}.run(false);
+
+		assertTrue(getProjectSpace().getOperations().size() == 1);
+		AbstractOperation abstractOperation = getProjectSpace().getOperations().get(0);
+		assertTrue(abstractOperation instanceof MultiAttributeOperation);
+		MultiAttributeOperation ao = (MultiAttributeOperation) abstractOperation;
+		assertTrue(ao.getIndexes().get(0) == 1);
+		assertTrue(ao.getIndexes().get(1) == 2);
+		assertTrue(ao.getReferencedValues().get(0).equals("second"));
+		assertTrue(ao.getReferencedValues().get(1).equals("third"));
+		assertTrue(!ao.isAdd());
 	}
 
 	/**
@@ -213,26 +214,36 @@ public class MultiAttributeTest extends WorkspaceTest {
 		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
-				TestElement testElement = getTestElement();
+				testElement = getTestElement();
 				testElement.getStrings().add("first");
 				testElement.getStrings().add("second");
 
 				assertTrue(testElement.getStrings().size() == 2);
 				assertTrue(testElement.getStrings().get(0).equals("first"));
 				assertTrue(testElement.getStrings().get(1).equals("second"));
-				getProjectSpace().getOperations().clear();
+				clearOperations();
+			}
+		}.run(false);
 
+		new EMFStoreCommand() {
+			@Override
+			protected void doRun() {
 				testElement.getStrings().remove("second");
 				assertTrue(testElement.getStrings().size() == 1);
 				assertTrue(testElement.getStrings().get(0).equals("first"));
-
-				AbstractOperation ao = getProjectSpace().getOperations().get(0).reverse();
-				ao.apply(getProject());
-
-				assertTrue(testElement.getStrings().size() == 2);
-				assertTrue(testElement.getStrings().get(0).equals("first"));
-				assertTrue(testElement.getStrings().get(1).equals("second"));
 			}
 		}.run(false);
+
+		new EMFStoreCommand() {
+			@Override
+			protected void doRun() {
+				AbstractOperation ao = getProjectSpace().getOperations().get(0).reverse();
+				ao.apply(getProject());
+			}
+		}.run(false);
+
+		assertTrue(testElement.getStrings().size() == 2);
+		assertTrue(testElement.getStrings().get(0).equals("first"));
+		assertTrue(testElement.getStrings().get(1).equals("second"));
 	}
 }

@@ -16,6 +16,7 @@ import org.eclipse.emf.emfstore.client.model.CompositeOperationHandle;
 import org.eclipse.emf.emfstore.client.model.exceptions.InvalidHandleException;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.test.WorkspaceTest;
+import org.eclipse.emf.emfstore.common.model.ModelFactory;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
@@ -25,6 +26,12 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteO
 import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.util.OperationsCanonizer;
 import org.junit.Test;
+import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.document.LeafSection;
+import org.unicase.model.requirement.Actor;
+import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.model.requirement.UseCase;
 
 /**
  * Tests canonization of attribute operations.
@@ -155,8 +162,8 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI(), false);
+		Project loadedProject = ModelUtil.loadEObjectFromResource(
+			ModelFactory.eINSTANCE.getModelPackage().getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 
@@ -1064,8 +1071,8 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI(), false);
+		Project loadedProject = ModelUtil.loadEObjectFromResource(
+			ModelFactory.eINSTANCE.getModelPackage().getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, expectedProject));
 	}
@@ -1534,8 +1541,8 @@ public class AttributeTest extends WorkspaceTest {
 
 		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
 
-		Project loadedProject = ModelUtil.loadEObjectFromResource(MetamodelFactory.eINSTANCE.getMetamodelPackage()
-			.getProject(), getProject().eResource().getURI(), false);
+		Project loadedProject = ModelUtil.loadEObjectFromResource(
+			ModelFactory.eINSTANCE.getModelPackage().getProject(), getProject().eResource().getURI(), false);
 
 		assertTrue(ModelUtil.areEqual(loadedProject, originalProject));
 	}

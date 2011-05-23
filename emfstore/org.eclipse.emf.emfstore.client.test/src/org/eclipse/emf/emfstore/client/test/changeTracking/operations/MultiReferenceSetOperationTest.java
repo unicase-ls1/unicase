@@ -25,6 +25,10 @@ import org.junit.Test;
  */
 public class MultiReferenceSetOperationTest extends WorkspaceTest {
 
+	protected TestElement element;
+	protected TestElement newValue;
+	protected TestElement oldValue;
+
 	/**
 	 * Set reference to filled list.
 	 */
@@ -33,25 +37,30 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
-				TestElement element = getTestElement();
-				TestElement oldValue = getTestElement();
-				TestElement newValue = getTestElement();
+				element = getTestElement();
+				oldValue = getTestElement();
+				newValue = getTestElement();
 
 				element.getReferences().add(oldValue);
 				clearOperations();
-
-				assertTrue(element.getReferences().size() == 1);
-				assertTrue(element.getReferences().get(0).equals(oldValue));
-
-				element.getReferences().set(0, newValue);
-
-				assertTrue(element.getReferences().size() == 1);
-				assertTrue(element.getReferences().get(0).equals(newValue));
-
-				assertTrue(getProjectSpace().getOperations().size() == 1);
-				assertTrue(getProjectSpace().getOperations().get(0) instanceof MultiReferenceSetOperation);
 			}
 		}.run(false);
+
+		assertTrue(element.getReferences().size() == 1);
+		assertTrue(element.getReferences().get(0).equals(oldValue));
+
+		new EMFStoreCommand() {
+			@Override
+			protected void doRun() {
+				element.getReferences().set(0, newValue);
+			}
+		}.run(false);
+
+		assertTrue(element.getReferences().size() == 1);
+		assertTrue(element.getReferences().get(0).equals(newValue));
+
+		assertTrue(getProjectSpace().getOperations().size() == 1);
+		assertTrue(getProjectSpace().getOperations().get(0) instanceof MultiReferenceSetOperation);
 	}
 
 	/**
@@ -156,26 +165,36 @@ public class MultiReferenceSetOperationTest extends WorkspaceTest {
 		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
-				TestElement testElement = getTestElement();
-				TestElement oldValue = getTestElement();
-				testElement.getReferences().add(oldValue);
-				TestElement newValue = getTestElement();
+				element = getTestElement();
+				oldValue = getTestElement();
+				element.getReferences().add(oldValue);
+				newValue = getTestElement();
 
-				getProjectSpace().getOperations().clear();
-				assertTrue(testElement.getReferences().size() == 1);
-				assertTrue(testElement.getReferences().get(0).equals(oldValue));
-
-				testElement.getReferences().set(0, newValue);
-
-				assertTrue(testElement.getReferences().size() == 1);
-				assertTrue(testElement.getReferences().get(0).equals(newValue));
-
-				AbstractOperation operation = getProjectSpace().getOperations().get(0).reverse();
-				operation.apply(getProject());
-
-				assertTrue(testElement.getReferences().size() == 1);
-				assertTrue(testElement.getReferences().get(0).equals(oldValue));
+				clearOperations();
+				assertTrue(element.getReferences().size() == 1);
+				assertTrue(element.getReferences().get(0).equals(oldValue));
 			}
 		}.run(false);
+
+		new EMFStoreCommand() {
+			@Override
+			protected void doRun() {
+				element.getReferences().set(0, newValue);
+			}
+		}.run(false);
+
+		assertTrue(element.getReferences().size() == 1);
+		assertTrue(element.getReferences().get(0).equals(newValue));
+
+		new EMFStoreCommand() {
+			@Override
+			protected void doRun() {
+				AbstractOperation operation = getProjectSpace().getOperations().get(0).reverse();
+				operation.apply(getProject());
+			}
+		}.run(false);
+
+		assertTrue(element.getReferences().size() == 1);
+		assertTrue(element.getReferences().get(0).equals(oldValue));
 	}
 }

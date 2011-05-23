@@ -23,6 +23,9 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOper
 import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
 import org.junit.Test;
+import org.unicase.model.requirement.Actor;
+import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.model.requirement.UseCase;
 
 /**
  * Tests the MultiReferenceOperation.

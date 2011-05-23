@@ -37,6 +37,7 @@ import org.eclipse.emf.emfstore.client.model.exceptions.UnsupportedNotificationE
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.test.WorkspaceTest;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation;
@@ -44,8 +45,20 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenc
 import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
 import org.junit.Test;
-
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User;
+import org.unicase.model.document.CompositeSection;
+import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.document.DocumentPackage;
+import org.unicase.model.document.LeafSection;
+import org.unicase.model.organization.OrganizationFactory;
+import org.unicase.model.organization.User;
+import org.unicase.model.rationale.Comment;
+import org.unicase.model.rationale.RationaleFactory;
+import org.unicase.model.requirement.Actor;
+import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.model.requirement.UseCase;
+import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.TaskFactory;
+import org.unicase.model.task.WorkPackage;
 
 /**
  * Tests for the command recording to detect deletes, cuts and copies.

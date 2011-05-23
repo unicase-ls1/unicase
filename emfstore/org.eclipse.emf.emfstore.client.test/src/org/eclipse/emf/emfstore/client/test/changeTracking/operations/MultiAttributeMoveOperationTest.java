@@ -21,6 +21,8 @@ import org.junit.Test;
  */
 public class MultiAttributeMoveOperationTest extends WorkspaceTest {
 
+	protected TestElement testElement;
+
 	/**
 	 * Simple move element.
 	 */
@@ -34,7 +36,7 @@ public class MultiAttributeMoveOperationTest extends WorkspaceTest {
 				testElement.getStrings().add("second");
 				testElement.getStrings().add("third");
 
-				getProjectSpace().getOperations().clear();
+				clearOperations();
 
 				testElement.getStrings().move(0, 2);
 
@@ -57,21 +59,24 @@ public class MultiAttributeMoveOperationTest extends WorkspaceTest {
 				testElement.getStrings().add("first");
 				testElement.getStrings().add("second");
 
-				getProjectSpace().getOperations().clear();
+				clearOperations();
 
 				testElement.getStrings().move(0, 1);
 
 				assertTrue(testElement.getStrings().get(0).equals("second"));
 				assertTrue(testElement.getStrings().get(1).equals("first"));
-				assertTrue(getProjectSpace().getOperations().size() == 1);
-				AbstractOperation tmp = getProjectSpace().getOperations().get(0);
-				assertTrue(tmp instanceof MultiAttributeMoveOperation);
-				MultiAttributeMoveOperation operation = (MultiAttributeMoveOperation) tmp;
-				assertTrue(operation.getNewIndex() == 0);
-				assertTrue(operation.getOldIndex() == 1);
-				assertTrue(operation.getReferencedValue().equals("second"));
+
 			}
 		}.run(false);
+
+		assertTrue(getProjectSpace().getOperations().size() == 1);
+		AbstractOperation tmp = getProjectSpace().getOperations().get(0);
+		assertTrue(tmp instanceof MultiAttributeMoveOperation);
+		MultiAttributeMoveOperation operation = (MultiAttributeMoveOperation) tmp;
+		assertTrue(operation.getNewIndex() == 0);
+		assertTrue(operation.getOldIndex() == 1);
+		assertTrue(operation.getReferencedValue().equals("second"));
+
 	}
 
 	/**
@@ -80,12 +85,13 @@ public class MultiAttributeMoveOperationTest extends WorkspaceTest {
 	@Test
 	public void moveAndReverseTest() {
 		new EMFStoreCommand() {
+
 			@Override
 			protected void doRun() {
-				TestElement testElement = getTestElement();
+				testElement = getTestElement();
 				testElement.getStrings().add("first");
 				testElement.getStrings().add("second");
-				getProjectSpace().getOperations().clear();
+				clearOperations();
 
 				assertTrue(testElement.getStrings().size() == 2);
 				assertTrue(testElement.getStrings().get(0).equals("first"));
@@ -95,7 +101,12 @@ public class MultiAttributeMoveOperationTest extends WorkspaceTest {
 				assertTrue(testElement.getStrings().size() == 2);
 				assertTrue(testElement.getStrings().get(0).equals("second"));
 				assertTrue(testElement.getStrings().get(1).equals("first"));
+			}
+		}.run(false);
 
+		new EMFStoreCommand() {
+			@Override
+			protected void doRun() {
 				AbstractOperation operation = getProjectSpace().getOperations().get(0).reverse();
 				operation.apply(getProject());
 				assertTrue(testElement.getStrings().size() == 2);

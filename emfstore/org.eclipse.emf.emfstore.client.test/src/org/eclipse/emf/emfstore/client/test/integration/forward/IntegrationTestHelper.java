@@ -12,7 +12,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
 import java.util.logging.Level;
@@ -23,9 +25,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -476,12 +481,95 @@ public final class IntegrationTestHelper {
 	 * @return ME
 	 */
 	public EObject createRandomME() {
-		Set<EClass> eClazzSet = ModelUtil.getSubclasses(EcoreFactory.eINSTANCE.getEcorePackage().getEObject());
+		Set<EClass> eClazzSet = getSubclasses(EcoreFactory.eINSTANCE.getEcorePackage().getEObject());
 		ArrayList<EClass> eClazz = new ArrayList<EClass>(eClazzSet);
 		EClass eClass = eClazz.get(getRandom().nextInt(eClazz.size() - 1));
 		EObject me = eClass.getEPackage().getEFactoryInstance().create(eClass);
 
 		return me;
+	}
+
+	/**
+	 * Returns all non-abstract, non-interface subclasses of the given input class in the given package. In other words
+	 * returns all classes that have direct instances.
+	 * 
+	 * @param clazz the eClass, must be a subtype of ModelElement
+	 * @return a set of EClasses IMPORTANT: Will throw an IllegalArgumentException if given EClass is not a subtype of
+	 *         ModelElement
+	 */
+	public static Set<EClass> getSubclasses(EClass clazz) {
+		return getSubclasses(clazz, false);
+	}
+
+	/**
+	 * Returns all subclasses of the given input class in the given package.
+	 * 
+	 * @param clazz the eClass, must be a subtype of ModelElement
+	 * @param includeAbstractClassesAndInterfaces true if interfaces and abstract classes should be included in the
+	 *            result
+	 * @return a set of EClasses IMPORTANT: Will throw an IllegalArgumentException if given EClass is not a subtype of
+	 *         ModelElement
+	 */
+	public static Set<EClass> getSubclasses(EClass clazz, boolean includeAbstractClassesAndInterfaces) {
+		// sanity checks
+		// EClass modelELementEClass = MetamodelPackage.eINSTANCE.getModelElement();
+		// if (!modelELementEClass.isSuperTypeOf(clazz)) {
+		// throw new IllegalStateException("Given EClass \"" + clazz.getName()
+		// + "\" is not a subtype of EClass ModelElement");
+		// }
+
+		Set<EClass> ret = new HashSet<EClass>();
+		for (EPackage ePackage : getAllModelPackages()) {
+			getSubclasses(clazz, ret, ePackage, includeAbstractClassesAndInterfaces);
+		}
+		return ret;
+	}
+
+	private static void getSubclasses(EClass clazz, Set<EClass> ret, EPackage ePackage,
+		boolean includeAbstractClassesAndInterfaces) {
+
+		for (EClassifier classifier : ePackage.getEClassifiers()) {
+			if (EcorePackage.eINSTANCE.getEClass().isInstance(classifier)) {
+				EClass subClass = (EClass) classifier;
+				if (clazz.isSuperTypeOf(subClass)
+					&& (includeAbstractClassesAndInterfaces || canHaveInstances(subClass))) {
+					ret.add(subClass);
+				}
+			}
+		}
+		for (EPackage subPackage : ePackage.getESubpackages()) {
+			getSubclasses(clazz, ret, subPackage, includeAbstractClassesAndInterfaces);
+		}
+	}
+
+	private static boolean canHaveInstances(EClass eClass) {
+		return !(eClass.isAbstract() || eClass.isInterface());
+	}
+
+	/**
+	 * Retrieve all EPackages that are model packages for unicase starting with the unicase model prefix as defined in
+	 * {@link MetamodelPackage}.
+	 * 
+	 * @return a set of EPackages
+	 */
+	public static Set<EPackage> getAllModelPackages() {
+		Set<EPackage> result = new HashSet<EPackage>();
+		Registry registry = EPackage.Registry.INSTANCE;
+
+		for (Entry<String, Object> entry : registry.entrySet()) {
+			// if (entry.getKey().startsWith(ModelPackage..MODEL_URL_PREFIX)) {
+			// try {
+			EPackage model = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
+			result.add(model);
+			// }
+			// BEGIN SUPRESS CATCH EXCEPTION
+			// catch (RuntimeException exception) {
+			// END SUPRESS CATCH EXCEPTION
+			// logException("Failed to load model package " + entry.getKey(), exception);
+			// }
+			// }
+		}
+		return result;
 	}
 
 	/**
@@ -496,7 +584,7 @@ public final class IntegrationTestHelper {
 		EObject ret = null;
 
 		if (refType.isAbstract() || refType.isInterface()) {
-			List<EClass> eClazz = new ArrayList<EClass>(ModelUtil.getSubclasses(refType));
+			List<EClass> eClazz = new ArrayList<EClass>(getSubclasses(refType));
 			int index = getRandomPosition(eClazz.size());
 			refType = eClazz.get(index);
 		}

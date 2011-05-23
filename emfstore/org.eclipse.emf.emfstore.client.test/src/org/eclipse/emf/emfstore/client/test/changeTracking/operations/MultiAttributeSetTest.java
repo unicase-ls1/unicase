@@ -25,6 +25,8 @@ import org.junit.Test;
  */
 public class MultiAttributeSetTest extends WorkspaceTest {
 
+	protected TestElement element;
+
 	/**
 	 * Set value test.
 	 */
@@ -33,21 +35,26 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
-				TestElement element = getTestElement();
+				element = getTestElement();
 				element.getStrings().add("oldValue");
 				clearOperations();
-
-				assertTrue(element.getStrings().size() == 1);
-
-				element.getStrings().set(0, "settedValue");
-
-				assertTrue(element.getStrings().size() == 1);
-				assertTrue(element.getStrings().get(0).equals("settedValue"));
-
-				assertTrue(getProjectSpace().getOperations().size() == 1);
-				assertTrue(getProjectSpace().getOperations().get(0) instanceof MultiAttributeSetOperation);
 			}
 		}.run(false);
+
+		assertTrue(element.getStrings().size() == 1);
+
+		new EMFStoreCommand() {
+			@Override
+			protected void doRun() {
+				element.getStrings().set(0, "settedValue");
+			}
+		}.run(false);
+
+		assertTrue(element.getStrings().size() == 1);
+		assertTrue(element.getStrings().get(0).equals("settedValue"));
+
+		assertTrue(getProjectSpace().getOperations().size() == 1);
+		assertTrue(getProjectSpace().getOperations().get(0) instanceof MultiAttributeSetOperation);
 	}
 
 	/**
@@ -141,24 +148,35 @@ public class MultiAttributeSetTest extends WorkspaceTest {
 		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
-				TestElement testElement = getTestElement();
-				testElement.getStrings().add("oldValue");
+				element = getTestElement();
+				element.getStrings().add("oldValue");
 
-				getProjectSpace().getOperations().clear();
-				assertTrue(testElement.getStrings().size() == 1);
-				assertTrue(testElement.getStrings().get(0).equals("oldValue"));
-
-				testElement.getStrings().set(0, "newValue");
-
-				assertTrue(testElement.getStrings().size() == 1);
-				assertTrue(testElement.getStrings().get(0).equals("newValue"));
-
-				AbstractOperation operation = getProjectSpace().getOperations().get(0).reverse();
-				operation.apply(getProject());
-
-				assertTrue(testElement.getStrings().size() == 1);
-				assertTrue(testElement.getStrings().get(0).equals("oldValue"));
+				clearOperations();
 			}
 		}.run(false);
+
+		assertTrue(element.getStrings().size() == 1);
+		assertTrue(element.getStrings().get(0).equals("oldValue"));
+
+		new EMFStoreCommand() {
+			@Override
+			protected void doRun() {
+				element.getStrings().set(0, "newValue");
+
+				assertTrue(element.getStrings().size() == 1);
+				assertTrue(element.getStrings().get(0).equals("newValue"));
+			}
+		}.run(false);
+
+		new EMFStoreCommand() {
+			@Override
+			protected void doRun() {
+				AbstractOperation operation = getProjectSpace().getOperations().get(0).reverse();
+				operation.apply(getProject());
+			}
+		}.run(false);
+
+		assertTrue(element.getStrings().size() == 1);
+		assertTrue(element.getStrings().get(0).equals("oldValue"));
 	}
 }

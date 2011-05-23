@@ -19,6 +19,10 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOpera
 import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceMoveOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
 import org.junit.Test;
+import org.unicase.model.requirement.Actor;
+import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.model.requirement.RequirementPackage;
+import org.unicase.model.requirement.UseCase;
 
 /**
  * Tests the MultiReferenceMoveOperation.
