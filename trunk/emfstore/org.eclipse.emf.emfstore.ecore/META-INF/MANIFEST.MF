@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: ECore Plug-in
 Bundle-SymbolicName: org.eclipse.emf.emfstore.ecore;singleton:=true
-Bundle-Version: 0.8.0
+Bundle-Version: 0.8.1
 Bundle-Activator: org.eclipse.emf.emfstore.ecore.Activator
 Require-Bundle: org.eclipse.emf.emfstore.common.model
 Bundle-ActivationPolicy: lazy
