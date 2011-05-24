@@ -37,6 +37,7 @@ import org.eclipse.jgit.lib.RefUpdate;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.storage.file.FileRepository;
+import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.FetchResult;
 import org.eclipse.jgit.transport.RefSpec;
 import org.eclipse.jgit.transport.RemoteConfig;
@@ -77,6 +78,8 @@ public class GitCloneOperation {
 
 	private FetchResult fetchResult;
 
+	private CredentialsProvider credentials;
+
 	/**
 	 * Create a new clone operation.
 	 *
@@ -97,16 +100,18 @@ public class GitCloneOperation {
 	 *            name of created remote config as source remote (typically
 	 *            named "origin").
 	 * @param timeout timeout in seconds
+	 * @param credentialsProvider 
 	 */
 	public GitCloneOperation(final URIish uri, final boolean allSelected,
 			final Collection<Ref> selectedBranches, final File workdir,
-			final String branch, final String remoteName, int timeout) {
+			final String branch, final String remoteName, int timeout, CredentialsProvider credentialsProvider) {
 		this.uri = uri;
 		this.allSelected = allSelected;
 		this.selectedBranches = selectedBranches;
 		this.workdir = workdir;
 		this.gitdir = new File(workdir, Constants.DOT_GIT);
 		this.branch = branch;
+		this.credentials = credentialsProvider;
 		this.remoteName = remoteName;
 		this.timeout = timeout;
 	}
@@ -211,6 +216,7 @@ public class GitCloneOperation {
 			throws NotSupportedException, TransportException {
 		final Transport tn = Transport.open(local, remoteConfig);
 		tn.setTimeout(this.timeout);
+		tn.setCredentialsProvider(credentials);
 		try {
 			final EclipseGitProgressTransformer pm;
 			pm = new EclipseGitProgressTransformer(monitor);

@@ -6,6 +6,9 @@
 package org.unicase.changetracking.git.commands;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.Arrays;
+import java.util.List;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -13,12 +16,18 @@ import org.eclipse.jgit.errors.AmbiguousObjectException;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.transport.CredentialsProvider;
+import org.eclipse.jgit.transport.PushResult;
+import org.eclipse.jgit.transport.RefSpec;
+import org.eclipse.jgit.transport.RemoteRefUpdate;
+import org.eclipse.jgit.transport.URIish;
 import org.unicase.changetracking.commands.ChangeTrackingCommand;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
 import org.unicase.changetracking.common.ChangeTrackingUtil;
 import org.unicase.changetracking.exceptions.MisuseException;
 import org.unicase.changetracking.exceptions.VCSException;
 import org.unicase.changetracking.git.GitVCSAdapter;
+import org.unicase.changetracking.git.common.GitPushOperation;
+import org.unicase.changetracking.git.common.GitUtil;
 import org.unicase.changetracking.git.common.GitWrapper;
 import org.unicase.changetracking.git.common.SayYesCredentialsProvider;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
@@ -38,6 +47,7 @@ import org.unicase.model.task.WorkItem;
  */
 public class GitCreateChangePackageCommand extends ChangeTrackingCommand {
 
+	private static final String CHANGE_PACKAGE_BRANCH_NAME_PREFIX = "cp_";
 	private final String myName;
 	private final WorkItem myWorkItem;
 	private final GitRepository myRemoteRepo;
@@ -118,14 +128,15 @@ public class GitCreateChangePackageCommand extends ChangeTrackingCommand {
 			}
 
 			// Create and checkout a new branch
-			git.checkout(name, true);
+			String branchName = CHANGE_PACKAGE_BRANCH_NAME_PREFIX + name;
+			git.checkout(branchName, true);
 			progressMonitor.worked(1);
 			progressMonitor.subTask("Creating and linking model elements");
 
 			// Create and attach git branch
 			GitBranch branch = GitFactory.eINSTANCE.createGitBranch();
-			branch.setBranchName(name);
-			branch.setName(name);
+			branch.setBranchName(branchName);
+			branch.setName(branchName);
 			branch.setLocation(remoteRepo);
 			ChangeTrackingUtil.addToProjectRelative(branch, workItem, false);
 
@@ -156,28 +167,29 @@ public class GitCreateChangePackageCommand extends ChangeTrackingCommand {
 			progressMonitor.subTask("Pushing new branch to remote repository...");
 
 			// Push to remote repo
-			// GitPushOperation pushOp = new GitPushBuilder(repo, remoteRepo,
-			// credentials).build(name);
-			// pushOp.run(progressMonitor);
-
-			// Test.gitPushTest();
+			try{
+				URIish repoURI;
+				try {
+					repoURI = GitUtil.getURIFromRemote(remoteRepo);
+				} catch (URISyntaxException e) {
+					throw new MisuseException(e);
+				}
+				List<RefSpec> pushSpec = Arrays.asList(GitUtil.getRefSpecFromGitBranch(branch));
+				//TODO: Correct progress monitor support
+				PushResult pushResult = new GitPushOperation(repo, repoURI, pushSpec, false, 15000, credentials).run(progressMonitor);
+				for(RemoteRefUpdate updateResult : pushResult.getRemoteUpdates()){
+					if(!GitUtil.isRemoteRefUpdateSuccessful(updateResult)){
+						throw new UnexpectedGitException("Was unable to push the created branch to the remote repository.\nReason: " + updateResult.getMessage() + " (" + updateResult.getStatus()+ ")");
+					}
+				}
+			} catch(UnexpectedGitException e){
+				throw new UnexpectedGitException("The change package was created successfully, but the pushing to the remote repository failed (see error log for details). Push the created branch '" + branchName + "' manually to the remote repository.", e);
+			}
 
 		} finally {
 			progressMonitor.done();
 		}
 
-		// //FIXME make push work
-		// //Push the git branch
-		// try {
-		// git.push().setRefSpecs(new RefSpec("refs/head/" +
-		// name)).setRemote("https://gexicide@github.com/gexicide/testor.git").call();
-		// } catch (JGitInternalException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// } catch (InvalidRemoteException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
 
 	}
 

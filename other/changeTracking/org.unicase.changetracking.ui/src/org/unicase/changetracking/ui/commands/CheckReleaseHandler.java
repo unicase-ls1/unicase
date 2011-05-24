@@ -6,9 +6,7 @@
 
 package org.unicase.changetracking.ui.commands;
 
-import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult.ResultType;
@@ -28,7 +26,7 @@ import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
  * @author jfinis
  * 
  */
-public class CheckReleaseHandler extends AbstractHandler {
+public class CheckReleaseHandler extends ChangeTrackingCommandHandler {
 
 	/**
 	 * Performs the release checking and then shows the results in the check
@@ -36,13 +34,12 @@ public class CheckReleaseHandler extends AbstractHandler {
 	 * 
 	 * {@inheritDoc}
 	 */
-	public Object execute(ExecutionEvent event) throws ExecutionException {
+	public void doExecute(ExecutionEvent event) {
 
 		// Retrieve selected release
 		UnicaseModelElement me = UnicaseActionHelper.getModelElement(event);
 		if (!(me instanceof Release)) {
-			UIUtil.errorMessage("The selected model element is no change tracking release");
-			return null;
+			abort("The selected model element is no change tracking release");
 		}
 		Release r = (Release) me;
 
@@ -53,13 +50,12 @@ public class CheckReleaseHandler extends AbstractHandler {
 		CheckReleaseCommand command = vcs.checkRelease(new UIDecisionProvider(), r);
 		ChangeTrackingCommandResult result = UIUtil.runCommand(command);
 		if (result.getResultType() != ResultType.SUCCESS) {
-			return null;
+			return;
 		}
 
 		// Show the dialog
 		CheckReleaseDialog dialog = new CheckReleaseDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), r, command.getReport());
 		dialog.open();
-		return null;
 	}
 
 }

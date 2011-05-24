@@ -45,6 +45,9 @@ public class ReviewReleasePage extends WizardPage implements IDialogHead {
 		this.report = report;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void createControl(Composite parent) {
 		ReleaseOverviewWidget composite = new ReleaseOverviewWidget(parent, SWT.NONE, release, report);
 		setControl(composite);

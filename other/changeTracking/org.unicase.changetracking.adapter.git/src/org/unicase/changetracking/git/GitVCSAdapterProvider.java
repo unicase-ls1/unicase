@@ -58,7 +58,7 @@ public class GitVCSAdapterProvider implements VCSAdapterProvider {
 	 * {@inheritDoc}
 	 */
 	public boolean providesForProject(IProject project) {
-		return null != GitRepoFindUtil.findRepository(project.getFullPath().toFile());
+		return null != GitRepoFindUtil.findRepository(project.getLocation().toFile());
 	}
 
 	/**

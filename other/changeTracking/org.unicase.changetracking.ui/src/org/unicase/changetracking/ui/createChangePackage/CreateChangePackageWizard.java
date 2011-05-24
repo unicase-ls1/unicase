@@ -52,10 +52,12 @@ public class CreateChangePackageWizard extends Wizard {
 
 	@Override
 	public boolean performFinish() {
+		//If a <<create new X>> entry was chosen, perform the placement of this entry
+		chooseWorkItemPage.performWorkItemPlacement();
+		
+		//Create the package and open it if everything went fine
 		if (UIUtil.runCommand(vcs.createChangePackage(selectedProject, chooseWorkItemPage.getSelectedWorkItem(), chooseWorkItemPage.getSelectedRepository(), chooseNamePage.getChosenName(), chooseNamePage.getChosenShortDescription(), chooseNamePage.getChosenLongDescription())).getResultType() == ResultType.SUCCESS) {
-
 			UIUtil.openUnicaseAndModelElement(chooseWorkItemPage.getSelectedWorkItem());
-
 		}
 		return true;
 

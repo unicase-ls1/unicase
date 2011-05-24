@@ -56,7 +56,7 @@ public class AttacheeSelectionDialog extends AdvancedMESelectionDialog {
 	 * Default constructor.
 	 */
 	public AttacheeSelectionDialog() {
-		super(TaskPackage.eINSTANCE.getWorkItem());
+		super(TaskPackage.eINSTANCE.getWorkItem(),false);
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class AttacheeSelectionDialog extends AdvancedMESelectionDialog {
 	 * @param message dialog message
 	 */
 	public AttacheeSelectionDialog(String title, String message) {
-		super(TaskPackage.eINSTANCE.getWorkItem(), title, message);
+		super(TaskPackage.eINSTANCE.getWorkItem(), title, message,false);
 	}
 
 	/**
@@ -76,5 +76,7 @@ public class AttacheeSelectionDialog extends AdvancedMESelectionDialog {
 	public ViewerFilter getUserFilter(User user) {
 		return new UserFilter(user);
 	}
+
+
 
 }

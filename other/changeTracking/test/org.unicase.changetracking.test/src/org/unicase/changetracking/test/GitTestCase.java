@@ -12,16 +12,24 @@ import junit.framework.TestCase;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepository;
+import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.URIish;
+import org.unicase.changetracking.git.common.SayYesCredentialsProvider;
 
 public abstract class GitTestCase extends TestCase{
 	
+	private static final String PASS = "git2day";
+	private static final String USER = "gexicide";
 	private File workingCopyDir;
 	private File gitDir;
 
 	protected GitTestCase(){
 		workingCopyDir = new File("./test/git");
 		gitDir = new File(workingCopyDir,".git");
+	}
+	
+	protected CredentialsProvider getCredentialsProvider(){
+		return new SayYesCredentialsProvider(USER, PASS);
 	}
 	
 	protected File getWorkingCopyDir(){
@@ -48,7 +56,7 @@ public abstract class GitTestCase extends TestCase{
 	
 	protected URIish getRemoteURI(){
 		try {
-			return new URIish("https://github.com/gexicide/testor.git").setUser("gexicide").setPass("git2day");
+			return new URIish("https://github.com/gexicide/testor.git")/*.setUser(USER).setPass(PASS)*/;
 		} catch (URISyntaxException e) {
 			throw new RuntimeException(e);
 		}

@@ -96,12 +96,16 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 	 */
 	private boolean isInRefreshMode;
 
+	private boolean createUponClose;
+
+	private ModelElementPlacementDialog placementDialog;
+
 	/**
 	 * Default constructor without any class bound, i.e. all model elements can
 	 * be chosen.
 	 */
 	public AdvancedMESelectionDialog() {
-		this(null);
+		this(null,true);
 	}
 
 	/**
@@ -111,9 +115,11 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 	 *            are displayed. Use null for showing all elements.
 	 * @param title dialog title
 	 * @param message dialog message
+	 * @param createUponClose whether a newly created element should be automatically
+	 * 			created when the dialog is finished
 	 */
-	public AdvancedMESelectionDialog(EClass classBound, String title, String message) {
-		this(classBound);
+	public AdvancedMESelectionDialog(EClass classBound, String title, String message, boolean createUponClose) {
+		this(classBound, createUponClose);
 		this.setTitle(title);
 		this.setMessage(message);
 	}
@@ -123,9 +129,12 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 	 * 
 	 * @param classBound only model elements which are subclasses of this class
 	 *            are displayed. Use null for showing all elements.
+	 * @param createUponClose whether a newly created element should be automatically
+	 * 			created when the dialog is finished
 	 */
-	public AdvancedMESelectionDialog(EClass classBound) {
+	public AdvancedMESelectionDialog(EClass classBound, boolean createUponClose) {
 		super(false);
+		this.createUponClose = createUponClose;
 		setBlockOnOpen(true);
 
 		// Create the "create new" entries
@@ -195,37 +204,34 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 	 * 
 	 * @return the selected model element
 	 */
-	public UnicaseModelElement getSelectedModelElementNoCreate() {
+	public UnicaseModelElement getSelectedModelElement() {
 		return (UnicaseModelElement) getFirstResult();
 	}
-
+	
 	/**
-	 * Retrieves the selected model element. If a <<create new X>> entry is
-	 * chosen, then a new model element of the chosen class is created, put into
-	 * the orphans of the selected project, and is returned.
-	 * 
-	 * @return selected or newly created model element
+	 * Performs the placement of the model element, if a <<create new X>> entry
+	 * was chosen. If no such entry was chosen, the dialog was cancelled, or the
+	 * placement has already been conducted, this method will do nothing.
 	 */
-	public UnicaseModelElement getOrCreateSelectedModelElement() {
-		return getOrCreateSelectedModelElement(new PutIntoOrphansStrategy());
-	}
-
-	/**
-	 * Retrieves the selected model element. If a <<create new X>> entry is
-	 * chosen, then a new model element is created. Afterwards, the model
-	 * element is put into the project using the provided model element
-	 * placement strategy. Then, the newly created model element is returned.
-	 * 
-	 * @param strategy strategy to place a newly created element in the project.
-	 * @return selected or newly created model element
-	 */
-	public UnicaseModelElement getOrCreateSelectedModelElement(IModelElementPlacementStrategy strategy) {
-		UnicaseModelElement element = (UnicaseModelElement) getFirstResult();
-		if (elementIsCreateEntry(element)) {
-			element.setName("new " + element.eClass().getName());
-			strategy.placeModelElementInProject(getSelectedProjectSpace().getProject(), element);
+	public void performPlacement() {
+		//Abort if already placed or no create entry was selected
+		if(placementDialog == null){
+			return;
 		}
-		return element;
+		
+		//Do the placement
+		final UnicaseModelElement selectedElement = getSelectedModelElement();
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				ChangeTrackingUtil.putInto(selectedElement, placementDialog.getSelection());
+				selectedElement.setName(placementDialog.getSelectedName());
+			}
+		}.run();
+		
+		//Placement is no longer possible
+		placementDialog = null;
+		
 	}
 
 	/**
@@ -233,18 +239,17 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 	 */
 	@Override
 	public boolean close() {
-		final UnicaseModelElement selectedElement = getSelectedModelElementNoCreate();
-
+		
+		final UnicaseModelElement selectedElement = getSelectedModelElement();
 		if (getReturnCode() == Window.OK && elementIsCreateEntry(selectedElement)) {
-			final ModelElementPlacementDialog placementDialog = new ModelElementPlacementDialog(getShell(), getSelectedModelElementNoCreate(), true);
+			ModelElementPlacementDialog placementDialog = new ModelElementPlacementDialog(getShell(), getSelectedModelElement(), true);
 			if (placementDialog.open() == Window.OK) {
-				new UnicaseCommand() {
-					@Override
-					protected void doRun() {
-						ChangeTrackingUtil.putInto(selectedElement, placementDialog.getSelection());
-						selectedElement.setName(placementDialog.getSelectedName());
-					}
-				};
+				if(createUponClose){
+					performPlacement();
+				} else {
+					//Save dialog, so the placement can be done later.
+					this.placementDialog = placementDialog;
+				}
 			} else {
 				setReturnCode(Window.CANCEL);
 			}

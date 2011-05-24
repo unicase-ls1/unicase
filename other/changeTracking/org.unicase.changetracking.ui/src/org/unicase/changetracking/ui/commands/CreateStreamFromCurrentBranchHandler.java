@@ -7,7 +7,6 @@
 package org.unicase.changetracking.ui.commands;
 
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
@@ -31,19 +30,18 @@ public class CreateStreamFromCurrentBranchHandler extends ResourceCommandHandler
 	 * 
 	 * {@inheritDoc}
 	 */
-	public Object execute(ExecutionEvent event) throws ExecutionException {
+	public void doExecute(ExecutionEvent event) {
 
 		// Get selected project
 		IProject[] projects = getSelectedProjects(event);
 		if (projects.length == 0) {
-			UIUtil.errorMessage("Error", "No project selected.");
-			return null;
+			abort("No project selected.");
 		}
 		IProject project = projects[0];
 
 		// Save dirty editors
 		if (!PlatformUI.getWorkbench().saveAllEditors(true)) {
-			return null;
+			return;
 		}
 
 		// Retrieve correspondent adapter
@@ -58,7 +56,6 @@ public class CreateStreamFromCurrentBranchHandler extends ResourceCommandHandler
 			UIUtil.openUnicaseAndModelElement(cmd.getCreatedStream());
 		}
 
-		return null;
 
 	}
 

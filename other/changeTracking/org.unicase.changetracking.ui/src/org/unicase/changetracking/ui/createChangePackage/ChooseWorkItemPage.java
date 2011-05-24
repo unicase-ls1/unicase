@@ -202,7 +202,7 @@ public class ChooseWorkItemPage extends WizardPage {
 		if (attacheeDialog.getReturnCode() == Window.OK) {
 			selectedProject = attacheeDialog.getSelectedProjectSpace().getProject();
 			selectedProjectName = attacheeDialog.getSelectedProjectSpace().getProjectName();
-			selectedWorkItem = attacheeDialog.getSelectedModelElementNoCreate();
+			selectedWorkItem = attacheeDialog.getSelectedModelElement();
 			if (vcs.doesChangePackageNeedRepoLocation()) {
 				try {
 					selectedRepository = vcs.findRepoLocation(workspaceProject, selectedProject);
@@ -212,6 +212,16 @@ public class ChooseWorkItemPage extends WizardPage {
 			}
 		}
 		updateFields();
+	}
+	
+	/**
+	 * Places the work item in the project.
+	 * This is only done if the user has chosen
+	 * to create a new work item. Otherwise,
+	 * this method does nothing.
+	 */
+	public void performWorkItemPlacement(){
+		attacheeDialog.performPlacement();
 	}
 
 	private void updateFields() {

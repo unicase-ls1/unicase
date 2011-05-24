@@ -83,7 +83,7 @@ public class GitPushOperation {
 	 * @param timeout the timeout in seconds (0 for no timeout)
 	 */
 	public GitPushOperation(Repository localDb, URIish remoteRepo, Collection<RefSpec> refUpdates,
-			final boolean dryRun, int timeout) {
+			final boolean dryRun, int timeout, CredentialsProvider pr) {
 		this.localDb = localDb;
 		try {
 			this.refUpdates = Transport.findRemoteRefUpdatesFor(localDb, refUpdates, null);
@@ -92,6 +92,7 @@ public class GitPushOperation {
 		this.remoteRepo = remoteRepo;
 		this.dryRun = dryRun;
 		this.timeout = timeout;
+		this.credentialsProvider = pr;
 	}
 
 

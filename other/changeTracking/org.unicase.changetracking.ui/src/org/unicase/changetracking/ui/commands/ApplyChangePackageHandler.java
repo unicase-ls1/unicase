@@ -6,9 +6,7 @@
 
 package org.unicase.changetracking.ui.commands;
 
-import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
 import org.unicase.changetracking.commands.ChangeTrackingCommand;
 import org.unicase.changetracking.ui.UIUtil;
 import org.unicase.changetracking.vcs.VCSAdapter;
@@ -23,18 +21,17 @@ import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
  * @author jfinis
  * 
  */
-public class ApplyChangePackageHandler extends AbstractHandler {
+public class ApplyChangePackageHandler extends ChangeTrackingCommandHandler {
 
 	/**
 	 * Applies the currently selected change package.
 	 * 
 	 * {@inheritDoc}
 	 */
-	public Object execute(ExecutionEvent event) throws ExecutionException {
+	public void doExecute(ExecutionEvent event) {
 		// Retrieve selected element and apply it
 		UnicaseModelElement elem = UnicaseActionHelper.getModelElement(event);
 		applyChangePackage((ChangePackage) elem);
-		return null;
 	}
 
 	/**

@@ -6,13 +6,10 @@
 
 package org.unicase.changetracking.ui.commands;
 
-import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.changetracking.commands.BuildReleaseCommand;
 import org.unicase.changetracking.ui.Activator;
-import org.unicase.changetracking.ui.UIUtil;
 import org.unicase.changetracking.ui.releases.BuildReleaseOperation;
 
 /**
@@ -21,30 +18,28 @@ import org.unicase.changetracking.ui.releases.BuildReleaseOperation;
  * @author jfinis
  * 
  */
-public class ContinueReleaseBuildingHandler extends AbstractHandler {
+public class ContinueReleaseBuildingHandler extends ChangeTrackingCommandHandler {
 
 	/**
 	 * Continues the building of a release after a conflict has been resolved.
 	 * 
 	 * {@inheritDoc}
 	 */
-	public Object execute(ExecutionEvent event) throws ExecutionException {
+	public void doExecute(ExecutionEvent event) {
 
 		// Save dirty editors
 		if (!PlatformUI.getWorkbench().saveAllEditors(true)) {
-			return null;
+			return;
 		}
 
 		// Retrieve the last conflicting command
 		BuildReleaseCommand command = Activator.getLastConflictingCommand();
 		if (command == null) {
-			UIUtil.errorMessage("You are currently not building a release or you have restarted eclipse since your last build. Restart the build process.");
-			return null;
+			abort("You are currently not building a release or you have restarted eclipse since your last build. Restart the build process.");
 		}
 
 		// continue the release building
 		new BuildReleaseOperation(command, true).run();
-		return null;
 	}
 
 }

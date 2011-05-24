@@ -13,7 +13,7 @@ public class CloneTest extends GitTestCase{
 	@Test
 	public void test() throws IOException{
 		deleteAll();
-		GitCloneOperation op = new GitCloneOperation(getRemoteURI(), true, null, getWorkingCopyDir() , "refs/heads/1", "origin", 0);
+		GitCloneOperation op = new GitCloneOperation(getRemoteURI(), true, null, getWorkingCopyDir() , "refs/heads/1", "origin", 0, getCredentialsProvider());
 		try {
 			op.run(getProgressMonitor());
 		} catch (InvocationTargetException e) {
