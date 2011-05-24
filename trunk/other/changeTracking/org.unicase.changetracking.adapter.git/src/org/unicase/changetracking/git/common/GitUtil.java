@@ -22,11 +22,9 @@ import org.eclipse.jgit.lib.RefUpdate.Result;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
-import org.eclipse.jgit.transport.CredentialItem;
-import org.eclipse.jgit.transport.CredentialItem.Password;
-import org.eclipse.jgit.transport.CredentialItem.Username;
-import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.RefSpec;
+import org.eclipse.jgit.transport.RemoteRefUpdate;
+import org.eclipse.jgit.transport.RemoteRefUpdate.Status;
 import org.eclipse.jgit.transport.TrackingRefUpdate;
 import org.eclipse.jgit.transport.URIish;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
@@ -137,6 +135,7 @@ public final class GitUtil {
 		result.addAll(indexDiff.getAdded());
 		result.addAll(indexDiff.getChanged());
 		result.addAll(indexDiff.getModified());
+		result.addAll(indexDiff.getMissing());
 		result.addAll(indexDiff.getRemoved());
 		result.addAll(indexDiff.getUntracked());
 		return result;
@@ -248,31 +247,14 @@ public final class GitUtil {
 	 * @throws URISyntaxException if the string contained in the repository
 	 *             location is no valid URI
 	 */
-	public static URIish getUriFromRemote(GitRepository remote) throws URISyntaxException {
+	public static URIish getURIFromRemote(GitRepository remote) throws URISyntaxException {
 		return new URIish(remote.getUrl());
 	}
 
-	/**
-	 * Returns an URIish object populated from an repository location and
-	 * the user name and password from a credentials provider.
-	 * @param remote a repository location
-	 * @param provider credentials provider
-	 * @throws URISyntaxException if the uri in the location is malformed
-	 * @return uri with user and password set
-	 */
-	public static URIish getURIFromCredentials(GitRepository remote, CredentialsProvider provider) throws URISyntaxException{
-		Username usr = new CredentialItem.Username();
-		Password pass = new CredentialItem.Password();
-		URIish result = new URIish(remote.getUrl());
-		provider.get(result, usr, pass);
-		result.setPass(new String(pass.getValue()));
-		result.setUser(usr.getValue());
-		
-		return result;
-	}
+	
 	
 	/**
-	 * Returns whether a ref update was successful.
+	 * Returns whether a tracking ref update was successful.
 	 * 
 	 * @param updateResult the result of a ref update
 	 * @return whether the update was successful
@@ -284,6 +266,28 @@ public final class GitUtil {
 		case LOCK_FAILURE:
 		case REJECTED:
 		case REJECTED_CURRENT_BRANCH:
+			return false;
+		default:
+			return true;
+		}
+	}
+	
+	/**
+	 * Returns whether a remote ref update was successful.
+	 * 
+	 * @param updateResult the result of a ref update
+	 * @return whether the update was successful
+	 */
+	public static boolean isRemoteRefUpdateSuccessful(RemoteRefUpdate updateResult){
+		Status res = updateResult.getStatus();
+		switch(res){
+		case AWAITING_REPORT:
+		case NON_EXISTING:
+		case NOT_ATTEMPTED:
+		case REJECTED_NODELETE:
+		case REJECTED_NONFASTFORWARD:
+		case REJECTED_OTHER_REASON:
+		case REJECTED_REMOTE_CHANGED:
 			return false;
 		default:
 			return true;

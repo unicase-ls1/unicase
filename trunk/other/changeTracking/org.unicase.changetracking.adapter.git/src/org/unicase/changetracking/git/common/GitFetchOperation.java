@@ -74,17 +74,36 @@ public class GitFetchOperation {
 	 */
 	public FetchResult run() {
 		try {
-			URIish uri = GitUtil.getURIFromCredentials(repoLoc, credentialsProvider);
+			URIish uri = GitUtil.getURIFromRemote(repoLoc);
 			//FIXME progress monitor support
-			FetchResult result = new Git(localRepo).fetch().setRefSpecs(refSpecs).setRemote(uri.toPrivateString()).setTimeout(timeout).call();
+			FetchResult result = new Git(localRepo).fetch().setCredentialsProvider(credentialsProvider).setRefSpecs(refSpecs).setRemote(uri.toString()).setTimeout(timeout).call();
 			return result;
 		} catch (JGitInternalException e) {
-			throw new UnexpectedGitException(e);
+			String extractMissingRef = extractMissingRef(e);
+			if(extractMissingRef != null){
+				throw new UnexpectedGitException(extractMissingRef);
+			}
+			throw buildException(e);
 		} catch (InvalidRemoteException e) {
-			throw new UnexpectedGitException(e);
+			throw buildException(e);
 		} catch (URISyntaxException e) {
-			throw new UnexpectedGitException(e);
+			throw buildException(e);
 		}
 		
+	}
+
+	private UnexpectedGitException buildException(Exception e) {
+		return new UnexpectedGitException("Unable to fetch the requested contents from the remote repository\n(See error log for details)",e);
+	}
+
+	private String extractMissingRef(JGitInternalException e) {
+		Throwable c = e.getCause();
+		if(c != null){
+			String msg = c.getMessage();
+			if(msg.contains("available for fetch")){
+				return msg;
+			}
+		}
+		return null;
 	}
 }

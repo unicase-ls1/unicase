@@ -6,9 +6,7 @@
 
 package org.unicase.changetracking.ui.commands;
 
-import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
@@ -30,7 +28,7 @@ import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
  * @author jfinis
  * 
  */
-public class BuildReleaseHandler extends AbstractHandler {
+public class BuildReleaseHandler extends ChangeTrackingCommandHandler {
 
 	@Override
 	public void setEnabled(Object evaluationContext) {
@@ -42,13 +40,12 @@ public class BuildReleaseHandler extends AbstractHandler {
 	 * 
 	 * {@inheritDoc}
 	 */
-	public Object execute(ExecutionEvent event) throws ExecutionException {
+	public void doExecute(ExecutionEvent event) {
 
 		// Retrieve selected release
 		UnicaseModelElement me = UnicaseActionHelper.getModelElement(event);
 		if (!(me instanceof Release)) {
-			UIUtil.errorMessage("The selected model element is no change tracking release");
-			return null;
+			abort("The selected model element is no change tracking release");
 		}
 
 		// Retrieve correspondent adapter
@@ -59,7 +56,7 @@ public class BuildReleaseHandler extends AbstractHandler {
 		CheckReleaseCommand command = vcs.checkRelease(new UIDecisionProvider(), r);
 		ChangeTrackingCommandResult result = UIUtil.runCommand(command);
 		if (result.getResultType() != ResultType.SUCCESS) {
-			return null;
+			return;
 		}
 		ReleaseCheckReport report = command.getReport();
 
@@ -67,7 +64,6 @@ public class BuildReleaseHandler extends AbstractHandler {
 		WizardDialog dlg = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), new BuildReleaseWizard(r, report, vcs));
 		dlg.open();
 
-		return null;
 	}
 
 }

@@ -8,7 +8,6 @@ package org.unicase.changetracking.ui.commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -25,7 +24,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
  * @author jfinis
  * 
  */
-public abstract class ResourceCommandHandler extends AbstractHandler {
+public abstract class ResourceCommandHandler extends ChangeTrackingCommandHandler {
 
 	/**
 	 * Retrieves the selected projects.

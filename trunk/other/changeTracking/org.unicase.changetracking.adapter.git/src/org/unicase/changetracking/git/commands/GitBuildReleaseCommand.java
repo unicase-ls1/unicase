@@ -21,10 +21,12 @@ import org.unicase.changetracking.exceptions.MisuseException;
 import org.unicase.changetracking.git.common.GitNameUtil;
 import org.unicase.changetracking.git.common.GitUtil;
 import org.unicase.changetracking.git.common.GitWrapper;
+import org.unicase.changetracking.git.common.SayYesCredentialsProvider;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
 import org.unicase.changetracking.git.release.GitReport;
 import org.unicase.model.changetracking.Release;
 import org.unicase.model.changetracking.git.GitFactory;
+import org.unicase.model.changetracking.git.GitRepository;
 import org.unicase.model.changetracking.git.GitRevision;
 
 /**
@@ -42,6 +44,10 @@ public class GitBuildReleaseCommand extends BuildReleaseCommand {
 	private String tagName;
 	private boolean isContinuing;
 	private boolean conflictOccurred;
+	@SuppressWarnings("unused")
+	private SayYesCredentialsProvider credentials;
+	@SuppressWarnings("unused")
+	private GitRepository remoteRepo;
 
 	/**
 	 * Returns the local repository which is used for the release building.
@@ -64,7 +70,10 @@ public class GitBuildReleaseCommand extends BuildReleaseCommand {
 		this.tagName = tagName2;
 		this.localRepo = checkReport.getLocalRepo();
 		this.baseBranch = checkReport.getBaseBranch();
+		this.remoteRepo = (GitRepository) checkReport.getRepoLocation();
 		this.branchesToMerge = checkReport.getBranchesToMerge();
+		// FIXME correct credentials provider
+		this.credentials = new SayYesCredentialsProvider("gexicide", "git2day");
 	}
 
 	@Override
@@ -127,14 +136,30 @@ public class GitBuildReleaseCommand extends BuildReleaseCommand {
 			revision.setName("Release: " + release.getName());
 			ChangeTrackingUtil.addToProjectRelative(revision, release, false);
 			release.setBuilt(true);
+			
 			// FIXME for some reason, this does not work, even when directly set
 			// in the MEEditor
 			release.setBuiltRevision(revision);
 			release.setBuildDate(new Date());
 			progressMonitor.worked(1);
 
-			// FIXME Add push
+			// 6. Push the tag and the updated branch
 			progressMonitor.subTask("Pushing created revisions to remote repository");
+//			// Push to remote repo
+//			URIish repoURI;
+//			try {
+//				repoURI = GitUtil.getURIFromCredentials(remoteRepo, credentials);
+//			} catch (URISyntaxException e) {
+//				throw new MisuseException(e);
+//			}
+//			List<RefSpec> pushSpec = Arrays.asList(GitUtil.getRefSpecFromGitBranch(branch));
+//			//TODO: Correct progress monitor support
+//			PushResult pushResult = new GitPushOperation(repo, repoURI, pushSpec, false, 15000).run(progressMonitor);
+//			for(RemoteRefUpdate updateResult : pushResult.getRemoteUpdates()){
+//				if(!GitUtil.isRemoteRefUpdateSuccessful(updateResult)){
+//					throw new UnexpectedGitException("Was unable to push the created branch to the remote repository.\nReason: " + updateResult.getMessage() + " (" + updateResult.getStatus()+ ")");
+//				}
+//			}
 			progressMonitor.worked(3);
 		} finally {
 			progressMonitor.done();

@@ -5,6 +5,10 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSession;
+
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.ConcurrentRefUpdateException;
 import org.eclipse.jgit.api.errors.InvalidRefNameException;
@@ -33,17 +37,21 @@ public class PushTest extends GitTestCase{
 	public void test() throws JGitInternalException, RefAlreadyExistsException, RefNotFoundException, InvalidRefNameException, IOException, URISyntaxException, NoHeadException, NoMessageException, ConcurrentRefUpdateException, WrongRepositoryStateException, NoFilepatternException{
 		// create other repository
 		Repository repo = createLocalRepo(false);
+
+		System.setProperty("sun.security.ssl.allowUnsafeRenegotiation", "true");
+		HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+	
+			public boolean verify(String arg0, SSLSession arg1) {
+				return true;
+			}
+			});
 		
 		String branchName = "test-" + System.currentTimeMillis() + "";
 		
 		String refname = "refs/heads/" + branchName;
 
 		// setup the first repository
-		final Config config = repo.getConfig();
-		RemoteConfig remoteConfig = new RemoteConfig(config, "test");
-		URIish uri = new URIish(repo.getDirectory().toURI().toURL());
-		remoteConfig.addURI(uri);
-		remoteConfig.update(config);
+		
 
 		Git git1 = new Git(repo);
 		// create some refs via commits and tag
@@ -52,7 +60,7 @@ public class PushTest extends GitTestCase{
 		Collection<RefSpec> refUpdates = new ArrayList<RefSpec>();
 		refUpdates.add(new RefSpec(refname));
 		//RevTag tag = git1.tag().setName("tag").call();
-		PushResult result = new GitPushOperation(repo, getRemoteURI(), refUpdates , false, 0).run(getProgressMonitor());
+		PushResult result = new GitPushOperation(repo, getRemoteURI(), refUpdates , false, 0, getCredentialsProvider()).run(getProgressMonitor());
 		System.out.println("Pushing branch " +  branchName);
 		
 		RemoteRefUpdate res = result.getRemoteUpdate(refname);
@@ -66,12 +74,13 @@ public class PushTest extends GitTestCase{
 		git1.commit().setMessage("second commit on test branch " + branchName).call();
 		
 		
-		result = new GitPushOperation(repo, getRemoteURI(), refUpdates , false, 0).run(getProgressMonitor());
+		result = new GitPushOperation(repo, getRemoteURI(), refUpdates , false, 0, getCredentialsProvider()).run(getProgressMonitor());
 		System.out.println("Pushing branch " +  branchName);
 		
 		res = result.getRemoteUpdate(refname);
 		assertTrue(res.getStatus() == Status.OK);
 		System.out.println(res.toString());
+		System.out.println("PUSH COMPLETED");
 		
 ;
 	}
