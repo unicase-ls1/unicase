@@ -131,28 +131,27 @@ public final class UIUtil {
 		result = command.getCTResult();
 
 		// Show status message
-		if (result.getMessage() != null) {
-			switch (result.getResultType()) {
-			case CANCELLED:
-				break;
-			case ERROR:
-				handleException(result.getException());
-				break;
-			case SUCCESS:
-				if (result.getMessage() != null) {
-					openInformation(result.getCaption(), result.getMessage());
-				}
-				break;
-			case MISUSE:
-				errorMessage(result.getCaption(), result.getMessage());
-				break;
-			case WARNING:
-				warningMessage(result.getCaption(), result.getMessage());
-				break;
-			default:
-				break;
+		switch (result.getResultType()) {
+		case CANCELLED:
+			break;
+		case ERROR:
+			handleException(result.getException());
+			break;
+		case SUCCESS:
+			if (result.getMessage() != null) {
+				openInformation(result.getCaption(), result.getMessage());
 			}
+			break;
+		case MISUSE:
+			errorMessage(result.getCaption(), result.getMessage());
+			break;
+		case WARNING:
+			warningMessage(result.getCaption(), result.getMessage());
+			break;
+		default:
+			break;
 		}
+	
 		return result;
 	}
 
@@ -208,6 +207,7 @@ public final class UIUtil {
 	 */
 	public static void run(final IUserInterfaceRunnable runnable) {
 		final Exception[] exceptions = new Exception[] { null };
+		try{
 		switch (runnable.getPreferredProgressDisplayKind()) {
 		case BUSY_CURSOR:
 			BusyIndicator.showWhile(Display.getCurrent(), new Runnable() {
@@ -242,6 +242,9 @@ public final class UIUtil {
 			break;
 		default:
 			break;
+		}
+		} catch (RuntimeException e){
+			exceptions[0] = e;
 		}
 		if (exceptions[0] != null) {
 			handleException("An exception has occurred", exceptions[0]);

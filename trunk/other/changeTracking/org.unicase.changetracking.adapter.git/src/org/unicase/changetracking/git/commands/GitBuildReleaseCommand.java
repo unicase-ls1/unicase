@@ -14,6 +14,7 @@ import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.lib.RepositoryState;
 import org.eclipse.jgit.revwalk.RevTag;
+import org.eclipse.jgit.transport.CredentialsProvider;
 import org.unicase.changetracking.commands.BuildReleaseCommand;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
 import org.unicase.changetracking.common.ChangeTrackingUtil;
@@ -45,7 +46,7 @@ public class GitBuildReleaseCommand extends BuildReleaseCommand {
 	private boolean isContinuing;
 	private boolean conflictOccurred;
 	@SuppressWarnings("unused")
-	private SayYesCredentialsProvider credentials;
+	private CredentialsProvider credentials;
 	@SuppressWarnings("unused")
 	private GitRepository remoteRepo;
 
@@ -72,8 +73,7 @@ public class GitBuildReleaseCommand extends BuildReleaseCommand {
 		this.baseBranch = checkReport.getBaseBranch();
 		this.remoteRepo = (GitRepository) checkReport.getRepoLocation();
 		this.branchesToMerge = checkReport.getBranchesToMerge();
-		// FIXME correct credentials provider
-		this.credentials = new SayYesCredentialsProvider("gexicide", "git2day");
+		this.credentials = GitUtil.getDefaultCredentialsProvider();
 	}
 
 	@Override

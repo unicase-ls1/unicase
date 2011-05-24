@@ -76,8 +76,7 @@ public class GitCreateChangePackageCommand extends ChangeTrackingCommand {
 		this.myLongDescription = longDescription;
 		this.myWorkItem = workItem;
 		this.myRemoteRepo = remoteRepo;
-		// FIXME correct credentials provider
-		this.myCredentials = new SayYesCredentialsProvider("gexicide", "git2day");
+		this.myCredentials = GitUtil.getDefaultCredentialsProvider();
 		this.workspaceProject = workspaceProject;
 		this.vcsAdapter = adapter;
 	}
