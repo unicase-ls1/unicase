@@ -96,8 +96,7 @@ public class GitApplyChangePackageCommand extends ChangeTrackingCommand {
 		// 2. Pull the branch from remote
 
 		// FIXME correct progress monitor support
-		//FIXME correct credentials provider
-		FetchResult fetchResult = new GitFetchOperation(gitRepoLocation, repo, null, 15000, GitUtil.getRefSpecFromGitBranch(branch)).run();
+		FetchResult fetchResult = new GitFetchOperation(gitRepoLocation, repo, GitUtil.getDefaultCredentialsProvider(), 15000, GitUtil.getRefSpecFromGitBranch(branch)).run();
 		for(TrackingRefUpdate updateResult : fetchResult.getTrackingRefUpdates()){
 			if(!GitUtil.isRefUpdateSuccessful(updateResult)){
 				throw new UnexpectedGitException("The branch could not be fetched from the remote repository.");

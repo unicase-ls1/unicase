@@ -11,7 +11,7 @@ package org.unicase.changetracking.exceptions;
  * @author jfinis
  * 
  */
-public class CancelledByUserException extends Exception {
+public class CancelledByUserException extends RuntimeException {
 
 	/**
 	 * .

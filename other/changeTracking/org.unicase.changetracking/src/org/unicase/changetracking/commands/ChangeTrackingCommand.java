@@ -7,6 +7,7 @@ package org.unicase.changetracking.commands;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.unicase.changetracking.exceptions.CancelledByUserException;
 import org.unicase.changetracking.exceptions.MisuseException;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
@@ -132,6 +133,8 @@ public abstract class ChangeTrackingCommand extends UnicaseCommandWithResult<Cha
 		} catch (MisuseException e) {
 			result = misuseResult(e.getMessage());
 			// BEGIN SUPRESS CATCH EXCEPTION
+		} catch (CancelledByUserException e){
+			result = cancelResult();
 		} catch (RuntimeException e) {
 			// END SUPRESS CATCH EXCEPTION
 			result = errorResult(e);

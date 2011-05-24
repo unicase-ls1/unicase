@@ -5,7 +5,8 @@ Bundle-SymbolicName: org.unicase.changetracking.model;singleton:=true
 Bundle-Version: 0.1.0
 Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
  org.unicase.model;visibility:=reexport,
- org.unicase.emfstore.esmodel
+ org.unicase.emfstore.esmodel,
+ org.unicase.ecp.model
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.model.changetracking,
