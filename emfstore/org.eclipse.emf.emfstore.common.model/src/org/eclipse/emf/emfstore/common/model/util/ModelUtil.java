@@ -196,6 +196,10 @@ public final class ModelUtil {
 			Project project = (Project) object;
 			initialSize = project.getAllModelElements().size() * step;
 		}
+		if (!overrideHrefCheck) {
+			proxyCheck(res);
+		}
+
 		StringWriter stringWriter = new StringWriter(initialSize);
 		try {
 			res.save(stringWriter, getResourceSaveOptions());
@@ -208,6 +212,20 @@ public final class ModelUtil {
 			hrefCheck(result);
 		}
 		return result;
+	}
+
+	/**
+	 * @param result
+	 */
+	private static void proxyCheck(Resource resource) throws SerializationException {
+		EcoreUtil.resolveAll(resource);
+		TreeIterator<EObject> contents = resource.getAllContents();
+		while (contents.hasNext()) {
+			EObject eObject = contents.next();
+			if (eObject.eIsProxy()) {
+				throw new SerializationException("Serialization failed due to unresolved proxy detection.");
+			}
+		}
 	}
 
 	private static void hrefCheck(String result) throws SerializationException {
