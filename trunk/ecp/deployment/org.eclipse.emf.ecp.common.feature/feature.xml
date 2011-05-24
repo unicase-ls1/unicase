@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.ecp.common.feature"
       label="ECP Common"
-      version="0.8.0"
+      version="0.8.1"
       provider-name="Eclipse Modeling Project">
 
    <description url="http://emfcp.org">
