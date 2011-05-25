@@ -23,7 +23,7 @@ import org.unicase.changetracking.git.commands.GitCreateChangePackageCommand;
 import org.unicase.changetracking.git.common.GitNameValidator;
 import org.unicase.changetracking.git.common.GitRepoFindUtil;
 import org.unicase.changetracking.git.common.GitUtil;
-import org.unicase.changetracking.git.release.GitReport;
+import org.unicase.changetracking.git.releasechecking.GitReport;
 import org.unicase.changetracking.git.ui.RemoteURLInput;
 import org.unicase.changetracking.release.ReleaseCheckReport;
 import org.unicase.changetracking.vcs.BasicVCSAdapter;

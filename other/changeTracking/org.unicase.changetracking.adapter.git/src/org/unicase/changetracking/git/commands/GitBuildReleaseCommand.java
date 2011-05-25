@@ -23,7 +23,7 @@ import org.unicase.changetracking.git.common.GitNameUtil;
 import org.unicase.changetracking.git.common.GitUtil;
 import org.unicase.changetracking.git.common.GitWrapper;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
-import org.unicase.changetracking.git.release.GitReport;
+import org.unicase.changetracking.git.releasechecking.GitReport;
 import org.unicase.model.changetracking.Release;
 import org.unicase.model.changetracking.git.GitFactory;
 import org.unicase.model.changetracking.git.GitRepository;
