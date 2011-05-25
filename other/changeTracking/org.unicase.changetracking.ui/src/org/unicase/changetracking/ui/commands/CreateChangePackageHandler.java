@@ -33,15 +33,14 @@ public class CreateChangePackageHandler extends ResourceCommandHandler {
 		
 
 		// Retrieve selected project
-		IProject[] resources = getSelectedProjects(event);
-		if (resources.length == 0) {
+		IProject[] projects = getSelectedProjects(event);
+		if (projects.length == 0) {
 			abort("No project selected.");
 		}
-		IProject project = resources[0];
 
 		// Retrieve correspondent adapter
 		VCSAdapter vcs;
-		vcs = new VCSAdapterFactory().createFromProject(project);
+		vcs = new VCSAdapterFactory().createFromProjects(projects);
 	
 
 		// Save dirty editors
@@ -52,7 +51,7 @@ public class CreateChangePackageHandler extends ResourceCommandHandler {
 		// Perform early checks (adapter dependent)
 		String problem;
 		try {
-			problem = vcs.performEarlyCreateChangePackageChecks(project);
+			problem = vcs.performEarlyCreateChangePackageChecks(projects);
 			if (problem != null) {
 				abort(problem);
 			}
@@ -61,7 +60,7 @@ public class CreateChangePackageHandler extends ResourceCommandHandler {
 		}
 
 		// Open the create work item dialog
-		WizardDialog dlg = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), new CreateChangePackageWizard(vcs, project));
+		WizardDialog dlg = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), new CreateChangePackageWizard(vcs, projects));
 		dlg.open();
 
 	}

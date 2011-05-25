@@ -7,6 +7,7 @@ package org.unicase.changetracking.git;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egit.core.GitTag;
+import org.unicase.changetracking.exceptions.VCSException;
 import org.unicase.changetracking.git.common.GitRepoFindUtil;
 import org.unicase.changetracking.vcs.VCSAdapter;
 import org.unicase.changetracking.vcs.VCSAdapterProvider;
@@ -57,8 +58,12 @@ public class GitVCSAdapterProvider implements VCSAdapterProvider {
 	 * 
 	 * {@inheritDoc}
 	 */
-	public boolean providesForProject(IProject project) {
-		return null != GitRepoFindUtil.findRepository(project.getLocation().toFile());
+	public boolean providesForProjects(IProject... projects) {
+		try {
+			return null != GitRepoFindUtil.findRepoForProjects(projects);
+		} catch (VCSException e) {
+			return false;
+		}
 	}
 
 	/**

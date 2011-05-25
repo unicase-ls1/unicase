@@ -20,6 +20,20 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
  * after the command has run. In addition, ALL runtime exceptions which may be
  * thrown by the command execution are caught and saved in an error result.
  * 
+ * In addition, a change tracking command can specify its progress display kind.
+ * This means that the command can specify if it should be run with a progress
+ * monitor, busy cursor, or no visible progress display support. The method to
+ * be used is progress monitor by default but can be changed by implementations
+ * by overwriting the
+ * {@link ChangeTrackingCommand#getPreferredProgressDisplayKind()} method. The
+ * command can obtain the progress monitor by calling
+ * {@link ChangeTrackingCommand#getProgressMonitor()}.
+ * The command will ensure that {@link IProgressMonitor#done()} is called after
+ * the command execution, even if an exception has been thrown. This ensures
+ * that no progress monitor dialog will stay open after the command was aborted
+ * somehow.
+ * 
+ * 
  * @author jfinis
  * 
  */
@@ -133,11 +147,16 @@ public abstract class ChangeTrackingCommand extends UnicaseCommandWithResult<Cha
 		} catch (MisuseException e) {
 			result = misuseResult(e.getMessage());
 			// BEGIN SUPRESS CATCH EXCEPTION
-		} catch (CancelledByUserException e){
+		} catch (CancelledByUserException e) {
 			result = cancelResult();
 		} catch (RuntimeException e) {
 			// END SUPRESS CATCH EXCEPTION
 			result = errorResult(e);
+		} finally {
+			// In all cases, finish the progress monitor if one exists
+			if (progressMonitor != null) {
+				progressMonitor.done();
+			}
 		}
 	}
 

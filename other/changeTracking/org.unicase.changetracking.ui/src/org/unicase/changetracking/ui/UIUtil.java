@@ -14,6 +14,7 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.WorkbenchException;
 import org.unicase.changetracking.commands.ChangeTrackingCommand;
@@ -46,7 +47,11 @@ public final class UIUtil {
 	 * @return active shell.
 	 */
 	public static Shell getActiveShell() {
-		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		IWorkbenchWindow w = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		if(w == null){
+			throw new RuntimeException("Calling getActiveShell from non-UI thread.");
+		}
+		return w.getShell();
 	}
 
 	/**
@@ -98,11 +103,15 @@ public final class UIUtil {
 	 * @return true if user wants refreshing, otherwise false
 	 */
 	public static boolean askForRefreshing() {
-		boolean wantPull = MessageDialog.openQuestion(getActiveShell(), "Refresh local repository?", "You should refresh your local repository (pull from remote) to ensure that all branches are up to date. Do you want to pull now?");
-
-		// FIXME Implement pull
-
-		return wantPull;
+		final boolean[] wantPull = new boolean[1];
+		Display.getDefault().syncExec(new Runnable() {
+			
+			public void run() {
+				wantPull[0] = MessageDialog.openQuestion(getActiveShell(), "Refresh local repository?", "You should refresh your local repository (pull from remote) to ensure that all branches are up to date. Do you want to pull now?");
+				
+			}
+		});
+		return wantPull[0];
 	}
 
 	/**
@@ -162,7 +171,11 @@ public final class UIUtil {
 	 * @param e exception to be handled.
 	 */
 	public static void handleException(Throwable e) {
-		handleException(e.getMessage(), e);
+		String message = e.getMessage();
+		if(message == null || message.equals("")){
+			message = e.getClass().getName();
+		}
+		handleException(message, e);
 	}
 
 	/**

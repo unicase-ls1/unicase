@@ -37,7 +37,6 @@ public class CreateStreamFromCurrentBranchHandler extends ResourceCommandHandler
 		if (projects.length == 0) {
 			abort("No project selected.");
 		}
-		IProject project = projects[0];
 
 		// Save dirty editors
 		if (!PlatformUI.getWorkbench().saveAllEditors(true)) {
@@ -45,10 +44,10 @@ public class CreateStreamFromCurrentBranchHandler extends ResourceCommandHandler
 		}
 
 		// Retrieve correspondent adapter
-		VCSAdapter vcs = new VCSAdapterFactory().createFromProject(project);
+		VCSAdapter vcs = new VCSAdapterFactory().createFromProjects(projects);
 
 		// Create the stream
-		CreateStreamCommand cmd = vcs.createStreamFromCurrentBranch(new UIDecisionProvider(), project);
+		CreateStreamCommand cmd = vcs.createStreamFromCurrentBranch(new UIDecisionProvider(), projects[0]);
 		ChangeTrackingCommandResult result = UIUtil.runCommand(cmd);
 
 		// Finally, open the stream in the unicase perspective

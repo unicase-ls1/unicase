@@ -102,14 +102,14 @@ public abstract class BasicVCSAdapter implements VCSAdapter {
 	/**
 	 * {@inheritDoc}
 	 */
-	public ChangeTrackingCommand createChangePackage(IProject localProject, WorkItem workItem, RepositoryLocation remoteRepo, String name, String shortDescription, String longDescription) {
+	public ChangeTrackingCommand createChangePackage(IProject[] localProjects, WorkItem workItem, RepositoryLocation remoteRepo, String name, String shortDescription, String longDescription) {
 		return notSupportedCommand("change package creation");
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public RepositoryLocation createRepositoryLocation(IProject workspaceProject) throws VCSException, CancelledByUserException {
+	public RepositoryLocation createRepositoryLocation(IProject[] workspaceProjects) throws VCSException, CancelledByUserException {
 		throw new NotSupportedByAdapterException("repository location creation");
 	}
 
@@ -123,7 +123,7 @@ public abstract class BasicVCSAdapter implements VCSAdapter {
 	/**
 	 * {@inheritDoc}
 	 */
-	public RepositoryLocation findRepoLocation(IProject workspaceProject, Project unicaseProject) throws VCSException {
+	public RepositoryLocation findRepoLocation(IProject[] workspaceProjects, Project unicaseProject) throws VCSException {
 		throw new NotSupportedByAdapterException("repository location retrieval");
 	}
 
@@ -146,7 +146,7 @@ public abstract class BasicVCSAdapter implements VCSAdapter {
 	/**
 	 * {@inheritDoc}
 	 */
-	public String performEarlyCreateChangePackageChecks(IProject localProject) throws VCSException {
+	public String performEarlyCreateChangePackageChecks(IProject[] localProjects) throws VCSException {
 		return null;
 	}
 

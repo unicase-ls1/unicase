@@ -14,6 +14,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.jgit.errors.IncorrectObjectTypeException;
 import org.eclipse.jgit.errors.MissingObjectException;
 import org.eclipse.jgit.lib.Ref;
@@ -101,10 +104,11 @@ public final class ReleaseChecker {
 	 * @param release the release to be checked
 	 * @param wantUpdateBeforeCheck whether the repository should be updated before the
 	 *            checking is conducted
+	 * @param monitor progress monitor
 	 * @return the report
 	 */
-	public static ReleaseCheckReport check(Repository localRepo, Release release, boolean wantUpdateBeforeCheck) {
-		return new ReleaseChecker(localRepo, release, wantUpdateBeforeCheck).check();
+	public static ReleaseCheckReport check(Repository localRepo, Release release, boolean wantUpdateBeforeCheck, IProgressMonitor monitor) {
+		return new ReleaseChecker(localRepo, release, wantUpdateBeforeCheck).check(monitor);
 	}
 
 	private ReleaseChecker(Repository localRepo, Release release, boolean wantUpdateBeforeCheck) {
@@ -145,8 +149,13 @@ public final class ReleaseChecker {
 	 * 
 	 * @return the report
 	 */
-	private ReleaseCheckReport check() {
-
+	private ReleaseCheckReport check(IProgressMonitor progressMonitor) {
+		
+		if(progressMonitor == null){
+			progressMonitor = new NullProgressMonitor();
+		}
+		progressMonitor.beginTask("Checking release", 9);
+		
 		// Check that the release is not built yet
 		if (release.isBuilt()) {
 			addError(ERROR_RELEASE_ALREADY_BUILT);
@@ -155,6 +164,7 @@ public final class ReleaseChecker {
 		// Check the local repository and workspace for changes that disallow
 		// release building
 		checkWorkspace();
+		progressMonitor.worked(1);
 
 		// Calculate work item statistics
 		WorkItemStatistics workItemStats = ReleaseUtil.getWorkItemStatisticsFromRelease(release);
@@ -173,14 +183,16 @@ public final class ReleaseChecker {
 
 		// Check the change packages and their referenced branches and locations
 		Map<GitBranch, ChangePackage> branchMap = checkChangePackages(changePackages.keySet());
+		progressMonitor.worked(1);
 
 		// If the repository is not checked out, we cannot do further checks.
 		if (localRepo == null) {
+			progressMonitor.worked(7);
 			return new GitReport(releaseRepoLoc, workItemStats, changePackages.keySet(), errorMessages, false);
 		}
 
 		// Now, the release and change package contents can be update if desired
-		featchIfDesired(branchMap);
+		featchIfDesired(branchMap, progressMonitor);
 
 		// If a repo exists and is not up to date, add this as error Message
 		addWarning(WARNING_REPO_NOT_UP_TO_DATE);
@@ -209,12 +221,14 @@ public final class ReleaseChecker {
 		// report
 		GitReport report = new GitReport(releaseRepoLoc, workItemStats, errorMessages, true, wantUpdateBeforeCheck, getChangePackageStates(changePackageResults));
 		setGitData(report);
+		progressMonitor.worked(1);
 		return report;
 	}
 
-	private void featchIfDesired(Map<GitBranch, ChangePackage> branchMap) {
+	private void featchIfDesired(Map<GitBranch, ChangePackage> branchMap, IProgressMonitor progressMonitor) {
 		// Return if no update is desired
 		if (!wantUpdateBeforeCheck) {
+			progressMonitor.worked(6);
 			return;
 		}
 
@@ -228,8 +242,9 @@ public final class ReleaseChecker {
 		}
 
 		// Perform the update
-		//FIXME insert correct credentials provider
-		FetchResult updates = new GitFetchOperation((GitRepository) releaseRepoLoc, localRepo, null, 30000, branchesToFetch).run();
+		GitFetchOperation fetchOp = new GitFetchOperation((GitRepository) releaseRepoLoc, localRepo, GitUtil.getDefaultCredentialsProvider(), 30000, branchesToFetch);
+		fetchOp.setProgressMonitor(new SubProgressMonitor(progressMonitor, 6));
+		FetchResult updates = new GitFetchOperation((GitRepository) releaseRepoLoc, localRepo, GitUtil.getDefaultCredentialsProvider(), 30000, branchesToFetch).run();
 
 		//check the result
 		boolean warning = false;

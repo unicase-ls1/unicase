@@ -8,7 +8,6 @@ package org.unicase.changetracking.adapter.commands;
 import java.io.File;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.unicase.changetracking.commands.ChangeTrackingCommand;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
 import org.unicase.changetracking.common.ChangeTrackingUtil;
@@ -33,7 +32,7 @@ import org.unicase.workspace.WorkspaceManager;
  */
 public class SubclipseCreateChangePackageCommand extends ChangeTrackingCommand {
 
-	private IProject localProject;
+	private IProject[] localProjects;
 	private WorkItem workItem;
 	private String name;
 	private String shortDescription;
@@ -42,14 +41,14 @@ public class SubclipseCreateChangePackageCommand extends ChangeTrackingCommand {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param localProject local project
+	 * @param localProjects local project
 	 * @param workItem work item
 	 * @param name name for the change package
 	 * @param shortDescription short description
 	 * @param longDescription long description
 	 */
-	public SubclipseCreateChangePackageCommand(IProject localProject, WorkItem workItem, String name, String shortDescription, String longDescription) {
-		this.localProject = localProject;
+	public SubclipseCreateChangePackageCommand(IProject[] localProjects, WorkItem workItem, String name, String shortDescription, String longDescription) {
+		this.localProjects = localProjects;
 		this.workItem = workItem;
 		this.name = name;
 		this.shortDescription = shortDescription;
@@ -67,7 +66,7 @@ public class SubclipseCreateChangePackageCommand extends ChangeTrackingCommand {
 		// 1) **** Create the patch ****
 		File patch;
 		try {
-			patch = new SubclipseCreatePatchAction().createPatch(new IResource[] { localProject }, true);
+			patch = new SubclipseCreatePatchAction().createPatch(localProjects, true);
 			if (patch == null) {
 				throw new UnexpectedChangeTrackingException("No patch was created.");
 			}

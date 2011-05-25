@@ -62,7 +62,7 @@ public class ChooseWorkItemPage extends WizardPage {
 	private Button createRepoButton;
 	private String selectedProjectName;
 	private VCSAdapter vcs;
-	private IProject workspaceProject;
+	private IProject[] workspaceProjects;
 
 	/**
 	 * Returns the selected project. I.e. the project in which the selected work
@@ -108,15 +108,15 @@ public class ChooseWorkItemPage extends WizardPage {
 	 * @param title page title
 	 * @param titleImage page title image
 	 * @param vcs VCS adapter
-	 * @param workspaceProject project from which the change package is to be
+	 * @param selectedProjects project from which the change package is to be
 	 *            created.
 	 */
-	protected ChooseWorkItemPage(String pageName, String title, ImageDescriptor titleImage, VCSAdapter vcs, IProject workspaceProject) {
+	protected ChooseWorkItemPage(String pageName, String title, ImageDescriptor titleImage, VCSAdapter vcs, IProject[] selectedProjects) {
 		super(pageName, title, titleImage);
 
 		attacheeDialog = new AttacheeSelectionDialog("Choose work item", "Choose a work item to attach the change package to.");
 		this.vcs = vcs;
-		this.workspaceProject = workspaceProject;
+		this.workspaceProjects = selectedProjects;
 		labelProvider = attacheeDialog.getLabelProvider();
 
 	}
@@ -180,7 +180,7 @@ public class ChooseWorkItemPage extends WizardPage {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
 					try {
-						selectedRepository = vcs.createRepositoryLocation(workspaceProject);
+						selectedRepository = vcs.createRepositoryLocation(workspaceProjects);
 						ChangeTrackingUtil.addToProjectRelative(selectedRepository, selectedWorkItem == null ? selectedProject : selectedWorkItem, true);
 						updateFields();
 					} catch (VCSException e1) {
@@ -205,7 +205,7 @@ public class ChooseWorkItemPage extends WizardPage {
 			selectedWorkItem = attacheeDialog.getSelectedModelElement();
 			if (vcs.doesChangePackageNeedRepoLocation()) {
 				try {
-					selectedRepository = vcs.findRepoLocation(workspaceProject, selectedProject);
+					selectedRepository = vcs.findRepoLocation(workspaceProjects, selectedProject);
 				} catch (VCSException e) {
 					UIUtil.handleException(e);
 				}
