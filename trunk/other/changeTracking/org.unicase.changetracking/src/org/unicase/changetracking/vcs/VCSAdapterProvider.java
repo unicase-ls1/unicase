@@ -64,15 +64,18 @@ public interface VCSAdapterProvider {
 
 	/**
 	 * Returns whether this class provides an adapter matching the given
-	 * project.
+	 * projects.
 	 * 
 	 * This means that the adapter must be able to collect and apply changes
-	 * from and to the project, respectively.
+	 * from and to the projects, respectively.
+	 * 
+	 * This basically means that all projects must be under version control
+	 * of this adapter.
 	 * 
 	 * @param project the project for which to provide an adapter
 	 * @return whether an adapter can be provided
 	 */
-	boolean providesForProject(IProject project);
+	boolean providesForProjects(IProject... project);
 
 	/**
 	 * Factory method creating a new instance of the corresponding adapter.

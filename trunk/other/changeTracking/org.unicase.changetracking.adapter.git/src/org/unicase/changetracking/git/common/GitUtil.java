@@ -296,8 +296,14 @@ public final class GitUtil {
 		}
 	}
 	
+	/**
+	 * Returns the default credentials provider to be used by the different
+	 * Git operations which use a remote repository.
+	 * @return default credentials provider
+	 */
 	public static CredentialsProvider getDefaultCredentialsProvider(){
 		return new UICredentialsProvider(true);
 	}
+
 
 }

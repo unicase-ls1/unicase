@@ -22,6 +22,7 @@ import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
+import org.unicase.changetracking.exceptions.VCSException;
 import org.unicase.changetracking.git.Activator;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
 import org.unicase.metamodel.Project;
@@ -235,5 +236,38 @@ public final class GitRepoFindUtil {
 		}
 		return null;
 
+	}
+	
+
+	/**
+	 * For a set of workspace projects, this method finds the Git repository under
+	 * which all these projects are versioned. If one of the projects is not
+	 * versioned with Git, or any two projects are versioned with different repositories,
+	 * then a {@link VCSException} is thrown.
+	 * @param projects set of workspace projects.
+	 * @return the Git repo with which the projects are versioned
+	 * @throws VCSException if a project is not under git version control or the repositories differ between projects
+	 */
+	public static Repository findRepoForProjects(IProject... projects) throws VCSException {
+		Repository repo = null;
+		if(projects.length == 0){
+			throw new VCSException("Cannot find a repo for an empty set of projects");
+		}
+		for(IProject p : projects){
+			Repository curRepo = GitRepoFindUtil.findRepository(p.getLocation().toFile());
+			
+			//Not under version control? Error!
+			if (curRepo == null) {
+				throw new VCSException("The project '" + p.getName() + "' is not under Git version control.");
+			}
+			
+			//Different repo than the other ones? Error!
+			if(repo != null && curRepo != repo){
+				throw new VCSException("The selected projects use different Git repositories. All projects must use the same repository in order to be processed together.");
+			}
+		
+			repo = curRepo;
+		}
+		return repo;
 	}
 }

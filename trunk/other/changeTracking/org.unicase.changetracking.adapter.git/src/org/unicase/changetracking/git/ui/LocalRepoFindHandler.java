@@ -75,7 +75,7 @@ public class LocalRepoFindHandler {
 
 		Repository repo = GitRepoFindUtil.findAssociatedLocalRepo((GitRepository) location);
 		if (repo == null) {
-			NoLocalRepoChoices userChoice = AdvancedMessageDialog.openNoLocalRepoFoundDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+			NoLocalRepoChoices userChoice = AdvancedMessageDialog.openNoLocalRepoFoundDialog(UIUtil.getActiveShell());
 			switch (userChoice) {
 			case CANCEL:
 				throw new CancelledByUserException();

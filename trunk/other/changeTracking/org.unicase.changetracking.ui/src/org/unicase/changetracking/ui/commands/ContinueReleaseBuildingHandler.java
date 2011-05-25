@@ -20,6 +20,7 @@ import org.unicase.changetracking.ui.releases.BuildReleaseOperation;
  */
 public class ContinueReleaseBuildingHandler extends ChangeTrackingCommandHandler {
 
+	//TODO Set enabled according to build state
 	/**
 	 * Continues the building of a release after a conflict has been resolved.
 	 * 

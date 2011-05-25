@@ -46,6 +46,13 @@ private String startPassword;
 
 private String uri;
 
+/**
+ * Default constructor.
+ * @param parentShell parent shell
+ * @param startUsername user name displayed at the start
+ * @param startPassword password displayed at the start
+ * @param uri uri of the repository for which to gather credentials
+ */
   public UsernamePasswordDialog(Shell parentShell, String startUsername, String startPassword, String uri) {
     super(parentShell);
     setBlockOnOpen(true);
@@ -56,6 +63,9 @@ private String uri;
   
 
 
+  /**
+   * {@inheritDoc}
+   */
   protected Control createDialogArea(Composite parent) {
 	 parent.getShell().setText("Choose Auth-Information");
 	 Composite comp = (Composite) super.createDialogArea(parent);
@@ -63,7 +73,7 @@ private String uri;
     GridLayout layout = (GridLayout) comp.getLayout();
     layout.numColumns = 2;
     
-    Label caption = new Label(parent, SWT.NONE);
+    Label caption = new Label(comp, SWT.NONE);
     caption.setText("Choose your authentication settings for\n" + uri);
     GridData data = new GridData(GridData.FILL_HORIZONTAL);
     data.horizontalSpan = 2;
@@ -94,6 +104,9 @@ private String uri;
     return comp;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   protected void createButtonsForButtonBar(Composite parent) {
     super.createButtonsForButtonBar(parent);
     createButton(parent, RESET_ID, "Reset All", false);
@@ -110,18 +123,33 @@ private String uri;
   
   
   
+  /**
+   * Returns the chosen user name.
+   * @return user name
+   */
   public String getUsername(){
 	  return username;
   }
   
+  /**
+   * Returns the chosen password.
+   * @return password
+   */
   public String getPassword(){
 	  return password;
   }
   
+  /**
+   * Returns whether the user has chosen to save the settings.
+   * @return whether user wants to save
+   */
   public boolean wantSave(){
 	  return wantSave;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   protected void buttonPressed(int buttonId) {
     if (buttonId == RESET_ID) {
       usernameField.setText("");

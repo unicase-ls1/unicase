@@ -49,36 +49,20 @@ import org.unicase.model.task.WorkItem;
  */
 public class GitVCSAdapter extends BasicVCSAdapter {
 
-	/**
-	 * Finds the local repository associated to a workspace project.
-	 * 
-	 * Throws a VCS exception if the project is not under git version control
-	 * (i.e. if no repository can be found).
-	 * 
-	 * @param p project for which to find a repository.
-	 * @return found reopsitory.
-	 * @throws VCSException if the project is not under git version control
-	 */
-	public Repository findRepo(IProject p) throws VCSException {
-		Repository repo = GitRepoFindUtil.findRepository(p.getLocation().toFile());
-		if (repo == null) {
-			throw new VCSException("The selected resource is not under git version control.");
-		}
-		return repo;
-	}
+	
 
 	@Override
-	public RepositoryLocation findRepoLocation(IProject p, Project p2) throws VCSException {
-		Repository r = findRepo(p);
+	public RepositoryLocation findRepoLocation(IProject[] p, Project p2) throws VCSException {
+		Repository r = GitRepoFindUtil.findRepoForProjects(p);
 		return GitRepoFindUtil.findRepoLocationInProject(r, p2);
 	}
 
 	@Override
-	public RepositoryLocation createRepositoryLocation(IProject workspaceProject) throws VCSException, CancelledByUserException {
+	public RepositoryLocation createRepositoryLocation(IProject[] workspaceProjects) throws VCSException, CancelledByUserException {
 
 		String remoteUrl = new RemoteURLInput().show();
 
-		final GitRepository gitRepoModel = GitUtil.initGitRepoModelFromRepo(findRepo(workspaceProject));
+		final GitRepository gitRepoModel = GitUtil.initGitRepoModelFromRepo(GitRepoFindUtil.findRepoForProjects(workspaceProjects));
 		gitRepoModel.setUrl(remoteUrl);
 		gitRepoModel.setName(remoteUrl);
 
@@ -86,8 +70,8 @@ public class GitVCSAdapter extends BasicVCSAdapter {
 	}
 
 	@Override
-	public String performEarlyCreateChangePackageChecks(IProject localProject) throws VCSException {
-		Repository repo = findRepo(localProject);
+	public String performEarlyCreateChangePackageChecks(IProject[] localProjects) throws VCSException {
+		Repository repo = GitRepoFindUtil.findRepoForProjects(localProjects);
 		if (!repo.getRepositoryState().canCommit()) {
 			return ("The repository is in a state which disallows committing");
 		}
@@ -95,8 +79,8 @@ public class GitVCSAdapter extends BasicVCSAdapter {
 	}
 
 	@Override
-	public ChangeTrackingCommand createChangePackage(IProject localProject, WorkItem workItem, RepositoryLocation remoteRepo, String name, String shortDescription, String longDescription) {
-		return new GitCreateChangePackageCommand(this, localProject, workItem, (GitRepository) remoteRepo, name, shortDescription, longDescription);
+	public ChangeTrackingCommand createChangePackage(IProject[] localProjects, WorkItem workItem, RepositoryLocation remoteRepo, String name, String shortDescription, String longDescription) {
+		return new GitCreateChangePackageCommand(localProjects, workItem, (GitRepository) remoteRepo, name, shortDescription, longDescription);
 	}
 
 	@Override
@@ -113,7 +97,7 @@ public class GitVCSAdapter extends BasicVCSAdapter {
 	public RepositoryStream createRepositoryStream(IProject localProject, RepositoryLocation repoLocation) {
 		Repository r;
 		try {
-			r = findRepo(localProject);
+			r = GitRepoFindUtil.findRepoForProjects(localProject);
 			String branchName = r.getBranch();
 
 			GitBranch branch = GitFactory.eINSTANCE.createGitBranch();

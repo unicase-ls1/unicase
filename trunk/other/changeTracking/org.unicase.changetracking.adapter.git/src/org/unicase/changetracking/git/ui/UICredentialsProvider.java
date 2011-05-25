@@ -64,7 +64,12 @@ public class UICredentialsProvider extends CredentialsProvider{
 
 	}
 
-	
+	/**
+	 * Default constructor.
+	 * @param showDialogIfDataPresent if true, the choose dialog will
+	 * be shown even if user name and password are present in the
+	 * secure storage. 
+	 */
 	public UICredentialsProvider(boolean showDialogIfDataPresent) {
 		this.showDialogIfDataPresent = showDialogIfDataPresent;
 	}

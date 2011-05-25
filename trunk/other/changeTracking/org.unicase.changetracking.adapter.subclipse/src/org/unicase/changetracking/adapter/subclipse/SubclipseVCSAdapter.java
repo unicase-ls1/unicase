@@ -40,8 +40,8 @@ public class SubclipseVCSAdapter extends BasicVCSAdapter {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public ChangeTrackingCommand createChangePackage(IProject localProject, WorkItem workItem, RepositoryLocation remoteRepo, String name, String shortDescription, String longDescription) {
-		return new SubclipseCreateChangePackageCommand(localProject, workItem, name, shortDescription, longDescription);
+	public ChangeTrackingCommand createChangePackage(IProject[] localProjects, WorkItem workItem, RepositoryLocation remoteRepo, String name, String shortDescription, String longDescription) {
+		return new SubclipseCreateChangePackageCommand(localProjects, workItem, name, shortDescription, longDescription);
 	}
 
 	/**

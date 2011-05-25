@@ -11,6 +11,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egit.core.EclipseGitProgressTransformer;
+import org.eclipse.jgit.api.FetchCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.InvalidRemoteException;
 import org.eclipse.jgit.api.errors.JGitInternalException;
@@ -36,6 +39,7 @@ public class GitFetchOperation {
 	private List<RefSpec> refSpecs;
 	private Repository localRepo;
 	private int timeout;
+	private EclipseGitProgressTransformer progressMonitor;
 	
 	/**
 	 * Constructor using a collection of refs.
@@ -53,6 +57,14 @@ public class GitFetchOperation {
 		this.refSpecs = new ArrayList<RefSpec>(refSpecs.size());
 		this.refSpecs.addAll(refSpecs);
 		this.timeout = timeout;
+	}
+	
+	/**
+	 * Sets the progress monitor to be used.
+	 * @param m progress monitor
+	 */
+	public void setProgressMonitor(IProgressMonitor m){
+		this.progressMonitor = new EclipseGitProgressTransformer(m);
 	}
 	
 	/**
@@ -75,8 +87,11 @@ public class GitFetchOperation {
 	public FetchResult run() {
 		try {
 			URIish uri = GitUtil.getURIFromRemote(repoLoc);
-			//FIXME progress monitor support
-			FetchResult result = new Git(localRepo).fetch().setCredentialsProvider(credentialsProvider).setRefSpecs(refSpecs).setRemote(uri.toString()).setTimeout(timeout).call();
+			FetchCommand cmd = new Git(localRepo).fetch();
+			if(progressMonitor != null){
+				cmd.setProgressMonitor(progressMonitor);
+			}
+			FetchResult result = cmd.setCredentialsProvider(credentialsProvider).setRefSpecs(refSpecs).setRemote(uri.toString()).setTimeout(timeout).call();
 			return result;
 		} catch (JGitInternalException e) {
 			String extractMissingRef = extractMissingRef(e);

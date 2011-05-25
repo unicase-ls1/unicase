@@ -44,9 +44,9 @@ public class VCSAdapterFactory {
 	 * @return the matching adapter
 	 * @throws MisuseException if no matching adapter was found
 	 */
-	public VCSAdapter createFromProject(IProject p) throws MisuseException {
+	public VCSAdapter createFromProjects(IProject... p) throws MisuseException {
 		for (VCSAdapterProvider v : getProviders()) {
-			if (v.providesForProject(p)) {
+			if (v.providesForProjects(p)) {
 				return v.create();
 			}
 		}

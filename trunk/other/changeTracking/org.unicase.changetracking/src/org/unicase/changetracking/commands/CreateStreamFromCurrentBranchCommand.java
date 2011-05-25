@@ -59,7 +59,7 @@ public class CreateStreamFromCurrentBranchCommand extends CreateStreamCommand {
 			Project project = ModelUtil.getProject(placementDecision.getDestination());
 
 			// Find a matching repository location in the project
-			RepositoryLocation repoLocation = vcs.findRepoLocation(workspaceProject, project);
+			RepositoryLocation repoLocation = vcs.findRepoLocation(new IProject[]{workspaceProject}, project);
 
 			// Ask the version control adapter to create a repository stream
 			// from the current branch
@@ -68,7 +68,7 @@ public class CreateStreamFromCurrentBranchCommand extends CreateStreamCommand {
 			// No repo found? Ask the user what to do...
 			if (repoLocation == null) {
 				if (decisionProvider.decideCreateRepoLocation()) {
-					repoLocation = vcs.createRepositoryLocation(workspaceProject);
+					repoLocation = vcs.createRepositoryLocation(new IProject[]{workspaceProject});
 					ChangeTrackingUtil.putInto(repoLocation, placementDecision.getDestination());
 
 				}

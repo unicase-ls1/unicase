@@ -55,10 +55,10 @@ public interface VCSAdapter {
 	NameValidator getNameValidator();
 
 	/**
-	 * Given a unicase project and a local project in the workspace, this method
+	 * Given a unicase project and local projects in the workspace, this method
 	 * must return the repository location in the unicase project which matches
-	 * the local project. "Matches" here means that the source code of that
-	 * project must be connected with a remote repository which has this
+	 * the local projects. "Matches" here means that the source code of these
+	 * projects must be connected with a remote repository which has this
 	 * location.
 	 * 
 	 * For Git, for example, this can be done by first obtaining the local
@@ -69,29 +69,29 @@ public interface VCSAdapter {
 	 * If no matching repository is found in the unicase project, this method
 	 * must return null.
 	 * 
-	 * @param workspaceProject a project under version control
+	 * @param workspaceProjects projects under version control
 	 * @param unicaseProject a unicase project
 	 * @return the repository location in the unicase project, which is
 	 *         associated to the workspace project, or null if no such
 	 *         repository location exists
 	 * @throws VCSException if a VCS specific exception occurs
 	 */
-	RepositoryLocation findRepoLocation(IProject workspaceProject, Project unicaseProject) throws VCSException;
+	RepositoryLocation findRepoLocation(IProject[] workspaceProjects, Project unicaseProject) throws VCSException;
 
 	/**
-	 * Creates a repository location from a workspace project. This may also
+	 * Creates a repository location from a set of workspace project. This may also
 	 * include asking the user for additional information.
 	 * 
 	 * For git, this can be done by searching the local repository and asking
 	 * the user for the url of the remote one. For SVN, this can be done by
 	 * checking the SVN config for the remote repo URL
 	 * 
-	 * @param workspaceProject a project in the workspace under version control
+	 * @param workspaceProjects projects in the workspace under version control
 	 * @return the repository location of that project
 	 * @throws VCSException if a VCS specific exception occurs
 	 * @throws CancelledByUserException if the user cancels the process
 	 */
-	RepositoryLocation createRepositoryLocation(IProject workspaceProject) throws VCSException, CancelledByUserException;
+	RepositoryLocation createRepositoryLocation(IProject[] workspaceProjects) throws VCSException, CancelledByUserException;
 
 	/**
 	 * Returns a create change package command.
@@ -100,19 +100,25 @@ public interface VCSAdapter {
 	 * returned command:
 	 * 
 	 * - The change package ( and additional model elements if needed ) must be
-	 * created - The change package must be set up to contain all changes in the
-	 * workspace project. - The name, short description, and long description
-	 * must be set for the change package - The change package must be attached
-	 * to the work item - The change package and all additionally created files
-	 * must be added in the project at the location where the work item is
-	 * located.
+	 * created
+	 * 
+	 * - The change package must be set up to contain all changes in the
+	 * workspace project.
+	 * 
+	 * - The name, short description, and long description must be set for the
+	 * change package
+	 * 
+	 * - The change package must be attached to the work item
+	 * 
+	 * - The change package and all additionally created files must be added in
+	 * the project at the location where the work item is located.
 	 * 
 	 * If the creation of a change package with this adapter needs a repository
 	 * location (i.e. if doesChangePackageNeedRepoLocation returns true), then
 	 * the location will be set as input parameter. Otherwise, this parameter
 	 * will be null.
 	 * 
-	 * @param localProject workspace project from which to take the changes
+	 * @param localProjects workspace projects from which to take the changes
 	 * @param workItem work item to which the change package is to be attached
 	 * @param remoteRepo repository location if this adapter needs one;
 	 *            otherwise null
@@ -121,7 +127,7 @@ public interface VCSAdapter {
 	 * @param longDescription long description for the change package
 	 * @return the command which conducts the creation
 	 */
-	ChangeTrackingCommand createChangePackage(IProject localProject, WorkItem workItem, RepositoryLocation remoteRepo, String name, String shortDescription, String longDescription);
+	ChangeTrackingCommand createChangePackage(IProject[] localProjects, WorkItem workItem, RepositoryLocation remoteRepo, String name, String shortDescription, String longDescription);
 
 	/**
 	 * Indicates whether the creation of a change package needs a repository
@@ -197,12 +203,12 @@ public interface VCSAdapter {
 	 * The creation will be aborted and the user will be shown the message. If
 	 * all checks succeed, then null must be returned.
 	 * 
-	 * @param localProject the local project from which the change package is to
+	 * @param localProjects the local projects from which the change package is to
 	 *            be created
 	 * @return a problem message or null if all checks succeeded
 	 * @throws VCSException if a VCS specific exception occurs
 	 */
-	String performEarlyCreateChangePackageChecks(IProject localProject) throws VCSException;
+	String performEarlyCreateChangePackageChecks(IProject[] localProjects) throws VCSException;
 
 	/**
 	 * Creates and sets up a repository stream by examining a local project and

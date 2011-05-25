@@ -54,7 +54,7 @@ public class GitCheckReleaseCommand extends CheckReleaseCommand {
 		}
 
 		// Create a report
-		setReport(ReleaseChecker.check(localRepo, release, upToDate));
+		setReport(ReleaseChecker.check(localRepo, release, upToDate,getProgressMonitor()));
 		return successResult(null);
 	}
 

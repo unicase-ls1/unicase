@@ -25,7 +25,7 @@ public class CreateChangePackageWizard extends Wizard {
 	private ChooseWorkItemPage chooseWorkItemPage;
 	private ChooseNameAndDescriptionPage chooseNamePage;
 	private VCSAdapter vcs;
-	private IProject selectedProject;
+	private IProject[] selectedProjects;
 	private static final ImageDescriptor PAGE_IMAGE = Activator.getImageDescriptor("icons/wizard/create_change_package_wiz.png");
 
 	/**
@@ -34,16 +34,16 @@ public class CreateChangePackageWizard extends Wizard {
 	 * @param vcs VCS adapter
 	 * @param selectedProject the selected project
 	 */
-	public CreateChangePackageWizard(VCSAdapter vcs, IProject selectedProject) {
+	public CreateChangePackageWizard(VCSAdapter vcs, IProject[] selectedProjects) {
 		setFinishable(false);
 		setWindowTitle("Create Change Package");
 		this.vcs = vcs;
-		this.selectedProject = selectedProject;
+		this.selectedProjects = selectedProjects;
 	}
 
 	@Override
 	public void addPages() {
-		chooseWorkItemPage = new ChooseWorkItemPage("Choose Work Item", "Choose Work Item", PAGE_IMAGE, vcs, selectedProject);
+		chooseWorkItemPage = new ChooseWorkItemPage("Choose Work Item", "Choose Work Item", PAGE_IMAGE, vcs, selectedProjects);
 		addPage(chooseWorkItemPage);
 
 		chooseNamePage = new ChooseNameAndDescriptionPage("Choose Work Item", "Set name and description for the change package", PAGE_IMAGE);
@@ -56,7 +56,7 @@ public class CreateChangePackageWizard extends Wizard {
 		chooseWorkItemPage.performWorkItemPlacement();
 		
 		//Create the package and open it if everything went fine
-		if (UIUtil.runCommand(vcs.createChangePackage(selectedProject, chooseWorkItemPage.getSelectedWorkItem(), chooseWorkItemPage.getSelectedRepository(), chooseNamePage.getChosenName(), chooseNamePage.getChosenShortDescription(), chooseNamePage.getChosenLongDescription())).getResultType() == ResultType.SUCCESS) {
+		if (UIUtil.runCommand(vcs.createChangePackage(selectedProjects, chooseWorkItemPage.getSelectedWorkItem(), chooseWorkItemPage.getSelectedRepository(), chooseNamePage.getChosenName(), chooseNamePage.getChosenShortDescription(), chooseNamePage.getChosenLongDescription())).getResultType() == ResultType.SUCCESS) {
 			UIUtil.openUnicaseAndModelElement(chooseWorkItemPage.getSelectedWorkItem());
 		}
 		return true;

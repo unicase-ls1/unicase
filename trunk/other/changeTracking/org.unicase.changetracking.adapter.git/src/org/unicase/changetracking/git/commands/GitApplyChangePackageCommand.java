@@ -5,6 +5,8 @@
  */
 package org.unicase.changetracking.git.commands;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.lib.RepositoryState;
 import org.eclipse.jgit.transport.FetchResult;
@@ -60,7 +62,13 @@ public class GitApplyChangePackageCommand extends ChangeTrackingCommand {
 	 *             found in the workspace
 	 */
 	private ChangeTrackingCommandResult applyChangePackage(GitBranchChangePackage changePackage) throws NoMatchingLocalRepositoryInWorkspace {
-		// 1. Retrieve and check necessary data
+
+		IProgressMonitor progressMonitor = getProgressMonitor();
+		progressMonitor.beginTask("Applying change package", 8);
+		
+		//*** 1. Retrieve and check necessary data ***
+		progressMonitor.subTask("Checking requirements");
+		
 		GitBranch branch = changePackage.getBranch();
 		if (branch == null) {
 			throw new MisuseException("The change package has no associated branch");
@@ -74,11 +82,13 @@ public class GitApplyChangePackageCommand extends ChangeTrackingCommand {
 			throw new MisuseException("The repository associated with the git branch is not a git repository.");
 		}
 		GitRepository gitRepoLocation = (GitRepository) repoLocationModel;
+		progressMonitor.worked(1);
 
-		// 1. Find a local repo matching the repo of the change package.
+		//*** 2. Find and check a local repo matching the repo of the change package. ***
+		progressMonitor.subTask("Checking local repository");
+		
 		Repository repo = GitRepoFindUtil.findAssociatedLocalRepo(gitRepoLocation);
 		if (repo == null) {
-			// TODO Add dialog to do cloning or specification
 			throw new NoMatchingLocalRepositoryInWorkspace("Found no local repository associated with this git repository. Clone from it first.");
 		}
 
@@ -92,22 +102,28 @@ public class GitApplyChangePackageCommand extends ChangeTrackingCommand {
 		if (RepositoryState.SAFE != repo.getRepositoryState()) {
 			throw new MisuseException("Local repository is not in a safe state");
 		}
+		progressMonitor.worked(1);
 
-		// 2. Pull the branch from remote
-
-		// FIXME correct progress monitor support
-		FetchResult fetchResult = new GitFetchOperation(gitRepoLocation, repo, GitUtil.getDefaultCredentialsProvider(), 15000, GitUtil.getRefSpecFromGitBranch(branch)).run();
+		//*** 3. Pull the branch from remote ***
+		SubProgressMonitor subMonitor = new SubProgressMonitor(progressMonitor, 4);
+		GitFetchOperation fetchOp = new GitFetchOperation(gitRepoLocation, repo, GitUtil.getDefaultCredentialsProvider(), 15000, GitUtil.getRefSpecFromGitBranch(branch));
+		fetchOp.setProgressMonitor(subMonitor);
+		FetchResult fetchResult = fetchOp.run();
 		for(TrackingRefUpdate updateResult : fetchResult.getTrackingRefUpdates()){
 			if(!GitUtil.isRefUpdateSuccessful(updateResult)){
 				throw new UnexpectedGitException("The branch could not be fetched from the remote repository.");
 			}
 		}
 	
-		// 3. Checkout the branch
+		//*** 4. Checkout the branch ***
+		progressMonitor.subTask("Checking out branch");
 		new GitWrapper(repo).checkout(branch.getBranchName());
+		progressMonitor.worked(1);
 
 		return successResult("The change package was successfully applied onto your workspace.");
 
 	}
+	
+
 
 }

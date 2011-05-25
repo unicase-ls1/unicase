@@ -61,15 +61,17 @@ public class SubclipseVCSAdapterProvider implements VCSAdapterProvider {
 	 * 
 	 * {@inheritDoc}
 	 */
-	public boolean providesForProject(IProject project) {
-		RepositoryProvider provider = RepositoryProvider.getProvider(project);
-		if (provider == null) {
-			return false;
+	public boolean providesForProjects(IProject... projects) {
+		for (IProject project : projects) {
+			RepositoryProvider provider = RepositoryProvider.getProvider(project);
+			if (provider == null) {
+				return false;
+			}
+			if (!SUBCLIPSE_REPO_PROVIDER_ID.equals(provider.getID())) {
+				return false;
+			}
 		}
-		if (SUBCLIPSE_REPO_PROVIDER_ID.equals(provider.getID())) {
-			return true;
-		}
-		return false;
+		return true;
 	}
 
 	/**
