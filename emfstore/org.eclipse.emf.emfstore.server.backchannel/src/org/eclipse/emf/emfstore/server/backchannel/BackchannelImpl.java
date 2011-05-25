@@ -21,18 +21,16 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerEven
  * 
  * @author wesendon
  */
-public class BackchannelImpl extends AbstractEmfstoreInterface implements
-		BackchannelInterface {
+public class BackchannelImpl extends AbstractEmfstoreInterface implements BackchannelInterface {
 
 	/**
 	 * Default constructor.
 	 * 
 	 * @param serverSpace serverspace
-	 * @param accessControl accesscontrol 
+	 * @param accessControl accesscontrol
 	 * @throws FatalEmfStoreException in case of failure
 	 */
-	public BackchannelImpl(ServerSpace serverSpace,
-			AuthorizationControl accessControl) throws FatalEmfStoreException {
+	public BackchannelImpl(ServerSpace serverSpace, AuthorizationControl accessControl) throws FatalEmfStoreException {
 		super(serverSpace, accessControl);
 
 	}
@@ -40,9 +38,8 @@ public class BackchannelImpl extends AbstractEmfstoreInterface implements
 	/**
 	 * {@inheritDoc}
 	 */
-	public void registerRemoteListener(SessionId sessionId,
-			EMFStoreEventListener listener, ProjectId projectId)
-			throws EmfStoreException {
+	public void registerRemoteListener(SessionId sessionId, EMFStoreEventListener listener, ProjectId projectId)
+		throws EmfStoreException {
 		sanityCheckObjects(sessionId, listener);
 		// TODO better rights control
 		if (projectId == null) {
@@ -50,16 +47,14 @@ public class BackchannelImpl extends AbstractEmfstoreInterface implements
 			EventManager.getInstance().registerListener(listener, null, null);
 		} else {
 			checkReadAccess(sessionId, projectId, null);
-			EventManager.getInstance().registerListener(listener, projectId,
-					null);
+			EventManager.getInstance().registerListener(listener, projectId, null);
 		}
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void sendEvent(SessionId sessinoId, ServerEvent event,
-			ProjectId projectId) throws EmfStoreException {
+	public void sendEvent(SessionId sessinoId, ServerEvent event, ProjectId projectId) throws EmfStoreException {
 		throw new EmfStoreException("Not implemented on server yet.");
 	}
 

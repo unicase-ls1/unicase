@@ -24,8 +24,7 @@ public class DemoBackchannelClient extends ProxyClient {
 			EMFStoreEventListener listener = new EMFStoreEventListener() {
 				public boolean handleEvent(ServerEvent event) {
 					try {
-						System.out.println(ModelUtil
-								.eObjectToString(event));
+						System.out.println(ModelUtil.eObjectToString(event));
 					} catch (SerializationException e) {
 						e.printStackTrace();
 					}
@@ -35,15 +34,14 @@ public class DemoBackchannelClient extends ProxyClient {
 
 			for (ProjectInfo info : getProjectList()) {
 				try {
-					manager.registerRemoteListener(getSessionId(), listener,
-							info.getProjectId());
-					System.out.println("registered listener at project: "+info.getName());
+					manager.registerRemoteListener(getSessionId(), listener, info.getProjectId());
+					System.out.println("registered listener at project: " + info.getName());
 				} catch (EmfStoreException e) {
-					System.out.println("Error while registring project: "+info.getName() + ", " + e.toString());					
+					System.out.println("Error while registring project: " + info.getName() + ", " + e.toString());
 				}
 			}
-			
-			while(!Thread.currentThread().isInterrupted()) {
+
+			while (!Thread.currentThread().isInterrupted()) {
 				Thread.sleep(1000);
 			}
 

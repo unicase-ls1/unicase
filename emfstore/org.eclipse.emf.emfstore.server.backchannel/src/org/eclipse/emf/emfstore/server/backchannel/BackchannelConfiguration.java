@@ -16,7 +16,7 @@ import org.eclipse.emf.emfstore.server.ServerConfiguration;
  */
 public final class BackchannelConfiguration {
 
-	private BackchannelConfiguration(){
+	private BackchannelConfiguration() {
 	}
 
 	/**
@@ -31,6 +31,7 @@ public final class BackchannelConfiguration {
 
 	/**
 	 * Returns the properties, using {@link ServerConfiguration}.
+	 * 
 	 * @return java properties
 	 */
 	public static Properties getProperties() {
@@ -38,14 +39,13 @@ public final class BackchannelConfiguration {
 	}
 
 	/**
-	 * Gets a integer property. 
-	 *
+	 * Gets a integer property.
+	 * 
 	 * @param propertyName propertyname
 	 * @param defaultProperty default property
 	 * @return property value
 	 */
-	public static int getNumberProperty(String propertyName,
-			String defaultProperty) {
+	public static int getNumberProperty(String propertyName, String defaultProperty) {
 		String property = getProperties().getProperty(propertyName);
 		try {
 			if (property != null) {

@@ -29,14 +29,11 @@ public class BachchannelInitiator implements PostStartupListener {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void postStartUp(
-			ServerSpace serverspace,
-			AccessControlImpl accessControl,
-			Set<ConnectionHandler<? extends EmfStoreInterface>> connectionHandlers) {
+	public void postStartUp(ServerSpace serverspace, AccessControlImpl accessControl,
+		Set<ConnectionHandler<? extends EmfStoreInterface>> connectionHandlers) {
 
 		try {
-			BackchannelInterface backchannelImpl = new BackchannelImpl(
-					serverspace, accessControl);
+			BackchannelInterface backchannelImpl = new BackchannelImpl(serverspace, accessControl);
 			RMIBackchannelConnectionHandler connectionHandler = new RMIBackchannelConnectionHandler();
 			connectionHandler.init(backchannelImpl, accessControl);
 

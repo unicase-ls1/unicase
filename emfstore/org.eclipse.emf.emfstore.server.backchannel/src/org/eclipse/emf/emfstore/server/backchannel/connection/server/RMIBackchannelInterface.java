@@ -15,8 +15,7 @@ public interface RMIBackchannelInterface extends Remote {
 
 	/**
 	 * @see org.unicase.backchannel.server.BackchannelInterface#registerRemoteListener(org.eclipse.emf.emfstore.server.model.SessionId,
-	 *      org.unicase.emfstore.eventmanager.EMFStoreEventListener,
-	 *      org.eclipse.emf.emfstore.server.model.ProjectId)
+	 *      org.unicase.emfstore.eventmanager.EMFStoreEventListener, org.eclipse.emf.emfstore.server.model.ProjectId)
 	 * 
 	 * @param sessionId
 	 *            as string
@@ -29,9 +28,8 @@ public interface RMIBackchannelInterface extends Remote {
 	 * @throws EmfStoreException
 	 *             in case of failure
 	 */
-	void registerRemoteListener(String sessionId,
-			RMIBackchannelCallback listener, String projectId)
-			throws RemoteException, EmfStoreException;
+	void registerRemoteListener(String sessionId, RMIBackchannelCallback listener, String projectId)
+		throws RemoteException, EmfStoreException;
 
 	/**
 	 * @see org.unicase.backchannel.server.BackchannelInterface#sendEvent(org.eclipse.emf.emfstore.server.model.SessionId,
@@ -49,7 +47,6 @@ public interface RMIBackchannelInterface extends Remote {
 	 * @throws EmfStoreException
 	 *             in case of failure
 	 */
-	void sendEvent(String sessionId, String event, String projectId)
-			throws RemoteException, EmfStoreException;
+	void sendEvent(String sessionId, String event, String projectId) throws RemoteException, EmfStoreException;
 
 }

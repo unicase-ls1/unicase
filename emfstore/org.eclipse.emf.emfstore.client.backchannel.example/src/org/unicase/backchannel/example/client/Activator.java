@@ -13,7 +13,7 @@ public class Activator extends Plugin {
 
 	// The shared instance
 	private static Activator plugin;
-	
+
 	/**
 	 * The constructor
 	 */
@@ -42,7 +42,7 @@ public class Activator extends Plugin {
 
 	/**
 	 * Returns the shared instance
-	 *
+	 * 
 	 * @return the shared instance
 	 */
 	public static Activator getDefault() {

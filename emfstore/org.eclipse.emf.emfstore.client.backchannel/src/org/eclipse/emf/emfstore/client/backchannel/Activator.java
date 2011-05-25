@@ -3,7 +3,6 @@ package org.eclipse.emf.emfstore.client.backchannel;
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
-
 /**
  * The activator class controls the plug-in life cycle
  */
@@ -14,7 +13,7 @@ public class Activator extends Plugin {
 
 	// The shared instance
 	private static Activator plugin;
-	
+
 	/**
 	 * The constructor
 	 */
@@ -41,7 +40,7 @@ public class Activator extends Plugin {
 
 	/**
 	 * Returns the shared instance
-	 *
+	 * 
 	 * @return the shared instance
 	 */
 	public static Activator getDefault() {

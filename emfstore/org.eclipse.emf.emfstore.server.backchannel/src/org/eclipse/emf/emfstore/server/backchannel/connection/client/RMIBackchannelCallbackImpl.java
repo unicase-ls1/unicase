@@ -20,8 +20,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerEven
  * 
  * @author wesendon
  */
-public class RMIBackchannelCallbackImpl extends UnicastRemoteObject implements
-		RMIBackchannelCallback {
+public class RMIBackchannelCallbackImpl extends UnicastRemoteObject implements RMIBackchannelCallback {
 
 	private static final long serialVersionUID = 6877646068571055517L;
 
@@ -33,23 +32,18 @@ public class RMIBackchannelCallbackImpl extends UnicastRemoteObject implements
 	 * @param listener client side listener which will be notified
 	 * @throws RemoteException in case of failure
 	 */
-	public RMIBackchannelCallbackImpl(EMFStoreEventListener listener)
-			throws RemoteException {
-		super(BackchannelConfiguration
-				.getNumberProperty(
-						BackchannelConfiguration.BACKCHANNEL_RMI_PORT,
-						BackchannelConfiguration.BACKCHANNEL_RMI_PORT_DEFAULT)+2);
+	public RMIBackchannelCallbackImpl(EMFStoreEventListener listener) throws RemoteException {
+		super(BackchannelConfiguration.getNumberProperty(BackchannelConfiguration.BACKCHANNEL_RMI_PORT,
+			BackchannelConfiguration.BACKCHANNEL_RMI_PORT_DEFAULT) + 2);
 		this.listener = listener;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean handleEvent(String event) throws RemoteException,
-			EmfStoreException {
+	public boolean handleEvent(String event) throws RemoteException, EmfStoreException {
 		try {
-			return listener.handleEvent((ServerEvent) ModelUtil
-					.stringToEObject(event));
+			return listener.handleEvent((ServerEvent) ModelUtil.stringToEObject(event));
 		} catch (SerializationException e) {
 			throw new EmfStoreException(e);
 		}
