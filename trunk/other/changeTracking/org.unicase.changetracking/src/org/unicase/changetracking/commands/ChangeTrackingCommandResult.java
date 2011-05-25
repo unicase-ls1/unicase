@@ -5,7 +5,9 @@
  */
 package org.unicase.changetracking.commands;
 
+import org.unicase.changetracking.exceptions.CancelledByUserException;
 import org.unicase.changetracking.exceptions.MisuseException;
+import org.unicase.changetracking.exceptions.UnexpectedChangeTrackingException;
 
 /**
  * The result of a change tracking command. Stores the result type and
@@ -163,6 +165,23 @@ public class ChangeTrackingCommandResult {
 	 */
 	public String getCaption() {
 		return getDefaultCaption(resultType);
+	}
+	
+	/**
+	 * Throws an according exception if the result is not SUCCESS or WARNING.
+	 * If it is ERROR an Unexpecte
+	 */
+	public void throwExceptionIfNotSuccessful(){
+		switch(getResultType()){
+		case CANCELLED:
+			throw new CancelledByUserException();
+		case ERROR:
+			throw new UnexpectedChangeTrackingException(getException());
+		case MISUSE:
+			throw new MisuseException(getMessage());
+		default:
+			break;
+		}
 	}
 
 }

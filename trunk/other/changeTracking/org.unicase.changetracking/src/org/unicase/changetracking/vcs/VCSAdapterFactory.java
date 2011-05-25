@@ -28,7 +28,7 @@ import org.unicase.model.changetracking.Stream;
  */
 public class VCSAdapterFactory {
 
-	private List<VCSAdapterProvider> getProviders() {
+	private List<IVCSAdapterProvider> getProviders() {
 		return VCSAdapterRegistry.INSTANCE.getProviders();
 	}
 
@@ -44,8 +44,8 @@ public class VCSAdapterFactory {
 	 * @return the matching adapter
 	 * @throws MisuseException if no matching adapter was found
 	 */
-	public VCSAdapter createFromProjects(IProject... p) throws MisuseException {
-		for (VCSAdapterProvider v : getProviders()) {
+	public IVCSAdapter createFromProjects(IProject... p) throws MisuseException {
+		for (IVCSAdapterProvider v : getProviders()) {
 			if (v.providesForProjects(p)) {
 				return v.create();
 			}
@@ -61,8 +61,8 @@ public class VCSAdapterFactory {
 	 * @return the matching adapter
 	 * @throws MisuseException if no matching adapter was found
 	 */
-	public VCSAdapter createFromChangePackage(ChangePackage cp) throws MisuseException {
-		for (VCSAdapterProvider v : getProviders()) {
+	public IVCSAdapter createFromChangePackage(ChangePackage cp) throws MisuseException {
+		for (IVCSAdapterProvider v : getProviders()) {
 			if (v.providesForChangePackage(cp)) {
 				return v.create();
 			}
@@ -81,7 +81,7 @@ public class VCSAdapterFactory {
 	 * @throws MisuseException if no matching adapter was found or if the
 	 *             release doesn't have a stream or repository stream assigned
 	 */
-	public VCSAdapter createFromRelease(Release r) throws MisuseException {
+	public IVCSAdapter createFromRelease(Release r) throws MisuseException {
 		Stream s = r.getStream();
 		if (s == null) {
 			throw new MisuseException("The release has no stream attached.");
@@ -90,7 +90,7 @@ public class VCSAdapterFactory {
 		if (rs == null) {
 			throw new MisuseException("The stream of the release has no repository stream attached");
 		}
-		for (VCSAdapterProvider v : getProviders()) {
+		for (IVCSAdapterProvider v : getProviders()) {
 			if (v.providesForStream(rs)) {
 				return v.create();
 			}

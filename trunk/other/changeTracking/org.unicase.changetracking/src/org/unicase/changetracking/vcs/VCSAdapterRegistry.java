@@ -28,8 +28,8 @@ public final class VCSAdapterRegistry {
 	 */
 	public static final VCSAdapterRegistry INSTANCE = new VCSAdapterRegistry();
 
-	private List<VCSAdapterProvider> providers = new ArrayList<VCSAdapterProvider>();
-	private List<VCSAdapterProvider> unmodifiableList = Collections.unmodifiableList(providers);
+	private List<IVCSAdapterProvider> providers = new ArrayList<IVCSAdapterProvider>();
+	private List<IVCSAdapterProvider> unmodifiableList = Collections.unmodifiableList(providers);
 
 	private VCSAdapterRegistry() {
 		readExtension();
@@ -40,7 +40,7 @@ public final class VCSAdapterRegistry {
 
 		for (IConfigurationElement ext : extensions) {
 			try {
-				VCSAdapterProvider p = (VCSAdapterProvider) ext.createExecutableExtension("class");
+				IVCSAdapterProvider p = (IVCSAdapterProvider) ext.createExecutableExtension("class");
 				providers.add(p);
 			} catch (ClassCastException e) {
 				ModelUtil.logException(e);
@@ -56,7 +56,7 @@ public final class VCSAdapterRegistry {
 	 * 
 	 * @return list of adapter providers
 	 */
-	public List<VCSAdapterProvider> getProviders() {
+	public List<IVCSAdapterProvider> getProviders() {
 		return unmodifiableList;
 	}
 

@@ -11,7 +11,7 @@ import org.unicase.changetracking.common.IDecisionProvider;
 import org.unicase.changetracking.common.IDecisionProvider.PlacementAndNameDecision;
 import org.unicase.changetracking.exceptions.CancelledByUserException;
 import org.unicase.changetracking.exceptions.VCSException;
-import org.unicase.changetracking.vcs.VCSAdapter;
+import org.unicase.changetracking.vcs.IVCSAdapter;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.changetracking.ChangetrackingFactory;
@@ -31,7 +31,7 @@ public class CreateStreamFromCurrentBranchCommand extends CreateStreamCommand {
 
 	private IProject workspaceProject;
 	private IDecisionProvider decisionProvider;
-	private VCSAdapter vcs;
+	private IVCSAdapter vcs;
 	private Stream stream;
 
 	/**
@@ -41,7 +41,7 @@ public class CreateStreamFromCurrentBranchCommand extends CreateStreamCommand {
 	 * @param decisionProvider decision provider to be used.
 	 * @param workspaceProject the project from which to create the stream.
 	 */
-	public CreateStreamFromCurrentBranchCommand(VCSAdapter vcs, IDecisionProvider decisionProvider, IProject workspaceProject) {
+	public CreateStreamFromCurrentBranchCommand(IVCSAdapter vcs, IDecisionProvider decisionProvider, IProject workspaceProject) {
 		this.workspaceProject = workspaceProject;
 		this.decisionProvider = decisionProvider;
 		this.vcs = vcs;

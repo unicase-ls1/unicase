@@ -19,7 +19,6 @@ package org.unicase.changetracking.git.common;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URISyntaxException;
 import java.util.Collection;
 
@@ -44,11 +43,15 @@ import org.eclipse.jgit.transport.RemoteConfig;
 import org.eclipse.jgit.transport.Transport;
 import org.eclipse.jgit.transport.URIish;
 import org.eclipse.osgi.util.NLS;
+import org.unicase.changetracking.exceptions.CancelledByUserException;
+import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
+import org.unicase.model.changetracking.git.GitBranch;
+import org.unicase.model.changetracking.git.GitRepository;
 
 /**
  * Clones a repository from a remote location to a local location.
  * 
- * Copy Pasted from EGit (their implementation is in a non-exported
+ * Large parts are copy pasted from EGit (their implementation is in a non-exported
  * package, so I could not import it...)
  * 
  * @author jfinis
@@ -99,7 +102,7 @@ public class GitCloneOperation {
 	 * @param remoteName
 	 *            name of created remote config as source remote (typically
 	 *            named "origin").
-	 * @param timeout timeout in seconds
+	 * @param timeout timeout in milliseconds
 	 * @param credentialsProvider 
 	 */
 	public GitCloneOperation(final URIish uri, final boolean allSelected,
@@ -117,6 +120,25 @@ public class GitCloneOperation {
 	}
 
 	/**
+	 * Simplified constructor using default values for most fields.
+	 * @param uri remote repo URI
+	 * @param workdir working directory in which the repo will be cloned
+	 * @param branch branch to be initially checked out
+	 * @param timeout timeout in milliseconds
+	 */
+	public GitCloneOperation(GitRepository repo, File workdir, GitBranch branch, int timeout){
+		this(repoToUri(repo),true,null,workdir,GitUtil.getFullBranchNameFromBranch(branch),"origin",timeout,GitUtil.getDefaultCredentialsProvider());
+	}
+	
+	private static URIish repoToUri(GitRepository repo) {
+		try {
+			return GitUtil.getURIFromRemote(repo);
+		} catch (URISyntaxException e) {
+			throw new UnexpectedGitException(e);
+		}
+	}
+
+	/**
 	 * @param pm
 	 *            the monitor to be used for reporting progress and responding
 	 *            to cancellation. The monitor is never <code>null</code>
@@ -124,7 +146,7 @@ public class GitCloneOperation {
 	 * @throws InterruptedException
 	 */
 	public void run(final IProgressMonitor pm)
-			throws InvocationTargetException, InterruptedException {
+			throws CancelledByUserException {
 		final IProgressMonitor monitor;
 		if (pm == null)
 			monitor = new NullProgressMonitor();
@@ -144,9 +166,9 @@ public class GitCloneOperation {
 		} catch (final Exception e) {
 			delete(workdir);
 			if (monitor.isCanceled())
-				throw new InterruptedException();
+				throw new CancelledByUserException();
 			else
-				throw new InvocationTargetException(e);
+				throw new UnexpectedGitException(e);
 		} finally {
 			monitor.done();
 		}

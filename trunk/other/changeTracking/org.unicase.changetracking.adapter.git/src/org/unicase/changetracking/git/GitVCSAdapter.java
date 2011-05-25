@@ -27,7 +27,7 @@ import org.unicase.changetracking.git.release.GitReport;
 import org.unicase.changetracking.git.ui.RemoteURLInput;
 import org.unicase.changetracking.release.ReleaseCheckReport;
 import org.unicase.changetracking.vcs.BasicVCSAdapter;
-import org.unicase.changetracking.vcs.NameValidator;
+import org.unicase.changetracking.vcs.INameValidator;
 import org.unicase.metamodel.Project;
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.Release;
@@ -84,7 +84,7 @@ public class GitVCSAdapter extends BasicVCSAdapter {
 	}
 
 	@Override
-	public NameValidator getNameValidator() {
+	public INameValidator getNameValidator() {
 		return new GitNameValidator();
 	}
 
