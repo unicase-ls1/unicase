@@ -24,17 +24,19 @@ import edu.tum.cs.cope.migration.execution.ReleaseUtil;
 
 /**
  * EMFStoreMigrator implementation based on COPE.
+ * 
  * @author koegel
- *
+ * 
  */
 public class CopeMigrator implements EMFStoreMigrator {
 
-
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.emf.emfstore.migration.EMFStoreMigrator#migrate(java.util.List, int)
 	 */
-	public void migrate(List<URI> resources, int sourceModelReleaseNumber, IProgressMonitor monitor) throws EMFStoreMigrationException {
+	public void migrate(List<URI> resources, int sourceModelReleaseNumber, IProgressMonitor monitor)
+		throws EMFStoreMigrationException {
 		if (resources.size() < 1) {
 			return;
 		}

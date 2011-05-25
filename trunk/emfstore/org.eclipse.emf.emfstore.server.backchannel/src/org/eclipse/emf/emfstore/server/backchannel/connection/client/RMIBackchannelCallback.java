@@ -14,7 +14,7 @@ import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
  * RMI callback object. This class will be sent to the server and be used from
  * the server to send back events.
  * 
- * @author wesendon * 
+ * @author wesendon *
  */
 public interface RMIBackchannelCallback extends Remote {
 
@@ -22,11 +22,10 @@ public interface RMIBackchannelCallback extends Remote {
 	 * Recieves events from the server.
 	 * 
 	 * @param event event from server
-	 * @return true if listener wants to stay connected 
+	 * @return true if listener wants to stay connected
 	 * @throws RemoteException in case of connection error
 	 * @throws EmfStoreException in case of other failure
 	 */
-	boolean handleEvent(String event) throws RemoteException,
-			EmfStoreException;
+	boolean handleEvent(String event) throws RemoteException, EmfStoreException;
 
 }

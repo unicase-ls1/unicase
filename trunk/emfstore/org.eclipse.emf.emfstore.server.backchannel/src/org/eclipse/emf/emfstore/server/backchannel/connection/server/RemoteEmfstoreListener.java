@@ -20,6 +20,7 @@ public class RemoteEmfstoreListener implements EMFStoreEventListener {
 
 	/**
 	 * Default constructor.
+	 * 
 	 * @param listener rmi call back object
 	 * 
 	 */
@@ -35,8 +36,7 @@ public class RemoteEmfstoreListener implements EMFStoreEventListener {
 			return false;
 		}
 		try {
-			return listener.handleEvent(ModelUtil
-					.eObjectToString(event));
+			return listener.handleEvent(ModelUtil.eObjectToString(event));
 		} catch (RemoteException e) {
 			listener = null;
 			return false;

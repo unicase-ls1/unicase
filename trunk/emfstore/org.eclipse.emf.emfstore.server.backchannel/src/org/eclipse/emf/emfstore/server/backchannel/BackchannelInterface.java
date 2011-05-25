@@ -29,19 +29,17 @@ public interface BackchannelInterface extends EmfStoreInterface {
 	 * @param projectId id of project the listener wants to register. can be null if you are serveradmin.
 	 * @throws EmfStoreException in case of a failure
 	 */
-	void registerRemoteListener(SessionId sessionId,
-			EMFStoreEventListener listener, ProjectId projectId)
-			throws EmfStoreException;
+	void registerRemoteListener(SessionId sessionId, EMFStoreEventListener listener, ProjectId projectId)
+		throws EmfStoreException;
 
 	/**
 	 * Send an event to the server.
 	 * 
 	 * @param sessinoId session id
-	 * @param event event 
+	 * @param event event
 	 * @param projectId project id, can be null
 	 * @throws EmfStoreException in case of failure
 	 */
-	void sendEvent(SessionId sessinoId, ServerEvent event, ProjectId projectId)
-			throws EmfStoreException;
+	void sendEvent(SessionId sessinoId, ServerEvent event, ProjectId projectId) throws EmfStoreException;
 
 }

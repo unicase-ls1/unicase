@@ -33,18 +33,16 @@ public abstract class ProxyClient {
 	private SessionId sessionId;
 	private ProjectSpaceImpl projectSpace;
 
-	public void loginServer(String username, String password, String url,
-			String clientVersion, String certificate, int port) throws EmfStoreException {
-		setConnectionManager(WorkspaceManager.getInstance()
-				.getConnectionManager());
+	public void loginServer(String username, String password, String url, String clientVersion, String certificate,
+		int port) throws EmfStoreException {
+		setConnectionManager(WorkspaceManager.getInstance().getConnectionManager());
 		ClientVersionInfo _clientVersion = Configuration.getClientVersion();
 		if (clientVersion != null) {
 			_clientVersion.setVersion(clientVersion);
 		}
 		ServerInfo serverInfo = getServerInfo(url, certificate, port);
-		setSessionId(getConnectionManager().logIn(username, KeyStoreManager
-				.getInstance().encrypt(password, serverInfo), serverInfo,
-				_clientVersion));
+		setSessionId(getConnectionManager().logIn(username,
+			KeyStoreManager.getInstance().encrypt(password, serverInfo), serverInfo, _clientVersion));
 	}
 
 	public ServerInfo getServerInfo(String url, String certificate, int port) {
@@ -58,24 +56,22 @@ public abstract class ProxyClient {
 	}
 
 	public PrimaryVersionSpec createVersionSpec(int id) {
-		PrimaryVersionSpec primaryVersionSpec = VersioningFactory.eINSTANCE
-				.createPrimaryVersionSpec();
+		PrimaryVersionSpec primaryVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 		primaryVersionSpec.setIdentifier(id);
 		return primaryVersionSpec;
 	}
-	
+
 	public ProjectInfo getProjectInfo(String projectName, boolean contains) throws EmfStoreException {
 		for (ProjectInfo info : getProjectList()) {
-			if ((!contains && info.getName().equals(projectName))
-					|| (contains && info.getName().contains(projectName))) {
+			if ((!contains && info.getName().equals(projectName)) || (contains && info.getName().contains(projectName))) {
 				return info;
 			}
 		}
 		return null;
 	}
-	
+
 	abstract public void run() throws Exception;
-	
+
 	public ProjectSpaceImpl createTransientProjectSpace(Project project) {
 		setProjectSpace((ProjectSpaceImpl) ModelFactory.eINSTANCE.createProjectSpace());
 		getProjectSpace().setBaseVersion(VersioningFactory.eINSTANCE.createPrimaryVersionSpec());
@@ -98,7 +94,7 @@ public abstract class ProxyClient {
 		logMessage.setMessage(message);
 		return logMessage;
 	}
-	
+
 	public List<ProjectInfo> getProjectList() throws EmfStoreException {
 		return getConnectionManager().getProjectList(getSessionId());
 	}

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * </copyright>
- *
+ * 
  * $Id$
  */
 package org.eclipse.emf.emfstore.bowling.util;
@@ -16,13 +16,14 @@ import org.eclipse.emf.emfstore.bowling.*;
 /**
  * <!-- begin-user-doc -->
  * The <b>Switch</b> for the model's inheritance hierarchy.
- * It supports the call {@link #doSwitch(EObject) doSwitch(object)}
- * to invoke the <code>caseXXX</code> method for each class of the model,
+ * It supports the call {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each
+ * class of the model,
  * starting with the actual class of the object
  * and proceeding up the inheritance hierarchy
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.emf.emfstore.bowling.BowlingPackage
  * @generated
  */
@@ -31,6 +32,7 @@ public class BowlingSwitch<T> {
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected static BowlingPackage modelPackage;
@@ -39,6 +41,7 @@ public class BowlingSwitch<T> {
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public BowlingSwitch() {
@@ -48,9 +51,11 @@ public class BowlingSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
+	 * result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
@@ -59,65 +64,71 @@ public class BowlingSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
+	 * result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
+		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
+	 * result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case BowlingPackage.PLAYER: {
-				Player player = (Player)theEObject;
-				T result = casePlayer(player);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BowlingPackage.LEAGUE: {
-				League league = (League)theEObject;
-				T result = caseLeague(league);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BowlingPackage.TOURNAMENT: {
-				Tournament tournament = (Tournament)theEObject;
-				T result = caseTournament(tournament);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BowlingPackage.MATCHUP: {
-				Matchup matchup = (Matchup)theEObject;
-				T result = caseMatchup(matchup);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BowlingPackage.GAME: {
-				Game game = (Game)theEObject;
-				T result = caseGame(game);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case BowlingPackage.PLAYER: {
+			Player player = (Player) theEObject;
+			T result = casePlayer(player);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case BowlingPackage.LEAGUE: {
+			League league = (League) theEObject;
+			T result = caseLeague(league);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case BowlingPackage.TOURNAMENT: {
+			Tournament tournament = (Tournament) theEObject;
+			T result = caseTournament(tournament);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case BowlingPackage.MATCHUP: {
+			Matchup matchup = (Matchup) theEObject;
+			T result = caseMatchup(matchup);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case BowlingPackage.GAME: {
+			Game game = (Game) theEObject;
+			T result = caseGame(game);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 
@@ -127,6 +138,7 @@ public class BowlingSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Player</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -142,6 +154,7 @@ public class BowlingSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>League</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -157,6 +170,7 @@ public class BowlingSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Tournament</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -172,6 +186,7 @@ public class BowlingSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Matchup</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -187,6 +202,7 @@ public class BowlingSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Game</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -202,6 +218,7 @@ public class BowlingSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
@@ -211,4 +228,4 @@ public class BowlingSwitch<T> {
 		return null;
 	}
 
-} //BowlingSwitch
+} // BowlingSwitch
