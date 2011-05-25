@@ -10,7 +10,7 @@ import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
 import org.unicase.changetracking.commands.CheckReleaseCommand;
 import org.unicase.changetracking.common.IDecisionProvider;
 import org.unicase.changetracking.exceptions.CancelledByUserException;
-import org.unicase.changetracking.git.release.ReleaseChecker;
+import org.unicase.changetracking.git.releasechecking.ReleaseChecker;
 import org.unicase.changetracking.git.ui.LocalRepoFindHandler;
 import org.unicase.model.changetracking.Release;
 
