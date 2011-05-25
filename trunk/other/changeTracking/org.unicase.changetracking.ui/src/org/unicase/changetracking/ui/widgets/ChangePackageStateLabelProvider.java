@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.changetracking.ui;
+package org.unicase.changetracking.ui.widgets;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +19,7 @@ import org.eclipse.swt.graphics.Point;
 import org.unicase.changetracking.release.ChangePackageState;
 import org.unicase.changetracking.release.ReleaseCheckReport;
 import org.unicase.changetracking.release.ReleaseUtil;
+import org.unicase.changetracking.ui.Activator;
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.task.WorkItem;
 

@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.changetracking.ui.commands;
+package org.unicase.changetracking.ui.handlers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.unicase.changetracking.exceptions.MisuseException;
 
 /**
  * Abstract base class for all command handlers which run on Eclipse resources.
@@ -57,6 +58,11 @@ public abstract class ResourceCommandHandler extends ChangeTrackingCommandHandle
 			if (element instanceof IAdaptable) {
 				IProject r = (IProject) ((IAdaptable) element).getAdapter(IProject.class);
 				if (r != null) {
+					
+					//Allow only open projects!
+					if(!r.isOpen()){
+						throw new MisuseException("Cannot perform selected action on a closed project");
+					}
 					resources.add(r);
 				}
 			}

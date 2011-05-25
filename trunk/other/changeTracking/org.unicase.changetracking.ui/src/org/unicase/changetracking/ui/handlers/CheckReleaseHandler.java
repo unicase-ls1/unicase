@@ -4,39 +4,33 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.changetracking.ui.commands;
+package org.unicase.changetracking.ui.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
-import org.unicase.changetracking.commands.ChangeTrackingCommandResult.ResultType;
 import org.unicase.changetracking.commands.CheckReleaseCommand;
-import org.unicase.changetracking.release.ReleaseCheckReport;
+import org.unicase.changetracking.commands.ChangeTrackingCommandResult.ResultType;
 import org.unicase.changetracking.ui.UIDecisionProvider;
 import org.unicase.changetracking.ui.UIUtil;
-import org.unicase.changetracking.ui.releases.BuildReleaseWizard;
-import org.unicase.changetracking.vcs.VCSAdapter;
+import org.unicase.changetracking.ui.dialogs.CheckReleaseDialog;
+import org.unicase.changetracking.vcs.IVCSAdapter;
 import org.unicase.changetracking.vcs.VCSAdapterFactory;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.changetracking.Release;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 /**
- * Handler for the "build release" command.
+ * Handler for the "check release" command.
  * 
  * @author jfinis
  * 
  */
-public class BuildReleaseHandler extends ChangeTrackingCommandHandler {
-
-	@Override
-	public void setEnabled(Object evaluationContext) {
-		setBaseEnabled(true);
-	}
+public class CheckReleaseHandler extends ChangeTrackingCommandHandler {
 
 	/**
-	 * Checks the release and then opens the build release wizard.
+	 * Performs the release checking and then shows the results in the check
+	 * release dialog.
 	 * 
 	 * {@inheritDoc}
 	 */
@@ -47,23 +41,21 @@ public class BuildReleaseHandler extends ChangeTrackingCommandHandler {
 		if (!(me instanceof Release)) {
 			abort("The selected model element is no change tracking release");
 		}
+		Release r = (Release) me;
 
 		// Retrieve correspondent adapter
-		Release r = (Release) me;
-		VCSAdapter vcs = new VCSAdapterFactory().createFromRelease(r);
+		IVCSAdapter vcs = new VCSAdapterFactory().createFromRelease(r);
 
-		// Check the release
+		// Perform checking
 		CheckReleaseCommand command = vcs.checkRelease(new UIDecisionProvider(), r);
 		ChangeTrackingCommandResult result = UIUtil.runCommand(command);
 		if (result.getResultType() != ResultType.SUCCESS) {
 			return;
 		}
-		ReleaseCheckReport report = command.getReport();
 
-		// Open the build release wizard
-		WizardDialog dlg = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), new BuildReleaseWizard(r, report, vcs));
-		dlg.open();
-
+		// Show the dialog
+		CheckReleaseDialog dialog = new CheckReleaseDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), r, command.getReport());
+		dialog.open();
 	}
 
 }

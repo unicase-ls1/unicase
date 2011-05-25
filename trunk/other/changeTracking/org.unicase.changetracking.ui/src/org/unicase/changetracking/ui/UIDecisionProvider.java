@@ -8,8 +8,9 @@ package org.unicase.changetracking.ui;
 import org.eclipse.jface.window.Window;
 import org.unicase.changetracking.common.IDecisionProvider;
 import org.unicase.changetracking.exceptions.CancelledByUserException;
-import org.unicase.changetracking.ui.AdvancedMessageDialog.NoRemoteRepoChoices;
+import org.unicase.changetracking.ui.dialogs.AdvancedMessageDialog;
 import org.unicase.changetracking.ui.dialogs.ModelElementPlacementDialog;
+import org.unicase.changetracking.ui.dialogs.AdvancedMessageDialog.NoRemoteRepoChoices;
 import org.unicase.model.UnicaseModelElement;
 
 /**

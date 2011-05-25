@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.changetracking.ui.releases;
+package org.unicase.changetracking.ui.widgets;
 
 import java.text.DateFormat;
 
@@ -25,9 +25,6 @@ import org.unicase.changetracking.release.Problem;
 import org.unicase.changetracking.release.ReleaseCheckReport;
 import org.unicase.changetracking.release.WorkItemStatistics;
 import org.unicase.changetracking.ui.Activator;
-import org.unicase.changetracking.ui.ChangePackageStateLabelProvider;
-import org.unicase.changetracking.ui.ImageAndTextLabel;
-import org.unicase.changetracking.ui.ReleaseTreeViewer;
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.Release;
 

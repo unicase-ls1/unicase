@@ -4,15 +4,15 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.changetracking.ui.commands;
+package org.unicase.changetracking.ui.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.changetracking.exceptions.VCSException;
-import org.unicase.changetracking.ui.createChangePackage.CreateChangePackageWizard;
-import org.unicase.changetracking.vcs.VCSAdapter;
+import org.unicase.changetracking.ui.wizards.CreateChangePackageWizard;
+import org.unicase.changetracking.vcs.IVCSAdapter;
 import org.unicase.changetracking.vcs.VCSAdapterFactory;
 
 /**
@@ -39,7 +39,7 @@ public class CreateChangePackageHandler extends ResourceCommandHandler {
 		}
 
 		// Retrieve correspondent adapter
-		VCSAdapter vcs;
+		IVCSAdapter vcs;
 		vcs = new VCSAdapterFactory().createFromProjects(projects);
 	
 

@@ -3,18 +3,18 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.changetracking.ui.releases;
+package org.unicase.changetracking.ui;
 
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.WorkbenchException;
 import org.unicase.changetracking.commands.BuildReleaseCommand;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
-import org.unicase.changetracking.ui.Activator;
-import org.unicase.changetracking.ui.UIUtil;
 
 /**
  * Operation executing a buid release command. If the command yields conflict,
  * the operation switches to the java perspective.
+ * 
+ * In, addition, the command sets the lastConflictingCommand properly.
  * 
  * @author jfinis
  * 

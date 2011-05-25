@@ -4,13 +4,13 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.changetracking.ui.commands;
+package org.unicase.changetracking.ui.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.changetracking.commands.BuildReleaseCommand;
 import org.unicase.changetracking.ui.Activator;
-import org.unicase.changetracking.ui.releases.BuildReleaseOperation;
+import org.unicase.changetracking.ui.BuildReleaseOperation;
 
 /**
  * Handler for the "continue release building" command.
@@ -20,7 +20,13 @@ import org.unicase.changetracking.ui.releases.BuildReleaseOperation;
  */
 public class ContinueReleaseBuildingHandler extends ChangeTrackingCommandHandler {
 
-	//TODO Set enabled according to build state
+
+	@Override
+	public void setEnabled(Object evaluationContext) {
+		//Command is only enabled if there is a conflicting command
+		setBaseEnabled(Activator.getLastConflictingCommand() != null);
+	}
+	
 	/**
 	 * Continues the building of a release after a conflict has been resolved.
 	 * 
