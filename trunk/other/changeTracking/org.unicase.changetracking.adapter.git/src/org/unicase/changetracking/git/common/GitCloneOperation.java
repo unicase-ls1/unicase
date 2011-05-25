@@ -127,7 +127,7 @@ public class GitCloneOperation {
 	 * @param timeout timeout in milliseconds
 	 */
 	public GitCloneOperation(GitRepository repo, File workdir, GitBranch branch, int timeout){
-		this(repoToUri(repo),true,null,workdir,GitUtil.getFullBranchNameFromBranch(branch),"origin",timeout,GitUtil.getDefaultCredentialsProvider());
+		this(repoToUri(repo),true,null,workdir,GitNameUtil.getFullBranchNameFromBranch(branch),"origin",timeout,GitUtil.getDefaultCredentialsProvider());
 	}
 	
 	private static URIish repoToUri(GitRepository repo) {

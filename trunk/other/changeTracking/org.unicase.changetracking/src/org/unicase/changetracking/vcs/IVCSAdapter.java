@@ -14,6 +14,7 @@ import org.unicase.changetracking.common.IDecisionProvider;
 import org.unicase.changetracking.exceptions.CancelledByUserException;
 import org.unicase.changetracking.exceptions.NotSupportedByAdapterException;
 import org.unicase.changetracking.exceptions.VCSException;
+import org.unicase.changetracking.release.ReleaseBuildingSettings;
 import org.unicase.changetracking.release.ReleaseCheckReport;
 import org.unicase.metamodel.Project;
 import org.unicase.model.changetracking.ChangePackage;
@@ -79,8 +80,8 @@ public interface IVCSAdapter {
 	RepositoryLocation findRepoLocation(IProject[] workspaceProjects, Project unicaseProject) throws VCSException;
 
 	/**
-	 * Creates a repository location from a set of workspace project. This may also
-	 * include asking the user for additional information.
+	 * Creates a repository location from a set of workspace project. This may
+	 * also include asking the user for additional information.
 	 * 
 	 * For git, this can be done by searching the local repository and asking
 	 * the user for the url of the remote one. For SVN, this can be done by
@@ -165,21 +166,26 @@ public interface IVCSAdapter {
 	 * of the release is already done at this step and the result is provided as
 	 * parameter.
 	 * 
-	 * The command must perform the following tasks: - merge all unmerged change
-	 * packages into the local source code - commit the result to the remote
-	 * repository - create a tag in the remote repository (if allowed by the
-	 * VCS) - create a model element in the unicase project which can be used to
-	 * retrieve the commit of the release. This model element must be a subclass
-	 * of RepositoryRevision. - set the built flag of the release to true, set
-	 * the build date, and attach the created repository revision as built
-	 * revision to the release.
+	 * The command must perform the following tasks:
+	 * 
+	 * - merge all unmerged change packages into the local source code
+	 * 
+	 * - commit the result to the remote repository
+	 * 
+	 * - create a tag in the remote repository (if allowed by the VCS) - create
+	 * a model element in the unicase project which can be used to retrieve the
+	 * commit of the release. This model element must be a subclass of
+	 * RepositoryRevision.
+	 * 
+	 * - set the built flag of the release to true, set the build date, and
+	 * attach the created repository revision as built revision to the release.
 	 * 
 	 * @param release the relase to be built
-	 * @param tagName the desired name for the tag
+	 * @param settings the release building settings as chosen by the user
 	 * @param checkReport the report from checking the release
 	 * @return the command which conducts the build release use case
 	 */
-	BuildReleaseCommand buildRelease(Release release, String tagName, ReleaseCheckReport checkReport);
+	BuildReleaseCommand buildRelease(Release release, ReleaseBuildingSettings settings, ReleaseCheckReport checkReport);
 
 	/**
 	 * Creates a stream from the currently checked out branch of a workspace
@@ -203,8 +209,8 @@ public interface IVCSAdapter {
 	 * The creation will be aborted and the user will be shown the message. If
 	 * all checks succeed, then null must be returned.
 	 * 
-	 * @param localProjects the local projects from which the change package is to
-	 *            be created
+	 * @param localProjects the local projects from which the change package is
+	 *            to be created
 	 * @return a problem message or null if all checks succeeded
 	 * @throws VCSException if a VCS specific exception occurs
 	 */

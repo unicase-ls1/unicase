@@ -12,9 +12,11 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.unicase.changetracking.release.ReleaseBuildingSettings;
 import org.unicase.changetracking.ui.dialogs.IDialogHead;
 import org.unicase.changetracking.vcs.INameValidator;
 import org.unicase.changetracking.vcs.IVCSAdapter;
@@ -33,8 +35,13 @@ import org.unicase.model.changetracking.RepositoryLocation;
  */
 public class BuildSettingsPage extends WizardPage implements IDialogHead {
 
+	private static final String TAG_NAME_LABEL_TEXT = "Tag name for the built revision:";
+	private static final String DEFAULT_PAGE_MESSAGE = "Choose build settings.";
+	private static final String UPLOAD_BUTTON_TEXT = "Upload result directly to remote repository";
+	private static final String UPLOAD_BUTTON_TOOLTIP = "If checked, the resulting commit, tag and all modified branches will directly be committed to the remote repository. If you want to review the result before committing it, leave unchecked. Then, you have to perform the commit manually afterwards.";
 	private Release release;
 	private Text tagNameText;
+	private Button wantUploadButton;
 	private INameValidator validator;
 	private RepositoryLocation repoLoc;
 
@@ -61,17 +68,17 @@ public class BuildSettingsPage extends WizardPage implements IDialogHead {
 	 */
 	public void createControl(Composite parent) {
 		Composite c = new Composite(parent, SWT.NONE);
-		GridDataFactory.swtDefaults().grab(true, true).applyTo(c);
-		GridDataFactory leftGridFactory = GridDataFactory.swtDefaults().grab(true, false).align(SWT.RIGHT, SWT.CENTER);
+		GridDataFactory.swtDefaults().grab(true, true).align(SWT.CENTER, SWT.CENTER).applyTo(c);
+		GridDataFactory leftGridFactory = GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.CENTER);
 		GridDataFactory rightGridFactory = GridDataFactory.swtDefaults().grab(true, false).align(SWT.LEFT, SWT.CENTER);
 
-		GridLayoutFactory.swtDefaults().margins(20, 20).numColumns(2).applyTo(c);
+		GridLayoutFactory.swtDefaults().margins(20, 20).numColumns(2).spacing(20, 40).applyTo(c);
 
-		setMessage("Choose a name for the tag to be created.", INFORMATION);
+		setMessage(DEFAULT_PAGE_MESSAGE, INFORMATION);
 
 		Label textLabel = new Label(c, SWT.NONE);
-		textLabel.setText("Tag name:");
-		leftGridFactory.applyTo(textLabel);
+		textLabel.setText(TAG_NAME_LABEL_TEXT);
+		rightGridFactory.applyTo(textLabel);
 
 		tagNameText = new Text(c, SWT.SINGLE);
 		tagNameText.setText(validator.cleanName(release.getName()));
@@ -81,7 +88,12 @@ public class BuildSettingsPage extends WizardPage implements IDialogHead {
 				refreshStatus();
 			}
 		});
-		rightGridFactory.applyTo(tagNameText);
+		leftGridFactory.applyTo(tagNameText);
+		
+		wantUploadButton = new Button(c, SWT.CHECK);
+		wantUploadButton.setText(UPLOAD_BUTTON_TEXT);
+		wantUploadButton.setToolTipText(UPLOAD_BUTTON_TOOLTIP);
+		GridDataFactory.swtDefaults().grab(true, false).span(2, 1).align(SWT.LEFT, SWT.CENTER).applyTo(wantUploadButton);
 
 		refreshStatus();
 		setControl(c);
@@ -104,6 +116,10 @@ public class BuildSettingsPage extends WizardPage implements IDialogHead {
 	 */
 	public String getTagName() {
 		return tagNameText.getText();
+	}
+
+	public ReleaseBuildingSettings getSettings() {
+		return new ReleaseBuildingSettings(tagNameText.getText(), wantUploadButton.getSelection());
 	}
 
 }

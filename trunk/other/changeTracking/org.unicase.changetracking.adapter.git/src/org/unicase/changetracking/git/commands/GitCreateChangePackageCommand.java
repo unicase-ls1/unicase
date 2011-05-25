@@ -26,6 +26,7 @@ import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
 import org.unicase.changetracking.common.ChangeTrackingUtil;
 import org.unicase.changetracking.exceptions.MisuseException;
 import org.unicase.changetracking.exceptions.VCSException;
+import org.unicase.changetracking.git.common.GitNameUtil;
 import org.unicase.changetracking.git.common.GitPushOperation;
 import org.unicase.changetracking.git.common.GitRepoFindUtil;
 import org.unicase.changetracking.git.common.GitUtil;
@@ -168,7 +169,7 @@ public class GitCreateChangePackageCommand extends ChangeTrackingCommand {
 			} catch (URISyntaxException e) {
 				throw new MisuseException(e);
 			}
-			List<RefSpec> pushSpec = Arrays.asList(GitUtil.getRefSpecFromGitBranch(branch));
+			List<RefSpec> pushSpec = Arrays.asList(GitNameUtil.getRefSpecFromGitBranch(branch,false));
 			PushResult pushResult = new GitPushOperation(repo, repoURI, pushSpec, false, 15000, credentials).run(new SubProgressMonitor(progressMonitor, 3));
 			for (RemoteRefUpdate updateResult : pushResult.getRemoteUpdates()) {
 				if (!GitUtil.isRemoteRefUpdateSuccessful(updateResult)) {

@@ -85,7 +85,7 @@ public class BuildReleaseWizard extends Wizard {
 
 		if (wantBuild) {
 
-			BuildReleaseCommand command = vcs.buildRelease(release, buildSettingsPage.getTagName(), report);
+			BuildReleaseCommand command = vcs.buildRelease(release, buildSettingsPage.getSettings(), report);
 			new BuildReleaseOperation(command, false).run();
 		}
 		return true;

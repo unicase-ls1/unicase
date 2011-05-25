@@ -15,6 +15,7 @@ import org.unicase.changetracking.commands.ChangeTrackingCommand;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
 import org.unicase.changetracking.exceptions.MisuseException;
 import org.unicase.changetracking.git.common.GitFetchOperation;
+import org.unicase.changetracking.git.common.GitNameUtil;
 import org.unicase.changetracking.git.common.GitRepoFindUtil;
 import org.unicase.changetracking.git.common.GitUtil;
 import org.unicase.changetracking.git.common.GitWrapper;
@@ -106,7 +107,7 @@ public class GitApplyChangePackageCommand extends ChangeTrackingCommand {
 
 		//*** 3. Pull the branch from remote ***
 		SubProgressMonitor subMonitor = new SubProgressMonitor(progressMonitor, 4);
-		GitFetchOperation fetchOp = new GitFetchOperation(gitRepoLocation, repo, GitUtil.getDefaultCredentialsProvider(), 15000, GitUtil.getRefSpecFromGitBranch(branch));
+		GitFetchOperation fetchOp = new GitFetchOperation(gitRepoLocation, repo, GitUtil.getDefaultCredentialsProvider(), 15000, GitNameUtil.getRefSpecFromGitBranch(branch,true));
 		fetchOp.setProgressMonitor(subMonitor);
 		FetchResult fetchResult = fetchOp.run();
 		for(TrackingRefUpdate updateResult : fetchResult.getTrackingRefUpdates()){

@@ -25,6 +25,7 @@ import org.unicase.changetracking.git.common.GitRepoFindUtil;
 import org.unicase.changetracking.git.common.GitUtil;
 import org.unicase.changetracking.git.releasechecking.GitReport;
 import org.unicase.changetracking.git.ui.RemoteURLInput;
+import org.unicase.changetracking.release.ReleaseBuildingSettings;
 import org.unicase.changetracking.release.ReleaseCheckReport;
 import org.unicase.changetracking.vcs.BasicVCSAdapter;
 import org.unicase.changetracking.vcs.INameValidator;
@@ -89,8 +90,8 @@ public class GitVCSAdapter extends BasicVCSAdapter {
 	}
 
 	@Override
-	public BuildReleaseCommand buildRelease(Release release, String tagName, ReleaseCheckReport checkReport) {
-		return new GitBuildReleaseCommand(release, tagName, (GitReport) checkReport);
+	public BuildReleaseCommand buildRelease(Release release, ReleaseBuildingSettings settings, ReleaseCheckReport checkReport) {
+		return new GitBuildReleaseCommand(release, settings, (GitReport) checkReport);
 	}
 
 	@Override
