@@ -4,17 +4,17 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.changetracking.ui.commands;
+package org.unicase.changetracking.ui.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
-import org.unicase.changetracking.commands.ChangeTrackingCommandResult.ResultType;
 import org.unicase.changetracking.commands.CreateStreamCommand;
+import org.unicase.changetracking.commands.ChangeTrackingCommandResult.ResultType;
 import org.unicase.changetracking.ui.UIDecisionProvider;
 import org.unicase.changetracking.ui.UIUtil;
-import org.unicase.changetracking.vcs.VCSAdapter;
+import org.unicase.changetracking.vcs.IVCSAdapter;
 import org.unicase.changetracking.vcs.VCSAdapterFactory;
 
 /**
@@ -44,7 +44,7 @@ public class CreateStreamFromCurrentBranchHandler extends ResourceCommandHandler
 		}
 
 		// Retrieve correspondent adapter
-		VCSAdapter vcs = new VCSAdapterFactory().createFromProjects(projects);
+		IVCSAdapter vcs = new VCSAdapterFactory().createFromProjects(projects);
 
 		// Create the stream
 		CreateStreamCommand cmd = vcs.createStreamFromCurrentBranch(new UIDecisionProvider(), projects[0]);

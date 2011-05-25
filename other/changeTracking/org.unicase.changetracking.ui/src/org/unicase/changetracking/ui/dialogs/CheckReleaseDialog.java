@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.changetracking.ui.releases;
+package org.unicase.changetracking.ui.dialogs;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.changetracking.release.ReleaseCheckReport;
 import org.unicase.changetracking.ui.Activator;
+import org.unicase.changetracking.ui.widgets.ReleaseOverviewWidget;
 import org.unicase.model.changetracking.Release;
 
 /**

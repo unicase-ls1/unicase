@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.changetracking.ui.createChangePackage;
+package org.unicase.changetracking.ui.wizards;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -11,7 +11,7 @@ import org.eclipse.jface.wizard.Wizard;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult.ResultType;
 import org.unicase.changetracking.ui.Activator;
 import org.unicase.changetracking.ui.UIUtil;
-import org.unicase.changetracking.vcs.VCSAdapter;
+import org.unicase.changetracking.vcs.IVCSAdapter;
 
 /**
  * Wizard for creating change packages.
@@ -24,7 +24,7 @@ public class CreateChangePackageWizard extends Wizard {
 	private boolean canFinish;
 	private ChooseWorkItemPage chooseWorkItemPage;
 	private ChooseNameAndDescriptionPage chooseNamePage;
-	private VCSAdapter vcs;
+	private IVCSAdapter vcs;
 	private IProject[] selectedProjects;
 	private static final ImageDescriptor PAGE_IMAGE = Activator.getImageDescriptor("icons/wizard/create_change_package_wiz.png");
 
@@ -34,7 +34,7 @@ public class CreateChangePackageWizard extends Wizard {
 	 * @param vcs VCS adapter
 	 * @param selectedProject the selected project
 	 */
-	public CreateChangePackageWizard(VCSAdapter vcs, IProject[] selectedProjects) {
+	public CreateChangePackageWizard(IVCSAdapter vcs, IProject[] selectedProjects) {
 		setFinishable(false);
 		setWindowTitle("Create Change Package");
 		this.vcs = vcs;

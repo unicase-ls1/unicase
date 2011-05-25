@@ -4,7 +4,7 @@
    <extension
          point="org.unicase.ui.meeditor.melinkcontrols">
       <widget
-            class="org.unicase.changetracking.ui.MEChangePackageControl"
+            class="org.unicase.changetracking.ui.widgets.MEChangePackageControl"
             name="org.unicase.changetracking.ui.MEChangePackageControl"
             type="org.eclipse.emf.ecore.EObject">
       </widget>
@@ -12,32 +12,32 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.unicase.changetracking.ui.commands.BuildReleaseHandler"
+            defaultHandler="org.unicase.changetracking.ui.handlers.BuildReleaseHandler"
             id="org.unicase.changetracking.ui.buildReleaseCommand"
             name="Build Release">
       </command>
       <command
-            defaultHandler="org.unicase.changetracking.ui.commands.CheckReleaseHandler"
+            defaultHandler="org.unicase.changetracking.ui.handlers.CheckReleaseHandler"
             id="org.unicase.changetracking.ui.checkReleaseCommand"
             name="Check Release">
       </command>
       <command
-            defaultHandler="org.unicase.changetracking.ui.commands.ApplyChangePackageHandler"
+            defaultHandler="org.unicase.changetracking.ui.handlers.ApplyChangePackageHandler"
             id="org.unicase.changetracking.ui.applyChangePackageCommand"
             name="Apply Change Package">
       </command>
       <command
-            defaultHandler="org.unicase.changetracking.ui.commands.CreateChangePackageHandler"
+            defaultHandler="org.unicase.changetracking.ui.handlers.CreateChangePackageHandler"
             id="org.unicase.changetracking.ui.createChangePackageCommand"
             name="Create Change Package">
       </command>
       <command
-            defaultHandler="org.unicase.changetracking.ui.commands.ContinueReleaseBuildingHandler"
+            defaultHandler="org.unicase.changetracking.ui.handlers.ContinueReleaseBuildingHandler"
             id="org.unicase.changetracking.ui.continueReleaseBuildingCommand"
             name="Continue Release Building">
       </command>
       <command
-            defaultHandler="org.unicase.changetracking.ui.commands.CreateStreamFromCurrentBranchHandler"
+            defaultHandler="org.unicase.changetracking.ui.handlers.CreateStreamFromCurrentBranchHandler"
             id="org.unicase.changetracking.ui.createStreamFromCurrentBranchCommand"
             name="Create Stream From Current Branch">
       </command>

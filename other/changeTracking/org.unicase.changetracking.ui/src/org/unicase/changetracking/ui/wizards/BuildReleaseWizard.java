@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.changetracking.ui.releases;
+package org.unicase.changetracking.ui.wizards;
 
 import org.eclipse.jface.dialogs.IPageChangeProvider;
 import org.eclipse.jface.dialogs.IPageChangedListener;
@@ -12,8 +12,9 @@ import org.eclipse.jface.wizard.IWizardContainer;
 import org.eclipse.jface.wizard.Wizard;
 import org.unicase.changetracking.commands.BuildReleaseCommand;
 import org.unicase.changetracking.release.ReleaseCheckReport;
+import org.unicase.changetracking.ui.BuildReleaseOperation;
 import org.unicase.changetracking.ui.UIUtil;
-import org.unicase.changetracking.vcs.VCSAdapter;
+import org.unicase.changetracking.vcs.IVCSAdapter;
 import org.unicase.model.changetracking.Release;
 import org.unicase.model.changetracking.RepositoryLocation;
 
@@ -31,7 +32,7 @@ public class BuildReleaseWizard extends Wizard {
 	private boolean canFinish;
 	private BuildSettingsPage buildSettingsPage;
 	private RepositoryLocation repoLocation;
-	private VCSAdapter vcs;
+	private IVCSAdapter vcs;
 
 	/**
 	 * Default constructor.
@@ -40,7 +41,7 @@ public class BuildReleaseWizard extends Wizard {
 	 * @param report report from checking the release
 	 * @param vcs VCS adapter to be used
 	 */
-	public BuildReleaseWizard(Release release, ReleaseCheckReport report, VCSAdapter vcs) {
+	public BuildReleaseWizard(Release release, ReleaseCheckReport report, IVCSAdapter vcs) {
 		this.release = release;
 		this.report = report;
 		canFinish = false;

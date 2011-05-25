@@ -4,12 +4,12 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.changetracking.ui.commands;
+package org.unicase.changetracking.ui.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.unicase.changetracking.commands.ChangeTrackingCommand;
 import org.unicase.changetracking.ui.UIUtil;
-import org.unicase.changetracking.vcs.VCSAdapter;
+import org.unicase.changetracking.vcs.IVCSAdapter;
 import org.unicase.changetracking.vcs.VCSAdapterFactory;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.changetracking.ChangePackage;
@@ -41,7 +41,7 @@ public class ApplyChangePackageHandler extends ChangeTrackingCommandHandler {
 	 * @param changePackage change package to be applied
 	 */
 	public void applyChangePackage(ChangePackage changePackage) {
-		VCSAdapter vcs = new VCSAdapterFactory().createFromChangePackage(changePackage);
+		IVCSAdapter vcs = new VCSAdapterFactory().createFromChangePackage(changePackage);
 		ChangeTrackingCommand cmd = vcs.applyChangePackage(changePackage);
 		UIUtil.runCommand(cmd);
 	}

@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.changetracking.ui;
+package org.unicase.changetracking.ui.widgets;
 
 /**
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
@@ -19,7 +19,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.changetracking.ui.commands.ApplyChangePackageHandler;
+import org.unicase.changetracking.ui.Activator;
+import org.unicase.changetracking.ui.handlers.ApplyChangePackageHandler;
 import org.unicase.model.changetracking.git.GitBranchChangePackage;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;

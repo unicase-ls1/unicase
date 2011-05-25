@@ -19,12 +19,16 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.WorkbenchException;
 import org.unicase.changetracking.commands.ChangeTrackingCommand;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
-import org.unicase.changetracking.commands.IUserInterfaceRunnable;
+import org.unicase.changetracking.common.IUserInterfaceRunnable;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 /**
- * Utility class for user interface utility methods.
+ * Utility class for user interface handling methods
+ * of the change tracking plug-in.
+ * 
+ * (Some of the methods in here could also be included
+ * in the basic unicase UI utils...)
  * 
  * @author jfinis
  * 
@@ -94,6 +98,49 @@ public final class UIUtil {
 	 */
 	public static void openInformation(String title, String message) {
 		MessageDialog.openInformation(getActiveShell(), title, message);
+	}
+	
+	/**
+	 * A runnable class with a result.
+	 * 
+	 * @author jfinis
+	 *
+	 * @param <T> result type
+	 */
+	public interface RunnableWithResult<T>{
+		T run();
+	}
+	
+	/**
+	 * Runs a runnable with result in the UI thread.
+	 * This is done synchronously, i.e. method blocks until
+	 * result is returned by the method.
+	 * 
+	 * If the runnable throws a runtime exception, this
+	 * exception is re-thrown by this method.
+	 * 
+	 * @param <T> result type of the runnable
+	 * @param runnable runnable to be run in the UI thread
+	 * @return result of the runnable's run method.
+	 */
+	public static <T> T runSyncInUI(final RunnableWithResult<T> runnable){
+		@SuppressWarnings("unchecked")
+		final T[] result = (T[]) new Object[1];
+		final RuntimeException[] exception = new RuntimeException[1];
+		Display.getDefault().syncExec(new Runnable() {
+			
+			public void run() {
+				try{
+					result[0] = runnable.run();
+				} catch (RuntimeException e) {
+					exception[0] = e;
+				}
+			}
+		});
+		if(exception[0] != null){
+			throw exception[0];
+		}
+		return result[0];
 	}
 
 	/**

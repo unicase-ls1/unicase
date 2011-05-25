@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.changetracking.ui.createChangePackage;
+package org.unicase.changetracking.ui.wizards;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.dialogs.DialogPage;
@@ -24,10 +24,10 @@ import org.unicase.changetracking.common.ChangeTrackingUtil;
 import org.unicase.changetracking.exceptions.CancelledByUserException;
 import org.unicase.changetracking.exceptions.VCSException;
 import org.unicase.changetracking.ui.Activator;
-import org.unicase.changetracking.ui.ImageAndTextLabel;
 import org.unicase.changetracking.ui.UIUtil;
 import org.unicase.changetracking.ui.dialogs.AttacheeSelectionDialog;
-import org.unicase.changetracking.vcs.VCSAdapter;
+import org.unicase.changetracking.ui.widgets.ImageAndTextLabel;
+import org.unicase.changetracking.vcs.IVCSAdapter;
 import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.changetracking.RepositoryLocation;
@@ -61,7 +61,7 @@ public class ChooseWorkItemPage extends WizardPage {
 	private Composite composite;
 	private Button createRepoButton;
 	private String selectedProjectName;
-	private VCSAdapter vcs;
+	private IVCSAdapter vcs;
 	private IProject[] workspaceProjects;
 
 	/**
@@ -111,7 +111,7 @@ public class ChooseWorkItemPage extends WizardPage {
 	 * @param selectedProjects project from which the change package is to be
 	 *            created.
 	 */
-	protected ChooseWorkItemPage(String pageName, String title, ImageDescriptor titleImage, VCSAdapter vcs, IProject[] selectedProjects) {
+	protected ChooseWorkItemPage(String pageName, String title, ImageDescriptor titleImage, IVCSAdapter vcs, IProject[] selectedProjects) {
 		super(pageName, title, titleImage);
 
 		attacheeDialog = new AttacheeSelectionDialog("Choose work item", "Choose a work item to attach the change package to.");

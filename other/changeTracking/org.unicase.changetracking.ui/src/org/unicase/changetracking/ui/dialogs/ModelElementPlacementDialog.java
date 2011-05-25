@@ -35,7 +35,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.changetracking.common.ChangeTrackingUtil;
 import org.unicase.changetracking.ui.Activator;
-import org.unicase.changetracking.ui.ImageAndTextLabel;
+import org.unicase.changetracking.ui.widgets.ImageAndTextLabel;
 import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.ProjectSpace;
