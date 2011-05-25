@@ -5,26 +5,42 @@
  */
 package org.unicase.changetracking.git.commands;
 
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jgit.api.MergeResult;
 import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.lib.RepositoryState;
 import org.eclipse.jgit.revwalk.RevTag;
 import org.eclipse.jgit.transport.CredentialsProvider;
+import org.eclipse.jgit.transport.PushResult;
+import org.eclipse.jgit.transport.RefSpec;
+import org.eclipse.jgit.transport.RemoteRefUpdate;
+import org.eclipse.jgit.transport.URIish;
 import org.unicase.changetracking.commands.BuildReleaseCommand;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
 import org.unicase.changetracking.common.ChangeTrackingUtil;
+import org.unicase.changetracking.exceptions.ErrorInModelException;
 import org.unicase.changetracking.exceptions.MisuseException;
 import org.unicase.changetracking.git.common.GitNameUtil;
+import org.unicase.changetracking.git.common.GitPushOperation;
 import org.unicase.changetracking.git.common.GitUtil;
 import org.unicase.changetracking.git.common.GitWrapper;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
 import org.unicase.changetracking.git.releasechecking.GitReport;
+import org.unicase.changetracking.release.ChangePackageState;
+import org.unicase.changetracking.release.ReleaseBuildingSettings;
+import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.Release;
+import org.unicase.model.changetracking.git.GitBranch;
+import org.unicase.model.changetracking.git.GitBranchChangePackage;
 import org.unicase.model.changetracking.git.GitFactory;
 import org.unicase.model.changetracking.git.GitRepository;
 import org.unicase.model.changetracking.git.GitRevision;
@@ -37,17 +53,20 @@ import org.unicase.model.changetracking.git.GitRevision;
  */
 public class GitBuildReleaseCommand extends BuildReleaseCommand {
 
+	private static final String SUCCESS_MESSAGE_NO_UPLOAD = "Release successfully built.\n\nDo not forget to upload the results to the remote repository once you have checked them!";
+	private static final String SUCCESS_MESSAGE = "Release successfully built and pushed to remote.";
+	
 	private Release release;
 	private Repository localRepo;
 	private Ref baseBranch;
 	private List<Ref> branchesToMerge;
-	private String tagName;
 	private boolean isContinuing;
 	private boolean conflictOccurred;
-	@SuppressWarnings("unused")
-	private CredentialsProvider credentials;
-	@SuppressWarnings("unused")
 	private GitRepository remoteRepo;
+	private Map<ChangePackage, ChangePackageState> changePackageResults;
+	private GitRevision builtRevision;
+	private ReleaseBuildingSettings settings;
+	private CredentialsProvider credentials;
 
 	/**
 	 * Returns the local repository which is used for the release building.
@@ -62,14 +81,15 @@ public class GitBuildReleaseCommand extends BuildReleaseCommand {
 	 * Default constructor.
 	 * 
 	 * @param release2 release to be built
-	 * @param tagName2 name of the tag to be created for the relase
+	 * @param settings build settings
 	 * @param checkReport the report from the previous release check
 	 */
-	public GitBuildReleaseCommand(Release release2, String tagName2, GitReport checkReport) {
+	public GitBuildReleaseCommand(Release release2, ReleaseBuildingSettings settings, GitReport checkReport) {
 		this.release = release2;
-		this.tagName = tagName2;
+		this.settings = settings;
 		this.localRepo = checkReport.getLocalRepo();
 		this.baseBranch = checkReport.getBaseBranch();
+		this.changePackageResults = checkReport.getChangePackageResults();
 		this.remoteRepo = (GitRepository) checkReport.getRepoLocation();
 		this.branchesToMerge = checkReport.getBranchesToMerge();
 		this.credentials = GitUtil.getDefaultCredentialsProvider();
@@ -123,45 +143,111 @@ public class GitBuildReleaseCommand extends BuildReleaseCommand {
 
 		// 4. Add tag for the release
 		progressMonitor.subTask("Creating tag");
-		RevTag tag = git.createTag(tagName, "This is the automatically built release '" + release.getName() + "'");
+		RevTag tag = git.createTag(settings.getTagName(), "This is the automatically built release '" + release.getName() + "'");
 		progressMonitor.worked(1);
 
 		// 5. Create tag in UNICASE and associate with release
 		progressMonitor.subTask("Updating model data");
-		GitRevision revision = GitFactory.eINSTANCE.createGitRevision();
-		revision.setTagName(tagName);
-		revision.setHash(tag.getName());
-		revision.setName("Release: " + release.getName());
-		ChangeTrackingUtil.addToProjectRelative(revision, release, false);
+		builtRevision = GitFactory.eINSTANCE.createGitRevision();
+		builtRevision.setTagName(settings.getTagName());
+		builtRevision.setHash(tag.getName());
+		builtRevision.setName("Release: " + release.getName());
+		ChangeTrackingUtil.addToProjectRelative(builtRevision, release, false);
 		release.setBuilt(true);
 
-		release.setBuiltRevision(revision);
+		release.setBuiltRevision(builtRevision);
 		release.setBuildDate(new Date());
 		progressMonitor.worked(1);
 
 		// 6. Push the tag and the updated branch
-		progressMonitor.subTask("Pushing created revisions to remote repository");
-		/*
-		 *	Note: Pushing after release building is currently disabled. 
-		 */
-//		// Push to remote repo
-//		URIish repoURI;
-//		try {
-//			repoURI = GitUtil.getURIFromCredentials(remoteRepo, credentials);
-//		} catch (URISyntaxException e) {
-//			throw new MisuseException(e);
-//		}
-//		List<RefSpec> pushSpec = Arrays.asList(GitUtil.getRefSpecFromGitBranch(branch));
-//		SubProgressMonitor subProgressMonitor = new SubProgressMonitor(progressMonitor, 3);
-//		PushResult pushResult = new GitPushOperation(repo, repoURI, pushSpec, false, 15000).run(subProgressMonitor);
-//		for(RemoteRefUpdate updateResult : pushResult.getRemoteUpdates()){
-//			if(!GitUtil.isRemoteRefUpdateSuccessful(updateResult)){
-//				throw new UnexpectedGitException("Was unable to push the created branch to the remote repository.\nReason: " + updateResult.getMessage() + " (" + updateResult.getStatus()+ ")");
-//			}
-//		}
+		if(settings.wantUploadToRemote()){
+			progressMonitor.subTask("Pushing created revisions to remote repository");
+			try{
+				pushToRemote();
+			} catch (UnexpectedGitException e){
+				throw new UnexpectedGitException("The release has been built successfully, but the pushing of the results was unsuccessful. Perform the pushing manually.\n\nFailure reason:\n" + e.getMessage(),e.getCause());
+			}
+		}
 		progressMonitor.worked(3);
 
-		return successResult("Release successfully built.");
+		if(settings.wantUploadToRemote()){
+			return successResult(SUCCESS_MESSAGE);
+		} else {
+			return successResult(SUCCESS_MESSAGE_NO_UPLOAD);
+		}
+	}
+
+	/**
+	 * Pushes the resulting build to the remote repository.
+	 */
+	private void pushToRemote() {
+	
+		//Get uri
+		URIish repoURI;
+		try {
+			repoURI = GitUtil.getURIFromRemote(remoteRepo);
+		} catch (URISyntaxException e) {
+			throw new UnexpectedGitException(e);
+		}
+		
+		//Get list of things to be pushed
+		List<RefSpec> pushSpec = buildPushSpec();
+		
+		//Do the push
+		PushResult pushResult = new GitPushOperation(localRepo, repoURI, pushSpec, false, 15000, credentials).run(new NullProgressMonitor());
+		
+		//Check that everything went well
+		StringBuilder errors = new StringBuilder();
+		for(RemoteRefUpdate updateResult : pushResult.getRemoteUpdates()){
+			if(!GitUtil.isRemoteRefUpdateSuccessful(updateResult)){
+				errors.append("\nUnable to push '" + updateResult.getSrcRef() + "': " + updateResult.getMessage() + " (" + updateResult.getStatus()+ ")");
+			}
+		}
+		
+		//There were errors? -> throw exception
+		if(errors.length() > 0){
+			errors.insert(0, "Some parts of the result could not be pushed to the remote repository:");
+			throw new UnexpectedGitException(errors.toString());
+		}
+		
+	}
+
+	/**
+	 * Builds the list of ref specs to be pushed to the
+	 * remote repository after a successful build. The following
+	 * refs have to be pushed:
+	 * 
+	 * -The release branch
+	 * 
+	 * -All unmerged change package branches
+	 * 
+	 * -The created tag
+	 * 
+	 * @return list of ref specs to be pushed to the remote repo
+	 */
+	private List<RefSpec> buildPushSpec() {
+		ArrayList<RefSpec> result = new ArrayList<RefSpec>();
+		
+		//Add release branch spec
+		try {
+			result.add(GitNameUtil.getRefSpecFromGitBranch((GitBranch) ChangeTrackingUtil.getRepoStreamOfRelease(release), true));
+		} catch (ErrorInModelException e1) {
+			//cannot happen. Already checked during release checking
+		}
+		
+		//Add specs of unmerged branches
+		for(Entry<ChangePackage, ChangePackageState> e : changePackageResults.entrySet()){
+			if(e.getValue() == ChangePackageState.UNMERGED){
+				ChangePackage cp = e.getKey();
+				GitBranch b = ((GitBranchChangePackage)cp).getBranch();
+				result.add(GitNameUtil.getRefSpecFromGitBranch(b, true));
+			}
+		}
+		
+		//Add tag
+		result.add(GitNameUtil.getRefSpecFromGitTag(builtRevision, true));
+		
+		return result;
 	}
 
 	/**
@@ -199,6 +285,7 @@ public class GitBuildReleaseCommand extends BuildReleaseCommand {
 		}
 
 		// Check that the tag name is valid
+		String tagName = settings.getTagName();
 		if (tagName == null) {
 			throw new MisuseException("No tag name provided");
 		}

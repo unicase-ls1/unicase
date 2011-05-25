@@ -16,6 +16,7 @@ import org.unicase.changetracking.common.IDecisionProvider;
 import org.unicase.changetracking.exceptions.CancelledByUserException;
 import org.unicase.changetracking.exceptions.NotSupportedByAdapterException;
 import org.unicase.changetracking.exceptions.VCSException;
+import org.unicase.changetracking.release.ReleaseBuildingSettings;
 import org.unicase.changetracking.release.ReleaseCheckReport;
 import org.unicase.metamodel.Project;
 import org.unicase.model.changetracking.ChangePackage;
@@ -71,7 +72,7 @@ public abstract class BasicVCSAdapter implements IVCSAdapter {
 	/**
 	 * {@inheritDoc}
 	 */
-	public BuildReleaseCommand buildRelease(Release release, String tagName, ReleaseCheckReport checkReport) {
+	public BuildReleaseCommand buildRelease(Release release, ReleaseBuildingSettings settings, ReleaseCheckReport checkReport) {
 		return new BuildReleaseCommand() {
 
 			@Override

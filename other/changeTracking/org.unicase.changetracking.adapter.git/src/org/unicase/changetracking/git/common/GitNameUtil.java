@@ -10,6 +10,9 @@ import java.io.IOException;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.transport.RefSpec;
+import org.unicase.model.changetracking.git.GitBranch;
+import org.unicase.model.changetracking.git.GitRevision;
 
 /**
  * Utility class for Git name handling.
@@ -151,5 +154,45 @@ public final class GitNameUtil {
 		}
 		return sb.toString();
 	}
+
 	// END COMPLEX CODE
+
+	/**
+	 * Returns the full name of a git branch in the repository. I.e.
+	 * refs/heads/BRANCHNAME
+	 * 
+	 * @param branch branch
+	 * @return full name
+	 */
+	public static String getFullBranchNameFromBranch(GitBranch branch) {
+		return Constants.R_HEADS + branch.getBranchName();
+	}
+
+	/**
+	 * Retrieves a RefSpec correspondent to a Git branch model element.
+	 * 
+	 * @param branch Git branch model element
+	 * @param force whether the ref spec should also be updated if a
+	 *            non-fastforward-merge has to be done. This is similar to
+	 *            prefixing the spec with '+'.
+	 * @return corresponding RefSpec
+	 */
+	public static RefSpec getRefSpecFromGitBranch(GitBranch branch, boolean force) {
+		String refSpec = getFullBranchNameFromBranch(branch);
+		return new RefSpec((force ? "+" : "") + refSpec + ":" + refSpec);
+	}
+
+	/**
+	 * Retrieves a RefSpec correspondent to a Git tag model element.
+	 * 
+	 * @param tag Git tag model element
+	 * @param force whether the ref spec should also be updated if a
+	 *            non-fastforward-merge has to be done. This is similar to
+	 *            prefixing the spec with '+'.
+	 * @return corresponding RefSpec
+	 */
+	public static RefSpec getRefSpecFromGitTag(GitRevision tag, boolean force) {
+		String refSpec = Constants.R_TAGS + tag.getTagName();
+		return new RefSpec((force ? "+" : "") + refSpec + ":" + refSpec);
+	}
 }

@@ -23,14 +23,12 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.transport.CredentialsProvider;
-import org.eclipse.jgit.transport.RefSpec;
 import org.eclipse.jgit.transport.RemoteRefUpdate;
 import org.eclipse.jgit.transport.RemoteRefUpdate.Status;
 import org.eclipse.jgit.transport.TrackingRefUpdate;
 import org.eclipse.jgit.transport.URIish;
 import org.unicase.changetracking.git.exceptions.UnexpectedGitException;
 import org.unicase.changetracking.git.ui.UICredentialsProvider;
-import org.unicase.model.changetracking.git.GitBranch;
 import org.unicase.model.changetracking.git.GitFactory;
 import org.unicase.model.changetracking.git.GitRepository;
 
@@ -58,17 +56,6 @@ public final class GitUtil {
 		MutableObjectId mo = new MutableObjectId();
 		mo.fromString(s);
 		return mo;
-	}
-
-	/**
-	 * Retrieves a RefSpec correspondent to a Git branch model element.
-	 * 
-	 * @param branch Git branch model element
-	 * @return corresponding RefSpec
-	 */
-	public static RefSpec getRefSpecFromGitBranch(GitBranch branch) {
-		String refSpec = Constants.R_HEADS + branch.getBranchName();
-		return new RefSpec(refSpec + ":" + refSpec);
 	}
 
 	/**
@@ -303,17 +290,6 @@ public final class GitUtil {
 	 */
 	public static CredentialsProvider getDefaultCredentialsProvider(){
 		return new UICredentialsProvider(true);
-	}
-
-	/**
-	 * Returns the full name of a git branch in the repository.
-	 * I.e. refs/heads/BRANCHNAME
-	 * 
-	 * @param branch branch
-	 * @return full name
-	 */
-	public static String getFullBranchNameFromBranch(GitBranch branch) {
-		return Constants.R_HEADS + branch.getBranchName();
 	}
 
 

@@ -31,6 +31,7 @@ import org.unicase.changetracking.common.ChangeTrackingUtil;
 import org.unicase.changetracking.common.PrintfFormat;
 import org.unicase.changetracking.exceptions.ErrorInModelException;
 import org.unicase.changetracking.git.common.GitFetchOperation;
+import org.unicase.changetracking.git.common.GitNameUtil;
 import org.unicase.changetracking.git.common.GitUtil;
 import org.unicase.changetracking.release.ChangePackageState;
 import org.unicase.changetracking.release.Problem;
@@ -235,12 +236,13 @@ public final class ReleaseChecker {
 		}
 
 		ArrayList<RefSpec> branchesToFetch = new ArrayList<RefSpec>();
+		
 		// Add the release branch
-		branchesToFetch.add(GitUtil.getRefSpecFromGitBranch(releaseBranch));
+		branchesToFetch.add(GitNameUtil.getRefSpecFromGitBranch(releaseBranch, true));
 
 		// Add all change package branches
 		for (GitBranch branch : branchMap.keySet()) {
-			branchesToFetch.add(GitUtil.getRefSpecFromGitBranch(branch));
+			branchesToFetch.add(GitNameUtil.getRefSpecFromGitBranch(branch, true));
 		}
 
 		// Perform the update
