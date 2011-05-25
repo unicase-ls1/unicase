@@ -7,6 +7,7 @@ package org.unicase.changetracking.commands;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.unicase.changetracking.common.IUserInterfaceRunnable;
 import org.unicase.changetracking.exceptions.CancelledByUserException;
 import org.unicase.changetracking.exceptions.MisuseException;
 import org.unicase.workspace.util.UnicaseCommandWithResult;

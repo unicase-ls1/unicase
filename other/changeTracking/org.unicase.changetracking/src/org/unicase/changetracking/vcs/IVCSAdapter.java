@@ -44,7 +44,7 @@ import org.unicase.model.task.WorkItem;
  * @author jfinis
  * 
  */
-public interface VCSAdapter {
+public interface IVCSAdapter {
 
 	/**
 	 * Returns a name validator which is used to validate tag names for this
@@ -52,7 +52,7 @@ public interface VCSAdapter {
 	 * 
 	 * @return name validator
 	 */
-	NameValidator getNameValidator();
+	INameValidator getNameValidator();
 
 	/**
 	 * Given a unicase project and local projects in the workspace, this method

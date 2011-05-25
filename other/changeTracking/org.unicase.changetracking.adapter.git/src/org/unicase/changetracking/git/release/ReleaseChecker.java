@@ -195,8 +195,10 @@ public final class ReleaseChecker {
 		featchIfDesired(branchMap, progressMonitor);
 
 		// If a repo exists and is not up to date, add this as error Message
-		addWarning(WARNING_REPO_NOT_UP_TO_DATE);
-
+		if(!wantUpdateBeforeCheck){
+			addWarning(WARNING_REPO_NOT_UP_TO_DATE);
+		}
+		
 		// Check if the branches exist in the local repository and do not
 		// collide
 		Map<Ref, GitBranch> branchMapping = checkLocalBranches(branchMap);

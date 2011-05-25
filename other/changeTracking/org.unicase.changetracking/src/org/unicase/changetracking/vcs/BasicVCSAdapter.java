@@ -38,7 +38,7 @@ import org.unicase.model.task.WorkItem;
  * @author jfinis
  * 
  */
-public abstract class BasicVCSAdapter implements VCSAdapter {
+public abstract class BasicVCSAdapter implements IVCSAdapter {
 
 	/**
 	 * {@inheritDoc}
@@ -130,8 +130,8 @@ public abstract class BasicVCSAdapter implements VCSAdapter {
 	/**
 	 * {@inheritDoc}
 	 */
-	public NameValidator getNameValidator() {
-		return new NameValidator() {
+	public INameValidator getNameValidator() {
+		return new INameValidator() {
 
 			public String isNewTagNameValid(String text, RepositoryLocation repoLoc) {
 				return null;

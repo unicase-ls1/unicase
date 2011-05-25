@@ -5,7 +5,7 @@
  */
 package org.unicase.changetracking.git.common;
 
-import org.unicase.changetracking.vcs.NameValidator;
+import org.unicase.changetracking.vcs.INameValidator;
 import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.git.GitRepository;
 
@@ -18,7 +18,7 @@ import org.unicase.model.changetracking.git.GitRepository;
  * @author jfinis
  * 
  */
-public class GitNameValidator implements NameValidator {
+public class GitNameValidator implements INameValidator {
 
 	/**
 	 * {@inheritDoc}

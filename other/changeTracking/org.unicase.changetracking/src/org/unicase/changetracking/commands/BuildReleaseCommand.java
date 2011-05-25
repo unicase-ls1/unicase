@@ -5,6 +5,7 @@
  */
 package org.unicase.changetracking.commands;
 
+
 /**
  * Abstract base class for all build release commands supplied by adapters.
  * 

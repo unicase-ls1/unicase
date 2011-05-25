@@ -9,8 +9,8 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.egit.core.GitTag;
 import org.unicase.changetracking.exceptions.VCSException;
 import org.unicase.changetracking.git.common.GitRepoFindUtil;
-import org.unicase.changetracking.vcs.VCSAdapter;
-import org.unicase.changetracking.vcs.VCSAdapterProvider;
+import org.unicase.changetracking.vcs.IVCSAdapter;
+import org.unicase.changetracking.vcs.IVCSAdapterProvider;
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.RepositoryRevision;
 import org.unicase.model.changetracking.RepositoryStream;
@@ -24,7 +24,7 @@ import org.unicase.model.changetracking.git.GitBranchChangePackage;
  * @author jfinis
  * 
  */
-public class GitVCSAdapterProvider implements VCSAdapterProvider {
+public class GitVCSAdapterProvider implements IVCSAdapterProvider {
 
 	/**
 	 * Is able to provide if repo stream is a git branch.
@@ -69,7 +69,7 @@ public class GitVCSAdapterProvider implements VCSAdapterProvider {
 	/**
 	 * {@inheritDoc}
 	 */
-	public VCSAdapter create() {
+	public IVCSAdapter create() {
 		return new GitVCSAdapter();
 	}
 

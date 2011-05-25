@@ -14,7 +14,7 @@ import org.unicase.model.changetracking.RepositoryLocation;
  * @author jfinis
  * 
  */
-public interface NameValidator {
+public interface INameValidator {
 
 	/**
 	 * Cleans a name, i.e. removes all characters which are not allowed in names

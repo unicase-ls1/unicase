@@ -39,7 +39,7 @@ import org.tigris.subversion.svnclientadapter.ISVNStatus;
 import org.tigris.subversion.svnclientadapter.SVNClientException;
 import org.tigris.subversion.svnclientadapter.SVNStatusKind;
 import org.tigris.subversion.svnclientadapter.utils.SVNStatusUtils;
-import org.unicase.changetracking.commands.IUserInterfaceRunnable;
+import org.unicase.changetracking.common.IUserInterfaceRunnable;
 import org.unicase.changetracking.exceptions.VCSException;
 import org.unicase.changetracking.ui.UIUtil;
 

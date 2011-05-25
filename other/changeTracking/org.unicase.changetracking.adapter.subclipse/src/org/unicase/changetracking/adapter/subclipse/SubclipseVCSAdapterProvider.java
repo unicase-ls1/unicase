@@ -7,8 +7,8 @@ package org.unicase.changetracking.adapter.subclipse;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.team.core.RepositoryProvider;
-import org.unicase.changetracking.vcs.VCSAdapter;
-import org.unicase.changetracking.vcs.VCSAdapterProvider;
+import org.unicase.changetracking.vcs.IVCSAdapter;
+import org.unicase.changetracking.vcs.IVCSAdapterProvider;
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.RepositoryRevision;
 import org.unicase.model.changetracking.RepositoryStream;
@@ -21,7 +21,7 @@ import org.unicase.model.changetracking.patch.PatchChangePackage;
  * @author jfinis
  * 
  */
-public class SubclipseVCSAdapterProvider implements VCSAdapterProvider {
+public class SubclipseVCSAdapterProvider implements IVCSAdapterProvider {
 
 	/**
 	 * Team provider id of the Subclipse provider. This indicates whether a
@@ -77,7 +77,7 @@ public class SubclipseVCSAdapterProvider implements VCSAdapterProvider {
 	/**
 	 * {@inheritDoc}
 	 */
-	public VCSAdapter create() {
+	public IVCSAdapter create() {
 		return new SubclipseVCSAdapter();
 	}
 

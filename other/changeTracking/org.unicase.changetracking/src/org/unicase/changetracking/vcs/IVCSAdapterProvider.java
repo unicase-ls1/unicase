@@ -25,7 +25,7 @@ import org.unicase.model.changetracking.RepositoryStream;
  * @author jfinis
  * 
  */
-public interface VCSAdapterProvider {
+public interface IVCSAdapterProvider {
 
 	/**
 	 * Returns whether this class provides an adapter matching the given stream.
@@ -82,6 +82,6 @@ public interface VCSAdapterProvider {
 	 * 
 	 * @return newly created adapter
 	 */
-	VCSAdapter create();
+	IVCSAdapter create();
 
 }

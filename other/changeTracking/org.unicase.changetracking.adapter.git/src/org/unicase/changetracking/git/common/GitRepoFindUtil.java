@@ -147,6 +147,27 @@ public final class GitRepoFindUtil {
 	}
 
 	/**
+	 * Checks whether a git repository corresponds to a repository location.
+	 * This is done by checking if the identifying commit exists in the
+	 * repository.
+	 * 
+	 * @param repo local repository
+	 * @param location repository location
+	 * @return true if the local repo corresponds to the location, false
+	 *         otherwise
+	 */
+	public static boolean checkIfRepoCorrespondsToLocation(Repository repo, GitRepository location) {
+		RevWalk revWalk = new RevWalk(repo);
+		try {
+			RevCommit c = revWalk.parseCommit(GitUtil.stringToObjectId(location.getIdentifyingCommitHash()));
+			if (c != null) {
+				return true;
+			}
+		} catch (MissingObjectException e) {} catch (IncorrectObjectTypeException e) {} catch (IOException e) {}
+		return false;
+	}
+
+	/**
 	 * Finds a Git repository location correspondent to a local repository. The
 	 * set of remote repositories to be searched is taken as parameter. It is
 	 * assumed that only ONE of the repositories in the is correspondent to the
@@ -198,6 +219,10 @@ public final class GitRepoFindUtil {
 		HashMap<String, File> result = new HashMap<String, File>();
 		IProject[] projects = root.getProjects();
 		for (IProject p : projects) {
+			//Only check opened projects.
+			if (!p.isOpen()) {
+				continue;
+			}
 			File projectFile = p.getLocation().toFile();
 			checkAndAddDir(projectFile, result);
 			checkAndAddDir(projectFile.getParentFile(), result);
@@ -237,35 +262,36 @@ public final class GitRepoFindUtil {
 		return null;
 
 	}
-	
 
 	/**
-	 * For a set of workspace projects, this method finds the Git repository under
-	 * which all these projects are versioned. If one of the projects is not
-	 * versioned with Git, or any two projects are versioned with different repositories,
-	 * then a {@link VCSException} is thrown.
+	 * For a set of workspace projects, this method finds the Git repository
+	 * under which all these projects are versioned. If one of the projects is
+	 * not versioned with Git, or any two projects are versioned with different
+	 * repositories, then a {@link VCSException} is thrown.
+	 * 
 	 * @param projects set of workspace projects.
 	 * @return the Git repo with which the projects are versioned
-	 * @throws VCSException if a project is not under git version control or the repositories differ between projects
+	 * @throws VCSException if a project is not under git version control or the
+	 *             repositories differ between projects
 	 */
 	public static Repository findRepoForProjects(IProject... projects) throws VCSException {
 		Repository repo = null;
-		if(projects.length == 0){
+		if (projects.length == 0) {
 			throw new VCSException("Cannot find a repo for an empty set of projects");
 		}
-		for(IProject p : projects){
+		for (IProject p : projects) {
 			Repository curRepo = GitRepoFindUtil.findRepository(p.getLocation().toFile());
-			
+
 			//Not under version control? Error!
 			if (curRepo == null) {
 				throw new VCSException("The project '" + p.getName() + "' is not under Git version control.");
 			}
-			
+
 			//Different repo than the other ones? Error!
-			if(repo != null && curRepo != repo){
+			if (repo != null && curRepo != repo) {
 				throw new VCSException("The selected projects use different Git repositories. All projects must use the same repository in order to be processed together.");
 			}
-		
+
 			repo = curRepo;
 		}
 		return repo;

@@ -305,5 +305,16 @@ public final class GitUtil {
 		return new UICredentialsProvider(true);
 	}
 
+	/**
+	 * Returns the full name of a git branch in the repository.
+	 * I.e. refs/heads/BRANCHNAME
+	 * 
+	 * @param branch branch
+	 * @return full name
+	 */
+	public static String getFullBranchNameFromBranch(GitBranch branch) {
+		return Constants.R_HEADS + branch.getBranchName();
+	}
+
 
 }
