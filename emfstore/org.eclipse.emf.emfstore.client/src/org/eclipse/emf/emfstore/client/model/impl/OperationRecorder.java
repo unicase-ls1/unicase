@@ -283,8 +283,6 @@ public class OperationRecorder implements CommandObserver,
 		if (notificationRecorder == null) {
 			notificationRecorder = new NotificationRecorder();
 		}
-		this.removedElements.clear();
-		// notificationRecorder;
 		isRecording = true;
 	}
 
@@ -404,7 +402,9 @@ public class OperationRecorder implements CommandObserver,
 	 */
 	public void modelElementRemoved(IdEObjectCollection project,
 			EObject modelElement) {
-		removedElements.add(modelElement);
+		if (isRecording) {
+			removedElements.add(modelElement);
+		}
 	}
 
 	/**
@@ -734,6 +734,7 @@ public class OperationRecorder implements CommandObserver,
 			lastOp.reverse().apply(getRootEObject());
 			operations.remove(operations.size() - 1);
 			startChangeRecording();
+			this.removedElements.clear();
 		}
 		notificationRecorder.stopRecording();
 
