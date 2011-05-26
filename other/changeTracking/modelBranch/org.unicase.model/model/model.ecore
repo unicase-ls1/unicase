@@ -65,7 +65,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attachment" abstract="true" eSuperTypes="#//UnicaseModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="referringModelElements"
-        upperBound="-1" eType="#//UnicaseModelElement" eOpposite="#//UnicaseModelElement/attachments"/>
+        upperBound="-1" eType="#//UnicaseModelElement" eOpposite="#//UnicaseModelElement/attachments">
+      <eAnnotations source="org.unicase.ui.meeditor">
+        <details key="priority" value="100.0"/>
+        <details key="position" value="right"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Project" eSuperTypes="../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
   <eSubpackages name="organization" nsURI="http://unicase.org/model/organization"
@@ -236,7 +241,12 @@
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="includingReleases" upperBound="-1"
-          eType="#//release/AbstractRelease" eOpposite="#//release/AbstractRelease/includedWorkItems"/>
+          eType="#//release/AbstractRelease" eOpposite="#//release/AbstractRelease/includedWorkItems">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="95"/>
+          <details key="position" value="right"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Milestone" eSuperTypes="#//task/WorkItem">
       <eStructuralFeatures xsi:type="ecore:EReference" name="containedModelElements"
@@ -1412,7 +1422,12 @@
   <eSubpackages name="release" nsURI="http://unicase.org/model/release" nsPrefix="org.unicase.model.release">
     <eClassifiers xsi:type="ecore:EClass" name="AbstractRelease" abstract="true" eSuperTypes="#//UnicaseModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="includedWorkItems" upperBound="-1"
-          eType="#//task/WorkItem" eOpposite="#//task/WorkItem/includingReleases"/>
+          eType="#//task/WorkItem" eOpposite="#//task/WorkItem/includingReleases">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="10"/>
+          <details key="position" value="right"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

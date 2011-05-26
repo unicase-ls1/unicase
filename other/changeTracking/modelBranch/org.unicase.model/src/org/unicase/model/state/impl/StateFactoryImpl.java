@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.state.*;
 import org.unicase.model.state.State;
 import org.unicase.model.state.StateEnd;
 import org.unicase.model.state.StateFactory;
