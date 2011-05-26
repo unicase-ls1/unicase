@@ -21,7 +21,7 @@
             type="java.lang.Integer">
       </widget>
       <widget
-            class="org.eclipse.emf.ecp.editor.mecontrols.MEDateControl"
+            class="org.eclipse.emf.ecp.editor.mecontrols.MESWTDateAndTimeControl"
             name="org.eclipse.emf.ecp.editor.medatecontrol"
             showLabel="true"
             type="java.util.Date">
