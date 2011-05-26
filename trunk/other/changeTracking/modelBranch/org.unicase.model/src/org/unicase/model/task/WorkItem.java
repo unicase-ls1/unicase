@@ -329,6 +329,7 @@ public interface WorkItem extends Annotation {
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_IncludingReleases()
 	 * @see org.unicase.model.release.AbstractRelease#getIncludedWorkItems
 	 * @model opposite="includedWorkItems"
+	 *        annotation="org.unicase.ui.meeditor priority='95' position='right'"
 	 * @generated
 	 */
 	EList<AbstractRelease> getIncludingReleases();

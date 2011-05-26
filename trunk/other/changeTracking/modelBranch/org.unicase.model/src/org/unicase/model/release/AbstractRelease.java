@@ -40,6 +40,7 @@ public interface AbstractRelease extends UnicaseModelElement {
 	 * @see org.unicase.model.release.ReleasePackage#getAbstractRelease_IncludedWorkItems()
 	 * @see org.unicase.model.task.WorkItem#getIncludingReleases
 	 * @model opposite="includingReleases"
+	 *        annotation="org.unicase.ui.meeditor priority='10' position='right'"
 	 * @generated
 	 */
 	EList<WorkItem> getIncludedWorkItems();

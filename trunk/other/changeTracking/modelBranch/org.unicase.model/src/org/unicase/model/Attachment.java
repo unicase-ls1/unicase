@@ -36,6 +36,7 @@ public interface Attachment extends UnicaseModelElement {
 	 * @see org.unicase.model.ModelPackage#getAttachment_ReferringModelElements()
 	 * @see org.unicase.model.UnicaseModelElement#getAttachments
 	 * @model opposite="attachments"
+	 *        annotation="org.unicase.ui.meeditor priority='100.0' position='right'"
 	 * @generated
 	 */
 	EList<UnicaseModelElement> getReferringModelElements();

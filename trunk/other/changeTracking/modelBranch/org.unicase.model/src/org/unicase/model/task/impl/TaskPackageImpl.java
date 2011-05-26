@@ -645,6 +645,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		addAnnotation(getWorkItem_Effort(), source, new String[] { "priority", "19.0", "position", "left" });
 		addAnnotation(getWorkItem_Priority(), source, new String[] { "priority", "12.0", "position", "left" });
 		addAnnotation(getWorkItem_Resolved(), source, new String[] { "priority", "13.0", "position", "left" });
+		addAnnotation(getWorkItem_IncludingReleases(), source, new String[] { "priority", "95", "position", "right" });
 		addAnnotation(getMilestone_ContainedModelElements(), source, new String[] { "priority", "1", "position",
 			"right" });
 	}

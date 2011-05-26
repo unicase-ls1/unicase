@@ -287,6 +287,22 @@ public class ReleasePackageImpl extends EPackageImpl implements ReleasePackage {
 			theTaskPackage.getWorkItem_IncludingReleases(), "includedWorkItems", null, 0, -1, AbstractRelease.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
+
+		// Create annotations
+		// org.unicase.ui.meeditor
+		createOrgAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createOrgAnnotations() {
+		String source = "org.unicase.ui.meeditor";
+		addAnnotation(getAbstractRelease_IncludedWorkItems(), source, new String[] { "priority", "10", "position",
+			"right" });
 	}
 
 } // ReleasePackageImpl
