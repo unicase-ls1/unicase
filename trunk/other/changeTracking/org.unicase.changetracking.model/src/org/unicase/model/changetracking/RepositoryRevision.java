@@ -67,6 +67,7 @@ public interface RepositoryRevision extends UnicaseModelElement {
 	 * @see org.unicase.model.changetracking.ChangetrackingPackage#getRepositoryRevision_BuiltWithReleases()
 	 * @see org.unicase.model.changetracking.Release#getBuiltRevision
 	 * @model opposite="builtRevision"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Release> getBuiltWithReleases();

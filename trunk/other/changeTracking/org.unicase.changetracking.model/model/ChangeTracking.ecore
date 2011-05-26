@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="changetracking"
-    nsURI="http://unicase.org/changetracking" nsPrefix="org.unicase.model.changetracking">
+    nsURI="http://unicase.org/model/changetracking" nsPrefix="org.unicase.model.changetracking">
   <eClassifiers xsi:type="ecore:EClass" name="Release" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//release/AbstractRelease">
     <eStructuralFeatures xsi:type="ecore:EReference" name="stream" eType="#//Stream"
         eOpposite="#//Stream/releases"/>
@@ -17,7 +17,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Stream" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//UnicaseModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="releases" upperBound="-1"
-        eType="#//Release" eOpposite="#//Release/stream"/>
+        eType="#//Release" eOpposite="#//Release/stream">
+      <eAnnotations source="org.unicase.ui.meeditor">
+        <details key="priority" value="10.0"/>
+        <details key="position" value="right"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="repositoryStream" eType="#//RepositoryStream"
         eOpposite="#//RepositoryStream/usingStreams"/>
   </eClassifiers>
@@ -29,30 +34,55 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="repositoryStream" eType="#//RepositoryStream"
         eOpposite="#//RepositoryStream/revisions"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="builtWithReleases" upperBound="-1"
-        eType="#//Release" eOpposite="#//Release/builtRevision"/>
+        eType="#//Release" eOpposite="#//Release/builtRevision">
+      <eAnnotations source="org.unicase.ui.meeditor">
+        <details key="priority" value="10.0"/>
+        <details key="position" value="right"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RepositoryStream" abstract="true" interface="true"
       eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//UnicaseModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="location" eType="#//RepositoryLocation"
         eOpposite="#//RepositoryLocation/streams"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="revisions" upperBound="-1"
-        eType="#//RepositoryRevision" eOpposite="#//RepositoryRevision/repositoryStream"/>
+        eType="#//RepositoryRevision" eOpposite="#//RepositoryRevision/repositoryStream">
+      <eAnnotations source="org.unicase.ui.meeditor">
+        <details key="priority" value="10.0"/>
+        <details key="position" value="right"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="usingStreams" upperBound="-1"
-        eType="#//Stream" eOpposite="#//Stream/repositoryStream"/>
+        eType="#//Stream" eOpposite="#//Stream/repositoryStream">
+      <eAnnotations source="org.unicase.ui.meeditor">
+        <details key="priority" value="12.0"/>
+        <details key="position" value="right"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RepositoryLocation" abstract="true"
       eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//UnicaseModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="streams" upperBound="-1"
-        eType="#//RepositoryStream" eOpposite="#//RepositoryStream/location"/>
+        eType="#//RepositoryStream" eOpposite="#//RepositoryStream/location">
+      <eAnnotations source="org.unicase.ui.meeditor">
+        <details key="priority" value="10.0"/>
+        <details key="position" value="right"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
-  <eSubpackages name="git" nsURI="http://unicase.org/changetracking/git" nsPrefix="org.unicase.model.changetracking.git">
+  <eSubpackages name="git" nsURI="http://unicase.org/model/changetracking/git" nsPrefix="org.unicase.model.changetracking.git">
     <eClassifiers xsi:type="ecore:EClass" name="GitBranchChangePackage" eSuperTypes="#//ChangePackage">
       <eStructuralFeatures xsi:type="ecore:EReference" name="branch" eType="#//git/GitBranch"
           eOpposite="#//git/GitBranch/referringChangePackages"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GitBranch" eSuperTypes="#//RepositoryStream">
       <eStructuralFeatures xsi:type="ecore:EReference" name="referringChangePackages"
-          upperBound="-1" eType="#//git/GitBranchChangePackage" eOpposite="#//git/GitBranchChangePackage/branch"/>
+          upperBound="-1" eType="#//git/GitBranchChangePackage" eOpposite="#//git/GitBranchChangePackage/branch">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="15.0"/>
+          <details key="position" value="right"/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="branchName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GitRevision" eSuperTypes="#//RepositoryRevision">
@@ -65,7 +95,8 @@
           eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="patch" nsURI="http://unicase.org/changetracking/patch" nsPrefix="org.unicase.model.changetracking.patch">
+  <eSubpackages name="patch" nsURI="http://unicase.org/model/changetracking/patch"
+      nsPrefix="org.unicase.model.changetracking.patch">
     <eClassifiers xsi:type="ecore:EClass" name="PatchChangePackage" eSuperTypes="#//ChangePackage platform:/plugin/org.unicase.model/model/model.ecore#//attachment/FileAttachment"/>
   </eSubpackages>
 </ecore:EPackage>

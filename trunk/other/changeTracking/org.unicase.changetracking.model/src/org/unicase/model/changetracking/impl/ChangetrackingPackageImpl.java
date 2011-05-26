@@ -470,6 +470,25 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// org.unicase.ui.meeditor
+		createOrgAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createOrgAnnotations() {
+		String source = "org.unicase.ui.meeditor";
+		addAnnotation(getStream_Releases(), source, new String[] { "priority", "10.0", "position", "right" });
+		addAnnotation(getRepositoryRevision_BuiltWithReleases(), source, new String[] { "priority", "10.0", "position", "right" });
+		addAnnotation(getRepositoryStream_Revisions(), source, new String[] { "priority", "10.0", "position", "right" });
+		addAnnotation(getRepositoryStream_UsingStreams(), source, new String[] { "priority", "12.0", "position", "right" });
+		addAnnotation(getRepositoryLocation_Streams(), source, new String[] { "priority", "10.0", "position", "right" });
 	}
 
 } //ChangetrackingPackageImpl

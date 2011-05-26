@@ -33,15 +33,7 @@ import org.unicase.model.changetracking.patch.PatchPackage;
  *
  * @generated
  */
-public class PatchChangePackageImpl extends ChangePackageImpl implements
-		PatchChangePackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "<copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>\r";
-
+public class PatchChangePackageImpl extends ChangePackageImpl implements PatchChangePackage {
 	/**
 	 * The default value of the '{@link #getFileName() <em>File Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -179,9 +171,7 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements
 		String oldFileName = fileName;
 		fileName = newFileName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					PatchPackage.PATCH_CHANGE_PACKAGE__FILE_NAME, oldFileName,
-					fileName));
+			eNotify(new ENotificationImpl(this, Notification.SET, PatchPackage.PATCH_CHANGE_PACKAGE__FILE_NAME, oldFileName, fileName));
 	}
 
 	/**
@@ -202,9 +192,7 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements
 		String oldFileHash = fileHash;
 		fileHash = newFileHash;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					PatchPackage.PATCH_CHANGE_PACKAGE__FILE_HASH, oldFileHash,
-					fileHash));
+			eNotify(new ENotificationImpl(this, Notification.SET, PatchPackage.PATCH_CHANGE_PACKAGE__FILE_HASH, oldFileHash, fileHash));
 	}
 
 	/**
@@ -225,9 +213,7 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements
 		String oldFileID = fileID;
 		fileID = newFileID;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					PatchPackage.PATCH_CHANGE_PACKAGE__FILE_ID, oldFileID,
-					fileID));
+			eNotify(new ENotificationImpl(this, Notification.SET, PatchPackage.PATCH_CHANGE_PACKAGE__FILE_ID, oldFileID, fileID));
 	}
 
 	/**
@@ -248,9 +234,7 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements
 		long oldFileSize = fileSize;
 		fileSize = newFileSize;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					PatchPackage.PATCH_CHANGE_PACKAGE__FILE_SIZE, oldFileSize,
-					fileSize));
+			eNotify(new ENotificationImpl(this, Notification.SET, PatchPackage.PATCH_CHANGE_PACKAGE__FILE_SIZE, oldFileSize, fileSize));
 	}
 
 	/**
@@ -271,9 +255,7 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements
 		FileAttachmentType oldFileType = fileType;
 		fileType = newFileType == null ? FILE_TYPE_EDEFAULT : newFileType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					PatchPackage.PATCH_CHANGE_PACKAGE__FILE_TYPE, oldFileType,
-					fileType));
+			eNotify(new ENotificationImpl(this, Notification.SET, PatchPackage.PATCH_CHANGE_PACKAGE__FILE_TYPE, oldFileType, fileType));
 	}
 
 	/**
@@ -361,14 +343,11 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_NAME:
-			return FILE_NAME_EDEFAULT == null ? fileName != null
-					: !FILE_NAME_EDEFAULT.equals(fileName);
+			return FILE_NAME_EDEFAULT == null ? fileName != null : !FILE_NAME_EDEFAULT.equals(fileName);
 		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_HASH:
-			return FILE_HASH_EDEFAULT == null ? fileHash != null
-					: !FILE_HASH_EDEFAULT.equals(fileHash);
+			return FILE_HASH_EDEFAULT == null ? fileHash != null : !FILE_HASH_EDEFAULT.equals(fileHash);
 		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_ID:
-			return FILE_ID_EDEFAULT == null ? fileID != null
-					: !FILE_ID_EDEFAULT.equals(fileID);
+			return FILE_ID_EDEFAULT == null ? fileID != null : !FILE_ID_EDEFAULT.equals(fileID);
 		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_SIZE:
 			return fileSize != FILE_SIZE_EDEFAULT;
 		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_TYPE:
@@ -453,7 +432,7 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements
 		result.append(')');
 		return result.toString();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 

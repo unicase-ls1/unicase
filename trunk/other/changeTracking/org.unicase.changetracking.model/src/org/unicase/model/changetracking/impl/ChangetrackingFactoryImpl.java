@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.changetracking.*;
 import org.unicase.model.changetracking.ChangetrackingFactory;
 import org.unicase.model.changetracking.ChangetrackingPackage;
 import org.unicase.model.changetracking.Release;
@@ -29,7 +30,7 @@ public class ChangetrackingFactoryImpl extends EFactoryImpl implements Changetra
 	 */
 	public static ChangetrackingFactory init() {
 		try {
-			ChangetrackingFactory theChangetrackingFactory = (ChangetrackingFactory) EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/changetracking");
+			ChangetrackingFactory theChangetrackingFactory = (ChangetrackingFactory) EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/changetracking");
 			if (theChangetrackingFactory != null) {
 				return theChangetrackingFactory;
 			}

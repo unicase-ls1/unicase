@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.changetracking.*;
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.ChangetrackingPackage;
 import org.unicase.model.changetracking.Release;

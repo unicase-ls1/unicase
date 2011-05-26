@@ -38,6 +38,7 @@ public interface RepositoryLocation extends UnicaseModelElement {
 	 * @see org.unicase.model.changetracking.ChangetrackingPackage#getRepositoryLocation_Streams()
 	 * @see org.unicase.model.changetracking.RepositoryStream#getLocation
 	 * @model opposite="location"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<RepositoryStream> getStreams();

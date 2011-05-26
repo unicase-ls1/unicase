@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.changetracking.git.*;
 import org.unicase.model.changetracking.git.GitBranch;
 import org.unicase.model.changetracking.git.GitBranchChangePackage;
 import org.unicase.model.changetracking.git.GitFactory;
@@ -31,7 +32,7 @@ public class GitFactoryImpl extends EFactoryImpl implements GitFactory {
 	 */
 	public static GitFactory init() {
 		try {
-			GitFactory theGitFactory = (GitFactory) EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/changetracking/git");
+			GitFactory theGitFactory = (GitFactory) EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/changetracking/git");
 			if (theGitFactory != null) {
 				return theGitFactory;
 			}
