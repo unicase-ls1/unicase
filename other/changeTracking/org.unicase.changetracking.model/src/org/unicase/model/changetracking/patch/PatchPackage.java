@@ -38,7 +38,7 @@ public interface PatchPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://unicase.org/changetracking/patch";
+	String eNS_URI = "http://unicase.org/model/changetracking/patch";
 
 	/**
 	 * The package namespace name.

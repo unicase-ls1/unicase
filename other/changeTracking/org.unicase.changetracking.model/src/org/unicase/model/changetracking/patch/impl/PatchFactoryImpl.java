@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.changetracking.patch.*;
 import org.unicase.model.changetracking.patch.PatchChangePackage;
 import org.unicase.model.changetracking.patch.PatchFactory;
 import org.unicase.model.changetracking.patch.PatchPackage;
@@ -28,7 +29,7 @@ public class PatchFactoryImpl extends EFactoryImpl implements PatchFactory {
 	 */
 	public static PatchFactory init() {
 		try {
-			PatchFactory thePatchFactory = (PatchFactory) EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/changetracking/patch");
+			PatchFactory thePatchFactory = (PatchFactory) EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/changetracking/patch");
 			if (thePatchFactory != null) {
 				return thePatchFactory;
 			}

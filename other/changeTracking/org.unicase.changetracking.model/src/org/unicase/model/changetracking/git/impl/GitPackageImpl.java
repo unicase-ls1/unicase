@@ -327,6 +327,21 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 		initEClass(gitRepositoryEClass, GitRepository.class, "GitRepository", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGitRepository_Url(), theEcorePackage.getEString(), "url", null, 0, 1, GitRepository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGitRepository_IdentifyingCommitHash(), theEcorePackage.getEString(), "identifyingCommitHash", null, 0, 1, GitRepository.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Create annotations
+		// org.unicase.ui.meeditor
+		createOrgAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createOrgAnnotations() {
+		String source = "org.unicase.ui.meeditor";
+		addAnnotation(getGitBranch_ReferringChangePackages(), source, new String[] { "priority", "15.0", "position", "right" });
 	}
 
 } //GitPackageImpl

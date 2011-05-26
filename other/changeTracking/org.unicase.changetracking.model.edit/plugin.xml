@@ -12,7 +12,7 @@
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            uri="http://unicase.org/changetracking"
+            uri="http://unicase.org/model/changetracking"
             class="org.unicase.model.changetracking.provider.ChangetrackingItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
@@ -24,7 +24,7 @@
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            uri="http://unicase.org/changetracking/git"
+            uri="http://unicase.org/model/changetracking/git"
             class="org.unicase.model.changetracking.git.provider.GitItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
@@ -36,7 +36,7 @@
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            uri="http://unicase.org/changetracking/patch"
+            uri="http://unicase.org/model/changetracking/patch"
             class="org.unicase.model.changetracking.patch.provider.PatchItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

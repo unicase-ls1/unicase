@@ -14,6 +14,7 @@ import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.RepositoryRevision;
 import org.unicase.model.changetracking.RepositoryStream;
+import org.unicase.model.changetracking.git.*;
 import org.unicase.model.changetracking.git.GitBranch;
 import org.unicase.model.changetracking.git.GitBranchChangePackage;
 import org.unicase.model.changetracking.git.GitPackage;

@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.changetracking.ui.Activator;
 import org.unicase.changetracking.ui.handlers.ApplyChangePackageHandler;
+import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.git.GitBranchChangePackage;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
@@ -47,7 +48,7 @@ public class MEChangePackageControl extends MELinkControl {
 	 * @return -1 if the link is not a code location
 	 */
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject link, EObject contextModelElement) {
-		if (link instanceof GitBranchChangePackage) {
+		if (link instanceof ChangePackage) {
 			return PRIORITY;
 		} else {
 			return AbstractMEControl.DO_NOT_RENDER;

@@ -39,6 +39,7 @@ public interface GitBranch extends RepositoryStream {
 	 * @see org.unicase.model.changetracking.git.GitPackage#getGitBranch_ReferringChangePackages()
 	 * @see org.unicase.model.changetracking.git.GitBranchChangePackage#getBranch
 	 * @model opposite="branch"
+	 *        annotation="org.unicase.ui.meeditor priority='15.0' position='right'"
 	 * @generated
 	 */
 	EList<GitBranchChangePackage> getReferringChangePackages();

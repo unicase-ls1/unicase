@@ -68,6 +68,7 @@ public interface RepositoryStream extends UnicaseModelElement {
 	 * @see org.unicase.model.changetracking.ChangetrackingPackage#getRepositoryStream_Revisions()
 	 * @see org.unicase.model.changetracking.RepositoryRevision#getRepositoryStream
 	 * @model opposite="repositoryStream"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<RepositoryRevision> getRevisions();
@@ -86,6 +87,7 @@ public interface RepositoryStream extends UnicaseModelElement {
 	 * @see org.unicase.model.changetracking.ChangetrackingPackage#getRepositoryStream_UsingStreams()
 	 * @see org.unicase.model.changetracking.Stream#getRepositoryStream
 	 * @model opposite="repositoryStream"
+	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
 	 * @generated
 	 */
 	EList<Stream> getUsingStreams();

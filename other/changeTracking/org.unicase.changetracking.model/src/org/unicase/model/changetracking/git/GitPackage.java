@@ -40,7 +40,7 @@ public interface GitPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://unicase.org/changetracking/git";
+	String eNS_URI = "http://unicase.org/model/changetracking/git";
 
 	/**
 	 * The package namespace name.

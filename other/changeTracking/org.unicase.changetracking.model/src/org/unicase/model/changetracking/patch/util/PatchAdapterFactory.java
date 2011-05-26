@@ -12,6 +12,7 @@ import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.changetracking.ChangePackage;
+import org.unicase.model.changetracking.patch.*;
 import org.unicase.model.changetracking.patch.PatchChangePackage;
 import org.unicase.model.changetracking.patch.PatchPackage;
 

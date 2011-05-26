@@ -39,6 +39,7 @@ public interface Stream extends UnicaseModelElement {
 	 * @see org.unicase.model.changetracking.ChangetrackingPackage#getStream_Releases()
 	 * @see org.unicase.model.changetracking.Release#getStream
 	 * @model opposite="stream"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Release> getReleases();
