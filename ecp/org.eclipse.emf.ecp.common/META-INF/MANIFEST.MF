@@ -46,11 +46,5 @@ Export-Package: org.eclipse.emf.ecp.common;
    org.eclipse.emf.edit.ui.provider,
    org.eclipse.jface.viewers,
    org.eclipse.core.commands,
-   org.eclipse.swt.widgets",
- org.eclipse.swt.nebula.widgets.cdatetime;
-  uses:="org.eclipse.swt.events,
-   org.eclipse.swt.graphics,
-   org.eclipse.swt.widgets,
-   new org.eclipse.swt.nebula.widgets.cdatetime"
-Bundle-ClassPath: .,
- lib/nebula_cdatetime_0.9.0.jar
+   org.eclipse.swt.widgets"
+Bundle-ClassPath: .
