@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -138,7 +139,9 @@ public class StatePersister implements CommandObserver, ProjectChangeObserver {
 			EObject modelElement) {
 		XMIResource oldResource = (XMIResource) modelElement.eResource();
 
-		if (oldResource != null && Configuration.isResourceSplittingEnabled()) {
+		// do not split if splitting disabled or the element is a map entry
+		if (oldResource != null && Configuration.isResourceSplittingEnabled()
+				&& !(modelElement instanceof BasicEMap.Entry)) {
 			addToNewResourceIfRequired(modelElement, oldResource);
 		}
 
