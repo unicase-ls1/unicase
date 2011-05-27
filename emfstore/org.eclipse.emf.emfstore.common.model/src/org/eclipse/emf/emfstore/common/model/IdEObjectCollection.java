@@ -42,7 +42,6 @@ public interface IdEObjectCollection extends EObject {
 			Map<EObject, ModelElementId> eObjectToIdMap);
 
 	/**
-	 * Checks whether the given {@link EObject} is contained in the colletion.
 	 * 
 	 * @param eObject
 	 *            the {@link EObject} that should get checked, whether it is

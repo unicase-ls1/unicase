@@ -99,8 +99,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	private Set<EObject> containedModelElements;
 
-	private List<CopyListener> copyListeners;
-
 	private EObjectChangeNotifier changeNotifier;
 
 	// begin of custom code
@@ -121,7 +119,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		newEObjectToIdMap = new HashMap<EObject, ModelElementId>();
 		eObjectsCache = new HashSet<EObject>();
 		idToEObjectCache = new HashMap<ModelElementId, EObject>();
-		copyListeners = new ArrayList<CopyListener>();
 	}
 
 	// end of custom code
@@ -164,14 +161,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	public void addModelElement(EObject me) {
 		getModelElements().add(me);
-	}
-
-	public void addCopyListener(CopyListener listener) {
-		copyListeners.add(listener);
-	}
-
-	public void removeCopyListener(CopyListener listener) {
-		copyListeners.remove(listener);
 	}
 
 	/**
@@ -909,24 +898,17 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 */
 	public Project copy() {
 
-		for (CopyListener listener : copyListeners) {
-			listener.copyBegin();
+		if (this.changeNotifier != null) {
+			this.changeNotifier.disableNotifications(true);
 		}
 
-		// if (changeNotifier != null) {
-		// changeNotifier.disableNotifications(true);
-		// }
 		Copier copier = new ProjectCopier();
 		ProjectImpl result = (ProjectImpl) copier.copy(this);
 		result.cachesInitialized = true;
 		copier.copyReferences();
 
-		// if (changeNotifier != null) {
-		// changeNotifier.disableNotifications(false);
-		// }
-
-		for (CopyListener listener : copyListeners) {
-			listener.copyEnd();
+		if (changeNotifier != null) {
+			changeNotifier.disableNotifications(false);
 		}
 
 		return result;

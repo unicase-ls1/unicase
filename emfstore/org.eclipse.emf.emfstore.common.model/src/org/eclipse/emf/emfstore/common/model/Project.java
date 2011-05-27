@@ -17,7 +17,6 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.emfstore.common.model.impl.CopyListener;
 import org.eclipse.emf.emfstore.common.model.util.NotifiableIdEObjectCollection;
 import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
 
@@ -250,8 +249,4 @@ public interface Project extends EObject, IAdaptable,
 	 */
 	ModelElementId getModelElementId(EObject eObject);
 
-	// TODO: EM, move into own method
-	public void addCopyListener(CopyListener listener);
-
-	public void removeCopyListener(CopyListener listener);
 } // Project
