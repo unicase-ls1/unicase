@@ -1815,11 +1815,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		resource.getContents().add(this.getProject());
 		resources.add(resource);
 		setResourceCount(getResourceCount() + 1);
-		List<EObject> modelElements = this.getProject().getModelElements();
 
 		if (Configuration.isResourceSplittingEnabled()) {
 			splitResources(resourceSet, projectFragementsFileNamePrefix,
-					resources, resource, modelElements);
+					resources, this.getProject());
 		}
 
 		Resource operationCompositeResource = resourceSet
@@ -1852,14 +1851,14 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	private void splitResources(ResourceSet resourceSet,
 			String projectFragementsFileNamePrefix, List<Resource> resources,
-			Resource projectResource, List<EObject> modelElements) {
+			Project project) {
 		String fileName;
 		URI fileURI;
 
-		Resource resource = projectResource;
+		Resource resource = project.eResource();
 		// int counter = Configuration.getMaxMECountPerResource() + 1;
 		int counter = 0;
-		for (EObject modelElement : modelElements) {
+		for (EObject modelElement : project.getAllModelElements()) {
 
 			if (counter > Configuration.getMaxMECountPerResource()) {
 				fileName = projectFragementsFileNamePrefix + getResourceCount()
