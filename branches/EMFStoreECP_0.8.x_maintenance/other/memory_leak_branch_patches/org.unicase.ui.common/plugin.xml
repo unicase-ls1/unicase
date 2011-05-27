@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="org.unicase.ui.common.modelelementopener" name="Open Handler for Modelelements" schema="schema/org.unicase.common.ui.modelelementopener.exsd"/>
+   <extension-point id="org.unicase.ui.common.medropadapter" name="Model element drop adapter" schema="schema/org.unicase.ui.common.medropadapter.exsd"/>
+   <extension
+        point="org.eclipse.ui.commands">
+     
+   
+   
+        <category
+              id="org.unicase.ui.common"
+              name="org.unicase.ui.common">
+        </category>
+   
+  </extension>
+  <extension
+        point="org.eclipse.ui.menus">
+     <menuContribution
+           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.navigator.createModelElementCommands">
+        <separator
+              name="org.unicase.ui.common.commands.modifyCommands">
+        </separator>
+     </menuContribution>
+     <menuContribution
+           locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+        <separator
+              name="beforeDeleteSeparator"
+              visible="false">
+        </separator>
+        <command
+              commandId="org.unicase.ui.common.deleteModelelement"
+              icon="icons/delete.gif"
+              label="Delete"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <and>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                       <and>
+          				 <instanceof value="org.eclipse.emf.ecore.EObject" />
+          				 <not>
+          				 	<instanceof value="org.unicase.workspace.ProjectSpace" />
+          				 </not>
+           				 <not>
+           					<instanceof value="org.unicase.metamodel.Project"/>
+              			 </not>
+        			   </and>     
+                 </iterate>
+                 <count
+                       value="1">
+                 </count>
+              </and>
+           </visibleWhen>
+        </command>
+     </menuContribution>
+     
+      <menuContribution
+           locationURI="toolbar:org.unicase.ui.navigator.viewer?bofore=additions">
+         <command
+               commandId="org.unicase.ui.common.handlers.open_me_ID"
+               icon="icons/magnifier.png"
+               id="SearchElementButon"
+               style="push"
+               tooltip="Search for model element">
+        </command>
+     </menuContribution>
+     <menuContribution
+           locationURI="toolbar:org.eclipse.ui.main.toolbar">
+        <toolbar
+              id="org.unicase.ui.common.UnicaseToolbar">
+          <command
+                 commandId="org.unicase.ui.common.handlers.open_me_ID"
+                 icon="icons/magnifier.png"
+                 style="push"
+                 tooltip="Search model element">
+           </command>
+        </toolbar>
+     </menuContribution>
+     <menuContribution
+           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.deleteModelelement">
+        <command
+              commandId="org.unicase.workspace.ui.validate"
+              icon="icons/validation.png"
+              label="Validate"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <and>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <and>
+                  <instanceof
+                        value="org.eclipse.emf.ecore.EObject">
+                  </instanceof>
+                  <not>
+                  	<instanceof
+                         value="org.unicase.metamodel.Project">
+                  	</instanceof>
+                  </not>
+                  <not>
+                  	<instanceof
+                         value="org.unicase.workspace.ProjectSpace">
+                  	</instanceof>
+                  </not>
+	            </and>
+                 </iterate>
+                 <count
+                       value="1">
+                 </count>
+              </and>
+           </visibleWhen>
+        </command>
+     </menuContribution>
+     
+     
+    
+  </extension>
+  <extension
+        point="org.eclipse.core.expressions.definitions">
+        <definition
+           id="org.unicase.ui.common.commands.modelElement">
+        <and>
+           <instanceof
+                 value="org.eclipse.emf.ecore.EObject">
+           </instanceof>
+           <not>
+              <instanceof
+                    value="org.unicase.workspace.ProjectSpace">
+              </instanceof>
+           </not>
+           <not>
+              <instanceof
+                    value="org.unicase.metamodel.Project">
+              </instanceof>
+           </not>
+        </and>     </definition>
+  </extension>
+ <extension
+       point="org.eclipse.ui.preferencePages">
+    <page
+          class="org.unicase.ui.common.preferences.UnicasePreferencesPage"
+          id="org.unicase.ui.common.unicase"
+          name="Unicase">
+    </page>
+ </extension>
+ <extension
+       point="org.unicase.ui.common.medropadapter">
+    <MEDropAdapter
+          class="org.unicase.ui.common.dnd.DefaultMEDropAdapter">
+    </MEDropAdapter>
+ </extension>
+ <extension
+       point="org.eclipse.ui.bindings">
+    <key
+          commandId="org.unicase.ui.common.deleteModelelement"
+          contextId="org.eclipse.ui.contexts.window"
+          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+          sequence="Ctrl+Delete">
+    </key>
+ </extension>
+    <extension
+         point="org.eclipse.emf.validation.constraintBindings">
+      <clientContext
+            id="context">
+         <selector
+               class="org.unicase.ui.util.ValidationClientSelector">
+         </selector>
+      </clientContext>
+   </extension>
+</plugin>
+
