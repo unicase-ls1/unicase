@@ -18,6 +18,12 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.emfstore.client.model.Configuration;
 import org.eclipse.emf.emfstore.client.model.changeTracking.commands.CommandObserver;
 import org.eclipse.emf.emfstore.client.model.changeTracking.commands.EMFStoreCommandStack;
+import org.eclipse.emf.emfstore.client.model.changeTracking.notification.NotificationInfo;
+import org.eclipse.emf.emfstore.client.model.changeTracking.notification.filter.EmptyRemovalsFilter;
+import org.eclipse.emf.emfstore.client.model.changeTracking.notification.filter.FilterStack;
+import org.eclipse.emf.emfstore.client.model.changeTracking.notification.filter.NotificationFilter;
+import org.eclipse.emf.emfstore.client.model.changeTracking.notification.filter.TouchFilter;
+import org.eclipse.emf.emfstore.client.model.changeTracking.notification.filter.TransientFilter;
 import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.util.EObjectChangeNotifier;
@@ -50,6 +56,7 @@ public class StatePersister implements CommandObserver, ProjectChangeObserver {
 	 */
 	private boolean splitResource;
 	private EMFStoreCommandStack commandStack;
+	private FilterStack filterStack;
 
 	// TODO: 2nd parameter, commandstack
 	// change notifier per methode setzen
@@ -61,6 +68,10 @@ public class StatePersister implements CommandObserver, ProjectChangeObserver {
 		this.collection = collection;
 		this.commandStack.addCommandStackObserver(this);
 		this.dirtyResourceSet = new DirtyResourceSet();
+
+		filterStack = new FilterStack(new NotificationFilter[] {
+				new TouchFilter(), new TransientFilter(),
+				new EmptyRemovalsFilter() });
 	}
 
 	public void commandStarted(Command command) {
@@ -119,6 +130,11 @@ public class StatePersister implements CommandObserver, ProjectChangeObserver {
 
 	public void notify(Notification notification,
 			IdEObjectCollection rootEObject, EObject modelElement) {
+		// filter unwanted notifications that did not change anything in the
+		// state
+		if (filterStack.check(new NotificationInfo(notification))) {
+			return;
+		}
 		addToDirtyResources(modelElement);
 		if (!commandIsRunning) {
 			saveDirtyResources();
