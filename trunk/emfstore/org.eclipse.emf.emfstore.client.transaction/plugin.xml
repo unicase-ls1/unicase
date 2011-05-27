@@ -7,5 +7,12 @@
             class="org.eclipse.emf.emfstore.client.transaction.TransactionalEditingDomainProvider">
       </provider>
    </extension>
+     <extension
+        point="org.eclipse.emf.transaction.editingDomains">
+     <editingDomain
+           id="org.eclipse.emf.emfstore.client.editingDomain">
+     </editingDomain>
+  </extension>
+   
 
 </plugin>
