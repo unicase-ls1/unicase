@@ -293,7 +293,9 @@ public class OperationRecorder implements CommandObserver,
 	 *            the notificationDisabled to set
 	 */
 	public void disableNotifications(boolean notificationDisabled) {
-		this.changeNotifier.disableNotifications(notificationDisabled);
+		if (this.changeNotifier != null) {
+			this.changeNotifier.disableNotifications(notificationDisabled);
+		}
 	}
 
 	/**
@@ -786,7 +788,7 @@ public class OperationRecorder implements CommandObserver,
 						// set the last operation as the main one for natural
 						// composites
 						op.setMainOperation(ops.get(ops.size() - 1));
-						op.setModelElementId(EcoreUtil.copy(op
+						op.setModelElementId((ModelElementId) EcoreUtil.copy(op
 								.getMainOperation().getModelElementId()));
 						if (commandIsRunning) {
 							operations.add(op);
