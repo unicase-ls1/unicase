@@ -67,7 +67,6 @@ import org.eclipse.emf.emfstore.client.model.notification.NotificationGenerator;
 import org.eclipse.emf.emfstore.client.model.observers.CommitObserver;
 import org.eclipse.emf.emfstore.client.model.observers.ConflictResolver;
 import org.eclipse.emf.emfstore.client.model.observers.LoginObserver;
-import org.eclipse.emf.emfstore.client.model.observers.OperationListener;
 import org.eclipse.emf.emfstore.client.model.observers.ShareObserver;
 import org.eclipse.emf.emfstore.client.model.observers.UpdateObserver;
 import org.eclipse.emf.emfstore.client.model.preferences.PropertyKey;
@@ -75,7 +74,6 @@ import org.eclipse.emf.emfstore.client.model.util.ResourceHelper;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.common.model.impl.CopyListener;
 import org.eclipse.emf.emfstore.common.model.impl.IdentifiableElementImpl;
 import org.eclipse.emf.emfstore.common.model.impl.ProjectImpl;
 import org.eclipse.emf.emfstore.common.model.util.AutoSplitAndSaveResourceContainmentList;
@@ -163,7 +161,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.Sema
  * @generated
  */
 public class ProjectSpaceImpl extends IdentifiableElementImpl implements
-		ProjectSpace, LoginObserver, CopyListener {
+		ProjectSpace, LoginObserver {
 
 	/**
 	 * The cached value of the '{@link #getProject() <em>Project</em>}'
@@ -393,8 +391,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	private ModifiedModelElementsCache modifiedModelElementsCache;
 
-	private List<OperationListener> operationListeners;
-
 	private OperationManager operationManager;
 
 	private AutoSplitAndSaveResourceContainmentList<AbstractOperation> operationsList;
@@ -429,7 +425,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		super();
 		// TODO remove observer/listeners and use observerbus
 		this.commitObservers = new ArrayList<CommitObserver>();
-		this.operationListeners = new ArrayList<OperationListener>();
 		this.shareObservers = new ArrayList<ShareObserver>();
 		this.propertyMap = new HashMap<String, OrgUnitProperty>();
 		modifiedModelElementsCache = new ModifiedModelElementsCache(this);
@@ -1424,12 +1419,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 				.createChangePackage();
 		// copy operations from projectspace
 		for (AbstractOperation abstractOperation : getOperations()) {
-			AbstractOperation copy = EcoreUtil.copy(abstractOperation);
+			AbstractOperation copy = (AbstractOperation) EcoreUtil
+					.copy(abstractOperation);
 			changePackage.getOperations().add(copy);
 		}
 		// copy events from projectspace
 		for (Event event : getEventsFromComposite()) {
-			Event copy = EcoreUtil.copy(event);
+			Event copy = (Event) EcoreUtil.copy(event);
 			changePackage.getEvents().add(copy);
 		}
 
@@ -1734,8 +1730,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		// TODO: initialization order important
 		this.getProject().addProjectChangeObserver(this.operationRecorder);
 		this.getProject().addProjectChangeObserver(statePersister);
-
-		this.getProject().addCopyListener(this);
 
 		if (project instanceof ProjectImpl) {
 			((ProjectImpl) this.getProject())
