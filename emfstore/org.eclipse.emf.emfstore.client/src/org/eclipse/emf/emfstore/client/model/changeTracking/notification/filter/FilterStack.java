@@ -47,7 +47,7 @@ public final class FilterStack implements NotificationFilter {
 
 	private List<NotificationFilter> filterList;
 
-	private FilterStack(NotificationFilter[] filters) {
+	public FilterStack(NotificationFilter[] filters) {
 		filterList = new LinkedList<NotificationFilter>();
 		Collections.addAll(filterList, filters);
 	}
