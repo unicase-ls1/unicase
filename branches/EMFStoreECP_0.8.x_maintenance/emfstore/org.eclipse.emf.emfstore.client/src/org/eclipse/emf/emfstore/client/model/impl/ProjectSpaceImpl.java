@@ -1819,6 +1819,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		if (Configuration.isResourceSplittingEnabled()) {
 			splitResources(resourceSet, projectFragementsFileNamePrefix,
 					resources, this.getProject());
+		} else {
+			for (EObject modelElement : project.getAllModelElements())
+				((XMIResource) resource).setID(modelElement, getProject()
+						.getModelElementId(modelElement).getId());
 		}
 
 		Resource operationCompositeResource = resourceSet
