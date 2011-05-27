@@ -56,7 +56,8 @@ public final class Configuration {
 	 * @return the workspace directory path string
 	 */
 	public static String getWorkspaceDirectory() {
-		String workspaceDirectory = getLocationProvider().getWorkspaceDirectory();
+		String workspaceDirectory = getLocationProvider()
+				.getWorkspaceDirectory();
 		File workspace = new File(workspaceDirectory);
 		if (!workspace.exists()) {
 			workspace.mkdirs();
@@ -68,17 +69,21 @@ public final class Configuration {
 	}
 
 	/**
-	 * Returns the registered {@link LocationProvider} or if not existent, the {@link DefaultWorkspaceLocationProvider}.
+	 * Returns the registered {@link LocationProvider} or if not existent, the
+	 * {@link DefaultWorkspaceLocationProvider}.
 	 * 
 	 * @return workspace location provider
 	 */
 	public static LocationProvider getLocationProvider() {
 		if (locationProvider == null) {
-			IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				"org.eclipse.emf.emfstore.client.workspaceLocationProvider");
+			IConfigurationElement[] rawExtensions = Platform
+					.getExtensionRegistry()
+					.getConfigurationElementsFor(
+							"org.eclipse.emf.emfstore.client.workspaceLocationProvider");
 			for (IConfigurationElement extension : rawExtensions) {
 				try {
-					Object executableExtension = extension.createExecutableExtension("providerClass");
+					Object executableExtension = extension
+							.createExecutableExtension("providerClass");
 					if (executableExtension instanceof LocationProvider) {
 						locationProvider = (LocationProvider) executableExtension;
 					}
@@ -126,13 +131,16 @@ public final class Configuration {
 	 * @return server info
 	 */
 	public static List<ServerInfo> getDefaultServerInfos() {
-		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.eclipse.emf.emfstore.client.defaultConfigurationProvider");
+		IConfigurationElement[] rawExtensions = Platform
+				.getExtensionRegistry()
+				.getConfigurationElementsFor(
+						"org.eclipse.emf.emfstore.client.defaultConfigurationProvider");
 		for (IConfigurationElement extension : rawExtensions) {
 			try {
 				ConfigurationProvider provider = (ConfigurationProvider) extension
-					.createExecutableExtension("providerClass");
-				List<ServerInfo> defaultServerInfos = provider.getDefaultServerInfos();
+						.createExecutableExtension("providerClass");
+				List<ServerInfo> defaultServerInfos = provider
+						.getDefaultServerInfos();
 				if (defaultServerInfos != null) {
 					return defaultServerInfos;
 				}
@@ -153,7 +161,8 @@ public final class Configuration {
 		serverInfo.setUrl("localhost");
 		serverInfo.setCertificateAlias(KeyStoreManager.DEFAULT_CERTIFICATE);
 
-		Usersession superUsersession = ModelFactory.eINSTANCE.createUsersession();
+		Usersession superUsersession = ModelFactory.eINSTANCE
+				.createUsersession();
 		superUsersession.setServerInfo(serverInfo);
 		superUsersession.setPassword("super");
 		superUsersession.setSavePassword(true);
@@ -189,12 +198,13 @@ public final class Configuration {
 	 */
 	public static ClientVersionInfo getClientVersion() {
 		ClientVersionInfo clientVersionInfo = org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE
-			.createClientVersionInfo();
+				.createClientVersionInfo();
 		clientVersionInfo.setName(CLIENT_NAME);
 
-		Bundle emfStoreBundle = Platform.getBundle("org.eclipse.emf.emfstore.client");
-		String emfStoreVersionString = (String) emfStoreBundle.getHeaders().get(
-			org.osgi.framework.Constants.BUNDLE_VERSION);
+		Bundle emfStoreBundle = Platform
+				.getBundle("org.eclipse.emf.emfstore.client");
+		String emfStoreVersionString = (String) emfStoreBundle.getHeaders()
+				.get(org.osgi.framework.Constants.BUNDLE_VERSION);
 
 		clientVersionInfo.setVersion(emfStoreVersionString);
 		return clientVersionInfo;
@@ -206,7 +216,8 @@ public final class Configuration {
 	 * @return true if it is a release version
 	 */
 	public static boolean isReleaseVersion() {
-		return !isInternalReleaseVersion() && !getClientVersion().getVersion().endsWith("qualifier");
+		return !isInternalReleaseVersion()
+				&& !getClientVersion().getVersion().endsWith("qualifier");
 	}
 
 	/**
@@ -336,12 +347,19 @@ public final class Configuration {
 	 * 
 	 * @return true of resource splitting is enabled.
 	 */
-	public static boolean useCrossResourceRefs() {
-		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.eclipse.emf.emfstore.client.persistence.options");
-		for (IConfigurationElement extension : rawExtensions) {
-			return new Boolean(extension.getAttribute("crossReference"));
+	private static Boolean resourceSplitting;
+
+	public static boolean isResourceSplittingEnabled() {
+		if (resourceSplitting != null) {
+			return resourceSplitting.booleanValue();
 		}
-		return true;
+		resourceSplitting = new Boolean(false);
+		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry()
+				.getConfigurationElementsFor(
+						"org.eclipse.emf.emfstore.client.persistence.options");
+		for (IConfigurationElement extension : rawExtensions) {
+			resourceSplitting = new Boolean(extension.getAttribute("enabled"));
+		}
+		return resourceSplitting;
 	}
 }

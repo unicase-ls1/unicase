@@ -14,7 +14,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -28,8 +27,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.change.ChangeDescription;
-import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -405,12 +402,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	private FileTransferManager fileTransferManager;
 
-	/**
-	 * Indicates whether a resource may be split when a model element has been
-	 * added.
-	 */
-	private boolean splitResource;
-
 	private OperationRecorder operationRecorder;
 
 	private StatePersister statePersister;
@@ -430,7 +421,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		modifiedModelElementsCache = new ModifiedModelElementsCache(this);
 
 		this.addCommitObserver(modifiedModelElementsCache);
-		this.splitResource = true;
 		shareObservers.add(modifiedModelElementsCache);
 
 	}
@@ -1822,54 +1812,14 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		List<Resource> resources = new ArrayList<Resource>();
 		Resource resource = resourceSet.createResource(fileURI);
 		// if resource splitting fails, we need a reference to the old resource
-		Resource oldResource = resource;
 		resource.getContents().add(this.getProject());
 		resources.add(resource);
 		setResourceCount(getResourceCount() + 1);
 		List<EObject> modelElements = this.getProject().getModelElements();
 
-		boolean crossResource = Configuration.useCrossResourceRefs();
-
-		// int counter = Configuration.getMaxMECountPerResource() + 1;
-		int counter = 0;
-		for (EObject modelElement : modelElements) {
-
-			if (counter > Configuration.getMaxMECountPerResource()
-					&& splitResource) {
-				fileName = projectFragementsFileNamePrefix + getResourceCount()
-						+ Configuration.getProjectFragmentFileExtension();
-				fileURI = URI.createFileURI(fileName);
-				oldResource = resource;
-				resource = resourceSet.createResource(fileURI);
-				setResourceCount(getResourceCount() + 1);
-				resources.add(resource);
-				counter = 0;
-			}
-			counter++;
-
-			if (splitResource) {
-				if (!crossResource) {
-					EObject parent = modelElement.eContainer();
-					ChangeRecorder changeRecorder = new ChangeRecorder();
-					changeRecorder
-							.beginRecording(Collections.singleton(parent));
-					// try to pin resource
-					resource.getContents().add(modelElement);
-					ChangeDescription changeDesc = changeRecorder
-							.endRecording();
-					if (modelElement.eContainer() != parent) {
-						splitResource = false;
-						resource = oldResource;
-						// model element lost its parent, revert changes
-						changeDesc.apply();
-					}
-				} else {
-					resource.getContents().add(modelElement);
-				}
-			}
-
-			((XMIResource) resource).setID(modelElement, getProject()
-					.getModelElementId(modelElement).getId());
+		if (Configuration.isResourceSplittingEnabled()) {
+			splitResources(resourceSet, projectFragementsFileNamePrefix,
+					resources, resource, modelElements);
 		}
 
 		Resource operationCompositeResource = resourceSet
@@ -1896,7 +1846,37 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 			}
 		}
+
 		init();
+	}
+
+	private void splitResources(ResourceSet resourceSet,
+			String projectFragementsFileNamePrefix, List<Resource> resources,
+			Resource projectResource, List<EObject> modelElements) {
+		String fileName;
+		URI fileURI;
+
+		Resource resource = projectResource;
+		// int counter = Configuration.getMaxMECountPerResource() + 1;
+		int counter = 0;
+		for (EObject modelElement : modelElements) {
+
+			if (counter > Configuration.getMaxMECountPerResource()) {
+				fileName = projectFragementsFileNamePrefix + getResourceCount()
+						+ Configuration.getProjectFragmentFileExtension();
+				fileURI = URI.createFileURI(fileName);
+				resource = resourceSet.createResource(fileURI);
+				setResourceCount(getResourceCount() + 1);
+				resources.add(resource);
+				counter = 0;
+			}
+			counter++;
+
+			resource.getContents().add(modelElement);
+			// FIXME: this is not nice!
+			((XMIResource) resource).setID(modelElement, getProject()
+					.getModelElementId(modelElement).getId());
+		}
 	}
 
 	// end of custom code

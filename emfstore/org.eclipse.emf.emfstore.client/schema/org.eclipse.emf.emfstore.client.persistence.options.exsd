@@ -5,8 +5,8 @@
       <appInfo>
          <meta.schema plugin="org.eclipse.emf.emfstore.client" id="org.eclipse.emf.emfstore.client.persistence.options" name="Persistence Options"/>
       </appInfo>
-   <documentation>
-         [Enter description of this extension point.]
+      <documentation>
+         Enables splitting of resources for storing the contents of a project on the client side. This can significantly improve performance for large models. HOWEVER, please be CAREFUL: You need to enable containmentProxies in your genmodel (this is not a default option) and you need to enable resolveProxies for all references in your model (this is the default).
       </documentation>
    </annotation>
 
@@ -18,7 +18,7 @@
       </annotation>
       <complexType>
          <choice>
-            <element ref="useCrossResourceReferences"/>
+            <element ref="resourceSplitting"/>
          </choice>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -47,9 +47,9 @@
       </complexType>
    </element>
 
-   <element name="useCrossResourceReferences">
+   <element name="resourceSplitting">
       <complexType>
-         <attribute name="crossReference" type="boolean">
+         <attribute name="enabled" type="boolean" use="required">
             <annotation>
                <documentation>
                   
@@ -64,36 +64,12 @@
          <meta.section type="since"/>
       </appInfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         0.8.3
       </documentation>
    </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="examples"/>
-      </appInfo>
-      <documentation>
-         [Enter extension point usage example here.]
-      </documentation>
-   </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="apiinfo"/>
-      </appInfo>
-      <documentation>
-         [Enter API information here.]
-      </documentation>
-   </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="implementation"/>
-      </appInfo>
-      <documentation>
-         [Enter information about supplied implementation of this extension point.]
-      </documentation>
-   </annotation>
 
 
 </schema>
