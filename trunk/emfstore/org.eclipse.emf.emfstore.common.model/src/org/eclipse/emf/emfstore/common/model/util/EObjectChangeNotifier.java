@@ -70,7 +70,8 @@ public class EObjectChangeNotifier extends EContentAdapter {
 			return;
 		}
 
-		if (!isInitializing && notifier instanceof EObject
+		if (currentNotification != null && !currentNotification.isTouch()
+				&& !isInitializing && notifier instanceof EObject
 				&& !ModelUtil.isIgnoredDatatype((EObject) notifier)) {
 			EObject modelElement = (EObject) notifier;
 			if (!collection.containsInstance(modelElement)
@@ -88,6 +89,9 @@ public class EObjectChangeNotifier extends EContentAdapter {
 	@Override
 	protected void removeAdapter(Notifier notifier) {
 		if (isInitializing) {
+			return;
+		}
+		if (currentNotification != null && currentNotification.isTouch()) {
 			return;
 		}
 
