@@ -122,7 +122,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		eObjectsCache = new HashSet<EObject>();
 		idToEObjectCache = new HashMap<ModelElementId, EObject>();
 		copyListeners = new ArrayList<CopyListener>();
-		changeNotifier = new EObjectChangeNotifier(this);
 	}
 
 	// end of custom code
@@ -203,11 +202,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	}
 
 	private boolean isCacheInitialized() {
-		// TODO: EM, change notifier moved to OperationRecorder
-		if (changeNotifier == null) {
-			changeNotifier = new EObjectChangeNotifier(this);
-		}
-
 		return cachesInitialized;
 	}
 
