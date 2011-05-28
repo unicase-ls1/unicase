@@ -1555,6 +1555,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			return getBaseVersion();
 		}
 
+		WorkspaceManager.getObserverBus().notify(UpdateObserver.class)
+				.inspectChanges(this, changes);
+
 		final List<ChangePackage> cps = changes;
 
 		// revert
