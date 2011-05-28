@@ -206,14 +206,22 @@ public class StatePersister implements CommandObserver, ProjectChangeObserver {
 
 	private void setModelElementIdAndChildrenIdOnResource(XMIResource resource,
 			EObject modelElement) {
-		String modelElementId = collection.getModelElementId(modelElement)
-				.getId();
-		resource.setID(modelElement, modelElementId);
+		ModelElementId modelElementId = collection
+				.getModelElementId(modelElement);
+		if (modelElementId == null) {
+			modelElementId = collection.getDeletedModelElementId(modelElement);
+		}
+		String modelElementIdString = modelElementId.getId();
+
+		resource.setID(modelElement, modelElementIdString);
 
 		TreeIterator<EObject> it = modelElement.eAllContents();
 		while (it.hasNext()) {
 			EObject child = it.next();
 			ModelElementId childId = collection.getModelElementId(child);
+			if (childId == null) {
+				childId = collection.getDeletedModelElementId(modelElement);
+			}
 			resource.setID(child, childId.getId());
 		}
 	}
