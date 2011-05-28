@@ -22,6 +22,7 @@ import java.util.ListIterator;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -1864,7 +1865,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		int counter = 0;
 		for (EObject modelElement : project.getAllModelElements()) {
 
-			if (counter > Configuration.getMaxMECountPerResource()) {
+			if (counter > Configuration.getMaxMECountPerResource()
+					&& !(modelElement instanceof BasicEMap.Entry)) {
 				fileName = projectFragementsFileNamePrefix + getResourceCount()
 						+ Configuration.getProjectFragmentFileExtension();
 				fileURI = URI.createFileURI(fileName);
