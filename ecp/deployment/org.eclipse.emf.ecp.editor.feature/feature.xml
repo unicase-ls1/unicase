@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.ecp.editor.feature"
       label="ECP Editor"
-      version="0.8.6"
+      version="0.8.7"
       provider-name="Eclipse Modeling Project">
 
    <description url="http://emfcp.org">
