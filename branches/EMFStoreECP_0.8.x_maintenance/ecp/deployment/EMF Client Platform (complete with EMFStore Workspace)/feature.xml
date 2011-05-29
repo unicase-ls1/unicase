@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.ecp.all"
       label="EMF Client Platform (complete with EMFStore Workspace persistence)"
-      version="0.8.1"
+      version="0.8.6"
       provider-name="Eclipse Modeling Project">
 
    <description url="http://emfcp.org">
