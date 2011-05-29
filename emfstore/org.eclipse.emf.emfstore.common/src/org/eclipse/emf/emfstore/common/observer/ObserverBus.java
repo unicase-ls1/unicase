@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This is a universal observer bus. Better documentation will follow... Example code:
@@ -193,9 +194,30 @@ public class ObserverBus {
 				} catch (Throwable e) {
 				}
 			}
+			if (method.getReturnType().isPrimitive()) {
+				return getDefaultValueForPrimitive(method.getReturnType());
+			}
+			
 			return firstResult;
 		}
 		// END SUPRESS CATCH EXCEPTION
+
+		private Object getDefaultValueForPrimitive(Class<?> returnType) {
+			String simpleName = returnType.getSimpleName();
+			return primitiveToObjectDefaultValueMap.get(simpleName);
+		}
+	
+	}
+	
+	private static final Map<String, Object> primitiveToObjectDefaultValueMap = new HashMap<String, Object>();
+	static {
+		primitiveToObjectDefaultValueMap.put("int", new Integer(0));
+		primitiveToObjectDefaultValueMap.put("boolean", new Boolean(false));
+		primitiveToObjectDefaultValueMap.put("long", new Long(0));
+		primitiveToObjectDefaultValueMap.put("float", new Float(0));
+		primitiveToObjectDefaultValueMap.put("double", new Double(0));
+		primitiveToObjectDefaultValueMap.put("byte", Byte.MIN_VALUE);
+		primitiveToObjectDefaultValueMap.put("short", Short.MIN_VALUE);
 	}
 
 	@SuppressWarnings("unchecked")
