@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.emfstore.common.feature"
       label="EMFStore Common"
-      version="0.8.6"
+      version="0.8.7"
       provider-name="Eclipse Modeling Project"
       plugin="org.eclipse.emf.emfstore.branding">
 
