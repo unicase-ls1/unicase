@@ -47,7 +47,7 @@ By this point we expect you to have a properly configured version of eclipse wit
     # org.eclipse.emf.emfstore.server
     # org.eclipse.emf.emfstore.server.model
     # org.eclipse.emf.emfstore.common
-    # the model that you want to include or e.g. org.eclipse.emf.emfstore.examplemodel 
+    # the model that you want to include or e.g. org.eclipse.emf.emfstore.examplemodel (which is the "Bowling" model)
 
    * There is no need to add the corresponding ".edit" plug-ins for your model. These are only needed for ECP.
 
