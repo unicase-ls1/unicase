@@ -49,7 +49,7 @@ By this point we expect you to have a properly configured version of eclipse wit
     # org.eclipse.emf.emfstore.common
     # the model that you want to include or e.g. org.eclipse.emf.emfstore.examplemodel 
 
-   * There is no need to add the corresponding "*.edit" plug-ins for your model. These are only needed for ECP.
+   * There is no need to add the corresponding ".edit" plug-ins for your model. These are only needed for ECP.
 
    * Rename the version number in all 4 plugins to the version you want to release, this you can do in Manifest file for each and every plugin.
    * Expand the hierarchy of "org.eclipse.emf.emfstore" plugin in the package explorer and look for a file named "emfstore.product". It should be right under the root node in the hierarchy along with the "plugin.xml" file.
