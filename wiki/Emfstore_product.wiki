@@ -43,23 +43,24 @@ By this point we expect you to have a properly configured version of eclipse wit
  * In next steps we summarize the actual steps involved in building the emfstore product.
 
    * Checkout the following 6 plugins from the Google code SVN for UNICASE as per your build requirement (from trunk, branch or tag) :
-    # org.unicase.emfstore
-    # org.unicase.emfstore.esmodel
-    # org.unciase.implementation
-    # org.unicase.metamodel
-    # org.unicase.model
-    # org.unciase.model.migrator
 
-   * Rename the version number in all 6 plugins to the version you want to release, this you can do in Manifest file for each and every plugin.
-   * Expand the heirarchy of "org.unicase.emfstore" plugin in the package explorer and look for a file named "emfstore.product". It should be right under the root node in the heirarchy along with the "plugin.xml" file.
+    # org.eclipse.emf.emfstore.server
+    # org.eclipse.emf.emfstore.server.model
+    # org.eclipse.emf.emfstore.common
+    # the model that you want to include or e.g. org.eclipse.emf.emfstore.examplemodel 
+
+   * There is no need to add the corresponding "*.edit" plug-ins for your model. These are only needed for ECP.
+
+   * Rename the version number in all 4 plugins to the version you want to release, this you can do in Manifest file for each and every plugin.
+   * Expand the hierarchy of "org.eclipse.emf.emfstore" plugin in the package explorer and look for a file named "emfstore.product". It should be right under the root node in the hierarchy along with the "plugin.xml" file.
   * Open the "emfstore.product" file and change the version number here as well as you did for the plugins previously.
-  * Below in "Product definition" section make sure that the "Product" and "Application" both have "org.unicase.emfstore.server" selected.
+  * Below in "Product definition" section make sure that the "Product" and "Application" both have "org.eclipse.emf.emfstore.server.server" selected.
   * The product configuration is based on: plug-ins and not features(It can be based on feature but not in our case at the moment).
  
 Open "Dependencies" tab for the emfstore.product" :
  
-   * Click on the "Add" button and type "org.unciase"
-   * you will get to see all 6 plugins we downloaded previously(you can verify by the version number you gave to them and the one visible currently).
+   * Click on the "Add" button and type "org.eclipse"
+   * you will get to see all 4 plugins we downloaded previously(you can verify by the version number you gave to them and the one visible currently).
    * Add all 6 of them. Once you add them all you will see that the plugin version is shown as "(0.0.0)" following their name.
    * Select each of the plugin one after another and then click "Properties..." button on the right and change the version to the same version number you had been using so far.
    * Once the previous step is done select the "checkbox" with label "Include optional dependencies when computing required plug-ins".
