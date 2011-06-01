@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Riena
+Bundle-SymbolicName: org.eclipse.emf.ecp.riena;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.eclipse.emf.ecp.riena.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecp.editor;bundle-version="0.8.0",
+ org.eclipse.emf.emfstore.examplemodel;bundle-version="0.8.1",
+ org.eclipse.riena.core;bundle-version="3.0.0",
+ org.eclipse.riena.ui.ridgets;bundle-version="3.0.0",
+ org.eclipse.riena.ui.ridgets.swt;bundle-version="3.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: org.eclipse.emf.emfstore.bowling
