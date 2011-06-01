@@ -42,13 +42,21 @@ public class UnicasePerspective implements IPerspectiveFactory {
 
 		topLeft.addView("org.unicase.ui.navigator.viewer"); // NON-NLS-1
 
-		IFolderLayout bottom = factory.createFolder("bottomRight", // NON-NLS-1
-			IPageLayout.BOTTOM, 0.7f, factory.getEditorArea());
+		IFolderLayout bottomLeft = factory.createFolder("bottomLeft", // NON-NLS-1
+			IPageLayout.BOTTOM, 0.25f, "topLeft");
+		bottomLeft.addView("org.unicase.ui.repository.views.RepositoryView");
 
-		bottom.addView("org.unicase.ui.repository.views.RepositoryView");
-		bottom.addView("org.unicase.ui.taskview");
+		IFolderLayout bottomRight = factory.createFolder("bottomRight", // NON-NLS-1
+			IPageLayout.BOTTOM, 0.25f, factory.getEditorArea());
 
-		bottom.addPlaceholder(IConsoleConstants.ID_CONSOLE_VIEW);
+		bottomRight.addView("org.unicase.ui.taskview");
+		bottomRight.addView("org.unicase.ui.treeview.views.StatusView");
+
+		bottomRight.addPlaceholder(IConsoleConstants.ID_CONSOLE_VIEW);
+
+		IFolderLayout dashboard = factory.createFolder("dashboard", // NON-NLS-1
+			IPageLayout.BOTTOM, 1.0f, factory.getEditorArea());
+		dashboard.addView("org.unicase.ui.dashboard");
 
 	}
 
