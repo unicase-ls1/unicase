@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="EMFStore and ECP Targetplatform(s)" url="http://unicase.googlecode.com/svn/updatesite/targetplatform/">
+      Update Site for the Target Platform(s) of EMFStore and ECP
+   </description>
+   <feature url="features/EMFStoreECPTargetPlatform_0.7.0.jar" id="EMFStoreECPTargetPlatform" version="0.7.0">
+      <category name="EMFStoreECPTargetPlatform"/>
+   </feature>
+   <category-def name="EMFStoreECPTargetPlatform" label="EMFStore and ECP Target Platform"/>
+</site>

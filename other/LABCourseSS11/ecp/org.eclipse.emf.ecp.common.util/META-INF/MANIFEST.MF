@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Common Util
+Bundle-SymbolicName: org.eclipse.emf.ecp.common.util
+Bundle-Version: 0.8.1
+Bundle-Activator: org.eclipse.emf.ecp.common.util.Activator
+Require-Bundle: org.eclipse.core.expressions;visibility:=reexport,
+ org.eclipse.ui;visibility:=reexport,
+ org.eclipse.ui.forms;visibility:=reexport,
+ org.eclipse.ui.ide;visibility:=reexport,
+ org.eclipse.jface.databinding;visibility:=reexport,
+ org.eclipse.emf.edit.ui;visibility:=reexport,
+ org.eclipse.emf.databinding.edit;visibility:=reexport,
+ org.eclipse.emf.emfstore.common;visibility:=reexport,
+ org.eclipse.ui.ide.application
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.emf.ecp.common.util
+Bundle-ClassPath: .
+Bundle-Vendor: Eclipse Modeling Project
