@@ -16,12 +16,14 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
 import org.eclipse.emf.ecp.common.model.ModelElementContextListener;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProjectListener;
@@ -357,4 +359,14 @@ public abstract class ECPProjectImpl extends EObjectImpl implements ECPProject {
 		return super.eIsSet(featureID);
 	}
 
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Collection<ECPModelelementContext> getNeighbors() {
+		Collection<ECPModelelementContext> ret = new BasicEList<ECPModelelementContext>();
+		ret.addAll(getWorkspace().getProjects());
+		return ret;
+	}
 } // ECPProjectImpl
