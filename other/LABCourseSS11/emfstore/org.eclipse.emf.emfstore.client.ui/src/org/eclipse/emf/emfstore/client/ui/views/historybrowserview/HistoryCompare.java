@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2008-2011 Chair for Applied Software Engineering,
+ * Technische Universitaet Muenchen.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors: groeber
+ ******************************************************************************/
 package org.eclipse.emf.emfstore.client.ui.views.historybrowserview;
 
 import org.eclipse.core.runtime.CoreException;
@@ -6,12 +16,28 @@ import org.eclipse.core.runtime.ISafeRunnable;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 
+/**
+ * Handles registered Compare types for the extension point:
+ * org.eclipse.emf.emfstore.client.ui.views.historybrowsercomparator
+ * 
+ * @author groeber
+ */
 public class HistoryCompare {
 
 	// This is the ID of the extension point
 	private final String HISTORY_COMPARE_ID = "org.eclipse.emf.emfstore.client.ui.views.historybrowsercomparator";
 
+	/**
+	 * This function calls {@link ICompare#compare(EObject e1, EObject e2)}and
+	 * then {@link ICompare#display()} for all registered extensions.
+	 * 
+	 * @param e1
+	 *            EObject one to compare
+	 * @param e2
+	 *            EObject two to compare
+	 */
 	public void handleRegisteredExtensions(final EObject e1, final EObject e2) {
 		IConfigurationElement[] config = Platform.getExtensionRegistry()
 				.getConfigurationElementsFor(HISTORY_COMPARE_ID);
@@ -38,7 +64,8 @@ public class HistoryCompare {
 				}
 			}
 		} catch (CoreException ex) {
-			System.out.println(ex.getMessage());
+			String message = "Error while instantiating compare provider!";
+			ModelUtil.logWarning(message, ex);
 		}
 	}
 }
