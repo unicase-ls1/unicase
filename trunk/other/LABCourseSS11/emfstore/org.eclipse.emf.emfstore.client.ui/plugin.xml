@@ -3,6 +3,7 @@
 <plugin>
    <extension-point id="org.eclipse.emf.emfstore.client.ui.merge.customoption" name="customoption" schema="schema/org.eclipse.emf.emfstore.client.ui.customoption.exsd"/>
   <extension-point id="org.eclipse.emf.emfstore.client.ui.commitdialog.tray" name="org.eclipse.emf.emfstore.client.ui.commitdialog.tray" schema="schema/org.eclipse.emf.emfstore.client.ui.commitdialog.tray.exsd"/>
+  <extension-point id="org.eclipse.emf.emfstore.client.ui.views.historybrowsercomparator" name="HistoryBrowserCompare" schema="schema/org.eclipse.emf.emfstore.client.ui.views.historybrowsercomparator.exsd"/>
   <extension
         point="org.eclipse.ui.handlers">
       <handler
