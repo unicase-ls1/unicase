@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="&lt;copyright> Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Unversitaet Muenchen. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html &lt;/copyright>&#xD;"
+    modelDirectory="/org.eclipse.emf.emfstore.client.model/src" editDirectory="/org.eclipse.emf.emfstore.client.model.edit/src"
+    editorDirectory="/org.eclipse.emf.emfstore.client.model.editor/src" modelPluginID="org.eclipse.emf.emfstore.client.model"
+    modelName="ClientModel" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore"
+    containmentProxies="true" complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.emf.emfstore.client.model.edit"
+    editorPluginID="org.eclipse.emf.emfstore.client.model.editor" language="" usedGenPackages="../../org.eclipse.emf.emfstore.common.model/model/common.genmodel#//model ../../org.eclipse.emf.emfstore.server.model/model/server.genmodel#//model">
+  <foreignModel>client.ecore</foreignModel>
+  <genPackages prefix="Model" basePackage="org.eclipse.emf.emfstore.client" disposableProviderFactory="true"
+      ecorePackage="client.ecore#/">
+    <genClasses ecoreClass="client.ecore#//WorkspaceDataInternal">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//WorkspaceDataInternal/internalProjectSpaces"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//WorkspaceDataInternal/internalServerInfos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//WorkspaceDataInternal/internalUsersessions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference client.ecore#//WorkspaceDataInternal/internalActiveProjectSpace"/>
+    </genClasses>
+    <genClasses ecoreClass="client.ecore#//ServerInfo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute client.ecore#//ServerInfo/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute client.ecore#//ServerInfo/url"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute client.ecore#//ServerInfo/port"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//ServerInfo/projectInfos"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference client.ecore#//ServerInfo/lastUsersession"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute client.ecore#//ServerInfo/certificateAlias"/>
+    </genClasses>
+    <genClasses ecoreClass="client.ecore#//Usersession">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute client.ecore#//Usersession/username"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute client.ecore#//Usersession/password"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference client.ecore#//Usersession/sessionId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute client.ecore#//Usersession/persistentPassword"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference client.ecore#//Usersession/serverInfo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute client.ecore#//Usersession/savePassword"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//Usersession/ACUser"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//Usersession/changedProperties"/>
+    </genClasses>
+    <genClasses ecoreClass="client.ecore#//ProjectSpaceDataInternal">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//ProjectSpaceDataInternal/projectId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute client.ecore#//ProjectSpaceDataInternal/projectName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute client.ecore#//ProjectSpaceDataInternal/projectDescription"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference client.ecore#//ProjectSpaceDataInternal/usersession"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute client.ecore#//ProjectSpaceDataInternal/lastUpdated"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//ProjectSpaceDataInternal/baseVersion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute client.ecore#//ProjectSpaceDataInternal/resourceCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute client.ecore#//ProjectSpaceDataInternal/dirty"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute client.ecore#//ProjectSpaceDataInternal/oldLogMessages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//ProjectSpaceDataInternal/waitingUploads"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute client.ecore#//ProjectSpaceDataInternal/projectDataPath"/>
+    </genClasses>
+    <genClasses ecoreClass="client.ecore#//OperationComposite">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//OperationComposite/operations"/>
+    </genClasses>
+    <genClasses ecoreClass="client.ecore#//PendingFileTransfer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//PendingFileTransfer/attachmentId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute client.ecore#//PendingFileTransfer/fileVersion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute client.ecore#//PendingFileTransfer/chunkNumber"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute client.ecore#//PendingFileTransfer/upload"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute client.ecore#//PendingFileTransfer/fileName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute client.ecore#//PendingFileTransfer/preliminaryFileName"/>
+    </genClasses>
+    <genClasses ecoreClass="client.ecore#//ProjectData">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//ProjectData/project"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//ProjectData/localOperations"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
