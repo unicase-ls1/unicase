@@ -25,12 +25,10 @@
    <extension
          point="org.eclipse.emf.compare.match.engine">
       <matchengine
-            contentType="*"
             engineClass="org.eclipse.emf.ecp.compare.history.unicasematchengine.UnicaseMatchEngine"
             fileExtension="*"
-            label="org.eclipse.emf.ecp.compare.history.unicasematchengine.UnicaseMatchEngine"
-            namespace="*"
-            priority="low">
+            label="Unicase Match Engine"
+            priority="highest">
       </matchengine>
    </extension>
 
