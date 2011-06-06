@@ -75,13 +75,10 @@ public class MEExtendedSuggestedSelectionDialog extends
 	
 	private void updateModelElements() {
 		setModelElements(createAllModelElementsList());
-
 		currentContextNeighbours = new HashMap<String, ECPModelelementContext>();
 		for (ECPModelelementContext tempContext : currentContext.getNeighbors()) {
 			currentContextNeighbours.put(tempContext.toString(), tempContext);
-		}
-		
-		
+		}		
 	}
 
 	private Collection<EObject> createAllModelElementsList() {
@@ -89,7 +86,7 @@ public class MEExtendedSuggestedSelectionDialog extends
 			return currentContext.getAllModelElementsbyClass(baseElement.eClass(), false);
 		} else {
 			Collection<EObject> result = null;
-			result = currentContext.getAllModelElements();
+			result = currentContext.getAllModelElementsbyClass(eReference.getEReferenceType(), true);
 			return result;
 		}
 	}
@@ -100,8 +97,7 @@ public class MEExtendedSuggestedSelectionDialog extends
 		Label label = new Label(parent, SWT.WRAP);
 		label.setText("Please select the context:");
 		contextControl = new Combo(parent, SWT.DROP_DOWN | SWT.BORDER | SWT.HORIZONTAL | SWT.SINGLE);
-		Control[] children = parent.getChildren();
-		Control firstChild = children[0];
+		Control firstChild = parent.getChildren()[0];
 		contextControl.moveAbove(firstChild);
 		label.moveAbove(contextControl);
 		
