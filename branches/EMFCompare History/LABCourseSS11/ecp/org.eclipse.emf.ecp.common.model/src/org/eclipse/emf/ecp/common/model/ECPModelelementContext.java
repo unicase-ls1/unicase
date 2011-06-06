@@ -81,4 +81,11 @@ public interface ECPModelelementContext {
 	 * Called if the context is not used anymore. Use for cleanup.
 	 */
 	void dispose();
+	
+	/**
+	 * Returns all {@link ECPModelelementContext} that are neighbor with this context
+	 * 
+	 * @return Collection of all neighboring contexts
+	 */
+	Collection<ECPModelelementContext> getNeighbors();
 }
