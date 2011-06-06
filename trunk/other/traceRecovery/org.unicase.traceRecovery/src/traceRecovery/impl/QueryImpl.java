@@ -43,7 +43,7 @@ public class QueryImpl extends UnicaseModelElementImpl implements Query {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<UnicaseModelElement> modelElement;
+	protected EList<UnicaseModelElement> modelElements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -69,11 +69,11 @@ public class QueryImpl extends UnicaseModelElementImpl implements Query {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<UnicaseModelElement> getModelElement() {
-		if (modelElement == null) {
-			modelElement = new EObjectResolvingEList<UnicaseModelElement>(UnicaseModelElement.class, this, TraceRecoveryPackage.QUERY__MODEL_ELEMENT);
+	public EList<UnicaseModelElement> getModelElements() {
+		if (modelElements == null) {
+			modelElements = new EObjectResolvingEList<UnicaseModelElement>(UnicaseModelElement.class, this, TraceRecoveryPackage.QUERY__MODEL_ELEMENT);
 		}
-		return modelElement;
+		return modelElements;
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class QueryImpl extends UnicaseModelElementImpl implements Query {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case TraceRecoveryPackage.QUERY__MODEL_ELEMENT:
-				return getModelElement();
+				return getModelElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -100,8 +100,8 @@ public class QueryImpl extends UnicaseModelElementImpl implements Query {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case TraceRecoveryPackage.QUERY__MODEL_ELEMENT:
-				getModelElement().clear();
-				getModelElement().addAll((Collection<? extends UnicaseModelElement>)newValue);
+				getModelElements().clear();
+				getModelElements().addAll((Collection<? extends UnicaseModelElement>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -116,7 +116,7 @@ public class QueryImpl extends UnicaseModelElementImpl implements Query {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case TraceRecoveryPackage.QUERY__MODEL_ELEMENT:
-				getModelElement().clear();
+				getModelElements().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -131,7 +131,7 @@ public class QueryImpl extends UnicaseModelElementImpl implements Query {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case TraceRecoveryPackage.QUERY__MODEL_ELEMENT:
-				return modelElement != null && !modelElement.isEmpty();
+				return modelElements != null && !modelElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
