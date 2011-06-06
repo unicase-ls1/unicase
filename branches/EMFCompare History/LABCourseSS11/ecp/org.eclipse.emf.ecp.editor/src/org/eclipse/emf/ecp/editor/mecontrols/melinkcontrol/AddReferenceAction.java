@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
 import org.eclipse.emf.ecp.common.util.OverlayImageDescriptor;
+import org.eclipse.emf.ecp.editor.MEExtendedSuggestedSelectionDialog;
 import org.eclipse.emf.ecp.editor.MESuggestedSelectionDialog;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -94,7 +95,7 @@ public class AddReferenceAction extends ReferenceAction {
 				}
 			}
 
-			MESuggestedSelectionDialog dlg = new MESuggestedSelectionDialog("Select Elements", DIALOG_MESSAGE, true,
+			MEExtendedSuggestedSelectionDialog dlg = new MEExtendedSuggestedSelectionDialog("Select Elements", DIALOG_MESSAGE, true,
 				modelElement, eReference, allElements);
 
 			if (dlg.open() == Window.OK) {
