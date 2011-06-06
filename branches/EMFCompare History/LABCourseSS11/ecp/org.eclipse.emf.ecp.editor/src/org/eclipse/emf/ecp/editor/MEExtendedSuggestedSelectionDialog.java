@@ -87,6 +87,7 @@ public class MEExtendedSuggestedSelectionDialog extends
 		} else {
 			Collection<EObject> result = null;
 			result = currentContext.getAllModelElementsbyClass(eReference.getEReferenceType(), true);
+			result.remove(baseElement);
 			return result;
 		}
 	}
