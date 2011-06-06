@@ -52,7 +52,7 @@ public class AddAssociationClassAction extends Action {
 		protected void doRun() {
 			Collection<EObject> allElements = context.getAllModelElementsbyClass(modelElement.eClass(), false);
 			MEExtendedSuggestedSelectionDialog dlg = new MEExtendedSuggestedSelectionDialog("Select Elements", DIALOG_MESSAGE, true,
-				modelElement, eReference, allElements);
+				modelElement, eReference, context, true);
 			if (dlg.open() == Window.OK) {
 				if (eReference.isMany()) {
 					for (Object result : dlg.getResult()) {

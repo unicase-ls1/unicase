@@ -96,8 +96,8 @@ public class AddReferenceAction extends ReferenceAction {
 			}
 
 			MEExtendedSuggestedSelectionDialog dlg = new MEExtendedSuggestedSelectionDialog("Select Elements", DIALOG_MESSAGE, true,
-				modelElement, eReference, allElements);
-
+				modelElement, eReference, context, false);
+			
 			if (dlg.open() == Window.OK) {
 				if (eReference.isMany()) {
 					Object[] results = dlg.getResult();
