@@ -11,7 +11,6 @@
 package org.eclipse.emf.emfstore.client.ui.views.historybrowserview;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -47,8 +46,6 @@ import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
 import org.eclipse.emf.emfstore.server.model.versioning.TagVersionSpec;
 import org.eclipse.emf.emfstore.server.model.versioning.VersionSpec;
 import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
-import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
-import org.eclipse.emf.emfstore.server.model.versioning.events.ShowHistoryEvent;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId;
@@ -516,23 +513,26 @@ public class HistoryBrowserView extends ViewPart implements
 			return;
 		}
 		HistoryQuery query = getQuery(end);
-		List<HistoryInfo> historyInfo = projectSpace.getUsersession()
-				.getHistoryInfo(projectSpace.getProjectId(), query);
+		//
+		List<HistoryInfo> historyInfo = new UsersessionController(
+				projectSpace.getUsersession()).getHistoryInfo(
+				projectSpace.getProjectId(), query);
 
-		// Event logging
-		ShowHistoryEvent historyEvent = EventsFactory.eINSTANCE
-				.createShowHistoryEvent();
-		historyEvent.setSourceVersion(query.getSource());
-		historyEvent.setTargetVersion(query.getTarget());
-		historyEvent.setTimestamp(new Date());
-		EList<ModelElementId> modelElements = query.getModelElements();
-		if (modelElements != null) {
-			for (ModelElementId modelElementId : modelElements) {
-				historyEvent.getModelElement().add(
-						ModelUtil.clone(modelElementId));
-			}
-		}
-		projectSpace.addEvent(historyEvent);
+		// TODO: event logging
+		// ShowHistoryEvent historyEvent = EventsFactory.eINSTANCE
+		// .createShowHistoryEvent();
+		// historyEvent.setSourceVersion(query.getSource());
+		// historyEvent.setTargetVersion(query.getTarget());
+		// historyEvent.setTimestamp(new Date());
+		// EList<ModelElementId> modelElements = query.getModelElements();
+		// if (modelElements != null) {
+		// for (ModelElementId modelElementId : modelElements) {
+		// historyEvent.getModelElement().add(
+		// ModelUtil.clone(modelElementId));
+		// }
+		// }
+
+		// projectSpace.addEvent(historyEvent);
 
 		if (historyInfo != null) {
 			for (HistoryInfo hi : historyInfo) {

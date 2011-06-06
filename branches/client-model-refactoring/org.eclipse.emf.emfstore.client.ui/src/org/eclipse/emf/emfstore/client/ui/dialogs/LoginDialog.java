@@ -56,6 +56,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	private Text txtUsername;
 	private Text txtPassword;
 	private Usersession session;
+	private UsersessionController sessionController;
 	private Combo sessionsCombo;
 	private ArrayList<Usersession> sessionsList;
 	private Button chkSavePassword;
@@ -78,6 +79,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	public LoginDialog(Shell parentShell, Usersession session, ServerInfo server) {
 		super(parentShell);
 		this.session = session;
+		this.sessionController = new UsersessionController(session);
 		this.server = server;
 		setBlockOnOpen(true);
 	}
@@ -184,7 +186,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 				if (session == null) {
 					session = ModelFactory.eINSTANCE.createUsersession();
 					session.setServerInfo(server);
-
+					sessionController = new UsersessionController(session);
 				}
 				session.setSavePassword(chkSavePassword.getSelection());
 
@@ -222,7 +224,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		if (session == null) {
 			session = ModelFactory.eINSTANCE.createUsersession();
 			session.setServerInfo(server);
-
+			sessionController = new UsersessionController(session);
 		}
 
 		session.setUsername(txtUsername.getText());
@@ -320,6 +322,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 
 		chkSavePassword.setSelection(session.isSavePassword());
 		this.session = session;
+		this.sessionController = new UsersessionController(session);
 	}
 
 	/**

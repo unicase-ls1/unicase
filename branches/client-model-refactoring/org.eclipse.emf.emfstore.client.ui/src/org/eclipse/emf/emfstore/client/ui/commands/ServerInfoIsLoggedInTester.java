@@ -26,19 +26,25 @@ public class ServerInfoIsLoggedInTester extends PropertyTester {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object, java.lang.String, java.lang.Object[],
-	 *      java.lang.Object)
+	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object,
+	 *      java.lang.String, java.lang.Object[], java.lang.Object)
 	 */
-	public boolean test(Object receiver, String property, Object[] args, final Object expectedValue) {
-		if (receiver instanceof TreeNode && ((TreeNode) receiver).getValue() instanceof ServerInfo
-			&& expectedValue instanceof Boolean) {
-			final ServerInfo serverInfo = (ServerInfo) ((TreeNode) receiver).getValue();
+	public boolean test(Object receiver, String property, Object[] args,
+			final Object expectedValue) {
+		if (receiver instanceof TreeNode
+				&& ((TreeNode) receiver).getValue() instanceof ServerInfo
+				&& expectedValue instanceof Boolean) {
+			final ServerInfo serverInfo = (ServerInfo) ((TreeNode) receiver)
+					.getValue();
 			EMFStoreCommandWithResult<Boolean> command = new EMFStoreCommandWithResult<Boolean>() {
 				@Override
 				protected Boolean doRun() {
 					Usersession usersession = serverInfo.getLastUsersession();
-					Boolean ret = new Boolean(usersession != null && usersession.isLoggedIn());
-					return ret.equals(expectedValue);
+					UsersessionController usersessionController = new UsersessionController(
+							usersession);
+					Boolean isLoggedIn = new Boolean(usersession != null
+							&& usersessionController.isLoggedIn());
+					return isLoggedIn.equals(expectedValue);
 				}
 			};
 			Boolean result = command.run(false);

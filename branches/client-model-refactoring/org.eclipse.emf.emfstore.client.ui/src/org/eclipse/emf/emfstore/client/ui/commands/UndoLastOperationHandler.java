@@ -33,7 +33,8 @@ public class UndoLastOperationHandler extends AbstractHandler {
 		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
-				projectSpace.getOperationManager().undoLastOperation();
+				((ProjectSpaceInternal) projectSpace).getOperationManager()
+						.undoLastOperation();
 			}
 		}.run();
 		return null;
