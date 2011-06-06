@@ -75,11 +75,13 @@ public class MEExtendedSuggestedSelectionDialog extends
 	
 	private void updateModelElements() {
 		setModelElements(createAllModelElementsList());
+
 		currentContextNeighbours = new HashMap<String, ECPModelelementContext>();
 		for (ECPModelelementContext tempContext : currentContext.getNeighbors()) {
 			currentContextNeighbours.put(tempContext.toString(), tempContext);
 		}
-		super.refresh();
+		
+		
 	}
 
 	private Collection<EObject> createAllModelElementsList() {
@@ -87,8 +89,7 @@ public class MEExtendedSuggestedSelectionDialog extends
 			return currentContext.getAllModelElementsbyClass(baseElement.eClass(), false);
 		} else {
 			Collection<EObject> result = null;
-			result = currentContext.getAllModelElementsbyClass(eReference.getEReferenceType(), true);
-			result.remove(baseElement);
+			result = currentContext.getAllModelElements();
 			return result;
 		}
 	}
@@ -106,6 +107,9 @@ public class MEExtendedSuggestedSelectionDialog extends
 		
 		for (String key : currentContextNeighbours.keySet()) {
 			contextControl.add(key);
+			if(key.equals(currentContext.toString())){
+				contextControl.select(contextControl.getItemCount()-1);
+			}
 		}
 		
 		ISWTObservableValue obs = SWTObservables.observeSingleSelectionIndex(contextControl);
