@@ -11,13 +11,21 @@
 package org.eclipse.emf.ecp.editor;
 
 import java.util.Collection;
+import java.util.HashMap;
 
+import org.eclipse.core.databinding.observable.value.IValueChangeListener;
+import org.eclipse.core.databinding.observable.value.ValueChangeEvent;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
+import org.eclipse.emf.ecp.common.util.UiUtil;
+import org.eclipse.jface.databinding.swt.ISWTObservableValue;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 
 /**
@@ -29,8 +37,13 @@ import org.eclipse.swt.widgets.Label;
 public class MEExtendedSuggestedSelectionDialog extends
 		MESuggestedSelectionDialog {
 	
-	private Combo contexts;
-	
+	private Combo contextControl;
+	private ECPModelelementContext currentContext;
+	private HashMap<String, ECPModelelementContext> currentContextNeighbours;
+	private EObject baseElement;
+	private EReference eReference;
+	private boolean isAssociationClass;
+
 	/**
 	 * The constructor.
 	 * 
@@ -41,10 +54,43 @@ public class MEExtendedSuggestedSelectionDialog extends
 	 * @param baseElement The element, to which the selection is made and to which other elements are compared.
 	 * @param reference the reference for which this is used
 	 */
-	public MEExtendedSuggestedSelectionDialog(String title, String message,
-			boolean blockOnOpen, EObject baseElement, EReference reference,
-			Collection<EObject> elements) {
-		super(title, message, blockOnOpen, baseElement, reference, elements);
+//	public MEExtendedSuggestedSelectionDialog(String title, String message,
+//			boolean blockOnOpen, EObject baseElement, EReference reference,
+//			Collection<EObject> elements) {
+//		super(title, message, blockOnOpen, baseElement, reference, elements);
+//	}
+
+	public MEExtendedSuggestedSelectionDialog(String title, String message, 
+			boolean blockOnOpen, EObject baseElement, EReference reference, 
+			ECPModelelementContext context, boolean isAssociationClass) {
+		super(title, message, blockOnOpen, baseElement, reference,
+				context.getAllModelElements());
+		this.baseElement = baseElement;
+		this.eReference = reference;
+		this.isAssociationClass = isAssociationClass;
+		this.currentContext = context;
+//		currentContextNeighbours = new HashMap<String, ECPModelelementContext>();
+		updateModelElements();
+	}
+	
+	private void updateModelElements() {
+		setModelElements(createAllModelElementsList());
+		currentContextNeighbours = new HashMap<String, ECPModelelementContext>();
+		for (ECPModelelementContext tempContext : currentContext.getNeighbors()) {
+			currentContextNeighbours.put(tempContext.toString(), tempContext);
+		}
+		super.refresh();
+	}
+
+	private Collection<EObject> createAllModelElementsList() {
+		if (isAssociationClass) {
+			return currentContext.getAllModelElementsbyClass(baseElement.eClass(), false);
+		} else {
+			Collection<EObject> result = null;
+			result = currentContext.getAllModelElementsbyClass(eReference.getEReferenceType(), true);
+			result.remove(baseElement);
+			return result;
+		}
 	}
 
 	@Override
@@ -52,12 +98,28 @@ public class MEExtendedSuggestedSelectionDialog extends
 		
 		Label label = new Label(parent, SWT.WRAP);
 		label.setText("Please select the context:");
-		contexts = new Combo(parent, SWT.DROP_DOWN | SWT.BORDER | SWT.HORIZONTAL | SWT.SINGLE);
+		contextControl = new Combo(parent, SWT.DROP_DOWN | SWT.BORDER | SWT.HORIZONTAL | SWT.SINGLE);
 		Control[] children = parent.getChildren();
 		Control firstChild = children[0];
-		contexts.moveAbove(firstChild);
-		label.moveAbove(contexts);
+		contextControl.moveAbove(firstChild);
+		label.moveAbove(contextControl);
+		
+		for (String key : currentContextNeighbours.keySet()) {
+			contextControl.add(key);
+		}
+		
+		ISWTObservableValue obs = SWTObservables.observeSingleSelectionIndex(contextControl);
+		obs.addValueChangeListener(new IValueChangeListener() {
+			
+			public void handleValueChange(ValueChangeEvent event) {
+				currentContext = currentContextNeighbours.get(contextControl.getItem((Integer) event.getObservableValue().getValue()));
+				updateModelElements();
+			}
+		});
 		return null;
 	}
-
+	
+	public Combo getContextControl() {
+		return contextControl;
+	}
 }
