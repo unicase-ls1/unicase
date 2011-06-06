@@ -48,10 +48,11 @@ public class ShowHistoryHandler extends ServerRequestCommandHandler {
 		EObject modelElement = getModelElement();
 		if (projectSpace == null) {
 			projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
-				.getProjectSpace(ModelUtil.getProject(modelElement));
+					.getProjectSpace(ModelUtil.getProject(modelElement));
 		}
 
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		IWorkbenchPage page = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage();
 		HistoryBrowserView historyBrowserView = null;
 		String viewId = "org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView";
 		try {
@@ -67,9 +68,11 @@ public class ShowHistoryHandler extends ServerRequestCommandHandler {
 	}
 
 	private void logEvent(final ProjectSpace finalProjectSpace, String viewId) {
-		PluginFocusEvent historyEvent = EventsFactory.eINSTANCE.createPluginFocusEvent();
+		PluginFocusEvent historyEvent = EventsFactory.eINSTANCE
+				.createPluginFocusEvent();
 		historyEvent.setPluginId(viewId);
 		historyEvent.setTimestamp(new Date());
-		finalProjectSpace.addEvent(historyEvent);
+		// TODO: add event
+		// finalProjectSpace.addEvent(historyEvent);
 	}
 }
