@@ -83,7 +83,7 @@ public interface ECPModelelementContext {
 	void dispose();
 	
 	/**
-	 * Returns all {@link ECPModelelementContext} that are neighbor with this context
+	 * Returns all {@link ECPModelelementContext} that are neighbor with this context.
 	 * 
 	 * @return Collection of all neighboring contexts
 	 */
