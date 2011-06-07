@@ -12,6 +12,10 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="cutElements" upperBound="-1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementIDTask" eType="#//ModelElementId"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementIDBug" eType="#//ModelElementId"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UniqueIdentifier" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"

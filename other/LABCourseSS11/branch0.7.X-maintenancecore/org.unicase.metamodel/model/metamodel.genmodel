@@ -13,6 +13,8 @@
     <genClasses ecoreClass="metamodel.ecore#//Project">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//Project/modelElements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//Project/cutElements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//Project/modelElementIDTask"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metamodel.ecore#//Project/modelElementIDBug"/>
     </genClasses>
     <genClasses image="false" ecoreClass="metamodel.ecore#//UniqueIdentifier">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metamodel.ecore#//UniqueIdentifier/id"/>

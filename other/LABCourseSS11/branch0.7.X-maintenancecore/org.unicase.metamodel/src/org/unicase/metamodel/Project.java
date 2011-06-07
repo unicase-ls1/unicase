@@ -18,13 +18,17 @@ import org.unicase.metamodel.util.ProjectChangeObserver;
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Project</b></em>'.
  * 
  * @implements IAdaptable <!-- end-user-doc -->
- *             <p>
- *             The following features are supported:
- *             <ul>
- *             <li>{@link org.unicase.metamodel.Project#getModelElements <em>Model Elements</em>}</li>
- *             <li>{@link org.unicase.metamodel.Project#getCutElements <em>Cut Elements</em>}</li>
- *             </ul>
- *             </p>
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.unicase.metamodel.Project#getModelElements <em>Model Elements</em>}</li>
+ *   <li>{@link org.unicase.metamodel.Project#getCutElements <em>Cut Elements</em>}</li>
+ *   <li>{@link org.unicase.metamodel.Project#getModelElementIDTask <em>Model Element ID Task</em>}</li>
+ *   <li>{@link org.unicase.metamodel.Project#getModelElementIDBug <em>Model Element ID Bug</em>}</li>
+ * </ul>
+ * </p>
+ *
  * @see org.unicase.metamodel.MetamodelPackage#getProject()
  * @model
  * @generated
@@ -32,14 +36,14 @@ import org.unicase.metamodel.util.ProjectChangeObserver;
 public interface Project extends EObject, IAdaptable {
 
 	/**
-	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list. The list contents are of
-	 * type {@link org.eclipse.emf.ecore.EObject}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Model Elements</em>' containment reference list isn't clear, there really should be
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Model Elements</em>' containment reference list.
 	 * @see org.unicase.metamodel.MetamodelPackage#getProject_ModelElements()
 	 * @model containment="true" resolveProxies="true" ordered="false"
@@ -58,20 +62,72 @@ public interface Project extends EObject, IAdaptable {
 	void initCaches(Map<EObject, ModelElementId> eObjectToIdMap, Map<ModelElementId, EObject> idToEObjectMap);
 
 	/**
-	 * Returns the value of the '<em><b>Cut Elements</b></em>' containment reference list. The list contents are of type
-	 * {@link org.eclipse.emf.ecore.EObject}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Cut Elements</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Cut Elements</em>' containment reference list isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Cut Elements</em>' containment reference list.
 	 * @see org.unicase.metamodel.MetamodelPackage#getProject_CutElements()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<EObject> getCutElements();
+
+	/**
+	 * Returns the value of the '<em><b>Model Element ID Task</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Model Element ID Task</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Model Element ID Task</em>' containment reference.
+	 * @see #setModelElementIDTask(ModelElementId)
+	 * @see org.unicase.metamodel.MetamodelPackage#getProject_ModelElementIDTask()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	ModelElementId getModelElementIDTask();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.metamodel.Project#getModelElementIDTask <em>Model Element ID Task</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Model Element ID Task</em>' containment reference.
+	 * @see #getModelElementIDTask()
+	 * @generated
+	 */
+	void setModelElementIDTask(ModelElementId value);
+
+	/**
+	 * Returns the value of the '<em><b>Model Element ID Bug</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Model Element ID Bug</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Model Element ID Bug</em>' containment reference.
+	 * @see #setModelElementIDBug(ModelElementId)
+	 * @see org.unicase.metamodel.MetamodelPackage#getProject_ModelElementIDBug()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	ModelElementId getModelElementIDBug();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.metamodel.Project#getModelElementIDBug <em>Model Element ID Bug</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Model Element ID Bug</em>' containment reference.
+	 * @see #getModelElementIDBug()
+	 * @generated
+	 */
+	void setModelElementIDBug(ModelElementId value);
 
 	/**
 	 * Retrieve a list of ALL model elements of a certain type in project.

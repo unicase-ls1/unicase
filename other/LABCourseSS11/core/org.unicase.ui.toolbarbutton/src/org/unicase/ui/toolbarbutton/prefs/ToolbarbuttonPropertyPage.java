@@ -71,6 +71,13 @@ public class ToolbarbuttonPropertyPage extends PropertyPage implements
 
 		@Override
 		protected Object doRun() {
+			
+			//TODO Matthias: So kannst du Task und Bug WorkPackage ModelElementIds speichern!!!!
+			//Project project = projectSpace.getProject();
+			// project.setModelElementIDBug(bugChoiceListener.getTargetWorkPackage().getModelElementId());
+			// project.setModelElementIDTask(taskChoiceListener.getTargetWorkPackage().getModelElementId());
+			 
+			 
 			PreferenceManager.INSTANCE.setProperty(projectSpace,
 					ShortcutActionKey.USERTASKLOCATION,
 					new ModelElementId[] { taskChoiceListener.getTargetWorkPackage()
