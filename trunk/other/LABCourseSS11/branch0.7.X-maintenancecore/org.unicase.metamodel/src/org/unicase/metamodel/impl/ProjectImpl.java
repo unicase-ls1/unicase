@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -63,6 +64,26 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * @ordered
 	 */
 	protected EList<EObject> cutElements;
+
+	/**
+	 * The cached value of the '{@link #getModelElementIDTask() <em>Model Element ID Task</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getModelElementIDTask()
+	 * @generated
+	 * @ordered
+	 */
+	protected ModelElementId modelElementIDTask;
+
+	/**
+	 * The cached value of the '{@link #getModelElementIDBug() <em>Model Element ID Bug</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getModelElementIDBug()
+	 * @generated
+	 * @ordered
+	 */
+	protected ModelElementId modelElementIDBug;
 
 	protected EMap<ModelElementId, EObject> modelElementIdToEObjectsCache;
 
@@ -118,7 +139,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -128,7 +148,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<EObject> getModelElements() {
@@ -141,7 +160,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<EObject> getCutElements() {
@@ -150,6 +168,160 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				MetamodelPackage.PROJECT__CUT_ELEMENTS);
 		}
 		return cutElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelElementId getModelElementIDTask() {
+		if (modelElementIDTask != null && modelElementIDTask.eIsProxy()) {
+			InternalEObject oldModelElementIDTask = (InternalEObject) modelElementIDTask;
+			modelElementIDTask = (ModelElementId) eResolveProxy(oldModelElementIDTask);
+			if (modelElementIDTask != oldModelElementIDTask) {
+				InternalEObject newModelElementIDTask = (InternalEObject) modelElementIDTask;
+				NotificationChain msgs = oldModelElementIDTask.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_TASK, null, null);
+				if (newModelElementIDTask.eInternalContainer() == null) {
+					msgs = newModelElementIDTask.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_TASK, null, msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_TASK, oldModelElementIDTask, modelElementIDTask));
+			}
+		}
+		return modelElementIDTask;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelElementId basicGetModelElementIDTask() {
+		return modelElementIDTask;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetModelElementIDTask(ModelElementId newModelElementIDTask, NotificationChain msgs) {
+		ModelElementId oldModelElementIDTask = modelElementIDTask;
+		modelElementIDTask = newModelElementIDTask;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_TASK, oldModelElementIDTask, newModelElementIDTask);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setModelElementIDTask(ModelElementId newModelElementIDTask) {
+		if (newModelElementIDTask != modelElementIDTask) {
+			NotificationChain msgs = null;
+			if (modelElementIDTask != null)
+				msgs = ((InternalEObject) modelElementIDTask).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_TASK, null, msgs);
+			if (newModelElementIDTask != null)
+				msgs = ((InternalEObject) newModelElementIDTask).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_TASK, null, msgs);
+			msgs = basicSetModelElementIDTask(newModelElementIDTask, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_TASK,
+				newModelElementIDTask, newModelElementIDTask));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelElementId getModelElementIDBug() {
+		if (modelElementIDBug != null && modelElementIDBug.eIsProxy()) {
+			InternalEObject oldModelElementIDBug = (InternalEObject) modelElementIDBug;
+			modelElementIDBug = (ModelElementId) eResolveProxy(oldModelElementIDBug);
+			if (modelElementIDBug != oldModelElementIDBug) {
+				InternalEObject newModelElementIDBug = (InternalEObject) modelElementIDBug;
+				NotificationChain msgs = oldModelElementIDBug.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_BUG, null, null);
+				if (newModelElementIDBug.eInternalContainer() == null) {
+					msgs = newModelElementIDBug.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_BUG, null, msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_BUG, oldModelElementIDBug, modelElementIDBug));
+			}
+		}
+		return modelElementIDBug;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelElementId basicGetModelElementIDBug() {
+		return modelElementIDBug;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetModelElementIDBug(ModelElementId newModelElementIDBug, NotificationChain msgs) {
+		ModelElementId oldModelElementIDBug = modelElementIDBug;
+		modelElementIDBug = newModelElementIDBug;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_BUG, oldModelElementIDBug, newModelElementIDBug);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setModelElementIDBug(ModelElementId newModelElementIDBug) {
+		if (newModelElementIDBug != modelElementIDBug) {
+			NotificationChain msgs = null;
+			if (modelElementIDBug != null)
+				msgs = ((InternalEObject) modelElementIDBug).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_BUG, null, msgs);
+			if (newModelElementIDBug != null)
+				msgs = ((InternalEObject) newModelElementIDBug).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_BUG, null, msgs);
+			msgs = basicSetModelElementIDBug(newModelElementIDBug, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_BUG,
+				newModelElementIDBug, newModelElementIDBug));
 	}
 
 	public void addModelElement(EObject me) {
@@ -253,7 +425,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -263,13 +434,16 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			return ((InternalEList<?>) getModelElements()).basicRemove(otherEnd, msgs);
 		case MetamodelPackage.PROJECT__CUT_ELEMENTS:
 			return ((InternalEList<?>) getCutElements()).basicRemove(otherEnd, msgs);
+		case MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_TASK:
+			return basicSetModelElementIDTask(null, msgs);
+		case MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_BUG:
+			return basicSetModelElementIDBug(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -279,13 +453,20 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			return getModelElements();
 		case MetamodelPackage.PROJECT__CUT_ELEMENTS:
 			return getCutElements();
+		case MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_TASK:
+			if (resolve)
+				return getModelElementIDTask();
+			return basicGetModelElementIDTask();
+		case MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_BUG:
+			if (resolve)
+				return getModelElementIDBug();
+			return basicGetModelElementIDBug();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -300,13 +481,18 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			getCutElements().clear();
 			getCutElements().addAll((Collection<? extends EObject>) newValue);
 			return;
+		case MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_TASK:
+			setModelElementIDTask((ModelElementId) newValue);
+			return;
+		case MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_BUG:
+			setModelElementIDBug((ModelElementId) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -318,13 +504,18 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		case MetamodelPackage.PROJECT__CUT_ELEMENTS:
 			getCutElements().clear();
 			return;
+		case MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_TASK:
+			setModelElementIDTask((ModelElementId) null);
+			return;
+		case MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_BUG:
+			setModelElementIDBug((ModelElementId) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -334,6 +525,10 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			return modelElements != null && !modelElements.isEmpty();
 		case MetamodelPackage.PROJECT__CUT_ELEMENTS:
 			return cutElements != null && !cutElements.isEmpty();
+		case MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_TASK:
+			return modelElementIDTask != null;
+		case MetamodelPackage.PROJECT__MODEL_ELEMENT_ID_BUG:
+			return modelElementIDBug != null;
 		}
 		return super.eIsSet(featureID);
 	}

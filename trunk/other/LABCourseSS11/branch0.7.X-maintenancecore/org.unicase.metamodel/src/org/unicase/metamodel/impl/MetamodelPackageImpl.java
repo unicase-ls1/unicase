@@ -63,7 +63,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass associationClassElementEClass = null;
@@ -109,8 +108,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		// Obtain or create and register package
 		MetamodelPackageImpl theMetamodelPackage = (MetamodelPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MetamodelPackageImpl ? EPackage.Registry.INSTANCE
-			.get(eNS_URI)
-			: new MetamodelPackageImpl());
+			.get(eNS_URI) : new MetamodelPackageImpl());
 
 		isInited = true;
 
@@ -150,6 +148,24 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 */
 	public EReference getProject_CutElements() {
 		return (EReference) projectEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProject_ModelElementIDTask() {
+		return (EReference) projectEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProject_ModelElementIDBug() {
+		return (EReference) projectEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -226,7 +242,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MetamodelFactory getMetamodelFactory() {
@@ -254,6 +269,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		projectEClass = createEClass(PROJECT);
 		createEReference(projectEClass, PROJECT__MODEL_ELEMENTS);
 		createEReference(projectEClass, PROJECT__CUT_ELEMENTS);
+		createEReference(projectEClass, PROJECT__MODEL_ELEMENT_ID_TASK);
+		createEReference(projectEClass, PROJECT__MODEL_ELEMENT_ID_BUG);
 
 		uniqueIdentifierEClass = createEClass(UNIQUE_IDENTIFIER);
 		createEAttribute(uniqueIdentifierEClass, UNIQUE_IDENTIFIER__ID);
@@ -308,6 +325,12 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEReference(getProject_CutElements(), ecorePackage.getEObject(), null, "cutElements", null, 0, -1,
 			Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_ModelElementIDTask(), this.getModelElementId(), null, "modelElementIDTask", null, 0,
+			1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_ModelElementIDBug(), this.getModelElementId(), null, "modelElementIDBug", null, 0, 1,
+			Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(uniqueIdentifierEClass, UniqueIdentifier.class, "UniqueIdentifier", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -338,6 +361,22 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http://www.cs.tum.edu/cope
+		createCopeAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.cs.tum.edu/cope</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createCopeAnnotations() {
+		String source = "http://www.cs.tum.edu/cope";
+		addAnnotation(this, source, new String[] { "historyURI",
+			"../../../resource/org.unicase.model/model/model.history" });
 	}
 
 } // MetamodelPackageImpl

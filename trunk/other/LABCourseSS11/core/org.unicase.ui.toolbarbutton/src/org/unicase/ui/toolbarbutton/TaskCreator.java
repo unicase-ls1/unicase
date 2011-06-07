@@ -24,13 +24,9 @@ public class TaskCreator {
 	 * @throws ModelIdDoesNotExistException 
 	 */
 	static public void addTask(ProjectSpace projectSpace, PropertyKey key, WorkItem task) throws ModelIdDoesNotExistException{
-		final OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, key);
-
-		ArrayList<EObject> result = new ArrayList<EObject>();
-		property.getEObjectListProperty(result);
-		EObject givenId = result.get(0);
+		ModelElementId givenId = getModelElementId(projectSpace, key);
 		
-		if(givenId instanceof ModelElementId){
+		if (givenId != null) {
 			EObject parentPackage = projectSpace.getProject().getModelElement((ModelElementId)givenId);
 			if(parentPackage == null){
 				throw new ModelIdDoesNotExistException(givenId);
@@ -44,6 +40,31 @@ public class TaskCreator {
 				((WorkPackage) parentPackage).getContainedWorkItems().add(task);
 			}
 		}
+		
+	}
+	
+	private static ModelElementId getModelElementId(ProjectSpace projectSpace, PropertyKey key) {
+		final OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, key);
+
+		if (property != null) {
+			ArrayList<EObject> result = new ArrayList<EObject>();
+			property.getEObjectListProperty(result);
+			EObject givenId = result.get(0);
+		
+			if (givenId instanceof ModelElementId) {
+				return (ModelElementId) givenId;
+			}
+		
+		} else {
+			Project project = projectSpace.getProject();
+			if (key.equals(ShortcutActionKey.USERTASKLOCATION)) {
+				return project.getModelElementIDTask();
+			} else {
+				return project.getModelElementIDBug();
+			}	
+		}
+		
+		return null;
 	}
 
 
