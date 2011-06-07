@@ -21,15 +21,21 @@ public class TaskCreator {
 	 * @param projectSpace - the ProjectSpace where the task will be created
 	 * @param key - the PropertyKey under which the ModelElementId can be found in the PreferenceManager
 	 * @param task - the WorkItem which will be added under the retrieved ModelElement
+	 * @throws ModelIdDoesNotExistException 
 	 */
-	static public void addTask(ProjectSpace projectSpace, PropertyKey key, WorkItem task){
+	static public void addTask(ProjectSpace projectSpace, PropertyKey key, WorkItem task) throws ModelIdDoesNotExistException{
 		final OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, key);
 
 		ArrayList<EObject> result = new ArrayList<EObject>();
 		property.getEObjectListProperty(result);
 		EObject givenId = result.get(0);
+		
 		if(givenId instanceof ModelElementId){
 			EObject parentPackage = projectSpace.getProject().getModelElement((ModelElementId)givenId);
+			if(parentPackage == null){
+				throw new ModelIdDoesNotExistException(givenId);
+			}
+			
 			if (parentPackage instanceof Project) {
 				((Project) parentPackage).addModelElement(task);
 			} else if (parentPackage instanceof LeafSection) {
