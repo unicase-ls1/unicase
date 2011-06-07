@@ -11,5 +11,6 @@ Require-Bundle: org.eclipse.ui,
  org.unicase.ui.unicasecommon
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.unicase.ui.workpackagetransfer
+Export-Package: org.unicase.ui.workpackagetransfer,
+ org.unicase.workpackagetransfer.navigator.wizards
 Bundle-Vendor: unicase.org
