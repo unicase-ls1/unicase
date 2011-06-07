@@ -32,5 +32,13 @@
             name="createBugReport">
       </command>
    </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.unicase.ui.toolbarbutton.prefs.ToolbarbuttonPropertyPage"
+            id="org.unicase.ui.toolbarbutton.ToolbarbuttonPropertyPage"
+            name="Shortcut buttons">
+      </page>
+   </extension>
 
 </plugin>

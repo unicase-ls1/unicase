@@ -44,7 +44,7 @@ public class CreateActionItemHandler extends AbstractHandler {
 			protected void doRun() {
 				
 				//for testing: (setting a workpackage as property)
-				Project p = projectSpace.getProject();
+				/*Project p = projectSpace.getProject();
 				Set<EObject> modelElements = p.getAllModelElements();
 				ModelElementId element = null;
 				for(EObject modelElement: modelElements){
@@ -56,10 +56,16 @@ public class CreateActionItemHandler extends AbstractHandler {
 
 				if(element != null){
 					PreferenceManager.INSTANCE.setProperty(projectSpace, ShortcutActionKey.USERLOCATION, new EObject[]{element});
+				*/
 				//end of testing part
 					ActionItem item = TaskFactory.eINSTANCE.createActionItem();
-					TaskCreator.addTask(projectSpace, ShortcutActionKey.USERLOCATION, item);
-				}
+					try {
+						TaskCreator.addTask(projectSpace, ShortcutActionKey.USERTASKLOCATION, item);
+					} catch (ModelIdDoesNotExistException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				
 			}
 		}.run(true);
 
