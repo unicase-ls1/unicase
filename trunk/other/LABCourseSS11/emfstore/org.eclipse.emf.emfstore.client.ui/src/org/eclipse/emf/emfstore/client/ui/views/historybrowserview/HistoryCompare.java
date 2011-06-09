@@ -30,6 +30,19 @@ public class HistoryCompare {
 	private final String HISTORY_COMPARE_ID = "org.eclipse.emf.emfstore.client.ui.views.historybrowsercomparator";
 
 	/**
+	 * This function tells you if there is a Comparator registered on the
+	 * extension point
+	 * 
+	 * @return true if there is an extension or false if not
+	 */
+	public boolean hasRegisteredExtensions() {
+		IConfigurationElement[] config = Platform.getExtensionRegistry()
+				.getConfigurationElementsFor(HISTORY_COMPARE_ID);
+		return (config.length != 0);
+
+	}
+
+	/**
 	 * This function calls {@link ICompare#compare(EObject e1, EObject e2)}and
 	 * then {@link ICompare#display()} for all registered extensions.
 	 * 
