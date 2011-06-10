@@ -6,6 +6,8 @@
  ******************************************************************************/
 package org.eclipse.emf.ecp.validation;
 
+import java.util.Iterator;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -15,7 +17,11 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
 import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
@@ -77,7 +83,22 @@ public class ValidateHandler extends AbstractHandler {
 	 * @param object the
 	 */
 	private void validateWithoutCommand(EObject object) {
-		ValidationClientSelector.setRunning(true);
+		Diagnostic diagnostic = Diagnostician.INSTANCE.validate(object);
+		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
+			System.err.println(diagnostic.getMessage());
+			for (Iterator<Diagnostic> i = diagnostic.getChildren().iterator(); i.hasNext();) {
+				Diagnostic childDiagnostic = (Diagnostic) i.next();
+				switch (childDiagnostic.getSeverity()) {
+				case Diagnostic.ERROR:
+				case Diagnostic.WARNING:
+						System.err.println("\t" + childDiagnostic.getMessage());
+				default:
+					break;
+				}
+			}
+		}
+		
+		/*ValidationClientSelector.setRunning(true);
 		IBatchValidator validator = (IBatchValidator) ModelValidationService.getInstance().newValidator(
 			EvaluationMode.BATCH);
 		validator.setIncludeLiveConstraints(true);
@@ -100,6 +121,6 @@ public class ValidateHandler extends AbstractHandler {
 					Activator.getDefault().logException("Validate handler encountered an exception", e);
 				}
 			}
-		}
+		}*/
 	}
 }
