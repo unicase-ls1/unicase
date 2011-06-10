@@ -14,17 +14,17 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Tournament</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.bowling.Tournament#getTitle <em>Title</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.bowling.Tournament#getMatchups <em>Matchups</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.bowling.Tournament#getType <em>Type</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.bowling.Tournament#getLeague <em>League</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.bowling.Tournament#getTitle <em>Title</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.bowling.Tournament#getMatchups <em>Matchups</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.bowling.Tournament#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.bowling.Tournament#getLeague <em>League</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.emf.emfstore.bowling.BowlingPackage#getTournament()
  * @model
  * @generated
@@ -38,7 +38,6 @@ public interface Tournament extends EObject {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Title</em>' attribute.
 	 * @see #setTitle(String)
 	 * @see org.eclipse.emf.emfstore.bowling.BowlingPackage#getTournament_Title()
@@ -51,7 +50,6 @@ public interface Tournament extends EObject {
 	 * Sets the value of the '{@link org.eclipse.emf.emfstore.bowling.Tournament#getTitle <em>Title</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Title</em>' attribute.
 	 * @see #getTitle()
 	 * @generated
@@ -67,7 +65,6 @@ public interface Tournament extends EObject {
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Matchups</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.bowling.BowlingPackage#getTournament_Matchups()
 	 * @model containment="true" resolveProxies="true"
@@ -84,7 +81,6 @@ public interface Tournament extends EObject {
 	 * If the meaning of the '<em>Type</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see org.eclipse.emf.emfstore.bowling.TournamentType
 	 * @see #setType(TournamentType)
@@ -98,7 +94,6 @@ public interface Tournament extends EObject {
 	 * Sets the value of the '{@link org.eclipse.emf.emfstore.bowling.Tournament#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Type</em>' attribute.
 	 * @see org.eclipse.emf.emfstore.bowling.TournamentType
 	 * @see #getType()
@@ -114,7 +109,6 @@ public interface Tournament extends EObject {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>League</em>' reference.
 	 * @see #setLeague(League)
 	 * @see org.eclipse.emf.emfstore.bowling.BowlingPackage#getTournament_League()
@@ -127,7 +121,6 @@ public interface Tournament extends EObject {
 	 * Sets the value of the '{@link org.eclipse.emf.emfstore.bowling.Tournament#getLeague <em>League</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>League</em>' reference.
 	 * @see #getLeague()
 	 * @generated
