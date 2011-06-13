@@ -448,7 +448,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	public List<AbstractOperation> getCopyOfOperations() {
 		List<AbstractOperation> copiedOperations = new ArrayList<AbstractOperation>();
 		for (AbstractOperation operation : getOperations()) {
-			copiedOperations.add(EcoreUtil.copy(operation));
+			copiedOperations.add((AbstractOperation) EcoreUtil.copy(operation));
 		}
 		return copiedOperations;
 	}

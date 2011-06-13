@@ -92,8 +92,8 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 				return ((PrimaryVersionSpec) versionSpec);
 				// HeadVersionSpec
 			} else if (versionSpec instanceof HeadVersionSpec) {
-				return EcoreUtil.copy(getSubInterface(ProjectSubInterfaceImpl.class).getProject(projectId)
-					.getLastVersion().getPrimarySpec());
+				return (PrimaryVersionSpec) EcoreUtil.copy(getSubInterface(ProjectSubInterfaceImpl.class)
+					.getProject(projectId).getLastVersion().getPrimarySpec());
 				// DateVersionSpec
 			} else if (versionSpec instanceof DateVersionSpec) {
 				for (Version version : projectHistory.getVersions()) {
@@ -115,7 +115,7 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 				for (Version version : projectHistory.getVersions()) {
 					for (TagVersionSpec tag : version.getTagSpecs()) {
 						if (((TagVersionSpec) versionSpec).equals(tag)) {
-							return EcoreUtil.copy(version.getPrimarySpec());
+							return (PrimaryVersionSpec) EcoreUtil.copy(version.getPrimarySpec());
 						}
 					}
 				}
@@ -337,7 +337,7 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 			List<ChangePackage> result = new ArrayList<ChangePackage>();
 			for (Version version : getVersions(projectId, resolvedSource, resolvedTarget)) {
 				ChangePackage changes = version.getChanges();
-				changes.setLogMessage(EcoreUtil.copy(version.getLogMessage()));
+				changes.setLogMessage((LogMessage) EcoreUtil.copy(version.getLogMessage()));
 				result.add(changes);
 			}
 
@@ -349,7 +349,7 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 					ChangePackage changePackageReverse = changePackage.reverse();
 					// copy again log message
 					// reverse() created a new change package without copying existent attributes
-					changePackageReverse.setLogMessage(EcoreUtil.copy(changePackage.getLogMessage()));
+					changePackageReverse.setLogMessage((LogMessage) EcoreUtil.copy(changePackage.getLogMessage()));
 					resultReverse.add(changePackageReverse);
 				}
 

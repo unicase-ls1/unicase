@@ -72,7 +72,7 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		for (ACGroup group : getServerSpace().getGroups()) {
 
 			// quickfix
-			ACGroup copy = EcoreUtil.copy(group);
+			ACGroup copy = (ACGroup) EcoreUtil.copy(group);
 			clearMembersFromGroup(copy);
 			result.add(copy);
 		}
@@ -93,7 +93,7 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 			if (group.getMembers().contains(orgUnit)) {
 
 				// quickfix
-				ACGroup copy = EcoreUtil.copy(group);
+				ACGroup copy = (ACGroup) EcoreUtil.copy(group);
 				clearMembersFromGroup(copy);
 				result.add(copy);
 			}
@@ -117,7 +117,7 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		acGroup.setDescription("");
 		getServerSpace().getGroups().add(acGroup);
 		save();
-		return EcoreUtil.copy(acGroup.getId());
+		return (ACOrgUnitId) EcoreUtil.copy(acGroup.getId());
 	}
 
 	private boolean groupExists(String name) {
@@ -171,7 +171,7 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		// quickfix
 		List<ACOrgUnit> result = new ArrayList<ACOrgUnit>();
 		for (ACOrgUnit orgUnit : getGroup(groupId).getMembers()) {
-			result.add(EcoreUtil.copy(orgUnit));
+			result.add((ACOrgUnit) EcoreUtil.copy(orgUnit));
 		}
 		clearMembersFromGroups(result);
 		return result;
@@ -220,14 +220,14 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		for (ACOrgUnit orgUnit : getServerSpace().getUsers()) {
 			for (Role role : orgUnit.getRoles()) {
 				if (isServerAdmin(role) || role.getProjects().contains(projectId)) {
-					result.add(EcoreUtil.copy(orgUnit));
+					result.add((ACOrgUnit) EcoreUtil.copy(orgUnit));
 				}
 			}
 		}
 		for (ACOrgUnit orgUnit : getServerSpace().getGroups()) {
 			for (Role role : orgUnit.getRoles()) {
 				if (isServerAdmin(role) || role.getProjects().contains(projectId)) {
-					result.add(EcoreUtil.copy(orgUnit));
+					result.add((ACOrgUnit) EcoreUtil.copy(orgUnit));
 				}
 			}
 		}
@@ -255,14 +255,14 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		// check whether reader role exists
 		for (Role role : orgUnit.getRoles()) {
 			if (isReader(role)) {
-				role.getProjects().add(EcoreUtil.copy(projectId));
+				role.getProjects().add((ProjectId) EcoreUtil.copy(projectId));
 				save();
 				return;
 			}
 		}
 		// else create new reader role
 		ReaderRole reader = RolesFactory.eINSTANCE.createReaderRole();
-		reader.getProjects().add(EcoreUtil.copy(projectId));
+		reader.getProjects().add((ProjectId) EcoreUtil.copy(projectId));
 		orgUnit.getRoles().add(reader);
 		save();
 	}
@@ -342,7 +342,7 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		// add project to role if it exists
 		for (Role role1 : orgUnit.getRoles()) {
 			if (role1.eClass().getName().equals(roleClass.getName())) {
-				role1.getProjects().add(EcoreUtil.copy(projectId));
+				role1.getProjects().add((ProjectId) EcoreUtil.copy(projectId));
 				save();
 				return;
 			}
@@ -350,7 +350,7 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		// create role if does not exists
 		Role newRole = (Role) RolesPackage.eINSTANCE.getEFactoryInstance().create(
 			(EClass) RolesPackage.eINSTANCE.getEClassifier(roleClass.getName()));
-		newRole.getProjects().add(EcoreUtil.copy(projectId));
+		newRole.getProjects().add((ProjectId) EcoreUtil.copy(projectId));
 		orgUnit.getRoles().add(newRole);
 		save();
 	}
@@ -380,10 +380,10 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		List<ACOrgUnit> result = new ArrayList<ACOrgUnit>();
 		for (ACOrgUnit user : getServerSpace().getUsers()) {
-			result.add(EcoreUtil.copy(user));
+			result.add((ACOrgUnit) EcoreUtil.copy(user));
 		}
 		for (ACOrgUnit group : getServerSpace().getGroups()) {
-			result.add(EcoreUtil.copy(group));
+			result.add((ACOrgUnit) EcoreUtil.copy(group));
 		}
 		// quickfix
 		clearMembersFromGroups(result);
@@ -422,7 +422,7 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		acUser.setDescription(" ");
 		getServerSpace().getUsers().add(acUser);
 		save();
-		return EcoreUtil.copy(acUser.getId());
+		return (ACOrgUnitId) EcoreUtil.copy(acUser.getId());
 	}
 
 	private boolean userExists(String name) {
@@ -477,7 +477,7 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		}
 		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		// quickfix
-		ACOrgUnit orgUnit = EcoreUtil.copy(getOrgUnit(orgUnitId));
+		ACOrgUnit orgUnit = (ACOrgUnit) EcoreUtil.copy(getOrgUnit(orgUnitId));
 		clearMembersFromGroup(orgUnit);
 		return orgUnit;
 	}
@@ -512,7 +512,7 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		ProjectInfo info = ModelFactory.eINSTANCE.createProjectInfo();
 		info.setName(project.getProjectName());
 		info.setDescription(project.getProjectDescription());
-		info.setProjectId(EcoreUtil.copy(project.getProjectId()));
+		info.setProjectId((ProjectId) EcoreUtil.copy(project.getProjectId()));
 		info.setVersion(project.getLastVersion().getPrimarySpec());
 		return info;
 	}
