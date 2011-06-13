@@ -15,6 +15,7 @@ import java.util.HashMap;
 
 import org.eclipse.core.databinding.observable.value.IValueChangeListener;
 import org.eclipse.core.databinding.observable.value.ValueChangeEvent;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
@@ -22,11 +23,20 @@ import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.jface.databinding.swt.ISWTObservableValue;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
+import org.eclipse.swt.widgets.ToolBar;
+import org.eclipse.swt.widgets.ToolItem;
 
 /**
  * This dialog represents the possibility to select an element from a list where the list is sorted and additional
@@ -35,15 +45,14 @@ import org.eclipse.swt.widgets.Label;
  * @author Birgit Engelmann
  */
 public class MEExtendedSuggestedSelectionDialog extends
-		MESuggestedSelectionDialog {
-	
-	private Combo contextControl;
+MESuggestedSelectionDialog {
+
 	private ECPModelelementContext currentContext;
 	private HashMap<String, ECPModelelementContext> currentContextNeighbours;
 	private EObject baseElement;
 	private EReference eReference;
 	private boolean isAssociationClass;
-
+	
 	/**
 	 * The constructor.
 	 * 
@@ -54,11 +63,11 @@ public class MEExtendedSuggestedSelectionDialog extends
 	 * @param baseElement The element, to which the selection is made and to which other elements are compared.
 	 * @param reference the reference for which this is used
 	 */
-//	public MEExtendedSuggestedSelectionDialog(String title, String message,
-//			boolean blockOnOpen, EObject baseElement, EReference reference,
-//			Collection<EObject> elements) {
-//		super(title, message, blockOnOpen, baseElement, reference, elements);
-//	}
+	//	public MEExtendedSuggestedSelectionDialog(String title, String message,
+	//			boolean blockOnOpen, EObject baseElement, EReference reference,
+	//			Collection<EObject> elements) {
+	//		super(title, message, blockOnOpen, baseElement, reference, elements);
+	//	}
 
 	public MEExtendedSuggestedSelectionDialog(String title, String message, 
 			boolean blockOnOpen, EObject baseElement, EReference reference, 
@@ -69,12 +78,13 @@ public class MEExtendedSuggestedSelectionDialog extends
 		this.eReference = reference;
 		this.isAssociationClass = isAssociationClass;
 		this.currentContext = context;
-//		currentContextNeighbours = new HashMap<String, ECPModelelementContext>();
+		//		currentContextNeighbours = new HashMap<String, ECPModelelementContext>();
 		updateModelElements();
 	}
-	
+
 	private void updateModelElements() {
 		setModelElements(createAllModelElementsList());
+
 		currentContextNeighbours = new HashMap<String, ECPModelelementContext>();
 		for (ECPModelelementContext tempContext : currentContext.getNeighbors()) {
 			currentContextNeighbours.put(tempContext.toString(), tempContext);
@@ -94,33 +104,33 @@ public class MEExtendedSuggestedSelectionDialog extends
 
 	@Override
 	protected Control createExtendedContentArea(Composite parent) {
-		
-		Label label = new Label(parent, SWT.WRAP);
-		label.setText("Please select the context:");
-		contextControl = new Combo(parent, SWT.DROP_DOWN | SWT.BORDER | SWT.HORIZONTAL | SWT.SINGLE);
-		Control firstChild = parent.getChildren()[0];
-		contextControl.moveAbove(firstChild);
-		label.moveAbove(contextControl);
-		
+
+		final Button button = new Button(parent, SWT.PUSH);
+		//button.setImage(image);
+		final Menu menu = new Menu(parent.getShell(), SWT.POP_UP);
 		for (String key : currentContextNeighbours.keySet()) {
-			contextControl.add(key);
-			if(key.equals(currentContext.toString())){
-				contextControl.select(contextControl.getItemCount()-1);
-			}
+			MenuItem item = new MenuItem(menu, SWT.PUSH);
+			item.setText(key);
+			item.addListener(SWT.Selection, new Listener(){
+				public void handleEvent(Event event) {
+					currentContext = currentContextNeighbours.get(((MenuItem)event.widget).getText());
+					updateModelElements();
+				}
+			});
 		}
-		
-		ISWTObservableValue obs = SWTObservables.observeSingleSelectionIndex(contextControl);
-		obs.addValueChangeListener(new IValueChangeListener() {
-			
-			public void handleValueChange(ValueChangeEvent event) {
-				currentContext = currentContextNeighbours.get(contextControl.getItem((Integer) event.getObservableValue().getValue()));
-				updateModelElements();
+		button.addListener(SWT.Selection, new Listener() {
+			public void handleEvent(Event event) {
+				Rectangle rect = button.getBounds();
+				Point pt = new Point(rect.x, rect.y + rect.height);
+				pt = button.toDisplay(pt);
+				menu.setLocation(pt.x, pt.y);
+				menu.setVisible(true);
 			}
 		});
+		Control firstChild = parent.getChildren()[0];
+		button.moveAbove(firstChild);
+
 		return null;
 	}
-	
-	public Combo getContextControl() {
-		return contextControl;
-	}
+
 }
