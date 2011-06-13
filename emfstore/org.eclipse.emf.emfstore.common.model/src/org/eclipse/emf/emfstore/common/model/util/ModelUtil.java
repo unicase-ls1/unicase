@@ -926,7 +926,7 @@ public final class ModelUtil {
 
 		// Resource resource = eObject.eResource();
 
-		if (res == null) {
+		if (res == null || res.getURI() == null) {
 			return;
 		}
 
