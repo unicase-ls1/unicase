@@ -70,15 +70,13 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 	 * inits the proper usersession.
 	 */
 	protected void initUsersession() {
-		ProjectSpace projectSpace = UiUtil.getEventElementByClass(event,
-				ProjectSpace.class);
+		ProjectSpace projectSpace = UiUtil.getEventElementByClass(event, ProjectSpace.class);
 		if (projectSpace != null && projectSpace.getUsersession() != null) {
 			usersession = projectSpace.getUsersession();
 		} else {
-			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance()
-					.getCurrentWorkspace().getActiveProjectSpace();
-			if (activeProjectSpace != null
-					&& activeProjectSpace.getUsersession() != null) {
+			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+				.getActiveProjectSpace();
+			if (activeProjectSpace != null && activeProjectSpace.getUsersession() != null) {
 				usersession = activeProjectSpace.getUsersession();
 			}
 		}
@@ -103,16 +101,12 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 	 */
 	protected Object handleRun() throws ExecutionException {
 		if (shell == null) {
-			shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-					.getShell();
+			shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		}
 		Usersession session = getUsersession();
 		if (session == null) {
-			MessageDialog
-					.openInformation(
-							shell,
-							"Information",
-							"Could not determine a proper usersession. Please make sure you have selected a project.");
+			MessageDialog.openInformation(shell, "Information",
+				"Could not determine a proper usersession. Please make sure you have selected a project.");
 			return null;
 		}
 
@@ -122,12 +116,10 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 		return executeRun(loginHandler);
 	}
 
-	private Object executeRun(LoginHandler loginHandler)
-			throws ExecutionException {
+	private Object executeRun(LoginHandler loginHandler) throws ExecutionException {
 		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(shell);
 		progressDialog.open();
-		progressDialog.getProgressMonitor().beginTask(taskTitle,
-				IProgressMonitor.UNKNOWN);
+		progressDialog.getProgressMonitor().beginTask(taskTitle, IProgressMonitor.UNKNOWN);
 
 		Object ret = null;
 
@@ -137,13 +129,10 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 				ret = run();
 			} catch (ClientVersionOutOfDateException e) {
 				MessageDialog
-						.openError(
-								shell,
-								"Client version outdated",
-								"The client version is incompatible with the server. Please update your plugins via the Update Manager.");
+					.openError(shell, "Client version outdated",
+						"The client version is incompatible with the server. Please update your plugins via the Update Manager.");
 			} catch (InvalidVersionSpecException e) {
-				DialogHandler
-						.showErrorDialog("The requested revision was invalid");
+				DialogHandler.showErrorDialog("The requested revision was invalid");
 			}
 		} catch (SessionTimedOutException e) {
 			handleExceptionAndRetry(loginHandler, e);
@@ -155,12 +144,11 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 		} catch (ConnectionException e) {
 			handleExceptionAndRetry(loginHandler, e);
 		} catch (EmfStoreException e) {
-			DialogHandler.showErrorDialog(e.getMessage());
+			DialogHandler.showExceptionDialog(e.getMessage(), e);
 		} catch (RuntimeException e) {
 
 			DialogHandler.showExceptionDialog(e);
-			WorkspaceUtil.logWarning("RuntimeException in "
-					+ ServerRequestHandler.class.getName(), e);
+			WorkspaceUtil.logWarning("RuntimeException in " + ServerRequestHandler.class.getName(), e);
 		}
 
 		progressDialog.close();
@@ -169,11 +157,10 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 
 	private int attempt = 0;
 
-	private void handleExceptionAndRetry(LoginHandler loginHandler,
-			EmfStoreException e) throws ExecutionException {
+	private void handleExceptionAndRetry(LoginHandler loginHandler, EmfStoreException e) throws ExecutionException {
 		if (attempt++ > 1) {
 			String message = "The server call could not be completed successfully."
-					+ " The request was aborted after 2 attempts.";
+				+ " The request was aborted after 2 attempts.";
 			DialogHandler.showErrorDialog(message);
 			WorkspaceUtil.logWarning(message, e);
 		} else if (loginHandler.execute(getEvent()).equals(Window.OK)) {
