@@ -26,20 +26,33 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="newElements" upperBound="-1"
         eType="#//SCRMModelElement" transient="true" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramLayout" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramType" eType="#//DiagramType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="previousDiagram" eType="#//SCRMDiagram"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nextDiagram" eType="#//SCRMDiagram"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DiagramType">
+    <eLiterals name="DefaultDiagram"/>
+    <eLiterals name="KnowledgeDiagram" value="1" literal=""/>
+    <eLiterals name="RequirementsDiagram" value="2"/>
+    <eLiterals name="DataProcessDiagram" value="3" literal="DataProcessDiagram"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SCRMSpace" abstract="true" interface="true"
+      eSuperTypes="#//SCRMModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="representingDiagram" eType="#//SCRMDiagram"/>
   </eClassifiers>
   <eSubpackages name="knowledge" nsURI="http://unicase.org/model/scrm/knowledge" nsPrefix="org.unicase.model.scrm.knowledge">
     <eClassifiers xsi:type="ecore:EClass" name="ScientificKnowledge" abstract="true"
         interface="true" eSuperTypes="#//SCRMModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="containingKnowledgeSpace"
-          eType="#//knowledge/KnowledgeSpace" eOpposite="#//knowledge/KnowledgeSpace/containedScientificProblem">
+          eType="#//knowledge/KnowledgeSpace" eOpposite="#//knowledge/KnowledgeSpace/containedScientificKnowledge">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="position" value="left"/>
           <details key="priority" value="10"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="KnowledgeSpace" eSuperTypes="#//knowledge/ScientificKnowledge">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="containedScientificProblem"
+    <eClassifiers xsi:type="ecore:EClass" name="KnowledgeSpace" eSuperTypes="#//SCRMSpace #//knowledge/ScientificKnowledge">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="containedScientificKnowledge"
           upperBound="-1" eType="#//knowledge/ScientificKnowledge" containment="true"
           eOpposite="#//knowledge/ScientificKnowledge/containingKnowledgeSpace">
         <eAnnotations source="org.unicase.ui.meeditor">
@@ -252,7 +265,7 @@
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="RequirementSpace" eSuperTypes="#//requirements/IRequirement">
+    <eClassifiers xsi:type="ecore:EClass" name="RequirementSpace" eSuperTypes="#//SCRMSpace #//requirements/IRequirement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="containedInformationofRequirements"
           upperBound="-1" eType="#//requirements/IRequirement" containment="true"
           eOpposite="#//requirements/IRequirement/containingRequirementSpace">
@@ -480,7 +493,7 @@
       <eClassifiers xsi:type="ecore:EClass" name="ResultsOutput" eSuperTypes="#//requirements/dataProcess/Process"/>
       <eClassifiers xsi:type="ecore:EClass" name="ErrorHandling" eSuperTypes="#//requirements/dataProcess/Process"/>
       <eClassifiers xsi:type="ecore:EClass" name="StatusMonitoring" eSuperTypes="#//requirements/dataProcess/Process"/>
-      <eClassifiers xsi:type="ecore:EClass" name="DataProcessSpace" eSuperTypes="#//requirements/dataProcess/Process">
+      <eClassifiers xsi:type="ecore:EClass" name="DataProcessSpace" eSuperTypes="#//SCRMSpace #//requirements/dataProcess/Process">
         <eStructuralFeatures xsi:type="ecore:EReference" name="containedDataProcessSteps"
             upperBound="-1" eType="#//requirements/dataProcess/Process" containment="true"
             eOpposite="#//requirements/dataProcess/Process/containingDataProcessSpace">

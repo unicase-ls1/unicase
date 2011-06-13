@@ -15,15 +15,15 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 
+import scrm.diagram.edit.commands.MathematicalModelRepresentedProblemCreateCommand;
+import scrm.diagram.edit.commands.MathematicalModelRepresentedProblemReorientCommand;
+import scrm.diagram.edit.commands.NumericalMethodSolvedProblemCreateCommand;
+import scrm.diagram.edit.commands.NumericalMethodSolvedProblemReorientCommand;
 import scrm.diagram.edit.commands.ScientificProblemInfluencedFeatureCreateCommand;
 import scrm.diagram.edit.commands.ScientificProblemInfluencedFeatureReorientCommand;
-import scrm.diagram.edit.commands.ScientificProblemRepresentingModelCreateCommand;
-import scrm.diagram.edit.commands.ScientificProblemRepresentingModelReorientCommand;
-import scrm.diagram.edit.commands.ScientificProblemSolvingMethodsCreateCommand;
-import scrm.diagram.edit.commands.ScientificProblemSolvingMethodsReorientCommand;
+import scrm.diagram.edit.parts.MathematicalModelRepresentedProblemEditPart;
+import scrm.diagram.edit.parts.NumericalMethodSolvedProblemEditPart;
 import scrm.diagram.edit.parts.ScientificProblemInfluencedFeatureEditPart;
-import scrm.diagram.edit.parts.ScientificProblemRepresentingModelEditPart;
-import scrm.diagram.edit.parts.ScientificProblemSolvingMethodsEditPart;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -48,24 +48,27 @@ public class ScientificProblemItemSemanticEditPolicy extends
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
 				getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
+		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
+			Edge incomingLink = (Edge) it.next();
+			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == MathematicalModelRepresentedProblemEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(
+						incomingLink.getSource().getElement(), null,
+						incomingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == NumericalMethodSolvedProblemEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(
+						incomingLink.getSource().getElement(), null,
+						incomingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+		}
 		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
-			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == ScientificProblemRepresentingModelEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						outgoingLink.getSource().getElement(), null,
-						outgoingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				continue;
-			}
-			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == ScientificProblemSolvingMethodsEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						outgoingLink.getSource().getElement(), null,
-						outgoingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				continue;
-			}
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == ScientificProblemInfluencedFeatureEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						outgoingLink.getSource().getElement(), null,
@@ -102,15 +105,13 @@ public class ScientificProblemItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.ScientificProblemRepresentingModel_4006 == req
+		if (ScrmElementTypes.MathematicalModelRepresentedProblem_4048 == req
 				.getElementType()) {
-			return getGEFWrapper(new ScientificProblemRepresentingModelCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return null;
 		}
-		if (ScrmElementTypes.ScientificProblemSolvingMethods_4041 == req
+		if (ScrmElementTypes.NumericalMethodSolvedProblem_4057 == req
 				.getElementType()) {
-			return getGEFWrapper(new ScientificProblemSolvingMethodsCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return null;
 		}
 		if (ScrmElementTypes.ScientificProblemInfluencedFeature_4008 == req
 				.getElementType()) {
@@ -125,13 +126,15 @@ public class ScientificProblemItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.ScientificProblemRepresentingModel_4006 == req
+		if (ScrmElementTypes.MathematicalModelRepresentedProblem_4048 == req
 				.getElementType()) {
-			return null;
+			return getGEFWrapper(new MathematicalModelRepresentedProblemCreateCommand(
+					req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.ScientificProblemSolvingMethods_4041 == req
+		if (ScrmElementTypes.NumericalMethodSolvedProblem_4057 == req
 				.getElementType()) {
-			return null;
+			return getGEFWrapper(new NumericalMethodSolvedProblemCreateCommand(
+					req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.ScientificProblemInfluencedFeature_4008 == req
 				.getElementType()) {
@@ -149,11 +152,11 @@ public class ScientificProblemItemSemanticEditPolicy extends
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
-			return getGEFWrapper(new ScientificProblemRepresentingModelReorientCommand(
+		case MathematicalModelRepresentedProblemEditPart.VISUAL_ID:
+			return getGEFWrapper(new MathematicalModelRepresentedProblemReorientCommand(
 					req));
-		case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
-			return getGEFWrapper(new ScientificProblemSolvingMethodsReorientCommand(
+		case NumericalMethodSolvedProblemEditPart.VISUAL_ID:
+			return getGEFWrapper(new NumericalMethodSolvedProblemReorientCommand(
 					req));
 		case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID:
 			return getGEFWrapper(new ScientificProblemInfluencedFeatureReorientCommand(

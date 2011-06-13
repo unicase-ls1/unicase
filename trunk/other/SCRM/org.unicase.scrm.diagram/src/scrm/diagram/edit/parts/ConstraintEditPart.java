@@ -264,19 +264,35 @@ public class ConstraintEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List<IElementType> getMARelTypesOnTarget() {
+	public List<IElementType> getMARelTypesOnSource() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(ScrmElementTypes.FeatureConstraints_4025);
+		types.add(ScrmElementTypes.ConstraintRestrictedFeature_4051);
 		return types;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
+	public List<IElementType> getMARelTypesOnSourceAndTarget(
+			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == ScrmElementTypes.FeatureConstraints_4025) {
+		if (targetEditPart instanceof FeatureEditPart) {
+			types.add(ScrmElementTypes.ConstraintRestrictedFeature_4051);
+		}
+		if (targetEditPart instanceof Feature2EditPart) {
+			types.add(ScrmElementTypes.ConstraintRestrictedFeature_4051);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if (relationshipType == ScrmElementTypes.ConstraintRestrictedFeature_4051) {
 			types.add(ScrmElementTypes.Feature_2009);
+			types.add(ScrmElementTypes.Feature_3009);
 		}
 		return types;
 	}

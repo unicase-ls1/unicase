@@ -22,6 +22,9 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="Assumption"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="KnowledgeSpace"/>
     </tools>
     <tools
         xsi:type="gmftool:ToolGroup"
@@ -56,8 +59,11 @@
           xsi:type="gmftool:CreationTool"
           title="Requirement"/>
       <tools
+          xsi:type="gmftool:CreationTool"
+          title="RequirementSpace"/>
+      <tools
           xsi:type="gmftool:PaletteSeparator"
-          title="SEPARATOR"/>
+          title="Requirement-DataProcess"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="InputDataReading"/>
@@ -76,9 +82,9 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="Process"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="DataProcessSpace"/>
     </tools>
-    <tools
-        xsi:type="gmftool:CreationTool"
-        title="KnowledgeSpace"/>
   </palette>
 </gmftool:ToolRegistry>

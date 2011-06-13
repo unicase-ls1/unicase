@@ -9,67 +9,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import scrm.SCRMDiagram;
 import scrm.ScrmPackage;
 import scrm.diagram.edit.parts.*;
-import scrm.diagram.edit.parts.AssumptionEditPart;
-import scrm.diagram.edit.parts.ConstraintEditPart;
-import scrm.diagram.edit.parts.DataDefinitionEditPart;
-import scrm.diagram.edit.parts.DataFlowEditPart;
-import scrm.diagram.edit.parts.DataHandlingEditPart;
-import scrm.diagram.edit.parts.ErrorHandlingEditPart;
-import scrm.diagram.edit.parts.Feature2EditPart;
-import scrm.diagram.edit.parts.FeatureConstraintsEditPart;
-import scrm.diagram.edit.parts.FeatureDependenciesEditPart;
-import scrm.diagram.edit.parts.FeatureDetailedRequirementsEditPart;
-import scrm.diagram.edit.parts.FeatureEditPart;
-import scrm.diagram.edit.parts.FeatureExcludedFeaturesEditPart;
-import scrm.diagram.edit.parts.FeatureProvidedInterfacesEditPart;
-import scrm.diagram.edit.parts.FeatureRequiredFeaturesEditPart;
-import scrm.diagram.edit.parts.FeatureRequiredInterfacesEditPart;
-import scrm.diagram.edit.parts.HardwareEditPart;
-import scrm.diagram.edit.parts.InputDataReadingEditPart;
-import scrm.diagram.edit.parts.MathematicalModel2EditPart;
-import scrm.diagram.edit.parts.MathematicalModelDependenciesEditPart;
-import scrm.diagram.edit.parts.MathematicalModelEditPart;
-import scrm.diagram.edit.parts.MathematicalModelNumericalMethodsEditPart;
-import scrm.diagram.edit.parts.NumericalMethodDependenciesEditPart;
-import scrm.diagram.edit.parts.NumericalMethodEditPart;
-import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
-import scrm.diagram.edit.parts.NumericalMethodRealizingRequirementEditPart;
-import scrm.diagram.edit.parts.PerformanceEditPart;
-import scrm.diagram.edit.parts.ProcessDataFlowEditPart;
-import scrm.diagram.edit.parts.ProcessEditPart;
-import scrm.diagram.edit.parts.RequirementDefiningDataEditPart;
-import scrm.diagram.edit.parts.RequirementEditPart;
-import scrm.diagram.edit.parts.ResultsOutputEditPart;
-import scrm.diagram.edit.parts.SCRMDiagramEditPart;
-import scrm.diagram.edit.parts.ScientificProblemDescriptionEditPart;
-import scrm.diagram.edit.parts.ScientificProblemEditPart;
-import scrm.diagram.edit.parts.ScientificProblemInfluencedFeatureEditPart;
-import scrm.diagram.edit.parts.ScientificProblemNameEditPart;
-import scrm.diagram.edit.parts.ScientificProblemRepresentingModelEditPart;
-import scrm.diagram.edit.parts.SoftwareInterfaceEditPart;
-import scrm.diagram.edit.parts.StatusMonitoringEditPart;
-import scrm.diagram.edit.parts.UserInterfaceEditPart;
-import scrm.diagram.edit.parts.WrappingLabel10EditPart;
-import scrm.diagram.edit.parts.WrappingLabel11EditPart;
-import scrm.diagram.edit.parts.WrappingLabel12EditPart;
-import scrm.diagram.edit.parts.WrappingLabel13EditPart;
-import scrm.diagram.edit.parts.WrappingLabel14EditPart;
-import scrm.diagram.edit.parts.WrappingLabel15EditPart;
-import scrm.diagram.edit.parts.WrappingLabel16EditPart;
-import scrm.diagram.edit.parts.WrappingLabel17EditPart;
-import scrm.diagram.edit.parts.WrappingLabel18EditPart;
-import scrm.diagram.edit.parts.WrappingLabel19EditPart;
-import scrm.diagram.edit.parts.WrappingLabel20EditPart;
-import scrm.diagram.edit.parts.WrappingLabel21EditPart;
-import scrm.diagram.edit.parts.WrappingLabel2EditPart;
-import scrm.diagram.edit.parts.WrappingLabel3EditPart;
-import scrm.diagram.edit.parts.WrappingLabel4EditPart;
-import scrm.diagram.edit.parts.WrappingLabel5EditPart;
-import scrm.diagram.edit.parts.WrappingLabel6EditPart;
-import scrm.diagram.edit.parts.WrappingLabel7EditPart;
-import scrm.diagram.edit.parts.WrappingLabel8EditPart;
-import scrm.diagram.edit.parts.WrappingLabel9EditPart;
-import scrm.diagram.edit.parts.WrappingLabelEditPart;
 import scrm.knowledge.KnowledgePackage;
 import scrm.requirements.RequirementsPackage;
 
@@ -148,7 +87,7 @@ public class ScrmVisualIDRegistry {
 		if (domainElement == null) {
 			return -1;
 		}
-		if (ScrmPackage.eINSTANCE.getSCRMDiagram().isSuperTypeOf(
+		if (ScrmPackage.eINSTANCE.getSCRMDiagram().equals(
 				domainElement.eClass())
 				&& isDiagram((SCRMDiagram) domainElement)) {
 			return SCRMDiagramEditPart.VISUAL_ID;
@@ -182,86 +121,289 @@ public class ScrmVisualIDRegistry {
 		switch (containerVisualID) {
 		case SCRMDiagramEditPart.VISUAL_ID:
 			if (KnowledgePackage.eINSTANCE.getScientificProblem()
-					.isSuperTypeOf(domainElement.eClass())) {
+					.equals(domainElement.eClass())) {
 				return ScientificProblemEditPart.VISUAL_ID;
 			}
 			if (KnowledgePackage.eINSTANCE.getMathematicalModel()
-					.isSuperTypeOf(domainElement.eClass())) {
+					.equals(domainElement.eClass())) {
 				return MathematicalModelEditPart.VISUAL_ID;
 			}
-			if (KnowledgePackage.eINSTANCE.getNumericalMethod().isSuperTypeOf(
+			if (KnowledgePackage.eINSTANCE.getNumericalMethod().equals(
 					domainElement.eClass())) {
 				return NumericalMethodEditPart.VISUAL_ID;
 			}
-			if (KnowledgePackage.eINSTANCE.getAssumption().isSuperTypeOf(
+			if (KnowledgePackage.eINSTANCE.getAssumption().equals(
 					domainElement.eClass())) {
 				return AssumptionEditPart.VISUAL_ID;
 			}
-			if (RequirementsPackage.eINSTANCE.getFeature().isSuperTypeOf(
+			if (RequirementsPackage.eINSTANCE.getFeature().equals(
 					domainElement.eClass())) {
 				return FeatureEditPart.VISUAL_ID;
 			}
-			if (RequirementsPackage.eINSTANCE.getHardware().isSuperTypeOf(
+			if (RequirementsPackage.eINSTANCE.getHardware().equals(
 					domainElement.eClass())) {
 				return HardwareEditPart.VISUAL_ID;
 			}
-			if (RequirementsPackage.eINSTANCE.getConstraint().isSuperTypeOf(
+			if (RequirementsPackage.eINSTANCE.getConstraint().equals(
 					domainElement.eClass())) {
 				return ConstraintEditPart.VISUAL_ID;
 			}
-			if (RequirementsPackage.eINSTANCE.getUserInterface().isSuperTypeOf(
+			if (RequirementsPackage.eINSTANCE.getUserInterface().equals(
 					domainElement.eClass())) {
 				return UserInterfaceEditPart.VISUAL_ID;
 			}
 			if (RequirementsPackage.eINSTANCE.getSoftwareInterface()
-					.isSuperTypeOf(domainElement.eClass())) {
+					.equals(domainElement.eClass())) {
 				return SoftwareInterfaceEditPart.VISUAL_ID;
 			}
 			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
-					.getProcess().isSuperTypeOf(domainElement.eClass())) {
+					.getProcess().equals(domainElement.eClass())) {
 				return ProcessEditPart.VISUAL_ID;
 			}
-			if (RequirementsPackage.eINSTANCE.getPerformance().isSuperTypeOf(
+			if (RequirementsPackage.eINSTANCE.getPerformance().equals(
 					domainElement.eClass())) {
 				return PerformanceEditPart.VISUAL_ID;
 			}
-			if (RequirementsPackage.eINSTANCE.getDataFlow().isSuperTypeOf(
+			if (RequirementsPackage.eINSTANCE.getDataFlow().equals(
 					domainElement.eClass())) {
 				return DataFlowEditPart.VISUAL_ID;
 			}
 			if (RequirementsPackage.eINSTANCE.getDataDefinition()
-					.isSuperTypeOf(domainElement.eClass())) {
+					.equals(domainElement.eClass())) {
 				return DataDefinitionEditPart.VISUAL_ID;
 			}
 			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
 					.getInputDataReading()
-					.isSuperTypeOf(domainElement.eClass())) {
+					.equals(domainElement.eClass())) {
 				return InputDataReadingEditPart.VISUAL_ID;
 			}
 			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
-					.getDataHandling().isSuperTypeOf(domainElement.eClass())) {
+					.getDataHandling().equals(domainElement.eClass())) {
 				return DataHandlingEditPart.VISUAL_ID;
 			}
 			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
-					.getResultsOutput().isSuperTypeOf(domainElement.eClass())) {
+					.getResultsOutput().equals(domainElement.eClass())) {
 				return ResultsOutputEditPart.VISUAL_ID;
 			}
 			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
-					.getErrorHandling().isSuperTypeOf(domainElement.eClass())) {
+					.getErrorHandling().equals(domainElement.eClass())) {
 				return ErrorHandlingEditPart.VISUAL_ID;
 			}
 			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
 					.getStatusMonitoring()
-					.isSuperTypeOf(domainElement.eClass())) {
+					.equals(domainElement.eClass())) {
 				return StatusMonitoringEditPart.VISUAL_ID;
 			}
-			if (RequirementsPackage.eINSTANCE.getRequirement().isSuperTypeOf(
+			if (RequirementsPackage.eINSTANCE.getRequirement().equals(
 					domainElement.eClass())) {
 				return RequirementEditPart.VISUAL_ID;
 			}
-			if (KnowledgePackage.eINSTANCE.getKnowledgeSpace().isSuperTypeOf(
+			if (KnowledgePackage.eINSTANCE.getKnowledgeSpace().equals(
 					domainElement.eClass())) {
 				return KnowledgeSpaceEditPart.VISUAL_ID;
+			}
+			if (RequirementsPackage.eINSTANCE.getRequirementSpace()
+					.equals(domainElement.eClass())) {
+				return RequirementSpaceEditPart.VISUAL_ID;
+			}
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
+					.getDataProcessSpace()
+					.equals(domainElement.eClass())) {
+				return DataProcessSpaceEditPart.VISUAL_ID;
+			}
+			break;
+		case KnowledgeSpaceKnowledgeSpaceCompartmentEditPart.VISUAL_ID:
+			if (KnowledgePackage.eINSTANCE.getScientificProblem()
+					.equals(domainElement.eClass())) {
+				return ScientificProblem2EditPart.VISUAL_ID;
+			}
+			if (KnowledgePackage.eINSTANCE.getNumericalMethod().equals(
+					domainElement.eClass())) {
+				return NumericalMethod2EditPart.VISUAL_ID;
+			}
+			if (KnowledgePackage.eINSTANCE.getMathematicalModel()
+					.equals(domainElement.eClass())) {
+				return MathematicalModel2EditPart.VISUAL_ID;
+			}
+			if (KnowledgePackage.eINSTANCE.getAssumption().equals(
+					domainElement.eClass())) {
+				return Assumption2EditPart.VISUAL_ID;
+			}
+			if (KnowledgePackage.eINSTANCE.getKnowledgeSpace().equals(
+					domainElement.eClass())) {
+				return KnowledgeSpace2EditPart.VISUAL_ID;
+			}
+			break;
+		case KnowledgeSpaceKnowledgeSpaceCompartment2EditPart.VISUAL_ID:
+			if (KnowledgePackage.eINSTANCE.getScientificProblem()
+					.equals(domainElement.eClass())) {
+				return ScientificProblem2EditPart.VISUAL_ID;
+			}
+			if (KnowledgePackage.eINSTANCE.getNumericalMethod().equals(
+					domainElement.eClass())) {
+				return NumericalMethod2EditPart.VISUAL_ID;
+			}
+			if (KnowledgePackage.eINSTANCE.getMathematicalModel()
+					.equals(domainElement.eClass())) {
+				return MathematicalModel2EditPart.VISUAL_ID;
+			}
+			if (KnowledgePackage.eINSTANCE.getAssumption().equals(
+					domainElement.eClass())) {
+				return Assumption2EditPart.VISUAL_ID;
+			}
+			if (KnowledgePackage.eINSTANCE.getKnowledgeSpace().equals(
+					domainElement.eClass())) {
+				return KnowledgeSpace2EditPart.VISUAL_ID;
+			}
+			break;
+		case RequirementSpaceRequirementSpaceCompartmentEditPart.VISUAL_ID:
+			if (RequirementsPackage.eINSTANCE.getConstraint().equals(
+					domainElement.eClass())) {
+				return Constraint2EditPart.VISUAL_ID;
+			}
+			if (RequirementsPackage.eINSTANCE.getDataDefinition()
+					.equals(domainElement.eClass())) {
+				return DataDefinition2EditPart.VISUAL_ID;
+			}
+			if (RequirementsPackage.eINSTANCE.getDataFlow().equals(
+					domainElement.eClass())) {
+				return DataFlow2EditPart.VISUAL_ID;
+			}
+			if (RequirementsPackage.eINSTANCE.getFeature().equals(
+					domainElement.eClass())) {
+				return Feature2EditPart.VISUAL_ID;
+			}
+			if (RequirementsPackage.eINSTANCE.getHardware().equals(
+					domainElement.eClass())) {
+				return Hardware2EditPart.VISUAL_ID;
+			}
+			if (RequirementsPackage.eINSTANCE.getPerformance().equals(
+					domainElement.eClass())) {
+				return Performance2EditPart.VISUAL_ID;
+			}
+			if (RequirementsPackage.eINSTANCE.getRequirement().equals(
+					domainElement.eClass())) {
+				return Requirement2EditPart.VISUAL_ID;
+			}
+			if (RequirementsPackage.eINSTANCE.getSoftwareInterface()
+					.equals(domainElement.eClass())) {
+				return SoftwareInterface2EditPart.VISUAL_ID;
+			}
+			if (RequirementsPackage.eINSTANCE.getUserInterface().equals(
+					domainElement.eClass())) {
+				return UserInterface2EditPart.VISUAL_ID;
+			}
+			if (RequirementsPackage.eINSTANCE.getRequirementSpace()
+					.equals(domainElement.eClass())) {
+				return RequirementSpace2EditPart.VISUAL_ID;
+			}
+			break;
+		case RequirementSpaceRequirementSpaceCompartment2EditPart.VISUAL_ID:
+			if (RequirementsPackage.eINSTANCE.getConstraint().equals(
+					domainElement.eClass())) {
+				return Constraint2EditPart.VISUAL_ID;
+			}
+			if (RequirementsPackage.eINSTANCE.getDataDefinition()
+					.equals(domainElement.eClass())) {
+				return DataDefinition2EditPart.VISUAL_ID;
+			}
+			if (RequirementsPackage.eINSTANCE.getDataFlow().equals(
+					domainElement.eClass())) {
+				return DataFlow2EditPart.VISUAL_ID;
+			}
+			if (RequirementsPackage.eINSTANCE.getFeature().equals(
+					domainElement.eClass())) {
+				return Feature2EditPart.VISUAL_ID;
+			}
+			if (RequirementsPackage.eINSTANCE.getHardware().equals(
+					domainElement.eClass())) {
+				return Hardware2EditPart.VISUAL_ID;
+			}
+			if (RequirementsPackage.eINSTANCE.getPerformance().equals(
+					domainElement.eClass())) {
+				return Performance2EditPart.VISUAL_ID;
+			}
+			if (RequirementsPackage.eINSTANCE.getRequirement().equals(
+					domainElement.eClass())) {
+				return Requirement2EditPart.VISUAL_ID;
+			}
+			if (RequirementsPackage.eINSTANCE.getSoftwareInterface()
+					.equals(domainElement.eClass())) {
+				return SoftwareInterface2EditPart.VISUAL_ID;
+			}
+			if (RequirementsPackage.eINSTANCE.getUserInterface().equals(
+					domainElement.eClass())) {
+				return UserInterface2EditPart.VISUAL_ID;
+			}
+			if (RequirementsPackage.eINSTANCE.getRequirementSpace()
+					.equals(domainElement.eClass())) {
+				return RequirementSpace2EditPart.VISUAL_ID;
+			}
+			break;
+		case DataProcessSpaceDataProcessSpaceCompartmentEditPart.VISUAL_ID:
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
+					.getStatusMonitoring()
+					.equals(domainElement.eClass())) {
+				return StatusMonitoring2EditPart.VISUAL_ID;
+			}
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
+					.getResultsOutput().equals(domainElement.eClass())) {
+				return ResultsOutput2EditPart.VISUAL_ID;
+			}
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
+					.getProcess().equals(domainElement.eClass())) {
+				return Process2EditPart.VISUAL_ID;
+			}
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
+					.getInputDataReading()
+					.equals(domainElement.eClass())) {
+				return InputDataReading2EditPart.VISUAL_ID;
+			}
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
+					.getErrorHandling().equals(domainElement.eClass())) {
+				return ErrorHandling2EditPart.VISUAL_ID;
+			}
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
+					.getDataHandling().equals(domainElement.eClass())) {
+				return DataHandling2EditPart.VISUAL_ID;
+			}
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
+					.getDataProcessSpace()
+					.equals(domainElement.eClass())) {
+				return DataProcessSpace2EditPart.VISUAL_ID;
+			}
+			break;
+		case DataProcessSpaceDataProcessSpaceCompartment2EditPart.VISUAL_ID:
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
+					.getStatusMonitoring()
+					.equals(domainElement.eClass())) {
+				return StatusMonitoring2EditPart.VISUAL_ID;
+			}
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
+					.getResultsOutput().equals(domainElement.eClass())) {
+				return ResultsOutput2EditPart.VISUAL_ID;
+			}
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
+					.getProcess().equals(domainElement.eClass())) {
+				return Process2EditPart.VISUAL_ID;
+			}
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
+					.getInputDataReading()
+					.equals(domainElement.eClass())) {
+				return InputDataReading2EditPart.VISUAL_ID;
+			}
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
+					.getErrorHandling().equals(domainElement.eClass())) {
+				return ErrorHandling2EditPart.VISUAL_ID;
+			}
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
+					.getDataHandling().equals(domainElement.eClass())) {
+				return DataHandling2EditPart.VISUAL_ID;
+			}
+			if (scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
+					.getDataProcessSpace()
+					.equals(domainElement.eClass())) {
+				return DataProcessSpace2EditPart.VISUAL_ID;
 			}
 			break;
 		}
@@ -348,6 +490,12 @@ public class ScrmVisualIDRegistry {
 				return true;
 			}
 			if (KnowledgeSpaceEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (RequirementSpaceEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (DataProcessSpaceEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -542,12 +690,383 @@ public class ScrmVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
+		case KnowledgeSpaceEditPart.VISUAL_ID:
+			if (KnowledgeSpaceNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (KnowledgeSpaceKnowledgeSpaceCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case RequirementSpaceEditPart.VISUAL_ID:
+			if (RequirementSpaceRequirementSpaceCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case DataProcessSpaceEditPart.VISUAL_ID:
+			if (DataProcessSpaceDataProcessSpaceCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ScientificProblem2EditPart.VISUAL_ID:
+			if (ScientificProblemName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ScientificProblemDescription2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case NumericalMethod2EditPart.VISUAL_ID:
+			if (NumericalMethodName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (NumericalMethodDescription2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (NumericalMethodTheory2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (NumericalMethodAlgorithm2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case MathematicalModel2EditPart.VISUAL_ID:
+			if (MathematicalModelName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (MathematicalModelDescription2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (MathematicalModelTheory2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (MathematicalModelMathematicalExpression2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case Assumption2EditPart.VISUAL_ID:
+			if (AssumptionName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (AssumptionDescription2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case KnowledgeSpace2EditPart.VISUAL_ID:
+			if (KnowledgeSpaceName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (KnowledgeSpaceKnowledgeSpaceCompartment2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case Constraint2EditPart.VISUAL_ID:
+			if (ConstraintName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ConstraintDescription2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case DataDefinition2EditPart.VISUAL_ID:
+			if (DataDefinitionName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (DataDefinitionDescription2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (DataDefinitionAccuracy2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (DataDefinitionFormat2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (DataDefinitionRange2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (DataDefinitionDataType2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case DataFlow2EditPart.VISUAL_ID:
+			if (DataFlowName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (DataFlowDescription2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case Feature2EditPart.VISUAL_ID:
+			if (FeatureName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (FeatureDescription2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case Hardware2EditPart.VISUAL_ID:
+			if (HardwareName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (HardwareDescription2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (HardwareProcessor2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (HardwarePlatform2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (HardwareMemory2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case Performance2EditPart.VISUAL_ID:
+			if (PerformanceName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (PerformanceDescription2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (PerformanceProblemSize2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case Requirement2EditPart.VISUAL_ID:
+			if (RequirementName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (RequirementDescription2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case SoftwareInterface2EditPart.VISUAL_ID:
+			if (SoftwareInterfaceName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (SoftwareInterfaceDescription2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (SoftwareInterfaceDataTypes2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case UserInterface2EditPart.VISUAL_ID:
+			if (UserInterfaceName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (UserInterfaceDescription2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case RequirementSpace2EditPart.VISUAL_ID:
+			if (RequirementSpaceRequirementSpaceCompartment2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case StatusMonitoring2EditPart.VISUAL_ID:
+			if (StatusMonitoringName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (StatusMonitoringDescription2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ResultsOutput2EditPart.VISUAL_ID:
+			if (ResultsOutputName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ResultsOutputDescription2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case Process2EditPart.VISUAL_ID:
+			if (ProcessName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ProcessDescription2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case InputDataReading2EditPart.VISUAL_ID:
+			if (InputDataReadingName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (InputDataReadingDescription2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ErrorHandling2EditPart.VISUAL_ID:
+			if (ErrorHandlingName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ErrorHandlingDescription2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case DataHandling2EditPart.VISUAL_ID:
+			if (DataHandlingName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (DataHandlingDescription2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case DataProcessSpace2EditPart.VISUAL_ID:
+			if (DataProcessSpaceDataProcessSpaceCompartment2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case KnowledgeSpaceKnowledgeSpaceCompartmentEditPart.VISUAL_ID:
+			if (ScientificProblem2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (NumericalMethod2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (MathematicalModel2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Assumption2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (KnowledgeSpace2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case KnowledgeSpaceKnowledgeSpaceCompartment2EditPart.VISUAL_ID:
+			if (ScientificProblem2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (NumericalMethod2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (MathematicalModel2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Assumption2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (KnowledgeSpace2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case RequirementSpaceRequirementSpaceCompartmentEditPart.VISUAL_ID:
+			if (Constraint2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (DataDefinition2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (DataFlow2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Feature2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Hardware2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Performance2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Requirement2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (SoftwareInterface2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (UserInterface2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (RequirementSpace2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case RequirementSpaceRequirementSpaceCompartment2EditPart.VISUAL_ID:
+			if (Constraint2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (DataDefinition2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (DataFlow2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Feature2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Hardware2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Performance2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Requirement2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (SoftwareInterface2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (UserInterface2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (RequirementSpace2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case DataProcessSpaceDataProcessSpaceCompartmentEditPart.VISUAL_ID:
+			if (StatusMonitoring2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ResultsOutput2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Process2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (InputDataReading2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ErrorHandling2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (DataHandling2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (DataProcessSpace2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case DataProcessSpaceDataProcessSpaceCompartment2EditPart.VISUAL_ID:
+			if (StatusMonitoring2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ResultsOutput2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Process2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (InputDataReading2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ErrorHandling2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (DataHandling2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (DataProcessSpace2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case MathematicalModelRepresentedProblemEditPart.VISUAL_ID:
 			if (WrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
+		case NumericalMethodSolvedProblemEditPart.VISUAL_ID:
 			if (WrappingLabel2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -557,7 +1076,7 @@ public class ScrmVisualIDRegistry {
 				return true;
 			}
 			break;
-		case MathematicalModel2EditPart.VISUAL_ID:
+		case MathematicalModelRefinedModelEditPart.VISUAL_ID:
 			if (WrappingLabel4EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -577,7 +1096,7 @@ public class ScrmVisualIDRegistry {
 				return true;
 			}
 			break;
-		case NumericalMethodRealizingRequirementEditPart.VISUAL_ID:
+		case RequirementRealizedMethodEditPart.VISUAL_ID:
 			if (WrappingLabel8EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -597,7 +1116,7 @@ public class ScrmVisualIDRegistry {
 				return true;
 			}
 			break;
-		case FeatureConstraintsEditPart.VISUAL_ID:
+		case ConstraintRestrictedFeatureEditPart.VISUAL_ID:
 			if (WrappingLabel12EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -607,12 +1126,12 @@ public class ScrmVisualIDRegistry {
 				return true;
 			}
 			break;
-		case FeatureDetailedRequirementsEditPart.VISUAL_ID:
+		case RequirementSpecifiedFeatureEditPart.VISUAL_ID:
 			if (WrappingLabel14EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case Feature2EditPart.VISUAL_ID:
+		case FeatureSuperFeatureEditPart.VISUAL_ID:
 			if (WrappingLabel15EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -627,17 +1146,17 @@ public class ScrmVisualIDRegistry {
 				return true;
 			}
 			break;
-		case Requirement2EditPart.VISUAL_ID:
+		case RequirementRefinedRequirementEditPart.VISUAL_ID:
 			if (WrappingLabel18EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case RequirementDefiningDataEditPart.VISUAL_ID:
+		case DataDefinitionDefinedRequirementEditPart.VISUAL_ID:
 			if (WrappingLabel19EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case ProcessDataFlowEditPart.VISUAL_ID:
+		case DataFlowSpecifiedProcessEditPart.VISUAL_ID:
 			if (WrappingLabel20EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -657,18 +1176,6 @@ public class ScrmVisualIDRegistry {
 	public static int getLinkWithClassVisualID(EObject domainElement) {
 		if (domainElement == null) {
 			return -1;
-		}
-		if (KnowledgePackage.eINSTANCE.getMathematicalModel().isSuperTypeOf(
-				domainElement.eClass())) {
-			return MathematicalModel2EditPart.VISUAL_ID;
-		}
-		if (RequirementsPackage.eINSTANCE.getFeature().isSuperTypeOf(
-				domainElement.eClass())) {
-			return Feature2EditPart.VISUAL_ID;
-		}
-		if (RequirementsPackage.eINSTANCE.getRequirement().isSuperTypeOf(
-				domainElement.eClass())) {
-			return Requirement2EditPart.VISUAL_ID;
 		}
 		return -1;
 	}

@@ -10,66 +10,44 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.View;
 
-import scrm.diagram.edit.policies.ScrmBaseItemSemanticEditPolicy;
+import scrm.SCRMDiagram;
 import scrm.knowledge.KnowledgeFactory;
+import scrm.knowledge.KnowledgeSpace;
 import scrm.knowledge.MathematicalModel;
 
 /**
  * @generated
  */
 public class MathematicalModel2CreateCommand extends EditElementCommand {
-
+	
 	/**
 	 * @generated
 	 */
-	private final EObject source;
+	public MathematicalModel2CreateCommand(CreateElementRequest req) {
+		super(req.getLabel(), null, req);
+	}
 
 	/**
+	 * FIXME: replace with setElementToEdit()
 	 * @generated
 	 */
-	private final EObject target;
-
-	/**
-	 * @generated
-	 */
-	private final MathematicalModel container;
-
-	/**
-	 * @generated
-	 */
-	public MathematicalModel2CreateCommand(CreateRelationshipRequest request,
-			EObject source, EObject target) {
-		super(request.getLabel(), null, request);
-		this.source = source;
-		this.target = target;
-		container = deduceContainer(source, target);
+	protected EObject getElementToEdit() {
+		EObject container = ((CreateElementRequest) getRequest())
+				.getContainer();
+		if (container instanceof View) {
+			container = ((View) container).getElement();
+		}
+		return container;
 	}
 
 	/**
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (source == null && target == null) {
-			return false;
-		}
-		if (source != null && false == source instanceof MathematicalModel) {
-			return false;
-		}
-		if (target != null && false == target instanceof MathematicalModel) {
-			return false;
-		}
-		if (getSource() == null) {
-			return true; // link creation is in progress; source is not defined yet
-		}
-		// target may be null here but it's possible to check constraint
-		if (getContainer() == null) {
-			return false;
-		}
-		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canCreateMathematicalModel_4004(getContainer(), getSource(),
-						getTarget());
+		return true;
+
 	}
 
 	/**
@@ -77,20 +55,16 @@ public class MathematicalModel2CreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
-		}
-
 		MathematicalModel newElement = KnowledgeFactory.eINSTANCE
 				.createMathematicalModel();
-		getContainer().getRefinements().add(newElement);
-		newElement.setRefinedModel(getSource());
-		newElement.getRefinements().add(getTarget());
+
+		KnowledgeSpace owner = (KnowledgeSpace) getElementToEdit();
+		owner.getContainedScientificKnowledge().add(newElement);
+
 		doConfigure(newElement, monitor, info);
+
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
-
 	}
 
 	/**
@@ -106,62 +80,11 @@ public class MathematicalModel2CreateCommand extends EditElementCommand {
 		configureRequest.setClientContext(((CreateElementRequest) getRequest())
 				.getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		configureRequest.setParameter(CreateRelationshipRequest.SOURCE,
-				getSource());
-		configureRequest.setParameter(CreateRelationshipRequest.TARGET,
-				getTarget());
 		ICommand configureCommand = elementType
 				.getEditCommand(configureRequest);
 		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void setElementToEdit(EObject element) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected MathematicalModel getSource() {
-		return (MathematicalModel) source;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected MathematicalModel getTarget() {
-		return (MathematicalModel) target;
-	}
-
-	/**
-	 * @generated
-	 */
-	public MathematicalModel getContainer() {
-		return container;
-	}
-
-	/**
-	 * Default approach is to traverse ancestors of the source to find instance of container.
-	 * Modify with appropriate logic.
-	 * @generated
-	 */
-	private static MathematicalModel deduceContainer(EObject source,
-			EObject target) {
-		// Find container element for the new link.
-		// Climb up by containment hierarchy starting from the source
-		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element
-				.eContainer()) {
-			if (element instanceof MathematicalModel) {
-				return (MathematicalModel) element;
-			}
-		}
-		return null;
 	}
 
 }

@@ -256,9 +256,10 @@ public class RequirementEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(ScrmElementTypes.Requirement_4036);
-		types.add(ScrmElementTypes.RequirementDefiningData_4038);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+		types.add(ScrmElementTypes.RequirementRealizedMethod_4050);
+		types.add(ScrmElementTypes.RequirementSpecifiedFeature_4052);
+		types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
 		return types;
 	}
 
@@ -268,32 +269,71 @@ public class RequirementEditPart extends ShapeNodeEditPart {
 	public List<IElementType> getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if (targetEditPart instanceof NumericalMethodEditPart) {
+			types.add(ScrmElementTypes.RequirementRealizedMethod_4050);
+		}
+		if (targetEditPart instanceof NumericalMethod2EditPart) {
+			types.add(ScrmElementTypes.RequirementRealizedMethod_4050);
+		}
+		if (targetEditPart instanceof FeatureEditPart) {
+			types.add(ScrmElementTypes.RequirementSpecifiedFeature_4052);
+		}
+		if (targetEditPart instanceof Feature2EditPart) {
+			types.add(ScrmElementTypes.RequirementSpecifiedFeature_4052);
+		}
 		if (targetEditPart instanceof ProcessEditPart) {
-			types.add(ScrmElementTypes.Requirement_4036);
+			types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
 		}
 		if (targetEditPart instanceof PerformanceEditPart) {
-			types.add(ScrmElementTypes.Requirement_4036);
+			types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
 		}
 		if (targetEditPart instanceof InputDataReadingEditPart) {
-			types.add(ScrmElementTypes.Requirement_4036);
+			types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
 		}
 		if (targetEditPart instanceof DataHandlingEditPart) {
-			types.add(ScrmElementTypes.Requirement_4036);
+			types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
 		}
 		if (targetEditPart instanceof ResultsOutputEditPart) {
-			types.add(ScrmElementTypes.Requirement_4036);
+			types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
 		}
 		if (targetEditPart instanceof ErrorHandlingEditPart) {
-			types.add(ScrmElementTypes.Requirement_4036);
+			types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
 		}
 		if (targetEditPart instanceof StatusMonitoringEditPart) {
-			types.add(ScrmElementTypes.Requirement_4036);
+			types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
 		}
 		if (targetEditPart instanceof scrm.diagram.edit.parts.RequirementEditPart) {
-			types.add(ScrmElementTypes.Requirement_4036);
+			types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
 		}
-		if (targetEditPart instanceof DataDefinitionEditPart) {
-			types.add(ScrmElementTypes.RequirementDefiningData_4038);
+		if (targetEditPart instanceof DataProcessSpaceEditPart) {
+			types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
+		}
+		if (targetEditPart instanceof Performance2EditPart) {
+			types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
+		}
+		if (targetEditPart instanceof Requirement2EditPart) {
+			types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
+		}
+		if (targetEditPart instanceof StatusMonitoring2EditPart) {
+			types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
+		}
+		if (targetEditPart instanceof ResultsOutput2EditPart) {
+			types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
+		}
+		if (targetEditPart instanceof Process2EditPart) {
+			types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
+		}
+		if (targetEditPart instanceof InputDataReading2EditPart) {
+			types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
+		}
+		if (targetEditPart instanceof ErrorHandling2EditPart) {
+			types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
+		}
+		if (targetEditPart instanceof DataHandling2EditPart) {
+			types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
+		}
+		if (targetEditPart instanceof DataProcessSpace2EditPart) {
+			types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
 		}
 		return types;
 	}
@@ -303,7 +343,13 @@ public class RequirementEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == ScrmElementTypes.Requirement_4036) {
+		if (relationshipType == ScrmElementTypes.RequirementRealizedMethod_4050) {
+			types.add(ScrmElementTypes.NumericalMethod_2006);
+			types.add(ScrmElementTypes.NumericalMethod_3002);
+		} else if (relationshipType == ScrmElementTypes.RequirementSpecifiedFeature_4052) {
+			types.add(ScrmElementTypes.Feature_2009);
+			types.add(ScrmElementTypes.Feature_3009);
+		} else if (relationshipType == ScrmElementTypes.RequirementRefinedRequirement_4054) {
 			types.add(ScrmElementTypes.Process_2035);
 			types.add(ScrmElementTypes.Performance_2015);
 			types.add(ScrmElementTypes.InputDataReading_2036);
@@ -312,8 +358,16 @@ public class RequirementEditPart extends ShapeNodeEditPart {
 			types.add(ScrmElementTypes.ErrorHandling_2039);
 			types.add(ScrmElementTypes.StatusMonitoring_2040);
 			types.add(ScrmElementTypes.Requirement_2034);
-		} else if (relationshipType == ScrmElementTypes.RequirementDefiningData_4038) {
-			types.add(ScrmElementTypes.DataDefinition_2017);
+			types.add(ScrmElementTypes.DataProcessSpace_2046);
+			types.add(ScrmElementTypes.Performance_3011);
+			types.add(ScrmElementTypes.Requirement_3012);
+			types.add(ScrmElementTypes.StatusMonitoring_3016);
+			types.add(ScrmElementTypes.ResultsOutput_3017);
+			types.add(ScrmElementTypes.Process_3018);
+			types.add(ScrmElementTypes.InputDataReading_3019);
+			types.add(ScrmElementTypes.ErrorHandling_3020);
+			types.add(ScrmElementTypes.DataHandling_3021);
+			types.add(ScrmElementTypes.DataProcessSpace_3022);
 		}
 		return types;
 	}
@@ -322,10 +376,9 @@ public class RequirementEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
-		types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
-		types.add(ScrmElementTypes.FeatureDetailedRequirements_4027);
-		types.add(ScrmElementTypes.Requirement_4036);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
+		types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
 		return types;
 	}
 
@@ -334,11 +387,7 @@ public class RequirementEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == ScrmElementTypes.NumericalMethodRealizingRequirement_4016) {
-			types.add(ScrmElementTypes.NumericalMethod_2006);
-		} else if (relationshipType == ScrmElementTypes.FeatureDetailedRequirements_4027) {
-			types.add(ScrmElementTypes.Feature_2009);
-		} else if (relationshipType == ScrmElementTypes.Requirement_4036) {
+		if (relationshipType == ScrmElementTypes.RequirementRefinedRequirement_4054) {
 			types.add(ScrmElementTypes.Process_2035);
 			types.add(ScrmElementTypes.Performance_2015);
 			types.add(ScrmElementTypes.InputDataReading_2036);
@@ -347,6 +396,19 @@ public class RequirementEditPart extends ShapeNodeEditPart {
 			types.add(ScrmElementTypes.ErrorHandling_2039);
 			types.add(ScrmElementTypes.StatusMonitoring_2040);
 			types.add(ScrmElementTypes.Requirement_2034);
+			types.add(ScrmElementTypes.DataProcessSpace_2046);
+			types.add(ScrmElementTypes.Performance_3011);
+			types.add(ScrmElementTypes.Requirement_3012);
+			types.add(ScrmElementTypes.StatusMonitoring_3016);
+			types.add(ScrmElementTypes.ResultsOutput_3017);
+			types.add(ScrmElementTypes.Process_3018);
+			types.add(ScrmElementTypes.InputDataReading_3019);
+			types.add(ScrmElementTypes.ErrorHandling_3020);
+			types.add(ScrmElementTypes.DataHandling_3021);
+			types.add(ScrmElementTypes.DataProcessSpace_3022);
+		} else if (relationshipType == ScrmElementTypes.DataDefinitionDefinedRequirement_4055) {
+			types.add(ScrmElementTypes.DataDefinition_2017);
+			types.add(ScrmElementTypes.DataDefinition_3007);
 		}
 		return types;
 	}

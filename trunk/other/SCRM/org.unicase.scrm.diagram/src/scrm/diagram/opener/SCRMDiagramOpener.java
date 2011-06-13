@@ -24,7 +24,7 @@ public class SCRMDiagramOpener implements ModelElementOpener {
 		
 		URI uri = EcoreUtil.getURI(eObject);
 		uri.appendFragment(eObject.eResource().getURIFragment(eObject));
-		URIEditorInput input = new URIEditorInput(uri, eObject.eClass().getName());		
+		URIEditorInput input = new URIEditorInput(uri, ((SCRMDiagram) eObject).getName());		
 
 		try {
 			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()

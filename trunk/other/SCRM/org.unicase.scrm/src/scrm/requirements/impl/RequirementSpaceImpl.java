@@ -22,7 +22,10 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import scrm.SCRMDiagram;
+import scrm.SCRMModelElement;
 import scrm.impl.SCRMModelElementImpl;
+import scrm.lists.SCRMSpaceContainedModelElementsList;
 
 import scrm.requirements.IRequirement;
 import scrm.requirements.RequirementSpace;
@@ -35,6 +38,7 @@ import scrm.requirements.RequirementsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link scrm.requirements.impl.RequirementSpaceImpl#getRepresentingDiagram <em>Representing Diagram</em>}</li>
  *   <li>{@link scrm.requirements.impl.RequirementSpaceImpl#getContainingRequirementSpace <em>Containing Requirement Space</em>}</li>
  *   <li>{@link scrm.requirements.impl.RequirementSpaceImpl#getContainedInformationofRequirements <em>Contained Informationof Requirements</em>}</li>
  * </ul>
@@ -45,14 +49,24 @@ import scrm.requirements.RequirementsPackage;
 public class RequirementSpaceImpl extends SCRMModelElementImpl implements
 		RequirementSpace {
 	/**
+	 * The cached value of the '{@link #getRepresentingDiagram() <em>Representing Diagram</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRepresentingDiagram()
+	 * @generated
+	 * @ordered
+	 */
+	protected SCRMDiagram representingDiagram;
+
+	/**
 	 * The cached value of the '{@link #getContainedInformationofRequirements() <em>Contained Informationof Requirements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getContainedInformationofRequirements()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
-	protected EList<IRequirement> containedInformationofRequirements;
+	protected EList<SCRMModelElement> containedInformationofRequirements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -147,17 +161,72 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public EList<IRequirement> getContainedInformationofRequirements() {
+	public EList<SCRMModelElement> getContainedInformationofRequirements() {
 		if (containedInformationofRequirements == null) {
-			containedInformationofRequirements = new EObjectContainmentWithInverseEList.Resolving<IRequirement>(
+			containedInformationofRequirements = new SCRMSpaceContainedModelElementsList<SCRMModelElement>(
 					IRequirement.class,
 					this,
 					RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
 					RequirementsPackage.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE);
 		}
 		return containedInformationofRequirements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SCRMDiagram getRepresentingDiagram() {
+		if (representingDiagram != null && representingDiagram.eIsProxy()) {
+			InternalEObject oldRepresentingDiagram = (InternalEObject) representingDiagram;
+			representingDiagram = (SCRMDiagram) eResolveProxy(oldRepresentingDiagram);
+			if (representingDiagram != oldRepresentingDiagram) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(
+							this,
+							Notification.RESOLVE,
+							RequirementsPackage.REQUIREMENT_SPACE__REPRESENTING_DIAGRAM,
+							oldRepresentingDiagram, representingDiagram));
+			}
+		}
+		return representingDiagram;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SCRMDiagram basicGetRepresentingDiagram() {
+		return representingDiagram;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRepresentingDiagram(SCRMDiagram newRepresentingDiagram) {
+		SCRMDiagram oldRepresentingDiagram = representingDiagram;
+		representingDiagram = newRepresentingDiagram;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(
+					this,
+					Notification.SET,
+					RequirementsPackage.REQUIREMENT_SPACE__REPRESENTING_DIAGRAM,
+					oldRepresentingDiagram, representingDiagram));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<SCRMModelElement> getContainedModelElements() {
+		return getContainedInformationofRequirements();
 	}
 
 	/**
@@ -227,6 +296,10 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+		case RequirementsPackage.REQUIREMENT_SPACE__REPRESENTING_DIAGRAM:
+			if (resolve)
+				return getRepresentingDiagram();
+			return basicGetRepresentingDiagram();
 		case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
 			if (resolve)
 				return getContainingRequirementSpace();
@@ -246,6 +319,9 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+		case RequirementsPackage.REQUIREMENT_SPACE__REPRESENTING_DIAGRAM:
+			setRepresentingDiagram((SCRMDiagram) newValue);
+			return;
 		case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
 			setContainingRequirementSpace((RequirementSpace) newValue);
 			return;
@@ -266,6 +342,9 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+		case RequirementsPackage.REQUIREMENT_SPACE__REPRESENTING_DIAGRAM:
+			setRepresentingDiagram((SCRMDiagram) null);
+			return;
 		case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
 			setContainingRequirementSpace((RequirementSpace) null);
 			return;
@@ -284,6 +363,8 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+		case RequirementsPackage.REQUIREMENT_SPACE__REPRESENTING_DIAGRAM:
+			return representingDiagram != null;
 		case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
 			return basicGetContainingRequirementSpace() != null;
 		case RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS:
@@ -291,6 +372,42 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements
 					&& !containedInformationofRequirements.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == IRequirement.class) {
+			switch (derivedFeatureID) {
+			case RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE:
+				return RequirementsPackage.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE;
+			default:
+				return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == IRequirement.class) {
+			switch (baseFeatureID) {
+			case RequirementsPackage.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE:
+				return RequirementsPackage.REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE;
+			default:
+				return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 } //RequirementSpaceImpl

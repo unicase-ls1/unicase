@@ -243,37 +243,22 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Default1Group_title;
+	public static String Knowledge1Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Default1Group_desc;
+	public static String Knowledge1Group_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Knowledge2Group_title;
+	public static String Requirements2Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Knowledge2Group_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Requirements3Group_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Requirements3Group_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String KnowledgeSpace1CreationTool_title;
+	public static String Requirements2Group_desc;
 
 	/**
 	 * @generated
@@ -294,6 +279,11 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String Assumption4CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String KnowledgeSpace5CreationTool_title;
 
 	/**
 	 * @generated
@@ -343,32 +333,72 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String InputDataReading11CreationTool_title;
+	public static String RequirementSpace10CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String DataHandling12CreationTool_title;
+	public static String InputDataReading12CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ResultsOutput13CreationTool_title;
+	public static String DataHandling13CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ErrorHandling14CreationTool_title;
+	public static String ResultsOutput14CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String StatusMonitoring15CreationTool_title;
+	public static String ErrorHandling15CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Process16CreationTool_title;
+	public static String StatusMonitoring16CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Process17CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String DataProcessSpace18CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String KnowledgeSpaceKnowledgeSpaceCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String KnowledgeSpaceKnowledgeSpaceCompartment2EditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String RequirementSpaceRequirementSpaceCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String RequirementSpaceRequirementSpaceCompartment2EditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String DataProcessSpaceDataProcessSpaceCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String DataProcessSpaceDataProcessSpaceCompartment2EditPart_title;
 
 	/**
 	 * @generated
@@ -388,6 +418,11 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_ScientificProblem_2007_incominglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_DataHandling_2037_incominglinks;
 
 	/**
@@ -403,22 +438,22 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ProcessDataFlow_4045_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ProcessDataFlow_4045_source;
-
-	/**
-	 * @generated
-	 */
 	public static String NavigatorGroupName_MathematicalModel_2005_incominglinks;
 
 	/**
 	 * @generated
 	 */
 	public static String NavigatorGroupName_NumericalMethod_2006_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DataProcessSpace_2046_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DataProcessSpace_2046_outgoinglinks;
 
 	/**
 	 * @generated
@@ -448,17 +483,37 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_DataDefinition_2017_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_StatusMonitoring_3016_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_StatusMonitoring_3016_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Performance_3011_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Performance_3011_incominglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_StatusMonitoring_2040_incominglinks;
 
 	/**
 	 * @generated
 	 */
 	public static String NavigatorGroupName_StatusMonitoring_2040_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Constraint_2011_incominglinks;
 
 	/**
 	 * @generated
@@ -483,12 +538,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_DataFlow_2016_incominglinks;
+	public static String NavigatorGroupName_ResultsOutput_2038_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ResultsOutput_2038_incominglinks;
+	public static String NavigatorGroupName_SoftwareInterface_3013_incominglinks;
 
 	/**
 	 * @generated
@@ -503,22 +558,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_ConstraintRestrictedFeature_4051_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ConstraintRestrictedFeature_4051_source;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_ErrorHandling_2039_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DataDefinition_2017_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ScientificProblemRepresentingModel_4006_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ScientificProblemRepresentingModel_4006_source;
 
 	/**
 	 * @generated
@@ -533,22 +583,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_MathematicalModel_4004_target;
+	public static String NavigatorGroupName_DataDefinition_3007_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_MathematicalModel_4004_incominglinks;
+	public static String NavigatorGroupName_UserInterface_3014_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_MathematicalModel_4004_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_MathematicalModel_4004_outgoinglinks;
+	public static String NavigatorGroupName_Hardware_3010_incominglinks;
 
 	/**
 	 * @generated
@@ -559,16 +604,6 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ProcessSuccessor_4047_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ScientificProblemSolvingMethods_4041_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ScientificProblemSolvingMethods_4041_source;
 
 	/**
 	 * @generated
@@ -608,17 +643,47 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_MathematicalModelRefinedModel_4058_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_MathematicalModelRefinedModel_4058_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DataHandling_3021_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DataHandling_3021_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_FeatureSuperFeature_4053_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_FeatureSuperFeature_4053_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Requirement_3012_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Requirement_3012_incominglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_Requirement_2034_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_NumericalMethodRealizingRequirement_4016_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_NumericalMethodRealizingRequirement_4016_source;
 
 	/**
 	 * @generated
@@ -633,7 +698,62 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_DataDefinitionDefinedRequirement_4055_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DataDefinitionDefinedRequirement_4055_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ErrorHandling_3020_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ErrorHandling_3020_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DataProcessSpace_3022_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DataProcessSpace_3022_incominglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_Process_2035_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ResultsOutput_3017_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ResultsOutput_3017_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InputDataReading_3019_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InputDataReading_3019_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DataFlow_3008_outgoinglinks;
 
 	/**
 	 * @generated
@@ -668,17 +788,37 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_Process_3018_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Process_3018_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Constraint_3006_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_RequirementRealizedMethod_4050_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_RequirementRealizedMethod_4050_source;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_InputDataReading_2036_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_FeatureConstraints_4025_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_FeatureConstraints_4025_source;
+	public static String NavigatorGroupName_Assumption_3004_incominglinks;
 
 	/**
 	 * @generated
@@ -693,32 +833,67 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_FeatureDetailedRequirements_4027_target;
+	public static String NavigatorGroupName_Constraint_2011_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_FeatureDetailedRequirements_4027_source;
+	public static String NavigatorGroupName_Feature_3009_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Feature_4029_target;
+	public static String NavigatorGroupName_Feature_3009_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Feature_4029_incominglinks;
+	public static String NavigatorGroupName_DataFlowSpecifiedProcess_4056_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Feature_4029_source;
+	public static String NavigatorGroupName_DataFlowSpecifiedProcess_4056_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Feature_4029_outgoinglinks;
+	public static String NavigatorGroupName_MathematicalModelRepresentedProblem_4048_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_MathematicalModelRepresentedProblem_4048_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_RequirementSpecifiedFeature_4052_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_RequirementSpecifiedFeature_4052_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_MathematicalModel_3003_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_RequirementRefinedRequirement_4054_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_RequirementRefinedRequirement_4054_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_MathematicalModel_3003_outgoinglinks;
 
 	/**
 	 * @generated
@@ -733,6 +908,11 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_DataFlow_2016_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_FeatureExcludedFeatures_4032_target;
 
 	/**
@@ -743,32 +923,32 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Requirement_4036_target;
+	public static String NavigatorGroupName_NumericalMethod_3002_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Requirement_4036_incominglinks;
+	public static String NavigatorGroupName_NumericalMethodSolvedProblem_4057_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Requirement_4036_source;
+	public static String NavigatorGroupName_NumericalMethodSolvedProblem_4057_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Requirement_4036_outgoinglinks;
+	public static String NavigatorGroupName_NumericalMethod_3002_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_RequirementDefiningData_4038_target;
+	public static String NavigatorGroupName_ScientificProblem_3001_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_RequirementDefiningData_4038_source;
+	public static String NavigatorGroupName_ScientificProblem_3001_incominglinks;
 
 	/**
 	 * @generated

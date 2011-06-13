@@ -1,5 +1,7 @@
 package scrm.diagram.commands;
 
+import java.io.IOException;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -11,8 +13,10 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 import scrm.SCRMDiagram;
+import scrm.diagram.common.CopyOfTemplateUtil;
 import scrm.diagram.common.TemplateUtil;
 
 /**
@@ -33,7 +37,7 @@ public class SaveTemplateHandler extends AbstractHandler {
 		SCRMDiagram scrmDiagram = obtainSCRMDiagram(event);
 		
 		// obtain the default directory to save files to
-		String templatePath = TemplateUtil.getTemplateDirectoryPath();
+		String templatePath = TemplateUtil.instance.getTemplateDirectoryPath();
 		
 		// this dialog lets the user choose one file to save to
 		FileDialog dialog = new FileDialog(Display.getCurrent().getActiveShell(), SWT.SAVE);
@@ -45,8 +49,12 @@ public class SaveTemplateHandler extends AbstractHandler {
 		
 		// were the choices valid?
 		if(scrmDiagram!=null && resourcePath!=null) {
-			// perform the actual saving process
-			TemplateUtil.doSave(scrmDiagram, resourcePath);
+			try {
+				// perform the actual saving process
+				TemplateUtil.doSave(scrmDiagram, resourcePath);
+			} catch (IOException e) {
+				WorkspaceUtil.logException("Saving SCRM template failed!", e);
+			}
 		}
 		
 		return null;

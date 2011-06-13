@@ -35,6 +35,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
 import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.gmf.runtime.notation.Shape;
+import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -49,10 +50,7 @@ import scrm.diagram.edit.parts.DataDefinitionEditPart;
 import scrm.diagram.edit.parts.DataFlowEditPart;
 import scrm.diagram.edit.parts.DataHandlingEditPart;
 import scrm.diagram.edit.parts.ErrorHandlingEditPart;
-import scrm.diagram.edit.parts.Feature2EditPart;
-import scrm.diagram.edit.parts.FeatureConstraintsEditPart;
 import scrm.diagram.edit.parts.FeatureDependenciesEditPart;
-import scrm.diagram.edit.parts.FeatureDetailedRequirementsEditPart;
 import scrm.diagram.edit.parts.FeatureEditPart;
 import scrm.diagram.edit.parts.FeatureExcludedFeaturesEditPart;
 import scrm.diagram.edit.parts.FeatureProvidedInterfacesEditPart;
@@ -67,11 +65,8 @@ import scrm.diagram.edit.parts.MathematicalModelNumericalMethodsEditPart;
 import scrm.diagram.edit.parts.NumericalMethodDependenciesEditPart;
 import scrm.diagram.edit.parts.NumericalMethodEditPart;
 import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
-import scrm.diagram.edit.parts.NumericalMethodRealizingRequirementEditPart;
 import scrm.diagram.edit.parts.PerformanceEditPart;
-import scrm.diagram.edit.parts.ProcessDataFlowEditPart;
 import scrm.diagram.edit.parts.ProcessEditPart;
-import scrm.diagram.edit.parts.RequirementDefiningDataEditPart;
 import scrm.diagram.edit.parts.RequirementEditPart;
 import scrm.diagram.edit.parts.ResultsOutputEditPart;
 import scrm.diagram.edit.parts.SCRMDiagramEditPart;
@@ -79,7 +74,6 @@ import scrm.diagram.edit.parts.ScientificProblemDescriptionEditPart;
 import scrm.diagram.edit.parts.ScientificProblemEditPart;
 import scrm.diagram.edit.parts.ScientificProblemInfluencedFeatureEditPart;
 import scrm.diagram.edit.parts.ScientificProblemNameEditPart;
-import scrm.diagram.edit.parts.ScientificProblemRepresentingModelEditPart;
 import scrm.diagram.edit.parts.SoftwareInterfaceEditPart;
 import scrm.diagram.edit.parts.StatusMonitoringEditPart;
 import scrm.diagram.edit.parts.UserInterfaceEditPart;
@@ -215,6 +209,30 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 				case StatusMonitoringEditPart.VISUAL_ID:
 				case RequirementEditPart.VISUAL_ID:
 				case KnowledgeSpaceEditPart.VISUAL_ID:
+				case RequirementSpaceEditPart.VISUAL_ID:
+				case DataProcessSpaceEditPart.VISUAL_ID:
+				case ScientificProblem2EditPart.VISUAL_ID:
+				case NumericalMethod2EditPart.VISUAL_ID:
+				case MathematicalModel2EditPart.VISUAL_ID:
+				case Assumption2EditPart.VISUAL_ID:
+				case KnowledgeSpace2EditPart.VISUAL_ID:
+				case Constraint2EditPart.VISUAL_ID:
+				case DataDefinition2EditPart.VISUAL_ID:
+				case DataFlow2EditPart.VISUAL_ID:
+				case Feature2EditPart.VISUAL_ID:
+				case Hardware2EditPart.VISUAL_ID:
+				case Performance2EditPart.VISUAL_ID:
+				case Requirement2EditPart.VISUAL_ID:
+				case SoftwareInterface2EditPart.VISUAL_ID:
+				case UserInterface2EditPart.VISUAL_ID:
+				case RequirementSpace2EditPart.VISUAL_ID:
+				case StatusMonitoring2EditPart.VISUAL_ID:
+				case ResultsOutput2EditPart.VISUAL_ID:
+				case Process2EditPart.VISUAL_ID:
+				case InputDataReading2EditPart.VISUAL_ID:
+				case ErrorHandling2EditPart.VISUAL_ID:
+				case DataHandling2EditPart.VISUAL_ID:
+				case DataProcessSpace2EditPart.VISUAL_ID:
 					if (domainElement == null
 							|| visualID != ScrmVisualIDRegistry
 									.getNodeVisualID(op.getContainerView(),
@@ -246,7 +264,31 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 				|| ErrorHandlingEditPart.VISUAL_ID == visualID
 				|| StatusMonitoringEditPart.VISUAL_ID == visualID
 				|| RequirementEditPart.VISUAL_ID == visualID
-				|| KnowledgeSpaceEditPart.VISUAL_ID == visualID;
+				|| KnowledgeSpaceEditPart.VISUAL_ID == visualID
+				|| RequirementSpaceEditPart.VISUAL_ID == visualID
+				|| DataProcessSpaceEditPart.VISUAL_ID == visualID
+				|| ScientificProblem2EditPart.VISUAL_ID == visualID
+				|| NumericalMethod2EditPart.VISUAL_ID == visualID
+				|| MathematicalModel2EditPart.VISUAL_ID == visualID
+				|| Assumption2EditPart.VISUAL_ID == visualID
+				|| KnowledgeSpace2EditPart.VISUAL_ID == visualID
+				|| Constraint2EditPart.VISUAL_ID == visualID
+				|| DataDefinition2EditPart.VISUAL_ID == visualID
+				|| DataFlow2EditPart.VISUAL_ID == visualID
+				|| Feature2EditPart.VISUAL_ID == visualID
+				|| Hardware2EditPart.VISUAL_ID == visualID
+				|| Performance2EditPart.VISUAL_ID == visualID
+				|| Requirement2EditPart.VISUAL_ID == visualID
+				|| SoftwareInterface2EditPart.VISUAL_ID == visualID
+				|| UserInterface2EditPart.VISUAL_ID == visualID
+				|| RequirementSpace2EditPart.VISUAL_ID == visualID
+				|| StatusMonitoring2EditPart.VISUAL_ID == visualID
+				|| ResultsOutput2EditPart.VISUAL_ID == visualID
+				|| Process2EditPart.VISUAL_ID == visualID
+				|| InputDataReading2EditPart.VISUAL_ID == visualID
+				|| ErrorHandling2EditPart.VISUAL_ID == visualID
+				|| DataHandling2EditPart.VISUAL_ID == visualID
+				|| DataProcessSpace2EditPart.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -363,6 +405,78 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		case KnowledgeSpaceEditPart.VISUAL_ID:
 			return createKnowledgeSpace_2044(domainElement, containerView,
 					index, persisted, preferencesHint);
+		case RequirementSpaceEditPart.VISUAL_ID:
+			return createRequirementSpace_2045(domainElement, containerView,
+					index, persisted, preferencesHint);
+		case DataProcessSpaceEditPart.VISUAL_ID:
+			return createDataProcessSpace_2046(domainElement, containerView,
+					index, persisted, preferencesHint);
+		case ScientificProblem2EditPart.VISUAL_ID:
+			return createScientificProblem_3001(domainElement, containerView,
+					index, persisted, preferencesHint);
+		case NumericalMethod2EditPart.VISUAL_ID:
+			return createNumericalMethod_3002(domainElement, containerView,
+					index, persisted, preferencesHint);
+		case MathematicalModel2EditPart.VISUAL_ID:
+			return createMathematicalModel_3003(domainElement, containerView,
+					index, persisted, preferencesHint);
+		case Assumption2EditPart.VISUAL_ID:
+			return createAssumption_3004(domainElement, containerView, index,
+					persisted, preferencesHint);
+		case KnowledgeSpace2EditPart.VISUAL_ID:
+			return createKnowledgeSpace_3005(domainElement, containerView,
+					index, persisted, preferencesHint);
+		case Constraint2EditPart.VISUAL_ID:
+			return createConstraint_3006(domainElement, containerView, index,
+					persisted, preferencesHint);
+		case DataDefinition2EditPart.VISUAL_ID:
+			return createDataDefinition_3007(domainElement, containerView,
+					index, persisted, preferencesHint);
+		case DataFlow2EditPart.VISUAL_ID:
+			return createDataFlow_3008(domainElement, containerView, index,
+					persisted, preferencesHint);
+		case Feature2EditPart.VISUAL_ID:
+			return createFeature_3009(domainElement, containerView, index,
+					persisted, preferencesHint);
+		case Hardware2EditPart.VISUAL_ID:
+			return createHardware_3010(domainElement, containerView, index,
+					persisted, preferencesHint);
+		case Performance2EditPart.VISUAL_ID:
+			return createPerformance_3011(domainElement, containerView, index,
+					persisted, preferencesHint);
+		case Requirement2EditPart.VISUAL_ID:
+			return createRequirement_3012(domainElement, containerView, index,
+					persisted, preferencesHint);
+		case SoftwareInterface2EditPart.VISUAL_ID:
+			return createSoftwareInterface_3013(domainElement, containerView,
+					index, persisted, preferencesHint);
+		case UserInterface2EditPart.VISUAL_ID:
+			return createUserInterface_3014(domainElement, containerView,
+					index, persisted, preferencesHint);
+		case RequirementSpace2EditPart.VISUAL_ID:
+			return createRequirementSpace_3015(domainElement, containerView,
+					index, persisted, preferencesHint);
+		case StatusMonitoring2EditPart.VISUAL_ID:
+			return createStatusMonitoring_3016(domainElement, containerView,
+					index, persisted, preferencesHint);
+		case ResultsOutput2EditPart.VISUAL_ID:
+			return createResultsOutput_3017(domainElement, containerView,
+					index, persisted, preferencesHint);
+		case Process2EditPart.VISUAL_ID:
+			return createProcess_3018(domainElement, containerView, index,
+					persisted, preferencesHint);
+		case InputDataReading2EditPart.VISUAL_ID:
+			return createInputDataReading_3019(domainElement, containerView,
+					index, persisted, preferencesHint);
+		case ErrorHandling2EditPart.VISUAL_ID:
+			return createErrorHandling_3020(domainElement, containerView,
+					index, persisted, preferencesHint);
+		case DataHandling2EditPart.VISUAL_ID:
+			return createDataHandling_3021(domainElement, containerView, index,
+					persisted, preferencesHint);
+		case DataProcessSpace2EditPart.VISUAL_ID:
+			return createDataProcessSpace_3022(domainElement, containerView,
+					index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
@@ -377,19 +491,18 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		IElementType elementType = getSemanticElementType(semanticAdapter);
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 		switch (ScrmVisualIDRegistry.getVisualID(elementTypeHint)) {
-		case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
-			return createScientificProblemRepresentingModel_4006(containerView,
-					index, persisted, preferencesHint);
-		case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
-			return createScientificProblemSolvingMethods_4041(containerView,
+		case MathematicalModelRepresentedProblemEditPart.VISUAL_ID:
+			return createMathematicalModelRepresentedProblem_4048(
+					containerView, index, persisted, preferencesHint);
+		case NumericalMethodSolvedProblemEditPart.VISUAL_ID:
+			return createNumericalMethodSolvedProblem_4057(containerView,
 					index, persisted, preferencesHint);
 		case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID:
 			return createScientificProblemInfluencedFeature_4008(containerView,
 					index, persisted, preferencesHint);
-		case MathematicalModel2EditPart.VISUAL_ID:
-			return createMathematicalModel_4004(
-					getSemanticElement(semanticAdapter), containerView, index,
-					persisted, preferencesHint);
+		case MathematicalModelRefinedModelEditPart.VISUAL_ID:
+			return createMathematicalModelRefinedModel_4058(containerView,
+					index, persisted, preferencesHint);
 		case MathematicalModelNumericalMethodsEditPart.VISUAL_ID:
 			return createMathematicalModelNumericalMethods_4011(containerView,
 					index, persisted, preferencesHint);
@@ -399,9 +512,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		case NumericalMethodDependenciesEditPart.VISUAL_ID:
 			return createNumericalMethodDependencies_4015(containerView, index,
 					persisted, preferencesHint);
-		case NumericalMethodRealizingRequirementEditPart.VISUAL_ID:
-			return createNumericalMethodRealizingRequirement_4016(
-					containerView, index, persisted, preferencesHint);
+		case RequirementRealizedMethodEditPart.VISUAL_ID:
+			return createRequirementRealizedMethod_4050(containerView, index,
+					persisted, preferencesHint);
 		case NumericalMethodPerformanceEditPart.VISUAL_ID:
 			return createNumericalMethodPerformance_4017(containerView, index,
 					persisted, preferencesHint);
@@ -411,33 +524,33 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		case FeatureProvidedInterfacesEditPart.VISUAL_ID:
 			return createFeatureProvidedInterfaces_4024(containerView, index,
 					persisted, preferencesHint);
-		case FeatureConstraintsEditPart.VISUAL_ID:
-			return createFeatureConstraints_4025(containerView, index,
+		case ConstraintRestrictedFeatureEditPart.VISUAL_ID:
+			return createConstraintRestrictedFeature_4051(containerView, index,
 					persisted, preferencesHint);
 		case FeatureDependenciesEditPart.VISUAL_ID:
 			return createFeatureDependencies_4026(containerView, index,
 					persisted, preferencesHint);
-		case FeatureDetailedRequirementsEditPart.VISUAL_ID:
-			return createFeatureDetailedRequirements_4027(containerView, index,
+		case RequirementSpecifiedFeatureEditPart.VISUAL_ID:
+			return createRequirementSpecifiedFeature_4052(containerView, index,
 					persisted, preferencesHint);
-		case Feature2EditPart.VISUAL_ID:
-			return createFeature_4029(getSemanticElement(semanticAdapter),
-					containerView, index, persisted, preferencesHint);
+		case FeatureSuperFeatureEditPart.VISUAL_ID:
+			return createFeatureSuperFeature_4053(containerView, index,
+					persisted, preferencesHint);
 		case FeatureRequiredFeaturesEditPart.VISUAL_ID:
 			return createFeatureRequiredFeatures_4030(containerView, index,
 					persisted, preferencesHint);
 		case FeatureExcludedFeaturesEditPart.VISUAL_ID:
 			return createFeatureExcludedFeatures_4032(containerView, index,
 					persisted, preferencesHint);
-		case Requirement2EditPart.VISUAL_ID:
-			return createRequirement_4036(getSemanticElement(semanticAdapter),
-					containerView, index, persisted, preferencesHint);
-		case RequirementDefiningDataEditPart.VISUAL_ID:
-			return createRequirementDefiningData_4038(containerView, index,
+		case RequirementRefinedRequirementEditPart.VISUAL_ID:
+			return createRequirementRefinedRequirement_4054(containerView,
+					index, persisted, preferencesHint);
+		case DataDefinitionDefinedRequirementEditPart.VISUAL_ID:
+			return createDataDefinitionDefinedRequirement_4055(containerView,
+					index, persisted, preferencesHint);
+		case DataFlowSpecifiedProcessEditPart.VISUAL_ID:
+			return createDataFlowSpecifiedProcess_4056(containerView, index,
 					persisted, preferencesHint);
-		case ProcessDataFlowEditPart.VISUAL_ID:
-			return createProcessDataFlow_4045(containerView, index, persisted,
-					preferencesHint);
 		case ProcessSuccessorEditPart.VISUAL_ID:
 			return createProcessSuccessor_4047(containerView, index, persisted,
 					preferencesHint);
@@ -1445,7 +1558,11 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	public Node createKnowledgeSpace_2044(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
 		node.getStyles().add(
 				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
@@ -1477,131 +1594,1249 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
-				prefStore, IPreferenceConstants.PREF_FILL_COLOR);
-		ViewUtil.setStructuralFeatureValue(node,
-				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
-				FigureUtilities.RGBToInteger(fillRGB));
+		Node label5086 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(KnowledgeSpaceNameEditPart.VISUAL_ID));
+		createCompartment(
+				node,
+				ScrmVisualIDRegistry
+						.getType(KnowledgeSpaceKnowledgeSpaceCompartmentEditPart.VISUAL_ID),
+				false, false, false, false);
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Edge createScientificProblemRepresentingModel_4006(
+	public Node createRequirementSpace_2045(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
-		Connector edge = NotationFactory.eINSTANCE.createConnector();
-		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
-				.createRelativeBendpoints();
-		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
-				2);
-		points.add(new RelativeBendpoint());
-		points.add(new RelativeBendpoint());
-		bendpoints.setPoints(points);
-		edge.setBendpoints(bendpoints);
-		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(ScrmVisualIDRegistry
-				.getType(ScientificProblemRepresentingModelEditPart.VISUAL_ID));
-		edge.setElement(null);
-		// initializePreferences
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry
+				.getType(RequirementSpaceEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		stampShortcut(containerView, node);
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge,
+		ViewUtil.setStructuralFeatureValue(node,
 				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
 				FigureUtilities.RGBToInteger(lineRGB));
-		FontStyle edgeFontStyle = (FontStyle) edge
+		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (edgeFontStyle != null) {
+		if (nodeFontStyle != null) {
 			FontData fontData = PreferenceConverter.getFontData(prefStore,
 					IPreferenceConstants.PREF_DEFAULT_FONT);
-			edgeFontStyle.setFontName(fontData.getName());
-			edgeFontStyle.setFontHeight(fontData.getHeight());
-			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
-			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
 			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
 					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
-			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Routing routing = Routing.get(prefStore
-				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
-		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge,
-					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
-					routing);
-		}
-		Node label6004 = createLabel(edge,
-				ScrmVisualIDRegistry.getType(WrappingLabelEditPart.VISUAL_ID));
-		label6004.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
-		Location location6004 = (Location) label6004.getLayoutConstraint();
-		location6004.setX(0);
-		location6004.setY(10);
-		return edge;
+		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_FILL_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
+				FigureUtilities.RGBToInteger(fillRGB));
+		createCompartment(
+				node,
+				ScrmVisualIDRegistry
+						.getType(RequirementSpaceRequirementSpaceCompartmentEditPart.VISUAL_ID),
+				false, false, false, false);
+		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Edge createScientificProblemSolvingMethods_4041(View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
-		Connector edge = NotationFactory.eINSTANCE.createConnector();
-		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
-				.createRelativeBendpoints();
-		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
-				2);
-		points.add(new RelativeBendpoint());
-		points.add(new RelativeBendpoint());
-		bendpoints.setPoints(points);
-		edge.setBendpoints(bendpoints);
-		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(ScrmVisualIDRegistry
-				.getType(ScientificProblemSolvingMethodsEditPart.VISUAL_ID));
-		edge.setElement(null);
-		// initializePreferences
+	public Node createDataProcessSpace_2046(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry
+				.getType(DataProcessSpaceEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		stampShortcut(containerView, node);
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge,
+		ViewUtil.setStructuralFeatureValue(node,
 				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
 				FigureUtilities.RGBToInteger(lineRGB));
-		FontStyle edgeFontStyle = (FontStyle) edge
+		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (edgeFontStyle != null) {
+		if (nodeFontStyle != null) {
 			FontData fontData = PreferenceConverter.getFontData(prefStore,
 					IPreferenceConstants.PREF_DEFAULT_FONT);
-			edgeFontStyle.setFontName(fontData.getName());
-			edgeFontStyle.setFontHeight(fontData.getHeight());
-			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
-			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
 			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
 					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
-			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Routing routing = Routing.get(prefStore
-				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
-		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge,
-					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
-					routing);
+		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_FILL_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
+				FigureUtilities.RGBToInteger(fillRGB));
+		createCompartment(
+				node,
+				ScrmVisualIDRegistry
+						.getType(DataProcessSpaceDataProcessSpaceCompartmentEditPart.VISUAL_ID),
+				false, false, false, false);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createScientificProblem_3001(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry
+				.getType(ScientificProblem2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
 		}
-		Node label6039 = createLabel(edge,
-				ScrmVisualIDRegistry.getType(WrappingLabel2EditPart.VISUAL_ID));
-		label6039.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
-		Location location6039 = (Location) label6039.getLayoutConstraint();
-		location6039.setX(0);
-		location6039.setY(10);
-		return edge;
+		Node label5087 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(ScientificProblemName2EditPart.VISUAL_ID));
+		Node label5088 = createLabel(
+				node,
+				ScrmVisualIDRegistry
+						.getType(ScientificProblemDescription2EditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createNumericalMethod_3002(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry
+				.getType(NumericalMethod2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Node label5089 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(NumericalMethodName2EditPart.VISUAL_ID));
+		Node label5090 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(NumericalMethodDescription2EditPart.VISUAL_ID));
+		Node label5091 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(NumericalMethodTheory2EditPart.VISUAL_ID));
+		Node label5092 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(NumericalMethodAlgorithm2EditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createMathematicalModel_3003(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry
+				.getType(MathematicalModel2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Node label5093 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(MathematicalModelName2EditPart.VISUAL_ID));
+		Node label5094 = createLabel(
+				node,
+				ScrmVisualIDRegistry
+						.getType(MathematicalModelDescription2EditPart.VISUAL_ID));
+		Node label5095 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(MathematicalModelTheory2EditPart.VISUAL_ID));
+		Node label5096 = createLabel(
+				node,
+				ScrmVisualIDRegistry
+						.getType(MathematicalModelMathematicalExpression2EditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createAssumption_3004(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry
+				.getType(Assumption2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Node label5097 = createLabel(node,
+				ScrmVisualIDRegistry.getType(AssumptionName2EditPart.VISUAL_ID));
+		Node label5098 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(AssumptionDescription2EditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createKnowledgeSpace_3005(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry
+				.getType(KnowledgeSpace2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Node label5099 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(KnowledgeSpaceName2EditPart.VISUAL_ID));
+		createCompartment(
+				node,
+				ScrmVisualIDRegistry
+						.getType(KnowledgeSpaceKnowledgeSpaceCompartment2EditPart.VISUAL_ID),
+				false, false, false, false);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createConstraint_3006(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry
+				.getType(Constraint2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Node label5100 = createLabel(node,
+				ScrmVisualIDRegistry.getType(ConstraintName2EditPart.VISUAL_ID));
+		Node label5101 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(ConstraintDescription2EditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createDataDefinition_3007(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry
+				.getType(DataDefinition2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Node label5102 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(DataDefinitionName2EditPart.VISUAL_ID));
+		Node label5103 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(DataDefinitionDescription2EditPart.VISUAL_ID));
+		Node label5104 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(DataDefinitionAccuracy2EditPart.VISUAL_ID));
+		Node label5105 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(DataDefinitionFormat2EditPart.VISUAL_ID));
+		Node label5106 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(DataDefinitionRange2EditPart.VISUAL_ID));
+		Node label5107 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(DataDefinitionDataType2EditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createDataFlow_3008(EObject domainElement, View containerView,
+			int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry.getType(DataFlow2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Node label5108 = createLabel(node,
+				ScrmVisualIDRegistry.getType(DataFlowName2EditPart.VISUAL_ID));
+		Node label5109 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(DataFlowDescription2EditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createFeature_3009(EObject domainElement, View containerView,
+			int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry.getType(Feature2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Node label5110 = createLabel(node,
+				ScrmVisualIDRegistry.getType(FeatureName2EditPart.VISUAL_ID));
+		Node label5111 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(FeatureDescription2EditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createHardware_3010(EObject domainElement, View containerView,
+			int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry.getType(Hardware2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Node label5112 = createLabel(node,
+				ScrmVisualIDRegistry.getType(HardwareName2EditPart.VISUAL_ID));
+		Node label5113 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(HardwareDescription2EditPart.VISUAL_ID));
+		Node label5114 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(HardwareProcessor2EditPart.VISUAL_ID));
+		Node label5115 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(HardwarePlatform2EditPart.VISUAL_ID));
+		Node label5116 = createLabel(node,
+				ScrmVisualIDRegistry.getType(HardwareMemory2EditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createPerformance_3011(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry
+				.getType(Performance2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Node label5117 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(PerformanceName2EditPart.VISUAL_ID));
+		Node label5118 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(PerformanceDescription2EditPart.VISUAL_ID));
+		Node label5119 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(PerformanceProblemSize2EditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createRequirement_3012(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry
+				.getType(Requirement2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Node label5120 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(RequirementName2EditPart.VISUAL_ID));
+		Node label5121 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(RequirementDescription2EditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createSoftwareInterface_3013(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry
+				.getType(SoftwareInterface2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Node label5122 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(SoftwareInterfaceName2EditPart.VISUAL_ID));
+		Node label5123 = createLabel(
+				node,
+				ScrmVisualIDRegistry
+						.getType(SoftwareInterfaceDescription2EditPart.VISUAL_ID));
+		Node label5124 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(SoftwareInterfaceDataTypes2EditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createUserInterface_3014(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry
+				.getType(UserInterface2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Node label5125 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(UserInterfaceName2EditPart.VISUAL_ID));
+		Node label5126 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(UserInterfaceDescription2EditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createRequirementSpace_3015(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry
+				.getType(RequirementSpace2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_FILL_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
+				FigureUtilities.RGBToInteger(fillRGB));
+		createCompartment(
+				node,
+				ScrmVisualIDRegistry
+						.getType(RequirementSpaceRequirementSpaceCompartment2EditPart.VISUAL_ID),
+				false, false, false, false);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createStatusMonitoring_3016(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry
+				.getType(StatusMonitoring2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Node label5127 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(StatusMonitoringName2EditPart.VISUAL_ID));
+		Node label5128 = createLabel(
+				node,
+				ScrmVisualIDRegistry
+						.getType(StatusMonitoringDescription2EditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createResultsOutput_3017(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry
+				.getType(ResultsOutput2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Node label5129 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(ResultsOutputName2EditPart.VISUAL_ID));
+		Node label5130 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(ResultsOutputDescription2EditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createProcess_3018(EObject domainElement, View containerView,
+			int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry.getType(Process2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Node label5131 = createLabel(node,
+				ScrmVisualIDRegistry.getType(ProcessName2EditPart.VISUAL_ID));
+		Node label5132 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(ProcessDescription2EditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createInputDataReading_3019(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry
+				.getType(InputDataReading2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Node label5133 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(InputDataReadingName2EditPart.VISUAL_ID));
+		Node label5134 = createLabel(
+				node,
+				ScrmVisualIDRegistry
+						.getType(InputDataReadingDescription2EditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createErrorHandling_3020(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry
+				.getType(ErrorHandling2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Node label5135 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(ErrorHandlingName2EditPart.VISUAL_ID));
+		Node label5136 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(ErrorHandlingDescription2EditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createDataHandling_3021(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry
+				.getType(DataHandling2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Node label5137 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(DataHandlingName2EditPart.VISUAL_ID));
+		Node label5138 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(DataHandlingDescription2EditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createDataProcessSpace_3022(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.getStyles().add(
+				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(ScrmVisualIDRegistry
+				.getType(DataProcessSpace2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_FILL_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
+				FigureUtilities.RGBToInteger(fillRGB));
+		createCompartment(
+				node,
+				ScrmVisualIDRegistry
+						.getType(DataProcessSpaceDataProcessSpaceCompartment2EditPart.VISUAL_ID),
+				false, false, false, false);
+		return node;
 	}
 
 	/**
@@ -1667,9 +2902,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	/**
 	 * @generated
 	 */
-	public Edge createMathematicalModel_4004(EObject domainElement,
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Edge createMathematicalModelRefinedModel_4058(View containerView,
+			int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
@@ -1682,8 +2916,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
 		edge.setType(ScrmVisualIDRegistry
-				.getType(MathematicalModel2EditPart.VISUAL_ID));
-		edge.setElement(domainElement);
+				.getType(MathematicalModelRefinedModelEditPart.VISUAL_ID));
+		edge.setElement(null);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
@@ -1714,13 +2948,132 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		Node label6002 = createLabel(edge,
+		Node label6056 = createLabel(edge,
 				ScrmVisualIDRegistry.getType(WrappingLabel4EditPart.VISUAL_ID));
-		label6002.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6056.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6002 = (Location) label6002.getLayoutConstraint();
-		location6002.setX(0);
-		location6002.setY(10);
+		Location location6056 = (Location) label6056.getLayoutConstraint();
+		location6056.setX(0);
+		location6056.setY(10);
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createMathematicalModelRepresentedProblem_4048(
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
+				.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(ScrmVisualIDRegistry
+				.getType(MathematicalModelRepresentedProblemEditPart.VISUAL_ID));
+		edge.setElement(null);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle edgeFontStyle = (FontStyle) edge
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (edgeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			edgeFontStyle.setFontName(fontData.getName());
+			edgeFontStyle.setFontHeight(fontData.getHeight());
+			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Routing routing = Routing.get(prefStore
+				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
+		}
+		Node label6046 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabelEditPart.VISUAL_ID));
+		label6046.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location6046 = (Location) label6046.getLayoutConstraint();
+		location6046.setX(0);
+		location6046.setY(10);
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createNumericalMethodSolvedProblem_4057(View containerView,
+			int index, boolean persisted, PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
+				.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(ScrmVisualIDRegistry
+				.getType(NumericalMethodSolvedProblemEditPart.VISUAL_ID));
+		edge.setElement(null);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle edgeFontStyle = (FontStyle) edge
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (edgeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			edgeFontStyle.setFontName(fontData.getName());
+			edgeFontStyle.setFontHeight(fontData.getHeight());
+			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Routing routing = Routing.get(prefStore
+				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
+		}
+		Node label6055 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel2EditPart.VISUAL_ID));
+		label6055.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location6055 = (Location) label6055.getLayoutConstraint();
+		location6055.setX(0);
+		location6055.setY(10);
 		return edge;
 	}
 
@@ -1905,9 +3258,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	/**
 	 * @generated
 	 */
-	public Edge createNumericalMethodRealizingRequirement_4016(
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Edge createRequirementRealizedMethod_4050(View containerView,
+			int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
@@ -1920,7 +3272,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
 		edge.setType(ScrmVisualIDRegistry
-				.getType(NumericalMethodRealizingRequirementEditPart.VISUAL_ID));
+				.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
@@ -1952,13 +3304,13 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		Node label6014 = createLabel(edge,
+		Node label6048 = createLabel(edge,
 				ScrmVisualIDRegistry.getType(WrappingLabel8EditPart.VISUAL_ID));
-		label6014.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6048.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6014 = (Location) label6014.getLayoutConstraint();
-		location6014.setX(0);
-		location6014.setY(10);
+		Location location6048 = (Location) label6048.getLayoutConstraint();
+		location6048.setX(0);
+		location6048.setY(10);
 		return edge;
 	}
 
@@ -2142,8 +3494,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	/**
 	 * @generated
 	 */
-	public Edge createFeatureConstraints_4025(View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Edge createConstraintRestrictedFeature_4051(View containerView,
+			int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
@@ -2156,7 +3508,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
 		edge.setType(ScrmVisualIDRegistry
-				.getType(FeatureConstraintsEditPart.VISUAL_ID));
+				.getType(ConstraintRestrictedFeatureEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
@@ -2188,13 +3540,13 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		Node label6023 = createLabel(edge,
+		Node label6049 = createLabel(edge,
 				ScrmVisualIDRegistry.getType(WrappingLabel12EditPart.VISUAL_ID));
-		label6023.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6049.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6023 = (Location) label6023.getLayoutConstraint();
-		location6023.setX(0);
-		location6023.setY(10);
+		Location location6049 = (Location) label6049.getLayoutConstraint();
+		location6049.setX(0);
+		location6049.setY(10);
 		return edge;
 	}
 
@@ -2260,7 +3612,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	/**
 	 * @generated
 	 */
-	public Edge createFeatureDetailedRequirements_4027(View containerView,
+	public Edge createRequirementSpecifiedFeature_4052(View containerView,
 			int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
@@ -2274,7 +3626,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
 		edge.setType(ScrmVisualIDRegistry
-				.getType(FeatureDetailedRequirementsEditPart.VISUAL_ID));
+				.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
@@ -2306,21 +3658,21 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		Node label6025 = createLabel(edge,
+		Node label6050 = createLabel(edge,
 				ScrmVisualIDRegistry.getType(WrappingLabel14EditPart.VISUAL_ID));
-		label6025.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6050.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6025 = (Location) label6025.getLayoutConstraint();
-		location6025.setX(0);
-		location6025.setY(10);
+		Location location6050 = (Location) label6050.getLayoutConstraint();
+		location6050.setX(0);
+		location6050.setY(10);
 		return edge;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Edge createFeature_4029(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Edge createFeatureSuperFeature_4053(View containerView, int index,
+			boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
@@ -2332,8 +3684,9 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(ScrmVisualIDRegistry.getType(Feature2EditPart.VISUAL_ID));
-		edge.setElement(domainElement);
+		edge.setType(ScrmVisualIDRegistry
+				.getType(FeatureSuperFeatureEditPart.VISUAL_ID));
+		edge.setElement(null);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
@@ -2364,13 +3717,13 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		Node label6027 = createLabel(edge,
+		Node label6051 = createLabel(edge,
 				ScrmVisualIDRegistry.getType(WrappingLabel15EditPart.VISUAL_ID));
-		label6027.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6051.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6027 = (Location) label6027.getLayoutConstraint();
-		location6027.setX(0);
-		location6027.setY(10);
+		Location location6051 = (Location) label6051.getLayoutConstraint();
+		location6051.setX(0);
+		location6051.setY(10);
 		return edge;
 	}
 
@@ -2495,67 +3848,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	/**
 	 * @generated
 	 */
-	public Edge createRequirement_4036(EObject domainElement,
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
-		Connector edge = NotationFactory.eINSTANCE.createConnector();
-		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
-				.createRelativeBendpoints();
-		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
-				2);
-		points.add(new RelativeBendpoint());
-		points.add(new RelativeBendpoint());
-		bendpoints.setPoints(points);
-		edge.setBendpoints(bendpoints);
-		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(ScrmVisualIDRegistry
-				.getType(Requirement2EditPart.VISUAL_ID));
-		edge.setElement(domainElement);
-		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-
-		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
-				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(edge,
-				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
-				FigureUtilities.RGBToInteger(lineRGB));
-		FontStyle edgeFontStyle = (FontStyle) edge
-				.getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (edgeFontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(prefStore,
-					IPreferenceConstants.PREF_DEFAULT_FONT);
-			edgeFontStyle.setFontName(fontData.getName());
-			edgeFontStyle.setFontHeight(fontData.getHeight());
-			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
-			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
-					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
-			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
-					.intValue());
-		}
-		Routing routing = Routing.get(prefStore
-				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
-		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge,
-					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
-					routing);
-		}
-		Node label6034 = createLabel(edge,
-				ScrmVisualIDRegistry.getType(WrappingLabel18EditPart.VISUAL_ID));
-		label6034.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
-		Location location6034 = (Location) label6034.getLayoutConstraint();
-		location6034.setX(0);
-		location6034.setY(10);
-		return edge;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Edge createRequirementDefiningData_4038(View containerView,
+	public Edge createRequirementRefinedRequirement_4054(View containerView,
 			int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
@@ -2569,7 +3862,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
 		edge.setType(ScrmVisualIDRegistry
-				.getType(RequirementDefiningDataEditPart.VISUAL_ID));
+				.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
@@ -2601,21 +3894,21 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		Node label6036 = createLabel(edge,
-				ScrmVisualIDRegistry.getType(WrappingLabel19EditPart.VISUAL_ID));
-		label6036.setLayoutConstraint(NotationFactory.eINSTANCE
+		Node label6052 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel18EditPart.VISUAL_ID));
+		label6052.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6036 = (Location) label6036.getLayoutConstraint();
-		location6036.setX(0);
-		location6036.setY(10);
+		Location location6052 = (Location) label6052.getLayoutConstraint();
+		location6052.setX(0);
+		location6052.setY(10);
 		return edge;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Edge createProcessDataFlow_4045(View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Edge createDataDefinitionDefinedRequirement_4055(View containerView,
+			int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
@@ -2628,7 +3921,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
 		edge.setType(ScrmVisualIDRegistry
-				.getType(ProcessDataFlowEditPart.VISUAL_ID));
+				.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
@@ -2660,13 +3953,72 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		Node label6043 = createLabel(edge,
-				ScrmVisualIDRegistry.getType(WrappingLabel20EditPart.VISUAL_ID));
-		label6043.setLayoutConstraint(NotationFactory.eINSTANCE
+		Node label6053 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel19EditPart.VISUAL_ID));
+		label6053.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6043 = (Location) label6043.getLayoutConstraint();
-		location6043.setX(0);
-		location6043.setY(10);
+		Location location6053 = (Location) label6053.getLayoutConstraint();
+		location6053.setX(0);
+		location6053.setY(10);
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createDataFlowSpecifiedProcess_4056(View containerView,
+			int index, boolean persisted, PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
+				.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(ScrmVisualIDRegistry
+				.getType(DataFlowSpecifiedProcessEditPart.VISUAL_ID));
+		edge.setElement(null);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle edgeFontStyle = (FontStyle) edge
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (edgeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			edgeFontStyle.setFontName(fontData.getName());
+			edgeFontStyle.setFontHeight(fontData.getHeight());
+			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Routing routing = Routing.get(prefStore
+				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
+		}
+		Node label6054 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel20EditPart.VISUAL_ID));
+		label6054.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location6054 = (Location) label6054.getLayoutConstraint();
+		location6054.setX(0);
+		location6054.setY(10);
 		return edge;
 	}
 
@@ -2749,6 +4101,38 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	 */
 	private Node createLabel(View owner, String hint) {
 		DecorationNode rv = NotationFactory.eINSTANCE.createDecorationNode();
+		rv.setType(hint);
+		ViewUtil.insertChildView(owner, rv, ViewUtil.APPEND, true);
+		return rv;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Node createCompartment(View owner, String hint,
+			boolean canCollapse, boolean hasTitle, boolean canSort,
+			boolean canFilter) {
+		//SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
+		//rv.setShowTitle(showTitle);
+		//rv.setCollapsed(isCollapsed);
+		Node rv;
+		if (canCollapse) {
+			rv = NotationFactory.eINSTANCE.createBasicCompartment();
+		} else {
+			rv = NotationFactory.eINSTANCE.createDecorationNode();
+		}
+		if (hasTitle) {
+			TitleStyle ts = NotationFactory.eINSTANCE.createTitleStyle();
+			ts.setShowTitle(true);
+			rv.getStyles().add(ts);
+		}
+		if (canSort) {
+			rv.getStyles().add(NotationFactory.eINSTANCE.createSortingStyle());
+		}
+		if (canFilter) {
+			rv.getStyles()
+					.add(NotationFactory.eINSTANCE.createFilteringStyle());
+		}
 		rv.setType(hint);
 		ViewUtil.insertChildView(owner, rv, ViewUtil.APPEND, true);
 		return rv;

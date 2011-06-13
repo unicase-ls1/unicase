@@ -10,10 +10,10 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.View;
 
-import scrm.diagram.edit.policies.ScrmBaseItemSemanticEditPolicy;
 import scrm.requirements.Feature;
+import scrm.requirements.RequirementSpace;
 import scrm.requirements.RequirementsFactory;
 
 /**
@@ -24,52 +24,29 @@ public class Feature2CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private final EObject source;
+	public Feature2CreateCommand(CreateElementRequest req) {
+		super(req.getLabel(), null, req);
+	}
 
 	/**
+	 * FIXME: replace with setElementToEdit()
 	 * @generated
 	 */
-	private final EObject target;
-
-	/**
-	 * @generated
-	 */
-	private final Feature container;
-
-	/**
-	 * @generated
-	 */
-	public Feature2CreateCommand(CreateRelationshipRequest request,
-			EObject source, EObject target) {
-		super(request.getLabel(), null, request);
-		this.source = source;
-		this.target = target;
-		container = deduceContainer(source, target);
+	protected EObject getElementToEdit() {
+		EObject container = ((CreateElementRequest) getRequest())
+				.getContainer();
+		if (container instanceof View) {
+			container = ((View) container).getElement();
+		}
+		return container;
 	}
 
 	/**
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (source == null && target == null) {
-			return false;
-		}
-		if (source != null && false == source instanceof Feature) {
-			return false;
-		}
-		if (target != null && false == target instanceof Feature) {
-			return false;
-		}
-		if (getSource() == null) {
-			return true; // link creation is in progress; source is not defined yet
-		}
-		// target may be null here but it's possible to check constraint
-		if (getContainer() == null) {
-			return false;
-		}
-		return ScrmBaseItemSemanticEditPolicy
-				.getLinkConstraints()
-				.canCreateFeature_4029(getContainer(), getSource(), getTarget());
+		return true;
+
 	}
 
 	/**
@@ -77,19 +54,15 @@ public class Feature2CreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
-		}
-
 		Feature newElement = RequirementsFactory.eINSTANCE.createFeature();
-		getContainer().getSubFeatures().add(newElement);
-		newElement.setSuperFeature(getSource());
-		newElement.getSubFeatures().add(getTarget());
+
+		RequirementSpace owner = (RequirementSpace) getElementToEdit();
+		owner.getContainedInformationofRequirements().add(newElement);
+
 		doConfigure(newElement, monitor, info);
+
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
-
 	}
 
 	/**
@@ -104,61 +77,11 @@ public class Feature2CreateCommand extends EditElementCommand {
 		configureRequest.setClientContext(((CreateElementRequest) getRequest())
 				.getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		configureRequest.setParameter(CreateRelationshipRequest.SOURCE,
-				getSource());
-		configureRequest.setParameter(CreateRelationshipRequest.TARGET,
-				getTarget());
 		ICommand configureCommand = elementType
 				.getEditCommand(configureRequest);
 		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void setElementToEdit(EObject element) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Feature getSource() {
-		return (Feature) source;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Feature getTarget() {
-		return (Feature) target;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Feature getContainer() {
-		return container;
-	}
-
-	/**
-	 * Default approach is to traverse ancestors of the source to find instance of container.
-	 * Modify with appropriate logic.
-	 * @generated
-	 */
-	private static Feature deduceContainer(EObject source, EObject target) {
-		// Find container element for the new link.
-		// Climb up by containment hierarchy starting from the source
-		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element
-				.eContainer()) {
-			if (element instanceof Feature) {
-				return (Feature) element;
-			}
-		}
-		return null;
 	}
 
 }

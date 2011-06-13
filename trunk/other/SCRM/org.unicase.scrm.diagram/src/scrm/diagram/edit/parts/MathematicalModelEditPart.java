@@ -26,13 +26,12 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
-
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
+
 import scrm.diagram.edit.policies.MathematicalModelItemSemanticEditPolicy;
 import scrm.diagram.edit.policies.OpenDiagramEditPolicy;
 import scrm.diagram.edit.policies.ScrmTextSelectionEditPolicy;
-import scrm.diagram.opener.MEEditorOpenerPolicy;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -64,14 +63,15 @@ public class MathematicalModelEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new MathematicalModelItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new MEEditorOpenerPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
+				new OpenDiagramEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -284,8 +284,9 @@ public class MathematicalModelEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
-		types.add(ScrmElementTypes.MathematicalModel_4004);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(4);
+		types.add(ScrmElementTypes.MathematicalModelRepresentedProblem_4048);
+		types.add(ScrmElementTypes.MathematicalModelRefinedModel_4058);
 		types.add(ScrmElementTypes.MathematicalModelNumericalMethods_4011);
 		types.add(ScrmElementTypes.MathematicalModelDependencies_4012);
 		return types;
@@ -297,13 +298,28 @@ public class MathematicalModelEditPart extends ShapeNodeEditPart {
 	public List<IElementType> getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if (targetEditPart instanceof ScientificProblemEditPart) {
+			types.add(ScrmElementTypes.MathematicalModelRepresentedProblem_4048);
+		}
+		if (targetEditPart instanceof ScientificProblem2EditPart) {
+			types.add(ScrmElementTypes.MathematicalModelRepresentedProblem_4048);
+		}
 		if (targetEditPart instanceof scrm.diagram.edit.parts.MathematicalModelEditPart) {
-			types.add(ScrmElementTypes.MathematicalModel_4004);
+			types.add(ScrmElementTypes.MathematicalModelRefinedModel_4058);
+		}
+		if (targetEditPart instanceof MathematicalModel2EditPart) {
+			types.add(ScrmElementTypes.MathematicalModelRefinedModel_4058);
 		}
 		if (targetEditPart instanceof NumericalMethodEditPart) {
 			types.add(ScrmElementTypes.MathematicalModelNumericalMethods_4011);
 		}
+		if (targetEditPart instanceof NumericalMethod2EditPart) {
+			types.add(ScrmElementTypes.MathematicalModelNumericalMethods_4011);
+		}
 		if (targetEditPart instanceof AssumptionEditPart) {
+			types.add(ScrmElementTypes.MathematicalModelDependencies_4012);
+		}
+		if (targetEditPart instanceof Assumption2EditPart) {
 			types.add(ScrmElementTypes.MathematicalModelDependencies_4012);
 		}
 		return types;
@@ -314,12 +330,18 @@ public class MathematicalModelEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == ScrmElementTypes.MathematicalModel_4004) {
+		if (relationshipType == ScrmElementTypes.MathematicalModelRepresentedProblem_4048) {
+			types.add(ScrmElementTypes.ScientificProblem_2007);
+			types.add(ScrmElementTypes.ScientificProblem_3001);
+		} else if (relationshipType == ScrmElementTypes.MathematicalModelRefinedModel_4058) {
 			types.add(ScrmElementTypes.MathematicalModel_2005);
+			types.add(ScrmElementTypes.MathematicalModel_3003);
 		} else if (relationshipType == ScrmElementTypes.MathematicalModelNumericalMethods_4011) {
 			types.add(ScrmElementTypes.NumericalMethod_2006);
+			types.add(ScrmElementTypes.NumericalMethod_3002);
 		} else if (relationshipType == ScrmElementTypes.MathematicalModelDependencies_4012) {
 			types.add(ScrmElementTypes.Assumption_2008);
+			types.add(ScrmElementTypes.Assumption_3004);
 		}
 		return types;
 	}
@@ -328,9 +350,8 @@ public class MathematicalModelEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(ScrmElementTypes.ScientificProblemRepresentingModel_4006);
-		types.add(ScrmElementTypes.MathematicalModel_4004);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(ScrmElementTypes.MathematicalModelRefinedModel_4058);
 		return types;
 	}
 
@@ -339,10 +360,9 @@ public class MathematicalModelEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == ScrmElementTypes.ScientificProblemRepresentingModel_4006) {
-			types.add(ScrmElementTypes.ScientificProblem_2007);
-		} else if (relationshipType == ScrmElementTypes.MathematicalModel_4004) {
+		if (relationshipType == ScrmElementTypes.MathematicalModelRefinedModel_4058) {
 			types.add(ScrmElementTypes.MathematicalModel_2005);
+			types.add(ScrmElementTypes.MathematicalModel_3003);
 		}
 		return types;
 	}
@@ -390,13 +410,12 @@ public class MathematicalModelEditPart extends ShapeNodeEditPart {
 		}
 
 		/**
-		 * @generated NOT
+		 * @generated
 		 */
 		private void createContents() {
 
 			fFigureMathematicalModel_name = new WrappingLabel();
 			fFigureMathematicalModel_name.setText("");
-			fFigureMathematicalModel_name.setTextWrap(true);
 
 			fFigureMathematicalModel_name
 					.setFont(FFIGUREMATHEMATICALMODEL_NAME_FONT);
@@ -405,19 +424,16 @@ public class MathematicalModelEditPart extends ShapeNodeEditPart {
 
 			fFigureMathematicalModel_description = new WrappingLabel();
 			fFigureMathematicalModel_description.setText("");
-			fFigureMathematicalModel_description.setTextWrap(true);
 
 			this.add(fFigureMathematicalModel_description);
 
 			fFigureMathematicalModel_theory = new WrappingLabel();
 			fFigureMathematicalModel_theory.setText("");
-			fFigureMathematicalModel_theory.setTextWrap(true);
 
 			this.add(fFigureMathematicalModel_theory);
 
 			fFigureMathematicalModel_mathematicalExpression = new WrappingLabel();
 			fFigureMathematicalModel_mathematicalExpression.setText("");
-			fFigureMathematicalModel_mathematicalExpression.setTextWrap(true);
 
 			this.add(fFigureMathematicalModel_mathematicalExpression);
 

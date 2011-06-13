@@ -155,7 +155,7 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements
 				msgs = ((InternalEObject) newContainingKnowledgeSpace)
 						.eInverseAdd(
 								this,
-								KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
+								KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE,
 								KnowledgeSpace.class, msgs);
 			msgs = basicSetContainingKnowledgeSpace(
 					newContainingKnowledgeSpace, msgs);
@@ -413,7 +413,7 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements
 			return eInternalContainer()
 					.eInverseRemove(
 							this,
-							KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
+							KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE,
 							KnowledgeSpace.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
