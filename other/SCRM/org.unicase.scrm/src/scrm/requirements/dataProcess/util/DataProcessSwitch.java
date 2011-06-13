@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import scrm.SCRMModelElement;
 
+import scrm.SCRMSpace;
 import scrm.requirements.IRequirement;
 import scrm.requirements.Requirement;
 
@@ -187,6 +188,8 @@ public class DataProcessSwitch<T> {
 			DataProcessSpace dataProcessSpace = (DataProcessSpace) theEObject;
 			T result = caseDataProcessSpace(dataProcessSpace);
 			if (result == null)
+				result = caseSCRMSpace(dataProcessSpace);
+			if (result == null)
 				result = caseProcess(dataProcessSpace);
 			if (result == null)
 				result = caseRequirement(dataProcessSpace);
@@ -350,6 +353,21 @@ public class DataProcessSwitch<T> {
 	 * @generated
 	 */
 	public T caseRequirement(Requirement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>SCRM Space</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>SCRM Space</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSCRMSpace(SCRMSpace object) {
 		return null;
 	}
 

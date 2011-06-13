@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
+import scrm.requirements.*;
 import scrm.requirements.Constraint;
 import scrm.requirements.DataDefinition;
 import scrm.requirements.DataFlow;

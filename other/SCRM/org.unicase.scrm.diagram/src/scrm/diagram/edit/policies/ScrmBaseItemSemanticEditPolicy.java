@@ -334,41 +334,6 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateScientificProblemRepresentingModel_4006(
-				ScientificProblem source, MathematicalModel target) {
-			if (source != null) {
-				if (source.getRepresentingModel() != null) {
-					return false;
-				}
-			}
-			if (target != null && (target.getRepresentedProblem() != null)) {
-				return false;
-			}
-
-			return canExistScientificProblemRepresentingModel_4006(source,
-					target);
-		}
-
-		/**
-		 * @generated
-		 */
-		public boolean canCreateScientificProblemSolvingMethods_4041(
-				ScientificProblem source, NumericalMethod target) {
-			if (source != null) {
-				if (source.getSolvingMethods().contains(target)) {
-					return false;
-				}
-			}
-			if (target != null && (target.getSolvedProblem() != null)) {
-				return false;
-			}
-
-			return canExistScientificProblemSolvingMethods_4041(source, target);
-		}
-
-		/**
-		 * @generated
-		 */
 		public boolean canCreateScientificProblemInfluencedFeature_4008(
 				ScientificProblem source, Feature target) {
 			if (source != null) {
@@ -387,11 +352,53 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateMathematicalModel_4004(
-				MathematicalModel container, MathematicalModel source,
-				MathematicalModel target) {
-			return canExistMathematicalModel_4004(container, null, source,
+		public boolean canCreateMathematicalModelRefinedModel_4058(
+				MathematicalModel source, MathematicalModel target) {
+			if (source != null) {
+				if (source.getRefinedModel() != null) {
+					return false;
+				}
+			}
+			if (target != null && (target.getRefinements().contains(target))) {
+				return false;
+			}
+
+			return canExistMathematicalModelRefinedModel_4058(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canCreateMathematicalModelRepresentedProblem_4048(
+				MathematicalModel source, ScientificProblem target) {
+			if (source != null) {
+				if (source.getRepresentedProblem() != null) {
+					return false;
+				}
+			}
+			if (target != null && (target.getRepresentingModel() != null)) {
+				return false;
+			}
+
+			return canExistMathematicalModelRepresentedProblem_4048(source,
 					target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canCreateNumericalMethodSolvedProblem_4057(
+				NumericalMethod source, ScientificProblem target) {
+			if (source != null) {
+				if (source.getSolvedProblem() != null) {
+					return false;
+				}
+			}
+			if (target != null && (target.getSolvingMethods().contains(target))) {
+				return false;
+			}
+
+			return canExistNumericalMethodSolvedProblem_4057(source, target);
 		}
 
 		/**
@@ -449,19 +456,18 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateNumericalMethodRealizingRequirement_4016(
-				NumericalMethod source, Requirement target) {
+		public boolean canCreateRequirementRealizedMethod_4050(
+				Requirement source, NumericalMethod target) {
 			if (source != null) {
-				if (source.getRealizingRequirement() != null) {
+				if (source.getRealizedMethod() != null) {
 					return false;
 				}
 			}
-			if (target != null && (target.getRealizedMethod() != null)) {
+			if (target != null && (target.getRealizingRequirement() != null)) {
 				return false;
 			}
 
-			return canExistNumericalMethodRealizingRequirement_4016(source,
-					target);
+			return canExistRequirementRealizedMethod_4050(source, target);
 		}
 
 		/**
@@ -519,18 +525,18 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateFeatureConstraints_4025(Feature source,
-				Constraint target) {
+		public boolean canCreateConstraintRestrictedFeature_4051(
+				Constraint source, Feature target) {
 			if (source != null) {
-				if (source.getConstraints().contains(target)) {
+				if (source.getRestrictedFeature() != null) {
 					return false;
 				}
 			}
-			if (target != null && (target.getRestrictedFeature() != null)) {
+			if (target != null && (target.getConstraints().contains(target))) {
 				return false;
 			}
 
-			return canExistFeatureConstraints_4025(source, target);
+			return canExistConstraintRestrictedFeature_4051(source, target);
 		}
 
 		/**
@@ -553,29 +559,36 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateFeatureDetailedRequirements_4027(
-				Feature source, Requirement target) {
+		public boolean canCreateRequirementSpecifiedFeature_4052(
+				Requirement source, Feature target) {
 			if (source != null) {
-				if (source.getDetailedRequirements().contains(target)) {
-					return false;
-				}
-				if (source == target) {
+				if (source.getSpecifiedFeature() != null) {
 					return false;
 				}
 			}
-			if (target != null && (target.getSpecifiedFeature() != null)) {
+			if (target != null
+					&& (target.getDetailedRequirements().contains(target))) {
 				return false;
 			}
 
-			return canExistFeatureDetailedRequirements_4027(source, target);
+			return canExistRequirementSpecifiedFeature_4052(source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateFeature_4029(Feature container, Feature source,
+		public boolean canCreateFeatureSuperFeature_4053(Feature source,
 				Feature target) {
-			return canExistFeature_4029(container, null, source, target);
+			if (source != null) {
+				if (source.getSuperFeature() != null) {
+					return false;
+				}
+			}
+			if (target != null && (target.getSubFeatures().contains(target))) {
+				return false;
+			}
+
+			return canExistFeatureSuperFeature_4053(source, target);
 		}
 
 		/**
@@ -617,43 +630,52 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateRequirement_4036(Requirement container,
+		public boolean canCreateRequirementRefinedRequirement_4054(
 				Requirement source, Requirement target) {
-			return canExistRequirement_4036(container, null, source, target);
+			if (source != null) {
+				if (source.getRefinedRequirement() != null) {
+					return false;
+				}
+			}
+			if (target != null && (target.getRefinements().contains(target))) {
+				return false;
+			}
+
+			return canExistRequirementRefinedRequirement_4054(source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateRequirementDefiningData_4038(
-				Requirement source, DataDefinition target) {
+		public boolean canCreateDataDefinitionDefinedRequirement_4055(
+				DataDefinition source, Requirement target) {
 			if (source != null) {
-				if (source.getDefiningData().contains(target)) {
+				if (source.getDefinedRequirement() != null) {
 					return false;
 				}
 			}
-			if (target != null && (target.getDefinedRequirement() != null)) {
+			if (target != null && (target.getDefiningData().contains(target))) {
 				return false;
 			}
 
-			return canExistRequirementDefiningData_4038(source, target);
+			return canExistDataDefinitionDefinedRequirement_4055(source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateProcessDataFlow_4045(
-				scrm.requirements.dataProcess.Process source, DataFlow target) {
+		public boolean canCreateDataFlowSpecifiedProcess_4056(DataFlow source,
+				scrm.requirements.dataProcess.Process target) {
 			if (source != null) {
-				if (source.getDataFlow() != null) {
+				if (source.getSpecifiedProcess() != null) {
 					return false;
 				}
 			}
-			if (target != null && (target.getSpecifiedProcess() != null)) {
+			if (target != null && (target.getDataFlow() != null)) {
 				return false;
 			}
 
-			return canExistProcessDataFlow_4045(source, target);
+			return canExistDataFlowSpecifiedProcess_4056(source, target);
 		}
 
 		/**
@@ -677,22 +699,6 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canExistScientificProblemRepresentingModel_4006(
-				ScientificProblem source, MathematicalModel target) {
-			return true;
-		}
-
-		/**
-		 * @generated
-		 */
-		public boolean canExistScientificProblemSolvingMethods_4041(
-				ScientificProblem source, NumericalMethod target) {
-			return true;
-		}
-
-		/**
-		 * @generated
-		 */
 		public boolean canExistScientificProblemInfluencedFeature_4008(
 				ScientificProblem source, Feature target) {
 			return true;
@@ -701,9 +707,24 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canExistMathematicalModel_4004(
-				MathematicalModel container, MathematicalModel linkInstance,
+		public boolean canExistMathematicalModelRefinedModel_4058(
 				MathematicalModel source, MathematicalModel target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistMathematicalModelRepresentedProblem_4048(
+				MathematicalModel source, ScientificProblem target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistNumericalMethodSolvedProblem_4057(
+				NumericalMethod source, ScientificProblem target) {
 			return true;
 		}
 
@@ -734,8 +755,8 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canExistNumericalMethodRealizingRequirement_4016(
-				NumericalMethod source, Requirement target) {
+		public boolean canExistRequirementRealizedMethod_4050(
+				Requirement source, NumericalMethod target) {
 			return true;
 		}
 
@@ -766,8 +787,8 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canExistFeatureConstraints_4025(Feature source,
-				Constraint target) {
+		public boolean canExistConstraintRestrictedFeature_4051(
+				Constraint source, Feature target) {
 			return true;
 		}
 
@@ -782,16 +803,16 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canExistFeatureDetailedRequirements_4027(Feature source,
-				Requirement target) {
+		public boolean canExistRequirementSpecifiedFeature_4052(
+				Requirement source, Feature target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canExistFeature_4029(Feature container,
-				Feature linkInstance, Feature source, Feature target) {
+		public boolean canExistFeatureSuperFeature_4053(Feature source,
+				Feature target) {
 			return true;
 		}
 
@@ -814,24 +835,24 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canExistRequirement_4036(Requirement container,
-				Requirement linkInstance, Requirement source, Requirement target) {
+		public boolean canExistRequirementRefinedRequirement_4054(
+				Requirement source, Requirement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canExistRequirementDefiningData_4038(Requirement source,
-				DataDefinition target) {
+		public boolean canExistDataDefinitionDefinedRequirement_4055(
+				DataDefinition source, Requirement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canExistProcessDataFlow_4045(
-				scrm.requirements.dataProcess.Process source, DataFlow target) {
+		public boolean canExistDataFlowSpecifiedProcess_4056(DataFlow source,
+				scrm.requirements.dataProcess.Process target) {
 			return true;
 		}
 

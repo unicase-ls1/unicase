@@ -1,6 +1,8 @@
 package scrm.diagram.edit.parts;
 
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.PolylineDecoration;
+import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
@@ -117,6 +119,7 @@ public class FeatureDependenciesEditPart extends ConnectionNodeEditPart
 		public Feature_DependenciesFigure() {
 
 			createContents();
+			setTargetDecoration(createTargetDecoration());
 		}
 
 		/**
@@ -125,10 +128,18 @@ public class FeatureDependenciesEditPart extends ConnectionNodeEditPart
 		private void createContents() {
 
 			fFigureFeature_DependenciesLabel = new WrappingLabel();
-			fFigureFeature_DependenciesLabel.setText("restricts");
+			fFigureFeature_DependenciesLabel.setText("depends");
 
 			this.add(fFigureFeature_DependenciesLabel);
 
+		}
+
+		/**
+		 * @generated
+		 */
+		private RotatableDecoration createTargetDecoration() {
+			PolylineDecoration df = new PolylineDecoration();
+			return df;
 		}
 
 		/**

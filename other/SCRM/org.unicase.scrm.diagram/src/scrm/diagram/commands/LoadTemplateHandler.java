@@ -1,5 +1,7 @@
 package scrm.diagram.commands;
 
+import java.io.IOException;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -11,7 +13,9 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.util.WorkspaceUtil;
 
+import scrm.diagram.common.CopyOfTemplateUtil;
 import scrm.diagram.common.TemplateUtil;
 
 /**
@@ -32,7 +36,7 @@ public class LoadTemplateHandler extends AbstractHandler {
 		Project project = validateSelection(selection);
 		
 		// obtain the default directory to load files from
-		String templatePath = TemplateUtil.getTemplateDirectoryPath();
+		String templatePath = TemplateUtil.instance.getTemplateDirectoryPath();
 					
 		// this dialog lets the user choose one file to load from
 		FileDialog dialog = new FileDialog(Display.getCurrent().getActiveShell(), SWT.OPEN);
@@ -42,8 +46,12 @@ public class LoadTemplateHandler extends AbstractHandler {
 
 		// were the choices valid?
 		if(project!=null && resourcePath!=null) {
-			// perform the actual loading process
-			TemplateUtil.doLoad(project, resourcePath);
+			try {
+				// perform the actual loading process
+				TemplateUtil.doLoad(project, resourcePath);
+			} catch (IOException e) {
+				WorkspaceUtil.logException("Loading SCRM template failed!", e);
+			}
 		}
 		
 		return null;

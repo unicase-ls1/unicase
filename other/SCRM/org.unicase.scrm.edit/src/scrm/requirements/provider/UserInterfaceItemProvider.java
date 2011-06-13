@@ -24,6 +24,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import scrm.provider.SCRMModelElementItemProvider;
 import scrm.provider.ScrmEditPlugin;
 import scrm.requirements.RequirementsPackage;
+import scrm.requirements.UserInterface;
 
 /**
  * This is the item provider adapter for a {@link scrm.requirements.UserInterface} object.

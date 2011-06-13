@@ -25,6 +25,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import scrm.ScrmPackage;
 import scrm.knowledge.KnowledgeFactory;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.KnowledgeSpace;
@@ -62,8 +63,9 @@ public class KnowledgeSpaceItemProvider extends SCRMModelElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addRepresentingDiagramPropertyDescriptor(object);
 			addContainingKnowledgeSpacePropertyDescriptor(object);
-			addContainedScientificProblemPropertyDescriptor(object);
+			addContainedScientificKnowledgePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -90,24 +92,44 @@ public class KnowledgeSpaceItemProvider extends SCRMModelElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Contained Scientific Problem feature.
+	 * This adds a property descriptor for the Contained Scientific Knowledge feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addContainedScientificProblemPropertyDescriptor(Object object) {
+	protected void addContainedScientificKnowledgePropertyDescriptor(
+			Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(
 						((ComposeableAdapterFactory) adapterFactory)
 								.getRootAdapterFactory(),
 						getResourceLocator(),
-						getString("_UI_KnowledgeSpace_containedScientificProblem_feature"),
+						getString("_UI_KnowledgeSpace_containedScientificKnowledge_feature"),
 						getString(
 								"_UI_PropertyDescriptor_description",
-								"_UI_KnowledgeSpace_containedScientificProblem_feature",
+								"_UI_KnowledgeSpace_containedScientificKnowledge_feature",
 								"_UI_KnowledgeSpace_type"),
-						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
+						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE,
 						true, false, false, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Representing Diagram feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRepresentingDiagramPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_SCRMSpace_representingDiagram_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_SCRMSpace_representingDiagram_feature",
+						"_UI_SCRMSpace_type"),
+				ScrmPackage.Literals.SCRM_SPACE__REPRESENTING_DIAGRAM, false,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -124,7 +146,7 @@ public class KnowledgeSpaceItemProvider extends SCRMModelElementItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures
-					.add(KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM);
+					.add(KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE);
 		}
 		return childrenFeatures;
 	}
@@ -177,7 +199,7 @@ public class KnowledgeSpaceItemProvider extends SCRMModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(KnowledgeSpace.class)) {
-		case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM:
+		case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), true, false));
 			return;
@@ -199,27 +221,27 @@ public class KnowledgeSpaceItemProvider extends SCRMModelElementItemProvider
 
 		newChildDescriptors
 				.add(createChildParameter(
-						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
+						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE,
 						KnowledgeFactory.eINSTANCE.createKnowledgeSpace()));
 
 		newChildDescriptors
 				.add(createChildParameter(
-						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
+						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE,
 						KnowledgeFactory.eINSTANCE.createScientificProblem()));
 
 		newChildDescriptors
 				.add(createChildParameter(
-						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
+						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE,
 						KnowledgeFactory.eINSTANCE.createMathematicalModel()));
 
 		newChildDescriptors
 				.add(createChildParameter(
-						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
+						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE,
 						KnowledgeFactory.eINSTANCE.createNumericalMethod()));
 
 		newChildDescriptors
 				.add(createChildParameter(
-						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
+						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE,
 						KnowledgeFactory.eINSTANCE.createAssumption()));
 	}
 

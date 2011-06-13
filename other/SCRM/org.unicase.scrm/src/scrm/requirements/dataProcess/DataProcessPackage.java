@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import scrm.ScrmPackage;
 import scrm.requirements.RequirementsPackage;
 
 /**
@@ -840,7 +841,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__NAME = PROCESS__NAME;
+	int DATA_PROCESS_SPACE__NAME = ScrmPackage.SCRM_SPACE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -849,7 +850,16 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__DESCRIPTION = PROCESS__DESCRIPTION;
+	int DATA_PROCESS_SPACE__DESCRIPTION = ScrmPackage.SCRM_SPACE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Representing Diagram</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_PROCESS_SPACE__REPRESENTING_DIAGRAM = ScrmPackage.SCRM_SPACE__REPRESENTING_DIAGRAM;
 
 	/**
 	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
@@ -858,7 +868,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__CONTAINING_REQUIREMENT_SPACE = PROCESS__CONTAINING_REQUIREMENT_SPACE;
+	int DATA_PROCESS_SPACE__CONTAINING_REQUIREMENT_SPACE = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Refinements</b></em>' containment reference list.
@@ -867,7 +877,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__REFINEMENTS = PROCESS__REFINEMENTS;
+	int DATA_PROCESS_SPACE__REFINEMENTS = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Refined Requirement</b></em>' container reference.
@@ -876,7 +886,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__REFINED_REQUIREMENT = PROCESS__REFINED_REQUIREMENT;
+	int DATA_PROCESS_SPACE__REFINED_REQUIREMENT = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Specified Feature</b></em>' container reference.
@@ -885,7 +895,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__SPECIFIED_FEATURE = PROCESS__SPECIFIED_FEATURE;
+	int DATA_PROCESS_SPACE__SPECIFIED_FEATURE = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
@@ -894,7 +904,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__DEFINING_DATA = PROCESS__DEFINING_DATA;
+	int DATA_PROCESS_SPACE__DEFINING_DATA = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Realized Method</b></em>' reference.
@@ -903,7 +913,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__REALIZED_METHOD = PROCESS__REALIZED_METHOD;
+	int DATA_PROCESS_SPACE__REALIZED_METHOD = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Data Flow</b></em>' reference.
@@ -912,7 +922,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__DATA_FLOW = PROCESS__DATA_FLOW;
+	int DATA_PROCESS_SPACE__DATA_FLOW = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Predecessor</b></em>' reference.
@@ -921,7 +931,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__PREDECESSOR = PROCESS__PREDECESSOR;
+	int DATA_PROCESS_SPACE__PREDECESSOR = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Successor</b></em>' reference.
@@ -930,7 +940,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__SUCCESSOR = PROCESS__SUCCESSOR;
+	int DATA_PROCESS_SPACE__SUCCESSOR = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Containing Data Process Space</b></em>' container reference.
@@ -939,7 +949,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__CONTAINING_DATA_PROCESS_SPACE = PROCESS__CONTAINING_DATA_PROCESS_SPACE;
+	int DATA_PROCESS_SPACE__CONTAINING_DATA_PROCESS_SPACE = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Contained Data Process Steps</b></em>' containment reference list.
@@ -948,7 +958,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS = PROCESS_FEATURE_COUNT + 0;
+	int DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of structural features of the '<em>Space</em>' class.
@@ -957,7 +967,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE_FEATURE_COUNT = PROCESS_FEATURE_COUNT + 1;
+	int DATA_PROCESS_SPACE_FEATURE_COUNT = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 11;
 
 	/**
 	 * Returns the meta object for class '{@link scrm.requirements.dataProcess.InputDataReading <em>Input Data Reading</em>}'.

@@ -4,6 +4,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.LabeledContainer;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -11,15 +12,23 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
 import scrm.diagram.edit.policies.KnowledgeSpaceItemSemanticEditPolicy;
 import scrm.diagram.edit.policies.OpenDiagramEditPolicy;
+import scrm.diagram.opener.OpenSCRMSpaceEditPolicy;
+import scrm.diagram.part.ScrmVisualIDRegistry;
 
 /**
  * @generated
@@ -49,7 +58,7 @@ public class KnowledgeSpaceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
@@ -57,7 +66,7 @@ public class KnowledgeSpaceEditPart extends ShapeNodeEditPart {
 				new KnowledgeSpaceItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new OpenDiagramEditPolicy());
+				new OpenSCRMSpaceEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -92,21 +101,70 @@ public class KnowledgeSpaceEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new LabeledContainer();
+		return primaryShape = new KnowledgeSpaceFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public LabeledContainer getPrimaryShape() {
-		return (LabeledContainer) primaryShape;
+	public KnowledgeSpaceFigure getPrimaryShape() {
+		return (KnowledgeSpaceFigure) primaryShape;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof KnowledgeSpaceNameEditPart) {
+			((KnowledgeSpaceNameEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getFigureKnowledgeSpace_name());
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof KnowledgeSpaceNameEditPart) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if (addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, -1);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if (removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+		return getContentPane();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(80, 60);
 		return result;
 	}
 
@@ -134,6 +192,11 @@ public class KnowledgeSpaceEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
+		if (nodeShape.getLayoutManager() == null) {
+			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
+			layout.setSpacing(5);
+			nodeShape.setLayoutManager(layout);
+		}
 		return nodeShape; // use nodeShape itself as contentPane
 	}
 
@@ -182,5 +245,70 @@ public class KnowledgeSpaceEditPart extends ShapeNodeEditPart {
 			((Shape) primaryShape).setLineStyle(style);
 		}
 	}
+
+	/**
+	 * @generated
+	 */
+	public EditPart getPrimaryChildEditPart() {
+		return getChildBySemanticHint(ScrmVisualIDRegistry
+				.getType(KnowledgeSpaceNameEditPart.VISUAL_ID));
+	}
+
+	/**
+	 * @generated
+	 */
+	public class KnowledgeSpaceFigure extends LabeledContainer {
+
+		/**
+		 * @generated
+		 */
+		private WrappingLabel fFigureKnowledgeSpace_name;
+
+		/**
+		 * @generated
+		 */
+		public KnowledgeSpaceFigure() {
+
+			this.setBackgroundColor(THIS_BACK);
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(80),
+					getMapMode().DPtoLP(60)));
+
+			createContents();
+		}
+
+		/**
+		 * @generated NOT
+		 */
+		private void createContents() {
+
+			fFigureKnowledgeSpace_name = new WrappingLabel();
+			fFigureKnowledgeSpace_name.setText("");
+			fFigureKnowledgeSpace_name.setTextWrap(true);
+
+			fFigureKnowledgeSpace_name.setFont(FFIGUREKNOWLEDGESPACE_NAME_FONT);
+
+			this.add(fFigureKnowledgeSpace_name);
+
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureKnowledgeSpace_name() {
+			return fFigureKnowledgeSpace_name;
+		}
+
+	}
+
+	/**
+	 * @generated
+	 */
+	static final Color THIS_BACK = new Color(null, 100, 100, 100);
+
+	/**
+	 * @generated
+	 */
+	static final Font FFIGUREKNOWLEDGESPACE_NAME_FONT = new Font(
+			Display.getCurrent(), "Arial", 9, SWT.BOLD);
 
 }

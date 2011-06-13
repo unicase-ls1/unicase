@@ -25,7 +25,7 @@
    </extension>
    <extension
          point="org.unicase.ecp.model.ecpModelPackage">
-      <modelPackage
+         <modelPackage
             modelPackage="http://unicase.org/model/scrm"></modelPackage>
    </extension>
 

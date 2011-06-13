@@ -36,7 +36,6 @@ public class SCRMDiagramEditPart extends DiagramEditPart {
 
 	private final class DiagramDragDropEditPolicyExtension extends
 			DiagramDragDropEditPolicy {
-		@SuppressWarnings("unchecked")
 		@Override
 		public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
 			List<ViewDescriptor> viewDescriptors = new ArrayList<ViewDescriptor>();

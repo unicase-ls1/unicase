@@ -278,8 +278,10 @@ public class UserInterfaceEditPart extends ShapeNodeEditPart {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == ScrmElementTypes.FeatureRequiredInterfaces_4023) {
 			types.add(ScrmElementTypes.Feature_2009);
+			types.add(ScrmElementTypes.Feature_3009);
 		} else if (relationshipType == ScrmElementTypes.FeatureProvidedInterfaces_4024) {
 			types.add(ScrmElementTypes.Feature_2009);
+			types.add(ScrmElementTypes.Feature_3009);
 		}
 		return types;
 	}

@@ -25,6 +25,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import scrm.ScrmPackage;
 import scrm.provider.SCRMModelElementItemProvider;
 import scrm.provider.ScrmEditPlugin;
 
@@ -63,6 +64,7 @@ public class RequirementSpaceItemProvider extends SCRMModelElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addRepresentingDiagramPropertyDescriptor(object);
 			addContainingRequirementSpacePropertyDescriptor(object);
 			addContainedInformationofRequirementsPropertyDescriptor(object);
 		}
@@ -88,6 +90,25 @@ public class RequirementSpaceItemProvider extends SCRMModelElementItemProvider
 								"_UI_IRequirement_type"),
 						RequirementsPackage.Literals.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE,
 						true, false, false, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Representing Diagram feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRepresentingDiagramPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_SCRMSpace_representingDiagram_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_SCRMSpace_representingDiagram_feature",
+						"_UI_SCRMSpace_type"),
+				ScrmPackage.Literals.SCRM_SPACE__REPRESENTING_DIAGRAM, false,
+				false, true, null, null, null));
 	}
 
 	/**

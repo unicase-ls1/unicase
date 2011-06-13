@@ -18,6 +18,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import scrm.requirements.dataProcess.ErrorHandling;
 
 /**
  * This is the item provider adapter for a {@link scrm.requirements.dataProcess.ErrorHandling} object.
