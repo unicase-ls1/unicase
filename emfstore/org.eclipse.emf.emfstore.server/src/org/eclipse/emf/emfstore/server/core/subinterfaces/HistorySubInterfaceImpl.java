@@ -30,8 +30,10 @@ import org.eclipse.emf.emfstore.server.exceptions.FatalEmfStoreException;
 import org.eclipse.emf.emfstore.server.exceptions.InvalidInputException;
 import org.eclipse.emf.emfstore.server.exceptions.StorageException;
 import org.eclipse.emf.emfstore.server.model.ProjectId;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.HistoryInfo;
 import org.eclipse.emf.emfstore.server.model.versioning.HistoryQuery;
+import org.eclipse.emf.emfstore.server.model.versioning.LogMessage;
 import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
 import org.eclipse.emf.emfstore.server.model.versioning.TagVersionSpec;
 import org.eclipse.emf.emfstore.server.model.versioning.Version;
@@ -181,12 +183,12 @@ public class HistorySubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	private HistoryInfo createHistoryInfo(PrimaryVersionSpec headRevision, Version version, boolean includeChangePackage) {
 		HistoryInfo history = VersioningFactory.eINSTANCE.createHistoryInfo();
 		if (includeChangePackage && version.getChanges() != null) {
-			history.setChangePackage(EcoreUtil.copy(version.getChanges()));
+			history.setChangePackage((ChangePackage) EcoreUtil.copy(version.getChanges()));
 		}
-		history.setLogMessage(EcoreUtil.copy(version.getLogMessage()));
-		history.setPrimerySpec(EcoreUtil.copy(version.getPrimarySpec()));
+		history.setLogMessage((LogMessage) EcoreUtil.copy(version.getLogMessage()));
+		history.setPrimerySpec((PrimaryVersionSpec) EcoreUtil.copy(version.getPrimarySpec()));
 		for (TagVersionSpec tagSpec : version.getTagSpecs()) {
-			history.getTagSpecs().add(EcoreUtil.copy(tagSpec));
+			history.getTagSpecs().add((TagVersionSpec) EcoreUtil.copy(tagSpec));
 		}
 		// add HEAD tag to history info
 		if (version.getPrimarySpec().equals(headRevision)) {
