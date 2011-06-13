@@ -38,9 +38,13 @@ public class OperationManager implements OperationRecorderListener {
 			AbstractOperation lastOperation = operations
 					.get(operations.size() - 1);
 			operationRecorder.stopChangeRecording();
-			lastOperation.reverse().apply(operationRecorder.getRootEObject());
-			notifyOperationUndone(lastOperation);
-			operationRecorder.startChangeRecording();
+			try {
+				lastOperation.reverse().apply(
+						operationRecorder.getRootEObject());
+				notifyOperationUndone(lastOperation);
+			} finally {
+				operationRecorder.startChangeRecording();
+			}
 			operations.remove(lastOperation);
 		}
 		// TODO: EM, update dirty state

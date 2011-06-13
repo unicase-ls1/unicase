@@ -1728,6 +1728,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		if (project instanceof ProjectImpl) {
 			((ProjectImpl) this.getProject())
 					.setUndetachable(operationRecorder);
+			((ProjectImpl) this.getProject()).setUndetachable(statePersister);
 		}
 		if (getUsersession() != null) {
 			getUsersession().addLoginObserver(this);
@@ -2332,9 +2333,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			AbstractOperation lastOperation = operations
 					.get(operations.size() - 1);
 			stopChangeRecording();
-			lastOperation.reverse().apply(getProject());
-			operationManager.notifyOperationUndone(lastOperation);
-			startChangeRecording();
+			try {
+				lastOperation.reverse().apply(getProject());
+				operationManager.notifyOperationUndone(lastOperation);
+			} finally {
+				startChangeRecording();
+			}
 			operations.remove(lastOperation);
 		}
 		updateDirtyState();
@@ -2593,13 +2597,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	public void applyOperations(List<AbstractOperation> operations,
 			boolean addOperation) {
 		stopChangeRecording();
-		for (AbstractOperation operation : operations) {
-			operation.apply(getProject());
-			if (addOperation) {
-				addOperation(operation);
+		try {
+			for (AbstractOperation operation : operations) {
+				operation.apply(getProject());
+				if (addOperation) {
+					addOperation(operation);
+				}
 			}
+		} finally {
+			startChangeRecording();
 		}
-		startChangeRecording();
 	}
 
 	/**

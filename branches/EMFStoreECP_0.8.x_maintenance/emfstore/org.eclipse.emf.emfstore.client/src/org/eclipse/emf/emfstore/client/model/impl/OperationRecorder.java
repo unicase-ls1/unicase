@@ -211,17 +211,22 @@ public class OperationRecorder implements CommandObserver,
 			rootObjects.addAll(modelElement.eCrossReferences());
 			changeRecorder.beginRecording(rootObjects);
 			stopChangeRecording();
-			ModelUtil.deleteOutgoingCrossReferences(modelElement, true, false);
-			ModelUtil.deleteIncomingCrossReferencesFromParent(modelElement,
-					project, true, false);
+			try {
+				ModelUtil.deleteOutgoingCrossReferences(modelElement, true,
+						false);
+				ModelUtil.deleteIncomingCrossReferencesFromParent(modelElement,
+						project, true, false);
 
+			} finally {
+				startChangeRecording();
+			}
 			// stop change recorder, start operation recorded and reapply
 			// reversed recorded changes
 			ChangeDescription changeDesc = changeRecorder.endRecording();
 			CompositeOperation oldCompositeOperation = this.compositeOperation;
 			this.compositeOperation = OperationsFactory.eINSTANCE
 					.createCompositeOperation();
-			startChangeRecording();
+
 			changeDesc.apply();
 			changeRecorder.dispose();
 			// collect recorded operations and add to create operation
@@ -733,9 +738,12 @@ public class OperationRecorder implements CommandObserver,
 			AbstractOperation lastOp = operations.get(operations.size() - 1);
 
 			stopChangeRecording();
-			lastOp.reverse().apply(getRootEObject());
-			operations.remove(operations.size() - 1);
-			startChangeRecording();
+			try {
+				lastOp.reverse().apply(getRootEObject());
+				operations.remove(operations.size() - 1);
+			} finally {
+				startChangeRecording();
+			}
 			this.removedElements.clear();
 		}
 		notificationRecorder.stopRecording();
