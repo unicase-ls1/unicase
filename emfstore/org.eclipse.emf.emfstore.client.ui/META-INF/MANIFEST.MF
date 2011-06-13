@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Workspace UI Plug-in
 Bundle-SymbolicName: org.eclipse.emf.emfstore.client.ui;singleton:=true
-Bundle-Version: 0.8.7
+Bundle-Version: 0.8.8
 Bundle-Activator: org.eclipse.emf.emfstore.client.ui.Activator
 Require-Bundle: org.eclipse.emf.emfstore.client.model.edit;visibility:=reexport,
  org.eclipse.emf.ecp.common.util
