@@ -257,7 +257,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 		// MK: hack: set head version manually because esbrowser does not update
 		// revisions properly
-		ProjectInfo projectInfoCopy = EcoreUtil.copy(projectInfo);
+		ProjectInfo projectInfoCopy = (ProjectInfo) EcoreUtil.copy(projectInfo);
 		projectInfoCopy.setVersion(targetSpec);
 
 		// get Project from server
@@ -582,7 +582,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public void exportProjectSpace(ProjectSpace projectSpace, String absoluteFileName) throws IOException {
 
-		ProjectSpace copiedProjectSpace = EcoreUtil.copy(projectSpace);
+		ProjectSpace copiedProjectSpace = (ProjectSpace) EcoreUtil.copy(projectSpace);
 		copiedProjectSpace.setUsersession(null);
 
 		Project clonedProject = ModelUtil.clone(projectSpace.getProject());
@@ -620,7 +620,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public void exportProject(ProjectSpace projectSpace, String absoluteFileName) throws IOException {
 
-		Project project = EcoreUtil.copy(projectSpace.getProject());
+		Project project = (Project) EcoreUtil.copy(projectSpace.getProject());
 		ResourceHelper.putElementIntoNewResource(absoluteFileName, project);
 	}
 
