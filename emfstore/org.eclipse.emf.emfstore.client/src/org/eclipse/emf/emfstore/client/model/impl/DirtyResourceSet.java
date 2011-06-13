@@ -37,7 +37,8 @@ public class DirtyResourceSet {
 	/**
 	 * Add a new dirty resource.
 	 * 
-	 * @param resource the resource
+	 * @param resource
+	 *            the resource
 	 */
 	public void addDirtyResource(Resource resource) {
 		resources.add(resource);
@@ -48,6 +49,9 @@ public class DirtyResourceSet {
 	 */
 	public void save() {
 		for (Resource resource : resources) {
+			if (resource.getURI() == null) {
+				continue;
+			}
 			try {
 				resource.save(Configuration.getResourceSaveOptions());
 			} catch (IOException e) {

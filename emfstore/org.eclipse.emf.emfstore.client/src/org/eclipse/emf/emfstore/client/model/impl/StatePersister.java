@@ -168,7 +168,7 @@ public class StatePersister implements CommandObserver, ProjectChangeObserver {
 	private void addToNewResourceIfRequired(final EObject modelElement,
 			XMIResource oldResource) {
 
-		if (currentResource == null) {
+		if (currentResource == null || currentResource.getURI() == null) {
 			currentResource = oldResource;
 		}
 		URI oldUri = currentResource.getURI();
