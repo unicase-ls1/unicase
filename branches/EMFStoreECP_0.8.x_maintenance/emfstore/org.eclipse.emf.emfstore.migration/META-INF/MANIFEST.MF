@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: EMFStore Migration
 Bundle-SymbolicName: org.eclipse.emf.emfstore.migration;singleton:=true
-Bundle-Version: 0.8.7
+Bundle-Version: 0.8.8
 Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.emfstore.common.model
