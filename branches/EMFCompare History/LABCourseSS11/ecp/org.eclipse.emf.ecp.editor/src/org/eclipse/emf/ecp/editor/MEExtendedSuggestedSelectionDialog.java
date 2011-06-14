@@ -13,30 +13,23 @@ package org.eclipse.emf.ecp.editor;
 import java.util.Collection;
 import java.util.HashMap;
 
-import org.eclipse.core.databinding.observable.value.IValueChangeListener;
-import org.eclipse.core.databinding.observable.value.ValueChangeEvent;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
-import org.eclipse.emf.ecp.common.util.UiUtil;
-import org.eclipse.jface.databinding.swt.ISWTObservableValue;
-import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.emf.ecp.xmiworkspace.commands.ImportProjectHandler;
+import org.eclipse.emf.ecp.xmiworkspace.views.ImportProjectDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
-import org.eclipse.swt.widgets.ToolBar;
-import org.eclipse.swt.widgets.ToolItem;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * This dialog represents the possibility to select an element from a list where the list is sorted and additional
@@ -104,9 +97,11 @@ MESuggestedSelectionDialog {
 
 	@Override
 	protected Control createExtendedContentArea(Composite parent) {
-
-		final Button button = new Button(parent, SWT.PUSH);
+		Composite comp = new Composite(parent, SWT.NONE);
+		comp.setLayout(new GridLayout(2, false));
+		final Button button = new Button(comp, SWT.PUSH);
 		//button.setImage(image);
+		button.setText("Contexts");
 		final Menu menu = new Menu(parent.getShell(), SWT.POP_UP);
 		for (String key : currentContextNeighbours.keySet()) {
 			MenuItem item = new MenuItem(menu, SWT.PUSH);
@@ -127,8 +122,24 @@ MESuggestedSelectionDialog {
 				menu.setVisible(true);
 			}
 		});
+		
+		final Button xmiButton = new Button(comp, SWT.PUSH);
+		xmiButton.setText("Open XMI Dialog");
+		xmiButton.addListener(SWT.Selection, new Listener() {
+
+			public void handleEvent(Event event) {
+				OpenXMIDialog dialog = new OpenXMIDialog(PlatformUI
+						.getWorkbench().getDisplay().getActiveShell());
+				dialog.open();
+				currentContext = dialog.getContext();
+				updateModelElements();
+			}
+			
+		});
+		
+		
 		Control firstChild = parent.getChildren()[0];
-		button.moveAbove(firstChild);
+		comp.moveAbove(firstChild);
 
 		return null;
 	}
