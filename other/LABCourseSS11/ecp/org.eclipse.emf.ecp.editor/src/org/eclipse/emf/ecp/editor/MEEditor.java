@@ -5,17 +5,21 @@
  * Contributors:
  ******************************************************************************/
 package org.eclipse.emf.ecp.editor;
-
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
 import org.eclipse.emf.ecp.common.model.ModelElementContextListener;
 import org.eclipse.emf.ecp.common.util.ShortLabelProvider;
@@ -31,12 +35,14 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 
+
 /**
  * GUI view for editing MEs.
  * 
  * @author helming
  * @author naughton
  */
+
 public class MEEditor extends SharedHeaderFormEditor {
 
 	/**
@@ -216,12 +222,30 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 				@Override
 				public void onChange(Notification notification) {
+					final EObject validate = modelElement;
 					Display.getDefault().asyncExec(new Runnable() {
 						public void run() {
+							System.out.println("im onChange Listener");
 							updateIcon(input);
 							setPartName((new ShortLabelProvider()).getText(modelElement));
+	
 							if (mePage != null) {
 								mePage.updateSectionTitle();
+							}
+							
+							Diagnostic diagnostic = Diagnostician.INSTANCE.validate(validate);
+							if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
+								System.err.println(diagnostic.getMessage());
+								for (Iterator<Diagnostic> i = diagnostic.getChildren().iterator(); i.hasNext();) {
+									Diagnostic childDiagnostic = (Diagnostic) i.next();
+									switch (childDiagnostic.getSeverity()) {
+									case Diagnostic.ERROR:
+									case Diagnostic.WARNING:
+											System.err.println("\t" + childDiagnostic.getMessage());
+									default:
+										break;
+									}
+								}
 							}
 
 						}
@@ -233,13 +257,19 @@ public class MEEditor extends SharedHeaderFormEditor {
 			initStatusProvider();
 			updateCreatorHint();
 
-			labelProviderListener = new ILabelProviderListener() {
+			/*labelProviderListener = new ILabelProviderListener() {
 				public void labelProviderChanged(LabelProviderChangedEvent event) {
+					final EObject validate = modelElement;
+					new ECPCommand(validate) {
+						@Override
+						protected void doRun() {
+							System.out.println("im label Listener");
+						}
+					}.run(false);
 					updateIcon(meInput);
 				}
 			};
-			meInput.getLabelProvider().addListener(labelProviderListener);
-
+			meInput.getLabelProvider().addListener(labelProviderListener);*/
 		} else {
 			throw new PartInitException("MEEditor is only appliable for MEEditorInputs");
 		}
