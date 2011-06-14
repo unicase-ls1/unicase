@@ -393,7 +393,7 @@ public class PlayerImpl extends EObjectImpl implements Player {
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (name == null) {
+		if (name == null || name == "") {
 			if (DiagnosticianChain != null) {
 				DiagnosticianChain.add
 					(new BasicDiagnostic
