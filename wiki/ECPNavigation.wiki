@@ -25,3 +25,4 @@ More information and news also available on our  [http://twitter.com/emfcp ECP T
 [http://www.eclipse.org/donate/images/friendslogo200.jpg]
 
 [http://www.eclipse.org/emf-store/images/logos_exist.png]
+Das Gründungsprojekt Model Repository wird unterstützt durch das Förderprogramm EXIST-Gründerstipendium des Bundesministeriums für Wirtschaft und Technologie (BMWi), kofinanziert aus dem Europäischen Sozialfonds.
