@@ -2,5 +2,5 @@ If you want to prevent that certain attributes of your model show up in the defa
 
   * Open your genmodel
   * Select the according attribute
-  * Open the property sheet and
+  * Open the property sheet
   * Set "Edit" - "Property Type" to "None"
