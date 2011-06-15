@@ -388,19 +388,69 @@ public class PlayerImpl extends EObjectImpl implements Player {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean hasName(DiagnosticChain DiagnosticianChain, Map<?, ?> Context) {
+	public boolean hasName(DiagnosticChain diagnosticianChain, Map<?, ?> context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
 		if (name == null || name == "") {
-			if (DiagnosticianChain != null) {
-				DiagnosticianChain.add
+			if (diagnosticianChain != null) {
+				diagnosticianChain.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
 						 BowlingValidator.DIAGNOSTIC_SOURCE,
 						 BowlingValidator.PLAYER__HAS_NAME,
-						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "hasName", EObjectValidator.getObjectLabel(this, (Map<Object, Object>) Context) }),
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "hasName", EObjectValidator.getObjectLabel(this, (Map<Object, Object>) context) }),
+						 new Object [] { this }));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean hasStreet(DiagnosticChain diagnosticianChain, Map<?, ?> context) {
+		// TODO: implement this method
+		// -> specify the condition that violates the invariant
+		// -> verify the details of the diagnostic, including severity and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (this.street == null || this.street == "") {
+			if (diagnosticianChain != null) {
+				diagnosticianChain.add
+					(new BasicDiagnostic
+						(Diagnostic.ERROR,
+						 BowlingValidator.DIAGNOSTIC_SOURCE,
+						 BowlingValidator.PLAYER__HAS_STREET,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "hasStreet", EObjectValidator.getObjectLabel(this, (Map<Object, Object>) context) }),
+						 new Object [] { this }));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean hasDateOfBirth(DiagnosticChain diagnosticianChain, Map<?, ?> context) {
+		// TODO: implement this method
+		// -> specify the condition that violates the invariant
+		// -> verify the details of the diagnostic, including severity and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (this.dateOfBirth == null) {
+			if (diagnosticianChain != null) {
+				diagnosticianChain.add
+					(new BasicDiagnostic
+						(Diagnostic.ERROR,
+						 BowlingValidator.DIAGNOSTIC_SOURCE,
+						 BowlingValidator.PLAYER__HAS_DATE_OF_BIRTH,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "hasDateOfBirth", EObjectValidator.getObjectLabel(this, (Map<Object, Object>) context) }),
 						 new Object [] { this }));
 			}
 			return false;

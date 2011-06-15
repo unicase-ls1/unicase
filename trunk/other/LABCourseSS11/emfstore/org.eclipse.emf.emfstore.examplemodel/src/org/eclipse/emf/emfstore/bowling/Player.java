@@ -244,6 +244,22 @@ public interface Player extends EObject {
 	 * @model
 	 * @generated
 	 */
-	boolean hasName(DiagnosticChain DiagnosticianChain, Map<?, ?> Context);
+	boolean hasName(DiagnosticChain diagnosticianChain, Map<?, ?> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean hasStreet(DiagnosticChain diagnosticianChain, Map<?, ?> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean hasDateOfBirth(DiagnosticChain diagnosticianChain, Map<?, ?> context);
 
 } // Player

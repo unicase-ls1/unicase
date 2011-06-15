@@ -52,12 +52,28 @@ public class BowlingValidator extends EObjectValidator {
 	public static final int PLAYER__HAS_NAME = 1;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Street' of 'Player'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int PLAYER__HAS_STREET = 2;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Date Of Birth' of 'Player'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int PLAYER__HAS_DATE_OF_BIRTH = 3;
+
+	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 1;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 3;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -130,6 +146,8 @@ public class BowlingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(player, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(player, diagnostics, context);
 		if (result || diagnostics != null) result &= validatePlayer_hasName(player, diagnostics, context);
+		if (result || diagnostics != null) result &= validatePlayer_hasStreet(player, diagnostics, context);
+		if (result || diagnostics != null) result &= validatePlayer_hasDateOfBirth(player, diagnostics, context);
 		return result;
 	}
 
@@ -141,6 +159,26 @@ public class BowlingValidator extends EObjectValidator {
 	 */
 	public boolean validatePlayer_hasName(Player player, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return player.hasName(diagnostics, context);
+	}
+
+	/**
+	 * Validates the hasStreet constraint of '<em>Player</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePlayer_hasStreet(Player player, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return player.hasStreet(diagnostics, context);
+	}
+
+	/**
+	 * Validates the hasDateOfBirth constraint of '<em>Player</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePlayer_hasDateOfBirth(Player player, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return player.hasDateOfBirth(diagnostics, context);
 	}
 
 	/**
