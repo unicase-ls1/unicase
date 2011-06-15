@@ -37,7 +37,7 @@ import org.unicase.model.task.WorkItem;
 public class CreateBBCodeFormatString {
 
 	static String string;
-	static Set<ModelElement> eee;
+	static Set<ModelElement> setME;
 	static Object[] childElementss;
 	static Object[] childElements;
 	Object aux;
@@ -46,9 +46,8 @@ public class CreateBBCodeFormatString {
 	UnicaseModelElement m;
 	static CompositeMeetingSection cms;
 	CompositeMeetingSection cms_aux;
-	static WorkItemMeetingSection w;
-	ActionItem ai;
-	static Issue is;
+	static WorkItemMeetingSection workItemSection;
+	static Issue issue;
 	static IssueMeetingSection ims;
 	public static String error_message = "";
 	public static Calendar cal = Calendar.getInstance();
@@ -105,7 +104,8 @@ public class CreateBBCodeFormatString {
 		string = string + "\n";
 		string = string + "\n";
 		
-		if (cal.getTime().before(meeting.getEndtime()))
+		
+		if (meeting.getName()!=null && meeting.getEndtime()!=null && cal.getTime().before(meeting.getEndtime()))
 		string = string
 				+ ("[size=150]Agenda: " + meeting.getName() + " [/size]");
 		else
@@ -218,9 +218,9 @@ public class CreateBBCodeFormatString {
 	}
 
 	public static void getModelElements(Meeting meeting) {
-		eee = meeting.getAllContainedModelElements();
+		setME = meeting.getAllContainedModelElements();
 		
-		childElementss = eee.toArray();
+		childElementss = setME.toArray();
 		childElements = new Object[100];
 
 		for (int i = 0; i < childElementss.length; i++)
@@ -241,11 +241,11 @@ public class CreateBBCodeFormatString {
 				ims = (IssueMeetingSection) childElementss[i];
 				childElements[4] = ims;
 			} else if (childElementss[i] instanceof WorkItemMeetingSection) {
-				w = (WorkItemMeetingSection) childElementss[i];
-				if (w.getName().equals("Action Items")) {
-					childElements[2] = w;
+				workItemSection = (WorkItemMeetingSection) childElementss[i];
+				if (workItemSection.getName().equals("Action Items")) {
+					childElements[2] = workItemSection;
 				} else {
-					childElements[6] = w;
+					childElements[6] = workItemSection;
 				}
 			}
 	}
@@ -280,9 +280,12 @@ public class CreateBBCodeFormatString {
 		string = string + "\n";
 		string = string + ("    [list]");
 		string = string + "\n";
-		w = (WorkItemMeetingSection) childElements[2];
-		work_items = w.getIncludedWorkItems();
-		writeInfosFromActionItems(meeting, work_items);
+		if (childElements[2] != null) {
+			workItemSection = (WorkItemMeetingSection) childElements[2];
+		work_items = workItemSection.getIncludedWorkItems();
+		if (work_items.size() > 0)
+			writeInfosFromActionItems(meeting, work_items);
+		}
 		string = string + ("    [/list]");
 		string = string + "\n";
 		string = string + "\n";
@@ -328,7 +331,7 @@ public class CreateBBCodeFormatString {
 		string = string + ("    [*] Misc");
 		string = string + "\n";
 		string = string + "\n";
-		if (cms.getDescription() != "") {
+		if (cms.getDescription() != null) {
 			string = string + ("         [i]" + cms.getDescription() + "[/i]");
 			string = string + "\n";
 		}
@@ -359,8 +362,8 @@ public class CreateBBCodeFormatString {
 						written = true;
 					}
 					string = string + "\n";
-					is = (Issue) o[j];
-					writeInfosFromIssues(meeting, is, nr);
+					issue = (Issue) o[j];
+					writeInfosFromIssues(meeting, issue, nr);
 					if (j == o.length && written) {
 						string = string + ("  [/list]");
 						string = string + "\n";
@@ -417,15 +420,16 @@ string = string + ("  [*] [b]Wrap-up[/b] [" + cms.getAllocatedTime()
 		+ " Minutes]");
 string = string + "\n";
 string = string + "\n";
-if (childElements[6] != null || childElements[7] != null && cal.getTime().after(meeting.getEndtime())) {
+if ((childElements[6] != null || childElements[7] != null) && cal.getTime().after(meeting.getEndtime())) {
+	
 	string = string + ("  [list=1]");
 	string = string + "\n";
 }
 if (childElements[6] != null && cal.getTime().after(meeting.getEndtime())) {
 	string = string + ("    [*]New Action Items");
 	string = string + "\n";
-	w = (WorkItemMeetingSection) childElements[6];
-	EList<WorkItem> work_items = w.getIncludedWorkItems();
+	workItemSection = (WorkItemMeetingSection) childElements[6];
+	EList<WorkItem> work_items = workItemSection.getIncludedWorkItems();
 	if (work_items.size() > 0) {
 		string = string + ("    [list]");
 		string = string + "\n";
