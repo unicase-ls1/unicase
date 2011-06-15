@@ -5,9 +5,7 @@ import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.emfstore.bowling.BowlingPackage;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.riena.ui.core.marker.ValidationTime;
@@ -84,11 +82,7 @@ public class RienaEmailControl extends RienaTextControl {
 
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
-		Object feature = itemPropertyDescriptor.getFeature(modelElement);
-		if (feature.equals(BowlingPackage.eINSTANCE.getPlayer_EMail())) {
-			return PRIORITY;
-		}
-		return AbstractMEControl.DO_NOT_RENDER;
+		return PRIORITY;
 	}
 
 }
