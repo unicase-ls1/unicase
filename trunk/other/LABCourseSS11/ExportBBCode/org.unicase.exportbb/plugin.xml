@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.unicase.exportbb.commands.ExportBBCode"
+            id="org.unicase.exportbb.exportBBCode"
+            name="exportBBCode">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.subscribeToModelElement">
+         <command
+               commandId="org.unicase.exportbb.exportBBCode"
+               icon="icons/exportBB.gif"
+               label="Export BBCode"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <iterate
+                        ifEmpty="false">
+                     <reference
+                           definitionId="org.unicase.ui.common.commands.modelElement">
+                     </reference>
+                  </iterate>
+                  <count
+                        value="1">
+                  </count>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+     </extension>
+</plugin>
