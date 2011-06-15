@@ -29,7 +29,7 @@
             name="EMFStore Server">
          <property
                name="appName"
-               value="EMFStore">
+               value="EMFStore Server">
          </property>
       </product>
    </extension>
