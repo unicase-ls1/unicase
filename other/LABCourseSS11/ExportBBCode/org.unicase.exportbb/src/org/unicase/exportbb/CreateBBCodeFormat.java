@@ -59,6 +59,7 @@ public class CreateBBCodeFormat {
 	
 
 	public static void createFile(Meeting meeting, String fileUrl) {
+		
 		try {
 			error_message = "";
 			// Create file
@@ -166,8 +167,7 @@ public class CreateBBCodeFormat {
 					&& meeting.getEndtime().getMinutes() > 10)
 				out.write("End: " + meeting.getEndtime().getHours() + ":"
 						+ meeting.getEndtime().getMinutes()
-						+ "              Minute Taker: "
-						+ meeting.getMinutetaker().getName());
+					);
 			else if (meeting.getEndtime().getHours() > 10
 					&& meeting.getEndtime().getMinutes() < 10)
 				out.write("End: " + meeting.getEndtime().getHours() + ":0"
@@ -271,9 +271,12 @@ public class CreateBBCodeFormat {
 		out.newLine();
 		out.write("    [list]");
 		out.newLine();
+		if (childElements[2] != null){
 		w = (WorkItemMeetingSection) childElements[2];
 		work_items = w.getIncludedWorkItems();
-		writeInfosFromActionItems(out, meeting, work_items);
+		if (work_items.size() > 0)
+			writeInfosFromActionItems(out, meeting, work_items);
+		}
 		out.write("    [/list]");
 		out.newLine();
 		out.newLine();
@@ -319,7 +322,7 @@ public class CreateBBCodeFormat {
 		out.write("    [*] Misc");
 		out.newLine();
 		out.newLine();
-		if (cms.getDescription() != "") {
+		if (cms.getDescription() != null) {
 			out.write("         [i]" + cms.getDescription() + "[/i]");
 			out.newLine();
 		}
@@ -407,13 +410,14 @@ public class CreateBBCodeFormat {
 				+ " Minutes]");
 		out.newLine();
 		out.newLine();
-		if (childElements[6] != null || childElements[7] != null && cal.getTime().after(meeting.getEndtime())) {
+		if ((childElements[6] != null || childElements[7] != null) && cal.getTime().after(meeting.getEndtime())) {
 			out.write("  [list=1]");
 			out.newLine();
 		}
 		if (childElements[6] != null && cal.getTime().after(meeting.getEndtime())) {
 			out.write("    [*]New Action Items");
 			out.newLine();
+			
 			w = (WorkItemMeetingSection) childElements[6];
 			EList<WorkItem> work_items = w.getIncludedWorkItems();
 			if (work_items.size() > 0) {
@@ -486,7 +490,7 @@ public class CreateBBCodeFormat {
 		out.write("    [*]Meeting-Critique");
 		out.newLine();
 		out.newLine();
-		if (cms.getDescription() != "") {
+		if (cms.getDescription() != null) {
 			out.write("         [i]" + cms.getDescription() + "[/i]");
 			out.newLine();
 		}

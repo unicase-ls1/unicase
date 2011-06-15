@@ -41,8 +41,8 @@ public class ExportBBCode extends AbstractHandler {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				ExportBBCodeDialo dialog;
-				dialog = new ExportBBCodeDialo(shell,
+				ExportDialog dialog;
+				dialog = new ExportDialog(shell,
 					modelElement);
 				dialog.open();
 			}

@@ -16,16 +16,20 @@
          <command
                commandId="org.unicase.exportbb.exportBBCode"
                icon="icons/exportBB.gif"
-               label="Export BBCode"
+               label="Export Meeting to BBCode"
                style="push">
             <visibleWhen
-                  checkEnabled="false">
+                  checkEnabled="true">
                <and>
                   <iterate
-                        ifEmpty="false">
+                        ifEmpty="false"
+                        operator="and">
                      <reference
                            definitionId="org.unicase.ui.common.commands.modelElement">
                      </reference>
+                     <instanceof
+                           value="org.unicase.model.meeting.Meeting">
+                     </instanceof>
                   </iterate>
                   <count
                         value="1">
