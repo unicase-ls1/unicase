@@ -36,16 +36,18 @@ public class Indexer {
 	 * @param indexDir
 	 *            the directory that the indexed file will be in.
 	 */
-		
-	public Indexer(IndexWriter writer2, Directory codeDir, Directory indexDirectory) {
+
+	public Indexer(IndexWriter writer2, Directory codeDir,
+			Directory indexDirectory) {
 		writer = writer2;
 		this.codeDir = codeDir;
 		this.indexDir = indexDirectory;
 	}
-	
-	public Indexer(){
-		
+
+	public Indexer() {
+
 	}
+
 	public Directory getCodeDir() {
 		return codeDir;
 	}
@@ -80,26 +82,92 @@ public class Indexer {
 		File code = new File(this.codeDir.getPath());
 
 		File[] files = code.listFiles();
+		JavaSourceCodeIndexer javaIndexer = new JavaSourceCodeIndexer();
+		FortranCodeIndexer fortranIndexer = new FortranCodeIndexer();
+
+		if (files == null && code != null) {
+			if (code.getName().endsWith(".java")
+					&& writer.getAnalyzer() instanceof JavaSourceCodeAnalyzer) {
+				javaIndexer.indexFileJava(writer, code);
+			}else if((code.getName().endsWith(".f")
+					|| code.getName().endsWith(".for")
+					|| code.getName().endsWith(".f90") || code.getName().endsWith(
+					".f95"))
+					&& writer.getAnalyzer() instanceof FortranSourceCodeAnalyzer){
+				fortranIndexer.indexFileFortran(writer, code);
+			}
+		}
+		else{
 		for (int i = 0; i < files.length; i++) {
 			File f = files[i];
 			Directory d = TraceRecoveryFactory.eINSTANCE.createDirectory();
 			d.setPath(f.getAbsolutePath());
-			if (f.isDirectory()) {
+			if (f.isDirectory() && !f.isHidden()) {
 				indexDir(writer, d, indexDir);
 			} else if (f.getName().endsWith(".java")
 					&& writer.getAnalyzer() instanceof JavaSourceCodeAnalyzer) {
-				JavaSourceCodeIndexer javaIndexer = new JavaSourceCodeIndexer();
+
 				javaIndexer.indexFileJava(writer, f);
 			} else if ((f.getName().endsWith(".f")
 					|| f.getName().endsWith(".for")
 					|| f.getName().endsWith(".f90") || f.getName().endsWith(
 					".f95"))
 					&& writer.getAnalyzer() instanceof FortranSourceCodeAnalyzer) {
-				FortranCodeIndexer fortranIndexer = new FortranCodeIndexer();
+
 				fortranIndexer.indexFileFortran(writer, f);
 			}
 		}
-		
+	}
+
+	}
+	
+	public void indexDir(IndexWriter writer, Directory codeDir,
+			Directory indexDir,JavaSourceCodeIndexer javIndexer,FortranCodeIndexer fortIndexer) throws IOException {
+		this.writer = writer;
+		this.codeDir = codeDir;
+		this.indexDir = indexDir;
+
+		File index = new File(this.indexDir.getPath());
+		File code = new File(this.codeDir.getPath());
+
+		File[] files = code.listFiles();
+		JavaSourceCodeIndexer javaIndexer = javIndexer;
+		FortranCodeIndexer fortranIndexer = fortIndexer;
+
+		if (files == null && code != null) {
+			if (code.getName().endsWith(".java")
+					&& writer.getAnalyzer() instanceof JavaSourceCodeAnalyzer) {
+				javaIndexer.indexFileJava(writer, code);
+			}else if((code.getName().endsWith(".f")
+					|| code.getName().endsWith(".for")
+					|| code.getName().endsWith(".f90") || code.getName().endsWith(
+					".f95"))
+					&& writer.getAnalyzer() instanceof FortranSourceCodeAnalyzer){
+				fortranIndexer.indexFileFortran(writer, code);
+			}
+		}
+		else{
+		for (int i = 0; i < files.length; i++) {
+			File f = files[i];
+			Directory d = TraceRecoveryFactory.eINSTANCE.createDirectory();
+			d.setPath(f.getAbsolutePath());
+			if (f.isDirectory() && !f.isHidden()) {
+				indexDir(writer, d, indexDir);
+			} else if (f.getName().endsWith(".java")
+					&& writer.getAnalyzer() instanceof JavaSourceCodeAnalyzer) {
+
+				javaIndexer.indexFileJava(writer, f);
+			} else if ((f.getName().endsWith(".f")
+					|| f.getName().endsWith(".for")
+					|| f.getName().endsWith(".f90") || f.getName().endsWith(
+					".f95"))
+					&& writer.getAnalyzer() instanceof FortranSourceCodeAnalyzer) {
+
+				fortranIndexer.indexFileFortran(writer, f);
+			}
+		}
+	}
+
 	}
 
 	// private void indexFile(IndexWriter writer2, File f) {
