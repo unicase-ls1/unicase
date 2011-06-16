@@ -63,13 +63,13 @@ public class JavaParser extends Parser {
 
 	}
 
-	public  ArrayList getImportDeclarations() {
+	public  ArrayList <String> getImportDeclarations() {
 		List imports = _unit.imports();
 		if(imports.size() == 0) return null;
-		ArrayList importDecl = new ArrayList();
-		ListIterator iter = imports.listIterator();
+		ArrayList <String> importDecl = new ArrayList <String>();
+		ListIterator <ImportDeclaration> iter = imports.listIterator();
 		while (iter.hasNext()) {
-			ImportDeclaration decl = (ImportDeclaration)iter.next();
+			ImportDeclaration decl = iter.next();
 			importDecl.add(decl.getName().toString());
 		}
 		return importDecl;
