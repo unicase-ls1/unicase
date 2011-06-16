@@ -9,7 +9,6 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: traceRecovery,
  traceRecovery.impl,
- traceRecovery.util,
  traceability.fortran,
  traceability.handler,
  traceability.java
@@ -25,5 +24,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.photran.core;bundle-version="6.0.0",
  org.eclipse.photran.core.vpg;bundle-version="6.0.0",
  org.unicase.codetrace;bundle-version="0.4.5",
- org.junit
+ org.junit,
+ org.unicase.workspace;bundle-version="0.7.3",
+ org.eclipse.emf.edit.ui;bundle-version="2.6.0"
 Bundle-ActivationPolicy: lazy
