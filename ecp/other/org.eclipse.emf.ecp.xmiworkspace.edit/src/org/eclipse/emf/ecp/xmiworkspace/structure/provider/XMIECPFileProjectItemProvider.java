@@ -7,15 +7,20 @@ package org.eclipse.emf.ecp.xmiworkspace.structure.provider;
 
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.provider.ECPProjectItemProvider;
-import org.eclipse.emf.ecp.xmiworkspace.structure.StructurePackage;
 import org.eclipse.emf.ecp.xmiworkspace.XmiUtil.PROJECT_STATUS;
+import org.eclipse.emf.ecp.xmiworkspace.structure.StructurePackage;
 import org.eclipse.emf.ecp.xmiworkspace.structure.XMIECPFileProject;
+import org.eclipse.emf.ecp.xmiworkspace.structure.impl.XMIECPFileProjectImpl;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -37,6 +42,9 @@ public class XMIECPFileProjectItemProvider
 	extends ECPProjectItemProvider
 	implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IItemFontProvider {
+	
+	private Map<Resource, XMIECPFileProjectImpl> resourceToProjectMap;
+		
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -45,7 +53,28 @@ public class XMIECPFileProjectItemProvider
 	 */
 	public XMIECPFileProjectItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
+		resourceToProjectMap = new HashMap<Resource, XMIECPFileProjectImpl>();
 	}
+
+
+	@Override
+	public void setTarget(Notifier target) {
+		// TODO Auto-generated method stub
+		super.setTarget(target);
+		if(target instanceof XMIECPFileProjectImpl){
+			XMIECPFileProjectImpl xmiecpFileProjectImpl = (XMIECPFileProjectImpl) target;
+			Resource mainResource = xmiecpFileProjectImpl.getMainResource();
+			mainResource.eAdapters().add(this);
+			setTarget(mainResource);
+			resourceToProjectMap.put(mainResource, xmiecpFileProjectImpl);
+		}
+	}
+	
+	@Override
+	public void dispose() {
+		resourceToProjectMap.clear();
+	}
+	
 
 	/**
 	 * This returns the property descriptors for the adapted class.
@@ -198,6 +227,12 @@ public class XMIECPFileProjectItemProvider
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
+		if (notification!=null && resourceToProjectMap.get(notification.getNotifier())!=null) {
+			XMIECPFileProjectImpl xmiecpFileProjectImpl = resourceToProjectMap.get(notification.getNotifier());
+			fireNotifyChanged(new ViewerNotification(notification, xmiecpFileProjectImpl, true, true));
+			//super.notifyChanged(notification);
+			return;			
+		}
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(XMIECPFileProject.class)) {
