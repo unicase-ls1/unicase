@@ -57,10 +57,15 @@ public class XMIECPFileProjectItemProvider
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#setTarget(org.eclipse.emf.common.notify.Notifier)
+	 */
 	@Override
 	public void setTarget(Notifier target) {
-		// TODO Auto-generated method stub
 		super.setTarget(target);
+		//also register for notifications on the corresponding resource to be able to trigger 
+		// viewer updates accordingly, see method notifiyChanged().
 		if(target instanceof XMIECPFileProjectImpl){
 			XMIECPFileProjectImpl xmiecpFileProjectImpl = (XMIECPFileProjectImpl) target;
 			Resource mainResource = xmiecpFileProjectImpl.getMainResource();
@@ -223,16 +228,23 @@ public class XMIECPFileProjectItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
+		
+		//in case the notification comes in from a resource then issue a viewer update on the appropriate project
 		if (notification!=null && resourceToProjectMap.get(notification.getNotifier())!=null) {
 			XMIECPFileProjectImpl xmiecpFileProjectImpl = resourceToProjectMap.get(notification.getNotifier());
 			fireNotifyChanged(new ViewerNotification(notification, xmiecpFileProjectImpl, true, true));
-			//super.notifyChanged(notification);
 			return;			
 		}
+		
+		notifyChangedGen(notification);
+	}
+
+
+	private void notifyChangedGen(Notification notification) {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(XMIECPFileProject.class)) {
