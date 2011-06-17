@@ -24,10 +24,10 @@ import org.eclipse.emf.emfstore.common.model.ModelPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.common.model.impl.IdentifiableElementImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.common.model.impl.IdentifiableElementImpl#getIdentifier <em>Identifier</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class IdentifiableElementImpl extends EObjectImpl implements IdentifiableElement {
@@ -35,7 +35,6 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -46,7 +45,6 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -65,7 +63,6 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,7 +72,6 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getIdentifier() {
@@ -84,7 +80,6 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setIdentifier(String newIdentifier) {
@@ -97,7 +92,6 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -111,7 +105,6 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -126,7 +119,6 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,7 +133,6 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -155,7 +146,6 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
