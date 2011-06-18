@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -200,6 +201,7 @@ public class ValidationView extends ViewPart {
 		column.getColumn().setWidth(100);
 		setLabelProviderAndComparator(column, new CreatorLabelProvider());
 
+
 		// content provider
 		tableViewer.setContentProvider(new ValidationContentProvider());
 		TableCursor tableCursor = new TableCursor(table, SWT.NONE);
@@ -300,6 +302,19 @@ public class ValidationView extends ViewPart {
 		tableViewer.getTable().setFocus();
 	}
 
+	/**
+	 * Updates the validation view table for the new live validation.
+	 * 
+	 * @param validationResults validation results.
+	 */
+	public void updateTable(Diagnostic diagnostic) {
+		tableViewer.setInput(diagnostic);
+		// this is added to fix the bug regarding context menu not being shown
+		// correctly in navigator, after validation viewer was shown.
+		tableViewer.getTable().setFocus();
+		
+	}
+	
 	private ArrayList<ValidationFilter> getFiltersFromExtensionPoint() {
 		if (validationFilters == null) {
 			validationFilters = new ArrayList<ValidationFilter>();
@@ -520,4 +535,5 @@ public class ValidationView extends ViewPart {
 			// TODO Auto-generated method stub
 		}
 	}
+
 }

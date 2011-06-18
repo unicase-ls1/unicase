@@ -6,7 +6,9 @@
  ******************************************************************************/
 package org.eclipse.emf.ecp.validation;
 
+
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -17,6 +19,7 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
@@ -25,10 +28,15 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
 import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.ecp.common.util.UiUtil;
+
 import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.service.IBatchValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * Handler to validate the project.
@@ -46,6 +54,8 @@ public class ValidateHandler extends AbstractHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
+		
+		
 		// the object that is to be validated
 		EObject toValidate = UiUtil.getModelElement(event);
 		try {
@@ -74,18 +84,29 @@ public class ValidateHandler extends AbstractHandler {
 				}
 			}.run(false);
 		}
+		// validation occurred and the validation view is being instantiated 
+		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		ValidationView validationView = null;
+		try {
+			validationView = (ValidationView) page.showView("org.eclipse.emf.ecp.validation.validationView");
+		} catch (PartInitException e) {
+			DialogHandler.showExceptionDialog(e);
+		}
+		validationView.updateTable(diagnostic);
+		
 		return null;
 	}
-
+	public Diagnostic diagnostic; 
 	/**
 	 * Perform validation run.
 	 * 
 	 * @param object the
 	 */
-	private void validateWithoutCommand(EObject object) {
-		Diagnostic diagnostic = Diagnostician.INSTANCE.validate(object);
+	public void validateWithoutCommand(EObject object) {
+		 diagnostic = Diagnostician.INSTANCE.validate(object);
 		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
 			System.err.println(diagnostic.getMessage());
+			System.out.println (diagnostic.getChildren().toString());
 			for (Iterator<Diagnostic> i = diagnostic.getChildren().iterator(); i.hasNext();) {
 				Diagnostic childDiagnostic = (Diagnostic) i.next();
 				switch (childDiagnostic.getSeverity()) {
@@ -106,6 +127,7 @@ public class ValidateHandler extends AbstractHandler {
 		ValidationClientSelector.setRunning(false);
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IResource resource = workspace.getRoot();
+		IStatus status = BasicDiagnostic.toIStatus(diagnostic);
 		try {
 			resource.deleteMarkers(markerType, true, 5);
 		} catch (CoreException e) {
@@ -122,5 +144,6 @@ public class ValidateHandler extends AbstractHandler {
 				}
 			}
 		}*/
+		
 	}
 }
