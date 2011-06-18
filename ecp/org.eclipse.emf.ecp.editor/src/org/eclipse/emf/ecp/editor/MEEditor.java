@@ -5,17 +5,28 @@
  * Contributors:
  ******************************************************************************/
 package org.eclipse.emf.ecp.editor;
-
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
 import org.eclipse.emf.ecp.common.model.ModelElementContextListener;
 import org.eclipse.emf.ecp.common.util.ShortLabelProvider;
@@ -28,8 +39,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.forms.IFormPart;
+import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
+
 
 /**
  * GUI view for editing MEs.
@@ -37,6 +51,7 @@ import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
  * @author helming
  * @author naughton
  */
+
 public class MEEditor extends SharedHeaderFormEditor {
 
 	/**
@@ -90,6 +105,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 				try {
 					newPage = (AbstractMEEditorPage) configTemp[i].createExecutableExtension("class");
 					FormPage createPage = newPage.createPage(this, editingDomain, modelElement);
+			
 					if (createPage != null) {
 						addPage(createPage);
 					}
@@ -211,17 +227,61 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 				}
 			};
+		
 			modelElementContext.addModelElementContextListener(modelElementContextListener);
 			modelElementChangeListener = new ModelElementChangeListener(modelElement) {
 
+				
+				
 				@Override
 				public void onChange(Notification notification) {
+					final EObject validate = modelElement;
 					Display.getDefault().asyncExec(new Runnable() {
 						public void run() {
+//							System.out.println("im onChange Listener");
 							updateIcon(input);
 							setPartName((new ShortLabelProvider()).getText(modelElement));
+	
 							if (mePage != null) {
 								mePage.updateSectionTitle();
+							}
+							
+							String message = "Please fill in correctly the following fields: ";
+							message = message + "\n";
+							message = message + "\n";
+							Diagnostic diagnostic = Diagnostician.INSTANCE.validate(validate);
+							if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
+//								System.err.println(diagnostic.getMessage());
+								for (Iterator<Diagnostic> i = diagnostic.getChildren().iterator(); i.hasNext();) {
+									Diagnostic childDiagnostic = (Diagnostic) i.next();
+									switch (childDiagnostic.getSeverity()) {
+									case Diagnostic.ERROR:
+									case Diagnostic.WARNING:{
+										if (childDiagnostic.getMessage().startsWith("The 'hasValideHeight'")){
+										message = message + "Height ";
+										message = message + "\n";}
+										else if (childDiagnostic.getMessage().startsWith("The 'hasValideEmail'")){
+											message = message + "Email ";
+											message = message + "\n";}
+										else if (childDiagnostic.getMessage().startsWith("The 'hasStreet'")){
+											message = message + "Street ";
+											message = message + "\n";}
+										else if (childDiagnostic.getMessage().startsWith("The 'hasStreetNumber'")){
+											message = message + "Street Number ";
+											message = message + "\n";}
+										else if (childDiagnostic.getMessage().startsWith("The 'hasValideBirthDate'")){
+											message = message + "Date of Birth ";
+											message = message + "\n";}
+										else if (childDiagnostic.getMessage().startsWith("The 'hasName'")){
+											message = message + "Name ";
+											message = message + "\n";}
+
+									}
+										break;
+									}
+									MEEditorPage.updateLiveValidation (message);
+						
+								}
 							}
 
 						}
@@ -235,11 +295,18 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 			labelProviderListener = new ILabelProviderListener() {
 				public void labelProviderChanged(LabelProviderChangedEvent event) {
+					final EObject validate = modelElement;
+					new ECPCommand(validate) {
+						@Override
+						protected void doRun() {
+							System.out.println("im label Listener");
+						}
+					}.run(false);
 					updateIcon(meInput);
 				}
 			};
 			meInput.getLabelProvider().addListener(labelProviderListener);
-
+			
 		} else {
 			throw new PartInitException("MEEditor is only appliable for MEEditorInputs");
 		}
