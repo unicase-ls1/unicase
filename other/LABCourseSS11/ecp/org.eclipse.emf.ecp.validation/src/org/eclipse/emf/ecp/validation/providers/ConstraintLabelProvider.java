@@ -6,6 +6,7 @@
  ******************************************************************************/
 package org.eclipse.emf.ecp.validation.providers;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 
