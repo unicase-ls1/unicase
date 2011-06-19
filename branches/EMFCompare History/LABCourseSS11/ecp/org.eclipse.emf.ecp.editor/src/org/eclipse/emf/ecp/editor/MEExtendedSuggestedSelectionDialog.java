@@ -16,6 +16,7 @@ import java.util.HashMap;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
+
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.swt.SWT;
@@ -126,7 +127,7 @@ MESuggestedSelectionDialog {
 
 			public void handleEvent(Event event) {
 				OpenXMIDialog dialog = new OpenXMIDialog(PlatformUI
-						.getWorkbench().getDisplay().getActiveShell());
+						.getWorkbench().getDisplay().getActiveShell(),"Import from XMI", "Please choose a location to an XMI-File");
 				dialog.open();
 				currentContext = dialog.getContext();
 				updateModelElements();
