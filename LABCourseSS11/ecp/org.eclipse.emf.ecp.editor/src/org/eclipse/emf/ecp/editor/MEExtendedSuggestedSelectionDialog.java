@@ -16,8 +16,8 @@ import java.util.HashMap;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
-import org.eclipse.emf.ecp.xmiworkspace.commands.ImportProjectHandler;
-import org.eclipse.emf.ecp.xmiworkspace.views.ImportProjectDialog;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
@@ -45,6 +45,7 @@ MESuggestedSelectionDialog {
 	private EObject baseElement;
 	private EReference eReference;
 	private boolean isAssociationClass;
+	private AdapterFactoryLabelProvider labelProvider;
 	
 	/**
 	 * The constructor.
@@ -52,21 +53,17 @@ MESuggestedSelectionDialog {
 	 * @param title The title of the dialog
 	 * @param message the message displayed
 	 * @param blockOnOpen block
-	 * @param elements The elements, which can be selected.
 	 * @param baseElement The element, to which the selection is made and to which other elements are compared.
 	 * @param reference the reference for which this is used
+	 * @param context the current context
+	 * @param isAssociationClass checks whether this dialog was called as a reference or an association class
 	 */
-	//	public MEExtendedSuggestedSelectionDialog(String title, String message,
-	//			boolean blockOnOpen, EObject baseElement, EReference reference,
-	//			Collection<EObject> elements) {
-	//		super(title, message, blockOnOpen, baseElement, reference, elements);
-	//	}
-
 	public MEExtendedSuggestedSelectionDialog(String title, String message, 
 			boolean blockOnOpen, EObject baseElement, EReference reference, 
 			ECPModelelementContext context, boolean isAssociationClass) {
 		super(title, message, blockOnOpen, baseElement, reference,
 				context.getAllModelElements());
+		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		this.baseElement = baseElement;
 		this.eReference = reference;
 		this.isAssociationClass = isAssociationClass;
@@ -80,7 +77,7 @@ MESuggestedSelectionDialog {
 
 		currentContextNeighbours = new HashMap<String, ECPModelelementContext>();
 		for (ECPModelelementContext tempContext : currentContext.getNeighbors()) {
-			currentContextNeighbours.put(tempContext.toString(), tempContext);
+			currentContextNeighbours.put(labelProvider.getText(tempContext), tempContext);
 		}		
 	}
 
@@ -134,7 +131,6 @@ MESuggestedSelectionDialog {
 				currentContext = dialog.getContext();
 				updateModelElements();
 			}
-			
 		});
 		
 		
