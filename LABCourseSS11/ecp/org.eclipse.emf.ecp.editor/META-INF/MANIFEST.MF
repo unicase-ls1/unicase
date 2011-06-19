@@ -16,3 +16,8 @@ Export-Package: org.eclipse.emf.ecp.editor,
  org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol,
  org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.associationclasscontrol
 Bundle-ClassPath: .
+Import-Package: org.eclipse.emf.ecp.xmiworkspace,
+ org.eclipse.emf.ecp.xmiworkspace.commands,
+ org.eclipse.emf.ecp.xmiworkspace.structure,
+ org.eclipse.emf.ecp.xmiworkspace.views,
+ org.eclipse.emf.ecp.xmiworkspace.views.listeners
