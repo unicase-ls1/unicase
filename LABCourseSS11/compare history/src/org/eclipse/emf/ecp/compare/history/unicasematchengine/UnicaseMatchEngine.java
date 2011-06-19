@@ -22,7 +22,6 @@ public class UnicaseMatchEngine extends GenericMatchEngine {
 			if (isSimilar(eObj, next)) {
 				resultObject = next;
 			}
-
 		}
 		return resultObject;
 	}
@@ -30,8 +29,11 @@ public class UnicaseMatchEngine extends GenericMatchEngine {
 		@Override
 	protected boolean isSimilar(EObject obj1, EObject obj2) throws FactoryException {	
 //		return EcoreUtil.equals(obj1.eClass().getEIDAttribute(), obj2.eClass().getEIDAttribute());
-		Project proj1 = ModelUtil.getProject(obj1);
-		Project proj2 = ModelUtil.getProject(obj2);
-		return proj1.getModelElementId(obj1).equals(proj2.getModelElementId(obj2));
+		if (obj1 instanceof Project || obj2 instanceof Project) {
+			return true;
 		}
+		Project proj1 = ModelUtil.getProject(obj1); 
+		Project	proj2 = ModelUtil.getProject(obj2);
+		return proj1.getModelElementId(obj1).equals(proj2.getModelElementId(obj2));
+	}
 }
