@@ -1163,6 +1163,14 @@
                    </iterate>
                 </visibleWhen>
              </command>
+             <command
+                   commandId="org.eclipse.emf.emfstore.client.ui.historybrowserview.compareRevisions"
+                   label="Compare Revisions"
+                   style="push">
+                <visibleWhen
+                      checkEnabled="false">
+                </visibleWhen>
+             </command>
           </menuContribution>
   </extension>
   
@@ -1326,6 +1334,11 @@
             defaultHandler="org.eclipse.emf.emfstore.client.ui.views.historybrowserview.handlers.ForceRevertHandler"
             id="org.eclipse.emf.emfstore.client.ui.historybrowserview.forcerevert"
             name="ForceRevertRevision">
+      </command>
+      <command
+            defaultHandler="org.eclipse.emf.emfstore.client.ui.views.historybrowserview.handlers.CompareRevisionsHandler"
+            id="org.eclipse.emf.emfstore.client.ui.historybrowserview.compareRevisions"
+            name="CompareRevisions">
       </command>
    </extension>
    <extension
