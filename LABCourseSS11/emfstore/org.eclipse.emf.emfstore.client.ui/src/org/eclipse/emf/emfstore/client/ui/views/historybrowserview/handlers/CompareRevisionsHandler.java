@@ -15,6 +15,7 @@ import java.util.List;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.model.versioning.HistoryInfo;
 import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
@@ -42,6 +43,8 @@ public class CompareRevisionsHandler extends AbstractHistoryViewHandler {
 		IStructuredSelection object = (IStructuredSelection) activeWorkbenchWindow
 				.getSelectionService().getSelection();
 		List list = object.toList();
+		Project project1;
+		Project project2;
 		if (list.size() == 2) {
 			for (int i = 0; i < list.size(); i++) {
 				TreeNode element = (TreeNode) list.get(i);
