@@ -39,7 +39,7 @@ Export-Package: org.eclipse.emf.ecp.common;
    org.eclipse.jface.resource,
    org.eclipse.ui,
    org.eclipse.swt.widgets",
- org.eclipse.emf.ecp.common.util;
+ org.eclipse.emf.ecp.common.utilities;
   uses:="org.eclipse.jface.window,
    org.eclipse.emf.ecore,
    org.eclipse.emf.ecp.model,

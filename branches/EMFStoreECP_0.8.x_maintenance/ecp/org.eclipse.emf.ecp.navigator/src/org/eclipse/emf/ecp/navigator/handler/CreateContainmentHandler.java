@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
-import org.eclipse.emf.ecp.common.util.ActionHelper;
 import org.eclipse.emf.ecp.common.util.UiUtil;
+import org.eclipse.emf.ecp.common.utilities.ActionHelper;
 
 /**
  * . This is the generic handler for commands to create containments of a model element

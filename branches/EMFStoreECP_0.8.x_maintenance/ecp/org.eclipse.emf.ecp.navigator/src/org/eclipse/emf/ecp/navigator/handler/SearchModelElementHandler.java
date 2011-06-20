@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
 import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
-import org.eclipse.emf.ecp.common.util.ActionHelper;
+import org.eclipse.emf.ecp.common.utilities.ActionHelper;
 import org.eclipse.emf.ecp.navigator.Activator;
 import org.eclipse.emf.ecp.navigator.dialogs.SearchModelElementDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
