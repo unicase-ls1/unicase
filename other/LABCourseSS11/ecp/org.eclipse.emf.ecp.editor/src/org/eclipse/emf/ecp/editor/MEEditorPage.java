@@ -6,19 +6,19 @@
  ******************************************************************************/
 package org.eclipse.emf.ecp.editor;
 
-import java.awt.Color;
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.JTextField;
-
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.emf.ecp.buildinvalidation.IControlBuildInValidationHandler;
 import org.eclipse.emf.ecp.common.commands.DeleteModelElementCommand;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
 import org.eclipse.emf.ecp.common.util.ShortLabelProvider;
@@ -62,7 +62,7 @@ import org.eclipse.ui.services.IEvaluationService;
 public class MEEditorPage extends FormPage {
 
 	private EObject modelElement;
-	private static FormToolkit toolkit;
+	private FormToolkit toolkit;
 	private List<AbstractMEControl> meControls = new ArrayList<AbstractMEControl>();
 
 	private static String activeModelelement = "activeModelelement";
@@ -72,11 +72,10 @@ public class MEEditorPage extends FormPage {
 	private List<IItemPropertyDescriptor> bottomAttributes = new ArrayList<IItemPropertyDescriptor>();
 	private Composite leftColumnComposite;
 	private Composite rightColumnComposite;
-	private static Composite bottomComposite;
+	private Composite bottomComposite;
 	private EStructuralFeature problemFeature;
 	private final ECPModelelementContext modelElementContext;
-	private static Composite topComposite;
-private static Label validationLabel;
+
 	/**
 	 * Default constructor.
 	 * 
@@ -122,7 +121,7 @@ private static Label validationLabel;
 		toolkit.decorateFormHeading(form.getForm());
 		Composite body = form.getBody();
 		body.setLayout(new GridLayout());
-		topComposite = toolkit.createComposite(body);
+		Composite topComposite = toolkit.createComposite(body);
 		topComposite.setLayout(new GridLayout());
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(topComposite);
 
@@ -148,8 +147,6 @@ private static Label validationLabel;
 		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(0, 0, 0, 0)
 			.applyTo(bottomComposite);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(bottomComposite);
-		
-		
 		// updateSectionTitle();
 		form.setImage(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(modelElement));
@@ -162,18 +159,7 @@ private static Label validationLabel;
 		createToolbar();
 		form.pack();
 		updateSectionTitle();
-		
-		Label label1 = toolkit.createLabel(topComposite, "Results of Live Validation");
-		label1.setSize(200, 50);
-		validationLabel = toolkit.createLabel(topComposite, "");
-		validationLabel.setSize(200, 200);
 	}
-	
-
-	public static  void updateLiveValidation (String message){	
-		validationLabel.setText(message);
-	}
-
 
 	/**
 	 * Updates the name of the section.
@@ -288,7 +274,6 @@ private static Label validationLabel;
 			if (meControl.getShowLabel()) {
 				Label label = toolkit.createLabel(attributeComposite,
 					itemPropertyDescriptor.getDisplayName(modelElement));
-				
 				label.setData(modelElement);
 				FeatureHintTooltipSupport.enableFor(label, itemPropertyDescriptor);
 				control = meControl.createControl(attributeComposite, SWT.WRAP, itemPropertyDescriptor, modelElement,
@@ -342,6 +327,33 @@ private static Label validationLabel;
 		}
 		leftColumnComposite.setFocus();
 	}
-
+	
+	public void updateLiveValidation() {
+		System.err.println("IM LIVE VALIDATION MEEDITORPAGE");
+		
+		for (AbstractMEControl meControl : this.meControls) {
+			if (meControl instanceof IControlBuildInValidationHandler) {
+				Diagnostic diagnostic = Diagnostician.INSTANCE.validate((EObject) meControl);
+				((IControlBuildInValidationHandler)meControl).handleValidation(diagnostic);
+			}
+		}
+		
+		
+		/*Diagnostic diagnostic = Diagnostician.INSTANCE.validate(modelElement);
+		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
+			System.err.println(diagnostic.getMessage());
+			for (Iterator<Diagnostic> i = diagnostic.getChildren().iterator(); i.hasNext();) {
+				Diagnostic childDiagnostic = (Diagnostic) i.next();		
+				switch (childDiagnostic.getSeverity()) {
+				case Diagnostic.ERROR:
+				case Diagnostic.WARNING:
+						System.err.println("\t" + childDiagnostic.getMessage());
+				default:
+					break;
+				}
+			}
+		}*/
+		
+	}
 
 }
