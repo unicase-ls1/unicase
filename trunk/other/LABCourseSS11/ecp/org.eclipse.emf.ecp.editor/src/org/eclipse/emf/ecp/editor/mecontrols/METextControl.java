@@ -7,10 +7,12 @@
 package org.eclipse.emf.ecp.editor.mecontrols;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.buildinvalidation.IControlBuildInValidationHandler;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -24,7 +26,7 @@ import org.eclipse.swt.widgets.Text;
  * 
  * @author helming
  */
-public class METextControl extends AbstractMEControl {
+public class METextControl extends AbstractMEControl implements IControlBuildInValidationHandler {
 
 	private Text text;
 
@@ -73,6 +75,11 @@ public class METextControl extends AbstractMEControl {
 			return PRIORITY;
 		}
 		return AbstractMEControl.DO_NOT_RENDER;
+	}
+
+	public void handleValidation(Diagnostic diagnostic) {
+		System.out.println("handleValidation METextControl");
+		
 	}
 
 }
