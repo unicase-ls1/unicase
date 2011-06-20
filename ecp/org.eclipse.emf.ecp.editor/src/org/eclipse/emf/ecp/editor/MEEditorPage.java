@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecp.common.commands.DeleteModelElementCommand;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
-import org.eclipse.emf.ecp.common.util.ShortLabelProvider;
+import org.eclipse.emf.ecp.common.utilities.ShortLabelProvider;
 import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
 import org.eclipse.emf.ecp.editor.mecontrols.FeatureHintTooltipSupport;
 import org.eclipse.emf.ecp.editor.mecontrols.METextControl;
