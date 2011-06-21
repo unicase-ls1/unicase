@@ -14,6 +14,7 @@ import org.apache.xmlrpc.serializer.TypeSerializerImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.common.model.util.SerializationException;
+import org.eclipse.emf.emfstore.server.ServerConfiguration;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
 
@@ -32,16 +33,18 @@ public class EObjectSerializer extends TypeSerializerImpl {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void write(ContentHandler pHandler, Object pObject)
-			throws SAXException {
+	public void write(ContentHandler pHandler, Object pObject) throws SAXException {
 		if (!(pObject instanceof EObject)) {
 			throw new SAXException("Couldn't serialize, no EObject found");
 		}
 		try {
-			write(pHandler, EOBJECT_TAG,
-					ModelUtil.eObjectToString((EObject) pObject));
+			// for now, href test should only be used in internal releases or dev mode
+			boolean overrideHref = ServerConfiguration.isReleaseVersion();
+
+			write(pHandler, EOBJECT_TAG, ModelUtil.eObjectToString((EObject) pObject, false, overrideHref));
 		} catch (SerializationException e) {
 			throw new SAXException("Couldn't serialize EObject", e);
 		}
 	}
+
 }
