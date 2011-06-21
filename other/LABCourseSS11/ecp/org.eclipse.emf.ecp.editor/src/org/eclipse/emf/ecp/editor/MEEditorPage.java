@@ -160,6 +160,7 @@ public class MEEditorPage extends FormPage {
 		createToolbar();
 		form.pack();
 		updateSectionTitle();
+		updateLiveValidation();
 	}
 
 	/**
