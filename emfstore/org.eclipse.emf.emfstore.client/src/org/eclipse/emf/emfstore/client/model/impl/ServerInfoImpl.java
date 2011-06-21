@@ -31,15 +31,15 @@ import org.eclipse.emf.emfstore.server.model.ProjectInfo;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ServerInfoImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ServerInfoImpl#getUrl <em>Url</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ServerInfoImpl#getPort <em>Port</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ServerInfoImpl#getProjectInfos <em>Project Infos</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ServerInfoImpl#getLastUsersession <em>Last Usersession</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.ServerInfoImpl#getCertificateAlias <em>Certificate Alias</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.impl.ServerInfoImpl#getName <em>Name</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.impl.ServerInfoImpl#getUrl <em>Url</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.impl.ServerInfoImpl#getPort <em>Port</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.impl.ServerInfoImpl#getProjectInfos <em>Project Infos</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.impl.ServerInfoImpl#getLastUsersession <em>Last Usersession</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.impl.ServerInfoImpl#getCertificateAlias <em>Certificate Alias</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
@@ -76,6 +76,7 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	/**
 	 * The cached value of the '{@link #getUrl() <em>Url</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getUrl()
 	 * @generated
 	 * @ordered
@@ -116,6 +117,7 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 	 * The cached value of the '{@link #getLastUsersession() <em>Last Usersession</em>}' reference.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getLastUsersession()
 	 * @generated
 	 * @ordered
@@ -144,6 +146,7 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ServerInfoImpl() {
@@ -152,6 +155,7 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -161,6 +165,7 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -169,18 +174,19 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.SERVER_INFO__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER_INFO__NAME, oldName, name));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getUrl() {
@@ -189,18 +195,19 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setUrl(String newUrl) {
 		String oldUrl = url;
 		url = newUrl;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.SERVER_INFO__URL, oldUrl, url));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER_INFO__URL, oldUrl, url));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getPort() {
@@ -209,31 +216,32 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPort(int newPort) {
 		int oldPort = port;
 		port = newPort;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.SERVER_INFO__PORT, oldPort, port));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER_INFO__PORT, oldPort, port));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ProjectInfo> getProjectInfos() {
 		if (projectInfos == null) {
-			projectInfos = new EObjectContainmentEList.Resolving<ProjectInfo>(
-					ProjectInfo.class, this,
-					ModelPackage.SERVER_INFO__PROJECT_INFOS);
+			projectInfos = new EObjectContainmentEList.Resolving<ProjectInfo>(ProjectInfo.class, this,
+				ModelPackage.SERVER_INFO__PROJECT_INFOS);
 		}
 		return projectInfos;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Usersession getLastUsersession() {
@@ -243,8 +251,7 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 			if (lastUsersession != oldLastUsersession) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ModelPackage.SERVER_INFO__LAST_USERSESSION,
-							oldLastUsersession, lastUsersession));
+						ModelPackage.SERVER_INFO__LAST_USERSESSION, oldLastUsersession, lastUsersession));
 			}
 		}
 		return lastUsersession;
@@ -252,6 +259,7 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Usersession basicGetLastUsersession() {
@@ -260,19 +268,20 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setLastUsersession(Usersession newLastUsersession) {
 		Usersession oldLastUsersession = lastUsersession;
 		lastUsersession = newLastUsersession;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.SERVER_INFO__LAST_USERSESSION,
-					oldLastUsersession, lastUsersession));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER_INFO__LAST_USERSESSION,
+				oldLastUsersession, lastUsersession));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getCertificateAlias() {
@@ -281,34 +290,34 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCertificateAlias(String newCertificateAlias) {
 		String oldCertificateAlias = certificateAlias;
 		certificateAlias = newCertificateAlias;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.SERVER_INFO__CERTIFICATE_ALIAS,
-					oldCertificateAlias, certificateAlias));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.SERVER_INFO__CERTIFICATE_ALIAS,
+				oldCertificateAlias, certificateAlias));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.SERVER_INFO__PROJECT_INFOS:
-			return ((InternalEList<?>) getProjectInfos()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getProjectInfos()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -334,6 +343,7 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -351,8 +361,7 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 			return;
 		case ModelPackage.SERVER_INFO__PROJECT_INFOS:
 			getProjectInfos().clear();
-			getProjectInfos().addAll(
-					(Collection<? extends ProjectInfo>) newValue);
+			getProjectInfos().addAll((Collection<? extends ProjectInfo>) newValue);
 			return;
 		case ModelPackage.SERVER_INFO__LAST_USERSESSION:
 			setLastUsersession((Usersession) newValue);
@@ -366,6 +375,7 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -395,17 +405,16 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ModelPackage.SERVER_INFO__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT
-					.equals(name);
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case ModelPackage.SERVER_INFO__URL:
-			return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT
-					.equals(url);
+			return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT.equals(url);
 		case ModelPackage.SERVER_INFO__PORT:
 			return port != PORT_EDEFAULT;
 		case ModelPackage.SERVER_INFO__PROJECT_INFOS:
@@ -413,14 +422,15 @@ public class ServerInfoImpl extends EObjectImpl implements ServerInfo {
 		case ModelPackage.SERVER_INFO__LAST_USERSESSION:
 			return lastUsersession != null;
 		case ModelPackage.SERVER_INFO__CERTIFICATE_ALIAS:
-			return CERTIFICATE_ALIAS_EDEFAULT == null ? certificateAlias != null
-					: !CERTIFICATE_ALIAS_EDEFAULT.equals(certificateAlias);
+			return CERTIFICATE_ALIAS_EDEFAULT == null ? certificateAlias != null : !CERTIFICATE_ALIAS_EDEFAULT
+				.equals(certificateAlias);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

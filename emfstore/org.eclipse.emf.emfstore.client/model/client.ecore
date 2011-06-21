@@ -73,10 +73,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="waitingUploads" upperBound="-1"
         eType="ecore:EClass ../../org.eclipse.emf.emfstore.server.model/model/server.ecore#//FileIdentifier"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
-        eType="#//PropertyMapEntry" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="changedSharedProperties"
-        upperBound="-1" eType="#//PropertyMapEntry" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperationComposite">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
@@ -101,12 +97,5 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="notifications" upperBound="-1"
         eType="ecore:EClass ../../org.eclipse.emf.emfstore.server.model/model/server.ecore#//notification/ESNotification"
         containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PropertyStringValue" eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EObject">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PropertyMapEntry" instanceClassName="java.util.Map$Entry">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass ../../org.eclipse.emf.emfstore.common.model/model/common.ecore#//EMFStoreProperty"/>
   </eClassifiers>
 </ecore:EPackage>
