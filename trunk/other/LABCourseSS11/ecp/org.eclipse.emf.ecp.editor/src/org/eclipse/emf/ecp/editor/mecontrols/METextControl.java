@@ -12,13 +12,16 @@ import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecp.buildinvalidation.controlHandler.*;
+import org.eclipse.emf.ecp.buildInValidation.IControlBuildInValidationHandler;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 
 /**
@@ -78,7 +81,16 @@ public class METextControl extends AbstractMEControl implements IControlBuildInV
 	}
 
 	public void handleValidation(Diagnostic diagnostic) {
-		System.out.println("handleValidation METextControl");
+		Device device = Display.getCurrent();
+		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
+			Color color = new Color(device, 255, 0 ,0);
+			this.text.setBackground(color);
+			this.text.setToolTipText("Wrong Input!");
+		} else {
+			Color color = new Color(device, 255, 255, 255);
+			this.text.setBackground(color);
+			this.text.setToolTipText("");
+		}
 		
 	}
 
