@@ -13,7 +13,8 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.test.SetupHelper;
 import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.server.connection.rmi.SerializationUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.util.SerializationException;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.emf.emfstore.server.exceptions.UnknownSessionException;
 import org.eclipse.emf.emfstore.server.model.ProjectInfo;
@@ -177,9 +178,10 @@ public class ServerInterfaceTest extends ServerTests {
 	 * Gets changes.
 	 * 
 	 * @throws EmfStoreException in case of failure
+	 * @throws SerializationException in case of failure
 	 */
 	@Test
-	public void getChangesTest() throws EmfStoreException {
+	public void getChangesTest() throws EmfStoreException, SerializationException {
 		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
 
 		AttributeOperation attributeOperation = OperationsFactory.eINSTANCE.createAttributeOperation();
@@ -201,8 +203,8 @@ public class ServerInterfaceTest extends ServerTests {
 		assertTrue(changes.size() == 1);
 		for (ChangePackage cp : changes) {
 			assertTrue(cp.getOperations().size() == 1);
-			assertTrue(SerializationUtil.eObjectToString(cp.getOperations().get(0)).equals(
-				SerializationUtil.eObjectToString(attributeOperation)));
+			assertTrue(ModelUtil.eObjectToString(cp.getOperations().get(0)).equals(
+				ModelUtil.eObjectToString(attributeOperation)));
 		}
 
 	}
