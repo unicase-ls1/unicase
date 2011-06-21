@@ -50,7 +50,8 @@ public class DirtyResourceSet {
 	public void save() {
 		Set<Resource> resourcesToRemove = new HashSet<Resource>();
 		for (Resource resource : resources) {
-			if (resource.getURI() == null) {
+			if (resource.getURI() == null
+					|| resource.getURI().toString().equals("")) {
 				continue;
 			}
 			try {
@@ -62,7 +63,8 @@ public class DirtyResourceSet {
 		}
 		resources.removeAll(resourcesToRemove);
 		if (resources.size() > 0) {
-			String message = resources.size() + " unsaved resources remained in the dirty resource set!";
+			String message = resources.size()
+					+ " unsaved resources remained in the dirty resource set!";
 			WorkspaceUtil.logWarning(message, null);
 		}
 	}
