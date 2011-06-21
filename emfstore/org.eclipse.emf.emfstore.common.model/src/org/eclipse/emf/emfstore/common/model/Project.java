@@ -21,15 +21,20 @@ import org.eclipse.emf.emfstore.common.model.util.NotifiableIdEObjectCollection;
 import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Project</b></em>'.
+ * <!-- begin-user-doc --> A representation of the model object '
+ * <em><b>Project</b></em>'.
  * 
- * @implements IAdaptable, NotifiableIdEObjectCollection <!-- end-user-doc -->
+ * @implements IAdaptable <!-- end-user-doc -->
  * 
  *             <p>
  *             The following features are supported:
  *             <ul>
- *             <li>{@link org.eclipse.emf.emfstore.common.model.Project#getModelElements <em>Model Elements</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.common.model.Project#getCutElements <em>Cut Elements</em>}</li>
+ *             <li>
+ *             {@link org.eclipse.emf.emfstore.common.model.Project#getModelElements
+ *             <em>Model Elements</em>}</li>
+ *             <li>
+ *             {@link org.eclipse.emf.emfstore.common.model.Project#getCutElements
+ *             <em>Cut Elements</em>}</li>
  *             </ul>
  *             </p>
  * 
@@ -37,19 +42,21 @@ import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
  * @model
  * @generated
  */
-public interface Project extends EObject, IAdaptable, NotifiableIdEObjectCollection {
+public interface Project extends EObject, IAdaptable,
+		NotifiableIdEObjectCollection {
 
 	/**
-	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Model Elements</b></em>' containment
+	 * reference list. The list contents are of type
+	 * {@link org.eclipse.emf.ecore.EObject}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Model Elements</em>' containment reference list isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Model Elements</em>' containment reference
+	 * list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Model Elements</em>' containment reference list.
+	 * @return the value of the '<em>Model Elements</em>' containment reference
+	 *         list.
 	 * @see org.eclipse.emf.emfstore.common.model.ModelPackage#getProject_ModelElements()
 	 * @model containment="true" resolveProxies="true" ordered="false"
 	 * @generated
@@ -64,19 +71,21 @@ public interface Project extends EObject, IAdaptable, NotifiableIdEObjectCollect
 	/**
 	 * Initializes the ID caches of the project with the given mappings.
 	 */
-	void initCaches(Map<EObject, ModelElementId> eObjectToIdMap, Map<ModelElementId, EObject> idToEObjectMap);
+	void initCaches(Map<EObject, ModelElementId> eObjectToIdMap,
+			Map<ModelElementId, EObject> idToEObjectMap);
 
 	/**
-	 * Returns the value of the '<em><b>Cut Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Cut Elements</b></em>' containment
+	 * reference list. The list contents are of type
+	 * {@link org.eclipse.emf.ecore.EObject}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Cut Elements</em>' containment reference list isn't clear, there really should be more
-	 * of a description here...
+	 * If the meaning of the '<em>Cut Elements</em>' containment reference list
+	 * isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Cut Elements</em>' containment reference list.
+	 * @return the value of the '<em>Cut Elements</em>' containment reference
+	 *         list.
 	 * @see org.eclipse.emf.emfstore.common.model.ModelPackage#getProject_CutElements()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
@@ -99,7 +108,8 @@ public interface Project extends EObject, IAdaptable, NotifiableIdEObjectCollect
 	 * @return a list of model elements of the given type
 	 * @generated NOT
 	 */
-	<T extends EObject> EList<T> getAllModelElementsbyClass(EClass modelElementClass, EList<T> list, Boolean subclasses);
+	<T extends EObject> EList<T> getAllModelElementsbyClass(
+			EClass modelElementClass, EList<T> list, Boolean subclasses);
 
 	/**
 	 * Retrieve a list of ALL model elements of a certain type in project.
@@ -114,7 +124,8 @@ public interface Project extends EObject, IAdaptable, NotifiableIdEObjectCollect
 	 * @return a list of model elements of the given type
 	 * @generated NOT
 	 */
-	<T extends EObject> EList<T> getAllModelElementsbyClass(EClass modelElementClass, EList<T> list);
+	<T extends EObject> EList<T> getAllModelElementsbyClass(
+			EClass modelElementClass, EList<T> list);
 
 	/**
 	 * Retrieve a list of model elements of a certain type in project that are
@@ -130,7 +141,8 @@ public interface Project extends EObject, IAdaptable, NotifiableIdEObjectCollect
 	 * @return a list of model elements of the given type
 	 * @generated NOT
 	 */
-	<T extends EObject> EList<T> getModelElementsByClass(EClass modelElementClass, EList<T> list);
+	<T extends EObject> EList<T> getModelElementsByClass(
+			EClass modelElementClass, EList<T> list);
 
 	/**
 	 * Returns whether the project contains the exact same instance of the model
@@ -152,7 +164,8 @@ public interface Project extends EObject, IAdaptable, NotifiableIdEObjectCollect
 	EObject getModelElement(ModelElementId modelElementId);
 
 	/**
-	 * Add an observer to the project. Will be notified on project changes. See {@link ProjectChangeObserver}.
+	 * Add an observer to the project. Will be notified on project changes. See
+	 * {@link ProjectChangeObserver}.
 	 * 
 	 * @param projectChangeObserver
 	 *            the change observer
@@ -194,7 +207,8 @@ public interface Project extends EObject, IAdaptable, NotifiableIdEObjectCollect
 	 * @param idMap
 	 *            a map containing the ID of the model element and its children
 	 */
-	void addModelElement(EObject newModelElement, Map<EObject, ModelElementId> idMap);
+	void addModelElement(EObject newModelElement,
+			Map<EObject, ModelElementId> idMap);
 
 	/**
 	 * Returns whether the project contains a model element with the same id.
