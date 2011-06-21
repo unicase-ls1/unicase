@@ -41,7 +41,7 @@ public class EObjectSerializer extends TypeSerializerImpl {
 			// for now, href test should only be used in internal releases or dev mode
 			boolean overrideHref = ServerConfiguration.isReleaseVersion();
 
-			write(pHandler, EOBJECT_TAG, ModelUtil.eObjectToString((EObject) pObject, false, overrideHref));
+			write(pHandler, EOBJECT_TAG, ModelUtil.eObjectToString((EObject) pObject, false, overrideHref, false));
 		} catch (SerializationException e) {
 			throw new SAXException("Couldn't serialize EObject", e);
 		}
