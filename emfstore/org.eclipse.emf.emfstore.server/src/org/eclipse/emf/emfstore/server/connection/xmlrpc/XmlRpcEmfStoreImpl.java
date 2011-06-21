@@ -221,11 +221,16 @@ public class XmlRpcEmfStoreImpl implements EmfStore, AuthenticationControl {
 		return getEmfStore().uploadFileChunk(sessionId, projectId, fileChunk);
 	}
 
-	public void transmitEMFProperty(SessionId sessionId,
-			EMFStoreProperty property, ProjectId projectId)
+	public void transmitEMFProperties(SessionId sessionId,
+			List<EMFStoreProperty> properties, ProjectId projectId)
 			throws EmfStoreException {
-		getEmfStore().transmitEMFProperty(sessionId, property, projectId);
+		getEmfStore().transmitEMFProperties(sessionId, properties, projectId);
 
+	}
+
+	public List<EMFStoreProperty> getEMFProperties(SessionId sessionId,
+			ProjectId projectId) throws EmfStoreException {
+		return getEmfStore().getEMFProperties(sessionId, projectId);
 	}
 
 }
