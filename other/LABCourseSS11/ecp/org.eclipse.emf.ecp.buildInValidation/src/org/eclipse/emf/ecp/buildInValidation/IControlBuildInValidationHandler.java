@@ -1,4 +1,4 @@
-package org.eclipse.emf.ecp.buildinvalidation1;
+package org.eclipse.emf.ecp.buildInValidation;
 
 import org.eclipse.emf.common.util.Diagnostic;
 
