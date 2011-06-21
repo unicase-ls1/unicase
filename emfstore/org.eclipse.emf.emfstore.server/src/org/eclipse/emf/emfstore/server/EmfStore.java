@@ -359,11 +359,6 @@ public interface EmfStore extends EmfStoreInterface {
 	void transmitProperty(SessionId sessionId, OrgUnitProperty changedProperty,
 			ACUser tmpUser, ProjectId projectId) throws EmfStoreException;
 
-	void transmitEMFProperties(SessionId sessionId,
-			List<EMFStoreProperty> properties, ProjectId projectId)
-			throws EmfStoreException;
-
-	List<EMFStoreProperty> getEMFProperties(SessionId sessionId,
+	void transmitEMFProperty(SessionId sessionId, EMFStoreProperty property,
 			ProjectId projectId) throws EmfStoreException;
-
 }
