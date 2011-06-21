@@ -1062,4 +1062,6 @@ public interface ProjectSpace extends IdentifiableElement {
 	void setEMFStoreProperty(EMFStoreProperty property);
 
 	void setChangedEMFStoreProperty(EMFStoreProperty property);
+
+	void unsetChangedSharedEMFStoreProperties();
 } // ProjectContainer

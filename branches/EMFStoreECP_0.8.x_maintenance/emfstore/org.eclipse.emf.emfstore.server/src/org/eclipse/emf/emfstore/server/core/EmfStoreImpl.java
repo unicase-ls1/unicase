@@ -283,11 +283,17 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 				changedProperty, user, projectId);
 	}
 
-	public void transmitEMFProperty(SessionId sessionId,
-			EMFStoreProperty property, ProjectId projectId)
+	public void transmitEMFProperties(SessionId sessionId,
+			List<EMFStoreProperty> properties, ProjectId projectId)
 			throws EmfStoreException {
 		// TODO Auto-generated method stub
 
+	}
+
+	public List<EMFStoreProperty> getEMFProperties(SessionId sessionId,
+			ProjectId projectId) throws EmfStoreException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

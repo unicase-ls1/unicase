@@ -241,10 +241,16 @@ public class XmlRpcConnectionManager extends
 				FileTransferInformation.class, sessionId, projectId, fileChunk);
 	}
 
-	public void transmitEMFProperty(SessionId sessionId,
-			EMFStoreProperty property, ProjectId projectId)
+	public void transmitEMFProperties(SessionId sessionId,
+			List<EMFStoreProperty> properties, ProjectId projectId)
 			throws EmfStoreException {
-		getConnectionProxy(sessionId).call("transmitEMFProperty", sessionId,
-				property, projectId);
+		getConnectionProxy(sessionId).call("transmitEMFProperties", sessionId,
+				properties, projectId);
+	}
+
+	public List<EMFStoreProperty> getEMFProperties(SessionId sessionId,
+			ProjectId projectId) throws EmfStoreException {
+		return getConnectionProxy(sessionId).callWithListResult(
+				"getEMFProperties", EMFStoreProperty.class, projectId);
 	}
 }

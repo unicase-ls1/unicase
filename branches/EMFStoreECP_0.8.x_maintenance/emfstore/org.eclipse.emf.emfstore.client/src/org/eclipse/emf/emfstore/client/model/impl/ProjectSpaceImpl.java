@@ -2937,4 +2937,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		this.changedSharedProperties.put(property.getKey(), property);
 	}
 
+	public void unsetChangedSharedEMFStoreProperties() {
+		this.changedSharedProperties.clear();
+	}
+
 } // ProjectContainerImpl

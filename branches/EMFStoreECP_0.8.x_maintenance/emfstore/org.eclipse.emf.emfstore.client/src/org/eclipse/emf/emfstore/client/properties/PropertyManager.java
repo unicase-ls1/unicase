@@ -1,6 +1,7 @@
 package org.eclipse.emf.emfstore.client.properties;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.EMap;
@@ -13,6 +14,12 @@ import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.common.model.EMFStorePropertyType;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 
+/**
+ * This class handles shared and local properties which are bundled to the
+ * project space.
+ * 
+ * @author haunolder
+ * **/
 public final class PropertyManager {
 
 	private final ProjectSpace projectSpace;
@@ -78,16 +85,35 @@ public final class PropertyManager {
 		return getProperty(this.sharedProperties, key);
 	}
 
+	/**
+	 * Transmit changed shared properties to the server. Clears the
+	 * changedSharedProperties List and fills shareProperties with the actual
+	 * properties from the server.
+	 * 
+	 * @throws EmfStoreException
+	 * */
 	public void transmit() throws EmfStoreException {
 		EMap<String, EMFStoreProperty> changedProperties = this.projectSpace
 				.getChangedSharedProperties();
-		for (EMFStoreProperty prop : changedProperties.values()) {
-			WorkspaceManager
-					.getInstance()
-					.getConnectionManager()
-					.transmitEMFProperty(
-							this.projectSpace.getUsersession().getSessionId(),
-							prop, this.projectSpace.getProjectId());
+		WorkspaceManager
+				.getInstance()
+				.getConnectionManager()
+				.transmitEMFProperties(
+						this.projectSpace.getUsersession().getSessionId(),
+						(List<EMFStoreProperty>) changedProperties.values(),
+						this.projectSpace.getProjectId());
+		this.projectSpace.unsetChangedSharedEMFStoreProperties();
+
+		List<EMFStoreProperty> sharedProperties = WorkspaceManager
+				.getInstance()
+				.getConnectionManager()
+				.getEMFProperties(
+						this.projectSpace.getUsersession().getSessionId(),
+						this.projectSpace.getProjectId());
+
+		for (EMFStoreProperty prop : sharedProperties) {
+			this.sharedProperties.put(prop.getKey(), prop);
+			this.projectSpace.setEMFStoreProperty(prop);
 		}
 	}
 
