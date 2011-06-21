@@ -1,4 +1,4 @@
-package org.eclipse.emf.ecp.buildinvalidation1;
+package org.eclipse.emf.ecp.buildInValidation;
 
 import java.util.Iterator;
 
