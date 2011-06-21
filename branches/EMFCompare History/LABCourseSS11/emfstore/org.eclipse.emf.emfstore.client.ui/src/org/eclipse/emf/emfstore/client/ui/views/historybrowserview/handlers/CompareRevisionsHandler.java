@@ -53,6 +53,10 @@ public class CompareRevisionsHandler extends AbstractHistoryViewHandler {
 						.clone(historyInfo.getPrimerySpec());
 				final ProjectSpace projectSpace = view.getProjectSpace();
 			}
+			if(HistoryCompare.hasRegisteredExtensions()){
+				// TODO replace null by the two EObjects representing the two Project Revisions
+				HistoryCompare.handleRegisteredExtensions(null, null);
+			}
 		}
 
 		return null;

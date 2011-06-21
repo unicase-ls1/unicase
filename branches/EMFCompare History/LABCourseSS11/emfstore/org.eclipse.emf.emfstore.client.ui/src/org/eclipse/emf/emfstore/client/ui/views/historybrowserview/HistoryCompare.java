@@ -35,7 +35,7 @@ public class HistoryCompare {
 	 * 
 	 * @return true if there is an extension or false if not
 	 */
-	public boolean hasRegisteredExtensions() {
+	public static boolean hasRegisteredExtensions() {
 		IConfigurationElement[] config = Platform.getExtensionRegistry()
 				.getConfigurationElementsFor(HISTORY_COMPARE_ID);
 		return (config.length != 0);
@@ -51,7 +51,7 @@ public class HistoryCompare {
 	 * @param e2
 	 *            EObject two to compare
 	 */
-	public void handleRegisteredExtensions(final EObject e1, final EObject e2) {
+	public static void handleRegisteredExtensions(final EObject e1, final EObject e2) {
 		IConfigurationElement[] config = Platform.getExtensionRegistry()
 				.getConfigurationElementsFor(HISTORY_COMPARE_ID);
 		try {
