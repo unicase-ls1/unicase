@@ -13,8 +13,6 @@ import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
 import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
 import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.ecp.common.util.UiUtil;
-import org.eclipse.emf.ecp.validation.Activator;
-import org.eclipse.emf.ecp.validation.ValidationView;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -37,7 +35,6 @@ public class ValidateHandler extends AbstractHandler {
 				toValidate = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject().getRootContainer();
 			}
 		} catch (NoWorkspaceException e) {
-			Activator.getDefault().logException("No Workspace found for validation!", e);
 			return null;
 		}
 	

@@ -1,4 +1,4 @@
-package org.eclipse.emf.ecp.buildinvalidation;
+package org.eclipse.emf.ecp.buildinvalidation.controlHandler;
 
 import org.eclipse.emf.common.util.Diagnostic;
 

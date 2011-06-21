@@ -18,7 +18,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.Diagnostician;
-import org.eclipse.emf.ecp.buildinvalidation.IControlBuildInValidationHandler;
+import org.eclipse.emf.ecp.buildinvalidation.controlHandler.*;
 import org.eclipse.emf.ecp.common.commands.DeleteModelElementCommand;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
 import org.eclipse.emf.ecp.common.util.ShortLabelProvider;
@@ -333,7 +333,9 @@ public class MEEditorPage extends FormPage {
 		
 		for (AbstractMEControl meControl : this.meControls) {
 			if (meControl instanceof IControlBuildInValidationHandler) {
-				Diagnostic diagnostic = Diagnostician.INSTANCE.validate((EObject) meControl);
+				EObject eObject = meControl.getModelElement();
+				
+				Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject);
 				((IControlBuildInValidationHandler)meControl).handleValidation(diagnostic);
 			}
 		}
