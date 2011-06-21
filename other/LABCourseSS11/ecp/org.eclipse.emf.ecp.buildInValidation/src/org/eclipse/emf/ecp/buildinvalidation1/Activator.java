@@ -1,4 +1,4 @@
-package org.eclipse.emf.ecp.buildinvalidation;
+package org.eclipse.emf.ecp.buildinvalidation1;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
