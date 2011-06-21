@@ -16,7 +16,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.emfstore.client.model.exceptions.ChangeConflictException;
@@ -29,8 +28,6 @@ import org.eclipse.emf.emfstore.client.model.observers.CommitObserver;
 import org.eclipse.emf.emfstore.client.model.observers.ConflictResolver;
 import org.eclipse.emf.emfstore.client.model.observers.UpdateObserver;
 import org.eclipse.emf.emfstore.client.model.preferences.PropertyKey;
-import org.eclipse.emf.emfstore.client.properties.PropertyManager;
-import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.common.model.IdentifiableElement;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.server.exceptions.BaseVersionOutdatedException;
@@ -53,7 +50,6 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOpera
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Project Container</b></em>'. <!-- end-user-doc -->
- * 
  * <p>
  * The following features are supported:
  * <ul>
@@ -66,6 +62,8 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOpera
  * <li>
  * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectDescription
  * <em>Project Description</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getOperations
+ * <em>Operations</em>}</li>
  * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getEvents <em>
  * Events</em>}</li>
  * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getUsersession
@@ -82,30 +80,10 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOpera
  * <li>
  * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getOldLogMessages
  * <em>Old Log Messages</em>}</li>
- * <li>
- * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getLocalOperations
- * <em>Local Operations</em>}</li>
- * <li>
- * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getNotifications
- * <em>Notifications</em>}</li>
- * <li>
- * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getEventComposite
- * <em>Event Composite</em>}</li>
- * <li>
- * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getNotificationComposite
- * <em>Notification Composite</em>}</li>
- * <li>
- * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getWaitingUploads
- * <em>Waiting Uploads</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProperties
- * <em>Properties</em>}</li>
- * <li>
- * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getChangedSharedProperties
- * <em>Changed Shared Properties</em>}</li>
  * </ul>
  * </p>
  * 
- * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace()
+ * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getProjectSpace()
  * @model
  * @generated
  */
@@ -550,45 +528,6 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @generated
 	 */
 	EList<FileIdentifier> getWaitingUploads();
-
-	/**
-	 * Returns the value of the '<em><b>Properties</b></em>' containment
-	 * reference list. The list contents are of type
-	 * {@link org.eclipse.emf.emfstore.common.model.EMFStoreProperty}. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Properties</em>' containment reference list
-	 * isn't clear, there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Properties</em>' containment reference
-	 *         list.
-	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_Properties()
-	 * @model containment="true" resolveProxies="true"
-	 * @generated
-	 */
-	EMap<String, EMFStoreProperty> getProperties();
-
-	/**
-	 * Returns the value of the '<em><b>Changed Shared Properties</b></em>'
-	 * containment reference list. The list contents are of type
-	 * {@link org.eclipse.emf.emfstore.common.model.EMFStoreProperty}. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Changed Shared Properties</em>' containment
-	 * reference list isn't clear, there really should be more of a description
-	 * here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Changed Shared Properties</em>' containment
-	 *         reference list.
-	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_ChangedSharedProperties()
-	 * @model containment="true" resolveProxies="true"
-	 * @generated
-	 */
-	EMap<String, EMFStoreProperty> getChangedSharedProperties();
 
 	/**
 	 * <!-- begin-user-doc --> Commit the all pending changes of the project.
@@ -1056,12 +995,4 @@ public interface ProjectSpace extends IdentifiableElement {
 	FileInformation getFileInfo(FileIdentifier fileIdentifier);
 
 	OperationManager getOperationManager();
-
-	PropertyManager getPropertyManager();
-
-	void setEMFStoreProperty(EMFStoreProperty property);
-
-	void setChangedEMFStoreProperty(EMFStoreProperty property);
-
-	void unsetChangedSharedEMFStoreProperties();
 } // ProjectContainer
