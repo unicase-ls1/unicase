@@ -12,13 +12,10 @@ package org.eclipse.emf.emfstore.common.model.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.emfstore.common.model.AssociationClassElement;
-import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
-import org.eclipse.emf.emfstore.common.model.EMFStorePropertyType;
 import org.eclipse.emf.emfstore.common.model.IdentifiableElement;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.ModelFactory;
@@ -32,12 +29,14 @@ import org.eclipse.emf.emfstore.common.model.UniqueIdentifier;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass projectEClass = null;
@@ -45,6 +44,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass uniqueIdentifierEClass = null;
@@ -52,6 +52,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass identifiableElementEClass = null;
@@ -59,6 +60,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass modelElementIdEClass = null;
@@ -66,6 +68,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass modelVersionEClass = null;
@@ -73,6 +76,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass nonDomainElementEClass = null;
@@ -80,23 +84,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass associationClassElementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass emfStorePropertyEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum emfStorePropertyTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -119,6 +110,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -126,10 +118,11 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link ModelPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link ModelPackage#eINSTANCE} when that field is accessed. Clients should not
+	 * invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -162,6 +155,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getProject() {
@@ -171,6 +165,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProject_ModelElements() {
@@ -180,6 +175,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProject_CutElements() {
@@ -189,6 +185,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getUniqueIdentifier() {
@@ -198,6 +195,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getUniqueIdentifier_Id() {
@@ -207,6 +205,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getIdentifiableElement() {
@@ -216,6 +215,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getIdentifiableElement_Identifier() {
@@ -225,6 +225,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getModelElementId() {
@@ -234,6 +235,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getModelVersion() {
@@ -243,6 +245,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getModelVersion_ReleaseNumber() {
@@ -252,6 +255,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getNonDomainElement() {
@@ -261,6 +265,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAssociationClassElement() {
@@ -270,51 +275,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getEMFStoreProperty() {
-		return emfStorePropertyEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getEMFStoreProperty_Key() {
-		return (EAttribute) emfStorePropertyEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEMFStoreProperty_Value() {
-		return (EReference) emfStorePropertyEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getEMFStoreProperty_Type() {
-		return (EAttribute) emfStorePropertyEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getEMFStorePropertyType() {
-		return emfStorePropertyTypeEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelFactory getModelFactory() {
@@ -324,15 +285,17 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -359,28 +322,22 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		nonDomainElementEClass = createEClass(NON_DOMAIN_ELEMENT);
 
 		associationClassElementEClass = createEClass(ASSOCIATION_CLASS_ELEMENT);
-
-		emfStorePropertyEClass = createEClass(EMF_STORE_PROPERTY);
-		createEAttribute(emfStorePropertyEClass, EMF_STORE_PROPERTY__KEY);
-		createEReference(emfStorePropertyEClass, EMF_STORE_PROPERTY__VALUE);
-		createEAttribute(emfStorePropertyEClass, EMF_STORE_PROPERTY__TYPE);
-
-		// Create enums
-		emfStorePropertyTypeEEnum = createEEnum(EMF_STORE_PROPERTY_TYPE);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -435,22 +392,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		initEClass(associationClassElementEClass, AssociationClassElement.class, "AssociationClassElement",
 			IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(emfStorePropertyEClass, EMFStoreProperty.class, "EMFStoreProperty", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEMFStoreProperty_Key(), ecorePackage.getEString(), "key", null, 0, 1, EMFStoreProperty.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEMFStoreProperty_Value(), ecorePackage.getEObject(), null, "value", null, 0, 1,
-			EMFStoreProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEMFStoreProperty_Type(), this.getEMFStorePropertyType(), "type", null, 0, 1,
-			EMFStoreProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-
-		// Initialize enums and add enum literals
-		initEEnum(emfStorePropertyTypeEEnum, EMFStorePropertyType.class, "EMFStorePropertyType");
-		addEEnumLiteral(emfStorePropertyTypeEEnum, EMFStorePropertyType.SHARED);
-		addEEnumLiteral(emfStorePropertyTypeEEnum, EMFStorePropertyType.LOCAL);
 
 		// Create resource
 		createResource(eNS_URI);
