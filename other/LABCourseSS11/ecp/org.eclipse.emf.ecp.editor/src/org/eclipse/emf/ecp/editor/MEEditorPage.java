@@ -15,10 +15,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.Diagnostician;
-import org.eclipse.emf.ecp.buildinvalidation.controlHandler.*;
+import org.eclipse.emf.ecp.buildInValidation.IControlBuildInValidationHandler;
 import org.eclipse.emf.ecp.common.commands.DeleteModelElementCommand;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
 import org.eclipse.emf.ecp.common.util.ShortLabelProvider;
@@ -331,31 +332,21 @@ public class MEEditorPage extends FormPage {
 	public void updateLiveValidation() {
 		System.err.println("IM LIVE VALIDATION MEEDITORPAGE");
 		
-		for (AbstractMEControl meControl : this.meControls) {
-			if (meControl instanceof IControlBuildInValidationHandler) {
-				EObject eObject = meControl.getModelElement();
-				
-				Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject);
-				((IControlBuildInValidationHandler)meControl).handleValidation(diagnostic);
-			}
-		}
-		
-		
-		/*Diagnostic diagnostic = Diagnostician.INSTANCE.validate(modelElement);
-		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
-			System.err.println(diagnostic.getMessage());
-			for (Iterator<Diagnostic> i = diagnostic.getChildren().iterator(); i.hasNext();) {
-				Diagnostic childDiagnostic = (Diagnostic) i.next();		
-				switch (childDiagnostic.getSeverity()) {
-				case Diagnostic.ERROR:
-				case Diagnostic.WARNING:
-						System.err.println("\t" + childDiagnostic.getMessage());
-				default:
-					break;
+		Diagnostic diagnostic = Diagnostician.INSTANCE.validate(modelElement);
+		for (Iterator<Diagnostic> i= diagnostic.getChildren().iterator(); i.hasNext();) {
+			Diagnostic childDiagnostic = i.next();
+			
+			for (AbstractMEControl meControl : this.meControls) {
+				if (meControl instanceof IControlBuildInValidationHandler) {
+					Object feature = meControl.getItemPropertyDescriptor().getFeature(meControl.getModelElement());
+					EAttribute attribute = (EAttribute) feature;
+					if (attribute.getName().equals(childDiagnostic.getSource())) {
+						((IControlBuildInValidationHandler)meControl).handleValidation(childDiagnostic);
+					}
 				}
 			}
-		}*/
-		
+			
+		}
 	}
 
 }

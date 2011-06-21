@@ -398,13 +398,24 @@ public class PlayerImpl extends EObjectImpl implements Player {
 				diagnosticianChain.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-						 BowlingValidator.DIAGNOSTIC_SOURCE,
+						 "name",
 						 BowlingValidator.PLAYER__HAS_NAME,
 						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "hasName", EObjectValidator.getObjectLabel(this, (Map<Object, Object>) context) }),
 						 new Object [] { this }));
 			}
 			return false;
 		}
+		
+		if (diagnosticianChain != null) {
+			diagnosticianChain.add
+				(new BasicDiagnostic
+					(Diagnostic.OK,
+					 "name",
+					 BowlingValidator.PLAYER__HAS_NAME,
+					 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "hasName", EObjectValidator.getObjectLabel(this, (Map<Object, Object>) context) }),
+					 new Object [] { this }));
+		}
+		
 		return true;
 	}
 
@@ -423,14 +434,24 @@ public class PlayerImpl extends EObjectImpl implements Player {
 				diagnosticianChain.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-						 BowlingValidator.DIAGNOSTIC_SOURCE,
+						 "street",
 						 BowlingValidator.PLAYER__HAS_STREET,
 						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "hasStreet", EObjectValidator.getObjectLabel(this, (Map<Object, Object>) context) }),
 						 new Object [] { this }));
 			}
 			return false;
+		} else {
+			if (diagnosticianChain != null) {
+				diagnosticianChain.add
+					(new BasicDiagnostic
+						(Diagnostic.OK,
+						 "street",
+						 BowlingValidator.PLAYER__HAS_NAME,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "hasName", EObjectValidator.getObjectLabel(this, (Map<Object, Object>) context) }),
+						 new Object [] { this }));
+			}
+			return true;
 		}
-		return true;
 	}
 
 	/**
@@ -448,13 +469,25 @@ public class PlayerImpl extends EObjectImpl implements Player {
 				diagnosticianChain.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-						 BowlingValidator.DIAGNOSTIC_SOURCE,
+						"dateOfBirth",
 						 BowlingValidator.PLAYER__HAS_DATE_OF_BIRTH,
 						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "hasDateOfBirth", EObjectValidator.getObjectLabel(this, (Map<Object, Object>) context) }),
 						 new Object [] { this }));
 			}
 			return false;
 		}
+		
+		if (diagnosticianChain != null) {
+			diagnosticianChain.add
+				(new BasicDiagnostic
+					(Diagnostic.OK,
+					 "dateOfBirth",
+					 BowlingValidator.PLAYER__HAS_NAME,
+					 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "hasName", EObjectValidator.getObjectLabel(this, (Map<Object, Object>) context) }),
+					 new Object [] { this }));
+		}
+		
+		
 		return true;
 	}
 
