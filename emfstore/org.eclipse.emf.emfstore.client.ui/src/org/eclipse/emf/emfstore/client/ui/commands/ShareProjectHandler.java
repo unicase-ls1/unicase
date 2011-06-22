@@ -19,6 +19,7 @@ import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.Usersession;
 import org.eclipse.emf.emfstore.client.model.Workspace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.accesscontrol.AccessControlHelper;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -49,11 +50,15 @@ public class ShareProjectHandler extends ServerRequestCommandHandler {
 	@Override
 	protected void initUsersession() {
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		ElementListSelectionDialog dlg = new ElementListSelectionDialog(shell, new AdapterFactoryLabelProvider(
-			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
-		Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-		Collection<Usersession> allSessions = currentWorkspace.getUsersessions();
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+				.getShell();
+		ElementListSelectionDialog dlg = new ElementListSelectionDialog(shell,
+				new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+		Workspace currentWorkspace = WorkspaceManager.getInstance()
+				.getCurrentWorkspace();
+		Collection<Usersession> allSessions = currentWorkspace
+				.getUsersessions();
 		dlg.setElements(allSessions.toArray());
 		dlg.setTitle("Select Usersession");
 		dlg.setBlockOnOpen(true);
@@ -72,16 +77,30 @@ public class ShareProjectHandler extends ServerRequestCommandHandler {
 	 */
 	@Override
 	protected Object run() throws EmfStoreException {
+
 		final ProjectSpace projectSpace = getProjectSpace();
 		try {
+			AccessControlHelper accessControlHelper = new AccessControlHelper(
+					getUsersession());
+			try {
+				accessControlHelper.checkServerAdminAccess();
+			} catch (org.eclipse.emf.emfstore.server.exceptions.AccessControlException e) {
+				MessageDialog
+						.openError(this.getShell(), "",
+								"Only administrators can create new projects on the server.");
+				setUsersession(null);
+				return null;
+			}
 			createProject(projectSpace);
 			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
 			DialogHandler.showExceptionDialog(e);
-			WorkspaceUtil.logWarning("RuntimeException in " + ShareProjectHandler.class.getName(), e);
+			WorkspaceUtil.logWarning("RuntimeException in "
+					+ ShareProjectHandler.class.getName(), e);
 			// throw e;
 		}
 		// END SUPRESS CATCH EXCEPTION
+		setUsersession(null);
 		return null;
 	}
 
@@ -89,9 +108,11 @@ public class ShareProjectHandler extends ServerRequestCommandHandler {
 	 * @param projectSpace
 	 * @throws EmfStoreException
 	 */
-	private void createProject(ProjectSpace projectSpace) throws EmfStoreException {
+	private void createProject(ProjectSpace projectSpace)
+			throws EmfStoreException {
 		projectSpace.shareProject(getUsersession());
-		MessageDialog.openInformation(getShell(), null, "Your project was successfully shared!");
+		MessageDialog.openInformation(getShell(), null,
+				"Your project was successfully shared!");
 	}
 
 }
