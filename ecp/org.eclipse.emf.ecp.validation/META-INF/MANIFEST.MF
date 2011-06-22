@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: ECP Validation Plugin
+Bundle-Name: ECP Validation (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.ecp.validation;singleton:=true
 Bundle-Version: 0.8.8
 Bundle-Activator: org.eclipse.emf.ecp.validation.Activator
