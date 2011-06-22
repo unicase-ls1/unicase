@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <description name="EMFStore" url="http://unicase.googlecode.com/svn/updatesite/emfstore/">
+   <description name="EMFStore (Incubation)" url="http://unicase.googlecode.com/svn/updatesite/emfstore/">
       Update Site for the EMFStore
    </description>
    <feature url="features/edu.tum.cs.cope.runtime.feature_0.2.15.jar" id="edu.tum.cs.cope.runtime.feature" version="0.2.15">

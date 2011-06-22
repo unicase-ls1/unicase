@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.emf.ecp.common.feature"
-      label="ECP Common"
+      label="ECP Common  (Incubation)"
       version="0.8.8"
       provider-name="Eclipse Modeling Project">
 

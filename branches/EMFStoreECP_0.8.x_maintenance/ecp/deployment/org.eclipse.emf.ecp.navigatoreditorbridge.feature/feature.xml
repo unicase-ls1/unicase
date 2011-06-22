@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.emf.ecp.navigatoreditorbridge.feature"
-      label="ECP Navigator Editor Bridge"
+      label="ECP Navigator Editor Bridge (Incubation)"
       version="0.8.8"
       provider-name="Eclipse Modeling Project">
 
