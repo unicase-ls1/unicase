@@ -81,7 +81,7 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 	public URootCompositeSection render(UnicaseModelElement modelElement, Template template) {
 
 		if (!(modelElement instanceof LeafSection) && !(modelElement instanceof CompositeSection)) {
-			template = (Template) EcoreUtil.copy(template);
+			template = EcoreUtil.copy(template);
 
 			// hiding the header and footer on a document without and document structure is not good.
 			template.getLayoutOptions().setHideHeaderAndFooterOnCoverPage(false);
@@ -239,9 +239,10 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		section.add(new UParagraph(WorkspaceUtil.cleanFormatedText(modelElement.getDescription()) + "\n", layoutOptions
 			.getDefaultTextOption()));
 
-		EList<UnicaseModelElement> subSections = modelElement.getModelElements();
-		for (UnicaseModelElement child : subSections) {
-			renderModelElement(section, child);
+		EList<EObject> subSections = modelElement.getModelElements();
+		for (EObject child : subSections) {
+			if (child instanceof UnicaseModelElement)
+				renderModelElement(section, (UnicaseModelElement) child);
 		}
 	}
 
@@ -261,8 +262,8 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 
 		USection section = new USection(modelElement.getName(), layoutOptions.getDocumentTitleTextOption());
 		getDoc().add(section);
-		UParagraph descr = new UParagraph(WorkspaceUtil.cleanFormatedText(modelElement.getDescription()), layoutOptions
-			.getDefaultTextOption());
+		UParagraph descr = new UParagraph(WorkspaceUtil.cleanFormatedText(modelElement.getDescription()),
+			layoutOptions.getDefaultTextOption());
 		section.add(descr);
 
 		String date = "";
@@ -346,9 +347,12 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		section.getBoxModel().setMarginBottom(15);
 
 		if (section.getDepth() > 1 && section.getDepth() < 4) {
-			section.getTitlParagraph().getOption().setFontSize(
-				layoutOptions.getSectionTextOption().getFontSize() - layoutOptions.getSectionFontSizeDecreaseStep()
-					* section.getDepth());
+			section
+				.getTitlParagraph()
+				.getOption()
+				.setFontSize(
+					layoutOptions.getSectionTextOption().getFontSize() - layoutOptions.getSectionFontSizeDecreaseStep()
+						* section.getDepth());
 		}
 
 		UParagraph description = new UParagraph(WorkspaceUtil.cleanFormatedText(modelElementSection.getDescription())
@@ -357,12 +361,12 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		section.add(description);
 
 		if (modelElementSection instanceof LeafSection) {
-			EList<UnicaseModelElement> subSections = ((LeafSection) modelElementSection).getModelElements();
-			for (UnicaseModelElement child : subSections) {
+			EList<EObject> subSections = ((LeafSection) modelElementSection).getModelElements();
+			for (EObject child : subSections) {
 				if (child instanceof LeafSection) {
-					renderSection(section, child, layoutOptions, false);
+					renderSection(section, (UnicaseModelElement) child, layoutOptions, false);
 				} else {
-					renderModelElement(section, child);
+					renderModelElement(section, (UnicaseModelElement) child);
 				}
 			}
 		}

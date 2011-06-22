@@ -105,7 +105,7 @@ public interface ChangePackage extends EPackage {
 	int MERGING_ISSUE__INCOMING_DOCUMENT_REFERENCES = RationalePackage.ISSUE__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
@@ -395,7 +395,7 @@ public interface ChangePackage extends EPackage {
 	int MERGING_PROPOSAL__INCOMING_DOCUMENT_REFERENCES = RationalePackage.PROPOSAL__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
@@ -533,7 +533,7 @@ public interface ChangePackage extends EPackage {
 	int MERGING_SOLUTION__INCOMING_DOCUMENT_REFERENCES = RationalePackage.SOLUTION__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated

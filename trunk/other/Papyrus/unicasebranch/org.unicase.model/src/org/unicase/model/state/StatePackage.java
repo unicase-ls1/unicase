@@ -107,7 +107,7 @@ public interface StatePackage extends EPackage {
 	int STATE_NODE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
@@ -237,7 +237,7 @@ public interface StatePackage extends EPackage {
 	int STATE__INCOMING_DOCUMENT_REFERENCES = STATE_NODE__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
@@ -392,7 +392,7 @@ public interface StatePackage extends EPackage {
 	int TRANSITION__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
@@ -529,7 +529,7 @@ public interface StatePackage extends EPackage {
 	int STATE_INITIAL__INCOMING_DOCUMENT_REFERENCES = STATE_NODE__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
@@ -659,7 +659,7 @@ public interface StatePackage extends EPackage {
 	int STATE_END__INCOMING_DOCUMENT_REFERENCES = STATE_NODE__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated

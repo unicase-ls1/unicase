@@ -107,7 +107,7 @@ public interface AttachmentPackage extends EPackage {
 	int URL_ATTACHMENT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.ATTACHMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
@@ -236,7 +236,7 @@ public interface AttachmentPackage extends EPackage {
 	int FILE_ATTACHMENT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.ATTACHMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
@@ -397,7 +397,7 @@ public interface AttachmentPackage extends EPackage {
 	int PATCH_ATTACHMENT__INCOMING_DOCUMENT_REFERENCES = FILE_ATTACHMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated

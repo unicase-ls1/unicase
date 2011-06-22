@@ -130,7 +130,6 @@ public interface UnicaseModelElement extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Incoming Document References</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.document.LeafSection}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.document.LeafSection#getReferencedModelElements <em>Referenced Model Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Incoming Document References</em>' reference list isn't clear, there really should be
@@ -139,16 +138,13 @@ public interface UnicaseModelElement extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Incoming Document References</em>' reference list.
 	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_IncomingDocumentReferences()
-	 * @see org.unicase.model.document.LeafSection#getReferencedModelElements
-	 * @model opposite="referencedModelElements"
-	 *        annotation="org.unicase.ui.meeditor priority='102.0' position='right'"
+	 * @model annotation="org.unicase.ui.meeditor priority='102.0' position='right'"
 	 * @generated
 	 */
 	EList<LeafSection> getIncomingDocumentReferences();
 
 	/**
-	 * Returns the value of the '<em><b>Leaf Section</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.document.LeafSection#getModelElements <em>Model Elements</em>}'.
+	 * Returns the value of the '<em><b>Leaf Section</b></em>' reference.
 	 * <!-- begin-user-doc
 	 * -->
 	 * <p>
@@ -156,19 +152,18 @@ public interface UnicaseModelElement extends EObject {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Leaf Section</em>' container reference.
+	 * @return the value of the '<em>Leaf Section</em>' reference.
 	 * @see #setLeafSection(LeafSection)
 	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_LeafSection()
-	 * @see org.unicase.model.document.LeafSection#getModelElements
-	 * @model opposite="modelElements" transient="false"
+	 * @model
 	 * @generated
 	 */
 	LeafSection getLeafSection();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.UnicaseModelElement#getLeafSection <em>Leaf Section</em>}' container reference.
+	 * Sets the value of the '{@link org.unicase.model.UnicaseModelElement#getLeafSection <em>Leaf Section</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Leaf Section</em>' container reference.
+	 * @param value the new value of the '<em>Leaf Section</em>' reference.
 	 * @see #getLeafSection()
 	 * @generated
 	 */

@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -143,6 +144,16 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	 * @ordered
 	 */
 	protected EList<LeafSection> incomingDocumentReferences;
+
+	/**
+	 * The cached value of the '{@link #getLeafSection() <em>Leaf Section</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLeafSection()
+	 * @generated
+	 * @ordered
+	 */
+	protected LeafSection leafSection;
 
 	/**
 	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
@@ -312,9 +323,8 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	 */
 	public EList<LeafSection> getIncomingDocumentReferences() {
 		if (incomingDocumentReferences == null) {
-			incomingDocumentReferences = new EObjectWithInverseResolvingEList.ManyInverse<LeafSection>(
-				LeafSection.class, this, ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES,
-				DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS);
+			incomingDocumentReferences = new EObjectResolvingEList<LeafSection>(LeafSection.class, this,
+				ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
 		}
 		return incomingDocumentReferences;
 	}
@@ -324,9 +334,16 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	 * @generated
 	 */
 	public LeafSection getLeafSection() {
-		if (eContainerFeatureID() != ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION)
-			return null;
-		return (LeafSection) eContainer();
+		if (leafSection != null && leafSection.eIsProxy()) {
+			InternalEObject oldLeafSection = (InternalEObject) leafSection;
+			leafSection = (LeafSection) eResolveProxy(oldLeafSection);
+			if (leafSection != oldLeafSection) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION, oldLeafSection, leafSection));
+			}
+		}
+		return leafSection;
 	}
 
 	/**
@@ -334,19 +351,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	 * @generated
 	 */
 	public LeafSection basicGetLeafSection() {
-		if (eContainerFeatureID() != ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION)
-			return null;
-		return (LeafSection) eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetLeafSection(LeafSection newLeafSection, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newLeafSection, ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION,
-			msgs);
-		return msgs;
+		return leafSection;
 	}
 
 	/**
@@ -354,22 +359,11 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	 * @generated
 	 */
 	public void setLeafSection(LeafSection newLeafSection) {
-		if (newLeafSection != eInternalContainer()
-			|| (eContainerFeatureID() != ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION && newLeafSection != null)) {
-			if (EcoreUtil.isAncestor(this, newLeafSection))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newLeafSection != null)
-				msgs = ((InternalEObject) newLeafSection).eInverseAdd(this,
-					DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS, LeafSection.class, msgs);
-			msgs = basicSetLeafSection(newLeafSection, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
+		LeafSection oldLeafSection = leafSection;
+		leafSection = newLeafSection;
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION,
-				newLeafSection, newLeafSection));
+				oldLeafSection, leafSection));
 	}
 
 	/**
@@ -560,13 +554,6 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAnnotations()).basicAdd(otherEnd, msgs);
 		case ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAttachments()).basicAdd(otherEnd, msgs);
-		case ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncomingDocumentReferences()).basicAdd(
-				otherEnd, msgs);
-		case ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION:
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetLeafSection((LeafSection) otherEnd, msgs);
 		case ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAppliedStereotypeInstances()).basicAdd(
 				otherEnd, msgs);
@@ -587,30 +574,12 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 			return ((InternalEList<?>) getAnnotations()).basicRemove(otherEnd, msgs);
 		case ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS:
 			return ((InternalEList<?>) getAttachments()).basicRemove(otherEnd, msgs);
-		case ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
-			return ((InternalEList<?>) getIncomingDocumentReferences()).basicRemove(otherEnd, msgs);
-		case ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION:
-			return basicSetLeafSection(null, msgs);
 		case ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
 			return ((InternalEList<?>) getAppliedStereotypeInstances()).basicRemove(otherEnd, msgs);
 		case ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS:
 			return ((InternalEList<?>) getComments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-		case ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION:
-			return eInternalContainer().eInverseRemove(this, DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS,
-				LeafSection.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -754,7 +723,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 		case ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
 			return incomingDocumentReferences != null && !incomingDocumentReferences.isEmpty();
 		case ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION:
-			return basicGetLeafSection() != null;
+			return leafSection != null;
 		case ModelPackage.UNICASE_MODEL_ELEMENT__STATE:
 			return STATE_EDEFAULT == null ? getState() != null : !STATE_EDEFAULT.equals(getState());
 		case ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:

@@ -11,8 +11,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -46,7 +49,7 @@ public class LeafSectionImpl extends UnicaseModelElementImpl implements LeafSect
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<UnicaseModelElement> modelElements;
+	protected EList<EObject> modelElements;
 	/**
 	 * The cached value of the '{@link #getReferencedModelElements() <em>Referenced Model Elements</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -54,7 +57,7 @@ public class LeafSectionImpl extends UnicaseModelElementImpl implements LeafSect
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<UnicaseModelElement> referencedModelElements;
+	protected EList<EObject> referencedModelElements;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -129,11 +132,10 @@ public class LeafSectionImpl extends UnicaseModelElementImpl implements LeafSect
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<UnicaseModelElement> getModelElements() {
+	public EList<EObject> getModelElements() {
 		if (modelElements == null) {
-			modelElements = new EObjectContainmentWithInverseEList.Resolving<UnicaseModelElement>(
-				UnicaseModelElement.class, this, DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS,
-				ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION);
+			modelElements = new EObjectContainmentEList.Resolving<EObject>(EObject.class, this,
+				DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS);
 		}
 		return modelElements;
 	}
@@ -142,11 +144,10 @@ public class LeafSectionImpl extends UnicaseModelElementImpl implements LeafSect
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<UnicaseModelElement> getReferencedModelElements() {
+	public EList<EObject> getReferencedModelElements() {
 		if (referencedModelElements == null) {
-			referencedModelElements = new EObjectWithInverseResolvingEList.ManyInverse<UnicaseModelElement>(
-				UnicaseModelElement.class, this, DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS,
-				ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
+			referencedModelElements = new EObjectResolvingEList<EObject>(EObject.class, this,
+				DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS);
 		}
 		return referencedModelElements;
 	}
@@ -163,11 +164,6 @@ public class LeafSectionImpl extends UnicaseModelElementImpl implements LeafSect
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetParent((CompositeSection) otherEnd, msgs);
-		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getModelElements()).basicAdd(otherEnd, msgs);
-		case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getReferencedModelElements()).basicAdd(
-				otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -183,8 +179,6 @@ public class LeafSectionImpl extends UnicaseModelElementImpl implements LeafSect
 			return basicSetParent(null, msgs);
 		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 			return ((InternalEList<?>) getModelElements()).basicRemove(otherEnd, msgs);
-		case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
-			return ((InternalEList<?>) getReferencedModelElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -235,11 +229,11 @@ public class LeafSectionImpl extends UnicaseModelElementImpl implements LeafSect
 			return;
 		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 			getModelElements().clear();
-			getModelElements().addAll((Collection<? extends UnicaseModelElement>) newValue);
+			getModelElements().addAll((Collection<? extends EObject>) newValue);
 			return;
 		case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
 			getReferencedModelElements().clear();
-			getReferencedModelElements().addAll((Collection<? extends UnicaseModelElement>) newValue);
+			getReferencedModelElements().addAll((Collection<? extends EObject>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

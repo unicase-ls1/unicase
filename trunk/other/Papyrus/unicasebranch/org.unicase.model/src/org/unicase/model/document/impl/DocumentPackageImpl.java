@@ -340,14 +340,12 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 		// Initialize classes and features; add operations and parameters
 		initEClass(leafSectionEClass, LeafSection.class, "LeafSection", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLeafSection_ModelElements(), theModelPackage.getUnicaseModelElement(),
-			theModelPackage.getUnicaseModelElement_LeafSection(), "modelElements", null, 0, -1, LeafSection.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEReference(getLeafSection_ReferencedModelElements(), theModelPackage.getUnicaseModelElement(),
-			theModelPackage.getUnicaseModelElement_IncomingDocumentReferences(), "referencedModelElements", null, 0,
-			-1, LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getLeafSection_ModelElements(), ecorePackage.getEObject(), null, "modelElements", null, 0, -1,
+			LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLeafSection_ReferencedModelElements(), ecorePackage.getEObject(), null,
+			"referencedModelElements", null, 0, -1, LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositeSectionEClass, CompositeSection.class, "CompositeSection", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);

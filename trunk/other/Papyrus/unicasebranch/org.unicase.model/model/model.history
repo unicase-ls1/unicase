@@ -8698,5 +8698,16 @@
           featureName="eType" referenceValue="model.ecore#//release/SourceCodeRepositoryStream"/>
     </changes>
   </releases>
-  <releases/>
+  <releases>
+    <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/modelElements"
+        featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        oldReferenceValue="model.ecore#//UnicaseModelElement"/>
+    <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedModelElements"
+        featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        oldReferenceValue="model.ecore#//UnicaseModelElement"/>
+    <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/leafSection"
+        featureName="eOpposite" oldReferenceValue="model.ecore#//document/LeafSection/modelElements"/>
+    <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/modelElements"
+        featureName="eOpposite" oldReferenceValue="model.ecore#//UnicaseModelElement/leafSection"/>
+  </releases>
 </history:History>

@@ -31,14 +31,13 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incomingDocumentReferences"
-        upperBound="-1" eType="#//document/LeafSection" eOpposite="#//document/LeafSection/referencedModelElements">
+        upperBound="-1" eType="#//document/LeafSection">
       <eAnnotations source="org.unicase.ui.meeditor">
         <details key="priority" value="102.0"/>
         <details key="position" value="right"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="leafSection" eType="#//document/LeafSection"
-        eOpposite="#//document/LeafSection/modelElements"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leafSection" eType="#//document/LeafSection"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         changeable="false" volatile="true" transient="true" defaultValueLiteral=""
         derived="true"/>
@@ -619,14 +618,14 @@
   <eSubpackages name="document" nsURI="http://unicase.org/model/document" nsPrefix="org.unicase.model.document">
     <eClassifiers xsi:type="ecore:EClass" name="LeafSection" eSuperTypes="#//document/Section">
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" upperBound="-1"
-          eType="#//UnicaseModelElement" containment="true" eOpposite="#//UnicaseModelElement/leafSection">
+          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="20.0"/>
           <details key="position" value="right"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="referencedModelElements"
-          upperBound="-1" eType="#//UnicaseModelElement" eOpposite="#//UnicaseModelElement/incomingDocumentReferences">
+          upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="21.0"/>
           <details key="position" value="right"/>
