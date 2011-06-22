@@ -15,6 +15,7 @@ import java.util.List;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView;
+import org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryCompare;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.model.versioning.HistoryInfo;
@@ -28,6 +29,7 @@ import org.eclipse.ui.PlatformUI;
  * Handler for comparing two revisions.
  * 
  * @author Engelmann
+ * @author Stute
  */
 public class CompareRevisionsHandler extends AbstractHistoryViewHandler {
 
@@ -43,8 +45,11 @@ public class CompareRevisionsHandler extends AbstractHistoryViewHandler {
 		IStructuredSelection object = (IStructuredSelection) activeWorkbenchWindow
 				.getSelectionService().getSelection();
 		List list = object.toList();
-		Project project1;
-		Project project2;
+		Project project1 = null;
+		Project project2 = null;
+		ProjectSpace projectSpace1 = null;
+		ProjectSpace projectSpace2 = null;
+
 		if (list.size() == 2) {
 			for (int i = 0; i < list.size(); i++) {
 				TreeNode element = (TreeNode) list.get(i);
@@ -52,10 +57,23 @@ public class CompareRevisionsHandler extends AbstractHistoryViewHandler {
 				final PrimaryVersionSpec versionSpec = ModelUtil
 						.clone(historyInfo.getPrimerySpec());
 				final ProjectSpace projectSpace = view.getProjectSpace();
+				ProjectSpace projectSpaceVersion = ModelUtil
+						.clone(projectSpace);
+
+				if (i == 0) {
+					projectSpaceVersion.setBaseVersion(versionSpec);
+					projectSpace1 = projectSpaceVersion;
+					project1 = projectSpace1.getProject();
+				} else {
+					projectSpaceVersion.setBaseVersion(versionSpec);
+					projectSpace2 = projectSpaceVersion;
+					project2 = projectSpace2.getProject();
+				}
 			}
-			if(HistoryCompare.hasRegisteredExtensions()){
-				// TODO replace null by the two EObjects representing the two Project Revisions
-				HistoryCompare.handleRegisteredExtensions(null, null);
+			if (HistoryCompare.hasRegisteredExtensions()) {
+				// TODO replace null by the two EObjects representing the two
+				// Project Revisions
+				HistoryCompare.handleRegisteredExtensions(project1, project2);
 			}
 		}
 
