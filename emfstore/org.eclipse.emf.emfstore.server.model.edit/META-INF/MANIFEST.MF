@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: EMFStore Model Edit Plug-in
+Bundle-Name: EMFStore Model Edit  (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.emfstore.server.model.edit;singleton:=true
 Bundle-Version: 0.8.8
 Bundle-ClassPath: .

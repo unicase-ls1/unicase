@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: EMFStore Transaction
+Bundle-Name: EMFStore Transaction  (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.emfstore.client.transaction;singleton:=true
 Bundle-Version: 0.8.8
 Bundle-Vendor: Eclipse Modeling Project
