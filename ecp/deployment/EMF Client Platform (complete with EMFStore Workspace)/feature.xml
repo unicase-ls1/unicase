@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.emf.ecp.all"
-      label="EMF Client Platform (complete with EMFStore Workspace persistence)"
+      label="EMF Client Platform Complete (Incubation)"
       version="0.8.8"
       provider-name="Eclipse Modeling Project">
 

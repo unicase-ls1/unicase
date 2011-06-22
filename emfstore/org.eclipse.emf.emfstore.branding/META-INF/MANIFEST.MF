@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: EMFStore Branding
+Bundle-Name: EMFStore Branding (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.emfstore.branding
 Bundle-Version: 0.8.8
 Bundle-Activator: org.eclipse.emf.emfstore.branding.Activator
