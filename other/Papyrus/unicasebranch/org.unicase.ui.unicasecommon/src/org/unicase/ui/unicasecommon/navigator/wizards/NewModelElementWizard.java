@@ -6,6 +6,7 @@
 package org.unicase.ui.unicasecommon.navigator.wizards;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
@@ -58,11 +59,11 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		final UnicaseModelElement newMEInstance;
+		final EObject newMEInstance;
 		if (selectedME != null && newMEType != null) {
 			// 1.create ME
 			EPackage ePackage = newMEType.getEPackage();
-			newMEInstance = (UnicaseModelElement) ePackage.getEFactoryInstance().create(newMEType);
+			newMEInstance = ePackage.getEFactoryInstance().create(newMEType);
 
 			// if (newMEInstance instanceof MEDiagram) {
 			// if (newDiagramType != null) {

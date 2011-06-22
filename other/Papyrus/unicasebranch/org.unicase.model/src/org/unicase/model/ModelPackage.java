@@ -106,7 +106,7 @@ public interface ModelPackage extends EPackage {
 	int UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = 4;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
@@ -219,7 +219,7 @@ public interface ModelPackage extends EPackage {
 	int ANNOTATION__INCOMING_DOCUMENT_REFERENCES = UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
@@ -341,7 +341,7 @@ public interface ModelPackage extends EPackage {
 	int ATTACHMENT__INCOMING_DOCUMENT_REFERENCES = UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
@@ -505,9 +505,9 @@ public interface ModelPackage extends EPackage {
 	EReference getUnicaseModelElement_IncomingDocumentReferences();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.unicase.model.UnicaseModelElement#getLeafSection <em>Leaf Section</em>}'.
+	 * Returns the meta object for the reference '{@link org.unicase.model.UnicaseModelElement#getLeafSection <em>Leaf Section</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Leaf Section</em>'.
+	 * @return the meta object for the reference '<em>Leaf Section</em>'.
 	 * @see org.unicase.model.UnicaseModelElement#getLeafSection()
 	 * @see #getUnicaseModelElement()
 	 * @generated
