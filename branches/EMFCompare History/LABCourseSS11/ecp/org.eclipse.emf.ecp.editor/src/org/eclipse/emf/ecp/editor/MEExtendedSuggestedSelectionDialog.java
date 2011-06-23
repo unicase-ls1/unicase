@@ -16,7 +16,6 @@ import java.util.HashMap;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
-
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.swt.SWT;
@@ -30,6 +29,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -79,7 +79,15 @@ MESuggestedSelectionDialog {
 		currentContextNeighbours = new HashMap<String, ECPModelelementContext>();
 		for (ECPModelelementContext tempContext : currentContext.getNeighbors()) {
 			currentContextNeighbours.put(labelProvider.getText(tempContext), tempContext);
-		}		
+		}
+		Text pattern = (Text)this.getPatternControl();
+		if(pattern != null){
+			//FIXME: not a nice solution to refresh filtering
+			pattern.setText("dummy");
+			pattern.update();
+			pattern.setText("**");
+			pattern.update();
+		}	    
 	}
 
 	private Collection<EObject> createAllModelElementsList() {
