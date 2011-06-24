@@ -16,12 +16,21 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Set;
 
+import org.apache.lucene.document.Field;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -37,11 +46,52 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 
 import org.unicase.metamodel.Project;
+import org.unicase.model.Attachment;
+import org.unicase.model.activity.ActivityObject;
+import org.unicase.model.bug.BugReport;
+import org.unicase.model.classes.Association;
+import org.unicase.model.classes.Attribute;
+import org.unicase.model.classes.Dependency;
+import org.unicase.model.classes.Literal;
+import org.unicase.model.classes.Method;
+import org.unicase.model.classes.MethodArgument;
+import org.unicase.model.classes.PackageElement;
+import org.unicase.model.component.Component;
+import org.unicase.model.component.ComponentService;
+import org.unicase.model.component.DeploymentNode;
+import org.unicase.model.document.Section;
+import org.unicase.model.meeting.Meeting;
+import org.unicase.model.meeting.MeetingSection;
+import org.unicase.model.organization.OrgUnit;
+import org.unicase.model.profile.Profile;
+import org.unicase.model.profile.Stereotype;
+import org.unicase.model.profile.StereotypeAttribute;
+import org.unicase.model.profile.StereotypeAttributeInstance;
+import org.unicase.model.profile.StereotypeInstance;
+import org.unicase.model.rationale.Assessment;
+import org.unicase.model.rationale.Comment;
+import org.unicase.model.rationale.Criterion;
+import org.unicase.model.rationale.Proposal;
+import org.unicase.model.rationale.Solution;
+import org.unicase.model.requirement.Actor;
+import org.unicase.model.requirement.ActorInstance;
+import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.model.requirement.Scenario;
+import org.unicase.model.requirement.Step;
+import org.unicase.model.requirement.SystemFunction;
+import org.unicase.model.requirement.UseCase;
+import org.unicase.model.requirement.UserTask;
+import org.unicase.model.state.StateNode;
+import org.unicase.model.state.Transition;
 import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 
 import traceRecovery.Directory;
@@ -65,97 +115,390 @@ public class RunRecovery implements Listener {
 	Project p;
 	String codeLanguage;
 	String path;
+	String indexPath;
 	EList<EObject> e;
 
-	public void run(String path, String language) {
-		display = Display.getCurrent();
-		shell = new Shell(display);
-		GridLayout gridLayout = new GridLayout();
-		gridLayout.numColumns = 10;
+	public void run(String path, String indexPath, String language) {
+		try {
+			display = Display.getCurrent();
+			shell = new Shell(display);
+			GridLayout gridLayout = new GridLayout();
+			gridLayout.numColumns = 10;
 
-		codeLanguage = language;
-		this.path = path;
+			codeLanguage = language;
+			this.path = path;
+			this.indexPath = indexPath;
 
-		shell.setLayout(gridLayout);
+			shell.setLayout(gridLayout);
 
-		GridData treeLayout = new GridData();
-		treeLayout.horizontalSpan = 2;
-		treeLayout.verticalSpan = 8;
-		treeLayout.horizontalAlignment = SWT.FILL;
-		treeLayout.verticalAlignment = SWT.FILL;
+			GridData treeLayout = new GridData();
+			treeLayout.horizontalSpan = 2;
+			treeLayout.verticalSpan = 8;
+			treeLayout.horizontalAlignment = SWT.FILL;
+			treeLayout.verticalAlignment = SWT.FILL;
 
-		List model = new List(shell, SWT.MULTI);
-		model.setLayoutData(treeLayout);
+			// List model = new List(shell, SWT.MULTI);
+			// model.setLayoutData(treeLayout);
 
-		p = getActiveProject();
-		createModel(model);
-		// createME();
+			p = getActiveProject();
+			// createModel(model);
+			// createME();
 
-		// ME = new Tree(shell, SWT.CHECK);
-		// ME.setLayoutData(treeLayout);
-		// ME.setLayout(gridLayout);
+			ME = new Tree(shell, SWT.CHECK);
+			ME.setLayoutData(treeLayout);
+			ME.setLayout(gridLayout);
 
-		GridData directionLayout = new GridData();
-		directionLayout.horizontalSpan = 1;
-		directionLayout.verticalSpan = 4;
-		directionLayout.horizontalAlignment = SWT.FILL;
-		direction = new Button(shell, SWT.PUSH);
-		direction.setLayoutData(directionLayout);
-		// direction.setText("this is a button");
-		Image image = new Image(display, "Screenshot-1.png");
-		direction.setImage(image);
-		direction.addListener(SWT.Selection, this);
+			createModelTree(ME);
+			createModel();
 
-		code = new Tree(shell, SWT.CHECK | SWT.V_SCROLL);
-		// code.setLayoutData(treeLayout);
+//			IWorkbenchWindow window =
+//			    PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+//			ISelection selection = window.getSelectionService().getSelection("org.eclipse.jdt.ui.PackageExplorer");
+//			
+//			IStructuredSelection structured = (IStructuredSelection) selection;
+//			
+//			
+//			System.out.println(structured.getFirstElement().getClass());
+//			
+//			IPackageFragmentRoot project = (IPackageFragmentRoot) structured.getFirstElement();
+//			
+//			chooseProject(structured);
+			
+//			IFile file = (IFile) structured.getFirstElement();
+			
+//			IPath pa = project.getLocation();
+//			System.out.println(pa.toPortableString() + " this is the value of the path that i was looking for besm alah el ra7man el ra7eem :D");
+			
+			
+//			IStructuredSelection structured = (IStructuredSelection) service
+//            .getSelection("org.eclipse.jdt.ui.PackageExplorer");
 
-		parent = new TreeItem(code, SWT.CHECK);
-		parent.setText(path);
+			GridData directionLayout = new GridData();
+			directionLayout.horizontalSpan = 1;
+			directionLayout.verticalSpan = 4;
+			directionLayout.horizontalAlignment = SWT.FILL;
+			direction = new Button(shell, SWT.PUSH);
+			direction.setLayoutData(directionLayout);
+			// direction.setText("this is a button");
+			Image image = new Image(display, "Screenshot-1.png");
+			direction.setImage(image);
+			direction.addListener(SWT.Selection, this);
 
-		directories = new LinkedList<TreeItemHelper>();
+			code = new Tree(shell, SWT.CHECK | SWT.V_SCROLL);
+			// code.setLayoutData(treeLayout);
 
-		File dir = new File(path);
+			parent = new TreeItem(code, SWT.CHECK);
+			parent.setText(path);
 
-		directories.add(new TreeItemHelper(parent, dir));
+			directories = new LinkedList<TreeItemHelper>();
 
-		createTree();
-		// TreeViewer codeViewer = new TreeViewer(code);
-		code.addListener(SWT.Selection, this);
+			File dir = new File(path);
 
-		GridData searchLayout = new GridData(SWT.RIGHT, SWT.CENTER, true, false);
-		searchLayout.horizontalSpan = 10;
+			directories.add(new TreeItemHelper(parent, dir));
 
-		search = new Button(shell, SWT.PUSH);
-		search.setLayoutData(searchLayout);
-		search.addListener(SWT.Selection, this);
-		search.setText("Search");
+			createTree();
+			// TreeViewer codeViewer = new TreeViewer(code);
+			code.addListener(SWT.Selection, this);
 
-		// shell.pack();
-		shell.open();
+			GridData searchLayout = new GridData(SWT.RIGHT, SWT.CENTER, true,
+					false);
+			searchLayout.horizontalSpan = 10;
 
-		while (!shell.isDisposed()) {
-			if (!display.readAndDispatch())
-				display.sleep();
+			search = new Button(shell, SWT.PUSH);
+			search.setLayoutData(searchLayout);
+			search.addListener(SWT.Selection, this);
+			search.setText("Search");
+
+			// shell.pack();
+			shell.open();
+
+			while (!shell.isDisposed()) {
+				if (!display.readAndDispatch())
+					display.sleep();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}
+	
+	
+	public void chooseProject(IStructuredSelection selection){
+		try{
+		IPackageFragmentRoot packa = (IPackageFragmentRoot) selection.getFirstElement();
+		}catch(Exception e){
+//			chooseProject(selection);
+			
+			MessageDialog
+			.open(SWT.ERROR,
+					shell,
+					"wrong folder",
+					"choose a correct src folder",
+					SWT.None);
+			
+		}
+	}
 
-	public void createModel(List list) {
+	TreeItem organization;
+	TreeItem task;
+	TreeItem classes;
+	TreeItem document;
+	TreeItem requirement;
+	TreeItem rational;
+	TreeItem change;
+	TreeItem bug;
+	TreeItem component;
+	TreeItem meeting;
+	TreeItem state;
+	TreeItem attatchement;
+	TreeItem profile;
+	TreeItem util;
+	TreeItem activity;
+	TreeItem release;
+
+	public void createModelTree(Tree model) {
+		organization = new TreeItem(model, SWT.CHECK);
+		organization.setText("organization");
+		task = new TreeItem(model, SWT.CHECK);
+		task.setText("task");
+		classes = new TreeItem(model, SWT.CHECK);
+		classes.setText("classes");
+		document = new TreeItem(model, SWT.CHECK);
+		document.setText("document");
+		requirement = new TreeItem(model, SWT.CHECK);
+		requirement.setText("requirement");
+		rational = new TreeItem(model, SWT.CHECK);
+		rational.setText("rational");
+		change = new TreeItem(model, SWT.CHECK);
+		change.setText("change");
+		bug = new TreeItem(model, SWT.CHECK);
+		bug.setText("bug");
+		component = new TreeItem(model, SWT.CHECK);
+		component.setText("component");
+		meeting = new TreeItem(model, SWT.CHECK);
+		meeting.setText("meeting");
+		state = new TreeItem(model, SWT.CHECK);
+		state.setText("state");
+		attatchement = new TreeItem(model, SWT.CHECK);
+		attatchement.setText("attatchement");
+		profile = new TreeItem(model, SWT.CHECK);
+		profile.setText("profile");
+		util = new TreeItem(model, SWT.CHECK);
+		util.setText("util");
+		activity = new TreeItem(model, SWT.CHECK);
+		activity.setText("activity");
+		release = new TreeItem(model, SWT.CHECK);
+		release.setText("release");
+	}
+
+	public void createModel() {
 		EList<EObject> elements = p.getAllModelElementsbyClass(
 				EcorePackage.Literals.EOBJECT, new BasicEList<EObject>());
 		e = p.getAllModelElementsbyClass(EcorePackage.Literals.EOBJECT,
 				new BasicEList<EObject>());
-		for (int i = e.size() - 1; i >= 0; i--) {
-			e.remove(i);
-		}
-		System.out.println(e.size() + " kalaaaaaaaaaaaaaaaaaaaaaaaam");
-		if (elements != null) {
-			for (EObject me : (EList<EObject>) elements) {
-				if (me instanceof WorkItem) {
-					list.add(((WorkItem) me).getName());
-					e.add(me);
+		for (EObject me : elements) {
+			if (me instanceof OrgUnit) {
+				TreeItem item = new TreeItem(organization, SWT.CHECK);
+				item.setText(((OrgUnit) me).getName());
+			} else if (me instanceof BugReport) {
+				TreeItem item = new TreeItem(bug, SWT.CHECK);
+				item.setText(((BugReport) me).getName());
 
-				}
+			} else if (me instanceof WorkItem) {
+
+				TreeItem item = new TreeItem(task, SWT.CHECK);
+				item.setText(((WorkItem) me).getName());
+
+			} else if (me instanceof Checkable) {
+
+				TreeItem item = new TreeItem(task, SWT.CHECK);
+				item.setText(((Checkable) me).getName());
+
+			} else if (me instanceof PackageElement) {
+
+				TreeItem item = new TreeItem(classes, SWT.CHECK);
+				item.setText(((PackageElement) me).getName());
+
+			} else if (me instanceof Association) {
+
+				TreeItem item = new TreeItem(classes, SWT.CHECK);
+				item.setText(((Association) me).getName());
+
+			} else if (me instanceof Attribute) {
+
+				TreeItem item = new TreeItem(classes, SWT.CHECK);
+				item.setText(((Attribute) me).getName());
+
+			} else if (me instanceof Method) {
+
+				TreeItem item = new TreeItem(classes, SWT.CHECK);
+				item.setText(((Method) me).getName());
+
+			} else if (me instanceof MethodArgument) {
+
+				TreeItem item = new TreeItem(classes, SWT.CHECK);
+				item.setText(((MethodArgument) me).getName());
+
+			} else if (me instanceof Dependency) {
+
+				TreeItem item = new TreeItem(classes, SWT.CHECK);
+				item.setText(((Dependency) me).getName());
+
+			} else if (me instanceof Literal) {
+
+				TreeItem item = new TreeItem(classes, SWT.CHECK);
+				item.setText(((Literal) me).getName());
+
+			} else if (me instanceof Section) {
+
+				TreeItem item = new TreeItem(document, SWT.CHECK);
+				item.setText(((Section) me).getName());
+			} else if (me instanceof FunctionalRequirement) {
+
+				TreeItem item = new TreeItem(requirement, SWT.CHECK);
+				item.setText(((FunctionalRequirement) me).getName());
+
+			} else if (me instanceof UseCase) {
+
+				TreeItem item = new TreeItem(requirement, SWT.CHECK);
+				item.setText(((UseCase) me).getName());
+
+			} else if (me instanceof Scenario) {
+
+				TreeItem item = new TreeItem(requirement, SWT.CHECK);
+				item.setText(((Scenario) me).getName());
+
+			} else if (me instanceof Actor) {
+
+				TreeItem item = new TreeItem(requirement, SWT.CHECK);
+				item.setText(((Actor) me).getName());
+
+			} else if (me instanceof ActorInstance) {
+
+				TreeItem item = new TreeItem(requirement, SWT.CHECK);
+				item.setText(((ActorInstance) me).getName());
+
+			} else if (me instanceof Step) {
+
+				TreeItem item = new TreeItem(requirement, SWT.CHECK);
+				item.setText(((Step) me).getName());
+
+			} else if (me instanceof SystemFunction) {
+
+				TreeItem item = new TreeItem(requirement, SWT.CHECK);
+				item.setText(((SystemFunction) me).getName());
+
+			} else if (me instanceof UserTask) {
+
+				TreeItem item = new TreeItem(requirement, SWT.CHECK);
+				item.setText(((UserTask) me).getName());
+
+			} else if (me instanceof Workspace) {
+
+				TreeItem item = new TreeItem(requirement, SWT.CHECK);
+				// item.setText(me.get)
+
+			} else if (me instanceof Proposal) {
+
+				TreeItem item = new TreeItem(rational, SWT.CHECK);
+				item.setText(((Proposal) me).getName());
+
+			} else if (me instanceof Solution) {
+
+				TreeItem item = new TreeItem(rational, SWT.CHECK);
+				item.setText(((Solution) me).getName());
+
+			} else if (me instanceof Criterion) {
+
+				TreeItem item = new TreeItem(rational, SWT.CHECK);
+				item.setText(((Criterion) me).getName());
+
+			} else if (me instanceof Assessment) {
+
+				TreeItem item = new TreeItem(rational, SWT.CHECK);
+				item.setText(((Assessment) me).getName());
+
+			} else if (me instanceof Comment) {
+
+				TreeItem item = new TreeItem(rational, SWT.CHECK);
+				item.setText(((Comment) me).getName());
+
+			} else if (me instanceof Component) {
+
+				TreeItem item = new TreeItem(component, SWT.CHECK);
+				item.setText(((Component) me).getName());
+
+			} else if (me instanceof ComponentService) {
+
+				TreeItem item = new TreeItem(component, SWT.CHECK);
+				item.setText(((ComponentService) me).getName());
+
+			} else if (me instanceof DeploymentNode) {
+
+				TreeItem item = new TreeItem(component, SWT.CHECK);
+				item.setText(((DeploymentNode) me).getName());
+
+			} else if (me instanceof Meeting) {
+
+				TreeItem item = new TreeItem(meeting, SWT.CHECK);
+				item.setText(((Meeting) me).getName());
+
+			} else if (me instanceof MeetingSection) {
+
+				TreeItem item = new TreeItem(meeting, SWT.CHECK);
+				item.setText(((MeetingSection) me).getName());
+
+			} else if (me instanceof Transition) {
+
+				TreeItem item = new TreeItem(state, SWT.CHECK);
+				item.setText(((Transition) me).getName());
+
+			} else if (me instanceof StateNode) {
+
+				TreeItem item = new TreeItem(state, SWT.CHECK);
+				item.setText(((StateNode) me).getName());
+
+			} else if (me instanceof Attachment) {
+
+				TreeItem item = new TreeItem(attatchement, SWT.CHECK);
+				item.setText(((Attachment) me).getName());
+
+			} else if (me instanceof Profile) {
+
+				TreeItem item = new TreeItem(attatchement, SWT.CHECK);
+				item.setText(((Profile) me).getName());
+
+			} else if (me instanceof Stereotype) {
+
+				TreeItem item = new TreeItem(profile, SWT.CHECK);
+				item.setText(((Stereotype) me).getName());
+
+			} else if (me instanceof StereotypeInstance) {
+
+				TreeItem item = new TreeItem(profile, SWT.CHECK);
+				item.setText(((StereotypeInstance) me).getName());
+
+			} else if (me instanceof StereotypeAttribute) {
+
+				TreeItem item = new TreeItem(profile, SWT.CHECK);
+				item.setText(((StereotypeAttribute) me).getName());
+
+			} else if (me instanceof StereotypeAttributeInstance) {
+
+				TreeItem item = new TreeItem(profile, SWT.CHECK);
+				item.setText(((StereotypeAttributeInstance) me).getName());
+
+			} else if (me instanceof ActivityObject) {
+
+				TreeItem item = new TreeItem(activity, SWT.CHECK);
+				item.setText(((ActivityObject) me).getName());
+
+			} else if (me instanceof org.unicase.model.activity.Transition) {
+
+				TreeItem item = new TreeItem(activity, SWT.CHECK);
+				item.setText(((org.unicase.model.activity.Transition) me)
+						.getName());
 
 			}
 		}
@@ -252,6 +595,11 @@ public class RunRecovery implements Listener {
 			checkItems(item, checked);
 			checkPath(item.getParentItem(), checked, false);
 
+		} else if (event.widget == ME){
+			TreeItem item = (TreeItem) event.item;
+			boolean checked = item.getChecked();
+			checkItems(item, checked);
+			checkPath(item.getParentItem(), checked, false);
 		}
 
 	}
@@ -268,7 +616,7 @@ public class RunRecovery implements Listener {
 
 			Directory sourceDir = TraceRecoveryFactory.eINSTANCE
 					.createDirectory();
-			sourceDir.setPath("lucene-index");
+			sourceDir.setPath(indexPath);
 
 			recovery.setIndexer(codeLanguage, codeDir, sourceDir);
 
@@ -281,8 +629,6 @@ public class RunRecovery implements Listener {
 			} else if (code.getItem(0).getGrayed()) {
 
 				directoriesBuild(code.getItem(0), code.getItem(0).getText());
-
-				
 
 				recovery.index(dir);
 
@@ -314,16 +660,30 @@ public class RunRecovery implements Listener {
 
 	void directoriesBuild(TreeItem item, String mainPath) {
 
+		File fff = new File(path);
+
 		TreeItem[] items = item.getItems();
 
 		for (int i = 0; i < items.length; i++) {
 			if (items[i].getChecked()) {
-				String tex = mainPath + "/" + items[i].getText();
-				dir.add(tex);
-				System.out.println(tex);
+				if (fff.pathSeparatorChar == ':') {
+					String tex = mainPath + "/" + items[i].getText();
+					dir.add(tex);
+					System.out.println(tex);
+				} else if (fff.pathSeparatorChar == ';') {
+					String tex = mainPath + "\\" + items[i].getText();
+					dir.add(tex);
+					System.out.println(tex);
+				}
 
 			} else if (items[i].getGrayed()) {
-				directoriesBuild(items[i], mainPath + "/" + items[i].getText());
+				if (fff.pathSeparatorChar == ':') {
+					directoriesBuild(items[i],
+							mainPath + "/" + items[i].getText());
+				} else if (fff.pathSeparatorChar == ';') {
+					directoriesBuild(items[i],
+							mainPath + "\\" + items[i].getText());
+				}
 
 			}
 
@@ -338,8 +698,6 @@ public class RunRecovery implements Listener {
 		}
 
 	}
-
-
 
 	void checkItems(TreeItem item, boolean checked) {
 		item.setGrayed(false);
