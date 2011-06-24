@@ -151,18 +151,18 @@ public class JavaParser extends Parser {
 	}
 
 public class JClass {
-	String className = null;
-	ArrayList methodDeclarations = new ArrayList();
-	ArrayList innerClasses = new ArrayList();
-	String superClass = null;
-	ArrayList interfaces = new ArrayList();
+	public String className = null;
+	public ArrayList methodDeclarations = new ArrayList();
+	public ArrayList innerClasses = new ArrayList();
+	public String superClass = null;
+	public ArrayList interfaces = new ArrayList();
 }
 
 public class JMethod{
-	String methodName = null;
-	ArrayList parameters = new ArrayList();
-	String codeBlock = null;
-	String returnType = null;
+	public String methodName = null;
+	public ArrayList parameters = new ArrayList();
+	public String codeBlock = null;
+	public String returnType = null;
 }
 
 
