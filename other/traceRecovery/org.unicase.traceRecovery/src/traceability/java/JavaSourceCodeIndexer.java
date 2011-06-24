@@ -97,7 +97,9 @@ public class JavaSourceCodeIndexer extends Indexer{
 		addClass(doc, cls);
 		
 		Field name = new Field("filename",f.getName(),Field.Store.YES,Field.Index.NO);
+		Field path = new Field("path",f.getAbsolutePath(),Field.Store.YES,Field.Index.NO);
 		doc.add(name);
+		doc.add(path);
 		
 		try {
 			writer.addDocument(doc);
