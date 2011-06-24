@@ -30,6 +30,9 @@
             class="traceRecovery.TraceRecoveryPackage"
             genModel="model/traceRecovery.genmodel"/>
    </extension>
+
+
+
 <extension
       point="org.eclipse.ui.popupMenus">
       <viewerContribution
@@ -44,19 +47,33 @@
       </viewerContribution>
 </extension>
 
+<extension
+      point="org.eclipse.ui.popupMenus">
+   <viewerContribution
+         id="org.unicase.traceRecovery.viewerContribution2"
+         targetID="org.eclipse.jdt.ui.PackageExplorer">
+      <action
+            class="traceRecovery.ui.SelectLuceneDirectoryJava"
+            id="org.unicase.traceRecovery.action2"
+            menubarPath="Other.."
+            label="Run Recovery">
+      </action>
+   </viewerContribution>
+</extension>
 
 
 
-<!--<extension point="org.eclipse.ui.popupMenus"> 
+
+<extension point="org.eclipse.ui.popupMenus"> 
    <viewerContribution 
-      id="org.eclipse.ui.articles.action.contribution.popup.navigator"
-   targetID="org.unicase.ui.navigator.viewer"> 
+      id="org.unicase.traceRecovery.viewerContribution3"
+   targetID="org.eclipse.photran.ui.FortranView"> 
    <action
-         id="org.eclipse.ui.articles.action.contribution.navigator.action1" 
+         id="org.eclipse.ui.articles.action.contribution.navigator.action3" 
          label="run recovery"
          menubarPath="Other..." 
-         class="traceRecovery.ui.SelectDirectory"
-      enablesFor="?">
+         class="traceRecovery.ui.SelectLuceneDirectoryFortron"
+      >
       </action>
 
    </viewerContribution> 
