@@ -33,6 +33,10 @@
         <genParameters ecoreParameter="bowling.ecore#//Player/hasDateOfBirth/diagnosticianChain"/>
         <genParameters ecoreParameter="bowling.ecore#//Player/hasDateOfBirth/context"/>
       </genOperations>
+      <genOperations ecoreOperation="bowling.ecore#//Player/hasCorrectStreetNumber">
+        <genParameters ecoreParameter="bowling.ecore#//Player/hasCorrectStreetNumber/diagnosticianChain"/>
+        <genParameters ecoreParameter="bowling.ecore#//Player/hasCorrectStreetNumber/context"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="bowling.ecore#//League">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bowling.ecore#//League/name"/>
