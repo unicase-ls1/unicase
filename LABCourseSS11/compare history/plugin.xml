@@ -2,27 +2,6 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.ui.menus">
-      <menuContribution
-            allPopups="true"
-            locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=additions">
-         <command
-               commandId="org.eclipse.emf.ecp.compare.history.historycomparehandler"
-               id="History Compare"
-               label="History Compare"
-               style="push">
-         </command>
-      </menuContribution>
-   </extension>
-   <extension
-         point="org.eclipse.ui.commands">
-      <command
-            defaultHandler="org.eclipse.emf.ecp.compare.history.handler.HistoryCompareHandler"
-            id="org.eclipse.emf.ecp.compare.history.historycomparehandler"
-            name="History Compare">
-      </command>
-   </extension>
-   <extension
          point="org.eclipse.emf.compare.match.engine">
       <matchengine
             engineClass="org.eclipse.emf.ecp.compare.history.unicasematchengine.UnicaseMatchEngine"
@@ -30,6 +9,13 @@
             label="Unicase Match Engine"
             priority="highest">
       </matchengine>
+   </extension>
+   <extension
+         point="org.eclipse.emf.emfstore.client.ui.views.historybrowsercomparator">
+      <Comparator
+            comparator="org.eclipse.emf.ecp.compare.history.handler.EMFCompareComparator"
+            name="org.eclipse.emf.ecp.compare.history.Comparator1">
+      </Comparator>
    </extension>
 
 </plugin>
