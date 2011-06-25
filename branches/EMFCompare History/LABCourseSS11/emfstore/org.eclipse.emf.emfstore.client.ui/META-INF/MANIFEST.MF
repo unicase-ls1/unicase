@@ -121,6 +121,7 @@ Export-Package: diff.match.patch,
    org.eclipse.swt.graphics,
    org.eclipse.emf.emfstore.client.ui.views.scm,
    org.eclipse.swt.widgets",
+ org.eclipse.emf.emfstore.client.ui.views.historybrowserview.exceptions,
  org.eclipse.emf.emfstore.client.ui.views.scm;
   uses:="org.eclipse.emf.ecore,
    org.eclipse.emf.emfstore.common.model,

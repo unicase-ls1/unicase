@@ -75,6 +75,55 @@ public class CompareRevisionsHandler extends AbstractHistoryViewHandler {
 				// Project Revisions
 				HistoryCompare.handleRegisteredExtensions(project1, project2);
 			}
+
+			// TreeNode element1 = (TreeNode) list.get(0);
+			// HistoryInfo historyInfo1 = (HistoryInfo) element1.getValue();
+			// final PrimaryVersionSpec versionSpec1 = ModelUtil
+			// .clone(historyInfo1.getPrimerySpec());
+			// final ProjectSpace projectSpace1 = view.getProjectSpace();
+			//
+			// TreeNode element2 = (TreeNode) list.get(1);
+			// HistoryInfo historyInfo2 = (HistoryInfo) element2.getValue();
+			// final PrimaryVersionSpec versionSpec2 = ModelUtil
+			// .clone(historyInfo2.getPrimerySpec());
+			// final ProjectSpace projectSpace2 = view.getProjectSpace();
+			//
+			// ServerRequestCommandHandler handler = new
+			// ServerRequestCommandHandler() {
+			//
+			// @Override
+			// protected Object run() throws EmfStoreException {
+			// ProjectSpace pSpace1 = WorkspaceManager
+			// .getInstance()
+			// .getCurrentWorkspace()
+			// .getRevision(projectSpace1.getUsersession(),
+			// projectSpace1.getProjectInfo(),
+			// versionSpec1);
+			//
+			// ProjectSpace pSpace2 = WorkspaceManager
+			// .getInstance()
+			// .getCurrentWorkspace()
+			// .getRevision(projectSpace2.getUsersession(),
+			// projectSpace2.getProjectInfo(),
+			// versionSpec2);
+			// if (HistoryCompare.hasRegisteredExtensions()) {
+			// HistoryCompare.handleRegisteredExtensions(
+			// pSpace1.getProject(), pSpace2.getProject());
+			// }
+			// return null;
+			// }
+			//
+			// @Override
+			// public String getTaskTitle() {
+			// return "Resolving project versions...";
+			// }
+			// };
+			//
+			// try {
+			// handler.execute(new ExecutionEvent());
+			// } catch (ExecutionException e) {
+			// DialogHandler.showErrorDialog(e.getMessage());
+			// }
 		}
 
 		return null;

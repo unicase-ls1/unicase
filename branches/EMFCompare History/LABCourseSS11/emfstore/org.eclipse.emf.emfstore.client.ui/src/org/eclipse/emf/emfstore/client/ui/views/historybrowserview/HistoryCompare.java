@@ -27,7 +27,7 @@ import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 public class HistoryCompare {
 
 	// This is the ID of the extension point
-	private final String HISTORY_COMPARE_ID = "org.eclipse.emf.emfstore.client.ui.views.historybrowsercomparator";
+	private final static String HISTORY_COMPARE_ID = "org.eclipse.emf.emfstore.client.ui.views.historybrowsercomparator";
 
 	/**
 	 * This function tells you if there is a Comparator registered on the
@@ -51,12 +51,13 @@ public class HistoryCompare {
 	 * @param e2
 	 *            EObject two to compare
 	 */
-	public static void handleRegisteredExtensions(final EObject e1, final EObject e2) {
+	public static void handleRegisteredExtensions(final EObject e1,
+			final EObject e2) {
 		IConfigurationElement[] config = Platform.getExtensionRegistry()
 				.getConfigurationElementsFor(HISTORY_COMPARE_ID);
 		try {
 			for (IConfigurationElement e : config) {
-				final Object o = e.createExecutableExtension("class");
+				final Object o = e.createExecutableExtension("comparator");
 				if (o instanceof ICompare) {
 					ISafeRunnable runnable = new ISafeRunnable() {
 						// @Override
