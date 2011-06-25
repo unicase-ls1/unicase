@@ -17,6 +17,11 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
+
+/**
+ * @author Haunolder
+ *
+ */
 public class ValidateHandler extends AbstractHandler {
 
 	private Diagnostic diagnostic; 

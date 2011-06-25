@@ -68,12 +68,20 @@ public class BowlingValidator extends EObjectValidator {
 	public static final int PLAYER__HAS_DATE_OF_BIRTH = 3;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Correct Street Number' of 'Player'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int PLAYER__HAS_CORRECT_STREET_NUMBER = 4;
+
+	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 3;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 4;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -148,6 +156,7 @@ public class BowlingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validatePlayer_hasName(player, diagnostics, context);
 		if (result || diagnostics != null) result &= validatePlayer_hasStreet(player, diagnostics, context);
 		if (result || diagnostics != null) result &= validatePlayer_hasDateOfBirth(player, diagnostics, context);
+		if (result || diagnostics != null) result &= validatePlayer_hasCorrectStreetNumber(player, diagnostics, context);
 		return result;
 	}
 
@@ -179,6 +188,16 @@ public class BowlingValidator extends EObjectValidator {
 	 */
 	public boolean validatePlayer_hasDateOfBirth(Player player, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return player.hasDateOfBirth(diagnostics, context);
+	}
+
+	/**
+	 * Validates the hasCorrectStreetNumber constraint of '<em>Player</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePlayer_hasCorrectStreetNumber(Player player, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return player.hasCorrectStreetNumber(diagnostics, context);
 	}
 
 	/**
