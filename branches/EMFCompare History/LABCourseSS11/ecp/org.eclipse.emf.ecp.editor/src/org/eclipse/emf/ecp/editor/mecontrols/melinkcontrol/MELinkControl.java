@@ -9,9 +9,14 @@ package org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol;
 import java.util.ArrayList;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
 import org.eclipse.emf.ecp.common.util.ModelElementClassTooltip;
 import org.eclipse.emf.ecp.common.util.ShortLabelProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -39,6 +44,7 @@ import org.eclipse.ui.forms.widgets.ImageHyperlink;
  * 
  * @author helming
  * @author shterev
+ * @author stute
  */
 public class MELinkControl {
 
@@ -146,6 +152,11 @@ public class MELinkControl {
 		IHyperlinkListener listener = new MEHyperLinkAdapter(link, contextModelElement, eReference.getName());
 		hyperlink.addHyperlinkListener(listener);
 		imageHyperlink.addHyperlinkListener(listener);
+
+		if(containsInWorkspace(link) == false){
+			hyperlink.setEnabled(false);
+		}
+
 	}
 
 	private void updateIcon() {
@@ -171,6 +182,46 @@ public class MELinkControl {
 
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject link2, EObject contextModelElement2) {
 		return 0;
+	}
+	
+	
+	/**
+	 * Checks if link element is in the workspace 
+	 */
+	
+	public boolean containsInWorkspace(EObject link){
+		ECPWorkspace currentWorkspace = null;
+		try {
+			currentWorkspace = ECPWorkspaceManager.getInstance().getWorkSpace();
+		} catch (NoWorkspaceException e) {
+						// TODO Auto-generated catch block
+						// Do NOT catch all Exceptions ("catch (Exception e)")
+						// Log AND handle Exceptions if possible 
+			            //
+			            // You can just uncomment one of the lines below to log an exception:
+						// logException will show the logged excpetion to the user
+						// ModelUtil.logException(e);
+						// ModelUtil.logException("YOUR MESSAGE HERE", e);
+						// logWarning will only add the message to the error log
+						// ModelUtil.logWarning("YOUR MESSAGE HERE", e);
+						// ModelUtil.logWarning("YOUR MESSAGE HERE");
+						//			
+						// If handling is not possible declare and rethrow Exception
+		}
+		if (currentWorkspace == null) {
+			return false;
+		}
+		else {
+			EList<ECPProject> projects = currentWorkspace.getProjects();
+			int i = 0;
+			while (i < projects.size()){
+				if (projects.get(i).contains(link) == true){
+					return true;
+				}
+				i++;
+			}
+		}
+		return false;
 	}
 
 }
