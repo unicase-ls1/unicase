@@ -1,8 +1,6 @@
 package scrm.diagram.edit.parts;
 
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.PolylineDecoration;
-import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
@@ -119,7 +117,6 @@ public class ScientificProblemInfluencedFeatureEditPart extends
 		public ScientificProblem_InfluencedFeatureFigure() {
 
 			createContents();
-			setTargetDecoration(createTargetDecoration());
 		}
 
 		/**
@@ -133,14 +130,6 @@ public class ScientificProblemInfluencedFeatureEditPart extends
 
 			this.add(fFigureScientificProblem_InfluencedFeatureLabel);
 
-		}
-
-		/**
-		 * @generated
-		 */
-		private RotatableDecoration createTargetDecoration() {
-			PolylineDecoration df = new PolylineDecoration();
-			return df;
 		}
 
 		/**

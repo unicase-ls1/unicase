@@ -27,7 +27,7 @@ import scrm.SCRMModelElement;
 public interface ScientificKnowledge extends SCRMModelElement {
 	/**
 	 * Returns the value of the '<em><b>Containing Knowledge Space</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link scrm.knowledge.KnowledgeSpace#getContainedScientificKnowledge <em>Contained Scientific Knowledge</em>}'.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.KnowledgeSpace#getContainedScientificProblem <em>Contained Scientific Problem</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Containing Knowledge Space</em>' container reference isn't clear,
@@ -37,8 +37,8 @@ public interface ScientificKnowledge extends SCRMModelElement {
 	 * @return the value of the '<em>Containing Knowledge Space</em>' container reference.
 	 * @see #setContainingKnowledgeSpace(KnowledgeSpace)
 	 * @see scrm.knowledge.KnowledgePackage#getScientificKnowledge_ContainingKnowledgeSpace()
-	 * @see scrm.knowledge.KnowledgeSpace#getContainedScientificKnowledge
-	 * @model opposite="containedScientificKnowledge" transient="false"
+	 * @see scrm.knowledge.KnowledgeSpace#getContainedScientificProblem
+	 * @model opposite="containedScientificProblem" transient="false"
 	 *        annotation="org.unicase.ui.meeditor position='left' priority='10'"
 	 * @generated
 	 */

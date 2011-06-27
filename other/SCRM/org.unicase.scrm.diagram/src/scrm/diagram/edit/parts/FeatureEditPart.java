@@ -264,11 +264,13 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(6);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(8);
 		types.add(ScrmElementTypes.FeatureRequiredInterfaces_4023);
 		types.add(ScrmElementTypes.FeatureProvidedInterfaces_4024);
+		types.add(ScrmElementTypes.FeatureConstraints_4025);
 		types.add(ScrmElementTypes.FeatureDependencies_4026);
-		types.add(ScrmElementTypes.FeatureSuperFeature_4053);
+		types.add(ScrmElementTypes.FeatureDetailedRequirements_4027);
+		types.add(ScrmElementTypes.Feature_4029);
 		types.add(ScrmElementTypes.FeatureRequiredFeatures_4030);
 		types.add(ScrmElementTypes.FeatureExcludedFeatures_4032);
 		return types;
@@ -286,46 +288,49 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 		if (targetEditPart instanceof SoftwareInterfaceEditPart) {
 			types.add(ScrmElementTypes.FeatureRequiredInterfaces_4023);
 		}
-		if (targetEditPart instanceof SoftwareInterface2EditPart) {
-			types.add(ScrmElementTypes.FeatureRequiredInterfaces_4023);
-		}
-		if (targetEditPart instanceof UserInterface2EditPart) {
-			types.add(ScrmElementTypes.FeatureRequiredInterfaces_4023);
-		}
 		if (targetEditPart instanceof UserInterfaceEditPart) {
 			types.add(ScrmElementTypes.FeatureProvidedInterfaces_4024);
 		}
 		if (targetEditPart instanceof SoftwareInterfaceEditPart) {
 			types.add(ScrmElementTypes.FeatureProvidedInterfaces_4024);
 		}
-		if (targetEditPart instanceof SoftwareInterface2EditPart) {
-			types.add(ScrmElementTypes.FeatureProvidedInterfaces_4024);
-		}
-		if (targetEditPart instanceof UserInterface2EditPart) {
-			types.add(ScrmElementTypes.FeatureProvidedInterfaces_4024);
+		if (targetEditPart instanceof ConstraintEditPart) {
+			types.add(ScrmElementTypes.FeatureConstraints_4025);
 		}
 		if (targetEditPart instanceof HardwareEditPart) {
 			types.add(ScrmElementTypes.FeatureDependencies_4026);
 		}
-		if (targetEditPart instanceof Hardware2EditPart) {
-			types.add(ScrmElementTypes.FeatureDependencies_4026);
+		if (targetEditPart instanceof ProcessEditPart) {
+			types.add(ScrmElementTypes.FeatureDetailedRequirements_4027);
+		}
+		if (targetEditPart instanceof PerformanceEditPart) {
+			types.add(ScrmElementTypes.FeatureDetailedRequirements_4027);
+		}
+		if (targetEditPart instanceof InputDataReadingEditPart) {
+			types.add(ScrmElementTypes.FeatureDetailedRequirements_4027);
+		}
+		if (targetEditPart instanceof DataHandlingEditPart) {
+			types.add(ScrmElementTypes.FeatureDetailedRequirements_4027);
+		}
+		if (targetEditPart instanceof ResultsOutputEditPart) {
+			types.add(ScrmElementTypes.FeatureDetailedRequirements_4027);
+		}
+		if (targetEditPart instanceof ErrorHandlingEditPart) {
+			types.add(ScrmElementTypes.FeatureDetailedRequirements_4027);
+		}
+		if (targetEditPart instanceof StatusMonitoringEditPart) {
+			types.add(ScrmElementTypes.FeatureDetailedRequirements_4027);
+		}
+		if (targetEditPart instanceof RequirementEditPart) {
+			types.add(ScrmElementTypes.FeatureDetailedRequirements_4027);
 		}
 		if (targetEditPart instanceof scrm.diagram.edit.parts.FeatureEditPart) {
-			types.add(ScrmElementTypes.FeatureSuperFeature_4053);
-		}
-		if (targetEditPart instanceof Feature2EditPart) {
-			types.add(ScrmElementTypes.FeatureSuperFeature_4053);
+			types.add(ScrmElementTypes.Feature_4029);
 		}
 		if (targetEditPart instanceof scrm.diagram.edit.parts.FeatureEditPart) {
 			types.add(ScrmElementTypes.FeatureRequiredFeatures_4030);
 		}
-		if (targetEditPart instanceof Feature2EditPart) {
-			types.add(ScrmElementTypes.FeatureRequiredFeatures_4030);
-		}
 		if (targetEditPart instanceof scrm.diagram.edit.parts.FeatureEditPart) {
-			types.add(ScrmElementTypes.FeatureExcludedFeatures_4032);
-		}
-		if (targetEditPart instanceof Feature2EditPart) {
 			types.add(ScrmElementTypes.FeatureExcludedFeatures_4032);
 		}
 		return types;
@@ -339,25 +344,28 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 		if (relationshipType == ScrmElementTypes.FeatureRequiredInterfaces_4023) {
 			types.add(ScrmElementTypes.UserInterface_2012);
 			types.add(ScrmElementTypes.SoftwareInterface_2013);
-			types.add(ScrmElementTypes.SoftwareInterface_3013);
-			types.add(ScrmElementTypes.UserInterface_3014);
 		} else if (relationshipType == ScrmElementTypes.FeatureProvidedInterfaces_4024) {
 			types.add(ScrmElementTypes.UserInterface_2012);
 			types.add(ScrmElementTypes.SoftwareInterface_2013);
-			types.add(ScrmElementTypes.SoftwareInterface_3013);
-			types.add(ScrmElementTypes.UserInterface_3014);
+		} else if (relationshipType == ScrmElementTypes.FeatureConstraints_4025) {
+			types.add(ScrmElementTypes.Constraint_2011);
 		} else if (relationshipType == ScrmElementTypes.FeatureDependencies_4026) {
 			types.add(ScrmElementTypes.Hardware_2010);
-			types.add(ScrmElementTypes.Hardware_3010);
-		} else if (relationshipType == ScrmElementTypes.FeatureSuperFeature_4053) {
+		} else if (relationshipType == ScrmElementTypes.FeatureDetailedRequirements_4027) {
+			types.add(ScrmElementTypes.Process_2035);
+			types.add(ScrmElementTypes.Performance_2015);
+			types.add(ScrmElementTypes.InputDataReading_2036);
+			types.add(ScrmElementTypes.DataHandling_2037);
+			types.add(ScrmElementTypes.ResultsOutput_2038);
+			types.add(ScrmElementTypes.ErrorHandling_2039);
+			types.add(ScrmElementTypes.StatusMonitoring_2040);
+			types.add(ScrmElementTypes.Requirement_2034);
+		} else if (relationshipType == ScrmElementTypes.Feature_4029) {
 			types.add(ScrmElementTypes.Feature_2009);
-			types.add(ScrmElementTypes.Feature_3009);
 		} else if (relationshipType == ScrmElementTypes.FeatureRequiredFeatures_4030) {
 			types.add(ScrmElementTypes.Feature_2009);
-			types.add(ScrmElementTypes.Feature_3009);
 		} else if (relationshipType == ScrmElementTypes.FeatureExcludedFeatures_4032) {
 			types.add(ScrmElementTypes.Feature_2009);
-			types.add(ScrmElementTypes.Feature_3009);
 		}
 		return types;
 	}
@@ -366,11 +374,9 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(6);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(4);
 		types.add(ScrmElementTypes.ScientificProblemInfluencedFeature_4008);
-		types.add(ScrmElementTypes.ConstraintRestrictedFeature_4051);
-		types.add(ScrmElementTypes.RequirementSpecifiedFeature_4052);
-		types.add(ScrmElementTypes.FeatureSuperFeature_4053);
+		types.add(ScrmElementTypes.Feature_4029);
 		types.add(ScrmElementTypes.FeatureRequiredFeatures_4030);
 		types.add(ScrmElementTypes.FeatureExcludedFeatures_4032);
 		return types;
@@ -383,38 +389,12 @@ public class FeatureEditPart extends ShapeNodeEditPart {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == ScrmElementTypes.ScientificProblemInfluencedFeature_4008) {
 			types.add(ScrmElementTypes.ScientificProblem_2007);
-			types.add(ScrmElementTypes.ScientificProblem_3001);
-		} else if (relationshipType == ScrmElementTypes.ConstraintRestrictedFeature_4051) {
-			types.add(ScrmElementTypes.Constraint_2011);
-			types.add(ScrmElementTypes.Constraint_3006);
-		} else if (relationshipType == ScrmElementTypes.RequirementSpecifiedFeature_4052) {
-			types.add(ScrmElementTypes.Process_2035);
-			types.add(ScrmElementTypes.Performance_2015);
-			types.add(ScrmElementTypes.InputDataReading_2036);
-			types.add(ScrmElementTypes.DataHandling_2037);
-			types.add(ScrmElementTypes.ResultsOutput_2038);
-			types.add(ScrmElementTypes.ErrorHandling_2039);
-			types.add(ScrmElementTypes.StatusMonitoring_2040);
-			types.add(ScrmElementTypes.Requirement_2034);
-			types.add(ScrmElementTypes.DataProcessSpace_2046);
-			types.add(ScrmElementTypes.Performance_3011);
-			types.add(ScrmElementTypes.Requirement_3012);
-			types.add(ScrmElementTypes.StatusMonitoring_3016);
-			types.add(ScrmElementTypes.ResultsOutput_3017);
-			types.add(ScrmElementTypes.Process_3018);
-			types.add(ScrmElementTypes.InputDataReading_3019);
-			types.add(ScrmElementTypes.ErrorHandling_3020);
-			types.add(ScrmElementTypes.DataHandling_3021);
-			types.add(ScrmElementTypes.DataProcessSpace_3022);
-		} else if (relationshipType == ScrmElementTypes.FeatureSuperFeature_4053) {
+		} else if (relationshipType == ScrmElementTypes.Feature_4029) {
 			types.add(ScrmElementTypes.Feature_2009);
-			types.add(ScrmElementTypes.Feature_3009);
 		} else if (relationshipType == ScrmElementTypes.FeatureRequiredFeatures_4030) {
 			types.add(ScrmElementTypes.Feature_2009);
-			types.add(ScrmElementTypes.Feature_3009);
 		} else if (relationshipType == ScrmElementTypes.FeatureExcludedFeatures_4032) {
 			types.add(ScrmElementTypes.Feature_2009);
-			types.add(ScrmElementTypes.Feature_3009);
 		}
 		return types;
 	}

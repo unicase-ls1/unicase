@@ -15,9 +15,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 
-import scrm.diagram.edit.commands.ConstraintRestrictedFeatureCreateCommand;
-import scrm.diagram.edit.commands.ConstraintRestrictedFeatureReorientCommand;
-import scrm.diagram.edit.parts.ConstraintRestrictedFeatureEditPart;
+import scrm.diagram.edit.commands.FeatureConstraintsCreateCommand;
+import scrm.diagram.edit.commands.FeatureConstraintsReorientCommand;
+import scrm.diagram.edit.parts.FeatureConstraintsEditPart;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -42,14 +42,14 @@ public class ConstraintItemSemanticEditPolicy extends
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
 				getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
-			Edge outgoingLink = (Edge) it.next();
-			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == ConstraintRestrictedFeatureEditPart.VISUAL_ID) {
+		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
+			Edge incomingLink = (Edge) it.next();
+			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == FeatureConstraintsEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						outgoingLink.getSource().getElement(), null,
-						outgoingLink.getTarget().getElement(), false);
+						incomingLink.getSource().getElement(), null,
+						incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 		}
@@ -80,10 +80,8 @@ public class ConstraintItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.ConstraintRestrictedFeature_4051 == req
-				.getElementType()) {
-			return getGEFWrapper(new ConstraintRestrictedFeatureCreateCommand(
-					req, req.getSource(), req.getTarget()));
+		if (ScrmElementTypes.FeatureConstraints_4025 == req.getElementType()) {
+			return null;
 		}
 		return null;
 	}
@@ -93,9 +91,9 @@ public class ConstraintItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.ConstraintRestrictedFeature_4051 == req
-				.getElementType()) {
-			return null;
+		if (ScrmElementTypes.FeatureConstraints_4025 == req.getElementType()) {
+			return getGEFWrapper(new FeatureConstraintsCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -109,9 +107,8 @@ public class ConstraintItemSemanticEditPolicy extends
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case ConstraintRestrictedFeatureEditPart.VISUAL_ID:
-			return getGEFWrapper(new ConstraintRestrictedFeatureReorientCommand(
-					req));
+		case FeatureConstraintsEditPart.VISUAL_ID:
+			return getGEFWrapper(new FeatureConstraintsReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

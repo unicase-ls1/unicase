@@ -278,10 +278,8 @@ public class AssumptionEditPart extends ShapeNodeEditPart {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == ScrmElementTypes.MathematicalModelDependencies_4012) {
 			types.add(ScrmElementTypes.MathematicalModel_2005);
-			types.add(ScrmElementTypes.MathematicalModel_3003);
 		} else if (relationshipType == ScrmElementTypes.NumericalMethodDependencies_4015) {
 			types.add(ScrmElementTypes.NumericalMethod_2006);
-			types.add(ScrmElementTypes.NumericalMethod_3002);
 		}
 		return types;
 	}

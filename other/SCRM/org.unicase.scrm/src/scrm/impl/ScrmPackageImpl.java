@@ -8,7 +8,6 @@ package scrm.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -17,10 +16,8 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 
-import scrm.DiagramType;
 import scrm.SCRMDiagram;
 import scrm.SCRMModelElement;
-import scrm.SCRMSpace;
 import scrm.ScrmFactory;
 import scrm.ScrmPackage;
 
@@ -54,20 +51,6 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 	 * @generated
 	 */
 	private EClass scrmDiagramEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass scrmSpaceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum diagramTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -226,60 +209,6 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSCRMDiagram_DiagramType() {
-		return (EAttribute) scrmDiagramEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSCRMDiagram_PreviousDiagram() {
-		return (EReference) scrmDiagramEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSCRMDiagram_NextDiagram() {
-		return (EReference) scrmDiagramEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getSCRMSpace() {
-		return scrmSpaceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSCRMSpace_RepresentingDiagram() {
-		return (EReference) scrmSpaceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getDiagramType() {
-		return diagramTypeEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getSCRMDiagram_Gmfdiagram() {
 		return (EReference) scrmDiagramEClass.getEStructuralFeatures().get(1);
 	}
@@ -323,15 +252,6 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 		createEReference(scrmDiagramEClass, SCRM_DIAGRAM__GMFDIAGRAM);
 		createEReference(scrmDiagramEClass, SCRM_DIAGRAM__NEW_ELEMENTS);
 		createEAttribute(scrmDiagramEClass, SCRM_DIAGRAM__DIAGRAM_LAYOUT);
-		createEAttribute(scrmDiagramEClass, SCRM_DIAGRAM__DIAGRAM_TYPE);
-		createEReference(scrmDiagramEClass, SCRM_DIAGRAM__PREVIOUS_DIAGRAM);
-		createEReference(scrmDiagramEClass, SCRM_DIAGRAM__NEXT_DIAGRAM);
-
-		scrmSpaceEClass = createEClass(SCRM_SPACE);
-		createEReference(scrmSpaceEClass, SCRM_SPACE__REPRESENTING_DIAGRAM);
-
-		// Create enums
-		diagramTypeEEnum = createEEnum(DIAGRAM_TYPE);
 	}
 
 	/**
@@ -378,7 +298,6 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 
 		// Add supertypes to classes
 		scrmDiagramEClass.getESuperTypes().add(this.getSCRMModelElement());
-		scrmSpaceEClass.getESuperTypes().add(this.getSCRMModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(scrmModelElementEClass, SCRMModelElement.class,
@@ -415,35 +334,6 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 				theEcorePackage.getEString(), "diagramLayout", null, 0, 1,
 				SCRMDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSCRMDiagram_DiagramType(), this.getDiagramType(),
-				"diagramType", null, 0, 1, SCRMDiagram.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getSCRMDiagram_PreviousDiagram(), this.getSCRMDiagram(),
-				null, "previousDiagram", null, 0, 1, SCRMDiagram.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getSCRMDiagram_NextDiagram(), this.getSCRMDiagram(),
-				null, "nextDiagram", null, 0, 1, SCRMDiagram.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-
-		initEClass(scrmSpaceEClass, SCRMSpace.class, "SCRMSpace", IS_ABSTRACT,
-				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSCRMSpace_RepresentingDiagram(),
-				this.getSCRMDiagram(), null, "representingDiagram", null, 0, 1,
-				SCRMSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-
-		// Initialize enums and add enum literals
-		initEEnum(diagramTypeEEnum, DiagramType.class, "DiagramType");
-		addEEnumLiteral(diagramTypeEEnum, DiagramType.DEFAULT_DIAGRAM);
-		addEEnumLiteral(diagramTypeEEnum, DiagramType.KNOWLEDGE_DIAGRAM);
-		addEEnumLiteral(diagramTypeEEnum, DiagramType.REQUIREMENTS_DIAGRAM);
-		addEEnumLiteral(diagramTypeEEnum, DiagramType.DATA_PROCESS_DIAGRAM);
 
 		// Create resource
 		createResource(eNS_URI);

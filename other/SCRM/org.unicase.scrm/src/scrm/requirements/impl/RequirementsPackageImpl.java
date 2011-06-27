@@ -779,8 +779,6 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 				theScrmPackage.getSCRMModelElement());
 		interfaceEClass.getESuperTypes().add(this.getIRequirement());
 		requirementEClass.getESuperTypes().add(this.getIRequirement());
-		requirementSpaceEClass.getESuperTypes().add(
-				theScrmPackage.getSCRMSpace());
 		requirementSpaceEClass.getESuperTypes().add(this.getIRequirement());
 		featureEClass.getESuperTypes().add(this.getIRequirement());
 		hardwareEClass.getESuperTypes().add(this.getIRequirement());

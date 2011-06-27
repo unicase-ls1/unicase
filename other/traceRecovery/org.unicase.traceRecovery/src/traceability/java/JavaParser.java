@@ -63,13 +63,13 @@ public class JavaParser extends Parser {
 
 	}
 
-	public  ArrayList <String> getImportDeclarations() {
+	public  ArrayList getImportDeclarations() {
 		List imports = _unit.imports();
 		if(imports.size() == 0) return null;
-		ArrayList <String> importDecl = new ArrayList <String>();
-		ListIterator <ImportDeclaration> iter = imports.listIterator();
+		ArrayList importDecl = new ArrayList();
+		ListIterator iter = imports.listIterator();
 		while (iter.hasNext()) {
-			ImportDeclaration decl = iter.next();
+			ImportDeclaration decl = (ImportDeclaration)iter.next();
 			importDecl.add(decl.getName().toString());
 		}
 		return importDecl;
@@ -151,18 +151,18 @@ public class JavaParser extends Parser {
 	}
 
 public class JClass {
-	public String className = null;
-	public ArrayList methodDeclarations = new ArrayList();
-	public ArrayList innerClasses = new ArrayList();
-	public String superClass = null;
-	public ArrayList interfaces = new ArrayList();
+	String className = null;
+	ArrayList methodDeclarations = new ArrayList();
+	ArrayList innerClasses = new ArrayList();
+	String superClass = null;
+	ArrayList interfaces = new ArrayList();
 }
 
 public class JMethod{
-	public String methodName = null;
-	public ArrayList parameters = new ArrayList();
-	public String codeBlock = null;
-	public String returnType = null;
+	String methodName = null;
+	ArrayList parameters = new ArrayList();
+	String codeBlock = null;
+	String returnType = null;
 }
 
 

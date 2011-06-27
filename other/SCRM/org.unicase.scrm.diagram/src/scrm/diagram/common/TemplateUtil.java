@@ -2,23 +2,16 @@ package scrm.diagram.common;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.LinkedHashMap;
 
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.EContentsEList.FeatureIterator;
 import org.eclipse.emf.edit.command.CopyCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -26,11 +19,12 @@ import org.unicase.metamodel.Project;
 import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.Configuration;
+import org.unicase.workspace.util.WorkspaceUtil;
+
+
 import scrm.SCRMDiagram;
 import scrm.SCRMModelElement;
 import scrm.ScrmFactory;
-import scrm.ScrmPackage;
-import scrm.impl.DiagramStoreException;
 
 /**
  * @author mharut
@@ -47,25 +41,14 @@ final public class TemplateUtil {
 	 * The default directory for saving and loading templates.
 	 * @see #getTemplateDirectoryPath()
 	 */
-	private File templateDirectory;
-	
-	private static Integer UNSET_VALUE = -1;
-	
-	public static TemplateUtil instance = new TemplateUtil();
-	
+	private static File templateDirectory;
 	
 	/**
 	 * Class should not be instantiated, as all methods should be accessed in 
 	 * a static way.
 	 */
 	private TemplateUtil() {
-		if(templateDirectory == null) {
-			templateDirectory = new File(Configuration.getWorkspaceDirectory() + "templates");
-		}
-		
-		if(!templateDirectory.exists()) {
-			templateDirectory.mkdirs();
-		}
+		// nothing to do
 	}
 	
 	/**
@@ -75,15 +58,16 @@ final public class TemplateUtil {
 	 * 
 	 * @param scrmDiagram the SCRMDiagram to save
 	 * @param resourcePath the path to the file to save <code>scrmDiagram</code> to
-	 * @throws IOException if there's a reference cycle in the diagrams to save
 	 * @see #copyElements(EditingDomain, Collection)
 	 */
-	public static void doSave(SCRMDiagram scrmDiagram, String resourcePath) throws IOException {
+	public static void doSave(SCRMDiagram scrmDiagram, String resourcePath) {
 		// initialize Resource to save to
 		final Resource templateResource = initializeResource(resourcePath);
 		
 		// initialize elements that need to be saved
-		Collection<EObject> elements = gatherElementsToSave(scrmDiagram);
+		Collection<EObject> elements = new ArrayList<EObject>();
+		elements.add(scrmDiagram);
+		elements.addAll(scrmDiagram.getElements());
 		
 		// copy all these elements
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(scrmDiagram);
@@ -105,30 +89,11 @@ final public class TemplateUtil {
 		}.execute();
 		
 		// save the resource to the file system
-		templateResource.save(null);
-	}
-	
-	private static Collection<EObject> gatherElementsToSave(
-			SCRMDiagram scrmDiagram) {
-		List<EObject> allElements = new LinkedList<EObject>();
-		allElements.add(scrmDiagram);
-		for(EObject element : scrmDiagram.getElements()) {
-			if(element instanceof SCRMDiagram) {
-				if(!allElements.contains(element)) {
-					allElements.addAll(gatherElementsToSave((SCRMDiagram) element));
-				}
-			} else {
-				allElements.add(element);
-			}
+		try {
+			templateResource.save(null);
+		} catch (IOException e) {
+			WorkspaceUtil.logException("Saving SCRM template failed!", e);
 		}
-		List<EObject> result = new LinkedList<EObject>(allElements);
-		for(EObject element : allElements) {
-			EObject container = element.eContainer();
-			if(allElements.contains(container)) {
-				result.remove(element);
-			}
-		}
-		return result;
 	}
 
 	/**
@@ -138,123 +103,56 @@ final public class TemplateUtil {
 	 * 
 	 * @param project the Project to load the template into
 	 * @param resourcePath the path to the template to load from
-	 * @throws IOException if the template file is invalid
 	 * @see #copyElements(EditingDomain, Collection)
 	 */
-	public static void doLoad(final Project project, String resourcePath) throws IOException {
+	public static void doLoad(final Project project, String resourcePath) {
 		// initialize Resource to load from
-		final Resource templateResource = initializeResource(resourcePath);
+		Resource templateResource = initializeResource(resourcePath);
 		
 		// load the specified resource
-		templateResource.load(null);
+		try {
+			templateResource.load(null);
+		} catch (IOException e) {
+			WorkspaceUtil.logException("Loading SCRM template failed!", e);
+		}
 		
 		// check if the template is valid, i.e. if it contains a SCRMDiagram
 		if(!isValid(templateResource))
 			throw new IllegalArgumentException("Template file is invalid!");
 		
-		final Map<EObject, EObject> elementToCopy = new LinkedHashMap<EObject, EObject>(); 
-			
-		fillElementToCopyMap(templateResource, elementToCopy);
+		// template file is valid -> SCRMDiagram is the first content
+		SCRMDiagram resourceScrmDiagram = (SCRMDiagram) templateResource.getContents().get(0);
 		
+		// copy all elements from the template's SCRMDiagram
+		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(project);
+		final Collection<SCRMModelElement> elementsCopy = (Collection<SCRMModelElement>) copyElements(domain, 
+				resourceScrmDiagram.getElements());
+		
+		// initialize the new SCRMDiagram that shall use the template
+		final SCRMDiagram newScrmDiagram = ScrmFactory.eINSTANCE.createSCRMDiagram();
+		newScrmDiagram.setName(resourceScrmDiagram.getName());
+		newScrmDiagram.setDescription(resourceScrmDiagram.getDescription());
+		newScrmDiagram.setDiagramLayout(resourceScrmDiagram.getDiagramLayout());
+				
 		// run command to add elements to project and diagram
 		new ECPCommand(project) {
 
 			@Override
 			protected void doRun() {
-				
-				for(EObject eObject: elementToCopy.keySet()) {
-					project.addModelElement(elementToCopy.get(eObject));
+				project.addModelElement(newScrmDiagram);
+				for(EObject element : elementsCopy) {
+					project.addModelElement(element);
 				}
-				for(EObject originalElement : elementToCopy.keySet()) {
-						updateReferences(originalElement, elementToCopy);
-				}
-
-			}
-
-			private void updateReferences(EObject originalElement,
-					Map<EObject, EObject> elementToCopy) {
-				Map<EStructuralFeature, Object> featureToCopiedObject = new LinkedHashMap<EStructuralFeature, Object>();
-				EObject copy = elementToCopy.get(originalElement);
-				for(FeatureIterator<EObject> featIter = (FeatureIterator<EObject>) originalElement.eCrossReferences().iterator(); featIter.hasNext();) {
-					EObject referencedObject = featIter.next();
-					EStructuralFeature feature = featIter.feature();
-					if(feature.isMany()) {
-						if(elementToCopy.containsKey(referencedObject)) {
-							if(featureToCopiedObject.containsKey(feature)) {
-								((List) featureToCopiedObject.get(feature)).add(elementToCopy.get(referencedObject));
-							} else {
-								List<EObject> objectsToSet = new LinkedList<EObject>();
-								objectsToSet.add(elementToCopy.get(referencedObject));
-								featureToCopiedObject.put(feature, objectsToSet);
-							}
-						}
-					} else {
-						if(elementToCopy.containsKey(referencedObject)) {
-							featureToCopiedObject.put(feature, elementToCopy.get(referencedObject));
-						} else {
-							featureToCopiedObject.put(feature, UNSET_VALUE);
-						}
-					}
-				}
-				for(EStructuralFeature feature : featureToCopiedObject.keySet()) {
-					Object objectToSet = featureToCopiedObject.get(feature);
-					if(objectToSet == UNSET_VALUE) {
-						copy.eUnset(feature);
-					} else {
-						copy.eSet(feature, featureToCopiedObject.get(feature));
-					}
-				}
-				
+				newScrmDiagram.getElements().addAll(elementsCopy);
 			}
 			
 		}.run(true);
-
 		
 		// open the newly created SCRMDiagram in the Diagram Editor
-		ActionHelper.openModelElement(project.getModelElements().get(0), "");
+		ActionHelper.openModelElement(newScrmDiagram, "");
 		
 	}
 	
-	private static void fillElementToCopyMap(
-			Resource templateResource,
-			Map<EObject, EObject> elementToCopy) {
-		for(EObject templateContent : templateResource.getContents()) {
-			EObject newElement = getCopy(templateContent, elementToCopy);
-			elementToCopy.put(templateContent, newElement);
-		}
-	}
-
-	private static EObject getCopy(EObject element,
-			Map<EObject, EObject> elementToCopy) {
-		EObject result;
-		if(elementToCopy.containsKey(element)) {
-			result = elementToCopy.get(element);
-		} else {
-			result = EcoreUtil.copy(element);
-			elementToCopy.put(element, result);
-		}
-		return result;
-	}
-
-	private static SCRMDiagram copyDiagram(SCRMDiagram diagram) {
-		SCRMDiagram diagramCopy = ScrmFactory.eINSTANCE.createSCRMDiagram();
-		diagramCopy.setName(diagram.getName());
-		diagramCopy.setDescription(diagram.getDescription());
-		diagramCopy.setDiagramLayout(diagram.getDiagramLayout());
-		return diagramCopy;
-	}
-
-	private static Collection<SCRMDiagram> filterDiagrams(
-			Collection<EObject> contents) {
-		List<SCRMDiagram> result = new LinkedList<SCRMDiagram>();
-		for(EObject content : contents) {
-			if(content instanceof SCRMDiagram) {
-				result.add((SCRMDiagram) content);
-			}
-		}
-		return result;
-	}
-
 	/**
 	 * Creates a ResourceSet and in it a Resource from the path 
 	 * specified by <code>resourcePath</code>.
@@ -279,15 +177,11 @@ final public class TemplateUtil {
 	private static Collection<?> copyElements(EditingDomain domain,
 			Collection<?> elements) {
 		Command copyCommand = CopyCommand.create(domain, elements);
-		
 		if(copyCommand.canExecute()) {
 			copyCommand.execute();
-			return copyCommand.getResult();
-		} else {
-			return Collections.EMPTY_LIST;
 		}
 		
-		
+		return copyCommand.getResult();
 	}
 
 	/**
@@ -315,8 +209,15 @@ final public class TemplateUtil {
 	 * @return the absolute path to the default template directory 
 	 * @see Configuration#getWorkspaceDirectory()
 	 */
-	public String getTemplateDirectoryPath() {
-
+	public static String getTemplateDirectoryPath() {
+		
+		if(templateDirectory == null) {
+			templateDirectory = new File(Configuration.getWorkspaceDirectory() + "templates");
+		}
+		
+		if(!templateDirectory.exists()) {
+			templateDirectory.mkdirs();
+		}
 		
 		return templateDirectory.getAbsolutePath();
 	}

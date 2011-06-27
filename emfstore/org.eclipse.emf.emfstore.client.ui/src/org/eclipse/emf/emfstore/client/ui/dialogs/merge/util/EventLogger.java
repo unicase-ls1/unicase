@@ -63,11 +63,11 @@ public class EventLogger {
 	public void createMergeEvent(PrimaryVersionSpec base, PrimaryVersionSpec target, int numberOfConflicts,
 		List<AbstractOperation> localChanges) {
 		MergeEvent mergeEvent = EventsFactory.eINSTANCE.createMergeEvent();
-		mergeEvent.setBaseVersion(EcoreUtil.copy(base));
-		mergeEvent.setTargetVersion(EcoreUtil.copy(target));
+		mergeEvent.setBaseVersion((PrimaryVersionSpec) EcoreUtil.copy(base));
+		mergeEvent.setTargetVersion((PrimaryVersionSpec) EcoreUtil.copy(target));
 		mergeEvent.setNumberOfConflicts(numberOfConflicts);
 		for (AbstractOperation op : localChanges) {
-			mergeEvent.getLocalChanges().add(EcoreUtil.copy(op));
+			mergeEvent.getLocalChanges().add((AbstractOperation) EcoreUtil.copy(op));
 		}
 		addEvent(mergeEvent);
 	}

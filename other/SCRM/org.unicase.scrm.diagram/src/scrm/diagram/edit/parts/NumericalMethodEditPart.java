@@ -284,8 +284,8 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
-		types.add(ScrmElementTypes.NumericalMethodSolvedProblem_4057);
 		types.add(ScrmElementTypes.NumericalMethodDependencies_4015);
+		types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
 		types.add(ScrmElementTypes.NumericalMethodPerformance_4017);
 		return types;
 	}
@@ -296,22 +296,34 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 	public List<IElementType> getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (targetEditPart instanceof ScientificProblemEditPart) {
-			types.add(ScrmElementTypes.NumericalMethodSolvedProblem_4057);
-		}
-		if (targetEditPart instanceof ScientificProblem2EditPart) {
-			types.add(ScrmElementTypes.NumericalMethodSolvedProblem_4057);
-		}
 		if (targetEditPart instanceof AssumptionEditPart) {
 			types.add(ScrmElementTypes.NumericalMethodDependencies_4015);
 		}
-		if (targetEditPart instanceof Assumption2EditPart) {
-			types.add(ScrmElementTypes.NumericalMethodDependencies_4015);
+		if (targetEditPart instanceof ProcessEditPart) {
+			types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
 		}
 		if (targetEditPart instanceof PerformanceEditPart) {
-			types.add(ScrmElementTypes.NumericalMethodPerformance_4017);
+			types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
 		}
-		if (targetEditPart instanceof Performance2EditPart) {
+		if (targetEditPart instanceof InputDataReadingEditPart) {
+			types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
+		}
+		if (targetEditPart instanceof DataHandlingEditPart) {
+			types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
+		}
+		if (targetEditPart instanceof ResultsOutputEditPart) {
+			types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
+		}
+		if (targetEditPart instanceof ErrorHandlingEditPart) {
+			types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
+		}
+		if (targetEditPart instanceof StatusMonitoringEditPart) {
+			types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
+		}
+		if (targetEditPart instanceof RequirementEditPart) {
+			types.add(ScrmElementTypes.NumericalMethodRealizingRequirement_4016);
+		}
+		if (targetEditPart instanceof PerformanceEditPart) {
 			types.add(ScrmElementTypes.NumericalMethodPerformance_4017);
 		}
 		return types;
@@ -322,15 +334,19 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == ScrmElementTypes.NumericalMethodSolvedProblem_4057) {
-			types.add(ScrmElementTypes.ScientificProblem_2007);
-			types.add(ScrmElementTypes.ScientificProblem_3001);
-		} else if (relationshipType == ScrmElementTypes.NumericalMethodDependencies_4015) {
+		if (relationshipType == ScrmElementTypes.NumericalMethodDependencies_4015) {
 			types.add(ScrmElementTypes.Assumption_2008);
-			types.add(ScrmElementTypes.Assumption_3004);
+		} else if (relationshipType == ScrmElementTypes.NumericalMethodRealizingRequirement_4016) {
+			types.add(ScrmElementTypes.Process_2035);
+			types.add(ScrmElementTypes.Performance_2015);
+			types.add(ScrmElementTypes.InputDataReading_2036);
+			types.add(ScrmElementTypes.DataHandling_2037);
+			types.add(ScrmElementTypes.ResultsOutput_2038);
+			types.add(ScrmElementTypes.ErrorHandling_2039);
+			types.add(ScrmElementTypes.StatusMonitoring_2040);
+			types.add(ScrmElementTypes.Requirement_2034);
 		} else if (relationshipType == ScrmElementTypes.NumericalMethodPerformance_4017) {
 			types.add(ScrmElementTypes.Performance_2015);
-			types.add(ScrmElementTypes.Performance_3011);
 		}
 		return types;
 	}
@@ -340,8 +356,8 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(ScrmElementTypes.ScientificProblemSolvingMethods_4041);
 		types.add(ScrmElementTypes.MathematicalModelNumericalMethods_4011);
-		types.add(ScrmElementTypes.RequirementRealizedMethod_4050);
 		return types;
 	}
 
@@ -350,28 +366,10 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == ScrmElementTypes.MathematicalModelNumericalMethods_4011) {
+		if (relationshipType == ScrmElementTypes.ScientificProblemSolvingMethods_4041) {
+			types.add(ScrmElementTypes.ScientificProblem_2007);
+		} else if (relationshipType == ScrmElementTypes.MathematicalModelNumericalMethods_4011) {
 			types.add(ScrmElementTypes.MathematicalModel_2005);
-			types.add(ScrmElementTypes.MathematicalModel_3003);
-		} else if (relationshipType == ScrmElementTypes.RequirementRealizedMethod_4050) {
-			types.add(ScrmElementTypes.Process_2035);
-			types.add(ScrmElementTypes.Performance_2015);
-			types.add(ScrmElementTypes.InputDataReading_2036);
-			types.add(ScrmElementTypes.DataHandling_2037);
-			types.add(ScrmElementTypes.ResultsOutput_2038);
-			types.add(ScrmElementTypes.ErrorHandling_2039);
-			types.add(ScrmElementTypes.StatusMonitoring_2040);
-			types.add(ScrmElementTypes.Requirement_2034);
-			types.add(ScrmElementTypes.DataProcessSpace_2046);
-			types.add(ScrmElementTypes.Performance_3011);
-			types.add(ScrmElementTypes.Requirement_3012);
-			types.add(ScrmElementTypes.StatusMonitoring_3016);
-			types.add(ScrmElementTypes.ResultsOutput_3017);
-			types.add(ScrmElementTypes.Process_3018);
-			types.add(ScrmElementTypes.InputDataReading_3019);
-			types.add(ScrmElementTypes.ErrorHandling_3020);
-			types.add(ScrmElementTypes.DataHandling_3021);
-			types.add(ScrmElementTypes.DataProcessSpace_3022);
 		}
 		return types;
 	}

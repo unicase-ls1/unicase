@@ -266,7 +266,9 @@ public class ScientificProblemEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+		types.add(ScrmElementTypes.ScientificProblemRepresentingModel_4006);
+		types.add(ScrmElementTypes.ScientificProblemSolvingMethods_4041);
 		types.add(ScrmElementTypes.ScientificProblemInfluencedFeature_4008);
 		return types;
 	}
@@ -277,10 +279,13 @@ public class ScientificProblemEditPart extends ShapeNodeEditPart {
 	public List<IElementType> getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (targetEditPart instanceof FeatureEditPart) {
-			types.add(ScrmElementTypes.ScientificProblemInfluencedFeature_4008);
+		if (targetEditPart instanceof MathematicalModelEditPart) {
+			types.add(ScrmElementTypes.ScientificProblemRepresentingModel_4006);
 		}
-		if (targetEditPart instanceof Feature2EditPart) {
+		if (targetEditPart instanceof NumericalMethodEditPart) {
+			types.add(ScrmElementTypes.ScientificProblemSolvingMethods_4041);
+		}
+		if (targetEditPart instanceof FeatureEditPart) {
 			types.add(ScrmElementTypes.ScientificProblemInfluencedFeature_4008);
 		}
 		return types;
@@ -291,34 +296,12 @@ public class ScientificProblemEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == ScrmElementTypes.ScientificProblemInfluencedFeature_4008) {
-			types.add(ScrmElementTypes.Feature_2009);
-			types.add(ScrmElementTypes.Feature_3009);
-		}
-		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(ScrmElementTypes.MathematicalModelRepresentedProblem_4048);
-		types.add(ScrmElementTypes.NumericalMethodSolvedProblem_4057);
-		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == ScrmElementTypes.MathematicalModelRepresentedProblem_4048) {
+		if (relationshipType == ScrmElementTypes.ScientificProblemRepresentingModel_4006) {
 			types.add(ScrmElementTypes.MathematicalModel_2005);
-			types.add(ScrmElementTypes.MathematicalModel_3003);
-		} else if (relationshipType == ScrmElementTypes.NumericalMethodSolvedProblem_4057) {
+		} else if (relationshipType == ScrmElementTypes.ScientificProblemSolvingMethods_4041) {
 			types.add(ScrmElementTypes.NumericalMethod_2006);
-			types.add(ScrmElementTypes.NumericalMethod_3002);
+		} else if (relationshipType == ScrmElementTypes.ScientificProblemInfluencedFeature_4008) {
+			types.add(ScrmElementTypes.Feature_2009);
 		}
 		return types;
 	}

@@ -132,7 +132,7 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 				msgs = ((InternalEObject) newContainingKnowledgeSpace)
 						.eInverseAdd(
 								this,
-								KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE,
+								KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
 								KnowledgeSpace.class, msgs);
 			msgs = basicSetContainingKnowledgeSpace(
 					newContainingKnowledgeSpace, msgs);
@@ -357,7 +357,7 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 			return eInternalContainer()
 					.eInverseRemove(
 							this,
-							KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE,
+							KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
 							KnowledgeSpace.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);

@@ -1,8 +1,6 @@
 package scrm.diagram.edit.parts;
 
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.PolylineDecoration;
-import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
@@ -118,7 +116,6 @@ public class NumericalMethodPerformanceEditPart extends ConnectionNodeEditPart
 		public NumericalMethod_PerformanceFigure() {
 
 			createContents();
-			setSourceDecoration(createSourceDecoration());
 		}
 
 		/**
@@ -131,14 +128,6 @@ public class NumericalMethodPerformanceEditPart extends ConnectionNodeEditPart
 
 			this.add(fFigureNumericalMethod_PerformanceLabel);
 
-		}
-
-		/**
-		 * @generated
-		 */
-		private RotatableDecoration createSourceDecoration() {
-			PolylineDecoration df = new PolylineDecoration();
-			return df;
 		}
 
 		/**

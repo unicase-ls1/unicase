@@ -15,9 +15,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 
-import scrm.diagram.edit.commands.DataDefinitionDefinedRequirementCreateCommand;
-import scrm.diagram.edit.commands.DataDefinitionDefinedRequirementReorientCommand;
-import scrm.diagram.edit.parts.DataDefinitionDefinedRequirementEditPart;
+import scrm.diagram.edit.commands.RequirementDefiningDataCreateCommand;
+import scrm.diagram.edit.commands.RequirementDefiningDataReorientCommand;
+import scrm.diagram.edit.parts.RequirementDefiningDataEditPart;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -42,14 +42,14 @@ public class DataDefinitionItemSemanticEditPolicy extends
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
 				getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
-			Edge outgoingLink = (Edge) it.next();
-			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == DataDefinitionDefinedRequirementEditPart.VISUAL_ID) {
+		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
+			Edge incomingLink = (Edge) it.next();
+			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == RequirementDefiningDataEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						outgoingLink.getSource().getElement(), null,
-						outgoingLink.getTarget().getElement(), false);
+						incomingLink.getSource().getElement(), null,
+						incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 		}
@@ -80,10 +80,9 @@ public class DataDefinitionItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.DataDefinitionDefinedRequirement_4055 == req
+		if (ScrmElementTypes.RequirementDefiningData_4038 == req
 				.getElementType()) {
-			return getGEFWrapper(new DataDefinitionDefinedRequirementCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return null;
 		}
 		return null;
 	}
@@ -93,9 +92,10 @@ public class DataDefinitionItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.DataDefinitionDefinedRequirement_4055 == req
+		if (ScrmElementTypes.RequirementDefiningData_4038 == req
 				.getElementType()) {
-			return null;
+			return getGEFWrapper(new RequirementDefiningDataCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -109,9 +109,8 @@ public class DataDefinitionItemSemanticEditPolicy extends
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case DataDefinitionDefinedRequirementEditPart.VISUAL_ID:
-			return getGEFWrapper(new DataDefinitionDefinedRequirementReorientCommand(
-					req));
+		case RequirementDefiningDataEditPart.VISUAL_ID:
+			return getGEFWrapper(new RequirementDefiningDataReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

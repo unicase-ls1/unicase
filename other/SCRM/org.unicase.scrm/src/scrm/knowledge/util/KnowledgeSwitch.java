@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EObject;
 
 import scrm.SCRMModelElement;
 
-import scrm.SCRMSpace;
 import scrm.knowledge.*;
 
 /**
@@ -99,8 +98,6 @@ public class KnowledgeSwitch<T> {
 		case KnowledgePackage.KNOWLEDGE_SPACE: {
 			KnowledgeSpace knowledgeSpace = (KnowledgeSpace) theEObject;
 			T result = caseKnowledgeSpace(knowledgeSpace);
-			if (result == null)
-				result = caseSCRMSpace(knowledgeSpace);
 			if (result == null)
 				result = caseScientificKnowledge(knowledgeSpace);
 			if (result == null)
@@ -260,21 +257,6 @@ public class KnowledgeSwitch<T> {
 	 * @generated
 	 */
 	public T caseSCRMModelElement(SCRMModelElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>SCRM Space</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>SCRM Space</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSCRMSpace(SCRMSpace object) {
 		return null;
 	}
 

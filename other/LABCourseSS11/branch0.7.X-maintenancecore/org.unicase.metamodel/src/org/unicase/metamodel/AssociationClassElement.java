@@ -15,8 +15,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * <!-- begin-user-doc --> A model element which represents an association class. An association class corresponds to a
  * link between to elements which carries additional attributes, such as a label of the link.</b></em>'. <!--
  * end-user-doc -->
- *
- *
+ * 
  * @see org.unicase.metamodel.MetamodelPackage#getAssociationClassElement()
  * @model interface="true" abstract="true"
  * @generated

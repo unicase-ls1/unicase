@@ -21,15 +21,15 @@ import scrm.diagram.edit.commands.NumericalMethodDependenciesCreateCommand;
 import scrm.diagram.edit.commands.NumericalMethodDependenciesReorientCommand;
 import scrm.diagram.edit.commands.NumericalMethodPerformanceCreateCommand;
 import scrm.diagram.edit.commands.NumericalMethodPerformanceReorientCommand;
-import scrm.diagram.edit.commands.NumericalMethodSolvedProblemCreateCommand;
-import scrm.diagram.edit.commands.NumericalMethodSolvedProblemReorientCommand;
-import scrm.diagram.edit.commands.RequirementRealizedMethodCreateCommand;
-import scrm.diagram.edit.commands.RequirementRealizedMethodReorientCommand;
+import scrm.diagram.edit.commands.NumericalMethodRealizingRequirementCreateCommand;
+import scrm.diagram.edit.commands.NumericalMethodRealizingRequirementReorientCommand;
+import scrm.diagram.edit.commands.ScientificProblemSolvingMethodsCreateCommand;
+import scrm.diagram.edit.commands.ScientificProblemSolvingMethodsReorientCommand;
 import scrm.diagram.edit.parts.MathematicalModelNumericalMethodsEditPart;
 import scrm.diagram.edit.parts.NumericalMethodDependenciesEditPart;
 import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
-import scrm.diagram.edit.parts.NumericalMethodSolvedProblemEditPart;
-import scrm.diagram.edit.parts.RequirementRealizedMethodEditPart;
+import scrm.diagram.edit.parts.NumericalMethodRealizingRequirementEditPart;
+import scrm.diagram.edit.parts.ScientificProblemSolvingMethodsEditPart;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -56,7 +56,7 @@ public class NumericalMethodItemSemanticEditPolicy extends
 		cmd.setTransactionNestingEnabled(false);
 		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
-			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == MathematicalModelNumericalMethodsEditPart.VISUAL_ID) {
+			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ScientificProblemSolvingMethodsEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						incomingLink.getSource().getElement(), null,
 						incomingLink.getTarget().getElement(), false);
@@ -64,7 +64,7 @@ public class NumericalMethodItemSemanticEditPolicy extends
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == RequirementRealizedMethodEditPart.VISUAL_ID) {
+			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == MathematicalModelNumericalMethodsEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						incomingLink.getSource().getElement(), null,
 						incomingLink.getTarget().getElement(), false);
@@ -75,7 +75,7 @@ public class NumericalMethodItemSemanticEditPolicy extends
 		}
 		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
-			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == NumericalMethodSolvedProblemEditPart.VISUAL_ID) {
+			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == NumericalMethodDependenciesEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						outgoingLink.getSource().getElement(), null,
 						outgoingLink.getTarget().getElement(), false);
@@ -83,7 +83,7 @@ public class NumericalMethodItemSemanticEditPolicy extends
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
-			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == NumericalMethodDependenciesEditPart.VISUAL_ID) {
+			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == NumericalMethodRealizingRequirementEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						outgoingLink.getSource().getElement(), null,
 						outgoingLink.getTarget().getElement(), false);
@@ -127,10 +127,9 @@ public class NumericalMethodItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.NumericalMethodSolvedProblem_4057 == req
+		if (ScrmElementTypes.ScientificProblemSolvingMethods_4041 == req
 				.getElementType()) {
-			return getGEFWrapper(new NumericalMethodSolvedProblemCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return null;
 		}
 		if (ScrmElementTypes.MathematicalModelNumericalMethods_4011 == req
 				.getElementType()) {
@@ -141,9 +140,10 @@ public class NumericalMethodItemSemanticEditPolicy extends
 			return getGEFWrapper(new NumericalMethodDependenciesCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.RequirementRealizedMethod_4050 == req
+		if (ScrmElementTypes.NumericalMethodRealizingRequirement_4016 == req
 				.getElementType()) {
-			return null;
+			return getGEFWrapper(new NumericalMethodRealizingRequirementCreateCommand(
+					req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.NumericalMethodPerformance_4017 == req
 				.getElementType()) {
@@ -158,9 +158,10 @@ public class NumericalMethodItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.NumericalMethodSolvedProblem_4057 == req
+		if (ScrmElementTypes.ScientificProblemSolvingMethods_4041 == req
 				.getElementType()) {
-			return null;
+			return getGEFWrapper(new ScientificProblemSolvingMethodsCreateCommand(
+					req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.MathematicalModelNumericalMethods_4011 == req
 				.getElementType()) {
@@ -171,10 +172,9 @@ public class NumericalMethodItemSemanticEditPolicy extends
 				.getElementType()) {
 			return null;
 		}
-		if (ScrmElementTypes.RequirementRealizedMethod_4050 == req
+		if (ScrmElementTypes.NumericalMethodRealizingRequirement_4016 == req
 				.getElementType()) {
-			return getGEFWrapper(new RequirementRealizedMethodCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return null;
 		}
 		if (ScrmElementTypes.NumericalMethodPerformance_4017 == req
 				.getElementType()) {
@@ -192,8 +192,8 @@ public class NumericalMethodItemSemanticEditPolicy extends
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case NumericalMethodSolvedProblemEditPart.VISUAL_ID:
-			return getGEFWrapper(new NumericalMethodSolvedProblemReorientCommand(
+		case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
+			return getGEFWrapper(new ScientificProblemSolvingMethodsReorientCommand(
 					req));
 		case MathematicalModelNumericalMethodsEditPart.VISUAL_ID:
 			return getGEFWrapper(new MathematicalModelNumericalMethodsReorientCommand(
@@ -201,8 +201,8 @@ public class NumericalMethodItemSemanticEditPolicy extends
 		case NumericalMethodDependenciesEditPart.VISUAL_ID:
 			return getGEFWrapper(new NumericalMethodDependenciesReorientCommand(
 					req));
-		case RequirementRealizedMethodEditPart.VISUAL_ID:
-			return getGEFWrapper(new RequirementRealizedMethodReorientCommand(
+		case NumericalMethodRealizingRequirementEditPart.VISUAL_ID:
+			return getGEFWrapper(new NumericalMethodRealizingRequirementReorientCommand(
 					req));
 		case NumericalMethodPerformanceEditPart.VISUAL_ID:
 			return getGEFWrapper(new NumericalMethodPerformanceReorientCommand(

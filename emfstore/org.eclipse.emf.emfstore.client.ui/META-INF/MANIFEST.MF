@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Workspace UI Plug-in
+Bundle-Name: EMFStore Client UI  (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.emfstore.client.ui;singleton:=true
-Bundle-Version: 0.8.1
+Bundle-Version: 0.8.9.M3
 Bundle-Activator: org.eclipse.emf.emfstore.client.ui.Activator
 Require-Bundle: org.eclipse.emf.emfstore.client.model.edit;visibility:=reexport,
  org.eclipse.emf.ecp.common.util
@@ -31,6 +31,7 @@ Export-Package: diff.match.patch,
    org.eclipse.emf.emfstore.server.model.versioning,
    org.eclipse.jface.dialogs,
    org.eclipse.emf.emfstore.client.model",
+ org.eclipse.emf.emfstore.client.ui.dialogs.login,
  org.eclipse.emf.emfstore.client.ui.dialogs.merge;
   uses:="org.eclipse.jface.wizard,
    org.eclipse.emf.ecore,
@@ -91,6 +92,9 @@ Export-Package: diff.match.patch,
    org.eclipse.jface.dialogs,
    org.eclipse.ui.forms.widgets,
    org.eclipse.emf.emfstore.client.model",
+ org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.dialogs.admin.acimport,
+ org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.dialogs.admin.acimport.wizard,
+ org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.handlers,
  org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.provider;
   uses:="org.eclipse.emf.edit.ui.provider,
    org.eclipse.jface.viewers,
@@ -121,6 +125,7 @@ Export-Package: diff.match.patch,
    org.eclipse.swt.graphics,
    org.eclipse.emf.emfstore.client.ui.views.scm,
    org.eclipse.swt.widgets",
+ org.eclipse.emf.emfstore.client.ui.views.historybrowserview.handlers,
  org.eclipse.emf.emfstore.client.ui.views.scm;
   uses:="org.eclipse.emf.ecore,
    org.eclipse.emf.emfstore.common.model,

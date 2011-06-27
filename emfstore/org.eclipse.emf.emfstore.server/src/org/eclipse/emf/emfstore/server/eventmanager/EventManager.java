@@ -63,7 +63,7 @@ public final class EventManager extends Thread {
 				if (event != null) {
 					synchronized (this) {
 						for (ListenerContainer e : listeners) {
-							boolean successful = e.handleEvent(EcoreUtil.copy(event));
+							boolean successful = e.handleEvent((ServerEvent) EcoreUtil.copy(event));
 							if (!successful) {
 								tmp.add(e);
 							}

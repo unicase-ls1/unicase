@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -35,19 +34,15 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
-import scrm.DiagramType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 
 import scrm.SCRMDiagram;
 import scrm.SCRMModelElement;
 import scrm.ScrmPackage;
-import scrm.knowledge.KnowledgeSpace;
-import scrm.lists.SCRMDiagramNewElementsList;
-import scrm.requirements.RequirementSpace;
-import scrm.requirements.dataProcess.DataProcessSpace;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,9 +55,6 @@ import scrm.requirements.dataProcess.DataProcessSpace;
  *   <li>{@link scrm.impl.SCRMDiagramImpl#getGmfdiagram <em>Gmfdiagram</em>}</li>
  *   <li>{@link scrm.impl.SCRMDiagramImpl#getNewElements <em>New Elements</em>}</li>
  *   <li>{@link scrm.impl.SCRMDiagramImpl#getDiagramLayout <em>Diagram Layout</em>}</li>
- *   <li>{@link scrm.impl.SCRMDiagramImpl#getDiagramType <em>Diagram Type</em>}</li>
- *   <li>{@link scrm.impl.SCRMDiagramImpl#getPreviousDiagram <em>Previous Diagram</em>}</li>
- *   <li>{@link scrm.impl.SCRMDiagramImpl#getNextDiagram <em>Next Diagram</em>}</li>
  * </ul>
  * </p>
  *
@@ -70,7 +62,6 @@ import scrm.requirements.dataProcess.DataProcessSpace;
  */
 public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 		SCRMDiagram {
-
 	/**
 	 * The cached value of the '{@link #getElements() <em>Elements</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -96,10 +87,10 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getNewElements()
-	 * @generated NOT
+	 * @generated
 	 * @ordered
 	 */
-	protected SCRMDiagramNewElementsList newElements;
+	protected EList<SCRMModelElement> newElements;
 
 	/**
 	 * The default value of the '{@link #getDiagramLayout() <em>Diagram Layout</em>}' attribute.
@@ -122,51 +113,9 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	protected String diagramLayout = DIAGRAM_LAYOUT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDiagramType() <em>Diagram Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDiagramType()
 	 * @generated
-	 * @ordered
-	 */
-	protected static final DiagramType DIAGRAM_TYPE_EDEFAULT = DiagramType.DEFAULT_DIAGRAM;
-
-	/**
-	 * The cached value of the '{@link #getDiagramType() <em>Diagram Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDiagramType()
-	 * @generated
-	 * @ordered
-	 */
-	protected DiagramType diagramType = DIAGRAM_TYPE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getPreviousDiagram() <em>Previous Diagram</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPreviousDiagram()
-	 * @generated
-	 * @ordered
-	 */
-	protected SCRMDiagram previousDiagram;
-
-	/**
-	 * The cached value of the '{@link #getNextDiagram() <em>Next Diagram</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNextDiagram()
-	 * @generated
-	 * @ordered
-	 */
-	protected SCRMDiagram nextDiagram;
-
-	private EObject newElementContainer;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
 	 */
 	protected SCRMDiagramImpl() {
 		super();
@@ -199,18 +148,14 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated  NOT
 	 */
 	public EList<SCRMModelElement> getNewElements() {
-		if (newElementContainer == null) {
-			newElementContainer = eContainer();
+		Project project = ModelUtil.getProject(this);
+		if (project == null) {
+			return null;
 		}
-		if (newElements == null) {
-			newElements = new SCRMDiagramNewElementsList(getElements(),
-					newElementContainer);
-		}
-		newElements.setContainer(newElementContainer);
-		return newElements;
+		return new SCRMDiagramNewElementsList(getElements(), project);
 	}
 
 	/**
@@ -234,125 +179,6 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					ScrmPackage.SCRM_DIAGRAM__DIAGRAM_LAYOUT, oldDiagramLayout,
 					diagramLayout));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DiagramType getDiagramType() {
-		return diagramType;
-	}
-
-	public void setDiagramType(EObject eObject) {
-		if (eObject instanceof KnowledgeSpace) {
-			setDiagramType(DiagramType.KNOWLEDGE_DIAGRAM);
-		} else if (eObject instanceof RequirementSpace) {
-			setDiagramType(DiagramType.REQUIREMENTS_DIAGRAM);
-		} else if (eObject instanceof DataProcessSpace) {
-			setDiagramType(DiagramType.DATA_PROCESS_DIAGRAM);
-		} else
-			setDiagramType(DIAGRAM_TYPE_EDEFAULT);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDiagramType(DiagramType newDiagramType) {
-		DiagramType oldDiagramType = diagramType;
-		diagramType = newDiagramType == null ? DIAGRAM_TYPE_EDEFAULT
-				: newDiagramType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ScrmPackage.SCRM_DIAGRAM__DIAGRAM_TYPE, oldDiagramType,
-					diagramType));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SCRMDiagram getPreviousDiagram() {
-		if (previousDiagram != null && previousDiagram.eIsProxy()) {
-			InternalEObject oldPreviousDiagram = (InternalEObject) previousDiagram;
-			previousDiagram = (SCRMDiagram) eResolveProxy(oldPreviousDiagram);
-			if (previousDiagram != oldPreviousDiagram) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ScrmPackage.SCRM_DIAGRAM__PREVIOUS_DIAGRAM,
-							oldPreviousDiagram, previousDiagram));
-			}
-		}
-		return previousDiagram;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SCRMDiagram basicGetPreviousDiagram() {
-		return previousDiagram;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPreviousDiagram(SCRMDiagram newPreviousDiagram) {
-		SCRMDiagram oldPreviousDiagram = previousDiagram;
-		previousDiagram = newPreviousDiagram;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ScrmPackage.SCRM_DIAGRAM__PREVIOUS_DIAGRAM,
-					oldPreviousDiagram, previousDiagram));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SCRMDiagram getNextDiagram() {
-		if (nextDiagram != null && nextDiagram.eIsProxy()) {
-			InternalEObject oldNextDiagram = (InternalEObject) nextDiagram;
-			nextDiagram = (SCRMDiagram) eResolveProxy(oldNextDiagram);
-			if (nextDiagram != oldNextDiagram) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ScrmPackage.SCRM_DIAGRAM__NEXT_DIAGRAM,
-							oldNextDiagram, nextDiagram));
-			}
-		}
-		return nextDiagram;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SCRMDiagram basicGetNextDiagram() {
-		return nextDiagram;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setNextDiagram(SCRMDiagram newNextDiagram) {
-		SCRMDiagram oldNextDiagram = nextDiagram;
-		nextDiagram = newNextDiagram;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ScrmPackage.SCRM_DIAGRAM__NEXT_DIAGRAM, oldNextDiagram,
-					nextDiagram));
 	}
 
 	/**
@@ -480,16 +306,6 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 			return getNewElements();
 		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_LAYOUT:
 			return getDiagramLayout();
-		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_TYPE:
-			return getDiagramType();
-		case ScrmPackage.SCRM_DIAGRAM__PREVIOUS_DIAGRAM:
-			if (resolve)
-				return getPreviousDiagram();
-			return basicGetPreviousDiagram();
-		case ScrmPackage.SCRM_DIAGRAM__NEXT_DIAGRAM:
-			if (resolve)
-				return getNextDiagram();
-			return basicGetNextDiagram();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -519,15 +335,6 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_LAYOUT:
 			setDiagramLayout((String) newValue);
 			return;
-		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_TYPE:
-			setDiagramType((DiagramType) newValue);
-			return;
-		case ScrmPackage.SCRM_DIAGRAM__PREVIOUS_DIAGRAM:
-			setPreviousDiagram((SCRMDiagram) newValue);
-			return;
-		case ScrmPackage.SCRM_DIAGRAM__NEXT_DIAGRAM:
-			setNextDiagram((SCRMDiagram) newValue);
-			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -552,15 +359,6 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_LAYOUT:
 			setDiagramLayout(DIAGRAM_LAYOUT_EDEFAULT);
 			return;
-		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_TYPE:
-			setDiagramType(DIAGRAM_TYPE_EDEFAULT);
-			return;
-		case ScrmPackage.SCRM_DIAGRAM__PREVIOUS_DIAGRAM:
-			setPreviousDiagram((SCRMDiagram) null);
-			return;
-		case ScrmPackage.SCRM_DIAGRAM__NEXT_DIAGRAM:
-			setNextDiagram((SCRMDiagram) null);
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -582,12 +380,6 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_LAYOUT:
 			return DIAGRAM_LAYOUT_EDEFAULT == null ? diagramLayout != null
 					: !DIAGRAM_LAYOUT_EDEFAULT.equals(diagramLayout);
-		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_TYPE:
-			return diagramType != DIAGRAM_TYPE_EDEFAULT;
-		case ScrmPackage.SCRM_DIAGRAM__PREVIOUS_DIAGRAM:
-			return previousDiagram != null;
-		case ScrmPackage.SCRM_DIAGRAM__NEXT_DIAGRAM:
-			return nextDiagram != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -605,8 +397,6 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (diagramLayout: ");
 		result.append(diagramLayout);
-		result.append(", diagramType: ");
-		result.append(diagramType);
 		result.append(')');
 		return result.toString();
 	}
@@ -758,11 +548,6 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 		if (oldLayout == null || !oldLayout.equals(layoutString)) {
 			setDiagramLayout(layoutString);
 		}
-	}
-
-	public void setNewElementContainer(EObject newElementContainer) {
-		newElements = null;
-		this.newElementContainer = newElementContainer;
 	}
 
 } //SCRMDiagramImpl

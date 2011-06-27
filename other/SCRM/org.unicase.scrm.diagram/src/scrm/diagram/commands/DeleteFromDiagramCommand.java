@@ -16,9 +16,12 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.unicase.ecp.model.ECPModelelementContext;
+import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ecp.model.workSpaceModel.util.AssociationClassHelper;
+import org.unicase.workspace.util.WorkspaceUtil;
+
 import scrm.SCRMDiagram;
-import scrm.diagram.util.ECPUtil;
 import scrm.diagram.util.EditPartUtility;
 
 // dengler: refactor use of edit part request and variables
@@ -53,8 +56,12 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 
 		EObject destructee = null;
 		destructee = this.getElementToDestroy();
-		ECPModelelementContext context = ECPUtil.getModelElementContext();
-		
+		ECPModelelementContext context = null;
+		try {
+			context = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject();
+		} catch (NoWorkspaceException e) {
+			WorkspaceUtil.logException("No Workspace!", e);
+		}
 		if (context == null) {
 			return CommandResult.newErrorCommandResult("Could not compute association classes to delete.");
 		}

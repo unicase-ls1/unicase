@@ -300,7 +300,6 @@ public class HardwareEditPart extends ShapeNodeEditPart {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == ScrmElementTypes.FeatureDependencies_4026) {
 			types.add(ScrmElementTypes.Feature_2009);
-			types.add(ScrmElementTypes.Feature_3009);
 		}
 		return types;
 	}
