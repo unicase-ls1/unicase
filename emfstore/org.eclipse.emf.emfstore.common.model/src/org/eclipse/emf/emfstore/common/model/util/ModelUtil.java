@@ -139,7 +139,24 @@ public final class ModelUtil {
 	 */
 	public static String eObjectToString(EObject object)
 			throws SerializationException {
-		return eObjectToString(object, false, false);
+
+		boolean containment = false;
+		boolean href = false;
+		boolean proxy = false;
+
+		IConfigurationElement[] elements = Platform
+				.getExtensionRegistry()
+				.getConfigurationElementsFor(
+						"org.eclipse.emf.emfstore.common.model.serializationoptions");
+		if (elements != null && elements.length > 0) {
+			href = Boolean.parseBoolean(elements[0].getAttribute("HrefCheck"));
+			proxy = Boolean
+					.parseBoolean(elements[0].getAttribute("ProxyCheck"));
+			containment = Boolean.parseBoolean(elements[0]
+					.getAttribute("SelfContainmentCheck"));
+		}
+
+		return eObjectToString(object, containment, href, proxy);
 	}
 
 	/**
@@ -152,13 +169,15 @@ public final class ModelUtil {
 	 * @param overrideHrefCheck
 	 *            checks whether there is a <code>href</code> in the serialized
 	 *            text
+	 * @param overrideProxyCheck
+	 *            if true, proxy check is ignored
 	 * @return String representation of the {@link EObject}
 	 * @throws SerializationException
 	 *             if a serialization problem occurs
 	 */
 	public static String eObjectToString(EObject object,
-			boolean overrideContainmentCheck, boolean overrideHrefCheck)
-			throws SerializationException {
+			boolean overrideContainmentCheck, boolean overrideHrefCheck,
+			boolean overrideProxyCheck) throws SerializationException {
 		if (object == null) {
 			return null;
 		}
@@ -196,7 +215,7 @@ public final class ModelUtil {
 			Project project = (Project) object;
 			initialSize = project.getAllModelElements().size() * step;
 		}
-		if (!overrideHrefCheck) {
+		if (!overrideProxyCheck) {
 			proxyCheck(res);
 		}
 
@@ -217,13 +236,15 @@ public final class ModelUtil {
 	/**
 	 * @param result
 	 */
-	private static void proxyCheck(Resource resource) throws SerializationException {
+	private static void proxyCheck(Resource resource)
+			throws SerializationException {
 		EcoreUtil.resolveAll(resource);
 		TreeIterator<EObject> contents = resource.getAllContents();
 		while (contents.hasNext()) {
 			EObject eObject = contents.next();
 			if (eObject.eIsProxy()) {
-				throw new SerializationException("Serialization failed due to unresolved proxy detection.");
+				throw new SerializationException(
+						"Serialization failed due to unresolved proxy detection.");
 			}
 		}
 	}
@@ -851,7 +872,8 @@ public final class ModelUtil {
 	/**
 	 * Get the container of an EObject.
 	 * 
-	 * @param modelElement the model element
+	 * @param modelElement
+	 *            the model element
 	 * @return the container
 	 */
 	public static EObject getContainerModelElement(EObject modelElement) {
@@ -926,7 +948,7 @@ public final class ModelUtil {
 
 		// Resource resource = eObject.eResource();
 
-		if (res == null) {
+		if (res == null || res.getURI() == null) {
 			return;
 		}
 
@@ -1107,7 +1129,8 @@ public final class ModelUtil {
 	/**
 	 * Get the singleton instance for a given model element id.
 	 * 
-	 * @param singletonId the id
+	 * @param singletonId
+	 *            the id
 	 * @return the singleton instance
 	 * 
 	 * @see org.eclipse.emf.emfstore.common.model.SingletonIdResolver#getSingleton(org.eclipse.emf.emfstore.common.model.ModelElementId)
@@ -1129,7 +1152,8 @@ public final class ModelUtil {
 	/**
 	 * Get the singleton id for a singleton instance.
 	 * 
-	 * @param singleton the singleton
+	 * @param singleton
+	 *            the singleton
 	 * @return the id
 	 * 
 	 * @see org.eclipse.emf.emfstore.common.model.SingletonIdResolver#getSingletonModelElementId(org.eclipse.emf.ecore.EObject)
@@ -1151,7 +1175,8 @@ public final class ModelUtil {
 	/**
 	 * Return whether the given eObject instance is a singelton.
 	 * 
-	 * @param eObject the instance
+	 * @param eObject
+	 *            the instance
 	 * @return true if it is a singleton
 	 * 
 	 * @see org.eclipse.emf.emfstore.common.model.SingletonIdResolver#isSingleton(org.eclipse.emf.ecore.EObject)

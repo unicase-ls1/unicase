@@ -83,7 +83,8 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 	}
 
 	/**
-	 * @param usersession the usersession to set
+	 * @param usersession
+	 *            the usersession to set
 	 */
 	protected void setUsersession(Usersession usersession) {
 		this.usersession = usersession;
@@ -94,10 +95,14 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 	 * Wraps the run procedures and handles exceptions.
 	 * 
 	 * @return the return value of the handler.
-	 * @throws ExecutionException the {@link ExecutionException} if the LoginHandler throws one.
+	 * @throws ExecutionException
+	 *             the {@link ExecutionException} if the LoginHandler throws
+	 *             one.
 	 */
 	protected Object handleRun() throws ExecutionException {
-		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		if (shell == null) {
+			shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		}
 		Usersession session = getUsersession();
 		if (session == null) {
 			MessageDialog.openInformation(shell, "Information",
@@ -139,7 +144,7 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 		} catch (ConnectionException e) {
 			handleExceptionAndRetry(loginHandler, e);
 		} catch (EmfStoreException e) {
-			DialogHandler.showErrorDialog(e.getMessage());
+			DialogHandler.showExceptionDialog(e.getMessage(), e);
 		} catch (RuntimeException e) {
 
 			DialogHandler.showExceptionDialog(e);
@@ -166,16 +171,18 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 	// END SUPRESS CATCH EXCEPTION
 
 	/**
-	 * Runs the actions that should be carried out by this handler. Replaces the standard execute() method, which it is
-	 * actually wrapped in.
+	 * Runs the actions that should be carried out by this handler. Replaces the
+	 * standard execute() method, which it is actually wrapped in.
 	 * 
-	 * @throws EmfStoreException forwards any server exceptions that may be thrown.
+	 * @throws EmfStoreException
+	 *             forwards any server exceptions that may be thrown.
 	 * @return the return object for this handler.
 	 */
 	protected abstract Object run() throws EmfStoreException;
 
 	/**
-	 * @param taskTitle the taskTitle to set
+	 * @param taskTitle
+	 *            the taskTitle to set
 	 */
 	public void setTaskTitle(String taskTitle) {
 		this.taskTitle = taskTitle;
@@ -189,7 +196,8 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 	}
 
 	/**
-	 * @param event the event to set
+	 * @param event
+	 *            the event to set
 	 */
 	public void setEvent(ExecutionEvent event) {
 		this.event = event;
@@ -209,4 +217,10 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 		return shell;
 	}
 
+	/**
+	 * @return the active shell.
+	 */
+	protected void setShell(Shell parent) {
+		shell = parent;
+	}
 }

@@ -247,7 +247,7 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 				deleteProject2(projectHistory.getProjectId(), true, false);
 				throw new StorageException(StorageException.NOSAVE);
 			}
-			return EcoreUtil.copy(projectHistory.getProjectId());
+			return (ProjectId) EcoreUtil.copy(projectHistory.getProjectId());
 		}
 	}
 
@@ -256,7 +256,7 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	 */
 	public ProjectHistory exportProjectHistoryFromServer(ProjectId projectId) throws EmfStoreException {
 		synchronized (getMonitor()) {
-			return EcoreUtil.copy(getProject(projectId));
+			return (ProjectHistory) EcoreUtil.copy(getProject(projectId));
 		}
 	}
 
@@ -295,8 +295,8 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 		ProjectInfo info = ModelFactory.eINSTANCE.createProjectInfo();
 		info.setName(project.getProjectName());
 		info.setDescription(project.getProjectDescription());
-		info.setProjectId(EcoreUtil.copy(project.getProjectId()));
-		info.setVersion(EcoreUtil.copy(project.getLastVersion().getPrimarySpec()));
+		info.setProjectId((ProjectId) EcoreUtil.copy(project.getProjectId()));
+		info.setVersion((PrimaryVersionSpec) EcoreUtil.copy(project.getLastVersion().getPrimarySpec()));
 		return info;
 	}
 }

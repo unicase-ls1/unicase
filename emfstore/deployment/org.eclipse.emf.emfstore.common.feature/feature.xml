@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.emf.emfstore.common.feature"
-      label="EMFStore Common"
-      version="0.8.1"
+      label="EMFStore Common (Incubation)"
+      version="0.8.9.M3"
       provider-name="Eclipse Modeling Project"
       plugin="org.eclipse.emf.emfstore.branding">
 

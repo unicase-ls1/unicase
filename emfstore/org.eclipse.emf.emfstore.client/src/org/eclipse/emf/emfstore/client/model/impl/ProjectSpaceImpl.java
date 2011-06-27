@@ -22,6 +22,7 @@ import java.util.ListIterator;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -1554,6 +1555,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			return getBaseVersion();
 		}
 
+		WorkspaceManager.getObserverBus().notify(UpdateObserver.class)
+				.inspectChanges(this, changes);
+
 		final List<ChangePackage> cps = changes;
 
 		// revert
@@ -1724,6 +1728,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		if (project instanceof ProjectImpl) {
 			((ProjectImpl) this.getProject())
 					.setUndetachable(operationRecorder);
+			((ProjectImpl) this.getProject()).setUndetachable(statePersister);
 		}
 		if (getUsersession() != null) {
 			getUsersession().addLoginObserver(this);
@@ -1819,6 +1824,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		if (Configuration.isResourceSplittingEnabled()) {
 			splitResources(resourceSet, projectFragementsFileNamePrefix,
 					resources, this.getProject());
+		} else {
+			for (EObject modelElement : project.getAllModelElements())
+				((XMIResource) resource).setID(modelElement, getProject()
+						.getModelElementId(modelElement).getId());
 		}
 
 		Resource operationCompositeResource = resourceSet
@@ -1860,7 +1869,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		int counter = 0;
 		for (EObject modelElement : project.getAllModelElements()) {
 
-			if (counter > Configuration.getMaxMECountPerResource()) {
+			if (counter > Configuration.getMaxMECountPerResource()
+					&& !(modelElement instanceof BasicEMap.Entry)) {
 				fileName = projectFragementsFileNamePrefix + getResourceCount()
 						+ Configuration.getProjectFragmentFileExtension();
 				fileURI = URI.createFileURI(fileName);
@@ -2323,9 +2333,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			AbstractOperation lastOperation = operations
 					.get(operations.size() - 1);
 			stopChangeRecording();
-			lastOperation.reverse().apply(getProject());
-			operationManager.notifyOperationUndone(lastOperation);
-			startChangeRecording();
+			try {
+				lastOperation.reverse().apply(getProject());
+				operationManager.notifyOperationUndone(lastOperation);
+			} finally {
+				startChangeRecording();
+			}
 			operations.remove(lastOperation);
 		}
 		updateDirtyState();
@@ -2584,13 +2597,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	public void applyOperations(List<AbstractOperation> operations,
 			boolean addOperation) {
 		stopChangeRecording();
-		for (AbstractOperation operation : operations) {
-			operation.apply(getProject());
-			if (addOperation) {
-				addOperation(operation);
+		try {
+			for (AbstractOperation operation : operations) {
+				operation.apply(getProject());
+				if (addOperation) {
+					addOperation(operation);
+				}
 			}
+		} finally {
+			startChangeRecording();
 		}
-		startChangeRecording();
 	}
 
 	/**
