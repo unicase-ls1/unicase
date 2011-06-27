@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMFStore Server Backchannel  (Incubation)
+Bundle-SymbolicName: org.eclipse.emf.emfstore.server.backchannel;singleton:=true
+Bundle-Version: 0.8.9.M3
+Bundle-Activator: org.eclipse.emf.emfstore.server.backchannel.Activator
+Require-Bundle: org.eclipse.emf.emfstore.server;bundle-version="0.8.1"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.emf.emfstore.server.backchannel,
+ org.eclipse.emf.emfstore.server.backchannel.connection.client,
+ org.eclipse.emf.emfstore.server.backchannel.connection.server
+Bundle-Vendor: Eclipse Modeling Project
+Bundle-ClassPath: bin/
