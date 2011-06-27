@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Proxy Client
+Bundle-Name: EMFStore Proxy Client  (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.emfstore.client.proxy;singleton:=true
-Bundle-Version: 0.8.7
+Bundle-Version: 0.8.9.M3
 Bundle-Activator: org.eclipse.emf.emfstore.client.proxy.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.emfstore.client;bundle-version="0.8.7"

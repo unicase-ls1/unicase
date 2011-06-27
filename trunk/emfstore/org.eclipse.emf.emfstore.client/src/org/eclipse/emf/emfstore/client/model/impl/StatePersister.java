@@ -2,17 +2,13 @@ package org.eclipse.emf.emfstore.client.model.impl;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Date;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.change.ChangeDescription;
-import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.emfstore.client.model.Configuration;
@@ -32,7 +28,6 @@ import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
 
 public class StatePersister implements CommandObserver, ProjectChangeObserver {
 
-	private EObjectChangeNotifier changeNotifier;
 	private IdEObjectCollection collection;
 
 	/**
@@ -64,7 +59,6 @@ public class StatePersister implements CommandObserver, ProjectChangeObserver {
 			EMFStoreCommandStack commandStack, IdEObjectCollection collection) {
 		this.autoSave = true;
 		this.commandStack = commandStack;
-		this.changeNotifier = changeNotifier;
 		this.collection = collection;
 		this.commandStack.addCommandStackObserver(this);
 		this.dirtyResourceSet = new DirtyResourceSet();
@@ -143,7 +137,15 @@ public class StatePersister implements CommandObserver, ProjectChangeObserver {
 
 	public void modelElementAdded(IdEObjectCollection rootEObject,
 			EObject modelElement) {
-		addToResource(modelElement);
+		XMIResource oldResource = (XMIResource) modelElement.eResource();
+
+		// do not split if splitting disabled or the element is a map entry
+		if (oldResource != null && Configuration.isResourceSplittingEnabled()
+				&& !(modelElement instanceof BasicEMap.Entry)) {
+			addToNewResourceIfRequired(modelElement, oldResource);
+		}
+
+		addToDirtyResources(modelElement);
 	}
 
 	public void modelElementRemoved(IdEObjectCollection rootEObject,
@@ -161,139 +163,66 @@ public class StatePersister implements CommandObserver, ProjectChangeObserver {
 		}
 	}
 
-	/**
-	 * Add model element to a resource, assign a new resource if necessary.
-	 * 
-	 * @param modelElement
-	 *            the model element
-	 * @generated NOT
-	 */
-	void addToResource(final EObject modelElement) {
-		addElementToResouce(modelElement);
-	}
+	private static Resource currentResource;
 
-	private void addElementToResouce(final EObject modelElement) {
-		XMIResource oldResource = (XMIResource) modelElement.eResource();
+	private void addToNewResourceIfRequired(final EObject modelElement,
+			XMIResource oldResource) {
 
-		if (oldResource != null) {
-			addToParentResourceIfPossible(oldResource, modelElement);
-			URI oldUri = oldResource.getURI();
-			String oldFileName = oldUri.toFileString();
+		if (currentResource == null || currentResource.getURI() == null) {
+			currentResource = oldResource;
+		}
+		URI oldUri = currentResource.getURI();
+		String oldFileName = oldUri.toFileString();
 
-			if (!oldUri.isFile()) {
-				throw new IllegalStateException(
-						"Project contains ModelElements that are not part of a file resource.");
+		if (!oldUri.isFile()) {
+			throw new IllegalStateException(
+					"Project contains ModelElements that are not part of a file resource.");
+		}
+
+		File oldFile = new File(oldFileName);
+		if (oldFile.length() > Configuration.getMaxResourceFileSizeOnExpand()) {
+
+			String newFileName;
+			try {
+				newFileName = File.createTempFile("frag",
+						Configuration.getProjectFragmentFileExtension(),
+						new File(oldFile.getParent())).getAbsolutePath();
+			} catch (IOException e) {
+				// TODO: reasonable error message
+				throw new IllegalStateException("File fragment \""
+						+ "\" already exists - ProjectSpace corrupted.");
 			}
 
-			if (new File(oldFileName).length() > Configuration
-					.getMaxResourceFileSizeOnExpand() && splitResource) {
+			URI fileURI = URI.createFileURI(newFileName);
+			XMIResource newResource = (XMIResource) currentResource
+					.getResourceSet().createResource(fileURI);
 
-				SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-						"File-ddMMyy-hhmmss.SSS.txt");
+			newResource.getContents().add(modelElement);
+			setModelElementIdAndChildrenIdOnResource(newResource, modelElement);
+			currentResource = newResource;
 
-				String newFileName;
-				try {
-					newFileName = File.createTempFile(
-							simpleDateFormat.format(new Date()),
-							"",
-							new File(Configuration.getWorkspaceDirectory()
-									+ Configuration
-											.getProjectSpaceDirectoryPrefix()))
-							.getAbsolutePath();
-				} catch (IOException e) {
-					// TODO: reasonable error message
-					throw new IllegalStateException("File fragment \""
-							+ "\" already exists - ProjectSpace corrupted.");
-				}
-				// TODO: EM
-				// String newfileName = Configuration.getWorkspaceDirectory()
-				// + Configuration.getProjectSpaceDirectoryPrefix()
-				// + projectSpace.getIdentifier() + File.separatorChar
-				// + Configuration.getProjectFolderName() + File.separatorChar
-				// + projectSpace.getResourceCount()
-				// + Configuration.getProjectFragmentFileExtension();
-				// projectSpace.setResourceCount(projectSpace.getResourceCount()
-				// +
-				// 1);
-				// projectSpace.saveProjectSpaceOnly();
-				// checkIfFileExists(newFileName);
-				URI fileURI = URI.createFileURI(newFileName);
-				XMIResource newResource = (XMIResource) oldResource
-						.getResourceSet().createResource(fileURI);
-
-				oldResource.getContents().remove(modelElement);
-				addToParentResourceIfPossible(newResource, modelElement);
-
-				// if resource has been successfully, remove IDs of model
-				// element on old resource
-				// unsetModelElementIdAndChildrenIdOnResource(oldResource,
-				// modelElement);
-				// }
-			}
 		}
-
-		addToDirtyResources(modelElement);
-	}
-
-	/**
-	 * Tries to add the given model element to the resource of the parent. If it
-	 * hereby loses its parent, the split is reversed.
-	 * 
-	 * @param modelElement
-	 *            the model element to be added to the resource
-	 * @return true, is a split occurred successfully, else false
-	 */
-	private boolean addToParentResourceIfPossible(XMIResource resource,
-			EObject modelElement) {
-
-		if (!splitResource) {
-			return false;
-		}
-
-		EObject parent = modelElement.eContainer();
-		ChangeRecorder changeRecorder = new ChangeRecorder();
-		changeRecorder.beginRecording(Collections.singleton(parent));
-		// try to pin resource
-		resource.getContents().add(modelElement);
-		ChangeDescription changeDesc = changeRecorder.endRecording();
-
-		// TODO: enable resource splitting again
-		if (modelElement.eContainer() != parent) {
-			// stopChangeRecording();
-			splitResource = false;
-			// model element lost its parent, revert changes
-			changeDesc.apply();
-			// startChangeRecording();
-			return false;
-		}
-		changeRecorder.dispose();
-		// setModelElementIdAndChildrenIdOnResource(resource, modelElement);
-
-		return true;
 	}
 
 	private void setModelElementIdAndChildrenIdOnResource(XMIResource resource,
 			EObject modelElement) {
-		String modelElementId = collection.getModelElementId(modelElement)
-				.getId();
-		resource.setID(modelElement, modelElementId);
+		ModelElementId modelElementId = collection
+				.getModelElementId(modelElement);
+		if (modelElementId == null) {
+			modelElementId = collection.getDeletedModelElementId(modelElement);
+		}
+		String modelElementIdString = modelElementId.getId();
+
+		resource.setID(modelElement, modelElementIdString);
 
 		TreeIterator<EObject> it = modelElement.eAllContents();
 		while (it.hasNext()) {
 			EObject child = it.next();
 			ModelElementId childId = collection.getModelElementId(child);
+			if (childId == null) {
+				childId = collection.getDeletedModelElementId(modelElement);
+			}
 			resource.setID(child, childId.getId());
-		}
-	}
-
-	private void unsetModelElementIdAndChildrenIdOnResource(
-			XMIResource resource, EObject modelElement) {
-		resource.setID(modelElement, null);
-		TreeIterator<EObject> it = modelElement.eAllContents();
-
-		while (it.hasNext()) {
-			EObject child = it.next();
-			resource.setID(child, null);
 		}
 	}
 

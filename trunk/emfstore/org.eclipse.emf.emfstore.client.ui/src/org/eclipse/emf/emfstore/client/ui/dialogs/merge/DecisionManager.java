@@ -594,7 +594,7 @@ public class DecisionManager {
 
 		for (EObject child : containedModelElements) {
 			ModelElementId childId = ModelUtil.clone(cdo.getEObjectToIdMap().get(child));
-			if (child != null && childId.equals(modelElementId)) {
+			if (childId != null && childId.equals(modelElementId)) {
 				return child;
 			}
 		}

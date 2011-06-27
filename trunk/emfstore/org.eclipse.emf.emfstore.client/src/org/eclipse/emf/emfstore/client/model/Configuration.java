@@ -187,7 +187,7 @@ public final class Configuration {
 	 * @return the maximum number
 	 */
 	public static int getMaxResourceFileSizeOnExpand() {
-		return 50000;
+		return 100000;
 	}
 
 	/**
@@ -351,7 +351,7 @@ public final class Configuration {
 
 	public static boolean isResourceSplittingEnabled() {
 		if (resourceSplitting != null) {
-			return resourceSplitting.booleanValue();
+			return true;
 		}
 		resourceSplitting = new Boolean(false);
 		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry()
@@ -360,6 +360,6 @@ public final class Configuration {
 		for (IConfigurationElement extension : rawExtensions) {
 			resourceSplitting = new Boolean(extension.getAttribute("enabled"));
 		}
-		return resourceSplitting;
+		return true;
 	}
 }

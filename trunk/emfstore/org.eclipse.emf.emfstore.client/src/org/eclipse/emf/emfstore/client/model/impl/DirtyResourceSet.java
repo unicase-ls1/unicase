@@ -37,7 +37,8 @@ public class DirtyResourceSet {
 	/**
 	 * Add a new dirty resource.
 	 * 
-	 * @param resource the resource
+	 * @param resource
+	 *            the resource
 	 */
 	public void addDirtyResource(Resource resource) {
 		resources.add(resource);
@@ -47,14 +48,24 @@ public class DirtyResourceSet {
 	 * Save all dirty resources in this set.
 	 */
 	public void save() {
+		Set<Resource> resourcesToRemove = new HashSet<Resource>();
 		for (Resource resource : resources) {
+			if (resource.getURI() == null
+					|| resource.getURI().toString().equals("")) {
+				continue;
+			}
 			try {
 				resource.save(Configuration.getResourceSaveOptions());
+				resourcesToRemove.add(resource);
 			} catch (IOException e) {
-				String message = "Save failed on a resource of the workspace failed!";
-				WorkspaceUtil.logWarning(message, e);
+				// ignore exception
 			}
 		}
-		resources.clear();
+		resources.removeAll(resourcesToRemove);
+		if (resources.size() > 0) {
+			String message = resources.size()
+					+ " unsaved resources remained in the dirty resource set!";
+			WorkspaceUtil.logWarning(message, null);
+		}
 	}
 }

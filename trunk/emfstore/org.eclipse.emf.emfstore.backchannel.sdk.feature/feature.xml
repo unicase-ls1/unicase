@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.emf.emfstore.backchannel.sdk.feature"
-      label="EMFStore Backchannel SDK"
-      version="0.8.1"
+      label="EMFStore Backchannel SDK (Incubation)"
+      version="0.8.9.M3"
       provider-name="Eclipse Modeling Project">
 
    <description url="http://www.example.com/description">

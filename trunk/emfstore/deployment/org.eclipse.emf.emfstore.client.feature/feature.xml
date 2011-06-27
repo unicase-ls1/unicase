@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.emf.emfstore.client.feature"
-      label="EMFStore Client Feature"
-      version="0.8.1"
+      label="EMFStore Client (Incubation)"
+      version="0.8.9.M3"
       provider-name="Eclipse Modeling Project"
       plugin="org.eclipse.emf.emfstore.branding">
 

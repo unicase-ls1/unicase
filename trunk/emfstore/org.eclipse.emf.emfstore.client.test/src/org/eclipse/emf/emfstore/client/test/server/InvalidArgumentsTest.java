@@ -8,10 +8,10 @@ package org.eclipse.emf.emfstore.client.test.server;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import org.eclipse.emf.emfstore.client.model.connectionmanager.rmi.RMIConnectionManagerImpl;
+import org.eclipse.emf.emfstore.client.model.connectionmanager.xmlrpc.XmlRpcClientManager;
+import org.eclipse.emf.emfstore.client.model.connectionmanager.xmlrpc.XmlRpcConnectionManager;
 import org.eclipse.emf.emfstore.client.test.SetupHelper;
 import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.server.connection.rmi.RMIEmfStoreFacade;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.emf.emfstore.server.exceptions.InvalidInputException;
 import org.eclipse.emf.emfstore.server.exceptions.UnknownSessionException;
@@ -42,9 +42,9 @@ public class InvalidArgumentsTest extends ServerTests {
 	@BeforeClass
 	public static void setUpBeforeClass() throws EmfStoreException {
 		ServerTests.setUpBeforeClass();
-		setConnectionManager(new RMIConnectionManagerImpl() {
+		setConnectionManager(new XmlRpcConnectionManager() {
 			@Override
-			protected RMIEmfStoreFacade getConnectionProxy(SessionId sessionId) throws UnknownSessionException {
+			protected XmlRpcClientManager getConnectionProxy(SessionId sessionId) throws UnknownSessionException {
 				if (sessionId == null && getConnectionProxyMap().size() > 0) {
 					return getConnectionProxyMap().values().iterator().next();
 				}

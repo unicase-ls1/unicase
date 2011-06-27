@@ -172,7 +172,7 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	 * @generated NOT
 	 */
 	public ProjectId getProjectId() {
-		return EcoreUtil.copy(getProjectIdGen());
+		return (ProjectId) EcoreUtil.copy(getProjectIdGen());
 	}
 
 	/**
@@ -183,7 +183,7 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	 * @generated NOT
 	 */
 	public void setProjectId(ProjectId newProjectId) {
-		setProjectIdGen(EcoreUtil.copy(newProjectId));
+		setProjectIdGen((ProjectId) EcoreUtil.copy(newProjectId));
 	}
 
 	// end of custom code
@@ -325,7 +325,7 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	 * @generated not
 	 */
 	public void setVersion(PrimaryVersionSpec newVersion) {
-		setVersionGen(EcoreUtil.copy(newVersion));
+		setVersionGen((PrimaryVersionSpec) EcoreUtil.copy(newVersion));
 	}
 
 	/**

@@ -10,6 +10,9 @@
  ******************************************************************************/
 package org.eclipse.emf.emfstore.common.model.util;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
@@ -27,7 +30,7 @@ public class EObjectChangeNotifier extends EContentAdapter {
 
 	private final NotifiableIdEObjectCollection collection;
 	private boolean isInitializing;
-	private EObject removedModelElement;
+	private Set<EObject> removedModelElements;
 	private Notification currentNotification;
 	private int reentrantCallToAddAdapterCounter;
 	private boolean notificationDisabled;
@@ -45,7 +48,7 @@ public class EObjectChangeNotifier extends EContentAdapter {
 		isInitializing = false;
 		reentrantCallToAddAdapterCounter = 0;
 		notificationDisabled = false;
-
+		removedModelElements = new HashSet<EObject>();
 	}
 
 	/**
@@ -109,7 +112,7 @@ public class EObjectChangeNotifier extends EContentAdapter {
 			EObject modelElement = (EObject) notifier;
 			if (!isInProject(modelElement)
 					&& collection.containsInstance(modelElement)) {
-				removedModelElement = modelElement;
+				removedModelElements.add(modelElement);
 			}
 		}
 
@@ -168,10 +171,10 @@ public class EObjectChangeNotifier extends EContentAdapter {
 				&& !(notifier instanceof Project)) {
 			collection.notify(notification, collection, (EObject) notifier);
 		}
-		if (removedModelElement != null) {
+		for (EObject removedModelElement : removedModelElements) {
 			collection.modelElementRemoved(collection, removedModelElement);
-			removedModelElement = null;
 		}
+		removedModelElements.clear();
 	}
 
 	/**

@@ -585,7 +585,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		}
 
 		// prepare serverInfo for send: copy and remove usersession
-		ServerInfo copy = EcoreUtil.copy(serverInfo);
+		ServerInfo copy = (ServerInfo) EcoreUtil.copy(serverInfo);
 		copy.setLastUsersession(null);
 		SessionId newSessionId = null;
 
