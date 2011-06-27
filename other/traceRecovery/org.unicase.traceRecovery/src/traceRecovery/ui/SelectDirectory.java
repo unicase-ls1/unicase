@@ -68,27 +68,13 @@ public class SelectDirectory implements Listener, IViewActionDelegate {
 
 	}
 	
-	private static Project getActiveProject() {
-		final ProjectSpace ps = WorkspaceManager.getInstance()
-				.getCurrentWorkspace().getActiveProjectSpace();
-		if(ps == null) {
-			return null;
-		}
-		if (ps.getProject() != null) {
-			return ps.getProject();
-		} else {
-			return null;
-		}
-
-	}
-
+	
 	public void init(String path) {
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bound = primary.getBounds();
 		Shell s = display.getActiveShell();
 
-		IWorkbench workbench = PlatformUI.getWorkbench();
-		workbench.getPerspectiveRegistry();
+	
 		
 		
 		
@@ -100,21 +86,7 @@ public class SelectDirectory implements Listener, IViewActionDelegate {
 //		
 //		getSite().getWorkbenchWindow().getSelectionService().addSelectionListener(listener);
 		
-		Project p = getActiveProject();
-		
-		EList<EObject> e = p.getAllModelElementsbyClass(EcorePackage.Literals.EOBJECT,new BasicEList<EObject>());
-		
-		EList<EObject> ee = new BasicEList<EObject>();
-		if(e!=null){
-		for(EObject me : (EList<EObject>)e){
-			if(me instanceof BugReport){
-				ee.add(me);
-			}
-		}
-		
-		System.out.println(ee.size()+ " this is the value of the model element in this project");
-		
-		}
+	
 		shell = new Shell(display);
 		shell.setText("select a Project Directory");
 
