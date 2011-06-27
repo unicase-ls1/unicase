@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
 import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
 import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
@@ -26,6 +27,7 @@ import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -152,15 +154,26 @@ public class MELinkControl {
 		IHyperlinkListener listener = new MEHyperLinkAdapter(link, contextModelElement, eReference.getName());
 		hyperlink.addHyperlinkListener(listener);
 		imageHyperlink.addHyperlinkListener(listener);
-
-		if(containsInWorkspace(link) == false){
-			hyperlink.setEnabled(false);
-		}
-
+		setStatus(link);
 	}
 
 	private void updateIcon() {
 		imageHyperlink.setImage(labelProvider.getImage(link));
+		setStatus(link);
+
+	}
+
+	private void setStatus(EObject link2) {
+		if (existsInWorkspace(link)) {
+			hyperlink.setEnabled(true);
+			imageHyperlink.setEnabled(true);
+		} else {
+			imageHyperlink.setEnabled(false);
+			hyperlink.setEnabled(false);
+			if (!hasExistingFile(link)) {
+				hyperlink.getParent().setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_RED));
+			}
+		}		
 	}
 
 	/**
@@ -184,12 +197,20 @@ public class MELinkControl {
 		return 0;
 	}
 	
+	private boolean hasExistingFile(EObject link) {
+		Resource resource = link.eResource();
+		return (resource != null);
+//		URI uri = resource.getURI();
+//		String path = uri.toFileString();
+//		File file = new File(path);
+//		return(file.exists());
+	}
 	
 	/**
 	 * Checks if link element is in the workspace 
 	 */
 	
-	public boolean containsInWorkspace(EObject link){
+	public boolean existsInWorkspace(EObject link){
 		ECPWorkspace currentWorkspace = null;
 		try {
 			currentWorkspace = ECPWorkspaceManager.getInstance().getWorkSpace();
@@ -215,7 +236,7 @@ public class MELinkControl {
 			EList<ECPProject> projects = currentWorkspace.getProjects();
 			int i = 0;
 			while (i < projects.size()){
-				if (projects.get(i).contains(link) == true){
+				if (projects.get(i).contains(link)){
 					return true;
 				}
 				i++;
@@ -223,5 +244,6 @@ public class MELinkControl {
 		}
 		return false;
 	}
+
 
 }
