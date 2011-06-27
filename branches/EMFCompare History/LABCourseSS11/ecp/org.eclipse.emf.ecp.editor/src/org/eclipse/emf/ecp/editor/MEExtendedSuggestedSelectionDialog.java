@@ -80,6 +80,10 @@ MESuggestedSelectionDialog {
 		for (ECPModelelementContext tempContext : currentContext.getNeighbors()) {
 			currentContextNeighbours.put(labelProvider.getText(tempContext), tempContext);
 		}
+		updateFilteredItemList();
+	}
+
+	private void updateFilteredItemList() {
 		Text pattern = (Text)this.getPatternControl();
 		if(pattern != null){
 			//FIXME: not a nice solution to refresh filtering
@@ -87,7 +91,7 @@ MESuggestedSelectionDialog {
 			pattern.update();
 			pattern.setText("**");
 			pattern.update();
-		}	    
+		}	  		
 	}
 
 	private Collection<EObject> createAllModelElementsList() {
@@ -137,8 +141,8 @@ MESuggestedSelectionDialog {
 				OpenXMIDialog dialog = new OpenXMIDialog(PlatformUI
 						.getWorkbench().getDisplay().getActiveShell(),"Import from XMI", "Please choose a location to an XMI-File");
 				dialog.open();
-				currentContext = dialog.getContext();
-				updateModelElements();
+				setModelElements(dialog.getObjectList());
+				updateFilteredItemList();
 			}
 		});
 		
