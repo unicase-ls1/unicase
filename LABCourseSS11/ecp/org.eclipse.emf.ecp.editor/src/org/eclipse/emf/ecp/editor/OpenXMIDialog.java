@@ -11,14 +11,20 @@
 package org.eclipse.emf.ecp.editor;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
-import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
-import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
-import org.eclipse.emf.ecp.common.model.workSpaceModel.impl.WorkSpaceModelFactoryImpl;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecp.xmiworkspace.XmiUtil;
-import org.eclipse.emf.ecp.xmiworkspace.structure.StructureFactory;
-import org.eclipse.emf.ecp.xmiworkspace.structure.XMIECPFileProject;
 import org.eclipse.emf.ecp.xmiworkspace.views.listeners.ImportProjectWorkspaceListener;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
@@ -44,7 +50,10 @@ import org.eclipse.swt.widgets.Text;
  */
 public class OpenXMIDialog extends TitleAreaDialog{
 
-	private ECPModelelementContext context;
+	private static final String DEFAULT_LOCATION = Platform.getLocation().toOSString();
+
+
+	private List<EObject> objectList;
 	
 
 	/**
@@ -159,8 +168,8 @@ public class OpenXMIDialog extends TitleAreaDialog{
 		};
 	}
 
-	private void updateContext() {
-		final ECPWorkspace workspace = WorkSpaceModelFactoryImpl.eINSTANCE.createECPWorkspace();
+//	private void updateContext() {
+//		final ECPWorkspace workspace = WorkSpaceModelFactoryImpl.eINSTANCE.createECPWorkspace();
 //		ECPCommand command = new ECPCommand(workspace) {
 //			@Override
 //			protected void doRun() {
@@ -179,19 +188,19 @@ public class OpenXMIDialog extends TitleAreaDialog{
 //		};
 //		command.run(true);
 		
-		XMIECPFileProject project = StructureFactory.eINSTANCE
-		.createXMIECPFileProject();
-
-		// set the information of the project
-		project.setProjectName(txtProjectName.getText());
-		project.setXmiFilePath(txtProjectLocation.getText());
-		project.setProjectDescription(txtProjectDescription.getText());
-		
-		workspace.getProjects().add(project);
-		workspace.setActiveProject(project);
-		project.loadContents();
-		context = workspace.getProjects().get(0);
-	}
+//		XMIECPFileProject project = StructureFactory.eINSTANCE
+//		.createXMIECPFileProject();
+//
+//		// set the information of the project
+//		project.setProjectName(txtProjectName.getText());
+//		project.setXmiFilePath(txtProjectLocation.getText());
+//		project.setProjectDescription(txtProjectDescription.getText());
+//		
+//		workspace.getProjects().add(project);
+//		workspace.setActiveProject(project);
+//		project.loadContents();
+//		context = workspace.getProjects().get(0);
+//	}
 
 	@Override
 	public void okPressed() {
@@ -206,7 +215,7 @@ public class OpenXMIDialog extends TitleAreaDialog{
 			failed = true;
 		}
 		if (!failed) {
-			updateContext();
+			loadXMIFile();
 			close();
 		}
 	}
@@ -233,10 +242,10 @@ public class OpenXMIDialog extends TitleAreaDialog{
 			} else if (projRes.isDirectory() && projRes.exists()) {
 				location = path;
 			} else {
-				location = XmiUtil.DEFAULT_LOCATION;
+				location = DEFAULT_LOCATION;
 			}
 		} else {
-			location = XmiUtil.DEFAULT_LOCATION;
+			location = DEFAULT_LOCATION;
 		}
 
 		// add seperator after path
@@ -250,12 +259,41 @@ public class OpenXMIDialog extends TitleAreaDialog{
 		return location;
 	}
 
-	/**
-	 * 
-	 * @return the project model
-	 */
-	public ECPModelelementContext getContext() {
-		return context;
+	
+	private void loadXMIFile() {
+		// TODO Auto-generated method stub
+		
+		ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		BasicCommandStack commandStack = new BasicCommandStack();
+		AdapterFactoryEditingDomain editingDomain = new AdapterFactoryEditingDomain(
+				composedAdapterFactory, commandStack);
+		ResourceSet set = editingDomain.getResourceSet();
+		Resource mainResource = set.createResource(URI.createFileURI(txtProjectLocation.getText()));
+//		Project proj = org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createProject();
+		try {
+			mainResource.load(Collections.EMPTY_MAP);
+		} catch (IOException e) {
+						// TODO Auto-generated catch block
+						// Do NOT catch all Exceptions ("catch (Exception e)")
+						// Log AND handle Exceptions if possible 
+			            //
+			            // You can just uncomment one of the lines below to log an exception:
+						// logException will show the logged excpetion to the user
+						// ModelUtil.logException(e);
+						// ModelUtil.logException("YOUR MESSAGE HERE", e);
+						// logWarning will only add the message to the error log
+						// ModelUtil.logWarning("YOUR MESSAGE HERE", e);
+						// ModelUtil.logWarning("YOUR MESSAGE HERE");
+						//			
+						// If handling is not possible declare and rethrow Exception
+		}
+		
+		objectList = mainResource.getContents();
+	}
+
+	public List<EObject> getObjectList() {
+		return objectList;
 	}
 	
 }
