@@ -271,78 +271,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			final ProjectInfo projectInfo, PrimaryVersionSpec targetSpec)
 			throws EmfStoreException {
 
-		// MK: hack: set head version manually because esbrowser does not update
-		// revisions properly
-		ProjectInfo projectInfoCopy = EcoreUtil.copy(projectInfo);
-		projectInfoCopy.setVersion(targetSpec);
-
-		// get Project from server
-		Project project = this.connectionManager.getProject(
-				usersession.getSessionId(), projectInfo.getProjectId(),
-				projectInfoCopy.getVersion());
-
-		if (project == null) {
-			throw new EmfStoreException("Server returned a null project!");
-		}
-
-		final PrimaryVersionSpec primaryVersionSpec = projectInfoCopy
-				.getVersion();
-
-		ProjectSpace projectSpace = ModelFactory.eINSTANCE.createProjectSpace();
-
-		// init project space
-		projectSpace.setProjectId(projectInfo.getProjectId());
-		projectSpace.setProjectName(projectInfo.getName());
-		projectSpace.setProjectDescription(projectInfo.getDescription());
-		projectSpace.setBaseVersion(primaryVersionSpec);
-		projectSpace.setLastUpdated(new Date());
-		projectSpace.setUsersession(usersession);
-		usersession.addLoginObserver((ProjectSpaceImpl) projectSpace);
-		projectSpace.setProject(project);
-		projectSpace.setResourceCount(0);
-		projectSpace.setLocalOperations(ModelFactory.eINSTANCE
-				.createOperationComposite());
-
-		projectSpace.initResources(this.workspaceResourceSet);
-
-		// getRecentChanges and generate notifications
-		try {
-			DateVersionSpec dateVersionSpec = VersioningFactory.eINSTANCE
-					.createDateVersionSpec();
-			Calendar calendar = Calendar.getInstance();
-			calendar.add(Calendar.DAY_OF_YEAR, -10);
-			dateVersionSpec.setDate(calendar.getTime());
-			PrimaryVersionSpec sourceSpec;
-			try {
-				sourceSpec = this.connectionManager.resolveVersionSpec(
-						usersession.getSessionId(),
-						projectSpace.getProjectId(), dateVersionSpec);
-			} catch (InvalidVersionSpecException e) {
-				sourceSpec = VersioningFactory.eINSTANCE
-						.createPrimaryVersionSpec();
-				sourceSpec.setIdentifier(0);
-			}
-			List<ChangePackage> changes = connectionManager.getChanges(
-					usersession.getSessionId(), projectSpace.getProjectId(),
-					sourceSpec, targetSpec);
-			List<ESNotification> newNotifications = NotificationGenerator
-					.getInstance(projectSpace).generateNotifications(changes,
-							usersession.getUsername());
-			projectSpace.getNotificationsFromComposite().addAll(
-					newNotifications);
-			projectSpace.eResource().save(null);
-		} catch (EmfStoreException e) {
-			projectSpace.getNotificationsFromComposite().clear();
-			WorkspaceUtil.logWarning("Creating notifications failed!", e);
-			// BEGIN SUPRESS CATCH EXCEPTION
-		} catch (RuntimeException e) {
-			// END SUPRESS CATCH EXCEPTION
-			projectSpace.getNotificationsFromComposite().clear();
-			WorkspaceUtil.logWarning("Creating notifications failed!", e);
-		} catch (IOException e) {
-			projectSpace.getNotificationsFromComposite().clear();
-			WorkspaceUtil.logWarning("Creating notifications failed!", e);
-		}
+		ProjectSpace projectSpace = getRevision(usersession, projectInfo,
+				targetSpec);
 
 		addProjectSpace(projectSpace);
 		this.save();
@@ -350,6 +280,11 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		return projectSpace;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 */
 	public ProjectSpace getRevision(Usersession usersession,
 			ProjectInfo projectInfo, PrimaryVersionSpec targetSpec)
 			throws EmfStoreException {
