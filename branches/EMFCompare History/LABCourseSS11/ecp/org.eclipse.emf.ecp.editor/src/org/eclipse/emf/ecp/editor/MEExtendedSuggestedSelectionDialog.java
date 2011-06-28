@@ -75,12 +75,10 @@ MESuggestedSelectionDialog {
 
 	private void updateModelElements() {
 		setModelElements(createAllModelElementsList());
-
 		currentContextNeighbours = new HashMap<String, ECPModelelementContext>();
 		for (ECPModelelementContext tempContext : currentContext.getNeighbors()) {
 			currentContextNeighbours.put(labelProvider.getText(tempContext), tempContext);
 		}
-		updateFilteredItemList();
 	}
 
 	private void updateFilteredItemList() {
@@ -142,10 +140,9 @@ MESuggestedSelectionDialog {
 						.getWorkbench().getDisplay().getActiveShell(),"Import from XMI", "Please choose a location to an XMI-File");
 				dialog.open();
 				setModelElements(dialog.getObjectList());
-				updateFilteredItemList();
 			}
 		});
-		
+
 		
 		Control firstChild = parent.getChildren()[0];
 		comp.moveAbove(firstChild);
@@ -153,4 +150,12 @@ MESuggestedSelectionDialog {
 		return null;
 	}
 
+	@Override
+	public void setModelElements(Collection<EObject> modelElements) {
+		super.setModelElements(modelElements);
+		updateFilteredItemList();
+	}
+
+	
+	
 }
