@@ -316,6 +316,21 @@ public interface Workspace extends EObject, IAdaptable {
 	ProjectSpace checkout(Usersession usersession, ProjectInfo projectInfo,
 			PrimaryVersionSpec targetSpec) throws EmfStoreException;
 
+	/**
+	 * Get a project in a given version.
+	 * 
+	 * @param usersession
+	 *            the usersession
+	 * @param projectInfo
+	 *            the project info describing the project and version
+	 * @param targetSpec
+	 *            the target version
+	 * @throws EmfStoreException
+	 *             if retrieving revision fails
+	 * @return the project space containing the project
+	 * @model
+	 * @generated NOT
+	 */
 	ProjectSpace getRevision(Usersession usersession, ProjectInfo projectInfo,
 			PrimaryVersionSpec targetSpec) throws EmfStoreException;
 
