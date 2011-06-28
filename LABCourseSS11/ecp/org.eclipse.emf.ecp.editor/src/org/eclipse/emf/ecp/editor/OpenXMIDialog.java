@@ -12,6 +12,7 @@ package org.eclipse.emf.ecp.editor;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,7 +22,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecp.xmiworkspace.XmiUtil;
 import org.eclipse.emf.ecp.xmiworkspace.views.listeners.ImportProjectWorkspaceListener;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -62,20 +62,10 @@ public class OpenXMIDialog extends TitleAreaDialog{
 	private Text txtProjectName;
 
 	/**
-	 * Description of the Project.
-	 */
-	private Text txtProjectDescription;
-
-	/**
 	 * Location of the Project's resource.
 	 */
 	private Text txtProjectLocation;
 
-	/**
-	 * The path the user specified.
-	 */
-	private String projectLocationPath;
-	
 	/**
 	 * Title of the dialog.
 	 */
@@ -89,11 +79,9 @@ public class OpenXMIDialog extends TitleAreaDialog{
 	/**
 	 * Shell for listeners.
 	 */
-	private final Shell shell;
 	
 	public OpenXMIDialog(Shell parentShell, String title, String message) {
 		super(parentShell);
-		shell = parentShell;
 		dialogTitle = title;
 		dialogMessage = message;
 	}
@@ -132,11 +120,6 @@ public class OpenXMIDialog extends TitleAreaDialog{
 		browseButton.addSelectionListener(getBrowseFilesystemListener());
 		wsButton.addSelectionListener(getBrowseWorkspaceListener());
 
-//		Label desc = new Label(contents, SWT.NULL);
-//		desc.setText("Description:");
-//		txtProjectDescription = new Text(contents, SWT.MULTI | SWT.BORDER);
-//		txtProjectDescription.setSize(150, 60);
-
 		// Set layout in general
 		Point defaultMargins = LayoutConstants.getMargins();
 		GridLayoutFactory.fillDefaults().numColumns(2)
@@ -156,9 +139,13 @@ public class OpenXMIDialog extends TitleAreaDialog{
 			public void widgetDefaultSelected(SelectionEvent e) {
 				FileDialog dialog = new FileDialog(getShell(), SWT.OPEN);
 				String path = dialog.open();
-				String[] pathField = path.split("\\\\");
-				txtProjectName.setText(pathField[pathField.length - 1]);
-				txtProjectLocation.setText(getResourceLocation(txtProjectName.getText(), path));
+				if (path != null) {
+					if (new File(path).exists()) {
+						String[] pathField = path.split("\\\\");
+						txtProjectName.setText(pathField[pathField.length - 1]);
+					}
+					txtProjectLocation.setText(getResourceLocation(txtProjectName.getText(), path));
+				}
 			}
 
 			public void widgetSelected(SelectionEvent e) {
@@ -168,39 +155,6 @@ public class OpenXMIDialog extends TitleAreaDialog{
 		};
 	}
 
-//	private void updateContext() {
-//		final ECPWorkspace workspace = WorkSpaceModelFactoryImpl.eINSTANCE.createECPWorkspace();
-//		ECPCommand command = new ECPCommand(workspace) {
-//			@Override
-//			protected void doRun() {
-//				XMIECPFileProject project = StructureFactory.eINSTANCE
-//						.createXMIECPFileProject();
-//
-//				// set the information of the project
-//				project.setProjectName(getTxtProjectName().getText());
-//				project.setXmiFilePath(getTxtProjectLocation().getText());
-//				project.setProjectDescription(getTxtProjectDescription().getText());
-//
-//				workspace.getProjects().add(project);
-//				workspace.setActiveProject(project);
-//				project.loadContents();
-//			}
-//		};
-//		command.run(true);
-		
-//		XMIECPFileProject project = StructureFactory.eINSTANCE
-//		.createXMIECPFileProject();
-//
-//		// set the information of the project
-//		project.setProjectName(txtProjectName.getText());
-//		project.setXmiFilePath(txtProjectLocation.getText());
-//		project.setProjectDescription(txtProjectDescription.getText());
-//		
-//		workspace.getProjects().add(project);
-//		workspace.setActiveProject(project);
-//		project.loadContents();
-//		context = workspace.getProjects().get(0);
-//	}
 
 	@Override
 	public void okPressed() {
@@ -209,7 +163,7 @@ public class OpenXMIDialog extends TitleAreaDialog{
 		boolean failed = false;
 
 		// check for empty name
-		if (!XmiUtil.validate(txtProjectName.getText())) {
+		if (!validate(txtProjectName.getText())) {
 			txtProjectName.setBackground(new Color(getShell().getDisplay(), 205,
 					106, 106));
 			failed = true;
@@ -235,7 +189,7 @@ public class OpenXMIDialog extends TitleAreaDialog{
 		String location;
 
 		// determine whether path is ok if set
-		if (XmiUtil.validate(path)) {
+		if (validate(path)) {
 			File projRes = new File(path);
 			if (projRes.isFile() && projRes.exists()) {
 				return path;
@@ -252,13 +206,16 @@ public class OpenXMIDialog extends TitleAreaDialog{
 		location += File.separator;
 
 		// determine name
-		if (XmiUtil.validate(name)) {
+		if (validate(name)) {
 			location += name + ".ucw";
 		}
 
 		return location;
 	}
 
+	private static boolean validate(String str) {
+		return (!(str == null || str.equals("")));
+	}
 	
 	private void loadXMIFile() {
 		// TODO Auto-generated method stub
@@ -270,7 +227,6 @@ public class OpenXMIDialog extends TitleAreaDialog{
 				composedAdapterFactory, commandStack);
 		ResourceSet set = editingDomain.getResourceSet();
 		Resource mainResource = set.createResource(URI.createFileURI(txtProjectLocation.getText()));
-//		Project proj = org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createProject();
 		try {
 			mainResource.load(Collections.EMPTY_MAP);
 		} catch (IOException e) {
@@ -293,6 +249,9 @@ public class OpenXMIDialog extends TitleAreaDialog{
 	}
 
 	public List<EObject> getObjectList() {
+		if (objectList == null) {
+			return new ArrayList<EObject>();
+		}
 		return objectList;
 	}
 	
