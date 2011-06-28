@@ -16,13 +16,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecp.xmiworkspace.views.listeners.ImportProjectWorkspaceListener;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
@@ -42,6 +43,8 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.model.WorkbenchContentProvider;
+import org.eclipse.ui.model.WorkbenchLabelProvider;
 
 /**
  * 
@@ -130,7 +133,38 @@ public class OpenXMIDialog extends TitleAreaDialog{
 	}
 
 	protected SelectionListener getBrowseWorkspaceListener() {
-		return new ImportProjectWorkspaceListener(txtProjectName, txtProjectLocation, getShell());
+		return new SelectionListener() {
+
+			public void widgetSelected(SelectionEvent e) {
+				// opens up a new dialog to browse the "eclipse" workspace
+				WorkspaceResourceDialog workspaceDialog = new WorkspaceResourceDialog(getShell(),
+						new WorkbenchLabelProvider(), new WorkbenchContentProvider());
+				workspaceDialog.setAllowMultiple(false);
+				workspaceDialog.setTitle("Select a Project File");
+				workspaceDialog.setMessage("Please select an XMI file with project contents.");
+				workspaceDialog.loadContents();
+				int dialogRes = workspaceDialog.open();
+				
+				// dialog results
+				String fileName = null;
+				if(dialogRes == WorkspaceResourceDialog.OK) {
+					IFile[] selectedFiles = workspaceDialog.getSelectedFiles();
+					if(selectedFiles.length != 0) {
+						// index 0 because multi option is off and it can import only one or no files
+						fileName = selectedFiles[0].getLocation().toOSString(); 
+					}
+				}
+				
+				// set the textfield to a fitting project name
+				txtProjectLocation.setText(getResourceLocation(txtProjectName.getText(), fileName));
+			}
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+				// TODO Auto-generated method stub
+				widgetDefaultSelected(e);
+			}
+		};
+//		return new ImportProjectWorkspaceListener(txtProjectName, txtProjectLocation, getShell());
 	}
 
 	protected SelectionListener getBrowseFilesystemListener() {
