@@ -55,17 +55,16 @@ public class StatePersister implements CommandObserver, ProjectChangeObserver {
 
 	// TODO: 2nd parameter, commandstack
 	// change notifier per methode setzen
-	public StatePersister(EObjectChangeNotifier changeNotifier,
-			EMFStoreCommandStack commandStack, IdEObjectCollection collection) {
+	public StatePersister(EObjectChangeNotifier changeNotifier, EMFStoreCommandStack commandStack,
+		IdEObjectCollection collection) {
 		this.autoSave = true;
 		this.commandStack = commandStack;
 		this.collection = collection;
 		this.commandStack.addCommandStackObserver(this);
 		this.dirtyResourceSet = new DirtyResourceSet();
 
-		filterStack = new FilterStack(new NotificationFilter[] {
-				new TouchFilter(), new TransientFilter(),
-				new EmptyRemovalsFilter() });
+		filterStack = new FilterStack(new NotificationFilter[] { new TouchFilter(), new TransientFilter(),
+			new EmptyRemovalsFilter() });
 	}
 
 	public void commandStarted(Command command) {
@@ -87,8 +86,7 @@ public class StatePersister implements CommandObserver, ProjectChangeObserver {
 			resource.getContents().remove(deletedElement);
 			dirtyResourceSet.addDirtyResource(resource);
 		}
-		for (EObject child : ModelUtil.getAllContainedModelElements(
-				deletedElement, false)) {
+		for (EObject child : ModelUtil.getAllContainedModelElements(deletedElement, false)) {
 			Resource childResource = child.eResource();
 			if (childResource != null) {
 				childResource.getContents().remove(child);
@@ -108,8 +106,7 @@ public class StatePersister implements CommandObserver, ProjectChangeObserver {
 
 		if (resource != null) {
 			dirtyResourceSet.addDirtyResource(resource);
-			setModelElementIdAndChildrenIdOnResource((XMIResource) resource,
-					modelElement);
+			setModelElementIdAndChildrenIdOnResource((XMIResource) resource, modelElement);
 		}
 	}
 
@@ -122,8 +119,7 @@ public class StatePersister implements CommandObserver, ProjectChangeObserver {
 		}
 	}
 
-	public void notify(Notification notification,
-			IdEObjectCollection rootEObject, EObject modelElement) {
+	public void notify(Notification notification, IdEObjectCollection rootEObject, EObject modelElement) {
 		// filter unwanted notifications that did not change anything in the
 		// state
 		if (filterStack.check(new NotificationInfo(notification))) {
@@ -135,21 +131,19 @@ public class StatePersister implements CommandObserver, ProjectChangeObserver {
 		}
 	}
 
-	public void modelElementAdded(IdEObjectCollection rootEObject,
-			EObject modelElement) {
+	public void modelElementAdded(IdEObjectCollection rootEObject, EObject modelElement) {
 		XMIResource oldResource = (XMIResource) modelElement.eResource();
 
 		// do not split if splitting disabled or the element is a map entry
 		if (oldResource != null && Configuration.isResourceSplittingEnabled()
-				&& !(modelElement instanceof BasicEMap.Entry)) {
+			&& !(modelElement instanceof BasicEMap.Entry)) {
 			addToNewResourceIfRequired(modelElement, oldResource);
 		}
 
 		addToDirtyResources(modelElement);
 	}
 
-	public void modelElementRemoved(IdEObjectCollection rootEObject,
-			EObject modelElement) {
+	public void modelElementRemoved(IdEObjectCollection rootEObject, EObject modelElement) {
 		// TODO: put
 		// ModelUtil.removeModelElementAndChildrenFromResource(modelElement);
 		// and unsetModelElementAnd.. into one place
@@ -165,8 +159,7 @@ public class StatePersister implements CommandObserver, ProjectChangeObserver {
 
 	private static Resource currentResource;
 
-	private void addToNewResourceIfRequired(final EObject modelElement,
-			XMIResource oldResource) {
+	private void addToNewResourceIfRequired(final EObject modelElement, XMIResource oldResource) {
 
 		if (currentResource == null || currentResource.getURI() == null) {
 			currentResource = oldResource;
@@ -175,8 +168,7 @@ public class StatePersister implements CommandObserver, ProjectChangeObserver {
 		String oldFileName = oldUri.toFileString();
 
 		if (!oldUri.isFile()) {
-			throw new IllegalStateException(
-					"Project contains ModelElements that are not part of a file resource.");
+			throw new IllegalStateException("Project contains ModelElements that are not part of a file resource.");
 		}
 
 		File oldFile = new File(oldFileName);
@@ -184,18 +176,15 @@ public class StatePersister implements CommandObserver, ProjectChangeObserver {
 
 			String newFileName;
 			try {
-				newFileName = File.createTempFile("frag",
-						Configuration.getProjectFragmentFileExtension(),
-						new File(oldFile.getParent())).getAbsolutePath();
+				newFileName = File.createTempFile("frag", Configuration.getProjectFragmentFileExtension(),
+					new File(oldFile.getParent())).getAbsolutePath();
 			} catch (IOException e) {
 				// TODO: reasonable error message
-				throw new IllegalStateException("File fragment \""
-						+ "\" already exists - ProjectSpace corrupted.");
+				throw new IllegalStateException("File fragment \"" + "\" already exists - ProjectSpace corrupted.");
 			}
 
 			URI fileURI = URI.createFileURI(newFileName);
-			XMIResource newResource = (XMIResource) currentResource
-					.getResourceSet().createResource(fileURI);
+			XMIResource newResource = (XMIResource) currentResource.getResourceSet().createResource(fileURI);
 
 			newResource.getContents().add(modelElement);
 			setModelElementIdAndChildrenIdOnResource(newResource, modelElement);
@@ -204,10 +193,8 @@ public class StatePersister implements CommandObserver, ProjectChangeObserver {
 		}
 	}
 
-	private void setModelElementIdAndChildrenIdOnResource(XMIResource resource,
-			EObject modelElement) {
-		ModelElementId modelElementId = collection
-				.getModelElementId(modelElement);
+	private void setModelElementIdAndChildrenIdOnResource(XMIResource resource, EObject modelElement) {
+		ModelElementId modelElementId = collection.getModelElementId(modelElement);
 		if (modelElementId == null) {
 			modelElementId = collection.getDeletedModelElementId(modelElement);
 		}
@@ -220,7 +207,7 @@ public class StatePersister implements CommandObserver, ProjectChangeObserver {
 			EObject child = it.next();
 			ModelElementId childId = collection.getModelElementId(child);
 			if (childId == null) {
-				childId = collection.getDeletedModelElementId(modelElement);
+				childId = collection.getDeletedModelElementId(child);
 			}
 			resource.setID(child, childId.getId());
 		}
