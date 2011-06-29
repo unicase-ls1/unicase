@@ -421,7 +421,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 		// TODO: EM, changeNotifier moved to OperationRecorder
 		if (changeNotifier == null) {
-			changeNotifier = new EObjectChangeNotifier(this);
+			changeNotifier = new EObjectChangeNotifier(this, this);
 		}
 
 		cachesInitialized = true;
@@ -442,7 +442,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		eObjectToIdCache = eObjectToIdMap;
 		idToEObjectCache = idToEObjectMap;
 		eObjectsCache = eObjectToIdMap.keySet();
-		changeNotifier = new EObjectChangeNotifier(this);
+		changeNotifier = new EObjectChangeNotifier(this, this);
 	}
 
 	/**
