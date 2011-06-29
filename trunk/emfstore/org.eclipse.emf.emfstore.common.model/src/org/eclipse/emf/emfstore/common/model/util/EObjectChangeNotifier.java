@@ -13,18 +13,18 @@ package org.eclipse.emf.emfstore.common.model.util;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.common.model.impl.ProjectImpl;
 
 /**
- * Notifies the project about changes in its containment hierachy.
+ * Notifies a about changes in its containment hierarchy.
  * 
  * @author koegel
+ * @author emueller
  */
 public class EObjectChangeNotifier extends EContentAdapter {
 
@@ -36,15 +36,20 @@ public class EObjectChangeNotifier extends EContentAdapter {
 	private boolean notificationDisabled;
 
 	/**
-	 * Constructor. Attaches the Adapter to the given {@link ProjectImpl}.
+	 * Constructor. Attaches an {@link Adapter} to the given {@link Notifier}
+	 * and forwards notifications to the given
+	 * {@link NotifiableIdEObjectCollection}, that reacts appropriately.
 	 * 
-	 * @param collection
-	 *            the project
+	 * @param notifiableCollection
+	 *            a {@link NotifiableIdEObjectCollection}
+	 * @param notifier
+	 *            the {@link Notifier} to listen to
 	 */
-	public EObjectChangeNotifier(NotifiableIdEObjectCollection collection) {
+	public EObjectChangeNotifier(NotifiableIdEObjectCollection collection,
+			Notifier notifier) {
 		this.collection = collection;
 		isInitializing = true;
-		collection.eAdapters().add(this);
+		notifier.eAdapters().add(this);
 		isInitializing = false;
 		reentrantCallToAddAdapterCounter = 0;
 		notificationDisabled = false;
@@ -78,7 +83,7 @@ public class EObjectChangeNotifier extends EContentAdapter {
 				&& !ModelUtil.isIgnoredDatatype((EObject) notifier)) {
 			EObject modelElement = (EObject) notifier;
 			if (!collection.containsInstance(modelElement)
-					&& isInProject(modelElement)) {
+					&& isInCollection(modelElement)) {
 				collection.modelElementAdded(collection, modelElement);
 			}
 		}
@@ -110,7 +115,7 @@ public class EObjectChangeNotifier extends EContentAdapter {
 
 		if (notifier instanceof EObject) {
 			EObject modelElement = (EObject) notifier;
-			if (!isInProject(modelElement)
+			if (!isInCollection(modelElement)
 					&& collection.containsInstance(modelElement)) {
 				removedModelElements.add(modelElement);
 			}
@@ -118,7 +123,15 @@ public class EObjectChangeNotifier extends EContentAdapter {
 
 	}
 
-	private boolean isInProject(EObject modelElement) {
+	/**
+	 * Checks whether the given {@link EObject} is within the collection.
+	 * 
+	 * @param modelElement
+	 *            the {@link EObject} whose containment should be checked
+	 * @return true, if the {@link EObject} is contained in the collection,
+	 *         false otherwise
+	 */
+	private boolean isInCollection(EObject modelElement) {
 		EObject parent = modelElement.eContainer();
 		if (parent == null) {
 			return false;
@@ -132,7 +145,7 @@ public class EObjectChangeNotifier extends EContentAdapter {
 			return true;
 		}
 
-		return isInProject(parent);
+		return isInCollection(parent);
 	}
 
 	/**
@@ -166,9 +179,9 @@ public class EObjectChangeNotifier extends EContentAdapter {
 
 		super.notifyChanged(notification);
 
-		// project is not a valid model element
+		// collection itself is not a valid model element
 		if (!notification.isTouch() && notifier instanceof EObject
-				&& !(notifier instanceof Project)) {
+				&& !(notifier instanceof NotifiableIdEObjectCollection)) {
 			collection.notify(notification, collection, (EObject) notifier);
 		}
 		for (EObject removedModelElement : removedModelElements) {
