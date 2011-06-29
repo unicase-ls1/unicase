@@ -24,6 +24,7 @@ import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.ModelFactory;
 import org.eclipse.emf.emfstore.common.model.NotifiableIdEObjectCollection;
 import org.eclipse.emf.emfstore.common.model.util.EObjectChangeNotifier;
+import org.eclipse.emf.emfstore.common.model.util.EObjectChangeObserver;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
 
@@ -32,15 +33,14 @@ import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
  * @author naughton
  * @author emueller
  */
-public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
-		NotifiableIdEObjectCollection {
+public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements NotifiableIdEObjectCollection {
 
 	// observer related attributes
 	private boolean isNotifiying;
-	private List<ProjectChangeObserver> observers;
-	private Set<ProjectChangeObserver> exceptionThrowingObservers;
-	private Set<ProjectChangeObserver> observersToRemove;
-	private Set<ProjectChangeObserver> undetachableObservers;
+	private List<EObjectChangeObserver> observers;
+	private Set<EObjectChangeObserver> exceptionThrowingObservers;
+	private Set<EObjectChangeObserver> observersToRemove;
+	private Set<EObjectChangeObserver> undetachableObservers;
 
 	protected EList<EObject> modelElements;
 
@@ -63,7 +63,6 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 	private Set<EObject> containedModelElements;
 
 	private EObjectChangeNotifier changeNotifier;
-	private XMIResource xmiResource;
 
 	protected NotifiableIdEObjectCollectionImpl() {
 		super();
@@ -73,32 +72,18 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 		newEObjectToIdMap = new HashMap<EObject, ModelElementId>();
 		eObjectsCache = new HashSet<EObject>();
 		idToEObjectCache = new HashMap<ModelElementId, EObject>();
-		observers = new ArrayList<ProjectChangeObserver>();
-		observersToRemove = new HashSet<ProjectChangeObserver>();
-		exceptionThrowingObservers = new HashSet<ProjectChangeObserver>();
-		undetachableObservers = new HashSet<ProjectChangeObserver>();
+		observers = new ArrayList<EObjectChangeObserver>();
+		observersToRemove = new HashSet<EObjectChangeObserver>();
+		exceptionThrowingObservers = new HashSet<EObjectChangeObserver>();
+		undetachableObservers = new HashSet<EObjectChangeObserver>();
 	}
 
 	public NotifiableIdEObjectCollectionImpl(XMIResource xmiResource) {
 		this();
-		this.xmiResource = xmiResource;
 		try {
 			xmiResource.load(null);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			// Do NOT catch all Exceptions ("catch (Exception e)")
-			// Log AND handle Exceptions if possible
-			//
-			// You can just uncomment one of the lines below to log an
-			// exception:
-			// logException will show the logged excpetion to the user
-			// ModelUtil.logException(e);
-			// ModelUtil.logException("YOUR MESSAGE HERE", e);
-			// logWarning will only add the message to the error log
-			// ModelUtil.logWarning("YOUR MESSAGE HERE", e);
-			// ModelUtil.logWarning("YOUR MESSAGE HERE");
-			//
-			// If handling is not possible declare and rethrow Exception
+			ModelUtil.logException(String.format("XMIResource %s could not be loaded.", xmiResource.getURI()), e);
 		}
 		changeNotifier = new EObjectChangeNotifier(this, xmiResource);
 		TreeIterator<EObject> it = xmiResource.getAllContents();
@@ -110,8 +95,7 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 			}
 
 			String id = xmiResource.getID(eObject);
-			ModelElementId eObjectId = ModelFactory.eINSTANCE
-					.createModelElementId();
+			ModelElementId eObjectId = ModelFactory.eINSTANCE.createModelElementId();
 
 			if (id != null) {
 				eObjectId.setId(id);
@@ -226,11 +210,9 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.emfstore.common.model.Project#initCaches(java.util.Map,
-	 *      java.util.Map)
+	 * @see org.eclipse.emf.emfstore.common.model.Project#initCaches(java.util.Map, java.util.Map)
 	 */
-	public void initCaches(Map<EObject, ModelElementId> eObjectToIdMap,
-			Map<ModelElementId, EObject> idToEObjectMap) {
+	public void initCaches(Map<EObject, ModelElementId> eObjectToIdMap, Map<ModelElementId, EObject> idToEObjectMap) {
 		// 1. maps setzen
 		// 2. cacheinit auf true
 		// 3. notifier erzeugen
@@ -247,22 +229,20 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#modelElementAdded(org.eclipse.emf.emfstore.common.model.Project,
 	 *      org.eclipse.emf.ecore.EObject)
 	 */
-	public void modelElementAdded(final IdEObjectCollection project,
-			final EObject eObject) {
+	public void modelElementAdded(final IdEObjectCollection project, final EObject eObject) {
 		addModelElementAndChildrenToCache(eObject);
 
-		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
-			public void run(ProjectChangeObserver projectChangeObserver) {
+		EObjectChangeObserverNotificationCommand command = new EObjectChangeObserverNotificationCommand() {
+			public void run(EObjectChangeObserver projectChangeObserver) {
 				projectChangeObserver.modelElementAdded(project, eObject);
 			}
 		};
-		notifyProjectChangeObservers(command);
+		notifyEObjectChangeObservers(command);
 	}
 
-	private void notifyProjectChangeObservers(
-			ProjectChangeObserverNotificationCommand command) {
+	private void notifyEObjectChangeObservers(EObjectChangeObserverNotificationCommand command) {
 		isNotifiying = true;
-		for (ProjectChangeObserver projectChangeObserver : this.observers) {
+		for (EObjectChangeObserver projectChangeObserver : this.observers) {
 			try {
 				command.run(projectChangeObserver);
 				// BEGIN SUPRESS CATCH EXCEPTION
@@ -271,32 +251,24 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 				if (exceptionThrowingObservers.contains(projectChangeObserver)) {
 					if (!undetachableObservers.contains(projectChangeObserver)) {
 						observersToRemove.add(projectChangeObserver);
-						ModelUtil
-								.logException(
-										"Project Change Observer threw an exception again, it has been detached, UI may not update now: "
-												+ projectChangeObserver
-														.getClass().getName(),
-										ex);
+						ModelUtil.logException(
+							"EObject Change Observer threw an exception again, it has been detached, UI may not update now: "
+								+ projectChangeObserver.getClass().getName(), ex);
 					} else {
-						ModelUtil
-								.logException(
-										"Project Change Observer threw an exception again, but it will not be detached."
-												+ projectChangeObserver
-														.getClass().getName(),
-										ex);
+						ModelUtil.logException(
+							"EObject Change Observer threw an exception again, but it will not be detached."
+								+ projectChangeObserver.getClass().getName(), ex);
 					}
 				} else {
 					exceptionThrowingObservers.add(projectChangeObserver);
-					ModelUtil.logWarning(
-							"Project Change Observer threw an exception: "
-									+ projectChangeObserver.getClass()
-											.getName(), ex);
+					ModelUtil.logWarning("EObject Change Observer threw an exception: "
+						+ projectChangeObserver.getClass().getName(), ex);
 				}
 			}
 		}
 		isNotifiying = false;
-		for (ProjectChangeObserver observer : this.observersToRemove) {
-			removeProjectChangeObserver(observer);
+		for (EObjectChangeObserver observer : this.observersToRemove) {
+			removeEObjectChangeObserver(observer);
 		}
 		this.observersToRemove.clear();
 	}
@@ -319,8 +291,7 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 			putIntoCaches(eObject, id);
 		}
 
-		for (EObject child : ModelUtil.getAllContainedModelElements(eObject,
-				false)) {
+		for (EObject child : ModelUtil.getAllContainedModelElements(eObject, false)) {
 			// first check whether ID should be reassigned
 			ModelElementId childId = newEObjectToIdMap.get(child);
 
@@ -340,8 +311,7 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 		newEObjectToIdMap.values().removeAll(removableIds);
 	}
 
-	private void putIntoCaches(EObject modelElement,
-			ModelElementId modelElementId) {
+	private void putIntoCaches(EObject modelElement, ModelElementId modelElementId) {
 		eObjectToIdCache.put(modelElement, modelElementId);
 		idToEObjectCache.put(modelElementId, modelElement);
 		if (!eObjectsCache.contains(modelElement)) {
@@ -358,8 +328,7 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 		removeFromCaches(modelElement);
 		eObjectToIdCache.remove(modelElement);
 
-		for (EObject child : ModelUtil.getAllContainedModelElements(
-				modelElement, false)) {
+		for (EObject child : ModelUtil.getAllContainedModelElements(modelElement, false)) {
 			ModelElementId childId = getModelElementId(child);
 			deletedEObjectToIdMap.put(child, childId);
 			newEObjectToIdMap.put(child, childId);
@@ -387,18 +356,15 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.eclipse.emf.emfstore.common.model.Project,
-	 *      org.eclipse.emf.ecore.EObject)
+	 *      org.eclipse.emf.emfstore.common.model.Project, org.eclipse.emf.ecore.EObject)
 	 */
-	public void notify(final Notification notification,
-			final IdEObjectCollection project, final EObject modelElement) {
-		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
-			public void run(ProjectChangeObserver projectChangeObserver) {
-				projectChangeObserver.notify(notification, project,
-						modelElement);
+	public void notify(final Notification notification, final IdEObjectCollection project, final EObject modelElement) {
+		EObjectChangeObserverNotificationCommand command = new EObjectChangeObserverNotificationCommand() {
+			public void run(EObjectChangeObserver projectChangeObserver) {
+				projectChangeObserver.notify(notification, project, modelElement);
 			}
 		};
-		notifyProjectChangeObservers(command);
+		notifyEObjectChangeObservers(command);
 	}
 
 	/**
@@ -414,8 +380,7 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 
 		EObject eObject = getIdToEObjectCache().get(modelElementId);
 
-		return eObject != null ? eObject : ModelUtil
-				.getSingleton(modelElementId);
+		return eObject != null ? eObject : ModelUtil.getSingleton(modelElementId);
 	}
 
 	/**
@@ -423,8 +388,7 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 	 * 
 	 * @see org.eclipse.emf.emfstore.common.model.Project#addProjectChangeObserver(org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver)
 	 */
-	public void addProjectChangeObserver(
-			ProjectChangeObserver projectChangeObserver) {
+	public void addEObjectChangeObserver(EObjectChangeObserver projectChangeObserver) {
 		initCaches();
 		this.observers.add(projectChangeObserver);
 	}
@@ -434,8 +398,7 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 	 * 
 	 * @see org.eclipse.emf.emfstore.common.model.Project#removeProjectChangeObserver(org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver)
 	 */
-	public void removeProjectChangeObserver(
-			ProjectChangeObserver projectChangeObserver) {
+	public void removeEObjectChangeObserver(EObjectChangeObserver projectChangeObserver) {
 		if (isNotifiying) {
 			observersToRemove.add(projectChangeObserver);
 			return;
@@ -461,18 +424,15 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 	 */
 	public void deleteModelElement(final EObject modelElement) {
 		if (!this.containsInstance(modelElement)) {
-			throw new IllegalArgumentException(
-					"Cannot delete a model element that is not contained in this project.");
+			throw new IllegalArgumentException("Cannot delete a model element that is not contained in this project.");
 		}
 
 		// remove cross references
 		ModelUtil.deleteOutgoingCrossReferences(modelElement, true, false);
-		ModelUtil.deleteIncomingCrossReferencesFromParent(modelElement, this,
-				true, false);
+		ModelUtil.deleteIncomingCrossReferencesFromParent(modelElement, this, true, false);
 
 		// remove containment
-		EObject containerModelElement = ModelUtil
-				.getContainerModelElement(modelElement);
+		EObject containerModelElement = ModelUtil.getContainerModelElement(modelElement);
 		if (containerModelElement == null) {
 			// removeModelElementAndChildrenFromCache(modelElement);
 			// getEobjectsIdMap().remove(modelElement);
@@ -481,14 +441,12 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 			XMIResource res = (XMIResource) modelElement.eResource();
 			EReference containmentFeature = modelElement.eContainmentFeature();
 			if (containmentFeature.isMany()) {
-				EList<?> containmentList = (EList<?>) containerModelElement
-						.eGet(containmentFeature);
+				EList<?> containmentList = (EList<?>) containerModelElement.eGet(containmentFeature);
 				containmentList.remove(modelElement);
 			} else {
 				containerModelElement.eSet(containmentFeature, null);
 			}
-			ModelUtil.removeModelElementAndChildrenFromResource(res,
-					modelElement);
+			ModelUtil.removeModelElementAndChildrenFromResource(res, modelElement);
 		}
 	}
 
@@ -503,21 +461,6 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 	}
 
 	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.emfstore.common.model.Project#delete()
-	 */
-	public void delete() {
-		final NotifiableIdEObjectCollection collection = this;
-		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
-			public void run(ProjectChangeObserver projectChangeObserver) {
-				projectChangeObserver.projectDeleted(collection);
-			}
-		};
-		notifyProjectChangeObservers(command);
-	}
-
-	/**
 	 * Handle the removal of an element from the containment hierachy.
 	 * 
 	 * @param projectImpl
@@ -525,16 +468,14 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 	 * @param modelElement
 	 *            the model element
 	 */
-	public void modelElementRemoved(final IdEObjectCollection projectImpl,
-			final EObject modelElement) {
+	public void modelElementRemoved(final IdEObjectCollection projectImpl, final EObject modelElement) {
 		removeModelElementAndChildrenFromCache(modelElement);
-		ProjectChangeObserverNotificationCommand command = new ProjectChangeObserverNotificationCommand() {
-			public void run(ProjectChangeObserver projectChangeObserver) {
-				projectChangeObserver.modelElementRemoved(projectImpl,
-						modelElement);
+		EObjectChangeObserverNotificationCommand command = new EObjectChangeObserverNotificationCommand() {
+			public void run(EObjectChangeObserver projectChangeObserver) {
+				projectChangeObserver.modelElementRemoved(projectImpl, modelElement);
 			}
 		};
-		notifyProjectChangeObservers(command);
+		notifyEObjectChangeObservers(command);
 	}
 
 	/**
@@ -547,8 +488,7 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 		if (!eObjectToIdCache.containsKey(eObject) && !isCacheInitialized()) {
 
 			if (containedModelElements == null) {
-				containedModelElements = ModelUtil
-						.getAllContainedModelElements(this, false);
+				containedModelElements = ModelUtil.getAllContainedModelElements(this, false);
 			}
 
 			if (!containedModelElements.contains(eObject)) {
@@ -566,8 +506,7 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 
 				XMIResource xmiResource = (XMIResource) resource;
 				xmiResource.load(null);
-				ModelElementId modelElementId = ModelFactory.eINSTANCE
-						.createModelElementId();
+				ModelElementId modelElementId = ModelFactory.eINSTANCE.createModelElementId();
 
 				String id = xmiResource.getID(eObject);
 				if (id != null) {
@@ -582,15 +521,13 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 				return ModelUtil.clone(modelElementId);
 
 			} catch (IOException e) {
-				throw new RuntimeException(
-						"Couldn't load resource for model element " + eObject);
+				throw new RuntimeException("Couldn't load resource for model element " + eObject);
 			}
 		}
 
 		ModelElementId id = eObjectToIdCache.get(eObject);
 
-		return id != null ? ModelUtil.clone(id) : ModelUtil
-				.getSingletonModelElementId(eObject);
+		return id != null ? ModelUtil.clone(id) : ModelUtil.getSingletonModelElementId(eObject);
 	}
 
 	/**
@@ -604,8 +541,7 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 
 		ModelElementId id = deletedEObjectToIdMap.get(deletedModelElement);
 
-		return id != null ? ModelUtil.clone(id) : ModelUtil
-				.getSingletonModelElementId(deletedModelElement);
+		return id != null ? ModelUtil.clone(id) : ModelUtil.getSingletonModelElementId(deletedModelElement);
 	}
 
 	/**
@@ -616,8 +552,7 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 	 * @return the deleted model element or null if it is not in the project
 	 */
 	public EObject getDeletedModelElement(ModelElementId modelElementId) {
-		for (Map.Entry<EObject, ModelElementId> entry : deletedEObjectToIdMap
-				.entrySet()) {
+		for (Map.Entry<EObject, ModelElementId> entry : deletedEObjectToIdMap.entrySet()) {
 			if (entry.getValue().equals(modelElementId)) {
 				return entry.getKey();
 			}
@@ -632,17 +567,14 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 	 * @see org.eclipse.emf.emfstore.common.model.Project#addModelElement(org.eclipse.emf.ecore.EObject,
 	 *      java.util.Collection)
 	 */
-	public void addModelElement(EObject newModelElement,
-			Map<EObject, ModelElementId> map) {
+	public void addModelElement(EObject newModelElement, Map<EObject, ModelElementId> map) {
 
 		// since id is contained in map, all IDs should be cloned
-		ModelElementId newModelElementId = ModelUtil.clone(map
-				.get(newModelElement));
+		ModelElementId newModelElementId = ModelUtil.clone(map.get(newModelElement));
 
 		// check whether the model element is already contained in the project
 		if (contains(newModelElementId)) {
-			throw new IllegalStateException("Model element ID "
-					+ newModelElementId + " already contained in project.");
+			throw new IllegalStateException("Model element ID " + newModelElementId + " already contained in project.");
 		}
 
 		for (Map.Entry<EObject, ModelElementId> entry : map.entrySet()) {
@@ -671,13 +603,11 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 			try {
 				xmiResource.load(null);
 			} catch (IOException e) {
-				throw new RuntimeException("Resource of model element "
-						+ modelElement + " couldn't be loaded");
+				throw new RuntimeException("Resource of model element " + modelElement + " couldn't be loaded");
 			}
 			String id = xmiResource.getID(modelElement);
 			if (id != null) {
-				ModelElementId objId = ModelFactory.eINSTANCE
-						.createModelElementId();
+				ModelElementId objId = ModelFactory.eINSTANCE.createModelElementId();
 				objId.setId(id);
 				return objId;
 			}
@@ -700,8 +630,7 @@ public class NotifiableIdEObjectCollectionImpl extends EObjectImpl implements
 
 		// rename copier
 		Copier copier = new ProjectCopier();
-		NotifiableIdEObjectCollectionImpl result = (NotifiableIdEObjectCollectionImpl) copier
-				.copy(this);
+		NotifiableIdEObjectCollectionImpl result = (NotifiableIdEObjectCollectionImpl) copier.copy(this);
 		result.cachesInitialized = true;
 		copier.copyReferences();
 

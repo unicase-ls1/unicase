@@ -10,19 +10,20 @@
  ******************************************************************************/
 package org.eclipse.emf.emfstore.common.model.impl;
 
-import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
+import org.eclipse.emf.emfstore.common.model.NotifiableIdEObjectCollection;
+import org.eclipse.emf.emfstore.common.model.util.EObjectChangeObserver;
 
 /**
- * Command for notifying PRojectChangeObservers of changes in a project.
+ * Command for notifying an {@link EObjectChangeObserver} of changes in a {@link NotifiableIdEObjectCollection}.
  * 
  * @author koegel
  */
-public interface ProjectChangeObserverNotificationCommand {
+public interface EObjectChangeObserverNotificationCommand {
 
 	/**
 	 * Run the command on a project change observer.
 	 * 
-	 * @param projectChangeObserver the observer
+	 * @param eObjectChangeObserver the observer
 	 */
-	void run(ProjectChangeObserver projectChangeObserver);
+	void run(EObjectChangeObserver eObjectChangeObserver);
 }
