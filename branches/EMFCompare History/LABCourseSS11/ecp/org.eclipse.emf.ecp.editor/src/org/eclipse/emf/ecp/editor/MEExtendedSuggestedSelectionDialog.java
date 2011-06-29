@@ -16,6 +16,7 @@ import java.util.HashMap;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.swt.SWT;
@@ -77,7 +78,13 @@ MESuggestedSelectionDialog {
 		setModelElements(createAllModelElementsList());
 		currentContextNeighbours = new HashMap<String, ECPModelelementContext>();
 		for (ECPModelelementContext tempContext : currentContext.getNeighbors()) {
-			currentContextNeighbours.put(labelProvider.getText(tempContext), tempContext);
+			String text = labelProvider.getText(tempContext);
+			if(ECPProject.class.isAssignableFrom(tempContext.getClass())){
+				ECPProject project = (ECPProject) tempContext;
+				text = labelProvider.getText(project.getRootObject());
+			}
+			
+			currentContextNeighbours.put(text, tempContext);
 		}
 	}
 
