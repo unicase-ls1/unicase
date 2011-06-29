@@ -106,7 +106,7 @@ public final class ProjectSpaceUtil {
 	 */
 	public static InputStream eObjectAsInputStream(EObject eObject) throws CannotOpenEObjectException {
 		try {
-			String eObjectToString = ModelUtil.eObjectToString(eObject, true, true);
+			String eObjectToString = ModelUtil.eObjectToString(eObject, true, true, true);
 
 			return new ByteArrayInputStream(eObjectToString.getBytes());
 
