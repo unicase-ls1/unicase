@@ -167,88 +167,90 @@ public class Search {
 
 	}
 
-	Query createQeuryCode(File file, String type) {
+	public Query createQeuryCode(ArrayList<File> file, String type) {
 		try {
 			Query q = TraceRecoveryFactory.eINSTANCE.createQuery();
 			if (type.toLowerCase() == "java") {
-				JavaParser parser = new JavaParser();
-				parser.setSource(file);
-				parser.getDeclaredClass();
-				JavaSourceCodeAnalyzer analyzer = new JavaSourceCodeAnalyzer();
 
-				// System.out.println("this is the value of the analyzer "
-				// + parser.getDeclaredClass().className);
+				for (int i = 0; i < file.size(); i++) {
+					JavaParser parser = new JavaParser();
+					parser.setSource(file.get(i));
+					parser.getDeclaredClass();
+					JavaSourceCodeAnalyzer analyzer = new JavaSourceCodeAnalyzer();
 
-				String className = parser.getDeclaredClass().className;
-				
-				StringReader str = new StringReader(
-						className);
+					// System.out.println("this is the value of the analyzer "
+					// + parser.getDeclaredClass().className);
 
-				TokenStream token = analyzer.tokenStream("className", str);
+					String className = parser.getDeclaredClass().className;
 
-				Token tok = token.next();
-				
+					StringReader str = new StringReader(className);
 
-				CodeLocation loc = TraceFactory.eINSTANCE.createCodeLocation();
-				loc.setDescription(tok.termText());
+					TokenStream token = analyzer.tokenStream("className", str);
 
-				q.getModelElements().add(loc);
+					Token tok = token.next();
 
-				ArrayList<String> comments = parser.getComments();
-				String comm = "";
-				for (int i = 0; i < comments.size(); i++) {
-					str = new StringReader(comments.get(i));
-					token = analyzer.tokenStream("comment", str);
-					
-					if(token == null){
-						break;
-					}
-					tok = token.next();
-					if (tok != null) {
-						comm = "";
-						while(tok != null){
-						comm +=" " + tok.termText();
-								
-						tok = token.next();
+					CodeLocation loc = TraceFactory.eINSTANCE
+							.createCodeLocation();
+					loc.setDescription(tok.termText());
+
+					q.getModelElements().add(loc);
+
+					ArrayList<String> comments = parser.getComments();
+					String comm = "";
+					for (int j = 0; j < comments.size(); j++) {
+						str = new StringReader(comments.get(j));
+						token = analyzer.tokenStream("comment", str);
+
+						if (token == null) {
+							break;
 						}
-						
-						
-						loc = TraceFactory.eINSTANCE.createCodeLocation();
-						loc.setDescription(comm);
-						loc.setName(className);
-						q.getModelElements().add(loc);
+						tok = token.next();
+						if (tok != null) {
+							comm = "";
+							while (tok != null) {
+								comm += " " + tok.termText();
+
+								tok = token.next();
+							}
+
+							loc = TraceFactory.eINSTANCE.createCodeLocation();
+							loc.setDescription(comm);
+							loc.setName(className);
+							q.getModelElements().add(loc);
+						}
+
 					}
-					
+
+					// ArrayList<JMethod> methods =
+					// parser.getDeclaredClass().methodDeclarations;
+					// comm = "";
+					// for (int i = 0; i < methods.size(); i++) {
+					// str = new StringReader(methods.get(i).methodName);
+					// token = analyzer.tokenStream("methodName", str);
+					//
+					// if(token == null){
+					// break;
+					// }
+					// tok = token.next();
+					// if (tok != null) {
+					// while(tok != null){
+					// comm +=" "+ tok.termText();
+					//
+					// tok = token.next();
+					// }
+					//
+					// System.out.println(comm +
+					// " this is the string at the end");
+					// }
+					// loc = TraceFactory.eINSTANCE.createCodeLocation();
+					// loc.setDescription(comm);
+					// loc.setName(className);
+					// q.getModelElements().add(loc);
+					// }
+
 				}
-				
-				
-//				ArrayList<JMethod> methods = parser.getDeclaredClass().methodDeclarations;
-//				 comm = "";
-//				for (int i = 0; i < methods.size(); i++) {
-//					str = new StringReader(methods.get(i).methodName);
-//					token = analyzer.tokenStream("methodName", str);
-//					
-//					if(token == null){
-//						break;
-//					}
-//					tok = token.next();
-//					if (tok != null) {
-//						while(tok != null){
-//						comm +=" "+ tok.termText();
-//							
-//						tok = token.next();
-//						}
-//						
-//						System.out.println(comm + " this is the string at the end");	
-//					}
-//					loc = TraceFactory.eINSTANCE.createCodeLocation();
-//					loc.setDescription(comm);
-//					loc.setName(className);
-//					q.getModelElements().add(loc);
-//				}
-				
 			}
-			
+
 			return q;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -256,18 +258,17 @@ public class Search {
 
 			// analyzer.tokenStream("class", reader)
 
-		} 
+		}
 
-		
 	}
 
-//	public static void main(String[] args) {
-//		Search search = new Search();
-//		search.createQeuryCode(
-//				new File(
-//						"/home/taher/workspace/org.unicase.traceRecovery/src/traceability/handler/Search.java"),
-//				"java");
-//	}
+	// public static void main(String[] args) {
+	// Search search = new Search();
+	// search.createQeuryCode(
+	// new File(
+	// "/home/taher/workspace/org.unicase.traceRecovery/src/traceability/handler/Search.java"),
+	// "java");
+	// }
 
 	public ArrayList<Link> runRecoveryCodeToME(Query query, Directory dir) {
 		try {
@@ -444,6 +445,22 @@ public class Search {
 	 */
 	public void setParser() {
 
+	}
+
+	public void indexMe(ArrayList<UnicaseModelElement> me, Directory index) {
+		try {
+			this.dir = index;
+			File file = new File(this.dir.getPath());
+
+			IndexWriter writer = new IndexWriter(file, new StandardAnalyzer(),
+					true);
+
+			for (int i = 0; i < me.size(); i++) {
+				this.index.IndexME(me.get(i), writer);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void index() {
