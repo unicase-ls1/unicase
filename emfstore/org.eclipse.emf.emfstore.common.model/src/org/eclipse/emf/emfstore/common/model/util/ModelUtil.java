@@ -177,12 +177,7 @@ public final class ModelUtil {
 
 		XMIResource res = (XMIResource) (new ResourceSetImpl()).createResource(VIRTUAL_URI);
 
-		if (!overrideContainmentCheck && !(object instanceof EClass)) {
-			if (!CommonUtil.isSelfContained(object)) {
-				throw new SerializationException(object);
-			}
-		}
-
+		EObject copy;
 		if (object instanceof Project) {
 			Project project = (Project) object;
 			Project copiedProject = (Project) clone(object);
@@ -194,9 +189,16 @@ public final class ModelUtil {
 				res.setID(copiedProject.getModelElement(modelElementId), modelElementId.getId());
 			}
 			res.getContents().add(copiedProject);
+			copy = copiedProject;
 		} else {
-			EObject copy = EcoreUtil.copy(object);
+			copy = EcoreUtil.copy(object);
 			res.getContents().add(copy);
+		}
+
+		if (!overrideContainmentCheck && !(copy instanceof EClass)) {
+			if (!CommonUtil.isSelfContained(copy) || !CommonUtil.isContainedInResource(copy, res)) {
+				throw new SerializationException(copy);
+			}
 		}
 
 		int step = 200;
