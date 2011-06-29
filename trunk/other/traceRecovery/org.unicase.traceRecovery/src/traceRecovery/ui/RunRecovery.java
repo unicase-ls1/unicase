@@ -122,6 +122,7 @@ public class RunRecovery implements Listener {
 
 	public void run(String path, String indexPath, String language) {
 		try {
+			
 			display = Display.getCurrent();
 			shell = new Shell(display);
 			GridLayout gridLayout = new GridLayout();
