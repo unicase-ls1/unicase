@@ -1169,7 +1169,13 @@
                    label="Compare Revisions"
                    style="push">
                 <visibleWhen
-                      checkEnabled="false">
+                      checkEnabled="true">
+                   <with
+                         variable="selection">
+                      <count
+                            value="2">
+                      </count>
+                   </with>
                 </visibleWhen>
              </command>
           </menuContribution>
