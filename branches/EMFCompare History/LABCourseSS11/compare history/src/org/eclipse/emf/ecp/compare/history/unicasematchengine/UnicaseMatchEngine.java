@@ -33,13 +33,14 @@ public class UnicaseMatchEngine extends GenericMatchEngine {
 		if (obj1 instanceof Project && obj2 instanceof Project) {
 			return true;
 		}
-		if(obj1 instanceof Workspace && obj2 instanceof Workspace){
-			return true;
-		}
 		Project proj1 = ModelUtil.getProject(obj1);
 		Project	proj2 = ModelUtil.getProject(obj2);
-		if(proj1 == null || proj2 == null)
-			return true;
+		if(proj1 == null || proj2 == null){
+			if(obj1.getClass().equals(obj2.getClass())){
+				return true;
+			}
+			return false;
+		}
 		return proj1.getModelElementId(obj1).equals(proj2.getModelElementId(obj2));
 	}
 }
