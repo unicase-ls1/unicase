@@ -19,6 +19,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.emf.emfstore.common.model.NotifiableIdEObjectCollection;
 
 /**
  * Notifies a about changes in its containment hierarchy.
