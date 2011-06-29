@@ -3,6 +3,7 @@
  */
 package traceRecovery.ui;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -40,34 +41,29 @@ public class SearchResult implements SelectionListener, Listener {
 	TableCursor cursor;
 	Table table;
 	ArrayList<Link> link;
+	
+	RunRecovery recovery;
 
 	public void run(RunRecovery recovery) {
 		try {
 			recovery.shell.dispose();
 			display = Display.getCurrent();
-			Query query = TraceRecoveryFactory.eINSTANCE.createQuery();
-			UnicaseModelElement me = (UnicaseModelElement) recovery.e.get(0);
-			System.out.println(me + " law nulllllllllllllll yekon moshkela :D");
-			query.getModelElements().add(
-					(UnicaseModelElement) recovery.e.get(0));
-			//
-			Directory dir = TraceRecoveryFactory.eINSTANCE.createDirectory();
-			dir.setPath(recovery.indexPath);
-			//
-			link = recovery.recovery.runRecoveryMEToCode(query, dir);
-			//
-
+			
+			this.recovery = recovery;
+			
 			shell = new Shell(display);
 			shell.setLayout(new GridLayout(3, false));
-
+			
 			table = new Table(shell, SWT.MULTI | SWT.BORDER
 					| SWT.FULL_SELECTION);
-
+			
 			table.setLinesVisible(true);
 			table.setHeaderVisible(true);
 			GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
 			data.heightHint = 200;
 			table.setLayoutData(data);
+			table.addListener(SWT.MouseDoubleClick, this);
+			
 			TableColumn source = new TableColumn(table, SWT.V_SCROLL
 					| SWT.H_SCROLL);
 
@@ -83,6 +79,27 @@ public class SearchResult implements SelectionListener, Listener {
 			score.setText("Score");
 			linkType.setText("Link Type");
 
+			
+			Query query = TraceRecoveryFactory.eINSTANCE.createQuery();
+			UnicaseModelElement me = (UnicaseModelElement) recovery.e.get(0);
+			query.getModelElements().add(
+					(UnicaseModelElement) recovery.e.get(0));
+			//
+			Directory dir = TraceRecoveryFactory.eINSTANCE.createDirectory();
+			dir.setPath(recovery.indexPath);
+			//
+			link = recovery.recovery.runRecoveryMEToCode(query, dir);
+			//
+
+			
+
+			if(recovery.imagevalue == 1){
+				link = recoveryMEtoCode();
+			}else{
+				link = recoveryCodetoME(recovery.codeLanguage);
+			}
+
+			
 			for (int i = 0; i < link.size(); i++) {
 				TableItem item = new TableItem(table, SWT.NONE);
 				Link result = link.get(i);
@@ -96,7 +113,7 @@ public class SearchResult implements SelectionListener, Listener {
 
 			}
 
-			table.addListener(SWT.MouseDoubleClick, this);
+			
 			//
 			// cursor = new TableCursor(table, SWT.NONE);
 			// cursor.addListener(SWT.MouseDoubleClick, this);
@@ -132,6 +149,49 @@ public class SearchResult implements SelectionListener, Listener {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public ArrayList<Link> recoveryMEtoCode(){
+		try{
+		ArrayList<UnicaseModelElement> ME =  recovery.choosenME;
+		
+		Query query = TraceRecoveryFactory.eINSTANCE.createQuery();
+		for(int i = 0; i < ME.size() ; i++){
+			query.getModelElements().add(ME.get(i));
+		}
+		
+		Directory dir = TraceRecoveryFactory.eINSTANCE.createDirectory();
+		dir.setPath(recovery.indexPath);
+		
+		ArrayList<Link> links = recovery.recovery.runRecoveryMEToCode(query, dir);
+		
+		return links;
+		}catch(IOException e){
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	
+	public ArrayList<Link> recoveryCodetoME(String type){
+		
+		ArrayList<String> dirs = recovery.dir;
+		ArrayList<File> files = new ArrayList<File>();
+		
+		Directory dir = TraceRecoveryFactory.eINSTANCE.createDirectory();
+		dir.setPath(recovery.indexPath);
+		
+		for(int i = 0 ; i < dirs.size() ; i++){
+			File f = new File(dirs.get(i));
+			files.add(f);
+		}
+		
+		Query query = recovery.recovery.createQeuryCode(files, type);
+		
+		ArrayList<Link> link = recovery.recovery.runRecoveryCodeToME(query, dir);
+		
+		return link;
+	
 	}
 
 	/*
