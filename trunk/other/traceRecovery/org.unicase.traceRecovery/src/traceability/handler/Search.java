@@ -91,6 +91,7 @@ public class Search {
 
 			analyzer.addAnalyzer("import", new KeywordAnalyzer());
 
+			
 			org.apache.lucene.store.Directory fsDir = FSDirectory.getDirectory(
 					indexDir, false);
 
