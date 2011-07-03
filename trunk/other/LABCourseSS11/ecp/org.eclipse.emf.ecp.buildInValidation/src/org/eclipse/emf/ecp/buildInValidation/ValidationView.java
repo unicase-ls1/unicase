@@ -74,8 +74,6 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.dialogs.ListDialog;
 import org.eclipse.ui.part.ViewPart;
 
-import otg.eclipse.emf.ecp.bulidInValidation.filter.FilterTableViewer;
-import otg.eclipse.emf.ecp.bulidInValidation.filter.ValidationFilter;
 
 /**
  * The Validation View.
@@ -463,12 +461,6 @@ public class ValidationView extends ViewPart {
 				refactorMenuItem
 						.addSelectionListener(new RefactoringSelectionListener());
 			}
-			// ignore constraint menu item
-			MenuItem ignoreMenuItem = new MenuItem(leftClickMenu, SWT.NONE);
-			ignoreMenuItem.setData(refactoringStrategies);
-			ignoreMenuItem.setText("Ignore violation");
-			ignoreMenuItem.setImage(Activator.getImageDescriptor(
-					"icons/bell_delete.png").createImage());
 			// delete model element menu item
 			MenuItem deleteMenuItem = new MenuItem(leftClickMenu, SWT.NONE);
 			deleteMenuItem.setData(refactoringStrategies);
