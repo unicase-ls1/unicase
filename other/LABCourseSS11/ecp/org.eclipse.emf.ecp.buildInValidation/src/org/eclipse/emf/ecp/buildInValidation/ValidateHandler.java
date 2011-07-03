@@ -23,7 +23,7 @@ import org.eclipse.ui.PlatformUI;
  * 
  * @author carlan
  */
-=======
+
 
 /**
  * @author Haunolder
