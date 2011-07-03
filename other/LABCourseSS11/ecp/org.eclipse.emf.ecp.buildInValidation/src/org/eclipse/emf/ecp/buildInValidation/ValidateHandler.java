@@ -19,30 +19,39 @@ import org.eclipse.ui.PlatformUI;
 
 
 /**
+ * Handler to validate the project.
+ * 
+ * @author carlan
+ */
+=======
+
+/**
  * @author Haunolder
  *
  */
+
 public class ValidateHandler extends AbstractHandler {
 
-	private Diagnostic diagnostic; 
-	
+	private Diagnostic diagnostic;
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		
-		
+
 		// the object that is to be validated
 		EObject toValidate = UiUtil.getModelElement(event);
-		
+
 		try {
-			if (ECPWorkspaceManager.getInstance().getWorkSpace().isRootObject(toValidate)) {
-				toValidate = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject().getRootContainer();
+			if (ECPWorkspaceManager.getInstance().getWorkSpace()
+					.isRootObject(toValidate)) {
+				toValidate = ECPWorkspaceManager.getInstance().getWorkSpace()
+						.getActiveProject().getRootContainer();
 			}
 		} catch (NoWorkspaceException e) {
 			return null;
 		}
-	
+
 		// if still null, do nothing, otherwise trigger validation run
 		if (toValidate != null) {
 			final EObject validate = toValidate;
@@ -53,37 +62,45 @@ public class ValidateHandler extends AbstractHandler {
 				}
 			}.run(false);
 		}
-		// validation occurred and the validation view is being instantiated 
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		
+		// validation occurred and the validation view is being instantiated
+		instantiateValidationView();
+
+		return null;
+	}
+
+	/**
+	 * Instantiates the ValidationView
+	 */
+	private void instantiateValidationView() {
+		IWorkbenchPage page = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage();
+		ValidationView validationView = null;
 		try {
-			ValidationView validationView = (ValidationView) page.showView("org.eclipse.emf.ecp.validation.validationView");
-			//validationView.updateTable(diagnostic);
+			validationView = (ValidationView) page
+					.showView("org.eclipse.emf.ecp.buildInValidation.validationView");
+
 		} catch (PartInitException e) {
 			DialogHandler.showExceptionDialog(e);
 		}
-		
-		
-		return null;
+		validationView.updateTable(diagnostic);
 	}
-	
+
 	/**
 	 * Perform validation run.
 	 * 
-	 * @param object the
+	 * @param object
+	 *            : the object to be validated
 	 */
 	public void validateWithoutCommand(EObject object) {
-		System.out.println("IM BUILD IN VALIDTE HANDLER");
-		 diagnostic = Diagnostician.INSTANCE.validate(object);
-		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
-			System.err.println(diagnostic.getMessage());
-			System.out.println (diagnostic.getChildren().toString());
-			for (Iterator<Diagnostic> i = diagnostic.getChildren().iterator(); i.hasNext();) {
-				Diagnostic childDiagnostic = (Diagnostic) i.next();
+		diagnostic = Diagnostician.INSTANCE.validate(object);
+		if (diagnostic.getSeverity() == Diagnostic.ERROR
+				|| diagnostic.getSeverity() == Diagnostic.WARNING) {
+			for (Iterator<Diagnostic> i = diagnostic.getChildren().iterator(); i
+					.hasNext();) {
+				Diagnostic childDiagnostic = i.next();
 				switch (childDiagnostic.getSeverity()) {
 				case Diagnostic.ERROR:
 				case Diagnostic.WARNING:
-						System.err.println("\t" + childDiagnostic.getMessage());
 				default:
 					break;
 				}
