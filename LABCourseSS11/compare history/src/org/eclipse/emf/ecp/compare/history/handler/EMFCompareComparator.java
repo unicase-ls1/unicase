@@ -11,10 +11,10 @@ import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.match.service.MatchService;
 import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.ui.views.historybrowserview.ICompare;
 import org.eclipse.emf.emfstore.client.ui.views.historybrowserview.exceptions.InvalidCompareException;
 import org.eclipse.emf.emfstore.client.ui.views.historybrowserview.exceptions.NoComparisonException;
+import org.eclipse.emf.emfstore.common.model.Project;
 
 public class EMFCompareComparator implements ICompare{
 
@@ -23,8 +23,8 @@ public class EMFCompareComparator implements ICompare{
 	public void compare(EObject e1, EObject e2) throws InvalidCompareException {
 		try {
 
-			ProjectSpace p1 = (ProjectSpace) e1;
-			ProjectSpace p2 = (ProjectSpace) e2;
+			Project p1 = (Project) e1;
+			Project p2 = (Project) e2;
 
 			MatchModel match = MatchService.doContentMatch(p1, p2, null);
 			DiffModel diff = DiffService.doDiff(match, false);

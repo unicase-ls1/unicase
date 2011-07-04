@@ -49,36 +49,7 @@ public class CompareRevisionsHandler extends AbstractHistoryViewHandler {
 		IStructuredSelection object = (IStructuredSelection) activeWorkbenchWindow
 				.getSelectionService().getSelection();
 		List list = object.toList();
-		// Project project1 = null;
-		// Project project2 = null;
-		// ProjectSpace projectSpace1 = null;
-		// ProjectSpace projectSpace2 = null;
-
 		if (list.size() == 2) {
-			// for (int i = 0; i < list.size(); i++) {
-			// TreeNode element = (TreeNode) list.get(i);
-			// HistoryInfo historyInfo = (HistoryInfo) element.getValue();
-			// final PrimaryVersionSpec versionSpec = ModelUtil
-			// .clone(historyInfo.getPrimerySpec());
-			// final ProjectSpace projectSpace = view.getProjectSpace();
-			// ProjectSpace projectSpaceVersion = ModelUtil
-			// .clone(projectSpace);
-			//
-			// if (i == 0) {
-			// projectSpaceVersion.setBaseVersion(versionSpec);
-			// projectSpace1 = projectSpaceVersion;
-			// project1 = projectSpace1.getProject();
-			// } else {
-			// projectSpaceVersion.setBaseVersion(versionSpec);
-			// projectSpace2 = projectSpaceVersion;
-			// project2 = projectSpace2.getProject();
-			// }
-			// }
-			// if (HistoryCompare.hasRegisteredExtensions()) {
-			// // TODO replace null by the two EObjects representing the two
-			// // Project Revisions
-			// HistoryCompare.handleRegisteredExtensions(project1, project2);
-			// }
 
 			TreeNode element1 = (TreeNode) list.get(0);
 			HistoryInfo historyInfo1 = (HistoryInfo) element1.getValue();
@@ -109,6 +80,7 @@ public class CompareRevisionsHandler extends AbstractHistoryViewHandler {
 							.getRevision(projectSpace2.getUsersession(),
 									projectSpace2.getProjectInfo(),
 									versionSpec2);
+
 					if (HistoryCompare.hasRegisteredExtensions()) {
 						HistoryCompare.handleRegisteredExtensions(
 								pSpace1.getProject(), pSpace2.getProject());
