@@ -2,6 +2,7 @@ package org.eclipse.emf.ecp.buildInValidation.filter.impl;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecp.buildInValidation.Activator;
+import org.eclipse.emf.ecp.buildInValidation.filter.ValidationFilter;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.graphics.Image;
 
