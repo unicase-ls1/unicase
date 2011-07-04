@@ -32,6 +32,8 @@ import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage;
 import org.eclipse.emf.ecp.common.observer.FocusEventObserver;
 import org.eclipse.emf.ecp.common.util.ActionHelper;
+import org.eclipse.emf.ecp.buildInValidation.filter.FilterTableViewer;
+import org.eclipse.emf.ecp.buildInValidation.filter.ValidationFilter;
 import org.eclipse.emf.ecp.buildInValidation.providers.SeverityLabelProvider;
 import org.eclipse.emf.ecp.buildInValidation.providers.ConstraintLabelProvider;
 import org.eclipse.emf.ecp.buildInValidation.providers.ValidationContentProvider;
@@ -461,6 +463,12 @@ public class ValidationView extends ViewPart {
 				refactorMenuItem
 						.addSelectionListener(new RefactoringSelectionListener());
 			}
+//			// ignore constraint menu item
+//			MenuItem ignoreMenuItem = new MenuItem(leftClickMenu, SWT.NONE);
+//			ignoreMenuItem.setData(refactoringStrategies);
+//			ignoreMenuItem.setText("Ignore violation");
+//			ignoreMenuItem.setImage(Activator.getImageDescriptor(
+//					"icons/bell_delete.png").createImage());
 			// delete model element menu item
 			MenuItem deleteMenuItem = new MenuItem(leftClickMenu, SWT.NONE);
 			deleteMenuItem.setData(refactoringStrategies);
@@ -578,10 +586,5 @@ public class ValidationView extends ViewPart {
 			// TODO Auto-generated method stub
 		}
 	}
-
-}
-package org.eclipse.emf.ecp.buildInValidation;
-
-public class ValidationView {
 
 }

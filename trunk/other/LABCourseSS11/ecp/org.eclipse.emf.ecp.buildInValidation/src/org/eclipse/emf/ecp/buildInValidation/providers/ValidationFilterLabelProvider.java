@@ -1,6 +1,7 @@
 package org.eclipse.emf.ecp.buildInValidation.providers;
 
 import org.eclipse.emf.ecp.buildInValidation.Activator;
+import org.eclipse.emf.ecp.buildInValidation.filter.ValidationFilter;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 
