@@ -22,7 +22,6 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -37,7 +36,8 @@ import org.eclipse.ui.PlatformUI;
  * This dialog represents the possibility to select an element from a list where the list is sorted and additional
  * information can be provided. In addition first a filter can be selected for the items displayed in the list.
  * 
- * @author Birgit Engelmann
+ * @author engelmann
+ * @author lee
  */
 public class MEExtendedSuggestedSelectionDialog extends
 MESuggestedSelectionDialog {
@@ -112,11 +112,8 @@ MESuggestedSelectionDialog {
 
 	@Override
 	protected Control createExtendedContentArea(Composite parent) {
-		Composite comp = new Composite(parent, SWT.NONE);
-		comp.setLayout(new GridLayout(2, false));
-		final Button button = new Button(comp, SWT.PUSH);
-		//button.setImage(image);
-		button.setText("Contexts");
+
+		final Button button = new Button(parent, SWT.ARROW | SWT.DOWN);
 		final Menu menu = new Menu(parent.getShell(), SWT.POP_UP);
 		for (String key : currentContextNeighbours.keySet()) {
 			MenuItem item = new MenuItem(menu, SWT.PUSH);
@@ -128,6 +125,19 @@ MESuggestedSelectionDialog {
 				}
 			});
 		}
+		MenuItem xmiItem = new MenuItem(menu, SWT.PUSH);
+		xmiItem.setText("Open XMI Dialog");
+		xmiItem.addListener(SWT.Selection, new Listener() {
+
+			public void handleEvent(Event event) {
+				OpenXMIDialog dialog = new OpenXMIDialog(PlatformUI
+						.getWorkbench().getDisplay().getActiveShell(),"Import from XMI", "Please choose a location to an XMI-File");
+				dialog.open();
+				setModelElements(dialog.getObjectList());
+			}
+		});
+		
+		
 		button.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				Rectangle rect = button.getBounds();
@@ -137,22 +147,10 @@ MESuggestedSelectionDialog {
 				menu.setVisible(true);
 			}
 		});
-		
-		final Button xmiButton = new Button(comp, SWT.PUSH);
-		xmiButton.setText("Open XMI Dialog");
-		xmiButton.addListener(SWT.Selection, new Listener() {
-
-			public void handleEvent(Event event) {
-				OpenXMIDialog dialog = new OpenXMIDialog(PlatformUI
-						.getWorkbench().getDisplay().getActiveShell(),"Import from XMI", "Please choose a location to an XMI-File");
-				dialog.open();
-				setModelElements(dialog.getObjectList());
-			}
-		});
 
 		
 		Control firstChild = parent.getChildren()[0];
-		comp.moveAbove(firstChild);
+		button.moveAbove(firstChild);
 
 		return null;
 	}
