@@ -23,8 +23,8 @@ import traceability.java.JavaParser.JClass;
 import traceability.java.JavaParser.JMethod;
 
 /**
- * @author liya
- *
+ * @author taher
+ * will index the java code
  */
 public class JavaSourceCodeIndexer extends Indexer{
 	public JavaSourceCodeIndexer() {
@@ -67,6 +67,14 @@ public class JavaSourceCodeIndexer extends Indexer{
 		}
 	}
 
+	/**
+	 * this will index a certain directory
+	 * @param writer
+	 * 			the writer that will write to the index file
+	 * @param directory
+	 * 				the directory that will be indexed
+	 * @throws IOException
+	 */
 	public static  void indexDirectory(IndexWriter writer, Directory directory)
 			throws IOException {
 		File dir = new File(directory.getPath());
@@ -85,6 +93,13 @@ public class JavaSourceCodeIndexer extends Indexer{
 		}
 	}
 
+	/**
+	 * get the certain fileds of the file and index them 
+	 * @param writer
+	 * 			the writer that will write to the index file
+	 * @param f
+	 * 			the file that should be indexed and data retrieved from
+	 */
 	public static  void indexFileJava(IndexWriter writer, File f) {
 		if (f.isHidden() || !f.exists() || !f.canRead())
 			return;
@@ -109,6 +124,13 @@ public class JavaSourceCodeIndexer extends Indexer{
 		}
 	}
 
+	/**
+	 * add the imports to the document
+	 * @param doc
+	 * 			the document
+	 * @param parser
+	 * 			the java parser that will get me the imports of fthe class
+	 */
 	private static void addImportDeclarations(Document doc, JavaParser parser) {
 		ArrayList <String> imports = parser.getImportDeclarations();
 		if (imports == null)
@@ -120,6 +142,13 @@ public class JavaSourceCodeIndexer extends Indexer{
 		}
 	}
 
+	/**
+	 * add the comments to the document
+	 * @param doc
+	 * 			the document to add to
+	 * @param parser
+	 * 			java parser to get the comments
+	 */
 	private static void addComments(Document doc, JavaParser parser) {
 		ArrayList comments = parser.getComments();
 		if (comments == null)
@@ -131,6 +160,13 @@ public class JavaSourceCodeIndexer extends Indexer{
 		}
 	}
 
+	/**
+	 * add the class to the document
+	 * @param doc
+	 * 			the document to add to
+	 * @param cls
+	 * 			the class
+	 */
 	private static void addClass(Document doc, JClass cls) {
 		Field cl = new Field(CLASS, cls.className, Field.Store.YES, Field.Index.TOKENIZED);
 		doc.add(cl);
@@ -154,6 +190,13 @@ public class JavaSourceCodeIndexer extends Indexer{
 
 	}
 
+	/**
+	 * add the methods to the document
+	 * @param cls
+	 * 			the class 
+	 * @param doc
+	 * 			the document to add to
+	 */
 	private static void addMethods(JClass cls, Document doc) {
 		ArrayList methods = cls.methodDeclarations;
 		for (int i = 0; i < methods.size(); i++) {
