@@ -11,7 +11,10 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.index.IndexWriter;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 import org.unicase.model.Attachment;
+
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.activity.ActivityObject;
 import org.unicase.model.bug.BugReport;
@@ -51,11 +54,14 @@ import org.unicase.model.state.StateNode;
 import org.unicase.model.state.Transition;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
+import org.unicase.workspace.WorkspaceManager;
 
 import traceRecovery.Directory;
 import traceRecovery.Query;
 import traceRecovery.TraceRecoveryFactory;
+import traceRecovery.ui.RunRecovery;
 import traceability.fortran.FortranCodeIndexer;
 import traceability.fortran.FortranSourceCodeAnalyzer;
 import traceability.java.JavaSourceCodeAnalyzer;
@@ -166,6 +172,15 @@ public class Indexer {
 
 	}
 
+	/**
+	 * index a certain given directory
+	 * @param writer
+	 * @param codeDir
+	 * @param indexDir
+	 * @param javIndexer
+	 * @param fortIndexer
+	 * @throws IOException
+	 */
 	public void indexDir(IndexWriter writer, Directory codeDir,
 			Directory indexDir, JavaSourceCodeIndexer javIndexer,
 			FortranCodeIndexer fortIndexer) throws IOException {
@@ -215,147 +230,169 @@ public class Indexer {
 
 	}
 
-	public void MEIndexer(Query query, Directory dir) {
-		try {
-			for (int j = 0; j < query.getModelElements().size(); j++) {
-				IndexWriter index = new IndexWriter(dir.getPath(),
-						new StandardAnalyzer(), true);
-				IndexME(query.getModelElements().get(j), index);
+	// public void MEIndexer(Query query, Directory dir) {
+	// try {
+	// for (int j = 0; j < query.getModelElements().size(); j++) {
+	// IndexWriter index = new IndexWriter(dir.getPath(),
+	// new StandardAnalyzer(), true);
+	// IndexME(query.getModelElements().get(j), index);
+	//
+	// }
+	//
+	// } catch (IOException e) {
+	// e.printStackTrace();
+	// }
+	// }
 
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
+	/**
+	 * indexes model elements
+	 * @param me 
+	 * 			this is the model element that will be indexed
+	 * @param writer
+	 * 			this is the writer that will be used to index the model element
+	 */
 	public void IndexME(UnicaseModelElement me, IndexWriter writer) {
+		this.writer = writer;
 		Document doc = new Document();
-		Field field = new Field("text", me.getDescription(), Field.Store.YES,
-				Field.Index.TOKENIZED);
-		doc.add(field);
-		Field name = new Field("name", me.getName(), Field.Store.YES,
-				Field.Index.NO);
-		doc.add(name);
-		Field type = null;
-		if (me instanceof OrgUnit) {
-			type = new Field("type", "orgunit", Field.Store.YES, Field.Index.NO);
-		} else if (me instanceof BugReport) {
-			type = new Field("type", "bugreport", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof WorkItem) {
-			type = new Field("type", "workitem", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof Checkable) {
-			type = new Field("type", "checkable", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof PackageElement) {
-			type = new Field("type", "packageelement", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof Association) {
-			type = new Field("type", "association", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof Attribute) {
-			type = new Field("type", "attribute", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof Method) {
-			type = new Field("type", "method", Field.Store.YES, Field.Index.NO);
-		} else if (me instanceof MethodArgument) {
-			type = new Field("type", "methodargument", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof Dependency) {
-			type = new Field("type", "dependency", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof Literal) {
-			type = new Field("type", "literal", Field.Store.YES, Field.Index.NO);
-		} else if (me instanceof Section) {
-			type = new Field("type", "section", Field.Store.YES, Field.Index.NO);
-		} else if (me instanceof FunctionalRequirement) {
-			type = new Field("type", "functionalrequirement", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof UseCase) {
-			type = new Field("type", "usecase", Field.Store.YES, Field.Index.NO);
-		} else if (me instanceof Scenario) {
-			type = new Field("type", "scenario", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof Actor) {
-			type = new Field("type", "actor", Field.Store.YES, Field.Index.NO);
-		} else if (me instanceof ActorInstance) {
-			type = new Field("type", "actorinstance", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof Step) {
-			type = new Field("type", "step", Field.Store.YES, Field.Index.NO);
-		} else if (me instanceof SystemFunction) {
-			type = new Field("type", "systemfunction", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof UserTask) {
-			type = new Field("type", "usertask", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof Workspace) {
-			type = new Field("type", "workspace", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof Proposal) {
-			type = new Field("type", "propsal", Field.Store.YES, Field.Index.NO);
-		} else if (me instanceof Solution) {
-			type = new Field("type", "solution", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof Criterion) {
-			type = new Field("type", "criterion", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof Assessment) {
-			type = new Field("type", "assessment", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof Comment) {
-			type = new Field("type", "comment", Field.Store.YES, Field.Index.NO);
-		} else if (me instanceof Component) {
-			type = new Field("type", "component", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof ComponentService) {
-			type = new Field("type", "componentservice", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof DeploymentNode) {
-			type = new Field("type", "deploymentnode", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof Meeting) {
-			type = new Field("type", "meeting", Field.Store.YES, Field.Index.NO);
-		} else if (me instanceof MeetingSection) {
-			type = new Field("type", "meetingsection", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof Transition) {
-			type = new Field("type", "transiton", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof StateNode) {
-			type = new Field("type", "statenode", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof Attachment) {
-			type = new Field("type", "attatchment", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof Profile) {
-			type = new Field("type", "profile", Field.Store.YES, Field.Index.NO);
-		} else if (me instanceof Stereotype) {
-			type = new Field("type", "stereotype", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof StereotypeInstance) {
-			type = new Field("type", "sterotypeinstance", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof StereotypeAttribute) {
-			type = new Field("type", "stereotypeattribute", Field.Store.YES,
-					Field.Index.NO);
-		} else if (me instanceof StereotypeAttributeInstance) {
-			type = new Field("type", "stereotypeattirbuteinstance",
+		if (me.getDescription() != null) {
+			Field field = new Field("text", me.getDescription(),
+					Field.Store.YES, Field.Index.TOKENIZED);
+			doc.add(field);
+		}
+
+		if (me.getName() != null) {
+
+			
+			
+			Field id = new Field("id", me.getModelElementId().getId(),
 					Field.Store.YES, Field.Index.NO);
-		} else if (me instanceof ActivityObject) {
-			type = new Field("type", "activityobject", Field.Store.YES,
+
+			Field name = new Field("name", me.getName(), Field.Store.YES,
 					Field.Index.NO);
-		} else if (me instanceof org.unicase.model.activity.Transition) {
-			type = new Field("type", "transition activity", Field.Store.YES,
-					Field.Index.NO);
+			doc.add(name);
+			doc.add(id);
+			
+			
 		}
-		if(type != null){
-			doc.add(type);
-		}
+		// Field type = null;
+		// if (me instanceof OrgUnit) {
+		// type = new Field("type", "orgunit", Field.Store.YES, Field.Index.NO);
+		// } else if (me instanceof BugReport) {
+		// type = new Field("type", "bugreport", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof WorkItem) {
+		// type = new Field("type", "workitem", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof Checkable) {
+		// type = new Field("type", "checkable", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof PackageElement) {
+		// type = new Field("type", "packageelement", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof Association) {
+		// type = new Field("type", "association", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof Attribute) {
+		// type = new Field("type", "attribute", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof Method) {
+		// type = new Field("type", "method", Field.Store.YES, Field.Index.NO);
+		// } else if (me instanceof MethodArgument) {
+		// type = new Field("type", "methodargument", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof Dependency) {
+		// type = new Field("type", "dependency", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof Literal) {
+		// type = new Field("type", "literal", Field.Store.YES, Field.Index.NO);
+		// } else if (me instanceof Section) {
+		// type = new Field("type", "section", Field.Store.YES, Field.Index.NO);
+		// } else if (me instanceof FunctionalRequirement) {
+		// type = new Field("type", "functionalrequirement", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof UseCase) {
+		// type = new Field("type", "usecase", Field.Store.YES, Field.Index.NO);
+		// } else if (me instanceof Scenario) {
+		// type = new Field("type", "scenario", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof Actor) {
+		// type = new Field("type", "actor", Field.Store.YES, Field.Index.NO);
+		// } else if (me instanceof ActorInstance) {
+		// type = new Field("type", "actorinstance", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof Step) {
+		// type = new Field("type", "step", Field.Store.YES, Field.Index.NO);
+		// } else if (me instanceof SystemFunction) {
+		// type = new Field("type", "systemfunction", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof UserTask) {
+		// type = new Field("type", "usertask", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof Workspace) {
+		// type = new Field("type", "workspace", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof Proposal) {
+		// type = new Field("type", "propsal", Field.Store.YES, Field.Index.NO);
+		// } else if (me instanceof Solution) {
+		// type = new Field("type", "solution", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof Criterion) {
+		// type = new Field("type", "criterion", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof Assessment) {
+		// type = new Field("type", "assessment", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof Comment) {
+		// type = new Field("type", "comment", Field.Store.YES, Field.Index.NO);
+		// } else if (me instanceof Component) {
+		// type = new Field("type", "component", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof ComponentService) {
+		// type = new Field("type", "componentservice", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof DeploymentNode) {
+		// type = new Field("type", "deploymentnode", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof Meeting) {
+		// type = new Field("type", "meeting", Field.Store.YES, Field.Index.NO);
+		// } else if (me instanceof MeetingSection) {
+		// type = new Field("type", "meetingsection", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof Transition) {
+		// type = new Field("type", "transiton", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof StateNode) {
+		// type = new Field("type", "statenode", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof Attachment) {
+		// type = new Field("type", "attatchment", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof Profile) {
+		// type = new Field("type", "profile", Field.Store.YES, Field.Index.NO);
+		// } else if (me instanceof Stereotype) {
+		// type = new Field("type", "stereotype", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof StereotypeInstance) {
+		// type = new Field("type", "sterotypeinstance", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof StereotypeAttribute) {
+		// type = new Field("type", "stereotypeattribute", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof StereotypeAttributeInstance) {
+		// type = new Field("type", "stereotypeattirbuteinstance",
+		// Field.Store.YES, Field.Index.NO);
+		// } else if (me instanceof ActivityObject) {
+		// type = new Field("type", "activityobject", Field.Store.YES,
+		// Field.Index.NO);
+		// } else if (me instanceof org.unicase.model.activity.Transition) {
+		// type = new Field("type", "transition activity", Field.Store.YES,
+		// Field.Index.NO);
+		// }
+		// if(type != null){
+		// doc.add(type);
+		// }
 		try {
-			writer.addDocument(doc);
+			this.writer.addDocument(doc);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
