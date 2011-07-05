@@ -78,11 +78,13 @@ public class OpenXMIDialog extends TitleAreaDialog{
 	 * Message of the dialog.
 	 */
 	private String dialogMessage;
-
-	/**
-	 * Shell for listeners.
-	 */
 	
+	/**
+	 * 
+	 * @param parentShell the parent shell
+	 * @param title the title of the dialog
+	 * @param message the dialog message
+	 */
 	public OpenXMIDialog(Shell parentShell, String title, String message) {
 		super(parentShell);
 		dialogTitle = title;
@@ -132,11 +134,13 @@ public class OpenXMIDialog extends TitleAreaDialog{
 		return contents;
 	}
 
+	/**
+	 * 
+	 * @return SelectionListener for the browse workspace button
+	 */
 	protected SelectionListener getBrowseWorkspaceListener() {
 		return new SelectionListener() {
-
 			public void widgetSelected(SelectionEvent e) {
-				// opens up a new dialog to browse the "eclipse" workspace
 				WorkspaceResourceDialog workspaceDialog = new WorkspaceResourceDialog(getShell(),
 						new WorkbenchLabelProvider(), new WorkbenchContentProvider());
 				workspaceDialog.setAllowMultiple(false);
@@ -144,18 +148,13 @@ public class OpenXMIDialog extends TitleAreaDialog{
 				workspaceDialog.setMessage("Please select an XMI file with project contents.");
 				workspaceDialog.loadContents();
 				int dialogRes = workspaceDialog.open();
-				
-				// dialog results
 				String fileName = null;
 				if(dialogRes == WorkspaceResourceDialog.OK) {
 					IFile[] selectedFiles = workspaceDialog.getSelectedFiles();
 					if(selectedFiles.length != 0) {
-						// index 0 because multi option is off and it can import only one or no files
 						fileName = selectedFiles[0].getLocation().toOSString(); 
 					}
 				}
-				
-				// set the textfield to a fitting project name
 				txtProjectLocation.setText(getResourceLocation(txtProjectName.getText(), fileName));
 			}
 
@@ -164,9 +163,12 @@ public class OpenXMIDialog extends TitleAreaDialog{
 				widgetDefaultSelected(e);
 			}
 		};
-//		return new ImportProjectWorkspaceListener(txtProjectName, txtProjectLocation, getShell());
 	}
 
+	/**
+	 * 
+	 * @return SelectionListener for the browse file system button
+	 */
 	protected SelectionListener getBrowseFilesystemListener() {
 		return new SelectionListener() {
 			
@@ -282,6 +284,10 @@ public class OpenXMIDialog extends TitleAreaDialog{
 		objectList = mainResource.getContents();
 	}
 
+	/**
+	 * 
+	 * @return the list of all EObjects of the selected context, new ArrayList if not initialized
+	 */
 	public List<EObject> getObjectList() {
 		if (objectList == null) {
 			return new ArrayList<EObject>();
