@@ -205,14 +205,15 @@ public class MELinkControl {
 	}
 	
 	private boolean hasExistingFile(EObject link) {
+		boolean result = false;
 		Resource resource = link.eResource();
 		if (resource != null) {
 			URI uri = resource.getURI();
 			String path = uri.toFileString();
 			File file = new File(path);
-			return(file.exists());
+			result = file.exists();
 		}
-		return false;
+		return result;
 	}
 	
 	/**
