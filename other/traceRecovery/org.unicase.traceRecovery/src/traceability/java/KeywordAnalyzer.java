@@ -10,8 +10,8 @@ import org.apache.lucene.analysis.CharTokenizer;
 import org.apache.lucene.analysis.TokenStream;
 
 /**
- * @author liya
- *
+ * @author taher
+ *an analyzer of keywords
  */
 public class KeywordAnalyzer extends Analyzer {
 	@Override
