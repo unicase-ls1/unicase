@@ -26,5 +26,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.unicase.codetrace;bundle-version="0.4.5",
  org.junit,
  org.unicase.workspace;bundle-version="0.7.3",
- org.eclipse.emf.edit.ui;bundle-version="2.6.0"
+ org.eclipse.emf.edit.ui;bundle-version="2.6.0",
+ org.unicase.ui.common;bundle-version="0.7.3",
+ org.unicase.ui.unicasecommon;bundle-version="0.4.8"
 Bundle-ActivationPolicy: lazy
