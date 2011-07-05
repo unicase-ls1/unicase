@@ -163,9 +163,8 @@ public class MELinkControl {
 	private void updateIcon() {
 		imageHyperlink.setImage(labelProvider.getImage(link));
 		setStatus();
-
 	}
-
+	
 	private void setStatus() {
 		if (existsInWorkspace(link)) {
 			hyperlink.setEnabled(true);
@@ -182,45 +181,8 @@ public class MELinkControl {
 			}
 		}		
 	}
-
-	/**
-	 * Disposes the Composite of this {@link MELinkControl}.
-	 */
-
-	public void dispose() {
-		if (modelElementChangeListener != null) {
-			modelElementChangeListener.remove();
-		}
-		if (labelProvider != null) {
-			labelProvider.removeListener(labelProviderListener);
-			labelProvider.dispose();
-		}
-		if (linkComposite != null) {
-			linkComposite.dispose();
-		}
-	}
-
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject link2, EObject contextModelElement2) {
-		return 0;
-	}
 	
-	private boolean hasExistingFile(EObject link) {
-		boolean result = false;
-		Resource resource = link.eResource();
-		if (resource != null) {
-			URI uri = resource.getURI();
-			String path = uri.toFileString();
-			File file = new File(path);
-			result = file.exists();
-		}
-		return result;
-	}
-	
-	/**
-	 * Checks if link element is in the workspace 
-	 */
-	
-	public boolean existsInWorkspace(EObject link){
+	private boolean existsInWorkspace(EObject link){
 		ECPWorkspace currentWorkspace = null;
 		try {
 			currentWorkspace = ECPWorkspaceManager.getInstance().getWorkSpace();
@@ -255,5 +217,37 @@ public class MELinkControl {
 		return false;
 	}
 
+	
+	private boolean hasExistingFile(EObject link) {
+		boolean result = false;
+		Resource resource = link.eResource();
+		if (resource != null) {
+			URI uri = resource.getURI();
+			String path = uri.toFileString();
+			File file = new File(path);
+			result = file.exists();
+		}
+		return result;
+	}
 
+	/**
+	 * Disposes the Composite of this {@link MELinkControl}.
+	 */
+
+	public void dispose() {
+		if (modelElementChangeListener != null) {
+			modelElementChangeListener.remove();
+		}
+		if (labelProvider != null) {
+			labelProvider.removeListener(labelProviderListener);
+			labelProvider.dispose();
+		}
+		if (linkComposite != null) {
+			linkComposite.dispose();
+		}
+	}
+
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject link2, EObject contextModelElement2) {
+		return 0;
+	}
 }
