@@ -70,23 +70,20 @@ MESuggestedSelectionDialog {
 		this.eReference = reference;
 		this.isAssociationClass = isAssociationClass;
 		this.currentContext = context;
-		//		currentContextNeighbours = new HashMap<String, ECPModelelementContext>();
 		updateModelElements();
 	}
 
 	private void updateModelElements() {
 		setModelElements(createAllModelElementsList());
-		currentContextNeighbours = new HashMap<String, ECPModelelementContext>();
-		for (ECPModelelementContext tempContext : currentContext.getNeighbors()) {
-			String text = labelProvider.getText(tempContext);
-			if(ECPProject.class.isAssignableFrom(tempContext.getClass())){
-				ECPProject project = (ECPProject) tempContext;
-				text = labelProvider.getText(project.getRootObject());
-			}
-			
-			currentContextNeighbours.put(text, tempContext);
-		}
+		createNeighbourList();
 	}
+	
+	@Override
+	public void setModelElements(Collection<EObject> modelElements) {
+		super.setModelElements(modelElements);
+		updateFilteredItemList();
+	}
+
 
 	private void updateFilteredItemList() {
 		Text pattern = (Text)this.getPatternControl();
@@ -97,6 +94,19 @@ MESuggestedSelectionDialog {
 			pattern.setText("**");
 			pattern.update();
 		}	  		
+	}
+
+	private void createNeighbourList() {
+		currentContextNeighbours = new HashMap<String, ECPModelelementContext>();
+		for (ECPModelelementContext tempContext : currentContext.getNeighbors()) {
+			String text = labelProvider.getText(tempContext);
+			if(ECPProject.class.isAssignableFrom(tempContext.getClass())){
+				ECPProject project = (ECPProject) tempContext;
+				text = labelProvider.getText(project.getRootObject());
+			}
+			
+			currentContextNeighbours.put(text, tempContext);
+		}		
 	}
 
 	private Collection<EObject> createAllModelElementsList() {
@@ -136,8 +146,6 @@ MESuggestedSelectionDialog {
 				setModelElements(dialog.getObjectList());
 			}
 		});
-		
-		
 		button.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				Rectangle rect = button.getBounds();
@@ -147,20 +155,8 @@ MESuggestedSelectionDialog {
 				menu.setVisible(true);
 			}
 		});
-
-		
 		Control firstChild = parent.getChildren()[0];
 		button.moveAbove(firstChild);
-
 		return null;
 	}
-
-	@Override
-	public void setModelElements(Collection<EObject> modelElements) {
-		super.setModelElements(modelElements);
-		updateFilteredItemList();
-	}
-
-	
-	
 }
