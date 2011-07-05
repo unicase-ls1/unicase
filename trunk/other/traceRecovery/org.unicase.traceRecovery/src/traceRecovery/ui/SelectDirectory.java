@@ -45,7 +45,7 @@ import org.unicase.workspace.WorkspaceManager;
 
 /**
  * @author taher
- * 
+ * will show a page to start choosing directories for the index file and the code files 
  */
 public class SelectDirectory implements Listener, IViewActionDelegate {
 
@@ -62,13 +62,20 @@ public class SelectDirectory implements Listener, IViewActionDelegate {
 	Button java;
 	Button fortran;
 
+	/**
+	 * to get the display that is currently running
+	 */
 	public void run() {
 		display = Display.getCurrent();
 		init("");
 
 	}
 	
-	
+	/**
+	 * to start building the UI 
+	 * @param path
+	 * 			the path of the code directory
+	 */
 	public void init(String path) {
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bound = primary.getBounds();
@@ -169,6 +176,10 @@ public class SelectDirectory implements Listener, IViewActionDelegate {
 
 	Shell sh;
 
+	/**
+	 * Handles all the events that need a handler like the choosing of directories and the choosing of the coding language and the next button
+	 * to enter the next page
+	 */
 	public void handleEvent(Event event) {
 		if (event.widget == directory) {
 
