@@ -101,8 +101,9 @@ import traceRecovery.TraceRecoveryFactory;
 import traceability.handler.Search;
 
 /**
- * @author taher
  * 
+ * @author taher
+ * this will be the class used to show the user the available Model Elements and the files in the directories chosen to apply the recovery on
  */
 public class RunRecovery implements Listener {
 	Shell shell;
@@ -119,10 +120,53 @@ public class RunRecovery implements Listener {
 	String path;
 	String indexPath;
 	EList<EObject> e;
+	
+	TreeItem organization;
+	TreeItem task;
+	TreeItem classes;
+	TreeItem document;
+	TreeItem requirement;
+	TreeItem rational;
+	TreeItem change;
+	TreeItem bug;
+	TreeItem component;
+	TreeItem meeting;
+	TreeItem state;
+	TreeItem attatchement;
+	TreeItem profile;
+	TreeItem util;
+	TreeItem activity;
+	TreeItem release;
 
+	ArrayList<UnicaseModelElement> org;
+	ArrayList<UnicaseModelElement> tas;
+	ArrayList<UnicaseModelElement> classe;
+	ArrayList<UnicaseModelElement> doc;
+	ArrayList<UnicaseModelElement> req;
+	ArrayList<UnicaseModelElement> rat;
+	ArrayList<UnicaseModelElement> chan;
+	ArrayList<UnicaseModelElement> bugg;
+	ArrayList<UnicaseModelElement> comp;
+	ArrayList<UnicaseModelElement> meet;
+	ArrayList<UnicaseModelElement> stat;
+	ArrayList<UnicaseModelElement> attat;
+	ArrayList<UnicaseModelElement> prof;
+	ArrayList<UnicaseModelElement> uti;
+	ArrayList<UnicaseModelElement> act;
+	ArrayList<UnicaseModelElement> rel;
+
+	/**
+	 * this is the run method that will start to run the class to show the directories and Model Elements
+	 * @param path
+	 * 				this is the path of the code directory that contains the files of code
+	 * @param indexPath
+	 * 					this is the path of the directory that the index file will be stored in
+	 * @param language
+	 * 					this is the programming language chosen
+	 */
 	public void run(String path, String indexPath, String language) {
 		try {
-			
+
 			display = Display.getCurrent();
 			shell = new Shell(display);
 			GridLayout gridLayout = new GridLayout();
@@ -169,6 +213,7 @@ public class RunRecovery implements Listener {
 			ME = new Tree(shell, SWT.CHECK);
 			ME.setLayoutData(treeLayout);
 			ME.setLayout(gridLayout);
+			ME.addListener(SWT.Selection, this);
 
 			createModelTree(ME);
 			createModel();
@@ -248,53 +293,25 @@ public class RunRecovery implements Listener {
 
 	}
 
-	public void chooseProject(IStructuredSelection selection) {
-		try {
-			IPackageFragmentRoot packa = (IPackageFragmentRoot) selection
-					.getFirstElement();
-		} catch (Exception e) {
-			// chooseProject(selection);
+	
+//	public void chooseProject(IStructuredSelection selection) {
+//		try {
+//			IPackageFragmentRoot packa = (IPackageFragmentRoot) selection
+//					.getFirstElement();
+//		} catch (Exception e) {
+//			// chooseProject(selection);
+//
+//			MessageDialog.open(SWT.ERROR, shell, "wrong folder",
+//					"choose a correct src folder", SWT.None);
+//
+//		}
+//	}
 
-			MessageDialog.open(SWT.ERROR, shell, "wrong folder",
-					"choose a correct src folder", SWT.None);
 
-		}
-	}
 
-	TreeItem organization;
-	TreeItem task;
-	TreeItem classes;
-	TreeItem document;
-	TreeItem requirement;
-	TreeItem rational;
-	TreeItem change;
-	TreeItem bug;
-	TreeItem component;
-	TreeItem meeting;
-	TreeItem state;
-	TreeItem attatchement;
-	TreeItem profile;
-	TreeItem util;
-	TreeItem activity;
-	TreeItem release;
-
-	ArrayList<UnicaseModelElement> org;
-	ArrayList<UnicaseModelElement> tas;
-	ArrayList<UnicaseModelElement> classe;
-	ArrayList<UnicaseModelElement> doc;
-	ArrayList<UnicaseModelElement> req;
-	ArrayList<UnicaseModelElement> rat;
-	ArrayList<UnicaseModelElement> chan;
-	ArrayList<UnicaseModelElement> bugg;
-	ArrayList<UnicaseModelElement> comp;
-	ArrayList<UnicaseModelElement> meet;
-	ArrayList<UnicaseModelElement> stat;
-	ArrayList<UnicaseModelElement> attat;
-	ArrayList<UnicaseModelElement> prof;
-	ArrayList<UnicaseModelElement> uti;
-	ArrayList<UnicaseModelElement> act;
-	ArrayList<UnicaseModelElement> rel;
-
+	/**
+	 * Checks to see if any of the Model elements where chosen to allow for the recovery to run.
+	 */
 	public boolean choosenME() {
 		boolean checked = false;
 
@@ -324,6 +341,11 @@ public class RunRecovery implements Listener {
 		return checked;
 	}
 
+	/**
+	 * checks if a release Model Element was chosen
+	 * @return
+	 * 			returns true of the release was chosen and false otherwise
+	 */
 	public boolean choosenRel() {
 		TreeItem item = ME.getItem(15);
 		boolean checked = false;
@@ -340,6 +362,11 @@ public class RunRecovery implements Listener {
 		return checked;
 	}
 
+	/**
+	 * checks if a certain activity Model Element was chosen
+	 * @return
+	 * 		returns true if on was chosen and false otherwise.
+	 */
 	public boolean choosenAct() {
 		TreeItem item = ME.getItem(14);
 		boolean checked = false;
@@ -356,6 +383,11 @@ public class RunRecovery implements Listener {
 		return checked;
 	}
 
+	/**
+	 * checks if a Utility Model Element was chosen
+	 * @return
+	 * 		returns true if on was chosen and false otherwise.
+	 */
 	public boolean choosenUti() {
 		TreeItem item = ME.getItem(13);
 		boolean checked = false;
@@ -372,6 +404,11 @@ public class RunRecovery implements Listener {
 		return checked;
 	}
 
+	/**
+	 * checks if a Profile Model Element was chosen
+	 * @return
+	 * 		returns true if on was chosen and false otherwise.
+	 */
 	public boolean choosenProf() {
 		TreeItem item = ME.getItem(12);
 		boolean checked = false;
@@ -388,6 +425,11 @@ public class RunRecovery implements Listener {
 		return checked;
 	}
 
+	/**
+	 * checks if an Attachment Model Element was chosen
+	 * @return
+	 * 		returns true if on was chosen and false otherwise.
+	 */
 	public boolean choosenAttat() {
 		TreeItem item = ME.getItem(11);
 		boolean checked = false;
@@ -404,6 +446,12 @@ public class RunRecovery implements Listener {
 		return checked;
 	}
 
+	
+	/**
+	 * check if a State Model Element was chosen.
+	 * @return
+	 * 		returns true if one was chosen and false otherwise.
+	 */
 	public boolean choosenStat() {
 		TreeItem item = ME.getItem(10);
 		boolean checked = false;
@@ -420,6 +468,11 @@ public class RunRecovery implements Listener {
 		return checked;
 	}
 
+	/**
+	 * check if a meeting is chosen 
+	 * @return
+	 * 		returns if a meeting was chosen and false otherwise.
+	 */
 	public boolean choosenMeet() {
 		TreeItem item = ME.getItem(9);
 		boolean checked = false;
@@ -436,6 +489,11 @@ public class RunRecovery implements Listener {
 		return checked;
 	}
 
+	/**
+	 * check if a component was chosen
+	 * @return
+	 * 		returns true if was chosen and false otherwise
+	 */
 	public boolean choosenComp() {
 		TreeItem item = ME.getItem(8);
 		boolean checked = false;
@@ -452,6 +510,11 @@ public class RunRecovery implements Listener {
 		return checked;
 	}
 
+	/**
+	 * checks f a bug was chosen
+	 * @return
+	 * 		returns true if was chosen and false otherwise
+	 */
 	public boolean choosenBug() {
 		TreeItem item = ME.getItem(7);
 		boolean checked = false;
@@ -468,6 +531,11 @@ public class RunRecovery implements Listener {
 		return checked;
 	}
 
+	/**
+	 * check if a change model element was chosen
+	 * @return
+	 *		returns true if was chosen and false otherwise
+	 */
 	public boolean choosenChan() {
 		TreeItem item = ME.getItem(6);
 		boolean checked = false;
@@ -484,6 +552,11 @@ public class RunRecovery implements Listener {
 		return checked;
 	}
 
+	/**
+	 * checks if a Rational was chosen
+	 * @return
+	 * 		returns true if was chosen and false otherwise
+	 */
 	public boolean choosenRat() {
 		TreeItem item = ME.getItem(5);
 		boolean checked = false;
@@ -500,6 +573,11 @@ public class RunRecovery implements Listener {
 		return checked;
 	}
 
+	/**
+	 * check if a requirement was chosen
+	 * @return
+	 * 		returns true if was chosen and false otherwise
+	 */
 	public boolean choosenRequirement() {
 		TreeItem item = ME.getItem(4);
 		boolean checked = false;
@@ -516,6 +594,11 @@ public class RunRecovery implements Listener {
 		return checked;
 	}
 
+	/**
+	 * check if a document was chosen
+	 * @return
+	 * 		returns true if was chosen and false otherwise
+	 */
 	public boolean choosenDoc() {
 		TreeItem item = ME.getItem(3);
 		boolean checked = false;
@@ -532,6 +615,11 @@ public class RunRecovery implements Listener {
 		return checked;
 	}
 
+	/**
+	 * check if a class was chosen
+	 * @return
+	 * 		returns true if was chosen and false otherwise
+	 */
 	public boolean choosenClasses() {
 		TreeItem item = ME.getItem(2);
 		boolean checked = false;
@@ -549,6 +637,11 @@ public class RunRecovery implements Listener {
 		return checked;
 	}
 
+	/**
+	 * check if a task was chosen
+	 * @return
+	 * 		returns true if was chosen and false otherwise
+	 */
 	public boolean choosenTask() {
 		TreeItem item = ME.getItem(1);
 		boolean checked = false;
@@ -566,6 +659,11 @@ public class RunRecovery implements Listener {
 		return checked;
 	}
 
+	/**
+	 * check if an orgunit was chosen
+	 * @return
+	 * 		returns true if was chosen and false otherwise
+	 */
 	public boolean choosenOrg() {
 		TreeItem item = ME.getItem(0);
 		boolean checked = false;
@@ -583,6 +681,11 @@ public class RunRecovery implements Listener {
 		return checked;
 	}
 
+	/**
+	 * will create the tree that contains the Model Elements
+	 * @param model
+	 * 			this is the tree that the Model Elements should be added to.
+	 */
 	public void createModelTree(Tree model) {
 		organization = new TreeItem(model, SWT.CHECK);
 		organization.setText("organization");
@@ -619,6 +722,9 @@ public class RunRecovery implements Listener {
 		release.setText("release");
 	}
 
+	/**
+	 * this will add the model elements to the correct tree item in the Model Elements tree.
+	 */
 	public void createModel() {
 		EList<EObject> elements = p.getAllModelElementsbyClass(
 				EcorePackage.Literals.EOBJECT, new BasicEList<EObject>());
@@ -913,6 +1019,10 @@ public class RunRecovery implements Listener {
 
 	}
 
+	/**
+	 * this will return the chosen Unicase project.
+	 * @return
+	 */
 	public static Project getActiveProject() {
 		ProjectSpace ps = WorkspaceManager.getInstance().getCurrentWorkspace()
 				.getActiveProjectSpace();
@@ -927,6 +1037,9 @@ public class RunRecovery implements Listener {
 
 	TreeItem parent;
 
+	/**
+	 * this will create the tree of directories to allow for the choose of a directory.
+	 */
 	public void createTree() {
 
 		parent = new TreeItem(parent, SWT.CHECK);
@@ -1010,6 +1123,17 @@ public class RunRecovery implements Listener {
 
 			boolean checked = false;
 
+			if (!choosenME()) {
+
+				MessageDialog
+						.open(SWT.ERROR,
+								shell,
+								"No ME choosen",
+								"you have not choosen an ME to run the trace recovery on",
+								SWT.None);
+
+			} else
+
 			if (code.getItem(0).getChecked()) {
 
 				recovery.index();
@@ -1043,6 +1167,12 @@ public class RunRecovery implements Listener {
 								SWT.None);
 			} else {
 
+				if (code.getItem(0).getChecked()) {
+					dir.add(code.getItem(0).getText());
+				} else if (code.getItem(0).getGrayed()) {
+					directoriesBuild(code.getItem(0), code.getItem(0).getText());
+				}
+
 				recovery = new Search();
 
 				Directory codeDir = TraceRecoveryFactory.eINSTANCE
@@ -1052,9 +1182,12 @@ public class RunRecovery implements Listener {
 				Directory sourceDir = TraceRecoveryFactory.eINSTANCE
 						.createDirectory();
 				sourceDir.setPath(indexPath);
-				
+
+				recovery.setAnalyzer(codeLanguage);
+				recovery.setIndexer("me", codeDir, sourceDir);
+
 				recovery.indexMe(choosenME, sourceDir);
-				
+
 				new SearchResult().run(this);
 
 			}
@@ -1066,6 +1199,14 @@ public class RunRecovery implements Listener {
 
 	ArrayList<String> dir = new ArrayList<String>();
 
+	/**
+	 * this will get the directories of the chosen files from the tree
+	 * @param item
+	 * 			this is the item that would be traversed to check if it contains any chosen items
+	 * @param mainPath
+	 * 				this is the main path of the directory to start the search from
+	 */
+	
 	void directoriesBuild(TreeItem item, String mainPath) {
 
 		File fff = new File(path);
@@ -1107,6 +1248,13 @@ public class RunRecovery implements Listener {
 
 	}
 
+	/**
+	 * set the choosen item to checked
+	 * @param item
+	 * 			this is the item that was checked
+	 * @param checked
+	 * 			if it was checked or unchecked
+	 */
 	void checkItems(TreeItem item, boolean checked) {
 		item.setGrayed(false);
 		item.setChecked(checked);
@@ -1116,6 +1264,15 @@ public class RunRecovery implements Listener {
 		}
 	}
 
+	/**
+	 * will check the path of the tree to make sure that all children are also chosen.
+	 * @param item
+	 * 			this is the item we want to check it's children.
+	 * @param checked
+	 * 			if it was checked or unchecked
+	 * @param grayed
+	 * 			if it was grayed or not.
+	 */
 	void checkPath(TreeItem item, boolean checked, boolean grayed) {
 		if (item == null)
 			return;
