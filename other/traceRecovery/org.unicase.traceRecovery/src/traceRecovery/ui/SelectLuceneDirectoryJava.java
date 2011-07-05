@@ -37,7 +37,7 @@ import org.eclipse.ui.PlatformUI;
 
 /**
  * @author taher
- *
+ *if the chosen project is in the java perspective
  */
 public class SelectLuceneDirectoryJava implements Listener, IViewActionDelegate{
 
@@ -58,13 +58,17 @@ public class SelectLuceneDirectoryJava implements Listener, IViewActionDelegate{
 		
 	}
 	
-	
+	/**
+	 * gets the current running display
+	 */
 	public void run(){
 		display = Display.getCurrent();
 		init();
 	}
 
-	
+	/**
+	 * starts building the UI
+	 */
 	public void init(){
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bound = primary.getBounds();
@@ -139,6 +143,13 @@ public class SelectLuceneDirectoryJava implements Listener, IViewActionDelegate{
 		
 	}
 	
+	/**
+	 * checks and returns the project element
+	 * @param selection
+	 * 			this is the selected project
+	 * @return
+	 * 		returns a fragment root that can be then used to find the directory of the project
+	 */
 	public IPackageFragmentRoot chooseProject(IStructuredSelection selection){
 		try{
 		IPackageFragmentRoot packa = (IPackageFragmentRoot) selection.getFirstElement();
