@@ -6,10 +6,12 @@
  ******************************************************************************/
 package org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -33,6 +35,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
@@ -154,16 +157,16 @@ public class MELinkControl {
 		IHyperlinkListener listener = new MEHyperLinkAdapter(link, contextModelElement, eReference.getName());
 		hyperlink.addHyperlinkListener(listener);
 		imageHyperlink.addHyperlinkListener(listener);
-		setStatus(link);
+		setStatus();
 	}
 
 	private void updateIcon() {
 		imageHyperlink.setImage(labelProvider.getImage(link));
-		setStatus(link);
+		setStatus();
 
 	}
 
-	private void setStatus(EObject link2) {
+	private void setStatus() {
 		if (existsInWorkspace(link)) {
 			hyperlink.setEnabled(true);
 			imageHyperlink.setEnabled(true);
@@ -171,7 +174,11 @@ public class MELinkControl {
 			imageHyperlink.setEnabled(false);
 			hyperlink.setEnabled(false);
 			if (!hasExistingFile(link)) {
-				hyperlink.getParent().setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_RED));
+				Composite parent = hyperlink.getParent();
+				hyperlink.dispose();
+				Label error = new Label(parent, SWT.NONE);
+				error.setText("<Link could not be resolved>");
+				
 			}
 		}		
 	}
@@ -199,11 +206,13 @@ public class MELinkControl {
 	
 	private boolean hasExistingFile(EObject link) {
 		Resource resource = link.eResource();
-		return (resource != null);
-//		URI uri = resource.getURI();
-//		String path = uri.toFileString();
-//		File file = new File(path);
-//		return(file.exists());
+		if (resource != null) {
+			URI uri = resource.getURI();
+			String path = uri.toFileString();
+			File file = new File(path);
+			return(file.exists());
+		}
+		return false;
 	}
 	
 	/**
