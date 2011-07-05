@@ -35,7 +35,7 @@ import org.eclipse.ui.PlatformUI;
 
 /**
  * @author taher
- *
+ *if the chosen project was in the fortran perspective 
  */
 public class SelectLuceneDirectoryFortron implements Listener, IViewActionDelegate {
 
@@ -64,7 +64,9 @@ public class SelectLuceneDirectoryFortron implements Listener, IViewActionDelega
 		init();
 	}
 	
-	
+	/**
+	 * sets the UI components to show the UI
+	 */
 	public void init(){
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bound = primary.getBounds();
@@ -142,7 +144,13 @@ public class SelectLuceneDirectoryFortron implements Listener, IViewActionDelega
 	}
 	
 	
-	
+	/**
+	 * checks if the chosen project is a src file.
+	 * @param selection
+	 * 			the selected project 
+	 * @return
+	 * 			returns the root to allow for the retrieval of the directory 
+	 */
 	public IPackageFragmentRoot chooseProject(IStructuredSelection selection){
 		try{
 		IPackageFragmentRoot packa = (IPackageFragmentRoot) selection.getFirstElement();
