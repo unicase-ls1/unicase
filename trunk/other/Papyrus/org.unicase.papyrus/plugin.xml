@@ -9,41 +9,6 @@
 -->
 
 <plugin>
-   <extension
-         point="org.eclipse.ui.commands">
-      <command
-            defaultHandler="org.unicase.papyrus.own.PapyrusHandler"
-            id="org.unicase.papyrus.ActivityOpener"
-            name="Open Activity Diagram">
-      </command>
-   </extension>
-   <extension
-         point="org.eclipse.ui.menus">
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
-         <command
-               commandId="org.unicase.papyrus.ActivityOpener"
-               label="Open Activity Diagram"
-               style="push">
-            <visibleWhen
-                  checkEnabled="false">
-               <and>
-                  <count
-                        value="1">
-                  </count>
-                  <iterate
-                        ifEmpty="false"
-                        operator="and">
-                     <instanceof
-                           value="org.unicase.papyrus.UML2Package">
-                     </instanceof>
-                  </iterate>
-               </and>
-            </visibleWhen>
-         </command>
-      </menuContribution>
-   </extension>
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://unicase.org/model/papyrus"
@@ -64,10 +29,31 @@
       <extension
             point="org.eclipse.ui.editors">
          <editor
-               class="org.unicase.papyrus.own.UMLDiagramEditor"
+               class="org.unicase.papyrus.own.UMLActivityDiagramEditor"
                default="false"
                extensions="Activity_diagram"
                id="org.unicase.papyrus.activity.UMLDiagramEditorID"
+               name="name">
+         </editor>
+         <editor
+               class="org.unicase.papyrus.own.UMLClassDiagramEditor"
+               default="false"
+               extensions="Class_diagram"
+               id="org.unicase.papyrus.clazz.UMLDiagramEditorID"
+               name="name">
+         </editor>
+         <editor
+               class="org.unicase.papyrus.own.UMLStateMachineDiagramEditor"
+               default="false"
+               extensions="StateMachine_diagram"
+               id="org.unicase.papyrus.statemachine.UMLDiagramEditorID"
+               name="name">
+         </editor>
+         <editor
+               class="org.unicase.papyrus.own.UMLUseCaseDiagramEditor"
+               default="false"
+               extensions="UseCase_diagram"
+               id="org.unicase.papyrus.usecase.UMLDiagramEditorID"
                name="name">
          </editor>
       </extension>
@@ -78,14 +64,36 @@
                name="UMLActivityContext"
                parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
          </context>
+         <context
+               id="org.unicase.papyrus.clazz.diagramContext"
+               name="UMLClassContext"
+               parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+         </context>
+         <context
+               id="org.unicase.papyrus.statemachine.diagramContext"
+               name="UMLStateMachineContext"
+               parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+         </context>
+         <context
+               id="org.unicase.papyrus.usecase.diagramContext"
+               name="UMLUseCaseContext"
+               parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+         </context>
       </extension>
       <extension
          point="org.eclipse.emf.ecore.content_parser">
       <parser
-            class="org.unicase.papyrus.own.PackageDiagramResource"
+            class="org.unicase.papyrus.own.UMLPackageDiagramResource"
             contentTypeIdentifier="UML2Package">
       </parser>
    </extension>
+      <extension
+            point="org.unicase.ui.common.modelelementopener">
+         <ModelElementOpener
+               class="org.unicase.papyrus.own.UMLPackageOpener"
+               name="org.unicase.papyrus.UMLPackageOpener">
+         </ModelElementOpener>
+      </extension>
    
 
 </plugin>

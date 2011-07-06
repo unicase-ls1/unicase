@@ -118,17 +118,6 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IMultiDia
 	/**
 	 * @generated
 	 */
-	public static final String ID = "org.unicase.papyrus.activity.UMLDiagramEditorID"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final String CONTEXT_ID = "org.unicase.papyrus.activity.diagramContext"; //$NON-NLS-1$
-
-
-	/**
-	 * @generated
-	 */
 	public UMLDiagramEditor() {
 		this(true);
 	}
@@ -303,13 +292,6 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IMultiDia
 	/**
 	 * @generated
 	 */
-	protected String getContextID() {
-		return CONTEXT_ID;
-	}
-
-	/**
-	 * @generated
-	 */
 	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
 		PaletteRoot paletteRoot;
 		if(existingPaletteRoot == null) {
@@ -320,20 +302,6 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IMultiDia
 		}
 		applyCustomizationsToPalette(paletteRoot);
 		return paletteRoot;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected PreferencesHint getPreferencesHint() {
-		return UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
-	}
-
-	/**
-	 * @generated
-	 */
-	public String getContributorId() {
-		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**
@@ -365,29 +333,6 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IMultiDia
 			return ((IDiagramDocument) document).getEditingDomain();
 		}
 		return super.getEditingDomain();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IDocumentProvider getDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput
-				|| input instanceof URIEditorInput) {
-			return UMLDocumentProvider.getInstance();
-		}
-		return super.getDocumentProvider(input);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void setDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput
-				|| input instanceof URIEditorInput) {
-			setDocumentProvider(UMLDocumentProvider.getInstance());
-		} else {
-			super.setDocumentProvider(input);
-		}
 	}
 
 	/**
@@ -533,12 +478,6 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IMultiDia
 
 		KeyHandler viewerKeyHandler = new DiagramGraphicalViewerKeyHandler(viewer).setParent(getKeyHandler());
 		viewer.setKeyHandler(new OnEnterDirectEditKeyHandler(viewer).setParent(viewerKeyHandler));
-		
-		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(
-				this, getDiagramGraphicalViewer());
-		getDiagramGraphicalViewer().setContextMenu(provider);
-		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU,
-				provider, getDiagramGraphicalViewer());
 	}
 
 	/**

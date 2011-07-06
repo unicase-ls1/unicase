@@ -7,8 +7,19 @@
   <foreignModel>papyrus.ecore</foreignModel>
   <genPackages prefix="Papyrus" basePackage="org.unicase" resource="XML" disposableProviderFactory="true"
       ecorePackage="papyrus.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="papyrus.ecore#//UMLDiagramType">
+      <genEnumLiterals ecoreEnumLiteral="papyrus.ecore#//UMLDiagramType/Activity"/>
+      <genEnumLiterals ecoreEnumLiteral="papyrus.ecore#//UMLDiagramType/Class"/>
+      <genEnumLiterals ecoreEnumLiteral="papyrus.ecore#//UMLDiagramType/Communication"/>
+      <genEnumLiterals ecoreEnumLiteral="papyrus.ecore#//UMLDiagramType/Composite"/>
+      <genEnumLiterals ecoreEnumLiteral="papyrus.ecore#//UMLDiagramType/Package"/>
+      <genEnumLiterals ecoreEnumLiteral="papyrus.ecore#//UMLDiagramType/Sequence"/>
+      <genEnumLiterals ecoreEnumLiteral="papyrus.ecore#//UMLDiagramType/StateMachine"/>
+      <genEnumLiterals ecoreEnumLiteral="papyrus.ecore#//UMLDiagramType/UseCase"/>
+    </genEnums>
     <genClasses ecoreClass="papyrus.ecore#//UML2Package">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference papyrus.ecore#//UML2Package/gmfDiagram"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute papyrus.ecore#//UML2Package/diagramType"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

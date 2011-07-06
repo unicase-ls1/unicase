@@ -28,6 +28,9 @@ import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.w3c.dom.Document;
@@ -40,7 +43,7 @@ import org.unicase.papyrus.UML2Package;
 /**
  * @author Helming, denglerm
  */
-public class PackageDiagramResource extends ResourceImpl implements Resource, Resource.Factory, Resource.Internal,
+public class UMLPackageDiagramResource extends ResourceImpl implements Resource, Resource.Factory, Resource.Internal,
 	XMLResource {
 
 	private boolean initialized;
@@ -51,7 +54,7 @@ public class PackageDiagramResource extends ResourceImpl implements Resource, Re
 	/**
 	 * Constructor.
 	 */
-	public PackageDiagramResource() {
+	public UMLPackageDiagramResource() {
 		super();
 	}
 
@@ -60,7 +63,7 @@ public class PackageDiagramResource extends ResourceImpl implements Resource, Re
 	 * 
 	 * @param pckge the UML2Package to represent
 	 */
-	public PackageDiagramResource(UML2Package pckge) {
+	public UMLPackageDiagramResource(UML2Package pckge) {
 		super();
 		this.pckge = pckge;
 	}
@@ -109,8 +112,43 @@ public class PackageDiagramResource extends ResourceImpl implements Resource, Re
 	}
 
 	private void createNewGMFDiagram() {
-		// JH: Build switch for different diagram types
-		diagram = ViewService.createDiagram(pckge, ActivityDiagramEditPart.MODEL_ID, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+		switch(pckge.getDiagramType()) {
+			case ACTIVITY:
+				diagram = ViewService.createDiagram(pckge, ActivityDiagramEditPart.MODEL_ID,
+						org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				break;
+			case USE_CASE:
+				diagram = ViewService.createDiagram(pckge, UseCaseDiagramEditPart.MODEL_ID,
+						org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				break;
+			case CLASS:
+				diagram = ViewService.createDiagram(pckge, org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart.MODEL_ID,
+						org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				break;
+			case COMMUNICATION:
+				diagram = ViewService.createDiagram(pckge, org.eclipse.papyrus.diagram.communication.edit.parts.ModelEditPart.MODEL_ID,
+						org.eclipse.papyrus.diagram.communication.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				break;
+			case COMPOSITE:
+				diagram = ViewService.createDiagram(pckge, CompositeStructureDiagramEditPart.MODEL_ID,
+						org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				break;
+			// FIXME: Wrong ID, unable to find the right one!
+//			case PACKAGE:
+//				diagram = ViewService.createDiagram(pckge, UseCaseDiagramEditPart.MODEL_ID,
+//						org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+//				break;
+			case SEQUENCE:
+				diagram = ViewService.createDiagram(pckge, org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart.MODEL_ID,
+						org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				break;
+			case STATE_MACHINE:
+				diagram = ViewService.createDiagram(pckge, org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart.MODEL_ID,
+						org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				break;
+			default:
+				throw new IllegalArgumentException("Diagram type not supported!");
+		}
 		diagram.setElement(pckge);
 		new UnicaseCommand() {
 			@Override
@@ -310,7 +348,7 @@ public class PackageDiagramResource extends ResourceImpl implements Resource, Re
 		ResourceSet rs = resource.getResourceSet();
 		EObject object = rs.getEObject(uri, false);
 		if (object instanceof UML2Package) {
-			return new PackageDiagramResource((UML2Package) object);
+			return new UMLPackageDiagramResource((UML2Package) object);
 		} else {
 			throw new IllegalArgumentException("Only UML2Packages supported");
 		}
