@@ -405,40 +405,4 @@ public enum UMLDiagramType implements Enumerator {
 		return literal;
 	}
 	
-	
-	/**
-	 * Obtain the fitting UMLDiagramType for some EObject.
-	 * @param eObject the <code>EObject</code> to get the diagramType for
-	 * @return the correct diagram type for <code>eObject</code> or
-	 * <code>null</code> if there is none
-	 * @generated NOT
-	 */
-	public static UMLDiagramType getDiagramType(EObject eObject) {
-		if(eObject.eClass().equals(UMLPackage.eINSTANCE.getActivity())) {
-			return UMLDiagramType.ACTIVITY;
-		}
-		if(eObject.eClass().equals(UMLPackage.eINSTANCE.getClass())) {
-			return UMLDiagramType.CLASS;
-		}
-		if(eObject.eClass().equals(UMLPackage.eINSTANCE.getCommunicationPath())) {
-			return UMLDiagramType.COMMUNICATION;
-		}
-		if(eObject.eClass().equals(UMLPackage.eINSTANCE.getComponent())) {
-			return UMLDiagramType.COMPOSITE;
-		}
-		if(eObject.eClass().equals(UMLPackage.eINSTANCE.getPackage())) {
-			return UMLDiagramType.PACKAGE;
-		}
-		if(eObject.eClass().equals(UMLPackage.eINSTANCE.getSequenceNode())) {
-			return UMLDiagramType.SEQUENCE;
-		}
-		if(eObject.eClass().equals(UMLPackage.eINSTANCE.getStateMachine())) {
-			return UMLDiagramType.STATE_MACHINE;
-		}
-		if(eObject.eClass().equals(UMLPackage.eINSTANCE.getUseCase())) {
-			return UMLDiagramType.USE_CASE;
-		}
-		return null;
-	}
-	
 } //UMLDiagramType

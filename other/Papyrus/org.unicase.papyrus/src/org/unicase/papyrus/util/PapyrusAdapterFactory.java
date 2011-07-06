@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -80,8 +81,8 @@ public class PapyrusAdapterFactory extends AdapterFactoryImpl {
 	protected PapyrusSwitch<Adapter> modelSwitch =
 		new PapyrusSwitch<Adapter>() {
 			@Override
-			public Adapter caseUML2Package(UML2Package object) {
-				return createUML2PackageAdapter();
+			public Adapter caseUMLModel(UMLModel object) {
+				return createUMLModelAdapter();
 			}
 			@Override
 			public Adapter caseEModelElement(EModelElement object) {
@@ -116,6 +117,10 @@ public class PapyrusAdapterFactory extends AdapterFactoryImpl {
 				return createPackageAdapter();
 			}
 			@Override
+			public Adapter caseModel(Model object) {
+				return createModelAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -136,16 +141,20 @@ public class PapyrusAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.papyrus.UML2Package <em>UML2 Package</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.papyrus.UMLModel <em>UML Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.unicase.papyrus.UML2Package
+	 * @see org.unicase.papyrus.UMLModel
 	 * @generated
 	 */
-	public Adapter createUML2PackageAdapter() {
+	public Adapter createUMLModelAdapter() {
+		return null;
+	}
+
+	public Adapter createUMLDiagramTypeAdapter() {
 		return null;
 	}
 
@@ -258,6 +267,20 @@ public class PapyrusAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPackageAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.uml.Model <em>Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.uml.Model
+	 * @generated
+	 */
+	public Adapter createModelAdapter() {
 		return null;
 	}
 

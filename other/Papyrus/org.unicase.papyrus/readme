@@ -1,12 +1,16 @@
 These plug-ins require the Papyrus plug-ins.
 The plug-ins can either be accessed by 
 - installing the Papyrus feature: 
-	* install via Eclipse installation (Help -> Install Modeling Components -> select Papyrus)
+	* install via Eclipse installation (Help -> Install Modeling Components -> select Papyrus) 
+		OR
 	* install via update site (http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/helios)
 - checking out the Papyrus plug-ins (http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus)
 
 To use Papyrus diagrams:
 1. Open Unicase Navigator
 2. Create Project
-3. Create New Model Element -> UML2Package
-4. Rightlick new UML2Package -> Select "Open Activity Diagram"
+3. Create New Model Element -> UMLModel
+4. Select the diagram type you want to create
+
+Note that the diagram type remains the same, once it is chosen.
+If the dialog is cancelled, it will appear again once the UMLModel is opened.

@@ -88,7 +88,7 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 			URI uri = ((URIEditorInput) element).getURI();
 			Resource resource = null;
 			try {
-				resource = domain.getResourceSet().createResource(uri, "UML2Package");
+				resource = domain.getResourceSet().createResource(uri, "UMLModel");
 				if (!resource.isLoaded()) {
 					try {
 						Map options = new HashMap(GMFResourceFactory.getDefaultLoadOptions());

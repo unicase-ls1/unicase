@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -66,6 +67,8 @@ import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteViewer;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.sashwindows.di.SashModel;
 import org.eclipse.swt.dnd.DropTarget;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.Transfer;
@@ -93,6 +96,10 @@ import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+import org.unicase.ecp.model.ECPModelelementContext;
+import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.ModelElementContextListener;
+import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -110,6 +117,16 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IMultiDia
 	 * The {@link FocusListener} for layout save commands.
 	 */
 	private FocusListener focusListener;
+	
+	/**
+	 * The {@link ModelElementContext} {@link #modelElementContextListener} listens to.
+	 */
+	private ECPModelelementContext modelElementContext;
+
+	/**
+	 * The {@link ModelElementContextListener} to handle delete operations.
+	 */
+	private ModelElementContextListener modelElementContextListener;
 
 	private ServicesRegistry servicesRegistry;
 
@@ -126,10 +143,10 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IMultiDia
 		super(hasFlyoutPalette);
 		
 		servicesRegistry = createServicesRegistry();
-		List<Class<?>> sad = new LinkedList<Class<?>>();
-		sad.add(TransactionalEditingDomain.class);
+		List<Class<?>> servicesToStart = new LinkedList<Class<?>>();
+		servicesToStart.add(TransactionalEditingDomain.class);
 		try {
-			servicesRegistry.startServicesByClassKeys(sad);
+			servicesRegistry.startServicesByClassKeys(servicesToStart);
 		} catch (ServiceNotFoundException e) {
 			ModelUtil.logException(e);
 		} catch (ServiceMultiException e) {
@@ -201,6 +218,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IMultiDia
 //		getGraphicalViewer().getKeyHandler().put(KeyStroke.getPressed(SWT.DEL, 127, 0), new DeleteFromDiagramAction());
 
 		registerFocusListener();
+		registerModelElementListeners();
 	}
 	
 	private abstract class DropTargetListener extends DiagramDropTargetListener {
@@ -533,6 +551,11 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IMultiDia
 	 */
 	public void dispose() {
 		super.dispose();
+		
+		if (modelElementContext != null) {
+			modelElementContext
+					.removeModelElementContextListener(modelElementContextListener);
+		}
 
 		deregisterFocusListener();
 		
@@ -571,6 +594,55 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IMultiDia
 		control.addFocusListener(focusListener);
 	}
 
+	/**
+	 * @generated NOT 
+	 */
+	private void registerModelElementListeners() {
+
+		Diagram diagram = getDiagram();
+
+		// register modelElementContext listener for behavior upon deletion
+		modelElementContext = null;
+		if(diagram == null) {
+			try {
+				modelElementContext = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject();
+			} catch (NoWorkspaceException e) {
+				ModelUtil.logException(e);
+			}
+		} else {
+			modelElementContext = ECPWorkspaceManager.getECPProject(diagram.getElement());
+		}
+
+		if (modelElementContext == null) {
+			return;
+		}
+
+		// initialize a listener that will close this editor if the MEDiagram,
+		// its container or its context gets deleted
+		modelElementContextListener = new ModelElementContextListener() {
+
+			@Override
+			public void onContextDeleted() {
+				close(false);
+			}
+
+			@Override
+			public void onModelElementDeleted(EObject element) {
+				Diagram diagram = UMLDiagramEditor.this.getDiagram();
+				if (diagram == null) {
+					return;
+				}
+				EObject umlDiagram = diagram.getElement();
+				if (element == umlDiagram || !modelElementContext.contains(umlDiagram)) {
+					close(false);
+				}
+			}
+
+		};
+
+		modelElementContext.addModelElementContextListener(modelElementContextListener);;
+	}
+	
 	/**
 	 * @generated
 	 */

@@ -63,14 +63,14 @@ public interface PapyrusPackage extends EPackage {
 	PapyrusPackage eINSTANCE = org.unicase.papyrus.impl.PapyrusPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.unicase.papyrus.impl.UML2PackageImpl <em>UML2 Package</em>}' class.
+	 * The meta object id for the '{@link org.unicase.papyrus.impl.UMLModelImpl <em>UML Model</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.unicase.papyrus.impl.UML2PackageImpl
-	 * @see org.unicase.papyrus.impl.PapyrusPackageImpl#getUML2Package()
+	 * @see org.unicase.papyrus.impl.UMLModelImpl
+	 * @see org.unicase.papyrus.impl.PapyrusPackageImpl#getUMLModel()
 	 * @generated
 	 */
-	int UML2_PACKAGE = 0;
+	int UML_MODEL = 0;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -79,7 +79,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__EANNOTATIONS = UMLPackage.PACKAGE__EANNOTATIONS;
+	int UML_MODEL__EANNOTATIONS = UMLPackage.MODEL__EANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
@@ -88,7 +88,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__OWNED_ELEMENT = UMLPackage.PACKAGE__OWNED_ELEMENT;
+	int UML_MODEL__OWNED_ELEMENT = UMLPackage.MODEL__OWNED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -97,7 +97,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__OWNER = UMLPackage.PACKAGE__OWNER;
+	int UML_MODEL__OWNER = UMLPackage.MODEL__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -106,7 +106,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__OWNED_COMMENT = UMLPackage.PACKAGE__OWNED_COMMENT;
+	int UML_MODEL__OWNED_COMMENT = UMLPackage.MODEL__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -115,7 +115,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__NAME = UMLPackage.PACKAGE__NAME;
+	int UML_MODEL__NAME = UMLPackage.MODEL__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
@@ -124,7 +124,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__VISIBILITY = UMLPackage.PACKAGE__VISIBILITY;
+	int UML_MODEL__VISIBILITY = UMLPackage.MODEL__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -133,7 +133,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__QUALIFIED_NAME = UMLPackage.PACKAGE__QUALIFIED_NAME;
+	int UML_MODEL__QUALIFIED_NAME = UMLPackage.MODEL__QUALIFIED_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
@@ -142,7 +142,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__CLIENT_DEPENDENCY = UMLPackage.PACKAGE__CLIENT_DEPENDENCY;
+	int UML_MODEL__CLIENT_DEPENDENCY = UMLPackage.MODEL__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -151,7 +151,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__NAMESPACE = UMLPackage.PACKAGE__NAMESPACE;
+	int UML_MODEL__NAMESPACE = UMLPackage.MODEL__NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
@@ -160,7 +160,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__NAME_EXPRESSION = UMLPackage.PACKAGE__NAME_EXPRESSION;
+	int UML_MODEL__NAME_EXPRESSION = UMLPackage.MODEL__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
@@ -169,7 +169,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__ELEMENT_IMPORT = UMLPackage.PACKAGE__ELEMENT_IMPORT;
+	int UML_MODEL__ELEMENT_IMPORT = UMLPackage.MODEL__ELEMENT_IMPORT;
 
 	/**
 	 * The feature id for the '<em><b>Package Import</b></em>' containment reference list.
@@ -178,7 +178,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__PACKAGE_IMPORT = UMLPackage.PACKAGE__PACKAGE_IMPORT;
+	int UML_MODEL__PACKAGE_IMPORT = UMLPackage.MODEL__PACKAGE_IMPORT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
@@ -187,7 +187,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__OWNED_RULE = UMLPackage.PACKAGE__OWNED_RULE;
+	int UML_MODEL__OWNED_RULE = UMLPackage.MODEL__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
@@ -196,7 +196,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__MEMBER = UMLPackage.PACKAGE__MEMBER;
+	int UML_MODEL__MEMBER = UMLPackage.MODEL__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Member</b></em>' reference list.
@@ -205,7 +205,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__IMPORTED_MEMBER = UMLPackage.PACKAGE__IMPORTED_MEMBER;
+	int UML_MODEL__IMPORTED_MEMBER = UMLPackage.MODEL__IMPORTED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -214,7 +214,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__OWNED_MEMBER = UMLPackage.PACKAGE__OWNED_MEMBER;
+	int UML_MODEL__OWNED_MEMBER = UMLPackage.MODEL__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
@@ -223,7 +223,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__OWNING_TEMPLATE_PARAMETER = UMLPackage.PACKAGE__OWNING_TEMPLATE_PARAMETER;
+	int UML_MODEL__OWNING_TEMPLATE_PARAMETER = UMLPackage.MODEL__OWNING_TEMPLATE_PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
@@ -232,7 +232,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__TEMPLATE_PARAMETER = UMLPackage.PACKAGE__TEMPLATE_PARAMETER;
+	int UML_MODEL__TEMPLATE_PARAMETER = UMLPackage.MODEL__TEMPLATE_PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
@@ -241,7 +241,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__TEMPLATE_BINDING = UMLPackage.PACKAGE__TEMPLATE_BINDING;
+	int UML_MODEL__TEMPLATE_BINDING = UMLPackage.MODEL__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -250,7 +250,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__OWNED_TEMPLATE_SIGNATURE = UMLPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE;
+	int UML_MODEL__OWNED_TEMPLATE_SIGNATURE = UMLPackage.MODEL__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
@@ -259,7 +259,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__OWNED_TYPE = UMLPackage.PACKAGE__OWNED_TYPE;
+	int UML_MODEL__OWNED_TYPE = UMLPackage.MODEL__OWNED_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Package Merge</b></em>' containment reference list.
@@ -268,7 +268,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__PACKAGE_MERGE = UMLPackage.PACKAGE__PACKAGE_MERGE;
+	int UML_MODEL__PACKAGE_MERGE = UMLPackage.MODEL__PACKAGE_MERGE;
 
 	/**
 	 * The feature id for the '<em><b>Packaged Element</b></em>' containment reference list.
@@ -277,7 +277,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__PACKAGED_ELEMENT = UMLPackage.PACKAGE__PACKAGED_ELEMENT;
+	int UML_MODEL__PACKAGED_ELEMENT = UMLPackage.MODEL__PACKAGED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Nested Package</b></em>' reference list.
@@ -286,7 +286,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__NESTED_PACKAGE = UMLPackage.PACKAGE__NESTED_PACKAGE;
+	int UML_MODEL__NESTED_PACKAGE = UMLPackage.MODEL__NESTED_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Nesting Package</b></em>' reference.
@@ -295,7 +295,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__NESTING_PACKAGE = UMLPackage.PACKAGE__NESTING_PACKAGE;
+	int UML_MODEL__NESTING_PACKAGE = UMLPackage.MODEL__NESTING_PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Profile Application</b></em>' containment reference list.
@@ -304,7 +304,16 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__PROFILE_APPLICATION = UMLPackage.PACKAGE__PROFILE_APPLICATION;
+	int UML_MODEL__PROFILE_APPLICATION = UMLPackage.MODEL__PROFILE_APPLICATION;
+
+	/**
+	 * The feature id for the '<em><b>Viewpoint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UML_MODEL__VIEWPOINT = UMLPackage.MODEL__VIEWPOINT;
 
 	/**
 	 * The feature id for the '<em><b>Gmf Diagram</b></em>' containment reference.
@@ -313,7 +322,7 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__GMF_DIAGRAM = UMLPackage.PACKAGE_FEATURE_COUNT + 0;
+	int UML_MODEL__GMF_DIAGRAM = UMLPackage.MODEL_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Diagram Type</b></em>' attribute.
@@ -322,17 +331,16 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE__DIAGRAM_TYPE = UMLPackage.PACKAGE_FEATURE_COUNT + 1;
+	int UML_MODEL__DIAGRAM_TYPE = UMLPackage.MODEL_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>UML2 Package</em>' class.
+	 * The number of structural features of the '<em>UML Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE_FEATURE_COUNT = UMLPackage.PACKAGE_FEATURE_COUNT + 2;
-
+	int UML_MODEL_FEATURE_COUNT = UMLPackage.MODEL_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.papyrus.UMLDiagramType <em>UML Diagram Type</em>}' enum.
@@ -346,36 +354,36 @@ public interface PapyrusPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.papyrus.UML2Package <em>UML2 Package</em>}'.
+	 * Returns the meta object for class '{@link org.unicase.papyrus.UMLModel <em>UML Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>UML2 Package</em>'.
-	 * @see org.unicase.papyrus.UML2Package
+	 * @return the meta object for class '<em>UML Model</em>'.
+	 * @see org.unicase.papyrus.UMLModel
 	 * @generated
 	 */
-	EClass getUML2Package();
+	EClass getUMLModel();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.papyrus.UML2Package#getGmfDiagram <em>Gmf Diagram</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.papyrus.UMLModel#getGmfDiagram <em>Gmf Diagram</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Gmf Diagram</em>'.
-	 * @see org.unicase.papyrus.UML2Package#getGmfDiagram()
-	 * @see #getUML2Package()
+	 * @see org.unicase.papyrus.UMLModel#getGmfDiagram()
+	 * @see #getUMLModel()
 	 * @generated
 	 */
-	EReference getUML2Package_GmfDiagram();
+	EReference getUMLModel_GmfDiagram();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.papyrus.UML2Package#getDiagramType <em>Diagram Type</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.papyrus.UMLModel#getDiagramType <em>Diagram Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Diagram Type</em>'.
-	 * @see org.unicase.papyrus.UML2Package#getDiagramType()
-	 * @see #getUML2Package()
+	 * @see org.unicase.papyrus.UMLModel#getDiagramType()
+	 * @see #getUMLModel()
 	 * @generated
 	 */
-	EAttribute getUML2Package_DiagramType();
+	EAttribute getUMLModel_DiagramType();
 
 	/**
 	 * Returns the meta object for enum '{@link org.unicase.papyrus.UMLDiagramType <em>UML Diagram Type</em>}'.
@@ -410,14 +418,14 @@ public interface PapyrusPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.unicase.papyrus.impl.UML2PackageImpl <em>UML2 Package</em>}' class.
+		 * The meta object literal for the '{@link org.unicase.papyrus.impl.UMLModelImpl <em>UML Model</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.unicase.papyrus.impl.UML2PackageImpl
-		 * @see org.unicase.papyrus.impl.PapyrusPackageImpl#getUML2Package()
+		 * @see org.unicase.papyrus.impl.UMLModelImpl
+		 * @see org.unicase.papyrus.impl.PapyrusPackageImpl#getUMLModel()
 		 * @generated
 		 */
-		EClass UML2_PACKAGE = eINSTANCE.getUML2Package();
+		EClass UML_MODEL = eINSTANCE.getUMLModel();
 
 		/**
 		 * The meta object literal for the '<em><b>Gmf Diagram</b></em>' containment reference feature.
@@ -425,7 +433,7 @@ public interface PapyrusPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference UML2_PACKAGE__GMF_DIAGRAM = eINSTANCE.getUML2Package_GmfDiagram();
+		EReference UML_MODEL__GMF_DIAGRAM = eINSTANCE.getUMLModel_GmfDiagram();
 
 		/**
 		 * The meta object literal for the '<em><b>Diagram Type</b></em>' attribute feature.
@@ -433,7 +441,7 @@ public interface PapyrusPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute UML2_PACKAGE__DIAGRAM_TYPE = eINSTANCE.getUML2Package_DiagramType();
+		EAttribute UML_MODEL__DIAGRAM_TYPE = eINSTANCE.getUMLModel_DiagramType();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.papyrus.UMLDiagramType <em>UML Diagram Type</em>}' enum.

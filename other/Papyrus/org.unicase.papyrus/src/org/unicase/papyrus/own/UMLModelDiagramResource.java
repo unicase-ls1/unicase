@@ -24,48 +24,42 @@ import org.eclipse.emf.ecore.xmi.DOMHandler;
 import org.eclipse.emf.ecore.xmi.DOMHelper;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xml.type.AnyType;
-import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
-import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
+import org.eclipse.uml2.uml.PackageableElement;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.UnicaseCommand;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 
-import org.unicase.papyrus.UML2Package;
+import org.unicase.papyrus.UMLModel;
 
 // dengler: review
 /**
  * @author Helming, denglerm
  */
-public class UMLPackageDiagramResource extends ResourceImpl implements Resource, Resource.Factory, Resource.Internal,
+public class UMLModelDiagramResource extends ResourceImpl implements Resource, Resource.Factory, Resource.Internal,
 	XMLResource {
 
 	private boolean initialized;
-	private Diagram diagram;
 	private EList<EObject> list;
-	private UML2Package pckge;
+	private UMLModel model;
 
 	/**
 	 * Constructor.
 	 */
-	public UMLPackageDiagramResource() {
+	public UMLModelDiagramResource() {
 		super();
 	}
 
 	/**
 	 * Constructor.
 	 * 
-	 * @param pckge the UML2Package to represent
+	 * @param model the UMLModel to represent
 	 */
-	public UMLPackageDiagramResource(UML2Package pckge) {
+	public UMLModelDiagramResource(UMLModel model) {
 		super();
-		this.pckge = pckge;
+		this.model = model;
 	}
 
 	/**
@@ -95,8 +89,8 @@ public class UMLPackageDiagramResource extends ResourceImpl implements Resource,
 		if (!initialized) {
 			initialize();
 			list = new BasicEList<EObject>();
-			list.add(pckge);
-			list.add(pckge.getGmfDiagram());
+			list.add(model);
+			list.add(model.getGmfDiagram());
 			initialized = true;
 		}
 		return list;
@@ -104,58 +98,10 @@ public class UMLPackageDiagramResource extends ResourceImpl implements Resource,
 
 	private void initialize() {
 
-		if (pckge.getGmfDiagram() == null) {
-			createNewGMFDiagram();
-
+		if (model.getGmfDiagram() == null) {
+			UMLInitUtil.initialize(model);
 		}
 
-	}
-
-	private void createNewGMFDiagram() {
-		switch(pckge.getDiagramType()) {
-			case ACTIVITY:
-				diagram = ViewService.createDiagram(pckge, ActivityDiagramEditPart.MODEL_ID,
-						org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-				break;
-			case USE_CASE:
-				diagram = ViewService.createDiagram(pckge, UseCaseDiagramEditPart.MODEL_ID,
-						org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-				break;
-			case CLASS:
-				diagram = ViewService.createDiagram(pckge, org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart.MODEL_ID,
-						org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-				break;
-			case COMMUNICATION:
-				diagram = ViewService.createDiagram(pckge, org.eclipse.papyrus.diagram.communication.edit.parts.ModelEditPart.MODEL_ID,
-						org.eclipse.papyrus.diagram.communication.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-				break;
-			case COMPOSITE:
-				diagram = ViewService.createDiagram(pckge, CompositeStructureDiagramEditPart.MODEL_ID,
-						org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-				break;
-			// FIXME: Wrong ID, unable to find the right one!
-//			case PACKAGE:
-//				diagram = ViewService.createDiagram(pckge, UseCaseDiagramEditPart.MODEL_ID,
-//						org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-//				break;
-			case SEQUENCE:
-				diagram = ViewService.createDiagram(pckge, org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart.MODEL_ID,
-						org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-				break;
-			case STATE_MACHINE:
-				diagram = ViewService.createDiagram(pckge, org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart.MODEL_ID,
-						org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-				break;
-			default:
-				throw new IllegalArgumentException("Diagram type not supported!");
-		}
-		diagram.setElement(pckge);
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				pckge.setGmfDiagram(diagram);
-			}
-		}.run();
 	}
 
 	/**
@@ -181,8 +127,8 @@ public class UMLPackageDiagramResource extends ResourceImpl implements Resource,
 	 */
 	@Override
 	public ResourceSet getResourceSet() {
-		if (pckge.eResource() != null) {
-			return pckge.eResource().getResourceSet();
+		if (model.eResource() != null) {
+			return model.eResource().getResourceSet();
 		} else {
 			// evil hack
 			return new ResourceSetImpl();
@@ -205,8 +151,8 @@ public class UMLPackageDiagramResource extends ResourceImpl implements Resource,
 	 */
 	@Override
 	public URI getURI() {
-		if (pckge.eResource() != null) {
-			return pckge.eResource().getURI();
+		if (model.eResource() != null) {
+			return model.eResource().getURI();
 		} else {
 			// evil hack
 			ResourceSetImpl resourceSetImpl = new ResourceSetImpl();
@@ -239,7 +185,7 @@ public class UMLPackageDiagramResource extends ResourceImpl implements Resource,
 	@Override
 	public boolean isLoaded() {
 
-		return pckge.eResource().isLoaded();
+		return model.eResource().isLoaded();
 	}
 
 	/**
@@ -302,7 +248,7 @@ public class UMLPackageDiagramResource extends ResourceImpl implements Resource,
 	 */
 	@Override
 	public void setTrackingModification(boolean isTrackingModification) {
-		pckge.eResource().setTrackingModification(isTrackingModification);
+		model.eResource().setTrackingModification(isTrackingModification);
 	}
 
 	/**
@@ -319,7 +265,7 @@ public class UMLPackageDiagramResource extends ResourceImpl implements Resource,
 	 */
 	@Override
 	public boolean eDeliver() {
-		return pckge.eResource().eDeliver();
+		return model.eResource().eDeliver();
 	}
 
 	/**
@@ -347,10 +293,10 @@ public class UMLPackageDiagramResource extends ResourceImpl implements Resource,
 		Resource resource = WorkspaceManager.getInstance().getCurrentWorkspace().eResource();
 		ResourceSet rs = resource.getResourceSet();
 		EObject object = rs.getEObject(uri, false);
-		if (object instanceof UML2Package) {
-			return new UMLPackageDiagramResource((UML2Package) object);
+		if (object instanceof UMLModel) {
+			return new UMLModelDiagramResource((UMLModel) object);
 		} else {
-			throw new IllegalArgumentException("Only UML2Packages supported");
+			throw new IllegalArgumentException("Only UMLModels supported");
 		}
 	}
 
@@ -559,5 +505,4 @@ public class UMLPackageDiagramResource extends ResourceImpl implements Resource,
 		// TODO Auto-generated method stub
 		return super.useZip();
 	}
-
 }

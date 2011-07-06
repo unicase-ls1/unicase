@@ -26,13 +26,13 @@ public interface PapyrusFactory extends EFactory {
 	PapyrusFactory eINSTANCE = org.unicase.papyrus.impl.PapyrusFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>UML2 Package</em>'.
+	 * Returns a new object of class '<em>UML Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>UML2 Package</em>'.
+	 * @return a new object of class '<em>UML Model</em>'.
 	 * @generated
 	 */
-	UML2Package createUML2Package();
+	UMLModel createUMLModel();
 
 	/**
 	 * Returns the package supported by this factory.
