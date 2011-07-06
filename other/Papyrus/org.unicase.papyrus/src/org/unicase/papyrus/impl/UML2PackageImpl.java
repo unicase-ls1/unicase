@@ -20,6 +20,7 @@ import org.eclipse.uml2.uml.internal.impl.PackageImpl;
 
 import org.unicase.papyrus.PapyrusPackage;
 import org.unicase.papyrus.UML2Package;
+import org.unicase.papyrus.UMLDiagramType;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,6 +30,7 @@ import org.unicase.papyrus.UML2Package;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.papyrus.impl.UML2PackageImpl#getGmfDiagram <em>Gmf Diagram</em>}</li>
+ *   <li>{@link org.unicase.papyrus.impl.UML2PackageImpl#getDiagramType <em>Diagram Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,6 +46,25 @@ public class UML2PackageImpl extends PackageImpl implements UML2Package {
 	 * @ordered
 	 */
 	protected Diagram gmfDiagram;
+
+	/**
+	 * The default value of the '{@link #getDiagramType() <em>Diagram Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDiagramType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final UMLDiagramType DIAGRAM_TYPE_EDEFAULT = UMLDiagramType.NO_DIAGRAM;
+	/**
+	 * The cached value of the '{@link #getDiagramType() <em>Diagram Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDiagramType()
+	 * @generated
+	 * @ordered
+	 */
+	protected UMLDiagramType diagramType = DIAGRAM_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -135,6 +156,27 @@ public class UML2PackageImpl extends PackageImpl implements UML2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public UMLDiagramType getDiagramType() {
+		return diagramType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDiagramType(UMLDiagramType newDiagramType) {
+		UMLDiagramType oldDiagramType = diagramType;
+		diagramType = newDiagramType == null ? DIAGRAM_TYPE_EDEFAULT : newDiagramType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusPackage.UML2_PACKAGE__DIAGRAM_TYPE, oldDiagramType, diagramType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -155,6 +197,8 @@ public class UML2PackageImpl extends PackageImpl implements UML2Package {
 			case PapyrusPackage.UML2_PACKAGE__GMF_DIAGRAM:
 				if (resolve) return getGmfDiagram();
 				return basicGetGmfDiagram();
+			case PapyrusPackage.UML2_PACKAGE__DIAGRAM_TYPE:
+				return getDiagramType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -169,6 +213,9 @@ public class UML2PackageImpl extends PackageImpl implements UML2Package {
 		switch (featureID) {
 			case PapyrusPackage.UML2_PACKAGE__GMF_DIAGRAM:
 				setGmfDiagram((Diagram)newValue);
+				return;
+			case PapyrusPackage.UML2_PACKAGE__DIAGRAM_TYPE:
+				setDiagramType((UMLDiagramType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -185,6 +232,9 @@ public class UML2PackageImpl extends PackageImpl implements UML2Package {
 			case PapyrusPackage.UML2_PACKAGE__GMF_DIAGRAM:
 				setGmfDiagram((Diagram)null);
 				return;
+			case PapyrusPackage.UML2_PACKAGE__DIAGRAM_TYPE:
+				setDiagramType(DIAGRAM_TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -199,8 +249,26 @@ public class UML2PackageImpl extends PackageImpl implements UML2Package {
 		switch (featureID) {
 			case PapyrusPackage.UML2_PACKAGE__GMF_DIAGRAM:
 				return gmfDiagram != null;
+			case PapyrusPackage.UML2_PACKAGE__DIAGRAM_TYPE:
+				return diagramType != DIAGRAM_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (diagramType: ");
+		result.append(diagramType);
+		result.append(')');
+		return result.toString();
 	}
 
 } //UML2PackageImpl

@@ -6,7 +6,9 @@
  */
 package org.unicase.papyrus;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -314,13 +316,33 @@ public interface PapyrusPackage extends EPackage {
 	int UML2_PACKAGE__GMF_DIAGRAM = UMLPackage.PACKAGE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Diagram Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UML2_PACKAGE__DIAGRAM_TYPE = UMLPackage.PACKAGE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>UML2 Package</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_PACKAGE_FEATURE_COUNT = UMLPackage.PACKAGE_FEATURE_COUNT + 1;
+	int UML2_PACKAGE_FEATURE_COUNT = UMLPackage.PACKAGE_FEATURE_COUNT + 2;
+
+
+	/**
+	 * The meta object id for the '{@link org.unicase.papyrus.UMLDiagramType <em>UML Diagram Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.papyrus.UMLDiagramType
+	 * @see org.unicase.papyrus.impl.PapyrusPackageImpl#getUMLDiagramType()
+	 * @generated
+	 */
+	int UML_DIAGRAM_TYPE = 1;
 
 
 	/**
@@ -343,6 +365,27 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getUML2Package_GmfDiagram();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.papyrus.UML2Package#getDiagramType <em>Diagram Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Diagram Type</em>'.
+	 * @see org.unicase.papyrus.UML2Package#getDiagramType()
+	 * @see #getUML2Package()
+	 * @generated
+	 */
+	EAttribute getUML2Package_DiagramType();
+
+	/**
+	 * Returns the meta object for enum '{@link org.unicase.papyrus.UMLDiagramType <em>UML Diagram Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>UML Diagram Type</em>'.
+	 * @see org.unicase.papyrus.UMLDiagramType
+	 * @generated
+	 */
+	EEnum getUMLDiagramType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -383,6 +426,24 @@ public interface PapyrusPackage extends EPackage {
 		 * @generated
 		 */
 		EReference UML2_PACKAGE__GMF_DIAGRAM = eINSTANCE.getUML2Package_GmfDiagram();
+
+		/**
+		 * The meta object literal for the '<em><b>Diagram Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute UML2_PACKAGE__DIAGRAM_TYPE = eINSTANCE.getUML2Package_DiagramType();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.papyrus.UMLDiagramType <em>UML Diagram Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.papyrus.UMLDiagramType
+		 * @see org.unicase.papyrus.impl.PapyrusPackageImpl#getUMLDiagramType()
+		 * @generated
+		 */
+		EEnum UML_DIAGRAM_TYPE = eINSTANCE.getUMLDiagramType();
 
 	}
 
