@@ -8,24 +8,26 @@ package org.unicase.papyrus;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
 
+import org.eclipse.uml2.uml.Model;
+
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>UML2 Package</b></em>'.
+ * A representation of the model object '<em><b>UML Model</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.papyrus.UML2Package#getGmfDiagram <em>Gmf Diagram</em>}</li>
- *   <li>{@link org.unicase.papyrus.UML2Package#getDiagramType <em>Diagram Type</em>}</li>
+ *   <li>{@link org.unicase.papyrus.UMLModel#getGmfDiagram <em>Gmf Diagram</em>}</li>
+ *   <li>{@link org.unicase.papyrus.UMLModel#getDiagramType <em>Diagram Type</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.unicase.papyrus.PapyrusPackage#getUML2Package()
+ * @see org.unicase.papyrus.PapyrusPackage#getUMLModel()
  * @model
  * @generated
  */
-public interface UML2Package extends org.eclipse.uml2.uml.Package {
+public interface UMLModel extends Model {
 	/**
 	 * Returns the value of the '<em><b>Gmf Diagram</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -36,14 +38,14 @@ public interface UML2Package extends org.eclipse.uml2.uml.Package {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Gmf Diagram</em>' containment reference.
 	 * @see #setGmfDiagram(Diagram)
-	 * @see org.unicase.papyrus.PapyrusPackage#getUML2Package_GmfDiagram()
+	 * @see org.unicase.papyrus.PapyrusPackage#getUMLModel_GmfDiagram()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	Diagram getGmfDiagram();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.papyrus.UML2Package#getGmfDiagram <em>Gmf Diagram</em>}' containment reference.
+	 * Sets the value of the '{@link org.unicase.papyrus.UMLModel#getGmfDiagram <em>Gmf Diagram</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Gmf Diagram</em>' containment reference.
@@ -65,14 +67,14 @@ public interface UML2Package extends org.eclipse.uml2.uml.Package {
 	 * @return the value of the '<em>Diagram Type</em>' attribute.
 	 * @see org.unicase.papyrus.UMLDiagramType
 	 * @see #setDiagramType(UMLDiagramType)
-	 * @see org.unicase.papyrus.PapyrusPackage#getUML2Package_DiagramType()
+	 * @see org.unicase.papyrus.PapyrusPackage#getUMLModel_DiagramType()
 	 * @model default=""
 	 * @generated
 	 */
 	UMLDiagramType getDiagramType();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.papyrus.UML2Package#getDiagramType <em>Diagram Type</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.papyrus.UMLModel#getDiagramType <em>Diagram Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Diagram Type</em>' attribute.
@@ -82,4 +84,4 @@ public interface UML2Package extends org.eclipse.uml2.uml.Package {
 	 */
 	void setDiagramType(UMLDiagramType value);
 
-} // UML2Package
+} // UMLModel

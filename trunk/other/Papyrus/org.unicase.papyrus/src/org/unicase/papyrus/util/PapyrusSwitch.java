@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -95,17 +96,18 @@ public class PapyrusSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case PapyrusPackage.UML2_PACKAGE: {
-				UML2Package uml2Package = (UML2Package)theEObject;
-				T result = caseUML2Package(uml2Package);
-				if (result == null) result = casePackage(uml2Package);
-				if (result == null) result = caseNamespace(uml2Package);
-				if (result == null) result = casePackageableElement(uml2Package);
-				if (result == null) result = caseTemplateableElement(uml2Package);
-				if (result == null) result = caseNamedElement(uml2Package);
-				if (result == null) result = caseParameterableElement(uml2Package);
-				if (result == null) result = caseElement(uml2Package);
-				if (result == null) result = caseEModelElement(uml2Package);
+			case PapyrusPackage.UML_MODEL: {
+				UMLModel umlModel = (UMLModel)theEObject;
+				T result = caseUMLModel(umlModel);
+				if (result == null) result = caseModel(umlModel);
+				if (result == null) result = casePackage(umlModel);
+				if (result == null) result = caseNamespace(umlModel);
+				if (result == null) result = casePackageableElement(umlModel);
+				if (result == null) result = caseTemplateableElement(umlModel);
+				if (result == null) result = caseNamedElement(umlModel);
+				if (result == null) result = caseParameterableElement(umlModel);
+				if (result == null) result = caseElement(umlModel);
+				if (result == null) result = caseEModelElement(umlModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -114,17 +116,17 @@ public class PapyrusSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>UML2 Package</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>UML Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>UML2 Package</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>UML Model</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseUML2Package(UML2Package object) {
+	public T caseUMLModel(UMLModel object) {
 		return null;
 	}
 
@@ -245,6 +247,21 @@ public class PapyrusSwitch<T> {
 	 * @generated
 	 */
 	public T casePackage(org.eclipse.uml2.uml.Package object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModel(Model object) {
 		return null;
 	}
 

@@ -61,7 +61,7 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case PapyrusPackage.UML2_PACKAGE: return createUML2Package();
+			case PapyrusPackage.UML_MODEL: return createUMLModel();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -102,9 +102,9 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UML2Package createUML2Package() {
-		UML2PackageImpl uml2Package = new UML2PackageImpl();
-		return uml2Package;
+	public UMLModel createUMLModel() {
+		UMLModelImpl umlModel = new UMLModelImpl();
+		return umlModel;
 	}
 
 	/**

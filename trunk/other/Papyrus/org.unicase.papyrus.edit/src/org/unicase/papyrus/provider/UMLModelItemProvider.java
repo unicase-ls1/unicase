@@ -15,6 +15,8 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -22,25 +24,27 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import org.eclipse.gmf.runtime.notation.NotationFactory;
+
 import org.eclipse.uml2.uml.UMLPackage;
 
-import org.eclipse.uml2.uml.edit.providers.PackageItemProvider;
+import org.eclipse.uml2.uml.edit.providers.ModelItemProvider;
 
 import org.unicase.papyrus.PapyrusFactory;
 import org.unicase.papyrus.PapyrusPackage;
-import org.unicase.papyrus.UML2Package;
+import org.unicase.papyrus.UMLModel;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.papyrus.UML2Package} object.
+ * This is the item provider adapter for a {@link org.unicase.papyrus.UMLModel} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class UML2PackageItemProvider
-	extends PackageItemProvider
+public class UMLModelItemProvider
+	extends ModelItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -53,7 +57,7 @@ public class UML2PackageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UML2PackageItemProvider(AdapterFactory adapterFactory) {
+	public UMLModelItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,19 +72,42 @@ public class UML2PackageItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addDiagramTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns UML2Package.gif.
+	 * This adds a property descriptor for the Diagram Type feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDiagramTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_UMLModel_diagramType_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_UMLModel_diagramType_feature", "_UI_UMLModel_type"),
+				 PapyrusPackage.Literals.UML_MODEL__DIAGRAM_TYPE,
+				 false,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns UMLModel.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/UML2Package"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/UMLModel"));
 	}
 
 	/**
@@ -91,10 +118,10 @@ public class UML2PackageItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((UML2Package)object).getName();
+		String label = ((UMLModel)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_UML2Package_type") :
-			getString("_UI_UML2Package_type") + " " + label;
+			getString("_UI_UMLModel_type") :
+			getString("_UI_UMLModel_type") + " " + label;
 	}
 
 	/**
@@ -108,8 +135,9 @@ public class UML2PackageItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(UML2Package.class)) {
-			case PapyrusPackage.UML2_PACKAGE__DIAGRAM_TYPE:
+		switch (notification.getFeatureID(UMLModel.class)) {
+			case PapyrusPackage.UML_MODEL__GMF_DIAGRAM:
+			case PapyrusPackage.UML_MODEL__DIAGRAM_TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -130,12 +158,12 @@ public class UML2PackageItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLPackage.Literals.PACKAGE__PACKAGED_ELEMENT,
-				 PapyrusFactory.eINSTANCE.createUML2Package()));
+				 PapyrusFactory.eINSTANCE.createUMLModel()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLPackage.Literals.PACKAGE__NESTED_PACKAGE,
-				 PapyrusFactory.eINSTANCE.createUML2Package()));
+				 PapyrusFactory.eINSTANCE.createUMLModel()));
 	}
 
 	/**

@@ -76,26 +76,26 @@ public class PapyrusItemProviderAdapterFactory extends PapyrusAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.papyrus.UML2Package} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.papyrus.UMLModel} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UML2PackageItemProvider uml2PackageItemProvider;
+	protected UMLModelItemProvider umlModelItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.papyrus.UML2Package}.
+	 * This creates an adapter for a {@link org.unicase.papyrus.UMLModel}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createUML2PackageAdapter() {
-		if (uml2PackageItemProvider == null) {
-			uml2PackageItemProvider = new UML2PackageItemProvider(this);
+	public Adapter createUMLModelAdapter() {
+		if (umlModelItemProvider == null) {
+			umlModelItemProvider = new UMLModelItemProvider(this);
 		}
 
-		return uml2PackageItemProvider;
+		return umlModelItemProvider;
 	}
 
 	/**
@@ -197,7 +197,7 @@ public class PapyrusItemProviderAdapterFactory extends PapyrusAdapterFactory imp
 	 * @generated
 	 */
 	public void dispose() {
-		if (uml2PackageItemProvider != null) uml2PackageItemProvider.dispose();
+		if (umlModelItemProvider != null) umlModelItemProvider.dispose();
 	}
 
 }

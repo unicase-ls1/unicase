@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="papyrus"
     nsURI="http://unicase.org/model/papyrus" nsPrefix="org.unicase.model.papyrus">
-  <eClassifiers xsi:type="ecore:EClass" name="UML2Package" eSuperTypes="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package">
+  <eClassifiers xsi:type="ecore:EClass" name="UMLModel" eSuperTypes="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Model">
     <eStructuralFeatures xsi:type="ecore:EReference" name="gmfDiagram" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramType" eType="#//UMLDiagramType"

@@ -20,8 +20,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 import org.unicase.papyrus.PapyrusFactory;
 import org.unicase.papyrus.PapyrusPackage;
-import org.unicase.papyrus.UML2Package;
 import org.unicase.papyrus.UMLDiagramType;
+import org.unicase.papyrus.UMLModel;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +35,7 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass uml2PackageEClass = null;
+	private EClass umlModelEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -119,8 +119,8 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getUML2Package() {
-		return uml2PackageEClass;
+	public EClass getUMLModel() {
+		return umlModelEClass;
 	}
 
 	/**
@@ -128,8 +128,8 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUML2Package_GmfDiagram() {
-		return (EReference)uml2PackageEClass.getEStructuralFeatures().get(0);
+	public EReference getUMLModel_GmfDiagram() {
+		return (EReference)umlModelEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -137,8 +137,8 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUML2Package_DiagramType() {
-		return (EAttribute)uml2PackageEClass.getEStructuralFeatures().get(1);
+	public EAttribute getUMLModel_DiagramType() {
+		return (EAttribute)umlModelEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -178,9 +178,9 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 		isCreated = true;
 
 		// Create classes and their features
-		uml2PackageEClass = createEClass(UML2_PACKAGE);
-		createEReference(uml2PackageEClass, UML2_PACKAGE__GMF_DIAGRAM);
-		createEAttribute(uml2PackageEClass, UML2_PACKAGE__DIAGRAM_TYPE);
+		umlModelEClass = createEClass(UML_MODEL);
+		createEReference(umlModelEClass, UML_MODEL__GMF_DIAGRAM);
+		createEAttribute(umlModelEClass, UML_MODEL__DIAGRAM_TYPE);
 
 		// Create enums
 		umlDiagramTypeEEnum = createEEnum(UML_DIAGRAM_TYPE);
@@ -218,12 +218,12 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		uml2PackageEClass.getESuperTypes().add(theUMLPackage.getPackage());
+		umlModelEClass.getESuperTypes().add(theUMLPackage.getModel());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(uml2PackageEClass, UML2Package.class, "UML2Package", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUML2Package_GmfDiagram(), theNotationPackage.getDiagram(), null, "gmfDiagram", null, 0, 1, UML2Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUML2Package_DiagramType(), this.getUMLDiagramType(), "diagramType", "", 0, 1, UML2Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(umlModelEClass, UMLModel.class, "UMLModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUMLModel_GmfDiagram(), theNotationPackage.getDiagram(), null, "gmfDiagram", null, 0, 1, UMLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUMLModel_DiagramType(), this.getUMLDiagramType(), "diagramType", "", 0, 1, UMLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(umlDiagramTypeEEnum, UMLDiagramType.class, "UMLDiagramType");
