@@ -22,10 +22,12 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
@@ -123,7 +125,11 @@ MESuggestedSelectionDialog {
 	@Override
 	protected Control createExtendedContentArea(Composite parent) {
 
-		final Button button = new Button(parent, SWT.ARROW | SWT.DOWN);
+		Composite comp = new Composite(parent, SWT.NONE);
+		comp.setLayout(new GridLayout(2, false));
+		final Label label = new Label(comp, SWT.NONE);
+		label.setText("Select other context or file");
+		final Button button = new Button(comp, SWT.ARROW | SWT.DOWN);
 		final Menu menu = new Menu(parent.getShell(), SWT.POP_UP);
 		for (String key : currentContextNeighbours.keySet()) {
 			MenuItem item = new MenuItem(menu, SWT.PUSH);
@@ -149,14 +155,14 @@ MESuggestedSelectionDialog {
 		button.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
 				Rectangle rect = button.getBounds();
-				Point pt = new Point(rect.x, rect.y + rect.height);
+				Point pt = new Point(0, rect.y + rect.height);
 				pt = button.toDisplay(pt);
 				menu.setLocation(pt.x, pt.y);
 				menu.setVisible(true);
 			}
 		});
 		Control firstChild = parent.getChildren()[0];
-		button.moveAbove(firstChild);
+		comp.moveAbove(firstChild);
 		return null;
 	}
 }
