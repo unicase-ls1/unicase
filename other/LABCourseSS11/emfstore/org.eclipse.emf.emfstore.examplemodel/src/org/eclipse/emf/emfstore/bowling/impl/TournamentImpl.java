@@ -8,9 +8,13 @@ package org.eclipse.emf.emfstore.bowling.impl;
 
 import java.util.Collection;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -19,7 +23,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.emf.emfstore.bowling.BowlingPackage;
@@ -27,6 +33,7 @@ import org.eclipse.emf.emfstore.bowling.League;
 import org.eclipse.emf.emfstore.bowling.Matchup;
 import org.eclipse.emf.emfstore.bowling.Tournament;
 import org.eclipse.emf.emfstore.bowling.TournamentType;
+import org.eclipse.emf.emfstore.bowling.util.BowlingValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -214,6 +221,31 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 		league = newLeague;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BowlingPackage.TOURNAMENT__LEAGUE, oldLeague, league));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean hasTounamentPro(DiagnosticChain diagnosticianChain, Map<?, ?> context) {
+		// TODO: implement this method
+		// -> specify the condition that violates the invariant
+		// -> verify the details of the diagnostic, including severity and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (type.getValue() != 0) {
+			if (diagnosticianChain != null) {
+				diagnosticianChain.add
+					(new BasicDiagnostic
+						(Diagnostic.ERROR,
+						 "type",
+						 BowlingValidator.TOURNAMENT__HAS_TOUNAMENT_PRO,
+						 "Tournament type should be Pro",
+						 new Object [] { this, BowlingPackage.eINSTANCE.getTournamentType() }));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
