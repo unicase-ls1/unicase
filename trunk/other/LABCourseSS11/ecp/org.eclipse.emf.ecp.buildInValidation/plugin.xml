@@ -82,7 +82,15 @@
               schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
               sequence="Alt+V">
         </key>
-     </extension>             
+     </extension>
+  <extension
+        point="org.eclipse.ui.propertyPages">
+     <page
+           class="org.eclipse.emf.ecp.buildInValidation.pref.ValidationPropertyPage"
+           id="org.eclipse.emf.ecp.buildInValidation.pref.ValidationPropertyPage"
+           name="Validation">
+     </page>
+  </extension>             
 	 
 	
 </plugin>
