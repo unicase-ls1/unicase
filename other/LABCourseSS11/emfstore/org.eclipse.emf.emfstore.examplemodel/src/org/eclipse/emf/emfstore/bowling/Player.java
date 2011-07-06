@@ -6,12 +6,14 @@
  */
 package org.eclipse.emf.emfstore.bowling;
 
+import java.text.ParseException;
 import java.util.Date;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -30,6 +32,9 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.emf.emfstore.bowling.Player#isIsProfessional <em>Is Professional</em>}</li>
  *   <li>{@link org.eclipse.emf.emfstore.bowling.Player#getEMail <em>EMail</em>}</li>
  *   <li>{@link org.eclipse.emf.emfstore.bowling.Player#getGames <em>Games</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.bowling.Player#getTelephon <em>Telephon</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.bowling.Player#getNotes <em>Notes</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.bowling.Player#isIsAvailable <em>Is Available</em>}</li>
  * </ul>
  * </p>
  *
@@ -40,6 +45,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface Player extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
@@ -48,7 +54,7 @@ public interface Player extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.emf.emfstore.bowling.BowlingPackage#getPlayer_Name()
-	 * @model
+	 * @model default=""
 	 * @generated
 	 */
 	String getName();
@@ -239,6 +245,75 @@ public interface Player extends EObject {
 	EList<Game> getGames();
 
 	/**
+	 * Returns the value of the '<em><b>Telephon</b></em>' attribute list.
+	 * The list contents are of type {@link org.eclipse.emf.common.util.Enumerator}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Telephon</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Telephon</em>' attribute list.
+	 * @see org.eclipse.emf.emfstore.bowling.BowlingPackage#getPlayer_Telephon()
+	 * @model default="" unique="false" upper="3" transient="true"
+	 * @generated
+	 */
+	EList<Enumerator> getTelephon();
+
+	/**
+	 * Returns the value of the '<em><b>Notes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Notes</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Notes</em>' attribute.
+	 * @see #setNotes(String)
+	 * @see org.eclipse.emf.emfstore.bowling.BowlingPackage#getPlayer_Notes()
+	 * @model unique="false"
+	 * @generated
+	 */
+	String getNotes();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.bowling.Player#getNotes <em>Notes</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Notes</em>' attribute.
+	 * @see #getNotes()
+	 * @generated
+	 */
+	void setNotes(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Available</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Available</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Available</em>' attribute.
+	 * @see #setIsAvailable(boolean)
+	 * @see org.eclipse.emf.emfstore.bowling.BowlingPackage#getPlayer_IsAvailable()
+	 * @model default="false"
+	 * @generated
+	 */
+	boolean isIsAvailable();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.bowling.Player#isIsAvailable <em>Is Available</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Available</em>' attribute.
+	 * @see #isIsAvailable()
+	 * @generated
+	 */
+	void setIsAvailable(boolean value);
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model
@@ -269,5 +344,45 @@ public interface Player extends EObject {
 	 * @generated
 	 */
 	boolean hasCorrectStreetNumber(DiagnosticChain diagnosticianChain, Map<?, ?> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean hasTelephon(DiagnosticChain diagnosticianChain, Map<?, ?> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean hasHeight(DiagnosticChain diagnosticianChain, Map<?, ?> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean hasIsAvailable(DiagnosticChain diagnosticianChain, Map<?, ?> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean hasNotes(DiagnosticChain diagnosticianChain, Map<?, ?> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean hasGame(DiagnosticChain diagnosticianChain, Map<?, ?> context);
 
 } // Player
