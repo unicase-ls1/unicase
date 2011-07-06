@@ -76,12 +76,60 @@ public class BowlingValidator extends EObjectValidator {
 	public static final int PLAYER__HAS_CORRECT_STREET_NUMBER = 4;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Telephon' of 'Player'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int PLAYER__HAS_TELEPHON = 5;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Height' of 'Player'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int PLAYER__HAS_HEIGHT = 6;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Is Available' of 'Player'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int PLAYER__HAS_IS_AVAILABLE = 7;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Notes' of 'Player'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int PLAYER__HAS_NOTES = 8;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Game' of 'Player'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int PLAYER__HAS_GAME = 9;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Tounament Pro' of 'Tournament'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int TOURNAMENT__HAS_TOUNAMENT_PRO = 10;
+
+	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 4;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 10;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -157,6 +205,11 @@ public class BowlingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validatePlayer_hasStreet(player, diagnostics, context);
 		if (result || diagnostics != null) result &= validatePlayer_hasDateOfBirth(player, diagnostics, context);
 		if (result || diagnostics != null) result &= validatePlayer_hasCorrectStreetNumber(player, diagnostics, context);
+		if (result || diagnostics != null) result &= validatePlayer_hasTelephon(player, diagnostics, context);
+		if (result || diagnostics != null) result &= validatePlayer_hasHeight(player, diagnostics, context);
+		if (result || diagnostics != null) result &= validatePlayer_hasIsAvailable(player, diagnostics, context);
+		if (result || diagnostics != null) result &= validatePlayer_hasNotes(player, diagnostics, context);
+		if (result || diagnostics != null) result &= validatePlayer_hasGame(player, diagnostics, context);
 		return result;
 	}
 
@@ -201,6 +254,56 @@ public class BowlingValidator extends EObjectValidator {
 	}
 
 	/**
+	 * Validates the hasTelephon constraint of '<em>Player</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePlayer_hasTelephon(Player player, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return player.hasTelephon(diagnostics, context);
+	}
+
+	/**
+	 * Validates the hasHeight constraint of '<em>Player</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePlayer_hasHeight(Player player, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return player.hasHeight(diagnostics, context);
+	}
+
+	/**
+	 * Validates the hasIsAvailable constraint of '<em>Player</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePlayer_hasIsAvailable(Player player, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return player.hasIsAvailable(diagnostics, context);
+	}
+
+	/**
+	 * Validates the hasNotes constraint of '<em>Player</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePlayer_hasNotes(Player player, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return player.hasNotes(diagnostics, context);
+	}
+
+	/**
+	 * Validates the hasGame constraint of '<em>Player</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePlayer_hasGame(Player player, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return player.hasGame(diagnostics, context);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -215,7 +318,27 @@ public class BowlingValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateTournament(Tournament tournament, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(tournament, diagnostics, context);
+		if (!validate_NoCircularContainment(tournament, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(tournament, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(tournament, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(tournament, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(tournament, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(tournament, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(tournament, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(tournament, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(tournament, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTournament_hasTounamentPro(tournament, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the hasTounamentPro constraint of '<em>Tournament</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTournament_hasTounamentPro(Tournament tournament, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return tournament.hasTounamentPro(diagnostics, context);
 	}
 
 	/**
