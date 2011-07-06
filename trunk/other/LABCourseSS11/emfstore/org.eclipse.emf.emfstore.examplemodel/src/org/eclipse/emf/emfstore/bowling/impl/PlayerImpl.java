@@ -6,6 +6,7 @@
  */
 package org.eclipse.emf.emfstore.bowling.impl;
 
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 
@@ -18,6 +19,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -25,6 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -49,6 +52,9 @@ import org.eclipse.emf.emfstore.bowling.util.BowlingValidator;
  *   <li>{@link org.eclipse.emf.emfstore.bowling.impl.PlayerImpl#isIsProfessional <em>Is Professional</em>}</li>
  *   <li>{@link org.eclipse.emf.emfstore.bowling.impl.PlayerImpl#getEMail <em>EMail</em>}</li>
  *   <li>{@link org.eclipse.emf.emfstore.bowling.impl.PlayerImpl#getGames <em>Games</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.bowling.impl.PlayerImpl#getTelephon <em>Telephon</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.bowling.impl.PlayerImpl#getNotes <em>Notes</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.bowling.impl.PlayerImpl#isIsAvailable <em>Is Available</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,7 +69,7 @@ public class PlayerImpl extends EObjectImpl implements Player {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final String NAME_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -204,6 +210,56 @@ public class PlayerImpl extends EObjectImpl implements Player {
 	 * @ordered
 	 */
 	protected EList<Game> games;
+
+	/**
+	 * The cached value of the '{@link #getTelephon() <em>Telephon</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTelephon()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Enumerator> telephon;
+
+	/**
+	 * The default value of the '{@link #getNotes() <em>Notes</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNotes()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NOTES_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getNotes() <em>Notes</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNotes()
+	 * @generated
+	 * @ordered
+	 */
+	protected String notes = NOTES_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isIsAvailable() <em>Is Available</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsAvailable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_AVAILABLE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsAvailable() <em>Is Available</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsAvailable()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isAvailable = IS_AVAILABLE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -386,6 +442,60 @@ public class PlayerImpl extends EObjectImpl implements Player {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Enumerator> getTelephon() {
+		if (telephon == null) {
+			telephon = new EDataTypeEList<Enumerator>(Enumerator.class, this, BowlingPackage.PLAYER__TELEPHON);
+		}
+		return telephon;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getNotes() {
+		return notes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNotes(String newNotes) {
+		String oldNotes = notes;
+		notes = newNotes;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BowlingPackage.PLAYER__NOTES, oldNotes, notes));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsAvailable() {
+		return isAvailable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsAvailable(boolean newIsAvailable) {
+		boolean oldIsAvailable = isAvailable;
+		isAvailable = newIsAvailable;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BowlingPackage.PLAYER__IS_AVAILABLE, oldIsAvailable, isAvailable));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public boolean hasName(DiagnosticChain diagnosticianChain, Map<?, ?> context) {
@@ -411,7 +521,7 @@ public class PlayerImpl extends EObjectImpl implements Player {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean hasStreet(DiagnosticChain diagnosticianChain, Map<?, ?> context) {
 		// TODO: implement this method
@@ -423,9 +533,9 @@ public class PlayerImpl extends EObjectImpl implements Player {
 				diagnosticianChain.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-						 BowlingValidator.DIAGNOSTIC_SOURCE,
+						"street",
 						 BowlingValidator.PLAYER__HAS_STREET,
-						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "hasStreet", EObjectValidator.getObjectLabel(this, (Map<Object, Object>) context) }),
+						 "Street must filled out",
 						 new Object [] { this, BowlingPackage.eINSTANCE.getPlayer_Street() }));
 			}
 			return false;
@@ -443,14 +553,15 @@ public class PlayerImpl extends EObjectImpl implements Player {
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (dateOfBirth == null) {
+		Calendar rightNow = Calendar.getInstance();
+		if (dateOfBirth == null || (dateOfBirth.after(rightNow.getTime()))) {
 			if (diagnosticianChain != null) {
 				diagnosticianChain.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
 						 "dateOfBirth",
 						 BowlingValidator.PLAYER__HAS_DATE_OF_BIRTH,
-						 "Date of Birth must filled out",
+						 "Date of Birth must be smaller than today's date",
 						 new Object [] { this, BowlingPackage.eINSTANCE.getPlayer_DateOfBirth() }));
 			}
 			return false;
@@ -482,6 +593,131 @@ public class PlayerImpl extends EObjectImpl implements Player {
 			return false;
 		}
 		
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean hasTelephon(DiagnosticChain diagnosticianChain, Map<?, ?> context) {
+		// TODO: implement this method
+		// -> specify the condition that violates the invariant
+		// -> verify the details of the diagnostic, including severity and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (telephon == null) {
+			if (diagnosticianChain != null) {
+				diagnosticianChain.add
+					(new BasicDiagnostic
+						(Diagnostic.ERROR,
+						"telephon",
+						 BowlingValidator.PLAYER__HAS_TELEPHON,
+						 "Telephon number must filled out",
+						 new Object [] { this, BowlingPackage.eINSTANCE.getPlayer_Telephon() }));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean hasHeight(DiagnosticChain diagnosticianChain, Map<?, ?> context) {
+		// TODO: implement this method
+		// -> specify the condition that violates the invariant
+		// -> verify the details of the diagnostic, including severity and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (height <= 0.0) {
+			if (diagnosticianChain != null) {
+				diagnosticianChain.add
+					(new BasicDiagnostic
+						(Diagnostic.ERROR,
+						 "height",
+						 BowlingValidator.PLAYER__HAS_HEIGHT,
+						 "Height must filled out",
+						 new Object [] { this, BowlingPackage.eINSTANCE.getPlayer_Height() }));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean hasIsAvailable(DiagnosticChain diagnosticianChain, Map<?, ?> context) {
+		// TODO: implement this method
+		// -> specify the condition that violates the invariant
+		// -> verify the details of the diagnostic, including severity and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (isAvailable == false) {
+			if (diagnosticianChain != null) {
+				diagnosticianChain.add
+					(new BasicDiagnostic
+						(Diagnostic.ERROR,
+						 "isAvailable",
+						 BowlingValidator.PLAYER__HAS_IS_AVAILABLE,
+						 "Must be set",
+						 new Object [] { this, BowlingPackage.eINSTANCE.getPlayer_IsAvailable() }));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean hasNotes(DiagnosticChain diagnosticianChain, Map<?, ?> context) {
+		// TODO: implement this method
+		// -> specify the condition that violates the invariant
+		// -> verify the details of the diagnostic, including severity and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (notes == null || notes == "") {
+			if (diagnosticianChain != null) {
+				diagnosticianChain.add
+					(new BasicDiagnostic
+						(Diagnostic.ERROR,
+						 "notes",
+						 BowlingValidator.PLAYER__HAS_NOTES,
+						 "Notes must filled out",
+						 new Object [] { this, BowlingPackage.eINSTANCE.getPlayer_Notes() }));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean hasGame(DiagnosticChain diagnosticianChain, Map<?, ?> context) {
+		// TODO: implement this method
+		// -> specify the condition that violates the invariant
+		// -> verify the details of the diagnostic, including severity and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (games.isEmpty()) {
+			if (diagnosticianChain != null) {
+				diagnosticianChain.add
+					(new BasicDiagnostic
+						(Diagnostic.ERROR,
+						 "games",
+						 BowlingValidator.PLAYER__HAS_GAME,
+						 "Games must referenced",
+						 new Object [] { this, BowlingPackage.eINSTANCE.getPlayer_Games() }));
+			}
+			return false;
+		}
 		return true;
 	}
 
@@ -538,6 +774,12 @@ public class PlayerImpl extends EObjectImpl implements Player {
 				return getEMail();
 			case BowlingPackage.PLAYER__GAMES:
 				return getGames();
+			case BowlingPackage.PLAYER__TELEPHON:
+				return getTelephon();
+			case BowlingPackage.PLAYER__NOTES:
+				return getNotes();
+			case BowlingPackage.PLAYER__IS_AVAILABLE:
+				return isIsAvailable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -576,6 +818,16 @@ public class PlayerImpl extends EObjectImpl implements Player {
 				getGames().clear();
 				getGames().addAll((Collection<? extends Game>)newValue);
 				return;
+			case BowlingPackage.PLAYER__TELEPHON:
+				getTelephon().clear();
+				getTelephon().addAll((Collection<? extends Enumerator>)newValue);
+				return;
+			case BowlingPackage.PLAYER__NOTES:
+				setNotes((String)newValue);
+				return;
+			case BowlingPackage.PLAYER__IS_AVAILABLE:
+				setIsAvailable((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -612,6 +864,15 @@ public class PlayerImpl extends EObjectImpl implements Player {
 			case BowlingPackage.PLAYER__GAMES:
 				getGames().clear();
 				return;
+			case BowlingPackage.PLAYER__TELEPHON:
+				getTelephon().clear();
+				return;
+			case BowlingPackage.PLAYER__NOTES:
+				setNotes(NOTES_EDEFAULT);
+				return;
+			case BowlingPackage.PLAYER__IS_AVAILABLE:
+				setIsAvailable(IS_AVAILABLE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -640,6 +901,12 @@ public class PlayerImpl extends EObjectImpl implements Player {
 				return EMAIL_EDEFAULT == null ? eMail != null : !EMAIL_EDEFAULT.equals(eMail);
 			case BowlingPackage.PLAYER__GAMES:
 				return games != null && !games.isEmpty();
+			case BowlingPackage.PLAYER__TELEPHON:
+				return telephon != null && !telephon.isEmpty();
+			case BowlingPackage.PLAYER__NOTES:
+				return NOTES_EDEFAULT == null ? notes != null : !NOTES_EDEFAULT.equals(notes);
+			case BowlingPackage.PLAYER__IS_AVAILABLE:
+				return isAvailable != IS_AVAILABLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -668,6 +935,12 @@ public class PlayerImpl extends EObjectImpl implements Player {
 		result.append(isProfessional);
 		result.append(", eMail: ");
 		result.append(eMail);
+		result.append(", telephon: ");
+		result.append(telephon);
+		result.append(", notes: ");
+		result.append(notes);
+		result.append(", isAvailable: ");
+		result.append(isAvailable);
 		result.append(')');
 		return result.toString();
 	}
