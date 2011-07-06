@@ -143,13 +143,40 @@ public interface BowlingPackage extends EPackage {
 	int PLAYER__GAMES = 7;
 
 	/**
+	 * The feature id for the '<em><b>Telephon</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLAYER__TELEPHON = 8;
+
+	/**
+	 * The feature id for the '<em><b>Notes</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLAYER__NOTES = 9;
+
+	/**
+	 * The feature id for the '<em><b>Is Available</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLAYER__IS_AVAILABLE = 10;
+
+	/**
 	 * The number of structural features of the '<em>Player</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLAYER_FEATURE_COUNT = 8;
+	int PLAYER_FEATURE_COUNT = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.emfstore.bowling.impl.LeagueImpl <em>League</em>}' class.
@@ -435,6 +462,39 @@ public interface BowlingPackage extends EPackage {
 	EReference getPlayer_Games();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.emf.emfstore.bowling.Player#getTelephon <em>Telephon</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Telephon</em>'.
+	 * @see org.eclipse.emf.emfstore.bowling.Player#getTelephon()
+	 * @see #getPlayer()
+	 * @generated
+	 */
+	EAttribute getPlayer_Telephon();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.emfstore.bowling.Player#getNotes <em>Notes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Notes</em>'.
+	 * @see org.eclipse.emf.emfstore.bowling.Player#getNotes()
+	 * @see #getPlayer()
+	 * @generated
+	 */
+	EAttribute getPlayer_Notes();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.emfstore.bowling.Player#isIsAvailable <em>Is Available</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Available</em>'.
+	 * @see org.eclipse.emf.emfstore.bowling.Player#isIsAvailable()
+	 * @see #getPlayer()
+	 * @generated
+	 */
+	EAttribute getPlayer_IsAvailable();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.emfstore.bowling.League <em>League</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -700,6 +760,30 @@ public interface BowlingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PLAYER__GAMES = eINSTANCE.getPlayer_Games();
+
+		/**
+		 * The meta object literal for the '<em><b>Telephon</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLAYER__TELEPHON = eINSTANCE.getPlayer_Telephon();
+
+		/**
+		 * The meta object literal for the '<em><b>Notes</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLAYER__NOTES = eINSTANCE.getPlayer_Notes();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Available</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLAYER__IS_AVAILABLE = eINSTANCE.getPlayer_IsAvailable();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.emfstore.bowling.impl.LeagueImpl <em>League</em>}' class.
