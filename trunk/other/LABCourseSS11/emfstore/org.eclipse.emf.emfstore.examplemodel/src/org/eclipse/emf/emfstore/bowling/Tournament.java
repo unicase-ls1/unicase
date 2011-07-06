@@ -6,6 +6,8 @@
  */
 package org.eclipse.emf.emfstore.bowling;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -126,5 +128,13 @@ public interface Tournament extends EObject {
 	 * @generated
 	 */
 	void setLeague(League value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean hasTounamentPro(DiagnosticChain diagnosticianChain, Map<?, ?> context);
 
 } // Tournament
