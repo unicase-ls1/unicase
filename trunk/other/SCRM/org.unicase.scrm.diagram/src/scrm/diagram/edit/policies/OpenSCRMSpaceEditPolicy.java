@@ -102,10 +102,10 @@ public class OpenSCRMSpaceEditPolicy extends OpenEditPolicy {
 					requiresArrangement = true;
 				}
 				containingDiagram.getElements().add(scrmDiagram);
+				ActionHelper.openModelElement(scrmDiagram, "");
 				scrmDiagram.setNewElementContainer(representedSpace);
 				scrmDiagram.getElements().addAll(
 						representedSpace.getContainedModelElements());
-				ActionHelper.openModelElement(scrmDiagram, "");
 //				if(requiresArrangement) {
 //					DiagramEditor editor = (DiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 //					arrange(editor.getDiagramGraphicalViewer().getRootEditPart().getContents());

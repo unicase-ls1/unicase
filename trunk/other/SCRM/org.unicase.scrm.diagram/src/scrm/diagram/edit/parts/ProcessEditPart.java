@@ -634,7 +634,7 @@ public class ProcessEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 102, 153, 255);
+	static final Color THIS_BACK = new Color(null, 117, 193, 255);
 
 	/**
 	 * @generated
