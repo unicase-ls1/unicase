@@ -1,0 +1,23 @@
+The Scientific Computing Requirements Model (SCRM) is a tool that allows requirements modeling for scientific computing by making use of core EMF and GMF features and is built on the EMFCP.<br>
+To install SCRM into your Eclipse instance you need to
+
+  # Install Eclipse Modeling Tools Edition
+  # Install GMF
+  # Install EMFCP and EMFStore
+
+After the installation is complete, checkout the SCRM plug-ins from<br>
+*_http://unicase.googlecode.com/svn/trunk/other/SCRM_*
+
+To start the tool, be sure to include the following plugins in your Run/Debug Configuration:
+  * org.unicase.scrm
+  * org.unicase.scrm.edit
+  * org.unicase.scrm.diagram
+
+Select "Run As -> Eclipse Application" to open up a new Eclipse instance. In this instance, select "Window -> Show View -> Other -> Unicase -> Navigator" to open up the Navigator View. Create a new Project from the context menu and, again from the context menu, create a new model element. To get started with modeling, choose SCRMDiagram in the "New Model Element"-Wizard.
+
+This will open up a GMF-Editor, allowing you to do the actual modeling. While the base functionality is the same as for most GMF editors, the SCRM tool provides several features:
+  * *Multiple layer view*: Creating a container node (KnowledgeSpace, RequirementeSpace, DataProcessSpace) lets you structure your diagrams better (by parting them). Any such diagram can be opened by double-clicking the corresponding node. This will create a new diagram for you, containing all the elements that the original node contained. A preview of the newly created diagram is available from the corresponding diagram in the container node.
+  * *Predefined templates*: Some default templates are included in the tool, providing a quick start possibility to the user. The user simply has to fill out some data and adjust the template according to his needs to obtain a complete SCRM-Model. To load such a predefined template, simply rightclick a project in the navigator and select "Load Template". Select the template you want to load, and all the diagrams and elements will get copied to your project. Finally, the uppermost diagram (regarding the hierarchy) will be opened.
+  * *User-defined templates*: It's possible to save and load your own templates from the context menu. Simply create your model, right click the SCRMDiagram (either in the Diagram Editor or in the Navigator) and select "Save Template". This will create an exact copy of your diagram and save it to the filesystem. Loading a template is the same procedure as above.
+
+The SCRM tool was adjusted to work flawlessly with both, EMFCP and EMFStore. Thus, SCRM projects can be shared using the EMFStore.
