@@ -142,6 +142,7 @@ public interface NumericalMethod extends ScientificKnowledge {
 
 	/**
 	 * Returns the value of the '<em><b>Performance</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.Performance#getDescribedMethod <em>Described Method</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Performance</em>' reference isn't clear,
@@ -151,7 +152,9 @@ public interface NumericalMethod extends ScientificKnowledge {
 	 * @return the value of the '<em>Performance</em>' reference.
 	 * @see #setPerformance(Performance)
 	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_Performance()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='30'"
+	 * @see scrm.requirements.Performance#getDescribedMethod
+	 * @model opposite="describedMethod"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='30'"
 	 * @generated
 	 */
 	Performance getPerformance();

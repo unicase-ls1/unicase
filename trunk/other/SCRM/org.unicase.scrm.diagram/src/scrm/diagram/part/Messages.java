@@ -259,6 +259,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String Requirements2Group_desc;
+	
+	/**
+	 * @generated NOT
+	 */
+	public static String DataProcessSteps3Group_title;
+	
+	/**
+	 * @generated NOT
+	 */
+	public static String DataProcessSteps3Group_desc;
 
 	/**
 	 * @generated

@@ -83,8 +83,11 @@ import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
 import org.unicase.ecp.model.ECPMetaModelElementContext;
 import org.unicase.ecp.model.ECPModelelementContext;
+import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.ModelElementContextListener;
+import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ecp.model.workSpaceModel.util.AssociationClassHelper;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
 import org.unicase.ui.meeditor.ModelElementChangeListener;
@@ -96,7 +99,7 @@ import scrm.ScrmPackage;
 import scrm.diagram.commands.CreateViewCommand;
 import scrm.diagram.common.DeleteFromDiagramAction;
 import scrm.diagram.navigator.ScrmNavigatorItem;
-import scrm.diagram.util.ECPUtil;
+import scrm.diagram.providers.ScrmModelingAssistantProvider;
 import scrm.impl.DiagramStoreException;
 
 /**
@@ -113,13 +116,16 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 	/**
 	 * The {@link ModelElementContext} {@link #modelElementContextListener} listens to.
 	 */
-	private final ECPModelelementContext modelElementContext;
+	private ECPModelelementContext modelElementContext;
 
 	/**
 	 * The {@link ModelElementContextListener} to handle delete operations.
 	 */
 	private ModelElementContextListener modelElementContextListener;
-	
+
+	/**
+	 * The {@link ModelElementChangeListener} to handle attribute changes.
+	 */
 	private ModelElementChangeListener modelElementChangeListener;
 
 	/**
@@ -144,7 +150,7 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 	 */
 	public ScrmDiagramEditor(boolean hasFlyoutPalette) {
 		super(hasFlyoutPalette);
-
+		
 		focusListener = new FocusListener() {
 			public void focusGained(FocusEvent event) {
 				try {
@@ -168,41 +174,6 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 				}
 			}
 		};
-
-		modelElementContext = ECPUtil.getModelElementContext();
-
-		if (modelElementContext == null) {
-			return;
-		}
-
-		// initialize a listener that will close this editor if the MEDiagram,
-		// its container or its context gets deleted
-		modelElementContextListener = new ModelElementContextListener() {
-
-			@Override
-			public void onContextDeleted() {
-				close(false);
-			}
-
-			@Override
-			public void onModelElementDeleted(EObject element) {
-				Diagram diagram = ScrmDiagramEditor.this.getDiagram();
-				if (diagram == null) {
-					return;
-				}
-				EObject scrmDiagram = diagram.getElement();
-				if (element == scrmDiagram) {
-					close(false);
-				} else if (!modelElementContext.contains(scrmDiagram)) {
-					close(false);
-				}
-			}
-
-		};
-
-		modelElementContext
-				.addModelElementContextListener(modelElementContextListener);
-
 	}
 
 	/**
@@ -210,7 +181,7 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 	 */
 	private void syncDiagramView(final SCRMDiagram diagram) {
 
-		ECPModelelementContext context = ECPUtil.getModelElementContext();
+		ECPModelelementContext context = getModelElementContext(diagram);
 
 		if (context == null) {
 			return;
@@ -238,7 +209,7 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 					} catch (ExecutionException e) {
 						WorkspaceUtil
 								.logException(
-										"Could not create a view for the droped content.",
+										"Could not create a view for the dropped content.",
 										e);
 					}
 				}
@@ -291,9 +262,9 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 		getGraphicalViewer().getKeyHandler().put(
 				KeyStroke.getPressed(SWT.DEL, 127, 0),
 				new DeleteFromDiagramAction());
-
+		
 		registerFocusListener();
-		registerModelElementChangeListener();
+		registerModelElementListeners();
 	}
 
 	/**
@@ -346,6 +317,9 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 			// get all registered contexts
 			Set<IClientContext> clientContexts = ClientContextManager
 					.getInstance().getClientContexts();
+			// get all allowed types
+			List allowedTypes = ScrmModelingAssistantProvider.
+				getAllowedTypes(diagram.getDiagramType());
 			for (IClientContext clientContext : clientContexts) {
 				IElementType[] containedTypes = ElementTypeRegistry
 						.getInstance().getElementTypes(clientContext);
@@ -361,7 +335,9 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 						containedDiagram = true;
 					}
 					if (containedType.equals(dropeeType)) {
-						containedDropee = true;
+						if(allowedTypes.contains(dropeeType)) {
+							containedDropee = true;
+						}
 					}
 				}
 				if (containedDiagram && containedDropee) {
@@ -391,8 +367,9 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 		@Override
 		protected void handleDrop() {
 			if (dropMessageCheck(mesDrop, mesAdd)) {
-				ECPModelelementContext context = ECPUtil
-						.getModelElementContext();
+				final SCRMDiagram diagram = (SCRMDiagram) getDiagram()
+				.getElement();
+				ECPModelelementContext context = getModelElementContext(diagram);
 				if (context == null) {
 					return;
 				}
@@ -401,8 +378,7 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 				if (metaContext == null) {
 					return;
 				}
-				final SCRMDiagram diagram = (SCRMDiagram) getDiagram()
-						.getElement();
+				
 				LinkedList<EObject> elements = new LinkedList<EObject>();
 				elements.addAll(diagram.getElements());
 				mesAdd.addAll(AssociationClassHelper
@@ -498,7 +474,8 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 		super.dispose();
 		// remove context- and change-listeners, if they were registered
 		if (modelElementContext != null) {
-			modelElementContext.removeModelElementContextListener(modelElementContextListener);
+			modelElementContext
+					.removeModelElementContextListener(modelElementContextListener);
 		}
 		if (modelElementChangeListener != null) {
 			modelElementChangeListener.remove();
@@ -537,13 +514,16 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 		}
 		control.addFocusListener(focusListener);
 	}
-	
+
 	/**
 	 * @generated NOT 
 	 */
-	private void registerModelElementChangeListener() {
+	private void registerModelElementListeners() {
+
+		SCRMDiagram diagram = (SCRMDiagram) getDiagram().getElement();
+
 		// register listener for changes on the name attribute
-		modelElementChangeListener = new ModelElementChangeListener(getDiagram().getElement()) {
+		modelElementChangeListener = new ModelElementChangeListener(diagram) {
 
 			@Override
 			public void onChange(Notification msg) {
@@ -553,6 +533,38 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 				}
 			}
 		};
+
+		// register modelElementContext listener for behavior upon deletion
+		modelElementContext = getModelElementContext(diagram);
+
+		if (modelElementContext == null) {
+			return;
+		}
+
+		// initialize a listener that will close this editor if the MEDiagram,
+		// its container or its context gets deleted
+		modelElementContextListener = new ModelElementContextListener() {
+
+			@Override
+			public void onContextDeleted() {
+				close(false);
+			}
+
+			@Override
+			public void onModelElementDeleted(EObject element) {
+				Diagram diagram = ScrmDiagramEditor.this.getDiagram();
+				if (diagram == null) {
+					return;
+				}
+				EObject meDiagram = diagram.getElement();
+				if (element == meDiagram || !modelElementContext.contains(meDiagram)) {
+					close(false);
+				}
+			}
+
+		};
+
+		modelElementContext.addModelElementContextListener(modelElementContextListener);;
 	}
 
 	/**
@@ -822,5 +834,18 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU,
 				provider, getDiagramGraphicalViewer());
 	}
-
+	
+	private ECPModelelementContext getModelElementContext(EObject eObject) {
+		if(eObject == null) {
+			try {
+				return ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject();
+			} catch (NoWorkspaceException e) {
+				ModelUtil.logException(e);
+				return null;
+			}
+		} else {
+			return ECPWorkspaceManager.getECPProject(eObject);
+		}
+	}
+	
 }

@@ -39,9 +39,10 @@ import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
 
+import scrm.diagram.edit.policies.OpenMEEditorPolicy;
 import scrm.diagram.edit.policies.ScrmTextSelectionEditPolicy;
-import scrm.diagram.opener.MEEditorOpenerPolicy;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 import scrm.diagram.providers.ScrmParserProvider;
@@ -85,7 +86,7 @@ public class MathematicalModelName2EditPart extends CompartmentEditPart
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
@@ -95,8 +96,7 @@ public class MathematicalModelName2EditPart extends CompartmentEditPart
 				new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
 				new SCRMDiagramEditPart.NodeLabelDragPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new MEEditorOpenerPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenMEEditorPolicy());
 	}
 
 	/**

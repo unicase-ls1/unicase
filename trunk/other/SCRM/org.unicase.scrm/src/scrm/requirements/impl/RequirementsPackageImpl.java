@@ -550,6 +550,15 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getPerformance_DescribedMethod() {
+		return (EReference) performanceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDataFlow() {
 		return dataFlowEClass;
 	}
@@ -720,6 +729,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 
 		performanceEClass = createEClass(PERFORMANCE);
 		createEAttribute(performanceEClass, PERFORMANCE__PROBLEM_SIZE);
+		createEReference(performanceEClass, PERFORMANCE__DESCRIBED_METHOD);
 
 		dataFlowEClass = createEClass(DATA_FLOW);
 		createEReference(dataFlowEClass, DATA_FLOW__SPECIFIED_PROCESS);
@@ -968,6 +978,13 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 				theEcorePackage.getEString(), "problemSize", null, 0, 1,
 				Performance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPerformance_DescribedMethod(),
+				theKnowledgePackage.getNumericalMethod(),
+				theKnowledgePackage.getNumericalMethod_Performance(),
+				"describedMethod", null, 0, 1, Performance.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(dataFlowEClass, DataFlow.class, "DataFlow", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -188,11 +188,12 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setRepresentingDiagram(SCRMDiagram newRepresentingDiagram) {
 		SCRMDiagram oldRepresentingDiagram = representingDiagram;
 		representingDiagram = newRepresentingDiagram;
+		getContainedScientificKnowledge().setDiagram(representingDiagram);
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					KnowledgePackage.KNOWLEDGE_SPACE__REPRESENTING_DIAGRAM,
@@ -213,13 +214,14 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public EList<SCRMModelElement> getContainedScientificKnowledge() {
+	public SCRMSpaceContainedModelElementsList<SCRMModelElement> getContainedScientificKnowledge() {
 		if (containedScientificKnowledge == null) {
 			containedScientificKnowledge = new SCRMSpaceContainedModelElementsList<SCRMModelElement>(
 					ScientificKnowledge.class,
 					this,
 					KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE,
 					KnowledgePackage.SCIENTIFIC_KNOWLEDGE__CONTAINING_KNOWLEDGE_SPACE);
+			containedScientificKnowledge.setDiagram(getRepresentingDiagram());
 		}
 		return containedScientificKnowledge;
 	}

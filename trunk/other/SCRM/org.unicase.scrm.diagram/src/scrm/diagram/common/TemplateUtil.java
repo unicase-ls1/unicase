@@ -4,21 +4,22 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.LinkedHashMap;
+import java.util.Set;
 
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.EContentsEList.FeatureIterator;
 import org.eclipse.emf.edit.command.CopyCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -27,10 +28,6 @@ import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.Configuration;
 import scrm.SCRMDiagram;
-import scrm.SCRMModelElement;
-import scrm.ScrmFactory;
-import scrm.ScrmPackage;
-import scrm.impl.DiagramStoreException;
 
 /**
  * @author mharut
@@ -48,8 +45,6 @@ final public class TemplateUtil {
 	 * @see #getTemplateDirectoryPath()
 	 */
 	private File templateDirectory;
-	
-	private static Integer UNSET_VALUE = -1;
 	
 	public static TemplateUtil instance = new TemplateUtil();
 	
@@ -110,18 +105,19 @@ final public class TemplateUtil {
 	
 	private static Collection<EObject> gatherElementsToSave(
 			SCRMDiagram scrmDiagram) {
-		List<EObject> allElements = new LinkedList<EObject>();
+		Set<EObject> allElements = new LinkedHashSet<EObject>();
 		allElements.add(scrmDiagram);
 		for(EObject element : scrmDiagram.getElements()) {
 			if(element instanceof SCRMDiagram) {
+				SCRMDiagram containedDiagram = (SCRMDiagram) element;
 				if(!allElements.contains(element)) {
-					allElements.addAll(gatherElementsToSave((SCRMDiagram) element));
+					allElements.addAll(gatherElementsToSave(containedDiagram));
 				}
 			} else {
 				allElements.add(element);
 			}
 		}
-		List<EObject> result = new LinkedList<EObject>(allElements);
+		Set<EObject> result = new LinkedHashSet<EObject>(allElements);
 		for(EObject element : allElements) {
 			EObject container = element.eContainer();
 			if(allElements.contains(container)) {
@@ -139,7 +135,6 @@ final public class TemplateUtil {
 	 * @param project the Project to load the template into
 	 * @param resourcePath the path to the template to load from
 	 * @throws IOException if the template file is invalid
-	 * @see #copyElements(EditingDomain, Collection)
 	 */
 	public static void doLoad(final Project project, String resourcePath) throws IOException {
 		// initialize Resource to load from
@@ -150,7 +145,7 @@ final public class TemplateUtil {
 		
 		// check if the template is valid, i.e. if it contains a SCRMDiagram
 		if(!isValid(templateResource))
-			throw new IllegalArgumentException("Template file is invalid!");
+			throw new IOException("Template file is invalid!");
 		
 		final Map<EObject, EObject> elementToCopy = new LinkedHashMap<EObject, EObject>(); 
 			
@@ -162,97 +157,62 @@ final public class TemplateUtil {
 			@Override
 			protected void doRun() {
 				
-				for(EObject eObject: elementToCopy.keySet()) {
-					project.addModelElement(elementToCopy.get(eObject));
+				SCRMDiagram rootDiagram = null;
+				
+				for(EObject eObject: elementToCopy.values()) {
+					project.addModelElement(eObject);
+					if(rootDiagram == null && eObject instanceof SCRMDiagram) {
+						rootDiagram = (SCRMDiagram) eObject;
+					}
 				}
 				for(EObject originalElement : elementToCopy.keySet()) {
-						updateReferences(originalElement, elementToCopy);
+					updateReferences(originalElement, elementToCopy);
 				}
-
+				
+				// open the newly created SCRMDiagram in the Diagram Editor
+				ActionHelper.openModelElement(rootDiagram, "");
 			}
 
 			private void updateReferences(EObject originalElement,
 					Map<EObject, EObject> elementToCopy) {
-				Map<EStructuralFeature, Object> featureToCopiedObject = new LinkedHashMap<EStructuralFeature, Object>();
+
 				EObject copy = elementToCopy.get(originalElement);
-				for(FeatureIterator<EObject> featIter = (FeatureIterator<EObject>) originalElement.eCrossReferences().iterator(); featIter.hasNext();) {
-					EObject referencedObject = featIter.next();
-					EStructuralFeature feature = featIter.feature();
-					if(feature.isMany()) {
-						if(elementToCopy.containsKey(referencedObject)) {
-							if(featureToCopiedObject.containsKey(feature)) {
-								((List) featureToCopiedObject.get(feature)).add(elementToCopy.get(referencedObject));
-							} else {
-								List<EObject> objectsToSet = new LinkedList<EObject>();
-								objectsToSet.add(elementToCopy.get(referencedObject));
-								featureToCopiedObject.put(feature, objectsToSet);
+				
+				for(EReference reference : originalElement.eClass().getEAllReferences()) {
+					if(reference.isContainer()) {
+						continue;
+					}
+					if(reference.isMany()) {
+						Set<EObject> objectsToSet = new LinkedHashSet<EObject>();
+						for(EObject containedObject : (List<EObject>) originalElement.eGet(reference)) {
+							if(elementToCopy.containsKey(containedObject)) {
+								objectsToSet.add(elementToCopy.get(containedObject));
 							}
 						}
+						copy.eSet(reference, objectsToSet);
 					} else {
+						EObject referencedObject = (EObject) originalElement.eGet(reference);
 						if(elementToCopy.containsKey(referencedObject)) {
-							featureToCopiedObject.put(feature, elementToCopy.get(referencedObject));
+							copy.eSet(reference, elementToCopy.get(referencedObject));
 						} else {
-							featureToCopiedObject.put(feature, UNSET_VALUE);
+							copy.eUnset(reference);
 						}
 					}
 				}
-				for(EStructuralFeature feature : featureToCopiedObject.keySet()) {
-					Object objectToSet = featureToCopiedObject.get(feature);
-					if(objectToSet == UNSET_VALUE) {
-						copy.eUnset(feature);
-					} else {
-						copy.eSet(feature, featureToCopiedObject.get(feature));
-					}
-				}
-				
 			}
 			
 		}.run(true);
-
-		
-		// open the newly created SCRMDiagram in the Diagram Editor
-		ActionHelper.openModelElement(project.getModelElements().get(0), "");
 		
 	}
 	
 	private static void fillElementToCopyMap(
 			Resource templateResource,
 			Map<EObject, EObject> elementToCopy) {
-		for(EObject templateContent : templateResource.getContents()) {
-			EObject newElement = getCopy(templateContent, elementToCopy);
-			elementToCopy.put(templateContent, newElement);
+		for(TreeIterator<EObject> contentsIterator = templateResource.getAllContents(); contentsIterator.hasNext();) {
+			EObject templateContent = contentsIterator.next();
+			EObject copy = EcoreUtil.copy(templateContent);
+			elementToCopy.put(templateContent, copy);
 		}
-	}
-
-	private static EObject getCopy(EObject element,
-			Map<EObject, EObject> elementToCopy) {
-		EObject result;
-		if(elementToCopy.containsKey(element)) {
-			result = elementToCopy.get(element);
-		} else {
-			result = EcoreUtil.copy(element);
-			elementToCopy.put(element, result);
-		}
-		return result;
-	}
-
-	private static SCRMDiagram copyDiagram(SCRMDiagram diagram) {
-		SCRMDiagram diagramCopy = ScrmFactory.eINSTANCE.createSCRMDiagram();
-		diagramCopy.setName(diagram.getName());
-		diagramCopy.setDescription(diagram.getDescription());
-		diagramCopy.setDiagramLayout(diagram.getDiagramLayout());
-		return diagramCopy;
-	}
-
-	private static Collection<SCRMDiagram> filterDiagrams(
-			Collection<EObject> contents) {
-		List<SCRMDiagram> result = new LinkedList<SCRMDiagram>();
-		for(EObject content : contents) {
-			if(content instanceof SCRMDiagram) {
-				result.add((SCRMDiagram) content);
-			}
-		}
-		return result;
 	}
 
 	/**
@@ -286,8 +246,6 @@ final public class TemplateUtil {
 		} else {
 			return Collections.EMPTY_LIST;
 		}
-		
-		
 	}
 
 	/**
@@ -316,8 +274,6 @@ final public class TemplateUtil {
 	 * @see Configuration#getWorkspaceDirectory()
 	 */
 	public String getTemplateDirectoryPath() {
-
-		
 		return templateDirectory.getAbsolutePath();
 	}
 

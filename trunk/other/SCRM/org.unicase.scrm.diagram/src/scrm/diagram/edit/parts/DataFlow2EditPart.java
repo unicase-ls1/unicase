@@ -1,22 +1,24 @@
 package scrm.diagram.edit.parts;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
+import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConstrainedToolbarLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -29,10 +31,9 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 
+import scrm.SCRMDiagram;
 import scrm.diagram.edit.policies.DataFlow2ItemSemanticEditPolicy;
-import scrm.diagram.edit.policies.OpenDiagramEditPolicy;
-import scrm.diagram.edit.policies.ScrmTextSelectionEditPolicy;
-import scrm.diagram.opener.MEEditorOpenerPolicy;
+import scrm.diagram.edit.policies.OpenMEEditorPolicy;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -64,15 +65,14 @@ public class DataFlow2EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new DataFlow2ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new MEEditorOpenerPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenMEEditorPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -81,16 +81,23 @@ public class DataFlow2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-
-		ConstrainedToolbarLayoutEditPolicy lep = new ConstrainedToolbarLayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				if (child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE) == null) {
-					if (child instanceof ITextAwareEditPart) {
-						return new ScrmTextSelectionEditPolicy();
-					}
+				EditPolicy result = child
+						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				if (result == null) {
+					result = new NonResizableEditPolicy();
 				}
-				return super.createChildEditPolicy(child);
+				return result;
+			}
+
+			protected Command getMoveChildrenCommand(Request request) {
+				return null;
+			}
+
+			protected Command getCreateCommand(CreateRequest request) {
+				return null;
 			}
 		};
 		return lep;
@@ -111,7 +118,7 @@ public class DataFlow2EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof DataFlowName2EditPart) {
@@ -119,22 +126,14 @@ public class DataFlow2EditPart extends ShapeNodeEditPart {
 					.getFigureDataFlow_name());
 			return true;
 		}
-		if (childEditPart instanceof DataFlowDescription2EditPart) {
-			((DataFlowDescription2EditPart) childEditPart)
-					.setLabel(getPrimaryShape().getFigureDataFlow_description());
-			return true;
-		}
 		return false;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof DataFlowName2EditPart) {
-			return true;
-		}
-		if (childEditPart instanceof DataFlowDescription2EditPart) {
 			return true;
 		}
 		return false;
@@ -171,7 +170,7 @@ public class DataFlow2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(130, 65);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(120, 20);
 		return result;
 	}
 
@@ -262,91 +261,106 @@ public class DataFlow2EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
+		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
+		List<IElementType> types = new LinkedList<IElementType>();
+		switch(scrmDiagram.getDiagramType()) {
+			case DEFAULT_DIAGRAM:
+			case REQUIREMENTS_DIAGRAM:
+				types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
+		}
 		return types;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List<IElementType> getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (targetEditPart instanceof ProcessEditPart) {
-			types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
-		}
-		if (targetEditPart instanceof InputDataReadingEditPart) {
-			types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
-		}
-		if (targetEditPart instanceof DataHandlingEditPart) {
-			types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
-		}
-		if (targetEditPart instanceof ResultsOutputEditPart) {
-			types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
-		}
-		if (targetEditPart instanceof ErrorHandlingEditPart) {
-			types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
-		}
-		if (targetEditPart instanceof StatusMonitoringEditPart) {
-			types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
-		}
-		if (targetEditPart instanceof DataProcessSpaceEditPart) {
-			types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
-		}
-		if (targetEditPart instanceof StatusMonitoring2EditPart) {
-			types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
-		}
-		if (targetEditPart instanceof ResultsOutput2EditPart) {
-			types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
-		}
-		if (targetEditPart instanceof Process2EditPart) {
-			types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
-		}
-		if (targetEditPart instanceof InputDataReading2EditPart) {
-			types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
-		}
-		if (targetEditPart instanceof ErrorHandling2EditPart) {
-			types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
-		}
-		if (targetEditPart instanceof DataHandling2EditPart) {
-			types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
-		}
-		if (targetEditPart instanceof DataProcessSpace2EditPart) {
-			types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
+		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
+		List<IElementType> types = new LinkedList<IElementType>();
+		switch(scrmDiagram.getDiagramType()) {
+			case DEFAULT_DIAGRAM:
+			case REQUIREMENTS_DIAGRAM:
+				if (targetEditPart instanceof ProcessEditPart) {
+					types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
+				}
+				if (targetEditPart instanceof InputDataReadingEditPart) {
+					types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
+				}
+				if (targetEditPart instanceof DataHandlingEditPart) {
+					types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
+				}
+				if (targetEditPart instanceof ResultsOutputEditPart) {
+					types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
+				}
+				if (targetEditPart instanceof ErrorHandlingEditPart) {
+					types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
+				}
+				if (targetEditPart instanceof StatusMonitoringEditPart) {
+					types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
+				}
+				if (targetEditPart instanceof DataProcessSpaceEditPart) {
+					types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
+				}
+				if (targetEditPart instanceof StatusMonitoring2EditPart) {
+					types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
+				}
+				if (targetEditPart instanceof ResultsOutput2EditPart) {
+					types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
+				}
+				if (targetEditPart instanceof Process2EditPart) {
+					types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
+				}
+				if (targetEditPart instanceof InputDataReading2EditPart) {
+					types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
+				}
+				if (targetEditPart instanceof ErrorHandling2EditPart) {
+					types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
+				}
+				if (targetEditPart instanceof DataHandling2EditPart) {
+					types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
+				}
+				if (targetEditPart instanceof DataProcessSpace2EditPart) {
+					types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
+				}
 		}
 		return types;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == ScrmElementTypes.DataFlowSpecifiedProcess_4056) {
-			types.add(ScrmElementTypes.Process_2035);
-			types.add(ScrmElementTypes.InputDataReading_2036);
-			types.add(ScrmElementTypes.DataHandling_2037);
-			types.add(ScrmElementTypes.ResultsOutput_2038);
-			types.add(ScrmElementTypes.ErrorHandling_2039);
-			types.add(ScrmElementTypes.StatusMonitoring_2040);
-			types.add(ScrmElementTypes.DataProcessSpace_2046);
-			types.add(ScrmElementTypes.StatusMonitoring_3016);
-			types.add(ScrmElementTypes.ResultsOutput_3017);
-			types.add(ScrmElementTypes.Process_3018);
-			types.add(ScrmElementTypes.InputDataReading_3019);
-			types.add(ScrmElementTypes.ErrorHandling_3020);
-			types.add(ScrmElementTypes.DataHandling_3021);
-			types.add(ScrmElementTypes.DataProcessSpace_3022);
+		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
+		List<IElementType> types = new LinkedList<IElementType>();
+		switch(scrmDiagram.getDiagramType()) {
+			case DEFAULT_DIAGRAM:
+			case REQUIREMENTS_DIAGRAM:
+				if (relationshipType == ScrmElementTypes.DataFlowSpecifiedProcess_4056) {
+					types.add(ScrmElementTypes.Process_2035);
+					types.add(ScrmElementTypes.InputDataReading_2036);
+					types.add(ScrmElementTypes.DataHandling_2037);
+					types.add(ScrmElementTypes.ResultsOutput_2038);
+					types.add(ScrmElementTypes.ErrorHandling_2039);
+					types.add(ScrmElementTypes.StatusMonitoring_2040);
+					types.add(ScrmElementTypes.DataProcessSpace_2046);
+					types.add(ScrmElementTypes.StatusMonitoring_3016);
+					types.add(ScrmElementTypes.ResultsOutput_3017);
+					types.add(ScrmElementTypes.Process_3018);
+					types.add(ScrmElementTypes.InputDataReading_3019);
+					types.add(ScrmElementTypes.ErrorHandling_3020);
+					types.add(ScrmElementTypes.DataHandling_3021);
+					types.add(ScrmElementTypes.DataProcessSpace_3022);
+				}
 		}
 		return types;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public class DataFlowFigure extends RoundedRectangle {
 
@@ -354,51 +368,44 @@ public class DataFlow2EditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		private WrappingLabel fFigureDataFlow_name;
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fFigureDataFlow_description;
 
 		/**
 		 * @generated
 		 */
 		public DataFlowFigure() {
 
-			ToolbarLayout layoutThis = new ToolbarLayout();
-			layoutThis.setStretchMinorAxis(true);
-			layoutThis.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);
-
-			layoutThis.setSpacing(5);
-			layoutThis.setVertical(true);
-
+			GridLayout layoutThis = new GridLayout();
+			layoutThis.numColumns = 1;
+			layoutThis.makeColumnsEqualWidth = true;
 			this.setLayoutManager(layoutThis);
 
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(32),
 					getMapMode().DPtoLP(32)));
 			this.setBackgroundColor(THIS_BACK);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(130),
-					getMapMode().DPtoLP(65)));
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(120),
+					getMapMode().DPtoLP(20)));
 			createContents();
 		}
 
 		/**
-		 * @generated NOT
+		 * @generated NOT: enabled textWrap
 		 */
 		private void createContents() {
 
 			fFigureDataFlow_name = new WrappingLabel();
 			fFigureDataFlow_name.setText("");
-			fFigureDataFlow_name.setTextWrap(true);
 
 			fFigureDataFlow_name.setFont(FFIGUREDATAFLOW_NAME_FONT);
 
-			this.add(fFigureDataFlow_name);
-
-			fFigureDataFlow_description = new WrappingLabel();
-			fFigureDataFlow_description.setText("");
-			fFigureDataFlow_description.setTextWrap(true);
-
-			this.add(fFigureDataFlow_description);
+			GridData constraintFFigureDataFlow_name = new GridData();
+			constraintFFigureDataFlow_name.verticalAlignment = GridData.BEGINNING;
+			constraintFFigureDataFlow_name.horizontalAlignment = GridData.CENTER;
+			constraintFFigureDataFlow_name.horizontalIndent = 0;
+			constraintFFigureDataFlow_name.horizontalSpan = 1;
+			constraintFFigureDataFlow_name.verticalSpan = 1;
+			constraintFFigureDataFlow_name.grabExcessHorizontalSpace = false;
+			constraintFFigureDataFlow_name.grabExcessVerticalSpace = false;
+			this.add(fFigureDataFlow_name, constraintFFigureDataFlow_name);
 
 		}
 
@@ -407,13 +414,6 @@ public class DataFlow2EditPart extends ShapeNodeEditPart {
 		 */
 		public WrappingLabel getFigureDataFlow_name() {
 			return fFigureDataFlow_name;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getFigureDataFlow_description() {
-			return fFigureDataFlow_description;
 		}
 
 	}

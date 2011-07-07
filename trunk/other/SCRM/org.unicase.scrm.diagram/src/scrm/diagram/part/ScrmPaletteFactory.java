@@ -1,7 +1,6 @@
 package scrm.diagram.part;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.gef.Tool;
@@ -29,7 +28,8 @@ public class ScrmPaletteFactory {
 	private final DiagramType diagramType;
 
 	/**
-	 * @param scrmDiagram
+	 * Creates a palette factory for a certain <code>scrmDiagram</code> of its type.
+	 * @param scrmDiagram the SCRMDiagram the palette is created for
 	 * @generated NOT
 	 */
 	public ScrmPaletteFactory(SCRMDiagram scrmDiagram) {
@@ -37,11 +37,27 @@ public class ScrmPaletteFactory {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public void fillPalette(PaletteRoot paletteRoot) {
-		paletteRoot.add(createKnowledge1Group());
-		paletteRoot.add(createRequirements2Group());
+		switch(diagramType) {
+		case KNOWLEDGE_DIAGRAM:
+			paletteRoot.add(createKnowledge1Group());
+			break;
+			case DEFAULT_DIAGRAM:
+				paletteRoot.add(createKnowledge1Group());
+			case REQUIREMENTS_DIAGRAM:
+				paletteRoot.add(createRequirements2Group());
+				break;
+			case DATA_PROCESS_DIAGRAM:
+				PaletteContainer requirementsGroup = createRequirements2Group();
+				requirementsGroup.setLabel(Messages.DataProcessSteps3Group_title);
+				requirementsGroup.setDescription(Messages.DataProcessSteps3Group_desc);
+				List nonDataProcessRequirements = new ArrayList(requirementsGroup.getChildren().subList(0, 10));
+				requirementsGroup.getChildren().removeAll(nonDataProcessRequirements);
+				paletteRoot.add(requirementsGroup);
+		}
+		
 	}
 
 	/**

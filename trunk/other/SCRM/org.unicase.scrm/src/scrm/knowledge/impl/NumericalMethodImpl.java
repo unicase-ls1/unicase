@@ -514,13 +514,46 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPerformance(Performance newPerformance) {
+	public NotificationChain basicSetPerformance(Performance newPerformance,
+			NotificationChain msgs) {
 		Performance oldPerformance = performance;
 		performance = newPerformance;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE,
+					oldPerformance, newPerformance);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPerformance(Performance newPerformance) {
+		if (newPerformance != performance) {
+			NotificationChain msgs = null;
+			if (performance != null)
+				msgs = ((InternalEObject) performance).eInverseRemove(this,
+						RequirementsPackage.PERFORMANCE__DESCRIBED_METHOD,
+						Performance.class, msgs);
+			if (newPerformance != null)
+				msgs = ((InternalEObject) newPerformance).eInverseAdd(this,
+						RequirementsPackage.PERFORMANCE__DESCRIBED_METHOD,
+						Performance.class, msgs);
+			msgs = basicSetPerformance(newPerformance, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE,
-					oldPerformance, performance));
+					newPerformance, newPerformance));
 	}
 
 	/**
@@ -606,6 +639,12 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 						KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS,
 						MathematicalModel.class, msgs);
 			return basicSetMathematicalModel((MathematicalModel) otherEnd, msgs);
+		case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
+			if (performance != null)
+				msgs = ((InternalEObject) performance).eInverseRemove(this,
+						RequirementsPackage.PERFORMANCE__DESCRIBED_METHOD,
+						Performance.class, msgs);
+			return basicSetPerformance((Performance) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -630,6 +669,8 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 			return basicSetRealizingRequirement(null, msgs);
 		case KnowledgePackage.NUMERICAL_METHOD__MATHEMATICAL_MODEL:
 			return basicSetMathematicalModel(null, msgs);
+		case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
+			return basicSetPerformance(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}

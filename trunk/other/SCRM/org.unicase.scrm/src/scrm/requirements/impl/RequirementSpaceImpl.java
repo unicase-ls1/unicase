@@ -66,7 +66,7 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements
 	 * @generated NOT
 	 * @ordered
 	 */
-	protected EList<SCRMModelElement> containedInformationofRequirements;
+	protected SCRMSpaceContainedModelElementsList<SCRMModelElement> containedInformationofRequirements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -163,13 +163,15 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public EList<SCRMModelElement> getContainedInformationofRequirements() {
+	public SCRMSpaceContainedModelElementsList<SCRMModelElement> getContainedInformationofRequirements() {
 		if (containedInformationofRequirements == null) {
 			containedInformationofRequirements = new SCRMSpaceContainedModelElementsList<SCRMModelElement>(
 					IRequirement.class,
 					this,
 					RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
 					RequirementsPackage.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE);
+			containedInformationofRequirements
+					.setDiagram(getRepresentingDiagram());
 		}
 		return containedInformationofRequirements;
 	}
@@ -207,11 +209,12 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setRepresentingDiagram(SCRMDiagram newRepresentingDiagram) {
 		SCRMDiagram oldRepresentingDiagram = representingDiagram;
 		representingDiagram = newRepresentingDiagram;
+		getContainedInformationofRequirements().setDiagram(representingDiagram);
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(
 					this,

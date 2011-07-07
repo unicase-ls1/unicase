@@ -474,9 +474,9 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canCreateNumericalMethodPerformance_4017(
-				NumericalMethod source, Performance target) {
+				Performance source, NumericalMethod target) {
 			if (source != null) {
-				if (source.getPerformance() != null) {
+				if (source.getDescribedMethod() != null) {
 					return false;
 				}
 			}
@@ -764,7 +764,7 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canExistNumericalMethodPerformance_4017(
-				NumericalMethod source, Performance target) {
+				Performance source, NumericalMethod target) {
 			return true;
 		}
 

@@ -392,6 +392,34 @@ public class ScrmDiagramUpdater {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
 				continue;
 			}
+			if (visualID == StatusMonitoring2EditPart.VISUAL_ID) {
+				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == ResultsOutput2EditPart.VISUAL_ID) {
+				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == Process2EditPart.VISUAL_ID) {
+				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == InputDataReading2EditPart.VISUAL_ID) {
+				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == ErrorHandling2EditPart.VISUAL_ID) {
+				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == DataHandling2EditPart.VISUAL_ID) {
+				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == DataProcessSpace2EditPart.VISUAL_ID) {
+				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				continue;
+			}
 		}
 		return result;
 	}
@@ -454,6 +482,34 @@ public class ScrmDiagramUpdater {
 				continue;
 			}
 			if (visualID == RequirementSpace2EditPart.VISUAL_ID) {
+				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == StatusMonitoring2EditPart.VISUAL_ID) {
+				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == ResultsOutput2EditPart.VISUAL_ID) {
+				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == Process2EditPart.VISUAL_ID) {
+				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == InputDataReading2EditPart.VISUAL_ID) {
+				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == ErrorHandling2EditPart.VISUAL_ID) {
+				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == DataHandling2EditPart.VISUAL_ID) {
+				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == DataProcessSpace2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -902,7 +958,6 @@ public class ScrmDiagramUpdater {
 		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_SolvedProblem_4057(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_Dependencies_4015(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_Performance_4017(modelElement));
 		return result;
 	}
 
@@ -990,6 +1045,7 @@ public class ScrmDiagramUpdater {
 		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_RealizedMethod_4050(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_SpecifiedFeature_4052(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_RefinedRequirement_4054(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_Performance_4017(modelElement));
 		return result;
 	}
 
@@ -1154,7 +1210,6 @@ public class ScrmDiagramUpdater {
 		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_SolvedProblem_4057(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_Dependencies_4015(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_Performance_4017(modelElement));
 		return result;
 	}
 
@@ -1255,6 +1310,7 @@ public class ScrmDiagramUpdater {
 		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_RealizedMethod_4050(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_SpecifiedFeature_4052(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_RefinedRequirement_4054(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_Performance_4017(modelElement));
 		return result;
 	}
 
@@ -1443,6 +1499,8 @@ public class ScrmDiagramUpdater {
 				modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Requirement_RealizedMethod_4050(
 				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_Performance_4017(
+				modelElement, crossReferences));
 		return result;
 	}
 
@@ -1570,8 +1628,6 @@ public class ScrmDiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_Performance_4017(
-				modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Requirement_RefinedRequirement_4054(
 				modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_DataDefinition_DefinedRequirement_4055(
@@ -1782,6 +1838,8 @@ public class ScrmDiagramUpdater {
 				modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Requirement_RealizedMethod_4050(
 				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_Performance_4017(
+				modelElement, crossReferences));
 		return result;
 	}
 
@@ -1894,8 +1952,6 @@ public class ScrmDiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_NumericalMethod_Performance_4017(
-				modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Requirement_RefinedRequirement_4054(
 				modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_DataDefinition_DefinedRequirement_4055(
@@ -2140,7 +2196,6 @@ public class ScrmDiagramUpdater {
 		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_SolvedProblem_4057(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_Dependencies_4015(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_Performance_4017(modelElement));
 		return result;
 	}
 
@@ -2228,6 +2283,7 @@ public class ScrmDiagramUpdater {
 		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_RealizedMethod_4050(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_SpecifiedFeature_4052(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_RefinedRequirement_4054(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_Performance_4017(modelElement));
 		return result;
 	}
 
@@ -2392,7 +2448,6 @@ public class ScrmDiagramUpdater {
 		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_SolvedProblem_4057(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_Dependencies_4015(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_Performance_4017(modelElement));
 		return result;
 	}
 
@@ -2493,6 +2548,7 @@ public class ScrmDiagramUpdater {
 		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_RealizedMethod_4050(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_SpecifiedFeature_4052(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Requirement_RefinedRequirement_4054(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_NumericalMethod_Performance_4017(modelElement));
 		return result;
 	}
 
@@ -2808,7 +2864,7 @@ public class ScrmDiagramUpdater {
 	 * @generated
 	 */
 	private static Collection<ScrmLinkDescriptor> getIncomingFeatureModelFacetLinks_NumericalMethod_Performance_4017(
-			Performance target,
+			NumericalMethod target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferences
@@ -3196,9 +3252,9 @@ public class ScrmDiagramUpdater {
 	 * @generated
 	 */
 	private static Collection<ScrmLinkDescriptor> getOutgoingFeatureModelFacetLinks_NumericalMethod_Performance_4017(
-			NumericalMethod source) {
+			Performance source) {
 		LinkedList<ScrmLinkDescriptor> result = new LinkedList<ScrmLinkDescriptor>();
-		Performance destination = source.getPerformance();
+		NumericalMethod destination = source.getDescribedMethod();
 		if (destination == null) {
 			return result;
 		}

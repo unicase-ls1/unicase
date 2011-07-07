@@ -1,7 +1,9 @@
 package scrm.diagram.edit.parts;
 
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.LabeledContainer;
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -26,8 +28,7 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 
 import scrm.diagram.edit.policies.KnowledgeSpace2ItemSemanticEditPolicy;
-import scrm.diagram.edit.policies.OpenDiagramEditPolicy;
-import scrm.diagram.opener.OpenSCRMSpaceEditPolicy;
+import scrm.diagram.edit.policies.OpenSCRMSpaceEditPolicy;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 
 /**
@@ -58,7 +59,7 @@ public class KnowledgeSpace2EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
@@ -120,6 +121,14 @@ public class KnowledgeSpace2EditPart extends ShapeNodeEditPart {
 					.setLabel(getPrimaryShape().getFigureKnowledgeSpace_name());
 			return true;
 		}
+		if (childEditPart instanceof KnowledgeSpaceKnowledgeSpaceCompartment2EditPart) {
+			IFigure pane = getPrimaryShape()
+					.getFigureKnowledgeSpace_containedScientificKnowledge();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.add(((KnowledgeSpaceKnowledgeSpaceCompartment2EditPart) childEditPart)
+					.getFigure());
+			return true;
+		}
 		return false;
 	}
 
@@ -128,6 +137,14 @@ public class KnowledgeSpace2EditPart extends ShapeNodeEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof KnowledgeSpaceName2EditPart) {
+			return true;
+		}
+		if (childEditPart instanceof KnowledgeSpaceKnowledgeSpaceCompartment2EditPart) {
+			IFigure pane = getPrimaryShape()
+					.getFigureKnowledgeSpace_containedScientificKnowledge();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.remove(((KnowledgeSpaceKnowledgeSpaceCompartment2EditPart) childEditPart)
+					.getFigure());
 			return true;
 		}
 		return false;
@@ -157,6 +174,10 @@ public class KnowledgeSpace2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+		if (editPart instanceof KnowledgeSpaceKnowledgeSpaceCompartment2EditPart) {
+			return getPrimaryShape()
+					.getFigureKnowledgeSpace_containedScientificKnowledge();
+		}
 		return getContentPane();
 	}
 
@@ -164,7 +185,7 @@ public class KnowledgeSpace2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(80, 60);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(150, 120);
 		return result;
 	}
 
@@ -257,7 +278,7 @@ public class KnowledgeSpace2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public class KnowledgeSpaceFigure extends LabeledContainer {
+	public class KnowledgeSpaceFigure extends RectangleFigure {
 
 		/**
 		 * @generated
@@ -267,27 +288,57 @@ public class KnowledgeSpace2EditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
+		private RectangleFigure fFigureKnowledgeSpace_containedScientificKnowledge;
+
+		/**
+		 * @generated
+		 */
 		public KnowledgeSpaceFigure() {
 
-			this.setBackgroundColor(THIS_BACK);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(80),
-					getMapMode().DPtoLP(60)));
+			GridLayout layoutThis = new GridLayout();
+			layoutThis.numColumns = 1;
+			layoutThis.makeColumnsEqualWidth = true;
+			this.setLayoutManager(layoutThis);
 
+			this.setBackgroundColor(THIS_BACK);
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(150),
+					getMapMode().DPtoLP(120)));
 			createContents();
 		}
 
 		/**
-		 * @generated NOT
+		 * @generated
 		 */
 		private void createContents() {
 
 			fFigureKnowledgeSpace_name = new WrappingLabel();
 			fFigureKnowledgeSpace_name.setText("");
-			fFigureKnowledgeSpace_name.setTextWrap(true);
 
 			fFigureKnowledgeSpace_name.setFont(FFIGUREKNOWLEDGESPACE_NAME_FONT);
 
-			this.add(fFigureKnowledgeSpace_name);
+			GridData constraintFFigureKnowledgeSpace_name = new GridData();
+			constraintFFigureKnowledgeSpace_name.verticalAlignment = GridData.BEGINNING;
+			constraintFFigureKnowledgeSpace_name.horizontalAlignment = GridData.CENTER;
+			constraintFFigureKnowledgeSpace_name.horizontalIndent = 0;
+			constraintFFigureKnowledgeSpace_name.horizontalSpan = 1;
+			constraintFFigureKnowledgeSpace_name.verticalSpan = 1;
+			constraintFFigureKnowledgeSpace_name.grabExcessHorizontalSpace = false;
+			constraintFFigureKnowledgeSpace_name.grabExcessVerticalSpace = false;
+			this.add(fFigureKnowledgeSpace_name,
+					constraintFFigureKnowledgeSpace_name);
+
+			fFigureKnowledgeSpace_containedScientificKnowledge = new RectangleFigure();
+
+			GridData constraintFFigureKnowledgeSpace_containedScientificKnowledge = new GridData();
+			constraintFFigureKnowledgeSpace_containedScientificKnowledge.verticalAlignment = GridData.FILL;
+			constraintFFigureKnowledgeSpace_containedScientificKnowledge.horizontalAlignment = GridData.FILL;
+			constraintFFigureKnowledgeSpace_containedScientificKnowledge.horizontalIndent = 0;
+			constraintFFigureKnowledgeSpace_containedScientificKnowledge.horizontalSpan = 1;
+			constraintFFigureKnowledgeSpace_containedScientificKnowledge.verticalSpan = 1;
+			constraintFFigureKnowledgeSpace_containedScientificKnowledge.grabExcessHorizontalSpace = true;
+			constraintFFigureKnowledgeSpace_containedScientificKnowledge.grabExcessVerticalSpace = true;
+			this.add(fFigureKnowledgeSpace_containedScientificKnowledge,
+					constraintFFigureKnowledgeSpace_containedScientificKnowledge);
 
 		}
 
@@ -298,12 +349,19 @@ public class KnowledgeSpace2EditPart extends ShapeNodeEditPart {
 			return fFigureKnowledgeSpace_name;
 		}
 
+		/**
+		 * @generated
+		 */
+		public RectangleFigure getFigureKnowledgeSpace_containedScientificKnowledge() {
+			return fFigureKnowledgeSpace_containedScientificKnowledge;
+		}
+
 	}
 
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 100, 100, 100);
+	static final Color THIS_BACK = new Color(null, 150, 150, 150);
 
 	/**
 	 * @generated

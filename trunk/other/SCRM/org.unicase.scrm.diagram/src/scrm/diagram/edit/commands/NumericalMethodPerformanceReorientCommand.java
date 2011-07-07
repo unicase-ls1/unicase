@@ -113,8 +113,8 @@ public class NumericalMethodPerformanceReorientCommand extends
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().setPerformance(null);
-		getNewSource().setPerformance(getOldTarget());
+		getOldSource().setDescribedMethod(null);
+		getNewSource().setDescribedMethod(getOldTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -122,35 +122,35 @@ public class NumericalMethodPerformanceReorientCommand extends
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().setPerformance(getNewTarget());
+		getOldSource().setDescribedMethod(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected NumericalMethod getOldSource() {
-		return (NumericalMethod) referenceOwner;
+	protected Performance getOldSource() {
+		return (Performance) referenceOwner;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected NumericalMethod getNewSource() {
-		return (NumericalMethod) newEnd;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Performance getOldTarget() {
-		return (Performance) oldEnd;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Performance getNewTarget() {
+	protected Performance getNewSource() {
 		return (Performance) newEnd;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected NumericalMethod getOldTarget() {
+		return (NumericalMethod) oldEnd;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected NumericalMethod getNewTarget() {
+		return (NumericalMethod) newEnd;
 	}
 }

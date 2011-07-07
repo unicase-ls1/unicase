@@ -40,8 +40,8 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 
+import scrm.diagram.edit.policies.OpenSCRMSpaceEditPolicy;
 import scrm.diagram.edit.policies.ScrmTextSelectionEditPolicy;
-import scrm.diagram.opener.MEEditorOpenerPolicy;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 import scrm.diagram.providers.ScrmParserProvider;
@@ -49,13 +49,13 @@ import scrm.diagram.providers.ScrmParserProvider;
 /**
  * @generated
  */
-public class HardwarePlatform2EditPart extends CompartmentEditPart implements
+public class DataProcessSpaceNameEditPart extends CompartmentEditPart implements
 		ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5115;
+	public static final int VISUAL_ID = 5142;
 
 	/**
 	 * @generated
@@ -80,12 +80,12 @@ public class HardwarePlatform2EditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public HardwarePlatform2EditPart(View view) {
+	public DataProcessSpaceNameEditPart(View view) {
 		super(view);
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
@@ -96,7 +96,7 @@ public class HardwarePlatform2EditPart extends CompartmentEditPart implements
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
 				new SCRMDiagramEditPart.NodeLabelDragPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new MEEditorOpenerPolicy());
+				new OpenSCRMSpaceEditPolicy());
 	}
 
 	/**
@@ -180,7 +180,11 @@ public class HardwarePlatform2EditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		return null;
+		EObject parserElement = getParserElement();
+		if (parserElement == null) {
+			return null;
+		}
+		return ScrmElementTypes.getImage(parserElement.eClass());
 	}
 
 	/**
@@ -295,10 +299,10 @@ public class HardwarePlatform2EditPart extends CompartmentEditPart implements
 		if (parser == null) {
 			parser = ScrmParserProvider
 					.getParser(
-							ScrmElementTypes.Hardware_3010,
+							ScrmElementTypes.DataProcessSpace_2046,
 							getParserElement(),
 							ScrmVisualIDRegistry
-									.getType(scrm.diagram.edit.parts.HardwarePlatform2EditPart.VISUAL_ID));
+									.getType(scrm.diagram.edit.parts.DataProcessSpaceNameEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -504,7 +508,7 @@ public class HardwarePlatform2EditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return getPrimaryView();
+		return (View) getModel();
 	}
 
 	/**

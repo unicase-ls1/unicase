@@ -27,8 +27,6 @@
         eType="#//SCRMModelElement" transient="true" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramLayout" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramType" eType="#//DiagramType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="previousDiagram" eType="#//SCRMDiagram"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="nextDiagram" eType="#//SCRMDiagram"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="DiagramType">
     <eLiterals name="DefaultDiagram"/>
@@ -163,7 +161,8 @@
           <details key="priority" value="20"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="performance" eType="#//requirements/Performance">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="performance" eType="#//requirements/Performance"
+          eOpposite="#//requirements/Performance/describedMethod">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="position" value="left"/>
           <details key="priority" value="30"/>
@@ -413,6 +412,8 @@
           <details key="priority" value="5"/>
         </eAnnotations>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="describedMethod" eType="#//knowledge/NumericalMethod"
+          eOpposite="#//knowledge/NumericalMethod/performance"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DataFlow" eSuperTypes="#//requirements/IRequirement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="specifiedProcess" eType="#//requirements/dataProcess/Process"

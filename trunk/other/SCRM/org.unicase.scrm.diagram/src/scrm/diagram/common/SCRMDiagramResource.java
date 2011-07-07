@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.xmi.DOMHandler;
 import org.eclipse.emf.ecore.xmi.DOMHelper;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xml.type.AnyType;
-import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.unicase.ui.common.commands.ECPCommand;
@@ -29,6 +28,8 @@ import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 
 import scrm.SCRMDiagram;
+import scrm.diagram.edit.parts.SCRMDiagramEditPart;
+import scrm.diagram.part.ScrmDiagramEditorPlugin;
 import scrm.impl.DiagramLoadException;
 
 public class SCRMDiagramResource extends ResourceImpl implements Resource, Resource.Factory, Resource.Internal,
@@ -85,8 +86,8 @@ public class SCRMDiagramResource extends ResourceImpl implements Resource, Resou
 			return;
 		}
 
-		diagram = ViewService.createDiagram(scrmDiagram, "Scrm",
-				PreferencesHint.USE_DEFAULTS);
+		diagram = ViewService.createDiagram(scrmDiagram, SCRMDiagramEditPart.MODEL_ID,
+				ScrmDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 
 		diagram.setElement(scrmDiagram);
 

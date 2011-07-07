@@ -44,10 +44,10 @@ public class NumericalMethodPerformanceCreateCommand extends EditElementCommand 
 		if (source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof NumericalMethod) {
+		if (source != null && false == source instanceof Performance) {
 			return false;
 		}
-		if (target != null && false == target instanceof Performance) {
+		if (target != null && false == target instanceof NumericalMethod) {
 			return false;
 		}
 		if (getSource() == null) {
@@ -70,7 +70,7 @@ public class NumericalMethodPerformanceCreateCommand extends EditElementCommand 
 		}
 
 		if (getSource() != null && getTarget() != null) {
-			getSource().setPerformance(getTarget());
+			getSource().setDescribedMethod(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
 
@@ -86,14 +86,14 @@ public class NumericalMethodPerformanceCreateCommand extends EditElementCommand 
 	/**
 	 * @generated
 	 */
-	protected NumericalMethod getSource() {
-		return (NumericalMethod) source;
+	protected Performance getSource() {
+		return (Performance) source;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Performance getTarget() {
-		return (Performance) target;
+	protected NumericalMethod getTarget() {
+		return (NumericalMethod) target;
 	}
 }

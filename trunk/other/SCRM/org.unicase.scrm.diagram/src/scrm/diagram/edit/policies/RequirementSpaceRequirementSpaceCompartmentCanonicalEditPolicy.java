@@ -24,12 +24,19 @@ import org.eclipse.gmf.runtime.notation.View;
 import scrm.diagram.edit.parts.Constraint2EditPart;
 import scrm.diagram.edit.parts.DataDefinition2EditPart;
 import scrm.diagram.edit.parts.DataFlow2EditPart;
+import scrm.diagram.edit.parts.DataHandling2EditPart;
+import scrm.diagram.edit.parts.DataProcessSpace2EditPart;
+import scrm.diagram.edit.parts.ErrorHandling2EditPart;
 import scrm.diagram.edit.parts.Feature2EditPart;
 import scrm.diagram.edit.parts.Hardware2EditPart;
+import scrm.diagram.edit.parts.InputDataReading2EditPart;
 import scrm.diagram.edit.parts.Performance2EditPart;
+import scrm.diagram.edit.parts.Process2EditPart;
 import scrm.diagram.edit.parts.Requirement2EditPart;
 import scrm.diagram.edit.parts.RequirementSpace2EditPart;
+import scrm.diagram.edit.parts.ResultsOutput2EditPart;
 import scrm.diagram.edit.parts.SoftwareInterface2EditPart;
+import scrm.diagram.edit.parts.StatusMonitoring2EditPart;
 import scrm.diagram.edit.parts.UserInterface2EditPart;
 import scrm.diagram.part.ScrmDiagramUpdater;
 import scrm.diagram.part.ScrmNodeDescriptor;
@@ -102,6 +109,13 @@ public class RequirementSpaceRequirementSpaceCompartmentCanonicalEditPolicy
 		case SoftwareInterface2EditPart.VISUAL_ID:
 		case UserInterface2EditPart.VISUAL_ID:
 		case RequirementSpace2EditPart.VISUAL_ID:
+		case StatusMonitoring2EditPart.VISUAL_ID:
+		case ResultsOutput2EditPart.VISUAL_ID:
+		case Process2EditPart.VISUAL_ID:
+		case InputDataReading2EditPart.VISUAL_ID:
+		case ErrorHandling2EditPart.VISUAL_ID:
+		case DataHandling2EditPart.VISUAL_ID:
+		case DataProcessSpace2EditPart.VISUAL_ID:
 			return true;
 		}
 		return false;

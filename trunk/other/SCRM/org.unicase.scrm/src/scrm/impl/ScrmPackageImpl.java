@@ -235,24 +235,6 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSCRMDiagram_PreviousDiagram() {
-		return (EReference) scrmDiagramEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSCRMDiagram_NextDiagram() {
-		return (EReference) scrmDiagramEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getSCRMSpace() {
 		return scrmSpaceEClass;
 	}
@@ -324,8 +306,6 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 		createEReference(scrmDiagramEClass, SCRM_DIAGRAM__NEW_ELEMENTS);
 		createEAttribute(scrmDiagramEClass, SCRM_DIAGRAM__DIAGRAM_LAYOUT);
 		createEAttribute(scrmDiagramEClass, SCRM_DIAGRAM__DIAGRAM_TYPE);
-		createEReference(scrmDiagramEClass, SCRM_DIAGRAM__PREVIOUS_DIAGRAM);
-		createEReference(scrmDiagramEClass, SCRM_DIAGRAM__NEXT_DIAGRAM);
 
 		scrmSpaceEClass = createEClass(SCRM_SPACE);
 		createEReference(scrmSpaceEClass, SCRM_SPACE__REPRESENTING_DIAGRAM);
@@ -419,16 +399,6 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 				"diagramType", null, 0, 1, SCRMDiagram.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEReference(getSCRMDiagram_PreviousDiagram(), this.getSCRMDiagram(),
-				null, "previousDiagram", null, 0, 1, SCRMDiagram.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getSCRMDiagram_NextDiagram(), this.getSCRMDiagram(),
-				null, "nextDiagram", null, 0, 1, SCRMDiagram.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
 
 		initEClass(scrmSpaceEClass, SCRMSpace.class, "SCRMSpace", IS_ABSTRACT,
 				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

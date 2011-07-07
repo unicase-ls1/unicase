@@ -244,6 +244,9 @@
   <nodeTraces
       visualID="2045"
       queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements' and _eClass_.name = 'RequirementSpace') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm' and _eClass_.name = 'SCRMDiagram') and _containmentMF_.name = 'newElements') and ( let _childMF_:ecore::EStructuralFeature = modelFacet.childMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _childMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm' and _eClass_.name = 'SCRMDiagram') and _childMF_.name = 'elements')">
+    <nodeLabelTraces
+        visualID="5140"
+        queryText="true"/>
     <compartmentTraces
         visualID="7003"
         queryText="true"/>
@@ -251,6 +254,9 @@
   <nodeTraces
       visualID="2046"
       queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements/dataProcess' and _eClass_.name = 'DataProcessSpace') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm' and _eClass_.name = 'SCRMDiagram') and _containmentMF_.name = 'newElements') and ( let _childMF_:ecore::EStructuralFeature = modelFacet.childMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _childMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm' and _eClass_.name = 'SCRMDiagram') and _childMF_.name = 'elements')">
+    <nodeLabelTraces
+        visualID="5142"
+        queryText="true"/>
     <compartmentTraces
         visualID="7005"
         queryText="true"/>
@@ -437,6 +443,9 @@
   <childNodeTraces
       visualID="3015"
       queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements' and _eClass_.name = 'RequirementSpace') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements' and _eClass_.name = 'RequirementSpace') and _containmentMF_.name = 'containedInformationofRequirements')">
+    <nodeLabelTraces
+        visualID="5139"
+        queryText="true"/>
     <compartmentTraces
         visualID="7004"
         queryText="true"/>
@@ -504,8 +513,81 @@
   <childNodeTraces
       visualID="3022"
       queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements/dataProcess' and _eClass_.name = 'DataProcessSpace') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements/dataProcess' and _eClass_.name = 'DataProcessSpace') and _containmentMF_.name = 'containedDataProcessSteps')">
+    <nodeLabelTraces
+        visualID="5141"
+        queryText="true"/>
     <compartmentTraces
         visualID="7006"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3023"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements/dataProcess' and _eClass_.name = 'StatusMonitoring') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements' and _eClass_.name = 'RequirementSpace') and _containmentMF_.name = 'containedInformationofRequirements')">
+    <nodeLabelTraces
+        visualID="5143"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5144"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3024"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements/dataProcess' and _eClass_.name = 'ResultsOutput') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements' and _eClass_.name = 'RequirementSpace') and _containmentMF_.name = 'containedInformationofRequirements')">
+    <nodeLabelTraces
+        visualID="5145"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5146"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3025"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements/dataProcess' and _eClass_.name = 'Process') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements' and _eClass_.name = 'RequirementSpace') and _containmentMF_.name = 'containedInformationofRequirements')">
+    <nodeLabelTraces
+        visualID="5147"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5148"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3026"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements/dataProcess' and _eClass_.name = 'InputDataReading') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements' and _eClass_.name = 'RequirementSpace') and _containmentMF_.name = 'containedInformationofRequirements')">
+    <nodeLabelTraces
+        visualID="5149"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5150"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3027"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements/dataProcess' and _eClass_.name = 'ErrorHandling') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements' and _eClass_.name = 'RequirementSpace') and _containmentMF_.name = 'containedInformationofRequirements')">
+    <nodeLabelTraces
+        visualID="5151"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5152"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3028"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements/dataProcess' and _eClass_.name = 'DataHandling') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements' and _eClass_.name = 'RequirementSpace') and _containmentMF_.name = 'containedInformationofRequirements')">
+    <nodeLabelTraces
+        visualID="5153"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5154"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3029"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements/dataProcess' and _eClass_.name = 'DataProcessSpace') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements' and _eClass_.name = 'RequirementSpace') and _containmentMF_.name = 'containedInformationofRequirements')">
+    <nodeLabelTraces
+        visualID="5155"
+        queryText="true"/>
+    <compartmentTraces
+        visualID="7007"
         queryText="true"/>
   </childNodeTraces>
   <linkTraces

@@ -26,13 +26,20 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 
+import scrm.diagram.edit.parts.DataProcessSpaceDataProcessSpaceCompartment2EditPart;
+import scrm.diagram.edit.parts.DataProcessSpaceDataProcessSpaceCompartmentEditPart;
+import scrm.diagram.edit.parts.KnowledgeSpaceKnowledgeSpaceCompartment2EditPart;
+import scrm.diagram.edit.parts.KnowledgeSpaceKnowledgeSpaceCompartmentEditPart;
+import scrm.diagram.edit.parts.RequirementSpaceRequirementSpaceCompartment2EditPart;
+import scrm.diagram.edit.parts.RequirementSpaceRequirementSpaceCompartmentEditPart;
+
 /**
  * @author schroech, denglerm
  */
 public final class EditPartUtility {
 
 	private EditPartUtility() {
-		// TODO Auto-generated constructor stub
+		// private constructor: static methods only
 	}
 
 	/**
@@ -233,5 +240,18 @@ public final class EditPartUtility {
 			}
 		}
 		return elements;
+	}
+	
+	public static boolean isSubCompartment(EditPart editPart) {
+		if(editPart instanceof KnowledgeSpaceKnowledgeSpaceCompartmentEditPart
+				|| editPart instanceof KnowledgeSpaceKnowledgeSpaceCompartment2EditPart)
+			return true;
+		if(editPart instanceof RequirementSpaceRequirementSpaceCompartmentEditPart
+				|| editPart instanceof RequirementSpaceRequirementSpaceCompartment2EditPart)
+			return true;
+		if(editPart instanceof DataProcessSpaceDataProcessSpaceCompartmentEditPart
+				|| editPart instanceof DataProcessSpaceDataProcessSpaceCompartment2EditPart)
+			return true;
+		return false;
 	}
 }
