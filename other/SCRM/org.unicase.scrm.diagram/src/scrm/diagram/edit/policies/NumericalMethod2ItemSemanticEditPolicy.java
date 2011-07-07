@@ -147,8 +147,7 @@ public class NumericalMethod2ItemSemanticEditPolicy extends
 		}
 		if (ScrmElementTypes.NumericalMethodPerformance_4017 == req
 				.getElementType()) {
-			return getGEFWrapper(new NumericalMethodPerformanceCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return null;
 		}
 		return null;
 	}
@@ -178,7 +177,8 @@ public class NumericalMethod2ItemSemanticEditPolicy extends
 		}
 		if (ScrmElementTypes.NumericalMethodPerformance_4017 == req
 				.getElementType()) {
-			return null;
+			return getGEFWrapper(new NumericalMethodPerformanceCreateCommand(
+					req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}

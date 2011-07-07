@@ -1,4 +1,4 @@
-package scrm.diagram.commands;
+package scrm.diagram.handlers;
 
 import java.io.IOException;
 
@@ -15,7 +15,6 @@ import org.unicase.metamodel.Project;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.WorkspaceUtil;
 
-import scrm.diagram.common.CopyOfTemplateUtil;
 import scrm.diagram.common.TemplateUtil;
 
 /**
@@ -37,7 +36,7 @@ public class LoadTemplateHandler extends AbstractHandler {
 		
 		// obtain the default directory to load files from
 		String templatePath = TemplateUtil.instance.getTemplateDirectoryPath();
-					
+		
 		// this dialog lets the user choose one file to load from
 		FileDialog dialog = new FileDialog(Display.getCurrent().getActiveShell(), SWT.OPEN);
 		dialog.setFilterPath(templatePath);

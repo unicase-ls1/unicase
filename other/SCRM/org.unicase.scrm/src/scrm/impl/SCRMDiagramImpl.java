@@ -12,11 +12,13 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 
@@ -43,6 +45,7 @@ import org.unicase.metamodel.util.ModelUtil;
 
 import scrm.SCRMDiagram;
 import scrm.SCRMModelElement;
+import scrm.SCRMSpace;
 import scrm.ScrmPackage;
 import scrm.knowledge.KnowledgeSpace;
 import scrm.lists.SCRMDiagramNewElementsList;
@@ -61,8 +64,6 @@ import scrm.requirements.dataProcess.DataProcessSpace;
  *   <li>{@link scrm.impl.SCRMDiagramImpl#getNewElements <em>New Elements</em>}</li>
  *   <li>{@link scrm.impl.SCRMDiagramImpl#getDiagramLayout <em>Diagram Layout</em>}</li>
  *   <li>{@link scrm.impl.SCRMDiagramImpl#getDiagramType <em>Diagram Type</em>}</li>
- *   <li>{@link scrm.impl.SCRMDiagramImpl#getPreviousDiagram <em>Previous Diagram</em>}</li>
- *   <li>{@link scrm.impl.SCRMDiagramImpl#getNextDiagram <em>Next Diagram</em>}</li>
  * </ul>
  * </p>
  *
@@ -140,26 +141,6 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	 * @ordered
 	 */
 	protected DiagramType diagramType = DIAGRAM_TYPE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getPreviousDiagram() <em>Previous Diagram</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPreviousDiagram()
-	 * @generated
-	 * @ordered
-	 */
-	protected SCRMDiagram previousDiagram;
-
-	/**
-	 * The cached value of the '{@link #getNextDiagram() <em>Next Diagram</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNextDiagram()
-	 * @generated
-	 * @ordered
-	 */
-	protected SCRMDiagram nextDiagram;
 
 	private EObject newElementContainer;
 
@@ -269,90 +250,6 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					ScrmPackage.SCRM_DIAGRAM__DIAGRAM_TYPE, oldDiagramType,
 					diagramType));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SCRMDiagram getPreviousDiagram() {
-		if (previousDiagram != null && previousDiagram.eIsProxy()) {
-			InternalEObject oldPreviousDiagram = (InternalEObject) previousDiagram;
-			previousDiagram = (SCRMDiagram) eResolveProxy(oldPreviousDiagram);
-			if (previousDiagram != oldPreviousDiagram) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ScrmPackage.SCRM_DIAGRAM__PREVIOUS_DIAGRAM,
-							oldPreviousDiagram, previousDiagram));
-			}
-		}
-		return previousDiagram;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SCRMDiagram basicGetPreviousDiagram() {
-		return previousDiagram;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPreviousDiagram(SCRMDiagram newPreviousDiagram) {
-		SCRMDiagram oldPreviousDiagram = previousDiagram;
-		previousDiagram = newPreviousDiagram;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ScrmPackage.SCRM_DIAGRAM__PREVIOUS_DIAGRAM,
-					oldPreviousDiagram, previousDiagram));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SCRMDiagram getNextDiagram() {
-		if (nextDiagram != null && nextDiagram.eIsProxy()) {
-			InternalEObject oldNextDiagram = (InternalEObject) nextDiagram;
-			nextDiagram = (SCRMDiagram) eResolveProxy(oldNextDiagram);
-			if (nextDiagram != oldNextDiagram) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ScrmPackage.SCRM_DIAGRAM__NEXT_DIAGRAM,
-							oldNextDiagram, nextDiagram));
-			}
-		}
-		return nextDiagram;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SCRMDiagram basicGetNextDiagram() {
-		return nextDiagram;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setNextDiagram(SCRMDiagram newNextDiagram) {
-		SCRMDiagram oldNextDiagram = nextDiagram;
-		nextDiagram = newNextDiagram;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ScrmPackage.SCRM_DIAGRAM__NEXT_DIAGRAM, oldNextDiagram,
-					nextDiagram));
 	}
 
 	/**
@@ -482,14 +379,6 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 			return getDiagramLayout();
 		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_TYPE:
 			return getDiagramType();
-		case ScrmPackage.SCRM_DIAGRAM__PREVIOUS_DIAGRAM:
-			if (resolve)
-				return getPreviousDiagram();
-			return basicGetPreviousDiagram();
-		case ScrmPackage.SCRM_DIAGRAM__NEXT_DIAGRAM:
-			if (resolve)
-				return getNextDiagram();
-			return basicGetNextDiagram();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -522,12 +411,6 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_TYPE:
 			setDiagramType((DiagramType) newValue);
 			return;
-		case ScrmPackage.SCRM_DIAGRAM__PREVIOUS_DIAGRAM:
-			setPreviousDiagram((SCRMDiagram) newValue);
-			return;
-		case ScrmPackage.SCRM_DIAGRAM__NEXT_DIAGRAM:
-			setNextDiagram((SCRMDiagram) newValue);
-			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -555,12 +438,6 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_TYPE:
 			setDiagramType(DIAGRAM_TYPE_EDEFAULT);
 			return;
-		case ScrmPackage.SCRM_DIAGRAM__PREVIOUS_DIAGRAM:
-			setPreviousDiagram((SCRMDiagram) null);
-			return;
-		case ScrmPackage.SCRM_DIAGRAM__NEXT_DIAGRAM:
-			setNextDiagram((SCRMDiagram) null);
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -584,10 +461,6 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 					: !DIAGRAM_LAYOUT_EDEFAULT.equals(diagramLayout);
 		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_TYPE:
 			return diagramType != DIAGRAM_TYPE_EDEFAULT;
-		case ScrmPackage.SCRM_DIAGRAM__PREVIOUS_DIAGRAM:
-			return previousDiagram != null;
-		case ScrmPackage.SCRM_DIAGRAM__NEXT_DIAGRAM:
-			return nextDiagram != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -615,6 +488,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 			.createURI("virtual.diagram.uri");
 	private static final URI VIRTUAL_DIAGRAM_ELEMENTS_URI = URI
 			.createURI("virtual.diagram.elements.uri");
+	private static final URI VIRTUAL_DIAGRAM_SCRMSPACE_URI = URI
+			.createURI("virtual.diagram.SCRMSpace.uri");
 
 	private void syncDiagramLayout(Diagram gmfDiagram) {
 		for (int i = 0; i < gmfDiagram.getPersistedChildren().size(); i++) {
@@ -645,7 +520,9 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 
 		// preserve original resource for all involved model elements
 		EList<SCRMModelElement> elements = this.getElements();
-		Map<SCRMModelElement, Resource> resourceMap = preserveOldResources(elements);
+		EList<SCRMModelElement> subElements = getSubElements(elements);
+		Map<SCRMModelElement, Resource> resourceMap = preserveOldResources(
+				elements, subElements);
 
 		// put all involved elements into a virtual resource set
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -653,17 +530,16 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 				.createResource(VIRTUAL_DIAGRAM_URI);
 		Resource elementsResource = resourceSet
 				.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
+		Resource SCRMSpaceResource = resourceSet
+				.createResource(VIRTUAL_DIAGRAM_SCRMSPACE_URI);
 		elementsResource.getContents().addAll(elements);
+		SCRMSpaceResource.getContents().addAll(subElements);
 
 		String diagramLayout = getDiagramLayout();
 		if (diagramLayout == DIAGRAM_LAYOUT_EDEFAULT) {
 			return;
 		}
 
-		/*
-		 * Visual ID's of UseCase diagram were different in the past, e.g. UseCase had ID 1001, now it's 2001. For this
-		 * reason: Check for the old and incompatible layout information and convert it.
-		 */
 		// load diagram
 		try {
 			diagramResource.load(
@@ -693,25 +569,47 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 		setGmfdiagram(gmfDiagram);
 
 		// restore old resource for all model elements
-		restoreOldResources(elements, resourceMap, diagramResource,
-				elementsResource);
+		restoreOldResources(elements, subElements, resourceMap,
+				diagramResource, elementsResource, SCRMSpaceResource);
 		gmfDiagram.setElement(this);
 	}
 
-	private Map<SCRMModelElement, Resource> preserveOldResources(
+	private EList<SCRMModelElement> getSubElements(
 			EList<SCRMModelElement> elements) {
+		EList<SCRMModelElement> subElements = new BasicEList<SCRMModelElement>();
+		for (SCRMModelElement element : elements) {
+			if (element instanceof SCRMSpace) {
+				SCRMSpace scrmSpace = (SCRMSpace) element;
+				for (Iterator<EObject> iter = scrmSpace.eAllContents(); iter
+						.hasNext();) {
+					subElements.add((SCRMModelElement) iter.next());
+				}
+			}
+		}
+		return subElements;
+	}
+
+	private Map<SCRMModelElement, Resource> preserveOldResources(
+			EList<SCRMModelElement> elements,
+			EList<SCRMModelElement> subElements) {
 		Map<SCRMModelElement, Resource> resourceMap = new HashMap<SCRMModelElement, Resource>();
 		for (SCRMModelElement modelElement : elements) {
 			resourceMap.put(modelElement, modelElement.eResource());
+		}
+		for (SCRMModelElement subElement : subElements) {
+			resourceMap.put(subElement, subElement.eResource());
 		}
 		return resourceMap;
 	}
 
 	private void restoreOldResources(EList<SCRMModelElement> elements,
+			EList<SCRMModelElement> subElements,
 			Map<SCRMModelElement, Resource> resourceMap,
-			Resource diagramResource, Resource elementsResource) {
+			Resource diagramResource, Resource elementsResource,
+			Resource SCRMSpaceResource) {
 		diagramResource.getContents().remove(gmfdiagram);
 		elementsResource.getContents().removeAll(elements);
+		SCRMSpaceResource.getContents().removeAll(subElements);
 		for (SCRMModelElement modelElement : resourceMap.keySet()) {
 			Resource resource = resourceMap.get(modelElement);
 			resource.getContents().add(modelElement);
@@ -728,7 +626,9 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 		getGmfdiagram().setElement(null);
 		// preserve original resource for all involved model elements
 		EList<SCRMModelElement> elements = this.getElements();
-		Map<SCRMModelElement, Resource> resourceMap = preserveOldResources(elements);
+		EList<SCRMModelElement> subElements = getSubElements(elements);
+		Map<SCRMModelElement, Resource> resourceMap = preserveOldResources(
+				elements, subElements);
 
 		// put all involved elements into a virtual resource set
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -736,7 +636,10 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 				.createResource(VIRTUAL_DIAGRAM_URI);
 		Resource elementsResource = resourceSet
 				.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
+		Resource SCRMSpaceResource = resourceSet
+				.createResource(VIRTUAL_DIAGRAM_SCRMSPACE_URI);
 		elementsResource.getContents().addAll(elements);
+		SCRMSpaceResource.getContents().addAll(subElements);
 		diagramResource.getContents().add(getGmfdiagram());
 
 		// serialize diagram
@@ -747,8 +650,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 			throw new DiagramStoreException("Diagram resource save failed.", e);
 		}
 
-		restoreOldResources(elements, resourceMap, diagramResource,
-				elementsResource);
+		restoreOldResources(subElements, elements, resourceMap,
+				diagramResource, elementsResource, SCRMSpaceResource);
 
 		getGmfdiagram().setElement(this);
 

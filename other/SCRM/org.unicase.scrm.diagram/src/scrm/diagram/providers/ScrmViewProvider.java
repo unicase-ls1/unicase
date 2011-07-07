@@ -34,7 +34,6 @@ import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
 import org.eclipse.gmf.runtime.notation.Routing;
-import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
@@ -1601,7 +1600,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 				node,
 				ScrmVisualIDRegistry
 						.getType(KnowledgeSpaceKnowledgeSpaceCompartmentEditPart.VISUAL_ID),
-				false, false, false, false);
+				true, false, false, false);
 		return node;
 	}
 
@@ -1611,7 +1610,11 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	public Node createRequirementSpace_2045(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
 		node.getStyles().add(
 				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
@@ -1643,16 +1646,14 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
-				prefStore, IPreferenceConstants.PREF_FILL_COLOR);
-		ViewUtil.setStructuralFeatureValue(node,
-				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
-				FigureUtilities.RGBToInteger(fillRGB));
+		Node label5140 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(RequirementSpaceNameEditPart.VISUAL_ID));
 		createCompartment(
 				node,
 				ScrmVisualIDRegistry
 						.getType(RequirementSpaceRequirementSpaceCompartmentEditPart.VISUAL_ID),
-				false, false, false, false);
+				true, false, false, false);
 		return node;
 	}
 
@@ -1662,7 +1663,11 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	public Node createDataProcessSpace_2046(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
 		node.getStyles().add(
 				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
@@ -1694,16 +1699,14 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
-				prefStore, IPreferenceConstants.PREF_FILL_COLOR);
-		ViewUtil.setStructuralFeatureValue(node,
-				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
-				FigureUtilities.RGBToInteger(fillRGB));
+		Node label5142 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(DataProcessSpaceNameEditPart.VISUAL_ID));
 		createCompartment(
 				node,
 				ScrmVisualIDRegistry
 						.getType(DataProcessSpaceDataProcessSpaceCompartmentEditPart.VISUAL_ID),
-				false, false, false, false);
+				true, false, false, false);
 		return node;
 	}
 
@@ -1751,10 +1754,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Node label5087 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(ScientificProblemName2EditPart.VISUAL_ID));
-		Node label5088 = createLabel(
-				node,
-				ScrmVisualIDRegistry
-						.getType(ScientificProblemDescription2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -1802,15 +1801,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Node label5089 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(NumericalMethodName2EditPart.VISUAL_ID));
-		Node label5090 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(NumericalMethodDescription2EditPart.VISUAL_ID));
-		Node label5091 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(NumericalMethodTheory2EditPart.VISUAL_ID));
-		Node label5092 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(NumericalMethodAlgorithm2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -1858,17 +1848,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Node label5093 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(MathematicalModelName2EditPart.VISUAL_ID));
-		Node label5094 = createLabel(
-				node,
-				ScrmVisualIDRegistry
-						.getType(MathematicalModelDescription2EditPart.VISUAL_ID));
-		Node label5095 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(MathematicalModelTheory2EditPart.VISUAL_ID));
-		Node label5096 = createLabel(
-				node,
-				ScrmVisualIDRegistry
-						.getType(MathematicalModelMathematicalExpression2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -1915,9 +1894,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		}
 		Node label5097 = createLabel(node,
 				ScrmVisualIDRegistry.getType(AssumptionName2EditPart.VISUAL_ID));
-		Node label5098 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(AssumptionDescription2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -1969,7 +1945,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 				node,
 				ScrmVisualIDRegistry
 						.getType(KnowledgeSpaceKnowledgeSpaceCompartment2EditPart.VISUAL_ID),
-				false, false, false, false);
+				true, false, false, false);
 		return node;
 	}
 
@@ -2016,9 +1992,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		}
 		Node label5100 = createLabel(node,
 				ScrmVisualIDRegistry.getType(ConstraintName2EditPart.VISUAL_ID));
-		Node label5101 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(ConstraintDescription2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -2066,21 +2039,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Node label5102 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(DataDefinitionName2EditPart.VISUAL_ID));
-		Node label5103 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(DataDefinitionDescription2EditPart.VISUAL_ID));
-		Node label5104 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(DataDefinitionAccuracy2EditPart.VISUAL_ID));
-		Node label5105 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(DataDefinitionFormat2EditPart.VISUAL_ID));
-		Node label5106 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(DataDefinitionRange2EditPart.VISUAL_ID));
-		Node label5107 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(DataDefinitionDataType2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -2125,9 +2083,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		}
 		Node label5108 = createLabel(node,
 				ScrmVisualIDRegistry.getType(DataFlowName2EditPart.VISUAL_ID));
-		Node label5109 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(DataFlowDescription2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -2172,9 +2127,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		}
 		Node label5110 = createLabel(node,
 				ScrmVisualIDRegistry.getType(FeatureName2EditPart.VISUAL_ID));
-		Node label5111 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(FeatureDescription2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -2219,17 +2171,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		}
 		Node label5112 = createLabel(node,
 				ScrmVisualIDRegistry.getType(HardwareName2EditPart.VISUAL_ID));
-		Node label5113 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(HardwareDescription2EditPart.VISUAL_ID));
-		Node label5114 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(HardwareProcessor2EditPart.VISUAL_ID));
-		Node label5115 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(HardwarePlatform2EditPart.VISUAL_ID));
-		Node label5116 = createLabel(node,
-				ScrmVisualIDRegistry.getType(HardwareMemory2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -2277,12 +2218,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Node label5117 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(PerformanceName2EditPart.VISUAL_ID));
-		Node label5118 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(PerformanceDescription2EditPart.VISUAL_ID));
-		Node label5119 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(PerformanceProblemSize2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -2330,9 +2265,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Node label5120 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(RequirementName2EditPart.VISUAL_ID));
-		Node label5121 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(RequirementDescription2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -2380,13 +2312,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Node label5122 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(SoftwareInterfaceName2EditPart.VISUAL_ID));
-		Node label5123 = createLabel(
-				node,
-				ScrmVisualIDRegistry
-						.getType(SoftwareInterfaceDescription2EditPart.VISUAL_ID));
-		Node label5124 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(SoftwareInterfaceDataTypes2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -2434,9 +2359,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Node label5125 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(UserInterfaceName2EditPart.VISUAL_ID));
-		Node label5126 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(UserInterfaceDescription2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -2446,7 +2368,11 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	public Node createRequirementSpace_3015(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
 		node.getStyles().add(
 				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
@@ -2477,16 +2403,14 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
-				prefStore, IPreferenceConstants.PREF_FILL_COLOR);
-		ViewUtil.setStructuralFeatureValue(node,
-				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
-				FigureUtilities.RGBToInteger(fillRGB));
+		Node label5139 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(RequirementSpaceName2EditPart.VISUAL_ID));
 		createCompartment(
 				node,
 				ScrmVisualIDRegistry
 						.getType(RequirementSpaceRequirementSpaceCompartment2EditPart.VISUAL_ID),
-				false, false, false, false);
+				true, false, false, false);
 		return node;
 	}
 
@@ -2534,10 +2458,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Node label5127 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(StatusMonitoringName2EditPart.VISUAL_ID));
-		Node label5128 = createLabel(
-				node,
-				ScrmVisualIDRegistry
-						.getType(StatusMonitoringDescription2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -2585,9 +2505,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Node label5129 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(ResultsOutputName2EditPart.VISUAL_ID));
-		Node label5130 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(ResultsOutputDescription2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -2632,9 +2549,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		}
 		Node label5131 = createLabel(node,
 				ScrmVisualIDRegistry.getType(ProcessName2EditPart.VISUAL_ID));
-		Node label5132 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(ProcessDescription2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -2682,10 +2596,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Node label5133 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(InputDataReadingName2EditPart.VISUAL_ID));
-		Node label5134 = createLabel(
-				node,
-				ScrmVisualIDRegistry
-						.getType(InputDataReadingDescription2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -2733,9 +2643,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Node label5135 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(ErrorHandlingName2EditPart.VISUAL_ID));
-		Node label5136 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(ErrorHandlingDescription2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -2783,9 +2690,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Node label5137 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(DataHandlingName2EditPart.VISUAL_ID));
-		Node label5138 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(DataHandlingDescription2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -2795,7 +2699,11 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	public Node createDataProcessSpace_3022(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
 		node.getStyles().add(
 				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
@@ -2826,16 +2734,14 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
-				prefStore, IPreferenceConstants.PREF_FILL_COLOR);
-		ViewUtil.setStructuralFeatureValue(node,
-				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
-				FigureUtilities.RGBToInteger(fillRGB));
+		Node label5141 = createLabel(node,
+				ScrmVisualIDRegistry
+						.getType(DataProcessSpaceName2EditPart.VISUAL_ID));
 		createCompartment(
 				node,
 				ScrmVisualIDRegistry
 						.getType(DataProcessSpaceDataProcessSpaceCompartment2EditPart.VISUAL_ID),
-				false, false, false, false);
+				true, false, false, false);
 		return node;
 	}
 

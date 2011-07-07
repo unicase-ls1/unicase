@@ -6,6 +6,8 @@
  */
 package scrm.requirements;
 
+import scrm.knowledge.NumericalMethod;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Performance</b></em>'.
@@ -15,6 +17,7 @@ package scrm.requirements;
  * The following features are supported:
  * <ul>
  *   <li>{@link scrm.requirements.Performance#getProblemSize <em>Problem Size</em>}</li>
+ *   <li>{@link scrm.requirements.Performance#getDescribedMethod <em>Described Method</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,5 +51,33 @@ public interface Performance extends Requirement {
 	 * @generated
 	 */
 	void setProblemSize(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Described Method</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.NumericalMethod#getPerformance <em>Performance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Described Method</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Described Method</em>' reference.
+	 * @see #setDescribedMethod(NumericalMethod)
+	 * @see scrm.requirements.RequirementsPackage#getPerformance_DescribedMethod()
+	 * @see scrm.knowledge.NumericalMethod#getPerformance
+	 * @model opposite="performance"
+	 * @generated
+	 */
+	NumericalMethod getDescribedMethod();
+
+	/**
+	 * Sets the value of the '{@link scrm.requirements.Performance#getDescribedMethod <em>Described Method</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Described Method</em>' reference.
+	 * @see #getDescribedMethod()
+	 * @generated
+	 */
+	void setDescribedMethod(NumericalMethod value);
 
 } // Performance

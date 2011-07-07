@@ -1,22 +1,24 @@
 package scrm.diagram.edit.parts;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
+import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConstrainedToolbarLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -29,10 +31,9 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 
-import scrm.diagram.edit.policies.OpenDiagramEditPolicy;
+import scrm.SCRMDiagram;
+import scrm.diagram.edit.policies.OpenMEEditorPolicy;
 import scrm.diagram.edit.policies.ScientificProblem2ItemSemanticEditPolicy;
-import scrm.diagram.edit.policies.ScrmTextSelectionEditPolicy;
-import scrm.diagram.opener.MEEditorOpenerPolicy;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -64,15 +65,14 @@ public class ScientificProblem2EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new ScientificProblem2ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new MEEditorOpenerPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenMEEditorPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -81,16 +81,23 @@ public class ScientificProblem2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-
-		ConstrainedToolbarLayoutEditPolicy lep = new ConstrainedToolbarLayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				if (child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE) == null) {
-					if (child instanceof ITextAwareEditPart) {
-						return new ScrmTextSelectionEditPolicy();
-					}
+				EditPolicy result = child
+						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				if (result == null) {
+					result = new NonResizableEditPolicy();
 				}
-				return super.createChildEditPolicy(child);
+				return result;
+			}
+
+			protected Command getMoveChildrenCommand(Request request) {
+				return null;
+			}
+
+			protected Command getCreateCommand(CreateRequest request) {
+				return null;
 			}
 		};
 		return lep;
@@ -111,7 +118,7 @@ public class ScientificProblem2EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ScientificProblemName2EditPart) {
@@ -120,23 +127,14 @@ public class ScientificProblem2EditPart extends ShapeNodeEditPart {
 							.getFigureScientificProblem_name());
 			return true;
 		}
-		if (childEditPart instanceof ScientificProblemDescription2EditPart) {
-			((ScientificProblemDescription2EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureScientificProblem_description());
-			return true;
-		}
 		return false;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ScientificProblemName2EditPart) {
-			return true;
-		}
-		if (childEditPart instanceof ScientificProblemDescription2EditPart) {
 			return true;
 		}
 		return false;
@@ -173,7 +171,7 @@ public class ScientificProblem2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(160, 65);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(135, 20);
 		return result;
 	}
 
@@ -264,68 +262,90 @@ public class ScientificProblem2EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(ScrmElementTypes.ScientificProblemInfluencedFeature_4008);
+		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
+		List<IElementType> types = new LinkedList<IElementType>();
+		switch(scrmDiagram.getDiagramType()) {
+			case DEFAULT_DIAGRAM: 
+				types.add(ScrmElementTypes.ScientificProblemInfluencedFeature_4008);
+		}
 		return types;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List<IElementType> getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (targetEditPart instanceof FeatureEditPart) {
-			types.add(ScrmElementTypes.ScientificProblemInfluencedFeature_4008);
-		}
-		if (targetEditPart instanceof Feature2EditPart) {
-			types.add(ScrmElementTypes.ScientificProblemInfluencedFeature_4008);
+		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
+		List<IElementType> types = new LinkedList<IElementType>();
+		switch(scrmDiagram.getDiagramType()) {
+			case DEFAULT_DIAGRAM: 
+				if (targetEditPart instanceof FeatureEditPart) {
+					types.add(ScrmElementTypes.ScientificProblemInfluencedFeature_4008);
+				}
+				if (targetEditPart instanceof Feature2EditPart) {
+					types.add(ScrmElementTypes.ScientificProblemInfluencedFeature_4008);
+				}
 		}
 		return types;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == ScrmElementTypes.ScientificProblemInfluencedFeature_4008) {
-			types.add(ScrmElementTypes.Feature_2009);
-			types.add(ScrmElementTypes.Feature_3009);
+		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
+		List<IElementType> types = new LinkedList<IElementType>();
+		switch(scrmDiagram.getDiagramType()) {
+			case DEFAULT_DIAGRAM: 
+				if (relationshipType == ScrmElementTypes.ScientificProblemInfluencedFeature_4008) {
+					types.add(ScrmElementTypes.Feature_2009);
+					types.add(ScrmElementTypes.Feature_3009);
+				}
 		}
 		return types;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(ScrmElementTypes.MathematicalModelRepresentedProblem_4048);
-		types.add(ScrmElementTypes.NumericalMethodSolvedProblem_4057);
-		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == ScrmElementTypes.MathematicalModelRepresentedProblem_4048) {
-			types.add(ScrmElementTypes.MathematicalModel_2005);
-			types.add(ScrmElementTypes.MathematicalModel_3003);
-		} else if (relationshipType == ScrmElementTypes.NumericalMethodSolvedProblem_4057) {
-			types.add(ScrmElementTypes.NumericalMethod_2006);
-			types.add(ScrmElementTypes.NumericalMethod_3002);
+		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
+		List<IElementType> types = new LinkedList<IElementType>();
+		switch(scrmDiagram.getDiagramType()) {
+			case DEFAULT_DIAGRAM:
+			case KNOWLEDGE_DIAGRAM:
+				types.add(ScrmElementTypes.MathematicalModelRepresentedProblem_4048);
+				types.add(ScrmElementTypes.NumericalMethodSolvedProblem_4057);
 		}
 		return types;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
+	 */
+	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
+		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
+		List<IElementType> types = new LinkedList<IElementType>();
+		switch(scrmDiagram.getDiagramType()) {
+			case DEFAULT_DIAGRAM:
+			case KNOWLEDGE_DIAGRAM:
+				if (relationshipType == ScrmElementTypes.MathematicalModelRepresentedProblem_4048) {
+					types.add(ScrmElementTypes.MathematicalModel_2005);
+					types.add(ScrmElementTypes.MathematicalModel_3003);
+				} else if (relationshipType == ScrmElementTypes.NumericalMethodSolvedProblem_4057) {
+					types.add(ScrmElementTypes.NumericalMethod_2006);
+					types.add(ScrmElementTypes.NumericalMethod_3002);
+				}
+		}
+		return types;
+	}
+
+	/**
+	 * @generated NOT
 	 */
 	public class ScientificProblemFigure extends RectangleFigure {
 
@@ -333,50 +353,44 @@ public class ScientificProblem2EditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		private WrappingLabel fFigureScientificProblem_name;
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fFigureScientificProblem_description;
 
 		/**
 		 * @generated
 		 */
 		public ScientificProblemFigure() {
 
-			ToolbarLayout layoutThis = new ToolbarLayout();
-			layoutThis.setStretchMinorAxis(true);
-			layoutThis.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);
-
-			layoutThis.setSpacing(5);
-			layoutThis.setVertical(true);
-
+			GridLayout layoutThis = new GridLayout();
+			layoutThis.numColumns = 1;
+			layoutThis.makeColumnsEqualWidth = true;
 			this.setLayoutManager(layoutThis);
 
 			this.setBackgroundColor(THIS_BACK);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(160),
-					getMapMode().DPtoLP(65)));
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(135),
+					getMapMode().DPtoLP(20)));
 			createContents();
 		}
 
 		/**
-		 * @generated NOT
+		 * @generated
 		 */
 		private void createContents() {
 
 			fFigureScientificProblem_name = new WrappingLabel();
 			fFigureScientificProblem_name.setText("");
-			fFigureScientificProblem_name.setTextWrap(true);
 
 			fFigureScientificProblem_name
 					.setFont(FFIGURESCIENTIFICPROBLEM_NAME_FONT);
 
-			this.add(fFigureScientificProblem_name);
-
-			fFigureScientificProblem_description = new WrappingLabel();
-			fFigureScientificProblem_description.setText("");
-			fFigureScientificProblem_description.setTextWrap(true);
-
-			this.add(fFigureScientificProblem_description);
+			GridData constraintFFigureScientificProblem_name = new GridData();
+			constraintFFigureScientificProblem_name.verticalAlignment = GridData.BEGINNING;
+			constraintFFigureScientificProblem_name.horizontalAlignment = GridData.CENTER;
+			constraintFFigureScientificProblem_name.horizontalIndent = 0;
+			constraintFFigureScientificProblem_name.horizontalSpan = 1;
+			constraintFFigureScientificProblem_name.verticalSpan = 1;
+			constraintFFigureScientificProblem_name.grabExcessHorizontalSpace = false;
+			constraintFFigureScientificProblem_name.grabExcessVerticalSpace = false;
+			this.add(fFigureScientificProblem_name,
+					constraintFFigureScientificProblem_name);
 
 		}
 
@@ -387,19 +401,12 @@ public class ScientificProblem2EditPart extends ShapeNodeEditPart {
 			return fFigureScientificProblem_name;
 		}
 
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getFigureScientificProblem_description() {
-			return fFigureScientificProblem_description;
-		}
-
 	}
 
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 255, 79, 79);
+	static final Color THIS_BACK = new Color(null, 255, 153, 102);
 
 	/**
 	 * @generated

@@ -118,7 +118,7 @@ public class NumericalMethodPerformanceEditPart extends ConnectionNodeEditPart
 		public NumericalMethod_PerformanceFigure() {
 
 			createContents();
-			setSourceDecoration(createSourceDecoration());
+			setTargetDecoration(createTargetDecoration());
 		}
 
 		/**
@@ -136,7 +136,7 @@ public class NumericalMethodPerformanceEditPart extends ConnectionNodeEditPart
 		/**
 		 * @generated
 		 */
-		private RotatableDecoration createSourceDecoration() {
+		private RotatableDecoration createTargetDecoration() {
 			PolylineDecoration df = new PolylineDecoration();
 			return df;
 		}

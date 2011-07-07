@@ -27,8 +27,6 @@ import scrm.impl.DiagramStoreException;
  *   <li>{@link scrm.SCRMDiagram#getNewElements <em>New Elements</em>}</li>
  *   <li>{@link scrm.SCRMDiagram#getDiagramLayout <em>Diagram Layout</em>}</li>
  *   <li>{@link scrm.SCRMDiagram#getDiagramType <em>Diagram Type</em>}</li>
- *   <li>{@link scrm.SCRMDiagram#getPreviousDiagram <em>Previous Diagram</em>}</li>
- *   <li>{@link scrm.SCRMDiagram#getNextDiagram <em>Next Diagram</em>}</li>
  * </ul>
  * </p>
  *
@@ -124,58 +122,6 @@ public interface SCRMDiagram extends SCRMModelElement {
 	 * @generated
 	 */
 	void setDiagramType(DiagramType value);
-
-	/**
-	 * Returns the value of the '<em><b>Previous Diagram</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Previous Diagram</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Previous Diagram</em>' reference.
-	 * @see #setPreviousDiagram(SCRMDiagram)
-	 * @see scrm.ScrmPackage#getSCRMDiagram_PreviousDiagram()
-	 * @model
-	 * @generated
-	 */
-	SCRMDiagram getPreviousDiagram();
-
-	/**
-	 * Sets the value of the '{@link scrm.SCRMDiagram#getPreviousDiagram <em>Previous Diagram</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Previous Diagram</em>' reference.
-	 * @see #getPreviousDiagram()
-	 * @generated
-	 */
-	void setPreviousDiagram(SCRMDiagram value);
-
-	/**
-	 * Returns the value of the '<em><b>Next Diagram</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Next Diagram</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Next Diagram</em>' reference.
-	 * @see #setNextDiagram(SCRMDiagram)
-	 * @see scrm.ScrmPackage#getSCRMDiagram_NextDiagram()
-	 * @model
-	 * @generated
-	 */
-	SCRMDiagram getNextDiagram();
-
-	/**
-	 * Sets the value of the '{@link scrm.SCRMDiagram#getNextDiagram <em>Next Diagram</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Next Diagram</em>' reference.
-	 * @see #getNextDiagram()
-	 * @generated
-	 */
-	void setNextDiagram(SCRMDiagram value);
 
 	/**
 	 * Sets the value of the '{@link scrm.SCRMDiagram#getDiagramType <em>Diagram Type</em>}' attribute.

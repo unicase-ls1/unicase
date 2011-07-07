@@ -142,7 +142,8 @@ public class PerformanceItemSemanticEditPolicy extends
 		}
 		if (ScrmElementTypes.NumericalMethodPerformance_4017 == req
 				.getElementType()) {
-			return null;
+			return getGEFWrapper(new NumericalMethodPerformanceCreateCommand(
+					req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.RequirementSpecifiedFeature_4052 == req
 				.getElementType()) {
@@ -172,8 +173,7 @@ public class PerformanceItemSemanticEditPolicy extends
 		}
 		if (ScrmElementTypes.NumericalMethodPerformance_4017 == req
 				.getElementType()) {
-			return getGEFWrapper(new NumericalMethodPerformanceCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return null;
 		}
 		if (ScrmElementTypes.RequirementSpecifiedFeature_4052 == req
 				.getElementType()) {

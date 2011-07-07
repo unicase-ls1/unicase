@@ -12,7 +12,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
-import scrm.SCRMDiagram;
 import scrm.knowledge.Assumption;
 import scrm.knowledge.KnowledgeFactory;
 import scrm.knowledge.KnowledgeSpace;

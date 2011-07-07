@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -15,12 +16,17 @@ import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssistantProvider;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 
+import scrm.DiagramType;
+import scrm.SCRMDiagram;
 import scrm.diagram.edit.parts.Assumption2EditPart;
 import scrm.diagram.edit.parts.AssumptionEditPart;
 import scrm.diagram.edit.parts.Constraint2EditPart;
@@ -77,38 +83,18 @@ import scrm.diagram.part.ScrmDiagramEditorPlugin;
 public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host
 				.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof SCRMDiagramEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(22);
-			types.add(ScrmElementTypes.ScientificProblem_2007);
-			types.add(ScrmElementTypes.MathematicalModel_2005);
-			types.add(ScrmElementTypes.NumericalMethod_2006);
-			types.add(ScrmElementTypes.Assumption_2008);
-			types.add(ScrmElementTypes.Feature_2009);
-			types.add(ScrmElementTypes.Hardware_2010);
-			types.add(ScrmElementTypes.Constraint_2011);
-			types.add(ScrmElementTypes.UserInterface_2012);
-			types.add(ScrmElementTypes.SoftwareInterface_2013);
-			types.add(ScrmElementTypes.Process_2035);
-			types.add(ScrmElementTypes.Performance_2015);
-			types.add(ScrmElementTypes.DataFlow_2016);
-			types.add(ScrmElementTypes.DataDefinition_2017);
-			types.add(ScrmElementTypes.InputDataReading_2036);
-			types.add(ScrmElementTypes.DataHandling_2037);
-			types.add(ScrmElementTypes.ResultsOutput_2038);
-			types.add(ScrmElementTypes.ErrorHandling_2039);
-			types.add(ScrmElementTypes.StatusMonitoring_2040);
-			types.add(ScrmElementTypes.Requirement_2034);
-			types.add(ScrmElementTypes.KnowledgeSpace_2044);
-			types.add(ScrmElementTypes.RequirementSpace_2045);
-			types.add(ScrmElementTypes.DataProcessSpace_2046);
-			return types;
+			SCRMDiagram scrmDiagram = (SCRMDiagram) ((Diagram) editPart.getModel()).getElement();
+			return getAllowedTypes(scrmDiagram.getDiagramType());
+			
 		}
-		if (editPart instanceof KnowledgeSpaceKnowledgeSpaceCompartmentEditPart) {
+		if (editPart instanceof KnowledgeSpaceKnowledgeSpaceCompartmentEditPart
+				|| editPart instanceof KnowledgeSpaceKnowledgeSpaceCompartment2EditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(5);
 			types.add(ScrmElementTypes.ScientificProblem_3001);
 			types.add(ScrmElementTypes.NumericalMethod_3002);
@@ -117,16 +103,8 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(ScrmElementTypes.KnowledgeSpace_3005);
 			return types;
 		}
-		if (editPart instanceof KnowledgeSpaceKnowledgeSpaceCompartment2EditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(5);
-			types.add(ScrmElementTypes.ScientificProblem_3001);
-			types.add(ScrmElementTypes.NumericalMethod_3002);
-			types.add(ScrmElementTypes.MathematicalModel_3003);
-			types.add(ScrmElementTypes.Assumption_3004);
-			types.add(ScrmElementTypes.KnowledgeSpace_3005);
-			return types;
-		}
-		if (editPart instanceof RequirementSpaceRequirementSpaceCompartmentEditPart) {
+		if (editPart instanceof RequirementSpaceRequirementSpaceCompartmentEditPart
+				|| editPart instanceof RequirementSpaceRequirementSpaceCompartment2EditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(10);
 			types.add(ScrmElementTypes.Constraint_3006);
 			types.add(ScrmElementTypes.DataDefinition_3007);
@@ -138,24 +116,6 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(ScrmElementTypes.SoftwareInterface_3013);
 			types.add(ScrmElementTypes.UserInterface_3014);
 			types.add(ScrmElementTypes.RequirementSpace_3015);
-			return types;
-		}
-		if (editPart instanceof RequirementSpaceRequirementSpaceCompartment2EditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(10);
-			types.add(ScrmElementTypes.Constraint_3006);
-			types.add(ScrmElementTypes.DataDefinition_3007);
-			types.add(ScrmElementTypes.DataFlow_3008);
-			types.add(ScrmElementTypes.Feature_3009);
-			types.add(ScrmElementTypes.Hardware_3010);
-			types.add(ScrmElementTypes.Performance_3011);
-			types.add(ScrmElementTypes.Requirement_3012);
-			types.add(ScrmElementTypes.SoftwareInterface_3013);
-			types.add(ScrmElementTypes.UserInterface_3014);
-			types.add(ScrmElementTypes.RequirementSpace_3015);
-			return types;
-		}
-		if (editPart instanceof DataProcessSpaceDataProcessSpaceCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(7);
 			types.add(ScrmElementTypes.StatusMonitoring_3016);
 			types.add(ScrmElementTypes.ResultsOutput_3017);
 			types.add(ScrmElementTypes.Process_3018);
@@ -165,7 +125,8 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(ScrmElementTypes.DataProcessSpace_3022);
 			return types;
 		}
-		if (editPart instanceof DataProcessSpaceDataProcessSpaceCompartment2EditPart) {
+		if (editPart instanceof DataProcessSpaceDataProcessSpaceCompartmentEditPart
+				|| editPart instanceof DataProcessSpaceDataProcessSpaceCompartment2EditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(7);
 			types.add(ScrmElementTypes.StatusMonitoring_3016);
 			types.add(ScrmElementTypes.ResultsOutput_3017);
@@ -178,7 +139,66 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		return Collections.EMPTY_LIST;
 	}
-
+	
+	/**
+	 * Obtains all <code>IElementType</code>s, that are allowed for a certain
+	 * diagram type.
+	 * @param diagramType the {@link DiagramType} to get types for
+	 * @return all types that are allowed for <code>diagramType</code> as a list.
+	 */
+	public static List getAllowedTypes(DiagramType diagramType) {
+		List<IElementType> types = new LinkedList<IElementType>();
+		switch (diagramType) {
+		case KNOWLEDGE_DIAGRAM:
+			types.addAll(getKnowledgeTypes());
+			break;
+		case DEFAULT_DIAGRAM:
+			types.addAll(getKnowledgeTypes());
+		case REQUIREMENTS_DIAGRAM:
+			types.addAll(getRequirementTypes());
+		case DATA_PROCESS_DIAGRAM:
+			types.addAll(getDataProcessTypes());
+		}
+		return types;
+	}
+	
+	private static List getKnowledgeTypes() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(5);
+		types.add(ScrmElementTypes.ScientificProblem_2007);
+		types.add(ScrmElementTypes.MathematicalModel_2005);
+		types.add(ScrmElementTypes.NumericalMethod_2006);
+		types.add(ScrmElementTypes.Assumption_2008);
+		types.add(ScrmElementTypes.KnowledgeSpace_2044);
+		return types;
+	}
+	
+	private static List getRequirementTypes() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(10);
+		types.add(ScrmElementTypes.Feature_2009);
+		types.add(ScrmElementTypes.Hardware_2010);
+		types.add(ScrmElementTypes.Constraint_2011);
+		types.add(ScrmElementTypes.UserInterface_2012);
+		types.add(ScrmElementTypes.SoftwareInterface_2013);
+		types.add(ScrmElementTypes.Performance_2015);
+		types.add(ScrmElementTypes.DataFlow_2016);
+		types.add(ScrmElementTypes.DataDefinition_2017);
+		types.add(ScrmElementTypes.Requirement_2034);
+		types.add(ScrmElementTypes.RequirementSpace_2045);
+		return types;
+	}
+	
+	private static List getDataProcessTypes() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(7);
+		types.add(ScrmElementTypes.InputDataReading_2036);
+		types.add(ScrmElementTypes.DataHandling_2037);
+		types.add(ScrmElementTypes.ResultsOutput_2038);
+		types.add(ScrmElementTypes.ErrorHandling_2039);
+		types.add(ScrmElementTypes.StatusMonitoring_2040);
+		types.add(ScrmElementTypes.Process_2035);
+		types.add(ScrmElementTypes.DataProcessSpace_2046);
+		return types;
+	}
+	
 	/**
 	 * @generated
 	 */
@@ -903,11 +923,13 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		if (editPart == null) {
 			return null;
 		}
+		
 		Diagram diagram = (Diagram) editPart.getRoot().getContents().getModel();
+//		Project project = ModelUtil.getProject(diagram.getElement());
 		HashSet<EObject> elements = new HashSet<EObject>();
-		for (Iterator<EObject> it = diagram.getElement().eAllContents(); it
-				.hasNext();) {
-			EObject element = it.next();
+//		for (Iterator<EObject> it = project.eAllContents(); it.hasNext();) {
+//			EObject element = it.next();
+		for(EObject element : ((SCRMDiagram) diagram.getElement()).getElements()) {
 			if (isApplicableElement(element, types)) {
 				elements.add(element);
 			}

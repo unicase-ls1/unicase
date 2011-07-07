@@ -713,7 +713,8 @@ public class ScrmElementTypes {
 							.getRequirement_RealizedMethod());
 
 			elements.put(NumericalMethodPerformance_4017,
-					KnowledgePackage.eINSTANCE.getNumericalMethod_Performance());
+					RequirementsPackage.eINSTANCE
+							.getPerformance_DescribedMethod());
 
 			elements.put(FeatureRequiredInterfaces_4023,
 					RequirementsPackage.eINSTANCE

@@ -251,8 +251,14 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case RequirementSpaceEditPart.VISUAL_ID:
 				return new RequirementSpaceEditPart(view);
 
+			case RequirementSpaceNameEditPart.VISUAL_ID:
+				return new RequirementSpaceNameEditPart(view);
+
 			case DataProcessSpaceEditPart.VISUAL_ID:
 				return new DataProcessSpaceEditPart(view);
+
+			case DataProcessSpaceNameEditPart.VISUAL_ID:
+				return new DataProcessSpaceNameEditPart(view);
 
 			case ScientificProblem2EditPart.VISUAL_ID:
 				return new ScientificProblem2EditPart(view);
@@ -260,23 +266,11 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case ScientificProblemName2EditPart.VISUAL_ID:
 				return new ScientificProblemName2EditPart(view);
 
-			case ScientificProblemDescription2EditPart.VISUAL_ID:
-				return new ScientificProblemDescription2EditPart(view);
-
 			case NumericalMethod2EditPart.VISUAL_ID:
 				return new NumericalMethod2EditPart(view);
 
 			case NumericalMethodName2EditPart.VISUAL_ID:
 				return new NumericalMethodName2EditPart(view);
-
-			case NumericalMethodDescription2EditPart.VISUAL_ID:
-				return new NumericalMethodDescription2EditPart(view);
-
-			case NumericalMethodTheory2EditPart.VISUAL_ID:
-				return new NumericalMethodTheory2EditPart(view);
-
-			case NumericalMethodAlgorithm2EditPart.VISUAL_ID:
-				return new NumericalMethodAlgorithm2EditPart(view);
 
 			case MathematicalModel2EditPart.VISUAL_ID:
 				return new MathematicalModel2EditPart(view);
@@ -284,24 +278,11 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case MathematicalModelName2EditPart.VISUAL_ID:
 				return new MathematicalModelName2EditPart(view);
 
-			case MathematicalModelDescription2EditPart.VISUAL_ID:
-				return new MathematicalModelDescription2EditPart(view);
-
-			case MathematicalModelTheory2EditPart.VISUAL_ID:
-				return new MathematicalModelTheory2EditPart(view);
-
-			case MathematicalModelMathematicalExpression2EditPart.VISUAL_ID:
-				return new MathematicalModelMathematicalExpression2EditPart(
-						view);
-
 			case Assumption2EditPart.VISUAL_ID:
 				return new Assumption2EditPart(view);
 
 			case AssumptionName2EditPart.VISUAL_ID:
 				return new AssumptionName2EditPart(view);
-
-			case AssumptionDescription2EditPart.VISUAL_ID:
-				return new AssumptionDescription2EditPart(view);
 
 			case KnowledgeSpace2EditPart.VISUAL_ID:
 				return new KnowledgeSpace2EditPart(view);
@@ -315,29 +296,11 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case ConstraintName2EditPart.VISUAL_ID:
 				return new ConstraintName2EditPart(view);
 
-			case ConstraintDescription2EditPart.VISUAL_ID:
-				return new ConstraintDescription2EditPart(view);
-
 			case DataDefinition2EditPart.VISUAL_ID:
 				return new DataDefinition2EditPart(view);
 
 			case DataDefinitionName2EditPart.VISUAL_ID:
 				return new DataDefinitionName2EditPart(view);
-
-			case DataDefinitionDescription2EditPart.VISUAL_ID:
-				return new DataDefinitionDescription2EditPart(view);
-
-			case DataDefinitionAccuracy2EditPart.VISUAL_ID:
-				return new DataDefinitionAccuracy2EditPart(view);
-
-			case DataDefinitionFormat2EditPart.VISUAL_ID:
-				return new DataDefinitionFormat2EditPart(view);
-
-			case DataDefinitionRange2EditPart.VISUAL_ID:
-				return new DataDefinitionRange2EditPart(view);
-
-			case DataDefinitionDataType2EditPart.VISUAL_ID:
-				return new DataDefinitionDataType2EditPart(view);
 
 			case DataFlow2EditPart.VISUAL_ID:
 				return new DataFlow2EditPart(view);
@@ -345,17 +308,11 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case DataFlowName2EditPart.VISUAL_ID:
 				return new DataFlowName2EditPart(view);
 
-			case DataFlowDescription2EditPart.VISUAL_ID:
-				return new DataFlowDescription2EditPart(view);
-
 			case Feature2EditPart.VISUAL_ID:
 				return new Feature2EditPart(view);
 
 			case FeatureName2EditPart.VISUAL_ID:
 				return new FeatureName2EditPart(view);
-
-			case FeatureDescription2EditPart.VISUAL_ID:
-				return new FeatureDescription2EditPart(view);
 
 			case Hardware2EditPart.VISUAL_ID:
 				return new Hardware2EditPart(view);
@@ -363,29 +320,11 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case HardwareName2EditPart.VISUAL_ID:
 				return new HardwareName2EditPart(view);
 
-			case HardwareDescription2EditPart.VISUAL_ID:
-				return new HardwareDescription2EditPart(view);
-
-			case HardwareProcessor2EditPart.VISUAL_ID:
-				return new HardwareProcessor2EditPart(view);
-
-			case HardwarePlatform2EditPart.VISUAL_ID:
-				return new HardwarePlatform2EditPart(view);
-
-			case HardwareMemory2EditPart.VISUAL_ID:
-				return new HardwareMemory2EditPart(view);
-
 			case Performance2EditPart.VISUAL_ID:
 				return new Performance2EditPart(view);
 
 			case PerformanceName2EditPart.VISUAL_ID:
 				return new PerformanceName2EditPart(view);
-
-			case PerformanceDescription2EditPart.VISUAL_ID:
-				return new PerformanceDescription2EditPart(view);
-
-			case PerformanceProblemSize2EditPart.VISUAL_ID:
-				return new PerformanceProblemSize2EditPart(view);
 
 			case Requirement2EditPart.VISUAL_ID:
 				return new Requirement2EditPart(view);
@@ -393,20 +332,11 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case RequirementName2EditPart.VISUAL_ID:
 				return new RequirementName2EditPart(view);
 
-			case RequirementDescription2EditPart.VISUAL_ID:
-				return new RequirementDescription2EditPart(view);
-
 			case SoftwareInterface2EditPart.VISUAL_ID:
 				return new SoftwareInterface2EditPart(view);
 
 			case SoftwareInterfaceName2EditPart.VISUAL_ID:
 				return new SoftwareInterfaceName2EditPart(view);
-
-			case SoftwareInterfaceDescription2EditPart.VISUAL_ID:
-				return new SoftwareInterfaceDescription2EditPart(view);
-
-			case SoftwareInterfaceDataTypes2EditPart.VISUAL_ID:
-				return new SoftwareInterfaceDataTypes2EditPart(view);
 
 			case UserInterface2EditPart.VISUAL_ID:
 				return new UserInterface2EditPart(view);
@@ -414,11 +344,11 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case UserInterfaceName2EditPart.VISUAL_ID:
 				return new UserInterfaceName2EditPart(view);
 
-			case UserInterfaceDescription2EditPart.VISUAL_ID:
-				return new UserInterfaceDescription2EditPart(view);
-
 			case RequirementSpace2EditPart.VISUAL_ID:
 				return new RequirementSpace2EditPart(view);
+
+			case RequirementSpaceName2EditPart.VISUAL_ID:
+				return new RequirementSpaceName2EditPart(view);
 
 			case StatusMonitoring2EditPart.VISUAL_ID:
 				return new StatusMonitoring2EditPart(view);
@@ -426,17 +356,11 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case StatusMonitoringName2EditPart.VISUAL_ID:
 				return new StatusMonitoringName2EditPart(view);
 
-			case StatusMonitoringDescription2EditPart.VISUAL_ID:
-				return new StatusMonitoringDescription2EditPart(view);
-
 			case ResultsOutput2EditPart.VISUAL_ID:
 				return new ResultsOutput2EditPart(view);
 
 			case ResultsOutputName2EditPart.VISUAL_ID:
 				return new ResultsOutputName2EditPart(view);
-
-			case ResultsOutputDescription2EditPart.VISUAL_ID:
-				return new ResultsOutputDescription2EditPart(view);
 
 			case Process2EditPart.VISUAL_ID:
 				return new Process2EditPart(view);
@@ -444,17 +368,11 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case ProcessName2EditPart.VISUAL_ID:
 				return new ProcessName2EditPart(view);
 
-			case ProcessDescription2EditPart.VISUAL_ID:
-				return new ProcessDescription2EditPart(view);
-
 			case InputDataReading2EditPart.VISUAL_ID:
 				return new InputDataReading2EditPart(view);
 
 			case InputDataReadingName2EditPart.VISUAL_ID:
 				return new InputDataReadingName2EditPart(view);
-
-			case InputDataReadingDescription2EditPart.VISUAL_ID:
-				return new InputDataReadingDescription2EditPart(view);
 
 			case ErrorHandling2EditPart.VISUAL_ID:
 				return new ErrorHandling2EditPart(view);
@@ -462,20 +380,17 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case ErrorHandlingName2EditPart.VISUAL_ID:
 				return new ErrorHandlingName2EditPart(view);
 
-			case ErrorHandlingDescription2EditPart.VISUAL_ID:
-				return new ErrorHandlingDescription2EditPart(view);
-
 			case DataHandling2EditPart.VISUAL_ID:
 				return new DataHandling2EditPart(view);
 
 			case DataHandlingName2EditPart.VISUAL_ID:
 				return new DataHandlingName2EditPart(view);
 
-			case DataHandlingDescription2EditPart.VISUAL_ID:
-				return new DataHandlingDescription2EditPart(view);
-
 			case DataProcessSpace2EditPart.VISUAL_ID:
 				return new DataProcessSpace2EditPart(view);
+
+			case DataProcessSpaceName2EditPart.VISUAL_ID:
+				return new DataProcessSpaceName2EditPart(view);
 
 			case KnowledgeSpaceKnowledgeSpaceCompartmentEditPart.VISUAL_ID:
 				return new KnowledgeSpaceKnowledgeSpaceCompartmentEditPart(view);

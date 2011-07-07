@@ -143,7 +143,7 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 	 * @generated NOT
 	 * @ordered
 	 */
-	protected EList<SCRMModelElement> containedDataProcessSteps;
+	protected SCRMSpaceContainedModelElementsList<SCRMModelElement> containedDataProcessSteps;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -169,13 +169,14 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public EList<SCRMModelElement> getContainedDataProcessSteps() {
+	public SCRMSpaceContainedModelElementsList<SCRMModelElement> getContainedDataProcessSteps() {
 		if (containedDataProcessSteps == null) {
 			containedDataProcessSteps = new SCRMSpaceContainedModelElementsList<SCRMModelElement>(
 					Process.class,
 					this,
 					DataProcessPackage.DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS,
 					DataProcessPackage.PROCESS__CONTAINING_DATA_PROCESS_SPACE);
+			containedDataProcessSteps.setDiagram(getRepresentingDiagram());
 		}
 		return containedDataProcessSteps;
 	}
@@ -213,11 +214,12 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setRepresentingDiagram(SCRMDiagram newRepresentingDiagram) {
 		SCRMDiagram oldRepresentingDiagram = representingDiagram;
 		representingDiagram = newRepresentingDiagram;
+		getContainedDataProcessSteps().setDiagram(representingDiagram);
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(
 					this,

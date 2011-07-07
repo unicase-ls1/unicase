@@ -2,9 +2,6 @@ package scrm.diagram.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.gmf.runtime.notation.Diagram;
-
-import scrm.SCRMDiagram;
 import scrm.diagram.edit.commands.Assumption2CreateCommand;
 import scrm.diagram.edit.commands.KnowledgeSpace2CreateCommand;
 import scrm.diagram.edit.commands.MathematicalModel2CreateCommand;

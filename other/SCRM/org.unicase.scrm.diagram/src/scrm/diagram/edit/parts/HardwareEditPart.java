@@ -1,22 +1,24 @@
 package scrm.diagram.edit.parts;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
+import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConstrainedToolbarLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -29,10 +31,10 @@ import org.eclipse.swt.graphics.Color;
 
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
+
+import scrm.SCRMDiagram;
 import scrm.diagram.edit.policies.HardwareItemSemanticEditPolicy;
-import scrm.diagram.edit.policies.OpenDiagramEditPolicy;
-import scrm.diagram.edit.policies.ScrmTextSelectionEditPolicy;
-import scrm.diagram.opener.MEEditorOpenerPolicy;
+import scrm.diagram.edit.policies.OpenMEEditorPolicy;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -64,14 +66,14 @@ public class HardwareEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new HardwareItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new MEEditorOpenerPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenMEEditorPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -80,16 +82,23 @@ public class HardwareEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-
-		ConstrainedToolbarLayoutEditPolicy lep = new ConstrainedToolbarLayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				if (child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE) == null) {
-					if (child instanceof ITextAwareEditPart) {
-						return new ScrmTextSelectionEditPolicy();
-					}
+				EditPolicy result = child
+						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				if (result == null) {
+					result = new NonResizableEditPolicy();
 				}
-				return super.createChildEditPolicy(child);
+				return result;
+			}
+
+			protected Command getMoveChildrenCommand(Request request) {
+				return null;
+			}
+
+			protected Command getCreateCommand(CreateRequest request) {
+				return null;
 			}
 		};
 		return lep;
@@ -285,22 +294,32 @@ public class HardwareEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(ScrmElementTypes.FeatureDependencies_4026);
+		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
+		List<IElementType> types = new LinkedList<IElementType>();
+		switch(scrmDiagram.getDiagramType()) {
+			case DEFAULT_DIAGRAM:
+			case REQUIREMENTS_DIAGRAM:
+				types.add(ScrmElementTypes.FeatureDependencies_4026);
+		}
 		return types;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == ScrmElementTypes.FeatureDependencies_4026) {
-			types.add(ScrmElementTypes.Feature_2009);
-			types.add(ScrmElementTypes.Feature_3009);
+		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
+		List<IElementType> types = new LinkedList<IElementType>();
+		switch(scrmDiagram.getDiagramType()) {
+			case DEFAULT_DIAGRAM:
+			case REQUIREMENTS_DIAGRAM:
+				if (relationshipType == ScrmElementTypes.FeatureDependencies_4026) {
+					types.add(ScrmElementTypes.Feature_2009);
+					types.add(ScrmElementTypes.Feature_3009);
+				}
 		}
 		return types;
 	}
@@ -336,13 +355,9 @@ public class HardwareEditPart extends ShapeNodeEditPart {
 		 */
 		public HardwareFigure() {
 
-			ToolbarLayout layoutThis = new ToolbarLayout();
-			layoutThis.setStretchMinorAxis(true);
-			layoutThis.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);
-
-			layoutThis.setSpacing(5);
-			layoutThis.setVertical(true);
-
+			GridLayout layoutThis = new GridLayout();
+			layoutThis.numColumns = 1;
+			layoutThis.makeColumnsEqualWidth = true;
 			this.setLayoutManager(layoutThis);
 
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(32),
@@ -354,41 +369,79 @@ public class HardwareEditPart extends ShapeNodeEditPart {
 		}
 
 		/**
-		 * @generated NOT
+		 * @generated
 		 */
 		private void createContents() {
 
 			fFigureHardware_name = new WrappingLabel();
 			fFigureHardware_name.setText("");
-			fFigureHardware_name.setTextWrap(true);
 
 			fFigureHardware_name.setFont(FFIGUREHARDWARE_NAME_FONT);
 
-			this.add(fFigureHardware_name);
+			GridData constraintFFigureHardware_name = new GridData();
+			constraintFFigureHardware_name.verticalAlignment = GridData.BEGINNING;
+			constraintFFigureHardware_name.horizontalAlignment = GridData.CENTER;
+			constraintFFigureHardware_name.horizontalIndent = 0;
+			constraintFFigureHardware_name.horizontalSpan = 1;
+			constraintFFigureHardware_name.verticalSpan = 1;
+			constraintFFigureHardware_name.grabExcessHorizontalSpace = false;
+			constraintFFigureHardware_name.grabExcessVerticalSpace = false;
+			this.add(fFigureHardware_name, constraintFFigureHardware_name);
 
 			fFigureHardware_description = new WrappingLabel();
 			fFigureHardware_description.setText("");
-			fFigureHardware_description.setTextWrap(true);
 
-			this.add(fFigureHardware_description);
+			GridData constraintFFigureHardware_description = new GridData();
+			constraintFFigureHardware_description.verticalAlignment = GridData.BEGINNING;
+			constraintFFigureHardware_description.horizontalAlignment = GridData.FILL;
+			constraintFFigureHardware_description.horizontalIndent = 0;
+			constraintFFigureHardware_description.horizontalSpan = 1;
+			constraintFFigureHardware_description.verticalSpan = 1;
+			constraintFFigureHardware_description.grabExcessHorizontalSpace = true;
+			constraintFFigureHardware_description.grabExcessVerticalSpace = false;
+			this.add(fFigureHardware_description,
+					constraintFFigureHardware_description);
 
 			fFigureHardware_processor = new WrappingLabel();
 			fFigureHardware_processor.setText("");
-			fFigureHardware_processor.setTextWrap(true);
 
-			this.add(fFigureHardware_processor);
+			GridData constraintFFigureHardware_processor = new GridData();
+			constraintFFigureHardware_processor.verticalAlignment = GridData.BEGINNING;
+			constraintFFigureHardware_processor.horizontalAlignment = GridData.FILL;
+			constraintFFigureHardware_processor.horizontalIndent = 0;
+			constraintFFigureHardware_processor.horizontalSpan = 1;
+			constraintFFigureHardware_processor.verticalSpan = 1;
+			constraintFFigureHardware_processor.grabExcessHorizontalSpace = true;
+			constraintFFigureHardware_processor.grabExcessVerticalSpace = false;
+			this.add(fFigureHardware_processor,
+					constraintFFigureHardware_processor);
 
 			fFigureHardware_platform = new WrappingLabel();
 			fFigureHardware_platform.setText("");
-			fFigureHardware_platform.setTextWrap(true);
 
-			this.add(fFigureHardware_platform);
+			GridData constraintFFigureHardware_platform = new GridData();
+			constraintFFigureHardware_platform.verticalAlignment = GridData.BEGINNING;
+			constraintFFigureHardware_platform.horizontalAlignment = GridData.FILL;
+			constraintFFigureHardware_platform.horizontalIndent = 0;
+			constraintFFigureHardware_platform.horizontalSpan = 1;
+			constraintFFigureHardware_platform.verticalSpan = 1;
+			constraintFFigureHardware_platform.grabExcessHorizontalSpace = true;
+			constraintFFigureHardware_platform.grabExcessVerticalSpace = false;
+			this.add(fFigureHardware_platform,
+					constraintFFigureHardware_platform);
 
 			fFigureHardware_memory = new WrappingLabel();
 			fFigureHardware_memory.setText("");
-			fFigureHardware_memory.setTextWrap(true);
 
-			this.add(fFigureHardware_memory);
+			GridData constraintFFigureHardware_memory = new GridData();
+			constraintFFigureHardware_memory.verticalAlignment = GridData.BEGINNING;
+			constraintFFigureHardware_memory.horizontalAlignment = GridData.FILL;
+			constraintFFigureHardware_memory.horizontalIndent = 0;
+			constraintFFigureHardware_memory.horizontalSpan = 1;
+			constraintFFigureHardware_memory.verticalSpan = 1;
+			constraintFFigureHardware_memory.grabExcessHorizontalSpace = true;
+			constraintFFigureHardware_memory.grabExcessVerticalSpace = false;
+			this.add(fFigureHardware_memory, constraintFFigureHardware_memory);
 
 		}
 

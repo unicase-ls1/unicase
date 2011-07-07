@@ -1,9 +1,12 @@
 package scrm.diagram.edit.parts;
 
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.LabeledContainer;
+import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -11,17 +14,23 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 
-import scrm.diagram.edit.policies.OpenDiagramEditPolicy;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
+
+import scrm.diagram.edit.policies.OpenSCRMSpaceEditPolicy;
 import scrm.diagram.edit.policies.RequirementSpaceItemSemanticEditPolicy;
-import scrm.diagram.opener.OpenSCRMSpaceEditPolicy;
+import scrm.diagram.part.ScrmVisualIDRegistry;
 
 /**
  * @generated
@@ -51,7 +60,7 @@ public class RequirementSpaceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
@@ -94,21 +103,91 @@ public class RequirementSpaceEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new LabeledContainer();
+		return primaryShape = new RequirementSpaceFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public LabeledContainer getPrimaryShape() {
-		return (LabeledContainer) primaryShape;
+	public RequirementSpaceFigure getPrimaryShape() {
+		return (RequirementSpaceFigure) primaryShape;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof RequirementSpaceNameEditPart) {
+			((RequirementSpaceNameEditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureRequirementSpace_name());
+			return true;
+		}
+		if (childEditPart instanceof RequirementSpaceRequirementSpaceCompartmentEditPart) {
+			IFigure pane = getPrimaryShape()
+					.getFigureRequirementSpace_containedInformationOfRequirements();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.add(((RequirementSpaceRequirementSpaceCompartmentEditPart) childEditPart)
+					.getFigure());
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof RequirementSpaceNameEditPart) {
+			return true;
+		}
+		if (childEditPart instanceof RequirementSpaceRequirementSpaceCompartmentEditPart) {
+			IFigure pane = getPrimaryShape()
+					.getFigureRequirementSpace_containedInformationOfRequirements();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.remove(((RequirementSpaceRequirementSpaceCompartmentEditPart) childEditPart)
+					.getFigure());
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if (addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, -1);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if (removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+		if (editPart instanceof RequirementSpaceRequirementSpaceCompartmentEditPart) {
+			return getPrimaryShape()
+					.getFigureRequirementSpace_containedInformationOfRequirements();
+		}
+		return getContentPane();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(300, 240);
 		return result;
 	}
 
@@ -189,5 +268,114 @@ public class RequirementSpaceEditPart extends ShapeNodeEditPart {
 			((Shape) primaryShape).setLineStyle(style);
 		}
 	}
+
+	/**
+	 * @generated
+	 */
+	public EditPart getPrimaryChildEditPart() {
+		return getChildBySemanticHint(ScrmVisualIDRegistry
+				.getType(RequirementSpaceNameEditPart.VISUAL_ID));
+	}
+
+	/**
+	 * @generated
+	 */
+	public class RequirementSpaceFigure extends RoundedRectangle {
+
+		/**
+		 * @generated
+		 */
+		private WrappingLabel fFigureRequirementSpace_name;
+
+		/**
+		 * @generated
+		 */
+		private RoundedRectangle fFigureRequirementSpace_containedInformationOfRequirements;
+
+		/**
+		 * @generated
+		 */
+		public RequirementSpaceFigure() {
+
+			GridLayout layoutThis = new GridLayout();
+			layoutThis.numColumns = 1;
+			layoutThis.makeColumnsEqualWidth = true;
+			this.setLayoutManager(layoutThis);
+
+			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(32),
+					getMapMode().DPtoLP(32)));
+			this.setBackgroundColor(THIS_BACK);
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(300),
+					getMapMode().DPtoLP(240)));
+			createContents();
+		}
+
+		/**
+		 * @generated
+		 */
+		private void createContents() {
+
+			fFigureRequirementSpace_name = new WrappingLabel();
+			fFigureRequirementSpace_name.setText("");
+
+			fFigureRequirementSpace_name
+					.setFont(FFIGUREREQUIREMENTSPACE_NAME_FONT);
+
+			GridData constraintFFigureRequirementSpace_name = new GridData();
+			constraintFFigureRequirementSpace_name.verticalAlignment = GridData.BEGINNING;
+			constraintFFigureRequirementSpace_name.horizontalAlignment = GridData.CENTER;
+			constraintFFigureRequirementSpace_name.horizontalIndent = 0;
+			constraintFFigureRequirementSpace_name.horizontalSpan = 1;
+			constraintFFigureRequirementSpace_name.verticalSpan = 1;
+			constraintFFigureRequirementSpace_name.grabExcessHorizontalSpace = false;
+			constraintFFigureRequirementSpace_name.grabExcessVerticalSpace = false;
+			this.add(fFigureRequirementSpace_name,
+					constraintFFigureRequirementSpace_name);
+
+			fFigureRequirementSpace_containedInformationOfRequirements = new RoundedRectangle();
+			fFigureRequirementSpace_containedInformationOfRequirements
+					.setCornerDimensions(new Dimension(getMapMode().DPtoLP(32),
+							getMapMode().DPtoLP(32)));
+
+			GridData constraintFFigureRequirementSpace_containedInformationOfRequirements = new GridData();
+			constraintFFigureRequirementSpace_containedInformationOfRequirements.verticalAlignment = GridData.FILL;
+			constraintFFigureRequirementSpace_containedInformationOfRequirements.horizontalAlignment = GridData.FILL;
+			constraintFFigureRequirementSpace_containedInformationOfRequirements.horizontalIndent = 0;
+			constraintFFigureRequirementSpace_containedInformationOfRequirements.horizontalSpan = 1;
+			constraintFFigureRequirementSpace_containedInformationOfRequirements.verticalSpan = 1;
+			constraintFFigureRequirementSpace_containedInformationOfRequirements.grabExcessHorizontalSpace = true;
+			constraintFFigureRequirementSpace_containedInformationOfRequirements.grabExcessVerticalSpace = true;
+			this.add(
+					fFigureRequirementSpace_containedInformationOfRequirements,
+					constraintFFigureRequirementSpace_containedInformationOfRequirements);
+
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureRequirementSpace_name() {
+			return fFigureRequirementSpace_name;
+		}
+
+		/**
+		 * @generated
+		 */
+		public RoundedRectangle getFigureRequirementSpace_containedInformationOfRequirements() {
+			return fFigureRequirementSpace_containedInformationOfRequirements;
+		}
+
+	}
+
+	/**
+	 * @generated
+	 */
+	static final Color THIS_BACK = new Color(null, 200, 200, 200);
+
+	/**
+	 * @generated
+	 */
+	static final Font FFIGUREREQUIREMENTSPACE_NAME_FONT = new Font(
+			Display.getCurrent(), "Arial", 9, SWT.BOLD);
 
 }

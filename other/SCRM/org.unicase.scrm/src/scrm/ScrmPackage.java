@@ -171,31 +171,13 @@ public interface ScrmPackage extends EPackage {
 	int SCRM_DIAGRAM__DIAGRAM_TYPE = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Previous Diagram</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SCRM_DIAGRAM__PREVIOUS_DIAGRAM = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Next Diagram</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SCRM_DIAGRAM__NEXT_DIAGRAM = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 6;
-
-	/**
 	 * The number of structural features of the '<em>SCRM Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_DIAGRAM_FEATURE_COUNT = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 7;
+	int SCRM_DIAGRAM_FEATURE_COUNT = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link scrm.SCRMSpace <em>SCRM Space</em>}' class.
@@ -340,28 +322,6 @@ public interface ScrmPackage extends EPackage {
 	EAttribute getSCRMDiagram_DiagramType();
 
 	/**
-	 * Returns the meta object for the reference '{@link scrm.SCRMDiagram#getPreviousDiagram <em>Previous Diagram</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Previous Diagram</em>'.
-	 * @see scrm.SCRMDiagram#getPreviousDiagram()
-	 * @see #getSCRMDiagram()
-	 * @generated
-	 */
-	EReference getSCRMDiagram_PreviousDiagram();
-
-	/**
-	 * Returns the meta object for the reference '{@link scrm.SCRMDiagram#getNextDiagram <em>Next Diagram</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Next Diagram</em>'.
-	 * @see scrm.SCRMDiagram#getNextDiagram()
-	 * @see #getSCRMDiagram()
-	 * @generated
-	 */
-	EReference getSCRMDiagram_NextDiagram();
-
-	/**
 	 * Returns the meta object for class '{@link scrm.SCRMSpace <em>SCRM Space</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -497,24 +457,6 @@ public interface ScrmPackage extends EPackage {
 		 */
 		EAttribute SCRM_DIAGRAM__DIAGRAM_TYPE = eINSTANCE
 				.getSCRMDiagram_DiagramType();
-
-		/**
-		 * The meta object literal for the '<em><b>Previous Diagram</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SCRM_DIAGRAM__PREVIOUS_DIAGRAM = eINSTANCE
-				.getSCRMDiagram_PreviousDiagram();
-
-		/**
-		 * The meta object literal for the '<em><b>Next Diagram</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SCRM_DIAGRAM__NEXT_DIAGRAM = eINSTANCE
-				.getSCRMDiagram_NextDiagram();
 
 		/**
 		 * The meta object literal for the '{@link scrm.SCRMSpace <em>SCRM Space</em>}' class.

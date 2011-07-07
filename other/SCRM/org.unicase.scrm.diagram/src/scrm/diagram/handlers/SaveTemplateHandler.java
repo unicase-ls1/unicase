@@ -1,4 +1,4 @@
-package scrm.diagram.commands;
+package scrm.diagram.handlers;
 
 import java.io.IOException;
 
@@ -16,7 +16,6 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 import scrm.SCRMDiagram;
-import scrm.diagram.common.CopyOfTemplateUtil;
 import scrm.diagram.common.TemplateUtil;
 
 /**

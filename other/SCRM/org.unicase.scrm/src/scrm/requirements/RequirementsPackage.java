@@ -867,13 +867,22 @@ public interface RequirementsPackage extends EPackage {
 	int PERFORMANCE__PROBLEM_SIZE = REQUIREMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Described Method</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERFORMANCE__DESCRIBED_METHOD = REQUIREMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Performance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERFORMANCE_FEATURE_COUNT = REQUIREMENT_FEATURE_COUNT + 1;
+	int PERFORMANCE_FEATURE_COUNT = REQUIREMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1389,6 +1398,17 @@ public interface RequirementsPackage extends EPackage {
 	EAttribute getPerformance_ProblemSize();
 
 	/**
+	 * Returns the meta object for the reference '{@link scrm.requirements.Performance#getDescribedMethod <em>Described Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Described Method</em>'.
+	 * @see scrm.requirements.Performance#getDescribedMethod()
+	 * @see #getPerformance()
+	 * @generated
+	 */
+	EReference getPerformance_DescribedMethod();
+
+	/**
 	 * Returns the meta object for class '{@link scrm.requirements.DataFlow <em>Data Flow</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1842,6 +1862,15 @@ public interface RequirementsPackage extends EPackage {
 		 */
 		EAttribute PERFORMANCE__PROBLEM_SIZE = eINSTANCE
 				.getPerformance_ProblemSize();
+
+		/**
+		 * The meta object literal for the '<em><b>Described Method</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PERFORMANCE__DESCRIBED_METHOD = eINSTANCE
+				.getPerformance_DescribedMethod();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.impl.DataFlowImpl <em>Data Flow</em>}' class.

@@ -12,7 +12,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
-import scrm.SCRMDiagram;
 import scrm.knowledge.KnowledgeFactory;
 import scrm.knowledge.KnowledgeSpace;
 import scrm.knowledge.NumericalMethod;
@@ -21,7 +20,7 @@ import scrm.knowledge.NumericalMethod;
  * @generated
  */
 public class NumericalMethod2CreateCommand extends EditElementCommand {
-	
+
 	/**
 	 * @generated
 	 */

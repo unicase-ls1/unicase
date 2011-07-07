@@ -1,22 +1,24 @@
 package scrm.diagram.edit.parts;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
+import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConstrainedToolbarLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -29,10 +31,9 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 
+import scrm.SCRMDiagram;
 import scrm.diagram.edit.policies.Constraint2ItemSemanticEditPolicy;
-import scrm.diagram.edit.policies.OpenDiagramEditPolicy;
-import scrm.diagram.edit.policies.ScrmTextSelectionEditPolicy;
-import scrm.diagram.opener.MEEditorOpenerPolicy;
+import scrm.diagram.edit.policies.OpenMEEditorPolicy;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -64,15 +65,14 @@ public class Constraint2EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new Constraint2ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new MEEditorOpenerPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenMEEditorPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -81,16 +81,23 @@ public class Constraint2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-
-		ConstrainedToolbarLayoutEditPolicy lep = new ConstrainedToolbarLayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				if (child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE) == null) {
-					if (child instanceof ITextAwareEditPart) {
-						return new ScrmTextSelectionEditPolicy();
-					}
+				EditPolicy result = child
+						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				if (result == null) {
+					result = new NonResizableEditPolicy();
 				}
-				return super.createChildEditPolicy(child);
+				return result;
+			}
+
+			protected Command getMoveChildrenCommand(Request request) {
+				return null;
+			}
+
+			protected Command getCreateCommand(CreateRequest request) {
+				return null;
 			}
 		};
 		return lep;
@@ -111,7 +118,7 @@ public class Constraint2EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ConstraintName2EditPart) {
@@ -119,23 +126,14 @@ public class Constraint2EditPart extends ShapeNodeEditPart {
 					.setLabel(getPrimaryShape().getFigureConstraint_name());
 			return true;
 		}
-		if (childEditPart instanceof ConstraintDescription2EditPart) {
-			((ConstraintDescription2EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureConstraint_description());
-			return true;
-		}
 		return false;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ConstraintName2EditPart) {
-			return true;
-		}
-		if (childEditPart instanceof ConstraintDescription2EditPart) {
 			return true;
 		}
 		return false;
@@ -172,7 +170,7 @@ public class Constraint2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(130, 65);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(120, 20);
 		return result;
 	}
 
@@ -263,43 +261,58 @@ public class Constraint2EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(ScrmElementTypes.ConstraintRestrictedFeature_4051);
+		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
+		List<IElementType> types = new LinkedList<IElementType>();
+		switch(scrmDiagram.getDiagramType()) {
+			case DEFAULT_DIAGRAM:
+			case REQUIREMENTS_DIAGRAM:
+				types.add(ScrmElementTypes.ConstraintRestrictedFeature_4051);
+		}
 		return types;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List<IElementType> getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (targetEditPart instanceof FeatureEditPart) {
-			types.add(ScrmElementTypes.ConstraintRestrictedFeature_4051);
-		}
-		if (targetEditPart instanceof Feature2EditPart) {
-			types.add(ScrmElementTypes.ConstraintRestrictedFeature_4051);
+		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
+		List<IElementType> types = new LinkedList<IElementType>();
+		switch(scrmDiagram.getDiagramType()) {
+			case DEFAULT_DIAGRAM:
+			case REQUIREMENTS_DIAGRAM:
+				if (targetEditPart instanceof FeatureEditPart) {
+					types.add(ScrmElementTypes.ConstraintRestrictedFeature_4051);
+				}
+				if (targetEditPart instanceof Feature2EditPart) {
+					types.add(ScrmElementTypes.ConstraintRestrictedFeature_4051);
+				}
 		}
 		return types;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == ScrmElementTypes.ConstraintRestrictedFeature_4051) {
-			types.add(ScrmElementTypes.Feature_2009);
-			types.add(ScrmElementTypes.Feature_3009);
+		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
+		List<IElementType> types = new LinkedList<IElementType>();
+		switch(scrmDiagram.getDiagramType()) {
+			case DEFAULT_DIAGRAM:
+			case REQUIREMENTS_DIAGRAM:
+				if (relationshipType == ScrmElementTypes.ConstraintRestrictedFeature_4051) {
+					types.add(ScrmElementTypes.Feature_2009);
+					types.add(ScrmElementTypes.Feature_3009);
+				}
 		}
 		return types;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public class ConstraintFigure extends RoundedRectangle {
 
@@ -307,51 +320,44 @@ public class Constraint2EditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		private WrappingLabel fFigureConstraint_name;
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fFigureConstraint_description;
 
 		/**
 		 * @generated
 		 */
 		public ConstraintFigure() {
 
-			ToolbarLayout layoutThis = new ToolbarLayout();
-			layoutThis.setStretchMinorAxis(true);
-			layoutThis.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);
-
-			layoutThis.setSpacing(5);
-			layoutThis.setVertical(true);
-
+			GridLayout layoutThis = new GridLayout();
+			layoutThis.numColumns = 1;
+			layoutThis.makeColumnsEqualWidth = true;
 			this.setLayoutManager(layoutThis);
 
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(32),
 					getMapMode().DPtoLP(32)));
 			this.setBackgroundColor(THIS_BACK);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(130),
-					getMapMode().DPtoLP(65)));
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(120),
+					getMapMode().DPtoLP(20)));
 			createContents();
 		}
 
 		/**
-		 * @generated NOT
+		 * @generated NOT: enabled textWrap
 		 */
 		private void createContents() {
 
 			fFigureConstraint_name = new WrappingLabel();
 			fFigureConstraint_name.setText("");
-			fFigureConstraint_name.setTextWrap(true);
 
 			fFigureConstraint_name.setFont(FFIGURECONSTRAINT_NAME_FONT);
 
-			this.add(fFigureConstraint_name);
-
-			fFigureConstraint_description = new WrappingLabel();
-			fFigureConstraint_description.setText("");
-			fFigureConstraint_description.setTextWrap(true);
-
-			this.add(fFigureConstraint_description);
+			GridData constraintFFigureConstraint_name = new GridData();
+			constraintFFigureConstraint_name.verticalAlignment = GridData.BEGINNING;
+			constraintFFigureConstraint_name.horizontalAlignment = GridData.CENTER;
+			constraintFFigureConstraint_name.horizontalIndent = 0;
+			constraintFFigureConstraint_name.horizontalSpan = 1;
+			constraintFFigureConstraint_name.verticalSpan = 1;
+			constraintFFigureConstraint_name.grabExcessHorizontalSpace = false;
+			constraintFFigureConstraint_name.grabExcessVerticalSpace = false;
+			this.add(fFigureConstraint_name, constraintFFigureConstraint_name);
 
 		}
 
@@ -360,13 +366,6 @@ public class Constraint2EditPart extends ShapeNodeEditPart {
 		 */
 		public WrappingLabel getFigureConstraint_name() {
 			return fFigureConstraint_name;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getFigureConstraint_description() {
-			return fFigureConstraint_description;
 		}
 
 	}

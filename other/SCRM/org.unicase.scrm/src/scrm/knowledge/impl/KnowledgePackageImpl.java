@@ -681,10 +681,12 @@ public class KnowledgePackageImpl extends EPackageImpl implements
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		initEReference(getNumericalMethod_Performance(),
-				theRequirementsPackage.getPerformance(), null, "performance",
-				null, 0, 1, NumericalMethod.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				theRequirementsPackage.getPerformance(),
+				theRequirementsPackage.getPerformance_DescribedMethod(),
+				"performance", null, 0, 1, NumericalMethod.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 		initEAttribute(getNumericalMethod_Theory(), ecorePackage.getEString(),
 				"theory", null, 0, 1, NumericalMethod.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,

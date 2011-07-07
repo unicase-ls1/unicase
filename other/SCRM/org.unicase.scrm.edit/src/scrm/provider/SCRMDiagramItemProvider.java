@@ -23,13 +23,8 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.gmf.runtime.notation.NotationFactory;
 import scrm.SCRMDiagram;
-import scrm.ScrmFactory;
 import scrm.ScrmPackage;
-import scrm.knowledge.KnowledgeFactory;
-import scrm.requirements.RequirementsFactory;
-import scrm.requirements.dataProcess.DataProcessFactory;
 
 /**
  * This is the item provider adapter for a {@link scrm.SCRMDiagram} object.

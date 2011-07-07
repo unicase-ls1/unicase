@@ -1,22 +1,24 @@
 package scrm.diagram.edit.parts;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
+import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConstrainedToolbarLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -26,13 +28,12 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
-
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
+
+import scrm.SCRMDiagram;
 import scrm.diagram.edit.policies.AssumptionItemSemanticEditPolicy;
-import scrm.diagram.edit.policies.OpenDiagramEditPolicy;
-import scrm.diagram.edit.policies.ScrmTextSelectionEditPolicy;
-import scrm.diagram.opener.MEEditorOpenerPolicy;
+import scrm.diagram.edit.policies.OpenMEEditorPolicy;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -64,14 +65,14 @@ public class AssumptionEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new AssumptionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new MEEditorOpenerPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenMEEditorPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -80,16 +81,23 @@ public class AssumptionEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-
-		ConstrainedToolbarLayoutEditPolicy lep = new ConstrainedToolbarLayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				if (child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE) == null) {
-					if (child instanceof ITextAwareEditPart) {
-						return new ScrmTextSelectionEditPolicy();
-					}
+				EditPolicy result = child
+						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				if (result == null) {
+					result = new NonResizableEditPolicy();
 				}
-				return super.createChildEditPolicy(child);
+				return result;
+			}
+
+			protected Command getMoveChildrenCommand(Request request) {
+				return null;
+			}
+
+			protected Command getCreateCommand(CreateRequest request) {
+				return null;
 			}
 		};
 		return lep;
@@ -262,26 +270,36 @@ public class AssumptionEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(ScrmElementTypes.MathematicalModelDependencies_4012);
-		types.add(ScrmElementTypes.NumericalMethodDependencies_4015);
+		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
+		List<IElementType> types = new LinkedList<IElementType>();
+		switch(scrmDiagram.getDiagramType()) {
+			case DEFAULT_DIAGRAM:
+			case KNOWLEDGE_DIAGRAM:
+				types.add(ScrmElementTypes.MathematicalModelDependencies_4012);
+				types.add(ScrmElementTypes.NumericalMethodDependencies_4015);
+		}
 		return types;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == ScrmElementTypes.MathematicalModelDependencies_4012) {
-			types.add(ScrmElementTypes.MathematicalModel_2005);
-			types.add(ScrmElementTypes.MathematicalModel_3003);
-		} else if (relationshipType == ScrmElementTypes.NumericalMethodDependencies_4015) {
-			types.add(ScrmElementTypes.NumericalMethod_2006);
-			types.add(ScrmElementTypes.NumericalMethod_3002);
+		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
+		List<IElementType> types = new LinkedList<IElementType>();
+		switch(scrmDiagram.getDiagramType()) {
+			case DEFAULT_DIAGRAM:
+			case KNOWLEDGE_DIAGRAM:
+				if (relationshipType == ScrmElementTypes.MathematicalModelDependencies_4012) {
+					types.add(ScrmElementTypes.MathematicalModel_2005);
+					types.add(ScrmElementTypes.MathematicalModel_3003);
+				} else if (relationshipType == ScrmElementTypes.NumericalMethodDependencies_4015) {
+					types.add(ScrmElementTypes.NumericalMethod_2006);
+					types.add(ScrmElementTypes.NumericalMethod_3002);
+				}
 		}
 		return types;
 	}
@@ -305,13 +323,9 @@ public class AssumptionEditPart extends ShapeNodeEditPart {
 		 */
 		public AssumptionFigure() {
 
-			ToolbarLayout layoutThis = new ToolbarLayout();
-			layoutThis.setStretchMinorAxis(true);
-			layoutThis.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);
-
-			layoutThis.setSpacing(5);
-			layoutThis.setVertical(true);
-
+			GridLayout layoutThis = new GridLayout();
+			layoutThis.numColumns = 1;
+			layoutThis.makeColumnsEqualWidth = true;
 			this.setLayoutManager(layoutThis);
 
 			this.setBackgroundColor(THIS_BACK);
@@ -321,23 +335,39 @@ public class AssumptionEditPart extends ShapeNodeEditPart {
 		}
 
 		/**
-		 * @generated NOT
+		 * @generated NOT: enabled textWrap
 		 */
 		private void createContents() {
 
 			fFigureAssumption_name = new WrappingLabel();
 			fFigureAssumption_name.setText("");
-			fFigureAssumption_name.setTextWrap(true);
 
 			fFigureAssumption_name.setFont(FFIGUREASSUMPTION_NAME_FONT);
 
-			this.add(fFigureAssumption_name);
+			GridData constraintFFigureAssumption_name = new GridData();
+			constraintFFigureAssumption_name.verticalAlignment = GridData.BEGINNING;
+			constraintFFigureAssumption_name.horizontalAlignment = GridData.CENTER;
+			constraintFFigureAssumption_name.horizontalIndent = 0;
+			constraintFFigureAssumption_name.horizontalSpan = 1;
+			constraintFFigureAssumption_name.verticalSpan = 1;
+			constraintFFigureAssumption_name.grabExcessHorizontalSpace = false;
+			constraintFFigureAssumption_name.grabExcessVerticalSpace = false;
+			this.add(fFigureAssumption_name, constraintFFigureAssumption_name);
 
 			fFigureAssumption_description = new WrappingLabel();
 			fFigureAssumption_description.setText("");
 			fFigureAssumption_description.setTextWrap(true);
 
-			this.add(fFigureAssumption_description);
+			GridData constraintFFigureAssumption_description = new GridData();
+			constraintFFigureAssumption_description.verticalAlignment = GridData.BEGINNING;
+			constraintFFigureAssumption_description.horizontalAlignment = GridData.FILL;
+			constraintFFigureAssumption_description.horizontalIndent = 0;
+			constraintFFigureAssumption_description.horizontalSpan = 1;
+			constraintFFigureAssumption_description.verticalSpan = 1;
+			constraintFFigureAssumption_description.grabExcessHorizontalSpace = true;
+			constraintFFigureAssumption_description.grabExcessVerticalSpace = false;
+			this.add(fFigureAssumption_description,
+					constraintFFigureAssumption_description);
 
 		}
 

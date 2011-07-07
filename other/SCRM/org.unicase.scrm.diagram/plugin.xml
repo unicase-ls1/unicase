@@ -232,7 +232,7 @@
             <method name="getType()" value="4048,4057,4008,4058,4011,4012,4015,4050,4017,4023,4024,4051,4026,4052,4053,4030,4032,4054,4055,4056,4047"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5003,5019,5001,5020,5021,5022,5002,5023,5024,5025,5004,5026,5005,5027,5006,5028,5029,5030,5031,5007,5032,5008,5033,5009,5034,5035,5074,5075,5011,5037,5038,5012,5039,5013,5040,5041,5042,5043,5044,5076,5077,5078,5079,5080,5081,5082,5083,5084,5085,5072,5073,5086,5087,5088,5089,5090,5091,5092,5093,5094,5095,5096,5097,5098,5099,5100,5101,5102,5103,5104,5105,5106,5107,5108,5109,5110,5111,5112,5113,5114,5115,5116,5117,5118,5119,5120,5121,5122,5123,5124,5125,5126,5127,5128,5129,5130,5131,5132,5133,5134,5135,5136,5137,5138"/>
+            <method name="getType()" value="5003,5019,5001,5020,5021,5022,5002,5023,5024,5025,5004,5026,5005,5027,5006,5028,5029,5030,5031,5007,5032,5008,5033,5009,5034,5035,5074,5075,5011,5037,5038,5012,5039,5013,5040,5041,5042,5043,5044,5076,5077,5078,5079,5080,5081,5082,5083,5084,5085,5072,5073,5086,5140,5142,5087,5088,5089,5090,5091,5092,5093,5094,5095,5096,5097,5098,5099,5100,5101,5102,5103,5104,5105,5106,5107,5108,5109,5110,5111,5112,5113,5114,5115,5116,5117,5118,5119,5120,5121,5122,5123,5124,5125,5126,5139,5127,5128,5129,5130,5131,5132,5133,5134,5135,5136,5137,5138,5141"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7001,7002,7003,7004,7005,7006"/>
@@ -242,7 +242,7 @@
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
-      <?gmfgen generated="true"?>
+      <?gmfgen generated="false"?>
       <modelingAssistantProvider class="scrm.diagram.providers.ScrmModelingAssistantProvider">
          <Priority name="Lowest"/>
          <object class="scrm.diagram.edit.parts.SCRMDiagramEditPart" id="SCRMDiagram_1000"/>
@@ -268,7 +268,38 @@
          <object class="scrm.diagram.edit.parts.KnowledgeSpaceEditPart" id="KnowledgeSpace_2044"/>
          <object class="scrm.diagram.edit.parts.RequirementSpaceEditPart" id="RequirementSpace_2045"/>
          <object class="scrm.diagram.edit.parts.DataProcessSpaceEditPart" id="DataProcessSpace_2046"/>
-         <context elements="SCRMDiagram_1000,ScientificProblem_2007,MathematicalModel_2005,NumericalMethod_2006,Assumption_2008,Feature_2009,Hardware_2010,Constraint_2011,UserInterface_2012,SoftwareInterface_2013,Process_2035,Performance_2015,DataFlow_2016,DataDefinition_2017,InputDataReading_2036,DataHandling_2037,ResultsOutput_2038,ErrorHandling_2039,StatusMonitoring_2040,Requirement_2034,KnowledgeSpace_2044,RequirementSpace_2045,DataProcessSpace_2046"/>
+         <!-- Added support for compartment edit parts -->
+         <object class="scrm.diagram.edit.parts.ScientificProblem2EditPart" id="ScientificProblem_3001"/>
+         <object class="scrm.diagram.edit.parts.NumericalMethod2EditPart" id="NumericalMethod_3002"/>
+         <object class="scrm.diagram.edit.parts.MathematicalModel2EditPart" id="MathematicalModel_3003"/>
+         <object class="scrm.diagram.edit.parts.Assumption2EditPart" id="Assumption_3004"/>
+         <object class="scrm.diagram.edit.parts.KnowledgeSpace2EditPart" id="KnowledgeSpace_3005"/>
+         <object class="scrm.diagram.edit.parts.Constraint2EditPart" id="Constraint_3006"/>
+         <object class="scrm.diagram.edit.parts.DataDefinition2EditPart" id="DataDefinition_3007"/>
+         <object class="scrm.diagram.edit.parts.DataFlow2EditPart" id="DataFlow_3008"/>
+         <object class="scrm.diagram.edit.parts.Feature2EditPart" id="Feature_3009"/>
+         <object class="scrm.diagram.edit.parts.Hardware2EditPart" id="Hardware_3010"/>
+         <object class="scrm.diagram.edit.parts.Performance2EditPart" id="Performance_3011"/>
+         <object class="scrm.diagram.edit.parts.Requirement2EditPart" id="Requirement_3012"/>
+         <object class="scrm.diagram.edit.parts.SoftwareInterface2EditPart" id="SoftwareInterface_3013"/>
+         <object class="scrm.diagram.edit.parts.UserInterface2EditPart" id="UserInterface_3014"/>
+         <object class="scrm.diagram.edit.parts.RequirementSpace2EditPart" id="RequirementSpace_3015"/>
+         <object class="scrm.diagram.edit.parts.StatusMonitoring2EditPart" id="StatusMonitoring_3016"/>
+         <object class="scrm.diagram.edit.parts.ResultsOutput2EditPart" id="ResultsOutput_3017"/>
+         <object class="scrm.diagram.edit.parts.Process2EditPart" id="Process_3018"/>
+         <object class="scrm.diagram.edit.parts.InputDataReading2EditPart" id="InputDataReading_3019"/>
+         <object class="scrm.diagram.edit.parts.ErrorHandling2EditPart" id="ErrorHandling_3020"/>
+         <object class="scrm.diagram.edit.parts.DataHandling2EditPart" id="DataHandling_3021"/>
+         <object class="scrm.diagram.edit.parts.DataProcessSpace2EditPart" id="DataProcessSpace_3022"/>
+         <object class="scrm.diagram.edit.parts.KnowledgeSpaceKnowledgeSpaceCompartmentEditPart" id="KnowledgeSpaceKnowledgeSpaceCompartment_7001"/>
+         <object class="scrm.diagram.edit.parts.KnowledgeSpaceKnowledgeSpaceCompartment2EditPart" id="KnowledgeSpaceKnowledgeSpaceCompartment_7002"/>
+         <object class="scrm.diagram.edit.parts.RequirementSpaceRequirementSpaceCompartmentEditPart" id="RequirementSpaceRequirementSpaceCompartment_7003"/>
+         <object class="scrm.diagram.edit.parts.RequirementSpaceRequirementSpaceCompartment2EditPart" id="RequirementSpaceRequirementSpaceCompartment_7004"/>
+         <object class="scrm.diagram.edit.parts.DataProcessSpaceDataProcessSpaceCompartmentEditPart" id="DataProcessSpaceDataProcessSpaceCompartment_7005"/>
+         <object class="scrm.diagram.edit.parts.DataProcessSpaceDataProcessSpaceCompartment2EditPart" id="DataProcessSpaceDataProcessSpaceCompartment_7006"/>
+         <context elements="SCRMDiagram_1000,ScientificProblem_2007,MathematicalModel_2005,NumericalMethod_2006,Assumption_2008,Feature_2009,Hardware_2010,Constraint_2011,UserInterface_2012,SoftwareInterface_2013,Process_2035,Performance_2015,DataFlow_2016,DataDefinition_2017,InputDataReading_2036,DataHandling_2037,ResultsOutput_2038,ErrorHandling_2039,StatusMonitoring_2040,Requirement_2034,KnowledgeSpace_2044,RequirementSpace_2045,DataProcessSpace_2046,
+         ScientificProblem_3001,NumericalMethod_3002,MathematicalModel_3003,Assumption_3004,KnowledgeSpace_3005,Constraint_3006,DataDefinition_3007,DataFlow_3008,Feature_3009,Hardware_3010,Performance_3011,Requirement_3012,SoftwareInterface_3013,UserInterface_3014,RequirementSpace_3015,StatusMonitoring_3016,ResultsOutput_3017,Process_3018,InputDataReading_3019,ErrorHandling_3020,DataHandling_3021,DataProcessSpace_3022,
+         KnowledgeSpaceKnowledgeSpaceCompartment_7001,KnowledgeSpaceKnowledgeSpaceCompartment_7002,RequirementSpaceRequirementSpaceCompartment_7003,RequirementSpaceRequirementSpaceCompartment_7004,DataProcessSpaceDataProcessSpaceCompartment_7005,DataProcessSpaceDataProcessSpaceCompartment_7006"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -906,7 +937,7 @@
          <enablement>
             <test
                property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-               value="org.unicase.scrm.diagram.EditingDomain"/>
+               value="org.unicase.EditingDomain"/>
          </enablement>
       </clientContext> 
       <binding context="org.unicase.scrm.diagram.TypeContext">
@@ -1129,7 +1160,7 @@
             </visibleWhen>
          </command>
       </menuContribution>
-    </extension>
+   </extension>
     
     <!-- generated NOT: Template Menu Contributions --> 
     <extension point="org.eclipse.ui.menus" id="context-menus">
@@ -1192,6 +1223,80 @@
             </visibleWhen>
          </command>
       </menuContribution>
+      <menuContribution
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <command
+               commandId="org.unicase.scrm.diagram.OpenRepresentingDiagramCommand"
+               style="push">
+           <visibleWhen>
+              <and>
+	              <iterate
+	                     ifEmpty="false"
+	                     operator="and">
+	                  <or>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.KnowledgeSpaceEditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.KnowledgeSpaceNameEditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.KnowledgeSpaceKnowledgeSpaceCompartmentEditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.KnowledgeSpaceKnowledgeSpaceCompartment2EditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.KnowledgeSpaceName2EditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.KnowledgeSpace2EditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.RequirementSpaceEditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.RequirementSpaceNameEditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.RequirementSpaceRequirementSpaceCompartmentEditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.RequirementSpaceRequirementSpaceCompartment2EditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.RequirementSpaceName2EditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.RequirementSpace2EditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.DataProcessSpaceEditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.DataProcessSpaceNameEditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.DataProcessSpaceDataProcessSpaceCompartmentEditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.DataProcessSpace2EditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.DataProcessSpaceName2EditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.DataProcessSpaceDataProcessSpaceCompartment2EditPart">
+	                     </instanceof>
+	                  </or>
+	               </iterate>
+               <count
+                     value="1">
+               </count>
+              </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
    </extension>
 
    <extension point="org.eclipse.ui.commands" id="menu-commands">
@@ -1201,19 +1306,24 @@
          name="Load Resource"
          categoryId="scrm.diagram.part.ScrmDiagramEditorID"
          defaultHandler="scrm.diagram.part.LoadResourceAction"/>
-    </extension>
+   </extension>
     
     <!-- generated NOT: Template Commands -->
     <extension point="org.eclipse.ui.commands" id="menu-commands">
       <command
-            defaultHandler="scrm.diagram.commands.SaveTemplateHandler"
+            defaultHandler="scrm.diagram.handlers.SaveTemplateHandler"
             id="org.unicase.scrm.diagram.SaveTemplateCommand"
             name="Save Template">
       </command>
       <command
-            defaultHandler="scrm.diagram.commands.LoadTemplateHandler"
+            defaultHandler="scrm.diagram.handlers.LoadTemplateHandler"
             id="org.unicase.scrm.diagram.LoadTemplateCommand"
             name="Load Template">
+      </command>
+      <command
+            defaultHandler="scrm.diagram.handlers.OpenRepresentingDiagramHandler"
+            id="org.unicase.scrm.diagram.OpenRepresentingDiagramCommand"
+            name="Open Representing Diagram">
       </command>
    </extension>
 
