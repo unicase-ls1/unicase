@@ -8,14 +8,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.ErrorDialog;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.papyrus.UMLModel;
 import org.unicase.papyrus.UMLDiagramType;
 import org.unicase.ui.common.commands.ECPCommand;
@@ -23,10 +19,8 @@ import org.unicase.ui.util.ModelElementOpener;
 
 public class UMLDiagramOpener implements ModelElementOpener {
 	
-	private static UMLDiagramType[] diagrams;
+	private static Map<UMLDiagramType, String> diagramTypeToEditorID;
 	
-	private static Map<UMLDiagramType, String> diagramTypeToID;
-
 	private static boolean isInitialized;
 
 	public int canOpen(EObject eObject) {
@@ -47,7 +41,7 @@ public class UMLDiagramOpener implements ModelElementOpener {
 			if(model.getGmfDiagram() == null) {
 				initializePackage(model);
 			}
-			String id = getDiagramTypeToID().get(model.getDiagramType()); 
+			String id = getDiagramTypeToEditorID().get(model.getDiagramType()); 
 			if(id == null) {
 				return;
 			}
@@ -65,41 +59,7 @@ public class UMLDiagramOpener implements ModelElementOpener {
 
 	private void initializePackage(final UMLModel model) {
 		Shell shell = Display.getCurrent().getActiveShell();
-		ILabelProvider provider = new ILabelProvider(){
-
-			public void addListener(ILabelProviderListener listener) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			public void dispose() {
-				// TODO Auto-generated method stub
-				
-			}
-
-			public boolean isLabelProperty(Object element, String property) {
-				// TODO Auto-generated method stub
-				return false;
-			}
-
-			public void removeListener(ILabelProviderListener listener) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			public Image getImage(Object element) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			public String getText(Object element) {
-				return ((UMLDiagramType) element).getName();
-			}
-			
-		};
-		ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, provider);
-		dialog.setTitle("Choose the type of the diagram.");
-		dialog.setElements(getDiagramTypes());
+		UMLDiagramTypeSelectionDialog dialog = new UMLDiagramTypeSelectionDialog(shell);
 		if(dialog.open() == Dialog.OK) {
 			final UMLDiagramType selectedElement = (UMLDiagramType) dialog.getFirstResult();
 			new ECPCommand(model) {
@@ -115,33 +75,18 @@ public class UMLDiagramOpener implements ModelElementOpener {
 		}
 	}
 
-	private Map<UMLDiagramType, String> getDiagramTypeToID() {
-		if(diagramTypeToID == null) {
-			diagramTypeToID = new LinkedHashMap<UMLDiagramType, String>();
-			diagramTypeToID.put(UMLDiagramType.ACTIVITY, "org.unicase.papyrus.activity.UMLDiagramEditorID");
-			diagramTypeToID.put(UMLDiagramType.CLASS, "org.unicase.papyrus.clazz.UMLDiagramEditorID");
-			diagramTypeToID.put(UMLDiagramType.COMMUNICATION, "org.unicase.papyrus.communication.UMLDiagramEditorID");
-			diagramTypeToID.put(UMLDiagramType.COMPOSITE, "org.unicase.papyrus.composite.UMLDiagramEditorID");
-			diagramTypeToID.put(UMLDiagramType.SEQUENCE, "org.unicase.papyrus.sequence.UMLDiagramEditorID");
-			diagramTypeToID.put(UMLDiagramType.STATE_MACHINE, "org.unicase.papyrus.statemachine.UMLDiagramEditorID");
-			diagramTypeToID.put(UMLDiagramType.USE_CASE, "org.unicase.papyrus.usecase.UMLDiagramEditorID");
+	private Map<UMLDiagramType, String> getDiagramTypeToEditorID() {
+		if(diagramTypeToEditorID == null) {
+			diagramTypeToEditorID = new LinkedHashMap<UMLDiagramType, String>();
+			diagramTypeToEditorID.put(UMLDiagramType.ACTIVITY, "org.unicase.papyrus.activity.UMLDiagramEditorID");
+			diagramTypeToEditorID.put(UMLDiagramType.CLASS, "org.unicase.papyrus.clazz.UMLDiagramEditorID");
+			diagramTypeToEditorID.put(UMLDiagramType.COMMUNICATION, "org.unicase.papyrus.communication.UMLDiagramEditorID");
+			diagramTypeToEditorID.put(UMLDiagramType.COMPOSITE, "org.unicase.papyrus.composite.UMLDiagramEditorID");
+			diagramTypeToEditorID.put(UMLDiagramType.SEQUENCE, "org.unicase.papyrus.sequence.UMLDiagramEditorID");
+			diagramTypeToEditorID.put(UMLDiagramType.STATE_MACHINE, "org.unicase.papyrus.statemachine.UMLDiagramEditorID");
+			diagramTypeToEditorID.put(UMLDiagramType.USE_CASE, "org.unicase.papyrus.usecase.UMLDiagramEditorID");
 		}
-		return diagramTypeToID;
-	}
-
-	private static UMLDiagramType[] getDiagramTypes() {
-		if(diagrams == null) {
-			diagrams = new UMLDiagramType[] {
-				UMLDiagramType.ACTIVITY,
-				UMLDiagramType.CLASS,
-				UMLDiagramType.COMMUNICATION,
-				UMLDiagramType.COMPOSITE,
-				UMLDiagramType.SEQUENCE,
-				UMLDiagramType.STATE_MACHINE,
-				UMLDiagramType.USE_CASE
-			};
-		}
-		return diagrams;
+		return diagramTypeToEditorID;
 	}
 
 }
