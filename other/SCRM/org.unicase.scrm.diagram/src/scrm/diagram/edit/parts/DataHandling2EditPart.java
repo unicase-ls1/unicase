@@ -601,7 +601,7 @@ public class DataHandling2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 102, 153, 204);
+	static final Color THIS_BACK = new Color(null, 132, 183, 255);
 
 	/**
 	 * @generated

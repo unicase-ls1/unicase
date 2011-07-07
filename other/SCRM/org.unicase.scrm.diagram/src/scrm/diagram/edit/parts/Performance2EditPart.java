@@ -526,7 +526,7 @@ public class Performance2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 13, 242, 231);
+	static final Color THIS_BACK = new Color(null, 112, 244, 204);
 
 	/**
 	 * @generated

@@ -549,7 +549,7 @@ public class RequirementEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 0, 255, 0);
+	static final Color THIS_BACK = new Color(null, 102, 255, 204);
 	/**
 	 * @generated
 	 */

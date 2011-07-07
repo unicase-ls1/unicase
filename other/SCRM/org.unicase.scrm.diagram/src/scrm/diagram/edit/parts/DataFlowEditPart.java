@@ -456,7 +456,7 @@ public class DataFlowEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 13, 185, 242);
+	static final Color THIS_BACK = new Color(null, 51, 255, 102);
 
 	/**
 	 * @generated

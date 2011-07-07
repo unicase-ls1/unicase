@@ -107,9 +107,14 @@ import scrm.requirements.RequirementSpace;
 import scrm.requirements.RequirementsPackage;
 import scrm.requirements.SoftwareInterface;
 import scrm.requirements.UserInterface;
+import scrm.requirements.dataProcess.DataProcessSpace;
 
 /**
  * @generated
+ */
+/**
+ * @author mharut
+ *
  */
 public class ScrmDiagramUpdater {
 
@@ -244,7 +249,7 @@ public class ScrmDiagramUpdater {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT: include indirect contents as well
 	 */
 	public static List<ScrmNodeDescriptor> getKnowledgeSpaceKnowledgeSpaceCompartment_7001SemanticChildren(
 			View view) {
@@ -265,18 +270,22 @@ public class ScrmDiagramUpdater {
 					childElement);
 			if (visualID == ScientificProblem2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == NumericalMethod2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == MathematicalModel2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == Assumption2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == KnowledgeSpace2EditPart.VISUAL_ID) {
@@ -288,7 +297,7 @@ public class ScrmDiagramUpdater {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT: include indirect contents as well
 	 */
 	public static List<ScrmNodeDescriptor> getKnowledgeSpaceKnowledgeSpaceCompartment_7002SemanticChildren(
 			View view) {
@@ -309,18 +318,22 @@ public class ScrmDiagramUpdater {
 					childElement);
 			if (visualID == ScientificProblem2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == NumericalMethod2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == MathematicalModel2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == Assumption2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == KnowledgeSpace2EditPart.VISUAL_ID) {
@@ -332,7 +345,7 @@ public class ScrmDiagramUpdater {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT: include indirect contents as well
 	 */
 	public static List<ScrmNodeDescriptor> getRequirementSpaceRequirementSpaceCompartment_7003SemanticChildren(
 			View view) {
@@ -354,38 +367,47 @@ public class ScrmDiagramUpdater {
 					childElement);
 			if (visualID == Constraint2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == DataDefinition2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == DataFlow2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == Feature2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == Hardware2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == Performance2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == Requirement2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == SoftwareInterface2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == UserInterface2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == RequirementSpace2EditPart.VISUAL_ID) {
@@ -394,26 +416,32 @@ public class ScrmDiagramUpdater {
 			}
 			if (visualID == StatusMonitoring2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == ResultsOutput2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == Process2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == InputDataReading2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == ErrorHandling2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == DataHandling2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == DataProcessSpace2EditPart.VISUAL_ID) {
@@ -425,7 +453,7 @@ public class ScrmDiagramUpdater {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT: include indirect contents as well
 	 */
 	public static List<ScrmNodeDescriptor> getRequirementSpaceRequirementSpaceCompartment_7004SemanticChildren(
 			View view) {
@@ -447,38 +475,47 @@ public class ScrmDiagramUpdater {
 					childElement);
 			if (visualID == Constraint2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == DataDefinition2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == DataFlow2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == Feature2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == Hardware2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == Performance2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == Requirement2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == SoftwareInterface2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == UserInterface2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == RequirementSpace2EditPart.VISUAL_ID) {
@@ -487,26 +524,32 @@ public class ScrmDiagramUpdater {
 			}
 			if (visualID == StatusMonitoring2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == ResultsOutput2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == Process2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == InputDataReading2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == ErrorHandling2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == DataHandling2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == DataProcessSpace2EditPart.VISUAL_ID) {
@@ -518,7 +561,7 @@ public class ScrmDiagramUpdater {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT: include indirect contents as well
 	 */
 	public static List<ScrmNodeDescriptor> getDataProcessSpaceDataProcessSpaceCompartment_7005SemanticChildren(
 			View view) {
@@ -529,7 +572,7 @@ public class ScrmDiagramUpdater {
 		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		scrm.requirements.dataProcess.DataProcessSpace modelElement = (scrm.requirements.dataProcess.DataProcessSpace) containerView
+		DataProcessSpace modelElement = (DataProcessSpace) containerView
 				.getElement();
 		LinkedList<ScrmNodeDescriptor> result = new LinkedList<ScrmNodeDescriptor>();
 		for (Iterator<?> it = modelElement.getContainedDataProcessSteps()
@@ -540,26 +583,32 @@ public class ScrmDiagramUpdater {
 					childElement);
 			if (visualID == StatusMonitoring2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == ResultsOutput2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == Process2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == InputDataReading2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == ErrorHandling2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == DataHandling2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == DataProcessSpace2EditPart.VISUAL_ID) {
@@ -571,7 +620,7 @@ public class ScrmDiagramUpdater {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT: include indirect contents as well
 	 */
 	public static List<ScrmNodeDescriptor> getDataProcessSpaceDataProcessSpaceCompartment_7006SemanticChildren(
 			View view) {
@@ -582,7 +631,7 @@ public class ScrmDiagramUpdater {
 		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		scrm.requirements.dataProcess.DataProcessSpace modelElement = (scrm.requirements.dataProcess.DataProcessSpace) containerView
+		DataProcessSpace modelElement = (DataProcessSpace) containerView
 				.getElement();
 		LinkedList<ScrmNodeDescriptor> result = new LinkedList<ScrmNodeDescriptor>();
 		for (Iterator<?> it = modelElement.getContainedDataProcessSteps()
@@ -593,26 +642,32 @@ public class ScrmDiagramUpdater {
 					childElement);
 			if (visualID == StatusMonitoring2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == ResultsOutput2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == Process2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == InputDataReading2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == ErrorHandling2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == DataHandling2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == DataProcessSpace2EditPart.VISUAL_ID) {
@@ -621,6 +676,21 @@ public class ScrmDiagramUpdater {
 			}
 		}
 		return result;
+	}
+	
+	/**
+	 * @generated NOT: custom method to include all contents of SCRMSpace
+	 */
+	private static Collection<ScrmNodeDescriptor> getAllContents(
+			View view, EObject parent) {
+		List<ScrmNodeDescriptor> allContents = new LinkedList<ScrmNodeDescriptor>();
+		for(Iterator<EObject> it = parent.eAllContents(); it.hasNext();) {
+			EObject child = it.next();
+			int visualID = ScrmVisualIDRegistry.getNodeVisualID(view,
+					child);
+			allContents.add(new ScrmNodeDescriptor(child, visualID));
+		}
+		return allContents;
 	}
 
 	/**

@@ -408,7 +408,7 @@ public class ConstraintEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 16, 240, 167);
+	static final Color THIS_BACK = new Color(null, 112, 244, 0);
 
 	/**
 	 * @generated
