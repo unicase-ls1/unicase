@@ -22,7 +22,9 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
  * @author narayan
  */
 public class UnicaseObserver extends ECPObserver implements StatusViewDropEventObserver {
-
+	/**
+	 * . ({@inheritDoc})
+	 */
 	public void onStatusViewDropEvent(EObject open, EObject dragged, String source, String tab) {
 		final DNDEvent dndEvent = EventsFactory.eINSTANCE.createDNDEvent();
 		dndEvent.setDropTargetElement(ModelUtil.getProject(open).getModelElementId(open));
