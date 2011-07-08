@@ -5,13 +5,13 @@
  */
 package org.unicase.workpackagetransfer.navigator.wizards;
 
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.workpackagetransfer.WorkItemTransferOperator;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author mkagel Wizard for moving model elements from the selected WorkPackage to a other.
@@ -20,47 +20,47 @@ public class WorkpackageTransferWizard extends Wizard implements IWorkbenchWizar
 
 	private WorkPackage selectedWorkpackage;
 	private ChooseWorkItemPage chooseWorkItemPage;
-	
+
 	private boolean canFinish;
-	
-	/**	 
+
+	/**
 	 * . ({@inheritDoc})
 	 */
 	@Override
 	public boolean performFinish() {
-		
-		
-		new UnicaseCommand() {
+
+		new EMFStoreCommand() {
 			@Override
-			protected void doRun() {				
-				WorkItemTransferOperator.moveWorkItems(chooseWorkItemPage.getSelectedWorkItems(), chooseWorkItemPage.getTargetWorkPackage(), selectedWorkpackage);				
+			protected void doRun() {
+				WorkItemTransferOperator.moveWorkItems(chooseWorkItemPage.getSelectedWorkItems(),
+					chooseWorkItemPage.getTargetWorkPackage(), selectedWorkpackage);
 			}
-		}.run();		
-		
+		}.run();
+
 		return true;
 	}
-	
-	/**	 
+
+	/**
 	 * . ({@inheritDoc})
 	 */
 	@Override
 	public boolean canFinish() {
 		return canFinish;
 	}
-	
-	/**	 
+
+	/**
 	 * . ({@inheritDoc})
 	 */
 	public void setCanFinish(boolean canFinish) {
 		this.canFinish = canFinish;
 	}
-	
-	/**	 
+
+	/**
 	 * . ({@inheritDoc})
 	 */
 	@Override
 	public void addPages() {
-		chooseWorkItemPage = new ChooseWorkItemPage("Choose WorkItem",this);
+		chooseWorkItemPage = new ChooseWorkItemPage("Choose WorkItem", this);
 		addPage(chooseWorkItemPage);
 	}
 
@@ -68,27 +68,28 @@ public class WorkpackageTransferWizard extends Wizard implements IWorkbenchWizar
 	 * . ({@inheritDoc})
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		
+
 		canFinish = false;
-		
+
 		Object firstElement;
-		if(!selection.isEmpty()) {
-			
+		if (!selection.isEmpty()) {
+
 			firstElement = selection.getFirstElement();
-				
-			if(firstElement instanceof WorkPackage) {				
-				selectedWorkpackage = (WorkPackage)firstElement;
-			} else {				
+
+			if (firstElement instanceof WorkPackage) {
+				selectedWorkpackage = (WorkPackage) firstElement;
+			} else {
 				throw new IllegalArgumentException("No WorkPackage selected");
 			}
 		} else {
 			throw new IllegalArgumentException("Nothing selected");
 		}
-		
+
 	}
-	
+
 	/**
 	 * Returns the WorkPackage that was selected to choose the WorkItems from.
+	 * 
 	 * @return the selected WorkPackage which contains the WorkItems to move
 	 */
 	public WorkPackage getSelectedWorkPackage() {

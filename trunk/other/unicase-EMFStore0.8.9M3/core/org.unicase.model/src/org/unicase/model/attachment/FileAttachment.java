@@ -5,7 +5,7 @@
  */
 package org.unicase.model.attachment;
 
-import org.unicase.emfstore.esmodel.FileIdentifier;
+import org.eclipse.emf.emfstore.server.model.FileIdentifier;
 import org.unicase.model.Attachment;
 
 /**
@@ -38,7 +38,7 @@ public interface FileAttachment extends Attachment {
 	 * @return the value of the '<em>File Name</em>' attribute.
 	 * @see #setFileName(String)
 	 * @see org.unicase.model.attachment.AttachmentPackage#getFileAttachment_FileName()
-	 * @model annotation="org.unicase.ui.meeditor priority='2' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='2' position='left'"
 	 * @generated
 	 */
 	String getFileName();
@@ -63,7 +63,7 @@ public interface FileAttachment extends Attachment {
 	 * @return the value of the '<em>File Hash</em>' attribute.
 	 * @see #setFileHash(String)
 	 * @see org.unicase.model.attachment.AttachmentPackage#getFileAttachment_FileHash()
-	 * @model annotation="org.unicase.ui.meeditor priority='2' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='2' position='left'"
 	 * @generated
 	 */
 	String getFileHash();
@@ -88,7 +88,7 @@ public interface FileAttachment extends Attachment {
 	 * @return the value of the '<em>File ID</em>' attribute.
 	 * @see #setFileID(String)
 	 * @see org.unicase.model.attachment.AttachmentPackage#getFileAttachment_FileID()
-	 * @model annotation="org.unicase.ui.meeditor priority='2' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='2' position='left'"
 	 * @generated
 	 */
 	@Deprecated
@@ -115,7 +115,7 @@ public interface FileAttachment extends Attachment {
 	 * @return the value of the '<em>File Size</em>' attribute.
 	 * @see #setFileSize(long)
 	 * @see org.unicase.model.attachment.AttachmentPackage#getFileAttachment_FileSize()
-	 * @model annotation="org.unicase.ui.meeditor priority='2' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='2' position='left'"
 	 * @generated
 	 */
 	long getFileSize();

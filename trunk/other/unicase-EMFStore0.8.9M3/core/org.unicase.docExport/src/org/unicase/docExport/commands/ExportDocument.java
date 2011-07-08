@@ -8,6 +8,7 @@ package org.unicase.docExport.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Shell;
@@ -16,7 +17,6 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersFactory;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.impl.UnicaseModelElementImpl;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * The handler for the document export command.
@@ -48,7 +48,7 @@ public class ExportDocument extends AbstractHandler {
 
 		final Shell shell = PlatformUI.getWorkbench().getDisplay().getActiveShell();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				ExportDialog dialog;

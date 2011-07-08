@@ -32,7 +32,7 @@ public interface UrlAttachment extends Attachment {
 	 * @return the value of the '<em>Url</em>' attribute.
 	 * @see #setUrl(String)
 	 * @see org.unicase.model.attachment.AttachmentPackage#getUrlAttachment_Url()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='2.5'"
+	 * @model annotation="org.eclipse.emf.ecp.editor position='left' priority='2.5'"
 	 * @generated
 	 */
 	String getUrl();

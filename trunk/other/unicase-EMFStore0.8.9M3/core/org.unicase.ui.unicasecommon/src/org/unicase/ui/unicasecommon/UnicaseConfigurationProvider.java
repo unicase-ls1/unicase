@@ -5,8 +5,8 @@
  */
 package org.unicase.ui.unicasecommon;
 
-import static org.unicase.workspace.Configuration.isInternalReleaseVersion;
-import static org.unicase.workspace.Configuration.isReleaseVersion;
+import static org.eclipse.emf.emfstore.client.model.Configuration.isInternalReleaseVersion;
+import static org.eclipse.emf.emfstore.client.model.Configuration.isReleaseVersion;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,12 +14,12 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.unicase.metamodel.util.FileUtil;
-import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.WorkspaceFactory;
-import org.unicase.workspace.connectionmanager.KeyStoreManager;
-import org.unicase.workspace.exceptions.CertificateStoreException;
-import org.unicase.workspace.util.ConfigurationProvider;
+import org.eclipse.emf.emfstore.client.model.ModelFactory;
+import org.eclipse.emf.emfstore.client.model.ServerInfo;
+import org.eclipse.emf.emfstore.client.model.connectionmanager.KeyStoreManager;
+import org.eclipse.emf.emfstore.client.model.exceptions.CertificateStoreException;
+import org.eclipse.emf.emfstore.client.model.util.ConfigurationProvider;
+import org.eclipse.emf.emfstore.common.model.util.FileUtil;
 
 /**
  * Default configuration provider for unicase. At the moment default {@link ServerInfo} can be set and certificates can
@@ -47,7 +47,7 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 	}
 
 	private static ServerInfo getReleaseServerInfo() {
-		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+		ServerInfo serverInfo = ModelFactory.eINSTANCE.createServerInfo();
 		serverInfo.setName("unicase Server");
 		serverInfo.setPort(443);
 		serverInfo.setUrl("unicase.in.tum.de");
@@ -55,7 +55,7 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 	}
 
 	private static ServerInfo getInternalServerInfo() {
-		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+		ServerInfo serverInfo = ModelFactory.eINSTANCE.createServerInfo();
 		serverInfo.setName("unicase Developer Server");
 		serverInfo.setPort(443);
 		serverInfo.setUrl("unicase-internal.informatik.tu-muenchen.de");

@@ -149,4 +149,10 @@ public class UrlAttachmentImpl extends AttachmentImpl implements UrlAttachment {
 		return result.toString();
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // UrlAttachmentImpl

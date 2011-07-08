@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.metamodel.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.unicase.model.util.ModelElementPath;
 import org.unicase.model.util.UtilPackage;
 

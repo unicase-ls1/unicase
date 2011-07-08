@@ -34,4 +34,10 @@ public class StateEndImpl extends StateNodeImpl implements StateEnd {
 		return StatePackage.Literals.STATE_END;
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // StateEndImpl

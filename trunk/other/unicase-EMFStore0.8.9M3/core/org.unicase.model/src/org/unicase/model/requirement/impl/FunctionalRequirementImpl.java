@@ -614,4 +614,10 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 		return result.toString();
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // FunctionalRequirementImpl

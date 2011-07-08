@@ -191,4 +191,10 @@ public class EnumerationImpl extends PackageElementImpl implements Enumeration {
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // EnumerationImpl

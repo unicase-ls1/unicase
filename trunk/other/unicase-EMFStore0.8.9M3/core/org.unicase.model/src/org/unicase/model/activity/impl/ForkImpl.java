@@ -34,4 +34,10 @@ public class ForkImpl extends ActivityObjectImpl implements Fork {
 		return ActivityPackage.Literals.FORK;
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // ForkImpl

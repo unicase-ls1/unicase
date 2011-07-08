@@ -384,4 +384,10 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 		return result.toString();
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // StepImpl

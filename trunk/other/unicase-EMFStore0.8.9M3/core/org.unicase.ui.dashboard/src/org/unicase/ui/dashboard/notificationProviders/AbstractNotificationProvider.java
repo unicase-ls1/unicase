@@ -10,31 +10,29 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.unicase.emfstore.esmodel.notification.ESNotification;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.notification.NotificationProvider;
+import org.eclipse.emf.emfstore.client.model.util.NoCurrentUserException;
+import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
 import org.unicase.model.organization.User;
-import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.notification.NotificationProvider;
-import org.unicase.workspace.util.NoCurrentUserException;
 
 /**
- * Abstract class to define common structure and behavior of the notification
- * providers.
+ * Abstract class to define common structure and behavior of the notification providers.
  * 
  * @author Shterev
  */
-public abstract class AbstractNotificationProvider implements
-		NotificationProvider {
+public abstract class AbstractNotificationProvider implements NotificationProvider {
 
 	private User user;
 	private Set<OperationId> excludedList;
@@ -46,31 +44,24 @@ public abstract class AbstractNotificationProvider implements
 	public AbstractNotificationProvider() {
 		excludedList = new HashSet<OperationId>();
 	}
-	
+
 	/**
-	 * Implements the common sanity checks and delegates to
-	 * {@link #createNotifications(List, String)} and
+	 * Implements the common sanity checks and delegates to {@link #createNotifications(List, String)} and
 	 * {@link #handleOperation(AbstractOperation)}.<br>
 	 * <br>
-	 * All subclasses should mainly implement two methods:<br>
-	 * {@link #handleOperation(AbstractOperation)} - to process a single
-	 * operation and acquire information and
-	 * {@link #createNotifications(List, String)} - to create notification from
-	 * the gathered data. <br>
+	 * All subclasses should mainly implement two methods:<br> {@link #handleOperation(AbstractOperation)} - to process a
+	 * single operation and acquire information and {@link #createNotifications(List, String)} - to create notification
+	 * from the gathered data. <br>
 	 * <br>
-	 * These methods are separated in order to introduce flexibility in each
-	 * provider's implementation. Instead of feeding a single list with elements
-	 * and returning it as a value, {@link #handleOperation(AbstractOperation)}
-	 * can divide the elements in groups which can later on be used to generate
-	 * different types of notifications.<br>
-	 * As an example - the task notification provider gathers data and saves it
-	 * in 3 categories, which will be responsible for 3 different notification
-	 * types. {@inheritDoc}
+	 * These methods are separated in order to introduce flexibility in each provider's implementation. Instead of
+	 * feeding a single list with elements and returning it as a value, {@link #handleOperation(AbstractOperation)} can
+	 * divide the elements in groups which can later on be used to generate different types of notifications.<br>
+	 * As an example - the task notification provider gathers data and saves it in 3 categories, which will be
+	 * responsible for 3 different notification types. {@inheritDoc}
 	 */
-	public List<ESNotification> provideNotifications(ProjectSpace projectSpace,
-			List<ChangePackage> changePackages) {
+	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages) {
 		List<ESNotification> result = new ArrayList<ESNotification>();
-		
+
 		try {
 			User currentUser = OrgUnitHelper.getUser(projectSpace);
 			return provideNotifications(projectSpace, changePackages, currentUser.getName());
@@ -82,60 +73,51 @@ public abstract class AbstractNotificationProvider implements
 	}
 
 	/**
-	 * Implements the common sanity checks and delegates to
-	 * {@link #createNotifications(List, String)} and
+	 * Implements the common sanity checks and delegates to {@link #createNotifications(List, String)} and
 	 * {@link #handleOperation(AbstractOperation)}.<br>
 	 * <br>
-	 * All subclasses should mainly implement two methods:<br>
-	 * {@link #handleOperation(AbstractOperation)} - to process a single
-	 * operation and acquire information and
-	 * {@link #createNotifications(List, String)} - to create notification from
-	 * the gathered data. <br>
+	 * All subclasses should mainly implement two methods:<br> {@link #handleOperation(AbstractOperation)} - to process a
+	 * single operation and acquire information and {@link #createNotifications(List, String)} - to create notification
+	 * from the gathered data. <br>
 	 * <br>
-	 * These methods are separated in order to introduce flexibility in each
-	 * provider's implementation. Instead of feeding a single list with elements
-	 * and returning it as a value, {@link #handleOperation(AbstractOperation)}
-	 * can divide the elements in groups which can later on be used to generate
-	 * different types of notifications.<br>
-	 * As an example - the task notification provider gathers data and saves it
-	 * in 3 categories, which will be responsible for 3 different notification
-	 * types. {@inheritDoc}
+	 * These methods are separated in order to introduce flexibility in each provider's implementation. Instead of
+	 * feeding a single list with elements and returning it as a value, {@link #handleOperation(AbstractOperation)} can
+	 * divide the elements in groups which can later on be used to generate different types of notifications.<br>
+	 * As an example - the task notification provider gathers data and saves it in 3 categories, which will be
+	 * responsible for 3 different notification types. {@inheritDoc}
 	 */
-	public List<ESNotification> provideNotifications(ProjectSpace projectSpace,
-			List<ChangePackage> changePackages, String username) {
+	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
+		String username) {
 		// sanity checks
 		List<ESNotification> result = new ArrayList<ESNotification>();
 		if (projectSpace == null || username == null) {
 			return result;
 		}
 		this.projectSpace = projectSpace;
-		
+
 		try {
 			user = OrgUnitHelper.getUser(projectSpace, username);
 		} catch (CannotMatchUserInProjectException e) {
 			return result;
 		}
-		
+
 		init();
 		for (ChangePackage changePackage : changePackages) {
 			if (changePackage == null) {
 				continue;
 			}
 			if (changePackage.getLogMessage() != null
-					&& changePackage.getLogMessage().getAuthor().equals(
-							user.getName())) {
+				&& changePackage.getLogMessage().getAuthor().equals(user.getName())) {
 				continue;
 			}
 			for (AbstractOperation operation : changePackage.getOperations()) {
 				if (operation instanceof CompositeOperation) {
-					for (AbstractOperation op : ((CompositeOperation) operation)
-							.getSubOperations()) {
+					for (AbstractOperation op : ((CompositeOperation) operation).getSubOperations()) {
 						checkAndHandleOperation(op);
 					}
 				} else if (operation instanceof CreateDeleteOperation) {
 					checkAndHandleOperation(operation);
-					for (AbstractOperation op : ((CreateDeleteOperation) operation)
-							.getSubOperations()) {
+					for (AbstractOperation op : ((CreateDeleteOperation) operation).getSubOperations()) {
 						checkAndHandleOperation(op);
 					}
 				} else {
@@ -156,34 +138,27 @@ public abstract class AbstractNotificationProvider implements
 	}
 
 	/**
-	 * Filters all unwanted operation and returns a reference operation if
-	 * applicable.
+	 * Filters all unwanted operation and returns a reference operation if applicable.
 	 * 
-	 * @param operation
-	 *            abstract operation
-	 * @return the reference operation or null if there is no reference
-	 *         operation
+	 * @param operation abstract operation
+	 * @return the reference operation or null if there is no reference operation
 	 */
-	protected ReferenceOperation getReferenceOperation(
-			AbstractOperation operation) {
+	protected ReferenceOperation getReferenceOperation(AbstractOperation operation) {
 		// filter all operations other than reference operations
-		if (!OperationsPackage.eINSTANCE.getReferenceOperation().isInstance(
-				operation)) {
+		if (!OperationsPackage.eINSTANCE.getReferenceOperation().isInstance(operation)) {
 			return null;
 		}
 
 		ReferenceOperation referenceOperation = (ReferenceOperation) operation;
 
 		// filter remove reference operations
-		if (OperationsPackage.eINSTANCE.getMultiReferenceOperation()
-				.isInstance(referenceOperation)) {
+		if (OperationsPackage.eINSTANCE.getMultiReferenceOperation().isInstance(referenceOperation)) {
 			MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation) referenceOperation;
 			if (!multiReferenceOperation.isAdd()) {
 				return null;
 			}
 		}
-		if (OperationsPackage.eINSTANCE.getSingleReferenceOperation()
-				.isInstance(referenceOperation)) {
+		if (OperationsPackage.eINSTANCE.getSingleReferenceOperation().isInstance(referenceOperation)) {
 			SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) referenceOperation;
 			if (singleReferenceOperation.getNewValue() == null) {
 				return null;
@@ -195,8 +170,7 @@ public abstract class AbstractNotificationProvider implements
 	/**
 	 * Handles a single operation.
 	 * 
-	 * @param operation
-	 *            the operation
+	 * @param operation the operation
 	 */
 	protected abstract void handleOperation(AbstractOperation operation);
 

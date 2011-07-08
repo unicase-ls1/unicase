@@ -1,21 +1,16 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.diagram.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-
+import org.eclipse.emf.emfstore.common.model.provider.CommonEditPlugin;
+import org.eclipse.emf.emfstore.server.model.provider.ServerEditPlugin;
 import org.eclipse.gmf.runtime.notation.NotationEditPlugin;
-
-import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
-
-import org.unicase.metamodel.provider.MetamodelEditPlugin;
-
 import org.unicase.model.provider.ModelEditPlugin;
 
 /**
@@ -48,9 +43,8 @@ public final class DiagramEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public DiagramEditPlugin() {
-		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
-				EsmodelEditPlugin.INSTANCE, MetamodelEditPlugin.INSTANCE,
-				ModelEditPlugin.INSTANCE, NotationEditPlugin.INSTANCE, });
+		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, ModelEditPlugin.INSTANCE, NotationEditPlugin.INSTANCE,
+			CommonEditPlugin.INSTANCE, ServerEditPlugin.INSTANCE, });
 	}
 
 	/**

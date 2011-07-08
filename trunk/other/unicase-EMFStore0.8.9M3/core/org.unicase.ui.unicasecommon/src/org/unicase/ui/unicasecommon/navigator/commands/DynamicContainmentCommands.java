@@ -15,8 +15,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.common.model.ModelPackage;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
@@ -24,12 +27,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
-import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.workspace.ProjectSpace;
+import org.unicase.ui.unicasecommon.common.util.UnicaseUiUtil;
 
 /**
  * . This class creates a group of commands to create different containments of a model element through context menu.
@@ -51,7 +51,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 	@Override
 	protected IContributionItem[] getContributionItems() {
 		// 1. get selected ME
-		selectedME = ActionHelper.getSelectedModelElement();
+		selectedME = UiUtil.getSelectedModelelement();
 		if (selectedME == null || selectedME instanceof MEDiagram) {
 			return new IContributionItem[0];
 		} else if (selectedME instanceof ProjectSpace) {
@@ -85,7 +85,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 			}
 
 			// do not create any command for NonDomainElement types
-			if (MetamodelPackage.eINSTANCE.getNonDomainElement().isSuperTypeOf(containment.getEReferenceType())) {
+			if (ModelPackage.eINSTANCE.getNonDomainElement().isSuperTypeOf(containment.getEReferenceType())) {
 				continue;
 			}
 
@@ -112,8 +112,8 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 				continue;
 			}
 
-			CommandContributionItemParameter commandParam = new CommandContributionItemParameter(PlatformUI
-				.getWorkbench(), null, COMMAND_ID, CommandContributionItem.STYLE_PUSH);
+			CommandContributionItemParameter commandParam = new CommandContributionItemParameter(
+				PlatformUI.getWorkbench(), null, COMMAND_ID, CommandContributionItem.STYLE_PUSH);
 
 			Map<Object, Object> commandParams = new HashMap<Object, Object>();
 
@@ -151,10 +151,10 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 			return;
 		}
 
-		Set<EClass> eClazz = ModelUtil.getSubclasses(refClass);
+		Set<EClass> eClazz = UnicaseUiUtil.getSubclasses(refClass);
 		for (EClass eClass : eClazz) {
-			CommandContributionItemParameter commandParam = new CommandContributionItemParameter(PlatformUI
-				.getWorkbench(), null, COMMAND_ID, CommandContributionItem.STYLE_PUSH);
+			CommandContributionItemParameter commandParam = new CommandContributionItemParameter(
+				PlatformUI.getWorkbench(), null, COMMAND_ID, CommandContributionItem.STYLE_PUSH);
 
 			Map<Object, Object> commandParams = new HashMap<Object, Object>();
 			commandParams.put(CreateMEHandler.COMMAND_ECLASS_PARAM, eClass);

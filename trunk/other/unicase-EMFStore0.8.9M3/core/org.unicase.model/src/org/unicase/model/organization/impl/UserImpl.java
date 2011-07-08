@@ -323,4 +323,10 @@ public class UserImpl extends OrgUnitImpl implements User {
 		return result.toString();
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // UserImpl

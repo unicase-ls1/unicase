@@ -9,11 +9,11 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.observer.ModelElementOpenObserver;
+import org.eclipse.emf.ecp.common.util.UiUtil;
+import org.eclipse.emf.ecp.navigatoreditorbridge.ModelElementOpener;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.ui.common.observer.ModelElementOpenObserver;
-import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.navigatormeeditorbridge.ModelElementOpener;
 
 /**
  * This a handler to open MEDiagrams with MEEditor. By default MEdiagrams are opened using diagram editor.
@@ -26,10 +26,10 @@ public class OpenDiagramWithMEEditorHandler extends AbstractHandler {
 	 * . {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		EObject me = ActionHelper.getSelectedModelElement();
+		EObject me = UiUtil.getSelectedModelelement();
 		if (me instanceof MEDiagram) {
-			ECPWorkspaceManager.getObserverBus().notify(ModelElementOpenObserver.class).onOpen(me,
-				"org.unicase.ui.unicasecommon.OpenDiagramWithMEEditor", "org.unicase.ui.meeditor.MEEditor");
+			ECPWorkspaceManager.getObserverBus().notify(ModelElementOpenObserver.class)
+				.onOpen(me, "org.unicase.ui.unicasecommon.OpenDiagramWithMEEditor", "org.unicase.ui.meeditor.MEEditor");
 			new ModelElementOpener().openModelElement(me);
 		}
 

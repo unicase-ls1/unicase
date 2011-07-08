@@ -5,6 +5,7 @@
  */
 package org.unicase.multiaction.navigator.wizards;
 
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
@@ -13,7 +14,6 @@ import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.multiaction.MultiActionGenerator;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author jfinis Wizard for assigning an action item to a group of users.
@@ -85,11 +85,11 @@ public class MultiactionWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
-				WorkPackage wp = MultiActionGenerator.generateMultiAction(selectedActionItem, assigneePage
-					.getSelected());
+				WorkPackage wp = MultiActionGenerator.generateMultiAction(selectedActionItem,
+					assigneePage.getSelected());
 				UnicaseActionHelper.openModelElement(wp, this.getClass().getName());
 
 			}

@@ -10,12 +10,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
-import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.ui.dashboard.Activator;
-import org.unicase.workspace.ProjectSpace;
 
 /**
  * The editor input for the dashboard.

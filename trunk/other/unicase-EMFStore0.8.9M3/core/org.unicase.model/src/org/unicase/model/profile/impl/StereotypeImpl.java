@@ -349,4 +349,10 @@ public class StereotypeImpl extends UnicaseModelElementImpl implements Stereotyp
 		return result.toString();
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // StereotypeImpl

@@ -13,6 +13,13 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecp.common.util.UiUtil;
+import org.eclipse.emf.emfstore.client.model.ModelPackage;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.Workspace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IToolBarManager;
@@ -30,25 +37,19 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.tableview.viewer.METableViewer;
 import org.unicase.ui.taskview.TaskView;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseUiUtil;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.WorkspacePackage;
 
 /**
  * A specialized UnicaseTableView to display all Attributes of model element.
  * 
  * @author Abdelhamid Barzali, Hodaie
  */
-public class UnicaseTableView extends ViewPart implements ProjectChangeObserver {
+public class UnicaseTableView extends ViewPart implements
+	org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver {
 
 	/**
 	 * Filter model elements by name in table viewer.
@@ -117,7 +118,7 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 
 			@Override
 			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
+				if ((msg.getFeatureID(Workspace.class)) == ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
 					ProjectSpace activeProjectSpace = workspace.getActiveProjectSpace();
 					if (activeProjectSpace != null) {
 						activeProject = activeProjectSpace.getProject();
@@ -156,6 +157,7 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 
 		Listener listener = new Listener() {
 
+			@Override
 			public void handleEvent(Event event) {
 				viewer.refresh();
 			}
@@ -165,12 +167,14 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 
 		txtFilter.addKeyListener(new KeyListener() {
 
+			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.keyCode == SWT.ARROW_DOWN) {
 					viewer.getTableViewer().getTable().setFocus();
 				}
 			}
 
+			@Override
 			public void keyReleased(KeyEvent e) {
 			}
 
@@ -182,7 +186,7 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 		final Action doubleClickAction = new Action() {
 			@Override
 			public void run() {
-				UnicaseActionHelper.openModelElement(ActionHelper.getSelectedModelElement(), TaskView.class.getName());
+				UnicaseActionHelper.openModelElement(UiUtil.getSelectedModelelement(), TaskView.class.getName());
 			}
 		};
 		viewer.setDoubleClickAction(doubleClickAction);
@@ -255,7 +259,8 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.eclipse.emf.
 	 */
-	public void modelElementAdded(Project project, EObject modelElement) {
+	@Override
+	public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
 		viewer.refresh();
 	}
 
@@ -264,7 +269,8 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementRemoved(Project project, EObject modelElement) {
+	@Override
+	public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
 		viewer.refresh();
 	}
 
@@ -274,7 +280,8 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
 	 */
-	public void notify(Notification notification, Project project, EObject modelElement) {
+	@Override
+	public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
 		viewer.getTableViewer().update(modelElement, null);
 	}
 
@@ -283,7 +290,8 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
 	 */
-	public void projectDeleted(Project project) {
+	@Override
+	public void projectDeleted(IdEObjectCollection project) {
 		// TODO Auto-generated method stub
 
 	}

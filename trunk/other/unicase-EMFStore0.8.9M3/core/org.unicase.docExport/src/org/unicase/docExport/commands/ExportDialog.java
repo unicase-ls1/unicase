@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+import org.eclipse.emf.ecp.common.util.PreferenceHelper;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
@@ -47,8 +49,6 @@ import org.unicase.docExport.exportModel.renderers.DocumentRenderer;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.LeafSection;
-import org.unicase.ui.util.PreferenceHelper;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * A custom Dialog for the document export function.

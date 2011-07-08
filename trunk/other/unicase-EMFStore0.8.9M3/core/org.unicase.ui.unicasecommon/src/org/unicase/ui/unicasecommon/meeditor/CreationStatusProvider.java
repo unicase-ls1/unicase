@@ -9,8 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.editor.StatusMessageProvider;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.ui.meeditor.StatusMessageProvider;
 
 /**
  * Creates a status message for meeditor including the creator and the creation date.

@@ -1,44 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-  <extension
-        point="org.unicase.workspace.notification.providers">
-     <provider
-           class="org.unicase.ui.dashboard.notificationProviders.UpdateNotificationProvider"
-           name="Update Notifications"
-           priority="0">
-     </provider>
-     <provider
-           class="org.unicase.ui.dashboard.notificationProviders.PushedNotificationProvider"
-           name="Pushed Notifications"
-           priority="1">
-     </provider>
-     <provider
-           class="org.unicase.ui.dashboard.notificationProviders.TaskNotificationProvider"
-           name="Task Notifications"
-           priority="2">
-     </provider>
-     <provider
-           class="org.unicase.ui.dashboard.notificationProviders.TaskChangeNotificationProvider"
-           name="Task Change Notifications"
-           priority="3">
-     </provider>
-     <provider
-           class="org.unicase.ui.dashboard.notificationProviders.SubscriptionNotificationProvider"
-           name="Subscriptions Notifications"
-           priority="4">
-     </provider>
-     <provider
-           class="org.unicase.ui.dashboard.notificationProviders.CommentsNotificationProvider"
-           name="Comment Notifications"
-           priority="5">
-     </provider>
-     <provider
-           class="org.unicase.ui.dashboard.notificationProviders.TaskObjectNotificationProvider"
-           name="Task Trace Notifications"
-           priority="6">
-     </provider>
-  </extension>
   
      <extension-point id="org.unicase.ui.dashboard.widgets" name="Dashboard Widgets" schema="schema/dashboardWidgets.exsd"/>
   <extension
@@ -156,16 +118,54 @@
       </widget>
    </extension>
    <extension
-         point="org.unicase.ui.common.modelelementopener">
+         point="org.eclipse.emf.ecp.common.modelelementopener">
       <ModelElementOpener
             class="org.unicase.ui.dashboard.ModelElementOpener"
             name="org.unicase.ui.dashboard.ModelElementOpener">
       </ModelElementOpener>
    </extension>
    <extension
-         point="org.unicase.workspace.notify.postinit">
+         point="org.eclipse.emf.emfstore.client.notify.postinit">
       <initiator
             class="org.unicase.ui.dashboard.DashboardProjectObserver">
       </initiator>
+   </extension>
+   <extension
+         point="org.eclipse.emf.emfstore.client.notification.providers">
+      <provider
+            class="org.unicase.ui.dashboard.notificationProviders.CommentsNotificationProvider"
+            name="Comment Notifications"
+            priority="5">
+      </provider>
+      <provider
+            class="org.unicase.ui.dashboard.notificationProviders.UpdateNotificationProvider"
+            name="Update Notifications"
+            priority="0">
+      </provider>
+      <provider
+            class="org.unicase.ui.dashboard.notificationProviders.PushedNotificationProvider"
+            name="Pushed Notifications"
+            priority="1">
+      </provider>
+      <provider
+            class="org.unicase.ui.dashboard.notificationProviders.TaskNotificationProvider"
+            name="Task Notifications"
+            priority="2">
+      </provider>
+      <provider
+            class="org.unicase.ui.dashboard.notificationProviders.TaskChangeNotificationProvider"
+            name="Task Change Notifications"
+            priority="3">
+      </provider>
+      <provider
+            class="org.unicase.ui.dashboard.notificationProviders.SubscriptionNotificationProvider"
+            name="Subscriptions Notifications"
+            priority="4">
+      </provider>
+      <provider
+            class="org.unicase.ui.dashboard.notificationProviders.TaskObjectNotificationProvider"
+            name="Task Trace Notifications"
+            priority="6">
+      </provider>
    </extension>
 </plugin>

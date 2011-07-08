@@ -10,7 +10,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
+import org.eclipse.emf.ecp.editor.AbstractMEEditorPage;
+import org.eclipse.emf.ecp.editor.MEEditor;
+import org.eclipse.emf.ecp.editor.MEFormPage;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.client.model.util.NoCurrentUserException;
 import org.eclipse.jface.action.ContributionManager;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -30,18 +37,11 @@ import org.eclipse.ui.services.IEvaluationService;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
-import org.unicase.ui.common.util.CannotMatchUserInProjectException;
-import org.unicase.ui.meeditor.AbstractMEEditorPage;
-import org.unicase.ui.meeditor.Activator;
-import org.unicase.ui.meeditor.MEEditor;
-import org.unicase.ui.meeditor.MEFormPage;
+import org.unicase.ui.unicasecommon.Activator;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.ui.unicasecommon.common.widgets.MECommentReplyWidget;
 import org.unicase.ui.unicasecommon.common.widgets.MECommentWidget;
 import org.unicase.ui.unicasecommon.common.widgets.MECommentWidgetListener;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.NoCurrentUserException;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * The editor page for the comment thread.
@@ -74,7 +74,7 @@ public class METhreadPage extends AbstractMEEditorPage implements MECommentWidge
 		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(inputComposite);
 		GridDataFactory.fillDefaults().grab(true, false).hint(-1, 0).applyTo(inputComposite);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				List<Comment> comments = modelElement.getComments();

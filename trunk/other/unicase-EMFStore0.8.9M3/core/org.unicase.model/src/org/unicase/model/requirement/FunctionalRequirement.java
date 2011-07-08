@@ -44,7 +44,7 @@ public interface FunctionalRequirement extends UnicaseModelElement {
 	 * @return the value of the '<em>Reviewed</em>' attribute.
 	 * @see #setReviewed(boolean)
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_Reviewed()
-	 * @model annotation="org.unicase.ui.meeditor priority='13.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='13.0' position='left'"
 	 * @generated
 	 */
 	boolean isReviewed();
@@ -69,7 +69,7 @@ public interface FunctionalRequirement extends UnicaseModelElement {
 	 * @return the value of the '<em>Stakeholder</em>' reference.
 	 * @see #setStakeholder(OrgUnit)
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_Stakeholder()
-	 * @model annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='11.0' position='left'"
 	 * @generated
 	 */
 	OrgUnit getStakeholder();
@@ -143,7 +143,7 @@ public interface FunctionalRequirement extends UnicaseModelElement {
 	 * @return the value of the '<em>Priority</em>' attribute.
 	 * @see #setPriority(int)
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_Priority()
-	 * @model annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='12.0' position='left'"
 	 * @generated
 	 */
 	int getPriority();
@@ -171,7 +171,7 @@ public interface FunctionalRequirement extends UnicaseModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_RefiningRequirements()
 	 * @see org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement
 	 * @model opposite="refinedRequirement" containment="true" resolveProxies="true"
-	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='12.0' position='right'"
 	 * @generated
 	 */
 	EList<FunctionalRequirement> getRefiningRequirements();
@@ -190,7 +190,7 @@ public interface FunctionalRequirement extends UnicaseModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_RefinedRequirement()
 	 * @see org.unicase.model.requirement.FunctionalRequirement#getRefiningRequirements
 	 * @model opposite="refiningRequirements" transient="false"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='10.0' position='left'"
 	 * @generated
 	 */
 	FunctionalRequirement getRefinedRequirement();

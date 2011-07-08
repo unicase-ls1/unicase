@@ -6,7 +6,7 @@
 package org.unicase.model.rationale;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.metamodel.NonDomainElement;
+import org.eclipse.emf.emfstore.common.model.NonDomainElement;
 import org.unicase.model.UnicaseModelElement;
 
 /**
@@ -36,7 +36,7 @@ public interface Solution extends UnicaseModelElement, NonDomainElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Underlying Proposals</em>' reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getSolution_UnderlyingProposals()
-	 * @model annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Proposal> getUnderlyingProposals();
@@ -55,7 +55,7 @@ public interface Solution extends UnicaseModelElement, NonDomainElement {
 	 * @see org.unicase.model.rationale.RationalePackage#getSolution_Issue()
 	 * @see org.unicase.model.rationale.Issue#getSolution
 	 * @model opposite="solution" transient="false"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='10.0' position='left'"
 	 * @generated
 	 */
 	Issue getIssue();

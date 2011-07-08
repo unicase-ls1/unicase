@@ -12,7 +12,7 @@ import java.util.ListIterator;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
-import org.unicase.metamodel.Project;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.LeafSection;
 

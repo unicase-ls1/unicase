@@ -7,7 +7,7 @@ package org.unicase.model.util;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Model Element Path</b></em>'. <!-- end-user-doc
@@ -78,7 +78,7 @@ public interface ModelElementPath extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Path</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.metamodel.ModelElementId}.
+	 * The list contents are of type {@link org.eclipse.emf.emfstore.common.model.ModelElementId}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Path</em>' containment reference list isn't clear, there really should be more of a

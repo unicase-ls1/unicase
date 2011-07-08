@@ -7,9 +7,9 @@ package org.unicase.docExport.exportModel.renderers.elements;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * A short text part, which can be decorated by a TextOption. This element should not trigger a new line, hence it

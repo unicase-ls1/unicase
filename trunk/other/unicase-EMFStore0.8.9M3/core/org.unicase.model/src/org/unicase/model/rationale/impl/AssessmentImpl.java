@@ -356,4 +356,10 @@ public class AssessmentImpl extends UnicaseModelElementImpl implements Assessmen
 		return result.toString();
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // AssessmentImpl

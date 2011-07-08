@@ -242,4 +242,10 @@ public class CompositeSectionImpl extends UnicaseModelElementImpl implements Com
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // CompositeSectionImpl

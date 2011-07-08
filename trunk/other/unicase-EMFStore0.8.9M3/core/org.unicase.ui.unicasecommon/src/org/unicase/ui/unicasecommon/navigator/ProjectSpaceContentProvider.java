@@ -13,15 +13,16 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
-import org.unicase.metamodel.Project;
-import org.unicase.workspace.ProjectSpace;
+import org.eclipse.emf.ecp.navigator.ContentProvider;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.common.model.Project;
 
 /**
  * Shows the project as orphans folder.
  * 
  * @author helming
  */
-public class ProjectSpaceContentProvider implements org.unicase.ui.navigator.ContentProvider {
+public class ProjectSpaceContentProvider implements ContentProvider {
 	/**
 	 * {@inheritDoc}
 	 * 

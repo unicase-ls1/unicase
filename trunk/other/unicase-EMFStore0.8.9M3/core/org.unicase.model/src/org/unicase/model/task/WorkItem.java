@@ -53,7 +53,7 @@ public interface WorkItem extends Annotation {
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_ContainingWorkpackage()
 	 * @see org.unicase.model.task.WorkPackage#getContainedWorkItems
 	 * @model opposite="containedWorkItems" transient="false"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='10.0' position='left'"
 	 * @generated
 	 */
 	WorkPackage getContainingWorkpackage();
@@ -81,7 +81,7 @@ public interface WorkItem extends Annotation {
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Predecessors()
 	 * @see org.unicase.model.task.WorkItem#getSuccessors
 	 * @model opposite="successors"
-	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='11.0' position='right'"
 	 * @generated
 	 */
 	EList<WorkItem> getPredecessors();
@@ -100,7 +100,7 @@ public interface WorkItem extends Annotation {
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Successors()
 	 * @see org.unicase.model.task.WorkItem#getPredecessors
 	 * @model opposite="predecessors"
-	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='12.0' position='right'"
 	 * @generated
 	 */
 	EList<WorkItem> getSuccessors();
@@ -119,7 +119,7 @@ public interface WorkItem extends Annotation {
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Assignee()
 	 * @see org.unicase.model.organization.OrgUnit#getAssignments
 	 * @model opposite="assignments"
-	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='11.0' position='left'"
 	 * @generated
 	 */
 	OrgUnit getAssignee();
@@ -179,7 +179,7 @@ public interface WorkItem extends Annotation {
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Participants()
 	 * @see org.unicase.model.organization.OrgUnit#getParticipations
 	 * @model opposite="participations"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<OrgUnit> getParticipants();
@@ -195,7 +195,7 @@ public interface WorkItem extends Annotation {
 	 * @return the value of the '<em>Due Date</em>' attribute.
 	 * @see #setDueDate(Date)
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_DueDate()
-	 * @model annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='12.0' position='left'"
 	 * @generated
 	 */
 	Date getDueDate();
@@ -221,7 +221,7 @@ public interface WorkItem extends Annotation {
 	 * @return the value of the '<em>Estimate</em>' attribute.
 	 * @see #setEstimate(int)
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Estimate()
-	 * @model annotation="org.unicase.ui.meeditor priority='18.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='18.0' position='left'"
 	 * @generated
 	 */
 	int getEstimate();
@@ -247,7 +247,7 @@ public interface WorkItem extends Annotation {
 	 * @return the value of the '<em>Effort</em>' attribute.
 	 * @see #setEffort(int)
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Effort()
-	 * @model annotation="org.unicase.ui.meeditor priority='19.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='19.0' position='left'"
 	 * @generated
 	 */
 	int getEffort();
@@ -273,7 +273,7 @@ public interface WorkItem extends Annotation {
 	 * @return the value of the '<em>Priority</em>' attribute.
 	 * @see #setPriority(int)
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Priority()
-	 * @model annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='12.0' position='left'"
 	 * @generated
 	 */
 	int getPriority();
@@ -299,7 +299,7 @@ public interface WorkItem extends Annotation {
 	 * @return the value of the '<em>Resolved</em>' attribute.
 	 * @see #setResolved(boolean)
 	 * @see org.unicase.model.task.TaskPackage#getWorkItem_Resolved()
-	 * @model annotation="org.unicase.ui.meeditor priority='13.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='13.0' position='left'"
 	 * @generated
 	 */
 	boolean isResolved();

@@ -261,4 +261,10 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 		return result.toString();
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // LiteralImpl

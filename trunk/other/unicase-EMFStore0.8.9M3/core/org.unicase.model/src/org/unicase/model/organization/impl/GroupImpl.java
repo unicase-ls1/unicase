@@ -151,4 +151,10 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // GroupImpl

@@ -19,24 +19,23 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.emfstore.esmodel.versioning.operations.semantic.provider.SemanticCompositeOperationItemProvider;
+import org.eclipse.emf.emfstore.common.model.ModelFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.provider.SemanticCompositeOperationItemProvider;
 import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.implementation.operations.PartitionAssociationOperation;
-import org.unicase.metamodel.MetamodelFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.implementation.operations.PartitionAssociationOperation}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ * This is the item provider adapter for a {@link org.unicase.implementation.operations.PartitionAssociationOperation} object.
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class PartitionAssociationOperationItemProvider extends SemanticCompositeOperationItemProvider implements
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public PartitionAssociationOperationItemProvider(AdapterFactory adapterFactory) {
@@ -44,8 +43,8 @@ public class PartitionAssociationOperationItemProvider extends SemanticComposite
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -60,9 +59,9 @@ public class PartitionAssociationOperationItemProvider extends SemanticComposite
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -76,7 +75,6 @@ public class PartitionAssociationOperationItemProvider extends SemanticComposite
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -88,8 +86,8 @@ public class PartitionAssociationOperationItemProvider extends SemanticComposite
 	}
 
 	/**
-	 * This returns PartitionAssociationOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns PartitionAssociationOperation.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -128,66 +126,67 @@ public class PartitionAssociationOperationItemProvider extends SemanticComposite
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PartitionAssociationOperation.class)) {
-		case OperationsPackage.PARTITION_ASSOCIATION_OPERATION__ASSOCIATION:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case OperationsPackage.PARTITION_ASSOCIATION_OPERATION__ASSOCIATION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-			.add(createChildParameter(
-				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				OperationsFactory.eINSTANCE.createExtractSuperClassOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createExtractSuperClassOperation()));
 
-		newChildDescriptors
-			.add(createChildParameter(
-				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				OperationsFactory.eINSTANCE.createInlineSuperClassOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createInlineSuperClassOperation()));
 
-		newChildDescriptors
-			.add(createChildParameter(
-				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				OperationsFactory.eINSTANCE.createExtractClassOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createExtractClassOperation()));
 
-		newChildDescriptors
-			.add(createChildParameter(
-				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				OperationsFactory.eINSTANCE.createInlineClassOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createInlineClassOperation()));
 
-		newChildDescriptors
-			.add(createChildParameter(
-				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				OperationsFactory.eINSTANCE.createPartitionAssociationOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createPartitionAssociationOperation()));
 
-		newChildDescriptors
-			.add(createChildParameter(
-				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				OperationsFactory.eINSTANCE.createPushDownOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createPushDownOperation()));
 
-		newChildDescriptors
-			.add(createChildParameter(
-				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				OperationsFactory.eINSTANCE.createPullUpOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createPullUpOperation()));
 
-		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.PARTITION_ASSOCIATION_OPERATION__ASSOCIATION, MetamodelFactory.eINSTANCE
-				.createModelElementId()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.PARTITION_ASSOCIATION_OPERATION__ASSOCIATION,
+				 ModelFactory.eINSTANCE.createModelElementId()));
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

@@ -103,7 +103,7 @@ public interface Association extends UnicaseModelElement {
 	 * @see #setType(AssociationType)
 	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_Type()
 	 * @model default=""
-	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='12.0' position='left'"
 	 * @generated
 	 */
 	AssociationType getType();
@@ -132,7 +132,7 @@ public interface Association extends UnicaseModelElement {
 	 * @see #setSourceMultiplicity(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_SourceMultiplicity()
 	 * @model default="1"
-	 *        annotation="org.unicase.ui.meeditor priority='13.0' position='left'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='13.0' position='left'"
 	 * @generated
 	 */
 	String getSourceMultiplicity();
@@ -159,7 +159,7 @@ public interface Association extends UnicaseModelElement {
 	 * @see #setTargetMultiplicity(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getAssociation_TargetMultiplicity()
 	 * @model default="1"
-	 *        annotation="org.unicase.ui.meeditor priority='14.0' position='left'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='14.0' position='left'"
 	 * @generated
 	 */
 	String getTargetMultiplicity();

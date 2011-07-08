@@ -5,9 +5,9 @@
  */
 package org.unicase.ui.unicasecommon.merge;
 
-import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
-import org.unicase.workspace.ui.dialogs.merge.conflict.CustomConflictOption;
-import org.unicase.workspace.ui.dialogs.merge.conflict.CustomConflictOptionFactory;
+import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.Conflict;
+import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.CustomConflictOption;
+import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.CustomConflictOptionFactory;
 
 /**
  * Custom option factory for {@link IssueOption}.

@@ -6,7 +6,7 @@
 package org.unicase.model.rationale;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.metamodel.NonDomainElement;
+import org.eclipse.emf.emfstore.common.model.NonDomainElement;
 import org.unicase.model.UnicaseModelElement;
 
 /**
@@ -39,7 +39,7 @@ public interface Proposal extends UnicaseModelElement, NonDomainElement {
 	 * @see org.unicase.model.rationale.RationalePackage#getProposal_Assessments()
 	 * @see org.unicase.model.rationale.Assessment#getProposal
 	 * @model opposite="proposal" containment="true" resolveProxies="true"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Assessment> getAssessments();
@@ -58,7 +58,7 @@ public interface Proposal extends UnicaseModelElement, NonDomainElement {
 	 * @see org.unicase.model.rationale.RationalePackage#getProposal_Issue()
 	 * @see org.unicase.model.rationale.Issue#getProposals
 	 * @model opposite="proposals" transient="false"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='10.0' position='left'"
 	 * @generated
 	 */
 	Issue getIssue();

@@ -1121,4 +1121,10 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		return result.toString();
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // BugReportImpl

@@ -9,8 +9,8 @@ import java.util.Date;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelElementChangeListener;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.util.ModelElementChangeListener;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.profile.StereotypeInstance;
 import org.unicase.model.rationale.Comment;
@@ -52,7 +52,7 @@ public interface UnicaseModelElement extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_Name()
-	 * @model annotation="org.unicase.ui.meeditor priority='1.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='1.0' position='left'"
 	 * @generated
 	 */
 	String getName();
@@ -73,7 +73,7 @@ public interface UnicaseModelElement extends EObject {
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
 	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_Description()
-	 * @model annotation="org.unicase.ui.meeditor priority='1.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='1.0' position='left'"
 	 * @generated
 	 */
 	String getDescription();
@@ -141,7 +141,7 @@ public interface UnicaseModelElement extends EObject {
 	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_IncomingDocumentReferences()
 	 * @see org.unicase.model.document.LeafSection#getReferencedModelElements
 	 * @model opposite="referencedModelElements"
-	 *        annotation="org.unicase.ui.meeditor priority='102.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='102.0' position='right'"
 	 * @generated
 	 */
 	EList<LeafSection> getIncomingDocumentReferences();
@@ -224,7 +224,7 @@ public interface UnicaseModelElement extends EObject {
 	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_Comments()
 	 * @see org.unicase.model.rationale.Comment#getCommentedElement
 	 * @model opposite="commentedElement" containment="true" resolveProxies="true"
-	 *        annotation="org.unicase.ui.meeditor priority='2.0' position='left'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='2.0' position='left'"
 	 * @generated
 	 */
 	EList<Comment> getComments();

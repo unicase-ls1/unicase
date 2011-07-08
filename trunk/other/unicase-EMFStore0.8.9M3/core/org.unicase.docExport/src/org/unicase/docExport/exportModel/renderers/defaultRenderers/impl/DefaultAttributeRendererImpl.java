@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.unicase.docExport.Activator;
 import org.unicase.docExport.DocumentExport;
 import org.unicase.docExport.TemplateRegistry;
@@ -46,7 +47,6 @@ import org.unicase.docExport.exportModel.renderers.options.ReferenceAttributeOpt
 import org.unicase.docExport.exportModel.renderers.options.ReferenceOption;
 import org.unicase.docExport.exportModel.renderers.options.SingleReferenceAttributeOption;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Default Attribute Renderer</b></em>'. <!--

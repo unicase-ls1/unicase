@@ -5,7 +5,7 @@
  */
 package org.unicase.model.change;
 
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
 import org.unicase.model.rationale.Issue;
 
 /**

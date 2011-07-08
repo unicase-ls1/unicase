@@ -34,4 +34,10 @@ public class ActivityImpl extends ActivityObjectImpl implements Activity {
 		return ActivityPackage.Literals.ACTIVITY;
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // ActivityImpl

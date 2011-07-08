@@ -42,7 +42,7 @@ public interface NonFunctionalRequirement extends Criterion {
 	 * @see org.unicase.model.requirement.RequirementPackage#getNonFunctionalRequirement_RestrictedScenarios()
 	 * @see org.unicase.model.requirement.Scenario#getNonFunctionalRequirements
 	 * @model opposite="nonFunctionalRequirements"
-	 *        annotation="org.unicase.ui.meeditor priority='9.1' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='9.1' position='right'"
 	 * @generated
 	 */
 	EList<Scenario> getRestrictedScenarios();
@@ -61,7 +61,7 @@ public interface NonFunctionalRequirement extends Criterion {
 	 * @see org.unicase.model.requirement.RequirementPackage#getNonFunctionalRequirement_RestrictedUseCases()
 	 * @see org.unicase.model.requirement.UseCase#getNonFunctionalRequirements
 	 * @model opposite="nonFunctionalRequirements"
-	 *        annotation="org.unicase.ui.meeditor priority='9.2' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='9.2' position='right'"
 	 * @generated
 	 */
 	EList<UseCase> getRestrictedUseCases();
@@ -80,7 +80,7 @@ public interface NonFunctionalRequirement extends Criterion {
 	 * @see org.unicase.model.requirement.RequirementPackage#getNonFunctionalRequirement_SystemFunctions()
 	 * @see org.unicase.model.requirement.SystemFunction#getNonFunctionalRequirement
 	 * @model opposite="nonFunctionalRequirement"
-	 *        annotation="org.unicase.ui.meeditor priority='13.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='13.0' position='right'"
 	 * @generated
 	 */
 	EList<SystemFunction> getSystemFunctions();
@@ -99,7 +99,7 @@ public interface NonFunctionalRequirement extends Criterion {
 	 * @see org.unicase.model.requirement.RequirementPackage#getNonFunctionalRequirement_UserTasks()
 	 * @see org.unicase.model.requirement.UserTask#getNonFunctionalRequirements
 	 * @model opposite="nonFunctionalRequirements"
-	 *        annotation="org.unicase.ui.meeditor priority='14.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='14.0' position='right'"
 	 * @generated
 	 */
 	EList<UserTask> getUserTasks();

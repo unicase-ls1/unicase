@@ -297,4 +297,10 @@ public class DependencyImpl extends UnicaseModelElementImpl implements Dependenc
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // DependencyImpl

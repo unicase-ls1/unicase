@@ -14,5 +14,5 @@ package org.unicase.model;
  * @model
  * @generated
  */
-public interface Project extends org.unicase.metamodel.Project {
+public interface Project extends org.eclipse.emf.emfstore.common.model.Project {
 } // Project

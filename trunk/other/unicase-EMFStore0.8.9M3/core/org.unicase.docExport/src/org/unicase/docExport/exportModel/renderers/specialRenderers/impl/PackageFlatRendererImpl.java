@@ -8,6 +8,7 @@ package org.unicase.docExport.exportModel.renderers.specialRenderers.impl;
 import java.util.ArrayList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
 import org.unicase.docExport.exportModel.renderers.elements.UParagraph;
 import org.unicase.docExport.exportModel.renderers.elements.USection;
@@ -18,7 +19,6 @@ import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRende
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.classes.Package;
 import org.unicase.model.classes.PackageElement;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Package Flat Renderer</b></em>'. <!--

@@ -1014,4 +1014,10 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 		return result.toString();
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // ActionItemImpl

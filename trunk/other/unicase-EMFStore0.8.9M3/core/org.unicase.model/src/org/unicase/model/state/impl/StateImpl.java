@@ -258,4 +258,10 @@ public class StateImpl extends StateNodeImpl implements State {
 		return result.toString();
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // StateImpl

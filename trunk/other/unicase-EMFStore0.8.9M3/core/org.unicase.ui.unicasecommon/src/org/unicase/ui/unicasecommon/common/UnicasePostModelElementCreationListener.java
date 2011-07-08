@@ -8,14 +8,14 @@ package org.unicase.ui.unicasecommon.common;
 import java.util.Date;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.observers.PostCreationListener;
+import org.eclipse.emf.emfstore.client.model.util.NoCurrentUserException;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.User;
-import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.observers.PostCreationListener;
-import org.unicase.workspace.util.NoCurrentUserException;
 
 /**
  * Change listener, that sets the creation date and, if available, the creator attribute on UNICASE model elements.

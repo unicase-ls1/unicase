@@ -7,20 +7,20 @@ package org.unicase.ui.dashboard;
 
 import java.util.List;
 
+import org.eclipse.emf.emfstore.client.model.PostWorkspaceInitiator;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.Workspace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.observers.CheckoutObserver;
+import org.eclipse.emf.emfstore.client.model.observers.DeleteProjectSpaceObserver;
+import org.eclipse.emf.emfstore.client.model.observers.UpdateObserver;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.ui.dashboard.view.DashboardEditorInput;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.workspace.PostWorkspaceInitiator;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.observers.CheckoutObserver;
-import org.unicase.workspace.observers.DeleteProjectSpaceObserver;
-import org.unicase.workspace.observers.UpdateObserver;
 
 /**
  * Performs a cleanup before a project is deleted.

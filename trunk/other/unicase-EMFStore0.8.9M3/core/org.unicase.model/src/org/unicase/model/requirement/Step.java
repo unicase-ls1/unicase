@@ -5,7 +5,7 @@
  */
 package org.unicase.model.requirement;
 
-import org.unicase.metamodel.NonDomainElement;
+import org.eclipse.emf.emfstore.common.model.NonDomainElement;
 import org.unicase.model.UnicaseModelElement;
 
 /**

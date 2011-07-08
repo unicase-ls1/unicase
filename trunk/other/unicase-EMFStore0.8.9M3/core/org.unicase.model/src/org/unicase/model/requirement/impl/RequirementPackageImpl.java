@@ -10,9 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.unicase.emfstore.esmodel.EsmodelPackage;
-import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.model.ModelPackage;
+import org.eclipse.emf.emfstore.server.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
 import org.unicase.model.attachment.AttachmentPackage;
@@ -169,12 +167,12 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		isInited = true;
 
 		// Initialize simple dependencies
-		EsmodelPackage.eINSTANCE.eClass();
+		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ModelPackage.eNS_URI) : ModelPackage.eINSTANCE);
+		ModelPackageImpl theModelPackage_1 = (ModelPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) : org.unicase.model.ModelPackage.eINSTANCE);
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
@@ -220,7 +218,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 		// Create package meta-data objects
 		theRequirementPackage.createPackageContents();
-		theModelPackage.createPackageContents();
+		theModelPackage_1.createPackageContents();
 		theOrganizationPackage.createPackageContents();
 		theTaskPackage.createPackageContents();
 		theClassesPackage.createPackageContents();
@@ -239,7 +237,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 		// Initialize created meta-data
 		theRequirementPackage.initializePackageContents();
-		theModelPackage.initializePackageContents();
+		theModelPackage_1.initializePackageContents();
 		theOrganizationPackage.initializePackageContents();
 		theTaskPackage.initializePackageContents();
 		theClassesPackage.initializePackageContents();
@@ -947,13 +945,14 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		// Obtain other dependent packages
 		RationalePackage theRationalePackage = (RationalePackage) EPackage.Registry.INSTANCE
 			.getEPackage(RationalePackage.eNS_URI);
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		org.unicase.model.ModelPackage theModelPackage_1 = (org.unicase.model.ModelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI);
 		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI);
 		ClassesPackage theClassesPackage = (ClassesPackage) EPackage.Registry.INSTANCE
 			.getEPackage(ClassesPackage.eNS_URI);
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(MetamodelPackage.eNS_URI);
+		org.eclipse.emf.emfstore.common.model.ModelPackage theModelPackage_2 = (org.eclipse.emf.emfstore.common.model.ModelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(org.eclipse.emf.emfstore.common.model.ModelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -961,16 +960,16 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 		// Add supertypes to classes
 		nonFunctionalRequirementEClass.getESuperTypes().add(theRationalePackage.getCriterion());
-		functionalRequirementEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		useCaseEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		scenarioEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		actorEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		actorInstanceEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		stepEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		stepEClass.getESuperTypes().add(theMetamodelPackage.getNonDomainElement());
-		systemFunctionEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		userTaskEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		workspaceEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		functionalRequirementEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		useCaseEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		scenarioEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		actorEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		actorInstanceEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		stepEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		stepEClass.getESuperTypes().add(theModelPackage_2.getNonDomainElement());
+		systemFunctionEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		userTaskEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		workspaceEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(nonFunctionalRequirementEClass, NonFunctionalRequirement.class, "NonFunctionalRequirement",
@@ -1192,19 +1191,19 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create annotations
-		// org.unicase.ui.meeditor
+		// org.eclipse.emf.ecp.editor
 		createOrgAnnotations();
 		// http:///org/eclipse/emf/ecore/util/ExtendedMetaData
 		createExtendedMetaDataAnnotations();
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
+	 * Initializes the annotations for <b>org.eclipse.emf.ecp.editor</b>.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {
-		String source = "org.unicase.ui.meeditor";
+		String source = "org.eclipse.emf.ecp.editor";
 		addAnnotation(getNonFunctionalRequirement_RestrictedScenarios(), source, new String[] { "priority", "9.1",
 			"position", "right" });
 		addAnnotation(getNonFunctionalRequirement_RestrictedUseCases(), source, new String[] { "priority", "9.2",

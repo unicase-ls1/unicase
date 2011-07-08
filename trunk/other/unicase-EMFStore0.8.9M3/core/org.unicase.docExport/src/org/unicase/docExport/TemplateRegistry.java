@@ -25,6 +25,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.emfstore.client.model.Configuration;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.unicase.docExport.commands.ImportTemplate;
 import org.unicase.docExport.exceptions.DefaultTemplateLoadException;
 import org.unicase.docExport.exceptions.InvalidTemplateArchiveException;
@@ -33,8 +35,6 @@ import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
 import org.unicase.docExport.exportModel.ExportModelPackage;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.builders.DefaultDocumentTemplateFactory;
-import org.unicase.workspace.Configuration;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * This utility class handles the persistent templates. The default templates which are always loaded on startup are

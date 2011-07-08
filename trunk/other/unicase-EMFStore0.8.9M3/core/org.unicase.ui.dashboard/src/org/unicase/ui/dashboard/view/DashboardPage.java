@@ -16,6 +16,15 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.preferences.DashboardKey;
+import org.eclipse.emf.emfstore.client.model.preferences.PreferenceManager;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
+import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.events.PluginFocusEvent;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -37,17 +46,8 @@ import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
-import org.unicase.emfstore.esmodel.notification.ESNotification;
-import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
-import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
-import org.unicase.metamodel.ModelElementId;
 import org.unicase.ui.dashboard.notificationProviders.UpdateNotificationProvider;
 import org.unicase.ui.dashboard.view.widgets.AbstractDashboardWidget;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.preferences.DashboardKey;
-import org.unicase.workspace.preferences.PreferenceManager;
-import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * The default page for the dashboard.
@@ -61,7 +61,7 @@ public class DashboardPage extends FormPage {
 	 * 
 	 * @author shterevg
 	 */
-	private final class CreateNotificationsCommand extends UnicaseCommand {
+	private final class CreateNotificationsCommand extends EMFStoreCommand {
 
 		@Override
 		protected void doRun() {
@@ -275,7 +275,7 @@ public class DashboardPage extends FormPage {
 		focusEvent.setTimestamp(new Date());
 		focusEvent.setStartDate(new Date());
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				projectSpace.addEvent(focusEvent);

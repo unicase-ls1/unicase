@@ -9,18 +9,16 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
+import org.eclipse.emf.ecp.editor.MEEditor;
+import org.eclipse.emf.ecp.editor.MEFormPage;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.ui.meeditor.MEEditor;
-import org.unicase.ui.meeditor.MEEditorInput;
-import org.unicase.ui.meeditor.MEFormPage;
 import org.unicase.ui.unicasecommon.meeditor.METhreadPage;
-import org.unicase.ui.util.DialogHandler;
 
 /**
  * This handler is to be executed indirectly using IHandlerService.executeCommand() method. The Command itself does not
@@ -59,13 +57,14 @@ public class OpenModelElementDiscussionHandler extends AbstractHandler {
 		}
 
 		try {
-			MEEditorInput input = new MEEditorInput(me, ECPWorkspaceManager.getInstance().getWorkSpace().getProject(me));
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input,
-				"org.unicase.ui.meeditor", true);
+			org.eclipse.emf.ecp.editor.MEEditorInput input = new org.eclipse.emf.ecp.editor.MEEditorInput(me,
+				org.eclipse.emf.ecp.common.model.ECPWorkspaceManager.getInstance().getWorkSpace().getProject(me));
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+				.openEditor(input, "org.unicase.ui.meeditor", true);
 
 			IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 				.getActiveEditor();
-			if (activeEditor instanceof MEEditor) {
+			if (activeEditor instanceof org.eclipse.emf.ecp.editor.MEEditor) {
 				MEEditor meEditor = (MEEditor) activeEditor;
 				meEditor.setActivePage("org.unicase.ui.unicasecommon.meeditor.methreadpage");
 				boolean shouldToggle = (toggle != null && toggle.equals("toggle"))

@@ -8,11 +8,11 @@ package org.unicase.ui.unicasecommon.navigator.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author Helming This is the handler to create a new CompositeSection
@@ -40,7 +40,7 @@ public class NewCompositeSectionHandler extends AbstractHandler {
 		final CompositeSection createCompositeSection = DocumentFactory.eINSTANCE.createCompositeSection();
 		createCompositeSection.setName(NEW_COMPOSITESECTION_NAME);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				compositeSection.getSubsections().add(createCompositeSection);

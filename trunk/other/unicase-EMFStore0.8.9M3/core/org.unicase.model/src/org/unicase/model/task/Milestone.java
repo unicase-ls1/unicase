@@ -35,7 +35,7 @@ public interface Milestone extends WorkItem {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Contained Model Elements</em>' reference list.
 	 * @see org.unicase.model.task.TaskPackage#getMilestone_ContainedModelElements()
-	 * @model annotation="org.unicase.ui.meeditor priority='1' position='right'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='1' position='right'"
 	 * @generated
 	 */
 	EList<UnicaseModelElement> getContainedModelElements();

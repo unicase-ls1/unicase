@@ -13,6 +13,14 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecp.common.observer.FocusEventObserver;
+import org.eclipse.emf.ecp.common.util.UiUtil;
+import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.Workspace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.NoCurrentUserException;
+import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ControlContribution;
 import org.eclipse.jface.action.GroupMarker;
@@ -31,18 +39,12 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
-import org.unicase.ui.common.observer.FocusEventObserver;
-import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.tableview.Activator;
 import org.unicase.ui.tableview.labelproviders.IntegerEditingSupport;
 import org.unicase.ui.tableview.viewer.METableViewer;
@@ -53,12 +55,6 @@ import org.unicase.ui.unicasecommon.common.filter.TeamFilter;
 import org.unicase.ui.unicasecommon.common.filter.UserFilter;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.ui.util.UiUtil;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.WorkspacePackage;
-import org.unicase.workspace.util.NoCurrentUserException;
 
 /**
  * TaskView shows checkables (work items which can be set to done).
@@ -66,12 +62,12 @@ import org.unicase.workspace.util.NoCurrentUserException;
  * @author Florian Schneider
  * @author Zardosht Hodaie
  */
-public class TaskView extends ViewPart implements ProjectChangeObserver {
+public class TaskView extends ViewPart implements org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver {
 
 	private METableViewer viewer;
 	private AdapterImpl workspaceListenerAdapter;
-	private Workspace workspace;
-	private Project activeProject;
+	private org.eclipse.emf.emfstore.client.model.Workspace workspace;
+	private org.eclipse.emf.emfstore.common.model.Project activeProject;
 
 	private UncheckedElementsViewerFilter uncheckedFilter;
 	private Action filterToUnchecked;
@@ -114,7 +110,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 
 			@Override
 			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
+				if ((msg.getFeatureID(Workspace.class)) == org.eclipse.emf.emfstore.client.model.ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
 					ProjectSpace activeProjectSpace = workspace.getActiveProjectSpace();
 					if (activeProjectSpace != null) {
 						activeProject = activeProjectSpace.getProject();
@@ -161,8 +157,8 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			@Override
 			public void run() {
 				List<User> users = new ArrayList<User>();
-				List<User> projectUsers = activeProject.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE
-					.getUser(), new BasicEList<User>());
+				List<User> projectUsers = activeProject.getAllModelElementsbyClass(
+					OrganizationPackage.eINSTANCE.getUser(), new BasicEList<User>());
 				users.addAll(projectUsers);
 				User noUser = OrganizationFactory.eINSTANCE.createUser();
 				noUser.setName("[no user]");
@@ -365,7 +361,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		final Action doubleClickAction = new Action() {
 			@Override
 			public void run() {
-				UnicaseActionHelper.openModelElement(ActionHelper.getSelectedModelElement(), TaskView.class.getName());
+				UnicaseActionHelper.openModelElement(UiUtil.getSelectedModelelement(), TaskView.class.getName());
 			}
 		};
 		viewer.setDoubleClickAction(doubleClickAction);
@@ -463,7 +459,8 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * @param project the project
 	 * @param modelElement the model element
 	 */
-	public void modelElementAdded(Project project, EObject modelElement) {
+	@Override
+	public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
 		if (modelElement instanceof Checkable) {
 			viewer.refresh();
 		}
@@ -477,7 +474,8 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * @param project the project
 	 * @param modelElement the model element
 	 */
-	public void modelElementRemoved(Project project, EObject modelElement) {
+	@Override
+	public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
 		if (modelElement instanceof Checkable) {
 			viewer.refresh();
 		}
@@ -493,7 +491,8 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * @param project the project
 	 * @param modelElement the model element
 	 */
-	public void notify(Notification notification, Project project, EObject modelElement) {
+	@Override
+	public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
 		if (modelElement instanceof Checkable) {
 			viewer.refresh();
 		}
@@ -523,7 +522,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	@Override
 	public void setFocus() {
 		viewer.getTableViewer().getTable().setFocus();
-		ECPWorkspaceManager.getObserverBus().notify(FocusEventObserver.class).onFocusEvent("org.unicase.ui.taskview");
+		WorkspaceManager.getObserverBus().notify(FocusEventObserver.class).onFocusEvent("org.unicase.ui.taskview");
 	}
 
 	/**
@@ -634,8 +633,9 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
 	 */
-	public void projectDeleted(Project project) {
-		// TODO Auto-generated method stub
+	@Override
+	public void projectDeleted(IdEObjectCollection project) {
+		viewer.refresh();
 
 	}
 }

@@ -239,4 +239,10 @@ public class ProposalImpl extends UnicaseModelElementImpl implements Proposal {
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // ProposalImpl

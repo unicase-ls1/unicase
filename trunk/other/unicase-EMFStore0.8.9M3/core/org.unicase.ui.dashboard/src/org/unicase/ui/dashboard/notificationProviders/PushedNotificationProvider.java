@@ -12,18 +12,18 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.unicase.emfstore.esmodel.notification.ESNotification;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
+import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.notification.NotificationProvider;
+import org.eclipse.emf.emfstore.client.model.preferences.DashboardKey;
+import org.eclipse.emf.emfstore.client.model.util.NoCurrentUserException;
+import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
-import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.notification.NotificationProvider;
-import org.unicase.workspace.preferences.DashboardKey;
-import org.unicase.workspace.util.NoCurrentUserException;
 
 /**
  * Provides notifications pushed from one user to another.
@@ -72,21 +72,21 @@ public class PushedNotificationProvider implements NotificationProvider {
 			return result;
 		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.workspace.notification.NotificationProvider#provideNotifications(org.unicase.workspace.ProjectSpace,
 	 *      java.util.List, java.lang.String)
 	 */
-	public List<ESNotification> provideNotifications(ProjectSpace projectSpace,
-			List<ChangePackage> changePackages, String username) {
+	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
+		String username) {
 		// sanity checks
 		List<ESNotification> result = new ArrayList<ESNotification>();
 		if (projectSpace == null || username == null) {
 			return result;
 		}
-		
+
 		User user;
 		try {
 			user = OrgUnitHelper.getUser(projectSpace, username);
@@ -99,19 +99,16 @@ public class PushedNotificationProvider implements NotificationProvider {
 				if (notification.getRecipient().equals(user.getName())) {
 					notification.setProvider(getName());
 					result.add(notification);
-					getExcludedOperations().addAll(
-							notification.getRelatedOperations());
+					getExcludedOperations().addAll(notification.getRelatedOperations());
 				} else {
 					EList<Group> groups = new BasicEList<Group>();
-					projectSpace.getProject().getAllModelElementsbyClass(
-							OrganizationPackage.eINSTANCE.getGroup(), groups);
+					projectSpace.getProject().getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getGroup(),
+						groups);
 					for (Group group : groups) {
-						if (group.getName().equals(notification.getRecipient())
-								&& group.getOrgUnits().contains(user)) {
+						if (group.getName().equals(notification.getRecipient()) && group.getOrgUnits().contains(user)) {
 							notification.setProvider(getName());
 							result.add(notification);
-							getExcludedOperations().addAll(
-									notification.getRelatedOperations());
+							getExcludedOperations().addAll(notification.getRelatedOperations());
 						}
 					}
 				}

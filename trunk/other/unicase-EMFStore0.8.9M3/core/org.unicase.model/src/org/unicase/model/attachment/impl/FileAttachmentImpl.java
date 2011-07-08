@@ -8,8 +8,8 @@ package org.unicase.model.attachment.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.FileIdentifier;
+import org.eclipse.emf.emfstore.server.model.FileIdentifier;
+import org.eclipse.emf.emfstore.server.model.ModelFactory;
 import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.attachment.FileAttachmentType;
@@ -375,7 +375,7 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 		if (fileID == null) {
 			return null;
 		}
-		FileIdentifier fid = EsmodelFactory.eINSTANCE.createFileIdentifier();
+		FileIdentifier fid = ModelFactory.eINSTANCE.createFileIdentifier();
 		fid.setIdentifier(fileID);
 		return fid;
 	}
@@ -391,6 +391,12 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 		} else {
 			setFileID(fileId.getIdentifier());
 		}
+	}
+
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 } // FileAttachmentImpl

@@ -25,11 +25,10 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelElementChangeListener;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelElementChangeListener;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.model.Annotation;
 import org.unicase.model.Attachment;
 import org.unicase.model.ModelPackage;
@@ -484,7 +483,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 			throw new IllegalStateException("ModelElement is in a containment cycle");
 		}
 		// check if my container is a project
-		if (MetamodelPackage.eINSTANCE.getProject().isInstance(container)) {
+		if (ModelPackage.eINSTANCE.getProject().isInstance(container)) {
 			return (Project) container;
 		}
 		// check if my container is a model element
@@ -541,10 +540,10 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	 * @generated NOT
 	 * @Deprecated
 	 */
-	public String getDescriptionPlainText() {
-		String richTextDescription = getDescription();
-		return ModelUtil.getPlainTextFromRichText(richTextDescription);
-	}
+	// public String getDescriptionPlainText() {
+	// String richTextDescription = getDescription();
+	// return ModelUtil.getPlainTextFromRichText(richTextDescription);
+	// }
 
 	// end of custom code
 

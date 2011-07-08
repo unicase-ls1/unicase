@@ -36,7 +36,7 @@ public interface CompositeSection extends Section {
 	 * @see org.unicase.model.document.DocumentPackage#getCompositeSection_Subsections()
 	 * @see org.unicase.model.document.Section#getParent
 	 * @model opposite="parent" containment="true" resolveProxies="true"
-	 *        annotation="org.unicase.ui.meeditor priority='20.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='20.0' position='right'"
 	 * @generated
 	 */
 	EList<Section> getSubsections();

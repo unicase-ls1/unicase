@@ -17,7 +17,6 @@ import org.unicase.docExport.editors.TemplateEditor;
 import org.unicase.docExport.editors.TemplateEditorInput;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.builders.DefaultDocumentTemplateFactory;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * The handler for the add template command.
@@ -41,7 +40,7 @@ public class AddTemplate extends AbstractHandler {
 		try {
 			page.openEditor(input, TemplateEditor.ID);
 		} catch (PartInitException e) {
-			WorkspaceUtil.log("Template editor failure", e, IStatus.ERROR);
+			org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil.log("Template editor failure", e, IStatus.ERROR);
 		}
 
 		return null;

@@ -6,14 +6,14 @@
 
 package org.unicase.ui.unicasecommon;
 
+import org.eclipse.emf.ecp.common.util.AbstractECPPlugin;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.osgi.framework.BundleContext;
-import org.unicase.ui.util.AbstractUnicaseUIPlugin;
 
 /**
  * The activator class controls the plug-in life cycle.
  */
-public class Activator extends AbstractUnicaseUIPlugin {
+public class Activator extends AbstractECPPlugin {
 
 	/**
 	 * The plug-in ID.

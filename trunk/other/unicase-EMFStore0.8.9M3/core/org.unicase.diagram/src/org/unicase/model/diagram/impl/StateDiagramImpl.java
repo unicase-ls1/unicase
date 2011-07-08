@@ -13,13 +13,12 @@ import org.unicase.model.diagram.StateDiagram;
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>State Diagram</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class StateDiagramImpl extends MEDiagramImpl implements StateDiagram {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StateDiagramImpl() {
@@ -28,7 +27,6 @@ public class StateDiagramImpl extends MEDiagramImpl implements StateDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -39,6 +37,12 @@ public class StateDiagramImpl extends MEDiagramImpl implements StateDiagram {
 	@Override
 	public String getType() {
 		return "State";
+	}
+
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 } // StateDiagramImpl

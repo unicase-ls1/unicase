@@ -105,7 +105,7 @@ public class ModelSwitch<T> {
 			Project project = (Project) theEObject;
 			T result = caseProject(project);
 			if (result == null)
-				result = caseMetamodel_Project(project);
+				result = caseModel_Project(project);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -164,20 +164,22 @@ public class ModelSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMetamodel_Project(org.unicase.metamodel.Project object) {
+	public T caseProject(Project object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Project</em>'.
-	 * <!-- begin-user-doc --> This
-	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Project</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseProject(Project object) {
+	public T caseModel_Project(org.eclipse.emf.emfstore.common.model.Project object) {
 		return null;
 	}
 

@@ -37,7 +37,7 @@ public interface Annotation extends UnicaseModelElement {
 	 * @see org.unicase.model.ModelPackage#getAnnotation_AnnotatedModelElements()
 	 * @see org.unicase.model.UnicaseModelElement#getAnnotations
 	 * @model opposite="annotations"
-	 *        annotation="org.unicase.ui.meeditor priority='90.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='90.0' position='right'"
 	 * @generated
 	 */
 	EList<UnicaseModelElement> getAnnotatedModelElements();

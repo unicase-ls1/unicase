@@ -847,4 +847,10 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 		return result.toString();
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // MilestoneImpl
