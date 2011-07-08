@@ -5,9 +5,9 @@
  */
 package org.unicase.ui.stem.views.iterationplanningview;
 
+import org.eclipse.emf.ecp.common.EMFColumnLabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.model.task.ActivityType;
-import org.unicase.ui.common.EMFColumnLabelProvider;
 import org.unicase.ui.stem.Activator;
 import org.unicase.ui.stem.views.statusview.NotAssigned;
 

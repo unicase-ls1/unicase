@@ -8,16 +8,16 @@ package org.unicase.ui.stem.views.sprintstatus;
 
 import java.util.List;
 
+import org.eclipse.emf.ecp.common.dnd.DragSourcePlaceHolder;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
-import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
-import org.unicase.ui.common.observer.StatusViewDropEventObserver;
-import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.ui.unicasecommon.observer.StatusViewDropEventObserver;
 
 /**
  * This is the drop adapter for User tab in Status view.
@@ -57,11 +57,11 @@ public class SprintStatusDropAdapter extends DropTargetAdapter {
 	 */
 	@Override
 	public void drop(DropTargetEvent event) {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
-				ECPWorkspaceManager.getObserverBus().notify(StatusViewDropEventObserver.class).onStatusViewDropEvent(
-					target, source, "Unknown", "Sprint status view");
+				ECPWorkspaceManager.getObserverBus().notify(StatusViewDropEventObserver.class)
+					.onStatusViewDropEvent(target, source, "Unknown", "Sprint status view");
 				reassignWorkItem(target, (OrgUnit) source);
 			}
 		}.run();

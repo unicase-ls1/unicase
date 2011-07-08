@@ -39,9 +39,11 @@ Export-Package: org.unicase.ui.unicasecommon,
  org.unicase.ui.unicasecommon.diagram.util,
  org.unicase.ui.unicasecommon.dnd.dropadapters,
  org.unicase.ui.unicasecommon.meeditor,
- org.unicase.ui.unicasecommon.navigator.wizards
+ org.unicase.ui.unicasecommon.navigator.wizards,
+ org.unicase.ui.unicasecommon.observer
 Import-Package: org.eclipse.core.expressions,
  org.eclipse.emf.common.ui,
+ org.eclipse.emf.ecp.emfstorebridge,
  org.unicase.model.diagram,
  org.unicase.model.diagram.impl,
  org.unicase.ui.unicasecommon.common

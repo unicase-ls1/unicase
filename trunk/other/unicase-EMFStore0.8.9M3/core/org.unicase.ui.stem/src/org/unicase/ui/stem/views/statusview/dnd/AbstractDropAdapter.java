@@ -10,12 +10,14 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecp.common.dnd.DragSourcePlaceHolder;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
@@ -24,10 +26,8 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.model.task.util.TaskUtil;
 import org.unicase.model.task.util.TaxonomyAccess;
-import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
-import org.unicase.ui.common.observer.StatusViewDropEventObserver;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
-import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.ui.unicasecommon.observer.StatusViewDropEventObserver;
 
 /**
  * Note that in methods dropXXOnYY(), YY actually means the currentOpenME and not drop target!
@@ -47,12 +47,12 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 	 */
 	@Override
 	public void drop(final DropTargetEvent event) {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				// TODO: Log source view.
-				ECPWorkspaceManager.getObserverBus().notify(StatusViewDropEventObserver.class).onStatusViewDropEvent(
-					currentOpenME, dragSource, "Unknown", "FlatTab");
+				ECPWorkspaceManager.getObserverBus().notify(StatusViewDropEventObserver.class)
+					.onStatusViewDropEvent(currentOpenME, dragSource, "Unknown", "FlatTab");
 				if (currentOpenME instanceof WorkPackage) {
 					if (dragSource instanceof WorkItem) {
 						dropWorkItemOnWorkPackage();
@@ -74,8 +74,8 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 	protected void dropWorkItemOnWorkPackage() {
 		// check if source (work item) is not hierarchical contained in
 		// currentOpenME (work package) and if not add it to work items of currentOpenME
-		Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(
-			currentOpenME);
+		Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
+			.getLeafOpeners(currentOpenME);
 		if (!openers.contains(dragSource)) {
 			((WorkPackage) currentOpenME).getContainedWorkItems().add((WorkItem) dragSource);
 		}

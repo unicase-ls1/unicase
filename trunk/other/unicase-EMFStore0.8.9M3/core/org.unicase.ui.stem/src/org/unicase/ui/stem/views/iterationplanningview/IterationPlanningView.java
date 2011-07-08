@@ -10,7 +10,15 @@ import java.io.IOException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecp.common.dnd.ComposedDropAdapter;
+import org.eclipse.emf.ecp.common.dnd.UCDragAdapter;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.observer.FocusEventObserver;
+import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.emfstore.client.model.Workspace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.NoCurrentUserException;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.DialogSettings;
@@ -32,14 +40,8 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.User;
-import org.unicase.ui.common.dnd.ComposedDropAdapter;
-import org.unicase.ui.common.dnd.UCDragAdapter;
-import org.unicase.ui.common.observer.FocusEventObserver;
-import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.stem.Activator;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
 import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
@@ -47,10 +49,6 @@ import org.unicase.ui.unicasecommon.common.TreeViewerColumnSorter;
 import org.unicase.ui.unicasecommon.common.filter.UserFilter;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.WorkspacePackage;
-import org.unicase.workspace.util.NoCurrentUserException;
 
 /**
  * This view helps managing WorkPackages (sprints) contained in a project. It shows the WorkPackages of active project
@@ -89,7 +87,7 @@ public class IterationPlanningView extends ViewPart {
 
 	private TreeViewer viewer;
 	private WorkpackageContentProvider workpackageContentProvider;
-	private Project project;
+	private org.eclipse.emf.emfstore.common.model.Project project;
 	private DialogSettings settings;
 	private String filename;
 	private Action filterToMyTeam;
@@ -113,7 +111,7 @@ public class IterationPlanningView extends ViewPart {
 		workspace.eAdapters().add(new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
+				if ((msg.getFeatureID(Workspace.class)) == org.eclipse.emf.emfstore.client.model.ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
 					initFilters();
 				}
 			}
@@ -152,7 +150,7 @@ public class IterationPlanningView extends ViewPart {
 		workspace.eAdapters().add(new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
+				if ((msg.getFeatureID(Workspace.class)) == org.eclipse.emf.emfstore.client.model.ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
 					if (workspace.getActiveProjectSpace() != null) {
 						project = workspace.getActiveProjectSpace().getProject();
 					} else {
@@ -358,8 +356,8 @@ public class IterationPlanningView extends ViewPart {
 	@Override
 	public void setFocus() {
 		viewer.getTree().setFocus();
-		ECPWorkspaceManager.getObserverBus().notify(FocusEventObserver.class).onFocusEvent(
-			"org.unicase.ui.treeview.views.IterationPlanningView");
+		ECPWorkspaceManager.getObserverBus().notify(FocusEventObserver.class)
+			.onFocusEvent("org.unicase.ui.treeview.views.IterationPlanningView");
 	}
 
 	private void addDNDSupport() {

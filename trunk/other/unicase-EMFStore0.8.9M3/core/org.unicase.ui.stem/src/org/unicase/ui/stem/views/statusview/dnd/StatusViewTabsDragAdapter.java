@@ -8,12 +8,12 @@ package org.unicase.ui.stem.views.statusview.dnd;
 
 import java.util.List;
 
+import org.eclipse.emf.ecp.common.dnd.DragSourcePlaceHolder;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.dnd.DragSourceEvent;
-import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
 
 /**
  * This is the drag adapter for flat tab in status view.

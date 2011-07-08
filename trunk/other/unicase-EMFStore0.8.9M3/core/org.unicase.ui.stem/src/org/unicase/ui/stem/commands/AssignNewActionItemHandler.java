@@ -5,7 +5,6 @@
  */
 package org.unicase.ui.stem.commands;
 
-import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.ActionItem;
@@ -26,8 +25,8 @@ public class AssignNewActionItemHandler extends AssignWorkItemHandler {
 	 * @see org.unicase.ui.stem.commands.AssignWorkItemHandler#assignWorkItem(org.unicase.model.UnicaseModelElement,
 	 *      org.unicase.model.organization.OrgUnit, org.unicase.metamodel.Project)
 	 */
-	@Override
-	protected WorkItem assignWorkItem(UnicaseModelElement currentOpenME, OrgUnit user, Project project) {
+	protected WorkItem assignWorkItem(UnicaseModelElement currentOpenME, OrgUnit user,
+		org.eclipse.emf.emfstore.common.model.Project project) {
 		ActionItem ai = TaskFactory.eINSTANCE.createActionItem();
 
 		if (currentOpenME instanceof WorkPackage) {

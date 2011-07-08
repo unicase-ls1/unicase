@@ -15,8 +15,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.jface.viewers.IContentProvider;
-import org.unicase.metamodel.Project;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
 
@@ -57,7 +57,7 @@ public class GantItemProvider extends AdapterFactoryContentProvider implements I
 	public Object[] getElements(Object object) {
 		List<EObject> ret = new ArrayList<EObject>();
 		if (object instanceof Project) {
-			Project project = (Project) object;
+			org.eclipse.emf.emfstore.common.model.Project project = (Project) object;
 			EList<WorkPackage> allModelElementsbyClass = project.getAllModelElementsbyClass(
 				TaskPackage.eINSTANCE.getWorkPackage(), new BasicEList<WorkPackage>());
 			for (WorkPackage workPackage : allModelElementsbyClass) {

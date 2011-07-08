@@ -8,15 +8,15 @@ package org.unicase.ui.stem.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
 import org.unicase.ui.stem.views.statusview.StatusView;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * users on user tab of status view.
@@ -44,7 +44,7 @@ public abstract class AssignWorkItemHandler extends AbstractHandler {
 
 		final Project project = ModelUtil.getProject(currentOpenME);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				WorkItem workItem = assignWorkItem(currentOpenME, user, project);

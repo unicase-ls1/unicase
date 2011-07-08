@@ -6,13 +6,13 @@
 package org.unicase.ui.stem.views.statusview;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.WorkItem;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Editingsupport for the priority column.
@@ -92,7 +92,7 @@ public class HierarchyTabPriorityEditingSupport extends EditingSupport {
 	}
 
 	private void doSetValue(final EObject element, final int priority) {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				if (element instanceof FunctionalRequirement) {

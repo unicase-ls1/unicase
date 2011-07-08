@@ -5,6 +5,10 @@
  */
 package org.unicase.ui.stem.views.sprintstatus;
 
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.ui.util.URLHelper;
+import org.eclipse.emf.emfstore.client.ui.util.URLSelectionListener;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -17,10 +21,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.unicase.model.task.WorkItem;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.ui.util.URLHelper;
-import org.unicase.workspace.ui.util.URLSelectionListener;
 
 /**
  * @author Shterev
