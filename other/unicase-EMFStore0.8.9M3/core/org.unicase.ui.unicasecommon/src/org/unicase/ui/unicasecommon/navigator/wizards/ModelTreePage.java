@@ -6,6 +6,7 @@
 package org.unicase.ui.unicasecommon.navigator.wizards;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecp.common.MEClassLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -24,7 +25,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
-import org.unicase.ui.common.MEClassLabelProvider;
 
 /**
  * @author Hodaie This is the first page of NewModelElementWizard. On this page the model packages and their class (only

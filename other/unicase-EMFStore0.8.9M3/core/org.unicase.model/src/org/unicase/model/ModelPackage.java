@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.unicase.metamodel.MetamodelPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta objects to represent
@@ -426,7 +425,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT__MODEL_ELEMENTS = MetamodelPackage.PROJECT__MODEL_ELEMENTS;
+	int PROJECT__MODEL_ELEMENTS = org.eclipse.emf.emfstore.common.model.ModelPackage.PROJECT__MODEL_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Cut Elements</b></em>' containment reference list.
@@ -435,7 +434,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT__CUT_ELEMENTS = MetamodelPackage.PROJECT__CUT_ELEMENTS;
+	int PROJECT__CUT_ELEMENTS = org.eclipse.emf.emfstore.common.model.ModelPackage.PROJECT__CUT_ELEMENTS;
 
 	/**
 	 * The number of structural features of the '<em>Project</em>' class.
@@ -443,7 +442,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_FEATURE_COUNT = MetamodelPackage.PROJECT_FEATURE_COUNT + 0;
+	int PROJECT_FEATURE_COUNT = org.eclipse.emf.emfstore.common.model.ModelPackage.PROJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.UnicaseModelElement <em>Unicase Model Element</em>}'.

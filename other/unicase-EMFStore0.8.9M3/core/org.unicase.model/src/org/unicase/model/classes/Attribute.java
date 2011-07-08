@@ -47,7 +47,7 @@ public interface Attribute extends UnicaseModelElement {
 	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_DefiningClass()
 	 * @see org.unicase.model.classes.Class#getAttributes
 	 * @model opposite="attributes" transient="false"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='10.0' position='left'"
 	 * @generated
 	 */
 	org.unicase.model.classes.Class getDefiningClass();
@@ -74,7 +74,7 @@ public interface Attribute extends UnicaseModelElement {
 	 * @see org.unicase.model.classes.VisibilityType
 	 * @see #setVisibility(VisibilityType)
 	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_Visibility()
-	 * @model annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='11.0' position='left'"
 	 * @generated
 	 */
 	VisibilityType getVisibility();
@@ -102,7 +102,7 @@ public interface Attribute extends UnicaseModelElement {
 	 * @see org.unicase.model.classes.ScopeType
 	 * @see #setScope(ScopeType)
 	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_Scope()
-	 * @model annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='12.0' position='left'"
 	 * @generated
 	 */
 	ScopeType getScope();
@@ -170,7 +170,7 @@ public interface Attribute extends UnicaseModelElement {
 	 * @return the value of the '<em>Default Value</em>' attribute.
 	 * @see #setDefaultValue(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_DefaultValue()
-	 * @model annotation="org.unicase.ui.meeditor priority='14.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='14.0' position='left'"
 	 * @generated
 	 */
 	String getDefaultValue();
@@ -195,7 +195,7 @@ public interface Attribute extends UnicaseModelElement {
 	 * @return the value of the '<em>Properties</em>' attribute.
 	 * @see #setProperties(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_Properties()
-	 * @model annotation="org.unicase.ui.meeditor priority='15.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='15.0' position='left'"
 	 * @generated
 	 */
 	String getProperties();
@@ -220,7 +220,7 @@ public interface Attribute extends UnicaseModelElement {
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_Label()
-	 * @model annotation="org.unicase.ui.meeditor priority='16.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='16.0' position='left'"
 	 * @generated
 	 */
 	String getLabel();

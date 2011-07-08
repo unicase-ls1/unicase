@@ -7,7 +7,14 @@ package org.unicase.ui.unicasecommon.meeditor;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.utilities.ExtProgramFactoryFacade;
+import org.eclipse.emf.ecp.editor.Activator;
+import org.eclipse.emf.ecp.editor.ModelElementChangeListener;
+import org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.MELinkControl;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -15,12 +22,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.attachment.UrlAttachment;
-import org.unicase.ui.common.util.ExtProgramFactoryFacade;
-import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * GUI Control for the ME reference links.
@@ -49,7 +51,7 @@ public class MEURLLinkControl extends MELinkControl {
 
 	private static final int PRIORITY = 2;
 
-	private org.unicase.ui.meeditor.ModelElementChangeListener modelElementChangeListener2;
+	private ModelElementChangeListener modelElementChangeListener2;
 
 	/**
 	 * {@inheritDoc}
@@ -73,11 +75,10 @@ public class MEURLLinkControl extends MELinkControl {
 	private void setupAdditionalControlComponents(int style) {
 		if (link.eClass().getInstanceClass().equals(UrlAttachment.class)) {
 			urlHyperlink = toolkit.createImageHyperlink(linkComposite, style);
-			Image launchImage = org.unicase.ui.meeditor.Activator.getImageDescriptor("icons/world_link.png")
-				.createImage();
+			Image launchImage = Activator.getImageDescriptor("icons/world_link.png").createImage();
 			urlHyperlink.setImage(launchImage);
 
-			modelElementChangeListener2 = new org.unicase.ui.meeditor.ModelElementChangeListener(link) {
+			modelElementChangeListener2 = new ModelElementChangeListener(link) {
 
 				@Override
 				public void onChange(Notification notification) {

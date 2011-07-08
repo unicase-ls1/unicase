@@ -36,7 +36,7 @@ public interface MethodArgument extends UnicaseModelElement {
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see #setType(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethodArgument_Type()
-	 * @model annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='10.0' position='left'"
 	 * @generated
 	 */
 	String getType();
@@ -64,7 +64,7 @@ public interface MethodArgument extends UnicaseModelElement {
 	 * @see org.unicase.model.classes.ArgumentDirectionType
 	 * @see #setDirection(ArgumentDirectionType)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethodArgument_Direction()
-	 * @model annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='11.0' position='left'"
 	 * @generated
 	 */
 	ArgumentDirectionType getDirection();
@@ -90,7 +90,7 @@ public interface MethodArgument extends UnicaseModelElement {
 	 * @return the value of the '<em>Default Value</em>' attribute.
 	 * @see #setDefaultValue(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethodArgument_DefaultValue()
-	 * @model annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='12.0' position='left'"
 	 * @generated
 	 */
 	String getDefaultValue();
@@ -130,7 +130,7 @@ public interface MethodArgument extends UnicaseModelElement {
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethodArgument_Label()
-	 * @model annotation="org.unicase.ui.meeditor priority='13.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='13.0' position='left'"
 	 * @generated
 	 */
 	String getLabel();

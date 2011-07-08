@@ -39,7 +39,7 @@ public interface BugReport extends WorkItem, Checkable {
 	 * @see org.unicase.model.bug.Severity
 	 * @see #setSeverity(Severity)
 	 * @see org.unicase.model.bug.BugPackage#getBugReport_Severity()
-	 * @model annotation="org.unicase.ui.meeditor priority='9.5' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='9.5' position='left'"
 	 * @generated
 	 */
 	Severity getSeverity();
@@ -66,7 +66,7 @@ public interface BugReport extends WorkItem, Checkable {
 	 * @return the value of the '<em>Resolution</em>' attribute.
 	 * @see #setResolution(String)
 	 * @see org.unicase.model.bug.BugPackage#getBugReport_Resolution()
-	 * @model annotation="org.unicase.ui.meeditor priority='16.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='16.0' position='left'"
 	 * @generated
 	 */
 	String getResolution();
@@ -94,7 +94,7 @@ public interface BugReport extends WorkItem, Checkable {
 	 * @see org.unicase.model.bug.ResolutionType
 	 * @see #setResolutionType(ResolutionType)
 	 * @see org.unicase.model.bug.BugPackage#getBugReport_ResolutionType()
-	 * @model annotation="org.unicase.ui.meeditor priority='17.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='17.0' position='left'"
 	 * @generated
 	 */
 	ResolutionType getResolutionType();

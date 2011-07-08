@@ -11,9 +11,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 
 /**
@@ -23,7 +23,7 @@ import org.unicase.model.UnicaseModelElement;
  */
 public class METableViewerContentProvider implements IStructuredContentProvider {
 
-	private Project project;
+	private org.eclipse.emf.emfstore.common.model.Project project;
 	private EClass meType;
 	private Collection<? extends UnicaseModelElement> directInput;
 
@@ -63,7 +63,7 @@ public class METableViewerContentProvider implements IStructuredContentProvider 
 	@SuppressWarnings("unchecked")
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		if (newInput != oldInput) {
-			if (newInput instanceof Project) {
+			if (newInput instanceof org.eclipse.emf.emfstore.common.model.Project) {
 				this.project = (Project) newInput;
 				directInput = null;
 			} else if (newInput instanceof Collection) {

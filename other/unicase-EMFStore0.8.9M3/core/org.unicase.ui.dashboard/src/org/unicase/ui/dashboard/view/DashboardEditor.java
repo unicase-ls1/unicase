@@ -6,11 +6,11 @@
 package org.unicase.ui.dashboard.view;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * The dashboard view.

@@ -38,7 +38,7 @@ public interface User extends OrgUnit {
 	 * @return the value of the '<em>Email</em>' attribute.
 	 * @see #setEmail(String)
 	 * @see org.unicase.model.organization.OrganizationPackage#getUser_Email()
-	 * @model annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='10.0' position='left'"
 	 * @generated
 	 */
 	String getEmail();
@@ -64,7 +64,7 @@ public interface User extends OrgUnit {
 	 * @return the value of the '<em>First Name</em>' attribute.
 	 * @see #setFirstName(String)
 	 * @see org.unicase.model.organization.OrganizationPackage#getUser_FirstName()
-	 * @model annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='11.0' position='left'"
 	 * @generated
 	 */
 	String getFirstName();
@@ -89,7 +89,7 @@ public interface User extends OrgUnit {
 	 * @return the value of the '<em>Last Name</em>' attribute.
 	 * @see #setLastName(String)
 	 * @see org.unicase.model.organization.OrganizationPackage#getUser_LastName()
-	 * @model annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='12.0' position='left'"
 	 * @generated
 	 */
 	String getLastName();

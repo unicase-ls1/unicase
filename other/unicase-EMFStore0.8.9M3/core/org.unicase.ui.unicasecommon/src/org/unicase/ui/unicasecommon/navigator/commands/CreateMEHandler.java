@@ -10,6 +10,8 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecp.common.util.UiUtil;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.meeting.CompositeMeetingSection;
@@ -17,9 +19,7 @@ import org.unicase.model.meeting.IssueMeetingSection;
 import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.meeting.WorkItemMeetingSection;
-import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author Hodaie This is the handler for createME command (org.unicase.ui.unicasecommon.navigator.createME). This
@@ -65,9 +65,9 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 			// }
 
 			// add this newly created model element to LeafSection
-			final LeafSection leafSection = (LeafSection) ActionHelper.getSelectedModelElement();
+			final LeafSection leafSection = (LeafSection) UiUtil.getSelectedModelelement();
 			if (leafSection != null) {
-				new UnicaseCommand() {
+				new EMFStoreCommand() {
 					@Override
 					protected void doRun() {
 						leafSection.getModelElements().add(newMEInstance);
@@ -76,7 +76,7 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 
 				if (newMEInstance instanceof Meeting) {
 
-					new UnicaseCommand() {
+					new EMFStoreCommand() {
 						@Override
 						protected void doRun() {
 							// FIXME: added DOLLI meeting structure as default - needs flexible approach.
@@ -84,7 +84,7 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 						}
 					}.run(true);
 
-					new UnicaseCommand() {
+					new EMFStoreCommand() {
 						@Override
 						protected void doRun() {
 							addMeetingSubSections((Meeting) newMEInstance);

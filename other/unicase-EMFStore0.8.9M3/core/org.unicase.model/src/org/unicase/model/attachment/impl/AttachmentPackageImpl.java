@@ -11,8 +11,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.unicase.emfstore.esmodel.EsmodelPackage;
-import org.unicase.model.ModelPackage;
+import org.eclipse.emf.emfstore.server.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
 import org.unicase.model.attachment.AttachmentFactory;
@@ -126,12 +125,12 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		isInited = true;
 
 		// Initialize simple dependencies
-		EsmodelPackage.eINSTANCE.eClass();
+		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ModelPackage.eNS_URI) : ModelPackage.eINSTANCE);
+		ModelPackageImpl theModelPackage_1 = (ModelPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) : org.unicase.model.ModelPackage.eINSTANCE);
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
@@ -177,7 +176,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 		// Create package meta-data objects
 		theAttachmentPackage.createPackageContents();
-		theModelPackage.createPackageContents();
+		theModelPackage_1.createPackageContents();
 		theOrganizationPackage.createPackageContents();
 		theTaskPackage.createPackageContents();
 		theClassesPackage.createPackageContents();
@@ -196,7 +195,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 		// Initialize created meta-data
 		theAttachmentPackage.initializePackageContents();
-		theModelPackage.initializePackageContents();
+		theModelPackage_1.initializePackageContents();
 		theOrganizationPackage.initializePackageContents();
 		theTaskPackage.initializePackageContents();
 		theClassesPackage.initializePackageContents();
@@ -375,7 +374,8 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		org.unicase.model.ModelPackage theModelPackage_1 = (org.unicase.model.ModelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI);
 		ReleasePackage theReleasePackage = (ReleasePackage) EPackage.Registry.INSTANCE
 			.getEPackage(ReleasePackage.eNS_URI);
 
@@ -384,8 +384,8 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		urlAttachmentEClass.getESuperTypes().add(theModelPackage.getAttachment());
-		fileAttachmentEClass.getESuperTypes().add(theModelPackage.getAttachment());
+		urlAttachmentEClass.getESuperTypes().add(theModelPackage_1.getAttachment());
+		fileAttachmentEClass.getESuperTypes().add(theModelPackage_1.getAttachment());
 		patchAttachmentEClass.getESuperTypes().add(this.getFileAttachment());
 
 		// Initialize classes and features; add operations and parameters
@@ -427,17 +427,17 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		addEEnumLiteral(fileAttachmentTypeEEnum, FileAttachmentType.VIDEO);
 
 		// Create annotations
-		// org.unicase.ui.meeditor
+		// org.eclipse.emf.ecp.editor
 		createOrgAnnotations();
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
+	 * Initializes the annotations for <b>org.eclipse.emf.ecp.editor</b>.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {
-		String source = "org.unicase.ui.meeditor";
+		String source = "org.eclipse.emf.ecp.editor";
 		addAnnotation(getUrlAttachment_Url(), source, new String[] { "position", "left", "priority", "2.5" });
 		addAnnotation(getFileAttachment_FileName(), source, new String[] { "priority", "2", "position", "left" });
 		addAnnotation(getFileAttachment_FileHash(), source, new String[] { "priority", "2", "position", "left" });

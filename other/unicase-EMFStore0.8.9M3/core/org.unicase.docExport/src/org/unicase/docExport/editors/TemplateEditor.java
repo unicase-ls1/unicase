@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -40,7 +41,6 @@ import org.unicase.docExport.editors.tabItems.ModelElementRenderersTabItem;
 import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * A template editor for all the options of a template.

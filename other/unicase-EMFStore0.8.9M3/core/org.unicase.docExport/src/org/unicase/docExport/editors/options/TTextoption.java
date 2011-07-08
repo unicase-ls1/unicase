@@ -6,6 +6,7 @@
 package org.unicase.docExport.editors.options;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -29,7 +30,6 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.TextAlign;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.docExport.exportModel.renderers.options.UColor;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author Sebastian Hoecht

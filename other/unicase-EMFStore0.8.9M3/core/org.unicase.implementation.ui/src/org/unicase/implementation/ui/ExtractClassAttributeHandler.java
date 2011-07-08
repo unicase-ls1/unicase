@@ -8,8 +8,8 @@ package org.unicase.implementation.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.SemanticCompositeOperation;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.implementation.operations.ExtractClassOperation;
 import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.util.OperationHelper;

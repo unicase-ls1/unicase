@@ -1029,4 +1029,10 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	public int getRemainingEstimate() {
 		return this.getAggregatedEstimate() - this.getClosedAggregatedEstimate();
 	}
+
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 } // WorkPackageImpl

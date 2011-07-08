@@ -6,6 +6,7 @@
 package org.unicase.ui.unicasecommon.common.wizards;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
@@ -15,7 +16,6 @@ import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.model.task.WorkItem;
 import org.unicase.ui.unicasecommon.common.wizards.wizardpages.WorkItemSectionSelectionPage;
 import org.unicase.ui.unicasecommon.common.wizards.wizardpages.WorkItemSelectionPage;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author naughton Wizard for creating a follow-up meeting.
@@ -63,7 +63,7 @@ public class WorkPackageReviewWizard extends Wizard implements IWorkbenchWizard 
 		final WorkItemMeetingSection selectedSection = workItemSectionSelectionPage.getSelectedSection();
 		final EList<WorkItem> selectedWorkItems = workItemSelectionPage.getSelectedWorkItems();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				// HN: Notification.ADD_MANY does not work yet - when it works replace?

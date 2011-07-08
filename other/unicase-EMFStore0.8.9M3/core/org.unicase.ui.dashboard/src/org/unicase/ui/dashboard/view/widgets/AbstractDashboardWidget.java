@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.preference.PreferenceDialog;
@@ -32,7 +33,6 @@ import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.unicase.ui.dashboard.view.DashboardPage;
 import org.unicase.ui.dashboard.view.DashboardToolbarAction;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * The common functions for a dashboard widget.

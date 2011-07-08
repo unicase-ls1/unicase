@@ -8,6 +8,7 @@ package org.unicase.docExport.exportModel.renderers.specialRenderers.impl;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
 import org.unicase.docExport.exportModel.renderers.elements.UList;
 import org.unicase.docExport.exportModel.renderers.elements.UParagraph;
@@ -18,7 +19,6 @@ import org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRen
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.util.OpeningLinkTaxonomy;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Milestone Renderer</b></em>'. <!-- end-user-doc

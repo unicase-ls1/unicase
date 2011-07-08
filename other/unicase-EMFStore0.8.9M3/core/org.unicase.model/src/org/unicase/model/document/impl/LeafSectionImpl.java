@@ -282,4 +282,10 @@ public class LeafSectionImpl extends UnicaseModelElementImpl implements LeafSect
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // LeafSectionImpl

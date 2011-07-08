@@ -878,4 +878,10 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 		return result.toString();
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // UseCaseImpl

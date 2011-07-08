@@ -26,9 +26,8 @@ import org.unicase.model.diagram.WorkItemDiagram;
  * --> <!-- end-user-doc -->
  * @generated
  */
-public class WorkItemDiagramItemProvider extends MEDiagramItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class WorkItemDiagramItemProvider extends MEDiagramItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -59,8 +58,7 @@ public class WorkItemDiagramItemProvider extends MEDiagramItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/WorkItemDiagram"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/WorkItemDiagram"));
 	}
 
 	/**
@@ -72,7 +70,7 @@ public class WorkItemDiagramItemProvider extends MEDiagramItemProvider
 	public String getText(Object object) {
 		String label = ((WorkItemDiagram) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_WorkItemDiagram_type")
-				: getString("_UI_WorkItemDiagram_type") + " " + label;
+			: getString("_UI_WorkItemDiagram_type") + " " + label;
 	}
 
 	/**
@@ -95,8 +93,7 @@ public class WorkItemDiagramItemProvider extends MEDiagramItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -107,19 +104,17 @@ public class WorkItemDiagramItemProvider extends MEDiagramItemProvider
 	 * @generated
 	 */
 	@Override
-	public String getCreateChildText(Object owner, Object feature,
-			Object child, Collection<?> selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
 		boolean qualify = childFeature == ModelPackage.Literals.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES
-				|| childFeature == DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS
-				|| childFeature == ModelPackage.Literals.UNICASE_MODEL_ELEMENT__COMMENTS;
+			|| childFeature == DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS
+			|| childFeature == ModelPackage.Literals.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 		if (qualify) {
-			return getString("_UI_CreateChild_text2", new Object[] {
-					getTypeText(childObject), getFeatureText(childFeature),
-					getTypeText(owner) });
+			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
+				getFeatureText(childFeature), getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

@@ -13,6 +13,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -26,7 +27,6 @@ import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.editors.TemplateEditor;
 import org.unicase.docExport.exceptions.DefaultTemplateLoadException;
 import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * This view lists all templates in a treeview.

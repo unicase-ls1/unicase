@@ -36,17 +36,17 @@ Require-Bundle: org.eclipse.core.runtime,
  org.unicase.ui.unicasecommon;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
- org.unicase.emfstore.esmodel;visibility:=reexport,
- org.unicase.emfstore.esmodel.edit;visibility:=reexport,
- org.unicase.metamodel;visibility:=reexport,
- org.unicase.metamodel.edit;visibility:=reexport,
  org.eclipse.gmf.runtime.notation;visibility:=reexport,
  org.eclipse.gmf.runtime.notation.edit;visibility:=reexport,
  org.eclipse.gef;visibility:=reexport,
- org.unicase.ui.common,
  org.unicase.diagram,
- org.unicase.diagram.edit
+ org.unicase.diagram.edit,
+ org.eclipse.emf.ecp.common.util,
+ org.eclipse.emf.emfstore.server.model,
+ org.eclipse.emf.emfstore.server.model.edit,
+ org.eclipse.emf.ecp.common
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Eclipse-LazyStart: true
-Import-Package: org.unicase.ui.unicasecommon.diagram.figures
+Import-Package: org.eclipse.emf.emfstore.server.model.accesscontrol.provider,
+ org.unicase.ui.unicasecommon.diagram.figures

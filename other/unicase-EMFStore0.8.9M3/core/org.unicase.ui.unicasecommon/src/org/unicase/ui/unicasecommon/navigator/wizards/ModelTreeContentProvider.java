@@ -12,14 +12,14 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.unicase.ecp.model.ECPModelelementContext;
-import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.ModelPackage;
 import org.unicase.ui.unicasecommon.Activator;
+import org.unicase.ui.unicasecommon.common.util.UnicaseUiUtil;
 
 /**
  * @author Hodaie ContentProvider for TreeViewer which is shown on ModelTreePage
@@ -44,7 +44,7 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 		// EList<EPackage> array = modelPackage.getESubpackages();
 		//
 
-		return ModelUtil.getAllModelPackages().toArray();
+		return UnicaseUiUtil.getAllModelPackages().toArray();
 	}
 
 	/**
@@ -133,8 +133,7 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 	 */
 	private boolean isNonDomainElement(Object object) {
 
-		return object instanceof EClass
-			&& MetamodelPackage.eINSTANCE.getNonDomainElement().isSuperTypeOf((EClass) object);
+		return object instanceof EClass && ModelPackage.eINSTANCE.getNonDomainElement().isSuperTypeOf((EClass) object);
 	}
 
 	/**

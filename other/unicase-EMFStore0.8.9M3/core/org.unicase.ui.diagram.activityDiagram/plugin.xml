@@ -512,11 +512,8 @@
          defaultHandler="org.unicase.ui.diagram.activityDiagram.part.LoadResourceAction"/>
    </extension>
 
-   <extension point="org.eclipse.ui.handlers" id="menu-handlers">
-      <?gmfgen generated="true"?>
-   </extension>
    <extension
-         point="org.unicase.ui.common.modelelementopener">
+         point="org.eclipse.emf.ecp.common.modelelementopener">
       <ModelElementOpener
             class="org.unicase.ui.activityDiagram.ActivityDiagramOpener"
             name="org.unicase.ui.MEDiagramEditor">

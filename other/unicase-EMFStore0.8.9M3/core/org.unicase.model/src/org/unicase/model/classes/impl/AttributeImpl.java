@@ -895,4 +895,10 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 		return result.toString();
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // AttributeImpl

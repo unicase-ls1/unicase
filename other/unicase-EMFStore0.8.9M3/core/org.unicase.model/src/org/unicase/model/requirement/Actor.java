@@ -89,7 +89,7 @@ public interface Actor extends UnicaseModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getActor_InitiatedUseCases()
 	 * @see org.unicase.model.requirement.UseCase#getInitiatingActor
 	 * @model opposite="initiatingActor"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<UseCase> getInitiatedUseCases();

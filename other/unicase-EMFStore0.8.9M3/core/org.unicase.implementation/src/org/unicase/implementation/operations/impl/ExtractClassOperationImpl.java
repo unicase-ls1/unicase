@@ -16,12 +16,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.emfstore.esmodel.versioning.operations.semantic.impl.SemanticCompositeOperationImpl;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.impl.SemanticCompositeOperationImpl;
 import org.unicase.implementation.operations.ExtractClassOperation;
 import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.implementation.operations.util.OperationHelper;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.AssociationType;
 import org.unicase.model.classes.Attribute;
@@ -37,21 +37,16 @@ import org.unicase.model.classes.PackageElement;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.implementation.operations.impl.ExtractClassOperationImpl#getContextClass <em>Context Class
- * </em>}</li>
- * <li>{@link org.unicase.implementation.operations.impl.ExtractClassOperationImpl#getAttributes <em>Attributes</em>}</li>
- * <li>{@link org.unicase.implementation.operations.impl.ExtractClassOperationImpl#getOutgoingAssociations <em>Outgoing
- * Associations</em>}</li>
- * <li>{@link org.unicase.implementation.operations.impl.ExtractClassOperationImpl#getIncomingAssociations <em>Incoming
- * Associations</em>}</li>
- * <li>{@link org.unicase.implementation.operations.impl.ExtractClassOperationImpl#getCompositionName <em>Composition
- * Name</em>}</li>
- * <li>{@link org.unicase.implementation.operations.impl.ExtractClassOperationImpl#getClassName <em>Class Name</em>}</li>
- * <li>{@link org.unicase.implementation.operations.impl.ExtractClassOperationImpl#getTargetPackage <em>Target Package
- * </em>}</li>
+ *   <li>{@link org.unicase.implementation.operations.impl.ExtractClassOperationImpl#getContextClass <em>Context Class</em>}</li>
+ *   <li>{@link org.unicase.implementation.operations.impl.ExtractClassOperationImpl#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link org.unicase.implementation.operations.impl.ExtractClassOperationImpl#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
+ *   <li>{@link org.unicase.implementation.operations.impl.ExtractClassOperationImpl#getIncomingAssociations <em>Incoming Associations</em>}</li>
+ *   <li>{@link org.unicase.implementation.operations.impl.ExtractClassOperationImpl#getCompositionName <em>Composition Name</em>}</li>
+ *   <li>{@link org.unicase.implementation.operations.impl.ExtractClassOperationImpl#getClassName <em>Class Name</em>}</li>
+ *   <li>{@link org.unicase.implementation.operations.impl.ExtractClassOperationImpl#getTargetPackage <em>Target Package</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl implements ExtractClassOperation {
@@ -76,9 +71,8 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 	protected EList<ModelElementId> attributes;
 
 	/**
-	 * The cached value of the '{@link #getOutgoingAssociations() <em>Outgoing Associations</em>}' containment reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getOutgoingAssociations() <em>Outgoing Associations</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getOutgoingAssociations()
 	 * @generated
 	 * @ordered
@@ -86,9 +80,8 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 	protected EList<ModelElementId> outgoingAssociations;
 
 	/**
-	 * The cached value of the '{@link #getIncomingAssociations() <em>Incoming Associations</em>}' containment reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getIncomingAssociations() <em>Incoming Associations</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getIncomingAssociations()
 	 * @generated
 	 * @ordered
@@ -96,9 +89,9 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 	protected EList<ModelElementId> incomingAssociations;
 
 	/**
-	 * The default value of the '{@link #getCompositionName() <em>Composition Name</em>}' attribute. <!-- begin-user-doc
+	 * The default value of the '{@link #getCompositionName() <em>Composition Name</em>}' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getCompositionName()
 	 * @generated
 	 * @ordered
@@ -106,9 +99,9 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 	protected static final String COMPOSITION_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getCompositionName() <em>Composition Name</em>}' attribute. <!-- begin-user-doc
+	 * The cached value of the '{@link #getCompositionName() <em>Composition Name</em>}' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getCompositionName()
 	 * @generated
 	 * @ordered
@@ -116,9 +109,9 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 	protected String compositionName = COMPOSITION_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getClassName() <em>Class Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getClassName() <em>Class Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getClassName()
 	 * @generated
 	 * @ordered
@@ -126,9 +119,9 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 	protected static final String CLASS_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getClassName() <em>Class Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getClassName() <em>Class Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getClassName()
 	 * @generated
 	 * @ordered
@@ -147,7 +140,6 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ExtractClassOperationImpl() {
@@ -156,7 +148,6 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -166,7 +157,6 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getContextClass() {
@@ -175,87 +165,71 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetContextClass(ModelElementId newContextClass, NotificationChain msgs) {
 		ModelElementId oldContextClass = contextClass;
 		contextClass = newContextClass;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS, oldContextClass, newContextClass);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS, oldContextClass, newContextClass);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setContextClass(ModelElementId newContextClass) {
 		if (newContextClass != contextClass) {
 			NotificationChain msgs = null;
 			if (contextClass != null)
-				msgs = ((InternalEObject) contextClass).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS, null, msgs);
+				msgs = ((InternalEObject)contextClass).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS, null, msgs);
 			if (newContextClass != null)
-				msgs = ((InternalEObject) newContextClass).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS, null, msgs);
+				msgs = ((InternalEObject)newContextClass).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS, null, msgs);
 			msgs = basicSetContextClass(newContextClass, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS, newContextClass, newContextClass));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS, newContextClass, newContextClass));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ModelElementId> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this,
-				OperationsPackage.EXTRACT_CLASS_OPERATION__ATTRIBUTES);
+			attributes = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this, OperationsPackage.EXTRACT_CLASS_OPERATION__ATTRIBUTES);
 		}
 		return attributes;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ModelElementId> getOutgoingAssociations() {
 		if (outgoingAssociations == null) {
-			outgoingAssociations = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this,
-				OperationsPackage.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS);
+			outgoingAssociations = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this, OperationsPackage.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS);
 		}
 		return outgoingAssociations;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ModelElementId> getIncomingAssociations() {
 		if (incomingAssociations == null) {
-			incomingAssociations = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this,
-				OperationsPackage.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS);
+			incomingAssociations = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this, OperationsPackage.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS);
 		}
 		return incomingAssociations;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getCompositionName() {
@@ -264,20 +238,17 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setCompositionName(String newCompositionName) {
 		String oldCompositionName = compositionName;
 		compositionName = newCompositionName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.EXTRACT_CLASS_OPERATION__COMPOSITION_NAME, oldCompositionName, compositionName));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.EXTRACT_CLASS_OPERATION__COMPOSITION_NAME, oldCompositionName, compositionName));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getClassName() {
@@ -286,20 +257,17 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setClassName(String newClassName) {
 		String oldClassName = className;
 		className = newClassName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.EXTRACT_CLASS_OPERATION__CLASS_NAME, oldClassName, className));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.EXTRACT_CLASS_OPERATION__CLASS_NAME, oldClassName, className));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getTargetPackage() {
@@ -308,48 +276,38 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetTargetPackage(ModelElementId newTargetPackage, NotificationChain msgs) {
 		ModelElementId oldTargetPackage = targetPackage;
 		targetPackage = newTargetPackage;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE, oldTargetPackage, newTargetPackage);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE, oldTargetPackage, newTargetPackage);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTargetPackage(ModelElementId newTargetPackage) {
 		if (newTargetPackage != targetPackage) {
 			NotificationChain msgs = null;
 			if (targetPackage != null)
-				msgs = ((InternalEObject) targetPackage).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE, null, msgs);
+				msgs = ((InternalEObject)targetPackage).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE, null, msgs);
 			if (newTargetPackage != null)
-				msgs = ((InternalEObject) newTargetPackage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE, null, msgs);
+				msgs = ((InternalEObject)newTargetPackage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE, null, msgs);
 			msgs = basicSetTargetPackage(newTargetPackage, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE, newTargetPackage, newTargetPackage));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE, newTargetPackage, newTargetPackage));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class getContextClass(Project project) {
@@ -358,7 +316,6 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Attribute> getAttributes(Project project) {
@@ -381,7 +338,6 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Association> getOutgoingAssociations(Project project) {
@@ -487,158 +443,150 @@ public class ExtractClassOperationImpl extends SemanticCompositeOperationImpl im
 	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS:
-			return basicSetContextClass(null, msgs);
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__ATTRIBUTES:
-			return ((InternalEList<?>) getAttributes()).basicRemove(otherEnd, msgs);
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
-			return ((InternalEList<?>) getOutgoingAssociations()).basicRemove(otherEnd, msgs);
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
-			return ((InternalEList<?>) getIncomingAssociations()).basicRemove(otherEnd, msgs);
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE:
-			return basicSetTargetPackage(null, msgs);
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS:
+				return basicSetContextClass(null, msgs);
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__ATTRIBUTES:
+				return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
+				return ((InternalEList<?>)getOutgoingAssociations()).basicRemove(otherEnd, msgs);
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
+				return ((InternalEList<?>)getIncomingAssociations()).basicRemove(otherEnd, msgs);
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE:
+				return basicSetTargetPackage(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS:
-			return getContextClass();
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__ATTRIBUTES:
-			return getAttributes();
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
-			return getOutgoingAssociations();
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
-			return getIncomingAssociations();
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__COMPOSITION_NAME:
-			return getCompositionName();
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__CLASS_NAME:
-			return getClassName();
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE:
-			return getTargetPackage();
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS:
+				return getContextClass();
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__ATTRIBUTES:
+				return getAttributes();
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
+				return getOutgoingAssociations();
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
+				return getIncomingAssociations();
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__COMPOSITION_NAME:
+				return getCompositionName();
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__CLASS_NAME:
+				return getClassName();
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE:
+				return getTargetPackage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS:
-			setContextClass((ModelElementId) newValue);
-			return;
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__ATTRIBUTES:
-			getAttributes().clear();
-			getAttributes().addAll((Collection<? extends ModelElementId>) newValue);
-			return;
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
-			getOutgoingAssociations().clear();
-			getOutgoingAssociations().addAll((Collection<? extends ModelElementId>) newValue);
-			return;
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
-			getIncomingAssociations().clear();
-			getIncomingAssociations().addAll((Collection<? extends ModelElementId>) newValue);
-			return;
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__COMPOSITION_NAME:
-			setCompositionName((String) newValue);
-			return;
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__CLASS_NAME:
-			setClassName((String) newValue);
-			return;
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE:
-			setTargetPackage((ModelElementId) newValue);
-			return;
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS:
+				setContextClass((ModelElementId)newValue);
+				return;
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__ATTRIBUTES:
+				getAttributes().clear();
+				getAttributes().addAll((Collection<? extends ModelElementId>)newValue);
+				return;
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
+				getOutgoingAssociations().clear();
+				getOutgoingAssociations().addAll((Collection<? extends ModelElementId>)newValue);
+				return;
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
+				getIncomingAssociations().clear();
+				getIncomingAssociations().addAll((Collection<? extends ModelElementId>)newValue);
+				return;
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__COMPOSITION_NAME:
+				setCompositionName((String)newValue);
+				return;
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__CLASS_NAME:
+				setClassName((String)newValue);
+				return;
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE:
+				setTargetPackage((ModelElementId)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS:
-			setContextClass((ModelElementId) null);
-			return;
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__ATTRIBUTES:
-			getAttributes().clear();
-			return;
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
-			getOutgoingAssociations().clear();
-			return;
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
-			getIncomingAssociations().clear();
-			return;
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__COMPOSITION_NAME:
-			setCompositionName(COMPOSITION_NAME_EDEFAULT);
-			return;
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__CLASS_NAME:
-			setClassName(CLASS_NAME_EDEFAULT);
-			return;
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE:
-			setTargetPackage((ModelElementId) null);
-			return;
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS:
+				setContextClass((ModelElementId)null);
+				return;
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__ATTRIBUTES:
+				getAttributes().clear();
+				return;
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
+				getOutgoingAssociations().clear();
+				return;
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
+				getIncomingAssociations().clear();
+				return;
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__COMPOSITION_NAME:
+				setCompositionName(COMPOSITION_NAME_EDEFAULT);
+				return;
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__CLASS_NAME:
+				setClassName(CLASS_NAME_EDEFAULT);
+				return;
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE:
+				setTargetPackage((ModelElementId)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS:
-			return contextClass != null;
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__ATTRIBUTES:
-			return attributes != null && !attributes.isEmpty();
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
-			return outgoingAssociations != null && !outgoingAssociations.isEmpty();
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
-			return incomingAssociations != null && !incomingAssociations.isEmpty();
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__COMPOSITION_NAME:
-			return COMPOSITION_NAME_EDEFAULT == null ? compositionName != null : !COMPOSITION_NAME_EDEFAULT
-				.equals(compositionName);
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__CLASS_NAME:
-			return CLASS_NAME_EDEFAULT == null ? className != null : !CLASS_NAME_EDEFAULT.equals(className);
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE:
-			return targetPackage != null;
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS:
+				return contextClass != null;
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__ATTRIBUTES:
+				return attributes != null && !attributes.isEmpty();
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
+				return outgoingAssociations != null && !outgoingAssociations.isEmpty();
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
+				return incomingAssociations != null && !incomingAssociations.isEmpty();
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__COMPOSITION_NAME:
+				return COMPOSITION_NAME_EDEFAULT == null ? compositionName != null : !COMPOSITION_NAME_EDEFAULT.equals(compositionName);
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__CLASS_NAME:
+				return CLASS_NAME_EDEFAULT == null ? className != null : !CLASS_NAME_EDEFAULT.equals(className);
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE:
+				return targetPackage != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (compositionName: ");

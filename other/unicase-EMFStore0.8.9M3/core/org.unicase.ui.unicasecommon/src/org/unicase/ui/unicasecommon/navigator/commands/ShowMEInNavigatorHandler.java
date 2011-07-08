@@ -9,12 +9,12 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.navigator.TreeView;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.ui.navigator.TreeView;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 /**

@@ -11,17 +11,17 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecp.common.dnd.MEDropAdapter;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.Usersession;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.accesscontrol.AccessControlHelper;
+import org.eclipse.emf.emfstore.server.exceptions.AccessControlException;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
-import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.Section;
-import org.unicase.ui.common.dnd.MEDropAdapter;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.accesscontrol.AccessControlHelper;
 
 /**
  * Parent class for all UNICASE drop adapters.

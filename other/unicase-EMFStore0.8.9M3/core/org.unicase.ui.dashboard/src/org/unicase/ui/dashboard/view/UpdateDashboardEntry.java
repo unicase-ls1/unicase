@@ -7,6 +7,8 @@ package org.unicase.ui.dashboard.view;
 
 import java.text.SimpleDateFormat;
 
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -14,9 +16,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.ui.dashboard.Activator;
-import org.unicase.workspace.ProjectSpace;
 
 /**
  * A dashboard entry widget for the update notifications.

@@ -9,12 +9,12 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.util.UiUtil;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
-import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author Helming This handler adds a new LeafSection to selected CompositeSection
@@ -28,7 +28,7 @@ public class NewLeafSection extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		EObject eObject = ActionHelper.getModelElement(event);
+		EObject eObject = UiUtil.getModelElement(event);
 		if (eObject == null) {
 			return null;
 		}
@@ -43,7 +43,7 @@ public class NewLeafSection extends AbstractHandler {
 
 		createLeafSection.setName(NEW_LEAFSECTION_NAME);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				compositeSection.getSubsections().add(createLeafSection);

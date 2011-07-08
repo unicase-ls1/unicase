@@ -9,13 +9,13 @@ package org.unicase.ui.unicasecommon.common.util;
 import java.util.Calendar;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent;
-import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.versioning.events.AnnotationEvent;
+import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
 import org.unicase.model.Annotation;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Helper class to log events.
@@ -41,7 +41,7 @@ public final class UnicaseEventUtil {
 			.getActiveProjectSpace();
 		if (activeProjectSpace != null) {
 
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 				@Override
 				protected void doRun() {
 					activeProjectSpace.addEvent(annotationEvent);

@@ -6,8 +6,8 @@
 package org.unicase.ui.unicasecommon.meeditor.mecontrols;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
 /**
  * Abstract Control only for use with unicase meta model. Ensures that model elment is a sub type of {@link EObject}

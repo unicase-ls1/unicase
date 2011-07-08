@@ -13,6 +13,8 @@ import org.eclipse.core.filesystem.IFileSystem;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.ecp.common.util.PreferenceHelper;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.custom.CTabFolder;
@@ -32,8 +34,6 @@ import org.unicase.docExport.editors.TemplateEditor;
 import org.unicase.docExport.editors.TemplateEditorTabItem;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
-import org.unicase.ui.util.PreferenceHelper;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * A TemplateEditor TabItem containing some SWT Elements for changing the logo image of a template.

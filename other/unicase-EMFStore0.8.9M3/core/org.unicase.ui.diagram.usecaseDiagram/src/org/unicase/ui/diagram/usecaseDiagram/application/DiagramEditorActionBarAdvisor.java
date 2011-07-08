@@ -38,7 +38,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
-import org.unicase.ui.util.PreferenceHelper;
 
 /**
  * @generated
@@ -72,6 +71,7 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void makeActions(IWorkbenchWindow window) {
 		toggleCoolbarAction = ActionFactory.TOGGLE_COOLBAR.create(window);
 		register(toggleCoolbarAction);
@@ -112,22 +112,21 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void fillMenuBar(IMenuManager menu) {
 
 		{
 			IMenuManager menuX = new MenuManager(
-					org.unicase.ui.diagram.usecaseDiagram.part.Messages.ApplicationMenuName_File,
-					IWorkbenchActionConstants.M_FILE);
+				org.unicase.ui.diagram.usecaseDiagram.part.Messages.ApplicationMenuName_File,
+				IWorkbenchActionConstants.M_FILE);
 
 			menuX.add(new GroupMarker(IWorkbenchActionConstants.FILE_START));
 
 			{
 				IMenuManager menuXX = new MenuManager(
-						org.unicase.ui.diagram.usecaseDiagram.part.Messages.ApplicationMenuName_New,
-						"new");
+					org.unicase.ui.diagram.usecaseDiagram.part.Messages.ApplicationMenuName_New, "new");
 
-				menuXX.add(new GroupMarker(
-						IWorkbenchActionConstants.MB_ADDITIONS));
+				menuXX.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
 				menuX.add(menuXX);
 			}
 
@@ -159,8 +158,8 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 
 		{
 			IMenuManager menuX = new MenuManager(
-					org.unicase.ui.diagram.usecaseDiagram.part.Messages.ApplicationMenuName_Edit,
-					IWorkbenchActionConstants.M_EDIT);
+				org.unicase.ui.diagram.usecaseDiagram.part.Messages.ApplicationMenuName_Edit,
+				IWorkbenchActionConstants.M_EDIT);
 
 			menuX.add(new GroupMarker(IWorkbenchActionConstants.EDIT_START));
 
@@ -200,8 +199,8 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 
 		{
 			IMenuManager menuX = new MenuManager(
-					org.unicase.ui.diagram.usecaseDiagram.part.Messages.ApplicationMenuName_Window,
-					IWorkbenchActionConstants.M_WINDOW);
+				org.unicase.ui.diagram.usecaseDiagram.part.Messages.ApplicationMenuName_Window,
+				IWorkbenchActionConstants.M_WINDOW);
 
 			menuX.add(getAction(ActionFactory.OPEN_NEW_WINDOW.getId()));
 
@@ -211,8 +210,8 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 
 		{
 			IMenuManager menuX = new MenuManager(
-					org.unicase.ui.diagram.usecaseDiagram.part.Messages.ApplicationMenuName_Help,
-					IWorkbenchActionConstants.M_HELP);
+				org.unicase.ui.diagram.usecaseDiagram.part.Messages.ApplicationMenuName_Help,
+				IWorkbenchActionConstants.M_HELP);
 
 			menuX.add(new GroupMarker(IWorkbenchActionConstants.HELP_START));
 
@@ -226,6 +225,7 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void fillCoolBar(ICoolBarManager toolBar) {
 		IMenuManager popUpMenu = new MenuManager();
 		popUpMenu.add(new ActionContributionItem(lockToolBarAction));
@@ -252,8 +252,7 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 			toolBarX.add(new GroupMarker(IWorkbenchActionConstants.PRINT_EXT));
 
 			toolBarX.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
-			toolBar.add(new ToolBarContributionItem(toolBarX,
-					IWorkbenchActionConstants.TOOLBAR_FILE));
+			toolBar.add(new ToolBarContributionItem(toolBarX, IWorkbenchActionConstants.TOOLBAR_FILE));
 		}
 
 		toolBar.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
@@ -270,8 +269,7 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 			toolBarX.add(new Separator(IWorkbenchActionConstants.GROUP_HELP));
 
 			toolBarX.add(new GroupMarker(IWorkbenchActionConstants.GROUP_APP));
-			toolBar.add(new ToolBarContributionItem(toolBarX,
-					IWorkbenchActionConstants.TOOLBAR_HELP));
+			toolBar.add(new ToolBarContributionItem(toolBarX, IWorkbenchActionConstants.TOOLBAR_HELP));
 		}
 	}
 
@@ -281,28 +279,25 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 	private static boolean openEditor(IWorkbench workbench, URI fileURI) {
 		IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
 		IWorkbenchPage page = workbenchWindow.getActivePage();
-		IEditorDescriptor editorDescriptor = workbench.getEditorRegistry()
-				.getDefaultEditor(fileURI.toFileString());
+		IEditorDescriptor editorDescriptor = workbench.getEditorRegistry().getDefaultEditor(fileURI.toFileString());
 		if (editorDescriptor == null) {
 			MessageDialog
-					.openError(
-							workbenchWindow.getShell(),
-							org.unicase.ui.diagram.usecaseDiagram.part.Messages.DiagramEditorActionBarAdvisor_DefaultFileEditorTitle,
-							NLS
-									.bind(
-											org.unicase.ui.diagram.usecaseDiagram.part.Messages.DiagramEditorActionBarAdvisor_DefaultFileEditorMessage,
-											fileURI.toFileString()));
+				.openError(
+					workbenchWindow.getShell(),
+					org.unicase.ui.diagram.usecaseDiagram.part.Messages.DiagramEditorActionBarAdvisor_DefaultFileEditorTitle,
+					NLS.bind(
+						org.unicase.ui.diagram.usecaseDiagram.part.Messages.DiagramEditorActionBarAdvisor_DefaultFileEditorMessage,
+						fileURI.toFileString()));
 			return false;
 		} else {
 			try {
-				page.openEditor(new URIEditorInput(fileURI), editorDescriptor
-						.getId());
+				page.openEditor(new URIEditorInput(fileURI), editorDescriptor.getId());
 			} catch (PartInitException exception) {
 				MessageDialog
-						.openError(
-								workbenchWindow.getShell(),
-								org.unicase.ui.diagram.usecaseDiagram.part.Messages.DiagramEditorActionBarAdvisor_DefaultEditorOpenErrorTitle,
-								exception.getMessage());
+					.openError(
+						workbenchWindow.getShell(),
+						org.unicase.ui.diagram.usecaseDiagram.part.Messages.DiagramEditorActionBarAdvisor_DefaultEditorOpenErrorTitle,
+						exception.getMessage());
 				return false;
 			}
 		}
@@ -320,8 +315,7 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 		public void run(IAction action) {
 			org.unicase.ui.diagram.usecaseDiagram.part.ModelCreationWizard wizard = new org.unicase.ui.diagram.usecaseDiagram.part.ModelCreationWizard();
 			wizard.init(getWindow().getWorkbench(), StructuredSelection.EMPTY);
-			WizardDialog wizardDialog = new WizardDialog(
-					getWindow().getShell(), wizard);
+			WizardDialog wizardDialog = new WizardDialog(getWindow().getShell(), wizard);
 			wizardDialog.open();
 		}
 	}
@@ -336,10 +330,9 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 		 */
 		public void run(IAction action) {
 			LoadResourceAction.LoadResourceDialog loadResourceDialog = new LoadResourceAction.LoadResourceDialog(
-					getWindow().getShell());
+				getWindow().getShell());
 			if (Dialog.OK == loadResourceDialog.open()) {
-				for (Iterator i = loadResourceDialog.getURIs().iterator(); i
-						.hasNext();) {
+				for (Iterator i = loadResourceDialog.getURIs().iterator(); i.hasNext();) {
 					openEditor(getWindow().getWorkbench(), (URI) i.next());
 				}
 			}
@@ -357,17 +350,16 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 		 * @generated
 		 */
 		public void run(IAction action) {
-			FileDialog fileDialog = new FileDialog(getWindow().getShell(),
-					SWT.OPEN);
-			String initialPath = PreferenceHelper.getPreference(DIAGRAM_EDITOR_ACTION_BAR_ADVISOR_PATH, System.getProperty("user.home"));
+			FileDialog fileDialog = new FileDialog(getWindow().getShell(), SWT.OPEN);
+			String initialPath = org.eclipse.emf.ecp.common.util.PreferenceHelper.getPreference(
+				DIAGRAM_EDITOR_ACTION_BAR_ADVISOR_PATH, System.getProperty("user.home"));
 			fileDialog.setFilterPath(initialPath);
 			fileDialog.open();
-			if (fileDialog.getFileName() != null
-					&& fileDialog.getFileName().length() > 0) {
-				PreferenceHelper.setPreference(DIAGRAM_EDITOR_ACTION_BAR_ADVISOR_PATH, new File(fileDialog.getFileName()).getParent());
-				openEditor(getWindow().getWorkbench(), URI
-						.createFileURI(fileDialog.getFilterPath()
-								+ File.separator + fileDialog.getFileName()));
+			if (fileDialog.getFileName() != null && fileDialog.getFileName().length() > 0) {
+				org.eclipse.emf.ecp.common.util.PreferenceHelper.setPreference(DIAGRAM_EDITOR_ACTION_BAR_ADVISOR_PATH,
+					new File(fileDialog.getFileName()).getParent());
+				openEditor(getWindow().getWorkbench(),
+					URI.createFileURI(fileDialog.getFilterPath() + File.separator + fileDialog.getFileName()));
 			}
 		}
 	}
@@ -381,11 +373,9 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 		 * @generated
 		 */
 		public void run(IAction action) {
-			MessageDialog
-					.openInformation(
-							getWindow().getShell(),
-							org.unicase.ui.diagram.usecaseDiagram.part.Messages.DiagramEditorActionBarAdvisor_AboutDialogTitle,
-							org.unicase.ui.diagram.usecaseDiagram.part.Messages.DiagramEditorActionBarAdvisor_AboutDialogMessage);
+			MessageDialog.openInformation(getWindow().getShell(),
+				org.unicase.ui.diagram.usecaseDiagram.part.Messages.DiagramEditorActionBarAdvisor_AboutDialogTitle,
+				org.unicase.ui.diagram.usecaseDiagram.part.Messages.DiagramEditorActionBarAdvisor_AboutDialogMessage);
 		}
 	}
 

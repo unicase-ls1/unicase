@@ -13,12 +13,22 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
+import org.eclipse.emf.emfstore.client.model.CompositeOperationHandle;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.exceptions.InvalidHandleException;
+import org.eclipse.emf.emfstore.client.model.util.NoCurrentUserException;
+import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.Conflict;
+import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.ConflictOption;
+import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.CustomConflictOption;
+import org.eclipse.emf.emfstore.client.ui.views.changes.ChangePackageVisualizationHelper;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.change.ChangeFactory;
@@ -27,17 +37,7 @@ import org.unicase.model.change.MergingProposal;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
-import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
-import org.unicase.workspace.CompositeOperationHandle;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.exceptions.InvalidHandleException;
-import org.unicase.workspace.ui.dialogs.merge.conflict.Conflict;
-import org.unicase.workspace.ui.dialogs.merge.conflict.ConflictOption;
-import org.unicase.workspace.ui.dialogs.merge.conflict.CustomConflictOption;
-import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
-import org.unicase.workspace.util.NoCurrentUserException;
 
 /**
  * Custom option for the merge dialog, which allows to create issues.
@@ -135,15 +135,15 @@ public class IssueOption extends CustomConflictOption {
 		try {
 			compositeOperation.end("Created Merge Issue", "Created a merge issue after updating from version "
 				+ conflict.getDecisionManager().getBaseVersion().getIdentifier() + " to "
-				+ conflict.getDecisionManager().getTargetVersion().getIdentifier() + ".", ModelUtil.getProject(
-				mergeIssue).getModelElementId(mergeIssue));
+				+ conflict.getDecisionManager().getTargetVersion().getIdentifier() + ".",
+				ModelUtil.getProject(mergeIssue).getModelElementId(mergeIssue));
 		} catch (InvalidHandleException e) {
 			// fail silently
 		}
 
 		List<AbstractOperation> ops = projectSpace.getOperations();
 		AbstractOperation ab = ops.get(ops.size() - 1);
-		issueOperation = (AbstractOperation) EcoreUtil.copy(ab);
+		issueOperation = EcoreUtil.copy(ab);
 	}
 
 	private void addAnnotations(Project project, List<AbstractOperation> myOperations,
@@ -173,7 +173,7 @@ public class IssueOption extends CustomConflictOption {
 		String description = "";
 		for (AbstractOperation myOp : myOperations) {
 			description += helper.getDescription(myOp) + "\n\n";
-			myProposal.getPendingOperations().add((AbstractOperation) EcoreUtil.copy(myOp));
+			myProposal.getPendingOperations().add(EcoreUtil.copy(myOp));
 		}
 		myProposal.setDescription(description);
 		// has to be added at the end, otherwise the addition of the change operations isn't recorded.

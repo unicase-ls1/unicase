@@ -37,7 +37,7 @@ public interface Workspace extends UnicaseModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getWorkspace_SystemFunctions()
 	 * @see org.unicase.model.requirement.SystemFunction#getWorkspace
 	 * @model opposite="workspace"
-	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='12.0' position='right'"
 	 * @generated
 	 */
 	EList<SystemFunction> getSystemFunctions();

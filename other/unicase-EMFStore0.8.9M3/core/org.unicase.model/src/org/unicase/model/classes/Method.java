@@ -48,7 +48,7 @@ public interface Method extends UnicaseModelElement {
 	 * @see org.unicase.model.classes.VisibilityType
 	 * @see #setVisibility(VisibilityType)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_Visibility()
-	 * @model annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='11.0' position='left'"
 	 * @generated
 	 */
 	VisibilityType getVisibility();
@@ -76,7 +76,7 @@ public interface Method extends UnicaseModelElement {
 	 * @see org.unicase.model.classes.ScopeType
 	 * @see #setScope(ScopeType)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_Scope()
-	 * @model annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='12.0' position='left'"
 	 * @generated
 	 */
 	ScopeType getScope();
@@ -106,7 +106,7 @@ public interface Method extends UnicaseModelElement {
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_DefiningClass()
 	 * @see org.unicase.model.classes.Class#getMethods
 	 * @model opposite="methods" transient="false"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='10.0' position='left'"
 	 * @generated
 	 */
 	org.unicase.model.classes.Class getDefiningClass();
@@ -131,7 +131,7 @@ public interface Method extends UnicaseModelElement {
 	 * @return the value of the '<em>Return Type</em>' attribute.
 	 * @see #setReturnType(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_ReturnType()
-	 * @model annotation="org.unicase.ui.meeditor priority='13.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='13.0' position='left'"
 	 * @generated
 	 */
 	String getReturnType();
@@ -173,7 +173,7 @@ public interface Method extends UnicaseModelElement {
 	 * @return the value of the '<em>Arguments</em>' containment reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_Arguments()
 	 * @model containment="true" resolveProxies="true"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<MethodArgument> getArguments();
@@ -189,7 +189,7 @@ public interface Method extends UnicaseModelElement {
 	 * @return the value of the '<em>Properties</em>' attribute.
 	 * @see #setProperties(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_Properties()
-	 * @model annotation="org.unicase.ui.meeditor priority='14.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='14.0' position='left'"
 	 * @generated
 	 */
 	String getProperties();
@@ -214,7 +214,7 @@ public interface Method extends UnicaseModelElement {
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_Label()
-	 * @model annotation="org.unicase.ui.meeditor priority='15.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='15.0' position='left'"
 	 * @generated
 	 */
 	String getLabel();
@@ -269,7 +269,7 @@ public interface Method extends UnicaseModelElement {
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_CalledMethods()
 	 * @see org.unicase.model.classes.Method#getCallingMethods
 	 * @model opposite="callingMethods"
-	 *        annotation="org.unicase.ui.meeditor priority='10.1' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='10.1' position='right'"
 	 * @generated
 	 */
 	EList<Method> getCalledMethods();
@@ -288,7 +288,7 @@ public interface Method extends UnicaseModelElement {
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_CallingMethods()
 	 * @see org.unicase.model.classes.Method#getCalledMethods
 	 * @model opposite="calledMethods"
-	 *        annotation="org.unicase.ui.meeditor priority='10.2' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='10.2' position='right'"
 	 * @generated
 	 */
 	EList<Method> getCallingMethods();

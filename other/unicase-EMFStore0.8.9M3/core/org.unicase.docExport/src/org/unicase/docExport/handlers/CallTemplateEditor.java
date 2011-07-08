@@ -10,6 +10,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchPage;
@@ -20,7 +21,6 @@ import org.unicase.docExport.editors.TemplateEditor;
 import org.unicase.docExport.editors.TemplateEditorInput;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.views.TemplatesView;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author Sebastian Hoecht

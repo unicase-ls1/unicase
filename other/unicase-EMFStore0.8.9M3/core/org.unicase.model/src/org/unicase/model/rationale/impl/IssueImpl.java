@@ -1221,4 +1221,10 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		return result.toString();
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // IssueImpl

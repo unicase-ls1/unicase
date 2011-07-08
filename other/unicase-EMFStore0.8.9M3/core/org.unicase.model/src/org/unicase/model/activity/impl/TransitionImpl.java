@@ -364,4 +364,10 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 		return result.toString();
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // TransitionImpl

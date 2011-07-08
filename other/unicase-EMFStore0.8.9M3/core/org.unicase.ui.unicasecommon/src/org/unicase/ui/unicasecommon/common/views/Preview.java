@@ -7,6 +7,7 @@ package org.unicase.ui.unicasecommon.common.views;
 
 import java.util.Date;
 
+import org.eclipse.emf.ecp.common.MEClassLabelProvider;
 import org.eclipse.jface.resource.FontRegistry;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -25,7 +26,6 @@ import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.ui.common.MEClassLabelProvider;
 
 /**
  * @author abdelhamidbarzali this class extends ViewPart. this view shows the main information about a modelelement e.g.

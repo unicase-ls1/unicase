@@ -122,4 +122,10 @@ public class DeploymentNodeImpl extends UnicaseModelElementImpl implements Deplo
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // NodeImpl

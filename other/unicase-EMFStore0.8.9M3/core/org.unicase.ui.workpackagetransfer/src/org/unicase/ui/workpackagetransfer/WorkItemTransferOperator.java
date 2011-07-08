@@ -7,17 +7,13 @@ package org.unicase.ui.workpackagetransfer;
 
 import java.util.List;
 
+import org.eclipse.emf.emfstore.client.model.exceptions.InvalidHandleException;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.workspace.CompositeOperationHandle;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.exceptions.InvalidHandleException;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author mkagel This final class contains the utility method for moving the WorkItems from one WorkPackage to another.
@@ -37,8 +33,10 @@ public final class WorkItemTransferOperator {
 	public static void moveWorkItems(List<WorkItem> selectedWorkItems, WorkPackage targetWorkPackage,
 		WorkPackage sourceWorkPackage) {
 
-		final Project project = ModelUtil.getProject(targetWorkPackage);
-		final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(project);
+		final org.eclipse.emf.emfstore.common.model.Project project = org.eclipse.emf.emfstore.common.model.util.ModelUtil
+			.getProject(targetWorkPackage);
+		final org.eclipse.emf.emfstore.client.model.ProjectSpace projectSpace = org.eclipse.emf.emfstore.client.model.WorkspaceManager
+			.getProjectSpace(project);
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
 			.getActiveWorkbenchWindow().getShell());
 
@@ -46,7 +44,8 @@ public final class WorkItemTransferOperator {
 			progressDialog.open();
 			progressDialog.getProgressMonitor().beginTask("Move workitems...", 100);
 
-			CompositeOperationHandle operationHandle = projectSpace.beginCompositeOperation();
+			org.eclipse.emf.emfstore.client.model.CompositeOperationHandle operationHandle = projectSpace
+				.beginCompositeOperation();
 
 			for (WorkItem selectedWorkItem : selectedWorkItems) {
 				// Don't move the source-WorkPackage itself
@@ -75,8 +74,8 @@ public final class WorkItemTransferOperator {
 
 			try {
 				operationHandle.end("Move WorkItems", "Move " + selectedWorkItems.size() + " WorkItems to WorkPackage "
-					+ targetWorkPackage.getName(), ModelUtil.getProject(targetWorkPackage).getModelElementId(
-					targetWorkPackage));
+					+ targetWorkPackage.getName(),
+					ModelUtil.getProject(targetWorkPackage).getModelElementId(targetWorkPackage));
 			} catch (InvalidHandleException e) {
 				WorkspaceUtil.logException("Composite Operation failed!", e);
 			}

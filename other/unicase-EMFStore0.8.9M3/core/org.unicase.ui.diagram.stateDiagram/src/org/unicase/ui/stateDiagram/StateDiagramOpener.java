@@ -6,10 +6,10 @@
 package org.unicase.ui.stateDiagram;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.util.ModelElementOpener;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.StateDiagram;
 import org.unicase.ui.unicasecommon.common.diagram.DiagramOpener;
-import org.unicase.ui.util.ModelElementOpener;
 
 /**
  * Opener for state diagrams.

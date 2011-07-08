@@ -5,7 +5,7 @@
  */
 package org.unicase.model.organization;
 
-import org.unicase.metamodel.UniqueIdentifier;
+import org.eclipse.emf.emfstore.common.model.UniqueIdentifier;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Org Unit Id</b></em>'. <!-- end-user-doc -->

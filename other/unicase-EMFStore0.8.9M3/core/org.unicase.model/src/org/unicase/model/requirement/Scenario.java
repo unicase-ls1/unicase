@@ -61,7 +61,7 @@ public interface Scenario extends UnicaseModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_InitiatingActorInstance()
 	 * @see org.unicase.model.requirement.ActorInstance#getInitiatedScenarios
 	 * @model opposite="initiatedScenarios"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='10.0' position='left'"
 	 * @generated
 	 */
 	ActorInstance getInitiatingActorInstance();
@@ -89,7 +89,7 @@ public interface Scenario extends UnicaseModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_ParticipatingActorInstances()
 	 * @see org.unicase.model.requirement.ActorInstance#getParticipatedScenarios
 	 * @model opposite="participatedScenarios"
-	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='11.0' position='left'"
 	 * @generated
 	 */
 	EList<ActorInstance> getParticipatingActorInstances();
@@ -108,7 +108,7 @@ public interface Scenario extends UnicaseModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_InstantiatedUseCases()
 	 * @see org.unicase.model.requirement.UseCase#getScenarios
 	 * @model opposite="scenarios"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<UseCase> getInstantiatedUseCases();
@@ -128,7 +128,7 @@ public interface Scenario extends UnicaseModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_FunctionalRequirements()
 	 * @see org.unicase.model.requirement.FunctionalRequirement#getScenarios
 	 * @model opposite="scenarios"
-	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='11.0' position='right'"
 	 * @generated
 	 */
 	EList<FunctionalRequirement> getFunctionalRequirements();
@@ -147,7 +147,7 @@ public interface Scenario extends UnicaseModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_NonFunctionalRequirements()
 	 * @see org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedScenarios
 	 * @model opposite="restrictedScenarios"
-	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='12.0' position='right'"
 	 * @generated
 	 */
 	EList<NonFunctionalRequirement> getNonFunctionalRequirements();

@@ -521,4 +521,10 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 		return result.toString();
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // SystemFunctionImpl

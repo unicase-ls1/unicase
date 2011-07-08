@@ -9,7 +9,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.NonDomainElement;
+import org.eclipse.emf.emfstore.common.model.NonDomainElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Criterion;
 import org.unicase.model.requirement.*;
@@ -311,12 +311,12 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.NonDomainElement <em>Non Domain Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.emfstore.common.model.NonDomainElement <em>Non Domain Element</em>}'.
 	 * <!-- begin-user-doc --> This default implementation returns null so that we can
 	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.unicase.metamodel.NonDomainElement
+	 * @see org.eclipse.emf.emfstore.common.model.NonDomainElement
 	 * @generated
 	 */
 	public Adapter createNonDomainElementAdapter() {

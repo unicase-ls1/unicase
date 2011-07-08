@@ -9,6 +9,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.client.model.util.NoCurrentUserException;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -21,17 +27,11 @@ import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
-import org.unicase.ui.common.Activator;
-import org.unicase.ui.common.util.CannotMatchUserInProjectException;
+import org.unicase.ui.unicasecommon.Activator;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.NoCurrentUserException;
-import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Standard widget to show a comment and all its replies.
@@ -187,7 +187,7 @@ public class MECommentWidget extends Composite {
 				deleteButton.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseUp(MouseEvent e) {
-						new UnicaseCommand() {
+						new EMFStoreCommand() {
 							@Override
 							protected void doRun() {
 								ModelUtil.getProject(comment).deleteModelElement(comment);

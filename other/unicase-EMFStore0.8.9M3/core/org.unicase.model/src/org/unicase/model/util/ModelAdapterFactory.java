@@ -87,8 +87,8 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseMetamodel_Project(org.unicase.metamodel.Project object) {
-			return createMetamodel_ProjectAdapter();
+		public Adapter caseModel_Project(org.eclipse.emf.emfstore.common.model.Project object) {
+			return createModel_ProjectAdapter();
 		}
 
 		@Override
@@ -119,19 +119,6 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUnicaseModelElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.Project <em>Project</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
-	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.unicase.metamodel.Project
-	 * @generated
-	 */
-	public Adapter createMetamodel_ProjectAdapter() {
 		return null;
 	}
 
@@ -171,6 +158,20 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createProjectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.emfstore.common.model.Project <em>Project</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.emfstore.common.model.Project
+	 * @generated
+	 */
+	public Adapter createModel_ProjectAdapter() {
 		return null;
 	}
 

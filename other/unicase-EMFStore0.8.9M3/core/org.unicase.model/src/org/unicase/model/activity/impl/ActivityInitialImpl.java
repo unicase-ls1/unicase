@@ -34,4 +34,10 @@ public class ActivityInitialImpl extends ActivityObjectImpl implements ActivityI
 		return ActivityPackage.Literals.ACTIVITY_INITIAL;
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // ActivityInitialImpl

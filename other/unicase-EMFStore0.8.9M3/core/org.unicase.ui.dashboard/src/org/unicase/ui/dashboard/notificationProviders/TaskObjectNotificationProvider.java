@@ -14,19 +14,18 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.notification.ESNotification;
-import org.unicase.emfstore.esmodel.notification.NotificationFactory;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.preferences.DashboardKey;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
+import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.util.OpeningLinkHelper;
 import org.unicase.model.util.ModelElementPath;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.preferences.DashboardKey;
 
 /**
  * This provider creates notifications about task objects.
@@ -154,7 +153,7 @@ public class TaskObjectNotificationProvider extends AbstractNotificationProvider
 		}
 		message.append(NotificationHelper.getHTMLLinkForModelElement(modelElementPath.getTarget(), projectSpace));
 		notification.setMessage(message.toString());
-		notification.setProject((ProjectId) EcoreUtil.copy(getProjectSpace().getProjectId()));
+		notification.setProject(EcoreUtil.copy(getProjectSpace().getProjectId()));
 		notification.setName("Task Object Change");
 		notification.setRecipient(getUser().getName());
 		notification.setProvider(getName());

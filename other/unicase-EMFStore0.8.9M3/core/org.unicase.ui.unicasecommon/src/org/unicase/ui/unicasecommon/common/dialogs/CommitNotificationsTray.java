@@ -13,8 +13,26 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
+import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.NoCurrentUserException;
+import org.eclipse.emf.emfstore.client.ui.dialogs.CommitDialog;
+import org.eclipse.emf.emfstore.client.ui.dialogs.CommitDialogTray;
+import org.eclipse.emf.emfstore.client.ui.util.URLHelper;
+import org.eclipse.emf.emfstore.client.ui.views.changes.ChangePackageVisualizationHelper;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.server.model.ProjectId;
+import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
+import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -44,28 +62,10 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.notification.ESNotification;
-import org.unicase.emfstore.esmodel.notification.NotificationFactory;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.metamodel.ModelElementId;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
-import org.unicase.ui.common.util.CannotMatchUserInProjectException;
+import org.unicase.ui.unicasecommon.Activator;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
-import org.unicase.ui.util.DialogHandler;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.ui.Activator;
-import org.unicase.workspace.ui.dialogs.CommitDialog;
-import org.unicase.workspace.ui.dialogs.CommitDialogTray;
-import org.unicase.workspace.ui.util.URLHelper;
-import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
-import org.unicase.workspace.util.NoCurrentUserException;
 
 /**
  * This class shows a dialog tray for the commit notifications.
@@ -269,8 +269,9 @@ public class CommitNotificationsTray extends CommitDialogTray {
 				public void widgetSelected(SelectionEvent e) {
 					ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), userLabelProvider);
 					dialog.setMultipleSelection(true);
-					dialog.setElements(projectSpace.getProject().getAllModelElementsbyClass(
-						OrganizationPackage.eINSTANCE.getUser(), new BasicEList<User>()).toArray(new User[0]));
+					dialog.setElements(projectSpace.getProject()
+						.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(), new BasicEList<User>())
+						.toArray(new User[0]));
 					if (dialog.open() == IDialogConstants.OK_ID) {
 						users.clear();
 						Object[] result = dialog.getResult();
@@ -284,10 +285,10 @@ public class CommitNotificationsTray extends CommitDialogTray {
 
 			ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
 			for (AbstractOperation ao : commitDialog.getOperations()) {
-				changePackage.getOperations().add((AbstractOperation) EcoreUtil.copy(ao));
+				changePackage.getOperations().add(EcoreUtil.copy(ao));
 			}
-			final ChangePackageVisualizationHelper operationsHelper = new ChangePackageVisualizationHelper(Arrays
-				.asList(changePackage), projectSpace.getProject());
+			final ChangePackageVisualizationHelper operationsHelper = new ChangePackageVisualizationHelper(
+				Arrays.asList(changePackage), projectSpace.getProject());
 
 			final LabelProvider operationsLabelProvider = new LabelProvider() {
 				@Override
@@ -347,7 +348,7 @@ public class CommitNotificationsTray extends CommitDialogTray {
 				for (User user : users) {
 					ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 					notification.setName("Pushed name");
-					ProjectId projectIdCopy = (ProjectId) EcoreUtil.copy(projectSpace.getProjectId());
+					ProjectId projectIdCopy = EcoreUtil.copy(projectSpace.getProjectId());
 					notification.setProject(projectIdCopy);
 					notification.setSender(currentUser.getName());
 					notification.setRecipient(user.getName());
@@ -359,7 +360,7 @@ public class CommitNotificationsTray extends CommitDialogTray {
 					msgBuilder.append(URLHelper
 						.getHTMLLinkForModelElement(currentUser, projectSpace, URLHelper.DEFAULT));
 					msgBuilder.append(" sent you a notification about this change:\n");
-					ModelElementId modelElementIdCopy = (ModelElementId) EcoreUtil.copy(operation.getModelElementId());
+					ModelElementId modelElementIdCopy = EcoreUtil.copy(operation.getModelElementId());
 					msgBuilder.append(visualizationHelper.getDescription(operation));
 					msgBuilder.append(" in ");
 					msgBuilder.append(URLHelper.getHTMLLinkForModelElement(modelElementIdCopy, projectSpace,
@@ -371,7 +372,7 @@ public class CommitNotificationsTray extends CommitDialogTray {
 						ReferenceOperation referenceOp = (ReferenceOperation) operation;
 						Set<ModelElementId> otherInvolvedModelElements = referenceOp.getOtherInvolvedModelElements();
 						for (ModelElementId id : otherInvolvedModelElements) {
-							ModelElementId idCopy = (ModelElementId) EcoreUtil.copy(id);
+							ModelElementId idCopy = EcoreUtil.copy(id);
 							notification.getRelatedModelElements().add(idCopy);
 						}
 					}

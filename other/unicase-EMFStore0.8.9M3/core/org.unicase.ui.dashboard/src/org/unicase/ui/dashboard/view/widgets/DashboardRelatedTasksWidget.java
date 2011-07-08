@@ -13,6 +13,13 @@ import java.util.Set;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecp.common.util.ModelElementTooltip;
+import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
+import org.eclipse.emf.ecp.common.utilities.ModelElementClassTooltip;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.util.NoCurrentUserException;
+import org.eclipse.emf.emfstore.client.ui.util.URLHelper;
+import org.eclipse.emf.emfstore.client.ui.util.URLSelectionListener;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -26,15 +33,8 @@ import org.unicase.model.organization.User;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.common.util.CannotMatchUserInProjectException;
-import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.dashboard.view.DashboardPage;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
-import org.unicase.ui.util.ModelElementTooltip;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.ui.util.URLHelper;
-import org.unicase.workspace.ui.util.URLSelectionListener;
-import org.unicase.workspace.util.NoCurrentUserException;
 
 /**
  * A dashboard widget displaying an overview of related tasks.

@@ -13,8 +13,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.unicase.emfstore.esmodel.EsmodelPackage;
-import org.unicase.model.ModelPackage;
+import org.eclipse.emf.emfstore.server.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
 import org.unicase.model.attachment.AttachmentPackage;
@@ -208,12 +207,12 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		EsmodelPackage.eINSTANCE.eClass();
+		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ModelPackage.eNS_URI) : ModelPackage.eINSTANCE);
+		ModelPackageImpl theModelPackage_1 = (ModelPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) : org.unicase.model.ModelPackage.eINSTANCE);
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
@@ -259,7 +258,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 		// Create package meta-data objects
 		theClassesPackage.createPackageContents();
-		theModelPackage.createPackageContents();
+		theModelPackage_1.createPackageContents();
 		theOrganizationPackage.createPackageContents();
 		theTaskPackage.createPackageContents();
 		theDocumentPackage.createPackageContents();
@@ -278,7 +277,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 		// Initialize created meta-data
 		theClassesPackage.initializePackageContents();
-		theModelPackage.initializePackageContents();
+		theModelPackage_1.initializePackageContents();
 		theOrganizationPackage.initializePackageContents();
 		theTaskPackage.initializePackageContents();
 		theDocumentPackage.initializePackageContents();
@@ -1024,7 +1023,8 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		// Obtain other dependent packages
 		RequirementPackage theRequirementPackage = (RequirementPackage) EPackage.Registry.INSTANCE
 			.getEPackage(RequirementPackage.eNS_URI);
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		org.unicase.model.ModelPackage theModelPackage_1 = (org.unicase.model.ModelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1033,14 +1033,14 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		// Add supertypes to classes
 		classEClass.getESuperTypes().add(this.getPackageElement());
 		packageEClass.getESuperTypes().add(this.getPackageElement());
-		packageElementEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		associationEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		attributeEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		methodEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		methodArgumentEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		dependencyEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		packageElementEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		associationEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		attributeEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		methodEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		methodArgumentEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		dependencyEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
 		enumerationEClass.getESuperTypes().add(this.getPackageElement());
-		literalEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		literalEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(classEClass, org.unicase.model.classes.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE,
@@ -1267,17 +1267,17 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.ENUMERATION);
 
 		// Create annotations
-		// org.unicase.ui.meeditor
+		// org.eclipse.emf.ecp.editor
 		createOrgAnnotations();
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
+	 * Initializes the annotations for <b>org.eclipse.emf.ecp.editor</b>.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {
-		String source = "org.unicase.ui.meeditor";
+		String source = "org.eclipse.emf.ecp.editor";
 		addAnnotation(getClass_ParticipatedUseCases(), source, new String[] { "priority", "20.0", "position", "left" });
 		addAnnotation(getClass_SuperClasses(), source, new String[] { "priority", "21.0", "position", "left" });
 		addAnnotation(getClass_SubClasses(), source, new String[] { "priority", "22.0", "position", "left" });

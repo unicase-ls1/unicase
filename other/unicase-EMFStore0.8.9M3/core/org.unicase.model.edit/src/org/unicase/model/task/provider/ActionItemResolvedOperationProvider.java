@@ -5,11 +5,11 @@
  */
 package org.unicase.model.task.provider;
 
-import org.unicase.emfstore.esmodel.provider.AbstractOperationCustomLabelProvider;
-import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.provider.AbstractOperationItemProvider;
+import org.eclipse.emf.emfstore.server.model.provider.AbstractOperationCustomLabelProvider;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.provider.AbstractOperationItemProvider;
+import org.unicase.model.provider.ModelEditPlugin;
 
 /**
  * Provider class for visualization of resolved/unresolved operations in the commitDialog.
@@ -58,7 +58,7 @@ public class ActionItemResolvedOperationProvider implements AbstractOperationCus
 	 * @see org.unicase.emfstore.esmodel.provider.AbstractOperationCustomLabelProvider#getImage(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
 	 */
 	public Object getImage(AbstractOperation operation) {
-		return EsmodelEditPlugin.INSTANCE.getImage("full/obj16/AttributeOperation.png");
+		return ModelEditPlugin.INSTANCE.getImage("full/obj16/AttributeOperation.png");
 	}
 
 }

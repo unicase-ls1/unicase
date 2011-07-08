@@ -10,8 +10,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.unicase.emfstore.esmodel.EsmodelPackage;
-import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.Annotation;
 import org.unicase.model.Attachment;
 import org.unicase.model.ModelFactory;
@@ -126,7 +124,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		EsmodelPackage.eINSTANCE.eClass();
+		org.eclipse.emf.emfstore.server.model.ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
@@ -455,8 +453,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 			.getEPackage(ActivityPackage.eNS_URI);
 		ReleasePackage theReleasePackage = (ReleasePackage) EPackage.Registry.INSTANCE
 			.getEPackage(ReleasePackage.eNS_URI);
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(MetamodelPackage.eNS_URI);
+		org.eclipse.emf.emfstore.common.model.ModelPackage theModelPackage_2 = (org.eclipse.emf.emfstore.common.model.ModelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(org.eclipse.emf.emfstore.common.model.ModelPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theOrganizationPackage);
@@ -483,7 +481,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		// Add supertypes to classes
 		annotationEClass.getESuperTypes().add(this.getUnicaseModelElement());
 		attachmentEClass.getESuperTypes().add(this.getUnicaseModelElement());
-		projectEClass.getESuperTypes().add(theMetamodelPackage.getProject());
+		projectEClass.getESuperTypes().add(theModelPackage_2.getProject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(unicaseModelElementEClass, UnicaseModelElement.class, "UnicaseModelElement", IS_ABSTRACT,
@@ -548,17 +546,17 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createResource(eNS_URI);
 
 		// Create annotations
-		// org.unicase.ui.meeditor
+		// org.eclipse.emf.ecp.editor
 		createOrgAnnotations();
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
+	 * Initializes the annotations for <b>org.eclipse.emf.ecp.editor</b>.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {
-		String source = "org.unicase.ui.meeditor";
+		String source = "org.eclipse.emf.ecp.editor";
 		addAnnotation(getUnicaseModelElement_Name(), source, new String[] { "priority", "1.0", "position", "left" });
 		addAnnotation(getUnicaseModelElement_Description(), source, new String[] { "priority", "1.0", "position",
 			"left" });

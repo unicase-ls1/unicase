@@ -341,4 +341,10 @@ public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements S
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // StereotypeInstanceImpl

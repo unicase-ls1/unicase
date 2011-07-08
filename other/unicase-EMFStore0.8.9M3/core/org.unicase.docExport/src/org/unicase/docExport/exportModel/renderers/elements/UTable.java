@@ -10,10 +10,10 @@ import java.util.ArrayList;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.unicase.docExport.exportModel.renderers.options.BoxModelOption;
 import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * This element represents a basic table.

@@ -10,7 +10,19 @@ import java.util.Date;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.utilities.ExtProgramFactoryFacade;
+import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelElementChangeObserver;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
@@ -27,20 +39,9 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.widgets.Hyperlink;
-import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
-import org.unicase.emfstore.esmodel.versioning.events.URLEvent;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelElementChangeObserver;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.attachment.UrlAttachment;
-import org.unicase.ui.common.util.ExtProgramFactoryFacade;
-import org.unicase.ui.meeditor.Activator;
-import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
+import org.unicase.ui.unicasecommon.Activator;
 import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * GUI Control for URL hyperlinks.
@@ -58,7 +59,7 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 	 * @author helming
 	 * @author nagel
 	 */
-	private final class SetURLCommand extends UnicaseCommand {
+	private final class SetURLCommand extends EMFStoreCommand {
 		private final String newURL;
 		private final UrlAttachment urlAttachment;
 
@@ -109,10 +110,32 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 				});
 			}
 
+			public void projectDeleted(IdEObjectCollection project) {
+				// TODO Auto-generated method stub
+
+			}
+
+			public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
+				// TODO Auto-generated method stub
+
+			}
+
+			public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
+				// TODO Auto-generated method stub
+
+			}
+
+			public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
+				// TODO Auto-generated method stub
+
+			}
+
 			@Override
 			protected void onElementDeleted(EObject element) {
-				// nothing to do
+				// TODO Auto-generated method stub
+
 			}
+
 		};
 
 		ModelUtil.getProject(getModelElement()).addProjectChangeObserver(observer);
@@ -189,7 +212,7 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 		urlEvent.setSourceURL(urlID);
 		urlEvent.setTimestamp(new Date());
 		urlEvent.setSourceView(source);
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {

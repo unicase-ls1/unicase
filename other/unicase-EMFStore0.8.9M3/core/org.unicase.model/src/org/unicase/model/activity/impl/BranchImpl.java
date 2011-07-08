@@ -34,4 +34,10 @@ public class BranchImpl extends ActivityObjectImpl implements Branch {
 		return ActivityPackage.Literals.BRANCH;
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // BranchImpl

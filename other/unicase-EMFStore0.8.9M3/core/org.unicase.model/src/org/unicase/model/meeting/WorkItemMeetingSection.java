@@ -35,7 +35,7 @@ public interface WorkItemMeetingSection extends MeetingSection {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Included Work Items</em>' reference list.
 	 * @see org.unicase.model.meeting.MeetingPackage#getWorkItemMeetingSection_IncludedWorkItems()
-	 * @model annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<WorkItem> getIncludedWorkItems();

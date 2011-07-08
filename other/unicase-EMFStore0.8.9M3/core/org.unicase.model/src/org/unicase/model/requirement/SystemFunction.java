@@ -146,7 +146,7 @@ public interface SystemFunction extends UnicaseModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getSystemFunction_Usecases()
 	 * @see org.unicase.model.requirement.UseCase#getSystemFunctions
 	 * @model opposite="systemFunctions"
-	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='12.0' position='right'"
 	 * @generated
 	 */
 	EList<UseCase> getUsecases();

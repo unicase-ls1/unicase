@@ -39,7 +39,7 @@ public interface ActorInstance extends UnicaseModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getActorInstance_InitiatedScenarios()
 	 * @see org.unicase.model.requirement.Scenario#getInitiatingActorInstance
 	 * @model opposite="initiatingActorInstance"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Scenario> getInitiatedScenarios();
@@ -58,7 +58,7 @@ public interface ActorInstance extends UnicaseModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getActorInstance_ParticipatedScenarios()
 	 * @see org.unicase.model.requirement.Scenario#getParticipatingActorInstances
 	 * @model opposite="participatingActorInstances"
-	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='11.0' position='right'"
 	 * @generated
 	 */
 	EList<Scenario> getParticipatedScenarios();
@@ -77,7 +77,7 @@ public interface ActorInstance extends UnicaseModelElement {
 	 * @see org.unicase.model.requirement.RequirementPackage#getActorInstance_InstantiatedActor()
 	 * @see org.unicase.model.requirement.Actor#getInstances
 	 * @model opposite="instances"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='10.0' position='left'"
 	 * @generated
 	 */
 	Actor getInstantiatedActor();

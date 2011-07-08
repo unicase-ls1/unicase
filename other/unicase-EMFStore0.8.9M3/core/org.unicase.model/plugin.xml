@@ -815,14 +815,6 @@
      </package>
   </extension>
   <extension
-        id="org.unicase.model.unicaseModelVersion"
-        name="Unicase Model Version"
-        point="org.unicase.metamodel.modelversion">
-     <ModelVersion
-           versionIdentifier="7">
-     </ModelVersion>
-  </extension>
-  <extension
         point="org.eclipse.emf.validation.constraintBindings">
      <binding
            category="org.unicase.model"
@@ -836,5 +828,11 @@
            genModel="model/model.genmodel"
            uri="http://unicase.org/model/release">
      </package>
+  </extension>
+  <extension
+        point="org.eclipse.emf.emfstore.common.model.modelversion">
+     <ModelVersion
+           versionIdentifier="7">
+     </ModelVersion>
   </extension>
 </plugin>

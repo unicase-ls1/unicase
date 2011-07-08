@@ -16,7 +16,15 @@ import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
+import org.eclipse.emf.ecp.common.util.UiUtil;
+import org.eclipse.emf.ecp.common.utilities.ActionHelper;
 import org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -26,9 +34,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.handlers.IHandlerService;
-import org.unicase.ecp.model.ECPModelelementContext;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.ActivityDiagram;
 import org.unicase.model.diagram.ClassDiagram;
@@ -37,10 +42,6 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.StateDiagram;
 import org.unicase.model.diagram.UseCaseDiagram;
 import org.unicase.model.diagram.WorkItemDiagram;
-import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.util.DialogHandler;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * @author Hodaie This class contains some utility method for commands and handlers.
@@ -103,7 +104,7 @@ public final class UnicaseActionHelper {
 	 */
 	public static UnicaseModelElement getModelElement(ExecutionEvent event) {
 
-		final String meeditorId = "org.unicase.ui.meeditor";
+		final String meeditorId = "org.eclipse.emf.ecp.editor";
 		UnicaseModelElement me = null;
 
 		// ZH: determine the place from which
@@ -124,7 +125,7 @@ public final class UnicaseActionHelper {
 		} else {
 			// extract model element from current selection in navigator
 
-			EObject eObject = ActionHelper.getSelection(event);
+			EObject eObject = UiUtil.getSelection(event);
 			if (!(eObject instanceof UnicaseModelElement)) {
 				return null;
 			}
@@ -169,11 +170,11 @@ public final class UnicaseActionHelper {
 
 		try {
 			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input, id, true);
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(
-				"org.eclipse.ui.views.PropertySheet");
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+				.showView("org.eclipse.ui.views.PropertySheet");
 		} catch (PartInitException e) {
-			ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error", e
-				.getMessage(), e.getStatus());
+			ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error",
+				e.getMessage(), e.getStatus());
 		}
 	}
 
@@ -190,7 +191,7 @@ public final class UnicaseActionHelper {
 	 * @param identifier a unique identifier for the code opening the model element (see description above)
 	 */
 	public static void openModelElement(EObject me, String identifier) {
-		ActionHelper.openModelElement(me, identifier, getContext(me));
+		ActionHelper.openModelElement(me, identifier);
 	}
 
 	/**

@@ -652,4 +652,10 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 		return result.toString();
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // MeetingImpl

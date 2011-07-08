@@ -5,34 +5,34 @@
  */
 package org.unicase.implementation.operations;
 
-import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.SemanticCompositeOperation;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Inline Super Class Operation</b></em>'. <!--
  * end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.implementation.operations.InlineSuperClassOperation#getSuperClass <em>Super Class</em>}</li>
+ *   <li>{@link org.unicase.implementation.operations.InlineSuperClassOperation#getSuperClass <em>Super Class</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.implementation.operations.OperationsPackage#getInlineSuperClassOperation()
- * @model annotation=
- *        "http://unicase.org/operations description='A super class is inlined into its sub classes.' label='Inline Super Class'"
+ * @model annotation="http://unicase.org/operations description='A super class is inlined into its sub classes.' label='Inline Super Class'"
  * @generated
  */
 public interface InlineSuperClassOperation extends SemanticCompositeOperation {
 	/**
-	 * Returns the value of the '<em><b>Super Class</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Super Class</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Super Class</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Super Class</em>' containment reference.
 	 * @see #setSuperClass(ModelElementId)
 	 * @see org.unicase.implementation.operations.OperationsPackage#getInlineSuperClassOperation_SuperClass()
@@ -42,9 +42,8 @@ public interface InlineSuperClassOperation extends SemanticCompositeOperation {
 	ModelElementId getSuperClass();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.implementation.operations.InlineSuperClassOperation#getSuperClass
-	 * <em>Super Class</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.implementation.operations.InlineSuperClassOperation#getSuperClass <em>Super Class</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Super Class</em>' containment reference.
 	 * @see #getSuperClass()
 	 * @generated
@@ -53,16 +52,14 @@ public interface InlineSuperClassOperation extends SemanticCompositeOperation {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @model required="true" annotation=
-	 *        "http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElement(project, getSuperClass());'"
+	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElement(project, getSuperClass());'"
 	 * @generated
 	 */
 	org.unicase.model.classes.Class getSuperClass(Project project);
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://unicase.org/operations description='The super class must have sub classes.'"
 	 * @generated

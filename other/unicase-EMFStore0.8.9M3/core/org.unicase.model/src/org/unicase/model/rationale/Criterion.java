@@ -38,7 +38,7 @@ public interface Criterion extends UnicaseModelElement {
 	 * @see org.unicase.model.rationale.RationalePackage#getCriterion_Assessments()
 	 * @see org.unicase.model.rationale.Assessment#getCriterion
 	 * @model opposite="criterion"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Assessment> getAssessments();

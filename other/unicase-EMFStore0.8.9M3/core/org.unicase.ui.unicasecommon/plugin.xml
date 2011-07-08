@@ -164,7 +164,7 @@
   <extension
         point="org.eclipse.ui.menus">
      <menuContribution
-           locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
+           locationURI="toolbar:org.eclipse.emf.ecp.editor.MEEditorPage?after=additions">
         <command
               commandId="org.unicase.ui.common.commands.annotateActionItem"
               icon="icons/ActionItem.png"
@@ -219,7 +219,7 @@
 
      </menuContribution>
      <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+           locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=additions">
         <command
               commandId="org.unicase.ui.navigator.followupMeeting"
               label="Follow-up meeting..."
@@ -378,7 +378,7 @@
                        ifEmpty="false"
                        operator="and">
                     <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
+                          value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                     </instanceof>
                  </iterate>
                  <count
@@ -490,7 +490,7 @@
                        ifEmpty="false"
                        operator="and">
                     <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
+                          value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                     </instanceof>
                     <test
                           forcePluginActivation="true"
@@ -573,7 +573,7 @@
      </menuContribution>
     
      <menuContribution
-           locationURI="toolbar:org.unicase.ui.navigator.viewer?before=SearchElementButon">
+           locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?before=SearchElementButon">
         <command
               commandId="org.unicase.ui.navigator.CollapseAll"
               icon="icons/collapseall.png"
@@ -789,34 +789,7 @@
     </page>
  </extension>
  <extension
-       point="org.unicase.ui.meeditor.attributecontrols">
-    <widget
-          class="org.unicase.ui.unicasecommon.meeditor.MEEmailControl"
-          name="org.unicase.ui.unicasecommon.meemailcontrol"
-          showLabel="true"
-          type="java.lang.String">
-    </widget>
-    <widget
-          class="org.unicase.ui.unicasecommon.meeditor.MEURLControl"
-          name="URLwidget"
-          showLabel="true"
-          type="java.lang.String">
-    </widget>
-    <widget
-          class="org.unicase.ui.unicasecommon.meeditor.mecontrols.MEFileChooserControl"
-          name="org.unicase.ui.unicasecommon.mefilechoosercontrol"
-          showLabel="true"
-          type="java.lang.String">
-    </widget>
-    <widget
-          class="org.unicase.ui.unicasecommon.meeditor.mecontrols.MEFileSizeControl"
-          name="org.unicase.ui.unicasecommon.mefilesizecontrol"
-          showLabel="true"
-          type="java.lang.Long">
-    </widget>
- </extension>
- <extension
-       point="org.unicase.ui.meeditor.referencecontrols">
+        point="org.eclipse.emf.ecp.editor.referencecontrols">
     <widget
           class="org.unicase.ui.unicasecommon.meeditor.mecontrols.commentcontrol.MECommentsLinkControl"
           name="org.unicase.ui.unicasecommon.commentlinkcontrol"
@@ -842,30 +815,30 @@
           type="org.eclipse.emf.ecore.EObject">
     </widget>
  </extension>
- <extension
-       point="org.unicase.ui.meeditor.pages">
+  <extension
+        point="org.eclipse.emf.ecp.editor.pages">
     <page
           class="org.unicase.ui.unicasecommon.meeditor.MEDescriptionPage"
           name="org.unicase.ui.unicasecommon.meeditor.descriptionpage">
     </page>
  </extension>
- <extension
-       point="org.unicase.ui.meeditor.pages">
+  <extension
+        point="org.eclipse.emf.ecp.editor.pages">
     <page
           class="org.unicase.ui.unicasecommon.meeditor.METhreadPage"
           name="org.unicase.ui.unicasecommon.meeditor.methreadpage">
     </page>
  </extension>
- <extension
-       point="org.unicase.ui.meeditor.melinkcontrols">
+  <extension
+        point="org.eclipse.emf.ecp.editor.melinkcontrols">
     <widget
           class="org.unicase.ui.unicasecommon.meeditor.MEURLLinkControl"
           name="org.unicase.ui.unicasecommon.meurllinkcontrol"
           type="org.eclipse.emf.ecore.EObject">
     </widget>
  </extension>
- <extension
-       point="org.unicase.ui.common.medropadapter">
+  <extension
+        point="org.eclipse.emf.ecp.common.dropadapter">
     <MEDropAdapter
           class="org.unicase.ui.unicasecommon.dnd.dropadapters.UCDropAdapter">
     </MEDropAdapter>
@@ -900,49 +873,84 @@
           class="org.unicase.ui.unicasecommon.dnd.dropadapters.IssueMeetingDiscussionSectionDropAdapter">
     </MEDropAdapter>
  </extension>
- <extension
-       point="org.unicase.workspace.ui.merge.customoption">
+  <extension
+        point="org.eclipse.emf.emfstore.client.ui.merge.customoption">
     <customoption
           class="org.unicase.ui.unicasecommon.merge.IssueConflictOptionFactory"
           name="org.unicase.ui.unicasecommon.merge.issuefactory">
     </customoption>
  </extension>
- <extension
-       point="org.unicase.ui.navigator.menuconfiguration">
+  <extension
+        point="org.eclipse.emf.ecp.navigator.menuconfiguration">
     <ContainmentCreationActions
           enabled="false">
     </ContainmentCreationActions>
  </extension>
   <extension
-       point="org.unicase.workspace.ui.commitdialog.tray">
+        point="org.eclipse.emf.emfstore.client.ui.commitdialog.tray">
     <dialogTray
           class="org.unicase.ui.unicasecommon.common.dialogs.CommitNotificationsTray"
           name="Notify users">
     </dialogTray>
  </extension>
   <extension
-        point="org.unicase.ui.meeditor.statusmessage">
+        point="org.eclipse.emf.ecp.editor.statusmessage">
      <provider
            class="org.unicase.ui.unicasecommon.meeditor.CreationStatusProvider">
      </provider>
   </extension>
   <extension
-        point="org.unicase.ui.navigator.replaceContentProvider">
+        point="org.eclipse.emf.ecp.navigator.replaceContentProvider">
      <ContentProvider
            class="org.unicase.ui.unicasecommon.navigator.ProjectSpaceContentProvider"
-           type="org.unicase.workspace.impl.ProjectSpaceImpl">
+           type="org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl">
      </ContentProvider>
   </extension>
   <extension
-        point="org.unicase.workspace.notify.postcreationlistener">
+        point="org.eclipse.emf.emfstore.client.notify.postcreationlistener">
      <postcreationlistener
            class="org.unicase.ui.unicasecommon.common.UnicasePostModelElementCreationListener">
      </postcreationlistener>
   </extension>
   <extension
-        point="org.unicase.workspace.defaultConfigurationProvider">
+        point="org.eclipse.emf.emfstore.client.defaultConfigurationProvider">
      <configurationProvider
            providerClass="org.unicase.ui.unicasecommon.UnicaseConfigurationProvider">
      </configurationProvider>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecp.editor.attributecontrols">
+     <widget
+           class="org.unicase.ui.unicasecommon.meeditor.MEEmailControl"
+           name="org.unicase.ui.unicasecommon.meemailcontrol"
+           showLabel="true"
+           type="java.lang.String">
+     </widget>
+     <widget
+           class="org.unicase.ui.unicasecommon.meeditor.MEURLControl"
+           name="URLwidget"
+           showLabel="true"
+           type="java.lang.String">
+     </widget>
+     <widget
+           class="org.unicase.ui.unicasecommon.meeditor.mecontrols.MEFileChooserControl"
+           name="org.unicase.ui.unicasecommon.mefilechoosercontrol"
+           showLabel="true"
+           type="java.lang.String">
+     </widget>
+     <widget
+           class="org.unicase.ui.unicasecommon.meeditor.mecontrols.MEFileSizeControl"
+           name="org.unicase.ui.unicasecommon.mefilesizecontrol"
+           showLabel="true"
+           type="java.lang.Long">
+     </widget>
+  </extension>
+  <extension
+        id="org.eclipse.emf.emfstore.client.workspaceLocationProvider"
+        name="Workspace Location Provider"
+        point="org.eclipse.emf.emfstore.client.workspaceLocationProvider">
+     <LocationProvider
+           providerClass="org.eclipse.emf.emfstore.client.model.util.DefaultWorkspaceLocationProvider">
+     </LocationProvider>
   </extension>
 </plugin>

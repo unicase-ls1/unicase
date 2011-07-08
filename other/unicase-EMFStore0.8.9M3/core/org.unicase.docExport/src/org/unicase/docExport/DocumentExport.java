@@ -9,14 +9,15 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.ui.internal.keys.model.ModelElement;
 import org.unicase.docExport.docWriter.DocWriter;
 import org.unicase.docExport.exceptions.DocumentExportException;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.DocumentRenderer;
 import org.unicase.docExport.exportModel.renderers.elements.URootCompositeSection;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 
 /**

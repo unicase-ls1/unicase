@@ -5,6 +5,7 @@
  */
 package org.unicase.ui.unicasecommon.common;
 
+import org.eclipse.emf.ecp.common.ColumnViewerSorter;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
@@ -14,7 +15,6 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.unicase.model.Annotation;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.ui.common.UnicaseColumnViewerSorter;
 
 /**
  * . This is a sorter class used to sort TreeViewers. Note this class is currently only used by StatusView and its
@@ -23,7 +23,7 @@ import org.unicase.ui.common.UnicaseColumnViewerSorter;
  * 
  * @author hodaie
  */
-public class TreeViewerColumnSorter extends UnicaseColumnViewerSorter {
+public class TreeViewerColumnSorter extends ColumnViewerSorter {
 
 	private TreeViewerColumn column;
 
@@ -66,7 +66,7 @@ public class TreeViewerColumnSorter extends UnicaseColumnViewerSorter {
 	 * @param direction direction
 	 */
 	@Override
-	protected void setSorter(UnicaseColumnViewerSorter sorter, int direction) {
+	protected void setSorter(ColumnViewerSorter sorter, int direction) {
 
 		super.setSorter(sorter, direction);
 

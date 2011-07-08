@@ -13,7 +13,6 @@ import org.eclipse.jface.viewers.Viewer;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
-import org.unicase.ui.common.TableViewerColumnSorter;
 
 /**
  * the Sorter to sort stats.
@@ -21,7 +20,7 @@ import org.unicase.ui.common.TableViewerColumnSorter;
  * @author abdelhamidbarzali
  * @author hodai.
  */
-public class StatusSorter extends TableViewerColumnSorter {
+public class StatusSorter extends org.eclipse.emf.ecp.common.TableViewerColumnSorter {
 	/**
 	 * @param viewer the Viewer
 	 * @param column the TableViewerColumn

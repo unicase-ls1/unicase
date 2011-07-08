@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
@@ -40,7 +41,6 @@ import org.eclipse.swt.graphics.Color;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.unicasecommon.diagram.util.DynamicEObjectAdapter;
 import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Factory class for GMF {@link Command}s.

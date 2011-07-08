@@ -16,7 +16,7 @@ import org.unicase.model.Project;
  *
  * @generated
  */
-public class ProjectImpl extends org.unicase.metamodel.impl.ProjectImpl implements Project {
+public class ProjectImpl extends org.eclipse.emf.emfstore.common.model.impl.ProjectImpl implements Project {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

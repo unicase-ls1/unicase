@@ -31,7 +31,7 @@ public interface ActionItem extends WorkItem, Checkable {
 	 * @return the value of the '<em>Done</em>' attribute.
 	 * @see #setDone(boolean)
 	 * @see org.unicase.model.task.TaskPackage#getActionItem_Done()
-	 * @model annotation="org.unicase.ui.meeditor priority='17.0' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='17.0' position='left'"
 	 * @generated
 	 */
 	boolean isDone();
@@ -59,7 +59,7 @@ public interface ActionItem extends WorkItem, Checkable {
 	 * @see org.unicase.model.task.ActivityType
 	 * @see #setActivity(ActivityType)
 	 * @see org.unicase.model.task.TaskPackage#getActionItem_Activity()
-	 * @model annotation="org.unicase.ui.meeditor priority='9.5' position='left'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='9.5' position='left'"
 	 * @generated
 	 */
 	ActivityType getActivity();

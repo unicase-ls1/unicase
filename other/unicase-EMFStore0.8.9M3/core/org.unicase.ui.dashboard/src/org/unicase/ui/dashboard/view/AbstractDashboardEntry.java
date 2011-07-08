@@ -6,11 +6,11 @@
 package org.unicase.ui.dashboard.view;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.unicase.emfstore.esmodel.notification.ESNotification;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.workspace.ProjectSpace;
 
 /**
  * Abstract class for all dashboard entry types.

@@ -13,18 +13,18 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.emfstore.client.model.util.SemanticCommand;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.ModelFactory;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.SemanticCompositeOperation;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.emfstore.esmodel.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.implementation.operations.OperationsPackage;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.workspace.util.SemanticCommand;
 
 /**
  * Handler to execute an operation.
@@ -54,7 +54,7 @@ public abstract class OperationHandlerBase extends AbstractHandler {
 			Project project = getProject(structuredSelection);
 			ExecuteOperationDialog dialog = new ExecuteOperationDialog(operation, project);
 			if (dialog.open() == IDialogConstants.OK_ID) {
-				ModelElementId id = MetamodelFactory.eINSTANCE.createModelElementId();
+				ModelElementId id = ModelFactory.eINSTANCE.createModelElementId();
 				id.setId(getModelElementId(operation).getId());
 				operation.setModelElementId(id);
 				new SemanticCommand(project, operation).run();

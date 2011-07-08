@@ -8,7 +8,7 @@ package org.unicase.model.rationale;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.metamodel.NonDomainElement;
+import org.eclipse.emf.emfstore.common.model.NonDomainElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 

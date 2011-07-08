@@ -7,6 +7,10 @@ package org.unicase.ui.unicasecommon.meeditor;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecp.common.utilities.ExtProgramFactoryFacade;
+import org.eclipse.emf.ecp.editor.Activator;
+import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
+import org.eclipse.emf.ecp.editor.mecontrols.METextControl;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -19,10 +23,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
-import org.unicase.ui.common.util.ExtProgramFactoryFacade;
-import org.unicase.ui.meeditor.Activator;
-import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
-import org.unicase.ui.meeditor.mecontrols.METextControl;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 

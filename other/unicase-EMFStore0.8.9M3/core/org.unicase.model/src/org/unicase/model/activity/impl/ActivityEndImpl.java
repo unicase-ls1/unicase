@@ -34,4 +34,10 @@ public class ActivityEndImpl extends ActivityObjectImpl implements ActivityEnd {
 		return ActivityPackage.Literals.ACTIVITY_END;
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // ActivityEndImpl

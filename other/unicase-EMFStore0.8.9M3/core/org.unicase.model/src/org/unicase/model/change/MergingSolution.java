@@ -6,7 +6,7 @@
 package org.unicase.model.change;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.unicase.model.rationale.Solution;
 
 /**
@@ -26,7 +26,7 @@ import org.unicase.model.rationale.Solution;
 public interface MergingSolution extends Solution {
 	/**
 	 * Returns the value of the '<em><b>Applied Operations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}.
+	 * The list contents are of type {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Applied Operations</em>' containment reference list isn't clear, there really should

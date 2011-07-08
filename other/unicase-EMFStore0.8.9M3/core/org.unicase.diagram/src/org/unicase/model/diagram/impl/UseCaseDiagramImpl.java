@@ -20,7 +20,6 @@ import org.unicase.model.diagram.UseCaseDiagram;
 public class UseCaseDiagramImpl extends MEDiagramImpl implements UseCaseDiagram {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UseCaseDiagramImpl() {
@@ -29,7 +28,6 @@ public class UseCaseDiagramImpl extends MEDiagramImpl implements UseCaseDiagram 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -40,6 +38,12 @@ public class UseCaseDiagramImpl extends MEDiagramImpl implements UseCaseDiagram 
 	@Override
 	public String getType() {
 		return "UseCase";
+	}
+
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 } // UseCaseDiagramImpl

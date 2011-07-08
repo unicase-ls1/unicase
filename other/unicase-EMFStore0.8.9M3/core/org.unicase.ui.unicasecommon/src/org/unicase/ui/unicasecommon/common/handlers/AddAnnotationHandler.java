@@ -16,8 +16,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.LeafSection;
@@ -26,7 +27,6 @@ import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseEventUtil;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * . This is a generic handler to add different types of Annotations to a ModelElement
@@ -39,7 +39,7 @@ public class AddAnnotationHandler extends AbstractHandler {
 	 * 
 	 * @author helming
 	 */
-	private final class AddAnnotationCommand extends UnicaseCommand {
+	private final class AddAnnotationCommand extends EMFStoreCommand {
 		private final int i;
 		private final Object object;
 		private final Annotation result;
@@ -144,7 +144,7 @@ public class AddAnnotationHandler extends AbstractHandler {
 	 * @param annotation
 	 */
 	private void attachAnnotation(final UnicaseModelElement me, final Annotation annotation) {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				me.getAnnotations().add(annotation);

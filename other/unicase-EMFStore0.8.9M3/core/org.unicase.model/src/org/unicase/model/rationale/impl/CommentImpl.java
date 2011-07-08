@@ -333,4 +333,10 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 		return parents;
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // CommentImpl

@@ -95,7 +95,7 @@ public interface Class extends PackageElement {
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_SuperClasses()
 	 * @see org.unicase.model.classes.Class#getSubClasses
 	 * @model opposite="subClasses"
-	 *        annotation="org.unicase.ui.meeditor priority='21.0' position='left'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='21.0' position='left'"
 	 * @generated
 	 */
 	EList<Class> getSuperClasses();
@@ -114,7 +114,7 @@ public interface Class extends PackageElement {
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_SubClasses()
 	 * @see org.unicase.model.classes.Class#getSuperClasses
 	 * @model opposite="superClasses"
-	 *        annotation="org.unicase.ui.meeditor priority='22.0' position='left'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='22.0' position='left'"
 	 * @generated
 	 */
 	EList<Class> getSubClasses();
@@ -133,7 +133,7 @@ public interface Class extends PackageElement {
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_IncomingAssociations()
 	 * @see org.unicase.model.classes.Association#getTarget
 	 * @model opposite="target"
-	 *        annotation="org.unicase.ui.meeditor priority='20.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='20.0' position='right'"
 	 * @generated
 	 */
 	EList<Association> getIncomingAssociations();
@@ -152,7 +152,7 @@ public interface Class extends PackageElement {
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_OutgoingAssociations()
 	 * @see org.unicase.model.classes.Association#getSource
 	 * @model opposite="source"
-	 *        annotation="org.unicase.ui.meeditor priority='21.0' position='right'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='21.0' position='right'"
 	 * @generated
 	 */
 	EList<Association> getOutgoingAssociations();
@@ -171,7 +171,7 @@ public interface Class extends PackageElement {
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_Attributes()
 	 * @see org.unicase.model.classes.Attribute#getDefiningClass
 	 * @model opposite="definingClass" containment="true" resolveProxies="true"
-	 *        annotation="org.unicase.ui.meeditor priority='23.0' position='left'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='23.0' position='left'"
 	 * @generated
 	 */
 	EList<Attribute> getAttributes();
@@ -190,7 +190,7 @@ public interface Class extends PackageElement {
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_Methods()
 	 * @see org.unicase.model.classes.Method#getDefiningClass
 	 * @model opposite="definingClass" containment="true" resolveProxies="true"
-	 *        annotation="org.unicase.ui.meeditor priority='24.0' position='left'"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='24.0' position='left'"
 	 * @generated
 	 */
 	EList<Method> getMethods();

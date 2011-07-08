@@ -7,10 +7,8 @@ package org.unicase.implementation.operations.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-import org.eclipse.gmf.runtime.notation.NotationEditPlugin;
-import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
-import org.unicase.metamodel.provider.MetamodelEditPlugin;
+import org.eclipse.emf.emfstore.common.model.provider.CommonEditPlugin;
+import org.eclipse.emf.emfstore.server.model.provider.ServerEditPlugin;
 import org.unicase.model.provider.ModelEditPlugin;
 
 /**
@@ -39,8 +37,7 @@ public final class OperationsEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public OperationsEditPlugin() {
-		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, EsmodelEditPlugin.INSTANCE,
-			MetamodelEditPlugin.INSTANCE, ModelEditPlugin.INSTANCE, NotationEditPlugin.INSTANCE, });
+		super(new ResourceLocator[] { ModelEditPlugin.INSTANCE, CommonEditPlugin.INSTANCE, ServerEditPlugin.INSTANCE, });
 	}
 
 	/**

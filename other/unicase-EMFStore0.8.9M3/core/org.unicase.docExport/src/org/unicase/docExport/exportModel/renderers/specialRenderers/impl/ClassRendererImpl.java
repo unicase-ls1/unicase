@@ -15,6 +15,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.unicase.docExport.Activator;
 import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
@@ -28,7 +29,6 @@ import org.unicase.docExport.exportModel.renderers.specialRenderers.ClassRendere
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.classes.Association;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Class Renderer</b></em>'. <!-- end-user-doc -->

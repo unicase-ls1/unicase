@@ -6,6 +6,7 @@
 package org.unicase.docExport.editors;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.resource.JFaceResources;
@@ -26,7 +27,6 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
 import org.unicase.docExport.exportModel.Template;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author Sebastian Hoecht

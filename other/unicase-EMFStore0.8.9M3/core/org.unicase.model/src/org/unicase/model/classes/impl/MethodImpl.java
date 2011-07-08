@@ -829,4 +829,10 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 		return demoParticipations;
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // MethodImpl

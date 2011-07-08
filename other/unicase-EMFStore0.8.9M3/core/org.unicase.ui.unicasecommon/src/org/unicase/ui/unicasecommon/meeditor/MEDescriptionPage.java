@@ -6,6 +6,9 @@
 package org.unicase.ui.unicasecommon.meeditor;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.editor.AbstractMEEditorPage;
+import org.eclipse.emf.ecp.editor.MEEditor;
+import org.eclipse.emf.ecp.editor.mecontrols.MERichTextControl;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -21,9 +24,6 @@ import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.ui.meeditor.AbstractMEEditorPage;
-import org.unicase.ui.meeditor.MEEditor;
-import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 /**

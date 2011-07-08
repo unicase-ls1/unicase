@@ -122,4 +122,10 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // IssueMeetingSectionImpl

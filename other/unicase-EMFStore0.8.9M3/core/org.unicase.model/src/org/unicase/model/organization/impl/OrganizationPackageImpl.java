@@ -10,8 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.unicase.emfstore.esmodel.EsmodelPackage;
-import org.unicase.model.ModelPackage;
+import org.eclipse.emf.emfstore.server.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
 import org.unicase.model.attachment.AttachmentPackage;
@@ -118,12 +117,12 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 		isInited = true;
 
 		// Initialize simple dependencies
-		EsmodelPackage.eINSTANCE.eClass();
+		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ModelPackage.eNS_URI) : ModelPackage.eINSTANCE);
+		ModelPackageImpl theModelPackage_1 = (ModelPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) : org.unicase.model.ModelPackage.eINSTANCE);
 		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
 		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl) (EPackage.Registry.INSTANCE
@@ -169,7 +168,7 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 
 		// Create package meta-data objects
 		theOrganizationPackage.createPackageContents();
-		theModelPackage.createPackageContents();
+		theModelPackage_1.createPackageContents();
 		theTaskPackage.createPackageContents();
 		theClassesPackage.createPackageContents();
 		theDocumentPackage.createPackageContents();
@@ -188,7 +187,7 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 
 		// Initialize created meta-data
 		theOrganizationPackage.initializePackageContents();
-		theModelPackage.initializePackageContents();
+		theModelPackage_1.initializePackageContents();
 		theTaskPackage.initializePackageContents();
 		theClassesPackage.initializePackageContents();
 		theDocumentPackage.initializePackageContents();
@@ -375,7 +374,8 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 
 		// Obtain other dependent packages
 		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI);
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		org.unicase.model.ModelPackage theModelPackage_1 = (org.unicase.model.ModelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -383,7 +383,7 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 
 		// Add supertypes to classes
 		userEClass.getESuperTypes().add(this.getOrgUnit());
-		orgUnitEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		orgUnitEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
 		groupEClass.getESuperTypes().add(this.getOrgUnit());
 
 		// Initialize classes and features; add operations and parameters
@@ -419,17 +419,17 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create annotations
-		// org.unicase.ui.meeditor
+		// org.eclipse.emf.ecp.editor
 		createOrgAnnotations();
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
+	 * Initializes the annotations for <b>org.eclipse.emf.ecp.editor</b>.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {
-		String source = "org.unicase.ui.meeditor";
+		String source = "org.eclipse.emf.ecp.editor";
 		addAnnotation(getUser_Email(), source, new String[] { "priority", "10.0", "position", "left" });
 		addAnnotation(getUser_FirstName(), source, new String[] { "priority", "11.0", "position", "left" });
 		addAnnotation(getUser_LastName(), source, new String[] { "priority", "12.0", "position", "left" });

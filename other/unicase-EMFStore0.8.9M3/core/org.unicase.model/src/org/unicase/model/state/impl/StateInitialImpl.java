@@ -34,4 +34,10 @@ public class StateInitialImpl extends StateNodeImpl implements StateInitial {
 		return StatePackage.Literals.STATE_INITIAL;
 	}
 
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } // StateInitialImpl

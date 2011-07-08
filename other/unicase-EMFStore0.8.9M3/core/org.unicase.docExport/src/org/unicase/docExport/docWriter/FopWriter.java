@@ -32,6 +32,7 @@ import org.apache.fop.apps.FOUserAgent;
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FopFactory;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.unicase.docExport.DocumentExport;
 import org.unicase.docExport.exceptions.DocumentExportException;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
@@ -53,7 +54,6 @@ import org.unicase.docExport.exportModel.renderers.options.PageCitationStyle;
 import org.unicase.docExport.exportModel.renderers.options.TextAlign;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
-import org.unicase.workspace.util.WorkspaceUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 

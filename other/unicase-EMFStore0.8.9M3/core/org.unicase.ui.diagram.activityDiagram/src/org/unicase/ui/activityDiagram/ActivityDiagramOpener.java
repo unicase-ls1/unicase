@@ -9,14 +9,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.diagram.ActivityDiagram;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.unicasecommon.common.diagram.DiagramOpener;
-import org.unicase.ui.util.ModelElementOpener;
 
 /**
  * Opener for activity diagrams.
  * 
  * @author koegel
  */
-public class ActivityDiagramOpener extends DiagramOpener implements ModelElementOpener {
+public class ActivityDiagramOpener extends DiagramOpener implements org.eclipse.emf.ecp.common.util.ModelElementOpener {
 
 	/**
 	 * {@inheritDoc}
