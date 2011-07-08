@@ -6,7 +6,7 @@
 package org.unicase.ui.stem.views.iterationplanningview;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.unicase.metamodel.Project;
+import org.eclipse.emf.emfstore.common.model.Project;
 
 /**
  * Object to show the Backlog in the Iteration planning view. The Backlog contains all workitems which are not contained

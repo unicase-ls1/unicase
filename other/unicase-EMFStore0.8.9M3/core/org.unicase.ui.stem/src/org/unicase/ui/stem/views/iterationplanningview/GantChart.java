@@ -22,7 +22,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Implementation of a show case ganttchart.
@@ -114,7 +113,8 @@ public class GantChart {
 		tclmWorkItem.setLabelProvider(emfColumnLabelProvider);
 
 		viewer.setContentProvider(new GantItemProvider());
-		viewer.setInput(WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject());
+		viewer.setInput(org.eclipse.emf.emfstore.client.model.WorkspaceManager.getInstance().getCurrentWorkspace()
+			.getActiveProjectSpace().getProject());
 		// viewer.expandAll();
 
 		TreeItem[] items = tree.getItems();

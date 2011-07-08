@@ -8,6 +8,8 @@ package org.unicase.ui.stem.views.sprintstatus;
 import java.util.Comparator;
 import java.util.HashSet;
 
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.observer.FocusEventObserver;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.action.Action;
@@ -19,13 +21,11 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.ui.common.observer.FocusEventObserver;
 import org.unicase.ui.stem.Activator;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 

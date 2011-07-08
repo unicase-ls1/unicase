@@ -15,16 +15,17 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.emfstore.client.model.ModelPackage;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.Workspace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.WorkspacePackage;
 
 /**
  * . ContentProvider for IterationPlaningView
@@ -65,7 +66,7 @@ public class WorkpackageContentProvider extends AdapterFactoryContentProvider im
 		currentWorkspace.eAdapters().add(new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
+				if ((msg.getFeatureID(Workspace.class)) == ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
 					if (currentWorkspace.getActiveProjectSpace() != null) {
 						Object oldValue = msg.getOldValue();
 						if (oldValue instanceof ProjectSpace) {
@@ -143,7 +144,7 @@ public class WorkpackageContentProvider extends AdapterFactoryContentProvider im
 	/**
 	 * {@inheritDoc}
 	 */
-	public void modelElementAdded(Project project, EObject modelElement) {
+	public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
 		if (modelElement instanceof WorkItem) {
 			WorkPackage containingWorkpackage = ((WorkItem) modelElement).getContainingWorkpackage();
 			if (containingWorkpackage == null) {
@@ -157,7 +158,7 @@ public class WorkpackageContentProvider extends AdapterFactoryContentProvider im
 	/**
 	 * {@inheritDoc}
 	 */
-	public void notify(Notification notification, Project project, EObject modelElement) {
+	public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
 		if (notification.isTouch()) {
 			return;
 		}
@@ -174,7 +175,7 @@ public class WorkpackageContentProvider extends AdapterFactoryContentProvider im
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 *      {@inheritDoc}
 	 */
-	public void modelElementRemoved(Project project, EObject modelElement) {
+	public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
 		if (modelElement instanceof WorkItem) {
 			WorkPackage containingWorkpackage = ((WorkItem) modelElement).getContainingWorkpackage();
 			if (containingWorkpackage == null) {
@@ -189,7 +190,7 @@ public class WorkpackageContentProvider extends AdapterFactoryContentProvider im
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
 	 */
-	public void projectDeleted(Project project) {
+	public void projectDeleted(IdEObjectCollection project) {
 		// TODO Auto-generated method stub
 
 	}
