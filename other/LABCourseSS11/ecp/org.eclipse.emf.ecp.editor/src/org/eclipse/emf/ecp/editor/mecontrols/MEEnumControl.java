@@ -44,7 +44,7 @@ public class MEEnumControl extends AbstractMEControl implements IValidatableCont
 	 * @return Control
 	 */
 	@Override
-	public Control createControl(Composite parent, int style) {
+	public Control createControl(Composite parent, int style) {		
 		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
 		this.attribute = (EAttribute) feature;
 		combo = new Combo(parent, style | SWT.DROP_DOWN | SWT.READ_ONLY);
@@ -75,23 +75,26 @@ public class MEEnumControl extends AbstractMEControl implements IValidatableCont
 		return AbstractMEControl.DO_NOT_RENDER;
 	}
 	
-	/**
+	/**.
 	 * {@inheritDoc}}
 	 * */
 	public void handleValidation(Diagnostic diagnostic) {
 		Device device = Display.getCurrent();
-		if (diagnostic != null) {
-			if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
-				Color color = new Color(device, 255, 0 ,0);
-				this.combo.setBackground(color);
-				this.combo.setToolTipText(diagnostic.getMessage());
-			}
-		} else {
-			Color color = new Color(device, 255, 255, 255);
+		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
+			Color color = new Color(device, 255, 0 ,0);
 			this.combo.setBackground(color);
-			this.combo.setToolTipText("");
-		}
-		
+			this.combo.setToolTipText(diagnostic.getMessage());
+		}		
+	}
+	
+	/**.
+	 * {@inheritDoc}}
+	 * */
+	public void resetValidation() {
+		Device device = Display.getCurrent();
+		Color color = new Color(device, 255, 255, 255);
+		this.combo.setBackground(color);
+		this.combo.setToolTipText("");
 	}
 
 }
