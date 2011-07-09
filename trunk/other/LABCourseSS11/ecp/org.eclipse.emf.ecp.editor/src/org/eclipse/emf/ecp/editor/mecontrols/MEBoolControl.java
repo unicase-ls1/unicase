@@ -71,17 +71,20 @@ public class MEBoolControl extends AbstractMEControl implements IValidatableCont
 	 * {@inheritDoc}}
 	 * */
 	public void handleValidation(Diagnostic diagnostic) {
-		if (diagnostic != null) {
-			if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
-				Image image = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_ERROR_TSK);
-				this.check.setImage(image);
-				this.check.setToolTipText(diagnostic.getMessage());
-			}
-		} else {
-			this.check.setImage(null);
-			this.check.setToolTipText("");
+		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
+			Image image = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_ERROR_TSK);
+			this.check.setImage(image);
+			this.check.setToolTipText(diagnostic.getMessage());
 		}
+	
 		
+	}
+	/**
+	 * {@inheritDoc}}
+	 * */
+	public void resetValidation() {
+		this.check.setImage(null);
+		this.check.setToolTipText("");
 	}
 
 }

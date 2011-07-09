@@ -102,30 +102,33 @@ public class MESWTDateAndTimeControl extends AbstractMEControl implements IValid
 		});
 	}
 	
-	/**
+	/**.
 	 * {@inheritDoc}}
 	 * */
 	public void handleValidation(Diagnostic diagnostic) {
 		Device device = Display.getCurrent();
-		if (diagnostic != null) {
-			if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
-				Color color = new Color(device, 255, 0 ,0);
-				this.dateComposite.setBackgroundMode(SWT.INHERIT_DEFAULT);
-				this.dateWidget.setBackground(color);
-				this.timeWidget.setBackground(color);
-				this.dateWidget.setToolTipText(diagnostic.getMessage());
-				this.timeWidget.setToolTipText(diagnostic.getMessage());
-			}
-				
-		} else {
-			Color color = new Color(device, 255, 255, 255);
-			this.dateComposite.setBackgroundMode(SWT.INHERIT_FORCE);
+		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
+			Color color = new Color(device, 255, 0 ,0);
+			this.dateComposite.setBackgroundMode(SWT.INHERIT_DEFAULT);
 			this.dateWidget.setBackground(color);
 			this.timeWidget.setBackground(color);
-			this.dateWidget.setToolTipText("");
-			this.timeWidget.setToolTipText("");
-			
+			this.dateWidget.setToolTipText(diagnostic.getMessage());
+			this.timeWidget.setToolTipText(diagnostic.getMessage());
 		}
+
+	}
+
+	/**.
+	 * {@inheritDoc}}
+	 * */
+	public void resetValidation() {
+		Device device = Display.getCurrent();
+		Color color = new Color(device, 255, 255, 255);
+		this.dateComposite.setBackgroundMode(SWT.INHERIT_FORCE);
+		this.dateWidget.setBackground(color);
+		this.timeWidget.setBackground(color);
+		this.dateWidget.setToolTipText("");
+		this.timeWidget.setToolTipText("");
 		
 	}
 

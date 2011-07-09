@@ -233,7 +233,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (type.getValue() != 0) {
+		if (type.getValue() == 1) {
 			if (diagnosticianChain != null) {
 				diagnosticianChain.add
 					(new BasicDiagnostic
@@ -241,7 +241,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 						 "type",
 						 BowlingValidator.TOURNAMENT__HAS_TOUNAMENT_PRO,
 						 "Tournament type should be Pro",
-						 new Object [] { this, BowlingPackage.eINSTANCE.getTournamentType() }));
+						 new Object [] { this, BowlingPackage.eINSTANCE.getTournament_Type() }));
 			}
 			return false;
 		}

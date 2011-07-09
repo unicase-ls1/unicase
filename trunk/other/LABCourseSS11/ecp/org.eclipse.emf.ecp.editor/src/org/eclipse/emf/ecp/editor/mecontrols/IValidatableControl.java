@@ -15,6 +15,10 @@ public interface IValidatableControl {
 	 * Handle live validation.
 	 * @param diagnostic of type Diagnostic
 	 * **/
-	public void handleValidation(Diagnostic diagnostic);
-
+	void handleValidation(Diagnostic diagnostic);
+	
+	/**
+	 * Reset the MEControl to its initial state.
+	 * **/
+	void resetValidation();
 }

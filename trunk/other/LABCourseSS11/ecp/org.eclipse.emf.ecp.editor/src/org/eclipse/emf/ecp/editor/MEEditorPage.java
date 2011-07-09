@@ -360,7 +360,7 @@ public class MEEditorPage extends FormPage {
 			AbstractMEControl meControl = entry.getKey();
 			if (!affectedControls.contains(meControl)) {
 				this.valdiatedControls.remove(meControl);
-				((IValidatableControl)meControl).handleValidation(null);
+				((IValidatableControl)meControl).resetValidation();
 			}
 		}
 	}
