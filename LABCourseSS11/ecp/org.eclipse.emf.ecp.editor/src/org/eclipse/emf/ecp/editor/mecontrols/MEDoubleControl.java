@@ -32,7 +32,7 @@ public class MEDoubleControl extends AbstractMEControl {
 	private EAttribute attribute;
 
 	private Spinner spinner;
-
+	
 	private static final int PRIORITY = 1;
 
 	/**
@@ -59,13 +59,13 @@ public class MEDoubleControl extends AbstractMEControl {
 		}
 		spinner = new Spinner(parent, style);
 		spinner.setDigits(digits);
-		spinner.setMinimum(-1000);
-		spinner.setMaximum(1000);
+		spinner.setMinimum(-1000000);
+		spinner.setMaximum(1000000);
 		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
 		DoubleSpinnerObservable spinnerObservable = new DoubleSpinnerObservable(spinner);
 		dbc.bindValue(spinnerObservable, model, null, null);
-		spinner.setSelection((int)(((Double) getModelElement().eGet(attribute)) * Math.pow(10, spinner.getDigits())));
+//		spinner.setSelection(((Double) getModelElement().eGet(attribute)).intValue());
 		return spinner;
 	}
 
@@ -92,12 +92,6 @@ private class DoubleSpinnerObservable extends AbstractObservableValue {
 	private boolean currentlyUpdatingFlag;
 
 
-	public DoubleSpinnerObservable(Spinner spinner){
-		this.spinner = spinner;
-		value = spinner.getSelection() / Math.pow(10, spinner.getDigits());
-		spinner.addModifyListener(widgetListener);
-	}
-	
 	private ModifyListener widgetListener = new ModifyListener() {
 		
 		public void modifyText(ModifyEvent e) {
@@ -108,6 +102,12 @@ private class DoubleSpinnerObservable extends AbstractObservableValue {
 			}
 		}
 	};
+	
+	public DoubleSpinnerObservable(Spinner spinner){
+		this.spinner = spinner;
+		value = this.spinner.getSelection() / Math.pow(10, spinner.getDigits());
+		this.spinner.addModifyListener(widgetListener);
+	}
 	
 	@Override
 	public synchronized void dispose() {
@@ -122,7 +122,7 @@ private class DoubleSpinnerObservable extends AbstractObservableValue {
 	@Override
 	protected Object doGetValue() {
 		if (!spinner.isDisposed()) {
-			return spinner.getSelection() * Math.pow(10, spinner.getDigits());
+			return spinner.getSelection();
 		}
 		return null;
 	}
@@ -137,7 +137,9 @@ private class DoubleSpinnerObservable extends AbstractObservableValue {
 			try {
 				currentlyUpdatingFlag = true;
 				oldVal = spinner.getSelection() / Math.pow(10, spinner.getDigits());
-				newVal = (Integer) value * Math.pow(10, spinner.getDigits());
+				newVal = ((Double) value).intValue() / (Math.pow(10, spinner.getDigits()));
+				Double temp = newVal * Math.pow(10, spinner.getDigits());
+				spinner.setSelection(temp.intValue());
 				value = newVal;
 				fireValueChange(Diffs.createValueDiff(oldVal, newVal));
 			} finally {
