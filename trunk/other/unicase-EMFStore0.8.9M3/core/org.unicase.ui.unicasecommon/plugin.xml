@@ -953,4 +953,10 @@
            providerClass="org.eclipse.emf.emfstore.client.model.util.DefaultWorkspaceLocationProvider">
      </LocationProvider>
   </extension>
+  <extension
+        point="org.eclipse.emf.emfstore.client.editingDomainProvider">
+     <provider
+           class="org.unicase.ui.unicasecommon.changetracking.TransactionalEditingDomainProvider">
+     </provider>
+  </extension>
 </plugin>
