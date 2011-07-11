@@ -6,6 +6,8 @@
  ******************************************************************************/
 package org.eclipse.emf.ecp.editor.mecontrols;
 
+import org.eclipse.core.databinding.observable.Diffs;
+import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
@@ -14,7 +16,8 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.editor.Activator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Spinner;
@@ -60,8 +63,9 @@ public class MEDoubleControl extends AbstractMEControl {
 		spinner.setMaximum(1000);
 		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
-		dbc.bindValue(SWTObservables.observeSelection(spinner), model, null, null);
-
+		DoubleSpinnerObservable spinnerObservable = new DoubleSpinnerObservable(spinner);
+		dbc.bindValue(spinnerObservable, model, null, null);
+		spinner.setSelection((int)(((Double) getModelElement().eGet(attribute)) * Math.pow(10, spinner.getDigits())));
 		return spinner;
 	}
 
@@ -81,4 +85,66 @@ public class MEDoubleControl extends AbstractMEControl {
 		return AbstractMEControl.DO_NOT_RENDER;
 	}
 
+private class DoubleSpinnerObservable extends AbstractObservableValue {
+
+	private double value;
+	private Spinner spinner;
+	private boolean currentlyUpdatingFlag;
+
+
+	public DoubleSpinnerObservable(Spinner spinner){
+		this.spinner = spinner;
+		value = spinner.getSelection() / Math.pow(10, spinner.getDigits());
+		spinner.addModifyListener(widgetListener);
+	}
+	
+	private ModifyListener widgetListener = new ModifyListener() {
+		
+		public void modifyText(ModifyEvent e) {
+			if (!currentlyUpdatingFlag) {
+				double newValue = spinner.getSelection() / Math.pow(10, spinner.getDigits());
+				fireValueChange(Diffs.createValueDiff(value, newValue));
+				value = newValue;
+			}
+		}
+	};
+	
+	@Override
+	public synchronized void dispose() {
+		spinner.removeModifyListener(widgetListener);
+		super.dispose();
+	}
+	
+	public Object getValueType() {
+		return Double.class;
+	}
+
+	@Override
+	protected Object doGetValue() {
+		if (!spinner.isDisposed()) {
+			return spinner.getSelection() * Math.pow(10, spinner.getDigits());
+		}
+		return null;
+	}
+	
+	@Override
+	protected void doSetValue(Object value) {
+		if (value == null) {
+			spinner.setSelection(0);
+		} else if (value instanceof Double && !spinner.isDisposed()) {
+			double oldVal;
+			double newVal;
+			try {
+				currentlyUpdatingFlag = true;
+				oldVal = spinner.getSelection() / Math.pow(10, spinner.getDigits());
+				newVal = (Integer) value * Math.pow(10, spinner.getDigits());
+				value = newVal;
+				fireValueChange(Diffs.createValueDiff(oldVal, newVal));
+			} finally {
+				currentlyUpdatingFlag = false;
+			}
+		}
+		
+	}
+}
 }
