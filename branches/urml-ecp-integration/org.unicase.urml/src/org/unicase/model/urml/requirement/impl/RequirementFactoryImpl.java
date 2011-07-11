@@ -15,19 +15,19 @@ import org.unicase.model.urml.requirement.RequirementPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
-public class RequirementFactoryImpl extends EFactoryImpl implements RequirementFactory {
+public class RequirementFactoryImpl extends EFactoryImpl implements
+		RequirementFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static RequirementFactory init() {
 		try {
 			RequirementFactory theRequirementFactory = (RequirementFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/model/urml/requirement");
+					.getEFactory("http://unicase.org/model/urml/requirement");
 			if (theRequirementFactory != null) {
 				return theRequirementFactory;
 			}
@@ -38,8 +38,8 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public RequirementFactoryImpl() {
@@ -48,7 +48,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,13 +58,13 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT:
 			return createNonFunctionalRequirement();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FunctionalRequirement createFunctionalRequirement() {
@@ -75,7 +74,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NonFunctionalRequirement createNonFunctionalRequirement() {
@@ -85,7 +83,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RequirementPackage getRequirementPackage() {
@@ -94,7 +91,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

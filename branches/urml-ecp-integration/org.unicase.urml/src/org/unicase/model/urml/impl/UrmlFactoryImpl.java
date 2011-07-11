@@ -15,19 +15,18 @@ import org.unicase.model.urml.UrmlPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class UrmlFactoryImpl extends EFactoryImpl implements UrmlFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static UrmlFactory init() {
 		try {
 			UrmlFactory theUrmlFactory = (UrmlFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/model/urml");
+					.getEFactory("http://unicase.org/model/urml");
 			if (theUrmlFactory != null) {
 				return theUrmlFactory;
 			}
@@ -38,8 +37,8 @@ public class UrmlFactoryImpl extends EFactoryImpl implements UrmlFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public UrmlFactoryImpl() {
@@ -48,7 +47,6 @@ public class UrmlFactoryImpl extends EFactoryImpl implements UrmlFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,13 +57,13 @@ public class UrmlFactoryImpl extends EFactoryImpl implements UrmlFactory {
 		case UrmlPackage.URML_DIAGRAM:
 			return createURMLDiagram();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Stakeholder createStakeholder() {
@@ -75,7 +73,6 @@ public class UrmlFactoryImpl extends EFactoryImpl implements UrmlFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public URMLDiagram createURMLDiagram() {
@@ -85,7 +82,6 @@ public class UrmlFactoryImpl extends EFactoryImpl implements UrmlFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UrmlPackage getUrmlPackage() {
@@ -94,7 +90,6 @@ public class UrmlFactoryImpl extends EFactoryImpl implements UrmlFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

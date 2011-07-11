@@ -11,16 +11,16 @@ import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 import org.unicase.model.urml.danger.DangerPackage;
 
 /**
- * This class contains helper methods to serialize and deserialize XML documents <!-- begin-user-doc --> <!--
+ * This class contains helper methods to serialize and deserialize XML documents
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class DangerXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Public constructor to instantiate the helper.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public DangerXMLProcessor() {
@@ -29,9 +29,9 @@ public class DangerXMLProcessor extends XMLProcessor {
 	}
 
 	/**
-	 * Register for "*" and "xml" file extensions the DangerResourceFactoryImpl factory. <!-- begin-user-doc --> <!--
+	 * Register for "*" and "xml" file extensions the DangerResourceFactoryImpl factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

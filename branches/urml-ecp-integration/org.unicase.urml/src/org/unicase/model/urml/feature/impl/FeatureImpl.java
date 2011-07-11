@@ -20,17 +20,17 @@ import org.unicase.model.urml.feature.Product;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.urml.feature.impl.FeatureImpl#getProducts <em>Products</em>}</li>
+ *   <li>{@link org.unicase.model.urml.feature.impl.FeatureImpl#getProducts <em>Products</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 	/**
-	 * The cached value of the '{@link #getProducts() <em>Products</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getProducts() <em>Products</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getProducts()
 	 * @generated
 	 * @ordered
@@ -39,7 +39,6 @@ public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected FeatureImpl() {
@@ -48,7 +47,6 @@ public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -58,49 +56,50 @@ public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Product> getProducts() {
 		if (products == null) {
-			products = new EObjectWithInverseResolvingEList.ManyInverse<Product>(Product.class, this,
-				FeaturePackage.FEATURE__PRODUCTS, FeaturePackage.PRODUCT__FEATURES);
+			products = new EObjectWithInverseResolvingEList.ManyInverse<Product>(
+					Product.class, this, FeaturePackage.FEATURE__PRODUCTS,
+					FeaturePackage.PRODUCT__FEATURES);
 		}
 		return products;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case FeaturePackage.FEATURE__PRODUCTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getProducts()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getProducts())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case FeaturePackage.FEATURE__PRODUCTS:
-			return ((InternalEList<?>) getProducts()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getProducts()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -114,7 +113,6 @@ public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -131,7 +129,6 @@ public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -146,7 +143,6 @@ public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -156,6 +152,12 @@ public class FeatureImpl extends AbstractFeatureImpl implements Feature {
 			return products != null && !products.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return getDescription();
 	}
 
 } // FeatureImpl

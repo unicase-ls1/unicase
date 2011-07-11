@@ -22,19 +22,17 @@ import org.unicase.model.urml.impl.UrmlModelElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.urml.feature.impl.ProductImpl#getVariationPointInstances <em>Variation Point Instances
- * </em>}</li>
- * <li>{@link org.unicase.model.urml.feature.impl.ProductImpl#getFeatures <em>Features</em>}</li>
+ *   <li>{@link org.unicase.model.urml.feature.impl.ProductImpl#getVariationPointInstances <em>Variation Point Instances</em>}</li>
+ *   <li>{@link org.unicase.model.urml.feature.impl.ProductImpl#getFeatures <em>Features</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ProductImpl extends UrmlModelElementImpl implements Product {
 	/**
-	 * The cached value of the '{@link #getVariationPointInstances() <em>Variation Point Instances</em>}' reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getVariationPointInstances() <em>Variation Point Instances</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getVariationPointInstances()
 	 * @generated
 	 * @ordered
@@ -42,9 +40,9 @@ public class ProductImpl extends UrmlModelElementImpl implements Product {
 	protected EList<VariationPointInstance> variationPointInstances;
 
 	/**
-	 * The cached value of the '{@link #getFeatures() <em>Features</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getFeatures() <em>Features</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getFeatures()
 	 * @generated
 	 * @ordered
@@ -53,7 +51,6 @@ public class ProductImpl extends UrmlModelElementImpl implements Product {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ProductImpl() {
@@ -62,7 +59,6 @@ public class ProductImpl extends UrmlModelElementImpl implements Product {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -72,68 +68,70 @@ public class ProductImpl extends UrmlModelElementImpl implements Product {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<VariationPointInstance> getVariationPointInstances() {
 		if (variationPointInstances == null) {
 			variationPointInstances = new EObjectWithInverseResolvingEList.ManyInverse<VariationPointInstance>(
-				VariationPointInstance.class, this, FeaturePackage.PRODUCT__VARIATION_POINT_INSTANCES,
-				FeaturePackage.VARIATION_POINT_INSTANCE__PRODUCTS);
+					VariationPointInstance.class, this,
+					FeaturePackage.PRODUCT__VARIATION_POINT_INSTANCES,
+					FeaturePackage.VARIATION_POINT_INSTANCE__PRODUCTS);
 		}
 		return variationPointInstances;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Feature> getFeatures() {
 		if (features == null) {
-			features = new EObjectWithInverseResolvingEList.ManyInverse<Feature>(Feature.class, this,
-				FeaturePackage.PRODUCT__FEATURES, FeaturePackage.FEATURE__PRODUCTS);
+			features = new EObjectWithInverseResolvingEList.ManyInverse<Feature>(
+					Feature.class, this, FeaturePackage.PRODUCT__FEATURES,
+					FeaturePackage.FEATURE__PRODUCTS);
 		}
 		return features;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case FeaturePackage.PRODUCT__VARIATION_POINT_INSTANCES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getVariationPointInstances()).basicAdd(
-				otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getVariationPointInstances())
+					.basicAdd(otherEnd, msgs);
 		case FeaturePackage.PRODUCT__FEATURES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getFeatures()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getFeatures())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case FeaturePackage.PRODUCT__VARIATION_POINT_INSTANCES:
-			return ((InternalEList<?>) getVariationPointInstances()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getVariationPointInstances())
+					.basicRemove(otherEnd, msgs);
 		case FeaturePackage.PRODUCT__FEATURES:
-			return ((InternalEList<?>) getFeatures()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getFeatures()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,7 +147,6 @@ public class ProductImpl extends UrmlModelElementImpl implements Product {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -158,7 +155,8 @@ public class ProductImpl extends UrmlModelElementImpl implements Product {
 		switch (featureID) {
 		case FeaturePackage.PRODUCT__VARIATION_POINT_INSTANCES:
 			getVariationPointInstances().clear();
-			getVariationPointInstances().addAll((Collection<? extends VariationPointInstance>) newValue);
+			getVariationPointInstances().addAll(
+					(Collection<? extends VariationPointInstance>) newValue);
 			return;
 		case FeaturePackage.PRODUCT__FEATURES:
 			getFeatures().clear();
@@ -170,7 +168,6 @@ public class ProductImpl extends UrmlModelElementImpl implements Product {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -188,18 +185,24 @@ public class ProductImpl extends UrmlModelElementImpl implements Product {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case FeaturePackage.PRODUCT__VARIATION_POINT_INSTANCES:
-			return variationPointInstances != null && !variationPointInstances.isEmpty();
+			return variationPointInstances != null
+					&& !variationPointInstances.isEmpty();
 		case FeaturePackage.PRODUCT__FEATURES:
 			return features != null && !features.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return getDescription();
 	}
 
 } // ProductImpl

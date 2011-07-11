@@ -15,19 +15,18 @@ import org.unicase.model.urml.danger.ProceduralMitigation;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class DangerFactoryImpl extends EFactoryImpl implements DangerFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static DangerFactory init() {
 		try {
 			DangerFactory theDangerFactory = (DangerFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/model/urml/danger");
+					.getEFactory("http://unicase.org/model/urml/danger");
 			if (theDangerFactory != null) {
 				return theDangerFactory;
 			}
@@ -38,8 +37,8 @@ public class DangerFactoryImpl extends EFactoryImpl implements DangerFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public DangerFactoryImpl() {
@@ -48,7 +47,6 @@ public class DangerFactoryImpl extends EFactoryImpl implements DangerFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,13 +57,13 @@ public class DangerFactoryImpl extends EFactoryImpl implements DangerFactory {
 		case DangerPackage.PROCEDURAL_MITIGATION:
 			return createProceduralMitigation();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Danger createDanger() {
@@ -75,7 +73,6 @@ public class DangerFactoryImpl extends EFactoryImpl implements DangerFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ProceduralMitigation createProceduralMitigation() {
@@ -85,7 +82,6 @@ public class DangerFactoryImpl extends EFactoryImpl implements DangerFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DangerPackage getDangerPackage() {
@@ -94,7 +90,6 @@ public class DangerFactoryImpl extends EFactoryImpl implements DangerFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

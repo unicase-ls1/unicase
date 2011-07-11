@@ -32,18 +32,18 @@ import org.unicase.model.urml.usecase.UsecasePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.urml.goal.impl.GoalImpl#isSoft <em>Soft</em>}</li>
- * <li>{@link org.unicase.model.urml.goal.impl.GoalImpl#getType <em>Type</em>}</li>
- * <li>{@link org.unicase.model.urml.goal.impl.GoalImpl#getStakeholders <em>Stakeholders</em>}</li>
- * <li>{@link org.unicase.model.urml.goal.impl.GoalImpl#getRealizedFeatures <em>Realized Features</em>}</li>
- * <li>{@link org.unicase.model.urml.goal.impl.GoalImpl#getDetailingUseCases <em>Detailing Use Cases</em>}</li>
- * <li>{@link org.unicase.model.urml.goal.impl.GoalImpl#getSubGoals <em>Sub Goals</em>}</li>
- * <li>{@link org.unicase.model.urml.goal.impl.GoalImpl#getParentGoal <em>Parent Goal</em>}</li>
- * <li>{@link org.unicase.model.urml.goal.impl.GoalImpl#getInfluencingGoals <em>Influencing Goals</em>}</li>
- * <li>{@link org.unicase.model.urml.goal.impl.GoalImpl#getInfluencedGoals <em>Influenced Goals</em>}</li>
+ *   <li>{@link org.unicase.model.urml.goal.impl.GoalImpl#isSoft <em>Soft</em>}</li>
+ *   <li>{@link org.unicase.model.urml.goal.impl.GoalImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.unicase.model.urml.goal.impl.GoalImpl#getStakeholders <em>Stakeholders</em>}</li>
+ *   <li>{@link org.unicase.model.urml.goal.impl.GoalImpl#getRealizedFeatures <em>Realized Features</em>}</li>
+ *   <li>{@link org.unicase.model.urml.goal.impl.GoalImpl#getDetailingUseCases <em>Detailing Use Cases</em>}</li>
+ *   <li>{@link org.unicase.model.urml.goal.impl.GoalImpl#getSubGoals <em>Sub Goals</em>}</li>
+ *   <li>{@link org.unicase.model.urml.goal.impl.GoalImpl#getParentGoal <em>Parent Goal</em>}</li>
+ *   <li>{@link org.unicase.model.urml.goal.impl.GoalImpl#getInfluencingGoals <em>Influencing Goals</em>}</li>
+ *   <li>{@link org.unicase.model.urml.goal.impl.GoalImpl#getInfluencedGoals <em>Influenced Goals</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class GoalImpl extends UrmlModelElementImpl implements Goal {
@@ -88,9 +88,9 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 	protected GoalType type = TYPE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getStakeholders() <em>Stakeholders</em>}' reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getStakeholders() <em>Stakeholders</em>}' reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getStakeholders()
 	 * @generated
 	 * @ordered
@@ -149,7 +149,6 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected GoalImpl() {
@@ -158,7 +157,6 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -168,7 +166,6 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSoft() {
@@ -177,19 +174,18 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSoft(boolean newSoft) {
 		boolean oldSoft = soft;
 		soft = newSoft;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GoalPackage.GOAL__SOFT, oldSoft, soft));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					GoalPackage.GOAL__SOFT, oldSoft, soft));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public GoalType getType() {
@@ -198,45 +194,45 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setType(GoalType newType) {
 		GoalType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GoalPackage.GOAL__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					GoalPackage.GOAL__TYPE, oldType, type));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Stakeholder> getStakeholders() {
 		if (stakeholders == null) {
-			stakeholders = new EObjectWithInverseResolvingEList.ManyInverse<Stakeholder>(Stakeholder.class, this,
-				GoalPackage.GOAL__STAKEHOLDERS, UrmlPackage.STAKEHOLDER__GOALS);
+			stakeholders = new EObjectWithInverseResolvingEList.ManyInverse<Stakeholder>(
+					Stakeholder.class, this, GoalPackage.GOAL__STAKEHOLDERS,
+					UrmlPackage.STAKEHOLDER__GOALS);
 		}
 		return stakeholders;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractFeature> getRealizedFeatures() {
 		if (realizedFeatures == null) {
-			realizedFeatures = new EObjectWithInverseResolvingEList.ManyInverse<AbstractFeature>(AbstractFeature.class,
-				this, GoalPackage.GOAL__REALIZED_FEATURES, FeaturePackage.ABSTRACT_FEATURE__GOALS);
+			realizedFeatures = new EObjectWithInverseResolvingEList.ManyInverse<AbstractFeature>(
+					AbstractFeature.class, this,
+					GoalPackage.GOAL__REALIZED_FEATURES,
+					FeaturePackage.ABSTRACT_FEATURE__GOALS);
 		}
 		return realizedFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ApplicationDomainUseCase getDetailingUseCases() {
@@ -245,8 +241,9 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 			detailingUseCases = (ApplicationDomainUseCase) eResolveProxy(oldDetailingUseCases);
 			if (detailingUseCases != oldDetailingUseCases) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GoalPackage.GOAL__DETAILING_USE_CASES,
-						oldDetailingUseCases, detailingUseCases));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							GoalPackage.GOAL__DETAILING_USE_CASES,
+							oldDetailingUseCases, detailingUseCases));
 			}
 		}
 		return detailingUseCases;
@@ -254,7 +251,6 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ApplicationDomainUseCase basicGetDetailingUseCases() {
@@ -263,16 +259,17 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetDetailingUseCases(ApplicationDomainUseCase newDetailingUseCases,
-		NotificationChain msgs) {
+	public NotificationChain basicSetDetailingUseCases(
+			ApplicationDomainUseCase newDetailingUseCases,
+			NotificationChain msgs) {
 		ApplicationDomainUseCase oldDetailingUseCases = detailingUseCases;
 		detailingUseCases = newDetailingUseCases;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				GoalPackage.GOAL__DETAILING_USE_CASES, oldDetailingUseCases, newDetailingUseCases);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, GoalPackage.GOAL__DETAILING_USE_CASES,
+					oldDetailingUseCases, newDetailingUseCases);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -283,42 +280,48 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public void setDetailingUseCases(ApplicationDomainUseCase newDetailingUseCases) {
+	public void setDetailingUseCases(
+			ApplicationDomainUseCase newDetailingUseCases) {
 		if (newDetailingUseCases != detailingUseCases) {
 			NotificationChain msgs = null;
 			if (detailingUseCases != null)
-				msgs = ((InternalEObject) detailingUseCases).eInverseRemove(this,
-					UsecasePackage.APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL, ApplicationDomainUseCase.class, msgs);
+				msgs = ((InternalEObject) detailingUseCases)
+						.eInverseRemove(
+								this,
+								UsecasePackage.APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL,
+								ApplicationDomainUseCase.class, msgs);
 			if (newDetailingUseCases != null)
-				msgs = ((InternalEObject) newDetailingUseCases).eInverseAdd(this,
-					UsecasePackage.APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL, ApplicationDomainUseCase.class, msgs);
+				msgs = ((InternalEObject) newDetailingUseCases)
+						.eInverseAdd(
+								this,
+								UsecasePackage.APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL,
+								ApplicationDomainUseCase.class, msgs);
 			msgs = basicSetDetailingUseCases(newDetailingUseCases, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GoalPackage.GOAL__DETAILING_USE_CASES,
-				newDetailingUseCases, newDetailingUseCases));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					GoalPackage.GOAL__DETAILING_USE_CASES,
+					newDetailingUseCases, newDetailingUseCases));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Goal> getSubGoals() {
 		if (subGoals == null) {
-			subGoals = new EObjectContainmentWithInverseEList.Resolving<Goal>(Goal.class, this,
-				GoalPackage.GOAL__SUB_GOALS, GoalPackage.GOAL__PARENT_GOAL);
+			subGoals = new EObjectContainmentWithInverseEList.Resolving<Goal>(
+					Goal.class, this, GoalPackage.GOAL__SUB_GOALS,
+					GoalPackage.GOAL__PARENT_GOAL);
 		}
 		return subGoals;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Goal getParentGoal() {
@@ -329,7 +332,6 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Goal basicGetParentGoal() {
@@ -340,139 +342,156 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetParentGoal(Goal newParentGoal, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newParentGoal, GoalPackage.GOAL__PARENT_GOAL, msgs);
+	public NotificationChain basicSetParentGoal(Goal newParentGoal,
+			NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newParentGoal,
+				GoalPackage.GOAL__PARENT_GOAL, msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setParentGoal(Goal newParentGoal) {
 		if (newParentGoal != eInternalContainer()
-			|| (eContainerFeatureID() != GoalPackage.GOAL__PARENT_GOAL && newParentGoal != null)) {
+				|| (eContainerFeatureID() != GoalPackage.GOAL__PARENT_GOAL && newParentGoal != null)) {
 			if (EcoreUtil.isAncestor(this, newParentGoal))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newParentGoal != null)
-				msgs = ((InternalEObject) newParentGoal).eInverseAdd(this, GoalPackage.GOAL__SUB_GOALS, Goal.class,
-					msgs);
+				msgs = ((InternalEObject) newParentGoal).eInverseAdd(this,
+						GoalPackage.GOAL__SUB_GOALS, Goal.class, msgs);
 			msgs = basicSetParentGoal(newParentGoal, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GoalPackage.GOAL__PARENT_GOAL, newParentGoal,
-				newParentGoal));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					GoalPackage.GOAL__PARENT_GOAL, newParentGoal, newParentGoal));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<GoalReference> getInfluencingGoals() {
 		if (influencingGoals == null) {
-			influencingGoals = new EObjectWithInverseResolvingEList<GoalReference>(GoalReference.class, this,
-				GoalPackage.GOAL__INFLUENCING_GOALS, GoalPackage.GOAL_REFERENCE__TARGET);
+			influencingGoals = new EObjectWithInverseResolvingEList<GoalReference>(
+					GoalReference.class, this,
+					GoalPackage.GOAL__INFLUENCING_GOALS,
+					GoalPackage.GOAL_REFERENCE__TARGET);
 		}
 		return influencingGoals;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<GoalReference> getInfluencedGoals() {
 		if (influencedGoals == null) {
-			influencedGoals = new EObjectContainmentWithInverseEList.Resolving<GoalReference>(GoalReference.class,
-				this, GoalPackage.GOAL__INFLUENCED_GOALS, GoalPackage.GOAL_REFERENCE__SOURCE);
+			influencedGoals = new EObjectContainmentWithInverseEList.Resolving<GoalReference>(
+					GoalReference.class, this,
+					GoalPackage.GOAL__INFLUENCED_GOALS,
+					GoalPackage.GOAL_REFERENCE__SOURCE);
 		}
 		return influencedGoals;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case GoalPackage.GOAL__STAKEHOLDERS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getStakeholders()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getStakeholders())
+					.basicAdd(otherEnd, msgs);
 		case GoalPackage.GOAL__REALIZED_FEATURES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRealizedFeatures()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRealizedFeatures())
+					.basicAdd(otherEnd, msgs);
 		case GoalPackage.GOAL__DETAILING_USE_CASES:
 			if (detailingUseCases != null)
-				msgs = ((InternalEObject) detailingUseCases).eInverseRemove(this,
-					UsecasePackage.APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL, ApplicationDomainUseCase.class, msgs);
-			return basicSetDetailingUseCases((ApplicationDomainUseCase) otherEnd, msgs);
+				msgs = ((InternalEObject) detailingUseCases)
+						.eInverseRemove(
+								this,
+								UsecasePackage.APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL,
+								ApplicationDomainUseCase.class, msgs);
+			return basicSetDetailingUseCases(
+					(ApplicationDomainUseCase) otherEnd, msgs);
 		case GoalPackage.GOAL__SUB_GOALS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSubGoals()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSubGoals())
+					.basicAdd(otherEnd, msgs);
 		case GoalPackage.GOAL__PARENT_GOAL:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetParentGoal((Goal) otherEnd, msgs);
 		case GoalPackage.GOAL__INFLUENCING_GOALS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInfluencingGoals()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInfluencingGoals())
+					.basicAdd(otherEnd, msgs);
 		case GoalPackage.GOAL__INFLUENCED_GOALS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInfluencedGoals()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInfluencedGoals())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case GoalPackage.GOAL__STAKEHOLDERS:
-			return ((InternalEList<?>) getStakeholders()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getStakeholders()).basicRemove(otherEnd,
+					msgs);
 		case GoalPackage.GOAL__REALIZED_FEATURES:
-			return ((InternalEList<?>) getRealizedFeatures()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getRealizedFeatures()).basicRemove(
+					otherEnd, msgs);
 		case GoalPackage.GOAL__DETAILING_USE_CASES:
 			return basicSetDetailingUseCases(null, msgs);
 		case GoalPackage.GOAL__SUB_GOALS:
-			return ((InternalEList<?>) getSubGoals()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getSubGoals()).basicRemove(otherEnd,
+					msgs);
 		case GoalPackage.GOAL__PARENT_GOAL:
 			return basicSetParentGoal(null, msgs);
 		case GoalPackage.GOAL__INFLUENCING_GOALS:
-			return ((InternalEList<?>) getInfluencingGoals()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getInfluencingGoals()).basicRemove(
+					otherEnd, msgs);
 		case GoalPackage.GOAL__INFLUENCED_GOALS:
-			return ((InternalEList<?>) getInfluencedGoals()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getInfluencedGoals()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 		case GoalPackage.GOAL__PARENT_GOAL:
-			return eInternalContainer().eInverseRemove(this, GoalPackage.GOAL__SUB_GOALS, Goal.class, msgs);
+			return eInternalContainer().eInverseRemove(this,
+					GoalPackage.GOAL__SUB_GOALS, Goal.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -506,7 +525,6 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -521,11 +539,13 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 			return;
 		case GoalPackage.GOAL__STAKEHOLDERS:
 			getStakeholders().clear();
-			getStakeholders().addAll((Collection<? extends Stakeholder>) newValue);
+			getStakeholders().addAll(
+					(Collection<? extends Stakeholder>) newValue);
 			return;
 		case GoalPackage.GOAL__REALIZED_FEATURES:
 			getRealizedFeatures().clear();
-			getRealizedFeatures().addAll((Collection<? extends AbstractFeature>) newValue);
+			getRealizedFeatures().addAll(
+					(Collection<? extends AbstractFeature>) newValue);
 			return;
 		case GoalPackage.GOAL__DETAILING_USE_CASES:
 			setDetailingUseCases((ApplicationDomainUseCase) newValue);
@@ -539,11 +559,13 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 			return;
 		case GoalPackage.GOAL__INFLUENCING_GOALS:
 			getInfluencingGoals().clear();
-			getInfluencingGoals().addAll((Collection<? extends GoalReference>) newValue);
+			getInfluencingGoals().addAll(
+					(Collection<? extends GoalReference>) newValue);
 			return;
 		case GoalPackage.GOAL__INFLUENCED_GOALS:
 			getInfluencedGoals().clear();
-			getInfluencedGoals().addAll((Collection<? extends GoalReference>) newValue);
+			getInfluencedGoals().addAll(
+					(Collection<? extends GoalReference>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -551,7 +573,6 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -590,7 +611,6 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -620,7 +640,6 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -635,6 +654,12 @@ public class GoalImpl extends UrmlModelElementImpl implements Goal {
 		result.append(type);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return getDescription();
 	}
 
 } // GoalImpl

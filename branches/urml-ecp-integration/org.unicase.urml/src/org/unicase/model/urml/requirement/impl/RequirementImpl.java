@@ -24,15 +24,15 @@ import org.unicase.model.urml.service.ServicePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.urml.requirement.impl.RequirementImpl#getImplementingServices <em>Implementing Services
- * </em>}</li>
- * <li>{@link org.unicase.model.urml.requirement.impl.RequirementImpl#isTerminal <em>Terminal</em>}</li>
+ *   <li>{@link org.unicase.model.urml.requirement.impl.RequirementImpl#getImplementingServices <em>Implementing Services</em>}</li>
+ *   <li>{@link org.unicase.model.urml.requirement.impl.RequirementImpl#isTerminal <em>Terminal</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public abstract class RequirementImpl extends MitigationImpl implements Requirement {
+public abstract class RequirementImpl extends MitigationImpl implements
+		Requirement {
 	/**
 	 * The cached value of the '{@link #getImplementingServices() <em>Implementing Services</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -44,9 +44,9 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 	protected EList<Service> implementingServices;
 
 	/**
-	 * The default value of the '{@link #isTerminal() <em>Terminal</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isTerminal() <em>Terminal</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isTerminal()
 	 * @generated
 	 * @ordered
@@ -54,9 +54,9 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 	protected static final boolean TERMINAL_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isTerminal() <em>Terminal</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isTerminal() <em>Terminal</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isTerminal()
 	 * @generated
 	 * @ordered
@@ -65,7 +65,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected RequirementImpl() {
@@ -74,7 +73,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -84,20 +82,20 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Service> getImplementingServices() {
 		if (implementingServices == null) {
-			implementingServices = new EObjectWithInverseResolvingEList.ManyInverse<Service>(Service.class, this,
-				RequirementPackage.REQUIREMENT__IMPLEMENTING_SERVICES, ServicePackage.SERVICE__SATISFIED_REQUIREMENTS);
+			implementingServices = new EObjectWithInverseResolvingEList.ManyInverse<Service>(
+					Service.class, this,
+					RequirementPackage.REQUIREMENT__IMPLEMENTING_SERVICES,
+					ServicePackage.SERVICE__SATISFIED_REQUIREMENTS);
 		}
 		return implementingServices;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isTerminal() {
@@ -106,50 +104,50 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTerminal(boolean newTerminal) {
 		boolean oldTerminal = terminal;
 		terminal = newTerminal;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.REQUIREMENT__TERMINAL,
-				oldTerminal, terminal));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementPackage.REQUIREMENT__TERMINAL, oldTerminal,
+					terminal));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.REQUIREMENT__IMPLEMENTING_SERVICES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getImplementingServices()).basicAdd(otherEnd,
-				msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getImplementingServices())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.REQUIREMENT__IMPLEMENTING_SERVICES:
-			return ((InternalEList<?>) getImplementingServices()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getImplementingServices()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -165,7 +163,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -174,7 +171,8 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 		switch (featureID) {
 		case RequirementPackage.REQUIREMENT__IMPLEMENTING_SERVICES:
 			getImplementingServices().clear();
-			getImplementingServices().addAll((Collection<? extends Service>) newValue);
+			getImplementingServices().addAll(
+					(Collection<? extends Service>) newValue);
 			return;
 		case RequirementPackage.REQUIREMENT__TERMINAL:
 			setTerminal((Boolean) newValue);
@@ -185,7 +183,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -203,14 +200,14 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case RequirementPackage.REQUIREMENT__IMPLEMENTING_SERVICES:
-			return implementingServices != null && !implementingServices.isEmpty();
+			return implementingServices != null
+					&& !implementingServices.isEmpty();
 		case RequirementPackage.REQUIREMENT__TERMINAL:
 			return terminal != TERMINAL_EDEFAULT;
 		}
@@ -219,7 +216,6 @@ public abstract class RequirementImpl extends MitigationImpl implements Requirem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

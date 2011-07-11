@@ -21,17 +21,18 @@ import org.unicase.model.urml.goal.GoalPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.urml.impl.StakeholderImpl#getGoals <em>Goals</em>}</li>
+ *   <li>{@link org.unicase.model.urml.impl.StakeholderImpl#getGoals <em>Goals</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder {
+public class StakeholderImpl extends UrmlModelElementImpl implements
+		Stakeholder {
 	/**
-	 * The cached value of the '{@link #getGoals() <em>Goals</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getGoals() <em>Goals</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getGoals()
 	 * @generated
 	 * @ordered
@@ -40,7 +41,6 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StakeholderImpl() {
@@ -49,7 +49,6 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,39 +58,40 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Goal> getGoals() {
 		if (goals == null) {
-			goals = new EObjectWithInverseResolvingEList.ManyInverse<Goal>(Goal.class, this,
-				UrmlPackage.STAKEHOLDER__GOALS, GoalPackage.GOAL__STAKEHOLDERS);
+			goals = new EObjectWithInverseResolvingEList.ManyInverse<Goal>(
+					Goal.class, this, UrmlPackage.STAKEHOLDER__GOALS,
+					GoalPackage.GOAL__STAKEHOLDERS);
 		}
 		return goals;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UrmlPackage.STAKEHOLDER__GOALS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getGoals()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getGoals())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UrmlPackage.STAKEHOLDER__GOALS:
 			return ((InternalEList<?>) getGoals()).basicRemove(otherEnd, msgs);
@@ -101,7 +101,6 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,7 +114,6 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -132,7 +130,6 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -147,7 +144,6 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -157,6 +153,12 @@ public class StakeholderImpl extends UrmlModelElementImpl implements Stakeholder
 			return goals != null && !goals.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return getDescription();
 	}
 
 } // StakeholderImpl

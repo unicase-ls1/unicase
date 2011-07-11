@@ -19,18 +19,18 @@ import org.unicase.model.urml.usecase.UsecasePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.urml.usecase.impl.SolutionDomainUseCaseImpl#getDetailedFeature <em>Detailed Feature
- * </em>}</li>
+ *   <li>{@link org.unicase.model.urml.usecase.impl.SolutionDomainUseCaseImpl#getDetailedFeature <em>Detailed Feature</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDomainUseCase {
+public class SolutionDomainUseCaseImpl extends UseCaseImpl implements
+		SolutionDomainUseCase {
 	/**
-	 * The cached value of the '{@link #getDetailedFeature() <em>Detailed Feature</em>}' reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getDetailedFeature() <em>Detailed Feature</em>}' reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getDetailedFeature()
 	 * @generated
 	 * @ordered
@@ -39,7 +39,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SolutionDomainUseCaseImpl() {
@@ -48,7 +47,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -58,7 +56,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AbstractFeature getDetailedFeature() {
@@ -67,8 +64,11 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 			detailedFeature = (AbstractFeature) eResolveProxy(oldDetailedFeature);
 			if (detailedFeature != oldDetailedFeature) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						UsecasePackage.SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE, oldDetailedFeature, detailedFeature));
+					eNotify(new ENotificationImpl(
+							this,
+							Notification.RESOLVE,
+							UsecasePackage.SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE,
+							oldDetailedFeature, detailedFeature));
 			}
 		}
 		return detailedFeature;
@@ -76,7 +76,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AbstractFeature basicGetDetailedFeature() {
@@ -85,15 +84,17 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetDetailedFeature(AbstractFeature newDetailedFeature, NotificationChain msgs) {
+	public NotificationChain basicSetDetailedFeature(
+			AbstractFeature newDetailedFeature, NotificationChain msgs) {
 		AbstractFeature oldDetailedFeature = detailedFeature;
 		detailedFeature = newDetailedFeature;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				UsecasePackage.SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE, oldDetailedFeature, newDetailedFeature);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					UsecasePackage.SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE,
+					oldDetailedFeature, newDetailedFeature);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -104,7 +105,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDetailedFeature(AbstractFeature newDetailedFeature) {
@@ -112,30 +112,34 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 			NotificationChain msgs = null;
 			if (detailedFeature != null)
 				msgs = ((InternalEObject) detailedFeature).eInverseRemove(this,
-					FeaturePackage.ABSTRACT_FEATURE__DETAILING_USE_CASES, AbstractFeature.class, msgs);
+						FeaturePackage.ABSTRACT_FEATURE__DETAILING_USE_CASES,
+						AbstractFeature.class, msgs);
 			if (newDetailedFeature != null)
 				msgs = ((InternalEObject) newDetailedFeature).eInverseAdd(this,
-					FeaturePackage.ABSTRACT_FEATURE__DETAILING_USE_CASES, AbstractFeature.class, msgs);
+						FeaturePackage.ABSTRACT_FEATURE__DETAILING_USE_CASES,
+						AbstractFeature.class, msgs);
 			msgs = basicSetDetailedFeature(newDetailedFeature, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				UsecasePackage.SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE, newDetailedFeature, newDetailedFeature));
+					UsecasePackage.SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE,
+					newDetailedFeature, newDetailedFeature));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UsecasePackage.SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE:
 			if (detailedFeature != null)
 				msgs = ((InternalEObject) detailedFeature).eInverseRemove(this,
-					FeaturePackage.ABSTRACT_FEATURE__DETAILING_USE_CASES, AbstractFeature.class, msgs);
+						FeaturePackage.ABSTRACT_FEATURE__DETAILING_USE_CASES,
+						AbstractFeature.class, msgs);
 			return basicSetDetailedFeature((AbstractFeature) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -143,11 +147,11 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UsecasePackage.SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE:
 			return basicSetDetailedFeature(null, msgs);
@@ -157,7 +161,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -173,7 +176,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -188,7 +190,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -203,7 +204,6 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -213,6 +213,12 @@ public class SolutionDomainUseCaseImpl extends UseCaseImpl implements SolutionDo
 			return detailedFeature != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return getDescription();
 	}
 
 } // SolutionDomainUseCaseImpl

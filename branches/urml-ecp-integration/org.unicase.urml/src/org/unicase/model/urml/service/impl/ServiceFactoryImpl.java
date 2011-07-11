@@ -14,19 +14,18 @@ import org.unicase.model.urml.service.ServicePackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ServiceFactoryImpl extends EFactoryImpl implements ServiceFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static ServiceFactory init() {
 		try {
 			ServiceFactory theServiceFactory = (ServiceFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/model/urml/service");
+					.getEFactory("http://unicase.org/model/urml/service");
 			if (theServiceFactory != null) {
 				return theServiceFactory;
 			}
@@ -37,8 +36,8 @@ public class ServiceFactoryImpl extends EFactoryImpl implements ServiceFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ServiceFactoryImpl() {
@@ -47,7 +46,6 @@ public class ServiceFactoryImpl extends EFactoryImpl implements ServiceFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -56,13 +54,13 @@ public class ServiceFactoryImpl extends EFactoryImpl implements ServiceFactory {
 		case ServicePackage.SERVICE:
 			return createService();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Service createService() {
@@ -72,7 +70,6 @@ public class ServiceFactoryImpl extends EFactoryImpl implements ServiceFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ServicePackage getServicePackage() {
@@ -81,7 +78,6 @@ public class ServiceFactoryImpl extends EFactoryImpl implements ServiceFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

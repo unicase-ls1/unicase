@@ -40,15 +40,15 @@ import org.unicase.model.urml.usecase.SolutionDomainUseCase;
  */
 public interface AbstractFeature extends UrmlModelElement {
 	/**
-	 * Returns the value of the '<em><b>Goals</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.urml.goal.Goal}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.urml.goal.Goal#getRealizedFeatures <em>Realized Features</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Goals</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.urml.goal.Goal}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.urml.goal.Goal#getRealizedFeatures <em>Realized Features</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Goals</em>' reference list isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Goals</em>' reference list.
 	 * @see org.unicase.model.urml.feature.FeaturePackage#getAbstractFeature_Goals()
 	 * @see org.unicase.model.urml.goal.Goal#getRealizedFeatures
@@ -58,16 +58,15 @@ public interface AbstractFeature extends UrmlModelElement {
 	EList<Goal> getGoals();
 
 	/**
-	 * Returns the value of the '<em><b>Detailing Functional Requirements</b></em>' reference list. The list contents
-	 * are of type {@link org.unicase.model.urml.requirement.FunctionalRequirement}. It is bidirectional and its
-	 * opposite is '{@link org.unicase.model.urml.requirement.FunctionalRequirement#getDetailedFeatures
-	 * <em>Detailed Features</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Detailing Functional Requirements</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.urml.requirement.FunctionalRequirement}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.urml.requirement.FunctionalRequirement#getDetailedFeatures <em>Detailed Features</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Detailing Functional Requirements</em>' reference list isn't clear, there really
 	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Detailing Functional Requirements</em>' reference list.
 	 * @see org.unicase.model.urml.feature.FeaturePackage#getAbstractFeature_DetailingFunctionalRequirements()
 	 * @see org.unicase.model.urml.requirement.FunctionalRequirement#getDetailedFeatures
@@ -77,16 +76,15 @@ public interface AbstractFeature extends UrmlModelElement {
 	EList<FunctionalRequirement> getDetailingFunctionalRequirements();
 
 	/**
-	 * Returns the value of the '<em><b>Constraining Non Functional Requirements</b></em>' reference list. The list
-	 * contents are of type {@link org.unicase.model.urml.requirement.NonFunctionalRequirement}. It is bidirectional and
-	 * its opposite is '{@link org.unicase.model.urml.requirement.NonFunctionalRequirement#getConstrainedFeatures
-	 * <em>Constrained Features</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Constraining Non Functional Requirements</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.urml.requirement.NonFunctionalRequirement}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.urml.requirement.NonFunctionalRequirement#getConstrainedFeatures <em>Constrained Features</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Constraining Non Functional Requirements</em>' reference list isn't clear, there
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Constraining Non Functional Requirements</em>' reference list.
 	 * @see org.unicase.model.urml.feature.FeaturePackage#getAbstractFeature_ConstrainingNonFunctionalRequirements()
 	 * @see org.unicase.model.urml.requirement.NonFunctionalRequirement#getConstrainedFeatures
@@ -134,9 +132,8 @@ public interface AbstractFeature extends UrmlModelElement {
 	AbstractFeature getParentFeature();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.urml.feature.AbstractFeature#getParentFeature
-	 * <em>Parent Feature</em>}' container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.urml.feature.AbstractFeature#getParentFeature <em>Parent Feature</em>}' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Parent Feature</em>' container reference.
 	 * @see #getParentFeature()
 	 * @generated
@@ -239,15 +236,14 @@ public interface AbstractFeature extends UrmlModelElement {
 	EList<AbstractFeature> getRequiredFeatures();
 
 	/**
-	 * Returns the value of the '<em><b>Optional Parent Variation Point</b></em>' container reference. It is
-	 * bidirectional and its opposite is '{@link org.unicase.model.urml.feature.VariationPoint#getOptionalSubFeatures
-	 * <em>Optional Sub Features</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Optional Parent Variation Point</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.urml.feature.VariationPoint#getOptionalSubFeatures <em>Optional Sub Features</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Optional Parent Variation Point</em>' container reference isn't clear, there really
 	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Optional Parent Variation Point</em>' container reference.
 	 * @see #setOptionalParentVariationPoint(VariationPoint)
 	 * @see org.unicase.model.urml.feature.FeaturePackage#getAbstractFeature_OptionalParentVariationPoint()
@@ -258,9 +254,8 @@ public interface AbstractFeature extends UrmlModelElement {
 	VariationPoint getOptionalParentVariationPoint();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.urml.feature.AbstractFeature#getOptionalParentVariationPoint
-	 * <em>Optional Parent Variation Point</em>}' container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.urml.feature.AbstractFeature#getOptionalParentVariationPoint <em>Optional Parent Variation Point</em>}' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Optional Parent Variation Point</em>' container reference.
 	 * @see #getOptionalParentVariationPoint()
 	 * @generated
@@ -268,16 +263,15 @@ public interface AbstractFeature extends UrmlModelElement {
 	void setOptionalParentVariationPoint(VariationPoint value);
 
 	/**
-	 * Returns the value of the '<em><b>Variation Point Instances</b></em>' reference list. The list contents are of
-	 * type {@link org.unicase.model.urml.feature.VariationPointInstance}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.urml.feature.VariationPointInstance#getSelectedFeatures <em>Selected Features</em>}'.
+	 * Returns the value of the '<em><b>Variation Point Instances</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.urml.feature.VariationPointInstance}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.urml.feature.VariationPointInstance#getSelectedFeatures <em>Selected Features</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Variation Point Instances</em>' reference list isn't clear, there really should be
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Variation Point Instances</em>' reference list.
 	 * @see org.unicase.model.urml.feature.FeaturePackage#getAbstractFeature_VariationPointInstances()
 	 * @see org.unicase.model.urml.feature.VariationPointInstance#getSelectedFeatures

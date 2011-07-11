@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="urml"
     nsURI="http://unicase.org/model/urml" nsPrefix="org.unicase.model.urml">
-  <eClassifiers xsi:type="ecore:EClass" name="UrmlModelElement" abstract="true" eSuperTypes="../../org.unicase.model/model/model.ecore#//UnicaseModelElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UrmlModelElement" abstract="true" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//UnicaseModelElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Stakeholder" eSuperTypes="#//UrmlModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="goals" upperBound="-1"
         eType="#//goal/Goal" eOpposite="#//goal/Goal/stakeholders"/>
@@ -28,7 +28,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="influencedGoals" upperBound="-1"
           eType="#//goal/GoalReference" containment="true" eOpposite="#//goal/GoalReference/source"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GoalReference" eSuperTypes="#//UrmlModelElement ../../org.unicase.metamodel/model/metamodel.ecore#//AssociationClassElement">
+    <eClassifiers xsi:type="ecore:EClass" name="GoalReference" eSuperTypes="#//UrmlModelElement ../../org.eclipse.emf.emfstore.common.model/model/common.ecore#//AssociationClassElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//goal/Goal"
           eOpposite="#//goal/Goal/influencedGoals"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//goal/Goal"
@@ -77,7 +77,7 @@
   <eSubpackages name="usecase" nsURI="http://unicase.org/model/urml/usecase" nsPrefix="org.unicase.model.urml.usecase">
     <eClassifiers xsi:type="ecore:EClass" name="UseCase" abstract="true" eSuperTypes="#//UrmlModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="steps" upperBound="-1"
-          eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//requirement/Step"
+          eType="ecore:EClass platform:/plugin/org.unicase.model/model/model.ecore#//requirement/Step"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="actors" upperBound="-1"
           eType="#//usecase/Actor" eOpposite="#//usecase/Actor/useCases"/>

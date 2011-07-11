@@ -19,39 +19,39 @@ import org.unicase.model.urml.UrmlPackage;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.unicase.model.urml.goal.GoalFactory
  * @model kind="package"
  * @generated
  */
 public interface GoalPackage extends EPackage {
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "goal";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/model/urml/goal";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.model.urml.goal";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	GoalPackage eINSTANCE = org.unicase.model.urml.goal.impl.GoalPackageImpl.init();
+	GoalPackage eINSTANCE = org.unicase.model.urml.goal.impl.GoalPackageImpl
+			.init();
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.urml.goal.impl.GoalImpl <em>Goal</em>}' class. <!--
@@ -64,16 +64,16 @@ public interface GoalPackage extends EPackage {
 	int GOAL = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int GOAL__NAME = UrmlPackage.URML_MODEL_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -98,26 +98,26 @@ public interface GoalPackage extends EPackage {
 	int GOAL__ATTACHMENTS = UrmlPackage.URML_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int GOAL__INCOMING_DOCUMENT_REFERENCES = UrmlPackage.URML_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int GOAL__LEAF_SECTION = UrmlPackage.URML_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -133,41 +133,41 @@ public interface GoalPackage extends EPackage {
 	int GOAL__APPLIED_STEREOTYPE_INSTANCES = UrmlPackage.URML_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int GOAL__COMMENTS = UrmlPackage.URML_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int GOAL__CREATION_DATE = UrmlPackage.URML_MODEL_ELEMENT__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int GOAL__CREATOR = UrmlPackage.URML_MODEL_ELEMENT__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Soft</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Soft</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int GOAL__SOFT = UrmlPackage.URML_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -183,9 +183,9 @@ public interface GoalPackage extends EPackage {
 	int GOAL__STAKEHOLDERS = UrmlPackage.URML_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Realized Features</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Realized Features</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -201,44 +201,44 @@ public interface GoalPackage extends EPackage {
 	int GOAL__DETAILING_USE_CASES = UrmlPackage.URML_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Sub Goals</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Sub Goals</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int GOAL__SUB_GOALS = UrmlPackage.URML_MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Parent Goal</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Parent Goal</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int GOAL__PARENT_GOAL = UrmlPackage.URML_MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
-	 * The feature id for the '<em><b>Influencing Goals</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Influencing Goals</b></em>' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int GOAL__INFLUENCING_GOALS = UrmlPackage.URML_MODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
-	 * The feature id for the '<em><b>Influenced Goals</b></em>' containment reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Influenced Goals</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int GOAL__INFLUENCED_GOALS = UrmlPackage.URML_MODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
-	 * The number of structural features of the '<em>Goal</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of structural features of the '<em>Goal</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -247,7 +247,6 @@ public interface GoalPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.unicase.model.urml.goal.impl.GoalReferenceImpl <em>Reference</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see org.unicase.model.urml.goal.impl.GoalReferenceImpl
 	 * @see org.unicase.model.urml.goal.impl.GoalPackageImpl#getGoalReference()
 	 * @generated
@@ -255,16 +254,16 @@ public interface GoalPackage extends EPackage {
 	int GOAL_REFERENCE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int GOAL_REFERENCE__NAME = UrmlPackage.URML_MODEL_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -289,26 +288,26 @@ public interface GoalPackage extends EPackage {
 	int GOAL_REFERENCE__ATTACHMENTS = UrmlPackage.URML_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int GOAL_REFERENCE__INCOMING_DOCUMENT_REFERENCES = UrmlPackage.URML_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int GOAL_REFERENCE__LEAF_SECTION = UrmlPackage.URML_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -324,25 +323,25 @@ public interface GoalPackage extends EPackage {
 	int GOAL_REFERENCE__APPLIED_STEREOTYPE_INSTANCES = UrmlPackage.URML_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int GOAL_REFERENCE__COMMENTS = UrmlPackage.URML_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int GOAL_REFERENCE__CREATION_DATE = UrmlPackage.URML_MODEL_ELEMENT__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -358,16 +357,16 @@ public interface GoalPackage extends EPackage {
 	int GOAL_REFERENCE__SOURCE = UrmlPackage.URML_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int GOAL_REFERENCE__TARGET = UrmlPackage.URML_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Weight</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Weight</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -383,9 +382,9 @@ public interface GoalPackage extends EPackage {
 	int GOAL_REFERENCE_FEATURE_COUNT = UrmlPackage.URML_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.urml.goal.GoalType <em>Type</em>}' enum. <!-- begin-user-doc
+	 * The meta object id for the '{@link org.unicase.model.urml.goal.GoalType <em>Type</em>}' enum.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see org.unicase.model.urml.goal.GoalType
 	 * @see org.unicase.model.urml.goal.impl.GoalPackageImpl#getGoalType()
 	 * @generated
@@ -395,7 +394,6 @@ public interface GoalPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.unicase.model.urml.goal.GoalReferenceType <em>Reference Type</em>}' enum.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see org.unicase.model.urml.goal.GoalReferenceType
 	 * @see org.unicase.model.urml.goal.impl.GoalPackageImpl#getGoalReferenceType()
 	 * @generated
@@ -403,9 +401,9 @@ public interface GoalPackage extends EPackage {
 	int GOAL_REFERENCE_TYPE = 3;
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.urml.goal.Goal <em>Goal</em>}'. <!-- begin-user-doc
+	 * Returns the meta object for class '{@link org.unicase.model.urml.goal.Goal <em>Goal</em>}'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Goal</em>'.
 	 * @see org.unicase.model.urml.goal.Goal
 	 * @generated
@@ -435,9 +433,8 @@ public interface GoalPackage extends EPackage {
 	EAttribute getGoal_Type();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.urml.goal.Goal#getStakeholders
-	 * <em>Stakeholders</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link org.unicase.model.urml.goal.Goal#getStakeholders <em>Stakeholders</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Stakeholders</em>'.
 	 * @see org.unicase.model.urml.goal.Goal#getStakeholders()
 	 * @see #getGoal()
@@ -446,9 +443,8 @@ public interface GoalPackage extends EPackage {
 	EReference getGoal_Stakeholders();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.urml.goal.Goal#getRealizedFeatures
-	 * <em>Realized Features</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link org.unicase.model.urml.goal.Goal#getRealizedFeatures <em>Realized Features</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Realized Features</em>'.
 	 * @see org.unicase.model.urml.goal.Goal#getRealizedFeatures()
 	 * @see #getGoal()
@@ -457,9 +453,8 @@ public interface GoalPackage extends EPackage {
 	EReference getGoal_RealizedFeatures();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.urml.goal.Goal#getDetailingUseCases
-	 * <em>Detailing Use Cases</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.unicase.model.urml.goal.Goal#getDetailingUseCases <em>Detailing Use Cases</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Detailing Use Cases</em>'.
 	 * @see org.unicase.model.urml.goal.Goal#getDetailingUseCases()
 	 * @see #getGoal()
@@ -468,9 +463,8 @@ public interface GoalPackage extends EPackage {
 	EReference getGoal_DetailingUseCases();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.model.urml.goal.Goal#getSubGoals
-	 * <em>Sub Goals</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the containment reference list '{@link org.unicase.model.urml.goal.Goal#getSubGoals <em>Sub Goals</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Sub Goals</em>'.
 	 * @see org.unicase.model.urml.goal.Goal#getSubGoals()
 	 * @see #getGoal()
@@ -479,9 +473,8 @@ public interface GoalPackage extends EPackage {
 	EReference getGoal_SubGoals();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.unicase.model.urml.goal.Goal#getParentGoal
-	 * <em>Parent Goal</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the container reference '{@link org.unicase.model.urml.goal.Goal#getParentGoal <em>Parent Goal</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Parent Goal</em>'.
 	 * @see org.unicase.model.urml.goal.Goal#getParentGoal()
 	 * @see #getGoal()
@@ -490,9 +483,8 @@ public interface GoalPackage extends EPackage {
 	EReference getGoal_ParentGoal();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.urml.goal.Goal#getInfluencingGoals
-	 * <em>Influencing Goals</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link org.unicase.model.urml.goal.Goal#getInfluencingGoals <em>Influencing Goals</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Influencing Goals</em>'.
 	 * @see org.unicase.model.urml.goal.Goal#getInfluencingGoals()
 	 * @see #getGoal()
@@ -501,10 +493,9 @@ public interface GoalPackage extends EPackage {
 	EReference getGoal_InfluencingGoals();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.model.urml.goal.Goal#getInfluencedGoals <em>Influenced Goals</em>}'. <!-- begin-user-doc -->
+	 * Returns the meta object for the containment reference list '{@link org.unicase.model.urml.goal.Goal#getInfluencedGoals <em>Influenced Goals</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Influenced Goals</em>'.
 	 * @see org.unicase.model.urml.goal.Goal#getInfluencedGoals()
 	 * @see #getGoal()
@@ -523,9 +514,8 @@ public interface GoalPackage extends EPackage {
 	EClass getGoalReference();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.unicase.model.urml.goal.GoalReference#getSource
-	 * <em>Source</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the container reference '{@link org.unicase.model.urml.goal.GoalReference#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Source</em>'.
 	 * @see org.unicase.model.urml.goal.GoalReference#getSource()
 	 * @see #getGoalReference()
@@ -534,9 +524,8 @@ public interface GoalPackage extends EPackage {
 	EReference getGoalReference_Source();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.urml.goal.GoalReference#getTarget
-	 * <em>Target</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.unicase.model.urml.goal.GoalReference#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Target</em>'.
 	 * @see org.unicase.model.urml.goal.GoalReference#getTarget()
 	 * @see #getGoalReference()
@@ -545,9 +534,8 @@ public interface GoalPackage extends EPackage {
 	EReference getGoalReference_Target();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.urml.goal.GoalReference#getWeight
-	 * <em>Weight</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.model.urml.goal.GoalReference#getWeight <em>Weight</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Weight</em>'.
 	 * @see org.unicase.model.urml.goal.GoalReference#getWeight()
 	 * @see #getGoalReference()
@@ -568,7 +556,6 @@ public interface GoalPackage extends EPackage {
 	/**
 	 * Returns the meta object for enum '{@link org.unicase.model.urml.goal.GoalReferenceType <em>Reference Type</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for enum '<em>Reference Type</em>'.
 	 * @see org.unicase.model.urml.goal.GoalReferenceType
 	 * @generated
@@ -576,8 +563,8 @@ public interface GoalPackage extends EPackage {
 	EEnum getGoalReferenceType();
 
 	/**
-	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -592,7 +579,6 @@ public interface GoalPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
@@ -607,25 +593,25 @@ public interface GoalPackage extends EPackage {
 		EClass GOAL = eINSTANCE.getGoal();
 
 		/**
-		 * The meta object literal for the '<em><b>Soft</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Soft</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute GOAL__SOFT = eINSTANCE.getGoal_Soft();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute GOAL__TYPE = eINSTANCE.getGoal_Type();
 
 		/**
-		 * The meta object literal for the '<em><b>Stakeholders</b></em>' reference list feature. <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Stakeholders</b></em>' reference list feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference GOAL__STAKEHOLDERS = eINSTANCE.getGoal_Stakeholders();
@@ -636,15 +622,17 @@ public interface GoalPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference GOAL__REALIZED_FEATURES = eINSTANCE.getGoal_RealizedFeatures();
+		EReference GOAL__REALIZED_FEATURES = eINSTANCE
+				.getGoal_RealizedFeatures();
 
 		/**
-		 * The meta object literal for the '<em><b>Detailing Use Cases</b></em>' reference feature. <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Detailing Use Cases</b></em>' reference feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
-		EReference GOAL__DETAILING_USE_CASES = eINSTANCE.getGoal_DetailingUseCases();
+		EReference GOAL__DETAILING_USE_CASES = eINSTANCE
+				.getGoal_DetailingUseCases();
 
 		/**
 		 * The meta object literal for the '<em><b>Sub Goals</b></em>' containment reference list feature. <!--
@@ -668,7 +656,8 @@ public interface GoalPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference GOAL__INFLUENCING_GOALS = eINSTANCE.getGoal_InfluencingGoals();
+		EReference GOAL__INFLUENCING_GOALS = eINSTANCE
+				.getGoal_InfluencingGoals();
 
 		/**
 		 * The meta object literal for the '<em><b>Influenced Goals</b></em>' reference list feature. <!--
@@ -679,9 +668,8 @@ public interface GoalPackage extends EPackage {
 		EReference GOAL__INFLUENCED_GOALS = eINSTANCE.getGoal_InfluencedGoals();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.urml.goal.impl.GoalReferenceImpl
-		 * <em>Reference</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.model.urml.goal.impl.GoalReferenceImpl <em>Reference</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.model.urml.goal.impl.GoalReferenceImpl
 		 * @see org.unicase.model.urml.goal.impl.GoalPackageImpl#getGoalReference()
 		 * @generated
@@ -689,25 +677,25 @@ public interface GoalPackage extends EPackage {
 		EClass GOAL_REFERENCE = eINSTANCE.getGoalReference();
 
 		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' container reference feature. <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Source</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference GOAL_REFERENCE__SOURCE = eINSTANCE.getGoalReference_Source();
 
 		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference GOAL_REFERENCE__TARGET = eINSTANCE.getGoalReference_Target();
 
 		/**
-		 * The meta object literal for the '<em><b>Weight</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Weight</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute GOAL_REFERENCE__WEIGHT = eINSTANCE.getGoalReference_Weight();
@@ -723,9 +711,8 @@ public interface GoalPackage extends EPackage {
 		EEnum GOAL_TYPE = eINSTANCE.getGoalType();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.urml.goal.GoalReferenceType
-		 * <em>Reference Type</em>}' enum. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.model.urml.goal.GoalReferenceType <em>Reference Type</em>}' enum.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.model.urml.goal.GoalReferenceType
 		 * @see org.unicase.model.urml.goal.impl.GoalPackageImpl#getGoalReferenceType()
 		 * @generated

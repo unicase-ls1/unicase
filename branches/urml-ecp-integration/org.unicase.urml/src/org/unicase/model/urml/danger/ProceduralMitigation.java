@@ -6,26 +6,27 @@ package org.unicase.model.urml.danger;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Procedural Mitigation</b></em>'. <!--
  * end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.urml.danger.ProceduralMitigation#getMitigationProcedure <em>Mitigation Procedure</em>}</li>
+ *   <li>{@link org.unicase.model.urml.danger.ProceduralMitigation#getMitigationProcedure <em>Mitigation Procedure</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.model.urml.danger.DangerPackage#getProceduralMitigation()
  * @model
  * @generated
  */
 public interface ProceduralMitigation extends Mitigation {
 	/**
-	 * Returns the value of the '<em><b>Mitigation Procedure</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Mitigation Procedure</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Mitigation Procedure</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Mitigation Procedure</em>' attribute.
 	 * @see #setMitigationProcedure(String)
 	 * @see org.unicase.model.urml.danger.DangerPackage#getProceduralMitigation_MitigationProcedure()
@@ -35,9 +36,8 @@ public interface ProceduralMitigation extends Mitigation {
 	String getMitigationProcedure();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.urml.danger.ProceduralMitigation#getMitigationProcedure
-	 * <em>Mitigation Procedure</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.urml.danger.ProceduralMitigation#getMitigationProcedure <em>Mitigation Procedure</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Mitigation Procedure</em>' attribute.
 	 * @see #getMitigationProcedure()
 	 * @generated

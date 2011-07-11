@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.unicase.urml/src"
     modelPluginID="org.unicase.urml" modelName="Urml" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore"
-    containmentProxies="true" complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.unicase.diagram/model/diagram.genmodel#//diagram platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.genmodel#//esmodel platform:/plugin/org.unicase.metamodel/model/metamodel.genmodel#//metamodel platform:/plugin/org.unicase.model/model/model.genmodel#//model platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation">
+    containmentProxies="true" complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.unicase.diagram/model/diagram.genmodel#//diagram platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.unicase.model/model/model.genmodel#//model platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.genmodel#//model platform:/plugin/org.eclipse.emf.emfstore.server.model/model/server.genmodel#//model">
   <foreignModel>urml.ecore</foreignModel>
   <genPackages prefix="Urml" basePackage="org.unicase.model" resource="XML" disposableProviderFactory="true"
       ecorePackage="urml.ecore#/">

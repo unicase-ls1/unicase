@@ -21,17 +21,17 @@ import org.unicase.model.urml.usecase.UsecasePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.urml.usecase.impl.ActorImpl#getUseCases <em>Use Cases</em>}</li>
+ *   <li>{@link org.unicase.model.urml.usecase.impl.ActorImpl#getUseCases <em>Use Cases</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ActorImpl extends AssetImpl implements Actor {
 	/**
-	 * The cached value of the '{@link #getUseCases() <em>Use Cases</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getUseCases() <em>Use Cases</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getUseCases()
 	 * @generated
 	 * @ordered
@@ -40,7 +40,6 @@ public class ActorImpl extends AssetImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ActorImpl() {
@@ -49,7 +48,6 @@ public class ActorImpl extends AssetImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,49 +57,50 @@ public class ActorImpl extends AssetImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getUseCases() {
 		if (useCases == null) {
-			useCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(UseCase.class, this,
-				UsecasePackage.ACTOR__USE_CASES, UsecasePackage.USE_CASE__ACTORS);
+			useCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(
+					UseCase.class, this, UsecasePackage.ACTOR__USE_CASES,
+					UsecasePackage.USE_CASE__ACTORS);
 		}
 		return useCases;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UsecasePackage.ACTOR__USE_CASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUseCases()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUseCases())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UsecasePackage.ACTOR__USE_CASES:
-			return ((InternalEList<?>) getUseCases()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getUseCases()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,7 +114,6 @@ public class ActorImpl extends AssetImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -132,7 +130,6 @@ public class ActorImpl extends AssetImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -147,7 +144,6 @@ public class ActorImpl extends AssetImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -157,6 +153,12 @@ public class ActorImpl extends AssetImpl implements Actor {
 			return useCases != null && !useCases.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return getDescription();
 	}
 
 } // ActorImpl

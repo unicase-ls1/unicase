@@ -26,18 +26,16 @@ import org.unicase.model.urml.requirement.RequirementPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.urml.requirement.impl.NonFunctionalRequirementImpl#getConstrainedFeatures <em>
- * Constrained Features</em>}</li>
- * <li>{@link org.unicase.model.urml.requirement.impl.NonFunctionalRequirementImpl#getSubNonFunctionalRequirements <em>
- * Sub Non Functional Requirements</em>}</li>
- * <li>{@link org.unicase.model.urml.requirement.impl.NonFunctionalRequirementImpl#getParentNonFunctionalRequirement
- * <em>Parent Non Functional Requirement</em>}</li>
+ *   <li>{@link org.unicase.model.urml.requirement.impl.NonFunctionalRequirementImpl#getConstrainedFeatures <em>Constrained Features</em>}</li>
+ *   <li>{@link org.unicase.model.urml.requirement.impl.NonFunctionalRequirementImpl#getSubNonFunctionalRequirements <em>Sub Non Functional Requirements</em>}</li>
+ *   <li>{@link org.unicase.model.urml.requirement.impl.NonFunctionalRequirementImpl#getParentNonFunctionalRequirement <em>Parent Non Functional Requirement</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class NonFunctionalRequirementImpl extends RequirementImpl implements NonFunctionalRequirement {
+public class NonFunctionalRequirementImpl extends RequirementImpl implements
+		NonFunctionalRequirement {
 	/**
 	 * The cached value of the '{@link #getConstrainedFeatures() <em>Constrained Features</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -49,9 +47,8 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 	protected EList<AbstractFeature> constrainedFeatures;
 
 	/**
-	 * The cached value of the '{@link #getSubNonFunctionalRequirements() <em>Sub Non Functional Requirements</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getSubNonFunctionalRequirements() <em>Sub Non Functional Requirements</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSubNonFunctionalRequirements()
 	 * @generated
 	 * @ordered
@@ -60,7 +57,6 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NonFunctionalRequirementImpl() {
@@ -69,7 +65,6 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -79,36 +74,36 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractFeature> getConstrainedFeatures() {
 		if (constrainedFeatures == null) {
 			constrainedFeatures = new EObjectWithInverseResolvingEList.ManyInverse<AbstractFeature>(
-				AbstractFeature.class, this, RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES,
-				FeaturePackage.ABSTRACT_FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS);
+					AbstractFeature.class,
+					this,
+					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES,
+					FeaturePackage.ABSTRACT_FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS);
 		}
 		return constrainedFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<NonFunctionalRequirement> getSubNonFunctionalRequirements() {
 		if (subNonFunctionalRequirements == null) {
 			subNonFunctionalRequirements = new EObjectContainmentWithInverseEList.Resolving<NonFunctionalRequirement>(
-				NonFunctionalRequirement.class, this,
-				RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SUB_NON_FUNCTIONAL_REQUIREMENTS,
-				RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__PARENT_NON_FUNCTIONAL_REQUIREMENT);
+					NonFunctionalRequirement.class,
+					this,
+					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SUB_NON_FUNCTIONAL_REQUIREMENTS,
+					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__PARENT_NON_FUNCTIONAL_REQUIREMENT);
 		}
 		return subNonFunctionalRequirements;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NonFunctionalRequirement getParentNonFunctionalRequirement() {
@@ -119,7 +114,6 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NonFunctionalRequirement basicGetParentNonFunctionalRequirement() {
@@ -130,77 +124,89 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetParentNonFunctionalRequirement(
-		NonFunctionalRequirement newParentNonFunctionalRequirement, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newParentNonFunctionalRequirement,
-			RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__PARENT_NON_FUNCTIONAL_REQUIREMENT, msgs);
+			NonFunctionalRequirement newParentNonFunctionalRequirement,
+			NotificationChain msgs) {
+		msgs = eBasicSetContainer(
+				(InternalEObject) newParentNonFunctionalRequirement,
+				RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__PARENT_NON_FUNCTIONAL_REQUIREMENT,
+				msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public void setParentNonFunctionalRequirement(NonFunctionalRequirement newParentNonFunctionalRequirement) {
+	public void setParentNonFunctionalRequirement(
+			NonFunctionalRequirement newParentNonFunctionalRequirement) {
 		if (newParentNonFunctionalRequirement != eInternalContainer()
-			|| (eContainerFeatureID() != RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__PARENT_NON_FUNCTIONAL_REQUIREMENT && newParentNonFunctionalRequirement != null)) {
+				|| (eContainerFeatureID() != RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__PARENT_NON_FUNCTIONAL_REQUIREMENT && newParentNonFunctionalRequirement != null)) {
 			if (EcoreUtil.isAncestor(this, newParentNonFunctionalRequirement))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newParentNonFunctionalRequirement != null)
-				msgs = ((InternalEObject) newParentNonFunctionalRequirement).eInverseAdd(this,
-					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SUB_NON_FUNCTIONAL_REQUIREMENTS,
-					NonFunctionalRequirement.class, msgs);
-			msgs = basicSetParentNonFunctionalRequirement(newParentNonFunctionalRequirement, msgs);
+				msgs = ((InternalEObject) newParentNonFunctionalRequirement)
+						.eInverseAdd(
+								this,
+								RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SUB_NON_FUNCTIONAL_REQUIREMENTS,
+								NonFunctionalRequirement.class, msgs);
+			msgs = basicSetParentNonFunctionalRequirement(
+					newParentNonFunctionalRequirement, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__PARENT_NON_FUNCTIONAL_REQUIREMENT,
-				newParentNonFunctionalRequirement, newParentNonFunctionalRequirement));
+			eNotify(new ENotificationImpl(
+					this,
+					Notification.SET,
+					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__PARENT_NON_FUNCTIONAL_REQUIREMENT,
+					newParentNonFunctionalRequirement,
+					newParentNonFunctionalRequirement));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConstrainedFeatures()).basicAdd(otherEnd,
-				msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConstrainedFeatures())
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SUB_NON_FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSubNonFunctionalRequirements()).basicAdd(
-				otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSubNonFunctionalRequirements())
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__PARENT_NON_FUNCTIONAL_REQUIREMENT:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetParentNonFunctionalRequirement((NonFunctionalRequirement) otherEnd, msgs);
+			return basicSetParentNonFunctionalRequirement(
+					(NonFunctionalRequirement) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES:
-			return ((InternalEList<?>) getConstrainedFeatures()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getConstrainedFeatures()).basicRemove(
+					otherEnd, msgs);
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SUB_NON_FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<?>) getSubNonFunctionalRequirements()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getSubNonFunctionalRequirements())
+					.basicRemove(otherEnd, msgs);
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__PARENT_NON_FUNCTIONAL_REQUIREMENT:
 			return basicSetParentNonFunctionalRequirement(null, msgs);
 		}
@@ -209,23 +215,24 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__PARENT_NON_FUNCTIONAL_REQUIREMENT:
-			return eInternalContainer().eInverseRemove(this,
-				RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SUB_NON_FUNCTIONAL_REQUIREMENTS,
-				NonFunctionalRequirement.class, msgs);
+			return eInternalContainer()
+					.eInverseRemove(
+							this,
+							RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SUB_NON_FUNCTIONAL_REQUIREMENTS,
+							NonFunctionalRequirement.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -245,7 +252,6 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -254,11 +260,13 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 		switch (featureID) {
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES:
 			getConstrainedFeatures().clear();
-			getConstrainedFeatures().addAll((Collection<? extends AbstractFeature>) newValue);
+			getConstrainedFeatures().addAll(
+					(Collection<? extends AbstractFeature>) newValue);
 			return;
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SUB_NON_FUNCTIONAL_REQUIREMENTS:
 			getSubNonFunctionalRequirements().clear();
-			getSubNonFunctionalRequirements().addAll((Collection<? extends NonFunctionalRequirement>) newValue);
+			getSubNonFunctionalRequirements().addAll(
+					(Collection<? extends NonFunctionalRequirement>) newValue);
 			return;
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__PARENT_NON_FUNCTIONAL_REQUIREMENT:
 			setParentNonFunctionalRequirement((NonFunctionalRequirement) newValue);
@@ -269,7 +277,6 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -290,20 +297,27 @@ public class NonFunctionalRequirementImpl extends RequirementImpl implements Non
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES:
-			return constrainedFeatures != null && !constrainedFeatures.isEmpty();
+			return constrainedFeatures != null
+					&& !constrainedFeatures.isEmpty();
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SUB_NON_FUNCTIONAL_REQUIREMENTS:
-			return subNonFunctionalRequirements != null && !subNonFunctionalRequirements.isEmpty();
+			return subNonFunctionalRequirements != null
+					&& !subNonFunctionalRequirements.isEmpty();
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__PARENT_NON_FUNCTIONAL_REQUIREMENT:
 			return basicGetParentNonFunctionalRequirement() != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return getDescription();
 	}
 
 } // NonFunctionalRequirementImpl
