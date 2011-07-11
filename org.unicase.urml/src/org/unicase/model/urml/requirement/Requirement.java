@@ -9,14 +9,15 @@ import org.unicase.model.urml.service.Service;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Requirement</b></em>'. <!-- end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.urml.requirement.Requirement#getImplementingServices <em>Implementing Services</em>}</li>
- * <li>{@link org.unicase.model.urml.requirement.Requirement#isTerminal <em>Terminal</em>}</li>
+ *   <li>{@link org.unicase.model.urml.requirement.Requirement#getImplementingServices <em>Implementing Services</em>}</li>
+ *   <li>{@link org.unicase.model.urml.requirement.Requirement#isTerminal <em>Terminal</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.model.urml.requirement.RequirementPackage#getRequirement()
  * @model abstract="true"
  * @generated
@@ -42,13 +43,13 @@ public interface Requirement extends Mitigation {
 	EList<Service> getImplementingServices();
 
 	/**
-	 * Returns the value of the '<em><b>Terminal</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Terminal</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Terminal</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Terminal</em>' attribute.
 	 * @see #setTerminal(boolean)
 	 * @see org.unicase.model.urml.requirement.RequirementPackage#getRequirement_Terminal()
@@ -58,9 +59,8 @@ public interface Requirement extends Mitigation {
 	boolean isTerminal();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.urml.requirement.Requirement#isTerminal <em>Terminal</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.urml.requirement.Requirement#isTerminal <em>Terminal</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Terminal</em>' attribute.
 	 * @see #isTerminal()
 	 * @generated

@@ -56,11 +56,12 @@ import org.unicase.model.urml.usecase.UsecasePackage;
  * 
  * @generated
  */
-public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implements AbstractFeature {
+public abstract class AbstractFeatureImpl extends UrmlModelElementImpl
+		implements AbstractFeature {
 	/**
-	 * The cached value of the '{@link #getGoals() <em>Goals</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getGoals() <em>Goals</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getGoals()
 	 * @generated
 	 * @ordered
@@ -68,9 +69,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	protected EList<Goal> goals;
 
 	/**
-	 * The cached value of the '{@link #getDetailingFunctionalRequirements() <em>Detailing Functional Requirements</em>}
-	 * ' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getDetailingFunctionalRequirements() <em>Detailing Functional Requirements</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDetailingFunctionalRequirements()
 	 * @generated
 	 * @ordered
@@ -78,9 +78,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	protected EList<FunctionalRequirement> detailingFunctionalRequirements;
 
 	/**
-	 * The cached value of the '{@link #getConstrainingNonFunctionalRequirements()
-	 * <em>Constraining Non Functional Requirements</em>}' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getConstrainingNonFunctionalRequirements() <em>Constraining Non Functional Requirements</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getConstrainingNonFunctionalRequirements()
 	 * @generated
 	 * @ordered
@@ -148,9 +147,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 	protected EList<AbstractFeature> requiredFeatures;
 
 	/**
-	 * The cached value of the '{@link #getVariationPointInstances() <em>Variation Point Instances</em>}' reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getVariationPointInstances() <em>Variation Point Instances</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getVariationPointInstances()
 	 * @generated
 	 * @ordered
@@ -159,7 +157,6 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AbstractFeatureImpl() {
@@ -168,7 +165,6 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -178,63 +174,63 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Goal> getGoals() {
 		if (goals == null) {
-			goals = new EObjectWithInverseResolvingEList.ManyInverse<Goal>(Goal.class, this,
-				FeaturePackage.ABSTRACT_FEATURE__GOALS, GoalPackage.GOAL__REALIZED_FEATURES);
+			goals = new EObjectWithInverseResolvingEList.ManyInverse<Goal>(
+					Goal.class, this, FeaturePackage.ABSTRACT_FEATURE__GOALS,
+					GoalPackage.GOAL__REALIZED_FEATURES);
 		}
 		return goals;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<FunctionalRequirement> getDetailingFunctionalRequirements() {
 		if (detailingFunctionalRequirements == null) {
 			detailingFunctionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<FunctionalRequirement>(
-				FunctionalRequirement.class, this, FeaturePackage.ABSTRACT_FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS,
-				RequirementPackage.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES);
+					FunctionalRequirement.class,
+					this,
+					FeaturePackage.ABSTRACT_FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS,
+					RequirementPackage.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES);
 		}
 		return detailingFunctionalRequirements;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<NonFunctionalRequirement> getConstrainingNonFunctionalRequirements() {
 		if (constrainingNonFunctionalRequirements == null) {
 			constrainingNonFunctionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<NonFunctionalRequirement>(
-				NonFunctionalRequirement.class, this,
-				FeaturePackage.ABSTRACT_FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS,
-				RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES);
+					NonFunctionalRequirement.class,
+					this,
+					FeaturePackage.ABSTRACT_FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS,
+					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES);
 		}
 		return constrainingNonFunctionalRequirements;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<SolutionDomainUseCase> getDetailingUseCases() {
 		if (detailingUseCases == null) {
 			detailingUseCases = new EObjectWithInverseResolvingEList<SolutionDomainUseCase>(
-				SolutionDomainUseCase.class, this, FeaturePackage.ABSTRACT_FEATURE__DETAILING_USE_CASES,
-				UsecasePackage.SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE);
+					SolutionDomainUseCase.class, this,
+					FeaturePackage.ABSTRACT_FEATURE__DETAILING_USE_CASES,
+					UsecasePackage.SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE);
 		}
 		return detailingUseCases;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AbstractFeature getParentFeature() {
@@ -245,7 +241,6 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AbstractFeature basicGetParentFeature() {
@@ -256,111 +251,113 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetParentFeature(AbstractFeature newParentFeature, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newParentFeature, FeaturePackage.ABSTRACT_FEATURE__PARENT_FEATURE,
-			msgs);
+	public NotificationChain basicSetParentFeature(
+			AbstractFeature newParentFeature, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newParentFeature,
+				FeaturePackage.ABSTRACT_FEATURE__PARENT_FEATURE, msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setParentFeature(AbstractFeature newParentFeature) {
 		if (newParentFeature != eInternalContainer()
-			|| (eContainerFeatureID() != FeaturePackage.ABSTRACT_FEATURE__PARENT_FEATURE && newParentFeature != null)) {
+				|| (eContainerFeatureID() != FeaturePackage.ABSTRACT_FEATURE__PARENT_FEATURE && newParentFeature != null)) {
 			if (EcoreUtil.isAncestor(this, newParentFeature))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newParentFeature != null)
 				msgs = ((InternalEObject) newParentFeature).eInverseAdd(this,
-					FeaturePackage.ABSTRACT_FEATURE__SUB_FEATURES, AbstractFeature.class, msgs);
+						FeaturePackage.ABSTRACT_FEATURE__SUB_FEATURES,
+						AbstractFeature.class, msgs);
 			msgs = basicSetParentFeature(newParentFeature, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FeaturePackage.ABSTRACT_FEATURE__PARENT_FEATURE,
-				newParentFeature, newParentFeature));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					FeaturePackage.ABSTRACT_FEATURE__PARENT_FEATURE,
+					newParentFeature, newParentFeature));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractFeature> getSubFeatures() {
 		if (subFeatures == null) {
-			subFeatures = new EObjectContainmentWithInverseEList.Resolving<AbstractFeature>(AbstractFeature.class,
-				this, FeaturePackage.ABSTRACT_FEATURE__SUB_FEATURES, FeaturePackage.ABSTRACT_FEATURE__PARENT_FEATURE);
+			subFeatures = new EObjectContainmentWithInverseEList.Resolving<AbstractFeature>(
+					AbstractFeature.class, this,
+					FeaturePackage.ABSTRACT_FEATURE__SUB_FEATURES,
+					FeaturePackage.ABSTRACT_FEATURE__PARENT_FEATURE);
 		}
 		return subFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractFeature> getExcludingFeatures() {
 		if (excludingFeatures == null) {
 			excludingFeatures = new EObjectWithInverseResolvingEList.ManyInverse<AbstractFeature>(
-				AbstractFeature.class, this, FeaturePackage.ABSTRACT_FEATURE__EXCLUDING_FEATURES,
-				FeaturePackage.ABSTRACT_FEATURE__EXCLUDED_FEATURES);
+					AbstractFeature.class, this,
+					FeaturePackage.ABSTRACT_FEATURE__EXCLUDING_FEATURES,
+					FeaturePackage.ABSTRACT_FEATURE__EXCLUDED_FEATURES);
 		}
 		return excludingFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractFeature> getExcludedFeatures() {
 		if (excludedFeatures == null) {
-			excludedFeatures = new EObjectWithInverseResolvingEList.ManyInverse<AbstractFeature>(AbstractFeature.class,
-				this, FeaturePackage.ABSTRACT_FEATURE__EXCLUDED_FEATURES,
-				FeaturePackage.ABSTRACT_FEATURE__EXCLUDING_FEATURES);
+			excludedFeatures = new EObjectWithInverseResolvingEList.ManyInverse<AbstractFeature>(
+					AbstractFeature.class, this,
+					FeaturePackage.ABSTRACT_FEATURE__EXCLUDED_FEATURES,
+					FeaturePackage.ABSTRACT_FEATURE__EXCLUDING_FEATURES);
 		}
 		return excludedFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractFeature> getRequiringFeatures() {
 		if (requiringFeatures == null) {
 			requiringFeatures = new EObjectWithInverseResolvingEList.ManyInverse<AbstractFeature>(
-				AbstractFeature.class, this, FeaturePackage.ABSTRACT_FEATURE__REQUIRING_FEATURES,
-				FeaturePackage.ABSTRACT_FEATURE__REQUIRED_FEATURES);
+					AbstractFeature.class, this,
+					FeaturePackage.ABSTRACT_FEATURE__REQUIRING_FEATURES,
+					FeaturePackage.ABSTRACT_FEATURE__REQUIRED_FEATURES);
 		}
 		return requiringFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractFeature> getRequiredFeatures() {
 		if (requiredFeatures == null) {
-			requiredFeatures = new EObjectWithInverseResolvingEList.ManyInverse<AbstractFeature>(AbstractFeature.class,
-				this, FeaturePackage.ABSTRACT_FEATURE__REQUIRED_FEATURES,
-				FeaturePackage.ABSTRACT_FEATURE__REQUIRING_FEATURES);
+			requiredFeatures = new EObjectWithInverseResolvingEList.ManyInverse<AbstractFeature>(
+					AbstractFeature.class, this,
+					FeaturePackage.ABSTRACT_FEATURE__REQUIRED_FEATURES,
+					FeaturePackage.ABSTRACT_FEATURE__REQUIRING_FEATURES);
 		}
 		return requiredFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public VariationPoint getOptionalParentVariationPoint() {
@@ -371,7 +368,6 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public VariationPoint basicGetOptionalParentVariationPoint() {
@@ -382,159 +378,184 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetOptionalParentVariationPoint(VariationPoint newOptionalParentVariationPoint,
-		NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newOptionalParentVariationPoint,
-			FeaturePackage.ABSTRACT_FEATURE__OPTIONAL_PARENT_VARIATION_POINT, msgs);
+	public NotificationChain basicSetOptionalParentVariationPoint(
+			VariationPoint newOptionalParentVariationPoint,
+			NotificationChain msgs) {
+		msgs = eBasicSetContainer(
+				(InternalEObject) newOptionalParentVariationPoint,
+				FeaturePackage.ABSTRACT_FEATURE__OPTIONAL_PARENT_VARIATION_POINT,
+				msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public void setOptionalParentVariationPoint(VariationPoint newOptionalParentVariationPoint) {
+	public void setOptionalParentVariationPoint(
+			VariationPoint newOptionalParentVariationPoint) {
 		if (newOptionalParentVariationPoint != eInternalContainer()
-			|| (eContainerFeatureID() != FeaturePackage.ABSTRACT_FEATURE__OPTIONAL_PARENT_VARIATION_POINT && newOptionalParentVariationPoint != null)) {
+				|| (eContainerFeatureID() != FeaturePackage.ABSTRACT_FEATURE__OPTIONAL_PARENT_VARIATION_POINT && newOptionalParentVariationPoint != null)) {
 			if (EcoreUtil.isAncestor(this, newOptionalParentVariationPoint))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOptionalParentVariationPoint != null)
-				msgs = ((InternalEObject) newOptionalParentVariationPoint).eInverseAdd(this,
-					FeaturePackage.VARIATION_POINT__OPTIONAL_SUB_FEATURES, VariationPoint.class, msgs);
-			msgs = basicSetOptionalParentVariationPoint(newOptionalParentVariationPoint, msgs);
+				msgs = ((InternalEObject) newOptionalParentVariationPoint)
+						.eInverseAdd(
+								this,
+								FeaturePackage.VARIATION_POINT__OPTIONAL_SUB_FEATURES,
+								VariationPoint.class, msgs);
+			msgs = basicSetOptionalParentVariationPoint(
+					newOptionalParentVariationPoint, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				FeaturePackage.ABSTRACT_FEATURE__OPTIONAL_PARENT_VARIATION_POINT, newOptionalParentVariationPoint,
-				newOptionalParentVariationPoint));
+			eNotify(new ENotificationImpl(
+					this,
+					Notification.SET,
+					FeaturePackage.ABSTRACT_FEATURE__OPTIONAL_PARENT_VARIATION_POINT,
+					newOptionalParentVariationPoint,
+					newOptionalParentVariationPoint));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<VariationPointInstance> getVariationPointInstances() {
 		if (variationPointInstances == null) {
 			variationPointInstances = new EObjectWithInverseResolvingEList.ManyInverse<VariationPointInstance>(
-				VariationPointInstance.class, this, FeaturePackage.ABSTRACT_FEATURE__VARIATION_POINT_INSTANCES,
-				FeaturePackage.VARIATION_POINT_INSTANCE__SELECTED_FEATURES);
+					VariationPointInstance.class, this,
+					FeaturePackage.ABSTRACT_FEATURE__VARIATION_POINT_INSTANCES,
+					FeaturePackage.VARIATION_POINT_INSTANCE__SELECTED_FEATURES);
 		}
 		return variationPointInstances;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case FeaturePackage.ABSTRACT_FEATURE__GOALS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getGoals()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getGoals())
+					.basicAdd(otherEnd, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDetailingFunctionalRequirements()).basicAdd(
-				otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDetailingFunctionalRequirements())
+					.basicAdd(otherEnd, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConstrainingNonFunctionalRequirements())
-				.basicAdd(otherEnd, msgs);
+					.basicAdd(otherEnd, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__DETAILING_USE_CASES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDetailingUseCases())
-				.basicAdd(otherEnd, msgs);
+					.basicAdd(otherEnd, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__PARENT_FEATURE:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetParentFeature((AbstractFeature) otherEnd, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__SUB_FEATURES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSubFeatures()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSubFeatures())
+					.basicAdd(otherEnd, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__EXCLUDING_FEATURES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getExcludingFeatures())
-				.basicAdd(otherEnd, msgs);
+					.basicAdd(otherEnd, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__EXCLUDED_FEATURES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getExcludedFeatures()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getExcludedFeatures())
+					.basicAdd(otherEnd, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__REQUIRING_FEATURES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRequiringFeatures())
-				.basicAdd(otherEnd, msgs);
+					.basicAdd(otherEnd, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__REQUIRED_FEATURES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRequiredFeatures()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRequiredFeatures())
+					.basicAdd(otherEnd, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__OPTIONAL_PARENT_VARIATION_POINT:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetOptionalParentVariationPoint((VariationPoint) otherEnd, msgs);
+			return basicSetOptionalParentVariationPoint(
+					(VariationPoint) otherEnd, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__VARIATION_POINT_INSTANCES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getVariationPointInstances()).basicAdd(
-				otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getVariationPointInstances())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case FeaturePackage.ABSTRACT_FEATURE__GOALS:
 			return ((InternalEList<?>) getGoals()).basicRemove(otherEnd, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<?>) getDetailingFunctionalRequirements()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getDetailingFunctionalRequirements())
+					.basicRemove(otherEnd, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<?>) getConstrainingNonFunctionalRequirements()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getConstrainingNonFunctionalRequirements())
+					.basicRemove(otherEnd, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__DETAILING_USE_CASES:
-			return ((InternalEList<?>) getDetailingUseCases()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getDetailingUseCases()).basicRemove(
+					otherEnd, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__PARENT_FEATURE:
 			return basicSetParentFeature(null, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__SUB_FEATURES:
-			return ((InternalEList<?>) getSubFeatures()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getSubFeatures()).basicRemove(otherEnd,
+					msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__EXCLUDING_FEATURES:
-			return ((InternalEList<?>) getExcludingFeatures()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getExcludingFeatures()).basicRemove(
+					otherEnd, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__EXCLUDED_FEATURES:
-			return ((InternalEList<?>) getExcludedFeatures()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getExcludedFeatures()).basicRemove(
+					otherEnd, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__REQUIRING_FEATURES:
-			return ((InternalEList<?>) getRequiringFeatures()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getRequiringFeatures()).basicRemove(
+					otherEnd, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__REQUIRED_FEATURES:
-			return ((InternalEList<?>) getRequiredFeatures()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getRequiredFeatures()).basicRemove(
+					otherEnd, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__OPTIONAL_PARENT_VARIATION_POINT:
 			return basicSetOptionalParentVariationPoint(null, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__VARIATION_POINT_INSTANCES:
-			return ((InternalEList<?>) getVariationPointInstances()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getVariationPointInstances())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 		case FeaturePackage.ABSTRACT_FEATURE__PARENT_FEATURE:
-			return eInternalContainer().eInverseRemove(this, FeaturePackage.ABSTRACT_FEATURE__SUB_FEATURES,
-				AbstractFeature.class, msgs);
+			return eInternalContainer().eInverseRemove(this,
+					FeaturePackage.ABSTRACT_FEATURE__SUB_FEATURES,
+					AbstractFeature.class, msgs);
 		case FeaturePackage.ABSTRACT_FEATURE__OPTIONAL_PARENT_VARIATION_POINT:
-			return eInternalContainer().eInverseRemove(this, FeaturePackage.VARIATION_POINT__OPTIONAL_SUB_FEATURES,
-				VariationPoint.class, msgs);
+			return eInternalContainer().eInverseRemove(this,
+					FeaturePackage.VARIATION_POINT__OPTIONAL_SUB_FEATURES,
+					VariationPoint.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -574,7 +595,6 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -587,46 +607,54 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 			return;
 		case FeaturePackage.ABSTRACT_FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS:
 			getDetailingFunctionalRequirements().clear();
-			getDetailingFunctionalRequirements().addAll((Collection<? extends FunctionalRequirement>) newValue);
+			getDetailingFunctionalRequirements().addAll(
+					(Collection<? extends FunctionalRequirement>) newValue);
 			return;
 		case FeaturePackage.ABSTRACT_FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS:
 			getConstrainingNonFunctionalRequirements().clear();
-			getConstrainingNonFunctionalRequirements()
-				.addAll((Collection<? extends NonFunctionalRequirement>) newValue);
+			getConstrainingNonFunctionalRequirements().addAll(
+					(Collection<? extends NonFunctionalRequirement>) newValue);
 			return;
 		case FeaturePackage.ABSTRACT_FEATURE__DETAILING_USE_CASES:
 			getDetailingUseCases().clear();
-			getDetailingUseCases().addAll((Collection<? extends SolutionDomainUseCase>) newValue);
+			getDetailingUseCases().addAll(
+					(Collection<? extends SolutionDomainUseCase>) newValue);
 			return;
 		case FeaturePackage.ABSTRACT_FEATURE__PARENT_FEATURE:
 			setParentFeature((AbstractFeature) newValue);
 			return;
 		case FeaturePackage.ABSTRACT_FEATURE__SUB_FEATURES:
 			getSubFeatures().clear();
-			getSubFeatures().addAll((Collection<? extends AbstractFeature>) newValue);
+			getSubFeatures().addAll(
+					(Collection<? extends AbstractFeature>) newValue);
 			return;
 		case FeaturePackage.ABSTRACT_FEATURE__EXCLUDING_FEATURES:
 			getExcludingFeatures().clear();
-			getExcludingFeatures().addAll((Collection<? extends AbstractFeature>) newValue);
+			getExcludingFeatures().addAll(
+					(Collection<? extends AbstractFeature>) newValue);
 			return;
 		case FeaturePackage.ABSTRACT_FEATURE__EXCLUDED_FEATURES:
 			getExcludedFeatures().clear();
-			getExcludedFeatures().addAll((Collection<? extends AbstractFeature>) newValue);
+			getExcludedFeatures().addAll(
+					(Collection<? extends AbstractFeature>) newValue);
 			return;
 		case FeaturePackage.ABSTRACT_FEATURE__REQUIRING_FEATURES:
 			getRequiringFeatures().clear();
-			getRequiringFeatures().addAll((Collection<? extends AbstractFeature>) newValue);
+			getRequiringFeatures().addAll(
+					(Collection<? extends AbstractFeature>) newValue);
 			return;
 		case FeaturePackage.ABSTRACT_FEATURE__REQUIRED_FEATURES:
 			getRequiredFeatures().clear();
-			getRequiredFeatures().addAll((Collection<? extends AbstractFeature>) newValue);
+			getRequiredFeatures().addAll(
+					(Collection<? extends AbstractFeature>) newValue);
 			return;
 		case FeaturePackage.ABSTRACT_FEATURE__OPTIONAL_PARENT_VARIATION_POINT:
 			setOptionalParentVariationPoint((VariationPoint) newValue);
 			return;
 		case FeaturePackage.ABSTRACT_FEATURE__VARIATION_POINT_INSTANCES:
 			getVariationPointInstances().clear();
-			getVariationPointInstances().addAll((Collection<? extends VariationPointInstance>) newValue);
+			getVariationPointInstances().addAll(
+					(Collection<? extends VariationPointInstance>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -634,7 +662,6 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -682,7 +709,6 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -691,9 +717,11 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 		case FeaturePackage.ABSTRACT_FEATURE__GOALS:
 			return goals != null && !goals.isEmpty();
 		case FeaturePackage.ABSTRACT_FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS:
-			return detailingFunctionalRequirements != null && !detailingFunctionalRequirements.isEmpty();
+			return detailingFunctionalRequirements != null
+					&& !detailingFunctionalRequirements.isEmpty();
 		case FeaturePackage.ABSTRACT_FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS:
-			return constrainingNonFunctionalRequirements != null && !constrainingNonFunctionalRequirements.isEmpty();
+			return constrainingNonFunctionalRequirements != null
+					&& !constrainingNonFunctionalRequirements.isEmpty();
 		case FeaturePackage.ABSTRACT_FEATURE__DETAILING_USE_CASES:
 			return detailingUseCases != null && !detailingUseCases.isEmpty();
 		case FeaturePackage.ABSTRACT_FEATURE__PARENT_FEATURE:
@@ -711,7 +739,8 @@ public abstract class AbstractFeatureImpl extends UrmlModelElementImpl implement
 		case FeaturePackage.ABSTRACT_FEATURE__OPTIONAL_PARENT_VARIATION_POINT:
 			return basicGetOptionalParentVariationPoint() != null;
 		case FeaturePackage.ABSTRACT_FEATURE__VARIATION_POINT_INSTANCES:
-			return variationPointInstances != null && !variationPointInstances.isEmpty();
+			return variationPointInstances != null
+					&& !variationPointInstances.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

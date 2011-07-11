@@ -23,18 +23,19 @@ import org.unicase.model.urml.usecase.UsecasePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.urml.usecase.impl.UseCaseImpl#getSteps <em>Steps</em>}</li>
- * <li>{@link org.unicase.model.urml.usecase.impl.UseCaseImpl#getActors <em>Actors</em>}</li>
+ *   <li>{@link org.unicase.model.urml.usecase.impl.UseCaseImpl#getSteps <em>Steps</em>}</li>
+ *   <li>{@link org.unicase.model.urml.usecase.impl.UseCaseImpl#getActors <em>Actors</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCase {
+public abstract class UseCaseImpl extends UrmlModelElementImpl implements
+		UseCase {
 	/**
-	 * The cached value of the '{@link #getSteps() <em>Steps</em>}' containment reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSteps() <em>Steps</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSteps()
 	 * @generated
 	 * @ordered
@@ -42,9 +43,9 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 	protected EList<Step> steps;
 
 	/**
-	 * The cached value of the '{@link #getActors() <em>Actors</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getActors() <em>Actors</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getActors()
 	 * @generated
 	 * @ordered
@@ -53,7 +54,6 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UseCaseImpl() {
@@ -62,7 +62,6 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -72,51 +71,52 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Step> getSteps() {
 		if (steps == null) {
-			steps = new EObjectContainmentEList.Resolving<Step>(Step.class, this, UsecasePackage.USE_CASE__STEPS);
+			steps = new EObjectContainmentEList.Resolving<Step>(Step.class,
+					this, UsecasePackage.USE_CASE__STEPS);
 		}
 		return steps;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Actor> getActors() {
 		if (actors == null) {
-			actors = new EObjectWithInverseResolvingEList.ManyInverse<Actor>(Actor.class, this,
-				UsecasePackage.USE_CASE__ACTORS, UsecasePackage.ACTOR__USE_CASES);
+			actors = new EObjectWithInverseResolvingEList.ManyInverse<Actor>(
+					Actor.class, this, UsecasePackage.USE_CASE__ACTORS,
+					UsecasePackage.ACTOR__USE_CASES);
 		}
 		return actors;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UsecasePackage.USE_CASE__ACTORS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getActors()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getActors())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UsecasePackage.USE_CASE__STEPS:
 			return ((InternalEList<?>) getSteps()).basicRemove(otherEnd, msgs);
@@ -128,7 +128,6 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -144,7 +143,6 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -165,7 +163,6 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -183,7 +180,6 @@ public abstract class UseCaseImpl extends UrmlModelElementImpl implements UseCas
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

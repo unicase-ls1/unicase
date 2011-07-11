@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.unicase.ecp.model.workSpaceModel.util.AssociationClassHelper;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.util.AssociationClassHelper;
 import org.unicase.model.urml.goal.Goal;
 import org.unicase.model.urml.goal.GoalPackage;
 import org.unicase.model.urml.goal.GoalReference;
@@ -25,19 +25,20 @@ import org.unicase.model.urml.impl.UrmlModelElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.urml.goal.impl.GoalReferenceImpl#getSource <em>Source</em>}</li>
- * <li>{@link org.unicase.model.urml.goal.impl.GoalReferenceImpl#getTarget <em>Target</em>}</li>
- * <li>{@link org.unicase.model.urml.goal.impl.GoalReferenceImpl#getWeight <em>Weight</em>}</li>
+ *   <li>{@link org.unicase.model.urml.goal.impl.GoalReferenceImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.unicase.model.urml.goal.impl.GoalReferenceImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.unicase.model.urml.goal.impl.GoalReferenceImpl#getWeight <em>Weight</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalReference {
+public class GoalReferenceImpl extends UrmlModelElementImpl implements
+		GoalReference {
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -45,9 +46,9 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 	protected Goal target;
 
 	/**
-	 * The default value of the '{@link #getWeight() <em>Weight</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getWeight() <em>Weight</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getWeight()
 	 * @generated
 	 * @ordered
@@ -55,9 +56,9 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 	protected static final GoalReferenceType WEIGHT_EDEFAULT = GoalReferenceType.PLUS_PLUS;
 
 	/**
-	 * The cached value of the '{@link #getWeight() <em>Weight</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getWeight() <em>Weight</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getWeight()
 	 * @generated
 	 * @ordered
@@ -66,7 +67,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected GoalReferenceImpl() {
@@ -75,7 +75,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -85,7 +84,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Goal getSource() {
@@ -96,7 +94,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Goal basicGetSource() {
@@ -107,41 +104,41 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetSource(Goal newSource, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newSource, GoalPackage.GOAL_REFERENCE__SOURCE, msgs);
+	public NotificationChain basicSetSource(Goal newSource,
+			NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newSource,
+				GoalPackage.GOAL_REFERENCE__SOURCE, msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSource(Goal newSource) {
 		if (newSource != eInternalContainer()
-			|| (eContainerFeatureID() != GoalPackage.GOAL_REFERENCE__SOURCE && newSource != null)) {
+				|| (eContainerFeatureID() != GoalPackage.GOAL_REFERENCE__SOURCE && newSource != null)) {
 			if (EcoreUtil.isAncestor(this, newSource))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newSource != null)
-				msgs = ((InternalEObject) newSource).eInverseAdd(this, GoalPackage.GOAL__INFLUENCED_GOALS, Goal.class,
-					msgs);
+				msgs = ((InternalEObject) newSource).eInverseAdd(this,
+						GoalPackage.GOAL__INFLUENCED_GOALS, Goal.class, msgs);
 			msgs = basicSetSource(newSource, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GoalPackage.GOAL_REFERENCE__SOURCE, newSource,
-				newSource));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					GoalPackage.GOAL_REFERENCE__SOURCE, newSource, newSource));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Goal getTarget() {
@@ -150,8 +147,9 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 			target = (Goal) eResolveProxy(oldTarget);
 			if (target != oldTarget) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GoalPackage.GOAL_REFERENCE__TARGET,
-						oldTarget, target));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							GoalPackage.GOAL_REFERENCE__TARGET, oldTarget,
+							target));
 			}
 		}
 		return target;
@@ -159,7 +157,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Goal basicGetTarget() {
@@ -168,15 +165,16 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(Goal newTarget, NotificationChain msgs) {
+	public NotificationChain basicSetTarget(Goal newTarget,
+			NotificationChain msgs) {
 		Goal oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				GoalPackage.GOAL_REFERENCE__TARGET, oldTarget, newTarget);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, GoalPackage.GOAL_REFERENCE__TARGET,
+					oldTarget, newTarget);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -187,29 +185,27 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTarget(Goal newTarget) {
 		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
-				msgs = ((InternalEObject) target).eInverseRemove(this, GoalPackage.GOAL__INFLUENCING_GOALS, Goal.class,
-					msgs);
+				msgs = ((InternalEObject) target).eInverseRemove(this,
+						GoalPackage.GOAL__INFLUENCING_GOALS, Goal.class, msgs);
 			if (newTarget != null)
-				msgs = ((InternalEObject) newTarget).eInverseAdd(this, GoalPackage.GOAL__INFLUENCING_GOALS, Goal.class,
-					msgs);
+				msgs = ((InternalEObject) newTarget).eInverseAdd(this,
+						GoalPackage.GOAL__INFLUENCING_GOALS, Goal.class, msgs);
 			msgs = basicSetTarget(newTarget, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GoalPackage.GOAL_REFERENCE__TARGET, newTarget,
-				newTarget));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					GoalPackage.GOAL_REFERENCE__TARGET, newTarget, newTarget));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public GoalReferenceType getWeight() {
@@ -218,23 +214,23 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setWeight(GoalReferenceType newWeight) {
 		GoalReferenceType oldWeight = weight;
 		weight = newWeight == null ? WEIGHT_EDEFAULT : newWeight;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GoalPackage.GOAL_REFERENCE__WEIGHT, oldWeight, weight));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					GoalPackage.GOAL_REFERENCE__WEIGHT, oldWeight, weight));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case GoalPackage.GOAL_REFERENCE__SOURCE:
 			if (eInternalContainer() != null)
@@ -242,8 +238,8 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 			return basicSetSource((Goal) otherEnd, msgs);
 		case GoalPackage.GOAL_REFERENCE__TARGET:
 			if (target != null)
-				msgs = ((InternalEObject) target).eInverseRemove(this, GoalPackage.GOAL__INFLUENCING_GOALS, Goal.class,
-					msgs);
+				msgs = ((InternalEObject) target).eInverseRemove(this,
+						GoalPackage.GOAL__INFLUENCING_GOALS, Goal.class, msgs);
 			return basicSetTarget((Goal) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -251,11 +247,11 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case GoalPackage.GOAL_REFERENCE__SOURCE:
 			return basicSetSource(null, msgs);
@@ -267,21 +263,21 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 		case GoalPackage.GOAL_REFERENCE__SOURCE:
-			return eInternalContainer().eInverseRemove(this, GoalPackage.GOAL__INFLUENCED_GOALS, Goal.class, msgs);
+			return eInternalContainer().eInverseRemove(this,
+					GoalPackage.GOAL__INFLUENCED_GOALS, Goal.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -303,7 +299,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -324,7 +319,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -345,7 +339,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -363,7 +356,6 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -379,8 +371,9 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 	}
 
 	public List<EStructuralFeature> getAssociationFeatures() {
-		return AssociationClassHelper.getAssociationFeatures(GoalPackage.eINSTANCE.getGoalReference(),
-			getSourceFeature(), getTargetFeature());
+		return AssociationClassHelper.getAssociationFeatures(
+				GoalPackage.eINSTANCE.getGoalReference(), getSourceFeature(),
+				getTargetFeature());
 	}
 
 	public EReference getSourceFeature() {
@@ -389,6 +382,12 @@ public class GoalReferenceImpl extends UrmlModelElementImpl implements GoalRefer
 
 	public EReference getTargetFeature() {
 		return GoalPackage.eINSTANCE.getGoalReference_Target();
+	}
+
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return getDescription();
 	}
 
 } // GoalReferenceImpl

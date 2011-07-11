@@ -21,11 +21,11 @@ import org.unicase.model.urml.impl.UrmlModelElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.urml.danger.impl.AssetImpl#getTriggeredDangers <em>Triggered Dangers</em>}</li>
- * <li>{@link org.unicase.model.urml.danger.impl.AssetImpl#getHarmingDangers <em>Harming Dangers</em>}</li>
+ *   <li>{@link org.unicase.model.urml.danger.impl.AssetImpl#getTriggeredDangers <em>Triggered Dangers</em>}</li>
+ *   <li>{@link org.unicase.model.urml.danger.impl.AssetImpl#getHarmingDangers <em>Harming Dangers</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
@@ -51,7 +51,6 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AssetImpl() {
@@ -60,7 +59,6 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -70,66 +68,69 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Danger> getTriggeredDangers() {
 		if (triggeredDangers == null) {
-			triggeredDangers = new EObjectWithInverseResolvingEList.ManyInverse<Danger>(Danger.class, this,
-				DangerPackage.ASSET__TRIGGERED_DANGERS, DangerPackage.DANGER__TRIGGERING_ASSETS);
+			triggeredDangers = new EObjectWithInverseResolvingEList.ManyInverse<Danger>(
+					Danger.class, this, DangerPackage.ASSET__TRIGGERED_DANGERS,
+					DangerPackage.DANGER__TRIGGERING_ASSETS);
 		}
 		return triggeredDangers;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Danger> getHarmingDangers() {
 		if (harmingDangers == null) {
-			harmingDangers = new EObjectWithInverseResolvingEList.ManyInverse<Danger>(Danger.class, this,
-				DangerPackage.ASSET__HARMING_DANGERS, DangerPackage.DANGER__HARMED_ASSETS);
+			harmingDangers = new EObjectWithInverseResolvingEList.ManyInverse<Danger>(
+					Danger.class, this, DangerPackage.ASSET__HARMING_DANGERS,
+					DangerPackage.DANGER__HARMED_ASSETS);
 		}
 		return harmingDangers;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case DangerPackage.ASSET__TRIGGERED_DANGERS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getTriggeredDangers()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getTriggeredDangers())
+					.basicAdd(otherEnd, msgs);
 		case DangerPackage.ASSET__HARMING_DANGERS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getHarmingDangers()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getHarmingDangers())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case DangerPackage.ASSET__TRIGGERED_DANGERS:
-			return ((InternalEList<?>) getTriggeredDangers()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getTriggeredDangers()).basicRemove(
+					otherEnd, msgs);
 		case DangerPackage.ASSET__HARMING_DANGERS:
-			return ((InternalEList<?>) getHarmingDangers()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getHarmingDangers()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -145,7 +146,6 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -154,7 +154,8 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 		switch (featureID) {
 		case DangerPackage.ASSET__TRIGGERED_DANGERS:
 			getTriggeredDangers().clear();
-			getTriggeredDangers().addAll((Collection<? extends Danger>) newValue);
+			getTriggeredDangers().addAll(
+					(Collection<? extends Danger>) newValue);
 			return;
 		case DangerPackage.ASSET__HARMING_DANGERS:
 			getHarmingDangers().clear();
@@ -166,7 +167,6 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -184,7 +184,6 @@ public abstract class AssetImpl extends UrmlModelElementImpl implements Asset {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

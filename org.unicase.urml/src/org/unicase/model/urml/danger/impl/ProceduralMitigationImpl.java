@@ -15,14 +15,14 @@ import org.unicase.model.urml.danger.ProceduralMitigation;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.urml.danger.impl.ProceduralMitigationImpl#getMitigationProcedure <em>Mitigation
- * Procedure</em>}</li>
+ *   <li>{@link org.unicase.model.urml.danger.impl.ProceduralMitigationImpl#getMitigationProcedure <em>Mitigation Procedure</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class ProceduralMitigationImpl extends MitigationImpl implements ProceduralMitigation {
+public class ProceduralMitigationImpl extends MitigationImpl implements
+		ProceduralMitigation {
 	/**
 	 * The default value of the '{@link #getMitigationProcedure() <em>Mitigation Procedure</em>}' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -45,7 +45,6 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ProceduralMitigationImpl() {
@@ -54,7 +53,6 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,7 +62,6 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getMitigationProcedure() {
@@ -73,7 +70,6 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setMitigationProcedure(String newMitigationProcedure) {
@@ -81,12 +77,12 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 		mitigationProcedure = newMitigationProcedure;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				DangerPackage.PROCEDURAL_MITIGATION__MITIGATION_PROCEDURE, oldMitigationProcedure, mitigationProcedure));
+					DangerPackage.PROCEDURAL_MITIGATION__MITIGATION_PROCEDURE,
+					oldMitigationProcedure, mitigationProcedure));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,7 +96,6 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,7 +110,6 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -130,22 +124,21 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case DangerPackage.PROCEDURAL_MITIGATION__MITIGATION_PROCEDURE:
-			return MITIGATION_PROCEDURE_EDEFAULT == null ? mitigationProcedure != null : !MITIGATION_PROCEDURE_EDEFAULT
-				.equals(mitigationProcedure);
+			return MITIGATION_PROCEDURE_EDEFAULT == null ? mitigationProcedure != null
+					: !MITIGATION_PROCEDURE_EDEFAULT
+							.equals(mitigationProcedure);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -158,6 +151,12 @@ public class ProceduralMitigationImpl extends MitigationImpl implements Procedur
 		result.append(mitigationProcedure);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return getDescription();
 	}
 
 } // ProceduralMitigationImpl

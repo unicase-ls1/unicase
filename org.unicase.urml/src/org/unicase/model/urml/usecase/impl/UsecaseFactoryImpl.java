@@ -16,19 +16,18 @@ import org.unicase.model.urml.usecase.UsecasePackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class UsecaseFactoryImpl extends EFactoryImpl implements UsecaseFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static UsecaseFactory init() {
 		try {
 			UsecaseFactory theUsecaseFactory = (UsecaseFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/model/urml/usecase");
+					.getEFactory("http://unicase.org/model/urml/usecase");
 			if (theUsecaseFactory != null) {
 				return theUsecaseFactory;
 			}
@@ -39,8 +38,8 @@ public class UsecaseFactoryImpl extends EFactoryImpl implements UsecaseFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public UsecaseFactoryImpl() {
@@ -49,7 +48,6 @@ public class UsecaseFactoryImpl extends EFactoryImpl implements UsecaseFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -62,13 +60,13 @@ public class UsecaseFactoryImpl extends EFactoryImpl implements UsecaseFactory {
 		case UsecasePackage.ACTOR:
 			return createActor();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ApplicationDomainUseCase createApplicationDomainUseCase() {
@@ -78,7 +76,6 @@ public class UsecaseFactoryImpl extends EFactoryImpl implements UsecaseFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SolutionDomainUseCase createSolutionDomainUseCase() {
@@ -88,7 +85,6 @@ public class UsecaseFactoryImpl extends EFactoryImpl implements UsecaseFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Actor createActor() {
@@ -98,7 +94,6 @@ public class UsecaseFactoryImpl extends EFactoryImpl implements UsecaseFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UsecasePackage getUsecasePackage() {
@@ -107,7 +102,6 @@ public class UsecaseFactoryImpl extends EFactoryImpl implements UsecaseFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

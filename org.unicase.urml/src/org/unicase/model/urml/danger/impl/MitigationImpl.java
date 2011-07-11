@@ -21,13 +21,14 @@ import org.unicase.model.urml.impl.UrmlModelElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.urml.danger.impl.MitigationImpl#getMitigatedDangers <em>Mitigated Dangers</em>}</li>
+ *   <li>{@link org.unicase.model.urml.danger.impl.MitigationImpl#getMitigatedDangers <em>Mitigated Dangers</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public abstract class MitigationImpl extends UrmlModelElementImpl implements Mitigation {
+public abstract class MitigationImpl extends UrmlModelElementImpl implements
+		Mitigation {
 	/**
 	 * The cached value of the '{@link #getMitigatedDangers() <em>Mitigated Dangers</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -40,7 +41,6 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MitigationImpl() {
@@ -49,7 +49,6 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,49 +58,51 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Danger> getMitigatedDangers() {
 		if (mitigatedDangers == null) {
-			mitigatedDangers = new EObjectWithInverseResolvingEList.ManyInverse<Danger>(Danger.class, this,
-				DangerPackage.MITIGATION__MITIGATED_DANGERS, DangerPackage.DANGER__MITIGATIONS);
+			mitigatedDangers = new EObjectWithInverseResolvingEList.ManyInverse<Danger>(
+					Danger.class, this,
+					DangerPackage.MITIGATION__MITIGATED_DANGERS,
+					DangerPackage.DANGER__MITIGATIONS);
 		}
 		return mitigatedDangers;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case DangerPackage.MITIGATION__MITIGATED_DANGERS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getMitigatedDangers()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getMitigatedDangers())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case DangerPackage.MITIGATION__MITIGATED_DANGERS:
-			return ((InternalEList<?>) getMitigatedDangers()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getMitigatedDangers()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,7 +116,6 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -124,7 +124,8 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 		switch (featureID) {
 		case DangerPackage.MITIGATION__MITIGATED_DANGERS:
 			getMitigatedDangers().clear();
-			getMitigatedDangers().addAll((Collection<? extends Danger>) newValue);
+			getMitigatedDangers().addAll(
+					(Collection<? extends Danger>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -132,7 +133,6 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -147,7 +147,6 @@ public abstract class MitigationImpl extends UrmlModelElementImpl implements Mit
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

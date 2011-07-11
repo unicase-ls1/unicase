@@ -34,11 +34,11 @@ import org.unicase.model.urml.feature.VariationPointInstance;
  * 
  * @generated
  */
-public class VariationPointImpl extends AbstractFeatureImpl implements VariationPoint {
+public class VariationPointImpl extends AbstractFeatureImpl implements
+		VariationPoint {
 	/**
-	 * The cached value of the '{@link #getOptionalSubFeatures() <em>Optional Sub Features</em>}' containment reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getOptionalSubFeatures() <em>Optional Sub Features</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getOptionalSubFeatures()
 	 * @generated
 	 * @ordered
@@ -46,9 +46,9 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 	protected EList<AbstractFeature> optionalSubFeatures;
 
 	/**
-	 * The default value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getMultiplicity()
 	 * @generated
 	 * @ordered
@@ -56,9 +56,9 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 	protected static final int MULTIPLICITY_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getMultiplicity()
 	 * @generated
 	 * @ordered
@@ -66,9 +66,9 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 	protected int multiplicity = MULTIPLICITY_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getInstances() <em>Instances</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getInstances() <em>Instances</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getInstances()
 	 * @generated
 	 * @ordered
@@ -77,7 +77,6 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected VariationPointImpl() {
@@ -86,7 +85,6 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,21 +94,21 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractFeature> getOptionalSubFeatures() {
 		if (optionalSubFeatures == null) {
 			optionalSubFeatures = new EObjectContainmentWithInverseEList.Resolving<AbstractFeature>(
-				AbstractFeature.class, this, FeaturePackage.VARIATION_POINT__OPTIONAL_SUB_FEATURES,
-				FeaturePackage.ABSTRACT_FEATURE__OPTIONAL_PARENT_VARIATION_POINT);
+					AbstractFeature.class,
+					this,
+					FeaturePackage.VARIATION_POINT__OPTIONAL_SUB_FEATURES,
+					FeaturePackage.ABSTRACT_FEATURE__OPTIONAL_PARENT_VARIATION_POINT);
 		}
 		return optionalSubFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getMultiplicity() {
@@ -119,68 +117,70 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setMultiplicity(int newMultiplicity) {
 		int oldMultiplicity = multiplicity;
 		multiplicity = newMultiplicity;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FeaturePackage.VARIATION_POINT__MULTIPLICITY,
-				oldMultiplicity, multiplicity));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					FeaturePackage.VARIATION_POINT__MULTIPLICITY,
+					oldMultiplicity, multiplicity));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<VariationPointInstance> getInstances() {
 		if (instances == null) {
-			instances = new EObjectWithInverseResolvingEList<VariationPointInstance>(VariationPointInstance.class,
-				this, FeaturePackage.VARIATION_POINT__INSTANCES,
-				FeaturePackage.VARIATION_POINT_INSTANCE__VARIATION_POINT);
+			instances = new EObjectWithInverseResolvingEList<VariationPointInstance>(
+					VariationPointInstance.class, this,
+					FeaturePackage.VARIATION_POINT__INSTANCES,
+					FeaturePackage.VARIATION_POINT_INSTANCE__VARIATION_POINT);
 		}
 		return instances;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case FeaturePackage.VARIATION_POINT__OPTIONAL_SUB_FEATURES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOptionalSubFeatures()).basicAdd(otherEnd,
-				msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOptionalSubFeatures())
+					.basicAdd(otherEnd, msgs);
 		case FeaturePackage.VARIATION_POINT__INSTANCES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInstances()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInstances())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case FeaturePackage.VARIATION_POINT__OPTIONAL_SUB_FEATURES:
-			return ((InternalEList<?>) getOptionalSubFeatures()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getOptionalSubFeatures()).basicRemove(
+					otherEnd, msgs);
 		case FeaturePackage.VARIATION_POINT__INSTANCES:
-			return ((InternalEList<?>) getInstances()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getInstances()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -198,7 +198,6 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -207,14 +206,16 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 		switch (featureID) {
 		case FeaturePackage.VARIATION_POINT__OPTIONAL_SUB_FEATURES:
 			getOptionalSubFeatures().clear();
-			getOptionalSubFeatures().addAll((Collection<? extends AbstractFeature>) newValue);
+			getOptionalSubFeatures().addAll(
+					(Collection<? extends AbstractFeature>) newValue);
 			return;
 		case FeaturePackage.VARIATION_POINT__MULTIPLICITY:
 			setMultiplicity((Integer) newValue);
 			return;
 		case FeaturePackage.VARIATION_POINT__INSTANCES:
 			getInstances().clear();
-			getInstances().addAll((Collection<? extends VariationPointInstance>) newValue);
+			getInstances().addAll(
+					(Collection<? extends VariationPointInstance>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -222,7 +223,6 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -243,14 +243,14 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case FeaturePackage.VARIATION_POINT__OPTIONAL_SUB_FEATURES:
-			return optionalSubFeatures != null && !optionalSubFeatures.isEmpty();
+			return optionalSubFeatures != null
+					&& !optionalSubFeatures.isEmpty();
 		case FeaturePackage.VARIATION_POINT__MULTIPLICITY:
 			return multiplicity != MULTIPLICITY_EDEFAULT;
 		case FeaturePackage.VARIATION_POINT__INSTANCES:
@@ -261,7 +261,6 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -274,6 +273,12 @@ public class VariationPointImpl extends AbstractFeatureImpl implements Variation
 		result.append(multiplicity);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return getDescription();
 	}
 
 } // VariationPointImpl

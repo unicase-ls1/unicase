@@ -22,17 +22,18 @@ import org.unicase.model.urml.usecase.UsecasePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.urml.usecase.impl.ApplicationDomainUseCaseImpl#getDetailedGoal <em>Detailed Goal</em>}</li>
+ *   <li>{@link org.unicase.model.urml.usecase.impl.ApplicationDomainUseCaseImpl#getDetailedGoal <em>Detailed Goal</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements ApplicationDomainUseCase {
+public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements
+		ApplicationDomainUseCase {
 	/**
-	 * The cached value of the '{@link #getDetailedGoal() <em>Detailed Goal</em>}' reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getDetailedGoal() <em>Detailed Goal</em>}' reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getDetailedGoal()
 	 * @generated
 	 * @ordered
@@ -41,7 +42,6 @@ public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements Applica
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ApplicationDomainUseCaseImpl() {
@@ -50,7 +50,6 @@ public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements Applica
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,49 +59,51 @@ public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements Applica
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Goal> getDetailedGoal() {
 		if (detailedGoal == null) {
-			detailedGoal = new EObjectWithInverseResolvingEList<Goal>(Goal.class, this,
-				UsecasePackage.APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL, GoalPackage.GOAL__DETAILING_USE_CASES);
+			detailedGoal = new EObjectWithInverseResolvingEList<Goal>(
+					Goal.class, this,
+					UsecasePackage.APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL,
+					GoalPackage.GOAL__DETAILING_USE_CASES);
 		}
 		return detailedGoal;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UsecasePackage.APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDetailedGoal()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDetailedGoal())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UsecasePackage.APPLICATION_DOMAIN_USE_CASE__DETAILED_GOAL:
-			return ((InternalEList<?>) getDetailedGoal()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getDetailedGoal()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -116,7 +117,6 @@ public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements Applica
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -133,7 +133,6 @@ public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements Applica
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,7 +147,6 @@ public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements Applica
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -158,6 +156,12 @@ public class ApplicationDomainUseCaseImpl extends UseCaseImpl implements Applica
 			return detailedGoal != null && !detailedGoal.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return getDescription();
 	}
 
 } // ApplicationDomainUseCaseImpl

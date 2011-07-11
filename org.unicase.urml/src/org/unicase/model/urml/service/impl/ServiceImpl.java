@@ -26,19 +26,18 @@ import org.unicase.model.urml.service.ServicePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.urml.service.impl.ServiceImpl#getSatisfiedRequirements <em>Satisfied Requirements</em>}</li>
- * <li>{@link org.unicase.model.urml.service.impl.ServiceImpl#getParentService <em>Parent Service</em>}</li>
- * <li>{@link org.unicase.model.urml.service.impl.ServiceImpl#getSubServices <em>Sub Services</em>}</li>
+ *   <li>{@link org.unicase.model.urml.service.impl.ServiceImpl#getSatisfiedRequirements <em>Satisfied Requirements</em>}</li>
+ *   <li>{@link org.unicase.model.urml.service.impl.ServiceImpl#getParentService <em>Parent Service</em>}</li>
+ *   <li>{@link org.unicase.model.urml.service.impl.ServiceImpl#getSubServices <em>Sub Services</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ServiceImpl extends AssetImpl implements Service {
 	/**
 	 * The cached value of the '{@link #getSatisfiedRequirements() <em>Satisfied Requirements</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getSatisfiedRequirements()
 	 * @generated
 	 * @ordered
@@ -57,7 +56,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ServiceImpl() {
@@ -66,7 +64,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -76,21 +73,20 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Requirement> getSatisfiedRequirements() {
 		if (satisfiedRequirements == null) {
-			satisfiedRequirements = new EObjectWithInverseResolvingEList.ManyInverse<Requirement>(Requirement.class,
-				this, ServicePackage.SERVICE__SATISFIED_REQUIREMENTS,
-				RequirementPackage.REQUIREMENT__IMPLEMENTING_SERVICES);
+			satisfiedRequirements = new EObjectWithInverseResolvingEList.ManyInverse<Requirement>(
+					Requirement.class, this,
+					ServicePackage.SERVICE__SATISFIED_REQUIREMENTS,
+					RequirementPackage.REQUIREMENT__IMPLEMENTING_SERVICES);
 		}
 		return satisfiedRequirements;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Service getParentService() {
@@ -101,7 +97,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Service basicGetParentService() {
@@ -112,108 +107,114 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetParentService(Service newParentService, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newParentService, ServicePackage.SERVICE__PARENT_SERVICE, msgs);
+	public NotificationChain basicSetParentService(Service newParentService,
+			NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newParentService,
+				ServicePackage.SERVICE__PARENT_SERVICE, msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setParentService(Service newParentService) {
 		if (newParentService != eInternalContainer()
-			|| (eContainerFeatureID() != ServicePackage.SERVICE__PARENT_SERVICE && newParentService != null)) {
+				|| (eContainerFeatureID() != ServicePackage.SERVICE__PARENT_SERVICE && newParentService != null)) {
 			if (EcoreUtil.isAncestor(this, newParentService))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newParentService != null)
-				msgs = ((InternalEObject) newParentService).eInverseAdd(this, ServicePackage.SERVICE__SUB_SERVICES,
-					Service.class, msgs);
+				msgs = ((InternalEObject) newParentService).eInverseAdd(this,
+						ServicePackage.SERVICE__SUB_SERVICES, Service.class,
+						msgs);
 			msgs = basicSetParentService(newParentService, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ServicePackage.SERVICE__PARENT_SERVICE,
-				newParentService, newParentService));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ServicePackage.SERVICE__PARENT_SERVICE, newParentService,
+					newParentService));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Service> getSubServices() {
 		if (subServices == null) {
-			subServices = new EObjectContainmentWithInverseEList.Resolving<Service>(Service.class, this,
-				ServicePackage.SERVICE__SUB_SERVICES, ServicePackage.SERVICE__PARENT_SERVICE);
+			subServices = new EObjectContainmentWithInverseEList.Resolving<Service>(
+					Service.class, this, ServicePackage.SERVICE__SUB_SERVICES,
+					ServicePackage.SERVICE__PARENT_SERVICE);
 		}
 		return subServices;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ServicePackage.SERVICE__SATISFIED_REQUIREMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSatisfiedRequirements()).basicAdd(otherEnd,
-				msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSatisfiedRequirements())
+					.basicAdd(otherEnd, msgs);
 		case ServicePackage.SERVICE__PARENT_SERVICE:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetParentService((Service) otherEnd, msgs);
 		case ServicePackage.SERVICE__SUB_SERVICES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSubServices()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSubServices())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ServicePackage.SERVICE__SATISFIED_REQUIREMENTS:
-			return ((InternalEList<?>) getSatisfiedRequirements()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getSatisfiedRequirements()).basicRemove(
+					otherEnd, msgs);
 		case ServicePackage.SERVICE__PARENT_SERVICE:
 			return basicSetParentService(null, msgs);
 		case ServicePackage.SERVICE__SUB_SERVICES:
-			return ((InternalEList<?>) getSubServices()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getSubServices()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 		case ServicePackage.SERVICE__PARENT_SERVICE:
-			return eInternalContainer().eInverseRemove(this, ServicePackage.SERVICE__SUB_SERVICES, Service.class, msgs);
+			return eInternalContainer().eInverseRemove(this,
+					ServicePackage.SERVICE__SUB_SERVICES, Service.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -233,7 +234,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -242,7 +242,8 @@ public class ServiceImpl extends AssetImpl implements Service {
 		switch (featureID) {
 		case ServicePackage.SERVICE__SATISFIED_REQUIREMENTS:
 			getSatisfiedRequirements().clear();
-			getSatisfiedRequirements().addAll((Collection<? extends Requirement>) newValue);
+			getSatisfiedRequirements().addAll(
+					(Collection<? extends Requirement>) newValue);
 			return;
 		case ServicePackage.SERVICE__PARENT_SERVICE:
 			setParentService((Service) newValue);
@@ -257,7 +258,6 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -278,20 +278,26 @@ public class ServiceImpl extends AssetImpl implements Service {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ServicePackage.SERVICE__SATISFIED_REQUIREMENTS:
-			return satisfiedRequirements != null && !satisfiedRequirements.isEmpty();
+			return satisfiedRequirements != null
+					&& !satisfiedRequirements.isEmpty();
 		case ServicePackage.SERVICE__PARENT_SERVICE:
 			return basicGetParentService() != null;
 		case ServicePackage.SERVICE__SUB_SERVICES:
 			return subServices != null && !subServices.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public String getDescriptionPlainText() {
+		// TODO Auto-generated method stub
+		return getDescription();
 	}
 
 } // ServiceImpl
