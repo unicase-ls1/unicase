@@ -24,11 +24,12 @@ import org.unicase.model.urml.usecase.UsecasePackage;
  * 
  * @generated
  */
-public class SolutionDomainUseCaseItemProvider extends UseCaseItemProvider implements IEditingDomainItemProvider,
-	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class SolutionDomainUseCaseItemProvider extends UseCaseItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public SolutionDomainUseCaseItemProvider(AdapterFactory adapterFactory) {
@@ -36,8 +37,8 @@ public class SolutionDomainUseCaseItemProvider extends UseCaseItemProvider imple
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -51,39 +52,48 @@ public class SolutionDomainUseCaseItemProvider extends UseCaseItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Detailed Feature feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Detailed Feature feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDetailedFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_SolutionDomainUseCase_detailedFeature_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_SolutionDomainUseCase_detailedFeature_feature",
-				"_UI_SolutionDomainUseCase_type"), UsecasePackage.Literals.SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE,
-			true, false, true, null, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_SolutionDomainUseCase_detailedFeature_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_SolutionDomainUseCase_detailedFeature_feature",
+								"_UI_SolutionDomainUseCase_type"),
+						UsecasePackage.Literals.SOLUTION_DOMAIN_USE_CASE__DETAILED_FEATURE,
+						true, false, true, null, null, null));
 	}
 
 	/**
-	 * This returns SolutionDomainUseCase.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns SolutionDomainUseCase.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SolutionDomainUseCase"));
+		return overlayImage(
+				object,
+				getResourceLocator().getImage(
+						"full/obj16/SolutionDomainUseCase"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((SolutionDomainUseCase) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_SolutionDomainUseCase_type")
-			: getString("_UI_SolutionDomainUseCase_type") + " " + label;
+				: getString("_UI_SolutionDomainUseCase_type") + " " + label;
 	}
 
 	/**
@@ -100,13 +110,14 @@ public class SolutionDomainUseCaseItemProvider extends UseCaseItemProvider imple
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

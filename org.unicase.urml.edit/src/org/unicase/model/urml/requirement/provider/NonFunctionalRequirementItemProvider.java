@@ -24,15 +24,15 @@ import org.unicase.model.urml.requirement.RequirementPackage;
 /**
  * This is the item provider adapter for a {@link org.unicase.model.urml.requirement.NonFunctionalRequirement} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
-public class NonFunctionalRequirementItemProvider extends RequirementItemProvider implements
-	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
-	IItemPropertySource {
+public class NonFunctionalRequirementItemProvider extends
+		RequirementItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider,
+		IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NonFunctionalRequirementItemProvider(AdapterFactory adapterFactory) {
@@ -40,8 +40,8 @@ public class NonFunctionalRequirementItemProvider extends RequirementItemProvide
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -62,53 +62,63 @@ public class NonFunctionalRequirementItemProvider extends RequirementItemProvide
 	 * @generated
 	 */
 	protected void addConstrainedFeaturesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_NonFunctionalRequirement_constrainedFeatures_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_constrainedFeatures_feature",
-				"_UI_NonFunctionalRequirement_type"),
-			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES, true, false, true, null,
-			null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_NonFunctionalRequirement_constrainedFeatures_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_NonFunctionalRequirement_constrainedFeatures_feature",
+								"_UI_NonFunctionalRequirement_type"),
+						RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FEATURES,
+						true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Sub Non Functional Requirements feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Sub Non Functional Requirements feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	protected void addSubNonFunctionalRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_NonFunctionalRequirement_subNonFunctionalRequirements_feature"), getString(
-				"_UI_PropertyDescriptor_description",
-				"_UI_NonFunctionalRequirement_subNonFunctionalRequirements_feature",
-				"_UI_NonFunctionalRequirement_type"),
-			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__SUB_NON_FUNCTIONAL_REQUIREMENTS, true, false,
-			false, null, null, null));
+	protected void addSubNonFunctionalRequirementsPropertyDescriptor(
+			Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_NonFunctionalRequirement_subNonFunctionalRequirements_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_NonFunctionalRequirement_subNonFunctionalRequirements_feature",
+								"_UI_NonFunctionalRequirement_type"),
+						RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__SUB_NON_FUNCTIONAL_REQUIREMENTS,
+						true, false, false, null, null, null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures
-				.add(RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__SUB_NON_FUNCTIONAL_REQUIREMENTS);
+					.add(RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__SUB_NON_FUNCTIONAL_REQUIREMENTS);
 		}
 		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -120,25 +130,28 @@ public class NonFunctionalRequirementItemProvider extends RequirementItemProvide
 	}
 
 	/**
-	 * This returns NonFunctionalRequirement.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns NonFunctionalRequirement.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/NonFunctionalRequirement"));
+		return overlayImage(
+				object,
+				getResourceLocator().getImage(
+						"full/obj16/NonFunctionalRequirement"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((NonFunctionalRequirement) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_NonFunctionalRequirement_type")
-			: getString("_UI_NonFunctionalRequirement_type") + " " + label;
+				: getString("_UI_NonFunctionalRequirement_type") + " " + label;
 	}
 
 	/**
@@ -154,25 +167,29 @@ public class NonFunctionalRequirementItemProvider extends RequirementItemProvide
 
 		switch (notification.getFeatureID(NonFunctionalRequirement.class)) {
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SUB_NON_FUNCTIONAL_REQUIREMENTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__SUB_NON_FUNCTIONAL_REQUIREMENTS,
-			RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
+		newChildDescriptors
+				.add(createChildParameter(
+						RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__SUB_NON_FUNCTIONAL_REQUIREMENTS,
+						RequirementFactory.eINSTANCE
+								.createNonFunctionalRequirement()));
 	}
 
 }

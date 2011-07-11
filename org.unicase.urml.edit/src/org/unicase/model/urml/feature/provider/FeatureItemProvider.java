@@ -19,16 +19,17 @@ import org.unicase.model.urml.feature.Feature;
 import org.unicase.model.urml.feature.FeaturePackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.urml.feature.Feature} object. <!-- begin-user-doc
+ * This is the item provider adapter for a {@link org.unicase.model.urml.feature.Feature} object.
+ * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
-public class FeatureItemProvider extends AbstractFeatureItemProvider implements IEditingDomainItemProvider,
-	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class FeatureItemProvider extends AbstractFeatureItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public FeatureItemProvider(AdapterFactory adapterFactory) {
@@ -36,8 +37,8 @@ public class FeatureItemProvider extends AbstractFeatureItemProvider implements 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -51,37 +52,43 @@ public class FeatureItemProvider extends AbstractFeatureItemProvider implements 
 	}
 
 	/**
-	 * This adds a property descriptor for the Products feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Products feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addProductsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Feature_products_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Feature_products_feature", "_UI_Feature_type"),
-			FeaturePackage.Literals.FEATURE__PRODUCTS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Feature_products_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Feature_products_feature", "_UI_Feature_type"),
+				FeaturePackage.Literals.FEATURE__PRODUCTS, true, false, true,
+				null, null, null));
 	}
 
 	/**
-	 * This returns Feature.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Feature.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Feature"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/Feature"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((Feature) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Feature_type") : getString("_UI_Feature_type")
-			+ " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Feature_type")
+				: getString("_UI_Feature_type") + " " + label;
 	}
 
 	/**
@@ -98,13 +105,14 @@ public class FeatureItemProvider extends AbstractFeatureItemProvider implements 
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

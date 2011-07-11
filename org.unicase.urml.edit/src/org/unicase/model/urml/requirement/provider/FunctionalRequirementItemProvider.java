@@ -27,11 +27,12 @@ import org.unicase.model.urml.requirement.RequirementPackage;
  * 
  * @generated
  */
-public class FunctionalRequirementItemProvider extends RequirementItemProvider implements IEditingDomainItemProvider,
-	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class FunctionalRequirementItemProvider extends RequirementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public FunctionalRequirementItemProvider(AdapterFactory adapterFactory) {
@@ -39,8 +40,8 @@ public class FunctionalRequirementItemProvider extends RequirementItemProvider i
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -55,56 +56,67 @@ public class FunctionalRequirementItemProvider extends RequirementItemProvider i
 	}
 
 	/**
-	 * This adds a property descriptor for the Detailed Features feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Detailed Features feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDetailedFeaturesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_FunctionalRequirement_detailedFeatures_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_detailedFeatures_feature",
-					"_UI_FunctionalRequirement_type"),
-				RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES, true, false, true, null, null,
-				null));
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_FunctionalRequirement_detailedFeatures_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_FunctionalRequirement_detailedFeatures_feature",
+								"_UI_FunctionalRequirement_type"),
+						RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES,
+						true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Sub Functional Requirements feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Sub Functional Requirements feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addSubFunctionalRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_FunctionalRequirement_subFunctionalRequirements_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_subFunctionalRequirements_feature",
-				"_UI_FunctionalRequirement_type"),
-			RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__SUB_FUNCTIONAL_REQUIREMENTS, true, false, false, null,
-			null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_FunctionalRequirement_subFunctionalRequirements_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_FunctionalRequirement_subFunctionalRequirements_feature",
+								"_UI_FunctionalRequirement_type"),
+						RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__SUB_FUNCTIONAL_REQUIREMENTS,
+						true, false, false, null, null, null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__SUB_FUNCTIONAL_REQUIREMENTS);
+			childrenFeatures
+					.add(RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__SUB_FUNCTIONAL_REQUIREMENTS);
 		}
 		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -116,25 +128,28 @@ public class FunctionalRequirementItemProvider extends RequirementItemProvider i
 	}
 
 	/**
-	 * This returns FunctionalRequirement.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns FunctionalRequirement.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/FunctionalRequirement"));
+		return overlayImage(
+				object,
+				getResourceLocator().getImage(
+						"full/obj16/FunctionalRequirement"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((FunctionalRequirement) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_FunctionalRequirement_type")
-			: getString("_UI_FunctionalRequirement_type") + " " + label;
+				: getString("_UI_FunctionalRequirement_type") + " " + label;
 	}
 
 	/**
@@ -150,25 +165,29 @@ public class FunctionalRequirementItemProvider extends RequirementItemProvider i
 
 		switch (notification.getFeatureID(FunctionalRequirement.class)) {
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__SUB_FUNCTIONAL_REQUIREMENTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-			RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__SUB_FUNCTIONAL_REQUIREMENTS,
-			RequirementFactory.eINSTANCE.createFunctionalRequirement()));
+		newChildDescriptors
+				.add(createChildParameter(
+						RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__SUB_FUNCTIONAL_REQUIREMENTS,
+						RequirementFactory.eINSTANCE
+								.createFunctionalRequirement()));
 	}
 
 }

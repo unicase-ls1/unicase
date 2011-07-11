@@ -25,16 +25,17 @@ import org.unicase.model.urml.service.ServiceFactory;
 import org.unicase.model.urml.service.ServicePackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.urml.service.Service} object. <!-- begin-user-doc
+ * This is the item provider adapter for a {@link org.unicase.model.urml.service.Service} object.
+ * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
-public class ServiceItemProvider extends AssetItemProvider implements IEditingDomainItemProvider,
-	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ServiceItemProvider extends AssetItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ServiceItemProvider(AdapterFactory adapterFactory) {
@@ -42,8 +43,8 @@ public class ServiceItemProvider extends AssetItemProvider implements IEditingDo
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -64,35 +65,46 @@ public class ServiceItemProvider extends AssetItemProvider implements IEditingDo
 	 * @generated
 	 */
 	protected void addSatisfiedRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Service_satisfiedRequirements_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Service_satisfiedRequirements_feature",
-				"_UI_Service_type"), ServicePackage.Literals.SERVICE__SATISFIED_REQUIREMENTS, true, false, true, null,
-			null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Service_satisfiedRequirements_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Service_satisfiedRequirements_feature",
+						"_UI_Service_type"),
+				ServicePackage.Literals.SERVICE__SATISFIED_REQUIREMENTS, true,
+				false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Sub Services feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Sub Services feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSubServicesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Service_subServices_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Service_subServices_feature", "_UI_Service_type"),
-			ServicePackage.Literals.SERVICE__SUB_SERVICES, true, false, false, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Service_subServices_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Service_subServices_feature", "_UI_Service_type"),
+				ServicePackage.Literals.SERVICE__SUB_SERVICES, true, false,
+				false, null, null, null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ServicePackage.Literals.SERVICE__SUB_SERVICES);
@@ -102,7 +114,6 @@ public class ServiceItemProvider extends AssetItemProvider implements IEditingDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -114,25 +125,26 @@ public class ServiceItemProvider extends AssetItemProvider implements IEditingDo
 	}
 
 	/**
-	 * This returns Service.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Service.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Service"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/Service"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((Service) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Service_type") : getString("_UI_Service_type")
-			+ " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Service_type")
+				: getString("_UI_Service_type") + " " + label;
 	}
 
 	/**
@@ -148,29 +160,32 @@ public class ServiceItemProvider extends AssetItemProvider implements IEditingDo
 
 		switch (notification.getFeatureID(Service.class)) {
 		case ServicePackage.SERVICE__SUB_SERVICES:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ServicePackage.Literals.SERVICE__SUB_SERVICES,
-			ServiceFactory.eINSTANCE.createService()));
+		newChildDescriptors.add(createChildParameter(
+				ServicePackage.Literals.SERVICE__SUB_SERVICES,
+				ServiceFactory.eINSTANCE.createService()));
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

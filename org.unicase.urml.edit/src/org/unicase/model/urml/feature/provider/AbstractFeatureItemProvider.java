@@ -30,11 +30,12 @@ import org.unicase.model.urml.provider.UrmlModelElementItemProvider;
  * 
  * @generated
  */
-public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider implements IEditingDomainItemProvider,
-	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public AbstractFeatureItemProvider(AdapterFactory adapterFactory) {
@@ -42,8 +43,8 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -66,47 +67,65 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Goals feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Goals feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addGoalsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_AbstractFeature_goals_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_AbstractFeature_goals_feature", "_UI_AbstractFeature_type"),
-			FeaturePackage.Literals.ABSTRACT_FEATURE__GOALS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_AbstractFeature_goals_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractFeature_goals_feature",
+						"_UI_AbstractFeature_type"),
+				FeaturePackage.Literals.ABSTRACT_FEATURE__GOALS, true, false,
+				true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Detailing Functional Requirements feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Detailing Functional Requirements feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	protected void addDetailingFunctionalRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_AbstractFeature_detailingFunctionalRequirements_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_AbstractFeature_detailingFunctionalRequirements_feature",
-				"_UI_AbstractFeature_type"),
-			FeaturePackage.Literals.ABSTRACT_FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS, true, false, true, null, null,
-			null));
+	protected void addDetailingFunctionalRequirementsPropertyDescriptor(
+			Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_AbstractFeature_detailingFunctionalRequirements_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_AbstractFeature_detailingFunctionalRequirements_feature",
+								"_UI_AbstractFeature_type"),
+						FeaturePackage.Literals.ABSTRACT_FEATURE__DETAILING_FUNCTIONAL_REQUIREMENTS,
+						true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Constraining Non Functional Requirements feature. <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Constraining Non Functional Requirements feature.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	protected void addConstrainingNonFunctionalRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_AbstractFeature_constrainingNonFunctionalRequirements_feature"), getString(
-				"_UI_PropertyDescriptor_description",
-				"_UI_AbstractFeature_constrainingNonFunctionalRequirements_feature", "_UI_AbstractFeature_type"),
-			FeaturePackage.Literals.ABSTRACT_FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS, true, false, true,
-			null, null, null));
+	protected void addConstrainingNonFunctionalRequirementsPropertyDescriptor(
+			Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_AbstractFeature_constrainingNonFunctionalRequirements_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_AbstractFeature_constrainingNonFunctionalRequirements_feature",
+								"_UI_AbstractFeature_type"),
+						FeaturePackage.Literals.ABSTRACT_FEATURE__CONSTRAINING_NON_FUNCTIONAL_REQUIREMENTS,
+						true, false, true, null, null, null));
 	}
 
 	/**
@@ -116,113 +135,150 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 	 * @generated
 	 */
 	protected void addDetailingUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_AbstractFeature_detailingUseCases_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_AbstractFeature_detailingUseCases_feature",
-				"_UI_AbstractFeature_type"), FeaturePackage.Literals.ABSTRACT_FEATURE__DETAILING_USE_CASES, true,
-			false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_AbstractFeature_detailingUseCases_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractFeature_detailingUseCases_feature",
+						"_UI_AbstractFeature_type"),
+				FeaturePackage.Literals.ABSTRACT_FEATURE__DETAILING_USE_CASES,
+				true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Sub Features feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Sub Features feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSubFeaturesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_AbstractFeature_subFeatures_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_AbstractFeature_subFeatures_feature",
-				"_UI_AbstractFeature_type"), FeaturePackage.Literals.ABSTRACT_FEATURE__SUB_FEATURES, true, false,
-			false, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_AbstractFeature_subFeatures_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractFeature_subFeatures_feature",
+						"_UI_AbstractFeature_type"),
+				FeaturePackage.Literals.ABSTRACT_FEATURE__SUB_FEATURES, true,
+				false, false, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Excluding Features feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Excluding Features feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addExcludingFeaturesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_AbstractFeature_excludingFeatures_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_AbstractFeature_excludingFeatures_feature",
-				"_UI_AbstractFeature_type"), FeaturePackage.Literals.ABSTRACT_FEATURE__EXCLUDING_FEATURES, true, false,
-			true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_AbstractFeature_excludingFeatures_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractFeature_excludingFeatures_feature",
+						"_UI_AbstractFeature_type"),
+				FeaturePackage.Literals.ABSTRACT_FEATURE__EXCLUDING_FEATURES,
+				true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Excluded Features feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Excluded Features feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addExcludedFeaturesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_AbstractFeature_excludedFeatures_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_AbstractFeature_excludedFeatures_feature",
-				"_UI_AbstractFeature_type"), FeaturePackage.Literals.ABSTRACT_FEATURE__EXCLUDED_FEATURES, true, false,
-			true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_AbstractFeature_excludedFeatures_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractFeature_excludedFeatures_feature",
+						"_UI_AbstractFeature_type"),
+				FeaturePackage.Literals.ABSTRACT_FEATURE__EXCLUDED_FEATURES,
+				true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Requiring Features feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Requiring Features feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addRequiringFeaturesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_AbstractFeature_requiringFeatures_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_AbstractFeature_requiringFeatures_feature",
-				"_UI_AbstractFeature_type"), FeaturePackage.Literals.ABSTRACT_FEATURE__REQUIRING_FEATURES, true, false,
-			true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_AbstractFeature_requiringFeatures_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractFeature_requiringFeatures_feature",
+						"_UI_AbstractFeature_type"),
+				FeaturePackage.Literals.ABSTRACT_FEATURE__REQUIRING_FEATURES,
+				true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Required Features feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Required Features feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addRequiredFeaturesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_AbstractFeature_requiredFeatures_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_AbstractFeature_requiredFeatures_feature",
-				"_UI_AbstractFeature_type"), FeaturePackage.Literals.ABSTRACT_FEATURE__REQUIRED_FEATURES, true, false,
-			true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_AbstractFeature_requiredFeatures_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_AbstractFeature_requiredFeatures_feature",
+						"_UI_AbstractFeature_type"),
+				FeaturePackage.Literals.ABSTRACT_FEATURE__REQUIRED_FEATURES,
+				true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Variation Point Instances feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Variation Point Instances feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addVariationPointInstancesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_AbstractFeature_variationPointInstances_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_AbstractFeature_variationPointInstances_feature",
-				"_UI_AbstractFeature_type"), FeaturePackage.Literals.ABSTRACT_FEATURE__VARIATION_POINT_INSTANCES, true,
-			false, true, null, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_AbstractFeature_variationPointInstances_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_AbstractFeature_variationPointInstances_feature",
+								"_UI_AbstractFeature_type"),
+						FeaturePackage.Literals.ABSTRACT_FEATURE__VARIATION_POINT_INSTANCES,
+						true, false, true, null, null, null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(FeaturePackage.Literals.ABSTRACT_FEATURE__SUB_FEATURES);
+			childrenFeatures
+					.add(FeaturePackage.Literals.ABSTRACT_FEATURE__SUB_FEATURES);
 		}
 		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -234,25 +290,26 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 	}
 
 	/**
-	 * This returns AbstractFeature.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns AbstractFeature.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AbstractFeature"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/AbstractFeature"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((AbstractFeature) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_AbstractFeature_type")
-			: getString("_UI_AbstractFeature_type") + " " + label;
+				: getString("_UI_AbstractFeature_type") + " " + label;
 	}
 
 	/**
@@ -268,32 +325,36 @@ public class AbstractFeatureItemProvider extends UrmlModelElementItemProvider im
 
 		switch (notification.getFeatureID(AbstractFeature.class)) {
 		case FeaturePackage.ABSTRACT_FEATURE__SUB_FEATURES:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(FeaturePackage.Literals.ABSTRACT_FEATURE__SUB_FEATURES,
-			FeatureFactory.eINSTANCE.createFeature()));
+		newChildDescriptors.add(createChildParameter(
+				FeaturePackage.Literals.ABSTRACT_FEATURE__SUB_FEATURES,
+				FeatureFactory.eINSTANCE.createFeature()));
 
-		newChildDescriptors.add(createChildParameter(FeaturePackage.Literals.ABSTRACT_FEATURE__SUB_FEATURES,
-			FeatureFactory.eINSTANCE.createVariationPoint()));
+		newChildDescriptors.add(createChildParameter(
+				FeaturePackage.Literals.ABSTRACT_FEATURE__SUB_FEATURES,
+				FeatureFactory.eINSTANCE.createVariationPoint()));
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

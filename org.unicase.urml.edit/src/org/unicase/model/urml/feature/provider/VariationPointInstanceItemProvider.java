@@ -27,12 +27,13 @@ import org.unicase.model.urml.provider.UrmlModelElementItemProvider;
  * 
  * @generated
  */
-public class VariationPointInstanceItemProvider extends UrmlModelElementItemProvider implements
-	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
-	IItemPropertySource {
+public class VariationPointInstanceItemProvider extends
+		UrmlModelElementItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider,
+		IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public VariationPointInstanceItemProvider(AdapterFactory adapterFactory) {
@@ -40,8 +41,8 @@ public class VariationPointInstanceItemProvider extends UrmlModelElementItemProv
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -57,66 +58,86 @@ public class VariationPointInstanceItemProvider extends UrmlModelElementItemProv
 	}
 
 	/**
-	 * This adds a property descriptor for the Variation Point feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Variation Point feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addVariationPointPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_VariationPointInstance_variationPoint_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_VariationPointInstance_variationPoint_feature",
-				"_UI_VariationPointInstance_type"), FeaturePackage.Literals.VARIATION_POINT_INSTANCE__VARIATION_POINT,
-			true, false, true, null, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_VariationPointInstance_variationPoint_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_VariationPointInstance_variationPoint_feature",
+								"_UI_VariationPointInstance_type"),
+						FeaturePackage.Literals.VARIATION_POINT_INSTANCE__VARIATION_POINT,
+						true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Products feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Products feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addProductsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_VariationPointInstance_products_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_VariationPointInstance_products_feature",
-				"_UI_VariationPointInstance_type"), FeaturePackage.Literals.VARIATION_POINT_INSTANCE__PRODUCTS, true,
-			false, true, null, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_VariationPointInstance_products_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_VariationPointInstance_products_feature",
+						"_UI_VariationPointInstance_type"),
+				FeaturePackage.Literals.VARIATION_POINT_INSTANCE__PRODUCTS,
+				true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Selected Features feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Selected Features feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSelectedFeaturesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_VariationPointInstance_selectedFeatures_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_VariationPointInstance_selectedFeatures_feature",
-				"_UI_VariationPointInstance_type"),
-			FeaturePackage.Literals.VARIATION_POINT_INSTANCE__SELECTED_FEATURES, true, false, true, null, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_VariationPointInstance_selectedFeatures_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_VariationPointInstance_selectedFeatures_feature",
+								"_UI_VariationPointInstance_type"),
+						FeaturePackage.Literals.VARIATION_POINT_INSTANCE__SELECTED_FEATURES,
+						true, false, true, null, null, null));
 	}
 
 	/**
-	 * This returns VariationPointInstance.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns VariationPointInstance.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/VariationPointInstance"));
+		return overlayImage(
+				object,
+				getResourceLocator().getImage(
+						"full/obj16/VariationPointInstance"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((VariationPointInstance) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_VariationPointInstance_type")
-			: getString("_UI_VariationPointInstance_type") + " " + label;
+				: getString("_UI_VariationPointInstance_type") + " " + label;
 	}
 
 	/**
@@ -133,19 +154,20 @@ public class VariationPointInstanceItemProvider extends UrmlModelElementItemProv
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
