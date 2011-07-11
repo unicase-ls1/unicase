@@ -12,6 +12,13 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
+            uri="http://unicase.org/model/scrm"
+            class="scrm.ScrmPackage"
+            genModel="model/scrm.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
             uri="http://unicase.org/model/scrm/knowledge"
             class="scrm.knowledge.KnowledgePackage"
             genModel="model/scrm.genmodel"/>
@@ -21,6 +28,13 @@
       <package
             uri="http://unicase.org/model/scrm/requirements"
             class="scrm.requirements.RequirementsPackage"
+            genModel="model/scrm.genmodel"/>
+   </extension>
+   
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://unicase.org/model/scrm/requirements/dataProcess"
+            class="scrm.requirements.dataProcess.DataProcessPackage"
             genModel="model/scrm.genmodel"/>
    </extension>
    <extension
