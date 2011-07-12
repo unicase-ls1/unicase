@@ -62,7 +62,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.emf.ecp.validation.filter.ValidationFilter:"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.emf.ecp.buildInValidation.filter.ValidationFilter:"/>
                </appinfo>
             </annotation>
          </attribute>

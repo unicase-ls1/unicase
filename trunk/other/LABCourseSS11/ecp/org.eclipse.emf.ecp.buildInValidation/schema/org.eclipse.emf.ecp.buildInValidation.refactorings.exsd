@@ -62,7 +62,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.ecp.validation.refactoring.strategy.RefactoringStrategy"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.ecp.buildInValidation.refactoring.strategy.RefactoringStrategy"/>
                </appinfo>
             </annotation>
          </attribute>
