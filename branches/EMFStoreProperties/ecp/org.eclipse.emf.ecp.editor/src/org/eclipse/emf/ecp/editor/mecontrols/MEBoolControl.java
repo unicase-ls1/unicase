@@ -7,6 +7,7 @@
 package org.eclipse.emf.ecp.editor.mecontrols;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
@@ -14,16 +15,19 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.ui.ISharedImages;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * This is the standard Control to edit boolean values.
  * 
  * @author helming
  */
-public class MEBoolControl extends AbstractMEControl {
+public class MEBoolControl extends AbstractMEControl implements IValidatableControl{
 
 	private EAttribute attribute;
 
@@ -61,6 +65,26 @@ public class MEBoolControl extends AbstractMEControl {
 			return PRIORITY;
 		}
 		return AbstractMEControl.DO_NOT_RENDER;
+	}
+	
+	/**
+	 * {@inheritDoc}}
+	 * */
+	public void handleValidation(Diagnostic diagnostic) {
+		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
+			Image image = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_ERROR_TSK);
+			this.check.setImage(image);
+			this.check.setToolTipText(diagnostic.getMessage());
+		}
+	
+		
+	}
+	/**
+	 * {@inheritDoc}}
+	 * */
+	public void resetValidation() {
+		this.check.setImage(null);
+		this.check.setToolTipText("");
 	}
 
 }
