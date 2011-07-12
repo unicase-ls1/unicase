@@ -5,7 +5,7 @@
  */
 package org.eclipse.emf.ecp.buildInValidation.pref;
 
-import org.eclipse.jface.dialogs.MessageDialog;
+/*import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -33,14 +33,14 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
  * 
  * @author groeber
  */
-public class ValidationPropertyPage extends PropertyPage implements
+/*public class ValidationPropertyPage extends PropertyPage implements
 		IWorkbenchPropertyPage {
 
 	/**
 	 * Recording command to save the properties in the model.
 	 * 
 	 */
-	private final class SavePropertiesCommand extends
+/*	private final class SavePropertiesCommand extends
 			UnicaseCommandWithResult<Object> {
 
 		@Override
@@ -154,4 +154,4 @@ public class ValidationPropertyPage extends PropertyPage implements
 		}
 		return true;
 	}
-}
+}*/
