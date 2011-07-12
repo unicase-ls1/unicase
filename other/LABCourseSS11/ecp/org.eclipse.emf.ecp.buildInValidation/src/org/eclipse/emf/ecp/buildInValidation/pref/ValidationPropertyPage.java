@@ -5,7 +5,12 @@
  */
 package org.eclipse.emf.ecp.buildInValidation.pref;
 
-/*import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.client.properties.PropertyManager;
+import org.eclipse.emf.emfstore.client.ui.dialogs.login.LoginDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -19,43 +24,35 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.IWorkbenchPropertyPage;
 import org.eclipse.ui.dialogs.PropertyPage;
-import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
-import org.unicase.metamodel.Project;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.preferences.PreferenceManager;
-import org.unicase.workspace.ui.dialogs.LoginDialog;
-import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**
  * A property page for the ShortcutActions.
  * 
  * @author groeber
  */
-/*public class ValidationPropertyPage extends PropertyPage implements
+public class ValidationPropertyPage extends PropertyPage implements
 		IWorkbenchPropertyPage {
 
 	/**
 	 * Recording command to save the properties in the model.
 	 * 
 	 */
-/*	private final class SavePropertiesCommand extends
-			UnicaseCommandWithResult<Object> {
+	private final class SavePropertiesCommand extends EMFStoreCommand {
 
 		@Override
-		protected Object doRun() {
-			PreferenceManager.INSTANCE.setProperty(projectSpace,
-					ValidationPropertyKey.ENABLELIVEVALIDATION, cb.getSelection());
+		protected void doRun() {
 
-			return null;
+			PropertyManager pm = projectSpace.getPropertyManager();
+			pm.setSharedStringProperty(
+					ValidationPropertyKey.ENABLELIVEVALIDATION.name(),
+					cb.getSelection() + "");
+			return;
 		}
 	}
 
-
 	public boolean liveValidationEnabled = false;
 	private ProjectSpace projectSpace;
-	private Project project;
+	// private Project project;
 	private Button cb;
 
 	@Override
@@ -95,10 +92,14 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 	private void loadProperties() {
 		try {
-			OrgUnitProperty userProp = PreferenceManager.INSTANCE.getProperty(
-					projectSpace, ValidationPropertyKey.ENABLELIVEVALIDATION);
-			if (userProp.getBooleanProperty() != null) {
-				liveValidationEnabled = userProp.getBooleanProperty();
+
+			PropertyManager pm = projectSpace.getPropertyManager();
+			String userProp = pm
+					.getSharedStringProperty(ValidationPropertyKey.ENABLELIVEVALIDATION
+							.name());
+
+			if (userProp != null) {
+				liveValidationEnabled = Boolean.parseBoolean(userProp);
 			}
 		} catch (IllegalStateException e) {
 			if (e.getMessage().contains(
@@ -110,21 +111,17 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
 	}
 
 	private boolean init() {
-		if (!(getElement() instanceof Project)) {
-			return false;
-		}
 
-		project = (Project) getElement();
-
-		projectSpace = WorkspaceManager.getProjectSpace(project);
+		projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+				.getActiveProjectSpace();
 		return true;
 	}
 
 	public boolean performOk() {
-		final UnicaseCommandWithResult<Object> command = new SavePropertiesCommand();
+		final EMFStoreCommand command = new SavePropertiesCommand();
 		command.run();
 		if (projectSpace.getUsersession().isLoggedIn()) {
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 
 				@Override
 				protected void doRun() {
@@ -132,7 +129,7 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
 				}
 			}.run();
 		} else {
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 
 				@Override
 				protected void doRun() {
@@ -143,9 +140,8 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
 									"You are currently not logged in! Do you wish to log in and thereby transmit your properties?");
 					if (yes) {
 						LoginDialog loginDialog = new LoginDialog(Display
-								.getCurrent().getActiveShell(),
-								projectSpace.getUsersession(), projectSpace
-										.getUsersession().getServerInfo());
+								.getCurrent().getActiveShell(), projectSpace
+								.getUsersession().getServerInfo());
 						loginDialog.open();
 					}
 				}
@@ -154,4 +150,4 @@ import org.unicase.workspace.util.UnicaseCommandWithResult;
 		}
 		return true;
 	}
-}*/
+}
