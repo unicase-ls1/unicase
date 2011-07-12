@@ -66,7 +66,6 @@ public class MESWTDateAndTimeControl extends AbstractMEControl implements IValid
 		dateComposite.setBackgroundMode(SWT.INHERIT_FORCE);
 		GridLayoutFactory.fillDefaults().numColumns(3).spacing(2, 0).applyTo(dateComposite);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(dateComposite);
-//		dateComposite.setBackgroundMode(SWT.INHERIT_FORCE);
 		
 		createDateAndTimeWidget();
 		
@@ -110,6 +109,7 @@ public class MESWTDateAndTimeControl extends AbstractMEControl implements IValid
 		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
 			Color color = new Color(device, 255, 0 ,0);
 			this.dateComposite.setBackgroundMode(SWT.INHERIT_DEFAULT);
+			this.dateComposite.setBackground(color);
 			this.dateWidget.setBackground(color);
 			this.timeWidget.setBackground(color);
 			this.dateWidget.setToolTipText(diagnostic.getMessage());
