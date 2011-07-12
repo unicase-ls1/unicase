@@ -29,10 +29,8 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage;
 import org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent} object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ExceptionEventItemProvider extends EventItemProvider implements IEditingDomainItemProvider,
@@ -40,7 +38,6 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ExceptionEventItemProvider(AdapterFactory adapterFactory) {
@@ -50,7 +47,6 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,17 +65,22 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 	/**
 	 * This adds a property descriptor for the Exception Title feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addExceptionTitlePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_ExceptionEvent_ExceptionTitle_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionTitle_feature",
-				"_UI_ExceptionEvent_type"), EventsPackage.Literals.EXCEPTION_EVENT__EXCEPTION_TITLE, true, false,
-			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExceptionEvent_ExceptionTitle_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionTitle_feature", "_UI_ExceptionEvent_type"),
+				 EventsPackage.Literals.EXCEPTION_EVENT__EXCEPTION_TITLE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -89,13 +90,19 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addExceptionStackTracePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_ExceptionEvent_ExceptionStackTrace_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionStackTrace_feature",
-				"_UI_ExceptionEvent_type"), EventsPackage.Literals.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE, true, false,
-			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExceptionEvent_ExceptionStackTrace_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionStackTrace_feature", "_UI_ExceptionEvent_type"),
+				 EventsPackage.Literals.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -105,36 +112,46 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 	 * @generated
 	 */
 	protected void addExceptionCauseTitlePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_ExceptionEvent_ExceptionCauseTitle_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionCauseTitle_feature",
-				"_UI_ExceptionEvent_type"), EventsPackage.Literals.EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE, true, false,
-			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExceptionEvent_ExceptionCauseTitle_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionCauseTitle_feature", "_UI_ExceptionEvent_type"),
+				 EventsPackage.Literals.EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Exception Cause Stack Trace feature.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addExceptionCauseStackTracePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_ExceptionEvent_ExceptionCauseStackTrace_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionCauseStackTrace_feature",
-				"_UI_ExceptionEvent_type"), EventsPackage.Literals.EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE, true,
-			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExceptionEvent_ExceptionCauseStackTrace_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExceptionEvent_ExceptionCauseStackTrace_feature", "_UI_ExceptionEvent_type"),
+				 EventsPackage.Literals.EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns ExceptionEvent.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -145,15 +162,15 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((ExceptionEvent) object).getTimestamp();
+		Date labelValue = ((ExceptionEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_ExceptionEvent_type")
-			: getString("_UI_ExceptionEvent_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_ExceptionEvent_type") :
+			getString("_UI_ExceptionEvent_type") + " " + label;
 	}
 
 	/**
@@ -168,12 +185,12 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ExceptionEvent.class)) {
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_TITLE:
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE:
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE:
-		case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_TITLE:
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_STACK_TRACE:
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_TITLE:
+			case EventsPackage.EXCEPTION_EVENT__EXCEPTION_CAUSE_STACK_TRACE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -182,7 +199,6 @@ public class ExceptionEventItemProvider extends EventItemProvider implements IEd
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -22,7 +22,8 @@ Export-Package: org.eclipse.emf.emfstore.client.model,
  org.eclipse.emf.emfstore.client.model.notification,
  org.eclipse.emf.emfstore.client.model.observers,
  org.eclipse.emf.emfstore.client.model.preferences,
- org.eclipse.emf.emfstore.client.model.util
+ org.eclipse.emf.emfstore.client.model.util,
+ org.eclipse.emf.emfstore.client.properties
 Require-Bundle: org.eclipse.emf.emfstore.server;visibility:=reexport,
  org.eclipse.emf.edit
 Bundle-ActivationPolicy: lazy

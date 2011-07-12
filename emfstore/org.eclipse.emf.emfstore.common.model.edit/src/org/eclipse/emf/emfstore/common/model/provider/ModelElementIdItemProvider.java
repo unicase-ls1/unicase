@@ -27,15 +27,14 @@ import org.eclipse.emf.emfstore.common.model.ModelElementId;
  * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.common.model.ModelElementId} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
-public class ModelElementIdItemProvider extends UniqueIdentifierItemProvider implements IEditingDomainItemProvider,
-	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ModelElementIdItemProvider extends UniqueIdentifierItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementIdItemProvider(AdapterFactory adapterFactory) {
@@ -45,7 +44,6 @@ public class ModelElementIdItemProvider extends UniqueIdentifierItemProvider imp
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,25 +58,24 @@ public class ModelElementIdItemProvider extends UniqueIdentifierItemProvider imp
 	/**
 	 * This returns ModelElementId.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelElementId"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/ModelElementId"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((ModelElementId) object).getId();
 		return label == null || label.length() == 0 ? getString("_UI_ModelElementId_type")
-			: getString("_UI_ModelElementId_type") + " " + label;
+				: getString("_UI_ModelElementId_type") + " " + label;
 	}
 
 	/**
@@ -98,11 +95,11 @@ public class ModelElementIdItemProvider extends UniqueIdentifierItemProvider imp
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
