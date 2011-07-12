@@ -8,6 +8,7 @@ package org.eclipse.emf.ecp.editor.mecontrols;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
@@ -21,6 +22,8 @@ import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -37,7 +40,7 @@ import org.eclipse.ui.PlatformUI;
  * 
  * @author helming
  */
-public class MERichTextControl extends AbstractMEControl {
+public class MERichTextControl extends AbstractMEControl implements IValidatableControl{
 	private EAttribute attribute;
 
 	private AdapterImpl eAdapter;
@@ -204,5 +207,28 @@ public class MERichTextControl extends AbstractMEControl {
 			}
 		}
 		return AbstractMEControl.DO_NOT_RENDER;
+	}
+	
+	/**.
+	 * {@inheritDoc}}
+	 * */
+	public void handleValidation(Diagnostic diagnostic) {
+		Device device = Display.getCurrent();	
+		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
+			Color color = new Color(device, 255, 0 ,0);
+			this.text.setBackground(color);
+			this.text.setToolTipText(diagnostic.getMessage());
+		}
+	}
+	
+	/**.
+	 * {@inheritDoc}}
+	 * */
+	public void resetValidation() {
+		Device device = Display.getCurrent();
+		Color color = new Color(device, 255, 255, 255);
+		this.text.setBackground(color);
+		this.text.setToolTipText("");
+		
 	}
 }

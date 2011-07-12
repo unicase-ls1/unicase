@@ -9,11 +9,13 @@ package org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol;
 import java.util.ArrayList;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
+import org.eclipse.emf.ecp.editor.mecontrols.IValidatableControl;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.action.ToolBarManager;
@@ -24,7 +26,9 @@ import org.eclipse.swt.dnd.DropTarget;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Cursor;
+import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
@@ -40,7 +44,7 @@ import org.eclipse.ui.forms.widgets.Section;
  * 
  * @author helming
  */
-public class MEMultiLinkControl extends AbstractMEControl {
+public class MEMultiLinkControl extends AbstractMEControl implements IValidatableControl{
 
 	/**
 	 * Command to rebuild the links.
@@ -247,6 +251,29 @@ public class MEMultiLinkControl extends AbstractMEControl {
 			return PRIORITY;
 		}
 		return AbstractMEControl.DO_NOT_RENDER;
+	}
+	
+	/**.
+	 * {@inheritDoc}}
+	 * */
+	public void handleValidation(Diagnostic diagnostic) {
+		Device device = Display.getCurrent();
+		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
+			Color color = new Color(device, 255, 0 ,0);
+			this.section.setTitleBarBackground(color);
+			this.section.setToolTipText(diagnostic.getMessage());
+		}
+	}
+
+	/**.
+	 * {@inheritDoc}}
+	 * */
+	public void resetValidation() {
+		Device device = Display.getCurrent();
+		Color color = new Color(device, 255, 255, 255);
+		this.section.setTitleBarBackground(color);
+		this.section.setToolTipText("");
+		
 	}
 
 }

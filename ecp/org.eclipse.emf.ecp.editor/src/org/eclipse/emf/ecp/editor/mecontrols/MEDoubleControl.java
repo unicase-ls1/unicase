@@ -7,6 +7,7 @@
 package org.eclipse.emf.ecp.editor.mecontrols;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -15,8 +16,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.editor.Activator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Spinner;
 
 /**
@@ -24,7 +28,7 @@ import org.eclipse.swt.widgets.Spinner;
  * 
  * @author helming
  */
-public class MEDoubleControl extends AbstractMEControl {
+public class MEDoubleControl extends AbstractMEControl implements IValidatableControl{
 
 	private EAttribute attribute;
 
@@ -80,5 +84,30 @@ public class MEDoubleControl extends AbstractMEControl {
 		}
 		return AbstractMEControl.DO_NOT_RENDER;
 	}
+	
+	/**.
+	 * {@inheritDoc}}
+	 * */
+	public void handleValidation(Diagnostic diagnostic) {
+		Device device = Display.getCurrent();
+		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
+			Color color = new Color(device, 255, 0 ,0);
+			this.spinner.setBackground(color);
+			this.spinner.setToolTipText(diagnostic.getMessage());
+		}
+	
+	}
+	
+	/**.
+	 * {@inheritDoc}}
+	 * */
+	public void resetValidation() {
+		Device device = Display.getCurrent();
+		Color color = new Color(device, 255, 255, 255);
+		this.spinner.setBackground(color);
+		this.spinner.setToolTipText("");
+		
+	}
+
 
 }

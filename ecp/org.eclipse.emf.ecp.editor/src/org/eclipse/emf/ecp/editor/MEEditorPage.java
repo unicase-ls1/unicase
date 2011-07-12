@@ -10,16 +10,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecp.common.commands.DeleteModelElementCommand;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
 import org.eclipse.emf.ecp.common.utilities.ShortLabelProvider;
 import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
 import org.eclipse.emf.ecp.editor.mecontrols.FeatureHintTooltipSupport;
+import org.eclipse.emf.ecp.editor.mecontrols.IValidatableControl;
 import org.eclipse.emf.ecp.editor.mecontrols.METextControl;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -59,8 +63,9 @@ public class MEEditorPage extends FormPage {
 
 	private EObject modelElement;
 	private FormToolkit toolkit;
-	private List<AbstractMEControl> meControls = new ArrayList<AbstractMEControl>();
+	private Map<EStructuralFeature, AbstractMEControl> meControls = new HashMap<EStructuralFeature, AbstractMEControl>();
 
+	private Map<AbstractMEControl, Diagnostic> valdiatedControls = new HashMap<AbstractMEControl, Diagnostic>();
 	private static String activeModelelement = "activeModelelement";
 	private ScrolledForm form;
 	private List<IItemPropertyDescriptor> leftColumnAttributes = new ArrayList<IItemPropertyDescriptor>();
@@ -155,6 +160,7 @@ public class MEEditorPage extends FormPage {
 		createToolbar();
 		form.pack();
 		updateSectionTitle();
+		updateLiveValidation();
 	}
 
 	/**
@@ -265,7 +271,7 @@ public class MEEditorPage extends FormPage {
 			if (meControl == null) {
 				continue;
 			}
-			meControls.add(meControl);
+			meControls.put((EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement), meControl);
 			Control control;
 			if (meControl.getShowLabel()) {
 				Label label = toolkit.createLabel(attributeComposite,
@@ -301,7 +307,7 @@ public class MEEditorPage extends FormPage {
 	 */
 	@Override
 	public void dispose() {
-		for (AbstractMEControl control : meControls) {
+		for (AbstractMEControl control : meControls.values()) {
 			control.dispose();
 		}
 		super.dispose();
@@ -315,13 +321,48 @@ public class MEEditorPage extends FormPage {
 	public void setFocus() {
 		super.setFocus();
 		// set keyboard focus on the first Text control
-		for (AbstractMEControl meControl : this.meControls) {
+		for (AbstractMEControl meControl : this.meControls.values()) {
 			if (meControl instanceof METextControl) {
 				((METextControl) meControl).setFocus();
 				return;
 			}
 		}
 		leftColumnComposite.setFocus();
+	}
+	
+	/**
+	 * Triggers live validation of the model attributes.
+	 * **/
+	public void updateLiveValidation() {	
+		Diagnostic diagnostic = Diagnostician.INSTANCE.validate(modelElement);
+		List<AbstractMEControl> affectedControls = new ArrayList<AbstractMEControl>();
+		
+		for (Iterator<Diagnostic> i= diagnostic.getChildren().iterator(); i.hasNext();) {
+			Diagnostic childDiagnostic = i.next();
+			AbstractMEControl meControl = this.meControls.get(childDiagnostic.getData().get(1));
+			affectedControls.add(meControl);
+			if (meControl instanceof IValidatableControl) { 
+				if (this.valdiatedControls.containsKey(meControl)) {
+					if (childDiagnostic.getSeverity() != this.valdiatedControls.get(meControl).getSeverity()) {
+						((IValidatableControl)meControl).handleValidation(childDiagnostic);
+						this.valdiatedControls.put(meControl, childDiagnostic);
+					} 
+				} else {
+					((IValidatableControl)meControl).handleValidation(childDiagnostic);
+					this.valdiatedControls.put(meControl, childDiagnostic);
+				}
+			}
+		}
+		
+		Map<AbstractMEControl, Diagnostic> temp = new HashMap<AbstractMEControl, Diagnostic>();
+		temp.putAll(this.valdiatedControls);
+		for (Map.Entry<AbstractMEControl, Diagnostic> entry : temp.entrySet()) {
+			AbstractMEControl meControl = entry.getKey();
+			if (!affectedControls.contains(meControl)) {
+				this.valdiatedControls.remove(meControl);
+				((IValidatableControl)meControl).resetValidation();
+			}
+		}
 	}
 
 }
