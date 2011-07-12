@@ -19,13 +19,12 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPac
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Operation Id</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class OperationIdImpl extends UniqueIdentifierImpl implements OperationId {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected OperationIdImpl() {
@@ -34,7 +33,6 @@ public class OperationIdImpl extends UniqueIdentifierImpl implements OperationId
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -29,10 +29,8 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage;
 import org.eclipse.emf.emfstore.server.model.versioning.events.RevertEvent;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.RevertEvent}
- * object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.RevertEvent} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class RevertEventItemProvider extends EventItemProvider implements IEditingDomainItemProvider,
@@ -40,7 +38,6 @@ public class RevertEventItemProvider extends EventItemProvider implements IEditi
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RevertEventItemProvider(AdapterFactory adapterFactory) {
@@ -50,7 +47,6 @@ public class RevertEventItemProvider extends EventItemProvider implements IEditi
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -70,19 +66,24 @@ public class RevertEventItemProvider extends EventItemProvider implements IEditi
 	 * @generated
 	 */
 	protected void addRevertedChangesCountPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_RevertEvent_revertedChangesCount_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_RevertEvent_revertedChangesCount_feature",
-				"_UI_RevertEvent_type"), EventsPackage.Literals.REVERT_EVENT__REVERTED_CHANGES_COUNT, true, false,
-			false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_RevertEvent_revertedChangesCount_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RevertEvent_revertedChangesCount_feature", "_UI_RevertEvent_type"),
+				 EventsPackage.Literals.REVERT_EVENT__REVERTED_CHANGES_COUNT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns RevertEvent.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -93,15 +94,15 @@ public class RevertEventItemProvider extends EventItemProvider implements IEditi
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((RevertEvent) object).getTimestamp();
+		Date labelValue = ((RevertEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_RevertEvent_type")
-			: getString("_UI_RevertEvent_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_RevertEvent_type") :
+			getString("_UI_RevertEvent_type") + " " + label;
 	}
 
 	/**
@@ -116,9 +117,9 @@ public class RevertEventItemProvider extends EventItemProvider implements IEditi
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(RevertEvent.class)) {
-		case EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case EventsPackage.REVERT_EVENT__REVERTED_CHANGES_COUNT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -127,7 +128,6 @@ public class RevertEventItemProvider extends EventItemProvider implements IEditi
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

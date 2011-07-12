@@ -46,7 +46,6 @@ public class SemanticCompositeOperationItemProvider extends CompositeOperationIt
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SemanticCompositeOperationItemProvider(AdapterFactory adapterFactory) {
@@ -56,7 +55,6 @@ public class SemanticCompositeOperationItemProvider extends CompositeOperationIt
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -71,14 +69,14 @@ public class SemanticCompositeOperationItemProvider extends CompositeOperationIt
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SemanticCompositeOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_SemanticCompositeOperation_type")
-			: getString("_UI_SemanticCompositeOperation_type") + " " + label;
+		String label = ((SemanticCompositeOperation)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_SemanticCompositeOperation_type") :
+			getString("_UI_SemanticCompositeOperation_type") + " " + label;
 	}
 
 	/**
@@ -98,7 +96,6 @@ public class SemanticCompositeOperationItemProvider extends CompositeOperationIt
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -109,7 +106,6 @@ public class SemanticCompositeOperationItemProvider extends CompositeOperationIt
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

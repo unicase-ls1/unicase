@@ -63,7 +63,6 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 	 */
 	public ProjectSpaceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
-		projectToProjectSpaceMap = new HashMap<Project, ProjectSpace>();
 	}
 
 	/**
@@ -225,13 +224,10 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to
-	 * deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand},
-	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
-	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -255,19 +251,21 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 					.add(ModelPackage.Literals.PROJECT_SPACE__NOTIFICATION_COMPOSITE);
 			childrenFeatures
 					.add(ModelPackage.Literals.PROJECT_SPACE__WAITING_UPLOADS);
+			childrenFeatures
+					.add(ModelPackage.Literals.PROJECT_SPACE__PROPERTIES);
+			childrenFeatures
+					.add(ModelPackage.Literals.PROJECT_SPACE__CHANGED_SHARED_PROPERTIES);
 		}
 		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper
-		// feature to use for
+		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
@@ -342,18 +340,6 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 	private void notifyChangedGen(Notification notification) {
 		updateChildren(notification);
 
-		if (notification.getNotifier() instanceof Project) {
-			switch (notification.getFeatureID(Project.class)) {
-			case org.eclipse.emf.emfstore.common.model.ModelPackage.PROJECT__MODEL_ELEMENTS:
-			case org.eclipse.emf.emfstore.common.model.ModelPackage.PROJECT__CUT_ELEMENTS:
-				fireNotifyChanged(new ViewerNotification(notification,
-						((EObject) notification.getNotifier()).eContainer(),
-						true, false));
-				return;
-			}
-			return;
-		}
-
 		switch (notification.getFeatureID(ProjectSpace.class)) {
 		case ModelPackage.PROJECT_SPACE__PROJECT_NAME:
 		case ModelPackage.PROJECT_SPACE__PROJECT_DESCRIPTION:
@@ -373,6 +359,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 		case ModelPackage.PROJECT_SPACE__EVENT_COMPOSITE:
 		case ModelPackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
 		case ModelPackage.PROJECT_SPACE__WAITING_UPLOADS:
+		case ModelPackage.PROJECT_SPACE__PROPERTIES:
+		case ModelPackage.PROJECT_SPACE__CHANGED_SHARED_PROPERTIES:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), true, false));
 			return;
@@ -536,6 +524,41 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 				ModelPackage.Literals.PROJECT_SPACE__WAITING_UPLOADS,
 				org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE
 						.createFileIdentifier()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						ModelPackage.Literals.PROJECT_SPACE__PROPERTIES,
+						ModelFactory.eINSTANCE
+								.create(org.eclipse.emf.emfstore.common.model.ModelPackage.Literals.PROPERTY_MAP_ENTRY)));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						ModelPackage.Literals.PROJECT_SPACE__CHANGED_SHARED_PROPERTIES,
+						ModelFactory.eINSTANCE
+								.create(org.eclipse.emf.emfstore.common.model.ModelPackage.Literals.PROPERTY_MAP_ENTRY)));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature,
+			Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify = childFeature == ModelPackage.Literals.PROJECT_SPACE__PROPERTIES
+				|| childFeature == ModelPackage.Literals.PROJECT_SPACE__CHANGED_SHARED_PROPERTIES;
+
+		if (qualify) {
+			return getString("_UI_CreateChild_text2", new Object[] {
+					getTypeText(childObject), getFeatureText(childFeature),
+					getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

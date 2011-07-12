@@ -24,9 +24,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -34,6 +36,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
@@ -70,10 +73,13 @@ import org.eclipse.emf.emfstore.client.model.observers.UpdateObserver;
 import org.eclipse.emf.emfstore.client.model.preferences.PropertyKey;
 import org.eclipse.emf.emfstore.client.model.util.ResourceHelper;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.client.properties.PropertyManager;
+import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.impl.IdentifiableElementImpl;
 import org.eclipse.emf.emfstore.common.model.impl.ProjectImpl;
+import org.eclipse.emf.emfstore.common.model.impl.PropertyMapEntryImpl;
 import org.eclipse.emf.emfstore.common.model.util.AutoSplitAndSaveResourceContainmentList;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.conflictDetection.ConflictDetector;
@@ -114,7 +120,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.Sema
  *             <em>Project Id</em>}</li>
  *             <li>
  *             {@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getProjectName
- *             <em>Project Name </em>}</li>
+ *             <em>Project Name</em>}</li>
  *             <li>
  *             {@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getProjectDescription
  *             <em>Project Description</em>}</li>
@@ -123,13 +129,13 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.Sema
  *             <em>Events</em>}</li>
  *             <li>
  *             {@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getUsersession
- *             <em>Usersession </em>}</li>
+ *             <em>Usersession</em>}</li>
  *             <li>
  *             {@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getLastUpdated
- *             <em>Last Updated </em>}</li>
+ *             <em>Last Updated</em>}</li>
  *             <li>
  *             {@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getBaseVersion
- *             <em>Base Version </em>}</li>
+ *             <em>Base Version</em>}</li>
  *             <li>
  *             {@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getResourceCount
  *             <em>Resource Count</em>}</li>
@@ -144,18 +150,25 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.Sema
  *             <em>Local Operations</em>}</li>
  *             <li>
  *             {@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getNotifications
- *             <em>Notifications </em>}</li>
+ *             <em>Notifications</em>}</li>
  *             <li>
  *             {@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getEventComposite
  *             <em>Event Composite</em>}</li>
  *             <li>
  *             {@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getNotificationComposite
- *             <em> Notification Composite</em>}</li>
+ *             <em>Notification Composite</em>}</li>
  *             <li>
  *             {@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getWaitingUploads
  *             <em>Waiting Uploads</em>}</li>
+ *             <li>
+ *             {@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getProperties
+ *             <em>Properties</em>}</li>
+ *             <li>
+ *             {@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl#getChangedSharedProperties
+ *             <em>Changed Shared Properties</em>}</li>
  *             </ul>
  *             </p>
+ * 
  * @generated
  */
 public class ProjectSpaceImpl extends IdentifiableElementImpl implements
@@ -381,6 +394,27 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	 */
 	protected EList<FileIdentifier> waitingUploads;
 
+	/**
+	 * The cached value of the '{@link #getProperties() <em>Properties</em>}'
+	 * map. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getProperties()
+	 * @generated
+	 * @ordered
+	 */
+	protected EMap<String, EMFStoreProperty> properties;
+
+	/**
+	 * The cached value of the '{@link #getChangedSharedProperties()
+	 * <em>Changed Shared Properties</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getChangedSharedProperties()
+	 * @generated
+	 * @ordered
+	 */
+	protected EMap<String, EMFStoreProperty> changedSharedProperties;
+
 	private boolean initCompleted;
 
 	private boolean isTransient;
@@ -406,6 +440,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	private OperationRecorder operationRecorder;
 
 	private StatePersister statePersister;
+
+	private PropertyManager propertyManager;
 
 	// begin of custom code
 	/**
@@ -1291,6 +1327,63 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 	}
 
 	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * 
+	 *            public EMap<String, EMFStoreProperty> getProperties() { if
+	 *            (properties == null) { properties = new EcoreEMap<String,
+	 *            EMFStoreProperty>( ModelPackage.Literals.PROPERTY_MAP_ENTRY,
+	 *            PropertyMapEntryImpl.class, this,
+	 *            ModelPackage.PROJECT_SPACE__PROPERTIES); } return properties;
+	 *            }
+	 */
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * 
+	 *            public EMap<String, EMFStoreProperty>
+	 *            getChangedSharedProperties() { if (changedSharedProperties ==
+	 *            null) { changedSharedProperties = new EcoreEMap<String,
+	 *            EMFStoreProperty>( ModelPackage.Literals.PROPERTY_MAP_ENTRY,
+	 *            PropertyMapEntryImpl.class, this,
+	 *            ModelPackage.PROJECT_SPACE__CHANGED_SHARED_PROPERTIES); }
+	 *            return changedSharedProperties; }
+	 */
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EMap<String, EMFStoreProperty> getProperties() {
+		if (properties == null) {
+			properties = new EcoreEMap<String, EMFStoreProperty>(
+					org.eclipse.emf.emfstore.common.model.ModelPackage.Literals.PROPERTY_MAP_ENTRY,
+					PropertyMapEntryImpl.class, this,
+					ModelPackage.PROJECT_SPACE__PROPERTIES);
+		}
+		return properties;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EMap<String, EMFStoreProperty> getChangedSharedProperties() {
+		if (changedSharedProperties == null) {
+			changedSharedProperties = new EcoreEMap<String, EMFStoreProperty>(
+					org.eclipse.emf.emfstore.common.model.ModelPackage.Literals.PROPERTY_MAP_ENTRY,
+					PropertyMapEntryImpl.class, this,
+					ModelPackage.PROJECT_SPACE__CHANGED_SHARED_PROPERTIES);
+		}
+		return changedSharedProperties;
+	}
+
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @generated NOT
@@ -1348,7 +1441,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			}
 			getOperations().clear();
 			updateDirtyState();
-			throw new NoLocalChangesException();
+
+			if (this.changedSharedProperties.isEmpty()) {
+				throw new NoLocalChangesException();
+			}
 		}
 
 		notifyPreCommitObservers(changePackage);
@@ -1392,6 +1488,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		}
 
 		fileTransferManager.uploadQueuedFiles(new NullProgressMonitor());
+		getPropertyManager().transmit();
 
 		notifyPostCommitObservers(newBaseVersion);
 
@@ -1539,6 +1636,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 		changes = connectionManager.getChanges(getUsersession().getSessionId(),
 				projectId, baseVersion, resolvedVersion);
+
+		getPropertyManager().transmit();
 
 		ChangePackage localchanges = getLocalChangePackage(false);
 
@@ -1918,6 +2017,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		case ModelPackage.PROJECT_SPACE__WAITING_UPLOADS:
 			return ((InternalEList<?>) getWaitingUploads()).basicRemove(
 					otherEnd, msgs);
+		case ModelPackage.PROJECT_SPACE__PROPERTIES:
+			return ((InternalEList<?>) getProperties()).basicRemove(otherEnd,
+					msgs);
+		case ModelPackage.PROJECT_SPACE__CHANGED_SHARED_PROPERTIES:
+			return ((InternalEList<?>) getChangedSharedProperties())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -1976,6 +2081,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			return basicGetNotificationComposite();
 		case ModelPackage.PROJECT_SPACE__WAITING_UPLOADS:
 			return getWaitingUploads();
+		case ModelPackage.PROJECT_SPACE__PROPERTIES:
+			if (coreType)
+				return getProperties();
+			else
+				return getProperties().map();
+		case ModelPackage.PROJECT_SPACE__CHANGED_SHARED_PROPERTIES:
+			if (coreType)
+				return getChangedSharedProperties();
+			else
+				return getChangedSharedProperties().map();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -2043,6 +2158,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			getWaitingUploads().addAll(
 					(Collection<? extends FileIdentifier>) newValue);
 			return;
+		case ModelPackage.PROJECT_SPACE__PROPERTIES:
+			((EStructuralFeature.Setting) getProperties()).set(newValue);
+			return;
+		case ModelPackage.PROJECT_SPACE__CHANGED_SHARED_PROPERTIES:
+			((EStructuralFeature.Setting) getChangedSharedProperties())
+					.set(newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -2103,6 +2225,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 		case ModelPackage.PROJECT_SPACE__WAITING_UPLOADS:
 			getWaitingUploads().clear();
 			return;
+		case ModelPackage.PROJECT_SPACE__PROPERTIES:
+			getProperties().clear();
+			return;
+		case ModelPackage.PROJECT_SPACE__CHANGED_SHARED_PROPERTIES:
+			getChangedSharedProperties().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -2150,6 +2278,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 			return notificationComposite != null;
 		case ModelPackage.PROJECT_SPACE__WAITING_UPLOADS:
 			return waitingUploads != null && !waitingUploads.isEmpty();
+		case ModelPackage.PROJECT_SPACE__PROPERTIES:
+			return properties != null && !properties.isEmpty();
+		case ModelPackage.PROJECT_SPACE__CHANGED_SHARED_PROPERTIES:
+			return changedSharedProperties != null
+					&& !changedSharedProperties.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -2826,6 +2959,38 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements
 
 	public void copyEnd() {
 		operationRecorder.disableNotifications(false);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public PropertyManager getPropertyManager() {
+		if (this.propertyManager == null) {
+			this.propertyManager = new PropertyManager(this);
+		}
+
+		return this.propertyManager;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setEMFStoreProperty(EMFStoreProperty property) {
+		this.properties.put(property.getKey(), property);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setChangedEMFStoreProperty(EMFStoreProperty property) {
+		this.changedSharedProperties.put(property.getKey(), property);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void unsetChangedSharedEMFStoreProperties() {
+		this.changedSharedProperties.clear();
 	}
 
 } // ProjectContainerImpl

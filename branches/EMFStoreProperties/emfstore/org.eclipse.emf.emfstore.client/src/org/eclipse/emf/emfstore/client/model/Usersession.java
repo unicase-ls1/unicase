@@ -29,21 +29,21 @@ import org.eclipse.emf.emfstore.server.model.versioning.VersionSpec;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Usersession</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.client.model.Usersession#getUsername <em>Username</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.Usersession#getPassword <em>Password</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.Usersession#getSessionId <em>Session Id</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.Usersession#getPersistentPassword <em>Persistent Password</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.Usersession#getServerInfo <em>Server Info</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.Usersession#isSavePassword <em>Save Password</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.Usersession#getACUser <em>AC User</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.Usersession#getChangedProperties <em>Changed Properties</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.Usersession#getUsername <em>Username</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.Usersession#getPassword <em>Password</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.Usersession#getSessionId <em>Session Id</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.Usersession#getPersistentPassword <em>Persistent Password</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.Usersession#getServerInfo <em>Server Info</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.Usersession#isSavePassword <em>Save Password</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.Usersession#getACUser <em>AC User</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.Usersession#getChangedProperties <em>Changed Properties</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getUsersession()
  * @model
  * @generated
@@ -57,7 +57,6 @@ public interface Usersession extends EObject {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Username</em>' attribute.
 	 * @see #setUsername(String)
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getUsersession_Username()
@@ -67,10 +66,8 @@ public interface Usersession extends EObject {
 	String getUsername();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getUsername <em>Username</em>}'
-	 * attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getUsername <em>Username</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Username</em>' attribute.
 	 * @see #getUsername()
 	 * @generated
@@ -85,7 +82,6 @@ public interface Usersession extends EObject {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Password</em>' attribute.
 	 * @see #setPassword(String)
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getUsersession_Password()
@@ -95,10 +91,8 @@ public interface Usersession extends EObject {
 	String getPassword();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getPassword <em>Password</em>}'
-	 * attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getPassword <em>Password</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Password</em>' attribute.
 	 * @see #getPassword()
 	 * @generated
@@ -113,7 +107,6 @@ public interface Usersession extends EObject {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Session Id</em>' reference.
 	 * @see #setSessionId(SessionId)
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getUsersession_SessionId()
@@ -123,10 +116,8 @@ public interface Usersession extends EObject {
 	SessionId getSessionId();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getSessionId <em>Session Id</em>}
-	 * ' reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getSessionId <em>Session Id</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Session Id</em>' reference.
 	 * @see #getSessionId()
 	 * @generated
@@ -141,7 +132,6 @@ public interface Usersession extends EObject {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Persistent Password</em>' attribute.
 	 * @see #setPersistentPassword(String)
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getUsersession_PersistentPassword()
@@ -151,10 +141,8 @@ public interface Usersession extends EObject {
 	String getPersistentPassword();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getPersistentPassword
-	 * <em>Persistent Password</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getPersistentPassword <em>Persistent Password</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Persistent Password</em>' attribute.
 	 * @see #getPersistentPassword()
 	 * @generated
@@ -169,7 +157,6 @@ public interface Usersession extends EObject {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Server Info</em>' reference.
 	 * @see #setServerInfo(ServerInfo)
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getUsersession_ServerInfo()
@@ -179,10 +166,8 @@ public interface Usersession extends EObject {
 	ServerInfo getServerInfo();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getServerInfo
-	 * <em>Server Info</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getServerInfo <em>Server Info</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Server Info</em>' reference.
 	 * @see #getServerInfo()
 	 * @generated
@@ -197,7 +182,6 @@ public interface Usersession extends EObject {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Save Password</em>' attribute.
 	 * @see #setSavePassword(boolean)
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getUsersession_SavePassword()
@@ -207,10 +191,8 @@ public interface Usersession extends EObject {
 	boolean isSavePassword();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#isSavePassword
-	 * <em>Save Password</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#isSavePassword <em>Save Password</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Save Password</em>' attribute.
 	 * @see #isSavePassword()
 	 * @generated
@@ -225,7 +207,6 @@ public interface Usersession extends EObject {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>AC User</em>' containment reference.
 	 * @see #setACUser(ACUser)
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getUsersession_ACUser()
@@ -235,10 +216,8 @@ public interface Usersession extends EObject {
 	ACUser getACUser();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getACUser <em>AC User</em>}'
-	 * containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Usersession#getACUser <em>AC User</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>AC User</em>' containment reference.
 	 * @see #getACUser()
 	 * @generated
@@ -254,7 +233,6 @@ public interface Usersession extends EObject {
 	 * be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Changed Properties</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getUsersession_ChangedProperties()
 	 * @model containment="true" resolveProxies="true"
@@ -303,7 +281,8 @@ public interface Usersession extends EObject {
 	 * @throws EmfStoreException if creation fails
 	 * @generated NOT
 	 */
-	ProjectInfo createProject(String name, String description) throws AccessControlException, EmfStoreException;
+	ProjectInfo createProject(String name, String description)
+			throws AccessControlException, EmfStoreException;
 
 	/**
 	 * <!-- begin-user-doc --> Resolve a version spec to a primary version spec.
@@ -315,7 +294,8 @@ public interface Usersession extends EObject {
 	 * @model
 	 * @generated NOT
 	 */
-	PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec, ProjectId projectId) throws EmfStoreException;
+	PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec,
+			ProjectId projectId) throws EmfStoreException;
 
 	/**
 	 * Gets a list of history infos.
@@ -326,7 +306,8 @@ public interface Usersession extends EObject {
 	 * @throws EmfStoreException if server throws an exception
 	 * @generated NOT
 	 */
-	List<HistoryInfo> getHistoryInfo(ProjectId projectId, HistoryQuery query) throws EmfStoreException;
+	List<HistoryInfo> getHistoryInfo(ProjectId projectId, HistoryQuery query)
+			throws EmfStoreException;
 
 	/**
 	 * Returns a {@link AdminBroker} related to the user session.
@@ -336,7 +317,8 @@ public interface Usersession extends EObject {
 	 * @throws AccessControlException if access is denied
 	 * @generated NOT
 	 */
-	AdminBroker getAdminBroker() throws EmfStoreException, AccessControlException;
+	AdminBroker getAdminBroker() throws EmfStoreException,
+			AccessControlException;
 
 	/**
 	 * Check if the user session is currently logged into a server.
@@ -352,7 +334,8 @@ public interface Usersession extends EObject {
 	 * @param deleteFiles deletes files too
 	 * @throws EmfStoreException in case of failure
 	 */
-	void deleteProject(ProjectId projectId, boolean deleteFiles) throws EmfStoreException;
+	void deleteProject(ProjectId projectId, boolean deleteFiles)
+			throws EmfStoreException;
 
 	/**
 	 * Updates the ACUser and it roles.

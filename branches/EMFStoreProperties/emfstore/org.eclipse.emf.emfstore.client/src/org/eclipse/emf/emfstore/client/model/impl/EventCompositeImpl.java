@@ -40,7 +40,6 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 	 * The cached value of the '{@link #getEvents() <em>Events</em>}' containment reference list.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getEvents()
 	 * @generated
 	 * @ordered
@@ -49,7 +48,6 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EventCompositeImpl() {
@@ -58,7 +56,6 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,24 +65,23 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Event> getEvents() {
 		if (events == null) {
-			events = new EObjectContainmentEList.Resolving<Event>(Event.class, this,
-				ModelPackage.EVENT_COMPOSITE__EVENTS);
+			events = new EObjectContainmentEList.Resolving<Event>(Event.class,
+					this, ModelPackage.EVENT_COMPOSITE__EVENTS);
 		}
 		return events;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.EVENT_COMPOSITE__EVENTS:
 			return ((InternalEList<?>) getEvents()).basicRemove(otherEnd, msgs);
@@ -95,7 +91,6 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -109,7 +104,6 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -126,7 +120,6 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,7 +134,6 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -31,15 +31,13 @@ import org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.HistoryQueryImpl#getSource <em>Source</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.HistoryQueryImpl#getTarget <em>Target</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.HistoryQueryImpl#getModelElements <em>Model Elements
- * </em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.HistoryQueryImpl#isIncludeChangePackage <em>Include
- * Change Package</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.HistoryQueryImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.HistoryQueryImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.HistoryQueryImpl#getModelElements <em>Model Elements</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.impl.HistoryQueryImpl#isIncludeChangePackage <em>Include Change Package</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
@@ -47,7 +45,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
@@ -58,7 +55,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -97,7 +93,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected HistoryQueryImpl() {
@@ -106,7 +101,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -116,26 +110,21 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getSource() {
 		if (source != null && source.eIsProxy()) {
-			InternalEObject oldSource = (InternalEObject) source;
-			source = (PrimaryVersionSpec) eResolveProxy(oldSource);
+			InternalEObject oldSource = (InternalEObject)source;
+			source = (PrimaryVersionSpec)eResolveProxy(oldSource);
 			if (source != oldSource) {
-				InternalEObject newSource = (InternalEObject) source;
-				NotificationChain msgs = oldSource.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- VersioningPackage.HISTORY_QUERY__SOURCE, null, null);
+				InternalEObject newSource = (InternalEObject)source;
+				NotificationChain msgs = oldSource.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_QUERY__SOURCE, null, null);
 				if (newSource.eInternalContainer() == null) {
-					msgs = newSource.eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_QUERY__SOURCE, null, msgs);
+					msgs = newSource.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_QUERY__SOURCE, null, msgs);
 				}
-				if (msgs != null)
-					msgs.dispatch();
+				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VersioningPackage.HISTORY_QUERY__SOURCE,
-						oldSource, source));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VersioningPackage.HISTORY_QUERY__SOURCE, oldSource, source));
 			}
 		}
 		return source;
@@ -143,7 +132,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetSource() {
@@ -152,67 +140,53 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSource(PrimaryVersionSpec newSource, NotificationChain msgs) {
 		PrimaryVersionSpec oldSource = source;
 		source = newSource;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				VersioningPackage.HISTORY_QUERY__SOURCE, oldSource, newSource);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VersioningPackage.HISTORY_QUERY__SOURCE, oldSource, newSource);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSource(PrimaryVersionSpec newSource) {
 		if (newSource != source) {
 			NotificationChain msgs = null;
 			if (source != null)
-				msgs = ((InternalEObject) source).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- VersioningPackage.HISTORY_QUERY__SOURCE, null, msgs);
+				msgs = ((InternalEObject)source).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_QUERY__SOURCE, null, msgs);
 			if (newSource != null)
-				msgs = ((InternalEObject) newSource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- VersioningPackage.HISTORY_QUERY__SOURCE, null, msgs);
+				msgs = ((InternalEObject)newSource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_QUERY__SOURCE, null, msgs);
 			msgs = basicSetSource(newSource, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.HISTORY_QUERY__SOURCE, newSource,
-				newSource));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.HISTORY_QUERY__SOURCE, newSource, newSource));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec getTarget() {
 		if (target != null && target.eIsProxy()) {
-			InternalEObject oldTarget = (InternalEObject) target;
-			target = (PrimaryVersionSpec) eResolveProxy(oldTarget);
+			InternalEObject oldTarget = (InternalEObject)target;
+			target = (PrimaryVersionSpec)eResolveProxy(oldTarget);
 			if (target != oldTarget) {
-				InternalEObject newTarget = (InternalEObject) target;
-				NotificationChain msgs = oldTarget.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- VersioningPackage.HISTORY_QUERY__TARGET, null, null);
+				InternalEObject newTarget = (InternalEObject)target;
+				NotificationChain msgs = oldTarget.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_QUERY__TARGET, null, null);
 				if (newTarget.eInternalContainer() == null) {
-					msgs = newTarget.eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_QUERY__TARGET, null, msgs);
+					msgs = newTarget.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_QUERY__TARGET, null, msgs);
 				}
-				if (msgs != null)
-					msgs.dispatch();
+				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VersioningPackage.HISTORY_QUERY__TARGET,
-						oldTarget, target));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VersioningPackage.HISTORY_QUERY__TARGET, oldTarget, target));
 			}
 		}
 		return target;
@@ -220,7 +194,6 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpec basicGetTarget() {
@@ -229,61 +202,49 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetTarget(PrimaryVersionSpec newTarget, NotificationChain msgs) {
 		PrimaryVersionSpec oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				VersioningPackage.HISTORY_QUERY__TARGET, oldTarget, newTarget);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VersioningPackage.HISTORY_QUERY__TARGET, oldTarget, newTarget);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTarget(PrimaryVersionSpec newTarget) {
 		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
-				msgs = ((InternalEObject) target).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- VersioningPackage.HISTORY_QUERY__TARGET, null, msgs);
+				msgs = ((InternalEObject)target).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_QUERY__TARGET, null, msgs);
 			if (newTarget != null)
-				msgs = ((InternalEObject) newTarget).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- VersioningPackage.HISTORY_QUERY__TARGET, null, msgs);
+				msgs = ((InternalEObject)newTarget).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VersioningPackage.HISTORY_QUERY__TARGET, null, msgs);
 			msgs = basicSetTarget(newTarget, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.HISTORY_QUERY__TARGET, newTarget,
-				newTarget));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.HISTORY_QUERY__TARGET, newTarget, newTarget));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ModelElementId> getModelElements() {
 		if (modelElements == null) {
-			modelElements = new EObjectContainmentEList.Resolving<ModelElementId>(ModelElementId.class, this,
-				VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS);
+			modelElements = new EObjectContainmentEList.Resolving<ModelElementId>(ModelElementId.class, this, VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS);
 		}
 		return modelElements;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isIncludeChangePackage() {
@@ -292,138 +253,127 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setIncludeChangePackage(boolean newIncludeChangePackage) {
 		boolean oldIncludeChangePackage = includeChangePackage;
 		includeChangePackage = newIncludeChangePackage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				VersioningPackage.HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE, oldIncludeChangePackage, includeChangePackage));
+			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE, oldIncludeChangePackage, includeChangePackage));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case VersioningPackage.HISTORY_QUERY__SOURCE:
-			return basicSetSource(null, msgs);
-		case VersioningPackage.HISTORY_QUERY__TARGET:
-			return basicSetTarget(null, msgs);
-		case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
-			return ((InternalEList<?>) getModelElements()).basicRemove(otherEnd, msgs);
+			case VersioningPackage.HISTORY_QUERY__SOURCE:
+				return basicSetSource(null, msgs);
+			case VersioningPackage.HISTORY_QUERY__TARGET:
+				return basicSetTarget(null, msgs);
+			case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
+				return ((InternalEList<?>)getModelElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case VersioningPackage.HISTORY_QUERY__SOURCE:
-			if (resolve)
-				return getSource();
-			return basicGetSource();
-		case VersioningPackage.HISTORY_QUERY__TARGET:
-			if (resolve)
-				return getTarget();
-			return basicGetTarget();
-		case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
-			return getModelElements();
-		case VersioningPackage.HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE:
-			return isIncludeChangePackage();
+			case VersioningPackage.HISTORY_QUERY__SOURCE:
+				if (resolve) return getSource();
+				return basicGetSource();
+			case VersioningPackage.HISTORY_QUERY__TARGET:
+				if (resolve) return getTarget();
+				return basicGetTarget();
+			case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
+				return getModelElements();
+			case VersioningPackage.HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE:
+				return isIncludeChangePackage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case VersioningPackage.HISTORY_QUERY__SOURCE:
-			setSource((PrimaryVersionSpec) newValue);
-			return;
-		case VersioningPackage.HISTORY_QUERY__TARGET:
-			setTarget((PrimaryVersionSpec) newValue);
-			return;
-		case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
-			getModelElements().clear();
-			getModelElements().addAll((Collection<? extends ModelElementId>) newValue);
-			return;
-		case VersioningPackage.HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE:
-			setIncludeChangePackage((Boolean) newValue);
-			return;
+			case VersioningPackage.HISTORY_QUERY__SOURCE:
+				setSource((PrimaryVersionSpec)newValue);
+				return;
+			case VersioningPackage.HISTORY_QUERY__TARGET:
+				setTarget((PrimaryVersionSpec)newValue);
+				return;
+			case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
+				getModelElements().clear();
+				getModelElements().addAll((Collection<? extends ModelElementId>)newValue);
+				return;
+			case VersioningPackage.HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE:
+				setIncludeChangePackage((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case VersioningPackage.HISTORY_QUERY__SOURCE:
-			setSource((PrimaryVersionSpec) null);
-			return;
-		case VersioningPackage.HISTORY_QUERY__TARGET:
-			setTarget((PrimaryVersionSpec) null);
-			return;
-		case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
-			getModelElements().clear();
-			return;
-		case VersioningPackage.HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE:
-			setIncludeChangePackage(INCLUDE_CHANGE_PACKAGE_EDEFAULT);
-			return;
+			case VersioningPackage.HISTORY_QUERY__SOURCE:
+				setSource((PrimaryVersionSpec)null);
+				return;
+			case VersioningPackage.HISTORY_QUERY__TARGET:
+				setTarget((PrimaryVersionSpec)null);
+				return;
+			case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
+				getModelElements().clear();
+				return;
+			case VersioningPackage.HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE:
+				setIncludeChangePackage(INCLUDE_CHANGE_PACKAGE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case VersioningPackage.HISTORY_QUERY__SOURCE:
-			return source != null;
-		case VersioningPackage.HISTORY_QUERY__TARGET:
-			return target != null;
-		case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
-			return modelElements != null && !modelElements.isEmpty();
-		case VersioningPackage.HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE:
-			return includeChangePackage != INCLUDE_CHANGE_PACKAGE_EDEFAULT;
+			case VersioningPackage.HISTORY_QUERY__SOURCE:
+				return source != null;
+			case VersioningPackage.HISTORY_QUERY__TARGET:
+				return target != null;
+			case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
+				return modelElements != null && !modelElements.isEmpty();
+			case VersioningPackage.HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE:
+				return includeChangePackage != INCLUDE_CHANGE_PACKAGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (includeChangePackage: ");

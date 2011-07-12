@@ -22,11 +22,10 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.NotificationReadE
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.impl.NotificationReadEventImpl#getNotificationId
- * <em>Notification Id</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.impl.NotificationReadEventImpl#getNotificationId <em>Notification Id</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class NotificationReadEventImpl extends ReadEventImpl implements NotificationReadEvent {
@@ -34,7 +33,6 @@ public class NotificationReadEventImpl extends ReadEventImpl implements Notifica
 	 * The default value of the '{@link #getNotificationId() <em>Notification Id</em>}' attribute.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getNotificationId()
 	 * @generated
 	 * @ordered
@@ -45,7 +43,6 @@ public class NotificationReadEventImpl extends ReadEventImpl implements Notifica
 	 * The cached value of the '{@link #getNotificationId() <em>Notification Id</em>}' attribute.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getNotificationId()
 	 * @generated
 	 * @ordered
@@ -54,7 +51,6 @@ public class NotificationReadEventImpl extends ReadEventImpl implements Notifica
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NotificationReadEventImpl() {
@@ -63,7 +59,6 @@ public class NotificationReadEventImpl extends ReadEventImpl implements Notifica
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,7 +68,6 @@ public class NotificationReadEventImpl extends ReadEventImpl implements Notifica
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getNotificationId() {
@@ -82,85 +76,76 @@ public class NotificationReadEventImpl extends ReadEventImpl implements Notifica
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setNotificationId(String newNotificationId) {
 		String oldNotificationId = notificationId;
 		notificationId = newNotificationId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				EventsPackage.NOTIFICATION_READ_EVENT__NOTIFICATION_ID, oldNotificationId, notificationId));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.NOTIFICATION_READ_EVENT__NOTIFICATION_ID, oldNotificationId, notificationId));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case EventsPackage.NOTIFICATION_READ_EVENT__NOTIFICATION_ID:
-			return getNotificationId();
+			case EventsPackage.NOTIFICATION_READ_EVENT__NOTIFICATION_ID:
+				return getNotificationId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case EventsPackage.NOTIFICATION_READ_EVENT__NOTIFICATION_ID:
-			setNotificationId((String) newValue);
-			return;
+			case EventsPackage.NOTIFICATION_READ_EVENT__NOTIFICATION_ID:
+				setNotificationId((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case EventsPackage.NOTIFICATION_READ_EVENT__NOTIFICATION_ID:
-			setNotificationId(NOTIFICATION_ID_EDEFAULT);
-			return;
+			case EventsPackage.NOTIFICATION_READ_EVENT__NOTIFICATION_ID:
+				setNotificationId(NOTIFICATION_ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case EventsPackage.NOTIFICATION_READ_EVENT__NOTIFICATION_ID:
-			return NOTIFICATION_ID_EDEFAULT == null ? notificationId != null : !NOTIFICATION_ID_EDEFAULT
-				.equals(notificationId);
+			case EventsPackage.NOTIFICATION_READ_EVENT__NOTIFICATION_ID:
+				return NOTIFICATION_ID_EDEFAULT == null ? notificationId != null : !NOTIFICATION_ID_EDEFAULT.equals(notificationId);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (notificationId: ");

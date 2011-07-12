@@ -34,10 +34,8 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOpera
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation} object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class AbstractOperationItemProvider extends IdentifiableElementItemProvider implements
@@ -60,7 +58,6 @@ public class AbstractOperationItemProvider extends IdentifiableElementItemProvid
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AbstractOperationItemProvider(AdapterFactory adapterFactory) {
@@ -91,7 +88,6 @@ public class AbstractOperationItemProvider extends IdentifiableElementItemProvid
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -111,87 +107,111 @@ public class AbstractOperationItemProvider extends IdentifiableElementItemProvid
 	/**
 	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_AbstractOperation_name_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_AbstractOperation_name_feature",
-				"_UI_AbstractOperation_type"), OperationsPackage.Literals.ABSTRACT_OPERATION__NAME, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractOperation_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractOperation_name_feature", "_UI_AbstractOperation_type"),
+				 OperationsPackage.Literals.ABSTRACT_OPERATION__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Description feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_AbstractOperation_description_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_AbstractOperation_description_feature",
-				"_UI_AbstractOperation_type"), OperationsPackage.Literals.ABSTRACT_OPERATION__DESCRIPTION, true, false,
-			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractOperation_description_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractOperation_description_feature", "_UI_AbstractOperation_type"),
+				 OperationsPackage.Literals.ABSTRACT_OPERATION__DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Model Element Id feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addModelElementIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_AbstractOperation_modelElementId_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_AbstractOperation_modelElementId_feature",
-				"_UI_AbstractOperation_type"), OperationsPackage.Literals.ABSTRACT_OPERATION__MODEL_ELEMENT_ID, true,
-			false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractOperation_modelElementId_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractOperation_modelElementId_feature", "_UI_AbstractOperation_type"),
+				 OperationsPackage.Literals.ABSTRACT_OPERATION__MODEL_ELEMENT_ID,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Accepted feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addAcceptedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_AbstractOperation_accepted_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_AbstractOperation_accepted_feature",
-				"_UI_AbstractOperation_type"), OperationsPackage.Literals.ABSTRACT_OPERATION__ACCEPTED, true, false,
-			false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractOperation_accepted_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractOperation_accepted_feature", "_UI_AbstractOperation_type"),
+				 OperationsPackage.Literals.ABSTRACT_OPERATION__ACCEPTED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Client Date feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addClientDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_AbstractOperation_clientDate_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_AbstractOperation_clientDate_feature",
-				"_UI_AbstractOperation_type"), OperationsPackage.Literals.ABSTRACT_OPERATION__CLIENT_DATE, true, false,
-			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractOperation_clientDate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractOperation_clientDate_feature", "_UI_AbstractOperation_type"),
+				 OperationsPackage.Literals.ABSTRACT_OPERATION__CLIENT_DATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns AbstractOperation.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -202,14 +222,14 @@ public class AbstractOperationItemProvider extends IdentifiableElementItemProvid
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((AbstractOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_AbstractOperation_type")
-			: getString("_UI_AbstractOperation_type") + " " + label;
+		String label = ((AbstractOperation)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_AbstractOperation_type") :
+			getString("_UI_AbstractOperation_type") + " " + label;
 	}
 
 	/**
@@ -224,12 +244,12 @@ public class AbstractOperationItemProvider extends IdentifiableElementItemProvid
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AbstractOperation.class)) {
-		case OperationsPackage.ABSTRACT_OPERATION__NAME:
-		case OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION:
-		case OperationsPackage.ABSTRACT_OPERATION__ACCEPTED:
-		case OperationsPackage.ABSTRACT_OPERATION__CLIENT_DATE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case OperationsPackage.ABSTRACT_OPERATION__NAME:
+			case OperationsPackage.ABSTRACT_OPERATION__DESCRIPTION:
+			case OperationsPackage.ABSTRACT_OPERATION__ACCEPTED:
+			case OperationsPackage.ABSTRACT_OPERATION__CLIENT_DATE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -238,7 +258,6 @@ public class AbstractOperationItemProvider extends IdentifiableElementItemProvid
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -249,7 +268,6 @@ public class AbstractOperationItemProvider extends IdentifiableElementItemProvid
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
