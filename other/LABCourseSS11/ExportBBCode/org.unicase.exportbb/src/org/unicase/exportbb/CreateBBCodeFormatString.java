@@ -88,6 +88,7 @@ public class CreateBBCodeFormatString {
 
 		} catch (Exception e) {// Catch exception if any
 			System.err.println("Error: " + e.getMessage());
+			throw new RuntimeException("end time");
 		}
 
 		return string;
@@ -104,8 +105,8 @@ public class CreateBBCodeFormatString {
 		string = string + "\n";
 		string = string + "\n";
 		
-		
-		if (meeting.getName()!=null && meeting.getEndtime()!=null && cal.getTime().before(meeting.getEndtime()))
+		//&& meeting.getEndtime()!=null
+		if (meeting.getName()!=null  && cal.getTime().before(meeting.getEndtime()))
 		string = string
 				+ ("[size=150]Agenda: " + meeting.getName() + " [/size]");
 		else
@@ -318,9 +319,10 @@ public class CreateBBCodeFormatString {
 			else
 				string = string + ("[b]Status[/b]: " + "<not defined>" + ", ");
 			string = string + "\n";
+			if (work_items.get(l).getDescription() != null && work_items.get(l).getDescription()!= ""){
 			string = string + ("         [i]" + work_items.get(l).getDescription()
 					+ "[/i]");
-			string = string + "\n";
+			string = string + "\n";}
 			}
 		}
 	}
@@ -331,7 +333,7 @@ public class CreateBBCodeFormatString {
 		string = string + ("    [*] Misc");
 		string = string + "\n";
 		string = string + "\n";
-		if (cms.getDescription() != null) {
+		if (cms.getDescription() != null && cms.getDescription() != "") {
 			string = string + ("         [i]" + cms.getDescription() + "[/i]");
 			string = string + "\n";
 		}
@@ -381,10 +383,10 @@ public class CreateBBCodeFormatString {
 		if (is.getAssignee() != null)
 			string = string + (is.getAssignee().getName() + "]: ");
 		else
-			string = string + ("<not defined>" + "]: ");
+			string = string + ("<no assignee defined>" + "]: ");
 		string = string + (is.getName() + " (" + is.getState() + ")");
 		string = string + "\n";
-		if (is.getDescription() != "") {
+		if (is.getDescription() != "" && is.getDescription() != null) {
 			string = string + ("        [i]" + is.getDescription() + "[/i]");
 			string = string + "\n";
 		}
@@ -398,16 +400,24 @@ public class CreateBBCodeFormatString {
 								+ proposals.get(k).getCreator() + ": " + proposals
 								.get(k).getName());
 				string = string + "\n";
+				if (proposals.get(k).getDescription() != null && proposals.get(k).getDescription() != ""){
 				string = string
 						+ ("         [i]" + proposals.get(k).getDescription() + "[/i]");
-				string = string + "\n";
+				string = string + "\n";}
 			}
 			string = string + ("    [/list]");
 			string = string + "\n";
 		}
-		string = string
-				+ ("        Resolution [" + is.getSolution().getCreator()
-						+ "]: [i]" + is.getSolution().getDescription() + "[/i]");
+		if (is.getSolution()!=null){
+			if (is.getSolution().getDescription() !=null && is.getSolution().getDescription() != ""){
+				string = string +("        Resolution [" + is.getSolution().getCreator()
+				+ "]: [i]" + is.getSolution().getDescription() + "[/i]");
+			}
+			else {
+				string = string +("        Resolution [" + is.getSolution().getCreator()
+						+ "]: <no description defined>");
+			}
+		}
 		string = string + "\n";
 		string = string + "\n";
 	}
@@ -481,9 +491,10 @@ string = string + "\n";
 				else
 					string = string + ("[b]Status[/b]: " + "<not defined>");
 				string = string + "\n";
+				if (work_items.get(l).getDescription() != null && work_items.get(l).getDescription() != ""){
 				string = string + ("         [i]" + work_items.get(l).getDescription()
 						+ "[/i]");
-				string = string + "\n";
+				string = string + "\n";}
 			}
 			
 			if (work_items.get(l).getSuccessors()!=null)
@@ -499,7 +510,7 @@ string = string + "\n";
 		string = string + ("    [*]Meeting-Critique");
 		string = string + "\n";
 		string = string + "\n";
-		if (cms.getDescription() != "") {
+		if (cms.getDescription() != "" && cms.getDescription() != null) {
 			string = string + ("         [i]" + cms.getDescription() + "[/i]");
 			string = string + "\n";
 		}

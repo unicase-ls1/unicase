@@ -16,6 +16,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.ui.PlatformUI;
+import org.unicase.exportbb.commands.ExportDialog;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.meeting.CompositeMeetingSection;
@@ -31,7 +35,7 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.ui.meeditor.MEEditorInput;
 
 /**
- * 
+ * Writes the information from the meeting in BBCode format into a file.
  * @author Carmen Carlan
  * 
  */
@@ -40,26 +44,28 @@ public class CreateBBCodeFormat {
 	static File file;
 	static FileWriter fstream;
 	static BufferedWriter out;
-	static Set<ModelElement> eee;
-	static Object[] childElementss;
+	static Set<ModelElement> modelElementSet;
+	static Object[] children;
 	static Object[] childElements;
-	Object aux;
-	static Set<ModelElement> set;
-	static Object[] o;
-	UnicaseModelElement m;
+	
+	static Object[] objects;
 	static CompositeMeetingSection cms;
 	CompositeMeetingSection cms_aux;
-	static WorkItemMeetingSection w;
-	ActionItem ai;
-	static Issue is;
+	static WorkItemMeetingSection wims;
+	ActionItem actionItem;
+	static Issue issue;
 	static IssueMeetingSection ims;
 	public static String error_message = "";
 	public static Calendar cal = Calendar.getInstance();
 
 	
 
-	public static void createFile(Meeting meeting, String fileUrl) {
-		
+	/**
+	 * Creates the file and writes everything in it.
+	 * @param meeting
+	 * @param fileUrl
+	 */
+	public static void createFile(Meeting meeting, String fileUrl) { 
 		try {
 			error_message = "";
 			// Create file
@@ -99,9 +105,17 @@ public class CreateBBCodeFormat {
 
 		} catch (Exception e) {// Catch exception if any
 			System.err.println("Error: " + e.getMessage());
+			//throw new RuntimeException(e);
+			throw new RuntimeException("end time");
 		}
 	}
 
+	/**
+	 * Returns the header for every meeting.
+	 * @param out
+	 * @param meeting
+	 * @throws IOException
+	 */
 	public static void writeHead(BufferedWriter out, Meeting meeting)
 			throws IOException {
 		out.write("[i][size=150]Chair for Applied Software Engineering [/size][/i]");
@@ -111,14 +125,22 @@ public class CreateBBCodeFormat {
 				+ getProjectName(meeting) + "[/size][/color]");
 		out.newLine();
 		out.newLine();
-		if (cal.getTime().before(meeting.getEndtime()))
-		out.write("[size=150]Agenda: " + meeting.getName() + " [/size]");
-		else
-			out.write("[size=150]Protocol: " + meeting.getName() + " [/size]");
+		if (meeting.getEndtime() != null){
+		if (cal.getTime().before(meeting.getEndtime())){
+		out.write("[size=150]Agenda: " + meeting.getName() + " [/size]");}
+		else{
+			out.write("[size=150]Protocol: " + meeting.getName() + " [/size]");}}
+		else {out.write("[size=150]Agenda: " + meeting.getName() + " [/size]");}
 		out.newLine();
 		out.newLine();
 	}
 
+	/**
+	 * 
+	 * @param out
+	 * @param meeting
+	 * @throws IOException
+	 */
 	public static void writeGeneralInfos(BufferedWriter out, Meeting meeting)
 			throws IOException {
 		out.write("[code]");
@@ -210,13 +232,13 @@ public class CreateBBCodeFormat {
 	}
 
 	public static void getModelElements(BufferedWriter out, Meeting meeting) {
-		eee = meeting.getAllContainedModelElements();
-		childElementss = eee.toArray();
+		modelElementSet = meeting.getAllContainedModelElements();
+		children = modelElementSet.toArray();
 		childElements = new Object[100];
 
-		for (int i = 0; i < childElementss.length; i++)
-			if (childElementss[i] instanceof CompositeMeetingSection) {
-				cms = (CompositeMeetingSection) childElementss[i];
+		for (int i = 0; i < children.length; i++)
+			if (children[i] instanceof CompositeMeetingSection) {
+				cms = (CompositeMeetingSection) children[i];
 				if (cms.getName().equals("Objective")) {
 					childElements[0] = cms;
 				} else if (cms.getName().equals("Information sharing")) {
@@ -228,15 +250,15 @@ public class CreateBBCodeFormat {
 				} else if (cms.getName().equals("Meeting critique")) {
 					childElements[7] = cms;
 				}
-			} else if (childElementss[i] instanceof IssueMeetingSection) {
-				ims = (IssueMeetingSection) childElementss[i];
+			} else if (children[i] instanceof IssueMeetingSection) {
+				ims = (IssueMeetingSection) children[i];
 				childElements[4] = ims;
-			} else if (childElementss[i] instanceof WorkItemMeetingSection) {
-				w = (WorkItemMeetingSection) childElementss[i];
-				if (w.getName().equals("Action Items")) {
-					childElements[2] = w;
+			} else if (children[i] instanceof WorkItemMeetingSection) {
+				wims = (WorkItemMeetingSection) children[i];
+				if (wims.getName().equals("Action Items")) {
+					childElements[2] = wims;
 				} else {
-					childElements[6] = w;
+					childElements[6] = wims;
 				}
 			}
 	}
@@ -250,7 +272,7 @@ public class CreateBBCodeFormat {
 		out.write(cms.getAllocatedTime() + " Minutes]");
 		out.newLine();
 		out.newLine();
-		if (cms.getDescription() != null) {
+		if (cms.getDescription() != null && cms.getDescription() != "") {
 			out.write("       [i]" + cms.getDescription() + "[/i]");
 			out.newLine();
 			out.newLine();
@@ -272,8 +294,8 @@ public class CreateBBCodeFormat {
 		out.write("    [list]");
 		out.newLine();
 		if (childElements[2] != null){
-		w = (WorkItemMeetingSection) childElements[2];
-		work_items = w.getIncludedWorkItems();
+		wims = (WorkItemMeetingSection) childElements[2];
+		work_items = wims.getIncludedWorkItems();
 		if (work_items.size() > 0)
 			writeInfosFromActionItems(out, meeting, work_items);
 		}
@@ -309,9 +331,10 @@ public class CreateBBCodeFormat {
 			else
 				out.write("[b]Status[/b]: " + "<not defined>" + ", ");
 			out.newLine();
+			if (work_items.get(l).getDescription() != null && work_items.get(l).getDescription() != ""){
 			out.write("         [i]" + work_items.get(l).getDescription()
 					+ "[/i]");
-			out.newLine();
+			out.newLine();}
 			}
 		}
 	}
@@ -322,7 +345,7 @@ public class CreateBBCodeFormat {
 		out.write("    [*] Misc");
 		out.newLine();
 		out.newLine();
-		if (cms.getDescription() != null) {
+		if (cms.getDescription() != null && cms.getDescription() != "") {
 			out.write("         [i]" + cms.getDescription() + "[/i]");
 			out.newLine();
 		}
@@ -333,6 +356,7 @@ public class CreateBBCodeFormat {
 
 	public static void writeInfosFromDisscusion(BufferedWriter out,
 			Meeting meeting) throws IOException {
+		Set<ModelElement> set;
 		boolean written = false;
 		int nr = 0;
 		ims = (IssueMeetingSection) childElements[4];
@@ -341,11 +365,11 @@ public class CreateBBCodeFormat {
 		out.newLine();
 		out.newLine();
 		set = ims.getLinkedModelElements();
-		o = set.toArray();
-		if (o.length != 0) {
+		objects = set.toArray();
+		if (objects.length != 0) {
 
-			for (int j = 0; j < o.length; j++)
-				if (o[j] instanceof Issue) {
+			for (int j = 0; j < objects.length; j++)
+				if (objects[j] instanceof Issue) {
 					nr++;
 					if (!written) {
 						out.write("  [list]");
@@ -353,9 +377,9 @@ public class CreateBBCodeFormat {
 						written = true;
 					}
 					out.newLine();
-					is = (Issue) o[j];
-					writeInfosFromIssues(out, meeting, is, nr);
-					if (j == o.length && written) {
+					issue = (Issue) objects[j];
+					writeInfosFromIssues(out, meeting, issue, nr);
+					if (j == objects.length && written) {
 						out.write("  [/list]");
 						out.newLine();
 						out.newLine();
@@ -375,7 +399,7 @@ public class CreateBBCodeFormat {
 			out.write("<not defined>" + "]: ");
 		out.write(is.getName() + " (" + is.getState() + ")");
 		out.newLine();
-		if (is.getDescription() != "") {
+		if (is.getDescription() != "" && is.getDescription() != null) {
 			out.write("        [i]" + is.getDescription() + "[/i]");
 			out.newLine();
 		}
@@ -388,6 +412,7 @@ public class CreateBBCodeFormat {
 						+ proposals.get(k).getCreator() + ": "
 						+ proposals.get(k).getName());
 				out.newLine();
+				if (proposals.get(k).getDescription() != null && proposals.get(k).getDescription() != "")
 				out.write("         [i]" + proposals.get(k).getDescription()
 						+ "[/i]");
 				out.newLine();
@@ -395,8 +420,16 @@ public class CreateBBCodeFormat {
 			out.write("    [/list]");
 			out.newLine();
 		}
+		if (is.getSolution()!=null){
+			if (is.getSolution().getDescription() !=null && is.getSolution().getDescription() != ""){
 		out.write("        Resolution [" + is.getSolution().getCreator()
 				+ "]: [i]" + is.getSolution().getDescription() + "[/i]");
+			}
+			else {
+				out.write("        Resolution [" + is.getSolution().getCreator()
+						+ "]: <no description defined>");
+			}
+		}
 		out.newLine();
 		out.newLine();
 		
@@ -418,8 +451,8 @@ public class CreateBBCodeFormat {
 			out.write("    [*]New Action Items");
 			out.newLine();
 			
-			w = (WorkItemMeetingSection) childElements[6];
-			EList<WorkItem> work_items = w.getIncludedWorkItems();
+			wims = (WorkItemMeetingSection) childElements[6];
+			EList<WorkItem> work_items = wims.getIncludedWorkItems();
 			if (work_items.size() > 0) {
 				out.write("    [list]");
 				out.newLine();
@@ -471,9 +504,11 @@ public class CreateBBCodeFormat {
 				else
 					out.write("[b]Status[/b]: " + "<not defined>");
 				out.newLine();
+				if (work_items.get(l).getDescription() != null &&  work_items.get(l).getDescription() != ""){
 				out.write("         [i]" + work_items.get(l).getDescription()
 						+ "[/i]");
 				out.newLine();
+				}
 			}
 			
 			if (work_items.get(l).getSuccessors()!=null)
@@ -490,7 +525,7 @@ public class CreateBBCodeFormat {
 		out.write("    [*]Meeting-Critique");
 		out.newLine();
 		out.newLine();
-		if (cms.getDescription() != null) {
+		if (cms.getDescription() != null && cms.getDescription() != "") {
 			out.write("         [i]" + cms.getDescription() + "[/i]");
 			out.newLine();
 		}

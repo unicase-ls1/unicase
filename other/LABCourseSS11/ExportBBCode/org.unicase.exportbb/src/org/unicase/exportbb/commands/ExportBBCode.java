@@ -12,12 +12,16 @@ import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 
+import org.unicase.exportbb.CreateBBCodeFormat;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.impl.UnicaseModelElementImpl;
+import org.unicase.model.meeting.Meeting;
 import org.unicase.workspace.util.UnicaseCommand;
 
 public class ExportBBCode extends AbstractHandler {
@@ -38,16 +42,22 @@ public class ExportBBCode extends AbstractHandler {
 		final UnicaseModelElementImpl modelElement = (UnicaseModelElementImpl) o;
 
 		final Shell shell = PlatformUI.getWorkbench().getDisplay().getActiveShell();
+		if (((Meeting)modelElement).getEndtime() == null){
+			MessageBox messageBox = new MessageBox(shell, SWT.CANCEL | SWT.ICON_ERROR | SWT.CENTER);
+			messageBox.setMessage("The meeting could not be exported. Please insert the end time.");
+			messageBox.setText("Warning!");
+			messageBox.open();
+		}
+		else 
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
 				ExportDialog dialog;
 				dialog = new ExportDialog(shell,
 					modelElement);
-				dialog.open();
+				dialog.open();	
 			}
 		}.run();
-//		createFile();
 		return null;
 	}
 }
