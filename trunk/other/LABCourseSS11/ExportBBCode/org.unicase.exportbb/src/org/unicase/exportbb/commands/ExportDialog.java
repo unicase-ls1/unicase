@@ -23,6 +23,7 @@ import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.ControlListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -51,7 +52,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
 /**
  * A custom Dialog for the document export function.
  * 
- * @author Sebastian Hoecht
+ * @author Carmen Carlan
  */
 public class ExportDialog extends TitleAreaDialog {
 
@@ -84,6 +85,7 @@ public class ExportDialog extends TitleAreaDialog {
 		super(parentShell);
 		this.modelElement = modelElement;
 		platformShell = parentShell;
+		
 		setHelpAvailable(false);
 
 	}
@@ -94,7 +96,6 @@ public class ExportDialog extends TitleAreaDialog {
 	@Override
 	protected Control createDialogArea(final Composite parent) {
 
-		
 		
 		GridLayout layout0 = new GridLayout();
 		layout0.numColumns = 1;
@@ -154,25 +155,25 @@ public class ExportDialog extends TitleAreaDialog {
 		cancelButton.setText("Cancel");
 		cancelButton.addSelectionListener(new CancelSelectionListener());
 		
-		
-
-		
 		Composite container3 = new Composite(parent, SWT.BORDER);
-		GridLayout layout3 = new GridLayout();
-		
-		layout3.numColumns = 1;
-		
-		container3.setLayout(layout3);
-		GridData gData3 = new GridData(GridData.FILL_HORIZONTAL);
+		container3.setLayout(new FillLayout());
+		GridData gData3 = new GridData(GridData.FILL_BOTH);
 		container3.setLayoutData(gData3);
-		
+	
+		try{
 		stringFromBBCode = CreateBBCodeFormatString.createString((Meeting) modelElement);
 		Text t = new Text (container3, SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER | SWT.MULTI);
-		t.setBounds(10, 90, 700, 700);
 		t.setEditable(true);
 		t.setText(stringFromBBCode);
+		container3.layout();
 		
-		return parent;
+		}catch (Exception ex){
+			if (((Meeting) modelElement).getEndtime() == null){
+				MessageBox messageBox = new MessageBox(ExportDialog.platformShell, SWT.CANCEL | SWT.ICON_ERROR | SWT.CENTER);
+				messageBox.setMessage("The meeting could not be exported. Please insert "+ex.getMessage());
+				messageBox.setText("Warning!");
+				messageBox.open();}
+		}return parent;
 	}
 
 	/**
@@ -282,13 +283,25 @@ public class ExportDialog extends TitleAreaDialog {
 				if (checkFileName(fileUrl)) {
 					PreferenceHelper.setPreference(EXPORT_PATH_QUALIFIER, fileLocation.getText());
 					if (modelElement instanceof Meeting){
-					Meeting meeting = (Meeting) modelElement;
-					CreateBBCodeFormat.createFile(meeting,fileUrl);
-				}
+						Meeting meeting = (Meeting) modelElement;
+						try{
+							CreateBBCodeFormat.createFile(meeting,fileUrl);
+							}
+							catch (Exception ex){
+								if (meeting.getEndtime() == null){
+									MessageBox messageBox = new MessageBox(ExportDialog.platformShell, SWT.CANCEL | SWT.ICON_ERROR | SWT.CENTER);
+									messageBox.setMessage("The meeting could not be exported. Please insert "+ex.getMessage());
+									messageBox.setText("Warning!");
+									messageBox.open();
+								}
+									
+							}
+					}
 					WorkspaceUtil.openFile(fileUrl);
 					close();
 				}
 				close();
+				
 				}
 			}
 		}
@@ -312,11 +325,23 @@ public class ExportDialog extends TitleAreaDialog {
 					PreferenceHelper.setPreference(EXPORT_PATH_QUALIFIER, fileLocation.getText());
 					if (modelElement instanceof Meeting){
 					Meeting meeting = (Meeting) modelElement;
-					CreateBBCodeFormat.createFile(meeting,fileUrl);
+					try{
+						CreateBBCodeFormat.createFile(meeting,fileUrl);
+						}
+						catch (Exception ex){
+							if (meeting.getEndtime() == null){
+								MessageBox messageBox = new MessageBox(ExportDialog.platformShell, SWT.CANCEL | SWT.ICON_ERROR | SWT.CENTER);
+								messageBox.setMessage("The file could not be exported. Please insert "+ex.getMessage());
+								messageBox.setText("Warning!");
+								messageBox.open();
+							}
+								
+						}
 				}
 					close();
 				}
 				close();
+			
 				}
 			}
 		}
