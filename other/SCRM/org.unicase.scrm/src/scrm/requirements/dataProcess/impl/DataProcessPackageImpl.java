@@ -365,8 +365,6 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 		// Obtain other dependent packages
 		RequirementsPackage theRequirementsPackage = (RequirementsPackage) EPackage.Registry.INSTANCE
 				.getEPackage(RequirementsPackage.eNS_URI);
-		ScrmPackage theScrmPackage = (ScrmPackage) EPackage.Registry.INSTANCE
-				.getEPackage(ScrmPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -380,8 +378,6 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 		resultsOutputEClass.getESuperTypes().add(this.getProcess());
 		errorHandlingEClass.getESuperTypes().add(this.getProcess());
 		statusMonitoringEClass.getESuperTypes().add(this.getProcess());
-		dataProcessSpaceEClass.getESuperTypes().add(
-				theScrmPackage.getSCRMSpace());
 		dataProcessSpaceEClass.getESuperTypes().add(this.getProcess());
 
 		// Initialize classes and features; add operations and parameters

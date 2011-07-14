@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.emfstore.backchannel.feature"
       label="EMFStore Backchannel (Incubation)"
-      version="0.8.9.M3"
+      version="0.8.9.M5"
       provider-name="Eclipse Modeling Project"
       plugin="org.eclipse.emf.emfstore.branding">
 
@@ -224,8 +224,8 @@ litigation.
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.emf.emfstore.client" version="0.8.9.M3" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.emfstore.server" version="0.8.9.M3" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.emfstore.client" version="0.8.9.M5" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.emfstore.server" version="0.8.9.M5" match="greaterOrEqual"/>
    </requires>
 
    <plugin

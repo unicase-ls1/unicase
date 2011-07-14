@@ -12,7 +12,6 @@ import scrm.diagram.edit.commands.ConstraintCreateCommand;
 import scrm.diagram.edit.commands.DataDefinitionCreateCommand;
 import scrm.diagram.edit.commands.DataFlowCreateCommand;
 import scrm.diagram.edit.commands.DataHandlingCreateCommand;
-import scrm.diagram.edit.commands.DataProcessSpaceCreateCommand;
 import scrm.diagram.edit.commands.ErrorHandlingCreateCommand;
 import scrm.diagram.edit.commands.FeatureCreateCommand;
 import scrm.diagram.edit.commands.HardwareCreateCommand;
@@ -23,8 +22,8 @@ import scrm.diagram.edit.commands.NumericalMethodCreateCommand;
 import scrm.diagram.edit.commands.PerformanceCreateCommand;
 import scrm.diagram.edit.commands.ProcessCreateCommand;
 import scrm.diagram.edit.commands.RequirementCreateCommand;
-import scrm.diagram.edit.commands.RequirementSpaceCreateCommand;
 import scrm.diagram.edit.commands.ResultsOutputCreateCommand;
+import scrm.diagram.edit.commands.SCRMDiagramCreateCommand;
 import scrm.diagram.edit.commands.ScientificProblemCreateCommand;
 import scrm.diagram.edit.commands.SoftwareInterfaceCreateCommand;
 import scrm.diagram.edit.commands.StatusMonitoringCreateCommand;
@@ -107,12 +106,6 @@ public class SCRMDiagramItemSemanticEditPolicy extends
 		}
 		if (ScrmElementTypes.KnowledgeSpace_2044 == req.getElementType()) {
 			return getGEFWrapper(new KnowledgeSpaceCreateCommand(req));
-		}
-		if (ScrmElementTypes.RequirementSpace_2045 == req.getElementType()) {
-			return getGEFWrapper(new RequirementSpaceCreateCommand(req));
-		}
-		if (ScrmElementTypes.DataProcessSpace_2046 == req.getElementType()) {
-			return getGEFWrapper(new DataProcessSpaceCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

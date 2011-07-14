@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EObject;
 
 import scrm.SCRMModelElement;
 
-import scrm.SCRMSpace;
 import scrm.requirements.IRequirement;
 import scrm.requirements.Requirement;
 
@@ -130,11 +129,6 @@ public class DataProcessAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseRequirement(Requirement object) {
 			return createRequirementAdapter();
-		}
-
-		@Override
-		public Adapter caseSCRMSpace(SCRMSpace object) {
-			return createSCRMSpaceAdapter();
 		}
 
 		@Override
@@ -293,20 +287,6 @@ public class DataProcessAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRequirementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link scrm.SCRMSpace <em>SCRM Space</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see scrm.SCRMSpace
-	 * @generated
-	 */
-	public Adapter createSCRMSpaceAdapter() {
 		return null;
 	}
 

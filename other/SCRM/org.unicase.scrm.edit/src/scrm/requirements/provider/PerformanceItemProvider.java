@@ -56,7 +56,6 @@ public class PerformanceItemProvider extends RequirementItemProvider implements
 			super.getPropertyDescriptors(object);
 
 			addProblemSizePropertyDescriptor(object);
-			addDescribedMethodPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -79,25 +78,6 @@ public class PerformanceItemProvider extends RequirementItemProvider implements
 				RequirementsPackage.Literals.PERFORMANCE__PROBLEM_SIZE, true,
 				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
 				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Described Method feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDescribedMethodPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Performance_describedMethod_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Performance_describedMethod_feature",
-						"_UI_Performance_type"),
-				RequirementsPackage.Literals.PERFORMANCE__DESCRIBED_METHOD,
-				true, false, true, null, null, null));
 	}
 
 	/**

@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: ECP Common UI Plug-in
+Bundle-Name: ECP Common UI Plug-in (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.ecp.common;singleton:=true
-Bundle-Version: 0.8.1
+Bundle-Version: 0.8.9.M5
 Bundle-Activator: org.eclipse.emf.ecp.common.Activator
 Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.emf.ecp.common.model;visibility:=reexport
@@ -39,7 +39,7 @@ Export-Package: org.eclipse.emf.ecp.common;
    org.eclipse.jface.resource,
    org.eclipse.ui,
    org.eclipse.swt.widgets",
- org.eclipse.emf.ecp.common.util;
+ org.eclipse.emf.ecp.common.utilities;
   uses:="org.eclipse.jface.window,
    org.eclipse.emf.ecore,
    org.eclipse.emf.ecp.model,
