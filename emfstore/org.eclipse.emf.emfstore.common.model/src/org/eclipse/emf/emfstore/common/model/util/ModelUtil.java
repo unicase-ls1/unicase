@@ -940,28 +940,27 @@ public final class ModelUtil {
 	/**
 	 * Removes the the given {@link EObject} from its {@link XMIResource}.
 	 * 
+	 * @param xmiResource
+	 *            the {@link EObject}'s resource
 	 * @param eObject
 	 *            the {@link EObject} to remove
 	 */
-	private static void removeModelElementFromResource(XMIResource res,
+	private static void removeModelElementFromResource(XMIResource xmiResource,
 			EObject eObject) {
 
-		// Resource resource = eObject.eResource();
-
-		if (res == null || res.getURI() == null) {
+		if (xmiResource == null || xmiResource.getURI() == null) {
 			return;
 		}
 
-		// XMIResource xmiResource = (XMIResource) resource;
-
 		EcoreUtil.delete(eObject);
-		res.setID(eObject, null);
+		xmiResource.setID(eObject, null);
 
 		try {
-			res.save(null);
+			xmiResource.save(null);
 		} catch (IOException e) {
 			throw new RuntimeException("XMI Resource for model element "
-					+ eObject + " couldn't be saved");
+					+ eObject + " could not be saved. " + "Reason: "
+					+ e.getMessage());
 		}
 	}
 
