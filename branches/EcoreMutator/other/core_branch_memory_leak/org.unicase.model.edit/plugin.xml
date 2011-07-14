@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+
+-->
+
+<plugin>
+ 
+  
+  
+  <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+    <factory 
+       uri = "http://unicase.org/model" 
+       class = "org.unicase.model.provider.ModelItemProviderAdapterFactory" 
+       supportedTypes = 
+         "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+          org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+          org.eclipse.emf.edit.provider.ITreeItemContentProvider
+          org.eclipse.emf.edit.provider.IItemLabelProvider
+          org.eclipse.emf.edit.provider.IItemPropertySource" />
+    <factory
+          class="org.unicase.model.classes.provider.ClassesItemProviderAdapterFactory"
+          supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+          uri="http://unicase.org/model/classes">
+    </factory>
+  </extension>
+<extension
+        point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+     <factory
+           class="org.unicase.model.task.provider.TaskItemProviderAdapterFactory"
+           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+           uri="http://unicase.org/model/task">
+     </factory>
+  </extension>
+  <extension
+        point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+     <factory
+           class="org.unicase.model.organization.provider.OrganizationItemProviderAdapterFactory"
+           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+           uri="http://unicase.org/model/organization">
+     </factory>
+  </extension>
+  <extension
+        point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+     <factory
+           class="org.unicase.model.document.provider.DocumentItemProviderAdapterFactory"
+           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+           uri="http://unicase.org/model/document">
+     </factory>
+  </extension>
+  <extension
+        point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+     <factory
+           class="org.unicase.model.requirement.provider.RequirementItemProviderAdapterFactory"
+           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+           uri="http://unicase.org/model/requirement">
+     </factory>
+  </extension>
+  <extension
+        point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+     <factory
+           class="org.unicase.model.bug.provider.BugItemProviderAdapterFactory"
+           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+           uri="http://unicase.org/model/bug">
+     </factory>
+  </extension>
+  <extension
+        point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+     <factory
+           class="org.unicase.model.change.provider.ChangeItemProviderAdapterFactory"
+           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+           uri="http://unicase.org/model/change">
+     </factory>
+  </extension>
+  <extension
+        point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+     <factory
+           class="org.unicase.model.component.provider.ComponentItemProviderAdapterFactory"
+           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+           uri="http://unicase.org/model/component">
+     </factory>
+  </extension>
+  <extension
+        point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+     <factory
+           class="org.unicase.model.rationale.provider.RationaleItemProviderAdapterFactory"
+           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+           uri="http://unicase.org/model/rationale">
+     </factory>
+  </extension>
+  <extension
+        point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+     <factory
+           class="org.unicase.model.classes.provider.ClassesItemProviderAdapterFactory"
+           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+           uri="http://unicase.org/model/classes">
+     </factory>
+  </extension>
+  <extension
+        point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+     <factory
+           class="org.unicase.model.meeting.provider.MeetingItemProviderAdapterFactory"
+           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+           uri="http://unicase.org/model/meeting">
+     </factory>
+  </extension>
+  <extension
+        point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+     <factory
+           class="org.unicase.model.state.provider.StateItemProviderAdapterFactory"
+           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+           uri="http://unicase.org/model/state">
+     </factory>
+  </extension>
+  <extension
+        point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+     <factory
+           class="org.unicase.model.attachment.provider.AttachmentItemProviderAdapterFactory"
+           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+           uri="http://unicase.org/model/attachment">
+     </factory>
+  </extension>
+  <extension
+        point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+     <factory
+           class="org.unicase.model.profile.provider.ProfileItemProviderAdapterFactory"
+           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+           uri="http://unicase.org/model/profile">
+     </factory>
+  </extension>
+  <extension
+        point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+     <factory
+           class="org.unicase.model.activity.provider.ActivityItemProviderAdapterFactory"
+           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+           uri="http://unicase.org/model/activity">
+     </factory>
+  </extension>
+  <extension
+        point="org.unicase.emfstore.esmodel.edit.customOperationLabelProvider">
+     <provider
+           class="org.unicase.model.task.provider.ActionItemResolvedOperationProvider">
+     </provider>
+  </extension>
+</plugin>
+

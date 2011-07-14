@@ -1,0 +1,116 @@
+/*
+ * Copyright (c) 2007 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Dmitry Stadnik (Borland) - initial API and implementation
+ */
+
+«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+«IMPORT "http://www.eclipse.org/emf/2002/Ecore"»
+
+«DEFINE extensions FOR gmfgen::GenEditorGenerator-»
+   <extension point="org.eclipse.ui.editors">
+      «EXPAND xpt::Common::xmlGeneratedTag»
+      <editor
+         id="«editor.iD»"
+         name="%editorName"
+         icon="«editor.iconPathX»"
+         extensions="«diagramFileExtension»"
+         default="true"
+         class="«editor.getQualifiedClassName()»"
+         matchingStrategy="«diagram.getMatchingStrategyQualifiedClassName()»"
+         contributorClass="«editor.getActionBarContributorQualifiedClassName()»">
+      </editor>
+   </extension>
+   
+   <extension point="org.eclipse.ui.contexts">
+      «EXPAND xpt::Common::xmlGeneratedTag»
+      <context
+         description="%context.description"
+         id="«editor.contextID»"
+         name="%context.name"
+         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      «EXPAND xpt::Common::xmlGeneratedTag»
+  	  <wizard
+  	     name="%newWizardName"
+  	     icon="«diagram.creationWizardIconPathX»"
+  	     category="«diagram.creationWizardCategoryID»"
+  	     class="«diagram.getCreationWizardQualifiedClassName()»"
+  	     id="«diagram.getCreationWizardQualifiedClassName()»ID">
+  	  	 <description>%newWizardDesc</description>  
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.popupMenus">
+      «EXPAND xpt::Common::xmlGeneratedTag»
+«IF diagram.generateCreateShortcutAction()-»
+      <objectContribution
+            adaptable="false"
+            id="«plugin.iD».CreateShortcut"
+            objectClass="«diagram.getEditPartQualifiedClassName()»">
+         <action
+               class="«diagram.getCreateShortcutActionQualifiedClassName()»"
+               enablesFor="1"
+               id="«plugin.iD».CreateShortcutAction"
+               label="%createShortcutActionLabel"
+               menubarPath="additions">
+         </action>
+      </objectContribution>                      
+«ENDIF-»
+      <objectContribution
+            adaptable="false"
+            id="«plugin.iD».LoadResource"
+            objectClass="«diagram.getEditPartQualifiedClassName()»">
+         <action
+               class="«diagram.getLoadResourceActionQualifiedClassName()»"
+               enablesFor="1"
+               id="«plugin.iD».LoadResourceAction"
+               label="%loadResourceActionLabel"
+               menubarPath="additions">
+         </action>
+      </objectContribution>           
+   </extension>
+«IF diagram.generateInitDiagramAction()-»
+
+   «IF null == application»<extension point="org.eclipse.ui.popupMenus">
+      «EXPAND xpt::Common::xmlGeneratedTag»
+      <objectContribution
+            id="«plugin.iD».InitDiagram"
+            nameFilter="*.«domainFileExtension»"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               label="%initDiagramActionLabel"
+               class="«diagram.getInitDiagramFileActionQualifiedClassName()»"
+               menubarPath="additions"
+               enablesFor="1"
+               id="«plugin.iD».InitDiagramAction">
+         </action>
+      </objectContribution>
+   </extension>
+	«ELSE-»
+   <extension point="org.eclipse.ui.actionSets">
+      «EXPAND xpt::Common::xmlGeneratedTag»
+      <actionSet
+            label="%initDiagramActionLabel"
+            visible="true"
+            id="«plugin.iD».InitDiagram">
+         <action
+               label="%initDiagramActionLabel"
+               class="«diagram.getInitDiagramFileActionQualifiedClassName()»"
+               menubarPath="file/additions"
+               id="«plugin.iD».InitDiagramAction">
+         </action>
+      </actionSet>
+   </extension>
+	«ENDIF-»
+«ENDIF-»
+«ENDDEFINE»

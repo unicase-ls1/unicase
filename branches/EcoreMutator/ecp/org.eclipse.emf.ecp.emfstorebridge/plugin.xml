@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.emf.ecp.model.workspaceprovider">
+      <WorkspaceProvider
+            class="org.eclipse.emf.ecp.emfstorebridge.EMFStoreECPWorkspaceProvider">
+      </WorkspaceProvider>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="org.eclipse.emf.ecp.emfstorebridge.xmiAdd"
+            nameFilter="*.library"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="org.eclipse.emf.ecp.emfstorebridge.actions.AddXMIAction"
+               id="org.eclipse.emf.ecp.emfstorebridge.addXMI"
+               label="Add to EMF Client Platform">
+         </action>
+      </objectContribution>
+      <objectContribution
+            adaptable="false"
+            id="org.eclipse.emf.ecp.emfstorebridge.xmiImport"
+            nameFilter="*.library"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="org.eclipse.emf.ecp.emfstorebridge.actions.ImportXMIAction"
+               id="org.eclipse.emf.ecp.emfstorebridge.actions.xmiImport"
+               label="Import to EMF Client Platform">
+         </action>
+      </objectContribution>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.decorators">
+      <decorator
+            adaptable="true"
+            class="org.eclipse.emf.emfstore.client.ui.decorators.VersionDecorator"
+            id="org.eclipse.emf.emfstore.client.ui.decorators.VersionDecorator"
+            label="Version Decorator"
+            lightweight="true"
+            state="true">
+         <enablement>
+            <objectClass
+                  name="org.eclipse.emf.emfstore.client.model.ProjectSpace">
+            </objectClass>
+         </enablement>
+         <description>
+            Shows version of current project.
+         </description>
+      </decorator>
+      <decorator
+            adaptable="true"
+            class="org.eclipse.emf.emfstore.client.ui.decorators.UsernameDecorator"
+            id="org.eclipse.emf.emfstore.client.ui.decorators.UsernameDecorator"
+            label="Username Decorator"
+            lightweight="true"
+            state="true">
+         <enablement>
+            <objectClass
+                  name="org.eclipse.emf.emfstore.client.model.ProjectSpace">
+            </objectClass>
+         </enablement>
+         <description>
+            Shows the username for the current session.
+         </description>
+      </decorator>
+      <decorator
+            adaptable="true"
+            class="org.eclipse.emf.emfstore.client.ui.decorators.ProjectSpaceDirtyDecorator"
+            id="org.eclipse.emf.emfstore.client.ui.decorators.ProjectSpaceDirtyDecorator"
+            label="ProjectSpaceDirty Decorator"
+            lightweight="true"
+            state="true">
+         <enablement>
+            <objectClass
+                  name="org.eclipse.emf.emfstore.client.model.ProjectSpace">
+            </objectClass>
+         </enablement>
+         <description>
+            If the porject has local changes.
+         </description>
+      </decorator>
+      <decorator
+            adaptable="true"
+            class="org.eclipse.emf.emfstore.client.ui.decorators.ModelElementDirtyDecorator"
+            id="org.eclipse.emf.emfstore.client.ui.decorators.ModelElementDirtyDecorator"
+            label="ModelElement Dirty Decorator"
+            lightweight="true"
+            state="true">
+         <enablement>
+            <objectClass
+                  name="org.eclipse.emf.ecore.EObject">
+            </objectClass>
+         </enablement>
+         <description>
+            If the project has local changes.
+         </description>
+      </decorator>
+   </extension>
+
+   <extension
+         point="org.eclipse.emf.ecp.model.postinit">
+      <initiator
+            class="org.eclipse.emf.ecp.emfstorebridge.ECPObserver">
+      </initiator>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecp.common.modelelementopener">
+      <ModelElementOpener
+            class="org.eclipse.emf.ecp.emfstorebridge.ProjectSpaceOpener"
+            name="org.eclipse.emf.ecp.emfstorebridge.ProjectSpaceOpener">
+      </ModelElementOpener>
+   </extension>
+
+</plugin>
