@@ -1,4 +1,4 @@
-package org.unicase.papyrus.own;
+package org.unicase.papyrus.custom.part;
 
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;

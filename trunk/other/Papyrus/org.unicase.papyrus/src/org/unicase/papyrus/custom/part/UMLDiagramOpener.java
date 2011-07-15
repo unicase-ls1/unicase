@@ -1,4 +1,4 @@
-package org.unicase.papyrus.own;
+package org.unicase.papyrus.custom.part;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -39,7 +39,7 @@ public class UMLDiagramOpener implements ModelElementOpener {
 				isInitialized = true;
 			}
 			if(model.getGmfDiagram() == null) {
-				initializePackage(model);
+				initializeModel(model);
 			}
 			String id = getDiagramTypeToEditorID().get(model.getDiagramType()); 
 			if(id == null) {
@@ -57,7 +57,7 @@ public class UMLDiagramOpener implements ModelElementOpener {
 		
 	}
 
-	private void initializePackage(final UMLModel model) {
+	private void initializeModel(final UMLModel model) {
 		Shell shell = Display.getCurrent().getActiveShell();
 		UMLDiagramTypeSelectionDialog dialog = new UMLDiagramTypeSelectionDialog(shell);
 		if(dialog.open() == Dialog.OK) {
@@ -67,7 +67,7 @@ public class UMLDiagramOpener implements ModelElementOpener {
 				@Override
 				protected void doRun() {
 					model.setDiagramType(selectedElement);
-					model.setName(selectedElement.getName());
+					model.setName("new " + selectedElement.getName() + " Diagram");
 				}
 				
 			}.run(true);

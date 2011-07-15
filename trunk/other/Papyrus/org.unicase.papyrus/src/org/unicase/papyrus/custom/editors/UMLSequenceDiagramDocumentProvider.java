@@ -1,4 +1,4 @@
-package org.unicase.papyrus.own;
+package org.unicase.papyrus.custom.editors;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,13 +33,14 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.diagram.composite.part.Messages;
-import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorUtil;
+import org.eclipse.papyrus.diagram.sequence.part.Messages;
+import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorUtil;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
+import org.unicase.papyrus.custom.part.UMLDocumentProvider;
 
-public class UMLCompositeDiagramDocumentProvider extends UMLDocumentProvider {
+public class UMLSequenceDiagramDocumentProvider extends UMLDocumentProvider {
 	
 	protected ElementInfo createElementInfo(Object element)	throws CoreException {
 		if (false == element instanceof FileEditorInput

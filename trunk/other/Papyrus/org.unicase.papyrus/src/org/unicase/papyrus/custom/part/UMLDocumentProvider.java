@@ -1,4 +1,4 @@
-package org.unicase.papyrus.own;
+package org.unicase.papyrus.custom.part;
 
 import java.io.IOException;
 import java.util.ArrayList;
