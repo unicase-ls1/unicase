@@ -1,8 +1,9 @@
-package org.unicase.papyrus.own;
+package org.unicase.papyrus.custom.part;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
@@ -30,24 +31,23 @@ public class UMLDiagramTypeLabelProvider extends LabelProvider {
 	};
 	
 	private Map<UMLDiagramType, Image> getDiagramTypeToImage() {
-		Class<UMLDiagramType> theClass = UMLDiagramType.class;
 		Display display = Display.getCurrent();
 		if(diagramTypeToImage == null) {
 			diagramTypeToImage = new LinkedHashMap<UMLDiagramType, Image>();
 			diagramTypeToImage.put(UMLDiagramType.ACTIVITY, 
-					new Image(display, theClass.getResourceAsStream("/icons/Activity.gif")));
+					UMLImageUtil.getInstance().getActivityImage());
 			diagramTypeToImage.put(UMLDiagramType.CLASS, 
-					new Image(display, theClass.getResourceAsStream("/icons/Class.gif")));
+					new Image(display, getClass().getResourceAsStream("/icons/Class.gif")));
 			diagramTypeToImage.put(UMLDiagramType.COMMUNICATION, 
-					new Image(display, theClass.getResourceAsStream("/icons/Communication.gif")));
+					new Image(display, getClass().getResourceAsStream("/icons/Communication.gif")));
 			diagramTypeToImage.put(UMLDiagramType.COMPOSITE, 
-					new Image(display, theClass.getResourceAsStream("/icons/Composite.gif")));
+					new Image(display, getClass().getResourceAsStream("/icons/Composite.gif")));
 			diagramTypeToImage.put(UMLDiagramType.SEQUENCE, 
-					new Image(display, theClass.getResourceAsStream("/icons/Sequence.gif")));
+					new Image(display, getClass().getResourceAsStream("/icons/Sequence.gif")));
 			diagramTypeToImage.put(UMLDiagramType.STATE_MACHINE, 
-					new Image(display, theClass.getResourceAsStream("/icons/StateMachine.gif")));
+					new Image(display, getClass().getResourceAsStream("/icons/StateMachine.gif")));
 			diagramTypeToImage.put(UMLDiagramType.USE_CASE, 
-					new Image(display, theClass.getResourceAsStream("/icons/UseCase.gif")));
+					new Image(display, getClass().getResourceAsStream("/icons/UseCase.gif")));
 		}
 		return diagramTypeToImage;
 	}

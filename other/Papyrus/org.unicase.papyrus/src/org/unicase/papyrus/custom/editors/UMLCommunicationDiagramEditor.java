@@ -1,24 +1,27 @@
-package org.unicase.papyrus.own;
+package org.unicase.papyrus.custom.editors;
 
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
-import org.eclipse.papyrus.diagram.clazz.part.DiagramEditorContextMenuProvider;
-import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.diagram.communication.part.DiagramEditorContextMenuProvider;
+import org.eclipse.papyrus.diagram.communication.part.UMLDiagramEditorPlugin;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
+import org.unicase.papyrus.custom.part.UMLDiagramEditor;
+import org.unicase.papyrus.custom.part.UMLDocumentProviderProvider;
+import org.unicase.papyrus.custom.part.UMLImageUtil;
 
-public class UMLClassDiagramEditor extends UMLDiagramEditor {
-
-	/**
-	 * @generated
-	 */
-	public static final String ID = "org.unicase.papyrus.clazz.UMLDiagramEditorID"; //$NON-NLS-1$
+public class UMLCommunicationDiagramEditor extends UMLDiagramEditor {
 
 	/**
 	 * @generated
 	 */
-	public static final String CONTEXT_ID = "org.unicase.papyrus.clazz.diagramContext"; //$NON-NLS-1$
+	public static final String ID = "org.unicase.papyrus.communication.UMLDiagramEditorID"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final String CONTEXT_ID = "org.unicase.papyrus.communication.diagramContext"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -39,6 +42,12 @@ public class UMLClassDiagramEditor extends UMLDiagramEditor {
 	 */
 	public String getContributorId() {
 		return UMLDiagramEditorPlugin.ID;
+	}
+	
+	@Override
+	public void setInput(IEditorInput editorInput) {
+		super.setInput(editorInput);
+		setTitleImage(UMLImageUtil.getInstance().getCommunicationImage());
 	}
 	
 	/**

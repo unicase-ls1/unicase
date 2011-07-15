@@ -70,10 +70,11 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected UMLModelImpl() {
 		super();
+		setName("new UML Diagram");
 	}
 
 	/**
@@ -270,6 +271,19 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 		result.append(diagramType);
 		result.append(')');
 		return result.toString();
+	}
+	
+	/** 
+	 * {@inheritDoc}
+	 * @generated NOT
+	 */
+	@Override
+	public void setName(String newName) {
+		super.setName(newName);
+		Diagram diagram = getGmfDiagram();
+		if(diagram != null) {
+			diagram.setName(newName);
+		}
 	}
 
 } //UMLModelImpl

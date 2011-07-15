@@ -9,6 +9,7 @@
 -->
 
 <plugin>
+   <extension-point id="service" name="Service" schema="schema/service.exsd"/>
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://unicase.org/model/papyrus"
@@ -29,49 +30,49 @@
       <extension
             point="org.eclipse.ui.editors">
          <editor
-               class="org.unicase.papyrus.own.UMLActivityDiagramEditor"
+               class="org.unicase.papyrus.custom.editors.UMLActivityDiagramEditor"
                default="false"
                extensions="Activity_diagram"
                id="org.unicase.papyrus.activity.UMLDiagramEditorID"
                name="ActivityDiagramEditor">
          </editor>
          <editor
-               class="org.unicase.papyrus.own.UMLClassDiagramEditor"
+               class="org.unicase.papyrus.custom.editors.UMLClassDiagramEditor"
                default="false"
                extensions="Class_diagram"
                id="org.unicase.papyrus.clazz.UMLDiagramEditorID"
                name="ClassDiagramEditor">
          </editor>
          <editor
-               class="org.unicase.papyrus.own.UMLCommunicationDiagramEditor"
+               class="org.unicase.papyrus.custom.editors.UMLCommunicationDiagramEditor"
                default="false"
                extensions="Communication_diagram"
                id="org.unicase.papyrus.communication.UMLDiagramEditorID"
                name="CommunicationDiagramEditor">
          </editor>
          <editor
-               class="org.unicase.papyrus.own.UMLCompositeDiagramEditor"
+               class="org.unicase.papyrus.custom.editors.UMLCompositeDiagramEditor"
                default="false"
                extensions="Composite_diagram"
                id="org.unicase.papyrus.composite.UMLDiagramEditorID"
                name="CompositeDiagramEditor">
          </editor>
          <editor
-               class="org.unicase.papyrus.own.UMLSequenceDiagramEditor"
+               class="org.unicase.papyrus.custom.editors.UMLSequenceDiagramEditor"
                default="false"
                extensions="Sequence_diagram"
                id="org.unicase.papyrus.sequence.UMLDiagramEditorID"
                name="SequenceDiagramEditor">
          </editor>
          <editor
-               class="org.unicase.papyrus.own.UMLStateMachineDiagramEditor"
+               class="org.unicase.papyrus.custom.editors.UMLStateMachineDiagramEditor"
                default="false"
                extensions="StateMachine_diagram"
                id="org.unicase.papyrus.statemachine.UMLDiagramEditorID"
                name="StateMachineDiagramEditor">
          </editor>
          <editor
-               class="org.unicase.papyrus.own.UMLUseCaseDiagramEditor"
+               class="org.unicase.papyrus.custom.editors.UMLUseCaseDiagramEditor"
                default="false"
                extensions="UseCase_diagram"
                id="org.unicase.papyrus.usecase.UMLDiagramEditorID"
@@ -119,16 +120,38 @@
       <extension
          point="org.eclipse.emf.ecore.content_parser">
       <parser
-            class="org.unicase.papyrus.own.UMLModelDiagramResource"
+            class="org.unicase.papyrus.custom.part.UMLModelDiagramResource"
             contentTypeIdentifier="UMLModel">
       </parser>
    </extension>
       <extension
             point="org.unicase.ui.common.modelelementopener">
          <ModelElementOpener
-               class="org.unicase.papyrus.own.UMLDiagramOpener"
-               name="org.unicase.papyrus.UMLPackageOpener">
+               class="org.unicase.papyrus.custom.part.UMLDiagramOpener"
+               name="org.unicase.papyrus.UMLDiagramOpener">
          </ModelElementOpener>
+      </extension>
+      <extension
+            point="org.unicase.papyrus.service">
+         <serviceFactory
+               classname="org.unicase.papyrus.custom.services.UnicaseEditingDomainServiceFactory"
+               description="TransactionalEditingDomain"
+               id="org.eclipse.emf.transaction.TransactionalEditingDomain"
+               priority="1"
+               startKind="startup">
+         </serviceFactory>
+         <serviceFactory
+               classname="org.unicase.papyrus.custom.services.UnicasePageManagerServiceFactory"
+               id="org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr"
+               priority="1"
+               startKind="startup">
+         </serviceFactory>
+         <serviceFactory
+            classname="org.unicase.papyrus.custom.services.UnicasePageIconRegistryServiceFactory"
+            id="org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry"
+            priority="1"
+            startKind="startup">
+      </serviceFactory>
       </extension>
    
 

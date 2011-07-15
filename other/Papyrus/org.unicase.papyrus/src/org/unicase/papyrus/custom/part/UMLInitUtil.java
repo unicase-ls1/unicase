@@ -1,4 +1,4 @@
-package org.unicase.papyrus.own;
+package org.unicase.papyrus.custom.part;
 
 import java.util.Iterator;
 
@@ -73,7 +73,7 @@ public class UMLInitUtil {
 						org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				break;
 			case USE_CASE:
-				defaultInitialization(model, UMLFactory.eINSTANCE.createInteraction(),
+				defaultInitialization(model, null,
 						UseCaseDiagramEditPart.MODEL_ID, 
 						org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				break;

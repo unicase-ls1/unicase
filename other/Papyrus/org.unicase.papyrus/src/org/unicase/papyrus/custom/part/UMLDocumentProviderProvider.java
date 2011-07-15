@@ -1,7 +1,11 @@
-package org.unicase.papyrus.own;
+package org.unicase.papyrus.custom.part;
 
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.AbstractDocumentProvider;
 import org.eclipse.ui.IEditorInput;
+import org.unicase.papyrus.custom.editors.UMLActivityDiagramDocumentProvider;
+import org.unicase.papyrus.custom.editors.UMLClassDiagramDocumentProvider;
+import org.unicase.papyrus.custom.editors.UMLStateMachineDiagramDocumentProvider;
+import org.unicase.papyrus.custom.editors.UMLUseCaseDiagramDocumentProvider;
 
 public class UMLDocumentProviderProvider {
 	
