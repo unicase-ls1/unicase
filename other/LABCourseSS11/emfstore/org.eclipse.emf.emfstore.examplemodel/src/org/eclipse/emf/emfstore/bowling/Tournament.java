@@ -137,4 +137,12 @@ public interface Tournament extends EObject {
 	 */
 	boolean hasTounamentPro(DiagnosticChain diagnosticianChain, Map<?, ?> context);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean hasLeague(DiagnosticChain diagnosticianChain, Map<?, ?> context);
+
 } // Tournament
