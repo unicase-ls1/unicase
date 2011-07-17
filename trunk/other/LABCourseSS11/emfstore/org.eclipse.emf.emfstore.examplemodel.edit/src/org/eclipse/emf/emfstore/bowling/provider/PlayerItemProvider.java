@@ -263,8 +263,8 @@ public class PlayerItemProvider extends ItemProviderAdapter implements IEditingD
 				 getString("_UI_PropertyDescriptor_description", "_UI_Player_telephon_feature", "_UI_Player_type"),
 				 BowlingPackage.Literals.PLAYER__TELEPHON,
 				 true,
-				 false,
-				 false,
+				 true,
+				 true,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
