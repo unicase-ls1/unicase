@@ -215,7 +215,7 @@ public class MERichTextControl extends AbstractMEControl implements IValidatable
 	public void handleValidation(Diagnostic diagnostic) {
 		Device device = Display.getCurrent();	
 		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
-			Color color = new Color(device, 255, 0 ,0);
+			Color color = new Color(device, 255, 64, 64);
 			this.text.setBackground(color);
 			this.text.setToolTipText(diagnostic.getMessage());
 		}
