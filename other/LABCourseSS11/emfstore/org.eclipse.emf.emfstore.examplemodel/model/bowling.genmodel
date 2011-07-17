@@ -75,6 +75,10 @@
         <genParameters ecoreParameter="bowling.ecore#//Tournament/hasTounamentPro/diagnosticianChain"/>
         <genParameters ecoreParameter="bowling.ecore#//Tournament/hasTounamentPro/context"/>
       </genOperations>
+      <genOperations ecoreOperation="bowling.ecore#//Tournament/hasLeague">
+        <genParameters ecoreParameter="bowling.ecore#//Tournament/hasLeague/diagnosticianChain"/>
+        <genParameters ecoreParameter="bowling.ecore#//Tournament/hasLeague/context"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="bowling.ecore#//Matchup">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bowling.ecore#//Matchup/games"/>
