@@ -10,29 +10,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecp.editor.ModelElementChangeListener;
 import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
+import org.eclipse.emf.ecp.editor.mecontrols.IValidatableControl;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.ui.ISharedImages;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * GUI Control for the ME reference single links.
  * 
  * @author helming
  */
-public class MESingleLinkControl extends AbstractMEControl {
+public class MESingleLinkControl extends AbstractMEControl implements IValidatableControl{
 
 	private Composite composite;
 
@@ -47,7 +52,9 @@ public class MESingleLinkControl extends AbstractMEControl {
 	private MELinkControl meControl;
 
 	private Label labelWidget;
-
+	
+	private Label labelWidgetImage;  //Label for diagnostic image
+	
 	private static final int PRIORITY = 1;
 
 	private ModelElementChangeListener modelElementChangeListener;
@@ -141,6 +148,10 @@ public class MESingleLinkControl extends AbstractMEControl {
 		if (labelWidget != null) {
 			labelWidget.dispose();
 		}
+		if (labelWidgetImage != null) {
+			labelWidgetImage.dispose();
+		}
+		
 
 		EObject opposite = (EObject) getModelElement().eGet(eReference);
 		if (opposite != null) {
@@ -153,6 +164,9 @@ public class MESingleLinkControl extends AbstractMEControl {
 			labelWidget = getToolkit().createLabel(linkArea, "(Not Set)");
 			labelWidget.setBackground(parent.getBackground());
 			labelWidget.setForeground(parent.getShell().getDisplay().getSystemColor(SWT.COLOR_DARK_GRAY));
+			labelWidgetImage = getToolkit().createLabel(linkArea, "");
+			labelWidgetImage.setBackground(parent.getBackground());
+			labelWidgetImage.setForeground(parent.getShell().getDisplay().getSystemColor(SWT.COLOR_DARK_GRAY));
 		}
 		linkArea.layout(true);
 		composite.layout(true);
@@ -179,4 +193,26 @@ public class MESingleLinkControl extends AbstractMEControl {
 		}
 		return AbstractMEControl.DO_NOT_RENDER;
 	}
+	
+	/**
+	 * {@inheritDoc}}
+	 * */
+	public void handleValidation(Diagnostic diagnostic) {
+		Image image = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_ERROR_TSK);
+
+		if (diagnostic != null) {
+			if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
+				this.labelWidgetImage.setImage(image);
+				this.labelWidgetImage.setToolTipText(diagnostic.getMessage());
+				this.labelWidget.setToolTipText(diagnostic.getMessage());
+			}
+		}
+		
+	}
+
+	public void resetValidation() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

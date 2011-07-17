@@ -137,6 +137,8 @@ public class MEMultiLinkControl extends AbstractMEControl implements IValidatabl
 	private static final int PRIORITY = 1;
 
 	private Object feature;
+	
+	private Color color;
 
 	private org.eclipse.emf.ecp.editor.ModelElementChangeListener modelElementChangeListener;
 
@@ -190,6 +192,7 @@ public class MEMultiLinkControl extends AbstractMEControl implements IValidatabl
 		createSectionToolbar(section, getToolkit());
 		composite = getToolkit().createComposite(section, style);
 		composite.setLayout(tableLayout);
+		color = section.getTitleBarBackground();
 
 		rebuildLinkSection();
 
@@ -258,19 +261,17 @@ public class MEMultiLinkControl extends AbstractMEControl implements IValidatabl
 	 * */
 	public void handleValidation(Diagnostic diagnostic) {
 		Device device = Display.getCurrent();
-		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
-			Color color = new Color(device, 255, 0 ,0);
-			this.section.setTitleBarBackground(color);
-			this.section.setToolTipText(diagnostic.getMessage());
-		}
+			if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
+				this.section.setTitleBarBackground(new Color(device, 255, 0, 0));
+				this.section.setToolTipText(diagnostic.getMessage());
+			}
+
 	}
 
 	/**.
 	 * {@inheritDoc}}
 	 * */
 	public void resetValidation() {
-		Device device = Display.getCurrent();
-		Color color = new Color(device, 255, 255, 255);
 		this.section.setTitleBarBackground(color);
 		this.section.setToolTipText("");
 		
