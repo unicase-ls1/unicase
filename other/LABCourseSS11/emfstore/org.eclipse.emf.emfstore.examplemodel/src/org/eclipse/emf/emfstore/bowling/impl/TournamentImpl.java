@@ -370,5 +370,31 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 		result.append(')');
 		return result.toString();
 	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean hasLeague(DiagnosticChain diagnosticianChain, Map<?, ?> context) {
+		// TODO: implement this method
+		// -> specify the condition that violates the invariant
+		// -> verify the details of the diagnostic, including severity and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (league == null) {
+			if (diagnosticianChain != null) {
+				diagnosticianChain.add
+					(new BasicDiagnostic
+						(Diagnostic.ERROR,
+						 "league",
+						 BowlingValidator.TOURNAMENT__HAS_LEAGUE,
+						 "League must filled out",
+						 new Object [] { this, BowlingPackage.eINSTANCE.getTournament_League() }));
+			}
+			return false;
+		}
+		return true;
+	}
+
 
 } // TournamentImpl
