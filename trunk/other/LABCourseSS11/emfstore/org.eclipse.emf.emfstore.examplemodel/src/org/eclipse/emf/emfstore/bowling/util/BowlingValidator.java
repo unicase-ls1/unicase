@@ -124,12 +124,20 @@ public class BowlingValidator extends EObjectValidator {
 	public static final int TOURNAMENT__HAS_TOUNAMENT_PRO = 10;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has League' of 'Tournament'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int TOURNAMENT__HAS_LEAGUE = 11;
+
+	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 10;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 11;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -328,6 +336,7 @@ public class BowlingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(tournament, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(tournament, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTournament_hasTounamentPro(tournament, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTournament_hasLeague(tournament, diagnostics, context);
 		return result;
 	}
 
@@ -339,6 +348,16 @@ public class BowlingValidator extends EObjectValidator {
 	 */
 	public boolean validateTournament_hasTounamentPro(Tournament tournament, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return tournament.hasTounamentPro(diagnostics, context);
+	}
+
+	/**
+	 * Validates the hasLeague constraint of '<em>Tournament</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTournament_hasLeague(Tournament tournament, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return tournament.hasLeague(diagnostics, context);
 	}
 
 	/**
