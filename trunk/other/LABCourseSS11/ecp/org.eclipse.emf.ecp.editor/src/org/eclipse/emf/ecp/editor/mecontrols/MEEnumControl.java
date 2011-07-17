@@ -17,13 +17,17 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.ui.ISharedImages;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * This is the standard Control to edit boolean values.
@@ -37,6 +41,11 @@ public class MEEnumControl extends AbstractMEControl implements IValidatableCont
 	private Combo combo;
 
 	private static final int PRIORITY = 1;
+	
+	private Composite composite;
+	
+	private Label labelWidgetImage;  //Label for diagnostic image
+
 
 	/**
 	 * returns a check button without Label. {@inheritDoc}
@@ -47,7 +56,16 @@ public class MEEnumControl extends AbstractMEControl implements IValidatableCont
 	public Control createControl(Composite parent, int style) {		
 		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
 		this.attribute = (EAttribute) feature;
-		combo = new Combo(parent, style | SWT.DROP_DOWN | SWT.READ_ONLY);
+		composite = getToolkit().createComposite(parent, style);
+		GridLayoutFactory.fillDefaults().numColumns(2).spacing(2, 0).applyTo(composite);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(composite);
+		
+		combo = new Combo(composite, style | SWT.DROP_DOWN | SWT.READ_ONLY);
+		combo.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
+		labelWidgetImage = getToolkit().createLabel(composite, "     ");
+		labelWidgetImage.setBackground(parent.getBackground());
+		
 		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
 		EList<EEnumLiteral> list = ((EEnum) attribute.getEType()).getELiterals();
 		for (EEnumLiteral literal : list) {
@@ -55,9 +73,10 @@ public class MEEnumControl extends AbstractMEControl implements IValidatableCont
 		}
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
 		dbc.bindValue(SWTObservables.observeSelection(combo), model, null, null);
-		return combo;
+		return composite;
 	}
 
+	
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -79,22 +98,19 @@ public class MEEnumControl extends AbstractMEControl implements IValidatableCont
 	 * {@inheritDoc}}
 	 * */
 	public void handleValidation(Diagnostic diagnostic) {
-		Device device = Display.getCurrent();
+		Image image = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_ERROR_TSK);
 		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
-			Color color = new Color(device, 255, 0 ,0);
-			this.combo.setBackground(color);
-			this.combo.setToolTipText(diagnostic.getMessage());
-		}		
+			this.labelWidgetImage.setImage(image);
+			this.labelWidgetImage.setToolTipText(diagnostic.getMessage());
+		}
 	}
 	
 	/**.
 	 * {@inheritDoc}}
 	 * */
 	public void resetValidation() {
-		Device device = Display.getCurrent();
-		Color color = new Color(device, 255, 255, 255);
-		this.combo.setBackground(color);
-		this.combo.setToolTipText("");
+		this.labelWidgetImage.setImage(null);
+		this.labelWidgetImage.setToolTipText("");
 	}
 
 }

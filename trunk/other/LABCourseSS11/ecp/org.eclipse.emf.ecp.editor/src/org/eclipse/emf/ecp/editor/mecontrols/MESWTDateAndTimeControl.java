@@ -26,13 +26,12 @@ import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.DateTime;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
@@ -53,6 +52,7 @@ public class MESWTDateAndTimeControl extends AbstractMEControl implements IValid
 	private Composite dateComposite;
 	private DateTime dateWidget;
 	private DateTime timeWidget;
+	private Label labelWidgetImage;  //Label for diagnostic image
 	
 	@Override
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
@@ -64,7 +64,7 @@ public class MESWTDateAndTimeControl extends AbstractMEControl implements IValid
 		this.attribute = (EAttribute) getItemPropertyDescriptor().getFeature(getModelElement());
 		dateComposite = getToolkit().createComposite(parent);
 		dateComposite.setBackgroundMode(SWT.INHERIT_FORCE);
-		GridLayoutFactory.fillDefaults().numColumns(3).spacing(2, 0).applyTo(dateComposite);
+		GridLayoutFactory.fillDefaults().numColumns(4).spacing(2, 0).applyTo(dateComposite);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(dateComposite);
 		
 		createDateAndTimeWidget();
@@ -87,6 +87,11 @@ public class MESWTDateAndTimeControl extends AbstractMEControl implements IValid
 		
 		dateDeleteButton = new ImageHyperlink(dateComposite, SWT.TOP);
 		dateDeleteButton.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE));
+		
+		labelWidgetImage = getToolkit().createLabel(dateComposite, "     ");
+		labelWidgetImage.setBackground(dateComposite.getBackground());
+
+		
 		dateDeleteButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
@@ -105,30 +110,21 @@ public class MESWTDateAndTimeControl extends AbstractMEControl implements IValid
 	 * {@inheritDoc}}
 	 * */
 	public void handleValidation(Diagnostic diagnostic) {
-		Device device = Display.getCurrent();
+		Image image = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_ERROR_TSK);
 		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
-			Color color = new Color(device, 255, 0 ,0);
-			this.dateComposite.setBackgroundMode(SWT.INHERIT_DEFAULT);
-			this.dateComposite.setBackground(color);
-			this.dateWidget.setBackground(color);
-			this.timeWidget.setBackground(color);
-			this.dateWidget.setToolTipText(diagnostic.getMessage());
-			this.timeWidget.setToolTipText(diagnostic.getMessage());
+			this.labelWidgetImage.setImage(image);
+			String message = diagnostic.getMessage();
+			this.labelWidgetImage.setToolTipText(message);
 		}
-
 	}
 
+	
 	/**.
 	 * {@inheritDoc}}
 	 * */
 	public void resetValidation() {
-		Device device = Display.getCurrent();
-		Color color = new Color(device, 255, 255, 255);
-		this.dateComposite.setBackgroundMode(SWT.INHERIT_FORCE);
-		this.dateWidget.setBackground(color);
-		this.timeWidget.setBackground(color);
-		this.dateWidget.setToolTipText("");
-		this.timeWidget.setToolTipText("");
+		this.labelWidgetImage.setImage(null);
+		this.labelWidgetImage.setToolTipText("");
 		
 	}
 
