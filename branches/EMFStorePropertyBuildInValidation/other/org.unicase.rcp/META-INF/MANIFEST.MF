@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Asdf
+Bundle-SymbolicName: org.unicase.rcp;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.unicase.rcp.Activator
+Require-Bundle: org.eclipse.ui,
+ org.unicase.ui.unicasecommon;bundle-version="1.0.0",
+ org.eclipse.core.runtime,
+ org.unicase.workspace;bundle-version="1.0.0",
+ org.unicase.metamodel.edit;bundle-version="1.0.0",
+ org.unicase.model;bundle-version="1.0.0",
+ org.unicase.ui.common;bundle-version="1.0.0",
+ org.unicase.ui.meeditor;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

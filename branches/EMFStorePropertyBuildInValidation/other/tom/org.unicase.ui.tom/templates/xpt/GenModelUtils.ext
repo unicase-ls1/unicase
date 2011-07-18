@@ -1,0 +1,103 @@
+/*
+ * Copyright (c) 2006, 2008 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Dmitry Stadnik (Borland) - initial API and implementation
+ */
+
+import "http://www.eclipse.org/emf/2002/GenModel";
+import "http://www.eclipse.org/emf/2002/Ecore";
+
+/*
+ * GenModel functionality unrelated to EMF generated code
+ * or metamodel access only.
+ */
+
+
+// GenPackage#getDocumentRoot
+genmodel::GenClass getDocumentRoot(genmodel::GenPackage gp) :
+JAVA org.eclipse.gmf.internal.codegen.util.GenModelUtils.getDocumentRoot(org.eclipse.emf.codegen.ecore.genmodel.GenPackage)
+;
+
+// GenModel#findGenClassifier()
+genmodel::GenClassifier findGenClassifier(genmodel::GenModel genModel, ecore::EClassifier eClassifier) :
+JAVA org.eclipse.gmf.internal.codegen.util.GenModelUtils.findGenClassifier(org.eclipse.emf.codegen.ecore.genmodel.GenModel, org.eclipse.emf.ecore.EClassifier)
+;
+
+//GenFeature#getReverse
+genmodel::GenFeature getReverse(genmodel::GenFeature feature) :
+	let eReverseFeature = ((ecore::EReference) feature.ecoreFeature).eOpposite :
+		eReverseFeature != null ? 
+			(let genClass = (genmodel::GenClass) findGenClassifier(feature.genClass.genPackage.genModel, eReverseFeature.eContainingClass) :
+				genClass != null ? 
+					genClass.genFeatures.select(e|e.ecoreFeature == eReverseFeature).first()
+					: null)
+			: null
+;
+
+// For primitive types, return their java.lang wrappers, for non-primitive
+// types returns instanceClassName as is
+String getObjectCompatibleClassName(EDataType dt) :
+	dt.instanceClassName.toCharList().contains(".") 
+		? dt.instanceClassName
+		: switch (dt.instanceClassName) {
+			case "boolean" : "java.lang.Boolean"
+			case "byte"    : "java.lang.Byte"
+			case "char"    : "java.lang.Character"
+			case "double"  : "java.lang.Double"
+			case "float"   : "java.lang.Float"
+			case "int"     : "java.lang.Integer"
+			case "long"    : "java.lang.Long"
+			case "short"   : "java.lang.Short"
+			default : "java.lang.Object"
+		}
+;
+
+// GenFeature#isListType()
+boolean isListType(genmodel::GenFeature feature) :
+JAVA org.eclipse.gmf.internal.codegen.util.GenModelUtils.isListType(org.eclipse.emf.codegen.ecore.genmodel.GenFeature)
+;
+
+// GenFeature#isDerived()
+boolean isDerived(genmodel::GenFeature feature) :
+JAVA org.eclipse.gmf.internal.codegen.util.GenModelUtils.isDerived(org.eclipse.emf.codegen.ecore.genmodel.GenFeature)
+;
+
+// GenFeature#getTypeGenClass()
+genmodel::GenClass getTypeGenClassX(genmodel::GenFeature feature) :
+JAVA org.eclipse.gmf.internal.codegen.util.GenModelUtils.getTypeGenClass(org.eclipse.emf.codegen.ecore.genmodel.GenFeature)
+;
+
+// GenFeature#getTypeGenClassifier()
+genmodel::GenClassifier getTypeGenClassifier(genmodel::GenFeature feature) :
+	findGenClassifier(feature.genClass.genPackage.genModel, feature.ecoreFeature.eType)
+;
+
+// FIXME: for models loaded from generated package (e.g. gmf tests often
+// refer to EClass/EOperation directly from EcorePackage) instanceClassName
+// is always set and thus all metamodel types are treated as external interfaces,
+// with useless casts to EObject
+//
+// GenClass#isExternalInterface()
+boolean isExternalInterface(genmodel::GenClass genClass) :
+	null != genClass.ecoreClass.instanceClassName
+;
+
+
+// GenFeatureImpl#isContains
+boolean isContains(genmodel::GenFeature gf) :
+	isReferenceType(gf) && ((ecore::EReference) gf.ecoreFeature).containment
+;
+
+boolean isPrimitiveType(genmodel::GenFeature gf) :
+	{"boolean", "byte", "char", "double", "float", "int", "long", "short"}.contains(gf.ecoreFeature.eType.instanceClassName)
+;
+
+private boolean isReferenceType(genmodel::GenFeature gf) :
+	!{gf.ecoreFeature}.typeSelect(ecore::EReference).isEmpty()
+;

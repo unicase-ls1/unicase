@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="&lt;copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html &lt;/copyright>&#xD;"
+    modelDirectory="/org.unicase.changetracking.model/src" modelPluginID="org.unicase.changetracking.model"
+    modelName="ChangeTracking" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore"
+    containmentProxies="true" complianceLevel="5.0" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.genmodel#//esmodel platform:/plugin/org.unicase.metamodel/model/metamodel.genmodel#//metamodel platform:/plugin/org.unicase.model/model/model.genmodel#//model">
+  <foreignModel>ChangeTracking.ecore</foreignModel>
+  <genPackages prefix="Changetracking" basePackage="org.unicase.model" disposableProviderFactory="true"
+      ecorePackage="ChangeTracking.ecore#/">
+    <genClasses ecoreClass="ChangeTracking.ecore#//ChangeTrackingRelease">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ChangeTracking.ecore#//ChangeTrackingRelease/stream"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ChangeTracking.ecore#//ChangeTrackingRelease/built"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ChangeTracking.ecore#//ChangeTrackingRelease/baseRevision"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ChangeTracking.ecore#//ChangeTrackingRelease/builtRevision"/>
+    </genClasses>
+    <genClasses ecoreClass="ChangeTracking.ecore#//Stream">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ChangeTracking.ecore#//Stream/releases"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ChangeTracking.ecore#//ChangePackage"/>
+    <genClasses image="false" ecoreClass="ChangeTracking.ecore#//RepositoryRevision">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ChangeTracking.ecore#//RepositoryRevision/repositoryStream"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ChangeTracking.ecore#//RepositoryRevision/basedOnReleases"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ChangeTracking.ecore#//RepositoryRevision/builtWithReleases"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ChangeTracking.ecore#//RepositoryStream">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ChangeTracking.ecore#//RepositoryStream/location"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ChangeTracking.ecore#//RepositoryStream/revisions"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ChangeTracking.ecore#//RepositoryLocation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ChangeTracking.ecore#//RepositoryLocation/streams"/>
+    </genClasses>
+    <nestedGenPackages prefix="Git" disposableProviderFactory="true" ecorePackage="ChangeTracking.ecore#//git">
+      <genClasses ecoreClass="ChangeTracking.ecore#//git/GitBranchChangePackage">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference ChangeTracking.ecore#//git/GitBranchChangePackage/branch"/>
+      </genClasses>
+      <genClasses ecoreClass="ChangeTracking.ecore#//git/GitBranch">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference ChangeTracking.ecore#//git/GitBranch/referringChangePackages"/>
+      </genClasses>
+      <genClasses ecoreClass="ChangeTracking.ecore#//git/GitRevision"/>
+      <genClasses ecoreClass="ChangeTracking.ecore#//git/GitRepository"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Patch" disposableProviderFactory="true" ecorePackage="ChangeTracking.ecore#//patch">
+      <genClasses ecoreClass="ChangeTracking.ecore#//patch/Patch"/>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>
