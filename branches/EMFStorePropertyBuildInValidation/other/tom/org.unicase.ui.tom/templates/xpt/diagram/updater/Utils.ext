@@ -1,0 +1,176 @@
+/*
+ * Copyright (c) 2007 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Alexander Shatalin (Borland) - initial API and implementation
+ */
+
+import "http://www.eclipse.org/gmf/2008/GenModel";
+import "http://www.eclipse.org/emf/2002/GenModel";
+import "http://www.eclipse.org/emf/2002/Ecore";
+extension xpt::diagram::editpolicies::LinkUtils;
+
+String getContainedLinksMethodNameSuffix() :
+	"Contained"
+;
+
+String getIncomingLinksMethodNameSuffix() :
+	"Incoming"
+;
+
+String getOutgoingLinksMethodNameSuffix() :
+	"Outgoing"
+;
+
+cached List[gmfgen::GenLink] getContainedLinks(genmodel::GenClass metaClass, gmfgen::GenDiagram diagram) :
+	diagram.links.select(link | canBeContainer(link, metaClass))
+;
+
+cached List[gmfgen::GenLink] getOutgoingLinks(genmodel::GenClass metaClass, gmfgen::GenDiagram diagram) :
+	diagram.links.select(link | canBeSource(link, metaClass))
+;
+
+cached List[gmfgen::GenLink] getIncomingLinks(genmodel::GenClass metaClass, gmfgen::GenDiagram diagram) :
+	diagram.links.select(link | canBeTarget(link, metaClass))
+;
+
+List[gmfgen::GenLink] getAllContainedLinks(gmfgen::GenDiagram diagram) :
+	diagram.links.select(link | !getAllSemanticElements(diagram).select(commonBase | canBeContainer(link, getMetaClass(commonBase))).isEmpty())
+;
+
+List[gmfgen::GenLink] getAllIncomingLinks(gmfgen::GenDiagram diagram) :
+	diagram.links.select(link | !getAllSemanticDiagramElements(diagram).select(commonBase | canBeTarget(link, getMetaClass(commonBase))).isEmpty())
+;
+
+List[gmfgen::GenLink] getAllOutgoingLinks(gmfgen::GenDiagram diagram) :
+	diagram.links.select(link | isOutgoingLink(link)).select(link | !getAllSemanticDiagramElements(diagram).select(commonBase | canBeSource(link, getMetaClass(commonBase))).isEmpty())
+;
+
+private boolean isOutgoingLink(gmfgen::GenLink link) :
+	null != link.modelFacet && isOutgoingLink(link.modelFacet)
+;
+
+private boolean isOutgoingLink(gmfgen::LinkModelFacet modelFacet) :
+	true
+;
+
+private boolean isOutgoingLink(gmfgen::TypeLinkModelFacet modelFacet) :
+	null != modelFacet.sourceMetaFeature
+;
+
+cached List[gmfgen::GenCommonBase] getAllSemanticDiagramElements(gmfgen::GenDiagram diagram) :
+	diagram.getAllNodes().toList().addAll(diagram.links).typeSelect(gmfgen::GenCommonBase).select(commonBase | null != getMetaClass(commonBase))
+;
+
+cached List[gmfgen::GenCommonBase] getAllSemanticElements(gmfgen::GenDiagram diagram) :
+	null != diagram.domainDiagramElement 
+		? {diagram}.addAll(getAllSemanticDiagramElements(diagram)) 
+		: getAllSemanticDiagramElements(diagram)
+;
+
+cached genmodel::GenClass getMetaClass(gmfgen::GenCommonBase commonBase) :
+	null
+;
+
+cached genmodel::GenClass getMetaClass(gmfgen::GenDiagram diagram) :
+	diagram.domainDiagramElement
+;
+
+cached genmodel::GenClass getMetaClass(gmfgen::GenNode node) :
+	node.modelFacet.metaClass
+;
+
+cached genmodel::GenClass getMetaClass(gmfgen::GenLink link) :
+	null != link.modelFacet ? getMetaClass(link.modelFacet) : null
+;
+
+private genmodel::GenClass getMetaClass(gmfgen::LinkModelFacet modelFacet) :
+	null
+;
+
+private genmodel::GenClass getMetaClass(gmfgen::TypeLinkModelFacet modelFacet) :
+	modelFacet.metaClass
+;
+
+boolean hasSemanticChildren(gmfgen::GenContainerBase container) :
+	!container.sansDomain && !container.containedNodes.isEmpty()
+;
+
+genmodel::GenClass getModelElementType(gmfgen::GenContainerBase containerBase) :
+// Never should be here!
+	null
+;
+
+genmodel::GenClass getModelElementType(gmfgen::GenDiagram diagram) :
+	diagram.domainDiagramElement
+;
+
+genmodel::GenClass getModelElementType(gmfgen::GenCompartment compartment) :
+	getModelElementType(compartment.node)
+;
+
+genmodel::GenClass getModelElementType(gmfgen::GenNode node) :
+	node.modelFacet.metaClass
+;
+
+cached Set[genmodel::GenFeature] getSemanticChildrenChildFeatures(gmfgen::GenContainerBase containerBase) :
+	getNonPhantomSemanticChildren(containerBase).collect(node | node.modelFacet.childMetaFeature).toSet()
+;
+
+cached Set[genmodel::GenFeature] getSemanticChildrenContainmentFeatures(gmfgen::GenContainerBase containerBase) :
+	getNonPhantomSemanticChildren(containerBase).collect(node | node.modelFacet.containmentMetaFeature).toSet()
+;
+
+cached List[gmfgen::GenNode] getSemanticChildren(gmfgen::GenContainerBase containerBase, genmodel::GenFeature childMetaFeature) :
+	getNonPhantomSemanticChildren(containerBase).select(node | node.modelFacet.childMetaFeature == childMetaFeature)
+;
+
+private cached List[gmfgen::GenNode] getNonPhantomSemanticChildren(gmfgen::GenContainerBase containerBase) :
+	getSemanticChildren(containerBase).select(node | !node.modelFacet.isPhantomElement())
+;
+
+cached List[gmfgen::GenNode] getPhantomNodes(gmfgen::GenContainerBase containerBase) :
+	{}
+;
+
+cached List[gmfgen::GenNode] getPhantomNodes(gmfgen::GenDiagram diagram) :
+	getSemanticChildren(diagram).select(node | node.modelFacet.isPhantomElement())
+;
+
+cached List[gmfgen::GenNode] getSemanticChildren(gmfgen::GenContainerBase containerBase) :
+	containerBase.containedNodes.select(node | null != node.modelFacet)
+;
+
+cached boolean hasConformableSemanticChildren(gmfgen::GenContainerBase containerBase) :
+	let childMetaClasses = getSemanticChildren(containerBase).collect(node | node.modelFacet.metaClass) :
+		!childMetaClasses.forAll(mc | childMetaClasses.select(mc2 | mc == mc2).size() == 1)
+;
+
+GenClass getLinkEndType(gmfgen::LinkModelFacet f, String methodNameSuffix) :
+	null
+;
+
+//	For FeatureModelFacet-based links we are calling 
+//	getOutgoing???Links instead of getContained???Links
+GenClass getLinkEndType(gmfgen::FeatureLinkModelFacet f, String methodNameSuffix) :
+	getIncomingLinksMethodNameSuffix() == methodNameSuffix
+		? f.getTargetType()
+		: f.getSourceType()
+;
+
+// 	For TypeModelFacet-based links we are calling 
+//	getContained???Links instead of getOutgoinf???Links 
+//	if sourceMetaFeature was not specified
+GenClass getLinkEndType(gmfgen::TypeLinkModelFacet f, String methodNameSuffix) :
+	getIncomingLinksMethodNameSuffix() == methodNameSuffix
+		? f.getTargetType()
+		: (getOutgoingLinksMethodNameSuffix() == methodNameSuffix && null != f.sourceMetaFeature
+			? f.getSourceType()
+			: f.containmentMetaFeature.genClass
+		)
+;

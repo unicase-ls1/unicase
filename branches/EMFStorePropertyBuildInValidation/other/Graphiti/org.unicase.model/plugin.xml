@@ -1,0 +1,848 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://unicase.org/model" 
+       class = "org.unicase.model.ModelPackage"
+       genModel = "model/model.genmodel" />
+  </extension>
+  <extension
+        point="org.eclipse.emf.validation.constraintProviders">
+     <category
+           id="org.unicase.model"
+           name="Unicase">
+     </category>
+     <constraintProvider
+           cache="true"
+           mode="Batch">
+        <package
+              namespaceUri="http://unicase.org/model/task">
+        </package>
+        <constraints
+              categories="org.unicase.model">
+           <constraint
+                 class="org.unicase.model.task.validation.ActionItemEmbodiesRequirementConstraint"
+                 id="org.unicase.model.task.validation.ActionItemEmbodiesRequirementConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Action Item Embodies Requirement"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} might describe a requirement that should be formalized
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.task.validation.ActionItemMissingActivityConstraint"
+                 id="org.unicase.model.task.validation.ActionItemMissingActivityConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Action Item Missing Activity"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} does not have an activity assigned.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.task.validation.ActionItemMissingAssigneeConstraint"
+                 id="org.unicase.model.task.validation.ActionItemAssigneeConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Action Item Missing Assignee"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} has no Assignee.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.task.validation.ActionItemMissingFunctionalRequirementConstraint"
+                 id="org.unicase.model.task.validation.ActionItemMissingFunctionalRequirementConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Action Item Missing Functional Requirement"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} is not annotated to functional requirement.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.task.validation.ActionItemMissingReviewerConstraint"
+                 id="org.unicase.model.task.validation.ActionItemMissingReviewerConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Action Item Missing Reviewer"
+                 severity="INFO"
+                 statusCode="1">
+              <message>
+                 {0} has no reviewer
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.task.validation.ActionItemMissingWorkpackageConstraint"
+                 id="org.unicase.model.task.validation.ActionItemMissingWorkpackageConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Action Item Missing Workpackage"
+                 severity="INFO"
+                 statusCode="1">
+              <message>
+                 {0} is not contained in a workpackage.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.task.validation.ImplementationActionItemDueDateAfterRelatedAnalysisOrDesignActionItem"
+                 id="org.unicase.model.task.validation.ImplementationActionItemDueDateAfterRelatedAnalysisOrDesignActionItem"
+                 lang="Java"
+                 mode="Batch"
+                 name="Implementation Action Item Due Date After Related Analysis Or Design Action Item"
+                 severity="INFO"
+                 statusCode="1">
+              <message>
+                 {0} is a implementation work item, but has an earlier due date then an related design or analysis work item.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.task.validation.ImplementationActionItemMissingClassOrMethod"
+                 id="org.unicase.model.task.validation.ImplementationActionItemMissingClassOrMethod"
+                 lang="Java"
+                 mode="Batch"
+                 name="Implementation Action Item Missing Class Or Method"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} is an implementation task, but not annotated to a method or class.
+              </message>
+           </constraint>
+        </constraints>
+     </constraintProvider>
+     <constraintProvider
+           cache="true"
+           mode="Batch">
+        <package
+              namespaceUri="http://unicase.org/model/requirement">
+        </package>
+        <constraints
+              categories="org.unicase.model">
+           <constraint
+                 class="org.unicase.model.requirement.validation.ActorInstanceMissingActorConstraint"
+                 id="org.unicase.model.requirement.validation.ActorInstanceMissingActorConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Actor Instance Missing Actor"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} is not connected to an actor.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.requirement.validation.ActorInstanceMissingScenarioConstraint"
+                 id="org.unicase.model.requirement.validation.ActorInstanceMissingScenarioConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Actor Instance Missing Scenario"
+                 severity="WARNING"
+                 statusCode="1">
+              self.initiatedScenarios->size() + self.participatedScenarios->size() > 0
+              <message>
+                 {0} has no scenarios
+              </message>
+              <target
+                    class="ActorInstance">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.requirement.validation.ActorMissingUsecaseConstraint"
+                 id="org.unicase.model.requirement.validation.ActorMissingUsecaseConstraint"
+                 lang="OCL"
+                 mode="Batch"
+                 name="Actor Missing Use Case"
+                 severity="WARNING"
+                 statusCode="1">
+              self.initiatedUseCases->size() + self.participatedUseCases->size() > 0
+              <message>
+                 {0} has no usecases
+              </message>
+              <target
+                    class="Actor">
+              </target>
+           </constraint>
+          <constraint
+                class="org.unicase.model.requirement.validation.FunctionalRequirementMissingUsecaseConstraint"
+                id="org.unicase.model.requirement.validation.FunctionalRequirementMissingUsecaseConstraint"
+                lang="OCL"
+                mode="Batch"
+                name="Functional Requirement Missing Use Case"
+                severity="WARNING"
+                statusCode="1">
+			<message>{0} has no usecases</message>
+			<target class="FunctionalRequirement"/>
+				<![CDATA[
+					self.useCases->size() > 0
+				]]>
+		   </constraint>
+          <constraint
+                class="org.unicase.model.task.validation.FunctionalRequirementTasksHaveEarlierDueDateThanRefinedFunctionalRequirementTasks"
+                id="org.unicase.model.task.validation.FunctionalRequirementTasksHaveEarlierDueDateThanRefinedFunctionalRequirementTasks"
+                lang="Java"
+                mode="Batch"
+                name="Functional Requirement Tasks Have Earlier Due Date Than Refined Functional Requirement Tasks"
+                severity="INFO"
+                statusCode="1">
+             <message>
+                {0} is an implementation work item annotated to a functional requirement. I has a later due date then a work item related to a refining requirement.
+             </message>
+          </constraint>
+           <constraint
+                 class="org.unicase.model.requirement.validation.NonFunctionalRequirementMissingUsecaseConstraint"
+                 id="org.unicase.model.requirement.validation.NonFunctionalRequirementMissingUsecaseConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Non-Functional Requirement Missing Use Case"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} is not linked to a functional requirement.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.requirement.validation.RequirementMissingDescriptionConstraint"
+                 id="org.unicase.model.requirement.validation.RequirementMissingDescriptionConstraint"
+                 lang="java"
+                 mode="Batch"
+                 name="Requirement Missing Description"
+                 severity="WARNING"
+                 statusCode="1">
+              self.useCases->size() > 0
+              <message>
+                 {0} has no description
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.requirement.validation.RequirementMissingNameConstraint"
+                 id="org.unicase.model.requirement.validation.RequirementMissingNameConstraint"
+                 lang="java"
+                 mode="Batch"
+                 name="Requirement Missing Name"
+                 severity="WARNING"
+                 statusCode="1">
+              self.useCases->size() > 0
+              <message>
+                 {0} the name should not be numbered manually
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.requirement.validation.ScenarioMissingUsecaseConstraint"
+                 id="org.unicase.model.requirement.validation.ScenarioMissingUsecaseConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Scenario Missing Use Case"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} is not connected to a usecase.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.requirement.validation.UseCaseMissingRequirementConstraint"
+                 id="org.unicase.model.requirement.validation.UseCaseMissingRequirementConstraint"
+                 lang="java"
+                 mode="Batch"
+                 name="Use Case Missing Requirement"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} is missing requirement
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.requirement.validation.UseCaseMissingStepsConstraint"
+                 id="org.unicase.model.requirement.validation.UseCaseMissingStepsConstraint"
+                 lang="java"
+                 mode="Batch"
+                 name="Use Case Missing Steps"
+                 severity="WARNING"
+                 statusCode="1">
+              self.useCases->size() > 0
+              <message>
+                 {0} has no steps
+              </message>
+           </constraint>
+        </constraints>
+     </constraintProvider>
+     <constraintProvider
+           cache="true"
+           mode="Batch">
+        <package
+              namespaceUri="http://unicase.org/model/rationale">
+        </package>
+        <constraints
+              categories="org.unicase.model">
+        </constraints>
+     </constraintProvider>
+     <constraintProvider
+           cache="true"
+           mode="Batch">
+        <package
+              namespaceUri="http://unicase.org/model/document">
+        </package>
+        <constraints
+              categories="org.unicase.model">
+        </constraints>
+     </constraintProvider>
+     <constraintProvider
+           cache="true"
+           mode="Batch">
+        <package
+              namespaceUri="http://unicase.org/model">
+        </package>
+        <constraints
+              categories="org.unicase.model">
+           <constraint
+                 class="org.unicase.model.rationale.validation.DiscussionShouldBeIssueConstraint"
+                 id="org.unicase.model.task.validation.DiscussionInIssueConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Discussion Could Be Issue"
+                 severity="INFO"
+                 statusCode="1">
+              <message>
+                 {0} has a lot of comments that could be an issue
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.validation.ModelElementNewNameConstraint"
+                 id="org.unicase.model.ModelElementNewName"
+                 lang="Java"
+                 mode="Batch"
+                 name="Model Element Has Default Name"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 {0} has a default name, please change.
+              </message>
+           </constraint>
+        </constraints>
+     </constraintProvider>
+     <constraintProvider
+           cache="true"
+           mode="Batch">
+        <package
+              namespaceUri="http://unicase.org/model/classes">
+        </package>
+        <constraints
+              categories="org.unicase.model">
+           <constraint
+                 class="org.unicase.model.classes.validation.AssociationSourceSetConstraint"
+                 id="org.unicase.model.classes.validation.AssociationSourceSetConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Association Source Set"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The association source is not set.
+              </message>
+              <target
+                    class="Association">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.AssociationTargetSetConstraint"
+                 id="org.unicase.model.classes.validation.AssociationTargetSetConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Association Target Set"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The association target is not set.
+              </message>
+              <target
+                    class="Association">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.AtMostOneIdConstraint"
+                 id="org.unicase.model.classes.validation.AtMostOneIdConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="At Most One Id"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 A class must have at most one attribute which is id.
+              </message>
+              <target
+                    class="Class">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.ClassNotContainedInPackageConstraint"
+                 id="org.unicase.model.classes.ClassPackage"
+                 lang="Java"
+                 mode="Batch"
+                 name="Class Not Contained In Package"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 {0} is not contained in a package.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.ConsistentMultiplicityConstraint"
+                 id="org.unicase.model.constraint8"
+                 lang="Java"
+                 mode="Batch"
+                 name="Consistent Multiplicity"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The minimum multiplicity must be less than or equal to the maximum multiplicity.
+              </message>
+              <target
+                    class="Association">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.MissingEnumerationConstraint"
+                 id="org.unicase.model.classes.validation.MissingEnumerationConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Missing Enumeration"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 If the attribute's type is enumeration, an enumeration has to be set.
+              </message>
+              <target
+                    class="Attribute">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.NoCircularSuperClassesConstraint"
+                 id="org.unicase.model.classes.validation.NoCircularSuperClassesConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="No Circular Super Classes"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 A class may not be a super class of itself.
+              </message>
+              <target
+                    class="Class">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.UniqueAssociationSourceRoleConstraint"
+                 id="org.unicase.model.classes.validation.UniqueAssociationSourceRoleConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Unique Association Source Role"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The source role {0} is not unique within the parent class.
+              </message>
+              <target
+                    class="Association">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.UniqueAssociationTargetRoleConstraint"
+                 id="org.unicase.model.classes.validation.UniqueAssociationTargetRoleConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Unique Association Target Role"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The target role {0} is not unique within the parent class.
+              </message>
+              <target
+                    class="Association">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.UniqueAttributeNameConstraint"
+                 id="org.unicase.model.classes.validation.UniqueAttributeNameConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Unique Attribute Name"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The name {0} is not unique within the parent class.
+              </message>
+              <target
+                    class="Attribute">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.UniquePackageElementNameConstraint"
+                 id="org.unicase.model.classes.validation.UniqueClassNameConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Unique Class Name"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The name {0} is not unique within the parent package.
+              </message>
+              <target
+                    class="Class">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.UniqueLiteralNameConstraint"
+                 id="org.unicase.model.classes.validation.UniqueLiteralNameConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Unique Literal Name"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The name {0} is not unique within the parent enumeration.
+              </message>
+              <target
+                    class="Literal">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.ValidMaximumMultiplicityConstraint"
+                 id="org.unicase.model.classes.validation.ValidMaximumMultiplicityConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Valid Maximum Multiplicity"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The maximum multiplicity must be -1, or greater than 0.
+              </message>
+              <target
+                    class="Association">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.ValidMinimumMultiplicityConstraint"
+                 id="org.unicase.model.classes.validation.ValidMinimumMultiplicityConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Valid Minimum Multiplicity"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The minimum multiplicity must be greater than or equal to 0.
+              </message>
+              <target
+                    class="Association">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.WellFormedModelElementNameConstraint"
+                 id="org.unicase.model.classes.validation.WellFormedNameConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Well Formed Name"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The name {0} is not well formed.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.WellFormedAssociationSourceRoleConstraint"
+                 id="org.unicase.model.classes.validation.WellFormedAssociationSourceRoleConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Well Formed Source Role"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The source role {0} is not well formed.
+              </message>
+              <target
+                    class="Association">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.classes.validation.WellFormedAssociationTargetRoleConstraint"
+                 id="org.unicase.model.classes.validation.WellFormedAssociationTargetRoleConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Well Formed Target Role"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 The target role {0} is not well formed.
+              </message>
+              <target
+                    class="Association">
+              </target>
+           </constraint>
+          </constraints>
+     </constraintProvider>
+     <constraintProvider
+           cache="true"
+           mode="Batch">
+        <package
+              namespaceUri="http://unicase.org/model/organization">
+        </package>
+        <constraints
+              categories="org.unicase.model">
+           <constraint
+                 class="org.unicase.model.organization.validation.UserMissingEmailAddress"
+                 id="org.unicase.model.organization.validation.UserMissingEmailAddress"
+                 lang="Java"
+                 mode="Batch"
+                 name="User Missing Email Address"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 message body text
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.organization.validation.UserMissingFirstName"
+                 id="org.unicase.model.organization.validation.UserMissingFirstName"
+                 lang="Java"
+                 mode="Batch"
+                 name="User Missing First Name"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 message body text
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.organization.validation.UserMissingLastName"
+                 id="org.unicase.model.organization.validation.UserMissingLastName"
+                 lang="Java"
+                 mode="Batch"
+                 name="User Missing Last Name"
+                 severity="ERROR"
+                 statusCode="1">
+              <message>
+                 message body text
+              </message>
+           </constraint>
+        </constraints>
+     </constraintProvider>
+     <constraintProvider
+           cache="true"
+           mode="Batch">
+        <package
+              namespaceUri="http://unicase.org/model/bug">
+        </package>
+        <constraints
+              categories="org.unicase.model">
+           <constraint
+                 class="org.unicase.model.bug.validation.BugReportMissingAssigneeConstraint"
+                 id="org.unicase.model.bug.validation.BugReportMissingAssigneeConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Bug Report Missing Assignee"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} has no Assignee.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.bug.validation.BugReportMissingReviewerConstraint"
+                 id="org.unicase.model.bug.validation.BugReportMissingReviewerConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Bug Report Missing Reviewer"
+                 severity="INFO"
+                 statusCode="1">
+              <message>
+                 {0} has no reviewer
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.bug.validation.BugReportMissingResolutionConstraint"
+                 id="org.unicase.model.bug.validation.BugReportMissingResolutionConstraint"
+                 lang="Java"
+                 mode="Batch"
+                 name="Bug Report Missing Resolution Constraint"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} is done, but the resolution is missing
+              </message>
+           </constraint>
+        </constraints>
+     </constraintProvider>
+  </extension>
+  <extension
+        id="validation.marker"
+        name="Unicase Validation Marker"
+        point="org.eclipse.core.resources.markers">
+     <persistent
+           value="false">
+     </persistent>
+     <super
+           type="org.eclipse.core.resources.problemmarker">
+     </super>
+     <super
+           type="org.eclipse.emf.ecore.diagnostic">
+     </super>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.unicase.model.organization.OrganizationPackage"
+           genModel="model/model.genmodel"
+           uri="http://unicase.org/model/organization">
+     </package>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.unicase.model.task.TaskPackage"
+           genModel="model/model.genmodel"
+           uri="http://unicase.org/model/task">
+     </package>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.unicase.model.diagram.DiagramPackage"
+           genModel="model/model.genmodel"
+           uri="http://unicase.org/model/diagram">
+     </package>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.unicase.model.classes.ClassesPackage"
+           genModel="model/model.genmodel"
+           uri="http://unicase.org/model/classes">
+     </package>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.unicase.model.document.DocumentPackage"
+           genModel="model/model.genmodel"
+           uri="http://unicase.org/model/document">
+     </package>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.unicase.model.requirement.RequirementPackage"
+           genModel="model/model.genmodel"
+           uri="http://unicase.org/model/requirement">
+     </package>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.unicase.model.rationale.RationalePackage"
+           genModel="model/model.genmodel"
+           uri="http://unicase.org/model/rationale">
+     </package>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.unicase.model.change.ChangePackage"
+           genModel="model/model.genmodel"
+           uri="http://unicase.org/model/change">
+     </package>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.unicase.model.bug.BugPackage"
+           genModel="model/model.genmodel"
+           uri="http://unicase.org/model/bug">
+     </package>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.unicase.model.component.ComponentPackage"
+           genModel="model/model.genmodel"
+           uri="http://unicase.org/model/component">
+     </package>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.unicase.model.meeting.MeetingPackage"
+           genModel="model/model.genmodel"
+           uri="http://unicase.org/model/meeting">
+     </package>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.unicase.model.state.StatePackage"
+           genModel="model/model.genmodel"
+           uri="http://unicase.org/model/state">
+     </package>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.unicase.model.attachment.AttachmentPackage"
+           genModel="model/model.genmodel"
+           uri="http://unicase.org/model/attachment">
+     </package>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.unicase.model.profile.ProfilePackage"
+           genModel="model/model.genmodel"
+           uri="http://unicase.org/model/profile">
+     </package>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.unicase.model.util.UtilPackage"
+           genModel="model/model.genmodel"
+           uri="http://unicase.org/model/util">
+     </package>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.unicase.model.activity.ActivityPackage"
+           genModel="model/model.genmodel"
+           uri="http://unicase.org/model/activity">
+     </package>
+  </extension>
+  <extension
+        id="org.unicase.model.unicaseModelVersion"
+        name="Unicase Model Version"
+        point="org.unicase.metamodel.modelversion">
+     <ModelVersion
+           versionIdentifier="7">
+     </ModelVersion>
+  </extension>
+  <extension
+        point="org.eclipse.emf.validation.constraintBindings">
+     <binding
+           category="org.unicase.model"
+           context="context">
+     </binding>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.generated_package">
+     <package
+           class="org.unicase.model.release.ReleasePackage"
+           genModel="model/model.genmodel"
+           uri="http://unicase.org/model/release">
+     </package>
+  </extension>
+</plugin>

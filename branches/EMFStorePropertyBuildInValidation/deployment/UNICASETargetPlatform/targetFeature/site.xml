@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.unicase.targetfeature_1.0.0.201103171541.jar" id="org.unicase.targetfeature" version="1.0.0.201103171541">
+      <category name="UNICASE Target Platform"/>
+   </feature>
+   <category-def name="UNICASE Target Platform" label="UNICASE Target Platform">
+      <description>
+         Feature contains all the required for UNICASE Target platform.
+      </description>
+   </category-def>
+</site>

@@ -1,0 +1,7 @@
+# Tracing options for the org.unicase.scrm.diagram plug-in
+
+# Common issues
+org.unicase.scrm.diagram/debug=false
+
+# Visual IDs
+org.unicase.scrm.diagram/debug/visualID=false
