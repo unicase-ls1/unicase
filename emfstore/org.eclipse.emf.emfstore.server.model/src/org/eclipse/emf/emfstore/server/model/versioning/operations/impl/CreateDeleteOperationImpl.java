@@ -97,12 +97,18 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements
 
 			for (int i = 0; i < allContainedModelElements.size(); i++) {
 				EObject child = allContainedModelElements.get(i);
+
 				EObject copiedChild = copiedAllContainedModelElements.get(i);
 				ModelElementId childId = ModelUtil.clone(getEObjectToIdMap()
 						.get(child));
 
 				if (ModelUtil.isIgnoredDatatype(child)) {
 					continue;
+				}
+
+				// TODO: how can this happen?
+				if (child.equals(modelElement) && childId == null) {
+					childId = ModelUtil.clone(getModelElementId());
 				}
 
 				if (childId.equals(clone.getModelElementId())) {

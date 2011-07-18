@@ -23,8 +23,15 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.eclipse.gmf.runtime.notation.NotationFactory;
 import scrm.SCRMDiagram;
+import scrm.ScrmFactory;
 import scrm.ScrmPackage;
+
+import scrm.knowledge.KnowledgeFactory;
+
+import scrm.requirements.RequirementsFactory;
+import scrm.requirements.dataProcess.DataProcessFactory;
 
 /**
  * This is the item provider adapter for a {@link scrm.SCRMDiagram} object.
@@ -86,14 +93,15 @@ public class SCRMDiagramItemProvider extends SCRMModelElementItemProvider
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(
 			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ScrmPackage.Literals.SCRM_DIAGRAM__ELEMENTS);
+			childrenFeatures
+					.add(ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -146,11 +154,14 @@ public class SCRMDiagramItemProvider extends SCRMModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SCRMDiagram.class)) {
-		case ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM:
 		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_LAYOUT:
-		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_TYPE:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), false, true));
+			return;
+		case ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM:
+		case ScrmPackage.SCRM_DIAGRAM__NEW_ELEMENTS:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -167,6 +178,106 @@ public class SCRMDiagramItemProvider extends SCRMModelElementItemProvider
 	protected void collectNewChildDescriptors(
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__GMFDIAGRAM,
+				NotationFactory.eINSTANCE.createDiagram()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__GMFDIAGRAM,
+				NotationFactory.eINSTANCE.createStandardDiagram()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				ScrmFactory.eINSTANCE.createSCRMDiagram()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				KnowledgeFactory.eINSTANCE.createKnowledgeSpace()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				KnowledgeFactory.eINSTANCE.createScientificProblem()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				KnowledgeFactory.eINSTANCE.createMathematicalModel()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				KnowledgeFactory.eINSTANCE.createNumericalMethod()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				KnowledgeFactory.eINSTANCE.createAssumption()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				RequirementsFactory.eINSTANCE.createRequirement()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				RequirementsFactory.eINSTANCE.createRequirementSpace()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				RequirementsFactory.eINSTANCE.createFeature()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				RequirementsFactory.eINSTANCE.createHardware()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				RequirementsFactory.eINSTANCE.createConstraint()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				RequirementsFactory.eINSTANCE.createUserInterface()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				RequirementsFactory.eINSTANCE.createSoftwareInterface()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				RequirementsFactory.eINSTANCE.createPerformance()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				RequirementsFactory.eINSTANCE.createDataFlow()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				RequirementsFactory.eINSTANCE.createDataDefinition()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				DataProcessFactory.eINSTANCE.createProcess()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				DataProcessFactory.eINSTANCE.createInputDataReading()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				DataProcessFactory.eINSTANCE.createDataHandling()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				DataProcessFactory.eINSTANCE.createResultsOutput()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				DataProcessFactory.eINSTANCE.createErrorHandling()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				DataProcessFactory.eINSTANCE.createStatusMonitoring()));
+
+		newChildDescriptors.add(createChildParameter(
+				ScrmPackage.Literals.SCRM_DIAGRAM__NEW_ELEMENTS,
+				DataProcessFactory.eINSTANCE.createDataProcessSpace()));
 	}
 
 }

@@ -7,27 +7,15 @@
     usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation">
   <foreignModel>scrm.ecore</foreignModel>
   <genPackages prefix="Scrm" disposableProviderFactory="true" ecorePackage="scrm.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="scrm.ecore#//DiagramType">
-      <genEnumLiterals ecoreEnumLiteral="scrm.ecore#//DiagramType/DefaultDiagram"/>
-      <genEnumLiterals ecoreEnumLiteral="scrm.ecore#//DiagramType/KnowledgeDiagram"/>
-      <genEnumLiterals ecoreEnumLiteral="scrm.ecore#//DiagramType/RequirementsDiagram"/>
-      <genEnumLiterals ecoreEnumLiteral="scrm.ecore#//DiagramType/DataProcessDiagram"/>
-    </genEnums>
     <genClasses image="false" ecoreClass="scrm.ecore#//SCRMModelElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//SCRMModelElement/name"/>
       <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute scrm.ecore#//SCRMModelElement/description"/>
     </genClasses>
     <genClasses ecoreClass="scrm.ecore#//SCRMDiagram">
-      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
-          ecoreFeature="ecore:EReference scrm.ecore#//SCRMDiagram/elements"/>
-      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//SCRMDiagram/gmfdiagram"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//SCRMDiagram/newElements"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference scrm.ecore#//SCRMDiagram/elements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//SCRMDiagram/gmfdiagram"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//SCRMDiagram/newElements"/>
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//SCRMDiagram/diagramLayout"/>
-      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//SCRMDiagram/diagramType"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="scrm.ecore#//SCRMSpace">
-      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
-          ecoreFeature="ecore:EReference scrm.ecore#//SCRMSpace/representingDiagram"/>
     </genClasses>
     <nestedGenPackages prefix="Knowledge" basePackage="scrm" disposableProviderFactory="true"
         ecorePackage="scrm.ecore#//knowledge">
@@ -35,7 +23,7 @@
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/ScientificKnowledge/containingKnowledgeSpace"/>
       </genClasses>
       <genClasses ecoreClass="scrm.ecore#//knowledge/KnowledgeSpace">
-        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/KnowledgeSpace/containedScientificKnowledge"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/KnowledgeSpace/containedScientificProblem"/>
       </genClasses>
       <genClasses ecoreClass="scrm.ecore#//knowledge/ScientificProblem">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -139,8 +127,6 @@
       </genClasses>
       <genClasses ecoreClass="scrm.ecore#//requirements/Performance">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//requirements/Performance/problemSize"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Performance/describedMethod"/>
       </genClasses>
       <genClasses ecoreClass="scrm.ecore#//requirements/DataFlow">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -171,7 +157,7 @@
         <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/ErrorHandling"/>
         <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/StatusMonitoring"/>
         <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/DataProcessSpace">
-          <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataProcess/DataProcessSpace/containedDataProcessSteps"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataProcess/DataProcessSpace/containedDataProcessSteps"/>
         </genClasses>
       </nestedGenPackages>
     </nestedGenPackages>

@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: ECP Model
+Bundle-Name: ECP Model  (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.ecp.common.model;singleton:=true
-Bundle-Version: 0.8.1
+Bundle-Version: 0.8.9.M5
 Bundle-Activator: org.eclipse.emf.ecp.common.model.Activator
 Require-Bundle: org.eclipse.emf.ecp.common.util;visibility:=reexport
 Bundle-ActivationPolicy: lazy

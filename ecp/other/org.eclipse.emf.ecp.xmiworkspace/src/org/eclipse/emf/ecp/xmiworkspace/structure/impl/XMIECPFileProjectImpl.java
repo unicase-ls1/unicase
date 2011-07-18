@@ -751,8 +751,4 @@ public class XMIECPFileProjectImpl extends ECPProjectImpl implements
 		return result.toString();
 	}
 
-	public Resource getMainResource() {
-		return mainResource;
-	}
-
 } // XMIECPFileProjectImpl

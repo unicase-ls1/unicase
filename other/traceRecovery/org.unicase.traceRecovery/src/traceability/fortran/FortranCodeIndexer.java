@@ -80,8 +80,7 @@ public class FortranCodeIndexer extends Indexer {
 		// addFunctions(doc,parser);
 		// addData(doc,parser);
 		// addComments(doc, parser);
-		Field fileName = new Field("filename", f.getName(), Field.Store.YES, Field.Index.NO);
-		doc.add(fileName);
+		doc.add(Field.UnIndexed("filename", f.getName()));
 		try {
 			writer.addDocument(doc);
 		} catch (IOException e) {
@@ -99,21 +98,17 @@ public class FortranCodeIndexer extends Indexer {
 		for (int i = 0; i < subroutines.size(); i++) {
 			String docSubroutine = ((ScopingNode) subroutines.get(i))
 					.getName(true);
-			
-			Field subRoutine = new Field(SUBROUTINE, docSubroutine, Field.Store.YES, Field.Index.TOKENIZED);
-			
-			doc.add(subRoutine);
+			doc.add(Field.Text(SUBROUTINE, docSubroutine));
 		}
 
 	}
 
 	private static void addComments(Document doc, FortranSourceCodeParser parser) {
-		ArrayList <String> comments = parser.getComments();
+		ArrayList comments = parser.getComments();
 		if (comments == null)
 			return;
 		for (int i = 0; i < comments.size(); i++) {
-			Field com = new Field(COMMENT, comments.get(i), Field.Store.YES, Field.Index.TOKENIZED);
-			doc.add(com);
+			doc.add(Field.Text(COMMENT, (String) comments.get(i)));
 		}
 	}
 

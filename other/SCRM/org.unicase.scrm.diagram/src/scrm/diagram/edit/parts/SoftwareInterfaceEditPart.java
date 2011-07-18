@@ -1,24 +1,22 @@
 package scrm.diagram.edit.parts;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.draw2d.GridData;
-import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
-import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
-import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConstrainedToolbarLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -31,10 +29,10 @@ import org.eclipse.swt.graphics.Color;
 
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
-
-import scrm.SCRMDiagram;
-import scrm.diagram.edit.policies.OpenMEEditorPolicy;
+import scrm.diagram.edit.policies.OpenDiagramEditPolicy;
+import scrm.diagram.edit.policies.ScrmTextSelectionEditPolicy;
 import scrm.diagram.edit.policies.SoftwareInterfaceItemSemanticEditPolicy;
+import scrm.diagram.opener.MEEditorOpenerPolicy;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -66,14 +64,14 @@ public class SoftwareInterfaceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new SoftwareInterfaceItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenMEEditorPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new MEEditorOpenerPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -82,23 +80,16 @@ public class SoftwareInterfaceEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
+
+		ConstrainedToolbarLayoutEditPolicy lep = new ConstrainedToolbarLayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
-					result = new NonResizableEditPolicy();
+				if (child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE) == null) {
+					if (child instanceof ITextAwareEditPart) {
+						return new ScrmTextSelectionEditPolicy();
+					}
 				}
-				return result;
-			}
-
-			protected Command getMoveChildrenCommand(Request request) {
-				return null;
-			}
-
-			protected Command getCreateCommand(CreateRequest request) {
-				return null;
+				return super.createChildEditPolicy(child);
 			}
 		};
 		return lep;
@@ -281,36 +272,24 @@ public class SoftwareInterfaceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
-		List<IElementType> types = new LinkedList<IElementType>();
-		switch(scrmDiagram.getDiagramType()) {
-			case DEFAULT_DIAGRAM:
-			case REQUIREMENTS_DIAGRAM:
-				types.add(ScrmElementTypes.FeatureRequiredInterfaces_4023);
-				types.add(ScrmElementTypes.FeatureProvidedInterfaces_4024);
-		}
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(ScrmElementTypes.FeatureRequiredInterfaces_4023);
+		types.add(ScrmElementTypes.FeatureProvidedInterfaces_4024);
 		return types;
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
-		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
-		List<IElementType> types = new LinkedList<IElementType>();
-		switch(scrmDiagram.getDiagramType()) {
-			case DEFAULT_DIAGRAM:
-			case REQUIREMENTS_DIAGRAM:
-				if (relationshipType == ScrmElementTypes.FeatureRequiredInterfaces_4023) {
-					types.add(ScrmElementTypes.Feature_2009);
-					types.add(ScrmElementTypes.Feature_3009);
-				} else if (relationshipType == ScrmElementTypes.FeatureProvidedInterfaces_4024) {
-					types.add(ScrmElementTypes.Feature_2009);
-					types.add(ScrmElementTypes.Feature_3009);
-				}
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if (relationshipType == ScrmElementTypes.FeatureRequiredInterfaces_4023) {
+			types.add(ScrmElementTypes.Feature_2009);
+		} else if (relationshipType == ScrmElementTypes.FeatureProvidedInterfaces_4024) {
+			types.add(ScrmElementTypes.Feature_2009);
 		}
 		return types;
 	}
@@ -338,9 +317,13 @@ public class SoftwareInterfaceEditPart extends ShapeNodeEditPart {
 		 */
 		public SoftwareInterfaceFigure() {
 
-			GridLayout layoutThis = new GridLayout();
-			layoutThis.numColumns = 1;
-			layoutThis.makeColumnsEqualWidth = true;
+			ToolbarLayout layoutThis = new ToolbarLayout();
+			layoutThis.setStretchMinorAxis(true);
+			layoutThis.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);
+
+			layoutThis.setSpacing(5);
+			layoutThis.setVertical(true);
+
 			this.setLayoutManager(layoutThis);
 
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(32),
@@ -352,54 +335,30 @@ public class SoftwareInterfaceEditPart extends ShapeNodeEditPart {
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
 		private void createContents() {
 
 			fFigureSoftwareInterface_name = new WrappingLabel();
 			fFigureSoftwareInterface_name.setText("");
+			fFigureSoftwareInterface_name.setTextWrap(true);
 
 			fFigureSoftwareInterface_name
 					.setFont(FFIGURESOFTWAREINTERFACE_NAME_FONT);
 
-			GridData constraintFFigureSoftwareInterface_name = new GridData();
-			constraintFFigureSoftwareInterface_name.verticalAlignment = GridData.BEGINNING;
-			constraintFFigureSoftwareInterface_name.horizontalAlignment = GridData.CENTER;
-			constraintFFigureSoftwareInterface_name.horizontalIndent = 0;
-			constraintFFigureSoftwareInterface_name.horizontalSpan = 1;
-			constraintFFigureSoftwareInterface_name.verticalSpan = 1;
-			constraintFFigureSoftwareInterface_name.grabExcessHorizontalSpace = false;
-			constraintFFigureSoftwareInterface_name.grabExcessVerticalSpace = false;
-			this.add(fFigureSoftwareInterface_name,
-					constraintFFigureSoftwareInterface_name);
+			this.add(fFigureSoftwareInterface_name);
 
 			fFigureSoftwareInterface_description = new WrappingLabel();
 			fFigureSoftwareInterface_description.setText("");
+			fFigureSoftwareInterface_description.setTextWrap(true);
 
-			GridData constraintFFigureSoftwareInterface_description = new GridData();
-			constraintFFigureSoftwareInterface_description.verticalAlignment = GridData.BEGINNING;
-			constraintFFigureSoftwareInterface_description.horizontalAlignment = GridData.FILL;
-			constraintFFigureSoftwareInterface_description.horizontalIndent = 0;
-			constraintFFigureSoftwareInterface_description.horizontalSpan = 1;
-			constraintFFigureSoftwareInterface_description.verticalSpan = 1;
-			constraintFFigureSoftwareInterface_description.grabExcessHorizontalSpace = true;
-			constraintFFigureSoftwareInterface_description.grabExcessVerticalSpace = false;
-			this.add(fFigureSoftwareInterface_description,
-					constraintFFigureSoftwareInterface_description);
+			this.add(fFigureSoftwareInterface_description);
 
 			fFigureSoftwareInterface_dataTypes = new WrappingLabel();
 			fFigureSoftwareInterface_dataTypes.setText("");
+			fFigureSoftwareInterface_dataTypes.setTextWrap(true);
 
-			GridData constraintFFigureSoftwareInterface_dataTypes = new GridData();
-			constraintFFigureSoftwareInterface_dataTypes.verticalAlignment = GridData.BEGINNING;
-			constraintFFigureSoftwareInterface_dataTypes.horizontalAlignment = GridData.FILL;
-			constraintFFigureSoftwareInterface_dataTypes.horizontalIndent = 0;
-			constraintFFigureSoftwareInterface_dataTypes.horizontalSpan = 1;
-			constraintFFigureSoftwareInterface_dataTypes.verticalSpan = 1;
-			constraintFFigureSoftwareInterface_dataTypes.grabExcessHorizontalSpace = true;
-			constraintFFigureSoftwareInterface_dataTypes.grabExcessVerticalSpace = false;
-			this.add(fFigureSoftwareInterface_dataTypes,
-					constraintFFigureSoftwareInterface_dataTypes);
+			this.add(fFigureSoftwareInterface_dataTypes);
 
 		}
 
@@ -429,7 +388,7 @@ public class SoftwareInterfaceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 153, 255, 0);
+	static final Color THIS_BACK = new Color(null, 16, 240, 167);
 
 	/**
 	 * @generated

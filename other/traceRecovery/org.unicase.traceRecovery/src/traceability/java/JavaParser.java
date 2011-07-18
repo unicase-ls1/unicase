@@ -27,8 +27,8 @@ import traceability.handler.Parser;
 
 
 /**
- * @author taher
- *this will be used to parse the java file and allow me to retrieve the methods and the class name comments and code
+ * @author liya
+ *
  */
 public class JavaParser extends Parser {
 	
@@ -36,9 +36,6 @@ public class JavaParser extends Parser {
 	private CompilationUnit _unit;
 	private JClass _class;
 	
-	/**
-	 * public contructor
-	 */
 	public JavaParser(){
 		_parser = ASTParser.newParser(AST.JLS2);
 		_unit = null;
@@ -66,27 +63,18 @@ public class JavaParser extends Parser {
 
 	}
 
-	/**
-	 * returns the imports
-	 * @return
-	 * 		this is an arraylist of the imports
-	 */
-	public  ArrayList <String> getImportDeclarations() {
+	public  ArrayList getImportDeclarations() {
 		List imports = _unit.imports();
 		if(imports.size() == 0) return null;
-		ArrayList <String> importDecl = new ArrayList <String>();
-		ListIterator <ImportDeclaration> iter = imports.listIterator();
+		ArrayList importDecl = new ArrayList();
+		ListIterator iter = imports.listIterator();
 		while (iter.hasNext()) {
-			ImportDeclaration decl = iter.next();
+			ImportDeclaration decl = (ImportDeclaration)iter.next();
 			importDecl.add(decl.getName().toString());
 		}
 		return importDecl;
 	}
 
-	/**
-	 * this is teh arraylist of comments that are in the file
-	 * @return
-	 */
 	public  ArrayList getComments() {
 		List comments = _unit.getCommentList();
 		if(comments.size() == 0)return null;
@@ -102,10 +90,6 @@ public class JavaParser extends Parser {
 		return javaDocComments;
 	}
 
-	/**
-	 * this is the retrival of the class and it's information
-	 * @return
-	 */
 	public JClass getDeclaredClass() {
 		List types = _unit.types();
 		ListIterator typeIter = types.listIterator(0);
@@ -118,13 +102,6 @@ public class JavaParser extends Parser {
 		return null;
 	}
 
-	/**
-	 * sets the information of the class like the super classes and interfaces it uses
-	 * @param cls
-	 * 			this is the java class that the informations will be set to
-	 * @param object
-	 * 			this is the super class of the interfaces
-	 */
 	private  void setClassInformation(JClass cls ,TypeDeclaration object) {
 		String clsName = object.getName().toString();
 		cls.className = clsName;
@@ -150,13 +127,6 @@ public class JavaParser extends Parser {
 
 	}
 
-	/**
-	 * will add the methods of the class
-	 * @param cls
-	 * 			this is the class to add it's methods
-	 * @param object
-	 * 			get you the declereation of the methods
-	 */
 	private void addMethods(JClass cls, TypeDeclaration object) {
 		MethodDeclaration[] met = object.getMethods();
 		for (int i = 0; i < met.length; i++) {
@@ -180,29 +150,19 @@ public class JavaParser extends Parser {
 		}
 	}
 
-	/**
-	 * 
-	 * @author taher
-	 *the attributes of a java class
-	 */
 public class JClass {
-	public String className = null;
-	public ArrayList methodDeclarations = new ArrayList();
-	public ArrayList innerClasses = new ArrayList();
-	public String superClass = null;
-	public ArrayList interfaces = new ArrayList();
+	String className = null;
+	ArrayList methodDeclarations = new ArrayList();
+	ArrayList innerClasses = new ArrayList();
+	String superClass = null;
+	ArrayList interfaces = new ArrayList();
 }
 
-/**
- * 
- * @author taher
- *	the attributes of a java method.
- */
 public class JMethod{
-	public String methodName = null;
-	public ArrayList parameters = new ArrayList();
-	public String codeBlock = null;
-	public String returnType = null;
+	String methodName = null;
+	ArrayList parameters = new ArrayList();
+	String codeBlock = null;
+	String returnType = null;
 }
 
 

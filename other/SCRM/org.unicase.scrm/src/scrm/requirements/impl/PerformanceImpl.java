@@ -8,14 +8,10 @@ package scrm.requirements.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import scrm.knowledge.KnowledgePackage;
-import scrm.knowledge.NumericalMethod;
 import scrm.requirements.Performance;
 import scrm.requirements.RequirementsPackage;
 
@@ -27,7 +23,6 @@ import scrm.requirements.RequirementsPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link scrm.requirements.impl.PerformanceImpl#getProblemSize <em>Problem Size</em>}</li>
- *   <li>{@link scrm.requirements.impl.PerformanceImpl#getDescribedMethod <em>Described Method</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,16 +48,6 @@ public class PerformanceImpl extends RequirementImpl implements Performance {
 	 * @ordered
 	 */
 	protected String problemSize = PROBLEM_SIZE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getDescribedMethod() <em>Described Method</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescribedMethod()
-	 * @generated
-	 * @ordered
-	 */
-	protected NumericalMethod describedMethod;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -111,124 +96,11 @@ public class PerformanceImpl extends RequirementImpl implements Performance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NumericalMethod getDescribedMethod() {
-		if (describedMethod != null && describedMethod.eIsProxy()) {
-			InternalEObject oldDescribedMethod = (InternalEObject) describedMethod;
-			describedMethod = (NumericalMethod) eResolveProxy(oldDescribedMethod);
-			if (describedMethod != oldDescribedMethod) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							RequirementsPackage.PERFORMANCE__DESCRIBED_METHOD,
-							oldDescribedMethod, describedMethod));
-			}
-		}
-		return describedMethod;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NumericalMethod basicGetDescribedMethod() {
-		return describedMethod;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDescribedMethod(
-			NumericalMethod newDescribedMethod, NotificationChain msgs) {
-		NumericalMethod oldDescribedMethod = describedMethod;
-		describedMethod = newDescribedMethod;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET,
-					RequirementsPackage.PERFORMANCE__DESCRIBED_METHOD,
-					oldDescribedMethod, newDescribedMethod);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDescribedMethod(NumericalMethod newDescribedMethod) {
-		if (newDescribedMethod != describedMethod) {
-			NotificationChain msgs = null;
-			if (describedMethod != null)
-				msgs = ((InternalEObject) describedMethod).eInverseRemove(this,
-						KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE,
-						NumericalMethod.class, msgs);
-			if (newDescribedMethod != null)
-				msgs = ((InternalEObject) newDescribedMethod).eInverseAdd(this,
-						KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE,
-						NumericalMethod.class, msgs);
-			msgs = basicSetDescribedMethod(newDescribedMethod, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RequirementsPackage.PERFORMANCE__DESCRIBED_METHOD,
-					newDescribedMethod, newDescribedMethod));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case RequirementsPackage.PERFORMANCE__DESCRIBED_METHOD:
-			if (describedMethod != null)
-				msgs = ((InternalEObject) describedMethod).eInverseRemove(this,
-						KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE,
-						NumericalMethod.class, msgs);
-			return basicSetDescribedMethod((NumericalMethod) otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case RequirementsPackage.PERFORMANCE__DESCRIBED_METHOD:
-			return basicSetDescribedMethod(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case RequirementsPackage.PERFORMANCE__PROBLEM_SIZE:
 			return getProblemSize();
-		case RequirementsPackage.PERFORMANCE__DESCRIBED_METHOD:
-			if (resolve)
-				return getDescribedMethod();
-			return basicGetDescribedMethod();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -243,9 +115,6 @@ public class PerformanceImpl extends RequirementImpl implements Performance {
 		switch (featureID) {
 		case RequirementsPackage.PERFORMANCE__PROBLEM_SIZE:
 			setProblemSize((String) newValue);
-			return;
-		case RequirementsPackage.PERFORMANCE__DESCRIBED_METHOD:
-			setDescribedMethod((NumericalMethod) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -262,9 +131,6 @@ public class PerformanceImpl extends RequirementImpl implements Performance {
 		case RequirementsPackage.PERFORMANCE__PROBLEM_SIZE:
 			setProblemSize(PROBLEM_SIZE_EDEFAULT);
 			return;
-		case RequirementsPackage.PERFORMANCE__DESCRIBED_METHOD:
-			setDescribedMethod((NumericalMethod) null);
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -280,8 +146,6 @@ public class PerformanceImpl extends RequirementImpl implements Performance {
 		case RequirementsPackage.PERFORMANCE__PROBLEM_SIZE:
 			return PROBLEM_SIZE_EDEFAULT == null ? problemSize != null
 					: !PROBLEM_SIZE_EDEFAULT.equals(problemSize);
-		case RequirementsPackage.PERFORMANCE__DESCRIBED_METHOD:
-			return describedMethod != null;
 		}
 		return super.eIsSet(featureID);
 	}

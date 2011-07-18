@@ -245,184 +245,14 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case KnowledgeSpaceEditPart.VISUAL_ID:
 				return new KnowledgeSpaceEditPart(view);
 
-			case KnowledgeSpaceNameEditPart.VISUAL_ID:
-				return new KnowledgeSpaceNameEditPart(view);
-
-			case RequirementSpaceEditPart.VISUAL_ID:
-				return new RequirementSpaceEditPart(view);
-
-			case RequirementSpaceNameEditPart.VISUAL_ID:
-				return new RequirementSpaceNameEditPart(view);
-
-			case DataProcessSpaceEditPart.VISUAL_ID:
-				return new DataProcessSpaceEditPart(view);
-
-			case DataProcessSpaceNameEditPart.VISUAL_ID:
-				return new DataProcessSpaceNameEditPart(view);
-
-			case ScientificProblem2EditPart.VISUAL_ID:
-				return new ScientificProblem2EditPart(view);
-
-			case ScientificProblemName2EditPart.VISUAL_ID:
-				return new ScientificProblemName2EditPart(view);
-
-			case NumericalMethod2EditPart.VISUAL_ID:
-				return new NumericalMethod2EditPart(view);
-
-			case NumericalMethodName2EditPart.VISUAL_ID:
-				return new NumericalMethodName2EditPart(view);
-
-			case MathematicalModel2EditPart.VISUAL_ID:
-				return new MathematicalModel2EditPart(view);
-
-			case MathematicalModelName2EditPart.VISUAL_ID:
-				return new MathematicalModelName2EditPart(view);
-
-			case Assumption2EditPart.VISUAL_ID:
-				return new Assumption2EditPart(view);
-
-			case AssumptionName2EditPart.VISUAL_ID:
-				return new AssumptionName2EditPart(view);
-
-			case KnowledgeSpace2EditPart.VISUAL_ID:
-				return new KnowledgeSpace2EditPart(view);
-
-			case KnowledgeSpaceName2EditPart.VISUAL_ID:
-				return new KnowledgeSpaceName2EditPart(view);
-
-			case Constraint2EditPart.VISUAL_ID:
-				return new Constraint2EditPart(view);
-
-			case ConstraintName2EditPart.VISUAL_ID:
-				return new ConstraintName2EditPart(view);
-
-			case DataDefinition2EditPart.VISUAL_ID:
-				return new DataDefinition2EditPart(view);
-
-			case DataDefinitionName2EditPart.VISUAL_ID:
-				return new DataDefinitionName2EditPart(view);
-
-			case DataFlow2EditPart.VISUAL_ID:
-				return new DataFlow2EditPart(view);
-
-			case DataFlowName2EditPart.VISUAL_ID:
-				return new DataFlowName2EditPart(view);
-
-			case Feature2EditPart.VISUAL_ID:
-				return new Feature2EditPart(view);
-
-			case FeatureName2EditPart.VISUAL_ID:
-				return new FeatureName2EditPart(view);
-
-			case Hardware2EditPart.VISUAL_ID:
-				return new Hardware2EditPart(view);
-
-			case HardwareName2EditPart.VISUAL_ID:
-				return new HardwareName2EditPart(view);
-
-			case Performance2EditPart.VISUAL_ID:
-				return new Performance2EditPart(view);
-
-			case PerformanceName2EditPart.VISUAL_ID:
-				return new PerformanceName2EditPart(view);
-
-			case Requirement2EditPart.VISUAL_ID:
-				return new Requirement2EditPart(view);
-
-			case RequirementName2EditPart.VISUAL_ID:
-				return new RequirementName2EditPart(view);
-
-			case SoftwareInterface2EditPart.VISUAL_ID:
-				return new SoftwareInterface2EditPart(view);
-
-			case SoftwareInterfaceName2EditPart.VISUAL_ID:
-				return new SoftwareInterfaceName2EditPart(view);
-
-			case UserInterface2EditPart.VISUAL_ID:
-				return new UserInterface2EditPart(view);
-
-			case UserInterfaceName2EditPart.VISUAL_ID:
-				return new UserInterfaceName2EditPart(view);
-
-			case RequirementSpace2EditPart.VISUAL_ID:
-				return new RequirementSpace2EditPart(view);
-
-			case RequirementSpaceName2EditPart.VISUAL_ID:
-				return new RequirementSpaceName2EditPart(view);
-
-			case StatusMonitoring2EditPart.VISUAL_ID:
-				return new StatusMonitoring2EditPart(view);
-
-			case StatusMonitoringName2EditPart.VISUAL_ID:
-				return new StatusMonitoringName2EditPart(view);
-
-			case ResultsOutput2EditPart.VISUAL_ID:
-				return new ResultsOutput2EditPart(view);
-
-			case ResultsOutputName2EditPart.VISUAL_ID:
-				return new ResultsOutputName2EditPart(view);
-
-			case Process2EditPart.VISUAL_ID:
-				return new Process2EditPart(view);
-
-			case ProcessName2EditPart.VISUAL_ID:
-				return new ProcessName2EditPart(view);
-
-			case InputDataReading2EditPart.VISUAL_ID:
-				return new InputDataReading2EditPart(view);
-
-			case InputDataReadingName2EditPart.VISUAL_ID:
-				return new InputDataReadingName2EditPart(view);
-
-			case ErrorHandling2EditPart.VISUAL_ID:
-				return new ErrorHandling2EditPart(view);
-
-			case ErrorHandlingName2EditPart.VISUAL_ID:
-				return new ErrorHandlingName2EditPart(view);
-
-			case DataHandling2EditPart.VISUAL_ID:
-				return new DataHandling2EditPart(view);
-
-			case DataHandlingName2EditPart.VISUAL_ID:
-				return new DataHandlingName2EditPart(view);
-
-			case DataProcessSpace2EditPart.VISUAL_ID:
-				return new DataProcessSpace2EditPart(view);
-
-			case DataProcessSpaceName2EditPart.VISUAL_ID:
-				return new DataProcessSpaceName2EditPart(view);
-
-			case KnowledgeSpaceKnowledgeSpaceCompartmentEditPart.VISUAL_ID:
-				return new KnowledgeSpaceKnowledgeSpaceCompartmentEditPart(view);
-
-			case KnowledgeSpaceKnowledgeSpaceCompartment2EditPart.VISUAL_ID:
-				return new KnowledgeSpaceKnowledgeSpaceCompartment2EditPart(
-						view);
-
-			case RequirementSpaceRequirementSpaceCompartmentEditPart.VISUAL_ID:
-				return new RequirementSpaceRequirementSpaceCompartmentEditPart(
-						view);
-
-			case RequirementSpaceRequirementSpaceCompartment2EditPart.VISUAL_ID:
-				return new RequirementSpaceRequirementSpaceCompartment2EditPart(
-						view);
-
-			case DataProcessSpaceDataProcessSpaceCompartmentEditPart.VISUAL_ID:
-				return new DataProcessSpaceDataProcessSpaceCompartmentEditPart(
-						view);
-
-			case DataProcessSpaceDataProcessSpaceCompartment2EditPart.VISUAL_ID:
-				return new DataProcessSpaceDataProcessSpaceCompartment2EditPart(
-						view);
-
-			case MathematicalModelRepresentedProblemEditPart.VISUAL_ID:
-				return new MathematicalModelRepresentedProblemEditPart(view);
+			case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
+				return new ScientificProblemRepresentingModelEditPart(view);
 
 			case WrappingLabelEditPart.VISUAL_ID:
 				return new WrappingLabelEditPart(view);
 
-			case NumericalMethodSolvedProblemEditPart.VISUAL_ID:
-				return new NumericalMethodSolvedProblemEditPart(view);
+			case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
+				return new ScientificProblemSolvingMethodsEditPart(view);
 
 			case WrappingLabel2EditPart.VISUAL_ID:
 				return new WrappingLabel2EditPart(view);
@@ -433,8 +263,8 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case WrappingLabel3EditPart.VISUAL_ID:
 				return new WrappingLabel3EditPart(view);
 
-			case MathematicalModelRefinedModelEditPart.VISUAL_ID:
-				return new MathematicalModelRefinedModelEditPart(view);
+			case MathematicalModel2EditPart.VISUAL_ID:
+				return new MathematicalModel2EditPart(view);
 
 			case WrappingLabel4EditPart.VISUAL_ID:
 				return new WrappingLabel4EditPart(view);
@@ -457,8 +287,8 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case WrappingLabel7EditPart.VISUAL_ID:
 				return new WrappingLabel7EditPart(view);
 
-			case RequirementRealizedMethodEditPart.VISUAL_ID:
-				return new RequirementRealizedMethodEditPart(view);
+			case NumericalMethodRealizingRequirementEditPart.VISUAL_ID:
+				return new NumericalMethodRealizingRequirementEditPart(view);
 
 			case WrappingLabel8EditPart.VISUAL_ID:
 				return new WrappingLabel8EditPart(view);
@@ -481,8 +311,8 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case WrappingLabel11EditPart.VISUAL_ID:
 				return new WrappingLabel11EditPart(view);
 
-			case ConstraintRestrictedFeatureEditPart.VISUAL_ID:
-				return new ConstraintRestrictedFeatureEditPart(view);
+			case FeatureConstraintsEditPart.VISUAL_ID:
+				return new FeatureConstraintsEditPart(view);
 
 			case WrappingLabel12EditPart.VISUAL_ID:
 				return new WrappingLabel12EditPart(view);
@@ -493,14 +323,14 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case WrappingLabel13EditPart.VISUAL_ID:
 				return new WrappingLabel13EditPart(view);
 
-			case RequirementSpecifiedFeatureEditPart.VISUAL_ID:
-				return new RequirementSpecifiedFeatureEditPart(view);
+			case FeatureDetailedRequirementsEditPart.VISUAL_ID:
+				return new FeatureDetailedRequirementsEditPart(view);
 
 			case WrappingLabel14EditPart.VISUAL_ID:
 				return new WrappingLabel14EditPart(view);
 
-			case FeatureSuperFeatureEditPart.VISUAL_ID:
-				return new FeatureSuperFeatureEditPart(view);
+			case Feature2EditPart.VISUAL_ID:
+				return new Feature2EditPart(view);
 
 			case WrappingLabel15EditPart.VISUAL_ID:
 				return new WrappingLabel15EditPart(view);
@@ -517,20 +347,20 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case WrappingLabel17EditPart.VISUAL_ID:
 				return new WrappingLabel17EditPart(view);
 
-			case RequirementRefinedRequirementEditPart.VISUAL_ID:
-				return new RequirementRefinedRequirementEditPart(view);
+			case Requirement2EditPart.VISUAL_ID:
+				return new Requirement2EditPart(view);
 
 			case WrappingLabel18EditPart.VISUAL_ID:
 				return new WrappingLabel18EditPart(view);
 
-			case DataDefinitionDefinedRequirementEditPart.VISUAL_ID:
-				return new DataDefinitionDefinedRequirementEditPart(view);
+			case RequirementDefiningDataEditPart.VISUAL_ID:
+				return new RequirementDefiningDataEditPart(view);
 
 			case WrappingLabel19EditPart.VISUAL_ID:
 				return new WrappingLabel19EditPart(view);
 
-			case DataFlowSpecifiedProcessEditPart.VISUAL_ID:
-				return new DataFlowSpecifiedProcessEditPart(view);
+			case ProcessDataFlowEditPart.VISUAL_ID:
+				return new ProcessDataFlowEditPart(view);
 
 			case WrappingLabel20EditPart.VISUAL_ID:
 				return new WrappingLabel20EditPart(view);

@@ -41,6 +41,6 @@ public interface Query extends UnicaseModelElement {
 	 * @model
 	 * @generated
 	 */
-	EList<UnicaseModelElement> getModelElements();
+	EList<UnicaseModelElement> getModelElement();
 
 } // Query

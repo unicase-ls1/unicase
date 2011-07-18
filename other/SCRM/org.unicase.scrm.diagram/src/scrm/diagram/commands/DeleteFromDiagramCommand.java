@@ -17,7 +17,10 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ecp.model.ECPWorkspaceManager;
+import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ecp.model.workSpaceModel.util.AssociationClassHelper;
+import org.unicase.workspace.util.WorkspaceUtil;
+
 import scrm.SCRMDiagram;
 import scrm.diagram.util.EditPartUtility;
 
@@ -53,9 +56,12 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 
 		EObject destructee = null;
 		destructee = this.getElementToDestroy();
-		
-		ECPModelelementContext context = ECPWorkspaceManager.getECPProject(destructee);
-		
+		ECPModelelementContext context = null;
+		try {
+			context = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject();
+		} catch (NoWorkspaceException e) {
+			WorkspaceUtil.logException("No Workspace!", e);
+		}
 		if (context == null) {
 			return CommandResult.newErrorCommandResult("Could not compute association classes to delete.");
 		}
@@ -66,7 +72,27 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 		for (EObject additionalME : additionalMEs) {
 			diag.getElements().remove(additionalME);
 		}
+		// tear down references
+		// TODO: AssociationClassElement migration
+		tearDownReferences(destructee, diag);
 
 		return CommandResult.newOKCommandResult();
+	}
+
+	/**
+	 * Remove references (e.g. associations in class diagram) from the element to other diagram elements.
+	 * 
+	 * @deprecated Depreciated since we added AssociationClassElement.
+	 * @param destructee the object being destroyed
+	 * @param diag the MEDiagram
+	 */
+	@Deprecated
+	protected void tearDownReferences(EObject destructee, SCRMDiagram diag) {
+		/*
+		 * Set<ModelElement> diagramNodeReferences = destructee.getCrossReferencedModelElements(); for (ModelElement
+		 * object : diagramNodeReferences) { if (object instanceof Association || object instanceof
+		 * org.unicase.model.state.Transition || object instanceof org.unicase.model.activity.Transition) {
+		 * diag.getElements().remove(object); } }
+		 */
 	}
 }

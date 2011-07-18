@@ -165,7 +165,7 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KNOWLEDGE_SPACE__NAME = ScrmPackage.SCRM_SPACE__NAME;
+	int KNOWLEDGE_SPACE__NAME = SCIENTIFIC_KNOWLEDGE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -174,16 +174,7 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KNOWLEDGE_SPACE__DESCRIPTION = ScrmPackage.SCRM_SPACE__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Representing Diagram</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KNOWLEDGE_SPACE__REPRESENTING_DIAGRAM = ScrmPackage.SCRM_SPACE__REPRESENTING_DIAGRAM;
+	int KNOWLEDGE_SPACE__DESCRIPTION = SCIENTIFIC_KNOWLEDGE__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Containing Knowledge Space</b></em>' container reference.
@@ -192,16 +183,16 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 0;
+	int KNOWLEDGE_SPACE__CONTAINING_KNOWLEDGE_SPACE = SCIENTIFIC_KNOWLEDGE__CONTAINING_KNOWLEDGE_SPACE;
 
 	/**
-	 * The feature id for the '<em><b>Contained Scientific Knowledge</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Contained Scientific Problem</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 1;
+	int KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Space</em>' class.
@@ -210,7 +201,7 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KNOWLEDGE_SPACE_FEATURE_COUNT = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 2;
+	int KNOWLEDGE_SPACE_FEATURE_COUNT = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -808,15 +799,15 @@ public interface KnowledgePackage extends EPackage {
 	EClass getKnowledgeSpace();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link scrm.knowledge.KnowledgeSpace#getContainedScientificKnowledge <em>Contained Scientific Knowledge</em>}'.
+	 * Returns the meta object for the containment reference list '{@link scrm.knowledge.KnowledgeSpace#getContainedScientificProblem <em>Contained Scientific Problem</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Contained Scientific Knowledge</em>'.
-	 * @see scrm.knowledge.KnowledgeSpace#getContainedScientificKnowledge()
+	 * @return the meta object for the containment reference list '<em>Contained Scientific Problem</em>'.
+	 * @see scrm.knowledge.KnowledgeSpace#getContainedScientificProblem()
 	 * @see #getKnowledgeSpace()
 	 * @generated
 	 */
-	EReference getKnowledgeSpace_ContainedScientificKnowledge();
+	EReference getKnowledgeSpace_ContainedScientificProblem();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1081,13 +1072,13 @@ public interface KnowledgePackage extends EPackage {
 		EClass KNOWLEDGE_SPACE = eINSTANCE.getKnowledgeSpace();
 
 		/**
-		 * The meta object literal for the '<em><b>Contained Scientific Knowledge</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Contained Scientific Problem</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE = eINSTANCE
-				.getKnowledgeSpace_ContainedScientificKnowledge();
+		EReference KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM = eINSTANCE
+				.getKnowledgeSpace_ContainedScientificProblem();
 
 	}
 
