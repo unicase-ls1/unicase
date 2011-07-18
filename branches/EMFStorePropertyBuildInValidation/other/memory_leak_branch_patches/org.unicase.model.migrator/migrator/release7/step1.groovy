@@ -1,9 +1,0 @@
-urlAttribute = model.attachment.UrlAttachment.url
-eAnnotation = urlAttribute.newEAnnotation()
-eAnnotation.source = "org.unicase.ui.meeditor"
-eStringToStringMapEntry = eAnnotation.newEStringToStringMapEntry()
-eStringToStringMapEntry.key = "position"
-eStringToStringMapEntry.value = "left"
-eStringToStringMapEntry2 = eAnnotation.newEStringToStringMapEntry()
-eStringToStringMapEntry2.key = "priority"
-eStringToStringMapEntry2.value = "2.5"

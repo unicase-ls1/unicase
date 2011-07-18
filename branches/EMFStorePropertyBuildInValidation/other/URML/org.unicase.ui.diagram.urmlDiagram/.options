@@ -1,7 +1,0 @@
-# Tracing options for the org.unicase.ui.diagram.urmlDiagram plug-in
-
-# Common issues
-org.unicase.ui.diagram.urmlDiagram/debug=false
-
-# Visual IDs
-org.unicase.ui.diagram.urmlDiagram/debug/visualID=false

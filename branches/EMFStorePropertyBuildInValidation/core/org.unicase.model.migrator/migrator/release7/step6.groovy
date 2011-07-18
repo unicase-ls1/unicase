@@ -1,1 +1,0 @@
-inlineSuperClass(metamodel.ModelElement)
