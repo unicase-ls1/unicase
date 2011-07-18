@@ -31,7 +31,7 @@ import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage;
 import org.eclipse.emf.ecp.common.observer.FocusEventObserver;
-import org.eclipse.emf.ecp.common.util.ActionHelper;
+import org.eclipse.emf.ecp.common.utilities.ActionHelper;
 import org.eclipse.emf.ecp.buildInValidation.filter.FilterTableViewer;
 import org.eclipse.emf.ecp.buildInValidation.filter.ValidationFilter;
 import org.eclipse.emf.ecp.buildInValidation.providers.SeverityLabelProvider;
