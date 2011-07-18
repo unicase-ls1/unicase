@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipse.emf.emfstore.server.model.edit" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.emf.emfstore.server.model.edit" id="org.eclipse.emf.emfstore.server.model.edit.customLabelProvider" name="customLabelProvider"/>
+         <meta.schema plugin="org.eclipse.emf.emfstore.server.model.edit" id="org.eclipse.emf.emfstore.server.model.edit.customOperationLabelProvider" name="customLabelProvider"/>
       </appInfo>
       <documentation>
          Allows to add custom label providers for operations (org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation).

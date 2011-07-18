@@ -10,19 +10,27 @@
  ******************************************************************************/
 package org.eclipse.emf.emfstore.server.model.provider;
 
+import java.util.Map;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 
 /**
  * Interface for a custom LabelProvider for {@link AbstractOperation}s.
  * 
  * @author Michael Kagel
+ * @author emueller
  */
-public interface AbstractOperationCustomLabelProvider {
+public abstract class AbstractOperationCustomLabelProvider {
 
 	/**
 	 * Constant for render priority meaning this provider does not want to render the given element.
 	 */
-	int CANNOT_RENDER = 0;
+	static int CANNOT_RENDER = 0;
+
+	public AbstractOperationCustomLabelProvider() {
+	}
 
 	/**
 	 * Returns the description of an operation.
@@ -30,7 +38,7 @@ public interface AbstractOperationCustomLabelProvider {
 	 * @param operation for description
 	 * @return The description of the operation
 	 */
-	String getDescription(AbstractOperation operation);
+	public abstract String getDescription(AbstractOperation operation);
 
 	/**
 	 * Returns the image of an operation.
@@ -38,7 +46,7 @@ public interface AbstractOperationCustomLabelProvider {
 	 * @param operation for image
 	 * @return The image of the operation
 	 */
-	Object getImage(AbstractOperation operation);
+	public abstract Object getImage(AbstractOperation operation);
 
 	/**
 	 * Checks if this provider can render the given operation.
@@ -47,5 +55,14 @@ public interface AbstractOperationCustomLabelProvider {
 	 * @return a priority for rendering this element. The higher the priority the more likely this provider will render
 	 *         the element. Returning 0 means this provider does not want to render this element.
 	 */
-	int canRender(AbstractOperation operation);
+	public abstract int canRender(AbstractOperation operation);
+
+	/**
+	 * Returns the name of the {@link EObject} with the given {@link ModelElementId}.
+	 * 
+	 * @param modelElementId a {@link ModelElementId}
+	 * @return the name of the {@link EObject}
+	 */
+	public abstract String getModelElementName(Map<ModelElementId, EObject> modelElementMap,
+		ModelElementId modelElementId);
 }
