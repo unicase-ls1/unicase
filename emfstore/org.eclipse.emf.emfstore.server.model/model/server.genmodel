@@ -15,6 +15,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//ProjectHistory/versions"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//ProjectHistory/projectName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//ProjectHistory/projectDescription"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//ProjectHistory/sharedProperties"/>
     </genClasses>
     <genClasses ecoreClass="server.ecore#//ProjectInfo">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//ProjectInfo/name"/>

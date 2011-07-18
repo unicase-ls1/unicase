@@ -24,18 +24,18 @@ import org.eclipse.emf.emfstore.common.model.ModelPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.common.model.impl.IdentifiableElementImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.common.model.impl.IdentifiableElementImpl#getIdentifier <em>Identifier</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public abstract class IdentifiableElementImpl extends EObjectImpl implements IdentifiableElement {
+public abstract class IdentifiableElementImpl extends EObjectImpl implements
+		IdentifiableElement {
 	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -46,7 +46,6 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -65,7 +64,6 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,7 +73,6 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getIdentifier() {
@@ -84,20 +81,19 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setIdentifier(String newIdentifier) {
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER,
-				oldIdentifier, identifier));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER,
+					oldIdentifier, identifier));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -111,7 +107,6 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -126,7 +121,6 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,21 +135,20 @@ public abstract class IdentifiableElementImpl extends EObjectImpl implements Ide
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER:
-			return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
+			return IDENTIFIER_EDEFAULT == null ? identifier != null
+					: !IDENTIFIER_EDEFAULT.equals(identifier);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

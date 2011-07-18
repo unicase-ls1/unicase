@@ -14,19 +14,17 @@ import org.eclipse.emf.emfstore.common.model.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Link Event</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent#getSourceView <em>Source View</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent#getSourceElement <em>Source Element
- * </em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent#getTargetElement <em>Target Element
- * </em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent#isCreatedNew <em>Created New</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent#getSourceView <em>Source View</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent#getSourceElement <em>Source Element</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent#getTargetElement <em>Target Element</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent#isCreatedNew <em>Created New</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getLinkEvent()
  * @model
  * @generated
@@ -40,7 +38,6 @@ public interface LinkEvent extends Event {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Source View</em>' attribute.
 	 * @see #setSourceView(String)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getLinkEvent_SourceView()
@@ -50,10 +47,8 @@ public interface LinkEvent extends Event {
 	String getSourceView();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent#getSourceView
-	 * <em>Source View</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent#getSourceView <em>Source View</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Source View</em>' attribute.
 	 * @see #getSourceView()
 	 * @generated
@@ -68,7 +63,6 @@ public interface LinkEvent extends Event {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Source Element</em>' containment reference.
 	 * @see #setSourceElement(ModelElementId)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getLinkEvent_SourceElement()
@@ -78,10 +72,8 @@ public interface LinkEvent extends Event {
 	ModelElementId getSourceElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent#getSourceElement
-	 * <em>Source Element</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent#getSourceElement <em>Source Element</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Source Element</em>' containment reference.
 	 * @see #getSourceElement()
 	 * @generated
@@ -96,7 +88,6 @@ public interface LinkEvent extends Event {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Target Element</em>' containment reference.
 	 * @see #setTargetElement(ModelElementId)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getLinkEvent_TargetElement()
@@ -106,10 +97,8 @@ public interface LinkEvent extends Event {
 	ModelElementId getTargetElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent#getTargetElement
-	 * <em>Target Element</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent#getTargetElement <em>Target Element</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Target Element</em>' containment reference.
 	 * @see #getTargetElement()
 	 * @generated
@@ -124,7 +113,6 @@ public interface LinkEvent extends Event {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Created New</em>' attribute.
 	 * @see #setCreatedNew(boolean)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getLinkEvent_CreatedNew()
@@ -134,10 +122,8 @@ public interface LinkEvent extends Event {
 	boolean isCreatedNew();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent#isCreatedNew
-	 * <em>Created New</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent#isCreatedNew <em>Created New</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Created New</em>' attribute.
 	 * @see #isCreatedNew()
 	 * @generated

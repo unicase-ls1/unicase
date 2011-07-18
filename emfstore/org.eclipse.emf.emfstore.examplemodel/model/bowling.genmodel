@@ -3,8 +3,9 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.emf.emfstore.examplemodel/src"
     modelPluginID="org.eclipse.emf.emfstore.examplemodel" modelName="Bowling" importerID="org.eclipse.emf.importer.ecore"
-    containmentProxies="true" complianceLevel="5.0" copyrightFields="false" classNamePattern="">
-  <foreignModel>../../org.eclipse.example.bowlingmodel/model/bowling.ecore</foreignModel>
+    containmentProxies="true" complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    classNamePattern="">
+  <foreignModel>bowling.ecore</foreignModel>
   <genPackages prefix="Bowling" basePackage="org.eclipse.emf.emfstore" disposableProviderFactory="true"
       ecorePackage="bowling.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="bowling.ecore#//TournamentType">
@@ -20,6 +21,46 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bowling.ecore#//Player/isProfessional"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bowling.ecore#//Player/eMail"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bowling.ecore#//Player/games"/>
+      <genFeatures createChild="false" propertyMultiLine="true" propertySortChoices="true"
+          ecoreFeature="ecore:EAttribute bowling.ecore#//Player/telephon"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute bowling.ecore#//Player/notes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bowling.ecore#//Player/isAvailable"/>
+      <genOperations ecoreOperation="bowling.ecore#//Player/hasName">
+        <genParameters ecoreParameter="bowling.ecore#//Player/hasName/diagnosticianChain"/>
+        <genParameters ecoreParameter="bowling.ecore#//Player/hasName/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="bowling.ecore#//Player/hasStreet">
+        <genParameters ecoreParameter="bowling.ecore#//Player/hasStreet/diagnosticianChain"/>
+        <genParameters ecoreParameter="bowling.ecore#//Player/hasStreet/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="bowling.ecore#//Player/hasDateOfBirth">
+        <genParameters ecoreParameter="bowling.ecore#//Player/hasDateOfBirth/diagnosticianChain"/>
+        <genParameters ecoreParameter="bowling.ecore#//Player/hasDateOfBirth/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="bowling.ecore#//Player/hasCorrectStreetNumber">
+        <genParameters ecoreParameter="bowling.ecore#//Player/hasCorrectStreetNumber/diagnosticianChain"/>
+        <genParameters ecoreParameter="bowling.ecore#//Player/hasCorrectStreetNumber/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="bowling.ecore#//Player/hasTelephon">
+        <genParameters ecoreParameter="bowling.ecore#//Player/hasTelephon/diagnosticianChain"/>
+        <genParameters ecoreParameter="bowling.ecore#//Player/hasTelephon/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="bowling.ecore#//Player/hasHeight">
+        <genParameters ecoreParameter="bowling.ecore#//Player/hasHeight/diagnosticianChain"/>
+        <genParameters ecoreParameter="bowling.ecore#//Player/hasHeight/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="bowling.ecore#//Player/hasIsAvailable">
+        <genParameters ecoreParameter="bowling.ecore#//Player/hasIsAvailable/diagnosticianChain"/>
+        <genParameters ecoreParameter="bowling.ecore#//Player/hasIsAvailable/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="bowling.ecore#//Player/hasNotes">
+        <genParameters ecoreParameter="bowling.ecore#//Player/hasNotes/diagnosticianChain"/>
+        <genParameters ecoreParameter="bowling.ecore#//Player/hasNotes/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="bowling.ecore#//Player/hasGame">
+        <genParameters ecoreParameter="bowling.ecore#//Player/hasGame/diagnosticianChain"/>
+        <genParameters ecoreParameter="bowling.ecore#//Player/hasGame/context"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="bowling.ecore#//League">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bowling.ecore#//League/name"/>
@@ -30,6 +71,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bowling.ecore#//Tournament/matchups"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bowling.ecore#//Tournament/type"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bowling.ecore#//Tournament/league"/>
+      <genOperations ecoreOperation="bowling.ecore#//Tournament/hasTounamentPro">
+        <genParameters ecoreParameter="bowling.ecore#//Tournament/hasTounamentPro/diagnosticianChain"/>
+        <genParameters ecoreParameter="bowling.ecore#//Tournament/hasTounamentPro/context"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="bowling.ecore#//Matchup">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bowling.ecore#//Matchup/games"/>

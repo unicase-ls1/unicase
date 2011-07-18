@@ -16,19 +16,16 @@ import org.eclipse.emf.emfstore.common.model.ModelElementId;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Multi Reference Operation</b></em>'. <!--
  * end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation#isAdd <em>Add</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation#getIndex <em>Index
- * </em>}</li>
- * <li>
- * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation#getReferencedModelElements
- * <em>Referenced Model Elements</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation#isAdd <em>Add</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation#getIndex <em>Index</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation#getReferencedModelElements <em>Referenced Model Elements</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getMultiReferenceOperation()
  * @model
  * @generated
@@ -41,7 +38,6 @@ public interface MultiReferenceOperation extends ReferenceOperation {
 	 * If the meaning of the '<em>Add</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Add</em>' attribute.
 	 * @see #setAdd(boolean)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getMultiReferenceOperation_Add()
@@ -51,11 +47,8 @@ public interface MultiReferenceOperation extends ReferenceOperation {
 	boolean isAdd();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation#isAdd <em>Add</em>}'
-	 * attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation#isAdd <em>Add</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Add</em>' attribute.
 	 * @see #isAdd()
 	 * @generated
@@ -70,7 +63,6 @@ public interface MultiReferenceOperation extends ReferenceOperation {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Index</em>' attribute.
 	 * @see #setIndex(int)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getMultiReferenceOperation_Index()
@@ -80,11 +72,8 @@ public interface MultiReferenceOperation extends ReferenceOperation {
 	int getIndex();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation#getIndex
-	 * <em>Index</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation#getIndex <em>Index</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Index</em>' attribute.
 	 * @see #getIndex()
 	 * @generated
@@ -100,7 +89,6 @@ public interface MultiReferenceOperation extends ReferenceOperation {
 	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Referenced Model Elements</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getMultiReferenceOperation_ReferencedModelElements()
 	 * @model containment="true" resolveProxies="true"

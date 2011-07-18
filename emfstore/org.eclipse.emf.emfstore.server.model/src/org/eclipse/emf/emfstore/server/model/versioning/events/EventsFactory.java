@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EFactory;
 /**
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a create method for each non-abstract class of
  * the model. <!-- end-user-doc -->
- * 
  * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage
  * @generated
  */
@@ -23,7 +22,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	EventsFactory eINSTANCE = org.eclipse.emf.emfstore.server.model.versioning.events.impl.EventsFactoryImpl.init();
@@ -31,7 +29,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Event</em>'.
 	 * @generated
 	 */
@@ -40,7 +37,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Read Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Read Event</em>'.
 	 * @generated
 	 */
@@ -49,7 +45,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Merge Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Merge Event</em>'.
 	 * @generated
 	 */
@@ -58,7 +53,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Checkout Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Checkout Event</em>'.
 	 * @generated
 	 */
@@ -67,7 +61,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Exception Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Exception Event</em>'.
 	 * @generated
 	 */
@@ -76,7 +69,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Plugin Start Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Plugin Start Event</em>'.
 	 * @generated
 	 */
@@ -85,7 +77,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Update Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Update Event</em>'.
 	 * @generated
 	 */
@@ -94,7 +85,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Annotation Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Annotation Event</em>'.
 	 * @generated
 	 */
@@ -103,7 +93,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Revert Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Revert Event</em>'.
 	 * @generated
 	 */
@@ -112,7 +101,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Show History Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Show History Event</em>'.
 	 * @generated
 	 */
@@ -121,7 +109,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Perspective Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Perspective Event</em>'.
 	 * @generated
 	 */
@@ -130,7 +117,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>DND Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>DND Event</em>'.
 	 * @generated
 	 */
@@ -139,7 +125,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Link Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Link Event</em>'.
 	 * @generated
 	 */
@@ -148,7 +133,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Trace Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Trace Event</em>'.
 	 * @generated
 	 */
@@ -157,7 +141,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Navigator Create Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Navigator Create Event</em>'.
 	 * @generated
 	 */
@@ -166,7 +149,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Plugin Focus Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Plugin Focus Event</em>'.
 	 * @generated
 	 */
@@ -175,7 +157,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Presentation Switch Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Presentation Switch Event</em>'.
 	 * @generated
 	 */
@@ -184,7 +165,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Undo Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Undo Event</em>'.
 	 * @generated
 	 */
@@ -193,7 +173,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Validate</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Validate</em>'.
 	 * @generated
 	 */
@@ -202,7 +181,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Show Changes Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Show Changes Event</em>'.
 	 * @generated
 	 */
@@ -211,7 +189,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Notification Read Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Notification Read Event</em>'.
 	 * @generated
 	 */
@@ -229,7 +206,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Notification Ignore Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Notification Ignore Event</em>'.
 	 * @generated
 	 */
@@ -238,7 +214,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>URL Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>URL Event</em>'.
 	 * @generated
 	 */
@@ -247,7 +222,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Merge Choice Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Merge Choice Event</em>'.
 	 * @generated
 	 */
@@ -256,7 +230,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Merge Global Choice Event</em>'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Merge Global Choice Event</em>'.
 	 * @generated
 	 */
@@ -265,7 +238,6 @@ public interface EventsFactory extends EFactory {
 	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

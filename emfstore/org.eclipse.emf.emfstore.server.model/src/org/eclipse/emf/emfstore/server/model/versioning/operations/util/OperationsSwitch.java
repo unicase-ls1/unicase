@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.common.model.IdentifiableElement;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.UniqueIdentifier;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.*;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
@@ -42,7 +43,6 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferen
  * {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each class of the model,
  * starting with the actual class of the object and proceeding up the inheritance hierarchy until a non-null result is
  * returned, which is the result of the switch. <!-- end-user-doc -->
- * 
  * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage
  * @generated
  */
@@ -50,7 +50,6 @@ public class OperationsSwitch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected static OperationsPackage modelPackage;
@@ -58,7 +57,6 @@ public class OperationsSwitch<T> {
 	/**
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OperationsSwitch() {
@@ -68,10 +66,8 @@ public class OperationsSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
-	 * result.
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
@@ -80,245 +76,183 @@ public class OperationsSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
-	 * result.
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		} else {
+		}
+		else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
+			return
+				eSuperTypes.isEmpty() ?
+					defaultCase(theEObject) :
+					doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
-	 * result.
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-		case OperationsPackage.ABSTRACT_OPERATION: {
-			AbstractOperation abstractOperation = (AbstractOperation) theEObject;
-			T result = caseAbstractOperation(abstractOperation);
-			if (result == null)
-				result = caseIdentifiableElement(abstractOperation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OperationsPackage.COMPOSITE_OPERATION: {
-			CompositeOperation compositeOperation = (CompositeOperation) theEObject;
-			T result = caseCompositeOperation(compositeOperation);
-			if (result == null)
-				result = caseAbstractOperation(compositeOperation);
-			if (result == null)
-				result = caseIdentifiableElement(compositeOperation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OperationsPackage.FEATURE_OPERATION: {
-			FeatureOperation featureOperation = (FeatureOperation) theEObject;
-			T result = caseFeatureOperation(featureOperation);
-			if (result == null)
-				result = caseAbstractOperation(featureOperation);
-			if (result == null)
-				result = caseIdentifiableElement(featureOperation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OperationsPackage.CREATE_DELETE_OPERATION: {
-			CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation) theEObject;
-			T result = caseCreateDeleteOperation(createDeleteOperation);
-			if (result == null)
-				result = caseAbstractOperation(createDeleteOperation);
-			if (result == null)
-				result = caseIdentifiableElement(createDeleteOperation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OperationsPackage.ATTRIBUTE_OPERATION: {
-			AttributeOperation attributeOperation = (AttributeOperation) theEObject;
-			T result = caseAttributeOperation(attributeOperation);
-			if (result == null)
-				result = caseFeatureOperation(attributeOperation);
-			if (result == null)
-				result = caseAbstractOperation(attributeOperation);
-			if (result == null)
-				result = caseIdentifiableElement(attributeOperation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION: {
-			MultiAttributeOperation multiAttributeOperation = (MultiAttributeOperation) theEObject;
-			T result = caseMultiAttributeOperation(multiAttributeOperation);
-			if (result == null)
-				result = caseFeatureOperation(multiAttributeOperation);
-			if (result == null)
-				result = caseAbstractOperation(multiAttributeOperation);
-			if (result == null)
-				result = caseIdentifiableElement(multiAttributeOperation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OperationsPackage.MULTI_ATTRIBUTE_SET_OPERATION: {
-			MultiAttributeSetOperation multiAttributeSetOperation = (MultiAttributeSetOperation) theEObject;
-			T result = caseMultiAttributeSetOperation(multiAttributeSetOperation);
-			if (result == null)
-				result = caseFeatureOperation(multiAttributeSetOperation);
-			if (result == null)
-				result = caseAbstractOperation(multiAttributeSetOperation);
-			if (result == null)
-				result = caseIdentifiableElement(multiAttributeSetOperation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION: {
-			MultiAttributeMoveOperation multiAttributeMoveOperation = (MultiAttributeMoveOperation) theEObject;
-			T result = caseMultiAttributeMoveOperation(multiAttributeMoveOperation);
-			if (result == null)
-				result = caseFeatureOperation(multiAttributeMoveOperation);
-			if (result == null)
-				result = caseAbstractOperation(multiAttributeMoveOperation);
-			if (result == null)
-				result = caseIdentifiableElement(multiAttributeMoveOperation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OperationsPackage.SINGLE_REFERENCE_OPERATION: {
-			SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) theEObject;
-			T result = caseSingleReferenceOperation(singleReferenceOperation);
-			if (result == null)
-				result = caseReferenceOperation(singleReferenceOperation);
-			if (result == null)
-				result = caseFeatureOperation(singleReferenceOperation);
-			if (result == null)
-				result = caseAbstractOperation(singleReferenceOperation);
-			if (result == null)
-				result = caseIdentifiableElement(singleReferenceOperation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OperationsPackage.MULTI_REFERENCE_SET_OPERATION: {
-			MultiReferenceSetOperation multiReferenceSetOperation = (MultiReferenceSetOperation) theEObject;
-			T result = caseMultiReferenceSetOperation(multiReferenceSetOperation);
-			if (result == null)
-				result = caseReferenceOperation(multiReferenceSetOperation);
-			if (result == null)
-				result = caseFeatureOperation(multiReferenceSetOperation);
-			if (result == null)
-				result = caseAbstractOperation(multiReferenceSetOperation);
-			if (result == null)
-				result = caseIdentifiableElement(multiReferenceSetOperation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OperationsPackage.MULTI_REFERENCE_OPERATION: {
-			MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation) theEObject;
-			T result = caseMultiReferenceOperation(multiReferenceOperation);
-			if (result == null)
-				result = caseReferenceOperation(multiReferenceOperation);
-			if (result == null)
-				result = caseFeatureOperation(multiReferenceOperation);
-			if (result == null)
-				result = caseAbstractOperation(multiReferenceOperation);
-			if (result == null)
-				result = caseIdentifiableElement(multiReferenceOperation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION: {
-			MultiReferenceMoveOperation multiReferenceMoveOperation = (MultiReferenceMoveOperation) theEObject;
-			T result = caseMultiReferenceMoveOperation(multiReferenceMoveOperation);
-			if (result == null)
-				result = caseFeatureOperation(multiReferenceMoveOperation);
-			if (result == null)
-				result = caseAbstractOperation(multiReferenceMoveOperation);
-			if (result == null)
-				result = caseIdentifiableElement(multiReferenceMoveOperation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OperationsPackage.REFERENCE_OPERATION: {
-			ReferenceOperation referenceOperation = (ReferenceOperation) theEObject;
-			T result = caseReferenceOperation(referenceOperation);
-			if (result == null)
-				result = caseFeatureOperation(referenceOperation);
-			if (result == null)
-				result = caseAbstractOperation(referenceOperation);
-			if (result == null)
-				result = caseIdentifiableElement(referenceOperation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OperationsPackage.DIAGRAM_LAYOUT_OPERATION: {
-			DiagramLayoutOperation diagramLayoutOperation = (DiagramLayoutOperation) theEObject;
-			T result = caseDiagramLayoutOperation(diagramLayoutOperation);
-			if (result == null)
-				result = caseAttributeOperation(diagramLayoutOperation);
-			if (result == null)
-				result = caseFeatureOperation(diagramLayoutOperation);
-			if (result == null)
-				result = caseAbstractOperation(diagramLayoutOperation);
-			if (result == null)
-				result = caseIdentifiableElement(diagramLayoutOperation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OperationsPackage.OPERATION_ID: {
-			OperationId operationId = (OperationId) theEObject;
-			T result = caseOperationId(operationId);
-			if (result == null)
-				result = caseUniqueIdentifier(operationId);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OperationsPackage.OPERATION_GROUP: {
-			OperationGroup operationGroup = (OperationGroup) theEObject;
-			T result = caseOperationGroup(operationGroup);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OperationsPackage.MODEL_ELEMENT_GROUP: {
-			ModelElementGroup modelElementGroup = (ModelElementGroup) theEObject;
-			T result = caseModelElementGroup(modelElementGroup);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OperationsPackage.EOBJECT_TO_MODEL_ELEMENT_ID_MAP: {
-			@SuppressWarnings("unchecked")
-			Map.Entry<EObject, ModelElementId> eObjectToModelElementIdMap = (Map.Entry<EObject, ModelElementId>) theEObject;
-			T result = caseEObjectToModelElementIdMap(eObjectToModelElementIdMap);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+			case OperationsPackage.ABSTRACT_OPERATION: {
+				AbstractOperation abstractOperation = (AbstractOperation)theEObject;
+				T result = caseAbstractOperation(abstractOperation);
+				if (result == null) result = caseIdentifiableElement(abstractOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperationsPackage.COMPOSITE_OPERATION: {
+				CompositeOperation compositeOperation = (CompositeOperation)theEObject;
+				T result = caseCompositeOperation(compositeOperation);
+				if (result == null) result = caseAbstractOperation(compositeOperation);
+				if (result == null) result = caseIdentifiableElement(compositeOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperationsPackage.FEATURE_OPERATION: {
+				FeatureOperation featureOperation = (FeatureOperation)theEObject;
+				T result = caseFeatureOperation(featureOperation);
+				if (result == null) result = caseAbstractOperation(featureOperation);
+				if (result == null) result = caseIdentifiableElement(featureOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperationsPackage.CREATE_DELETE_OPERATION: {
+				CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation)theEObject;
+				T result = caseCreateDeleteOperation(createDeleteOperation);
+				if (result == null) result = caseAbstractOperation(createDeleteOperation);
+				if (result == null) result = caseIdentifiableElement(createDeleteOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperationsPackage.ATTRIBUTE_OPERATION: {
+				AttributeOperation attributeOperation = (AttributeOperation)theEObject;
+				T result = caseAttributeOperation(attributeOperation);
+				if (result == null) result = caseFeatureOperation(attributeOperation);
+				if (result == null) result = caseAbstractOperation(attributeOperation);
+				if (result == null) result = caseIdentifiableElement(attributeOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION: {
+				MultiAttributeOperation multiAttributeOperation = (MultiAttributeOperation)theEObject;
+				T result = caseMultiAttributeOperation(multiAttributeOperation);
+				if (result == null) result = caseFeatureOperation(multiAttributeOperation);
+				if (result == null) result = caseAbstractOperation(multiAttributeOperation);
+				if (result == null) result = caseIdentifiableElement(multiAttributeOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperationsPackage.MULTI_ATTRIBUTE_SET_OPERATION: {
+				MultiAttributeSetOperation multiAttributeSetOperation = (MultiAttributeSetOperation)theEObject;
+				T result = caseMultiAttributeSetOperation(multiAttributeSetOperation);
+				if (result == null) result = caseFeatureOperation(multiAttributeSetOperation);
+				if (result == null) result = caseAbstractOperation(multiAttributeSetOperation);
+				if (result == null) result = caseIdentifiableElement(multiAttributeSetOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION: {
+				MultiAttributeMoveOperation multiAttributeMoveOperation = (MultiAttributeMoveOperation)theEObject;
+				T result = caseMultiAttributeMoveOperation(multiAttributeMoveOperation);
+				if (result == null) result = caseFeatureOperation(multiAttributeMoveOperation);
+				if (result == null) result = caseAbstractOperation(multiAttributeMoveOperation);
+				if (result == null) result = caseIdentifiableElement(multiAttributeMoveOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperationsPackage.SINGLE_REFERENCE_OPERATION: {
+				SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation)theEObject;
+				T result = caseSingleReferenceOperation(singleReferenceOperation);
+				if (result == null) result = caseReferenceOperation(singleReferenceOperation);
+				if (result == null) result = caseFeatureOperation(singleReferenceOperation);
+				if (result == null) result = caseAbstractOperation(singleReferenceOperation);
+				if (result == null) result = caseIdentifiableElement(singleReferenceOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperationsPackage.MULTI_REFERENCE_SET_OPERATION: {
+				MultiReferenceSetOperation multiReferenceSetOperation = (MultiReferenceSetOperation)theEObject;
+				T result = caseMultiReferenceSetOperation(multiReferenceSetOperation);
+				if (result == null) result = caseReferenceOperation(multiReferenceSetOperation);
+				if (result == null) result = caseFeatureOperation(multiReferenceSetOperation);
+				if (result == null) result = caseAbstractOperation(multiReferenceSetOperation);
+				if (result == null) result = caseIdentifiableElement(multiReferenceSetOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperationsPackage.MULTI_REFERENCE_OPERATION: {
+				MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation)theEObject;
+				T result = caseMultiReferenceOperation(multiReferenceOperation);
+				if (result == null) result = caseReferenceOperation(multiReferenceOperation);
+				if (result == null) result = caseFeatureOperation(multiReferenceOperation);
+				if (result == null) result = caseAbstractOperation(multiReferenceOperation);
+				if (result == null) result = caseIdentifiableElement(multiReferenceOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION: {
+				MultiReferenceMoveOperation multiReferenceMoveOperation = (MultiReferenceMoveOperation)theEObject;
+				T result = caseMultiReferenceMoveOperation(multiReferenceMoveOperation);
+				if (result == null) result = caseFeatureOperation(multiReferenceMoveOperation);
+				if (result == null) result = caseAbstractOperation(multiReferenceMoveOperation);
+				if (result == null) result = caseIdentifiableElement(multiReferenceMoveOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperationsPackage.REFERENCE_OPERATION: {
+				ReferenceOperation referenceOperation = (ReferenceOperation)theEObject;
+				T result = caseReferenceOperation(referenceOperation);
+				if (result == null) result = caseFeatureOperation(referenceOperation);
+				if (result == null) result = caseAbstractOperation(referenceOperation);
+				if (result == null) result = caseIdentifiableElement(referenceOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperationsPackage.DIAGRAM_LAYOUT_OPERATION: {
+				DiagramLayoutOperation diagramLayoutOperation = (DiagramLayoutOperation)theEObject;
+				T result = caseDiagramLayoutOperation(diagramLayoutOperation);
+				if (result == null) result = caseAttributeOperation(diagramLayoutOperation);
+				if (result == null) result = caseFeatureOperation(diagramLayoutOperation);
+				if (result == null) result = caseAbstractOperation(diagramLayoutOperation);
+				if (result == null) result = caseIdentifiableElement(diagramLayoutOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperationsPackage.OPERATION_ID: {
+				OperationId operationId = (OperationId)theEObject;
+				T result = caseOperationId(operationId);
+				if (result == null) result = caseUniqueIdentifier(operationId);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperationsPackage.OPERATION_GROUP: {
+				OperationGroup operationGroup = (OperationGroup)theEObject;
+				T result = caseOperationGroup(operationGroup);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperationsPackage.MODEL_ELEMENT_GROUP: {
+				ModelElementGroup modelElementGroup = (ModelElementGroup)theEObject;
+				T result = caseModelElementGroup(modelElementGroup);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperationsPackage.EOBJECT_TO_MODEL_ELEMENT_ID_MAP: {
+				@SuppressWarnings("unchecked") Map.Entry<EObject, ModelElementId> eObjectToModelElementIdMap = (Map.Entry<EObject, ModelElementId>)theEObject;
+				T result = caseEObjectToModelElementIdMap(eObjectToModelElementIdMap);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
 		}
 	}
 
@@ -522,7 +456,6 @@ public class OperationsSwitch<T> {
 	 * Returns the result of interpreting the object as an instance of '<em>Operation Id</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Operation Id</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -607,7 +540,6 @@ public class OperationsSwitch<T> {
 	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate the switch, but this is the last case
 	 * anyway. <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)

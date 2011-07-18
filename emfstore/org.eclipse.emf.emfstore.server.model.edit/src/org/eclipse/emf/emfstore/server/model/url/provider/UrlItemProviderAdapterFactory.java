@@ -43,7 +43,6 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
@@ -52,7 +51,6 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -68,7 +66,6 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	/**
 	 * This constructs an instance.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UrlItemProviderAdapterFactory() {
@@ -80,10 +77,8 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.url.ServerUrl}
-	 * instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.url.ServerUrl} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ServerUrlItemProvider serverUrlItemProvider;
@@ -92,7 +87,6 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.url.ServerUrl}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,10 +99,8 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.url.ProjectUrlFragment} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.url.ProjectUrlFragment} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ProjectUrlFragmentItemProvider projectUrlFragmentItemProvider;
@@ -117,7 +109,6 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.url.ProjectUrlFragment}.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -130,10 +121,8 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.url.ModelElementUrlFragment} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.url.ModelElementUrlFragment} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ModelElementUrlFragmentItemProvider modelElementUrlFragmentItemProvider;
@@ -154,10 +143,8 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.url.ModelElementUrl} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.url.ModelElementUrl} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ModelElementUrlItemProvider modelElementUrlItemProvider;
@@ -166,7 +153,6 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.url.ModelElementUrl}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -181,7 +167,6 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -191,7 +176,6 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	/**
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -200,7 +184,6 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -212,7 +195,6 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	 * This implementation substitutes the factory itself as the key for the adapter.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -222,14 +204,13 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -240,7 +221,6 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	/**
 	 * This adds a listener.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -250,7 +230,6 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	/**
 	 * This removes a listener.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -261,7 +240,6 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
@@ -273,20 +251,15 @@ public class UrlItemProviderAdapterFactory extends UrlAdapterFactory implements 
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory.
+	 * This disposes all of the item providers created by this factory. 
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void dispose() {
-		if (serverUrlItemProvider != null)
-			serverUrlItemProvider.dispose();
-		if (projectUrlFragmentItemProvider != null)
-			projectUrlFragmentItemProvider.dispose();
-		if (modelElementUrlFragmentItemProvider != null)
-			modelElementUrlFragmentItemProvider.dispose();
-		if (modelElementUrlItemProvider != null)
-			modelElementUrlItemProvider.dispose();
+		if (serverUrlItemProvider != null) serverUrlItemProvider.dispose();
+		if (projectUrlFragmentItemProvider != null) projectUrlFragmentItemProvider.dispose();
+		if (modelElementUrlFragmentItemProvider != null) modelElementUrlFragmentItemProvider.dispose();
+		if (modelElementUrlItemProvider != null) modelElementUrlItemProvider.dispose();
 	}
 
 }
