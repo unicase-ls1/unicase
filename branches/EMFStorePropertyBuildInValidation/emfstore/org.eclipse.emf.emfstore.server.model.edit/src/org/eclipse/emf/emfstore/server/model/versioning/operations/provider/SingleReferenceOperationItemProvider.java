@@ -28,11 +28,9 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPac
 import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation} object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class SingleReferenceOperationItemProvider extends ReferenceOperationItemProvider implements
@@ -41,7 +39,6 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SingleReferenceOperationItemProvider(AdapterFactory adapterFactory) {
@@ -51,7 +48,6 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,33 +64,43 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 	/**
 	 * This adds a property descriptor for the Old Value feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addOldValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_SingleReferenceOperation_oldValue_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_SingleReferenceOperation_oldValue_feature",
-				"_UI_SingleReferenceOperation_type"), OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION__OLD_VALUE,
-			true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SingleReferenceOperation_oldValue_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SingleReferenceOperation_oldValue_feature", "_UI_SingleReferenceOperation_type"),
+				 OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION__OLD_VALUE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the New Value feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addNewValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_SingleReferenceOperation_newValue_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_SingleReferenceOperation_newValue_feature",
-				"_UI_SingleReferenceOperation_type"), OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION__NEW_VALUE,
-			true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SingleReferenceOperation_newValue_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SingleReferenceOperation_newValue_feature", "_UI_SingleReferenceOperation_type"),
+				 OperationsPackage.Literals.SINGLE_REFERENCE_OPERATION__NEW_VALUE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	// begin of custom code
@@ -162,7 +168,6 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -68,9 +68,8 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	protected boolean add = ADD_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getIndexes() <em>Indexes</em>}'
-	 * attribute list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getIndexes() <em>Indexes</em>}' attribute list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getIndexes()
 	 * @generated
 	 * @ordered
@@ -78,10 +77,9 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	protected EList<Integer> indexes;
 
 	/**
-	 * The cached value of the '{@link #getReferencedValues()
-	 * <em>Referenced Values</em>}' attribute list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getReferencedValues() <em>Referenced Values</em>}' attribute list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getReferencedValues()
 	 * @generated
 	 * @ordered
@@ -90,7 +88,6 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MultiAttributeOperationImpl() {
@@ -99,7 +96,6 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -109,7 +105,6 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isAdd() {

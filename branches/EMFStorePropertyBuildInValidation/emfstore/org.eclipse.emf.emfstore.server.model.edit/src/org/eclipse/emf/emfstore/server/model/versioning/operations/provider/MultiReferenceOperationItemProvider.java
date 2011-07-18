@@ -31,11 +31,9 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenc
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation} object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class MultiReferenceOperationItemProvider extends ReferenceOperationItemProvider implements
@@ -44,7 +42,6 @@ public class MultiReferenceOperationItemProvider extends ReferenceOperationItemP
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MultiReferenceOperationItemProvider(AdapterFactory adapterFactory) {
@@ -54,7 +51,6 @@ public class MultiReferenceOperationItemProvider extends ReferenceOperationItemP
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -71,33 +67,43 @@ public class MultiReferenceOperationItemProvider extends ReferenceOperationItemP
 	/**
 	 * This adds a property descriptor for the Add feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addAddPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_MultiReferenceOperation_add_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_MultiReferenceOperation_add_feature",
-				"_UI_MultiReferenceOperation_type"), OperationsPackage.Literals.MULTI_REFERENCE_OPERATION__ADD, true,
-			false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MultiReferenceOperation_add_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MultiReferenceOperation_add_feature", "_UI_MultiReferenceOperation_type"),
+				 OperationsPackage.Literals.MULTI_REFERENCE_OPERATION__ADD,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Index feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addIndexPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_MultiReferenceOperation_index_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_MultiReferenceOperation_index_feature",
-				"_UI_MultiReferenceOperation_type"), OperationsPackage.Literals.MULTI_REFERENCE_OPERATION__INDEX, true,
-			false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MultiReferenceOperation_index_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MultiReferenceOperation_index_feature", "_UI_MultiReferenceOperation_type"),
+				 OperationsPackage.Literals.MULTI_REFERENCE_OPERATION__INDEX,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -106,7 +112,6 @@ public class MultiReferenceOperationItemProvider extends ReferenceOperationItemP
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -120,7 +125,6 @@ public class MultiReferenceOperationItemProvider extends ReferenceOperationItemP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -190,13 +194,13 @@ public class MultiReferenceOperationItemProvider extends ReferenceOperationItemP
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MultiReferenceOperation.class)) {
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__ADD:
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__INDEX:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case OperationsPackage.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -205,16 +209,16 @@ public class MultiReferenceOperationItemProvider extends ReferenceOperationItemP
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS,
-			ModelFactory.eINSTANCE.createModelElementId()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS,
+				 ModelFactory.eINSTANCE.createModelElementId()));
 	}
 
 }

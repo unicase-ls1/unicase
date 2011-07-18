@@ -7,16 +7,21 @@
 package org.eclipse.emf.ecp.editor.mecontrols;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.jface.databinding.swt.ISWTObservableValue;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 
 /**
@@ -24,7 +29,7 @@ import org.eclipse.swt.widgets.Text;
  * 
  * @author helming
  */
-public class METextControl extends AbstractMEControl {
+public class METextControl extends AbstractMEControl implements IValidatableControl {
 
 	private Text text;
 
@@ -47,7 +52,8 @@ public class METextControl extends AbstractMEControl {
 		}
 		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
-		dbc.bindValue(SWTObservables.observeText(text, SWT.FocusOut), model, null, null);
+		ISWTObservableValue observeText = SWTObservables.observeText(text, SWT.FocusOut);
+		dbc.bindValue(observeText, model, null, null);
 		return text;
 	}
 
@@ -73,6 +79,29 @@ public class METextControl extends AbstractMEControl {
 			return PRIORITY;
 		}
 		return AbstractMEControl.DO_NOT_RENDER;
+	}
+
+	/**.
+	 * {@inheritDoc}}
+	 * */
+	public void handleValidation(Diagnostic diagnostic) {
+		Device device = Display.getCurrent();
+		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
+			Color color = new Color(device, 255, 0 ,0);
+			this.text.setBackground(color);
+			this.text.setToolTipText(diagnostic.getMessage());
+		}
+		}
+	
+	/**.
+	 * {@inheritDoc}}
+	 * */
+	public void resetValidation() {
+		Device device = Display.getCurrent();
+		Color color = new Color(device, 255, 255, 255);
+		this.text.setBackground(color);
+		this.text.setToolTipText("");
+		
 	}
 
 }

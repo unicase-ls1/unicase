@@ -20,17 +20,17 @@ import org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Server Space</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.ServerSpace#getGroups <em>Groups</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.ServerSpace#getProjects <em>Projects</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.ServerSpace#getOpenSessions <em>Open Sessions</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.ServerSpace#getUsers <em>Users</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.ServerSpace#getGroups <em>Groups</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.ServerSpace#getProjects <em>Projects</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.ServerSpace#getOpenSessions <em>Open Sessions</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.ServerSpace#getUsers <em>Users</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getServerSpace()
  * @model
  * @generated
@@ -45,7 +45,6 @@ public interface ServerSpace extends EObject {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Groups</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getServerSpace_Groups()
 	 * @model containment="true" resolveProxies="true"
@@ -62,7 +61,6 @@ public interface ServerSpace extends EObject {
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Projects</em>' reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getServerSpace_Projects()
 	 * @model
@@ -79,7 +77,6 @@ public interface ServerSpace extends EObject {
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Open Sessions</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getServerSpace_OpenSessions()
 	 * @model containment="true" resolveProxies="true" transient="true"
@@ -96,7 +93,6 @@ public interface ServerSpace extends EObject {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Users</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getServerSpace_Users()
 	 * @model containment="true" resolveProxies="true"

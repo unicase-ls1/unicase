@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.emf.emfstore.common.model.ModelPackage
  * @generated
  */
@@ -26,16 +25,15 @@ public interface ModelFactory extends EFactory {
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	ModelFactory eINSTANCE = org.eclipse.emf.emfstore.common.model.impl.ModelFactoryImpl.init();
+	ModelFactory eINSTANCE = org.eclipse.emf.emfstore.common.model.impl.ModelFactoryImpl
+			.init();
 
 	/**
 	 * Returns a new object of class '<em>Project</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Project</em>'.
 	 * @generated
 	 */
@@ -45,7 +43,6 @@ public interface ModelFactory extends EFactory {
 	 * Returns a new object of class '<em>Element Id</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Element Id</em>'.
 	 * @generated
 	 */
@@ -55,17 +52,33 @@ public interface ModelFactory extends EFactory {
 	 * Returns a new object of class '<em>Version</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Version</em>'.
 	 * @generated
 	 */
 	ModelVersion createModelVersion();
 
 	/**
+	 * Returns a new object of class '<em>EMF Store Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>EMF Store Property</em>'.
+	 * @generated
+	 */
+	EMFStoreProperty createEMFStoreProperty();
+
+	/**
+	 * Returns a new object of class '<em>Property String Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Property String Value</em>'.
+	 * @generated
+	 */
+	PropertyStringValue createPropertyStringValue();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

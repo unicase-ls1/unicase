@@ -17,14 +17,14 @@ import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Notification Composite</b></em>'. <!--
  * end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.client.model.NotificationComposite#getNotifications <em>Notifications</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.NotificationComposite#getNotifications <em>Notifications</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getNotificationComposite()
  * @model
  * @generated
@@ -39,7 +39,6 @@ public interface NotificationComposite extends EObject {
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Notifications</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getNotificationComposite_Notifications()
 	 * @model containment="true" resolveProxies="true"

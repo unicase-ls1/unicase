@@ -32,15 +32,14 @@ import org.eclipse.emf.emfstore.common.model.ModelVersion;
  * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.common.model.ModelVersion} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
-public class ModelVersionItemProvider extends RootElementItemProvider implements IEditingDomainItemProvider,
-	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ModelVersionItemProvider extends RootElementItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelVersionItemProvider(AdapterFactory adapterFactory) {
@@ -50,7 +49,6 @@ public class ModelVersionItemProvider extends RootElementItemProvider implements
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,40 +64,43 @@ public class ModelVersionItemProvider extends RootElementItemProvider implements
 	/**
 	 * This adds a property descriptor for the Release Number feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addReleaseNumberPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_ModelVersion_releaseNumber_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ModelVersion_releaseNumber_feature",
-				"_UI_ModelVersion_type"), ModelPackage.Literals.MODEL_VERSION__RELEASE_NUMBER, true, false, false,
-			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ModelVersion_releaseNumber_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ModelVersion_releaseNumber_feature",
+						"_UI_ModelVersion_type"),
+				ModelPackage.Literals.MODEL_VERSION__RELEASE_NUMBER, true,
+				false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
 	 * This returns ModelVersion.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelVersion"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/ModelVersion"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		ModelVersion modelVersion = (ModelVersion) object;
-		return getString("_UI_ModelVersion_type") + " " + modelVersion.getReleaseNumber();
+		return getString("_UI_ModelVersion_type") + " "
+				+ modelVersion.getReleaseNumber();
 	}
 
 	/**
@@ -115,7 +116,8 @@ public class ModelVersionItemProvider extends RootElementItemProvider implements
 
 		switch (notification.getFeatureID(ModelVersion.class)) {
 		case ModelPackage.MODEL_VERSION__RELEASE_NUMBER:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -125,18 +127,17 @@ public class ModelVersionItemProvider extends RootElementItemProvider implements
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

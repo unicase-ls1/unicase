@@ -28,11 +28,9 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiAttribut
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.MultiAttributeSetOperation} object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.operations.MultiAttributeSetOperation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class MultiAttributeSetOperationItemProvider extends FeatureOperationItemProvider implements
@@ -41,7 +39,6 @@ public class MultiAttributeSetOperationItemProvider extends FeatureOperationItem
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MultiAttributeSetOperationItemProvider(AdapterFactory adapterFactory) {
@@ -51,7 +48,6 @@ public class MultiAttributeSetOperationItemProvider extends FeatureOperationItem
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,58 +65,69 @@ public class MultiAttributeSetOperationItemProvider extends FeatureOperationItem
 	/**
 	 * This adds a property descriptor for the Index feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addIndexPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_MultiAttributeSetOperation_index_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_MultiAttributeSetOperation_index_feature",
-				"_UI_MultiAttributeSetOperation_type"),
-			OperationsPackage.Literals.MULTI_ATTRIBUTE_SET_OPERATION__INDEX, true, false, false,
-			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MultiAttributeSetOperation_index_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MultiAttributeSetOperation_index_feature", "_UI_MultiAttributeSetOperation_type"),
+				 OperationsPackage.Literals.MULTI_ATTRIBUTE_SET_OPERATION__INDEX,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Old Value feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addOldValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_MultiAttributeSetOperation_oldValue_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_MultiAttributeSetOperation_oldValue_feature",
-				"_UI_MultiAttributeSetOperation_type"),
-			OperationsPackage.Literals.MULTI_ATTRIBUTE_SET_OPERATION__OLD_VALUE, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MultiAttributeSetOperation_oldValue_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MultiAttributeSetOperation_oldValue_feature", "_UI_MultiAttributeSetOperation_type"),
+				 OperationsPackage.Literals.MULTI_ATTRIBUTE_SET_OPERATION__OLD_VALUE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the New Value feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addNewValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_MultiAttributeSetOperation_newValue_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_MultiAttributeSetOperation_newValue_feature",
-				"_UI_MultiAttributeSetOperation_type"),
-			OperationsPackage.Literals.MULTI_ATTRIBUTE_SET_OPERATION__NEW_VALUE, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MultiAttributeSetOperation_newValue_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MultiAttributeSetOperation_newValue_feature", "_UI_MultiAttributeSetOperation_type"),
+				 OperationsPackage.Literals.MULTI_ATTRIBUTE_SET_OPERATION__NEW_VALUE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns MultiAttributeSetOperation.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -131,14 +138,14 @@ public class MultiAttributeSetOperationItemProvider extends FeatureOperationItem
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MultiAttributeSetOperation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_MultiAttributeSetOperation_type")
-			: getString("_UI_MultiAttributeSetOperation_type") + " " + label;
+		String label = ((MultiAttributeSetOperation)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_MultiAttributeSetOperation_type") :
+			getString("_UI_MultiAttributeSetOperation_type") + " " + label;
 	}
 
 	/**
@@ -153,11 +160,11 @@ public class MultiAttributeSetOperationItemProvider extends FeatureOperationItem
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MultiAttributeSetOperation.class)) {
-		case OperationsPackage.MULTI_ATTRIBUTE_SET_OPERATION__INDEX:
-		case OperationsPackage.MULTI_ATTRIBUTE_SET_OPERATION__OLD_VALUE:
-		case OperationsPackage.MULTI_ATTRIBUTE_SET_OPERATION__NEW_VALUE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case OperationsPackage.MULTI_ATTRIBUTE_SET_OPERATION__INDEX:
+			case OperationsPackage.MULTI_ATTRIBUTE_SET_OPERATION__OLD_VALUE:
+			case OperationsPackage.MULTI_ATTRIBUTE_SET_OPERATION__NEW_VALUE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -166,7 +173,6 @@ public class MultiAttributeSetOperationItemProvider extends FeatureOperationItem
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -51,6 +51,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//ProjectSpace/eventComposite"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//ProjectSpace/notificationComposite"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//ProjectSpace/waitingUploads"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//ProjectSpace/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//ProjectSpace/changedSharedProperties"/>
     </genClasses>
     <genClasses ecoreClass="client.ecore#//OperationComposite">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference client.ecore#//OperationComposite/operations"/>
