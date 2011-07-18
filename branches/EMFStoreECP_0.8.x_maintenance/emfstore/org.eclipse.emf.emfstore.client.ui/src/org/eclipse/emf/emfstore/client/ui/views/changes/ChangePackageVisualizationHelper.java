@@ -10,7 +10,6 @@
  ******************************************************************************/
 package org.eclipse.emf.emfstore.client.ui.views.changes;
 
-import java.net.URL;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -18,9 +17,6 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecp.common.util.UiUtil;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.emfstore.client.ui.Activator;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.ModelFactory;
@@ -48,15 +44,14 @@ import org.eclipse.swt.graphics.Image;
  * 
  * @author koegel
  * @author shterev
+ * @author emueller
  */
 public class ChangePackageVisualizationHelper {
 
-	private static final int MAX_NAME_SIZE = 30;
-	private Project project;
 	private Map<ModelElementId, EObject> modelElementMap;
-	private static final String UNKOWN_ELEMENT = "(Unkown Element)";
-	private AdapterFactoryLabelProvider adapterFactoryLabelProvider;
+
 	private CustomOperationLabelProviderManager customLabelProviderManager;
+	private DefaultOperationLabelProvider defaultOperationLabelProvider;
 
 	/**
 	 * Constructor.
@@ -70,10 +65,12 @@ public class ChangePackageVisualizationHelper {
 		for (ChangePackage changePackage : changePackages) {
 			initModelElementMap(changePackage);
 		}
-		this.project = project;
-		adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
+		for (ModelElementId id : project.getAllModelElementIds()) {
+			modelElementMap.put(id, project.getModelElement(id));
+		}
+
+		defaultOperationLabelProvider = new DefaultOperationLabelProvider();
 		this.customLabelProviderManager = new CustomOperationLabelProviderManager();
 	}
 
@@ -88,22 +85,6 @@ public class ChangePackageVisualizationHelper {
 					modelElementMap.put(ModelUtil.clone(orgModelElementId), modelElement);
 				}
 			}
-		}
-	}
-
-	/**
-	 * Get a model element instance from the project for the given id.
-	 * 
-	 * @param modelElementId the id
-	 * @return the model element instance
-	 */
-	public EObject getModelElement(ModelElementId modelElementId) {
-		if (modelElementId == null) {
-			return null;
-		} else if (project.contains(modelElementId)) {
-			return project.getModelElement(modelElementId);
-		} else {
-			return modelElementMap.get(modelElementId);
 		}
 	}
 
@@ -173,19 +154,11 @@ public class ChangePackageVisualizationHelper {
 	}
 
 	private Image getCustomOperationProviderLabel(AbstractOperation operation) {
-		Image image;
 		AbstractOperationCustomLabelProvider customLabelProvider = customLabelProviderManager
 			.getCustomLabelProvider(operation);
 		if (customLabelProvider != null) {
 			try {
-				URL imageUrl = (URL) customLabelProvider.getImage(operation);
-				if (imageUrl != null) {
-					ImageDescriptor imageDescriptor = ImageDescriptor.createFromURL(imageUrl);
-					image = imageDescriptor.createImage();
-					if (image != null) {
-						return image;
-					}
-				}
+				return (Image) customLabelProvider.getImage(operation);
 				// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (RuntimeException e) {
 				// END SUPRESS CATCH EXCEPTION
@@ -205,7 +178,7 @@ public class ChangePackageVisualizationHelper {
 		AbstractOperationCustomLabelProvider customLabelProvider = customLabelProviderManager
 			.getCustomLabelProvider(op);
 		if (customLabelProvider != null) {
-			return decorate(customLabelProvider.getDescription(op), op);
+			return decorate(customLabelProvider, op);
 		}
 
 		if (op instanceof CompositeOperation) {
@@ -216,12 +189,14 @@ public class ChangePackageVisualizationHelper {
 				return getDescription(compositeOperation.getMainOperation());
 			}
 		}
-		return decorate(adapterFactoryLabelProvider.getText(op), op);
+		return decorate(defaultOperationLabelProvider, op);
 	}
 
-	private String decorate(String undecoratedString, AbstractOperation op) {
-		String namesResolved = resolveIds(undecoratedString, AbstractOperationItemProvider.NAME_TAG__SEPARATOR);
-		String allResolved = resolveIds(namesResolved, AbstractOperationItemProvider.NAME_CLASS_TAG_SEPARATOR);
+	private String decorate(AbstractOperationCustomLabelProvider labelProvider, AbstractOperation op) {
+		String namesResolved = resolveIds(labelProvider, labelProvider.getDescription(op),
+			AbstractOperationItemProvider.NAME_TAG__SEPARATOR);
+		String allResolved = resolveIds(labelProvider, namesResolved,
+			AbstractOperationItemProvider.NAME_CLASS_TAG_SEPARATOR);
 		if (op instanceof ReferenceOperation) {
 			return resolveTypes(allResolved, (ReferenceOperation) op);
 		}
@@ -245,61 +220,20 @@ public class ChangePackageVisualizationHelper {
 		return unresolvedString.replace(AbstractOperationItemProvider.REFERENCE_TYPE_TAG_SEPARATOR, type);
 	}
 
-	private String resolveIds(String unresolvedString, String devider) {
+	private String resolveIds(AbstractOperationCustomLabelProvider labelProvider, String unresolvedString,
+		String devider) {
 		String[] strings = unresolvedString.split(devider);
 		StringBuilder stringBuilder = new StringBuilder();
 		for (int i = 0; i < strings.length; i++) {
 			if (i % 2 == 1) {
 				ModelElementId modelElementId = ModelFactory.eINSTANCE.createModelElementId();
 				modelElementId.setId(strings[i]);
-				if (devider.equals(AbstractOperationItemProvider.NAME_CLASS_TAG_SEPARATOR)) {
-					stringBuilder.append(getModelElementClassAndName(modelElementId));
-				} else {
-					stringBuilder.append(getModelElementName(modelElementId));
-				}
+				stringBuilder.append(labelProvider.getModelElementName(modelElementMap, modelElementId));
 			} else {
 				stringBuilder.append(strings[i]);
 			}
 		}
 		return stringBuilder.toString();
-	}
-
-	private String getModelElementName(ModelElementId modelElementId) {
-		EObject modelElement = getModelElement(modelElementId);
-		if (modelElement == null) {
-			return UNKOWN_ELEMENT;
-		}
-		return " \"" + trim(adapterFactoryLabelProvider.getText(modelElement)) + "\"";
-	}
-
-	private String trim(Object object) {
-		if (object == null) {
-			return "(Unkown Element)";
-		}
-		String string = object.toString();
-		String result = string.trim();
-		if (result.length() > MAX_NAME_SIZE) {
-			return result.substring(0, MAX_NAME_SIZE) + "...";
-		}
-		if (result.length() == 0) {
-			return "(empty name)";
-		}
-		return result;
-	}
-
-	private String getModelElementClassAndName(ModelElementId modelElementId) {
-		if (modelElementId == null) {
-			return UNKOWN_ELEMENT;
-		}
-		return getModelElementClassAndName(getModelElement(modelElementId));
-	}
-
-	private String getModelElementClassAndName(EObject modelElement) {
-		if (modelElement == null) {
-			return UNKOWN_ELEMENT;
-		}
-		String className = modelElement.eClass().getName();
-		return className + " \"" + trim(UiUtil.getNameForModelElement(modelElement)) + "\"";
 	}
 
 	/**
@@ -320,5 +254,19 @@ public class ChangePackageVisualizationHelper {
 			}
 		}
 		return resultCollection;
+	}
+
+	/**
+	 * Get a model element instance from the project for the given id.
+	 * 
+	 * @param modelElementId the id
+	 * @return the model element instance
+	 */
+	public EObject getModelElement(ModelElementId modelElementId) {
+		if (modelElementId == null) {
+			return null;
+		}
+
+		return modelElementMap.get(modelElementId);
 	}
 }
