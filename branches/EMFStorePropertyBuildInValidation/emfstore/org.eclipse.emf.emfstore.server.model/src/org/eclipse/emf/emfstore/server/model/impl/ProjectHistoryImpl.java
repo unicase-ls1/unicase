@@ -109,14 +109,14 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	protected String projectDescription = PROJECT_DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSharedProperties() <em>Shared Properties</em>}' containment reference list.
+	 * The cached value of the '{@link #getSharedProperties() <em>Shared Properties</em>}' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSharedProperties()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<EMFStoreProperty> sharedProperties;
+	protected EMap<String, EMFStoreProperty> sharedProperties;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -264,9 +264,9 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<EMFStoreProperty> getSharedProperties() {
+	public EMap<String, EMFStoreProperty> getSharedProperties() {
 		if (sharedProperties == null) {
-			sharedProperties = new EObjectContainmentEList.Resolving<EMFStoreProperty>(EMFStoreProperty.class, this, ModelPackage.PROJECT_HISTORY__SHARED_PROPERTIES);
+			sharedProperties = new EcoreEMap<String,EMFStoreProperty>(org.eclipse.emf.emfstore.common.model.ModelPackage.Literals.PROPERTY_MAP_ENTRY, PropertyMapEntryImpl.class, this, ModelPackage.PROJECT_HISTORY__SHARED_PROPERTIES);
 		}
 		return sharedProperties;
 	}
@@ -305,7 +305,8 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 			case ModelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
 				return getProjectDescription();
 			case ModelPackage.PROJECT_HISTORY__SHARED_PROPERTIES:
-				return getSharedProperties();
+				if (coreType) return getSharedProperties();
+				else return getSharedProperties().map();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -332,8 +333,7 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 				setProjectDescription((String)newValue);
 				return;
 			case ModelPackage.PROJECT_HISTORY__SHARED_PROPERTIES:
-				getSharedProperties().clear();
-				getSharedProperties().addAll((Collection<? extends EMFStoreProperty>)newValue);
+				((EStructuralFeature.Setting)getSharedProperties()).set(newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

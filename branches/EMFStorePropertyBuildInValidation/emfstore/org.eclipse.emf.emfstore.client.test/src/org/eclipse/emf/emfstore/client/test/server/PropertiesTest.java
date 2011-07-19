@@ -1,6 +1,5 @@
 package org.eclipse.emf.emfstore.client.test.server;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.Usersession;
@@ -8,9 +7,9 @@ import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.properties.PropertyManager;
 import org.eclipse.emf.emfstore.client.test.SetupHelper;
-import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.server.exceptions.AccessControlException;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class PropertiesTest extends ServerTests {
@@ -71,21 +70,44 @@ public class PropertiesTest extends ServerTests {
 		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
-				EMFStoreProperty prop1 = propertyManager1.setSharedStringProperty("FirstPropKey", "test");
-				// EMFStoreProperty prop2 = propertyManager1.setSharedStringProperty("SecondPropKey", null);
+				propertyManager1.setSharedStringProperty("FirstPropKey", "test1");
+				propertyManager2.setSharedStringProperty("SecondTest", "test2");
 
 				try {
 					// projectSpace1.commit();
 					propertyManager1.transmit();
-					projectSpace2.update();
+					propertyManager2.transmit();
+					propertyManager1.transmit();
 				} catch (EmfStoreException e) {
 					throw new RuntimeException(e);
 				}
-
-				EObject tt = propertyManager1.getSharedProperty("FirstPropKey");
-
 			}
 		}.run(false);
 
+		// 1. Test, ob transmit funktioniert
+		Assert.assertEquals(propertyManager1.getSharedStringProperty("FirstPropKey"),
+			propertyManager2.getSharedStringProperty("FirstPropKey"));
+
+		Assert.assertEquals(propertyManager2.getSharedStringProperty("SecondTest"),
+			propertyManager1.getSharedStringProperty("SecondTest"));
+
+		new EMFStoreCommand() {
+			@Override
+			protected void doRun() {
+				propertyManager1.setSharedStringProperty("SecondTest", "test4");
+				propertyManager2.setSharedStringProperty("SecondTest", "test5");
+
+				try {
+					propertyManager1.transmit();
+					propertyManager2.transmit();
+					propertyManager1.transmit();
+				} catch (EmfStoreException e) {
+					throw new RuntimeException(e);
+				}
+			}
+		}.run(false);
+
+		// 2. Funktioniert update
+		Assert.assertEquals("test5", propertyManager1.getSharedStringProperty("SecondTest"));
 	}
 }

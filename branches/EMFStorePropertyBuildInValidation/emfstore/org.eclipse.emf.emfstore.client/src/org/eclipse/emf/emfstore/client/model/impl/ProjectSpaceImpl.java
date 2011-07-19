@@ -2752,25 +2752,4 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		return this.propertyManager;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public void setEMFStoreProperty(EMFStoreProperty property) {
-		this.properties.put(property.getKey(), property);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void setChangedEMFStoreProperty(EMFStoreProperty property) {
-		this.changedSharedProperties.put(property.getKey(), property);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void unsetChangedSharedEMFStoreProperties() {
-		this.changedSharedProperties.clear();
-	}
-
 } // ProjectContainerImpl

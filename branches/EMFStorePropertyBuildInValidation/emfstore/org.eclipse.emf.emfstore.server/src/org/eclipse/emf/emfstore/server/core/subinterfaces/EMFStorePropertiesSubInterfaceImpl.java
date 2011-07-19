@@ -48,8 +48,8 @@ public class EMFStorePropertiesSubInterfaceImpl extends
 	/**
 	 * Set the Shared Properties from client on server.
 	 * 
-	 * @param properties
-	 *            Properties to be set
+	 * @param property
+	 *            Property to be set
 	 * @param projectId
 	 *            Project where the properties should be saved
 	 * @throws EmfStoreException
@@ -61,7 +61,8 @@ public class EMFStorePropertiesSubInterfaceImpl extends
 
 		for (ProjectHistory currentHistory : serverProjects) {
 			if (currentHistory.getProjectId().equals(projectId)) {
-				currentHistory.getSharedProperties().add(property);
+				currentHistory.getSharedProperties().put(property.getKey(),
+						property);
 				save();
 				return;
 			}
@@ -103,7 +104,8 @@ public class EMFStorePropertiesSubInterfaceImpl extends
 
 		if (currentHistory != null) {
 			List<EMFStoreProperty> temp = new ArrayList<EMFStoreProperty>();
-			for (EMFStoreProperty prop : currentHistory.getSharedProperties()) {
+			for (EMFStoreProperty prop : currentHistory.getSharedProperties()
+					.values()) {
 				temp.add(prop);
 			}
 			return temp;
