@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="&lt;copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html &lt;/copyright>&#xD;&#xD;&#xD;"
+    modelDirectory="/org.eclipse.emf.emfstore.server.model/src" editDirectory="/org.eclipse.emf.emfstore.server.model.edit/src"
+    editorDirectory="/org.eclipse.emf.emfstore.server.model.editor/src" modelPluginID="org.eclipse.emf.emfstore.server.model"
+    modelName="Server" importerID="org.eclipse.emf.importer.ecore" containmentProxies="true"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.emf.emfstore.server.model.edit"
+    editorPluginID="org.eclipse.emf.emfstore.server.model.editor" language="" usedGenPackages="../../org.eclipse.emf.emfstore.common.model/model/common.genmodel#//model">
+  <foreignModel>server.ecore</foreignModel>
+  <genPackages prefix="Model" basePackage="org.eclipse.emf.emfstore.server" disposableProviderFactory="true"
+      ecorePackage="server.ecore#/">
+    <genClasses ecoreClass="server.ecore#//ProjectHistory">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//ProjectHistory/projectId"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//ProjectHistory/versions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//ProjectHistory/projectName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//ProjectHistory/projectDescription"/>
+    </genClasses>
+    <genClasses ecoreClass="server.ecore#//ProjectInfo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//ProjectInfo/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//ProjectInfo/description"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference server.ecore#//ProjectInfo/projectId"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference server.ecore#//ProjectInfo/version"/>
+    </genClasses>
+    <genClasses ecoreClass="server.ecore#//SessionId"/>
+    <genClasses ecoreClass="server.ecore#//ServerSpace">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//ServerSpace/groups"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//ServerSpace/projects"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//ServerSpace/openSessions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//ServerSpace/users"/>
+    </genClasses>
+    <genClasses ecoreClass="server.ecore#//ProjectId"/>
+    <genClasses ecoreClass="server.ecore#//VersionInfo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//VersionInfo/emfStoreVersionString"/>
+    </genClasses>
+    <genClasses ecoreClass="server.ecore#//ClientVersionInfo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//ClientVersionInfo/version"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//ClientVersionInfo/name"/>
+    </genClasses>
+    <genClasses ecoreClass="server.ecore#//FileIdentifier"/>
+    <nestedGenPackages prefix="Versioning" basePackage="org.eclipse.emf.emfstore.server.model"
+        disposableProviderFactory="true" ecorePackage="server.ecore#//versioning">
+      <genClasses ecoreClass="server.ecore#//versioning/TagVersionSpec">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/TagVersionSpec/name"/>
+      </genClasses>
+      <genClasses ecoreClass="server.ecore#//versioning/DateVersionSpec">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/DateVersionSpec/date"/>
+      </genClasses>
+      <genClasses ecoreClass="server.ecore#//versioning/PrimaryVersionSpec">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/PrimaryVersionSpec/identifier"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="server.ecore#//versioning/VersionSpec"/>
+      <genClasses ecoreClass="server.ecore#//versioning/LogMessage">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/LogMessage/author"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/LogMessage/message"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/LogMessage/date"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/LogMessage/clientDate"/>
+      </genClasses>
+      <genClasses ecoreClass="server.ecore#//versioning/ChangePackage">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/ChangePackage/operations"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/ChangePackage/events"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/ChangePackage/logMessage"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/ChangePackage/notifications"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/ChangePackage/versionProperties"/>
+      </genClasses>
+      <genClasses ecoreClass="server.ecore#//versioning/HistoryInfo">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference server.ecore#//versioning/HistoryInfo/primerySpec"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference server.ecore#//versioning/HistoryInfo/logMessage"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/HistoryInfo/tagSpecs"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/HistoryInfo/versionProperties"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/HistoryInfo/changePackage"/>
+      </genClasses>
+      <genClasses ecoreClass="server.ecore#//versioning/HistoryQuery">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference server.ecore#//versioning/HistoryQuery/source"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference server.ecore#//versioning/HistoryQuery/target"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/HistoryQuery/modelElements"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/HistoryQuery/includeChangePackage"/>
+      </genClasses>
+      <genClasses ecoreClass="server.ecore#//versioning/Version">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/Version/projectState"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/Version/primarySpec"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/Version/tagSpecs"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference server.ecore#//versioning/Version/nextVersion"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference server.ecore#//versioning/Version/previousVersion"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/Version/changes"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/Version/logMessage"/>
+      </genClasses>
+      <genClasses ecoreClass="server.ecore#//versioning/HeadVersionSpec"/>
+      <genClasses ecoreClass="server.ecore#//versioning/VersionProperty">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/VersionProperty/name"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/VersionProperty/value"/>
+      </genClasses>
+      <nestedGenPackages prefix="Operations" basePackage="org.eclipse.emf.emfstore.server.model.versioning"
+          disposableProviderFactory="true" ecorePackage="server.ecore#//versioning/operations">
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="server.ecore#//versioning/operations/ContainmentType">
+          <genEnumLiterals ecoreEnumLiteral="server.ecore#//versioning/operations/ContainmentType/NONE"/>
+          <genEnumLiterals ecoreEnumLiteral="server.ecore#//versioning/operations/ContainmentType/CONTAINER"/>
+          <genEnumLiterals ecoreEnumLiteral="server.ecore#//versioning/operations/ContainmentType/CONTAINMENT"/>
+        </genEnums>
+        <genClasses ecoreClass="server.ecore#//versioning/operations/AbstractOperation">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/AbstractOperation/name"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/AbstractOperation/description"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference server.ecore#//versioning/operations/AbstractOperation/modelElementId"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/AbstractOperation/accepted"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/AbstractOperation/clientDate"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/operations/CompositeOperation">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/operations/CompositeOperation/subOperations"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference server.ecore#//versioning/operations/CompositeOperation/mainOperation"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/CompositeOperation/compositeName"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/CompositeOperation/compositeDescription"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/CompositeOperation/reversed"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/operations/FeatureOperation">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/FeatureOperation/featureName"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/operations/CreateDeleteOperation">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/CreateDeleteOperation/delete"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/operations/CreateDeleteOperation/modelElement"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/operations/CreateDeleteOperation/subOperations"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/operations/CreateDeleteOperation/eObjectToIdMap"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/operations/AttributeOperation">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/AttributeOperation/oldValue"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/AttributeOperation/newValue"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/operations/MultiAttributeOperation">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/MultiAttributeOperation/add"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/MultiAttributeOperation/indexes"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/MultiAttributeOperation/referencedValues"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/operations/MultiAttributeSetOperation">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/MultiAttributeSetOperation/index"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/MultiAttributeSetOperation/oldValue"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/MultiAttributeSetOperation/newValue"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/operations/MultiAttributeMoveOperation">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/MultiAttributeMoveOperation/oldIndex"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/MultiAttributeMoveOperation/newIndex"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/MultiAttributeMoveOperation/referencedValue"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/operations/SingleReferenceOperation">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference server.ecore#//versioning/operations/SingleReferenceOperation/oldValue"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference server.ecore#//versioning/operations/SingleReferenceOperation/newValue"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/operations/MultiReferenceSetOperation">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/MultiReferenceSetOperation/index"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/operations/MultiReferenceSetOperation/oldValue"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/operations/MultiReferenceSetOperation/newValue"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/operations/MultiReferenceOperation">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/MultiReferenceOperation/add"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/MultiReferenceOperation/index"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/operations/MultiReferenceOperation/referencedModelElements"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/operations/MultiReferenceMoveOperation">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/MultiReferenceMoveOperation/oldIndex"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/MultiReferenceMoveOperation/newIndex"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference server.ecore#//versioning/operations/MultiReferenceMoveOperation/referencedModelElementId"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/operations/ReferenceOperation">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/ReferenceOperation/bidirectional"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/ReferenceOperation/oppositeFeatureName"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/ReferenceOperation/containmentType"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/operations/DiagramLayoutOperation"/>
+        <genClasses ecoreClass="server.ecore#//versioning/operations/OperationId"/>
+        <genClasses ecoreClass="server.ecore#//versioning/operations/OperationGroup">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/OperationGroup/name"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference server.ecore#//versioning/operations/OperationGroup/operations"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/operations/ModelElementGroup">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/operations/ModelElementGroup/name"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference server.ecore#//versioning/operations/ModelElementGroup/modelElements"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/operations/EObjectToModelElementIdMap">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference server.ecore#//versioning/operations/EObjectToModelElementIdMap/key"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference server.ecore#//versioning/operations/EObjectToModelElementIdMap/value"/>
+        </genClasses>
+        <nestedGenPackages prefix="Semantic" basePackage="org.eclipse.emf.emfstore.server.model.versioning.operations"
+            disposableProviderFactory="true" ecorePackage="server.ecore#//versioning/operations/semantic">
+          <genClasses image="false" ecoreClass="server.ecore#//versioning/operations/semantic/SemanticCompositeOperation"/>
+        </nestedGenPackages>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Events" basePackage="org.eclipse.emf.emfstore.server.model.versioning"
+          disposableProviderFactory="true" ecorePackage="server.ecore#//versioning/events">
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="server.ecore#//versioning/events/MergeChoiceSelection">
+          <genEnumLiterals ecoreEnumLiteral="server.ecore#//versioning/events/MergeChoiceSelection/Mine"/>
+          <genEnumLiterals ecoreEnumLiteral="server.ecore#//versioning/events/MergeChoiceSelection/Their"/>
+          <genEnumLiterals ecoreEnumLiteral="server.ecore#//versioning/events/MergeChoiceSelection/Issue"/>
+          <genEnumLiterals ecoreEnumLiteral="server.ecore#//versioning/events/MergeChoiceSelection/MergedText"/>
+        </genEnums>
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="server.ecore#//versioning/events/MergeGlobalChoiceSelection">
+          <genEnumLiterals ecoreEnumLiteral="server.ecore#//versioning/events/MergeGlobalChoiceSelection/AllMine"/>
+          <genEnumLiterals ecoreEnumLiteral="server.ecore#//versioning/events/MergeGlobalChoiceSelection/AllTheir"/>
+          <genEnumLiterals ecoreEnumLiteral="server.ecore#//versioning/events/MergeGlobalChoiceSelection/Cancel"/>
+          <genEnumLiterals ecoreEnumLiteral="server.ecore#//versioning/events/MergeGlobalChoiceSelection/OKNotFinished"/>
+          <genEnumLiterals ecoreEnumLiteral="server.ecore#//versioning/events/MergeGlobalChoiceSelection/OKFinished"/>
+        </genEnums>
+        <genClasses ecoreClass="server.ecore#//versioning/events/Event">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/Event/timestamp"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/ReadEvent">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/ReadEvent/modelElement"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/ReadEvent/sourceView"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/ReadEvent/readView"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/MergeEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/MergeEvent/numberOfConflicts"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/MergeEvent/totalTime"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/MergeEvent/baseVersion"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/MergeEvent/targetVersion"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/MergeEvent/localChanges"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/CheckoutEvent">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/CheckoutEvent/baseVersion"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/ExceptionEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/ExceptionEvent/ExceptionTitle"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/ExceptionEvent/ExceptionStackTrace"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/ExceptionEvent/ExceptionCauseTitle"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/ExceptionEvent/ExceptionCauseStackTrace"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/PluginStartEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/PluginStartEvent/pluginId"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/UpdateEvent">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/UpdateEvent/baseVersion"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/UpdateEvent/targetVersion"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/AnnotationEvent">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference server.ecore#//versioning/events/AnnotationEvent/annotatedElement"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference server.ecore#//versioning/events/AnnotationEvent/annotation"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/RevertEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/RevertEvent/revertedChangesCount"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/ShowHistoryEvent">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/ShowHistoryEvent/sourceVersion"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/ShowHistoryEvent/targetVersion"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/ShowHistoryEvent/modelElement"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/PerspectiveEvent"/>
+        <genClasses ecoreClass="server.ecore#//versioning/events/DNDEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/DNDEvent/sourceView"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/DNDEvent/targetView"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference server.ecore#//versioning/events/DNDEvent/dragSourceElement"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference server.ecore#//versioning/events/DNDEvent/dropTargetElement"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/LinkEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/LinkEvent/sourceView"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference server.ecore#//versioning/events/LinkEvent/sourceElement"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference server.ecore#//versioning/events/LinkEvent/targetElement"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/LinkEvent/createdNew"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/TraceEvent">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference server.ecore#//versioning/events/TraceEvent/sourceElement"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference server.ecore#//versioning/events/TraceEvent/targetElement"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/TraceEvent/featureName"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/NavigatorCreateEvent">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference server.ecore#//versioning/events/NavigatorCreateEvent/createdElement"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference server.ecore#//versioning/events/NavigatorCreateEvent/sourceSection"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/NavigatorCreateEvent/dynamic"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/PluginFocusEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/PluginFocusEvent/pluginId"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/PluginFocusEvent/startDate"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/PresentationSwitchEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/PresentationSwitchEvent/readView"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/PresentationSwitchEvent/newPresentation"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/UndoEvent">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/UndoEvent/operation"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/Validate"/>
+        <genClasses ecoreClass="server.ecore#//versioning/events/ShowChangesEvent">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/ShowChangesEvent/sourceVersion"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/ShowChangesEvent/targetVersion"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/NotificationReadEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/NotificationReadEvent/notificationId"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/NotificationGenerationEvent">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/NotificationGenerationEvent/notifications"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/NotificationIgnoreEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/NotificationIgnoreEvent/notificationId"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/URLEvent">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/URLEvent/sourceModelElement"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/URLEvent/sourceView"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/URLEvent/sourceURL"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/MergeChoiceEvent">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/MergeChoiceEvent/myAcceptedChanges"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/MergeChoiceEvent/theirRejectedChanges"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/MergeChoiceEvent/contextModelElement"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/MergeChoiceEvent/selection"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/MergeChoiceEvent/contextFeature"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/MergeChoiceEvent/createdIssueName"/>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//versioning/events/MergeGlobalChoiceEvent">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//versioning/events/MergeGlobalChoiceEvent/selection"/>
+        </genClasses>
+        <nestedGenPackages prefix="Server" basePackage="org.eclipse.emf.emfstore.server.model.versioning.events"
+            disposableProviderFactory="true" ecorePackage="server.ecore#//versioning/events/server">
+          <genClasses image="false" ecoreClass="server.ecore#//versioning/events/server/ServerEvent"/>
+          <genClasses image="false" ecoreClass="server.ecore#//versioning/events/server/ServerProjectEvent">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/server/ServerProjectEvent/projectId"/>
+          </genClasses>
+          <genClasses ecoreClass="server.ecore#//versioning/events/server/ProjectUpdatedEvent">
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//versioning/events/server/ProjectUpdatedEvent/newVersion"/>
+          </genClasses>
+        </nestedGenPackages>
+      </nestedGenPackages>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Accesscontrol" basePackage="org.eclipse.emf.emfstore.server.model"
+        disposableProviderFactory="true" ecorePackage="server.ecore#//accesscontrol">
+      <genClasses ecoreClass="server.ecore#//accesscontrol/ACUser">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//accesscontrol/ACUser/firstName"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//accesscontrol/ACUser/lastName"/>
+      </genClasses>
+      <genClasses ecoreClass="server.ecore#//accesscontrol/ACOrgUnit">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//accesscontrol/ACOrgUnit/name"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference server.ecore#//accesscontrol/ACOrgUnit/roles"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//accesscontrol/ACOrgUnit/description"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//accesscontrol/ACOrgUnit/properties"/>
+        <genOperations ecoreOperation="server.ecore#//accesscontrol/ACOrgUnit/getId"/>
+      </genClasses>
+      <genClasses ecoreClass="server.ecore#//accesscontrol/ACGroup">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference server.ecore#//accesscontrol/ACGroup/members"/>
+      </genClasses>
+      <genClasses ecoreClass="server.ecore#//accesscontrol/ACOrgUnitId"/>
+      <genClasses ecoreClass="server.ecore#//accesscontrol/OrgUnitProperty">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//accesscontrol/OrgUnitProperty/name"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//accesscontrol/OrgUnitProperty/value"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//accesscontrol/OrgUnitProperty/project"/>
+      </genClasses>
+      <nestedGenPackages prefix="Roles" basePackage="org.eclipse.emf.emfstore.server.model.accesscontrol"
+          disposableProviderFactory="true" ecorePackage="server.ecore#//accesscontrol/roles">
+        <genClasses image="false" ecoreClass="server.ecore#//accesscontrol/roles/Role">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference server.ecore#//accesscontrol/roles/Role/projects"/>
+          <genOperations ecoreOperation="server.ecore#//accesscontrol/roles/Role/canAdministrate">
+            <genParameters ecoreParameter="server.ecore#//accesscontrol/roles/Role/canAdministrate/projectId"/>
+          </genOperations>
+          <genOperations ecoreOperation="server.ecore#//accesscontrol/roles/Role/canCreate">
+            <genParameters ecoreParameter="server.ecore#//accesscontrol/roles/Role/canCreate/projectId"/>
+            <genParameters ecoreParameter="server.ecore#//accesscontrol/roles/Role/canCreate/modelElement"/>
+          </genOperations>
+          <genOperations ecoreOperation="server.ecore#//accesscontrol/roles/Role/canDelete">
+            <genParameters ecoreParameter="server.ecore#//accesscontrol/roles/Role/canDelete/projectId"/>
+            <genParameters ecoreParameter="server.ecore#//accesscontrol/roles/Role/canDelete/modelElement"/>
+          </genOperations>
+          <genOperations ecoreOperation="server.ecore#//accesscontrol/roles/Role/canModify">
+            <genParameters ecoreParameter="server.ecore#//accesscontrol/roles/Role/canModify/projectId"/>
+            <genParameters ecoreParameter="server.ecore#//accesscontrol/roles/Role/canModify/modelElement"/>
+          </genOperations>
+          <genOperations ecoreOperation="server.ecore#//accesscontrol/roles/Role/canRead">
+            <genParameters ecoreParameter="server.ecore#//accesscontrol/roles/Role/canRead/projectId"/>
+            <genParameters ecoreParameter="server.ecore#//accesscontrol/roles/Role/canRead/modelElement"/>
+          </genOperations>
+        </genClasses>
+        <genClasses ecoreClass="server.ecore#//accesscontrol/roles/ReaderRole"/>
+        <genClasses ecoreClass="server.ecore#//accesscontrol/roles/WriterRole"/>
+        <genClasses ecoreClass="server.ecore#//accesscontrol/roles/ProjectAdminRole"/>
+        <genClasses ecoreClass="server.ecore#//accesscontrol/roles/ServerAdmin"/>
+      </nestedGenPackages>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Notification" basePackage="org.eclipse.emf.emfstore.server.model"
+        disposableProviderFactory="true" ecorePackage="server.ecore#//notification">
+      <genClasses ecoreClass="server.ecore#//notification/ESNotification">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//notification/ESNotification/name"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//notification/ESNotification/message"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//notification/ESNotification/details"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//notification/ESNotification/seen"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//notification/ESNotification/creationDate"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//notification/ESNotification/provider"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//notification/ESNotification/sender"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//notification/ESNotification/recipient"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//notification/ESNotification/project"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//notification/ESNotification/relatedModelElements"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//notification/ESNotification/relatedOperations"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Url" basePackage="org.eclipse.emf.emfstore.server.model"
+        disposableProviderFactory="true" ecorePackage="server.ecore#//url">
+      <genClasses ecoreClass="server.ecore#//url/ServerUrl">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//url/ServerUrl/hostName"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//url/ServerUrl/port"/>
+      </genClasses>
+      <genClasses ecoreClass="server.ecore#//url/ProjectUrlFragment">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//url/ProjectUrlFragment/name"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//url/ProjectUrlFragment/projectId"/>
+      </genClasses>
+      <genClasses ecoreClass="server.ecore#//url/ModelElementUrlFragment">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//url/ModelElementUrlFragment/name"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//url/ModelElementUrlFragment/modelElementId"/>
+      </genClasses>
+      <genClasses ecoreClass="server.ecore#//url/ModelElementUrl">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//url/ModelElementUrl/serverUrl"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//url/ModelElementUrl/projectUrlFragment"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference server.ecore#//url/ModelElementUrl/modelElementUrlFragment"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

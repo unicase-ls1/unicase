@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Dashboard Test Plugin
+Bundle-SymbolicName: org.unicase.dashboard.test
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.unicase.dashboard.test.Activator
+Bundle-Vendor: unicase.org
+Require-Bundle: org.eclipse.core.runtime,
+ org.unicase.ui.dashboard,
+ org.junit4,
+ org.unicase.workspace.test
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy

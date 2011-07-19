@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.unicase.analyzer/src"
+    modelPluginID="org.unicase.analyzer" modelName="Analyzer" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.genmodel#//esmodel platform:/plugin/org.unicase.metamodel/model/metamodel.genmodel#//metamodel">
+  <foreignModel>analyzer.ecore</foreignModel>
+  <genPackages prefix="Analyzer" basePackage="org.unicase" disposableProviderFactory="true"
+      ecorePackage="analyzer.ecore#/">
+    <genClasses ecoreClass="analyzer.ecore#//ProjectAnalysisData">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference analyzer.ecore#//ProjectAnalysisData/projectState"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference analyzer.ecore#//ProjectAnalysisData/changePackages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference analyzer.ecore#//ProjectAnalysisData/primaryVersionSpec"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference analyzer.ecore#//ProjectAnalysisData/projectId"/>
+    </genClasses>
+    <genClasses ecoreClass="analyzer.ecore#//AnalyzerConfiguration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference analyzer.ecore#//AnalyzerConfiguration/iterator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//AnalyzerConfiguration/analyzerNames"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference analyzer.ecore#//AnalyzerConfiguration/exporter"/>
+    </genClasses>
+    <nestedGenPackages prefix="Iterator" basePackage="org.unicase.analyzer" disposableProviderFactory="true"
+        ecorePackage="analyzer.ecore#//iterator">
+      <genClasses ecoreClass="analyzer.ecore#//iterator/VersionIterator">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//iterator/VersionIterator/stepLength"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference analyzer.ecore#//iterator/VersionIterator/projectId"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//iterator/VersionIterator/forward"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//iterator/VersionIterator/returnProjectDataCopy"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference analyzer.ecore#//iterator/VersionIterator/versionSpecQuery"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//iterator/VersionIterator/default"/>
+      </genClasses>
+      <genClasses ecoreClass="analyzer.ecore#//iterator/TimeIterator">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//iterator/TimeIterator/startDate"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//iterator/TimeIterator/endDate"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//iterator/TimeIterator/stepLengthUnit"/>
+      </genClasses>
+      <genClasses ecoreClass="analyzer.ecore#//iterator/VersionSpecQuery">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference analyzer.ecore#//iterator/VersionSpecQuery/endVersion"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference analyzer.ecore#//iterator/VersionSpecQuery/startVersion"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Exporters" basePackage="org.unicase.analyzer" disposableProviderFactory="true"
+        ecorePackage="analyzer.ecore#//exporters">
+      <genClasses ecoreClass="analyzer.ecore#//exporters/Exporter">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//exporters/Exporter/fileName"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//exporters/Exporter/overwrite"/>
+      </genClasses>
+      <genClasses ecoreClass="analyzer.ecore#//exporters/CSVExporter"/>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>
