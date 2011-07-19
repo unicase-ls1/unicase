@@ -8,11 +8,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.unicase.ui.navigator,
  org.unicase.model,
- org.unicase.workspace,
- org.unicase.ui.workpackagetransfer;bundle-version="0.4.8"
+ org.unicase.workspace
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Import-Package: org.unicase.model.document,
  org.unicase.workspace,
- org.unicase.workspace.ui.dialogs,
  org.unicase.workspace.util

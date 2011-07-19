@@ -8,9 +8,6 @@ package scrm.requirements.dataProcess;
 
 import org.eclipse.emf.common.util.EList;
 
-import scrm.SCRMModelElement;
-import scrm.SCRMSpace;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Space</b></em>'.
@@ -27,8 +24,7 @@ import scrm.SCRMSpace;
  * @model
  * @generated
  */
-public interface DataProcessSpace extends SCRMSpace,
-		scrm.requirements.dataProcess.Process {
+public interface DataProcessSpace extends scrm.requirements.dataProcess.Process {
 	/**
 	 * Returns the value of the '<em><b>Contained Data Process Steps</b></em>' containment reference list.
 	 * The list contents are of type {@link scrm.requirements.dataProcess.Process}.
@@ -44,8 +40,8 @@ public interface DataProcessSpace extends SCRMSpace,
 	 * @see scrm.requirements.dataProcess.Process#getContainingDataProcessSpace
 	 * @model opposite="containingDataProcessSpace" containment="true" resolveProxies="true"
 	 *        annotation="org.unicase.ui.meeditor position='right' priority='5'"
-	 * @generated NOT
+	 * @generated
 	 */
-	EList<SCRMModelElement> getContainedDataProcessSteps();
+	EList<scrm.requirements.dataProcess.Process> getContainedDataProcessSteps();
 
 } // DataProcessSpace

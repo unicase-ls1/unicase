@@ -8,9 +8,6 @@ package scrm.knowledge;
 
 import org.eclipse.emf.common.util.EList;
 
-import scrm.SCRMModelElement;
-import scrm.SCRMSpace;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Space</b></em>'.
@@ -19,7 +16,7 @@ import scrm.SCRMSpace;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link scrm.knowledge.KnowledgeSpace#getContainedScientificKnowledge <em>Contained Scientific Knowledge</em>}</li>
+ *   <li>{@link scrm.knowledge.KnowledgeSpace#getContainedScientificProblem <em>Contained Scientific Problem</em>}</li>
  * </ul>
  * </p>
  *
@@ -27,24 +24,24 @@ import scrm.SCRMSpace;
  * @model
  * @generated
  */
-public interface KnowledgeSpace extends SCRMSpace, ScientificKnowledge {
+public interface KnowledgeSpace extends ScientificKnowledge {
 	/**
-	 * Returns the value of the '<em><b>Contained Scientific Knowledge</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Contained Scientific Problem</b></em>' containment reference list.
 	 * The list contents are of type {@link scrm.knowledge.ScientificKnowledge}.
 	 * It is bidirectional and its opposite is '{@link scrm.knowledge.ScientificKnowledge#getContainingKnowledgeSpace <em>Containing Knowledge Space</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Contained Scientific Knowledge</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Contained Scientific Problem</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Contained Scientific Knowledge</em>' containment reference list.
-	 * @see scrm.knowledge.KnowledgePackage#getKnowledgeSpace_ContainedScientificKnowledge()
+	 * @return the value of the '<em>Contained Scientific Problem</em>' containment reference list.
+	 * @see scrm.knowledge.KnowledgePackage#getKnowledgeSpace_ContainedScientificProblem()
 	 * @see scrm.knowledge.ScientificKnowledge#getContainingKnowledgeSpace
 	 * @model opposite="containingKnowledgeSpace" containment="true" resolveProxies="true"
 	 *        annotation="org.unicase.ui.meeditor position='right' priority='10'"
-	 * @generated NOT
+	 * @generated
 	 */
-	EList<SCRMModelElement> getContainedScientificKnowledge();
+	EList<ScientificKnowledge> getContainedScientificProblem();
 
 } // KnowledgeSpace

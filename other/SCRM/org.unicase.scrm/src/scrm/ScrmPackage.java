@@ -8,7 +8,6 @@ package scrm;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -162,78 +161,13 @@ public interface ScrmPackage extends EPackage {
 	int SCRM_DIAGRAM__DIAGRAM_LAYOUT = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Diagram Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SCRM_DIAGRAM__DIAGRAM_TYPE = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
 	 * The number of structural features of the '<em>SCRM Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_DIAGRAM_FEATURE_COUNT = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The meta object id for the '{@link scrm.SCRMSpace <em>SCRM Space</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see scrm.SCRMSpace
-	 * @see scrm.impl.ScrmPackageImpl#getSCRMSpace()
-	 * @generated
-	 */
-	int SCRM_SPACE = 2;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SCRM_SPACE__NAME = SCRM_MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SCRM_SPACE__DESCRIPTION = SCRM_MODEL_ELEMENT__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Representing Diagram</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SCRM_SPACE__REPRESENTING_DIAGRAM = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>SCRM Space</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SCRM_SPACE_FEATURE_COUNT = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link scrm.DiagramType <em>Diagram Type</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see scrm.DiagramType
-	 * @see scrm.impl.ScrmPackageImpl#getDiagramType()
-	 * @generated
-	 */
-	int DIAGRAM_TYPE = 3;
+	int SCRM_DIAGRAM_FEATURE_COUNT = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * Returns the meta object for class '{@link scrm.SCRMModelElement <em>SCRM Model Element</em>}'.
@@ -309,48 +243,6 @@ public interface ScrmPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSCRMDiagram_DiagramLayout();
-
-	/**
-	 * Returns the meta object for the attribute '{@link scrm.SCRMDiagram#getDiagramType <em>Diagram Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Diagram Type</em>'.
-	 * @see scrm.SCRMDiagram#getDiagramType()
-	 * @see #getSCRMDiagram()
-	 * @generated
-	 */
-	EAttribute getSCRMDiagram_DiagramType();
-
-	/**
-	 * Returns the meta object for class '{@link scrm.SCRMSpace <em>SCRM Space</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>SCRM Space</em>'.
-	 * @see scrm.SCRMSpace
-	 * @generated
-	 */
-	EClass getSCRMSpace();
-
-	/**
-	 * Returns the meta object for the reference '{@link scrm.SCRMSpace#getRepresentingDiagram <em>Representing Diagram</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Representing Diagram</em>'.
-	 * @see scrm.SCRMSpace#getRepresentingDiagram()
-	 * @see #getSCRMSpace()
-	 * @generated
-	 */
-	EReference getSCRMSpace_RepresentingDiagram();
-
-	/**
-	 * Returns the meta object for enum '{@link scrm.DiagramType <em>Diagram Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Diagram Type</em>'.
-	 * @see scrm.DiagramType
-	 * @generated
-	 */
-	EEnum getDiagramType();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link scrm.SCRMDiagram#getGmfdiagram <em>Gmfdiagram</em>}'.
@@ -448,44 +340,6 @@ public interface ScrmPackage extends EPackage {
 		 */
 		EAttribute SCRM_DIAGRAM__DIAGRAM_LAYOUT = eINSTANCE
 				.getSCRMDiagram_DiagramLayout();
-
-		/**
-		 * The meta object literal for the '<em><b>Diagram Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SCRM_DIAGRAM__DIAGRAM_TYPE = eINSTANCE
-				.getSCRMDiagram_DiagramType();
-
-		/**
-		 * The meta object literal for the '{@link scrm.SCRMSpace <em>SCRM Space</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see scrm.SCRMSpace
-		 * @see scrm.impl.ScrmPackageImpl#getSCRMSpace()
-		 * @generated
-		 */
-		EClass SCRM_SPACE = eINSTANCE.getSCRMSpace();
-
-		/**
-		 * The meta object literal for the '<em><b>Representing Diagram</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SCRM_SPACE__REPRESENTING_DIAGRAM = eINSTANCE
-				.getSCRMSpace_RepresentingDiagram();
-
-		/**
-		 * The meta object literal for the '{@link scrm.DiagramType <em>Diagram Type</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see scrm.DiagramType
-		 * @see scrm.impl.ScrmPackageImpl#getDiagramType()
-		 * @generated
-		 */
-		EEnum DIAGRAM_TYPE = eINSTANCE.getDiagramType();
 
 		/**
 		 * The meta object literal for the '<em><b>Gmfdiagram</b></em>' containment reference feature.

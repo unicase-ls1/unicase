@@ -25,7 +25,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import scrm.ScrmPackage;
 import scrm.knowledge.KnowledgeFactory;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.KnowledgeSpace;
@@ -64,7 +63,7 @@ public class KnowledgeSpaceItemProvider extends SCRMModelElementItemProvider
 			super.getPropertyDescriptors(object);
 
 			addContainingKnowledgeSpacePropertyDescriptor(object);
-			addContainedScientificKnowledgePropertyDescriptor(object);
+			addContainedScientificProblemPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -91,24 +90,23 @@ public class KnowledgeSpaceItemProvider extends SCRMModelElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Contained Scientific Knowledge feature.
+	 * This adds a property descriptor for the Contained Scientific Problem feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addContainedScientificKnowledgePropertyDescriptor(
-			Object object) {
+	protected void addContainedScientificProblemPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(
 						((ComposeableAdapterFactory) adapterFactory)
 								.getRootAdapterFactory(),
 						getResourceLocator(),
-						getString("_UI_KnowledgeSpace_containedScientificKnowledge_feature"),
+						getString("_UI_KnowledgeSpace_containedScientificProblem_feature"),
 						getString(
 								"_UI_PropertyDescriptor_description",
-								"_UI_KnowledgeSpace_containedScientificKnowledge_feature",
+								"_UI_KnowledgeSpace_containedScientificProblem_feature",
 								"_UI_KnowledgeSpace_type"),
-						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE,
+						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
 						true, false, false, null, null, null));
 	}
 
@@ -126,7 +124,7 @@ public class KnowledgeSpaceItemProvider extends SCRMModelElementItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures
-					.add(KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE);
+					.add(KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM);
 		}
 		return childrenFeatures;
 	}
@@ -179,7 +177,7 @@ public class KnowledgeSpaceItemProvider extends SCRMModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(KnowledgeSpace.class)) {
-		case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE:
+		case KnowledgePackage.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), true, false));
 			return;
@@ -201,27 +199,27 @@ public class KnowledgeSpaceItemProvider extends SCRMModelElementItemProvider
 
 		newChildDescriptors
 				.add(createChildParameter(
-						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE,
+						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
 						KnowledgeFactory.eINSTANCE.createKnowledgeSpace()));
 
 		newChildDescriptors
 				.add(createChildParameter(
-						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE,
+						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
 						KnowledgeFactory.eINSTANCE.createScientificProblem()));
 
 		newChildDescriptors
 				.add(createChildParameter(
-						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE,
+						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
 						KnowledgeFactory.eINSTANCE.createMathematicalModel()));
 
 		newChildDescriptors
 				.add(createChildParameter(
-						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE,
+						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
 						KnowledgeFactory.eINSTANCE.createNumericalMethod()));
 
 		newChildDescriptors
 				.add(createChildParameter(
-						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE,
+						KnowledgePackage.Literals.KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM,
 						KnowledgeFactory.eINSTANCE.createAssumption()));
 	}
 
