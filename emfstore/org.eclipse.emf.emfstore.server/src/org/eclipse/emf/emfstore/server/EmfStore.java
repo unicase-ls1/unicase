@@ -364,8 +364,8 @@ public interface EmfStore extends EmfStoreInterface {
 	 * 
 	 * @param sessionId
 	 *            sessionId
-	 * @param collection
-	 *            List of the properties which shall be shared on the server.
+	 * @param property
+	 *            property which shall be shared on the server.
 	 * @param projectId
 	 *            the project id
 	 * @throws EmfStoreException

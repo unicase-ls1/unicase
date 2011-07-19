@@ -110,7 +110,7 @@ public interface ModelPackage extends EPackage {
 	int PROJECT_HISTORY__PROJECT_DESCRIPTION = 3;
 
 	/**
-	 * The feature id for the '<em><b>Shared Properties</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Shared Properties</b></em>' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -441,10 +441,10 @@ public interface ModelPackage extends EPackage {
 	EAttribute getProjectHistory_ProjectDescription();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.emfstore.server.model.ProjectHistory#getSharedProperties <em>Shared Properties</em>}'.
+	 * Returns the meta object for the map '{@link org.eclipse.emf.emfstore.server.model.ProjectHistory#getSharedProperties <em>Shared Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Shared Properties</em>'.
+	 * @return the meta object for the map '<em>Shared Properties</em>'.
 	 * @see org.eclipse.emf.emfstore.server.model.ProjectHistory#getSharedProperties()
 	 * @see #getProjectHistory()
 	 * @generated
@@ -707,7 +707,7 @@ public interface ModelPackage extends EPackage {
 		EAttribute PROJECT_HISTORY__PROJECT_DESCRIPTION = eINSTANCE.getProjectHistory_ProjectDescription();
 
 		/**
-		 * The meta object literal for the '<em><b>Shared Properties</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Shared Properties</b></em>' map feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
