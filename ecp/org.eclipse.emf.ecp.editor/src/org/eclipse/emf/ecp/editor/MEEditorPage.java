@@ -6,8 +6,6 @@
  ******************************************************************************/
 package org.eclipse.emf.ecp.editor;
 
-import java.awt.Color;
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -15,13 +13,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.JTextField;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecp.common.commands.DeleteModelElementCommand;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
-import org.eclipse.emf.ecp.common.util.ShortLabelProvider;
+import org.eclipse.emf.ecp.common.utilities.ShortLabelProvider;
 import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
 import org.eclipse.emf.ecp.editor.mecontrols.FeatureHintTooltipSupport;
 import org.eclipse.emf.ecp.editor.mecontrols.METextControl;
@@ -62,7 +58,7 @@ import org.eclipse.ui.services.IEvaluationService;
 public class MEEditorPage extends FormPage {
 
 	private EObject modelElement;
-	private static FormToolkit toolkit;
+	private FormToolkit toolkit;
 	private List<AbstractMEControl> meControls = new ArrayList<AbstractMEControl>();
 
 	private static String activeModelelement = "activeModelelement";
@@ -72,11 +68,10 @@ public class MEEditorPage extends FormPage {
 	private List<IItemPropertyDescriptor> bottomAttributes = new ArrayList<IItemPropertyDescriptor>();
 	private Composite leftColumnComposite;
 	private Composite rightColumnComposite;
-	private static Composite bottomComposite;
+	private Composite bottomComposite;
 	private EStructuralFeature problemFeature;
 	private final ECPModelelementContext modelElementContext;
-	private static Composite topComposite;
-private static Label validationLabel;
+
 	/**
 	 * Default constructor.
 	 * 
@@ -122,7 +117,7 @@ private static Label validationLabel;
 		toolkit.decorateFormHeading(form.getForm());
 		Composite body = form.getBody();
 		body.setLayout(new GridLayout());
-		topComposite = toolkit.createComposite(body);
+		Composite topComposite = toolkit.createComposite(body);
 		topComposite.setLayout(new GridLayout());
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(topComposite);
 
@@ -148,8 +143,6 @@ private static Label validationLabel;
 		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(0, 0, 0, 0)
 			.applyTo(bottomComposite);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(bottomComposite);
-		
-		
 		// updateSectionTitle();
 		form.setImage(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(modelElement));
@@ -162,18 +155,7 @@ private static Label validationLabel;
 		createToolbar();
 		form.pack();
 		updateSectionTitle();
-		
-		Label label1 = toolkit.createLabel(topComposite, "Results of Live Validation");
-		label1.setSize(200, 50);
-		validationLabel = toolkit.createLabel(topComposite, "");
-		validationLabel.setSize(200, 200);
 	}
-	
-
-	public static  void updateLiveValidation (String message){	
-		validationLabel.setText(message);
-	}
-
 
 	/**
 	 * Updates the name of the section.
@@ -288,7 +270,6 @@ private static Label validationLabel;
 			if (meControl.getShowLabel()) {
 				Label label = toolkit.createLabel(attributeComposite,
 					itemPropertyDescriptor.getDisplayName(modelElement));
-				
 				label.setData(modelElement);
 				FeatureHintTooltipSupport.enableFor(label, itemPropertyDescriptor);
 				control = meControl.createControl(attributeComposite, SWT.WRAP, itemPropertyDescriptor, modelElement,
@@ -342,6 +323,5 @@ private static Label validationLabel;
 		}
 		leftColumnComposite.setFocus();
 	}
-
 
 }

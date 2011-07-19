@@ -42,20 +42,6 @@ public class ChooseWorkPackagePage extends ModelElementSelectionDialog {
 		this.setMessage(DIALOG_MESSAGE);
 	}
 
-	/**
-	 * The constructor if no WorkPack needs to be excluded.
-	 * 
-	 * @param project the project from which the WorkPackes should be listed and selected
-	 */
-	public ChooseWorkPackagePage(ECPModelelementContext context, Project project) {
-		super(context, TaskPackage.Literals.WORK_PACKAGE, false);
-		excludeWorkPackages = new ArrayList<WorkPackage>();
-
-		this.setBlockOnOpen(true);
-		this.setTitle(DIALOG_TITLE);
-		this.setMessage(DIALOG_MESSAGE);
-	}
-
 	private List<WorkPackage> getExcludeWorkPackages(WorkPackage sourceWorkPackage) {
 		List<WorkPackage> result = new ArrayList<WorkPackage>();
 

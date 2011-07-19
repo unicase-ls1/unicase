@@ -23,77 +23,47 @@ import org.eclipse.ui.IMemento;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonContentProvider;
 
-import scrm.diagram.edit.parts.Assumption2EditPart;
 import scrm.diagram.edit.parts.AssumptionEditPart;
-import scrm.diagram.edit.parts.Constraint2EditPart;
 import scrm.diagram.edit.parts.ConstraintEditPart;
-import scrm.diagram.edit.parts.ConstraintRestrictedFeatureEditPart;
-import scrm.diagram.edit.parts.DataDefinition2EditPart;
-import scrm.diagram.edit.parts.DataDefinitionDefinedRequirementEditPart;
 import scrm.diagram.edit.parts.DataDefinitionEditPart;
-import scrm.diagram.edit.parts.DataFlow2EditPart;
 import scrm.diagram.edit.parts.DataFlowEditPart;
-import scrm.diagram.edit.parts.DataFlowSpecifiedProcessEditPart;
-import scrm.diagram.edit.parts.DataHandling2EditPart;
 import scrm.diagram.edit.parts.DataHandlingEditPart;
-import scrm.diagram.edit.parts.DataProcessSpace2EditPart;
-import scrm.diagram.edit.parts.DataProcessSpaceDataProcessSpaceCompartment2EditPart;
-import scrm.diagram.edit.parts.DataProcessSpaceDataProcessSpaceCompartmentEditPart;
-import scrm.diagram.edit.parts.DataProcessSpaceEditPart;
-import scrm.diagram.edit.parts.ErrorHandling2EditPart;
 import scrm.diagram.edit.parts.ErrorHandlingEditPart;
 import scrm.diagram.edit.parts.Feature2EditPart;
+import scrm.diagram.edit.parts.FeatureConstraintsEditPart;
 import scrm.diagram.edit.parts.FeatureDependenciesEditPart;
+import scrm.diagram.edit.parts.FeatureDetailedRequirementsEditPart;
 import scrm.diagram.edit.parts.FeatureEditPart;
 import scrm.diagram.edit.parts.FeatureExcludedFeaturesEditPart;
 import scrm.diagram.edit.parts.FeatureProvidedInterfacesEditPart;
 import scrm.diagram.edit.parts.FeatureRequiredFeaturesEditPart;
 import scrm.diagram.edit.parts.FeatureRequiredInterfacesEditPart;
-import scrm.diagram.edit.parts.FeatureSuperFeatureEditPart;
-import scrm.diagram.edit.parts.Hardware2EditPart;
 import scrm.diagram.edit.parts.HardwareEditPart;
-import scrm.diagram.edit.parts.InputDataReading2EditPart;
 import scrm.diagram.edit.parts.InputDataReadingEditPart;
-import scrm.diagram.edit.parts.KnowledgeSpace2EditPart;
 import scrm.diagram.edit.parts.KnowledgeSpaceEditPart;
-import scrm.diagram.edit.parts.KnowledgeSpaceKnowledgeSpaceCompartment2EditPart;
-import scrm.diagram.edit.parts.KnowledgeSpaceKnowledgeSpaceCompartmentEditPart;
 import scrm.diagram.edit.parts.MathematicalModel2EditPart;
 import scrm.diagram.edit.parts.MathematicalModelDependenciesEditPart;
 import scrm.diagram.edit.parts.MathematicalModelEditPart;
 import scrm.diagram.edit.parts.MathematicalModelNumericalMethodsEditPart;
-import scrm.diagram.edit.parts.MathematicalModelRefinedModelEditPart;
-import scrm.diagram.edit.parts.MathematicalModelRepresentedProblemEditPart;
-import scrm.diagram.edit.parts.NumericalMethod2EditPart;
 import scrm.diagram.edit.parts.NumericalMethodDependenciesEditPart;
 import scrm.diagram.edit.parts.NumericalMethodEditPart;
 import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
-import scrm.diagram.edit.parts.NumericalMethodSolvedProblemEditPart;
-import scrm.diagram.edit.parts.Performance2EditPart;
+import scrm.diagram.edit.parts.NumericalMethodRealizingRequirementEditPart;
 import scrm.diagram.edit.parts.PerformanceEditPart;
-import scrm.diagram.edit.parts.Process2EditPart;
+import scrm.diagram.edit.parts.ProcessDataFlowEditPart;
 import scrm.diagram.edit.parts.ProcessEditPart;
 import scrm.diagram.edit.parts.ProcessSuccessorEditPart;
 import scrm.diagram.edit.parts.Requirement2EditPart;
+import scrm.diagram.edit.parts.RequirementDefiningDataEditPart;
 import scrm.diagram.edit.parts.RequirementEditPart;
-import scrm.diagram.edit.parts.RequirementRealizedMethodEditPart;
-import scrm.diagram.edit.parts.RequirementRefinedRequirementEditPart;
-import scrm.diagram.edit.parts.RequirementSpace2EditPart;
-import scrm.diagram.edit.parts.RequirementSpaceEditPart;
-import scrm.diagram.edit.parts.RequirementSpaceRequirementSpaceCompartment2EditPart;
-import scrm.diagram.edit.parts.RequirementSpaceRequirementSpaceCompartmentEditPart;
-import scrm.diagram.edit.parts.RequirementSpecifiedFeatureEditPart;
-import scrm.diagram.edit.parts.ResultsOutput2EditPart;
 import scrm.diagram.edit.parts.ResultsOutputEditPart;
 import scrm.diagram.edit.parts.SCRMDiagramEditPart;
-import scrm.diagram.edit.parts.ScientificProblem2EditPart;
 import scrm.diagram.edit.parts.ScientificProblemEditPart;
 import scrm.diagram.edit.parts.ScientificProblemInfluencedFeatureEditPart;
-import scrm.diagram.edit.parts.SoftwareInterface2EditPart;
+import scrm.diagram.edit.parts.ScientificProblemRepresentingModelEditPart;
+import scrm.diagram.edit.parts.ScientificProblemSolvingMethodsEditPart;
 import scrm.diagram.edit.parts.SoftwareInterfaceEditPart;
-import scrm.diagram.edit.parts.StatusMonitoring2EditPart;
 import scrm.diagram.edit.parts.StatusMonitoringEditPart;
-import scrm.diagram.edit.parts.UserInterface2EditPart;
 import scrm.diagram.edit.parts.UserInterfaceEditPart;
 import scrm.diagram.part.Messages;
 import scrm.diagram.part.ScrmVisualIDRegistry;
@@ -288,55 +258,89 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 	private Object[] getViewChildren(View view, Object parentElement) {
 		switch (ScrmVisualIDRegistry.getVisualID(view)) {
 
-		case Assumption2EditPart.VISUAL_ID: {
+		case ProcessEditPart.VISUAL_ID: {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Node sv = (Node) view;
 			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Assumption_3004_incominglinks,
+					Messages.NavigatorGroupName_Process_2035_incominglinks,
 					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_Process_2035_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getIncomingLinksByType(
 					Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(MathematicalModelDependenciesEditPart.VISUAL_ID));
+							.getType(NumericalMethodRealizingRequirementEditPart.VISUAL_ID));
 			incominglinks.addChildren(createNavigatorItems(connectedViews,
 					incominglinks, true));
 			connectedViews = getIncomingLinksByType(
 					Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(NumericalMethodDependenciesEditPart.VISUAL_ID));
+							.getType(FeatureDetailedRequirementsEditPart.VISUAL_ID));
 			incominglinks.addChildren(createNavigatorItems(connectedViews,
 					incominglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(Requirement2EditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(Requirement2EditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(RequirementDefiningDataEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ProcessDataFlowEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ProcessSuccessorEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ProcessSuccessorEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
 			if (!incominglinks.isEmpty()) {
 				result.add(incominglinks);
+			}
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
 			}
 			return result.toArray();
 		}
 
-		case FeatureRequiredFeaturesEditPart.VISUAL_ID: {
+		case FeatureProvidedInterfacesEditPart.VISUAL_ID: {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Edge sv = (Edge) view;
 			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_FeatureRequiredFeatures_4030_target,
+					Messages.NavigatorGroupName_FeatureProvidedInterfaces_4024_target,
 					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_FeatureRequiredFeatures_4030_source,
+					Messages.NavigatorGroupName_FeatureProvidedInterfaces_4024_source,
 					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
+					ScrmVisualIDRegistry
+							.getType(UserInterfaceEditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Feature2EditPart.VISUAL_ID));
+					ScrmVisualIDRegistry
+							.getType(SoftwareInterfaceEditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksSourceByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Feature2EditPart.VISUAL_ID));
 			source.addChildren(createNavigatorItems(connectedViews, source,
 					true));
 			if (!target.isEmpty()) {
@@ -348,24 +352,219 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case NumericalMethodSolvedProblemEditPart.VISUAL_ID: {
+		case FeatureRequiredInterfacesEditPart.VISUAL_ID: {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Edge sv = (Edge) view;
 			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_NumericalMethodSolvedProblem_4057_target,
+					Messages.NavigatorGroupName_FeatureRequiredInterfaces_4023_target,
 					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_NumericalMethodSolvedProblem_4057_source,
+					Messages.NavigatorGroupName_FeatureRequiredInterfaces_4023_source,
 					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(ScientificProblemEditPart.VISUAL_ID));
+							.getType(UserInterfaceEditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(ScientificProblem2EditPart.VISUAL_ID));
+							.getType(SoftwareInterfaceEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case Feature2EditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_Feature_4029_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_Feature_4029_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_Feature_4029_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_Feature_4029_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
+		case ResultsOutputEditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_ResultsOutput_2038_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_ResultsOutput_2038_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(NumericalMethodRealizingRequirementEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(FeatureDetailedRequirementsEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(Requirement2EditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(Requirement2EditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(RequirementDefiningDataEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ProcessDataFlowEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ProcessSuccessorEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ProcessSuccessorEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
+		case MathematicalModel2EditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_MathematicalModel_4004_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_MathematicalModel_4004_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_MathematicalModel_4004_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_MathematicalModel_4004_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(MathematicalModelEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(MathematicalModelEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
+		case FeatureDependenciesEditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_FeatureDependencies_4026_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_FeatureDependencies_4026_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(HardwareEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case NumericalMethodDependenciesEditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_NumericalMethodDependencies_4015_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_NumericalMethodDependencies_4015_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(AssumptionEditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksSourceByType(Collections.singleton(sv),
@@ -373,11 +572,6 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 							.getType(NumericalMethodEditPart.VISUAL_ID));
 			source.addChildren(createNavigatorItems(connectedViews, source,
 					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(NumericalMethod2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
 			if (!target.isEmpty()) {
 				result.add(target);
 			}
@@ -387,200 +581,75 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case ConstraintRestrictedFeatureEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_ConstraintRestrictedFeature_4051_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_ConstraintRestrictedFeature_4051_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Feature2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(ConstraintEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Constraint2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case ConstraintEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Constraint_2011_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ConstraintRestrictedFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			return result.toArray();
-		}
-
-		case Constraint2EditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Constraint_3006_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ConstraintRestrictedFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			return result.toArray();
-		}
-
-		case AssumptionEditPart.VISUAL_ID: {
+		case InputDataReadingEditPart.VISUAL_ID: {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Node sv = (Node) view;
 			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Assumption_2008_incominglinks,
+					Messages.NavigatorGroupName_InputDataReading_2036_incominglinks,
 					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_InputDataReading_2036_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getIncomingLinksByType(
 					Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(MathematicalModelDependenciesEditPart.VISUAL_ID));
+							.getType(NumericalMethodRealizingRequirementEditPart.VISUAL_ID));
 			incominglinks.addChildren(createNavigatorItems(connectedViews,
 					incominglinks, true));
 			connectedViews = getIncomingLinksByType(
 					Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(NumericalMethodDependenciesEditPart.VISUAL_ID));
+							.getType(FeatureDetailedRequirementsEditPart.VISUAL_ID));
 			incominglinks.addChildren(createNavigatorItems(connectedViews,
 					incominglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(Requirement2EditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(Requirement2EditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(RequirementDefiningDataEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ProcessDataFlowEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ProcessSuccessorEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ProcessSuccessorEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
 			if (!incominglinks.isEmpty()) {
 				result.add(incominglinks);
 			}
-			return result.toArray();
-		}
-
-		case RequirementEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Requirement_2034_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Requirement_2034_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
 			if (!outgoinglinks.isEmpty()) {
 				result.add(outgoinglinks);
 			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
 			return result.toArray();
 		}
 
-		case MathematicalModelRefinedModelEditPart.VISUAL_ID: {
+		case NumericalMethodRealizingRequirementEditPart.VISUAL_ID: {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Edge sv = (Edge) view;
 			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_MathematicalModelRefinedModel_4058_target,
+					Messages.NavigatorGroupName_NumericalMethodRealizingRequirement_4016_target,
 					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_MathematicalModelRefinedModel_4058_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(MathematicalModelEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(MathematicalModel2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(MathematicalModelEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(MathematicalModel2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case DataDefinitionDefinedRequirementEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_DataDefinitionDefinedRequirement_4055_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_DataDefinitionDefinedRequirement_4055_source,
+					Messages.NavigatorGroupName_NumericalMethodRealizingRequirement_4016_source,
 					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
@@ -620,63 +689,9 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 					ScrmVisualIDRegistry.getType(RequirementEditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(Performance2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(Requirement2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(StatusMonitoring2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ResultsOutput2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Process2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(InputDataReading2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ErrorHandling2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataHandling2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpace2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
 			connectedViews = getLinksSourceByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(DataDefinitionEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataDefinition2EditPart.VISUAL_ID));
+							.getType(NumericalMethodEditPart.VISUAL_ID));
 			source.addChildren(createNavigatorItems(connectedViews, source,
 					true));
 			if (!target.isEmpty()) {
@@ -688,52 +703,48 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case ErrorHandling2EditPart.VISUAL_ID: {
+		case ErrorHandlingEditPart.VISUAL_ID: {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_ErrorHandling_3020_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_ErrorHandling_3020_incominglinks,
+					Messages.NavigatorGroupName_ErrorHandling_2039_incominglinks,
 					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_ErrorHandling_2039_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
 			connectedViews = getIncomingLinksByType(
 					Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
+							.getType(NumericalMethodRealizingRequirementEditPart.VISUAL_ID));
 			incominglinks.addChildren(createNavigatorItems(connectedViews,
 					incominglinks, true));
 			connectedViews = getIncomingLinksByType(
 					Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(DataFlowSpecifiedProcessEditPart.VISUAL_ID));
+							.getType(FeatureDetailedRequirementsEditPart.VISUAL_ID));
 			incominglinks.addChildren(createNavigatorItems(connectedViews,
 					incominglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(Requirement2EditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(Requirement2EditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(RequirementDefiningDataEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ProcessDataFlowEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
 			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
 							.getType(ProcessSuccessorEditPart.VISUAL_ID));
@@ -744,41 +755,130 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 							.getType(ProcessSuccessorEditPart.VISUAL_ID));
 			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 					outgoinglinks, true));
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
 			if (!outgoinglinks.isEmpty()) {
 				result.add(outgoinglinks);
 			}
+			return result.toArray();
+		}
+
+		case ConstraintEditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_Constraint_2011_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(FeatureConstraintsEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
 			if (!incominglinks.isEmpty()) {
 				result.add(incominglinks);
 			}
 			return result.toArray();
 		}
 
-		case ScientificProblemEditPart.VISUAL_ID: {
+		case FeatureExcludedFeaturesEditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_FeatureExcludedFeatures_4032_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_FeatureExcludedFeatures_4032_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case FeatureEditPart.VISUAL_ID: {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Node sv = (Node) view;
 			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_ScientificProblem_2007_incominglinks,
+					Messages.NavigatorGroupName_Feature_2009_incominglinks,
 					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_ScientificProblem_2007_outgoinglinks,
+					Messages.NavigatorGroupName_Feature_2009_outgoinglinks,
 					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getIncomingLinksByType(
 					Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(MathematicalModelRepresentedProblemEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(NumericalMethodSolvedProblemEditPart.VISUAL_ID));
+							.getType(ScientificProblemInfluencedFeatureEditPart.VISUAL_ID));
 			incominglinks.addChildren(createNavigatorItems(connectedViews,
 					incominglinks, true));
 			connectedViews = getOutgoingLinksByType(
 					Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(ScientificProblemInfluencedFeatureEditPart.VISUAL_ID));
+							.getType(FeatureRequiredInterfacesEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(FeatureProvidedInterfacesEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(FeatureConstraintsEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(FeatureDependenciesEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(FeatureDetailedRequirementsEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(Feature2EditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(Feature2EditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(FeatureRequiredFeaturesEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(FeatureRequiredFeaturesEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(FeatureExcludedFeaturesEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(FeatureExcludedFeaturesEditPart.VISUAL_ID));
 			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 					outgoinglinks, true));
 			if (!incominglinks.isEmpty()) {
@@ -790,32 +890,85 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case MathematicalModelDependenciesEditPart.VISUAL_ID: {
+		case DataHandlingEditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_DataHandling_2037_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_DataHandling_2037_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(NumericalMethodRealizingRequirementEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(FeatureDetailedRequirementsEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(Requirement2EditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(Requirement2EditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(RequirementDefiningDataEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ProcessDataFlowEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ProcessSuccessorEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ProcessSuccessorEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
+		case ScientificProblemRepresentingModelEditPart.VISUAL_ID: {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Edge sv = (Edge) view;
 			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_MathematicalModelDependencies_4012_target,
+					Messages.NavigatorGroupName_ScientificProblemRepresentingModel_4006_target,
 					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_MathematicalModelDependencies_4012_source,
+					Messages.NavigatorGroupName_ScientificProblemRepresentingModel_4006_source,
 					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(AssumptionEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Assumption2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
 							.getType(MathematicalModelEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
+			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksSourceByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(MathematicalModel2EditPart.VISUAL_ID));
+							.getType(ScientificProblemEditPart.VISUAL_ID));
 			source.addChildren(createNavigatorItems(connectedViews, source,
 					true));
 			if (!target.isEmpty()) {
@@ -823,6 +976,219 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 			}
 			if (!source.isEmpty()) {
 				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case ScientificProblemSolvingMethodsEditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_ScientificProblemSolvingMethods_4041_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_ScientificProblemSolvingMethods_4041_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(NumericalMethodEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ScientificProblemEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case MathematicalModelNumericalMethodsEditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_MathematicalModelNumericalMethods_4011_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_MathematicalModelNumericalMethods_4011_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(NumericalMethodEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(MathematicalModelEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case NumericalMethodEditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_NumericalMethod_2006_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_NumericalMethod_2006_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ScientificProblemSolvingMethodsEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(MathematicalModelNumericalMethodsEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(NumericalMethodDependenciesEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(NumericalMethodRealizingRequirementEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(NumericalMethodPerformanceEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
+		case StatusMonitoringEditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_StatusMonitoring_2040_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_StatusMonitoring_2040_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(NumericalMethodRealizingRequirementEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(FeatureDetailedRequirementsEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(Requirement2EditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(Requirement2EditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(RequirementDefiningDataEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ProcessDataFlowEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ProcessSuccessorEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ProcessSuccessorEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
+		case FeatureConstraintsEditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_FeatureConstraints_4025_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_FeatureConstraints_4025_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(ConstraintEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case DataFlowEditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_DataFlow_2016_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ProcessDataFlowEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
 			}
 			return result.toArray();
 		}
@@ -852,501 +1218,19 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case MathematicalModelRepresentedProblemEditPart.VISUAL_ID: {
+		case RequirementDefiningDataEditPart.VISUAL_ID: {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Edge sv = (Edge) view;
 			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_MathematicalModelRepresentedProblem_4048_target,
+					Messages.NavigatorGroupName_RequirementDefiningData_4038_target,
 					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_MathematicalModelRepresentedProblem_4048_source,
+					Messages.NavigatorGroupName_RequirementDefiningData_4038_source,
 					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(ScientificProblemEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ScientificProblem2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(MathematicalModelEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(MathematicalModel2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case NumericalMethod2EditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_NumericalMethod_3002_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_NumericalMethod_3002_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(NumericalMethodSolvedProblemEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(MathematicalModelNumericalMethodsEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(NumericalMethodDependenciesEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(NumericalMethodPerformanceEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case DataHandlingEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_DataHandling_2037_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_DataHandling_2037_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataFlowSpecifiedProcessEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case DataHandling2EditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_DataHandling_3021_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_DataHandling_3021_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataFlowSpecifiedProcessEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case RequirementSpaceEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			Collection<View> connectedViews;
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpaceRequirementSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry.getType(Constraint2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpaceRequirementSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(DataDefinition2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpaceRequirementSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry.getType(DataFlow2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpaceRequirementSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry.getType(Feature2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpaceRequirementSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry.getType(Hardware2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpaceRequirementSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(Performance2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpaceRequirementSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(Requirement2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpaceRequirementSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(SoftwareInterface2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpaceRequirementSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(UserInterface2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpaceRequirementSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(RequirementSpace2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			return result.toArray();
-		}
-
-		case UserInterface2EditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_UserInterface_3014_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureRequiredInterfacesEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureProvidedInterfacesEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case Process2EditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Process_3018_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Process_3018_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataFlowSpecifiedProcessEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case RequirementRefinedRequirementEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_RequirementRefinedRequirement_4054_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_RequirementRefinedRequirement_4054_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(ProcessEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(PerformanceEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(InputDataReadingEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataHandlingEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ResultsOutputEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ErrorHandlingEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(StatusMonitoringEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(RequirementEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(Performance2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(Requirement2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(StatusMonitoring2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ResultsOutput2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Process2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(InputDataReading2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ErrorHandling2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataHandling2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpace2EditPart.VISUAL_ID));
+							.getType(DataDefinitionEditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksSourceByType(Collections.singleton(sv),
@@ -1386,494 +1270,11 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 					ScrmVisualIDRegistry.getType(RequirementEditPart.VISUAL_ID));
 			source.addChildren(createNavigatorItems(connectedViews, source,
 					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(Performance2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(Requirement2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(StatusMonitoring2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ResultsOutput2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Process2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(InputDataReading2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ErrorHandling2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataHandling2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpace2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
 			if (!target.isEmpty()) {
 				result.add(target);
 			}
 			if (!source.isEmpty()) {
 				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case RequirementSpecifiedFeatureEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_RequirementSpecifiedFeature_4052_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_RequirementSpecifiedFeature_4052_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Feature2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(ProcessEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(PerformanceEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(InputDataReadingEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataHandlingEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ResultsOutputEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ErrorHandlingEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(StatusMonitoringEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(RequirementEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(Performance2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(Requirement2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(StatusMonitoring2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ResultsOutput2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Process2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(InputDataReading2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ErrorHandling2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataHandling2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpace2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case Performance2EditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Performance_3011_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Performance_3011_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(NumericalMethodPerformanceEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case RequirementRealizedMethodEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_RequirementRealizedMethod_4050_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_RequirementRealizedMethod_4050_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(NumericalMethodEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(NumericalMethod2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(ProcessEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(PerformanceEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(InputDataReadingEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataHandlingEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ResultsOutputEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ErrorHandlingEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(StatusMonitoringEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(RequirementEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(Performance2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(Requirement2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(StatusMonitoring2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ResultsOutput2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Process2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(InputDataReading2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ErrorHandling2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataHandling2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpace2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case NumericalMethodEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_NumericalMethod_2006_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_NumericalMethod_2006_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(NumericalMethodSolvedProblemEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(MathematicalModelNumericalMethodsEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(NumericalMethodDependenciesEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(NumericalMethodPerformanceEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case Hardware2EditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Hardware_3010_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureDependenciesEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case ProcessEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Process_2035_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Process_2035_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataFlowSpecifiedProcessEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case DataDefinitionEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_DataDefinition_2017_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
 			}
 			return result.toArray();
 		}
@@ -1977,35 +1378,24 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 							.getType(KnowledgeSpaceEditPart.VISUAL_ID));
 			result.addAll(createNavigatorItems(connectedViews, parentElement,
 					false));
-			connectedViews = getChildrenByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpaceEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
 			connectedViews = getDiagramLinksByType(
 					Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(MathematicalModelRepresentedProblemEditPart.VISUAL_ID));
+							.getType(ScientificProblemRepresentingModelEditPart.VISUAL_ID));
 			links.addChildren(createNavigatorItems(connectedViews, links, false));
 			connectedViews = getDiagramLinksByType(
 					Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(NumericalMethodSolvedProblemEditPart.VISUAL_ID));
+							.getType(ScientificProblemSolvingMethodsEditPart.VISUAL_ID));
 			links.addChildren(createNavigatorItems(connectedViews, links, false));
 			connectedViews = getDiagramLinksByType(
 					Collections.singleton(sv),
 					ScrmVisualIDRegistry
 							.getType(ScientificProblemInfluencedFeatureEditPart.VISUAL_ID));
 			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(
-					Collections.singleton(sv),
+			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(MathematicalModelRefinedModelEditPart.VISUAL_ID));
+							.getType(MathematicalModel2EditPart.VISUAL_ID));
 			links.addChildren(createNavigatorItems(connectedViews, links, false));
 			connectedViews = getDiagramLinksByType(
 					Collections.singleton(sv),
@@ -2025,7 +1415,7 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 			connectedViews = getDiagramLinksByType(
 					Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
+							.getType(NumericalMethodRealizingRequirementEditPart.VISUAL_ID));
 			links.addChildren(createNavigatorItems(connectedViews, links, false));
 			connectedViews = getDiagramLinksByType(
 					Collections.singleton(sv),
@@ -2042,10 +1432,9 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 					ScrmVisualIDRegistry
 							.getType(FeatureProvidedInterfacesEditPart.VISUAL_ID));
 			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(
-					Collections.singleton(sv),
+			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(ConstraintRestrictedFeatureEditPart.VISUAL_ID));
+							.getType(FeatureConstraintsEditPart.VISUAL_ID));
 			links.addChildren(createNavigatorItems(connectedViews, links, false));
 			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
@@ -2054,11 +1443,10 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 			connectedViews = getDiagramLinksByType(
 					Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
+							.getType(FeatureDetailedRequirementsEditPart.VISUAL_ID));
 			links.addChildren(createNavigatorItems(connectedViews, links, false));
 			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureSuperFeatureEditPart.VISUAL_ID));
+					ScrmVisualIDRegistry.getType(Feature2EditPart.VISUAL_ID));
 			links.addChildren(createNavigatorItems(connectedViews, links, false));
 			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
@@ -2068,20 +1456,17 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 					ScrmVisualIDRegistry
 							.getType(FeatureExcludedFeaturesEditPart.VISUAL_ID));
 			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(
-					Collections.singleton(sv),
+			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
+							.getType(Requirement2EditPart.VISUAL_ID));
 			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(
-					Collections.singleton(sv),
+			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
+							.getType(RequirementDefiningDataEditPart.VISUAL_ID));
 			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(
-					Collections.singleton(sv),
+			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(DataFlowSpecifiedProcessEditPart.VISUAL_ID));
+							.getType(ProcessDataFlowEditPart.VISUAL_ID));
 			links.addChildren(createNavigatorItems(connectedViews, links, false));
 			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
@@ -2093,669 +1478,40 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case KnowledgeSpaceEditPart.VISUAL_ID: {
+		case DataDefinitionEditPart.VISUAL_ID: {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Node sv = (Node) view;
-			Collection<View> connectedViews;
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(KnowledgeSpaceKnowledgeSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(ScientificProblem2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(KnowledgeSpaceKnowledgeSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(NumericalMethod2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(KnowledgeSpaceKnowledgeSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(MathematicalModel2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(KnowledgeSpaceKnowledgeSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry.getType(Assumption2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(KnowledgeSpaceKnowledgeSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(KnowledgeSpace2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			return result.toArray();
-		}
-
-		case ResultsOutput2EditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_ResultsOutput_3017_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_ResultsOutput_3017_incominglinks,
+					Messages.NavigatorGroupName_DataDefinition_2017_incominglinks,
 					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataFlowSpecifiedProcessEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
 			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
+							.getType(RequirementDefiningDataEditPart.VISUAL_ID));
 			incominglinks.addChildren(createNavigatorItems(connectedViews,
 					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
 			if (!incominglinks.isEmpty()) {
 				result.add(incominglinks);
 			}
 			return result.toArray();
 		}
 
-		case InputDataReading2EditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_InputDataReading_3019_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_InputDataReading_3019_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataFlowSpecifiedProcessEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case FeatureExcludedFeaturesEditPart.VISUAL_ID: {
+		case FeatureDetailedRequirementsEditPart.VISUAL_ID: {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Edge sv = (Edge) view;
 			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_FeatureExcludedFeatures_4032_target,
+					Messages.NavigatorGroupName_FeatureDetailedRequirements_4027_target,
 					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_FeatureExcludedFeatures_4032_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Feature2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Feature2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case FeatureEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Feature_2009_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Feature_2009_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ScientificProblemInfluencedFeatureEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureRequiredInterfacesEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureProvidedInterfacesEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ConstraintRestrictedFeatureEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureDependenciesEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureSuperFeatureEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureSuperFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureRequiredFeaturesEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureRequiredFeaturesEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureExcludedFeaturesEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureExcludedFeaturesEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			return result.toArray();
-		}
-
-		case MathematicalModelEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_MathematicalModel_2005_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_MathematicalModel_2005_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(MathematicalModelRepresentedProblemEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(MathematicalModelRefinedModelEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(MathematicalModelRefinedModelEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(MathematicalModelNumericalMethodsEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(MathematicalModelDependenciesEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case Requirement2EditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Requirement_3012_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Requirement_3012_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case DataFlowEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_DataFlow_2016_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataFlowSpecifiedProcessEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			return result.toArray();
-		}
-
-		case ErrorHandlingEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_ErrorHandling_2039_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_ErrorHandling_2039_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataFlowSpecifiedProcessEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case FeatureRequiredInterfacesEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_FeatureRequiredInterfaces_4023_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_FeatureRequiredInterfaces_4023_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(UserInterfaceEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(SoftwareInterfaceEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(SoftwareInterface2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(UserInterface2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Feature2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case Feature2EditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Feature_3009_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Feature_3009_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ScientificProblemInfluencedFeatureEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureRequiredInterfacesEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureProvidedInterfacesEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ConstraintRestrictedFeatureEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureDependenciesEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureSuperFeatureEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureSuperFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureRequiredFeaturesEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureRequiredFeaturesEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureExcludedFeaturesEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureExcludedFeaturesEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			return result.toArray();
-		}
-
-		case NumericalMethodPerformanceEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_NumericalMethodPerformance_4017_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_NumericalMethodPerformance_4017_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(PerformanceEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(Performance2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(NumericalMethodEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(NumericalMethod2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case DataFlowSpecifiedProcessEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_DataFlowSpecifiedProcess_4056_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_DataFlowSpecifiedProcess_4056_source,
+					Messages.NavigatorGroupName_FeatureDetailedRequirements_4027_source,
 					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry.getType(ProcessEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(PerformanceEditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
@@ -2784,50 +1540,11 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(StatusMonitoring2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ResultsOutput2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Process2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(InputDataReading2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ErrorHandling2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataHandling2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpace2EditPart.VISUAL_ID));
+					ScrmVisualIDRegistry.getType(RequirementEditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(DataFlowEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(DataFlow2EditPart.VISUAL_ID));
+					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
 			source.addChildren(createNavigatorItems(connectedViews, source,
 					true));
 			if (!target.isEmpty()) {
@@ -2839,335 +1556,101 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case DataProcessSpaceEditPart.VISUAL_ID: {
+		case NumericalMethodPerformanceEditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_NumericalMethodPerformance_4017_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_NumericalMethodPerformance_4017_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(PerformanceEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(NumericalMethodEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case AssumptionEditPart.VISUAL_ID: {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_DataProcessSpace_2046_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_DataProcessSpace_2046_incominglinks,
+					Messages.NavigatorGroupName_Assumption_2008_incominglinks,
 					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceDataProcessSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(StatusMonitoring2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceDataProcessSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(ResultsOutput2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceDataProcessSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry.getType(Process2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceDataProcessSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(InputDataReading2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceDataProcessSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(ErrorHandling2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceDataProcessSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(DataHandling2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceDataProcessSpaceCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpace2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
 			connectedViews = getIncomingLinksByType(
 					Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
+							.getType(MathematicalModelDependenciesEditPart.VISUAL_ID));
 			incominglinks.addChildren(createNavigatorItems(connectedViews,
 					incominglinks, true));
 			connectedViews = getIncomingLinksByType(
 					Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(DataFlowSpecifiedProcessEditPart.VISUAL_ID));
+							.getType(NumericalMethodDependenciesEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
+			return result.toArray();
+		}
+
+		case RequirementEditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_Requirement_2034_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_Requirement_2034_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(NumericalMethodRealizingRequirementEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(FeatureDetailedRequirementsEditPart.VISUAL_ID));
 			incominglinks.addChildren(createNavigatorItems(connectedViews,
 					incominglinks, true));
 			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
+							.getType(Requirement2EditPart.VISUAL_ID));
 			incominglinks.addChildren(createNavigatorItems(connectedViews,
 					incominglinks, true));
 			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case RequirementSpace2EditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			Collection<View> connectedViews;
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpaceRequirementSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry.getType(Constraint2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpaceRequirementSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(DataDefinition2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpaceRequirementSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry.getType(DataFlow2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpaceRequirementSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry.getType(Feature2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpaceRequirementSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry.getType(Hardware2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpaceRequirementSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(Performance2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpaceRequirementSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
 							.getType(Requirement2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(RequirementSpaceRequirementSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(SoftwareInterface2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpaceRequirementSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(UserInterface2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpaceRequirementSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(RequirementSpace2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			return result.toArray();
-		}
-
-		case SoftwareInterface2EditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_SoftwareInterface_3013_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureRequiredInterfacesEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureProvidedInterfacesEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
+							.getType(RequirementDefiningDataEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
 			if (!incominglinks.isEmpty()) {
 				result.add(incominglinks);
 			}
-			return result.toArray();
-		}
-
-		case MathematicalModel2EditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_MathematicalModel_3003_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_MathematicalModel_3003_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(MathematicalModelRepresentedProblemEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(MathematicalModelRefinedModelEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(MathematicalModelRefinedModelEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(MathematicalModelNumericalMethodsEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(MathematicalModelDependenciesEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
 			if (!outgoinglinks.isEmpty()) {
 				result.add(outgoinglinks);
-			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case MathematicalModelNumericalMethodsEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_MathematicalModelNumericalMethods_4011_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_MathematicalModelNumericalMethods_4011_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(NumericalMethodEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(NumericalMethod2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(MathematicalModelEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(MathematicalModel2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
 			}
 			return result.toArray();
 		}
@@ -3197,106 +1680,6 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case FeatureSuperFeatureEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_FeatureSuperFeature_4053_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_FeatureSuperFeature_4053_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Feature2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Feature2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case StatusMonitoringEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_StatusMonitoring_2040_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_StatusMonitoring_2040_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataFlowSpecifiedProcessEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
 		case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID: {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Edge sv = (Edge) view;
@@ -3311,18 +1694,9 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Feature2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
 			connectedViews = getLinksSourceByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
 							.getType(ScientificProblemEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ScientificProblem2EditPart.VISUAL_ID));
 			source.addChildren(createNavigatorItems(connectedViews, source,
 					true));
 			if (!target.isEmpty()) {
@@ -3334,415 +1708,33 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case ResultsOutputEditPart.VISUAL_ID: {
+		case ScientificProblemEditPart.VISUAL_ID: {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Node sv = (Node) view;
 			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_ResultsOutput_2038_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_ResultsOutput_2038_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataFlowSpecifiedProcessEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case DataDefinition2EditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_DataDefinition_3007_outgoinglinks,
+					Messages.NavigatorGroupName_ScientificProblem_2007_outgoinglinks,
 					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getOutgoingLinksByType(
 					Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
+							.getType(ScientificProblemRepresentingModelEditPart.VISUAL_ID));
 			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			return result.toArray();
-		}
-
-		case HardwareEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Hardware_2010_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(FeatureDependenciesEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case ScientificProblem2EditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_ScientificProblem_3001_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_ScientificProblem_3001_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getIncomingLinksByType(
+			connectedViews = getOutgoingLinksByType(
 					Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(MathematicalModelRepresentedProblemEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(NumericalMethodSolvedProblemEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
+							.getType(ScientificProblemSolvingMethodsEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
 			connectedViews = getOutgoingLinksByType(
 					Collections.singleton(sv),
 					ScrmVisualIDRegistry
 							.getType(ScientificProblemInfluencedFeatureEditPart.VISUAL_ID));
 			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 					outgoinglinks, true));
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
 			if (!outgoinglinks.isEmpty()) {
 				result.add(outgoinglinks);
-			}
-			return result.toArray();
-		}
-
-		case KnowledgeSpace2EditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			Collection<View> connectedViews;
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(KnowledgeSpaceKnowledgeSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(ScientificProblem2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(KnowledgeSpaceKnowledgeSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(NumericalMethod2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(KnowledgeSpaceKnowledgeSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(MathematicalModel2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(KnowledgeSpaceKnowledgeSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry.getType(Assumption2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(KnowledgeSpaceKnowledgeSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(KnowledgeSpace2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			return result.toArray();
-		}
-
-		case DataFlow2EditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_DataFlow_3008_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataFlowSpecifiedProcessEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			return result.toArray();
-		}
-
-		case NumericalMethodDependenciesEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_NumericalMethodDependencies_4015_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_NumericalMethodDependencies_4015_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(AssumptionEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Assumption2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(NumericalMethodEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(NumericalMethod2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case PerformanceEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Performance_2015_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Performance_2015_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(NumericalMethodPerformanceEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case InputDataReadingEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_InputDataReading_2036_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_InputDataReading_2036_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataFlowSpecifiedProcessEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case FeatureProvidedInterfacesEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_FeatureProvidedInterfaces_4024_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_FeatureProvidedInterfaces_4024_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(UserInterfaceEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(SoftwareInterfaceEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(SoftwareInterface2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(UserInterface2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Feature2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
 			}
 			return result.toArray();
 		}
@@ -3786,43 +1778,333 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 							.getType(StatusMonitoringEditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(ProcessEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceEditPart.VISUAL_ID));
+							.getType(InputDataReadingEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(DataHandlingEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ResultsOutputEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ErrorHandlingEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(StatusMonitoringEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case MathematicalModelDependenciesEditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_MathematicalModelDependencies_4012_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_MathematicalModelDependencies_4012_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(AssumptionEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(MathematicalModelEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case Requirement2EditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_Requirement_4036_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_Requirement_4036_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_Requirement_4036_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_Requirement_4036_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(ProcessEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(PerformanceEditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(StatusMonitoring2EditPart.VISUAL_ID));
+							.getType(InputDataReadingEditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(ResultsOutput2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Process2EditPart.VISUAL_ID));
+							.getType(DataHandlingEditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(InputDataReading2EditPart.VISUAL_ID));
+							.getType(ResultsOutputEditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(ErrorHandling2EditPart.VISUAL_ID));
+							.getType(ErrorHandlingEditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(DataHandling2EditPart.VISUAL_ID));
+							.getType(StatusMonitoringEditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(RequirementEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(ProcessEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(PerformanceEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
 					ScrmVisualIDRegistry
-							.getType(DataProcessSpace2EditPart.VISUAL_ID));
+							.getType(InputDataReadingEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(DataHandlingEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ResultsOutputEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ErrorHandlingEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(StatusMonitoringEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(RequirementEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
+		case HardwareEditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_Hardware_2010_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(FeatureDependenciesEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
+			return result.toArray();
+		}
+
+		case FeatureRequiredFeaturesEditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_FeatureRequiredFeatures_4030_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_FeatureRequiredFeatures_4030_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case MathematicalModelEditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_MathematicalModel_2005_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_MathematicalModel_2005_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(ScientificProblemRepresentingModelEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(MathematicalModel2EditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(MathematicalModel2EditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(MathematicalModelNumericalMethodsEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(MathematicalModelDependenciesEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
+		case PerformanceEditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_Performance_2015_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_Performance_2015_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(NumericalMethodRealizingRequirementEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(NumericalMethodPerformanceEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(FeatureDetailedRequirementsEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(Requirement2EditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(Requirement2EditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry
+							.getType(RequirementDefiningDataEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
+		case ProcessDataFlowEditPart.VISUAL_ID: {
+			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_ProcessDataFlow_4045_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
+					Messages.NavigatorGroupName_ProcessDataFlow_4045_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(Collections.singleton(sv),
+					ScrmVisualIDRegistry.getType(DataFlowEditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksSourceByType(Collections.singleton(sv),
@@ -3854,277 +2136,11 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 							.getType(StatusMonitoringEditPart.VISUAL_ID));
 			source.addChildren(createNavigatorItems(connectedViews, source,
 					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(StatusMonitoring2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ResultsOutput2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Process2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(InputDataReading2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ErrorHandling2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataHandling2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpace2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
 			if (!target.isEmpty()) {
 				result.add(target);
 			}
 			if (!source.isEmpty()) {
 				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case DataProcessSpace2EditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_DataProcessSpace_3022_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_DataProcessSpace_3022_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceDataProcessSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(StatusMonitoring2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceDataProcessSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(ResultsOutput2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceDataProcessSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry.getType(Process2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceDataProcessSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(InputDataReading2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceDataProcessSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(ErrorHandling2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceDataProcessSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(DataHandling2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpaceDataProcessSpaceCompartment2EditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ScrmVisualIDRegistry
-							.getType(DataProcessSpace2EditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataFlowSpecifiedProcessEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			return result.toArray();
-		}
-
-		case FeatureDependenciesEditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			ScrmNavigatorGroup target = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_FeatureDependencies_4026_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup source = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_FeatureDependencies_4026_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(HardwareEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Hardware2EditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(FeatureEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry.getType(Feature2EditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case StatusMonitoring2EditPart.VISUAL_ID: {
-			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_StatusMonitoring_3016_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_StatusMonitoring_3016_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRealizedMethodEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementSpecifiedFeatureEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(RequirementRefinedRequirementEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(DataFlowSpecifiedProcessEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ScrmVisualIDRegistry
-							.getType(ProcessSuccessorEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
 			}
 			return result.toArray();
 		}

@@ -17,71 +17,47 @@ import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
 
 import scrm.ScrmPackage;
-import scrm.diagram.edit.parts.Assumption2EditPart;
 import scrm.diagram.edit.parts.AssumptionEditPart;
-import scrm.diagram.edit.parts.Constraint2EditPart;
 import scrm.diagram.edit.parts.ConstraintEditPart;
-import scrm.diagram.edit.parts.ConstraintRestrictedFeatureEditPart;
-import scrm.diagram.edit.parts.DataDefinition2EditPart;
-import scrm.diagram.edit.parts.DataDefinitionDefinedRequirementEditPart;
 import scrm.diagram.edit.parts.DataDefinitionEditPart;
-import scrm.diagram.edit.parts.DataFlow2EditPart;
 import scrm.diagram.edit.parts.DataFlowEditPart;
-import scrm.diagram.edit.parts.DataFlowSpecifiedProcessEditPart;
-import scrm.diagram.edit.parts.DataHandling2EditPart;
 import scrm.diagram.edit.parts.DataHandlingEditPart;
-import scrm.diagram.edit.parts.DataProcessSpace2EditPart;
-import scrm.diagram.edit.parts.DataProcessSpaceEditPart;
-import scrm.diagram.edit.parts.ErrorHandling2EditPart;
 import scrm.diagram.edit.parts.ErrorHandlingEditPart;
 import scrm.diagram.edit.parts.Feature2EditPart;
+import scrm.diagram.edit.parts.FeatureConstraintsEditPart;
 import scrm.diagram.edit.parts.FeatureDependenciesEditPart;
+import scrm.diagram.edit.parts.FeatureDetailedRequirementsEditPart;
 import scrm.diagram.edit.parts.FeatureEditPart;
 import scrm.diagram.edit.parts.FeatureExcludedFeaturesEditPart;
 import scrm.diagram.edit.parts.FeatureProvidedInterfacesEditPart;
 import scrm.diagram.edit.parts.FeatureRequiredFeaturesEditPart;
 import scrm.diagram.edit.parts.FeatureRequiredInterfacesEditPart;
-import scrm.diagram.edit.parts.FeatureSuperFeatureEditPart;
-import scrm.diagram.edit.parts.Hardware2EditPart;
 import scrm.diagram.edit.parts.HardwareEditPart;
-import scrm.diagram.edit.parts.InputDataReading2EditPart;
 import scrm.diagram.edit.parts.InputDataReadingEditPart;
-import scrm.diagram.edit.parts.KnowledgeSpace2EditPart;
 import scrm.diagram.edit.parts.KnowledgeSpaceEditPart;
 import scrm.diagram.edit.parts.MathematicalModel2EditPart;
 import scrm.diagram.edit.parts.MathematicalModelDependenciesEditPart;
 import scrm.diagram.edit.parts.MathematicalModelEditPart;
 import scrm.diagram.edit.parts.MathematicalModelNumericalMethodsEditPart;
-import scrm.diagram.edit.parts.MathematicalModelRefinedModelEditPart;
-import scrm.diagram.edit.parts.MathematicalModelRepresentedProblemEditPart;
-import scrm.diagram.edit.parts.NumericalMethod2EditPart;
 import scrm.diagram.edit.parts.NumericalMethodDependenciesEditPart;
 import scrm.diagram.edit.parts.NumericalMethodEditPart;
 import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
-import scrm.diagram.edit.parts.NumericalMethodSolvedProblemEditPart;
-import scrm.diagram.edit.parts.Performance2EditPart;
+import scrm.diagram.edit.parts.NumericalMethodRealizingRequirementEditPart;
 import scrm.diagram.edit.parts.PerformanceEditPart;
-import scrm.diagram.edit.parts.Process2EditPart;
+import scrm.diagram.edit.parts.ProcessDataFlowEditPart;
 import scrm.diagram.edit.parts.ProcessEditPart;
 import scrm.diagram.edit.parts.ProcessSuccessorEditPart;
 import scrm.diagram.edit.parts.Requirement2EditPart;
+import scrm.diagram.edit.parts.RequirementDefiningDataEditPart;
 import scrm.diagram.edit.parts.RequirementEditPart;
-import scrm.diagram.edit.parts.RequirementRealizedMethodEditPart;
-import scrm.diagram.edit.parts.RequirementRefinedRequirementEditPart;
-import scrm.diagram.edit.parts.RequirementSpace2EditPart;
-import scrm.diagram.edit.parts.RequirementSpaceEditPart;
-import scrm.diagram.edit.parts.RequirementSpecifiedFeatureEditPart;
-import scrm.diagram.edit.parts.ResultsOutput2EditPart;
 import scrm.diagram.edit.parts.ResultsOutputEditPart;
 import scrm.diagram.edit.parts.SCRMDiagramEditPart;
-import scrm.diagram.edit.parts.ScientificProblem2EditPart;
 import scrm.diagram.edit.parts.ScientificProblemEditPart;
 import scrm.diagram.edit.parts.ScientificProblemInfluencedFeatureEditPart;
-import scrm.diagram.edit.parts.SoftwareInterface2EditPart;
+import scrm.diagram.edit.parts.ScientificProblemRepresentingModelEditPart;
+import scrm.diagram.edit.parts.ScientificProblemSolvingMethodsEditPart;
 import scrm.diagram.edit.parts.SoftwareInterfaceEditPart;
-import scrm.diagram.edit.parts.StatusMonitoring2EditPart;
 import scrm.diagram.edit.parts.StatusMonitoringEditPart;
-import scrm.diagram.edit.parts.UserInterface2EditPart;
 import scrm.diagram.edit.parts.UserInterfaceEditPart;
 import scrm.diagram.part.ScrmDiagramEditorPlugin;
 import scrm.knowledge.KnowledgePackage;
@@ -208,123 +184,11 @@ public class ScrmElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType RequirementSpace_2045 = getElementType("org.unicase.scrm.diagram.RequirementSpace_2045"); //$NON-NLS-1$
-
+	public static final IElementType ScientificProblemRepresentingModel_4006 = getElementType("org.unicase.scrm.diagram.ScientificProblemRepresentingModel_4006"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DataProcessSpace_2046 = getElementType("org.unicase.scrm.diagram.DataProcessSpace_2046"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType ScientificProblem_3001 = getElementType("org.unicase.scrm.diagram.ScientificProblem_3001"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType NumericalMethod_3002 = getElementType("org.unicase.scrm.diagram.NumericalMethod_3002"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType MathematicalModel_3003 = getElementType("org.unicase.scrm.diagram.MathematicalModel_3003"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Assumption_3004 = getElementType("org.unicase.scrm.diagram.Assumption_3004"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType KnowledgeSpace_3005 = getElementType("org.unicase.scrm.diagram.KnowledgeSpace_3005"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Constraint_3006 = getElementType("org.unicase.scrm.diagram.Constraint_3006"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType DataDefinition_3007 = getElementType("org.unicase.scrm.diagram.DataDefinition_3007"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType DataFlow_3008 = getElementType("org.unicase.scrm.diagram.DataFlow_3008"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Feature_3009 = getElementType("org.unicase.scrm.diagram.Feature_3009"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Hardware_3010 = getElementType("org.unicase.scrm.diagram.Hardware_3010"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Performance_3011 = getElementType("org.unicase.scrm.diagram.Performance_3011"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Requirement_3012 = getElementType("org.unicase.scrm.diagram.Requirement_3012"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType SoftwareInterface_3013 = getElementType("org.unicase.scrm.diagram.SoftwareInterface_3013"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType UserInterface_3014 = getElementType("org.unicase.scrm.diagram.UserInterface_3014"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType RequirementSpace_3015 = getElementType("org.unicase.scrm.diagram.RequirementSpace_3015"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType StatusMonitoring_3016 = getElementType("org.unicase.scrm.diagram.StatusMonitoring_3016"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType ResultsOutput_3017 = getElementType("org.unicase.scrm.diagram.ResultsOutput_3017"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Process_3018 = getElementType("org.unicase.scrm.diagram.Process_3018"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType InputDataReading_3019 = getElementType("org.unicase.scrm.diagram.InputDataReading_3019"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType ErrorHandling_3020 = getElementType("org.unicase.scrm.diagram.ErrorHandling_3020"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType DataHandling_3021 = getElementType("org.unicase.scrm.diagram.DataHandling_3021"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType DataProcessSpace_3022 = getElementType("org.unicase.scrm.diagram.DataProcessSpace_3022"); //$NON-NLS-1$
-
+	public static final IElementType ScientificProblemSolvingMethods_4041 = getElementType("org.unicase.scrm.diagram.ScientificProblemSolvingMethods_4041"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -332,18 +196,7 @@ public class ScrmElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType MathematicalModelRefinedModel_4058 = getElementType("org.unicase.scrm.diagram.MathematicalModelRefinedModel_4058"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType MathematicalModelRepresentedProblem_4048 = getElementType("org.unicase.scrm.diagram.MathematicalModelRepresentedProblem_4048"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType NumericalMethodSolvedProblem_4057 = getElementType("org.unicase.scrm.diagram.NumericalMethodSolvedProblem_4057"); //$NON-NLS-1$
-
+	public static final IElementType MathematicalModel_4004 = getElementType("org.unicase.scrm.diagram.MathematicalModel_4004"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -359,8 +212,7 @@ public class ScrmElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType RequirementRealizedMethod_4050 = getElementType("org.unicase.scrm.diagram.RequirementRealizedMethod_4050"); //$NON-NLS-1$
-
+	public static final IElementType NumericalMethodRealizingRequirement_4016 = getElementType("org.unicase.scrm.diagram.NumericalMethodRealizingRequirement_4016"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -376,8 +228,7 @@ public class ScrmElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType ConstraintRestrictedFeature_4051 = getElementType("org.unicase.scrm.diagram.ConstraintRestrictedFeature_4051"); //$NON-NLS-1$
-
+	public static final IElementType FeatureConstraints_4025 = getElementType("org.unicase.scrm.diagram.FeatureConstraints_4025"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -385,13 +236,11 @@ public class ScrmElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType RequirementSpecifiedFeature_4052 = getElementType("org.unicase.scrm.diagram.RequirementSpecifiedFeature_4052"); //$NON-NLS-1$
-
+	public static final IElementType FeatureDetailedRequirements_4027 = getElementType("org.unicase.scrm.diagram.FeatureDetailedRequirements_4027"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType FeatureSuperFeature_4053 = getElementType("org.unicase.scrm.diagram.FeatureSuperFeature_4053"); //$NON-NLS-1$
-
+	public static final IElementType Feature_4029 = getElementType("org.unicase.scrm.diagram.Feature_4029"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -403,17 +252,15 @@ public class ScrmElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType RequirementRefinedRequirement_4054 = getElementType("org.unicase.scrm.diagram.RequirementRefinedRequirement_4054"); //$NON-NLS-1$
-
+	public static final IElementType Requirement_4036 = getElementType("org.unicase.scrm.diagram.Requirement_4036"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DataDefinitionDefinedRequirement_4055 = getElementType("org.unicase.scrm.diagram.DataDefinitionDefinedRequirement_4055"); //$NON-NLS-1$
-
+	public static final IElementType RequirementDefiningData_4038 = getElementType("org.unicase.scrm.diagram.RequirementDefiningData_4038"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DataFlowSpecifiedProcess_4056 = getElementType("org.unicase.scrm.diagram.DataFlowSpecifiedProcess_4056"); //$NON-NLS-1$
+	public static final IElementType ProcessDataFlow_4045 = getElementType("org.unicase.scrm.diagram.ProcessDataFlow_4045"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -600,101 +447,20 @@ public class ScrmElementTypes {
 			elements.put(KnowledgeSpace_2044,
 					KnowledgePackage.eINSTANCE.getKnowledgeSpace());
 
-			elements.put(RequirementSpace_2045,
-					RequirementsPackage.eINSTANCE.getRequirementSpace());
-
-			elements.put(DataProcessSpace_2046,
-					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
-							.getDataProcessSpace());
-
-			elements.put(ScientificProblem_3001,
-					KnowledgePackage.eINSTANCE.getScientificProblem());
-
-			elements.put(NumericalMethod_3002,
-					KnowledgePackage.eINSTANCE.getNumericalMethod());
-
-			elements.put(MathematicalModel_3003,
-					KnowledgePackage.eINSTANCE.getMathematicalModel());
-
-			elements.put(Assumption_3004,
-					KnowledgePackage.eINSTANCE.getAssumption());
-
-			elements.put(KnowledgeSpace_3005,
-					KnowledgePackage.eINSTANCE.getKnowledgeSpace());
-
-			elements.put(Constraint_3006,
-					RequirementsPackage.eINSTANCE.getConstraint());
-
-			elements.put(DataDefinition_3007,
-					RequirementsPackage.eINSTANCE.getDataDefinition());
-
-			elements.put(DataFlow_3008,
-					RequirementsPackage.eINSTANCE.getDataFlow());
-
-			elements.put(Feature_3009,
-					RequirementsPackage.eINSTANCE.getFeature());
-
-			elements.put(Hardware_3010,
-					RequirementsPackage.eINSTANCE.getHardware());
-
-			elements.put(Performance_3011,
-					RequirementsPackage.eINSTANCE.getPerformance());
-
-			elements.put(Requirement_3012,
-					RequirementsPackage.eINSTANCE.getRequirement());
-
-			elements.put(SoftwareInterface_3013,
-					RequirementsPackage.eINSTANCE.getSoftwareInterface());
-
-			elements.put(UserInterface_3014,
-					RequirementsPackage.eINSTANCE.getUserInterface());
-
-			elements.put(RequirementSpace_3015,
-					RequirementsPackage.eINSTANCE.getRequirementSpace());
-
-			elements.put(StatusMonitoring_3016,
-					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
-							.getStatusMonitoring());
-
-			elements.put(ResultsOutput_3017,
-					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
-							.getResultsOutput());
-
-			elements.put(Process_3018,
-					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
-							.getProcess());
-
-			elements.put(InputDataReading_3019,
-					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
-							.getInputDataReading());
-
-			elements.put(ErrorHandling_3020,
-					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
-							.getErrorHandling());
-
-			elements.put(DataHandling_3021,
-					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
-							.getDataHandling());
-
-			elements.put(DataProcessSpace_3022,
-					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
-							.getDataProcessSpace());
-
-			elements.put(MathematicalModelRepresentedProblem_4048,
+			elements.put(ScientificProblemRepresentingModel_4006,
 					KnowledgePackage.eINSTANCE
-							.getMathematicalModel_RepresentedProblem());
+							.getScientificProblem_RepresentingModel());
 
-			elements.put(NumericalMethodSolvedProblem_4057,
+			elements.put(ScientificProblemSolvingMethods_4041,
 					KnowledgePackage.eINSTANCE
-							.getNumericalMethod_SolvedProblem());
+							.getScientificProblem_SolvingMethods());
 
 			elements.put(ScientificProblemInfluencedFeature_4008,
 					KnowledgePackage.eINSTANCE
 							.getScientificProblem_InfluencedFeature());
 
-			elements.put(MathematicalModelRefinedModel_4058,
-					KnowledgePackage.eINSTANCE
-							.getMathematicalModel_RefinedModel());
+			elements.put(MathematicalModel_4004,
+					KnowledgePackage.eINSTANCE.getMathematicalModel());
 
 			elements.put(MathematicalModelNumericalMethods_4011,
 					KnowledgePackage.eINSTANCE
@@ -708,13 +474,12 @@ public class ScrmElementTypes {
 					KnowledgePackage.eINSTANCE
 							.getNumericalMethod_Dependencies());
 
-			elements.put(RequirementRealizedMethod_4050,
-					RequirementsPackage.eINSTANCE
-							.getRequirement_RealizedMethod());
+			elements.put(NumericalMethodRealizingRequirement_4016,
+					KnowledgePackage.eINSTANCE
+							.getNumericalMethod_RealizingRequirement());
 
 			elements.put(NumericalMethodPerformance_4017,
-					RequirementsPackage.eINSTANCE
-							.getPerformance_DescribedMethod());
+					KnowledgePackage.eINSTANCE.getNumericalMethod_Performance());
 
 			elements.put(FeatureRequiredInterfaces_4023,
 					RequirementsPackage.eINSTANCE
@@ -724,19 +489,18 @@ public class ScrmElementTypes {
 					RequirementsPackage.eINSTANCE
 							.getFeature_ProvidedInterfaces());
 
-			elements.put(ConstraintRestrictedFeature_4051,
-					RequirementsPackage.eINSTANCE
-							.getConstraint_RestrictedFeature());
+			elements.put(FeatureConstraints_4025,
+					RequirementsPackage.eINSTANCE.getFeature_Constraints());
 
 			elements.put(FeatureDependencies_4026,
 					RequirementsPackage.eINSTANCE.getFeature_Dependencies());
 
-			elements.put(RequirementSpecifiedFeature_4052,
+			elements.put(FeatureDetailedRequirements_4027,
 					RequirementsPackage.eINSTANCE
-							.getRequirement_SpecifiedFeature());
+							.getFeature_DetailedRequirements());
 
-			elements.put(FeatureSuperFeature_4053,
-					RequirementsPackage.eINSTANCE.getFeature_SuperFeature());
+			elements.put(Feature_4029,
+					RequirementsPackage.eINSTANCE.getFeature());
 
 			elements.put(FeatureRequiredFeatures_4030,
 					RequirementsPackage.eINSTANCE.getFeature_RequiredFeatures());
@@ -744,17 +508,15 @@ public class ScrmElementTypes {
 			elements.put(FeatureExcludedFeatures_4032,
 					RequirementsPackage.eINSTANCE.getFeature_ExcludedFeatures());
 
-			elements.put(RequirementRefinedRequirement_4054,
-					RequirementsPackage.eINSTANCE
-							.getRequirement_RefinedRequirement());
+			elements.put(Requirement_4036,
+					RequirementsPackage.eINSTANCE.getRequirement());
 
-			elements.put(DataDefinitionDefinedRequirement_4055,
-					RequirementsPackage.eINSTANCE
-							.getDataDefinition_DefinedRequirement());
+			elements.put(RequirementDefiningData_4038,
+					RequirementsPackage.eINSTANCE.getRequirement_DefiningData());
 
-			elements.put(DataFlowSpecifiedProcess_4056,
-					RequirementsPackage.eINSTANCE
-							.getDataFlow_SpecifiedProcess());
+			elements.put(ProcessDataFlow_4045,
+					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
+							.getProcess_DataFlow());
 
 			elements.put(ProcessSuccessor_4047,
 					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
@@ -797,50 +559,26 @@ public class ScrmElementTypes {
 			KNOWN_ELEMENT_TYPES.add(StatusMonitoring_2040);
 			KNOWN_ELEMENT_TYPES.add(Requirement_2034);
 			KNOWN_ELEMENT_TYPES.add(KnowledgeSpace_2044);
-			KNOWN_ELEMENT_TYPES.add(RequirementSpace_2045);
-			KNOWN_ELEMENT_TYPES.add(DataProcessSpace_2046);
-			KNOWN_ELEMENT_TYPES.add(ScientificProblem_3001);
-			KNOWN_ELEMENT_TYPES.add(NumericalMethod_3002);
-			KNOWN_ELEMENT_TYPES.add(MathematicalModel_3003);
-			KNOWN_ELEMENT_TYPES.add(Assumption_3004);
-			KNOWN_ELEMENT_TYPES.add(KnowledgeSpace_3005);
-			KNOWN_ELEMENT_TYPES.add(Constraint_3006);
-			KNOWN_ELEMENT_TYPES.add(DataDefinition_3007);
-			KNOWN_ELEMENT_TYPES.add(DataFlow_3008);
-			KNOWN_ELEMENT_TYPES.add(Feature_3009);
-			KNOWN_ELEMENT_TYPES.add(Hardware_3010);
-			KNOWN_ELEMENT_TYPES.add(Performance_3011);
-			KNOWN_ELEMENT_TYPES.add(Requirement_3012);
-			KNOWN_ELEMENT_TYPES.add(SoftwareInterface_3013);
-			KNOWN_ELEMENT_TYPES.add(UserInterface_3014);
-			KNOWN_ELEMENT_TYPES.add(RequirementSpace_3015);
-			KNOWN_ELEMENT_TYPES.add(StatusMonitoring_3016);
-			KNOWN_ELEMENT_TYPES.add(ResultsOutput_3017);
-			KNOWN_ELEMENT_TYPES.add(Process_3018);
-			KNOWN_ELEMENT_TYPES.add(InputDataReading_3019);
-			KNOWN_ELEMENT_TYPES.add(ErrorHandling_3020);
-			KNOWN_ELEMENT_TYPES.add(DataHandling_3021);
-			KNOWN_ELEMENT_TYPES.add(DataProcessSpace_3022);
-			KNOWN_ELEMENT_TYPES.add(MathematicalModelRepresentedProblem_4048);
-			KNOWN_ELEMENT_TYPES.add(NumericalMethodSolvedProblem_4057);
+			KNOWN_ELEMENT_TYPES.add(ScientificProblemRepresentingModel_4006);
+			KNOWN_ELEMENT_TYPES.add(ScientificProblemSolvingMethods_4041);
 			KNOWN_ELEMENT_TYPES.add(ScientificProblemInfluencedFeature_4008);
-			KNOWN_ELEMENT_TYPES.add(MathematicalModelRefinedModel_4058);
+			KNOWN_ELEMENT_TYPES.add(MathematicalModel_4004);
 			KNOWN_ELEMENT_TYPES.add(MathematicalModelNumericalMethods_4011);
 			KNOWN_ELEMENT_TYPES.add(MathematicalModelDependencies_4012);
 			KNOWN_ELEMENT_TYPES.add(NumericalMethodDependencies_4015);
-			KNOWN_ELEMENT_TYPES.add(RequirementRealizedMethod_4050);
+			KNOWN_ELEMENT_TYPES.add(NumericalMethodRealizingRequirement_4016);
 			KNOWN_ELEMENT_TYPES.add(NumericalMethodPerformance_4017);
 			KNOWN_ELEMENT_TYPES.add(FeatureRequiredInterfaces_4023);
 			KNOWN_ELEMENT_TYPES.add(FeatureProvidedInterfaces_4024);
-			KNOWN_ELEMENT_TYPES.add(ConstraintRestrictedFeature_4051);
+			KNOWN_ELEMENT_TYPES.add(FeatureConstraints_4025);
 			KNOWN_ELEMENT_TYPES.add(FeatureDependencies_4026);
-			KNOWN_ELEMENT_TYPES.add(RequirementSpecifiedFeature_4052);
-			KNOWN_ELEMENT_TYPES.add(FeatureSuperFeature_4053);
+			KNOWN_ELEMENT_TYPES.add(FeatureDetailedRequirements_4027);
+			KNOWN_ELEMENT_TYPES.add(Feature_4029);
 			KNOWN_ELEMENT_TYPES.add(FeatureRequiredFeatures_4030);
 			KNOWN_ELEMENT_TYPES.add(FeatureExcludedFeatures_4032);
-			KNOWN_ELEMENT_TYPES.add(RequirementRefinedRequirement_4054);
-			KNOWN_ELEMENT_TYPES.add(DataDefinitionDefinedRequirement_4055);
-			KNOWN_ELEMENT_TYPES.add(DataFlowSpecifiedProcess_4056);
+			KNOWN_ELEMENT_TYPES.add(Requirement_4036);
+			KNOWN_ELEMENT_TYPES.add(RequirementDefiningData_4038);
+			KNOWN_ELEMENT_TYPES.add(ProcessDataFlow_4045);
 			KNOWN_ELEMENT_TYPES.add(ProcessSuccessor_4047);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
@@ -893,94 +631,46 @@ public class ScrmElementTypes {
 			return Requirement_2034;
 		case KnowledgeSpaceEditPart.VISUAL_ID:
 			return KnowledgeSpace_2044;
-		case RequirementSpaceEditPart.VISUAL_ID:
-			return RequirementSpace_2045;
-		case DataProcessSpaceEditPart.VISUAL_ID:
-			return DataProcessSpace_2046;
-		case ScientificProblem2EditPart.VISUAL_ID:
-			return ScientificProblem_3001;
-		case NumericalMethod2EditPart.VISUAL_ID:
-			return NumericalMethod_3002;
-		case MathematicalModel2EditPart.VISUAL_ID:
-			return MathematicalModel_3003;
-		case Assumption2EditPart.VISUAL_ID:
-			return Assumption_3004;
-		case KnowledgeSpace2EditPart.VISUAL_ID:
-			return KnowledgeSpace_3005;
-		case Constraint2EditPart.VISUAL_ID:
-			return Constraint_3006;
-		case DataDefinition2EditPart.VISUAL_ID:
-			return DataDefinition_3007;
-		case DataFlow2EditPart.VISUAL_ID:
-			return DataFlow_3008;
-		case Feature2EditPart.VISUAL_ID:
-			return Feature_3009;
-		case Hardware2EditPart.VISUAL_ID:
-			return Hardware_3010;
-		case Performance2EditPart.VISUAL_ID:
-			return Performance_3011;
-		case Requirement2EditPart.VISUAL_ID:
-			return Requirement_3012;
-		case SoftwareInterface2EditPart.VISUAL_ID:
-			return SoftwareInterface_3013;
-		case UserInterface2EditPart.VISUAL_ID:
-			return UserInterface_3014;
-		case RequirementSpace2EditPart.VISUAL_ID:
-			return RequirementSpace_3015;
-		case StatusMonitoring2EditPart.VISUAL_ID:
-			return StatusMonitoring_3016;
-		case ResultsOutput2EditPart.VISUAL_ID:
-			return ResultsOutput_3017;
-		case Process2EditPart.VISUAL_ID:
-			return Process_3018;
-		case InputDataReading2EditPart.VISUAL_ID:
-			return InputDataReading_3019;
-		case ErrorHandling2EditPart.VISUAL_ID:
-			return ErrorHandling_3020;
-		case DataHandling2EditPart.VISUAL_ID:
-			return DataHandling_3021;
-		case DataProcessSpace2EditPart.VISUAL_ID:
-			return DataProcessSpace_3022;
-		case MathematicalModelRepresentedProblemEditPart.VISUAL_ID:
-			return MathematicalModelRepresentedProblem_4048;
-		case NumericalMethodSolvedProblemEditPart.VISUAL_ID:
-			return NumericalMethodSolvedProblem_4057;
+		case ScientificProblemRepresentingModelEditPart.VISUAL_ID:
+			return ScientificProblemRepresentingModel_4006;
+		case ScientificProblemSolvingMethodsEditPart.VISUAL_ID:
+			return ScientificProblemSolvingMethods_4041;
 		case ScientificProblemInfluencedFeatureEditPart.VISUAL_ID:
 			return ScientificProblemInfluencedFeature_4008;
-		case MathematicalModelRefinedModelEditPart.VISUAL_ID:
-			return MathematicalModelRefinedModel_4058;
+		case MathematicalModel2EditPart.VISUAL_ID:
+			return MathematicalModel_4004;
 		case MathematicalModelNumericalMethodsEditPart.VISUAL_ID:
 			return MathematicalModelNumericalMethods_4011;
 		case MathematicalModelDependenciesEditPart.VISUAL_ID:
 			return MathematicalModelDependencies_4012;
 		case NumericalMethodDependenciesEditPart.VISUAL_ID:
 			return NumericalMethodDependencies_4015;
-		case RequirementRealizedMethodEditPart.VISUAL_ID:
-			return RequirementRealizedMethod_4050;
+		case NumericalMethodRealizingRequirementEditPart.VISUAL_ID:
+			return NumericalMethodRealizingRequirement_4016;
 		case NumericalMethodPerformanceEditPart.VISUAL_ID:
 			return NumericalMethodPerformance_4017;
 		case FeatureRequiredInterfacesEditPart.VISUAL_ID:
 			return FeatureRequiredInterfaces_4023;
 		case FeatureProvidedInterfacesEditPart.VISUAL_ID:
 			return FeatureProvidedInterfaces_4024;
-		case ConstraintRestrictedFeatureEditPart.VISUAL_ID:
-			return ConstraintRestrictedFeature_4051;
+		case FeatureConstraintsEditPart.VISUAL_ID:
+			return FeatureConstraints_4025;
 		case FeatureDependenciesEditPart.VISUAL_ID:
 			return FeatureDependencies_4026;
-		case RequirementSpecifiedFeatureEditPart.VISUAL_ID:
-			return RequirementSpecifiedFeature_4052;
-		case FeatureSuperFeatureEditPart.VISUAL_ID:
-			return FeatureSuperFeature_4053;
+		case FeatureDetailedRequirementsEditPart.VISUAL_ID:
+			return FeatureDetailedRequirements_4027;
+		case Feature2EditPart.VISUAL_ID:
+			return Feature_4029;
 		case FeatureRequiredFeaturesEditPart.VISUAL_ID:
 			return FeatureRequiredFeatures_4030;
 		case FeatureExcludedFeaturesEditPart.VISUAL_ID:
 			return FeatureExcludedFeatures_4032;
-		case RequirementRefinedRequirementEditPart.VISUAL_ID:
-			return RequirementRefinedRequirement_4054;
-		case DataDefinitionDefinedRequirementEditPart.VISUAL_ID:
-			return DataDefinitionDefinedRequirement_4055;
-		case DataFlowSpecifiedProcessEditPart.VISUAL_ID:
-			return DataFlowSpecifiedProcess_4056;
+		case Requirement2EditPart.VISUAL_ID:
+			return Requirement_4036;
+		case RequirementDefiningDataEditPart.VISUAL_ID:
+			return RequirementDefiningData_4038;
+		case ProcessDataFlowEditPart.VISUAL_ID:
+			return ProcessDataFlow_4045;
 		case ProcessSuccessorEditPart.VISUAL_ID:
 			return ProcessSuccessor_4047;
 		}

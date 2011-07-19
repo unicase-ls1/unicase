@@ -140,23 +140,25 @@ public final class ModelUtil {
 	public static String eObjectToString(EObject object)
 			throws SerializationException {
 
-		boolean containment = false;
-		boolean href = false;
-		boolean proxy = false;
+		boolean containmentCheckEnabled = false;
+		boolean hrefCheckEnabled = false;
+		boolean proxyCheckEnabled = false;
 
 		IConfigurationElement[] elements = Platform
 				.getExtensionRegistry()
 				.getConfigurationElementsFor(
 						"org.eclipse.emf.emfstore.common.model.serializationoptions");
 		if (elements != null && elements.length > 0) {
-			href = Boolean.parseBoolean(elements[0].getAttribute("HrefCheck"));
-			proxy = Boolean
-					.parseBoolean(elements[0].getAttribute("ProxyCheck"));
-			containment = Boolean.parseBoolean(elements[0]
+			hrefCheckEnabled = Boolean.parseBoolean(elements[0]
+					.getAttribute("HrefCheck"));
+			proxyCheckEnabled = Boolean.parseBoolean(elements[0]
+					.getAttribute("ProxyCheck"));
+			containmentCheckEnabled = Boolean.parseBoolean(elements[0]
 					.getAttribute("SelfContainmentCheck"));
 		}
 
-		return eObjectToString(object, containment, href, proxy);
+		return eObjectToString(object, !containmentCheckEnabled,
+				!hrefCheckEnabled, !proxyCheckEnabled);
 	}
 
 	/**
@@ -185,12 +187,7 @@ public final class ModelUtil {
 		XMIResource res = (XMIResource) (new ResourceSetImpl())
 				.createResource(VIRTUAL_URI);
 
-		if (!overrideContainmentCheck && !(object instanceof EClass)) {
-			if (!CommonUtil.isSelfContained(object)) {
-				throw new SerializationException(object);
-			}
-		}
-
+		EObject copy;
 		if (object instanceof Project) {
 			Project project = (Project) object;
 			Project copiedProject = (Project) clone(object);
@@ -204,9 +201,17 @@ public final class ModelUtil {
 						modelElementId.getId());
 			}
 			res.getContents().add(copiedProject);
+			copy = copiedProject;
 		} else {
-			EObject copy = EcoreUtil.copy(object);
+			copy = EcoreUtil.copy(object);
 			res.getContents().add(copy);
+		}
+
+		if (!overrideContainmentCheck && !(copy instanceof EClass)) {
+			if (!CommonUtil.isSelfContained(copy)
+					|| !CommonUtil.isContainedInResource(copy, res)) {
+				throw new SerializationException(copy);
+			}
 		}
 
 		int step = 200;

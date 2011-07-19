@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.emf.ecp.common.feature"
-      label="ECP Common"
-      version="0.8.1"
+      label="ECP Common  (Incubation)"
+      version="0.8.9.M6"
       provider-name="Eclipse Modeling Project">
 
    <description url="http://emfcp.org">

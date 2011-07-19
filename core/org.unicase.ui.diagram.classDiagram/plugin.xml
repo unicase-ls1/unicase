@@ -359,7 +359,7 @@
          <enablement>
             <test
                property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-               value="org.unicase.EditingDomain"/>
+               value="org.unicase.ui.diagram.classDiagram.EditingDomain"/>
          </enablement>
       </clientContext> 
       <binding context="org.unicase.ui.diagram.classDiagram.TypeContext">
@@ -382,7 +382,7 @@
                <propertyTester
                      class="org.unicase.ui.diagram.classDiagram.part.DiagramTypeTester"
                      id="org.unicase.ui.diagram.classDiagram.part.DiagramTypeTester"
-                     namespace="org.unicase.ui.diagram.classDiagram"
+                     namespace="org.unicase.classDiagram"
                      properties="isDiagramType"
                      type="org.eclipse.emf.ecore.EObject">
                </propertyTester>

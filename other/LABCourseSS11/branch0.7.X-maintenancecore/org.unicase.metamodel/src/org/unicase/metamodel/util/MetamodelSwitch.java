@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.*;
 import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElementId;
@@ -122,13 +121,6 @@ public class MetamodelSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case MetamodelPackage.ASSOCIATION_CLASS_ELEMENT: {
-			AssociationClassElement associationClassElement = (AssociationClassElement) theEObject;
-			T result = caseAssociationClassElement(associationClassElement);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -213,21 +205,6 @@ public class MetamodelSwitch<T> {
 	 * @generated
 	 */
 	public T caseNonDomainElement(NonDomainElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Association Class Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Association Class Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAssociationClassElement(AssociationClassElement object) {
 		return null;
 	}
 

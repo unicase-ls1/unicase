@@ -4,8 +4,8 @@ import org.unicase.workspace.preferences.PropertyKey;
 
 public enum ShortcutActionKey implements PropertyKey {
 	
-	USERBUGLOCATION,
+	GROUPLOCATION,
 	
-	USERTASKLOCATION,
+	USERLOCATION,
 
 }

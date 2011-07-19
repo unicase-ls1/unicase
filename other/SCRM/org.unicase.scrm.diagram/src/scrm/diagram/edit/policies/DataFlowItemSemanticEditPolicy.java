@@ -15,9 +15,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 
-import scrm.diagram.edit.commands.DataFlowSpecifiedProcessCreateCommand;
-import scrm.diagram.edit.commands.DataFlowSpecifiedProcessReorientCommand;
-import scrm.diagram.edit.parts.DataFlowSpecifiedProcessEditPart;
+import scrm.diagram.edit.commands.ProcessDataFlowCreateCommand;
+import scrm.diagram.edit.commands.ProcessDataFlowReorientCommand;
+import scrm.diagram.edit.parts.ProcessDataFlowEditPart;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -42,14 +42,14 @@ public class DataFlowItemSemanticEditPolicy extends
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
 				getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
-			Edge outgoingLink = (Edge) it.next();
-			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == DataFlowSpecifiedProcessEditPart.VISUAL_ID) {
+		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
+			Edge incomingLink = (Edge) it.next();
+			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ProcessDataFlowEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						outgoingLink.getSource().getElement(), null,
-						outgoingLink.getTarget().getElement(), false);
+						incomingLink.getSource().getElement(), null,
+						incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 		}
@@ -80,10 +80,8 @@ public class DataFlowItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.DataFlowSpecifiedProcess_4056 == req
-				.getElementType()) {
-			return getGEFWrapper(new DataFlowSpecifiedProcessCreateCommand(req,
-					req.getSource(), req.getTarget()));
+		if (ScrmElementTypes.ProcessDataFlow_4045 == req.getElementType()) {
+			return null;
 		}
 		return null;
 	}
@@ -93,9 +91,9 @@ public class DataFlowItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (ScrmElementTypes.DataFlowSpecifiedProcess_4056 == req
-				.getElementType()) {
-			return null;
+		if (ScrmElementTypes.ProcessDataFlow_4045 == req.getElementType()) {
+			return getGEFWrapper(new ProcessDataFlowCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -109,9 +107,8 @@ public class DataFlowItemSemanticEditPolicy extends
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case DataFlowSpecifiedProcessEditPart.VISUAL_ID:
-			return getGEFWrapper(new DataFlowSpecifiedProcessReorientCommand(
-					req));
+		case ProcessDataFlowEditPart.VISUAL_ID:
+			return getGEFWrapper(new ProcessDataFlowReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

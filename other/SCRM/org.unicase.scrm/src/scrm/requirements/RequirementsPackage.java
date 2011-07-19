@@ -360,7 +360,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_SPACE__NAME = ScrmPackage.SCRM_SPACE__NAME;
+	int REQUIREMENT_SPACE__NAME = IREQUIREMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -369,16 +369,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_SPACE__DESCRIPTION = ScrmPackage.SCRM_SPACE__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Representing Diagram</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT_SPACE__REPRESENTING_DIAGRAM = ScrmPackage.SCRM_SPACE__REPRESENTING_DIAGRAM;
+	int REQUIREMENT_SPACE__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
@@ -387,7 +378,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 0;
+	int REQUIREMENT_SPACE__CONTAINING_REQUIREMENT_SPACE = IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE;
 
 	/**
 	 * The feature id for the '<em><b>Contained Informationof Requirements</b></em>' containment reference list.
@@ -396,7 +387,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 1;
+	int REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS = IREQUIREMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Requirement Space</em>' class.
@@ -405,7 +396,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_SPACE_FEATURE_COUNT = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 2;
+	int REQUIREMENT_SPACE_FEATURE_COUNT = IREQUIREMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -867,22 +858,13 @@ public interface RequirementsPackage extends EPackage {
 	int PERFORMANCE__PROBLEM_SIZE = REQUIREMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Described Method</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERFORMANCE__DESCRIBED_METHOD = REQUIREMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Performance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERFORMANCE_FEATURE_COUNT = REQUIREMENT_FEATURE_COUNT + 2;
+	int PERFORMANCE_FEATURE_COUNT = REQUIREMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1398,17 +1380,6 @@ public interface RequirementsPackage extends EPackage {
 	EAttribute getPerformance_ProblemSize();
 
 	/**
-	 * Returns the meta object for the reference '{@link scrm.requirements.Performance#getDescribedMethod <em>Described Method</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Described Method</em>'.
-	 * @see scrm.requirements.Performance#getDescribedMethod()
-	 * @see #getPerformance()
-	 * @generated
-	 */
-	EReference getPerformance_DescribedMethod();
-
-	/**
 	 * Returns the meta object for class '{@link scrm.requirements.DataFlow <em>Data Flow</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1862,15 +1833,6 @@ public interface RequirementsPackage extends EPackage {
 		 */
 		EAttribute PERFORMANCE__PROBLEM_SIZE = eINSTANCE
 				.getPerformance_ProblemSize();
-
-		/**
-		 * The meta object literal for the '<em><b>Described Method</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PERFORMANCE__DESCRIBED_METHOD = eINSTANCE
-				.getPerformance_DescribedMethod();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.impl.DataFlowImpl <em>Data Flow</em>}' class.

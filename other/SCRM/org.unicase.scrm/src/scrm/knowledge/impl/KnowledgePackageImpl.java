@@ -428,7 +428,7 @@ public class KnowledgePackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getKnowledgeSpace_ContainedScientificKnowledge() {
+	public EReference getKnowledgeSpace_ContainedScientificProblem() {
 		return (EReference) knowledgeSpaceEClass.getEStructuralFeatures()
 				.get(0);
 	}
@@ -468,7 +468,7 @@ public class KnowledgePackageImpl extends EPackageImpl implements
 
 		knowledgeSpaceEClass = createEClass(KNOWLEDGE_SPACE);
 		createEReference(knowledgeSpaceEClass,
-				KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_KNOWLEDGE);
+				KNOWLEDGE_SPACE__CONTAINED_SCIENTIFIC_PROBLEM);
 
 		scientificProblemEClass = createEClass(SCIENTIFIC_PROBLEM);
 		createEReference(scientificProblemEClass,
@@ -548,8 +548,6 @@ public class KnowledgePackageImpl extends EPackageImpl implements
 		scientificKnowledgeEClass.getESuperTypes().add(
 				theScrmPackage.getSCRMModelElement());
 		knowledgeSpaceEClass.getESuperTypes()
-				.add(theScrmPackage.getSCRMSpace());
-		knowledgeSpaceEClass.getESuperTypes()
 				.add(this.getScientificKnowledge());
 		scientificProblemEClass.getESuperTypes().add(
 				this.getScientificKnowledge());
@@ -565,7 +563,7 @@ public class KnowledgePackageImpl extends EPackageImpl implements
 				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getScientificKnowledge_ContainingKnowledgeSpace(),
 				this.getKnowledgeSpace(),
-				this.getKnowledgeSpace_ContainedScientificKnowledge(),
+				this.getKnowledgeSpace_ContainedScientificProblem(),
 				"containingKnowledgeSpace", null, 0, 1,
 				ScientificKnowledge.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
@@ -574,10 +572,10 @@ public class KnowledgePackageImpl extends EPackageImpl implements
 		initEClass(knowledgeSpaceEClass, KnowledgeSpace.class,
 				"KnowledgeSpace", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getKnowledgeSpace_ContainedScientificKnowledge(),
+		initEReference(getKnowledgeSpace_ContainedScientificProblem(),
 				this.getScientificKnowledge(),
 				this.getScientificKnowledge_ContainingKnowledgeSpace(),
-				"containedScientificKnowledge", null, 0, -1,
+				"containedScientificProblem", null, 0, -1,
 				KnowledgeSpace.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -681,12 +679,10 @@ public class KnowledgePackageImpl extends EPackageImpl implements
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		initEReference(getNumericalMethod_Performance(),
-				theRequirementsPackage.getPerformance(),
-				theRequirementsPackage.getPerformance_DescribedMethod(),
-				"performance", null, 0, 1, NumericalMethod.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+				theRequirementsPackage.getPerformance(), null, "performance",
+				null, 0, 1, NumericalMethod.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNumericalMethod_Theory(), ecorePackage.getEString(),
 				"theory", null, 0, 1, NumericalMethod.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
@@ -727,7 +723,7 @@ public class KnowledgePackageImpl extends EPackageImpl implements
 		String source = "org.unicase.ui.meeditor";
 		addAnnotation(getScientificKnowledge_ContainingKnowledgeSpace(),
 				source, new String[] { "position", "left", "priority", "10" });
-		addAnnotation(getKnowledgeSpace_ContainedScientificKnowledge(), source,
+		addAnnotation(getKnowledgeSpace_ContainedScientificProblem(), source,
 				new String[] { "position", "right", "priority", "10" });
 		addAnnotation(getScientificProblem_RepresentingModel(), source,
 				new String[] { "position", "left", "priority", "15" });

@@ -1,24 +1,22 @@
 package scrm.diagram.edit.parts;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.draw2d.GridData;
-import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
-import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
-import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConstrainedToolbarLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -28,12 +26,13 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
+
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
-
-import scrm.SCRMDiagram;
 import scrm.diagram.edit.policies.MathematicalModelItemSemanticEditPolicy;
-import scrm.diagram.edit.policies.OpenMEEditorPolicy;
+import scrm.diagram.edit.policies.OpenDiagramEditPolicy;
+import scrm.diagram.edit.policies.ScrmTextSelectionEditPolicy;
+import scrm.diagram.opener.MEEditorOpenerPolicy;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -65,14 +64,14 @@ public class MathematicalModelEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new MathematicalModelItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenMEEditorPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new MEEditorOpenerPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -81,23 +80,16 @@ public class MathematicalModelEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
+
+		ConstrainedToolbarLayoutEditPolicy lep = new ConstrainedToolbarLayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
-					result = new NonResizableEditPolicy();
+				if (child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE) == null) {
+					if (child instanceof ITextAwareEditPart) {
+						return new ScrmTextSelectionEditPolicy();
+					}
 				}
-				return result;
-			}
-
-			protected Command getMoveChildrenCommand(Request request) {
-				return null;
-			}
-
-			protected Command getCreateCommand(CreateRequest request) {
-				return null;
+				return super.createChildEditPolicy(child);
 			}
 		};
 		return lep;
@@ -289,113 +281,68 @@ public class MathematicalModelEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
-		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
-		List<IElementType> types = new LinkedList<IElementType>();
-		switch(scrmDiagram.getDiagramType()) {
-			case DEFAULT_DIAGRAM:
-			case KNOWLEDGE_DIAGRAM:
-				types.add(ScrmElementTypes.MathematicalModelRepresentedProblem_4048);
-				types.add(ScrmElementTypes.MathematicalModelRefinedModel_4058);
-				types.add(ScrmElementTypes.MathematicalModelNumericalMethods_4011);
-				types.add(ScrmElementTypes.MathematicalModelDependencies_4012);
-		}
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+		types.add(ScrmElementTypes.MathematicalModel_4004);
+		types.add(ScrmElementTypes.MathematicalModelNumericalMethods_4011);
+		types.add(ScrmElementTypes.MathematicalModelDependencies_4012);
 		return types;
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
-		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
-		List<IElementType> types = new LinkedList<IElementType>();
-		switch(scrmDiagram.getDiagramType()) {
-			case DEFAULT_DIAGRAM:
-			case KNOWLEDGE_DIAGRAM:
-				if (targetEditPart instanceof ScientificProblemEditPart) {
-					types.add(ScrmElementTypes.MathematicalModelRepresentedProblem_4048);
-				}
-				if (targetEditPart instanceof ScientificProblem2EditPart) {
-					types.add(ScrmElementTypes.MathematicalModelRepresentedProblem_4048);
-				}
-				if (targetEditPart instanceof MathematicalModelEditPart) {
-					types.add(ScrmElementTypes.MathematicalModelRefinedModel_4058);
-				}
-				if (targetEditPart instanceof MathematicalModel2EditPart) {
-					types.add(ScrmElementTypes.MathematicalModelRefinedModel_4058);
-				}
-				if (targetEditPart instanceof NumericalMethodEditPart) {
-					types.add(ScrmElementTypes.MathematicalModelNumericalMethods_4011);
-				}
-				if (targetEditPart instanceof NumericalMethod2EditPart) {
-					types.add(ScrmElementTypes.MathematicalModelNumericalMethods_4011);
-				}
-				if (targetEditPart instanceof AssumptionEditPart) {
-					types.add(ScrmElementTypes.MathematicalModelDependencies_4012);
-				}
-				if (targetEditPart instanceof Assumption2EditPart) {
-					types.add(ScrmElementTypes.MathematicalModelDependencies_4012);
-				}
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if (targetEditPart instanceof scrm.diagram.edit.parts.MathematicalModelEditPart) {
+			types.add(ScrmElementTypes.MathematicalModel_4004);
+		}
+		if (targetEditPart instanceof NumericalMethodEditPart) {
+			types.add(ScrmElementTypes.MathematicalModelNumericalMethods_4011);
+		}
+		if (targetEditPart instanceof AssumptionEditPart) {
+			types.add(ScrmElementTypes.MathematicalModelDependencies_4012);
 		}
 		return types;
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
-		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
-		List<IElementType> types = new LinkedList<IElementType>();
-		switch(scrmDiagram.getDiagramType()) {
-			case DEFAULT_DIAGRAM: 
-			case KNOWLEDGE_DIAGRAM:
-				if (relationshipType == ScrmElementTypes.MathematicalModelRepresentedProblem_4048) {
-					types.add(ScrmElementTypes.ScientificProblem_2007);
-					types.add(ScrmElementTypes.ScientificProblem_3001);
-				} else if (relationshipType == ScrmElementTypes.MathematicalModelRefinedModel_4058) {
-					types.add(ScrmElementTypes.MathematicalModel_2005);
-					types.add(ScrmElementTypes.MathematicalModel_3003);
-				} else if (relationshipType == ScrmElementTypes.MathematicalModelNumericalMethods_4011) {
-					types.add(ScrmElementTypes.NumericalMethod_2006);
-					types.add(ScrmElementTypes.NumericalMethod_3002);
-				} else if (relationshipType == ScrmElementTypes.MathematicalModelDependencies_4012) {
-					types.add(ScrmElementTypes.Assumption_2008);
-					types.add(ScrmElementTypes.Assumption_3004);
-				}
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if (relationshipType == ScrmElementTypes.MathematicalModel_4004) {
+			types.add(ScrmElementTypes.MathematicalModel_2005);
+		} else if (relationshipType == ScrmElementTypes.MathematicalModelNumericalMethods_4011) {
+			types.add(ScrmElementTypes.NumericalMethod_2006);
+		} else if (relationshipType == ScrmElementTypes.MathematicalModelDependencies_4012) {
+			types.add(ScrmElementTypes.Assumption_2008);
 		}
 		return types;
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
-		List<IElementType> types = new LinkedList<IElementType>();
-		switch(scrmDiagram.getDiagramType()) {
-			case DEFAULT_DIAGRAM: 
-			case KNOWLEDGE_DIAGRAM:
-				types.add(ScrmElementTypes.MathematicalModelRefinedModel_4058);
-		}
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(ScrmElementTypes.ScientificProblemRepresentingModel_4006);
+		types.add(ScrmElementTypes.MathematicalModel_4004);
 		return types;
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
-		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
-		List<IElementType> types = new LinkedList<IElementType>();
-		switch(scrmDiagram.getDiagramType()) {
-			case DEFAULT_DIAGRAM: 
-			case KNOWLEDGE_DIAGRAM:
-				if (relationshipType == ScrmElementTypes.MathematicalModelRefinedModel_4058) {
-					types.add(ScrmElementTypes.MathematicalModel_2005);
-					types.add(ScrmElementTypes.MathematicalModel_3003);
-				}
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if (relationshipType == ScrmElementTypes.ScientificProblemRepresentingModel_4006) {
+			types.add(ScrmElementTypes.ScientificProblem_2007);
+		} else if (relationshipType == ScrmElementTypes.MathematicalModel_4004) {
+			types.add(ScrmElementTypes.MathematicalModel_2005);
 		}
 		return types;
 	}
@@ -427,9 +374,13 @@ public class MathematicalModelEditPart extends ShapeNodeEditPart {
 		 */
 		public MathematicalModelFigure() {
 
-			GridLayout layoutThis = new GridLayout();
-			layoutThis.numColumns = 1;
-			layoutThis.makeColumnsEqualWidth = true;
+			ToolbarLayout layoutThis = new ToolbarLayout();
+			layoutThis.setStretchMinorAxis(true);
+			layoutThis.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);
+
+			layoutThis.setSpacing(5);
+			layoutThis.setVertical(true);
+
 			this.setLayoutManager(layoutThis);
 
 			this.setBackgroundColor(THIS_BACK);
@@ -439,68 +390,36 @@ public class MathematicalModelEditPart extends ShapeNodeEditPart {
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
 		private void createContents() {
 
 			fFigureMathematicalModel_name = new WrappingLabel();
 			fFigureMathematicalModel_name.setText("");
+			fFigureMathematicalModel_name.setTextWrap(true);
 
 			fFigureMathematicalModel_name
 					.setFont(FFIGUREMATHEMATICALMODEL_NAME_FONT);
 
-			GridData constraintFFigureMathematicalModel_name = new GridData();
-			constraintFFigureMathematicalModel_name.verticalAlignment = GridData.BEGINNING;
-			constraintFFigureMathematicalModel_name.horizontalAlignment = GridData.CENTER;
-			constraintFFigureMathematicalModel_name.horizontalIndent = 0;
-			constraintFFigureMathematicalModel_name.horizontalSpan = 1;
-			constraintFFigureMathematicalModel_name.verticalSpan = 1;
-			constraintFFigureMathematicalModel_name.grabExcessHorizontalSpace = false;
-			constraintFFigureMathematicalModel_name.grabExcessVerticalSpace = false;
-			this.add(fFigureMathematicalModel_name,
-					constraintFFigureMathematicalModel_name);
+			this.add(fFigureMathematicalModel_name);
 
 			fFigureMathematicalModel_description = new WrappingLabel();
 			fFigureMathematicalModel_description.setText("");
+			fFigureMathematicalModel_description.setTextWrap(true);
 
-			GridData constraintFFigureMathematicalModel_description = new GridData();
-			constraintFFigureMathematicalModel_description.verticalAlignment = GridData.BEGINNING;
-			constraintFFigureMathematicalModel_description.horizontalAlignment = GridData.FILL;
-			constraintFFigureMathematicalModel_description.horizontalIndent = 0;
-			constraintFFigureMathematicalModel_description.horizontalSpan = 1;
-			constraintFFigureMathematicalModel_description.verticalSpan = 1;
-			constraintFFigureMathematicalModel_description.grabExcessHorizontalSpace = true;
-			constraintFFigureMathematicalModel_description.grabExcessVerticalSpace = false;
-			this.add(fFigureMathematicalModel_description,
-					constraintFFigureMathematicalModel_description);
+			this.add(fFigureMathematicalModel_description);
 
 			fFigureMathematicalModel_theory = new WrappingLabel();
 			fFigureMathematicalModel_theory.setText("");
+			fFigureMathematicalModel_theory.setTextWrap(true);
 
-			GridData constraintFFigureMathematicalModel_theory = new GridData();
-			constraintFFigureMathematicalModel_theory.verticalAlignment = GridData.BEGINNING;
-			constraintFFigureMathematicalModel_theory.horizontalAlignment = GridData.FILL;
-			constraintFFigureMathematicalModel_theory.horizontalIndent = 0;
-			constraintFFigureMathematicalModel_theory.horizontalSpan = 1;
-			constraintFFigureMathematicalModel_theory.verticalSpan = 1;
-			constraintFFigureMathematicalModel_theory.grabExcessHorizontalSpace = true;
-			constraintFFigureMathematicalModel_theory.grabExcessVerticalSpace = false;
-			this.add(fFigureMathematicalModel_theory,
-					constraintFFigureMathematicalModel_theory);
+			this.add(fFigureMathematicalModel_theory);
 
 			fFigureMathematicalModel_mathematicalExpression = new WrappingLabel();
 			fFigureMathematicalModel_mathematicalExpression.setText("");
+			fFigureMathematicalModel_mathematicalExpression.setTextWrap(true);
 
-			GridData constraintFFigureMathematicalModel_mathematicalExpression = new GridData();
-			constraintFFigureMathematicalModel_mathematicalExpression.verticalAlignment = GridData.BEGINNING;
-			constraintFFigureMathematicalModel_mathematicalExpression.horizontalAlignment = GridData.FILL;
-			constraintFFigureMathematicalModel_mathematicalExpression.horizontalIndent = 0;
-			constraintFFigureMathematicalModel_mathematicalExpression.horizontalSpan = 1;
-			constraintFFigureMathematicalModel_mathematicalExpression.verticalSpan = 1;
-			constraintFFigureMathematicalModel_mathematicalExpression.grabExcessHorizontalSpace = true;
-			constraintFFigureMathematicalModel_mathematicalExpression.grabExcessVerticalSpace = false;
-			this.add(fFigureMathematicalModel_mathematicalExpression,
-					constraintFFigureMathematicalModel_mathematicalExpression);
+			this.add(fFigureMathematicalModel_mathematicalExpression);
 
 		}
 
@@ -537,7 +456,7 @@ public class MathematicalModelEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 255, 153, 0);
+	static final Color THIS_BACK = new Color(null, 244, 119, 36);
 
 	/**
 	 * @generated

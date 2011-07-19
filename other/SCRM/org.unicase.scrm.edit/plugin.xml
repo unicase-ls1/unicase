@@ -12,18 +12,6 @@
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            uri="http://unicase.org/model/scrm"
-            class="scrm.provider.ScrmItemProviderAdapterFactory"
-            supportedTypes=
-              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-               org.eclipse.emf.edit.provider.ITreeItemContentProvider
-               org.eclipse.emf.edit.provider.IItemLabelProvider
-               org.eclipse.emf.edit.provider.IItemPropertySource"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <factory
             uri="http://unicase.org/model/scrm/knowledge"
             class="scrm.knowledge.provider.KnowledgeItemProviderAdapterFactory"
             supportedTypes=
@@ -45,11 +33,23 @@
                org.eclipse.emf.edit.provider.IItemLabelProvider
                org.eclipse.emf.edit.provider.IItemPropertySource"/>
    </extension>
-
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+   <extension
+         point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            uri="http://unicase.org/model/scrm/requirements/dataProcess"
             class="scrm.requirements.dataProcess.provider.DataProcessItemProviderAdapterFactory"
+            uri="http://unicase.org/model/scrm/requirements/dataProcess"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+   <extension
+         point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            class="scrm.provider.ScrmItemProviderAdapterFactory"
+            uri="http://unicase.org/model/scrm"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

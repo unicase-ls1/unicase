@@ -15,7 +15,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
@@ -33,7 +32,6 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DropTarget;
@@ -50,17 +48,12 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ecp.model.ECPModelelementContext;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.ModelElementContextListener;
-import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.ecp.model.workSpaceModel.util.AssociationClassHelper;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramStoreException;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
-import org.unicase.ui.meeditor.ModelElementChangeListener;
 import org.unicase.ui.unicasecommon.common.diagram.DeleteFromDiagramAction;
 import org.unicase.ui.unicasecommon.common.util.DNDHelper;
 import org.unicase.ui.unicasecommon.diagram.commands.CreateViewCommand;
@@ -77,21 +70,6 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	 * The {@link FocusListener} for layout save commands.
 	 */
 	private FocusListener focusListener;
-
-	/**
-	 * The {@link ModelElementContext} {@link #modelElementContextListener} listens to.
-	 */
-	private ECPModelelementContext modelElementContext;
-
-	/**
-	 * The {@link ModelElementContextListener} to handle delete operations.
-	 */
-	private ModelElementContextListener modelElementContextListener;
-
-	/**
-	 * The {@link ModelElementChangeListener} to handle name changes.
-	 */
-	private ModelElementChangeListener modelElementChangeListener;
 
 	/**
 	 * The constructor.
@@ -210,7 +188,6 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 		getGraphicalViewer().getKeyHandler().put(KeyStroke.getPressed(SWT.DEL, 127, 0), new DeleteFromDiagramAction());
 
 		registerFocusListener();
-		registerModelElementListeners();
 	}
 
 	/**
@@ -271,8 +248,8 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 				}
 				LinkedList<EObject> elements = new LinkedList<EObject>();
 				elements.addAll(diagram.getElements());
-				mesAdd.addAll(AssociationClassHelper.getRelatedAssociationClassToDrop(mesAdd, elements,
-					context.getMetaModelElementContext()));
+				mesAdd.addAll(AssociationClassHelper.getRelatedAssociationClassToDrop(mesAdd, elements, context
+					.getMetaModelElementContext()));
 				new UnicaseCommand() {
 
 					@Override
@@ -317,6 +294,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			win.getSelectionService().addSelectionListener(this);
 			this.setTitleImage(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(this.getDiagram().getElement()));
+
 		} catch (CoreException x) {
 			// dengler: show in error log
 			WorkspaceUtil.logException("Set diagram content failed", x);
@@ -340,16 +318,8 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	@Override
 	public void dispose() {
 		super.dispose();
-		// remove context- and change-listeners,
-		// if they were registered
-		if (modelElementContext != null) {
-			modelElementContext.removeModelElementContextListener(modelElementContextListener);
-		}
-		if (modelElementChangeListener != null) {
-			modelElementChangeListener.remove();
-		}
+
 		deregisterFocusListener();
-		close(false);
 	}
 
 	private void deregisterFocusListener() {
@@ -376,66 +346,6 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			return;
 		}
 		control.addFocusListener(focusListener);
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	private void registerModelElementListeners() {
-
-		Diagram diagram = getDiagram();
-
-		// register listener for changes on the name attribute
-		modelElementChangeListener = new ModelElementChangeListener(diagram) {
-
-			@Override
-			public void onChange(Notification msg) {
-				if (msg.getEventType() == Notification.SET
-					&& msg.getFeatureID(MEDiagram.class) == DiagramPackage.ME_DIAGRAM__NAME) {
-					setPartName(msg.getNewStringValue());
-				}
-			}
-		};
-
-		// register modelElementContext listener for behavior upon deletion
-		if (diagram != null) {
-			modelElementContext = ECPWorkspaceManager.getECPProject(diagram.eContainer());
-		} else {
-			try {
-				modelElementContext = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject();
-			} catch (NoWorkspaceException e) {
-				ModelUtil.logException(e);
-			}
-		}
-
-		if (modelElementContext == null) {
-			return;
-		}
-
-		// initialize a listener that will close this editor if the MEDiagram,
-		// its container or its context gets deleted
-		modelElementContextListener = new ModelElementContextListener() {
-
-			@Override
-			public void onContextDeleted() {
-				close(false);
-			}
-
-			@Override
-			public void onModelElementDeleted(EObject element) {
-				Diagram diagram = ModelDiagramEditor.this.getDiagram();
-				if (diagram == null) {
-					return;
-				}
-				EObject meDiagram = diagram.getElement();
-				if (element == meDiagram || !modelElementContext.contains(meDiagram)) {
-					close(false);
-				}
-			}
-
-		};
-
-		modelElementContext.addModelElementContextListener(modelElementContextListener);
 	}
 
 	/**
