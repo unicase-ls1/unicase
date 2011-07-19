@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: unicase EMFStore Model Edit Plug-in
+Bundle-SymbolicName: org.unicase.emfstore.esmodel.edit;singleton:=true
+Bundle-Version: 0.7.3
+Bundle-ClassPath: .
+Bundle-Activator: org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin$Implementation
+Bundle-Vendor: unicase.org
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.unicase.emfstore.esmodel.accesscontrol.provider,
+ org.unicase.emfstore.esmodel.accesscontrol.roles.provider,
+ org.unicase.emfstore.esmodel.notification.provider,
+ org.unicase.emfstore.esmodel.provider,
+ org.unicase.emfstore.esmodel.url.provider,
+ org.unicase.emfstore.esmodel.versioning.events.provider,
+ org.unicase.emfstore.esmodel.versioning.events.server.provider,
+ org.unicase.emfstore.esmodel.versioning.operations.provider,
+ org.unicase.emfstore.esmodel.versioning.operations.semantic.provider,
+ org.unicase.emfstore.esmodel.versioning.provider
+Require-Bundle: org.unicase.emfstore.esmodel;visibility:=reexport,
+ org.unicase.metamodel.edit;visibility:=reexport
+Bundle-ActivationPolicy: lazy

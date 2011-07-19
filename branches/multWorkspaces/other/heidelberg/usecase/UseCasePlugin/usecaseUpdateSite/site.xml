@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/UseCasePlugin_0.0.9.jar" id="UseCasePlugin" version="0.0.9">
+      <category name="unicase"/>
+   </feature>
+   <category-def name="unicase" label="unicase"/>
+</site>
