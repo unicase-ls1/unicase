@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.ecp.common.feature"
       label="ECP Common  (Incubation)"
-      version="0.8.9.M5"
+      version="0.8.9.M6"
       provider-name="Eclipse Modeling Project">
 
    <description url="http://emfcp.org">
