@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.unicase.changetracking.test.commands.TestCommand"
+            id="org.unicase.changetracking.test.testCommand"
+            name="Test">
+      </command>
+ 
+   </extension>
+     <extension point="org.eclipse.ui.menus">
+       <menuContribution
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <menu
+               label="UCT Test">
+            <visibleWhen>
+               <with
+                     variable="selection">
+                  <count
+                        value="+">
+                  </count>
+                  <iterate>
+                     <adapt
+                           type="org.eclipse.core.resources.IProject">
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen>
+            <command
+                  commandId="org.unicase.changetracking.test.testCommand"
+                  icon=""
+                  label="Test"
+                  style="push"
+                  tooltip="Executes the test">
+            </command>
+         </menu>
+       </menuContribution>
+   </extension>
+</plugin>

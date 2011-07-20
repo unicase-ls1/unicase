@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.6"?>
+
+<target name="EMFstore">
+<locations>
+<location includeAllPlatforms="false" includeMode="slicer" type="InstallableUnit">
+<unit id="edu.tum.cs.cope.runtime.feature.feature.group" version="0.2.14"/>
+<repository location="file:/home/unicase/Desktop/cope/"/>
+</location>
+<location path="/home/unicase/Desktop/eclipsemodelling" type="Profile"/>
+<location path="/home/unicase/Desktop/delta-pack" type="Profile"/>
+<location includeAllPlatforms="false" includeMode="slicer" type="InstallableUnit">
+<unit id="org.eclipse.rcp.source.feature.group" version="3.6.1.r361_v20100827-9OArFLdFjY-ThSQXmKvKz0_T"/>
+<repository location="http://download.eclipse.org/releases/helios"/>
+</location>
+<location includeAllPlatforms="false" includeMode="slicer" type="InstallableUnit">
+<unit id="org.eclipse.gef.examples.feature.group" version="3.6.1.v20100908-1100-7G7T1BgJ9E99iCg4FPEO"/>
+<unit id="org.eclipse.gef.sdk.feature.group" version="3.6.1.v20100908-1100-7G7R2A5WNcBQPZgXAHiSXMXYaKPI"/>
+<unit id="org.eclipse.zest.sdk.feature.group" version="1.2.0.v20100519-2050-67908COKMFAKPYIEUdUVWhXYN8VN"/>
+<unit id="org.eclipse.gmf.runtime.notation.sdk.feature.group" version="1.4.1.v20100909-1000-47B28xGC7DxS9Q69KFQ3AHJL9t84"/>
+<unit id="org.eclipse.gmf.feature.group" version="1.4.1.v20100909-1300-7d9A78FYnmMD7VBZOqOghp2tsgXc"/>
+<unit id="org.eclipse.gmf.examples.runtime.feature.group" version="1.4.1.v20100909-1300-7B7L1F8NcJP-Jz-Qb9Sz0mY"/>
+<unit id="org.eclipse.gmf.runtime.sdk.feature.group" version="1.4.1.v20100909-1300-67G29E9QYAZrXowmYt08ti7x8V1i"/>
+<unit id="org.eclipse.gmf.sdk.feature.group" version="2.3.0.v20100508-1742-7779-95sDcLbMSsdu7Xz-xO-z0oe"/>
+<repository location="http://download.eclipse.org/releases/helios"/>
+</location>
+</locations>
+</target>

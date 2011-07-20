@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Model
+Bundle-SymbolicName: org.unicase.ecp.model;singleton:=true
+Bundle-Version: 0.4.8.qualifier
+Bundle-Activator: org.unicase.ecp.model.Activator
+Require-Bundle: org.unicase.ui.util;visibility:=reexport
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.unicase.ecp.model,
+ org.unicase.ecp.model.workSpaceModel,
+ org.unicase.ecp.model.workSpaceModel.impl,
+ org.unicase.ecp.model.workSpaceModel.provider,
+ org.unicase.ecp.model.workSpaceModel.util
+Bundle-Vendor: unicase.org

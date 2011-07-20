@@ -1,0 +1,68 @@
+/*
+ * Copyright (c) 2006, 2007 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Dmitry Stadnik (Borland) - initial API and implementation
+ *    Alexander Shatalin (Borland) - initial API and implementation
+ */
+
+«IMPORT "http://www.eclipse.org/gmf/2009/GenModel"»
+
+«DEFINE Main FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::copyright FOR getDiagram().editorGen-»
+package «editPartsPackageName»;
+
+«EXPAND xpt::Common::generatedClassComment»
+public class «editPartClassName» «EXPAND extendsList» «EXPAND implementsList» {
+
+	«EXPAND attributes-»
+«EXPAND xpt::Common::generatedClassComment»
+	public «editPartClassName»(org.eclipse.gmf.runtime.notation.View view) {
+		super(view);
+	}
+
+	
+	«EXPAND createDefaultEditPolicies-»
+	
+	«EXPAND impl::diagram::editparts::DiagramEditPart::createFigure-»
+
+	«EXPAND additions-»
+}
+«ENDDEFINE»
+
+«DEFINE extendsList FOR gmfgen::GenDiagram»extends org.unicase.ui.unicasecommon.diagram.edit.parts.MEDiagramEditPart«ENDDEFINE»
+
+«DEFINE implementsList FOR gmfgen::GenDiagram»«ENDDEFINE»
+
+«DEFINE attributes FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public final static String MODEL_ID = "«editorGen.modelID»"; «EXPAND xpt::Common::nonNLS»
+	
+	«EXPAND xpt::diagram::editparts::Common::visualIDConstant-»
+«ENDDEFINE»
+
+«DEFINE createDefaultEditPolicies FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected void createDefaultEditPolicies() {
+		«EXPAND impl::diagram::editparts::DiagramEditPart::createDefaultEditPoliciesBody-»
+	}
+«ENDDEFINE»
+
+«DEFINE definionName FOR gmfgen::GenDiagram-»
+«ENDDEFINE»
+
+«DEFINE definionName FOR gmfgen::GenDiagram-»
+«ENDDEFINE»
+
+«DEFINE definionName FOR gmfgen::GenDiagram-»
+«ENDDEFINE»
+
+«DEFINE definionName FOR gmfgen::GenDiagram-»
+«ENDDEFINE»
+
+«DEFINE additions FOR gmfgen::GenDiagram»«ENDDEFINE»

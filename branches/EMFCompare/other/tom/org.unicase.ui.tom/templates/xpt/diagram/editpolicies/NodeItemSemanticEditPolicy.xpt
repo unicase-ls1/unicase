@@ -1,0 +1,109 @@
+/*
+ * Copyright (c) 2007 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Alexander Shatalin (Borland) - initial API and implementation
+ */
+ 
+«REM»
+	This template should be called only for non-design nodes (modelFacet != null) 
+	because *ItemSemanticEditPolicy responsible for dealing with semantic model 
+	elements and meaningless (should not be generated) for pure design nodes.   
+«ENDREM»
+ 
+«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+«IMPORT "http://www.eclipse.org/emf/2002/Ecore"»
+
+«EXTENSION xpt::diagram::editpolicies::Utils»
+
+«DEFINE NodeItemSemanticEditPolicy FOR gmfgen::GenNode-»
+	«EXPAND xpt::Common::copyright FOR getDiagram().editorGen-»
+package «getDiagram().editPoliciesPackageName»;
+
+«EXPAND xpt::Common::generatedClassComment»
+public class «itemSemanticEditPolicyClassName» extends «getDiagram().getBaseItemSemanticEditPolicyQualifiedClassName()» {
+	«EXPAND xpt::diagram::editpolicies::childContainerCreateCommand::childContainerCreateCommand FOR childNodes-»
+
+	«EXPAND getDestroyElementCommand-»
+	«IF hasChildrenOrCompartments()-»
+		«EXPAND addDestroyChildNodesCommand-»
+	«ENDIF-»
+	«EXPAND xpt::diagram::editpolicies::linkCommands::linkCommands(getDiagram()) FOR modelFacet-»
+
+	«EXPAND additions-»
+}
+«ENDDEFINE»
+
+«DEFINE getDestroyElementCommand FOR gmfgen::GenNode-»
+«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest req) {
+	org.eclipse.gef.commands.CompoundCommand cc = getDestroyEdgesCommand();
+	«IF hasChildrenOrCompartments()-»
+	addDestroyChildNodesCommand(cc);
+	«ENDIF-»
+	addDestroyShortcutsCommand(cc);
+	«EXPAND destroySemanticElement-»
+	return cc.unwrap();
+}
+«ENDDEFINE»
+
+«DEFINE destroySemanticElement FOR gmfgen::GenNode-»
+	«EXPAND fixElementToDeleteIfShortcut-»
+cc.add(getGEFWrapper(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req)));
+«ENDDEFINE»
+
+«DEFINE addDestroyChildNodesCommand FOR gmfgen::GenNode-»
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected void addDestroyChildNodesCommand(org.eclipse.gef.commands.CompoundCommand cmd) {
+		org.eclipse.gmf.runtime.notation.View view = (org.eclipse.gmf.runtime.notation.View) getHost().getModel();
+		org.eclipse.emf.ecore.EAnnotation annotation = view.getEAnnotation("Shortcut"); «EXPAND xpt::Common::nonNLS»
+		if (annotation != null) {
+			return;
+		}
+		for (java.util.Iterator it = view.getChildren().iterator(); it.hasNext();) {
+			org.eclipse.gmf.runtime.notation.Node node = (org.eclipse.gmf.runtime.notation.Node) it.next();
+			switch («EXPAND xpt::editor::VisualIDRegistry::getVisualIDMethodCall FOR getDiagram()»(node)) {
+			«EXPAND destroyChildNodes("node")-»
+			«IF !compartments.isEmpty()-»
+				«FOREACH compartments AS compartment-»
+			«EXPAND xpt::Common::caseVisualID FOR compartment»
+				for (java.util.Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
+					org.eclipse.gmf.runtime.notation.Node cnode = (org.eclipse.gmf.runtime.notation.Node) cit.next();
+					switch («EXPAND xpt::editor::VisualIDRegistry::getVisualIDMethodCall FOR getDiagram()»(cnode)) {
+					«EXPAND destroyChildNodes("cnode") FOR compartment-»
+					}
+				}
+				break;
+				«ENDFOREACH-»
+			«ENDIF-»
+			}
+		}
+	}
+«ENDDEFINE»
+
+«DEFINE destroyChildNodes(String nodeVar) FOR gmfgen::GenChildContainer-»
+	«FOREACH childNodes AS childNode-»
+	«EXPAND xpt::Common::caseVisualID FOR childNode»
+		cmd.add(getDestroyElementCommand(«nodeVar»));
+		break;
+	«ENDFOREACH-»
+«ENDDEFINE»
+
+
+«DEFINE fixElementToDeleteIfShortcut FOR gmfgen::GenTopLevelNode-»
+	org.eclipse.gmf.runtime.notation.View view = (org.eclipse.gmf.runtime.notation.View) getHost().getModel();
+	if (view.getEAnnotation("Shortcut") != null) { «EXPAND xpt::Common::nonNLS»
+		req.setElementToDestroy(view);
+	}
+«ENDDEFINE»
+
+«REM»Shortcuts supported only for top-level elements«ENDREM»
+«DEFINE fixElementToDeleteIfShortcut FOR gmfgen::GenNode»«ENDDEFINE»
+
+«DEFINE additions FOR gmfgen::GenNode»«ENDDEFINE»
