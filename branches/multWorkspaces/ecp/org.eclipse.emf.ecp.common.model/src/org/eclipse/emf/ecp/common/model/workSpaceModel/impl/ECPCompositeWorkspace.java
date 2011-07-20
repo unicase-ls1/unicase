@@ -10,24 +10,23 @@
  ******************************************************************************/
 package org.eclipse.emf.ecp.common.model.workSpaceModel.impl;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecp.common.model.Activator;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.util.ECPWorkspaceProvider;
-import org.eclipse.emf.edit.domain.EditingDomain;
 
 /**
  * @author stute
@@ -35,21 +34,21 @@ import org.eclipse.emf.edit.domain.EditingDomain;
  */
 public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 	
-	protected EList<ECPWorkspace> workspaceList;
+	protected List<ECPWorkspace> workspaceList;
 
-	protected EList<ECPProject> projects;
-	protected ECPProject activeProject;
-	private EditingDomain editingDomain;
-	
-		
 	public ECPCompositeWorkspace(){
 		super();
-		workspaceList = getWorkspacesFromExtension();
 	}
-
 	
-	private EList<ECPWorkspace> getWorkspacesFromExtension() throws IllegalStateException{
-		EList<ECPWorkspace> result = new BasicEList<ECPWorkspace>();
+	public List<ECPWorkspace> getWorkspaceList() {
+		if (workspaceList == null){
+			workspaceList = getWorkspacesFromExtension();
+		}
+		return workspaceList;
+	}
+	
+	private List<ECPWorkspace> getWorkspacesFromExtension() throws IllegalStateException{
+		List<ECPWorkspace> result = new ArrayList<ECPWorkspace>();
 		IConfigurationElement[] confs = Platform.getExtensionRegistry().getConfigurationElementsFor(
 		"org.eclipse.emf.ecp.model.workspaceprovider");
 		if (confs.length < 1) {
@@ -66,14 +65,6 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 		}
 		return (EList<ECPWorkspace>) result;
 	}
-
-
-	public EList<ECPWorkspace> getWorkspaceList() {
-		if (workspaceList == null){
-			workspaceList = getWorkspacesFromExtension();
-		}
-		return workspaceList;
-	}
 	
 /*	public EList<ECPProject> getProjects(){
 		for( ECPWorkspace ws : workspaceList){
@@ -85,34 +76,31 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 		return projects;
 	}
 */	
+//	public EList<ECPProject> getProjects() {
+//		EList<ECPProject> result = new BasicEList<ECPProject>();
+//
+//		if (projects == null) {
+//			for( ECPWorkspace ws : workspaceList){
+//			result.addAll(((ECPWorkspaceImpl) ws).projects);
+//			}
+//			projects = (EList<ECPProject>) result;
+//		}
+//		return projects;
+//	}
+
+	@Override
 	public EList<ECPProject> getProjects() {
-		EList<ECPProject> result = new BasicEList<ECPProject>();
-
 		if (projects == null) {
-			for( ECPWorkspace ws : workspaceList){
-			result.addAll(((ECPWorkspaceImpl) ws).projects);
-			}
-			projects = (EList<ECPProject>) result;
-		}
-		return projects;
-	}
-
-/*	public EList<ECPProject> getProjects() {
-		if (projects == null) {
-			for( ECPWorkspace ws : workspaceList){
-				EList<ECPProject> pr = new EObjectContainmentWithInverseEList<ECPProject>(ECPProject.class,  (ECPWorkspaceImpl) ws,
+			projects = new EObjectContainmentWithInverseEList<ECPProject>(ECPProject.class,  this,
 							WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS, WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE);
-			projects.addAll(pr);
-			}
 		}
 		return projects;
 	}
-*/
+
 	
 	
 	@Override
 	public ECPProject getProject(EObject me) {
-
 		ECPProject result = null;
 		for (ECPWorkspace ws : workspaceList) {
 
@@ -128,6 +116,7 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 		return result;
 	}
 
+	@Override
 	public ECPProject getActiveProject() {
 		if (activeProject != null && activeProject.eIsProxy()) {
 			InternalEObject oldActiveProject = (InternalEObject) activeProject;
@@ -143,118 +132,15 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 		return activeProject;
 	}
 
-
-	public ECPProject basicGetActiveProject() {
-		return activeProject;
-	}
-
-	
+	@Override
 	public void setActiveProject(ECPProject newActiveProject) {
 		ECPProject oldActiveProject = activeProject;
 		activeProject = newActiveProject;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			for (ECPWorkspace ws : workspaceList){
 			eNotify(new ENotificationImpl((ECPWorkspaceImpl)ws, Notification.SET, WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT,
 				oldActiveProject, activeProject));
 			}
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getProjects()).basicAdd(otherEnd, msgs);
 		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS:
-			return ((InternalEList<?>) getProjects()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS:
-			return getProjects();
-		case WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT:
-			if (resolve)
-				return getActiveProject();
-			return basicGetActiveProject();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS:
-			getProjects().clear();
-			getProjects().addAll((Collection<? extends ECPProject>) newValue);
-			return;
-		case WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT:
-			setActiveProject((ECPProject) newValue);
-			return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-		case WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS:
-			getProjects().clear();
-			return;
-		case WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT:
-			setActiveProject((ECPProject) null);
-			return;
-		}
-		super.eUnset(featureID);
-	}
-
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS:
-			return projects != null && !projects.isEmpty();
-		case WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT:
-			return activeProject != null;
-		}
-		return super.eIsSet(featureID);
-	}
-
-	
-
-	public void setActiveModelelement(EObject eobject) {
-		if (eobject instanceof ECPProject) {
-			setActiveProject((ECPProject) eobject);
-		}
-	}
-
-	public EditingDomain getEditingDomain() {
-		return editingDomain;
-	}
-	
-
-
-	public void setEditingDomain(EditingDomain editingDomain) {
-		this.editingDomain = editingDomain;
-	}
-
-	public boolean isRootObject(EObject eObject) {
-		for (ECPProject ecpProject : getProjects()) {
-			if (ecpProject.getRootObject().equals(eObject)) {
-				return true;
-			}
-		}
-		return false;
 	}
 }
