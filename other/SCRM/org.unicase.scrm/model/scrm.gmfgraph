@@ -11,7 +11,10 @@
           xsi:type="gmfgraph:Rectangle"
           name="ScientificProblemShape">
         <layout
-            xsi:type="gmfgraph:GridLayout"/>
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="255"
@@ -24,9 +27,6 @@
             xsi:type="gmfgraph:Label"
             name="ScientificProblem_name"
             text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -35,13 +35,7 @@
         <children
             xsi:type="gmfgraph:Label"
             name="ScientificProblem_description"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
       </actualFigure>
       <accessors
           accessor="getFigureScientificProblem_name"
@@ -56,7 +50,10 @@
           xsi:type="gmfgraph:Rectangle"
           name="MathematicalModelShape">
         <layout
-            xsi:type="gmfgraph:GridLayout"/>
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="244"
@@ -69,9 +66,6 @@
             xsi:type="gmfgraph:Label"
             name="MathematicalModel_name"
             text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -79,32 +73,14 @@
         </children>
         <children
             xsi:type="gmfgraph:Label"
-            name="MathematicalModel_description">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            name="MathematicalModel_description"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="MathematicalModel_theory">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            name="MathematicalModel_theory"/>
         <children
             xsi:type="gmfgraph:Label"
             name="MathematicalModel_mathematicalExpression"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
       </actualFigure>
       <accessors
           accessor="getFigureMathematicalModel_name"
@@ -125,7 +101,10 @@
           xsi:type="gmfgraph:Rectangle"
           name="NumericalMethodShape">
         <layout
-            xsi:type="gmfgraph:GridLayout"/>
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="240"
@@ -137,9 +116,6 @@
             xsi:type="gmfgraph:Label"
             name="NumericalMethod_name"
             text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -148,33 +124,15 @@
         <children
             xsi:type="gmfgraph:Label"
             name="NumericalMethod_description"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
         <children
             xsi:type="gmfgraph:Label"
             name="NumericalMethod_theory"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
         <children
             xsi:type="gmfgraph:Label"
             name="NumericalMethod_algorithm"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
       </actualFigure>
       <accessors
           accessor="getFigureNumericalMethod_name"
@@ -195,7 +153,10 @@
           xsi:type="gmfgraph:Rectangle"
           name="AssumptionShape">
         <layout
-            xsi:type="gmfgraph:GridLayout"/>
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="255"
@@ -208,9 +169,6 @@
             xsi:type="gmfgraph:Label"
             name="AssumptionLabel_name"
             text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -219,13 +177,7 @@
         <children
             xsi:type="gmfgraph:Label"
             name="AssumptionLabel_description"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
       </actualFigure>
       <accessors
           accessor="getFigureAssumption_name"
@@ -245,7 +197,10 @@
           cornerWidth="32"
           cornerHeight="32">
         <layout
-            xsi:type="gmfgraph:GridLayout"/>
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             green="255"/>
@@ -255,9 +210,6 @@
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_name">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -265,13 +217,7 @@
         </children>
         <children
             xsi:type="gmfgraph:Label"
-            name="Feature_description">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            name="Feature_description"/>
       </actualFigure>
       <accessors
           accessor="getFigureFeature_name"
@@ -288,7 +234,10 @@
           cornerWidth="32"
           cornerHeight="32">
         <layout
-            xsi:type="gmfgraph:GridLayout"/>
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="16"
@@ -301,9 +250,6 @@
             xsi:type="gmfgraph:Label"
             name="Hardware_name"
             text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -312,42 +258,18 @@
         <children
             xsi:type="gmfgraph:Label"
             name="Hardware_description"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
         <children
             xsi:type="gmfgraph:Label"
-            name="Hardware_processor">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            name="Hardware_processor"/>
         <children
             xsi:type="gmfgraph:Label"
             name="Hardware_platform"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
         <children
             xsi:type="gmfgraph:Label"
             name="Hardware_memory"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
       </actualFigure>
       <accessors
           accessor="getFigureHardware_name"
@@ -373,7 +295,10 @@
           cornerWidth="32"
           cornerHeight="32">
         <layout
-            xsi:type="gmfgraph:GridLayout"/>
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="16"
@@ -386,9 +311,6 @@
             xsi:type="gmfgraph:Label"
             name="Constraint_name"
             text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -396,13 +318,7 @@
         </children>
         <children
             xsi:type="gmfgraph:Label"
-            name="Constraint_description">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            name="Constraint_description"/>
       </actualFigure>
       <accessors
           accessor="getFigureConstraint_name"
@@ -419,7 +335,10 @@
           cornerWidth="32"
           cornerHeight="32">
         <layout
-            xsi:type="gmfgraph:GridLayout"/>
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="16"
@@ -432,9 +351,6 @@
             xsi:type="gmfgraph:Label"
             name="UserInterface_name"
             text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -442,13 +358,7 @@
         </children>
         <children
             xsi:type="gmfgraph:Label"
-            name="UserInterface_description">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            name="UserInterface_description"/>
       </actualFigure>
       <accessors
           accessor="getFigureUserInterface_name"
@@ -465,7 +375,10 @@
           cornerWidth="32"
           cornerHeight="32">
         <layout
-            xsi:type="gmfgraph:GridLayout"/>
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="16"
@@ -478,9 +391,6 @@
             xsi:type="gmfgraph:Label"
             name="SoftwareInterface_name"
             text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -488,22 +398,10 @@
         </children>
         <children
             xsi:type="gmfgraph:Label"
-            name="SoftwareInterface_description">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            name="SoftwareInterface_description"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="SoftwareInterface_dataTypes">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            name="SoftwareInterface_dataTypes"/>
       </actualFigure>
       <accessors
           accessor="getFigureSoftwareInterface_name"
@@ -523,7 +421,10 @@
           cornerWidth="32"
           cornerHeight="32">
         <layout
-            xsi:type="gmfgraph:GridLayout"/>
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="13"
@@ -536,9 +437,6 @@
             xsi:type="gmfgraph:Label"
             name="Process_name"
             text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -547,13 +445,7 @@
         <children
             xsi:type="gmfgraph:Label"
             name="Process_description"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
       </actualFigure>
       <accessors
           accessor="getFigureProcess_name"
@@ -570,7 +462,10 @@
           cornerWidth="32"
           cornerHeight="32">
         <layout
-            xsi:type="gmfgraph:GridLayout"/>
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="13"
@@ -583,9 +478,6 @@
             xsi:type="gmfgraph:Label"
             name="Performance_name"
             text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -594,23 +486,11 @@
         <children
             xsi:type="gmfgraph:Label"
             name="Performance_description"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
         <children
             xsi:type="gmfgraph:Label"
             name="Performance_problemSize"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
       </actualFigure>
       <accessors
           accessor="getFigurePerformance_name"
@@ -630,7 +510,10 @@
           cornerWidth="32"
           cornerHeight="32">
         <layout
-            xsi:type="gmfgraph:GridLayout"/>
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="13"
@@ -643,9 +526,6 @@
             xsi:type="gmfgraph:Label"
             name="DataFlow_name"
             text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -654,13 +534,7 @@
         <children
             xsi:type="gmfgraph:Label"
             name="DataFlow_description"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
       </actualFigure>
       <accessors
           accessor="getFigureDataFlow_name"
@@ -677,7 +551,10 @@
           cornerWidth="32"
           cornerHeight="32">
         <layout
-            xsi:type="gmfgraph:GridLayout"/>
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="131"
@@ -690,9 +567,6 @@
             xsi:type="gmfgraph:Label"
             name="DataDefinition_name"
             text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -701,53 +575,23 @@
         <children
             xsi:type="gmfgraph:Label"
             name="DataDefinition_description"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
         <children
             xsi:type="gmfgraph:Label"
             name="DataDefinition_accuracy"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
         <children
             xsi:type="gmfgraph:Label"
             name="DataDefinition_format"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
         <children
             xsi:type="gmfgraph:Label"
             name="DataDefinition_range"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
         <children
             xsi:type="gmfgraph:Label"
             name="DataDefinition_dataType"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
       </actualFigure>
       <accessors
           accessor="getFigureDataDefinition_name"
@@ -776,7 +620,10 @@
           cornerWidth="32"
           cornerHeight="32">
         <layout
-            xsi:type="gmfgraph:GridLayout"/>
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="53"
@@ -789,9 +636,6 @@
             xsi:type="gmfgraph:Label"
             name="InputDataReading_name"
             text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -800,13 +644,7 @@
         <children
             xsi:type="gmfgraph:Label"
             name="InputDataReading_description"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
       </actualFigure>
       <accessors
           accessor="getFigureInputDataReading_name"
@@ -823,7 +661,10 @@
           cornerWidth="32"
           cornerHeight="32">
         <layout
-            xsi:type="gmfgraph:GridLayout"/>
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="53"
@@ -836,9 +677,6 @@
             xsi:type="gmfgraph:Label"
             name="DataHandling_name"
             text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -847,13 +685,7 @@
         <children
             xsi:type="gmfgraph:Label"
             name="DataHandling_description"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
       </actualFigure>
       <accessors
           accessor="getFigureDataHandling_name"
@@ -870,7 +702,10 @@
           cornerWidth="32"
           cornerHeight="32">
         <layout
-            xsi:type="gmfgraph:GridLayout"/>
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="53"
@@ -883,9 +718,6 @@
             xsi:type="gmfgraph:Label"
             name="ResultsOutput_name"
             text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -894,13 +726,7 @@
         <children
             xsi:type="gmfgraph:Label"
             name="ResultsOutput_description"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
       </actualFigure>
       <accessors
           accessor="getFigureResultsOutput_name"
@@ -917,7 +743,10 @@
           cornerWidth="32"
           cornerHeight="32">
         <layout
-            xsi:type="gmfgraph:GridLayout"/>
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="53"
@@ -930,9 +759,6 @@
             xsi:type="gmfgraph:Label"
             name="ErrorHandling_name"
             text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -941,13 +767,7 @@
         <children
             xsi:type="gmfgraph:Label"
             name="ErrorHandling_description"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
       </actualFigure>
       <accessors
           accessor="getFigureErrorHandling_name"
@@ -964,7 +784,10 @@
           cornerWidth="32"
           cornerHeight="32">
         <layout
-            xsi:type="gmfgraph:GridLayout"/>
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             red="53"
@@ -977,9 +800,6 @@
             xsi:type="gmfgraph:Label"
             name="StatusMonitoring_name"
             text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -988,13 +808,7 @@
         <children
             xsi:type="gmfgraph:Label"
             name="StatusMonitoring_description"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            text=""/>
       </actualFigure>
       <accessors
           accessor="getFigureStatusMonitoring_name"
@@ -1011,7 +825,10 @@
           cornerWidth="32"
           cornerHeight="32">
         <layout
-            xsi:type="gmfgraph:GridLayout"/>
+            xsi:type="gmfgraph:FlowLayout"
+            vertical="true"
+            matchMinorSize="true"
+            forceSingleLine="true"/>
         <backgroundColor
             xsi:type="gmfgraph:RGBColor"
             green="255"/>
@@ -1021,9 +838,6 @@
         <children
             xsi:type="gmfgraph:Label"
             name="Requirement_name">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -1031,13 +845,7 @@
         </children>
         <children
             xsi:type="gmfgraph:Label"
-            name="Requirement_description">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              verticalAlignment="BEGINNING"
-              horizontalAlignment="FILL"/>
-        </children>
+            name="Requirement_description"/>
       </actualFigure>
       <accessors
           accessor="getFigureRequirement_name"
@@ -1052,145 +860,8 @@
     <descriptors
         name="KnowledgeSpaceFigure">
       <actualFigure
-          xsi:type="gmfgraph:Rectangle"
-          name="KnowledgeSpaceShape">
-        <layout
-            xsi:type="gmfgraph:GridLayout"/>
-        <backgroundColor
-            xsi:type="gmfgraph:RGBColor"
-            red="150"
-            green="150"
-            blue="150"/>
-        <preferredSize
-            dx="300"
-            dy="240"/>
-        <children
-            xsi:type="gmfgraph:Label"
-            name="KnowledgeSpace_name"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
-          <font
-              xsi:type="gmfgraph:BasicFont"
-              faceName="Arial"
-              style="BOLD"/>
-        </children>
-        <children
-            xsi:type="gmfgraph:Rectangle"
-            name="KnowledgeSpace_containedScientificKnowledgeShape">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              grabExcessVerticalSpace="true"
-              verticalAlignment="FILL"
-              horizontalAlignment="FILL"/>
-        </children>
-      </actualFigure>
-      <accessors
-          accessor="getFigureKnowledgeSpace_name"
-          figure="//@figures.2/@descriptors.0/@actualFigure/@children.0"/>
-      <accessors
-          accessor="getFigureKnowledgeSpace_containedScientificKnowledge"
-          figure="//@figures.2/@descriptors.0/@actualFigure/@children.1"/>
-    </descriptors>
-    <descriptors
-        name="RequirementSpaceFigure">
-      <actualFigure
-          xsi:type="gmfgraph:RoundedRectangle"
-          name="RequirementSpaceShape"
-          cornerWidth="32"
-          cornerHeight="32">
-        <layout
-            xsi:type="gmfgraph:GridLayout"/>
-        <backgroundColor
-            xsi:type="gmfgraph:RGBColor"
-            red="200"
-            green="200"
-            blue="200"/>
-        <preferredSize
-            dx="300"
-            dy="240"/>
-        <children
-            xsi:type="gmfgraph:Label"
-            name="RequirementSpace_name"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
-          <font
-              xsi:type="gmfgraph:BasicFont"
-              faceName="Arial"
-              style="BOLD"/>
-        </children>
-        <children
-            xsi:type="gmfgraph:RoundedRectangle"
-            name="RequirementSpace_containedInformationOfRequirementsShape"
-            cornerWidth="32"
-            cornerHeight="32">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              grabExcessVerticalSpace="true"
-              verticalAlignment="FILL"
-              horizontalAlignment="FILL"/>
-        </children>
-      </actualFigure>
-      <accessors
-          accessor="getFigureRequirementSpace_name"
-          figure="//@figures.2/@descriptors.1/@actualFigure/@children.0"/>
-      <accessors
-          accessor="getFigureRequirementSpace_containedInformationOfRequirements"
-          figure="//@figures.2/@descriptors.1/@actualFigure/@children.1"/>
-    </descriptors>
-    <descriptors
-        name="DataProcessSpaceFigure">
-      <actualFigure
-          xsi:type="gmfgraph:RoundedRectangle"
-          name="DataProcessSpaceShape"
-          cornerWidth="32"
-          cornerHeight="32">
-        <layout
-            xsi:type="gmfgraph:GridLayout"/>
-        <backgroundColor
-            xsi:type="gmfgraph:RGBColor"
-            red="225"
-            green="225"
-            blue="225"/>
-        <preferredSize
-            dx="300"
-            dy="240"/>
-        <children
-            xsi:type="gmfgraph:Label"
-            name="DataProcessSpace_name"
-            text="">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
-          <font
-              xsi:type="gmfgraph:BasicFont"
-              faceName="Arial"
-              style="BOLD"/>
-        </children>
-        <children
-            xsi:type="gmfgraph:RoundedRectangle"
-            name="DataProcessSpace_containedDataProcessStepsShape"
-            cornerWidth="32"
-            cornerHeight="32">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              grabExcessVerticalSpace="true"
-              verticalAlignment="FILL"
-              horizontalAlignment="FILL"/>
-        </children>
-      </actualFigure>
-      <accessors
-          accessor="getFigureDataProcessSpace_name"
-          figure="//@figures.2/@descriptors.2/@actualFigure/@children.0"/>
-      <accessors
-          accessor="getFigureDataProcessSpace_containedDataProcessSteps"
-          figure="//@figures.2/@descriptors.2/@actualFigure/@children.1"/>
+          xsi:type="gmfgraph:LabeledContainer"
+          name="KnowledgeSpaceShape"/>
     </descriptors>
   </figures>
   <figures
@@ -1217,15 +888,11 @@
         name="ScientificProblem_SolvingMethodsFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="ScientificProblem_SolvingMethodsPolylineConnection"
-          targetDecoration="//@figures.3/@descriptors.1/@actualFigure/@children.1">
+          name="ScientificProblem_SolvingMethodsPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="ScientificProblem_SolvingMethodsLabel"
             text="solves"/>
-        <children
-            xsi:type="gmfgraph:PolylineDecoration"
-            name="ScientificProblem_SolvingMethodsTargetDecoration"/>
       </actualFigure>
       <accessors
           accessor="getFigureScientificProblem_SolvingMethodsLabel"
@@ -1235,15 +902,11 @@
         name="ScientificProblem_InfluencedFeatureFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="ScientificProblem_InfluencedFeaturePolylineConnection"
-          targetDecoration="//@figures.3/@descriptors.2/@actualFigure/@children.1">
+          name="ScientificProblem_InfluencedFeaturePolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="ScientificProblem_InfluencedFeatureLabel"
             text="influences"/>
-        <children
-            xsi:type="gmfgraph:PolylineDecoration"
-            name="ScientificProblem_InfluencedFeatureTargetDecoration"/>
       </actualFigure>
       <accessors
           accessor="getFigureScientificProblem_InfluencedFeatureLabel"
@@ -1253,24 +916,25 @@
         name="MathematicalModel_RepresentedProblemFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="MathematicalModel_RepresentedProblemPolylineConnection"
-          outline="false"
-          fill="false"
-          lineWidth="0"/>
+          name="MathematicalModel_RepresentedProblemPolylineConnection">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="MathematicalModel_RepresentedProblemLabel"
+            text="represents"/>
+      </actualFigure>
+      <accessors
+          accessor="getFigureMathematicalModel_RepresentedProblemLabel"
+          figure="//@figures.3/@descriptors.3/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="MathematicalModel_RefinementsFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="MathematicalModel_RefinementsPolylineConnection"
-          targetDecoration="//@figures.3/@descriptors.4/@actualFigure/@children.1">
+          name="MathematicalModel_RefinementsPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="MathematicalModel_RefinementsLabel"
             text="refines"/>
-        <children
-            xsi:type="gmfgraph:PolylineDecoration"
-            name="MathematicalModel_RefinementsTargetDecoration"/>
       </actualFigure>
       <accessors
           accessor="getFigureMathematicalModel_RefinementsLabel"
@@ -1294,15 +958,11 @@
         name="MathematicalModel_NumericalMethodsFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="MathematicalModel_NumericalMethodsPolylineConnection"
-          targetDecoration="//@figures.3/@descriptors.6/@actualFigure/@children.1">
+          name="MathematicalModel_NumericalMethodsPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="MathematicalModel_NumericalMethodsLabel"
             text="uses"/>
-        <children
-            xsi:type="gmfgraph:PolylineDecoration"
-            name="MathematicalModel_NumericalMethodsTargetDecoration"/>
       </actualFigure>
       <accessors
           accessor="getFigureMathematicalModel_NumericalMethodsLabel"
@@ -1312,15 +972,11 @@
         name="MathematicalModel_DependenciesFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="MathematicalModel_DependenciesPolylineConnection"
-          targetDecoration="//@figures.3/@descriptors.7/@actualFigure/@children.1">
+          name="MathematicalModel_DependenciesPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="MathematicalModel_DependenciesLabel"
             text="depends"/>
-        <children
-            xsi:type="gmfgraph:PolylineDecoration"
-            name="MathematicalModel_DependenciesTargetDecoration"/>
       </actualFigure>
       <accessors
           accessor="getFigureMathematicalModel_DependenciesLabel"
@@ -1358,15 +1014,11 @@
         name="NumericalMethod_DependenciesFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="NumericalMethod_DependenciesPolylineConnection"
-          targetDecoration="//@figures.3/@descriptors.10/@actualFigure/@children.1">
+          name="NumericalMethod_DependenciesPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="NumericalMethods_DependenciesLabel"
             text="depends"/>
-        <children
-            xsi:type="gmfgraph:PolylineDecoration"
-            name="NumericalMethod_DependenciesTargetDecoration"/>
       </actualFigure>
       <accessors
           accessor="getFigureNumericalMethod_DependenciesLabel"
@@ -1376,15 +1028,11 @@
         name="NumericalMethod_RealizingRequirementFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="NumericalMethod_RealizingRequirementPolylineConnection"
-          targetDecoration="//@figures.3/@descriptors.11/@actualFigure/@children.1">
+          name="NumericalMethod_RealizingRequirementPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="NumericalMethod_RealizingRequirementLabel"
             text="realizes"/>
-        <children
-            xsi:type="gmfgraph:PolylineDecoration"
-            name="NumericalMethod_RealizingRequirementTargetDecoration"/>
       </actualFigure>
       <accessors
           accessor="getFigureNumericalMethod_RealizingRequirementLabel"
@@ -1394,15 +1042,11 @@
         name="NumericalMethod_PerformanceFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="NumericalMethod_PerformancePolylineConnection"
-          sourceDecoration="//@figures.3/@descriptors.12/@actualFigure/@children.1">
+          name="NumericalMethod_PerformancePolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="NumericalMethod_PerformanceLabel"
             text="describes"/>
-        <children
-            xsi:type="gmfgraph:PolylineDecoration"
-            name="NumericalMethod_PerformanceSourceDecoration"/>
       </actualFigure>
       <accessors
           accessor="getFigureNumericalMethod_PerformanceLabel"
@@ -1471,15 +1115,11 @@
         name="Feature_RequiredInterfacesFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="Feature_RequiredInterfacesPolylineConnection"
-          targetDecoration="//@figures.4/@descriptors.2/@actualFigure/@children.1">
+          name="Feature_RequiredInterfacesPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_RequiredInterfacesLabel"
             text="requires"/>
-        <children
-            xsi:type="gmfgraph:PolylineDecoration"
-            name="Feature_RequiredInterfacesTargetDecoration"/>
       </actualFigure>
       <accessors
           accessor="getFigureFeature_RequiredInterfacesLabel"
@@ -1489,15 +1129,11 @@
         name="Feature_ProvidedInterfacesFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="Feature_ProvidedInterfacesPolylineConnection"
-          targetDecoration="//@figures.4/@descriptors.3/@actualFigure/@children.1">
+          name="Feature_ProvidedInterfacesPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_ProvidedInterfacesLabel"
             text="provides"/>
-        <children
-            xsi:type="gmfgraph:PolylineDecoration"
-            name="Feature_ProvidedInterfacesTargetDecoration"/>
       </actualFigure>
       <accessors
           accessor="getFigureFeature_ProvidedInterfacesLabel"
@@ -1507,15 +1143,11 @@
         name="Feature_ConstraintsFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="Feature_ConstraintsPolylineConnection"
-          targetDecoration="//@figures.4/@descriptors.4/@actualFigure/@children.1">
+          name="Feature_ConstraintsPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_ConstraintsLabel"
             text="restricts"/>
-        <children
-            xsi:type="gmfgraph:PolylineDecoration"
-            name="Feature_ConstraintsTargetDecoration"/>
       </actualFigure>
       <accessors
           accessor="getFigureFeature_ConstraintsLabel"
@@ -1525,15 +1157,11 @@
         name="Feature_DependenciesFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="Feature_DependenciesPolylineConnection"
-          targetDecoration="//@figures.4/@descriptors.5/@actualFigure/@children.1">
+          name="Feature_DependenciesPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_DependenciesLabel"
-            text="depends"/>
-        <children
-            xsi:type="gmfgraph:PolylineDecoration"
-            name="Feature_DependenciesTargetDecoration"/>
+            text="restricts"/>
       </actualFigure>
       <accessors
           accessor="getFigureFeature_DependenciesLabel"
@@ -1543,15 +1171,11 @@
         name="Feature_DetailedRequirementsFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="Feature_DetailedRequirementsPolylineConnection"
-          targetDecoration="//@figures.4/@descriptors.6/@actualFigure/@children.1">
+          name="Feature_DetailedRequirementsPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_DetailedRequirementsLabel"
-            text="specifies"/>
-        <children
-            xsi:type="gmfgraph:PolylineDecoration"
-            name="Feature_DetailedRequirementsTargetDecoration"/>
+            text="details"/>
       </actualFigure>
       <accessors
           accessor="getFigureFeature_DetailedRequirementsLabel"
@@ -1575,15 +1199,11 @@
         name="Feature_SubFeaturesFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="Feature_SubFeaturesPolylineConnection"
-          targetDecoration="//@figures.4/@descriptors.8/@actualFigure/@children.1">
+          name="Feature_SubFeaturesPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_SubFeaturesLabel"
             text="extends"/>
-        <children
-            xsi:type="gmfgraph:PolylineDecoration"
-            name="Feature_SubFeaturesTargetDecoration"/>
       </actualFigure>
       <accessors
           accessor="getFigureFeature_SubFeaturesLabel"
@@ -1593,15 +1213,11 @@
         name="Feature_RequiredFeaturesFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="Feature_RequiredFeaturesPolylineConnection"
-          targetDecoration="//@figures.4/@descriptors.9/@actualFigure/@children.1">
+          name="Feature_RequiredFeaturesPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_RequiredFeaturesLabel"
             text="requires"/>
-        <children
-            xsi:type="gmfgraph:PolylineDecoration"
-            name="Feature_RequiredFeaturesTargetDecoration"/>
       </actualFigure>
       <accessors
           accessor="getFigureFeature_RequiredFeaturesLabel"
@@ -1625,15 +1241,11 @@
         name="Feature_ExcludedFeaturesFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="Feature_ExcludedFeaturesPolylineConnection"
-          targetDecoration="//@figures.4/@descriptors.11/@actualFigure/@children.1">
+          name="Feature_ExcludedFeaturesPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Feature_ExcludedFeaturesLabel"
             text="excludes"/>
-        <children
-            xsi:type="gmfgraph:PolylineDecoration"
-            name="Feature_ExcludedFeaturesTargetDecoration"/>
       </actualFigure>
       <accessors
           accessor="getFigureFeature_ExcludedFeaturesLabel"
@@ -1685,15 +1297,11 @@
         name="Requirement_RefinementsFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="Requirement_RefinementsPolylineConnection"
-          targetDecoration="//@figures.4/@descriptors.15/@actualFigure/@children.1">
+          name="Requirement_RefinementsPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Requirement_RefinementsLabel"
             text="refines"/>
-        <children
-            xsi:type="gmfgraph:PolylineDecoration"
-            name="Requirement_RefinementsTargetDecoration"/>
       </actualFigure>
       <accessors
           accessor="getFigureRequirement_RefinementsLabel"
@@ -1717,15 +1325,11 @@
         name="Requirement_DefiningDataFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="Requirement_DefiningDataPolylineConnection"
-          targetDecoration="//@figures.4/@descriptors.17/@actualFigure/@children.1">
+          name="Requirement_DefiningDataPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Requirement_DefiningDataLabel"
             text="defines"/>
-        <children
-            xsi:type="gmfgraph:PolylineDecoration"
-            name="Requirement_DefiningDataTargetDecoration"/>
       </actualFigure>
       <accessors
           accessor="getFigureRequirement_DefiningDataLabel"
@@ -1749,15 +1353,11 @@
         name="Process_DataFlowFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="Process_DataFlowPolylineConnection"
-          targetDecoration="//@figures.4/@descriptors.19/@actualFigure/@children.1">
+          name="Process_DataFlowPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="Process_DataFlowLabel"
             text="specifies"/>
-        <children
-            xsi:type="gmfgraph:PolylineDecoration"
-            name="Process_DataFlowTargetDecoration"/>
       </actualFigure>
       <accessors
           accessor="getFigureProcess_DataFlowLabel"
@@ -1809,15 +1409,11 @@
         name="DataProcess_SuccessorFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="DataProcess_SuccessorPolylineConnection"
-          targetDecoration="//@figures.4/@descriptors.23/@actualFigure/@children.1">
+          name="DataProcess_SuccessorPolylineConnection">
         <children
             xsi:type="gmfgraph:Label"
             name="DataProcess_SuccessorLabel"
             text="next step"/>
-        <children
-            xsi:type="gmfgraph:PolylineDecoration"
-            name="DataProcess_SuccessorTargetDecoration"/>
       </actualFigure>
       <accessors
           accessor="getFigureDataProcess_SuccessorLabel"
@@ -1827,12 +1423,6 @@
   <nodes
       name="KnowledgeSpaceNode"
       figure="KnowledgeSpaceFigure"/>
-  <nodes
-      name="RequirementSpaceNode"
-      figure="RequirementSpaceFigure"/>
-  <nodes
-      name="DataProcessSpace"
-      figure="DataProcessSpaceFigure"/>
   <nodes
       name="MathematicalModelNode"
       figure="MathematicalModelFigure"/>
@@ -2007,21 +1597,6 @@
   <connections
       name="DataProcess_SuccessorConnection"
       figure="DataProcess_SuccessorFigure"/>
-  <compartments
-      name="KnowledgeSpaceCompartment"
-      figure="KnowledgeSpaceFigure"
-      collapsible="true"
-      accessor="//@figures.2/@descriptors.0/@accessors.1"/>
-  <compartments
-      name="RequirementSpaceCompartment"
-      figure="RequirementSpaceFigure"
-      collapsible="true"
-      accessor="//@figures.2/@descriptors.1/@accessors.1"/>
-  <compartments
-      name="DataProcessSpaceCompartment"
-      figure="DataProcessSpaceFigure"
-      collapsible="true"
-      accessor="//@figures.2/@descriptors.2/@accessors.1"/>
   <labels
       name="MathematicalModelNode_name"
       figure="MathematicalModelFigure"
@@ -2259,18 +1834,6 @@
       elementIcon="false"
       accessor="//@figures.1/@descriptors.14/@accessors.1"/>
   <labels
-      name="KnowledgeSpaceNode_name"
-      figure="KnowledgeSpaceFigure"
-      accessor="//@figures.2/@descriptors.0/@accessors.0"/>
-  <labels
-      name="RequirementSpaceNode_name"
-      figure="RequirementSpaceFigure"
-      accessor="//@figures.2/@descriptors.1/@accessors.0"/>
-  <labels
-      name="DataProcessNode_name"
-      figure="DataProcessSpaceFigure"
-      accessor="//@figures.2/@descriptors.2/@accessors.0"/>
-  <labels
       name="ScientificProblem_RepresentingModelConnectionLabel"
       figure="ScientificProblem_RepresentingModelFigure"
       elementIcon="false"
@@ -2299,6 +1862,18 @@
       figure="ScientificProblem_InfluencedFeatureFigure"
       elementIcon="false"
       accessor="//@figures.3/@descriptors.2/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
+  <labels
+      name="MathematicalModel_RepresentedProblemConnectionLabel"
+      figure="MathematicalModel_RepresentedProblemFigure"
+      elementIcon="false"
+      accessor="//@figures.3/@descriptors.3/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>

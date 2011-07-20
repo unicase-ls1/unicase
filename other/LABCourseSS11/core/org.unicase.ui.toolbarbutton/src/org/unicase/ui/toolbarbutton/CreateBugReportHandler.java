@@ -42,28 +42,22 @@ public class CreateBugReportHandler extends AbstractHandler {
 			protected void doRun() {
 				
 				//for testing: (setting a workpackage as property)
-//				Project p = projectSpace.getProject();
-//				Set<EObject> modelElements = p.getAllModelElements();
-//				ModelElementId element = null;
-//				for(EObject modelElement: modelElements){
-//					if(modelElement instanceof WorkPackage){
-//						element = ((WorkPackage)modelElement).getModelElementId();
-//						break;
-//					}
-//				}
-//
-//				if(element != null){
-//					PreferenceManager.INSTANCE.setProperty(projectSpace, ShortcutActionKey.USERLOCATION, new EObject[]{element});
-//				
+				Project p = projectSpace.getProject();
+				Set<EObject> modelElements = p.getAllModelElements();
+				ModelElementId element = null;
+				for(EObject modelElement: modelElements){
+					if(modelElement instanceof WorkPackage){
+						element = ((WorkPackage)modelElement).getModelElementId();
+						break;
+					}
+				}
+
+				if(element != null){
+					PreferenceManager.INSTANCE.setProperty(projectSpace, ShortcutActionKey.USERLOCATION, new EObject[]{element});
 				//end of testing part
 					BugReport item = BugFactory.eINSTANCE.createBugReport();
-					try {
-						TaskCreator.addTask(projectSpace, ShortcutActionKey.USERTASKLOCATION, item);
-					} catch (ModelIdDoesNotExistException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				
+					TaskCreator.addTask(projectSpace, ShortcutActionKey.USERLOCATION, item);
+				}
 			}
 		}.run(true);
 

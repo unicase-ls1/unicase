@@ -307,7 +307,7 @@
          <enablement>
             <test
                property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-               value="org.unicase.EditingDomain"/>
+               value="org.unicase.ui.diagram.usecaseDiagram.EditingDomain"/>
          </enablement>
       </clientContext> 
       <binding context="org.unicase.ui.diagram.usecaseDiagram.TypeContext">

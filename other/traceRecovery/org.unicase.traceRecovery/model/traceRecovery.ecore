@@ -11,7 +11,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//UnicaseModelElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Query" eSuperTypes="../../org.unicase.model/model/model.ecore#//UnicaseModelElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelElement" upperBound="-1"
         eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//UnicaseModelElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Directory">

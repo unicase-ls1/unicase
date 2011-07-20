@@ -7,8 +7,8 @@
 package org.eclipse.emf.ecp.navigator.commands;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecp.common.util.ActionHelper;
 import org.eclipse.emf.ecp.common.util.UiUtil;
+import org.eclipse.emf.ecp.common.utilities.ActionHelper;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.DoubleClickEvent;

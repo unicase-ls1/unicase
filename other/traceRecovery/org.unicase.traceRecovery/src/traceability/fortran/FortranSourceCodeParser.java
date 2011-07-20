@@ -90,10 +90,10 @@ public class FortranSourceCodeParser {
 	}
 
 
-	public ArrayList <String> getComments(){
+	public ArrayList getComments(){
 //		IASTTranslationUnit unit =  new Parser().parse();
 //		NodeCommentMap commentMap = ASTCommenter.getCommentedNodeMap(unit);	
-		ArrayList <String> comments = new ArrayList  <String>();
+		ArrayList comments = new ArrayList();
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(f));
 			FixedFormLexerPrepass prepass = new FixedFormLexerPrepass(reader);

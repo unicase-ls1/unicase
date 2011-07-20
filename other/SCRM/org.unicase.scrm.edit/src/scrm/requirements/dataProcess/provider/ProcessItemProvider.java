@@ -66,24 +66,6 @@ public class ProcessItemProvider extends RequirementItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Data Flow feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDataFlowPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Process_dataFlow_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Process_dataFlow_feature", "_UI_Process_type"),
-				DataProcessPackage.Literals.PROCESS__DATA_FLOW, true, false,
-				true, null, null, null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Predecessor feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -116,6 +98,24 @@ public class ProcessItemProvider extends RequirementItemProvider implements
 				getString("_UI_PropertyDescriptor_description",
 						"_UI_Process_successor_feature", "_UI_Process_type"),
 				DataProcessPackage.Literals.PROCESS__SUCCESSOR, true, false,
+				true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Data Flow feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDataFlowPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Process_dataFlow_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Process_dataFlow_feature", "_UI_Process_type"),
+				DataProcessPackage.Literals.PROCESS__DATA_FLOW, true, false,
 				true, null, null, null));
 	}
 
