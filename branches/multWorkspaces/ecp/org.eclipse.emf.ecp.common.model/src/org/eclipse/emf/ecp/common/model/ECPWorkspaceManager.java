@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.impl.ECPCompositeWorkspace;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.util.ECPWorkspaceProvider;
 import org.eclipse.emf.emfstore.common.observer.ObserverBus;
 
@@ -47,33 +48,7 @@ public final class ECPWorkspaceManager {
 	}
 
 	private void init() {
-		IConfigurationElement[] confs = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.eclipse.emf.ecp.model.workspaceprovider");
-		if (confs.length == 1) {
-			try {
-				currentWorkspace = ((ECPWorkspaceProvider) confs[0].createExecutableExtension("class"))
-					.getECPWorkspace();
-			} catch (CoreException e) {
-				Activator.getDefault().logException(e.getMessage(), e);
-			}
-		}
-		if (confs.length > 1) {
-			try {
-				currentWorkspace = ((ECPWorkspaceProvider) confs[0].createExecutableExtension("class"))
-					.getECPWorkspace();
-				Exception exception = new IllegalStateException("Duplicate Workspace registered. Default selected: "
-					+ currentWorkspace.getClass().getName()
-					+ " Please make sure to only include one Workspace in your target platform.");
-				Activator.getDefault().logException(exception.getMessage(), exception);
-			} catch (CoreException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		if (confs.length < 1) {
-			throw new IllegalStateException("No Workspace registered");
-		}
-
+		currentWorkspace = new ECPCompositeWorkspace();
 		initObserverBus();
 	}
 
