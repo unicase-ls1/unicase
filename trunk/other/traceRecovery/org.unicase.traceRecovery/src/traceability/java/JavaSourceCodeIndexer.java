@@ -39,13 +39,8 @@ public class JavaSourceCodeIndexer extends Indexer{
 	private static final String METHOD = "method";
 	private static final String CODE = "code";
 	private static final String COMMENT = "comment";
-	private static final String RETURN = "return";
 	private static final String PARAMETER = "parameter";
 	private static final String EXTENDS = "extends";
-	private static int id = 0;
-
-	
-
 	public static void main(String [] args) {
 
 		try {
@@ -118,6 +113,7 @@ public class JavaSourceCodeIndexer extends Indexer{
 		
 		try {
 			writer.addDocument(doc);
+			writer.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
