@@ -389,10 +389,17 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 					@Override
 					protected void doRun() {
 						int counter = 0;
-						for (EObject scrmME : mesAdd) {
+						for (EObject eObject : mesAdd) {
+							if(!(eObject instanceof SCRMModelElement)) {
+								continue;
+							}
+							SCRMModelElement scrmME = (SCRMModelElement) eObject;
 							// add reference to the element
-							diagram.getElements()
-									.add((SCRMModelElement) scrmME);
+							diagram.getElements().add(scrmME);
+							if(diagram.getRepresentedSpace() != null
+									&& !diagram.getRepresentedSpace().getContainedModelElements().contains(scrmME)) {
+								diagram.getRepresentedSpace().getContainedModelElements().add(scrmME);
+							}
 							// create the View for the element
 							CreateViewCommand command = new CreateViewCommand(
 									new EObjectAdapter(scrmME),
@@ -540,7 +547,7 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 		if (modelElementContext == null) {
 			return;
 		}
-
+		
 		// initialize a listener that will close this editor if the MEDiagram,
 		// its container or its context gets deleted
 		modelElementContextListener = new ModelElementContextListener() {

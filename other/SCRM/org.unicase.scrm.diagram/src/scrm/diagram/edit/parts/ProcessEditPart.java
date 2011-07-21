@@ -634,12 +634,12 @@ public class ProcessEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 117, 193, 255);
+	static final Color THIS_BACK = new Color(null, 153, 204, 255);
 
 	/**
 	 * @generated
 	 */
 	static final Font FFIGUREPROCESS_NAME_FONT = new Font(Display.getCurrent(),
-			"Arial", 9, SWT.BOLD);
+			"Arial", 11, SWT.BOLD);
 
 }

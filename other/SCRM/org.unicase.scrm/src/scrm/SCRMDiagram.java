@@ -27,6 +27,7 @@ import scrm.impl.DiagramStoreException;
  *   <li>{@link scrm.SCRMDiagram#getNewElements <em>New Elements</em>}</li>
  *   <li>{@link scrm.SCRMDiagram#getDiagramLayout <em>Diagram Layout</em>}</li>
  *   <li>{@link scrm.SCRMDiagram#getDiagramType <em>Diagram Type</em>}</li>
+ *   <li>{@link scrm.SCRMDiagram#getRepresentedSpace <em>Represented Space</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,6 +40,7 @@ public interface SCRMDiagram extends SCRMModelElement {
 	/**
 	 * Returns the value of the '<em><b>Elements</b></em>' reference list.
 	 * The list contents are of type {@link scrm.SCRMModelElement}.
+	 * It is bidirectional and its opposite is '{@link scrm.SCRMModelElement#getDisplayingDiagrams <em>Displaying Diagrams</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Elements</em>' reference list isn't clear,
@@ -47,7 +49,8 @@ public interface SCRMDiagram extends SCRMModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Elements</em>' reference list.
 	 * @see scrm.ScrmPackage#getSCRMDiagram_Elements()
-	 * @model
+	 * @see scrm.SCRMModelElement#getDisplayingDiagrams
+	 * @model opposite="displayingDiagrams"
 	 * @generated
 	 */
 	EList<SCRMModelElement> getElements();
@@ -122,6 +125,34 @@ public interface SCRMDiagram extends SCRMModelElement {
 	 * @generated
 	 */
 	void setDiagramType(DiagramType value);
+
+	/**
+	 * Returns the value of the '<em><b>Represented Space</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link scrm.SCRMSpace#getRepresentingDiagram <em>Representing Diagram</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Represented Space</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Represented Space</em>' reference.
+	 * @see #setRepresentedSpace(SCRMSpace)
+	 * @see scrm.ScrmPackage#getSCRMDiagram_RepresentedSpace()
+	 * @see scrm.SCRMSpace#getRepresentingDiagram
+	 * @model opposite="representingDiagram"
+	 * @generated
+	 */
+	SCRMSpace getRepresentedSpace();
+
+	/**
+	 * Sets the value of the '{@link scrm.SCRMDiagram#getRepresentedSpace <em>Represented Space</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Represented Space</em>' reference.
+	 * @see #getRepresentedSpace()
+	 * @generated
+	 */
+	void setRepresentedSpace(SCRMSpace value);
 
 	/**
 	 * Sets the value of the '{@link scrm.SCRMDiagram#getDiagramType <em>Diagram Type</em>}' attribute.

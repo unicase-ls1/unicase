@@ -6,6 +6,7 @@
  */
 package scrm;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -18,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link scrm.SCRMModelElement#getName <em>Name</em>}</li>
  *   <li>{@link scrm.SCRMModelElement#getDescription <em>Description</em>}</li>
+ *   <li>{@link scrm.SCRMModelElement#getDisplayingDiagrams <em>Displaying Diagrams</em>}</li>
  * </ul>
  * </p>
  *
@@ -79,5 +81,23 @@ public interface SCRMModelElement extends EObject {
 	 * @generated
 	 */
 	void setDescription(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * The list contents are of type {@link scrm.SCRMDiagram}.
+	 * It is bidirectional and its opposite is '{@link scrm.SCRMDiagram#getElements <em>Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Displaying Diagrams</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Displaying Diagrams</em>' reference list.
+	 * @see scrm.ScrmPackage#getSCRMModelElement_DisplayingDiagrams()
+	 * @see scrm.SCRMDiagram#getElements
+	 * @model opposite="elements"
+	 * @generated
+	 */
+	EList<SCRMDiagram> getDisplayingDiagrams();
 
 } // SCRMModelElement

@@ -16,18 +16,23 @@
     <genClasses image="false" ecoreClass="scrm.ecore#//SCRMModelElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//SCRMModelElement/name"/>
       <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute scrm.ecore#//SCRMModelElement/description"/>
+      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference scrm.ecore#//SCRMModelElement/displayingDiagrams"/>
     </genClasses>
     <genClasses ecoreClass="scrm.ecore#//SCRMDiagram">
-      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+      <genFeatures children="true" createChild="false" propertySortChoices="true"
           ecoreFeature="ecore:EReference scrm.ecore#//SCRMDiagram/elements"/>
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//SCRMDiagram/gmfdiagram"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//SCRMDiagram/newElements"/>
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//SCRMDiagram/diagramLayout"/>
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//SCRMDiagram/diagramType"/>
+      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference scrm.ecore#//SCRMDiagram/representedSpace"/>
     </genClasses>
     <genClasses image="false" ecoreClass="scrm.ecore#//SCRMSpace">
       <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
           ecoreFeature="ecore:EReference scrm.ecore#//SCRMSpace/representingDiagram"/>
+      <genOperations ecoreOperation="scrm.ecore#//SCRMSpace/getContainedModelElements"/>
     </genClasses>
     <nestedGenPackages prefix="Knowledge" basePackage="scrm" disposableProviderFactory="true"
         ecorePackage="scrm.ecore#//knowledge">

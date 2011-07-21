@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import scrm.SCRMDiagram;
 import scrm.SCRMModelElement;
+import scrm.ScrmPackage;
 import scrm.impl.SCRMModelElementImpl;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.NumericalMethod;
@@ -214,18 +215,52 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetRepresentingDiagram(
+			SCRMDiagram newRepresentingDiagram, NotificationChain msgs) {
+		SCRMDiagram oldRepresentingDiagram = representingDiagram;
+		representingDiagram = newRepresentingDiagram;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(
+					this,
+					Notification.SET,
+					DataProcessPackage.DATA_PROCESS_SPACE__REPRESENTING_DIAGRAM,
+					oldRepresentingDiagram, newRepresentingDiagram);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public void setRepresentingDiagram(SCRMDiagram newRepresentingDiagram) {
-		SCRMDiagram oldRepresentingDiagram = representingDiagram;
-		representingDiagram = newRepresentingDiagram;
-		getContainedDataProcessSteps().setDiagram(representingDiagram);
-		if (eNotificationRequired())
+		if (newRepresentingDiagram != representingDiagram) {
+			getContainedDataProcessSteps().setDiagram(newRepresentingDiagram);
+			NotificationChain msgs = null;
+			if (representingDiagram != null)
+				msgs = ((InternalEObject) representingDiagram).eInverseRemove(
+						this, ScrmPackage.SCRM_DIAGRAM__REPRESENTED_SPACE,
+						SCRMDiagram.class, msgs);
+			if (newRepresentingDiagram != null)
+				msgs = ((InternalEObject) newRepresentingDiagram).eInverseAdd(
+						this, ScrmPackage.SCRM_DIAGRAM__REPRESENTED_SPACE,
+						SCRMDiagram.class, msgs);
+			msgs = basicSetRepresentingDiagram(newRepresentingDiagram, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(
 					this,
 					Notification.SET,
 					DataProcessPackage.DATA_PROCESS_SPACE__REPRESENTING_DIAGRAM,
-					oldRepresentingDiagram, representingDiagram));
+					newRepresentingDiagram, newRepresentingDiagram));
 	}
 
 	/**
@@ -852,6 +887,12 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
+		case DataProcessPackage.DATA_PROCESS_SPACE__REPRESENTING_DIAGRAM:
+			if (representingDiagram != null)
+				msgs = ((InternalEObject) representingDiagram).eInverseRemove(
+						this, ScrmPackage.SCRM_DIAGRAM__REPRESENTED_SPACE,
+						SCRMDiagram.class, msgs);
+			return basicSetRepresentingDiagram((SCRMDiagram) otherEnd, msgs);
 		case DataProcessPackage.DATA_PROCESS_SPACE__CONTAINING_REQUIREMENT_SPACE:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
@@ -920,6 +961,8 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
+		case DataProcessPackage.DATA_PROCESS_SPACE__REPRESENTING_DIAGRAM:
+			return basicSetRepresentingDiagram(null, msgs);
 		case DataProcessPackage.DATA_PROCESS_SPACE__CONTAINING_REQUIREMENT_SPACE:
 			return basicSetContainingRequirementSpace(null, msgs);
 		case DataProcessPackage.DATA_PROCESS_SPACE__REFINEMENTS:

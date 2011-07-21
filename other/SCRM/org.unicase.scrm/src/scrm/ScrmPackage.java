@@ -89,13 +89,22 @@ public interface ScrmPackage extends EPackage {
 	int SCRM_MODEL_ELEMENT__DESCRIPTION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_MODEL_ELEMENT__DISPLAYING_DIAGRAMS = 2;
+
+	/**
 	 * The number of structural features of the '<em>SCRM Model Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_MODEL_ELEMENT_FEATURE_COUNT = 2;
+	int SCRM_MODEL_ELEMENT_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link scrm.impl.SCRMDiagramImpl <em>SCRM Diagram</em>}' class.
@@ -124,6 +133,15 @@ public interface ScrmPackage extends EPackage {
 	 * @ordered
 	 */
 	int SCRM_DIAGRAM__DESCRIPTION = SCRM_MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_DIAGRAM__DISPLAYING_DIAGRAMS = SCRM_MODEL_ELEMENT__DISPLAYING_DIAGRAMS;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' reference list.
@@ -171,13 +189,22 @@ public interface ScrmPackage extends EPackage {
 	int SCRM_DIAGRAM__DIAGRAM_TYPE = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Represented Space</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_DIAGRAM__REPRESENTED_SPACE = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>SCRM Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_DIAGRAM_FEATURE_COUNT = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int SCRM_DIAGRAM_FEATURE_COUNT = SCRM_MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link scrm.SCRMSpace <em>SCRM Space</em>}' class.
@@ -206,6 +233,15 @@ public interface ScrmPackage extends EPackage {
 	 * @ordered
 	 */
 	int SCRM_SPACE__DESCRIPTION = SCRM_MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_SPACE__DISPLAYING_DIAGRAMS = SCRM_MODEL_ELEMENT__DISPLAYING_DIAGRAMS;
 
 	/**
 	 * The feature id for the '<em><b>Representing Diagram</b></em>' reference.
@@ -268,6 +304,17 @@ public interface ScrmPackage extends EPackage {
 	EAttribute getSCRMModelElement_Description();
 
 	/**
+	 * Returns the meta object for the reference list '{@link scrm.SCRMModelElement#getDisplayingDiagrams <em>Displaying Diagrams</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Displaying Diagrams</em>'.
+	 * @see scrm.SCRMModelElement#getDisplayingDiagrams()
+	 * @see #getSCRMModelElement()
+	 * @generated
+	 */
+	EReference getSCRMModelElement_DisplayingDiagrams();
+
+	/**
 	 * Returns the meta object for class '{@link scrm.SCRMDiagram <em>SCRM Diagram</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -320,6 +367,17 @@ public interface ScrmPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSCRMDiagram_DiagramType();
+
+	/**
+	 * Returns the meta object for the reference '{@link scrm.SCRMDiagram#getRepresentedSpace <em>Represented Space</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Represented Space</em>'.
+	 * @see scrm.SCRMDiagram#getRepresentedSpace()
+	 * @see #getSCRMDiagram()
+	 * @generated
+	 */
+	EReference getSCRMDiagram_RepresentedSpace();
 
 	/**
 	 * Returns the meta object for class '{@link scrm.SCRMSpace <em>SCRM Space</em>}'.
@@ -414,6 +472,15 @@ public interface ScrmPackage extends EPackage {
 				.getSCRMModelElement_Description();
 
 		/**
+		 * The meta object literal for the '<em><b>Displaying Diagrams</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SCRM_MODEL_ELEMENT__DISPLAYING_DIAGRAMS = eINSTANCE
+				.getSCRMModelElement_DisplayingDiagrams();
+
+		/**
 		 * The meta object literal for the '{@link scrm.impl.SCRMDiagramImpl <em>SCRM Diagram</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -457,6 +524,15 @@ public interface ScrmPackage extends EPackage {
 		 */
 		EAttribute SCRM_DIAGRAM__DIAGRAM_TYPE = eINSTANCE
 				.getSCRMDiagram_DiagramType();
+
+		/**
+		 * The meta object literal for the '<em><b>Represented Space</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SCRM_DIAGRAM__REPRESENTED_SPACE = eINSTANCE
+				.getSCRMDiagram_RepresentedSpace();
 
 		/**
 		 * The meta object literal for the '{@link scrm.SCRMSpace <em>SCRM Space</em>}' class.

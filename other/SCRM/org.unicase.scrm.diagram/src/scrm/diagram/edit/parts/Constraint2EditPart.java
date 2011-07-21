@@ -373,12 +373,12 @@ public class Constraint2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 112, 244, 0);
+	static final Color THIS_BACK = new Color(null, 159, 255, 53);
 
 	/**
 	 * @generated
 	 */
 	static final Font FFIGURECONSTRAINT_NAME_FONT = new Font(
-			Display.getCurrent(), "Arial", 9, SWT.BOLD);
+			Display.getCurrent(), "Arial", 11, SWT.BOLD);
 
 }

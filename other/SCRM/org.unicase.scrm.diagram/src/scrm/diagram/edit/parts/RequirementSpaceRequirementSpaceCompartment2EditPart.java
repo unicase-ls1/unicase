@@ -14,6 +14,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import scrm.diagram.edit.policies.OpenSCRMSpaceEditPolicy;
 import scrm.diagram.edit.policies.RequirementSpaceRequirementSpaceCompartment2CanonicalEditPolicy;
 import scrm.diagram.edit.policies.RequirementSpaceRequirementSpaceCompartment2ItemSemanticEditPolicy;
+import scrm.diagram.edit.policies.SCRMSpaceChildCreationEditPolicy;
+import scrm.diagram.edit.policies.SCRMSpaceDragDropEditPolicy;
 import scrm.diagram.part.Messages;
 
 /**
@@ -53,7 +55,7 @@ public class RequirementSpaceRequirementSpaceCompartment2EditPart extends
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
@@ -63,9 +65,9 @@ public class RequirementSpaceRequirementSpaceCompartment2EditPart extends
 				EditPolicyRoles.SEMANTIC_ROLE,
 				new RequirementSpaceRequirementSpaceCompartment2ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
-				new CreationEditPolicy());
+				new SCRMSpaceChildCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
-				new DragDropEditPolicy());
+				new SCRMSpaceDragDropEditPolicy());
 		installEditPolicy(
 				EditPolicyRoles.CANONICAL_ROLE,
 				new RequirementSpaceRequirementSpaceCompartment2CanonicalEditPolicy());

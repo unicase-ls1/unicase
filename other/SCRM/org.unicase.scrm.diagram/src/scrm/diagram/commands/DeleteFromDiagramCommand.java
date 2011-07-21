@@ -15,9 +15,13 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.workSpaceModel.util.AssociationClassHelper;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
+
 import scrm.SCRMDiagram;
 import scrm.diagram.util.EditPartUtility;
 
@@ -65,6 +69,12 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 		diag.getElements().remove(destructee);
 		for (EObject additionalME : additionalMEs) {
 			diag.getElements().remove(additionalME);
+		}
+		
+		final EObject model = ((View) editPart.getModel()).getElement();
+		if(!(model.eContainer() instanceof Project)) {
+			final Project project = ModelUtil.getProject(diag);
+			project.addModelElement(model);
 		}
 
 		return CommandResult.newOKCommandResult();

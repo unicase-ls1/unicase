@@ -1356,6 +1356,31 @@
          checkPluginLoaded="false"
          class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider">
       <Priority
+            name="High">
+      </Priority>
+      <popupContribution
+            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+         <popupStructuredContributionCriteria
+               objectClass="org.eclipse.gmf.runtime.diagram.ui.internal.editparts.IContainedEditPart">
+            <method
+                  name="getNotationView().getElement()"
+                  notValue="null">
+            </method>
+         </popupStructuredContributionCriteria>
+         <popupPredefinedItem
+               id="deleteFromModelAction"
+               remove="true">
+         </popupPredefinedItem>
+      </popupContribution>
+   </contributionItemProvider>
+</extension>
+
+<!-- <extension
+      point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+   <contributionItemProvider
+         checkPluginLoaded="false"
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider">
+      <Priority
             name="Highest">
       </Priority>
       <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
@@ -1410,19 +1435,8 @@
              remove="true">
        </popupPredefinedItem>
     </popupContribution>
-    <partContribution
-          class="org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart">
-       <partMenuGroup
-             id="org.unicase.scrm.diagram.testGroup"
-             toolbarPath="/">
-       </partMenuGroup>
-       <partAction
-             id="org.unicase.scrm.diagram.ParentDiagramAction"
-             toolbarPath="/testGroup">
-       </partAction>
-    </partContribution>
 		</contributionItemProvider>
-</extension>
+</extension> -->
 
 
    <!-- optionally, specify keybindings -->

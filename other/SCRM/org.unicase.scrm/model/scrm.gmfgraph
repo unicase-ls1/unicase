@@ -1056,11 +1056,6 @@
           name="KnowledgeSpaceShape">
         <layout
             xsi:type="gmfgraph:GridLayout"/>
-        <backgroundColor
-            xsi:type="gmfgraph:RGBColor"
-            red="150"
-            green="150"
-            blue="150"/>
         <preferredSize
             dx="300"
             dy="240"/>
@@ -1103,11 +1098,6 @@
           cornerHeight="32">
         <layout
             xsi:type="gmfgraph:GridLayout"/>
-        <backgroundColor
-            xsi:type="gmfgraph:RGBColor"
-            red="200"
-            green="200"
-            blue="200"/>
         <preferredSize
             dx="300"
             dy="240"/>
@@ -1152,11 +1142,6 @@
           cornerHeight="32">
         <layout
             xsi:type="gmfgraph:GridLayout"/>
-        <backgroundColor
-            xsi:type="gmfgraph:RGBColor"
-            red="225"
-            green="225"
-            blue="225"/>
         <preferredSize
             dx="300"
             dy="240"/>

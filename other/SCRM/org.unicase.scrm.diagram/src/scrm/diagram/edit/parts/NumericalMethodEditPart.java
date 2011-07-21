@@ -550,6 +550,6 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	static final Font FFIGURENUMERICALMETHOD_NAME_FONT = new Font(
-			Display.getCurrent(), "Arial", 9, SWT.BOLD);
+			Display.getCurrent(), "Arial", 11, SWT.BOLD);
 
 }

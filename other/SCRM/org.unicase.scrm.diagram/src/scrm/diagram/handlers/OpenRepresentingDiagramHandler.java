@@ -17,42 +17,32 @@ import scrm.SCRMDiagram;
 import scrm.diagram.edit.policies.OpenSCRMSpaceEditPolicy.OpenDiagramCommand;
 
 /**
+ * This handler provides the possibility to open representing diagrams
+ * from selecting the corresponding action from a SCRMSpace's context menu.
+ * To do so, it uses a {@link OpenDiagramCommand}.
  * @author mharut
- * 
- * Handler for the Save Template command. This handler obtains a SCRM Diagram from
- * the context the command was called in and lets the user choose a file to save the
- * diagram as a template to. This template can be used by calling the Load Template
- * command.
  */
 public class OpenRepresentingDiagramHandler extends AbstractHandler {
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
-	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		// obtain edit part from selection
 		EditPart editPart = obtainEditPart(event);
 		
 		View view = (View) editPart.getModel();
 		
-		// obtain the default directory to save files to
-		SCRMDiagram scrmDiagram = (SCRMDiagram) ((Diagram) editPart.getRoot().getContents().getModel()).eContainer();
-		
-		new ICommandProxy(new OpenDiagramCommand(getLink(view), scrmDiagram)).execute();
+		new ICommandProxy(
+				new OpenDiagramCommand(getLink(view))).execute();
 		
 		return null;
 	}
 
 	/**
-	 * Obtains a SCRMDiagram by checking if one was selected. If no SCRMDiagram was
-	 * selected, checks if the active editor is actually a diagram editor.
-	 * If so, the Diagrams container, which is a SCRMDiagram, is returned.
-	 * If none of the above holds, throws an IllegalArgumentException, as this
-	 * Handler was falsely called. 
+	 * Obtains the <code>EditPart</code> from the <code>event</code>'s
+	 * current selection.
 	 * 
 	 * @param event an event containing all the information about the current 
 	 * state of the application
-	 * @return the properly obtained SCRMDiagram
+	 * @return the properly obtained <code>EditPart</code>
 	 * @throws ExecutionException if an exception occurred during the execution
 	 */
 	private EditPart obtainEditPart(ExecutionEvent event) throws ExecutionException {

@@ -91,6 +91,15 @@ public interface RequirementsPackage extends EPackage {
 	int IREQUIREMENT__DESCRIPTION = ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IREQUIREMENT__DISPLAYING_DIAGRAMS = ScrmPackage.SCRM_MODEL_ELEMENT__DISPLAYING_DIAGRAMS;
+
+	/**
 	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -135,6 +144,15 @@ public interface RequirementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int INTERFACE__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERFACE__DISPLAYING_DIAGRAMS = IREQUIREMENT__DISPLAYING_DIAGRAMS;
 
 	/**
 	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
@@ -229,6 +247,15 @@ public interface RequirementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int REQUIREMENT__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT__DISPLAYING_DIAGRAMS = IREQUIREMENT__DISPLAYING_DIAGRAMS;
 
 	/**
 	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
@@ -372,6 +399,15 @@ public interface RequirementsPackage extends EPackage {
 	int REQUIREMENT_SPACE__DESCRIPTION = ScrmPackage.SCRM_SPACE__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT_SPACE__DISPLAYING_DIAGRAMS = ScrmPackage.SCRM_SPACE__DISPLAYING_DIAGRAMS;
+
+	/**
 	 * The feature id for the '<em><b>Representing Diagram</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -424,6 +460,15 @@ public interface RequirementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int FEATURE__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__DISPLAYING_DIAGRAMS = IREQUIREMENT__DISPLAYING_DIAGRAMS;
 
 	/**
 	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
@@ -570,6 +615,15 @@ public interface RequirementsPackage extends EPackage {
 	int HARDWARE__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HARDWARE__DISPLAYING_DIAGRAMS = IREQUIREMENT__DISPLAYING_DIAGRAMS;
+
+	/**
 	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -642,6 +696,15 @@ public interface RequirementsPackage extends EPackage {
 	int CONSTRAINT__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__DISPLAYING_DIAGRAMS = IREQUIREMENT__DISPLAYING_DIAGRAMS;
+
+	/**
 	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -685,6 +748,15 @@ public interface RequirementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER_INTERFACE__DESCRIPTION = INTERFACE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_INTERFACE__DISPLAYING_DIAGRAMS = INTERFACE__DISPLAYING_DIAGRAMS;
 
 	/**
 	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
@@ -739,6 +811,15 @@ public interface RequirementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int SOFTWARE_INTERFACE__DESCRIPTION = INTERFACE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFTWARE_INTERFACE__DISPLAYING_DIAGRAMS = INTERFACE__DISPLAYING_DIAGRAMS;
 
 	/**
 	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
@@ -802,6 +883,15 @@ public interface RequirementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int PERFORMANCE__DESCRIPTION = REQUIREMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERFORMANCE__DISPLAYING_DIAGRAMS = REQUIREMENT__DISPLAYING_DIAGRAMS;
 
 	/**
 	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
@@ -903,6 +993,15 @@ public interface RequirementsPackage extends EPackage {
 	int DATA_FLOW__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_FLOW__DISPLAYING_DIAGRAMS = IREQUIREMENT__DISPLAYING_DIAGRAMS;
+
+	/**
 	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -946,6 +1045,15 @@ public interface RequirementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATA_DEFINITION__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_DEFINITION__DISPLAYING_DIAGRAMS = IREQUIREMENT__DISPLAYING_DIAGRAMS;
 
 	/**
 	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.

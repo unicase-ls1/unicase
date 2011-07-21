@@ -599,12 +599,12 @@ public class PerformanceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 112, 244, 204);
+	static final Color THIS_BACK = new Color(null, 159, 255, 53);
 
 	/**
 	 * @generated
 	 */
 	static final Font FFIGUREPERFORMANCE_NAME_FONT = new Font(
-			Display.getCurrent(), "Arial", 9, SWT.BOLD);
+			Display.getCurrent(), "Arial", 11, SWT.BOLD);
 
 }

@@ -1,8 +1,6 @@
 package scrm.diagram.edit.parts;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -14,59 +12,21 @@ import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
-import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 
+import scrm.SCRMDiagram;
 import scrm.ScrmPackage;
-import scrm.diagram.commands.CommandFactory;
 import scrm.diagram.edit.policies.SCRMDiagramCanonicalEditPolicy;
+import scrm.diagram.edit.policies.SCRMDiagramDragDropEditPolicy;
 import scrm.diagram.edit.policies.SCRMDiagramItemSemanticEditPolicy;
+import scrm.diagram.edit.policies.SCRMSpaceDragDropEditPolicy;
 
 /**
  * @generated
  */
 public class SCRMDiagramEditPart extends DiagramEditPart {
-
-	private final class DiagramDragDropEditPolicyExtension extends
-			DiagramDragDropEditPolicy {
-		@Override
-		public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
-			List<ViewDescriptor> viewDescriptors = new ArrayList<ViewDescriptor>();
-			for (Iterator it = dropRequest.getObjects().iterator(); it
-					.hasNext();) {
-				Object nextObject = it.next();
-				if (!(nextObject instanceof EObject)) {
-					continue;
-				}
-				viewDescriptors.add(new CreateViewRequest.ViewDescriptor(
-						new EObjectAdapter((EObject) nextObject), Node.class,
-						null, getDiagramPreferencesHint()));
-			}
-			return createDropCommand(dropRequest, viewDescriptors);
-		}
-
-		private Command createDropCommand(DropObjectsRequest dropRequest,
-				List<ViewDescriptor> viewDescriptors) {
-			Command command = createViewsAndArrangeCommand(dropRequest,
-					viewDescriptors);
-			if (command != null && dropRequest.getObjects().size() > 0) {
-
-				return command.chain(CommandFactory
-						.createDiagramElementAddCommand((EObject) dropRequest
-								.getObjects().iterator().next(),
-								SCRMDiagramEditPart.this, true));
-
-			}
-			return null;
-		}
-	}
 
 	/**
 	 * @generated
@@ -86,7 +46,7 @@ public class SCRMDiagramEditPart extends DiagramEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
@@ -94,6 +54,8 @@ public class SCRMDiagramEditPart extends DiagramEditPart {
 				new SCRMDiagramItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new SCRMDiagramCanonicalEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
+				new SCRMDiagramDragDropEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 

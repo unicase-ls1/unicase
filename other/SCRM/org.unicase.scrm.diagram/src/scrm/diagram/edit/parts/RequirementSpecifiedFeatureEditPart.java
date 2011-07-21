@@ -129,7 +129,7 @@ public class RequirementSpecifiedFeatureEditPart extends ConnectionNodeEditPart
 		private void createContents() {
 
 			fFigureFeature_DetailedRequirementsLabel = new WrappingLabel();
-			fFigureFeature_DetailedRequirementsLabel.setText("specifies");
+			fFigureFeature_DetailedRequirementsLabel.setText("details");
 
 			this.add(fFigureFeature_DetailedRequirementsLabel);
 

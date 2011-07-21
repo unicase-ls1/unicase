@@ -1,7 +1,5 @@
 package scrm.diagram.edit.policies;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -11,10 +9,8 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.OpenEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.requests.ArrangeRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -30,12 +26,12 @@ import scrm.ScrmFactory;
 import scrm.diagram.part.Messages;
 
 /**
- * @author mharut
  * Policy to enable double-click behavior for SCRMDiagram-Compartment-EditParts.
  * Upon double-clicking a SCRMSpace-Node, the representing SCRMDiagram is opened,
  * containing all of the SCRMSpaces-elements including references between them.
  * If no such SCRMDiagram exists, this policy creates one and links it to the space.
  * 
+ * @author mharut
  * @generated NOT
  */
 public class OpenSCRMSpaceEditPolicy extends OpenEditPolicy {
@@ -55,7 +51,7 @@ public class OpenSCRMSpaceEditPolicy extends OpenEditPolicy {
 		}
 		
 		return new ICommandProxy(new OpenDiagramCommand(
-				(HintedDiagramLinkStyle) link, view.getDiagram().eContainer()));
+				(HintedDiagramLinkStyle) link));
 	}
 
 	private Style getLink(View view) {
@@ -74,65 +70,52 @@ public class OpenSCRMSpaceEditPolicy extends OpenEditPolicy {
 		return link;
 	}
 
+	/**
+	 * The command to open diagrams from an already existent <code>SCRMDiagram</code>.
+	 * This command will open the diagram and initialize its content, if necessary.
+	 * 
+	 * @author mharut
+	 */
 	public static class OpenDiagramCommand extends AbstractTransactionalCommand {
 
 		private final HintedDiagramLinkStyle diagramFacet;
 
 		private final SCRMDiagram containingDiagram;
 
-		public OpenDiagramCommand(HintedDiagramLinkStyle linkStyle, EObject eObject) {
+		/**
+		 * Creates a new command to open the diagram linked by <code>linkStyle</code>.
+		 * @param linkStyle the link style of the edit part to open the diagram for
+		 */
+		public OpenDiagramCommand(HintedDiagramLinkStyle linkStyle) {
 			// editing domain is taken for original diagram, 
 			// if we open diagram from another file, we should use another editing domain
 			super(TransactionUtil.getEditingDomain(linkStyle),
 					Messages.CommandName_OpenDiagram, null);
 			diagramFacet = linkStyle;
-			containingDiagram = (SCRMDiagram) eObject;
+			containingDiagram = (SCRMDiagram) ((View) linkStyle.eContainer()).
+				getDiagram().eContainer();
 		}
 
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 				IAdaptable info) throws ExecutionException {
 			try {
-				boolean requiresArrangement = false;
 				SCRMSpace representedSpace = (SCRMSpace) ((View) diagramFacet
 						.eContainer()).getElement();
 				SCRMDiagram scrmDiagram = representedSpace
 						.getRepresentingDiagram();
 				if (scrmDiagram == null) {
 					scrmDiagram = intializeNewDiagram(representedSpace);
-					requiresArrangement = true;
 				}
 				containingDiagram.getElements().add(scrmDiagram);
 				ActionHelper.openModelElement(scrmDiagram, "");
 				scrmDiagram.setNewElementContainer(representedSpace);
 				scrmDiagram.getElements().addAll(
 						representedSpace.getContainedModelElements());
-//				if(requiresArrangement) {
-//					DiagramEditor editor = (DiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-//					arrange(editor.getDiagramGraphicalViewer().getRootEditPart().getContents());
-//				}
 				
 				return CommandResult.newOKCommandResult();
 			} catch (Exception ex) {
 				throw new ExecutionException("Can't open diagram", ex);
 			}
-		}
-
-		private void arrange(EditPart rootEditPart) {
-			
-			ArrangeRequest arrangeRequest = new
-			ArrangeRequest(ActionIds.ACTION_ARRANGE_ALL);
-			
-			List<EditPart> l = new ArrayList<EditPart>();
-			l.add(rootEditPart);
-			
-			arrangeRequest.setPartsToArrange(l);
-			
-			Command cmd = rootEditPart.getCommand(arrangeRequest);
-			
-			if(cmd.canExecute()) {
-				cmd.execute();
-			}
-			
 		}
 
 		private SCRMDiagram intializeNewDiagram(SCRMSpace representedSpace)

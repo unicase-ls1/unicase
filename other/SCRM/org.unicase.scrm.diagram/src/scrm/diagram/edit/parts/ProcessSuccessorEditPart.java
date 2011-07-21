@@ -128,7 +128,7 @@ public class ProcessSuccessorEditPart extends ConnectionNodeEditPart implements
 		private void createContents() {
 
 			fFigureDataProcess_SuccessorLabel = new WrappingLabel();
-			fFigureDataProcess_SuccessorLabel.setText("next step");
+			fFigureDataProcess_SuccessorLabel.setText("precedes");
 
 			this.add(fFigureDataProcess_SuccessorLabel);
 

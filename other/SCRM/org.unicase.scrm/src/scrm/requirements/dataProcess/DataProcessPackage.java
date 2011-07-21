@@ -141,6 +141,15 @@ public interface DataProcessPackage extends EPackage {
 	int PROCESS__DESCRIPTION = RequirementsPackage.REQUIREMENT__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS__DISPLAYING_DIAGRAMS = RequirementsPackage.REQUIREMENT__DISPLAYING_DIAGRAMS;
+
+	/**
 	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -256,6 +265,15 @@ public interface DataProcessPackage extends EPackage {
 	 * @ordered
 	 */
 	int INPUT_DATA_READING__DESCRIPTION = PROCESS__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DATA_READING__DISPLAYING_DIAGRAMS = PROCESS__DISPLAYING_DIAGRAMS;
 
 	/**
 	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
@@ -375,6 +393,15 @@ public interface DataProcessPackage extends EPackage {
 	int DATA_HANDLING__DESCRIPTION = PROCESS__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_HANDLING__DISPLAYING_DIAGRAMS = PROCESS__DISPLAYING_DIAGRAMS;
+
+	/**
 	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -490,6 +517,15 @@ public interface DataProcessPackage extends EPackage {
 	 * @ordered
 	 */
 	int RESULTS_OUTPUT__DESCRIPTION = PROCESS__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULTS_OUTPUT__DISPLAYING_DIAGRAMS = PROCESS__DISPLAYING_DIAGRAMS;
 
 	/**
 	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
@@ -609,6 +645,15 @@ public interface DataProcessPackage extends EPackage {
 	int ERROR_HANDLING__DESCRIPTION = PROCESS__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ERROR_HANDLING__DISPLAYING_DIAGRAMS = PROCESS__DISPLAYING_DIAGRAMS;
+
+	/**
 	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -724,6 +769,15 @@ public interface DataProcessPackage extends EPackage {
 	 * @ordered
 	 */
 	int STATUS_MONITORING__DESCRIPTION = PROCESS__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATUS_MONITORING__DISPLAYING_DIAGRAMS = PROCESS__DISPLAYING_DIAGRAMS;
 
 	/**
 	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
@@ -851,6 +905,15 @@ public interface DataProcessPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATA_PROCESS_SPACE__DESCRIPTION = ScrmPackage.SCRM_SPACE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_PROCESS_SPACE__DISPLAYING_DIAGRAMS = ScrmPackage.SCRM_SPACE__DISPLAYING_DIAGRAMS;
 
 	/**
 	 * The feature id for the '<em><b>Representing Diagram</b></em>' reference.
