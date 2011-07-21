@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            id="org.unicase.ui.traceRecovery.viewerContribution1"
+            targetID="org.unicase.ui.navigator.viewer">
+         <action
+               class="org.unicase.ui.tracerecovery.TraceRecoveryWizard"
+               id="Unicase"
+               label="Run Recovery"
+               menubarPath="Other..."
+               
+               >
+               
+         </action>
+      </viewerContribution>
+   </extension>
+ 
+ 
+ <extension
+       point="org.eclipse.ui.popupMenus">
+    <viewerContribution
+          id="org.unicase.ui.traceRecovery.viewerContribution1"
+          targetID="org.eclipse.jdt.ui.PackageExplorer">
+       <action
+             class="org.unicase.ui.tracerecovery.TraceRecoveryWizard"
+             id="java"
+             label="Run Recovery"
+             menubarPath = "Other...">
+       </action>
+    </viewerContribution>
+ </extension>
+
+</plugin>
