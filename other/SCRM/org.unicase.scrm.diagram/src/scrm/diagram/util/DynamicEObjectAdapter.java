@@ -54,7 +54,6 @@ public class DynamicEObjectAdapter implements IAdaptable {
 	 * @return a object castable to the given class, or the view of the {@link EditPart} associated with the object in
 	 *         the context of the host
 	 */
-	@SuppressWarnings("unchecked")
 	public Object getAdapter(Class adapter) {
 		if (adapter.isInstance(getView())) {
 			return getView();

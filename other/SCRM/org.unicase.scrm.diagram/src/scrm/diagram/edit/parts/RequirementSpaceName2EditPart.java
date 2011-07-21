@@ -39,8 +39,6 @@ import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.ImageData;
-
 import scrm.diagram.edit.policies.OpenSCRMSpaceEditPolicy;
 import scrm.diagram.edit.policies.ScrmTextSelectionEditPolicy;
 import scrm.diagram.part.ScrmVisualIDRegistry;

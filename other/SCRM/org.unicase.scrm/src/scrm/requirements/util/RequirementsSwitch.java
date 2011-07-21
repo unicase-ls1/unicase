@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EObject;
 import scrm.SCRMModelElement;
 
 import scrm.SCRMSpace;
-import scrm.requirements.*;
 import scrm.requirements.Constraint;
 import scrm.requirements.DataDefinition;
 import scrm.requirements.DataFlow;

@@ -302,7 +302,8 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 				for (EObject me : elements) {
 					// do not add elements that are already added and check if they are allowed for the diagram
 					if (!diagram.getElements().contains(me)
-							&& isAllowedType(diagram, me)) {
+							&& isAllowedType(diagram, me)
+							&& !isContainmentCycle(diagram, me)) {
 						allowedElements.add(me);
 					}
 				}
@@ -343,6 +344,21 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 				if (containedDiagram && containedDropee) {
 					return true;
 				}
+			}
+			return false;
+		}
+		
+		private boolean isContainmentCycle(SCRMDiagram diagram, EObject me) {
+			EObject representedSpace = diagram.getRepresentedSpace();
+			if(representedSpace == null) {
+				return false;
+			}
+			EObject container = representedSpace;
+			while(container != null) {
+				if(me == container) {
+					return true;
+				}
+				container = container.eContainer();
 			}
 			return false;
 		}
