@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: EMFStore Common Model  (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.emfstore.common.model;singleton:=true
-Bundle-Version: 0.8.9.M5
+Bundle-Version: 0.8.9.M6
 Bundle-ClassPath: .
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-Localization: plugin
