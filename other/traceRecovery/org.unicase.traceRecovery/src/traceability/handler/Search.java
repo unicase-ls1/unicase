@@ -3,63 +3,42 @@
  */
 package traceability.handler;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.StringTokenizer;
 
-import javax.swing.text.html.HTMLDocument.Iterator;
-import javax.xml.stream.util.StreamReaderDelegate;
-
 import org.apache.lucene.analysis.PerFieldAnalyzerWrapper;
-import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.Token;
+import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
-import org.apache.lucene.index.Term;
-import org.apache.lucene.index.TermEnum;
-import org.apache.lucene.index.TermFreqVector;
-import org.apache.lucene.index.TermPositionVector;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.Hits;
 import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.TopDocs;
-import org.apache.lucene.search.highlight.*;
-import org.apache.lucene.search.spans.SpanNearQuery;
-import org.apache.lucene.search.spans.SpanOrQuery;
-import org.apache.lucene.search.spans.SpanQuery;
-import org.apache.lucene.search.spans.SpanTermQuery;
-import org.apache.lucene.search.spans.Spans;
+import org.apache.lucene.search.highlight.Highlighter;
+import org.apache.lucene.search.highlight.QueryScorer;
 import org.apache.lucene.store.FSDirectory;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.ui.internal.keys.model.ModelElement;
+import org.eclipse.photran.internal.core.analysis.binding.ScopingNode;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.impl.ModelElementIdImpl;
-import org.unicase.metamodel.util.MetamodelAdapterFactory;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.trace.CodeLocation;
 import org.unicase.model.trace.TraceFactory;
-//import org.eclipse.emf.common.util.EList;
 
 import traceRecovery.Directory;
 import traceRecovery.Link;
 import traceRecovery.Query;
 import traceRecovery.TraceRecoveryFactory;
-import traceRecovery.impl.TraceRecoveryFactoryImpl;
 import traceRecovery.ui.RunRecovery;
 import traceability.fortran.FortranCodeIndexer;
 import traceability.fortran.FortranSourceCodeAnalyzer;
+import traceability.fortran.FortranSourceCodeParser;
 import traceability.java.JavaParser;
 import traceability.java.JavaParser.JMethod;
 import traceability.java.JavaSourceCodeAnalyzer;
@@ -111,7 +90,7 @@ public class Search {
 			IndexReader reader = IndexReader.open(fsDir);
 
 			ArrayList<QueryScorer> scorer = new ArrayList<QueryScorer>();
-			
+
 			text = new ArrayList<String>();
 
 			for (int i = 0; i < query.getModelElements().size(); i++) {
@@ -176,109 +155,172 @@ public class Search {
 
 	}
 
+	boolean isDir = false;
+	Query q;
+
+	/**
+	 * will dig through the the directory to supply with the files in it
+	 * 
+	 * @param file
+	 *            this is the directory to be diged
+	 * @param type
+	 *            this is the type of the parser
+	 */
+	public void createQueryCodeDir(File file, String type) {
+		File[] dirFiles = file.listFiles();
+		ArrayList<File> files = new ArrayList<File>();
+		for (int i = 0; i < dirFiles.length; i++) {
+			files.add(dirFiles[i]);
+		}
+		isDir = true;
+		createQeuryCode(files, type);
+
+	}
+
 	/**
 	 * will create the query from the code files
+	 * 
 	 * @param file
-	 * 			this is the code file that will be used to create the query
+	 *            this is the code file that will be used to create the query
 	 * @param type
-	 * 			this is the type of the parser that should be used
-	 * @return
-	 * 			the is hte query that is returned after doing the parsing and analyzing 
+	 *            this is the type of the parser that should be used
+	 * @return the is the query that is returned after doing the parsing and
+	 *         analyzing
 	 */
 	public Query createQeuryCode(ArrayList<File> file, String type) {
 		try {
-			Query q = TraceRecoveryFactory.eINSTANCE.createQuery();
+			if (!isDir) {
+				q = TraceRecoveryFactory.eINSTANCE.createQuery();
+			}
 			if (type.toLowerCase() == "java") {
 
 				for (int i = 0; i < file.size(); i++) {
-					JavaParser parser = new JavaParser();
-					parser.setSource(file.get(i));
-					parser.getDeclaredClass();
-					JavaSourceCodeAnalyzer analyzer = new JavaSourceCodeAnalyzer();
+					if (file.get(i).isDirectory()) {
 
-					// System.out.println("this is the value of the analyzer "
-					// + parser.getDeclaredClass().className);
+						createQueryCodeDir(file.get(i), type);
 
-					String className = parser.getDeclaredClass().className;
+					} else if (file.get(i).getName().endsWith(".java")) {
+						JavaParser parser = new JavaParser();
+						parser.setSource(file.get(i));
+						parser.getDeclaredClass();
+						JavaSourceCodeAnalyzer analyzer = new JavaSourceCodeAnalyzer();
 
-					StringReader str = new StringReader(className);
+						// System.out.println("this is the value of the analyzer "
+						// + parser.getDeclaredClass().className);
 
-					TokenStream token = analyzer.tokenStream("className", str);
+						String className = parser.getDeclaredClass().className;
 
-					Token tok = token.next();
+						StringReader str = new StringReader(className);
 
-					CodeLocation loc = TraceFactory.eINSTANCE
-							.createCodeLocation();
-					loc.setDescription(tok.termText());
-					loc.setName(className);
+						TokenStream token = analyzer.tokenStream("className",
+								str);
 
-					q.getModelElements().add(loc);
-					
-					
+						Token tok = token.next();
 
-					ArrayList<String> comments = parser.getComments();
-					String comm = "";
+						CodeLocation loc = TraceFactory.eINSTANCE
+								.createCodeLocation();
+						loc.setDescription(tok.termText());
+						loc.setName(className);
 
-					if (comments != null) {
+						q.getModelElements().add(loc);
 
-						for (int j = 0; j < comments.size(); j++) {
-							str = new StringReader(comments.get(j));
-							token = analyzer.tokenStream("comment", str);
+						ArrayList<String> comments = parser.getComments();
+						String comm = "";
+
+						if (comments != null) {
+
+							for (int j = 0; j < comments.size(); j++) {
+								str = new StringReader(comments.get(j));
+								token = analyzer.tokenStream("comment", str);
+
+								if (token == null) {
+									break;
+								}
+								tok = token.next();
+								if (tok != null) {
+									comm = "";
+									while (tok != null) {
+										comm += " " + tok.termText();
+
+										tok = token.next();
+									}
+
+									loc = TraceFactory.eINSTANCE
+											.createCodeLocation();
+									loc.setDescription(comm);
+									loc.setName(className + ".java");
+									q.getModelElements().add(loc);
+								}
+
+							}
+						}
+
+						ArrayList<JMethod> methods = parser.getDeclaredClass().methodDeclarations;
+						comm = "";
+						for (int j = 0; j < methods.size(); j++) {
+
+							comm = "";
+
+							str = new StringReader(methods.get(j).methodName);
+							token = analyzer.tokenStream("method", str);
 
 							if (token == null) {
 								break;
 							}
 							tok = token.next();
 							if (tok != null) {
-								comm = "";
 								while (tok != null) {
 									comm += " " + tok.termText();
 
 									tok = token.next();
 								}
 
-								loc = TraceFactory.eINSTANCE
-										.createCodeLocation();
-								loc.setDescription(comm);
-								loc.setName(className + ".java");
-								q.getModelElements().add(loc);
+								System.out.println(comm
+										+ " this is the string at the end");
 							}
-
+							loc = TraceFactory.eINSTANCE.createCodeLocation();
+							loc.setDescription(comm);
+							loc.setName(className);
+							q.getModelElements().add(loc);
 						}
-					}
-
-					ArrayList<JMethod> methods = parser.getDeclaredClass().methodDeclarations;
-					comm = "";
-					for (int j = 0; j < methods.size(); j++) {
-
-						comm = "";
-						
-						str = new StringReader(methods.get(j).methodName);
-						token = analyzer.tokenStream("method", str);
-
-						if (token == null) {
-							break;
-						}
-						tok = token.next();
-						if (tok != null) {
-							while (tok != null) {
-								comm += " " + tok.termText();
-
-								tok = token.next();
-							}
-
-							System.out.println(comm
-									+ " this is the string at the end");
-						}
-						loc = TraceFactory.eINSTANCE.createCodeLocation();
-						loc.setDescription(comm);
-						loc.setName(className);
-						q.getModelElements().add(loc);
 					}
 
 				}
-			}
+			} else if (type.toLowerCase() == "fortran") {
+				for (int i = 0; i < file.size(); i++) {
+					if (file.get(i).getName().endsWith("f90")
+							|| file.get(i).getName().endsWith("f95")
+							|| file.get(i).getName().endsWith("for")) {
 
+						FortranSourceCodeParser parser = new FortranSourceCodeParser(
+								file.get(i));
+						ArrayList subroutines = parser.getSubroutines();
+						ArrayList<String> comments = parser.getComments();
+						String name = file.get(i).getName();
+
+						// FortranSourceCodeAnalyzer analyzer = new
+						// FortranSourceCodeAnalyzer();
+						CodeLocation loc;
+						for (int j = 0; j < comments.size(); j++) {
+							loc = TraceFactory.eINSTANCE.createCodeLocation();
+							loc.setDescription(comments.get(j));
+							loc.setName(name);
+							q.getModelElements().add(loc);
+
+						}
+
+						for (int j = 0; j < subroutines.size(); j++) {
+							loc = TraceFactory.eINSTANCE.createCodeLocation();
+							loc.setDescription(((ScopingNode) subroutines
+									.get(i)).getName(true));
+							loc.setName(name);
+							q.getModelElements().add(loc);
+
+						}
+					}
+				}
+			}
+			isDir = false;
 			return q;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -298,15 +340,14 @@ public class Search {
 	// "java");
 	// }
 
-	
 	/**
 	 * this will run a recovery from code to model elemnt
+	 * 
 	 * @param query
-	 * 			this is the query that the search will use to run
+	 *            this is the query that the search will use to run
 	 * @param dir
-	 * 			this is the directory to find the indexed file
-	 * @return
-	 * 			this will return and arraylist of links that cause the hit
+	 *            this is the directory to find the indexed file
+	 * @return this will return and arraylist of links that cause the hit
 	 */
 	public ArrayList<Link> runRecoveryCodeToME(Query query, Directory dir) {
 		try {
@@ -314,7 +355,6 @@ public class Search {
 			org.apache.lucene.store.Directory fsDir = FSDirectory.getDirectory(
 					indexDir, false);
 
-			
 			analyzer.addAnalyzer("text", new StandardAnalyzer());
 
 			IndexSearcher is = new IndexSearcher(fsDir);
@@ -341,23 +381,20 @@ public class Search {
 					link.setDescription("linking from code to model element");
 					link.setSource(query.getModelElements().get(i));
 
-					
-					
-					
-//					CodeLocation loc = TraceFactory.eINSTANCE
-//							.createCodeLocation();
-//					loc.setName(hits.get(i).doc(j).get("name"));
-//
-//					link.setTarget(loc);
+					// CodeLocation loc = TraceFactory.eINSTANCE
+					// .createCodeLocation();
+					// loc.setName(hits.get(i).doc(j).get("name"));
+					//
+					// link.setTarget(loc);
 
-					
-					ModelElementId id = MetamodelFactory.eINSTANCE.createModelElementId();
+					ModelElementId id = MetamodelFactory.eINSTANCE
+							.createModelElementId();
 					id.setId(hits.get(i).doc(j).get("id"));
-					
+
 					UnicaseModelElement element = (UnicaseModelElement) RunRecovery
 							.getActiveProject().getModelElement(id);
 					link.setTarget(element);
-					
+
 					links.add(link);
 
 				}
@@ -378,10 +415,10 @@ public class Search {
 
 	/**
 	 * checks if the text contains any highlighted text
+	 * 
 	 * @param text
-	 * 			this is the text to check
-	 * @return
-	 * 		returns true if contains and false otherwise
+	 *            this is the text to check
+	 * @return returns true if contains and false otherwise
 	 */
 	public boolean containsHighlightedText(String text) {
 		if (text.contains("<B>")) {
@@ -392,12 +429,12 @@ public class Search {
 
 	/**
 	 * searches for a certain word in the text
+	 * 
 	 * @param query
-	 *				the query word that u want to search for
+	 *            the query word that u want to search for
 	 * @param dir
-	 * 			this is the index directory
-	 * @return
-	 * 		this will return an arraylist of files that contain the word
+	 *            this is the index directory
+	 * @return this will return an arraylist of files that contain the word
 	 */
 	public ArrayList<File> searchForWordInCode(Query query, Directory dir) {
 		try {
@@ -554,8 +591,9 @@ public class Search {
 
 	/**
 	 * will index a certain array list of directories
+	 * 
 	 * @param dir
-	 * 			this is the arraylist of the directires to index
+	 *            this is the arraylist of the directires to index
 	 */
 	public void index(ArrayList<String> dir) {
 		try {
