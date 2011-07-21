@@ -155,12 +155,15 @@ public class SearchResult extends WizardPage implements Listener {
 		TableColumn score = new TableColumn(table, SWT.V_SCROLL | SWT.H_SCROLL);
 		TableColumn linkType = new TableColumn(table, SWT.V_SCROLL
 				| SWT.H_SCROLL);
-
+		TableColumn highlight = new TableColumn(table, SWT.V_SCROLL | SWT.H_SCROLL);
+		
+		
 		source.setText("Source");
 		target.setText("Target");
 		score.setText("Score");
 		linkType.setText("Link Type");
-
+		highlight.setText("hit text");
+		
 		setControl(composite);
 
 	}
@@ -176,11 +179,12 @@ public class SearchResult extends WizardPage implements Listener {
 		for(int i = 0; i < link.size(); i++ ){
 			TableItem item = new TableItem(table, SWT.NONE);
 			Link result = link.get(i);
-			String[] text = new String[4];
+			String[] text = new String[5];
 			text[0] = result.getSource().getName();
 			text[1] = result.getTarget().getName();
 			text[2] = result.getConfidence() + "";
 			text[3] = result.getType();
+			text[4] = recovery.getRecovery().text.get(i);
 
 			item.setText(text);
 		}
