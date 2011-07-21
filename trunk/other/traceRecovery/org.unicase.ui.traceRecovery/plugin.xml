@@ -32,5 +32,20 @@
        </action>
     </viewerContribution>
  </extension>
+ 
+ 
+ <extension
+       point="org.eclipse.ui.popupMenus">
+    <viewerContribution
+          id="org.unicase.ui.traceRecovery.viewerContribution1"
+          targetID="org.eclipse.photran.ui.FortranView"
+           menubarPath = "Other...">
+       <action
+             class="org.unicase.ui.tracerecovery.TraceRecoveryWizard"
+             id="fortran"
+             label="Run Recovery">
+       </action>
+    </viewerContribution>
+ </extension>
 
 </plugin>
