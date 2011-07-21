@@ -74,14 +74,15 @@ public class Search {
 		try {
 			File indexDir = new File(dir.getPath());
 
-			analyzer.addAnalyzer("import", new KeywordAnalyzer());
+			analyzer.addAnalyzer("class", new KeywordAnalyzer());
 
 			org.apache.lucene.store.Directory fsDir = FSDirectory.getDirectory(
 					indexDir, false);
 
 			IndexSearcher is = new IndexSearcher(fsDir);
 
-			QueryParser parser = new QueryParser("code", analyzer);
+			QueryParser parser = new QueryParser("class", analyzer);
+
 
 			ArrayList<Hits> hits = new ArrayList<Hits>();
 
@@ -97,15 +98,15 @@ public class Search {
 				org.apache.lucene.search.Query q = parser.parse(query
 						.getModelElements().get(i).getDescription());
 
-				scorer.add(new QueryScorer(q, reader, "code"));
+				scorer.add(new QueryScorer(q, reader, "class"));
 				Highlighter h = new Highlighter(scorer.get(i));
 
 				hits.add(is.search(q));
 
 				for (int j = 0; j < hits.get(i).length(); j++) {
 
-					String tex = h.getBestFragment(analyzer, "code", hits
-							.get(i).doc(j).get("code"));
+					String tex = h.getBestFragment(analyzer, "class", hits
+							.get(i).doc(j).get("class"));
 					if (tex != null) {
 
 						StringTokenizer tok = new StringTokenizer(tex, "\n");
@@ -296,6 +297,7 @@ public class Search {
 								file.get(i));
 						ArrayList subroutines = parser.getSubroutines();
 						ArrayList<String> comments = parser.getComments();
+						
 						String name = file.get(i).getName();
 
 						// FortranSourceCodeAnalyzer analyzer = new
@@ -365,22 +367,35 @@ public class Search {
 
 			IndexReader reader = IndexReader.open(fsDir);
 
+			ArrayList<QueryScorer> scorer = new ArrayList<QueryScorer>();
+
+			text = new ArrayList<String>();
+
 			for (int i = 0; i < query.getModelElements().size(); i++) {
 
+			
+				
 				org.apache.lucene.search.Query quer = QueryParser.parse(query
 						.getModelElements().get(i).getDescription(), "text",
 						new StandardAnalyzer());
+				
+				scorer.add(new QueryScorer(quer, reader, "text"));
+				
 				hits.add(is.search(quer));
 
 			}
 
 			for (int i = 0; i < hits.size(); i++) {
+				Highlighter h = new Highlighter(scorer.get(i));
 				for (int j = 0; j < hits.get(i).length(); j++) {
 					Link link = TraceRecoveryFactory.eINSTANCE.createLink();
 					link.setConfidence(hits.get(i).score(j));
 					link.setDescription("linking from code to model element");
 					link.setSource(query.getModelElements().get(i));
+					link.setType("linking from code to Model Element");
 
+					String tex = h.getBestFragment(analyzer, "text", hits.get(i).doc(j).get("text") );
+					
 					// CodeLocation loc = TraceFactory.eINSTANCE
 					// .createCodeLocation();
 					// loc.setName(hits.get(i).doc(j).get("name"));
@@ -396,6 +411,7 @@ public class Search {
 					link.setTarget(element);
 
 					links.add(link);
+					text.add(tex);
 
 				}
 			}
