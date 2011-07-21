@@ -33,7 +33,7 @@
 
 
 
-<extension
+<!--<extension
       point="org.eclipse.ui.popupMenus">
       <viewerContribution
             id="org.unicase.traceRecovery.viewerContribution1"
@@ -45,9 +45,9 @@
                   label="Run Recovery">
             </action>
       </viewerContribution>
-</extension>
+</extension>-->
 
-<extension
+<!--<extension
       point="org.eclipse.ui.popupMenus">
    <viewerContribution
          id="org.unicase.traceRecovery.viewerContribution2"
@@ -59,12 +59,12 @@
             label="Run Recovery">
       </action>
    </viewerContribution>
-</extension>
+</extension>-->
 
 
 
 
-<extension point="org.eclipse.ui.popupMenus"> 
+<!--<extension point="org.eclipse.ui.popupMenus"> 
    <viewerContribution 
       id="org.unicase.traceRecovery.viewerContribution3"
    targetID="org.eclipse.photran.ui.FortranView"> 
