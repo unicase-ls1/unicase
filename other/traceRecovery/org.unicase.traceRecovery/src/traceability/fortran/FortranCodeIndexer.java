@@ -92,7 +92,7 @@ public class FortranCodeIndexer extends Indexer {
 
 	private static void addSubroutines(Document doc,
 			FortranSourceCodeParser parser) {
-		ArrayList subroutines = (ArrayList<ScopingNode>) parser
+		ArrayList <ScopingNode> subroutines = (ArrayList<ScopingNode>) parser
 				.getSubroutines();
 		if (subroutines == null)
 			return;
@@ -100,7 +100,7 @@ public class FortranCodeIndexer extends Indexer {
 			String docSubroutine = ((ScopingNode) subroutines.get(i))
 					.getName(true);
 			
-			Field subRoutine = new Field(SUBROUTINE, docSubroutine, Field.Store.YES, Field.Index.TOKENIZED);
+			Field subRoutine = new Field("method", docSubroutine, Field.Store.YES, Field.Index.TOKENIZED);
 			
 			doc.add(subRoutine);
 		}
