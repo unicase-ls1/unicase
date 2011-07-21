@@ -300,7 +300,6 @@ public class KnowledgeSpace2EditPart extends ShapeNodeEditPart {
 			layoutThis.makeColumnsEqualWidth = true;
 			this.setLayoutManager(layoutThis);
 
-			this.setBackgroundColor(THIS_BACK);
 			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(150),
 					getMapMode().DPtoLP(120)));
 			createContents();
@@ -361,12 +360,7 @@ public class KnowledgeSpace2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 150, 150, 150);
-
-	/**
-	 * @generated
-	 */
 	static final Font FFIGUREKNOWLEDGESPACE_NAME_FONT = new Font(
-			Display.getCurrent(), "Arial", 9, SWT.BOLD);
+			Display.getCurrent(), "Arial", 11, SWT.BOLD);
 
 }

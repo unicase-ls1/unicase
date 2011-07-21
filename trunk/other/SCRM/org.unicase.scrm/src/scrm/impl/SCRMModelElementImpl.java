@@ -6,14 +6,21 @@
  */
 package scrm.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+import scrm.SCRMDiagram;
 import scrm.SCRMModelElement;
 import scrm.ScrmPackage;
 
@@ -26,6 +33,7 @@ import scrm.ScrmPackage;
  * <ul>
  *   <li>{@link scrm.impl.SCRMModelElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link scrm.impl.SCRMModelElementImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link scrm.impl.SCRMModelElementImpl#getDisplayingDiagrams <em>Displaying Diagrams</em>}</li>
  * </ul>
  * </p>
  *
@@ -72,6 +80,16 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements
 	 * @ordered
 	 */
 	protected String description = DESCRIPTION_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getDisplayingDiagrams() <em>Displaying Diagrams</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDisplayingDiagrams()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SCRMDiagram> displayingDiagrams;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -143,6 +161,54 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<SCRMDiagram> getDisplayingDiagrams() {
+		if (displayingDiagrams == null) {
+			displayingDiagrams = new EObjectWithInverseResolvingEList.ManyInverse<SCRMDiagram>(
+					SCRMDiagram.class, this,
+					ScrmPackage.SCRM_MODEL_ELEMENT__DISPLAYING_DIAGRAMS,
+					ScrmPackage.SCRM_DIAGRAM__ELEMENTS);
+		}
+		return displayingDiagrams;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case ScrmPackage.SCRM_MODEL_ELEMENT__DISPLAYING_DIAGRAMS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDisplayingDiagrams())
+					.basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case ScrmPackage.SCRM_MODEL_ELEMENT__DISPLAYING_DIAGRAMS:
+			return ((InternalEList<?>) getDisplayingDiagrams()).basicRemove(
+					otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -150,6 +216,8 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements
 			return getName();
 		case ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION:
 			return getDescription();
+		case ScrmPackage.SCRM_MODEL_ELEMENT__DISPLAYING_DIAGRAMS:
+			return getDisplayingDiagrams();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -159,6 +227,7 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -167,6 +236,11 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements
 			return;
 		case ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION:
 			setDescription((String) newValue);
+			return;
+		case ScrmPackage.SCRM_MODEL_ELEMENT__DISPLAYING_DIAGRAMS:
+			getDisplayingDiagrams().clear();
+			getDisplayingDiagrams().addAll(
+					(Collection<? extends SCRMDiagram>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -186,6 +260,9 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements
 		case ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION:
 			setDescription(DESCRIPTION_EDEFAULT);
 			return;
+		case ScrmPackage.SCRM_MODEL_ELEMENT__DISPLAYING_DIAGRAMS:
+			getDisplayingDiagrams().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -204,6 +281,8 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements
 		case ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION:
 			return DESCRIPTION_EDEFAULT == null ? description != null
 					: !DESCRIPTION_EDEFAULT.equals(description);
+		case ScrmPackage.SCRM_MODEL_ELEMENT__DISPLAYING_DIAGRAMS:
+			return displayingDiagrams != null && !displayingDiagrams.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

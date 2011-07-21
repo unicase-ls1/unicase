@@ -18,11 +18,11 @@ import org.unicase.workspace.util.WorkspaceUtil;
 import scrm.diagram.common.TemplateUtil;
 
 /**
- * @author mharut
- *  
  * Handler for the Load Template command. This handler lets the user choose a file
  * and loads it, if it is a valid SCRM Template file. Loading includes creating a
  * copy of the SCRMDiagram and adding it and all its elements to the selected project.
+ * 
+ * @author mharut
  */
 public class LoadTemplateHandler extends AbstractHandler {
 	
@@ -35,7 +35,7 @@ public class LoadTemplateHandler extends AbstractHandler {
 		Project project = validateSelection(selection);
 		
 		// obtain the default directory to load files from
-		String templatePath = TemplateUtil.instance.getTemplateDirectoryPath();
+		String templatePath = TemplateUtil.getInstance().getTemplateDirectoryPath();
 		
 		// this dialog lets the user choose one file to load from
 		FileDialog dialog = new FileDialog(Display.getCurrent().getActiveShell(), SWT.OPEN);

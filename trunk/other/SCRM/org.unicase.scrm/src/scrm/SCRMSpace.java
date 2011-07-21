@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.EList;
 public interface SCRMSpace extends SCRMModelElement {
 	/**
 	 * Returns the value of the '<em><b>Representing Diagram</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link scrm.SCRMDiagram#getRepresentedSpace <em>Represented Space</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Representing Diagram</em>' reference isn't clear,
@@ -36,7 +37,8 @@ public interface SCRMSpace extends SCRMModelElement {
 	 * @return the value of the '<em>Representing Diagram</em>' reference.
 	 * @see #setRepresentingDiagram(SCRMDiagram)
 	 * @see scrm.ScrmPackage#getSCRMSpace_RepresentingDiagram()
-	 * @model
+	 * @see scrm.SCRMDiagram#getRepresentedSpace
+	 * @model opposite="representedSpace"
 	 * @generated
 	 */
 	SCRMDiagram getRepresentingDiagram();
@@ -52,18 +54,10 @@ public interface SCRMSpace extends SCRMModelElement {
 	void setRepresentingDiagram(SCRMDiagram value);
 
 	/**
-	 * Returns the value of the '<em><b>Contained Model Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link scrm.SCRMModelElement}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Contained Model Elements</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Contained Model Elements</em>' containment reference list.
-	 * @see scrm.ScrmPackage#getSCRMSpace_ContainedModelElements()
-	 * @model containment="true" resolveProxies="true"
-	 * @generated NOT
+	 * @model kind="operation"
+	 * @generated
 	 */
 	EList<SCRMModelElement> getContainedModelElements();
 

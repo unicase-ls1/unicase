@@ -14,6 +14,7 @@ import org.eclipse.gmf.runtime.notation.View;
 
 import scrm.SCRMDiagram;
 import scrm.SCRMModelElement;
+import scrm.SCRMSpace;
 import scrm.diagram.edit.parts.Assumption2EditPart;
 import scrm.diagram.edit.parts.AssumptionEditPart;
 import scrm.diagram.edit.parts.Constraint2EditPart;
@@ -111,10 +112,6 @@ import scrm.requirements.dataProcess.DataProcessSpace;
 
 /**
  * @generated
- */
-/**
- * @author mharut
- *
  */
 public class ScrmDiagramUpdater {
 
@@ -684,11 +681,13 @@ public class ScrmDiagramUpdater {
 	private static Collection<ScrmNodeDescriptor> getAllContents(
 			View view, EObject parent) {
 		List<ScrmNodeDescriptor> allContents = new LinkedList<ScrmNodeDescriptor>();
-		for(Iterator<EObject> it = parent.eAllContents(); it.hasNext();) {
-			EObject child = it.next();
+		for(EObject child : parent.eContents()) {
 			int visualID = ScrmVisualIDRegistry.getNodeVisualID(view,
 					child);
 			allContents.add(new ScrmNodeDescriptor(child, visualID));
+			if(!(child instanceof SCRMSpace)) {
+				allContents.addAll(getAllContents(view, child));
+			}
 		}
 		return allContents;
 	}

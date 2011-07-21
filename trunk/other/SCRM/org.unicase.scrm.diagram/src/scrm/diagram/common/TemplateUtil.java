@@ -30,15 +30,15 @@ import org.unicase.workspace.Configuration;
 import scrm.SCRMDiagram;
 
 /**
- * @author mharut
- * 
  * Utility class to handle saving templates to and loading templates from files.
  * Any SCRMDiagram can be saved to a file (by copying it and all its elements to
  * a resource) and any already existing template can be loaded into a ECP project
  * (by copying the resource's contents into the project).<br>
- * The default directory can also be obtained by this class.
+ * This class also provides the default directory to save to and load from.
+ * 
+ * @author mharut
  */
-final public class TemplateUtil {
+public class TemplateUtil {
 	
 	/**
 	 * The default directory for saving and loading templates.
@@ -46,14 +46,17 @@ final public class TemplateUtil {
 	 */
 	private File templateDirectory;
 	
-	public static TemplateUtil instance = new TemplateUtil();
+	/**
+	 * The singleton instance.
+	 */
+	private static TemplateUtil instance;
 	
 	
 	/**
 	 * Class should not be instantiated, as all methods should be accessed in 
 	 * a static way.
 	 */
-	private TemplateUtil() {
+	protected TemplateUtil() {
 		if(templateDirectory == null) {
 			templateDirectory = new File(Configuration.getWorkspaceDirectory() + "templates");
 		}
@@ -82,6 +85,7 @@ final public class TemplateUtil {
 		
 		// copy all these elements
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(scrmDiagram);
+		@SuppressWarnings("unchecked")
 		final Collection<EObject> copies = (Collection<EObject>) copyElements(domain, elements);
 		
 		// command to add the SCRMDiagram and all its elements to the resource
@@ -103,13 +107,22 @@ final public class TemplateUtil {
 		templateResource.save(null);
 	}
 	
-	private static Collection<EObject> gatherElementsToSave(
+	/**
+	 * Gathers all <code>EObject</code>s from a root <code>SCRMDiagram</code>
+	 * that need to be saved. This is done by traversing through all
+	 * elements, handling contained <code>SCRMDiagram</code>s recursively.
+	 * @param scrmDiagram the root diagram to obtain elements from
+	 * @return All elements that need to be saved to the template.
+	 */
+	protected static Collection<EObject> gatherElementsToSave(
 			SCRMDiagram scrmDiagram) {
 		Set<EObject> allElements = new LinkedHashSet<EObject>();
 		allElements.add(scrmDiagram);
+		// gather all elements recursively
 		for(EObject element : scrmDiagram.getElements()) {
 			if(element instanceof SCRMDiagram) {
 				SCRMDiagram containedDiagram = (SCRMDiagram) element;
+				// only if this diagram wasn't traversed before
 				if(!allElements.contains(element)) {
 					allElements.addAll(gatherElementsToSave(containedDiagram));
 				}
@@ -117,7 +130,9 @@ final public class TemplateUtil {
 				allElements.add(element);
 			}
 		}
+		// compute the actual result: at first, all elements
 		Set<EObject> result = new LinkedHashSet<EObject>(allElements);
+		// remove elements, whose container is contained in allElements
 		for(EObject element : allElements) {
 			EObject container = element.eContainer();
 			if(allElements.contains(container)) {
@@ -143,7 +158,7 @@ final public class TemplateUtil {
 		// load the specified resource
 		templateResource.load(null);
 		
-		// check if the template is valid, i.e. if it contains a SCRMDiagram
+		// check if the template is valid, i.e. if it contains a SCRMDiagram at the right place
 		if(!isValid(templateResource))
 			throw new IOException("Template file is invalid!");
 		
@@ -173,6 +188,7 @@ final public class TemplateUtil {
 				ActionHelper.openModelElement(rootDiagram, "");
 			}
 
+			@SuppressWarnings("unchecked")
 			private void updateReferences(EObject originalElement,
 					Map<EObject, EObject> elementToCopy) {
 
@@ -275,6 +291,18 @@ final public class TemplateUtil {
 	 */
 	public String getTemplateDirectoryPath() {
 		return templateDirectory.getAbsolutePath();
+	}
+	
+	/**
+	 * Obtain the singleton instance.
+	 * If not already existent, this method will create an instance.
+	 * @return The singleton <code>TemplateUtil</code> instance.
+	 */
+	public static TemplateUtil getInstance() {
+		if(instance == null) {
+			instance = new TemplateUtil();
+		}
+		return instance;
 	}
 
 }

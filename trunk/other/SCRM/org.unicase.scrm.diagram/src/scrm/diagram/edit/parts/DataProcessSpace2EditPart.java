@@ -588,7 +588,6 @@ public class DataProcessSpace2EditPart extends ShapeNodeEditPart {
 
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(32),
 					getMapMode().DPtoLP(32)));
-			this.setBackgroundColor(THIS_BACK);
 			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(150),
 					getMapMode().DPtoLP(120)));
 			createContents();
@@ -653,12 +652,7 @@ public class DataProcessSpace2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 225, 225, 225);
-
-	/**
-	 * @generated
-	 */
 	static final Font FFIGUREDATAPROCESSSPACE_NAME_FONT = new Font(
-			Display.getCurrent(), "Arial", 9, SWT.BOLD);
+			Display.getCurrent(), "Arial", 11, SWT.BOLD);
 
 }

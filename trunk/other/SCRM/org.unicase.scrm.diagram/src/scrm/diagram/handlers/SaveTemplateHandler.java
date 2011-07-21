@@ -19,12 +19,12 @@ import scrm.SCRMDiagram;
 import scrm.diagram.common.TemplateUtil;
 
 /**
- * @author mharut
- * 
  * Handler for the Save Template command. This handler obtains a SCRM Diagram from
  * the context the command was called in and lets the user choose a file to save the
  * diagram as a template to. This template can be used by calling the Load Template
  * command.
+ * 
+ * @author mharut
  */
 public class SaveTemplateHandler extends AbstractHandler {
 
@@ -36,7 +36,7 @@ public class SaveTemplateHandler extends AbstractHandler {
 		SCRMDiagram scrmDiagram = obtainSCRMDiagram(event);
 		
 		// obtain the default directory to save files to
-		String templatePath = TemplateUtil.instance.getTemplateDirectoryPath();
+		String templatePath = TemplateUtil.getInstance().getTemplateDirectoryPath();
 		
 		// this dialog lets the user choose one file to save to
 		FileDialog dialog = new FileDialog(Display.getCurrent().getActiveShell(), SWT.SAVE);

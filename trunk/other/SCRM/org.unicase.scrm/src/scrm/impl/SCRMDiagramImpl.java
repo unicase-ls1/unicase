@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -64,6 +65,7 @@ import scrm.requirements.dataProcess.DataProcessSpace;
  *   <li>{@link scrm.impl.SCRMDiagramImpl#getNewElements <em>New Elements</em>}</li>
  *   <li>{@link scrm.impl.SCRMDiagramImpl#getDiagramLayout <em>Diagram Layout</em>}</li>
  *   <li>{@link scrm.impl.SCRMDiagramImpl#getDiagramType <em>Diagram Type</em>}</li>
+ *   <li>{@link scrm.impl.SCRMDiagramImpl#getRepresentedSpace <em>Represented Space</em>}</li>
  * </ul>
  * </p>
  *
@@ -142,6 +144,16 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	 */
 	protected DiagramType diagramType = DIAGRAM_TYPE_EDEFAULT;
 
+	/**
+	 * The cached value of the '{@link #getRepresentedSpace() <em>Represented Space</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRepresentedSpace()
+	 * @generated
+	 * @ordered
+	 */
+	protected SCRMSpace representedSpace;
+
 	private EObject newElementContainer;
 
 	/**
@@ -170,9 +182,10 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	 */
 	public EList<SCRMModelElement> getElements() {
 		if (elements == null) {
-			elements = new EObjectResolvingEList<SCRMModelElement>(
+			elements = new EObjectWithInverseResolvingEList.ManyInverse<SCRMModelElement>(
 					SCRMModelElement.class, this,
-					ScrmPackage.SCRM_DIAGRAM__ELEMENTS);
+					ScrmPackage.SCRM_DIAGRAM__ELEMENTS,
+					ScrmPackage.SCRM_MODEL_ELEMENT__DISPLAYING_DIAGRAMS);
 		}
 		return elements;
 	}
@@ -250,6 +263,104 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					ScrmPackage.SCRM_DIAGRAM__DIAGRAM_TYPE, oldDiagramType,
 					diagramType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SCRMSpace getRepresentedSpace() {
+		if (representedSpace != null && representedSpace.eIsProxy()) {
+			InternalEObject oldRepresentedSpace = (InternalEObject) representedSpace;
+			representedSpace = (SCRMSpace) eResolveProxy(oldRepresentedSpace);
+			if (representedSpace != oldRepresentedSpace) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							ScrmPackage.SCRM_DIAGRAM__REPRESENTED_SPACE,
+							oldRepresentedSpace, representedSpace));
+			}
+		}
+		return representedSpace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SCRMSpace basicGetRepresentedSpace() {
+		return representedSpace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetRepresentedSpace(
+			SCRMSpace newRepresentedSpace, NotificationChain msgs) {
+		SCRMSpace oldRepresentedSpace = representedSpace;
+		representedSpace = newRepresentedSpace;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					ScrmPackage.SCRM_DIAGRAM__REPRESENTED_SPACE,
+					oldRepresentedSpace, newRepresentedSpace);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRepresentedSpace(SCRMSpace newRepresentedSpace) {
+		if (newRepresentedSpace != representedSpace) {
+			NotificationChain msgs = null;
+			if (representedSpace != null)
+				msgs = ((InternalEObject) representedSpace).eInverseRemove(
+						this, ScrmPackage.SCRM_SPACE__REPRESENTING_DIAGRAM,
+						SCRMSpace.class, msgs);
+			if (newRepresentedSpace != null)
+				msgs = ((InternalEObject) newRepresentedSpace).eInverseAdd(
+						this, ScrmPackage.SCRM_SPACE__REPRESENTING_DIAGRAM,
+						SCRMSpace.class, msgs);
+			msgs = basicSetRepresentedSpace(newRepresentedSpace, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ScrmPackage.SCRM_DIAGRAM__REPRESENTED_SPACE,
+					newRepresentedSpace, newRepresentedSpace));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case ScrmPackage.SCRM_DIAGRAM__ELEMENTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getElements())
+					.basicAdd(otherEnd, msgs);
+		case ScrmPackage.SCRM_DIAGRAM__REPRESENTED_SPACE:
+			if (representedSpace != null)
+				msgs = ((InternalEObject) representedSpace).eInverseRemove(
+						this, ScrmPackage.SCRM_SPACE__REPRESENTING_DIAGRAM,
+						SCRMSpace.class, msgs);
+			return basicSetRepresentedSpace((SCRMSpace) otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -350,11 +461,16 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
+		case ScrmPackage.SCRM_DIAGRAM__ELEMENTS:
+			return ((InternalEList<?>) getElements()).basicRemove(otherEnd,
+					msgs);
 		case ScrmPackage.SCRM_DIAGRAM__GMFDIAGRAM:
 			return basicSetGmfdiagram(null, msgs);
 		case ScrmPackage.SCRM_DIAGRAM__NEW_ELEMENTS:
 			return ((InternalEList<?>) getNewElements()).basicRemove(otherEnd,
 					msgs);
+		case ScrmPackage.SCRM_DIAGRAM__REPRESENTED_SPACE:
+			return basicSetRepresentedSpace(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -379,6 +495,10 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 			return getDiagramLayout();
 		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_TYPE:
 			return getDiagramType();
+		case ScrmPackage.SCRM_DIAGRAM__REPRESENTED_SPACE:
+			if (resolve)
+				return getRepresentedSpace();
+			return basicGetRepresentedSpace();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -411,6 +531,9 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_TYPE:
 			setDiagramType((DiagramType) newValue);
 			return;
+		case ScrmPackage.SCRM_DIAGRAM__REPRESENTED_SPACE:
+			setRepresentedSpace((SCRMSpace) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -438,6 +561,9 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_TYPE:
 			setDiagramType(DIAGRAM_TYPE_EDEFAULT);
 			return;
+		case ScrmPackage.SCRM_DIAGRAM__REPRESENTED_SPACE:
+			setRepresentedSpace((SCRMSpace) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -461,6 +587,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 					: !DIAGRAM_LAYOUT_EDEFAULT.equals(diagramLayout);
 		case ScrmPackage.SCRM_DIAGRAM__DIAGRAM_TYPE:
 			return diagramType != DIAGRAM_TYPE_EDEFAULT;
+		case ScrmPackage.SCRM_DIAGRAM__REPRESENTED_SPACE:
+			return representedSpace != null;
 		}
 		return super.eIsSet(featureID);
 	}

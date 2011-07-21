@@ -508,12 +508,12 @@ public class Feature2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 102, 255, 0);
+	static final Color THIS_BACK = new Color(null, 168, 255, 152);
 
 	/**
 	 * @generated
 	 */
 	static final Font FFIGUREFEATURE_NAME_FONT = new Font(Display.getCurrent(),
-			"Arial", 9, SWT.BOLD);
+			"Arial", 11, SWT.BOLD);
 
 }

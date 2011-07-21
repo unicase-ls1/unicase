@@ -644,6 +644,6 @@ public class InputDataReadingEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	static final Font FFIGUREINPUTDATAREADING_NAME_FONT = new Font(
-			Display.getCurrent(), "Arial", 9, SWT.BOLD);
+			Display.getCurrent(), "Arial", 11, SWT.BOLD);
 
 }

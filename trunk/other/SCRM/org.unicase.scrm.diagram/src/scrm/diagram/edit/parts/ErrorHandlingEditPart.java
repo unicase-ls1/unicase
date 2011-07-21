@@ -637,12 +637,12 @@ public class ErrorHandlingEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 102, 204, 255);
+	static final Color THIS_BACK = new Color(null, 153, 204, 255);
 
 	/**
 	 * @generated
 	 */
 	static final Font FFIGUREERRORHANDLING_NAME_FONT = new Font(
-			Display.getCurrent(), "Arial", 9, SWT.BOLD);
+			Display.getCurrent(), "Arial", 11, SWT.BOLD);
 
 }

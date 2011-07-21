@@ -85,7 +85,7 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated NOT
 	 */
-	public List getTypesForPopupBar(IAdaptable host) {
+	public List<IElementType> getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host
 				.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof SCRMDiagramEditPart) {
@@ -137,7 +137,7 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(ScrmElementTypes.DataProcessSpace_3022);
 			return types;
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 	
 	/**
@@ -146,7 +146,7 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 	 * @param diagramType the {@link DiagramType} to get types for
 	 * @return all types that are allowed for <code>diagramType</code> as a list.
 	 */
-	public static List getAllowedTypes(DiagramType diagramType) {
+	public static List<IElementType> getAllowedTypes(DiagramType diagramType) {
 		List<IElementType> types = new LinkedList<IElementType>();
 		switch (diagramType) {
 		case KNOWLEDGE_DIAGRAM:
@@ -162,7 +162,7 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		return types;
 	}
 	
-	private static List getKnowledgeTypes() {
+	private static List<IElementType> getKnowledgeTypes() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(5);
 		types.add(ScrmElementTypes.ScientificProblem_2007);
 		types.add(ScrmElementTypes.MathematicalModel_2005);
@@ -172,7 +172,7 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		return types;
 	}
 	
-	private static List getRequirementTypes() {
+	private static List<IElementType> getRequirementTypes() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(10);
 		types.add(ScrmElementTypes.Feature_2009);
 		types.add(ScrmElementTypes.Hardware_2010);
@@ -187,7 +187,7 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		return types;
 	}
 	
-	private static List getDataProcessTypes() {
+	private static List<IElementType> getDataProcessTypes() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(7);
 		types.add(ScrmElementTypes.InputDataReading_2036);
 		types.add(ScrmElementTypes.DataHandling_2037);
@@ -202,7 +202,7 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
-	public List getRelTypesOnSource(IAdaptable source) {
+	public List<IElementType> getRelTypesOnSource(IAdaptable source) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
 				.getAdapter(IGraphicalEditPart.class);
 		if (sourceEditPart instanceof ScientificProblemEditPart) {
@@ -327,13 +327,13 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((DataProcessSpace2EditPart) sourceEditPart)
 					.getMARelTypesOnSource();
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List getRelTypesOnTarget(IAdaptable target) {
+	public List<IElementType> getRelTypesOnTarget(IAdaptable target) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
 		if (targetEditPart instanceof ScientificProblemEditPart) {
@@ -466,13 +466,13 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((DataProcessSpace2EditPart) targetEditPart)
 					.getMARelTypesOnTarget();
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List getRelTypesOnSourceAndTarget(IAdaptable source,
+	public List<IElementType> getRelTypesOnSourceAndTarget(IAdaptable source,
 			IAdaptable target) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
 				.getAdapter(IGraphicalEditPart.class);
@@ -606,13 +606,13 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((DataProcessSpace2EditPart) sourceEditPart)
 					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List getTypesForSource(IAdaptable target,
+	public List<IElementType> getTypesForSource(IAdaptable target,
 			IElementType relationshipType) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
@@ -752,13 +752,13 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((DataProcessSpace2EditPart) targetEditPart)
 					.getMATypesForSource(relationshipType);
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List getTypesForTarget(IAdaptable source,
+	public List<IElementType> getTypesForTarget(IAdaptable source,
 			IElementType relationshipType) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
 				.getAdapter(IGraphicalEditPart.class);
@@ -890,7 +890,7 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((DataProcessSpace2EditPart) sourceEditPart)
 					.getMATypesForTarget(relationshipType);
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
 	/**
@@ -914,7 +914,7 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
-	protected EObject selectExistingElement(IAdaptable host, Collection types) {
+	protected EObject selectExistingElement(IAdaptable host, Collection<IElementType> types) {
 		if (types.isEmpty()) {
 			return null;
 		}
@@ -929,7 +929,8 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		HashSet<EObject> elements = new HashSet<EObject>();
 //		for (Iterator<EObject> it = project.eAllContents(); it.hasNext();) {
 //			EObject element = it.next();
-		for(EObject element : ((SCRMDiagram) diagram.getElement()).getElements()) {
+		List<EObject> allElements = getAllElements((SCRMDiagram) diagram.getElement());
+		for(EObject element : allElements) {
 			if (isApplicableElement(element, types)) {
 				elements.add(element);
 			}
@@ -941,10 +942,20 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 				.size()]));
 	}
 
+	private List<EObject> getAllElements(SCRMDiagram scrmDiagram) {
+		List<EObject> result = new LinkedList<EObject>(scrmDiagram.getElements());
+		for(EObject eObject : scrmDiagram.getElements()) {
+			for(Iterator<EObject> it = eObject.eAllContents(); it.hasNext();) {
+				result.add(it.next());
+			}
+		}
+		return result;
+	}
+
 	/**
 	 * @generated
 	 */
-	protected boolean isApplicableElement(EObject element, Collection types) {
+	protected boolean isApplicableElement(EObject element, Collection<IElementType> types) {
 		IElementType type = ElementTypeRegistry.getInstance().getElementType(
 				element);
 		return types.contains(type);

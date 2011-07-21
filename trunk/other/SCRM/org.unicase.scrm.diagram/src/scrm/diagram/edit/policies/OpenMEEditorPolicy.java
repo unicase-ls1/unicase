@@ -9,11 +9,11 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.ui.common.util.ActionHelper;
 
 /**
- * @author mharut
  * Policy to enable double-click behavior for SCRMDiagram-EditParts other
  * than any Compartment- or Connection-EditPart. Upon double-clicking,
  * the MEEditor for the selected EObject is opened.
  * 
+ * @author mharut
  * @generated NOT
  */
 public class OpenMEEditorPolicy extends OpenEditPolicy {

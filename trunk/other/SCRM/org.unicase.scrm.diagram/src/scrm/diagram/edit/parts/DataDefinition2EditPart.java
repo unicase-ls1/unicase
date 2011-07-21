@@ -444,6 +444,6 @@ public class DataDefinition2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	static final Font FFIGUREDATADEFINITION_NAME_FONT = new Font(
-			Display.getCurrent(), "Arial", 9, SWT.BOLD);
+			Display.getCurrent(), "Arial", 11, SWT.BOLD);
 
 }

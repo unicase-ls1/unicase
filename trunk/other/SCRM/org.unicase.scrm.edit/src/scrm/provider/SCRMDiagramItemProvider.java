@@ -152,6 +152,10 @@ public class SCRMDiagramItemProvider extends SCRMModelElementItemProvider
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), false, true));
 			return;
+		case ScrmPackage.SCRM_DIAGRAM__ELEMENTS:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

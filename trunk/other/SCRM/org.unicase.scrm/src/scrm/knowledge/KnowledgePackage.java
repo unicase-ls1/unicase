@@ -91,6 +91,15 @@ public interface KnowledgePackage extends EPackage {
 	int SCIENTIFIC_KNOWLEDGE__DESCRIPTION = ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_KNOWLEDGE__DISPLAYING_DIAGRAMS = ScrmPackage.SCRM_MODEL_ELEMENT__DISPLAYING_DIAGRAMS;
+
+	/**
 	 * The feature id for the '<em><b>Containing Knowledge Space</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -177,6 +186,15 @@ public interface KnowledgePackage extends EPackage {
 	int KNOWLEDGE_SPACE__DESCRIPTION = ScrmPackage.SCRM_SPACE__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KNOWLEDGE_SPACE__DISPLAYING_DIAGRAMS = ScrmPackage.SCRM_SPACE__DISPLAYING_DIAGRAMS;
+
+	/**
 	 * The feature id for the '<em><b>Representing Diagram</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -229,6 +247,15 @@ public interface KnowledgePackage extends EPackage {
 	 * @ordered
 	 */
 	int SCIENTIFIC_PROBLEM__DESCRIPTION = SCIENTIFIC_KNOWLEDGE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_PROBLEM__DISPLAYING_DIAGRAMS = SCIENTIFIC_KNOWLEDGE__DISPLAYING_DIAGRAMS;
 
 	/**
 	 * The feature id for the '<em><b>Containing Knowledge Space</b></em>' container reference.
@@ -292,6 +319,15 @@ public interface KnowledgePackage extends EPackage {
 	 * @ordered
 	 */
 	int MATHEMATICAL_MODEL__DESCRIPTION = SCIENTIFIC_KNOWLEDGE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATHEMATICAL_MODEL__DISPLAYING_DIAGRAMS = SCIENTIFIC_KNOWLEDGE__DISPLAYING_DIAGRAMS;
 
 	/**
 	 * The feature id for the '<em><b>Containing Knowledge Space</b></em>' container reference.
@@ -393,6 +429,15 @@ public interface KnowledgePackage extends EPackage {
 	int NUMERICAL_METHOD__DESCRIPTION = SCIENTIFIC_KNOWLEDGE__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERICAL_METHOD__DISPLAYING_DIAGRAMS = SCIENTIFIC_KNOWLEDGE__DISPLAYING_DIAGRAMS;
+
+	/**
 	 * The feature id for the '<em><b>Containing Knowledge Space</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -490,6 +535,15 @@ public interface KnowledgePackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSUMPTION__DESCRIPTION = SCIENTIFIC_KNOWLEDGE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSUMPTION__DISPLAYING_DIAGRAMS = SCIENTIFIC_KNOWLEDGE__DISPLAYING_DIAGRAMS;
 
 	/**
 	 * The feature id for the '<em><b>Containing Knowledge Space</b></em>' container reference.

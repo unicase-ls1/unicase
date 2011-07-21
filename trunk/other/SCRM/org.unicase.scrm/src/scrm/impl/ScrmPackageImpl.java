@@ -190,6 +190,16 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getSCRMModelElement_DisplayingDiagrams() {
+		return (EReference) scrmModelElementEClass.getEStructuralFeatures()
+				.get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSCRMDiagram() {
 		return scrmDiagramEClass;
 	}
@@ -228,6 +238,15 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 	 */
 	public EAttribute getSCRMDiagram_DiagramType() {
 		return (EAttribute) scrmDiagramEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSCRMDiagram_RepresentedSpace() {
+		return (EReference) scrmDiagramEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -299,6 +318,8 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 		createEAttribute(scrmModelElementEClass, SCRM_MODEL_ELEMENT__NAME);
 		createEAttribute(scrmModelElementEClass,
 				SCRM_MODEL_ELEMENT__DESCRIPTION);
+		createEReference(scrmModelElementEClass,
+				SCRM_MODEL_ELEMENT__DISPLAYING_DIAGRAMS);
 
 		scrmDiagramEClass = createEClass(SCRM_DIAGRAM);
 		createEReference(scrmDiagramEClass, SCRM_DIAGRAM__ELEMENTS);
@@ -306,6 +327,7 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 		createEReference(scrmDiagramEClass, SCRM_DIAGRAM__NEW_ELEMENTS);
 		createEAttribute(scrmDiagramEClass, SCRM_DIAGRAM__DIAGRAM_LAYOUT);
 		createEAttribute(scrmDiagramEClass, SCRM_DIAGRAM__DIAGRAM_TYPE);
+		createEReference(scrmDiagramEClass, SCRM_DIAGRAM__REPRESENTED_SPACE);
 
 		scrmSpaceEClass = createEClass(SCRM_SPACE);
 		createEReference(scrmSpaceEClass, SCRM_SPACE__REPRESENTING_DIAGRAM);
@@ -373,14 +395,20 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 				SCRMModelElement.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		initEReference(getSCRMModelElement_DisplayingDiagrams(),
+				this.getSCRMDiagram(), this.getSCRMDiagram_Elements(),
+				"displayingDiagrams", null, 0, -1, SCRMModelElement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(scrmDiagramEClass, SCRMDiagram.class, "SCRMDiagram",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSCRMDiagram_Elements(), this.getSCRMModelElement(),
-				null, "elements", null, 0, -1, SCRMDiagram.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+				this.getSCRMModelElement_DisplayingDiagrams(), "elements",
+				null, 0, -1, SCRMDiagram.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSCRMDiagram_Gmfdiagram(),
 				theNotationPackage.getDiagram(), null, "gmfdiagram", null, 0,
 				1, SCRMDiagram.class, IS_TRANSIENT, !IS_VOLATILE,
@@ -399,14 +427,23 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 				"diagramType", null, 0, 1, SCRMDiagram.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		initEReference(getSCRMDiagram_RepresentedSpace(), this.getSCRMSpace(),
+				this.getSCRMSpace_RepresentingDiagram(), "representedSpace",
+				null, 0, 1, SCRMDiagram.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(scrmSpaceEClass, SCRMSpace.class, "SCRMSpace", IS_ABSTRACT,
 				IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSCRMSpace_RepresentingDiagram(),
-				this.getSCRMDiagram(), null, "representingDiagram", null, 0, 1,
-				SCRMSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+				this.getSCRMDiagram(), this.getSCRMDiagram_RepresentedSpace(),
+				"representingDiagram", null, 0, 1, SCRMSpace.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+
+		addEOperation(scrmSpaceEClass, this.getSCRMModelElement(),
+				"getContainedModelElements", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(diagramTypeEEnum, DiagramType.class, "DiagramType");
