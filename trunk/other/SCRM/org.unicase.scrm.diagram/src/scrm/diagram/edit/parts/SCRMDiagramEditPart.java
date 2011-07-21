@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -16,12 +15,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
 
-import scrm.SCRMDiagram;
 import scrm.ScrmPackage;
 import scrm.diagram.edit.policies.SCRMDiagramCanonicalEditPolicy;
 import scrm.diagram.edit.policies.SCRMDiagramDragDropEditPolicy;
 import scrm.diagram.edit.policies.SCRMDiagramItemSemanticEditPolicy;
-import scrm.diagram.edit.policies.SCRMSpaceDragDropEditPolicy;
 
 /**
  * @generated

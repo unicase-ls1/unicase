@@ -1281,11 +1281,6 @@ public class ScrmParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser dataDefinitionDescription_5103Parser;
-
-	/**
-	 * @generated
-	 */
 	private IParser dataFlowName_5108Parser;
 
 	/**

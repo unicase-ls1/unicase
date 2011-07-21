@@ -1,5 +1,10 @@
 package scrm.diagram.edit.policies;
 
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -21,6 +26,7 @@ import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
 import scrm.SCRMDiagram;
+import scrm.SCRMModelElement;
 import scrm.SCRMSpace;
 import scrm.ScrmFactory;
 import scrm.diagram.part.Messages;
@@ -109,8 +115,7 @@ public class OpenSCRMSpaceEditPolicy extends OpenEditPolicy {
 				containingDiagram.getElements().add(scrmDiagram);
 				ActionHelper.openModelElement(scrmDiagram, "");
 				scrmDiagram.setNewElementContainer(representedSpace);
-				scrmDiagram.getElements().addAll(
-						representedSpace.getContainedModelElements());
+				scrmDiagram.getElements().addAll(getAllContents(representedSpace));
 				
 				return CommandResult.newOKCommandResult();
 			} catch (Exception ex) {
@@ -128,7 +133,21 @@ public class OpenSCRMSpaceEditPolicy extends OpenEditPolicy {
 			representedSpace.setRepresentingDiagram(scrmDiagram);
 			return scrmDiagram;
 		}
-
+		
+		private Collection<SCRMModelElement> getAllContents(
+				SCRMSpace representedSpace) {
+			List<SCRMModelElement> result = new LinkedList<SCRMModelElement>();
+			for(SCRMModelElement scrmModelElement : representedSpace.getContainedModelElements()) {
+				result.add(scrmModelElement);
+				for(Iterator<EObject> it = scrmModelElement.eAllContents(); it.hasNext();) {
+					EObject content = it.next();
+					if(content instanceof SCRMModelElement) {
+						result.add((SCRMModelElement) content);	
+					}
+				}
+			}
+			return result;
+		}
 	}
 
 }

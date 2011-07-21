@@ -50,7 +50,6 @@ public final class EditPartUtility {
 	 * @param objects The objects being searched
 	 * @return The found EditParts correspoding to the objects
 	 */
-	@SuppressWarnings("unchecked")
 	public static Set<EditPart> findEditParts(GraphicalEditPart host, Set<EObject> objects) {
 		Set<EditPart> editParts = new HashSet<EditPart>();
 

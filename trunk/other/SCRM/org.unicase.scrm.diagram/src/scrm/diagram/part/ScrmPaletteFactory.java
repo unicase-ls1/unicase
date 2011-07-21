@@ -37,13 +37,13 @@ public class ScrmPaletteFactory {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated NOT: take diagram type into account
 	 */
 	public void fillPalette(PaletteRoot paletteRoot) {
 		switch(diagramType) {
-		case KNOWLEDGE_DIAGRAM:
-			paletteRoot.add(createKnowledge1Group());
-			break;
+			case KNOWLEDGE_DIAGRAM:
+				paletteRoot.add(createKnowledge1Group());
+				break;
 			case DEFAULT_DIAGRAM:
 				paletteRoot.add(createKnowledge1Group());
 			case REQUIREMENTS_DIAGRAM:
