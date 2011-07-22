@@ -40,7 +40,6 @@ public interface ShowHistoryEvent extends Event {
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Source Version</em>' containment reference.
 	 * @see #setSourceVersion(PrimaryVersionSpec)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getShowHistoryEvent_SourceVersion()
@@ -50,11 +49,8 @@ public interface ShowHistoryEvent extends Event {
 	PrimaryVersionSpec getSourceVersion();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowHistoryEvent#getSourceVersion
-	 * <em>Source Version</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowHistoryEvent#getSourceVersion <em>Source Version</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Source Version</em>' containment reference.
 	 * @see #getSourceVersion()
 	 * @generated
@@ -69,7 +65,6 @@ public interface ShowHistoryEvent extends Event {
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Target Version</em>' containment reference.
 	 * @see #setTargetVersion(PrimaryVersionSpec)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getShowHistoryEvent_TargetVersion()
@@ -79,11 +74,8 @@ public interface ShowHistoryEvent extends Event {
 	PrimaryVersionSpec getTargetVersion();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowHistoryEvent#getTargetVersion
-	 * <em>Target Version</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowHistoryEvent#getTargetVersion <em>Target Version</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Target Version</em>' containment reference.
 	 * @see #getTargetVersion()
 	 * @generated
@@ -99,7 +91,6 @@ public interface ShowHistoryEvent extends Event {
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Model Element</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getShowHistoryEvent_ModelElement()
 	 * @model containment="true" resolveProxies="true"

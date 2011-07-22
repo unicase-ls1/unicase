@@ -42,7 +42,6 @@ public class EventCompositeItemProvider extends ItemProviderAdapter implements
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EventCompositeItemProvider(AdapterFactory adapterFactory) {
@@ -52,7 +51,6 @@ public class EventCompositeItemProvider extends ItemProviderAdapter implements
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -70,7 +68,6 @@ public class EventCompositeItemProvider extends ItemProviderAdapter implements
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -85,7 +82,6 @@ public class EventCompositeItemProvider extends ItemProviderAdapter implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -99,7 +95,6 @@ public class EventCompositeItemProvider extends ItemProviderAdapter implements
 	/**
 	 * This returns EventComposite.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -111,7 +106,6 @@ public class EventCompositeItemProvider extends ItemProviderAdapter implements
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -143,7 +137,6 @@ public class EventCompositeItemProvider extends ItemProviderAdapter implements
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -263,7 +256,6 @@ public class EventCompositeItemProvider extends ItemProviderAdapter implements
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

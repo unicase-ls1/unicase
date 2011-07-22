@@ -36,7 +36,6 @@ public interface ClientVersionInfo extends EObject {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Version</em>' attribute.
 	 * @see #setVersion(String)
 	 * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getClientVersionInfo_Version()
@@ -46,10 +45,8 @@ public interface ClientVersionInfo extends EObject {
 	String getVersion();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.ClientVersionInfo#getVersion
-	 * <em>Version</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.ClientVersionInfo#getVersion <em>Version</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Version</em>' attribute.
 	 * @see #getVersion()
 	 * @generated
@@ -63,7 +60,6 @@ public interface ClientVersionInfo extends EObject {
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getClientVersionInfo_Name()
@@ -73,10 +69,8 @@ public interface ClientVersionInfo extends EObject {
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.ClientVersionInfo#getName <em>Name</em>}'
-	 * attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.ClientVersionInfo#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
