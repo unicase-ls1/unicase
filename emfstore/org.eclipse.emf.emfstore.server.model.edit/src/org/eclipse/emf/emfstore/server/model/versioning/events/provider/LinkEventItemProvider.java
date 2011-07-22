@@ -40,7 +40,6 @@ public class LinkEventItemProvider extends EventItemProvider implements IEditing
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LinkEventItemProvider(AdapterFactory adapterFactory) {
@@ -50,7 +49,6 @@ public class LinkEventItemProvider extends EventItemProvider implements IEditing
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,71 +67,90 @@ public class LinkEventItemProvider extends EventItemProvider implements IEditing
 	/**
 	 * This adds a property descriptor for the Source View feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addSourceViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_LinkEvent_sourceView_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_LinkEvent_sourceView_feature", "_UI_LinkEvent_type"),
-			EventsPackage.Literals.LINK_EVENT__SOURCE_VIEW, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LinkEvent_sourceView_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LinkEvent_sourceView_feature", "_UI_LinkEvent_type"),
+				 EventsPackage.Literals.LINK_EVENT__SOURCE_VIEW,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Source Element feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addSourceElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_LinkEvent_sourceElement_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_LinkEvent_sourceElement_feature",
-					"_UI_LinkEvent_type"), EventsPackage.Literals.LINK_EVENT__SOURCE_ELEMENT, true, false, true, null,
-				null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LinkEvent_sourceElement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LinkEvent_sourceElement_feature", "_UI_LinkEvent_type"),
+				 EventsPackage.Literals.LINK_EVENT__SOURCE_ELEMENT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Target Element feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addTargetElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_LinkEvent_targetElement_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_LinkEvent_targetElement_feature",
-					"_UI_LinkEvent_type"), EventsPackage.Literals.LINK_EVENT__TARGET_ELEMENT, true, false, true, null,
-				null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LinkEvent_targetElement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LinkEvent_targetElement_feature", "_UI_LinkEvent_type"),
+				 EventsPackage.Literals.LINK_EVENT__TARGET_ELEMENT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Created New feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addCreatedNewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_LinkEvent_createdNew_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_LinkEvent_createdNew_feature", "_UI_LinkEvent_type"),
-			EventsPackage.Literals.LINK_EVENT__CREATED_NEW, true, false, false,
-			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LinkEvent_createdNew_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LinkEvent_createdNew_feature", "_UI_LinkEvent_type"),
+				 EventsPackage.Literals.LINK_EVENT__CREATED_NEW,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns LinkEvent.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -144,15 +161,15 @@ public class LinkEventItemProvider extends EventItemProvider implements IEditing
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((LinkEvent) object).getTimestamp();
+		Date labelValue = ((LinkEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_LinkEvent_type") : getString("_UI_LinkEvent_type")
-			+ " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_LinkEvent_type") :
+			getString("_UI_LinkEvent_type") + " " + label;
 	}
 
 	/**
@@ -167,10 +184,10 @@ public class LinkEventItemProvider extends EventItemProvider implements IEditing
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LinkEvent.class)) {
-		case EventsPackage.LINK_EVENT__SOURCE_VIEW:
-		case EventsPackage.LINK_EVENT__CREATED_NEW:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case EventsPackage.LINK_EVENT__SOURCE_VIEW:
+			case EventsPackage.LINK_EVENT__CREATED_NEW:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -179,7 +196,6 @@ public class LinkEventItemProvider extends EventItemProvider implements IEditing
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

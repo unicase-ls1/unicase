@@ -43,7 +43,6 @@ public class NotificationItemProviderAdapterFactory extends NotificationAdapterF
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
@@ -52,7 +51,6 @@ public class NotificationItemProviderAdapterFactory extends NotificationAdapterF
 	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -68,7 +66,6 @@ public class NotificationItemProviderAdapterFactory extends NotificationAdapterF
 	/**
 	 * This constructs an instance.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationItemProviderAdapterFactory() {
@@ -80,10 +77,8 @@ public class NotificationItemProviderAdapterFactory extends NotificationAdapterF
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.notification.ESNotification} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.notification.ESNotification} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ESNotificationItemProvider esNotificationItemProvider;
@@ -106,7 +101,6 @@ public class NotificationItemProviderAdapterFactory extends NotificationAdapterF
 	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -116,7 +110,6 @@ public class NotificationItemProviderAdapterFactory extends NotificationAdapterF
 	/**
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -125,7 +118,6 @@ public class NotificationItemProviderAdapterFactory extends NotificationAdapterF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -137,7 +129,6 @@ public class NotificationItemProviderAdapterFactory extends NotificationAdapterF
 	 * This implementation substitutes the factory itself as the key for the adapter.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -147,14 +138,13 @@ public class NotificationItemProviderAdapterFactory extends NotificationAdapterF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -165,7 +155,6 @@ public class NotificationItemProviderAdapterFactory extends NotificationAdapterF
 	/**
 	 * This adds a listener.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -175,7 +164,6 @@ public class NotificationItemProviderAdapterFactory extends NotificationAdapterF
 	/**
 	 * This removes a listener.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -186,7 +174,6 @@ public class NotificationItemProviderAdapterFactory extends NotificationAdapterF
 	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
@@ -198,14 +185,12 @@ public class NotificationItemProviderAdapterFactory extends NotificationAdapterF
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory.
+	 * This disposes all of the item providers created by this factory. 
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void dispose() {
-		if (esNotificationItemProvider != null)
-			esNotificationItemProvider.dispose();
+		if (esNotificationItemProvider != null) esNotificationItemProvider.dispose();
 	}
 
 }

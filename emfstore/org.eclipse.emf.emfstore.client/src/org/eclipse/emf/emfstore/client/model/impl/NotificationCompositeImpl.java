@@ -29,14 +29,14 @@ import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.client.model.impl.NotificationCompositeImpl#getNotifications <em>Notifications
- * </em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.NotificationCompositeImpl#getNotifications <em>Notifications</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class NotificationCompositeImpl extends EObjectImpl implements NotificationComposite {
+public class NotificationCompositeImpl extends EObjectImpl implements
+		NotificationComposite {
 	/**
 	 * The cached value of the '{@link #getNotifications() <em>Notifications</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -49,7 +49,6 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NotificationCompositeImpl() {
@@ -58,7 +57,6 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,34 +66,34 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ESNotification> getNotifications() {
 		if (notifications == null) {
-			notifications = new EObjectContainmentEList.Resolving<ESNotification>(ESNotification.class, this,
-				ModelPackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS);
+			notifications = new EObjectContainmentEList.Resolving<ESNotification>(
+					ESNotification.class, this,
+					ModelPackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS);
 		}
 		return notifications;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS:
-			return ((InternalEList<?>) getNotifications()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getNotifications()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -109,7 +107,6 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -118,7 +115,8 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 		switch (featureID) {
 		case ModelPackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS:
 			getNotifications().clear();
-			getNotifications().addAll((Collection<? extends ESNotification>) newValue);
+			getNotifications().addAll(
+					(Collection<? extends ESNotification>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -126,7 +124,6 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,7 +138,6 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

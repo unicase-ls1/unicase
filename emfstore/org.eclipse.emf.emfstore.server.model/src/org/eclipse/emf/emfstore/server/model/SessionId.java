@@ -14,8 +14,8 @@ import org.eclipse.emf.emfstore.common.model.UniqueIdentifier;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Session Id</b></em>'. <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getSessionId()
  * @model
  * @generated

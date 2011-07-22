@@ -43,7 +43,6 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
@@ -52,7 +51,6 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -68,7 +66,6 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	/**
 	 * This constructs an instance.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EventsItemProviderAdapterFactory() {
@@ -80,10 +77,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.Event} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.Event} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EventItemProvider eventItemProvider;
@@ -92,7 +87,6 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.Event}.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,10 +99,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.ReadEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.ReadEvent} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ReadEventItemProvider readEventItemProvider;
@@ -129,11 +121,9 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MergeEventItemProvider mergeEventItemProvider;
@@ -154,11 +144,9 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.CheckoutEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.CheckoutEvent} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CheckoutEventItemProvider checkoutEventItemProvider;
@@ -179,11 +167,9 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.ExceptionEvent} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ExceptionEventItemProvider exceptionEventItemProvider;
@@ -205,11 +191,9 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.PluginStartEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.PluginStartEvent} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PluginStartEventItemProvider pluginStartEventItemProvider;
@@ -231,11 +215,9 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.UpdateEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.UpdateEvent} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UpdateEventItemProvider updateEventItemProvider;
@@ -256,11 +238,9 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.AnnotationEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.AnnotationEvent} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AnnotationEventItemProvider annotationEventItemProvider;
@@ -282,11 +262,9 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.RevertEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.RevertEvent} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected RevertEventItemProvider revertEventItemProvider;
@@ -307,11 +285,9 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowHistoryEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowHistoryEvent} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ShowHistoryEventItemProvider showHistoryEventItemProvider;
@@ -333,11 +309,9 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.PerspectiveEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.PerspectiveEvent} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PerspectiveEventItemProvider perspectiveEventItemProvider;
@@ -359,10 +333,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.DNDEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.DNDEvent} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DNDEventItemProvider dndEventItemProvider;
@@ -383,10 +355,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.LinkEvent} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected LinkEventItemProvider linkEventItemProvider;
@@ -407,11 +377,9 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.TraceEvent} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected TraceEventItemProvider traceEventItemProvider;
@@ -432,11 +400,9 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.NavigatorCreateEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.NavigatorCreateEvent} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NavigatorCreateEventItemProvider navigatorCreateEventItemProvider;
@@ -458,11 +424,9 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.PluginFocusEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.PluginFocusEvent} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PluginFocusEventItemProvider pluginFocusEventItemProvider;
@@ -484,20 +448,16 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.PresentationSwitchEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.PresentationSwitchEvent} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PresentationSwitchEventItemProvider presentationSwitchEventItemProvider;
 
 	/**
-	 * This creates an adapter for a
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.PresentationSwitchEvent}.
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.PresentationSwitchEvent}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -510,10 +470,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.UndoEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.UndoEvent} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UndoEventItemProvider undoEventItemProvider;
@@ -534,10 +492,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.Validate} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.Validate} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ValidateItemProvider validateItemProvider;
@@ -558,11 +514,9 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowChangesEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.ShowChangesEvent} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ShowChangesEventItemProvider showChangesEventItemProvider;
@@ -584,11 +538,9 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.NotificationReadEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.NotificationReadEvent} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NotificationReadEventItemProvider notificationReadEventItemProvider;
@@ -610,20 +562,16 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.NotificationGenerationEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.NotificationGenerationEvent} instances.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NotificationGenerationEventItemProvider notificationGenerationEventItemProvider;
 
 	/**
-	 * This creates an adapter for a
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.NotificationGenerationEvent}.
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.NotificationGenerationEvent}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -636,20 +584,16 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.NotificationIgnoreEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.NotificationIgnoreEvent} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NotificationIgnoreEventItemProvider notificationIgnoreEventItemProvider;
 
 	/**
-	 * This creates an adapter for a
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.NotificationIgnoreEvent}.
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.NotificationIgnoreEvent}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -662,10 +606,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected URLEventItemProvider urlEventItemProvider;
@@ -686,11 +628,9 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeChoiceEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeChoiceEvent} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MergeChoiceEventItemProvider mergeChoiceEventItemProvider;
@@ -712,11 +652,9 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeGlobalChoiceEvent} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeGlobalChoiceEvent} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MergeGlobalChoiceEventItemProvider mergeGlobalChoiceEventItemProvider;
@@ -740,7 +678,6 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -750,7 +687,6 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	/**
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -759,7 +695,6 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -771,7 +706,6 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 * This implementation substitutes the factory itself as the key for the adapter.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -781,14 +715,13 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -799,7 +732,6 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	/**
 	 * This adds a listener.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -809,7 +741,6 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	/**
 	 * This removes a listener.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -820,7 +751,6 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
@@ -832,64 +762,37 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory.
+	 * This disposes all of the item providers created by this factory. 
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void dispose() {
-		if (eventItemProvider != null)
-			eventItemProvider.dispose();
-		if (readEventItemProvider != null)
-			readEventItemProvider.dispose();
-		if (mergeEventItemProvider != null)
-			mergeEventItemProvider.dispose();
-		if (checkoutEventItemProvider != null)
-			checkoutEventItemProvider.dispose();
-		if (exceptionEventItemProvider != null)
-			exceptionEventItemProvider.dispose();
-		if (pluginStartEventItemProvider != null)
-			pluginStartEventItemProvider.dispose();
-		if (updateEventItemProvider != null)
-			updateEventItemProvider.dispose();
-		if (annotationEventItemProvider != null)
-			annotationEventItemProvider.dispose();
-		if (revertEventItemProvider != null)
-			revertEventItemProvider.dispose();
-		if (showHistoryEventItemProvider != null)
-			showHistoryEventItemProvider.dispose();
-		if (perspectiveEventItemProvider != null)
-			perspectiveEventItemProvider.dispose();
-		if (dndEventItemProvider != null)
-			dndEventItemProvider.dispose();
-		if (linkEventItemProvider != null)
-			linkEventItemProvider.dispose();
-		if (traceEventItemProvider != null)
-			traceEventItemProvider.dispose();
-		if (navigatorCreateEventItemProvider != null)
-			navigatorCreateEventItemProvider.dispose();
-		if (pluginFocusEventItemProvider != null)
-			pluginFocusEventItemProvider.dispose();
-		if (presentationSwitchEventItemProvider != null)
-			presentationSwitchEventItemProvider.dispose();
-		if (undoEventItemProvider != null)
-			undoEventItemProvider.dispose();
-		if (validateItemProvider != null)
-			validateItemProvider.dispose();
-		if (showChangesEventItemProvider != null)
-			showChangesEventItemProvider.dispose();
-		if (notificationReadEventItemProvider != null)
-			notificationReadEventItemProvider.dispose();
-		if (notificationGenerationEventItemProvider != null)
-			notificationGenerationEventItemProvider.dispose();
-		if (notificationIgnoreEventItemProvider != null)
-			notificationIgnoreEventItemProvider.dispose();
-		if (urlEventItemProvider != null)
-			urlEventItemProvider.dispose();
-		if (mergeChoiceEventItemProvider != null)
-			mergeChoiceEventItemProvider.dispose();
-		if (mergeGlobalChoiceEventItemProvider != null)
-			mergeGlobalChoiceEventItemProvider.dispose();
+		if (eventItemProvider != null) eventItemProvider.dispose();
+		if (readEventItemProvider != null) readEventItemProvider.dispose();
+		if (mergeEventItemProvider != null) mergeEventItemProvider.dispose();
+		if (checkoutEventItemProvider != null) checkoutEventItemProvider.dispose();
+		if (exceptionEventItemProvider != null) exceptionEventItemProvider.dispose();
+		if (pluginStartEventItemProvider != null) pluginStartEventItemProvider.dispose();
+		if (updateEventItemProvider != null) updateEventItemProvider.dispose();
+		if (annotationEventItemProvider != null) annotationEventItemProvider.dispose();
+		if (revertEventItemProvider != null) revertEventItemProvider.dispose();
+		if (showHistoryEventItemProvider != null) showHistoryEventItemProvider.dispose();
+		if (perspectiveEventItemProvider != null) perspectiveEventItemProvider.dispose();
+		if (dndEventItemProvider != null) dndEventItemProvider.dispose();
+		if (linkEventItemProvider != null) linkEventItemProvider.dispose();
+		if (traceEventItemProvider != null) traceEventItemProvider.dispose();
+		if (navigatorCreateEventItemProvider != null) navigatorCreateEventItemProvider.dispose();
+		if (pluginFocusEventItemProvider != null) pluginFocusEventItemProvider.dispose();
+		if (presentationSwitchEventItemProvider != null) presentationSwitchEventItemProvider.dispose();
+		if (undoEventItemProvider != null) undoEventItemProvider.dispose();
+		if (validateItemProvider != null) validateItemProvider.dispose();
+		if (showChangesEventItemProvider != null) showChangesEventItemProvider.dispose();
+		if (notificationReadEventItemProvider != null) notificationReadEventItemProvider.dispose();
+		if (notificationGenerationEventItemProvider != null) notificationGenerationEventItemProvider.dispose();
+		if (notificationIgnoreEventItemProvider != null) notificationIgnoreEventItemProvider.dispose();
+		if (urlEventItemProvider != null) urlEventItemProvider.dispose();
+		if (mergeChoiceEventItemProvider != null) mergeChoiceEventItemProvider.dispose();
+		if (mergeGlobalChoiceEventItemProvider != null) mergeGlobalChoiceEventItemProvider.dispose();
 	}
 
 }

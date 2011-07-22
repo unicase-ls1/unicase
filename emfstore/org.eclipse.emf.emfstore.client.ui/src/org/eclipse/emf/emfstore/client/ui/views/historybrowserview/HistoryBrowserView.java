@@ -239,7 +239,7 @@ public class HistoryBrowserView extends ViewPart implements
 				.setText("Please call 'Show history' from the context menu of an element in the navigator.");
 
 		viewer = new TreeViewerWithModelElementSelectionProvider(parent,
-				SWT.NONE);
+				SWT.MULTI);
 
 		MenuManager menuMgr = new MenuManager("#PopupMenu");
 		menuMgr.add(new Separator("additions"));
@@ -268,7 +268,7 @@ public class HistoryBrowserView extends ViewPart implements
 			}
 		});
 
-		changesColumn = new TreeViewerColumn(viewer, SWT.NONE);
+		changesColumn = new TreeViewerColumn(viewer, SWT.MULTI);
 		changesColumn.getColumn().setText("Changes");
 		changesColumn.getColumn().setWidth(400);
 
