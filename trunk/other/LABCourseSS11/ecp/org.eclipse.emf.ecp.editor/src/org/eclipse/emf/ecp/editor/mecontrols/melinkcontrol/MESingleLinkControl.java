@@ -18,6 +18,7 @@ import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
 import org.eclipse.emf.ecp.editor.mecontrols.IValidatableControl;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -29,8 +30,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.ui.ISharedImages;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * GUI Control for the ME reference single links.
@@ -75,7 +74,9 @@ public class MESingleLinkControl extends AbstractMEControl implements IValidatab
 		this.eReference = (EReference) feature;
 		composite = getToolkit().createComposite(parent, style);
 		composite.setLayout(new GridLayout(3, false));
-		GridLayoutFactory.fillDefaults().spacing(0, 0).numColumns(3).equalWidth(false).applyTo(composite);
+		GridLayoutFactory.fillDefaults().spacing(2, 0).numColumns(3).equalWidth(false).applyTo(composite);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(composite);
+		
 		this.parent = parent;
 		this.style = style;
 		linkArea = getToolkit().createComposite(composite);
@@ -161,12 +162,11 @@ public class MESingleLinkControl extends AbstractMEControl implements IValidatab
 			meControl.createControl(linkArea, style, getItemPropertyDescriptor(), opposite, getModelElement(),
 				getToolkit(), getContext());
 		} else {
+			labelWidgetImage = getToolkit().createLabel(linkArea, "    ");
+			labelWidgetImage.setBackground(parent.getBackground());
 			labelWidget = getToolkit().createLabel(linkArea, "(Not Set)");
 			labelWidget.setBackground(parent.getBackground());
 			labelWidget.setForeground(parent.getShell().getDisplay().getSystemColor(SWT.COLOR_DARK_GRAY));
-			labelWidgetImage = getToolkit().createLabel(linkArea, "");
-			labelWidgetImage.setBackground(parent.getBackground());
-			labelWidgetImage.setForeground(parent.getShell().getDisplay().getSystemColor(SWT.COLOR_DARK_GRAY));
 		}
 		linkArea.layout(true);
 		composite.layout(true);
@@ -194,14 +194,13 @@ public class MESingleLinkControl extends AbstractMEControl implements IValidatab
 		return AbstractMEControl.DO_NOT_RENDER;
 	}
 	
-	/**
+	/**.
 	 * {@inheritDoc}}
 	 * */
 	public void handleValidation(Diagnostic diagnostic) {
-		Image image = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_ERROR_TSK);
-
 		if (diagnostic != null) {
 			if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
+				Image image = org.eclipse.emf.ecp.editor.Activator.getImageDescriptor("icons/validation_error.png").createImage();
 				this.labelWidgetImage.setImage(image);
 				this.labelWidgetImage.setToolTipText(diagnostic.getMessage());
 				this.labelWidget.setToolTipText(diagnostic.getMessage());
@@ -212,7 +211,6 @@ public class MESingleLinkControl extends AbstractMEControl implements IValidatab
 
 	public void resetValidation() {
 		// TODO Auto-generated method stub
-		
 	}
 
 }
