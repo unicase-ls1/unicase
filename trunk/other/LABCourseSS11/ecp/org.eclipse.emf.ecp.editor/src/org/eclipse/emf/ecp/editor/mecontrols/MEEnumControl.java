@@ -26,8 +26,6 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.ui.ISharedImages;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * This is the standard Control to edit boolean values.
@@ -60,12 +58,12 @@ public class MEEnumControl extends AbstractMEControl implements IValidatableCont
 		GridLayoutFactory.fillDefaults().numColumns(2).spacing(2, 0).applyTo(composite);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(composite);
 		
+		labelWidgetImage = getToolkit().createLabel(composite, "    ");
+		labelWidgetImage.setBackground(parent.getBackground());
+
 		combo = new Combo(composite, style | SWT.DROP_DOWN | SWT.READ_ONLY);
 		combo.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		labelWidgetImage = getToolkit().createLabel(composite, "     ");
-		labelWidgetImage.setBackground(parent.getBackground());
-		
 		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
 		EList<EEnumLiteral> list = ((EEnum) attribute.getEType()).getELiterals();
 		for (EEnumLiteral literal : list) {
@@ -98,8 +96,8 @@ public class MEEnumControl extends AbstractMEControl implements IValidatableCont
 	 * {@inheritDoc}}
 	 * */
 	public void handleValidation(Diagnostic diagnostic) {
-		Image image = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_ERROR_TSK);
 		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
+			Image image = org.eclipse.emf.ecp.editor.Activator.getImageDescriptor("icons/validation_error.png").createImage();
 			this.labelWidgetImage.setImage(image);
 			this.labelWidgetImage.setToolTipText(diagnostic.getMessage());
 		}

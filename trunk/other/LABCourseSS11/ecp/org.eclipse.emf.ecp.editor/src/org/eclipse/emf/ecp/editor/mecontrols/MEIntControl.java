@@ -14,11 +14,14 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Device;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Spinner;
 
 /**
@@ -33,6 +36,10 @@ public class MEIntControl extends AbstractMEControl implements IValidatableContr
 	private Spinner spinner;
 
 	private static final int PRIORITY = 1;
+	
+	private Composite composite;
+	
+	private Label labelWidgetImage;  //Label for diagnostic image
 
 	/**
 	 * {@inheritDoc}
@@ -43,14 +50,25 @@ public class MEIntControl extends AbstractMEControl implements IValidatableContr
 	public Control createControl(Composite parent, int style) {
 		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
 		this.attribute = (EAttribute) feature;
-		spinner = new Spinner(parent, style);
+		
+		composite = getToolkit().createComposite(parent, style);
+		composite.setBackgroundMode(SWT.INHERIT_FORCE);
+		GridLayoutFactory.fillDefaults().numColumns(2).spacing(2, 0).applyTo(composite);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(composite);
+
+		labelWidgetImage = getToolkit().createLabel(composite, "    ");
+		labelWidgetImage.setBackground(parent.getBackground());
+
+		spinner = new Spinner(composite, style | SWT.BORDER);
+		spinner.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
 		spinner.setMinimum(-1000);
 		spinner.setMaximum(1000);
 		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
 		dbc.bindValue(SWTObservables.observeSelection(spinner), model, null, null);
 
-		return spinner;
+		return composite;
 	}
 
 	/**
@@ -74,11 +92,10 @@ public class MEIntControl extends AbstractMEControl implements IValidatableContr
 	 * {@inheritDoc}}
 	 * */
 	public void handleValidation(Diagnostic diagnostic) {
-		Device device = Display.getCurrent();
 		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
-			Color color = new Color(device, 255, 64, 64);
-			this.spinner.setBackground(color);
-			this.spinner.setToolTipText(diagnostic.getMessage());
+			Image image = org.eclipse.emf.ecp.editor.Activator.getImageDescriptor("icons/validation_error.png").createImage();
+			this.labelWidgetImage.setImage(image);
+			this.labelWidgetImage.setToolTipText(diagnostic.getMessage());
 		}
 	}
 
@@ -86,11 +103,8 @@ public class MEIntControl extends AbstractMEControl implements IValidatableContr
 	 * {@inheritDoc}}
 	 * */
 	public void resetValidation() {
-		Device device = Display.getCurrent();
-		Color color = new Color(device, 255, 255, 255);
-		this.spinner.setBackground(color);
-		this.spinner.setToolTipText("");
-		
+		this.labelWidgetImage.setImage(null);
+		this.labelWidgetImage.setToolTipText("");
 	}
 
 }

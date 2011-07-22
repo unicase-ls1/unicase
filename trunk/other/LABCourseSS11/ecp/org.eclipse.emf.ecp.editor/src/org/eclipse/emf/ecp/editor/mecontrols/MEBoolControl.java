@@ -14,13 +14,14 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.ui.ISharedImages;
-import org.eclipse.ui.PlatformUI;
+import org.eclipse.swt.widgets.Label;
 
 /**
  * This is the standard Control to edit boolean values.
@@ -35,6 +36,11 @@ public class MEBoolControl extends AbstractMEControl implements IValidatableCont
 
 	private static final int PRIORITY = 1;
 
+	private Composite composite;
+	
+	private Label labelWidgetImage;  //Label for diagnostic image
+
+
 	/**
 	 * returns a check button without Label. {@inheritDoc}
 	 * 
@@ -44,11 +50,18 @@ public class MEBoolControl extends AbstractMEControl implements IValidatableCont
 	public Control createControl(Composite parent, int style) {
 		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
 		this.attribute = (EAttribute) feature;
-		check = getToolkit().createButton(parent, "", SWT.CHECK);
+		composite = getToolkit().createComposite(parent, style);
+		GridLayoutFactory.fillDefaults().numColumns(2).spacing(2, 0).applyTo(composite);
+				
+		labelWidgetImage = getToolkit().createLabel(composite, "     ");
+		labelWidgetImage.setBackground(parent.getBackground());
+		labelWidgetImage.setSize(SWT.DEFAULT, 16);
+
+		check = getToolkit().createButton(composite, "", SWT.CHECK);
 		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
 		dbc.bindValue(SWTObservables.observeSelection(check), model, null, null);
-		return check;
+		return composite;
 	}
 
 	/**
@@ -67,24 +80,23 @@ public class MEBoolControl extends AbstractMEControl implements IValidatableCont
 		return AbstractMEControl.DO_NOT_RENDER;
 	}
 	
-	/**
+	/**.
 	 * {@inheritDoc}}
 	 * */
 	public void handleValidation(Diagnostic diagnostic) {
 		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
-			Image image = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_ERROR_TSK);
-			this.check.setImage(image);
-			this.check.setToolTipText(diagnostic.getMessage());
+			Image image = org.eclipse.emf.ecp.editor.Activator.getImageDescriptor("icons/validation_error.png").createImage();
+			this.labelWidgetImage.setImage(image);
+			this.labelWidgetImage.setToolTipText(diagnostic.getMessage());
 		}
-	
-		
 	}
-	/**
+
+	/**.
 	 * {@inheritDoc}}
 	 * */
 	public void resetValidation() {
-		this.check.setImage(null);
-		this.check.setToolTipText("");
+		this.labelWidgetImage.setImage(null);
+		this.labelWidgetImage.setToolTipText("");
 	}
 
 }

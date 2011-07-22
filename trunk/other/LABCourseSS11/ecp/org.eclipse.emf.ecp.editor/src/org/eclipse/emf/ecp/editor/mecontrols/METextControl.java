@@ -16,12 +16,13 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.ISWTObservableValue;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 /**
@@ -36,6 +37,12 @@ public class METextControl extends AbstractMEControl implements IValidatableCont
 	private EAttribute attribute;
 
 	private static final int PRIORITY = 1;
+	
+	private Composite composite;
+	
+	private Label labelWidgetImage;  //Label for diagnostic image
+
+	
 
 	/**
 	 * {@inheritDoc}
@@ -46,7 +53,17 @@ public class METextControl extends AbstractMEControl implements IValidatableCont
 	public Control createControl(Composite parent, int style) {
 		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
 		this.attribute = (EAttribute) feature;
-		text = getToolkit().createText(parent, new String(), style | SWT.SINGLE);
+		
+		composite = getToolkit().createComposite(parent, style);
+		composite.setBackgroundMode(SWT.INHERIT_FORCE);
+		GridLayoutFactory.fillDefaults().numColumns(2).spacing(2, 0).applyTo(composite);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(composite);
+
+		labelWidgetImage = getToolkit().createLabel(composite, "    ");
+		labelWidgetImage.setBackground(parent.getBackground());
+
+		text = getToolkit().createText(composite, new String(), style | SWT.SINGLE | SWT.BORDER);
+		text.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		if (!getItemPropertyDescriptor().canSetProperty(getModelElement())) {
 			text.setEditable(false);
 		}
@@ -54,7 +71,7 @@ public class METextControl extends AbstractMEControl implements IValidatableCont
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
 		ISWTObservableValue observeText = SWTObservables.observeText(text, SWT.FocusOut);
 		dbc.bindValue(observeText, model, null, null);
-		return text;
+		return composite;
 	}
 
 	/**
@@ -85,11 +102,10 @@ public class METextControl extends AbstractMEControl implements IValidatableCont
 	 * {@inheritDoc}}
 	 * */
 	public void handleValidation(Diagnostic diagnostic) {
-		Device device = Display.getCurrent();
 		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
-			Color color = new Color(device, 255, 64, 64);
-			this.text.setBackground(color);
-			this.text.setToolTipText(diagnostic.getMessage());
+			Image image = org.eclipse.emf.ecp.editor.Activator.getImageDescriptor("icons/validation_error.png").createImage();
+			this.labelWidgetImage.setImage(image);
+			this.labelWidgetImage.setToolTipText(diagnostic.getMessage());
 		}
 	}
 	
@@ -97,11 +113,8 @@ public class METextControl extends AbstractMEControl implements IValidatableCont
 	 * {@inheritDoc}}
 	 * */
 	public void resetValidation() {
-		Device device = Display.getCurrent();
-		Color color = new Color(device, 255, 255, 255);
-		this.text.setBackground(color);
-		this.text.setToolTipText("");
-		
+		this.labelWidgetImage.setImage(null);
+		this.labelWidgetImage.setToolTipText("");
 	}
 
 }
