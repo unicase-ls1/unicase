@@ -16,19 +16,19 @@ import org.eclipse.emf.ecp.editor.Activator;
 import org.eclipse.emf.ecp.editor.MEEditor;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
@@ -46,6 +46,11 @@ public class MERichTextControl extends AbstractMEControl implements IValidatable
 	private AdapterImpl eAdapter;
 
 	private static final int PRIORITY = 2;
+	
+	private Label labelWidgetImage;  //Label for diagnostic image
+
+	private Composite composite;
+
 
 	/**
 	 * {@inheritDoc}
@@ -59,9 +64,14 @@ public class MERichTextControl extends AbstractMEControl implements IValidatable
 		this.attribute = (EAttribute) feature;
 		composite = getToolkit().createComposite(parent, style);
 		composite.setBackgroundMode(SWT.INHERIT_FORCE);
-		composite.setLayout(new GridLayout());
 
-		createToolBar();
+		GridLayoutFactory.fillDefaults().numColumns(3).spacing(2, 0).applyTo(composite);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(composite);
+
+		labelWidgetImage = getToolkit().createLabel(composite, "     ");
+		labelWidgetImage.setBackground(composite.getBackground());
+
+//		createToolBar();
 		createText();
 		eAdapter = new AdapterImpl() {
 			@Override
@@ -80,8 +90,6 @@ public class MERichTextControl extends AbstractMEControl implements IValidatable
 		return composite;
 	}
 
-	private Composite composite;
-
 	private ToolBar toolBar;
 
 	private boolean shoudShowExpand;
@@ -89,6 +97,7 @@ public class MERichTextControl extends AbstractMEControl implements IValidatable
 	private Text text;
 
 	private void createText() {
+		
 		text = new Text(composite, SWT.BORDER | SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
 
 		text.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
@@ -213,11 +222,10 @@ public class MERichTextControl extends AbstractMEControl implements IValidatable
 	 * {@inheritDoc}}
 	 * */
 	public void handleValidation(Diagnostic diagnostic) {
-		Device device = Display.getCurrent();	
 		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
-			Color color = new Color(device, 255, 64, 64);
-			this.text.setBackground(color);
-			this.text.setToolTipText(diagnostic.getMessage());
+			Image image = org.eclipse.emf.ecp.editor.Activator.getImageDescriptor("icons/validation_error.png").createImage();
+			this.labelWidgetImage.setImage(image);
+			this.labelWidgetImage.setToolTipText(diagnostic.getMessage());
 		}
 	}
 	
@@ -225,10 +233,7 @@ public class MERichTextControl extends AbstractMEControl implements IValidatable
 	 * {@inheritDoc}}
 	 * */
 	public void resetValidation() {
-		Device device = Display.getCurrent();
-		Color color = new Color(device, 255, 255, 255);
-		this.text.setBackground(color);
-		this.text.setToolTipText("");
-		
+		this.labelWidgetImage.setImage(null);
+		this.labelWidgetImage.setToolTipText("");
 	}
 }

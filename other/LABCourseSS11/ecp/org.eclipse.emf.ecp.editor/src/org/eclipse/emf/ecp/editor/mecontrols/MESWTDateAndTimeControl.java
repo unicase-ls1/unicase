@@ -79,6 +79,9 @@ public class MESWTDateAndTimeControl extends AbstractMEControl implements IValid
 	}
 
 	private void createDateAndTimeWidget() {
+		labelWidgetImage = getToolkit().createLabel(dateComposite, "     ");
+		labelWidgetImage.setBackground(dateComposite.getBackground());
+
 		dateWidget = new DateTime(dateComposite, SWT.DATE);
 		dateWidget.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		
@@ -88,8 +91,6 @@ public class MESWTDateAndTimeControl extends AbstractMEControl implements IValid
 		dateDeleteButton = new ImageHyperlink(dateComposite, SWT.TOP);
 		dateDeleteButton.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE));
 		
-		labelWidgetImage = getToolkit().createLabel(dateComposite, "     ");
-		labelWidgetImage.setBackground(dateComposite.getBackground());
 
 		
 		dateDeleteButton.addMouseListener(new MouseAdapter() {
@@ -110,14 +111,12 @@ public class MESWTDateAndTimeControl extends AbstractMEControl implements IValid
 	 * {@inheritDoc}}
 	 * */
 	public void handleValidation(Diagnostic diagnostic) {
-		Image image = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_ERROR_TSK);
 		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
+			Image image = org.eclipse.emf.ecp.editor.Activator.getImageDescriptor("icons/validation_error.png").createImage();
 			this.labelWidgetImage.setImage(image);
-			String message = diagnostic.getMessage();
-			this.labelWidgetImage.setToolTipText(message);
+			this.labelWidgetImage.setToolTipText(diagnostic.getMessage());
 		}
 	}
-
 	
 	/**.
 	 * {@inheritDoc}}
