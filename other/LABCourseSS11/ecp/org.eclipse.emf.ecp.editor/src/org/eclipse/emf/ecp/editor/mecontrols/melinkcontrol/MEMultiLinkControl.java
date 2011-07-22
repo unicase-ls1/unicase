@@ -19,6 +19,8 @@ import org.eclipse.emf.ecp.editor.mecontrols.IValidatableControl;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.action.ToolBarManager;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.dnd.DND;
@@ -28,13 +30,14 @@ import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Cursor;
-import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
@@ -141,6 +144,9 @@ public class MEMultiLinkControl extends AbstractMEControl implements IValidatabl
 	private Color color;
 
 	private org.eclipse.emf.ecp.editor.ModelElementChangeListener modelElementChangeListener;
+	
+	private Label labelWidgetImage;  //Label for diagnostic image
+
 
 	private void createSectionToolbar(Section section, FormToolkit toolkit) {
 		ToolBarManager toolBarManager = new ToolBarManager(SWT.FLAT);
@@ -191,7 +197,16 @@ public class MEMultiLinkControl extends AbstractMEControl implements IValidatabl
 		section.setText(getItemPropertyDescriptor().getDisplayName(getModelElement()));
 		createSectionToolbar(section, getToolkit());
 		composite = getToolkit().createComposite(section, style);
-		composite.setLayout(tableLayout);
+//		composite.setLayout(tableLayout);
+		
+//		composite.setBackgroundMode(SWT.INHERIT_FORCE);
+		GridLayoutFactory.fillDefaults().numColumns(2).spacing(2, 0).applyTo(composite);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(composite);
+
+		labelWidgetImage = getToolkit().createLabel(composite, "    ");
+		labelWidgetImage.setBackground(parent.getBackground());
+
+		
 		color = section.getTitleBarBackground();
 
 		rebuildLinkSection();
@@ -260,11 +275,11 @@ public class MEMultiLinkControl extends AbstractMEControl implements IValidatabl
 	 * {@inheritDoc}}
 	 * */
 	public void handleValidation(Diagnostic diagnostic) {
-		Device device = Display.getCurrent();
-			if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
-				this.section.setTitleBarBackground(new Color(device, 255, 0, 0));
-				this.section.setToolTipText(diagnostic.getMessage());
-			}
+		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
+			Image image = org.eclipse.emf.ecp.editor.Activator.getImageDescriptor("icons/validation_error.png").createImage();
+			this.labelWidgetImage.setImage(image);
+			this.labelWidgetImage.setToolTipText(diagnostic.getMessage());
+		}
 
 	}
 
@@ -272,7 +287,7 @@ public class MEMultiLinkControl extends AbstractMEControl implements IValidatabl
 	 * {@inheritDoc}}
 	 * */
 	public void resetValidation() {
-		this.section.setTitleBarBackground(color);
+		this.labelWidgetImage.setImage(null);
 		this.section.setToolTipText("");
 		
 	}
