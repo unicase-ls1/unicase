@@ -15,6 +15,10 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.meeting.Meeting;
 import org.unicase.workspace.util.UnicaseCommand;
 
+/**
+ * @author Carmen Carlan
+ *
+ */
 public class ExportBBCode extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {

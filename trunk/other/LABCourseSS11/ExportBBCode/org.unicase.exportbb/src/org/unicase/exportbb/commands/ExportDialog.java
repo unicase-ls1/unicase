@@ -7,7 +7,6 @@ import java.io.IOException;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -16,7 +15,6 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.DirectoryDialog;
@@ -26,7 +24,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.PlatformUI;
 import org.unicase.exportbb.CreateBBCodeFormat;
 import org.unicase.exportbb.CreateBBCodeFormatString;
 import org.unicase.model.UnicaseModelElement;
@@ -44,15 +41,11 @@ public class ExportDialog extends TitleAreaDialog {
 
 	
 	private UnicaseModelElement modelElement;
-	private Combo template;
-	private Combo exportType;
 	private Text fileLocation;
 	private Text fileName;
-	private Text string;
 	private Group container;
 	private String stringFromBBCode;
 
-	private Combo recursionDepth;
 	
 	static Shell platformShell;
 
@@ -192,10 +185,6 @@ public class ExportDialog extends TitleAreaDialog {
 		return fileUrl;
 	}
 
-	private void exportDocument( String fileUrl) {
-		ProgressMonitorDialog dialog = new ProgressMonitorDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-			.getShell());
-	}
 
 	/**
 	 * Check if the file already exists and returns true, if the file shall be written. If the file already exists, a
