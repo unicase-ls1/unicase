@@ -1,38 +1,29 @@
 package org.unicase.exportbb;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.MessageBox;
-import org.eclipse.ui.PlatformUI;
-import org.unicase.exportbb.commands.ExportDialog;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.IssueMeetingSection;
 import org.unicase.model.meeting.Meeting;
-import org.unicase.model.meeting.MeetingSection;
 import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.meeditor.MEEditorInput;
 
 /**
  * Writes the information from the meeting in BBCode format into a file.
@@ -57,7 +48,6 @@ public class CreateBBCodeFormat {
 	static IssueMeetingSection ims;
 	public static String error_message = "";
 	public static Calendar cal = Calendar.getInstance();
-
 	
 
 	/**
@@ -147,10 +137,15 @@ public class CreateBBCodeFormat {
 		out.newLine();
 		out.write("Time and Location       Roles");
 		out.newLine();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(meeting.getCreationDate());
+		DateFormat format = DateFormat.getDateInstance();
 		if (meeting.getCreationDate() != null)
-			out.write("Date: " + meeting.getCreationDate().getDay() + "-"
-					+ meeting.getCreationDate().getMonth() + "-"
-					+ (meeting.getCreationDate().getYear() + 1900));
+//			out.write("Date: " + calendar.get(Calendar.DAY_OF_MONTH) + "-"
+//					+ calendar.get(Calendar.MONTH) + "-"
+//					+ calendar.get(Calendar.YEAR));
+			
+			out.write("Date: " + DateFormat.getInstance().format(meeting.getCreationDate()));
 		else
 			out.write("Date: " + "<not defined>");
 		if (meeting.getFacilitator() != null)

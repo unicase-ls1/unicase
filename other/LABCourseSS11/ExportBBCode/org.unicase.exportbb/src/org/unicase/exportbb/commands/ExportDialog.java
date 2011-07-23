@@ -1,26 +1,15 @@
 package org.unicase.exportbb.commands;
 
-import java.awt.Component;
-import java.awt.Rectangle;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ControlEvent;
-import org.eclipse.swt.events.ControlListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
@@ -32,10 +21,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -43,7 +30,6 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.exportbb.CreateBBCodeFormat;
 import org.unicase.exportbb.CreateBBCodeFormatString;
 import org.unicase.model.UnicaseModelElement;
-
 import org.unicase.model.meeting.Meeting;
 import org.unicase.ui.common.util.PreferenceHelper;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -67,7 +53,7 @@ public class ExportDialog extends TitleAreaDialog {
 	private String stringFromBBCode;
 
 	private Combo recursionDepth;
-
+	
 	static Shell platformShell;
 
 	private static final String EXPORT_PATH_QUALIFIER = "org.unicase.docExport.exportPath";
@@ -85,7 +71,7 @@ public class ExportDialog extends TitleAreaDialog {
 		super(parentShell);
 		this.modelElement = modelElement;
 		platformShell = parentShell;
-		
+		setShellStyle(getShellStyle() | SWT.RESIZE);
 		setHelpAvailable(false);
 
 	}
@@ -96,7 +82,6 @@ public class ExportDialog extends TitleAreaDialog {
 	@Override
 	protected Control createDialogArea(final Composite parent) {
 
-		
 		GridLayout layout0 = new GridLayout();
 		layout0.numColumns = 1;
 		parent.setLayout(layout0);
@@ -183,10 +168,13 @@ public class ExportDialog extends TitleAreaDialog {
 	protected Control createContents(Composite parent) {
 		Control contents = super.createContents(parent);
 		setTitle("Export document");
-		String error = CreateBBCodeFormat.getErrorMessage();
-		if (error == "")
-		setMessage("Please select a file.", IMessageProvider.INFORMATION);
-		else setMessage(error + " Please complete all fields properly.", IMessageProvider.INFORMATION);
+		String error = CreateBBCodeFormatString.getErrorMessage();
+		if (error == ""){
+		setMessage("Please select a file.", IMessageProvider.INFORMATION);}
+		else {
+			setMessage("Please select a file.", IMessageProvider.INFORMATION);
+			setMessage("Missing " + error + ". Please complete all fields properly.", IMessageProvider.WARNING);
+		}
 		return contents;
 	}
 
