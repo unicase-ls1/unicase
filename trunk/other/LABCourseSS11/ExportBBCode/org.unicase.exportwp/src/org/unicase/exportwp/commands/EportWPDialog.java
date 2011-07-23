@@ -177,11 +177,6 @@ public class EportWPDialog extends TitleAreaDialog {
 		return fileUrl;
 	}
 
-//	private void exportDocument( String fileUrl) {
-//		ProgressMonitorDialog dialog = new ProgressMonitorDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-//			.getShell());
-//	}
-
 	/**
 	 * Check if the file already exists and returns true, if the file shall be written. If the file already exists, a
 	 * prompt message box will appear, which asks the user, if he really wants to overwrite the file.
