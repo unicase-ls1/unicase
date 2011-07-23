@@ -52,7 +52,7 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 
-	private Map<Project, ProjectSpace> projectToProjectSpaceMap;;
+	private Map<Project, ProjectSpace> projectToProjectSpaceMap = new HashMap<Project, ProjectSpace>();
 
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
@@ -223,10 +223,13 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to
+	 * deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand},
+	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
+	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
