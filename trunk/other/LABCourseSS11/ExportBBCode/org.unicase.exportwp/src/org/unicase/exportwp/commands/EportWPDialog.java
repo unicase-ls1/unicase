@@ -1,28 +1,21 @@
 package org.unicase.exportwp.commands;
 
-import java.awt.Rectangle;
-import java.io.BufferedWriter;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ControlAdapter;
-import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.DirectoryDialog;
@@ -32,10 +25,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.PlatformUI;
-
-import org.unicase.exportwp.CreateBBCodeFormat;
-import org.unicase.exportwp.CreateBBCodeFormatString;
 import org.unicase.exportwp.CreateBBCodeTableFormat;
 import org.unicase.exportwp.CreateBBCodeTableFormatString;
 import org.unicase.model.UnicaseModelElement;
@@ -46,15 +35,11 @@ import org.unicase.workspace.util.WorkspaceUtil;
 public class EportWPDialog extends TitleAreaDialog {
 
 	private UnicaseModelElement modelElement;
-	private Combo template;
-	private Combo exportType;
 	private Text fileLocation;
 	private Text fileName;
-	private Text string;
 	private Group container;
 	private String stringFromBBCode;
 
-	private Combo recursionDepth;
 
 	private static Shell platformShell;
 
@@ -73,6 +58,7 @@ public class EportWPDialog extends TitleAreaDialog {
 		super(parentShell);
 		this.modelElement = modelElement;
 		platformShell = parentShell;
+		setShellStyle(getShellStyle() | SWT.RESIZE);
 		setHelpAvailable(false);
 
 	}
@@ -186,10 +172,10 @@ public class EportWPDialog extends TitleAreaDialog {
 		return fileUrl;
 	}
 
-	private void exportDocument( String fileUrl) {
-		ProgressMonitorDialog dialog = new ProgressMonitorDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-			.getShell());
-	}
+//	private void exportDocument( String fileUrl) {
+//		ProgressMonitorDialog dialog = new ProgressMonitorDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+//			.getShell());
+//	}
 
 	/**
 	 * Check if the file already exists and returns true, if the file shall be written. If the file already exists, a
