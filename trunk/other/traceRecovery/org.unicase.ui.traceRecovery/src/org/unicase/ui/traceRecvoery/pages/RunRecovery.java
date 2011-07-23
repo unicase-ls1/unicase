@@ -424,7 +424,9 @@ public class RunRecovery extends WizardPage implements Listener {
 		}
 
 		runRecovery = (SearchResult) super.getNextPage();
-
+		
+		runRecovery.getTable().removeAll();
+		
 		runRecovery.setRecovery(this);
 
 		runRecovery.Recovery();
