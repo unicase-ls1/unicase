@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            description="Recording changes of currently opened EMF resources."
+            id="org.modelversioning.ecoremutator.changerecorder"
+            label="EMF Change Recorder"
+            visible="false">
+         <action
+               allowLabelUpdate="true"
+               class="org.modelversioning.ecoremutator.changerecorder.EMFChangeRecorder"
+               icon="icons/record_16.png"
+               id="org.modelversioning.ecoremutator.changerecorder.startRecording"
+               label="EMF Change Recording"
+               style="pulldown"
+               toolbarPath="Normal/additions">
+         </action>
+      </actionSet>
+   </extension>
+
+</plugin>

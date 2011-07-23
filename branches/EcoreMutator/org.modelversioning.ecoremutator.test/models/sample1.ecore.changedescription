@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ASCII"?>
+<change:ChangeDescription xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:change="http://www.eclipse.org/emf/2003/Change" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+  <objectChanges>
+    <key href="sample1.ecore#//Employer/fire"/>
+    <value featureName="eContainingClass">
+      <referenceValue href="sample1.ecore#_Ehba8EO6Ed-T8POTkiYiBg"/>
+    </value>
+  </objectChanges>
+  <objectChanges>
+    <key href="sample1.ecore#_Ehba8EO6Ed-T8POTkiYiBg"/>
+    <value featureName="eOperations">
+      <listChanges kind="REMOVE" index="0"/>
+    </value>
+  </objectChanges>
+  <objectChanges>
+    <key href="sample1.ecore#_Ehhhl0O6Ed-T8POTkiYiBg"/>
+    <value featureName="eOperations">
+      <listChanges index="0" referenceValues="//@objectsToAttach.0"/>
+    </value>
+  </objectChanges>
+  <objectChanges key="//@objectsToAttach.0">
+    <value featureName="name" dataValue="newOperation"/>
+  </objectChanges>
+  <objectChanges>
+    <key href="sample1.ecore#_EhhhmEO6Ed-T8POTkiYiBg"/>
+    <value featureName="name" dataValue="street2"/>
+  </objectChanges>
+  <objectsToAttach xsi:type="ecore:EOperation"/>
+</change:ChangeDescription>
