@@ -8,8 +8,19 @@ import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 
+/**
+ * Help class to retrieve easily the infos from a WorkPackage.
+ * @author Carmen Carlan
+ *
+ */
 public class WriteInfosFromWP {
 	
+	/**
+	 * Writes all the successors of a WorkPackage and all their important infos in BBCode format into a string.
+	 * @param workpackage
+	 * @param bbCodeUtil
+	 */
+	@SuppressWarnings("static-access")
 	public static void writeSuccessors(WorkPackage workpackage, BBCodeUtil bbCodeUtil) {
 		bbCodeUtil.writeInString(bbCodeUtil.bold("Successors: "));
 		EList<WorkItem> successors = workpackage.getSuccessors();
@@ -23,6 +34,12 @@ public class WriteInfosFromWP {
 		bbCodeUtil.newlineString();
 	}
 
+	/**
+	 * Writes all the predecessors of a WorkPackage and all their important infos in BBCode format into a string.
+	 * @param workpackage
+	 * @param bbCodeUtil
+	 */
+	@SuppressWarnings("static-access")
 	public static void writePredecessors(WorkPackage workpackage, BBCodeUtil bbCodeUtil) {
 		bbCodeUtil.writeInString(bbCodeUtil.bold("Predecessors: "));
 		EList<WorkItem> predecessors = workpackage.getPredecessors();
@@ -36,6 +53,12 @@ public class WriteInfosFromWP {
 		bbCodeUtil.newlineString();
 	}
 
+	/**
+	 * Writes all the participants of a WorkPackage and all their important infos in BBCode format into a string.
+	 * @param workpackage
+	 * @param bbCodeUtil
+	 */
+	@SuppressWarnings("static-access")
 	public static void writeParticipants(WorkPackage workpackage, BBCodeUtil bbCodeUtil) {
 		bbCodeUtil.writeInString(bbCodeUtil.bold("Participants: "));
 		EList<OrgUnit> participants = workpackage.getParticipants();
@@ -54,6 +77,12 @@ public class WriteInfosFromWP {
 		bbCodeUtil.newlineString();
 	}
 
+	/**
+	 * Writes the end date of a WorkPackage in BBCode format into a string.
+	 * @param workpackage
+	 * @param bbCodeUtil
+	 */
+	@SuppressWarnings("static-access")
 	public static void writeEndDate(WorkPackage workpackage, BBCodeUtil bbCodeUtil) {
 		bbCodeUtil.writeInString(bbCodeUtil.bold("EndDate: "));
 		if (workpackage.getEndDate() != null) {
@@ -65,6 +94,12 @@ public class WriteInfosFromWP {
 		bbCodeUtil.newlineString();
 	}
 
+	/**
+	 * Writes the start date of a WorkPackage in BBCode format into a string.
+	 * @param workpackage
+	 * @param bbCodeUtil
+	 */
+	@SuppressWarnings("static-access")
 	public static void writeStartDate(WorkPackage workpackage, BBCodeUtil bbCodeUtil) {
 		bbCodeUtil.writeInString(bbCodeUtil.bold("StartDate: "));
 		if (workpackage.getStartDate() != null) {
@@ -76,6 +111,12 @@ public class WriteInfosFromWP {
 		bbCodeUtil.newlineString();
 	}
 
+	/**
+	 * Writes the description of a WorkPackage in BBCode format into a string.
+	 * @param workpackage
+	 * @param bbCodeUtil
+	 */
+	@SuppressWarnings("static-access")
 	public static void writeDescription(WorkPackage workpackage, BBCodeUtil bbCodeUtil) {
 		bbCodeUtil.writeInString(bbCodeUtil.bold("Description: "));
 		if (workpackage.getDescription() != null
@@ -88,6 +129,12 @@ public class WriteInfosFromWP {
 		bbCodeUtil.newlineString();
 	}
 	
+	/**
+	 * Writes all the successors of a WorkPackage and all their important infos in BBCode format into a buffer.
+	 * @param workpackage
+	 * @param out
+	 * @throws IOException
+	 */
 	public static void writeSuccessorsBuffer(WorkPackage workpackage, BufferedWriter out) throws IOException{
 		BBCodeUtil.writeInBuffer(out,  BBCodeUtil.bold("Successors: "));
 		EList<WorkItem> successors = workpackage.getSuccessors();
@@ -101,6 +148,12 @@ public class WriteInfosFromWP {
 		BBCodeUtil.newlineBuffer(out);
 	}
 
+	/**
+	 * Writes all the predecessors of a WorkPackage and all their important infos in BBCode format into a buffer.
+	 * @param workpackage
+	 * @param out
+	 * @throws IOException
+	 */
 	public static void writePredecessorsBuffer(WorkPackage workpackage, BufferedWriter out) throws IOException {
 		BBCodeUtil.writeInBuffer(out,  BBCodeUtil.bold("Predecessors: "));
 		EList<WorkItem> predecessors = workpackage.getPredecessors();
@@ -114,6 +167,12 @@ public class WriteInfosFromWP {
 		BBCodeUtil.newlineBuffer(out);
 	}
 
+	/**
+	 * Writes all the participants of a WorkPackage and all their important infos in BBCode format into a buffer.
+	 * @param workpackage
+	 * @param out
+	 * @throws IOException
+	 */
 	public static void writeParticipantsBuffer(WorkPackage workpackage, BufferedWriter out) throws IOException {
 		BBCodeUtil.writeInBuffer(out,  BBCodeUtil.bold("Participants: "));
 		EList<OrgUnit> participants = workpackage.getParticipants();
@@ -132,6 +191,12 @@ public class WriteInfosFromWP {
 		BBCodeUtil.newlineBuffer(out);
 	}
 
+	/**
+	 * Writes the end date of a WorkPackage in BBCode format into a buffer.
+	 * @param workpackage
+	 * @param out
+	 * @throws IOException
+	 */
 	public static void writeEndDateBuffer(WorkPackage workpackage, BufferedWriter out) throws IOException {
 		BBCodeUtil.writeInBuffer(out,  BBCodeUtil.bold("EndDate: "));
 		if (workpackage.getEndDate() != null) {
@@ -143,6 +208,12 @@ public class WriteInfosFromWP {
 		BBCodeUtil.newlineBuffer(out);
 	}
 
+	/**
+	 * Writes the start date of a WorkPackage in BBCode format into a buffer.
+	 * @param workpackage
+	 * @param out
+	 * @throws IOException
+	 */
 	public static void writeStartDateBuffer(WorkPackage workpackage, BufferedWriter out) throws IOException {
 		BBCodeUtil.writeInBuffer(out,  BBCodeUtil.bold("StartDate: "));
 		if (workpackage.getStartDate() != null) {
@@ -154,6 +225,12 @@ public class WriteInfosFromWP {
 		BBCodeUtil.newlineBuffer(out);
 	}
 
+	/**
+	 * Writes the description of a WorkPackage in BBCode format into a buffer.
+	 * @param workpackage
+	 * @param out
+	 * @throws IOException
+	 */
 	public static void writeDescriptionBuffer(WorkPackage workpackage, BufferedWriter out) throws IOException {
 		BBCodeUtil.writeInBuffer(out,  BBCodeUtil.bold("Description: "));
 		if (workpackage.getDescription() != null

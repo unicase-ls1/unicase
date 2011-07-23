@@ -12,6 +12,10 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.workspace.util.UnicaseCommand;
 
+/**
+ * @author Carmen Carlan
+ *
+ */
 public class ExportWP extends AbstractHandler{
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {

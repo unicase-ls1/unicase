@@ -12,6 +12,11 @@ import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 
+/**
+ * Creates the BBCode format out of the infos from a WorkPackage and puts it into a string.
+ * @author Carmen Carlan
+ *
+ */
 public class CreateBBCodeTableFormatString {
 
 	static String string;

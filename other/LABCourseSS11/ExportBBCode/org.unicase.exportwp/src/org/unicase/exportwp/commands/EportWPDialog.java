@@ -32,6 +32,11 @@ import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.util.PreferenceHelper;
 import org.unicase.workspace.util.WorkspaceUtil;
 
+/**
+ * A custom Dialog for the export WorkPackage to BBCode function.
+ * 
+ * @author Carmen Carlan
+ */
 public class EportWPDialog extends TitleAreaDialog {
 
 	private UnicaseModelElement modelElement;
