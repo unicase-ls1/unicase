@@ -14,6 +14,12 @@ import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 
+/**
+ * 
+ * Creates the BBCode format out of the infos from a WorkPackage and puts it into a file.
+ * @author Carmen Carlan
+ *
+ */
 public class CreateBBCodeTableFormat {
 	static File file;
 	static FileWriter fstream;
