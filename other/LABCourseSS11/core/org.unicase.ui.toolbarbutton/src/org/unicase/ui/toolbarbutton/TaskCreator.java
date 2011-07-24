@@ -58,9 +58,12 @@ public class TaskCreator {
 		} else {
 			Project project = projectSpace.getProject();
 			if (key.equals(ShortcutActionKey.USERTASKLOCATION)) {
-				return project.getModelElementIDTask();
+				//TODO do whatever with new property
+				// return project.getModelElementIDTask();
+				
 			} else {
-				return project.getModelElementIDBug();
+				// TODO do whatever with new property
+				// return project.getModelElementIDBug();
 			}	
 		}
 		
