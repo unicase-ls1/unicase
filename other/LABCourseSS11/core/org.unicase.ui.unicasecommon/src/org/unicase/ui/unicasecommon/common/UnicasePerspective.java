@@ -37,26 +37,24 @@ public class UnicasePerspective implements IPerspectiveFactory {
 		// Creates the overall folder layout.
 		// Note that each new Folder uses a percentage of the remaining
 		// EditorArea.
-		IFolderLayout topLeft = factory.createFolder("topLeft", // NON-NLS-1
-			IPageLayout.LEFT, 0.25f, factory.getEditorArea());
+		IFolderLayout topLeft = factory.createFolder("topLeft", IPageLayout.LEFT, 0.20f, factory.getEditorArea());
+		topLeft.addView("org.unicase.ui.navigator.viewer");
 
-		topLeft.addView("org.unicase.ui.navigator.viewer"); // NON-NLS-1
-
-		IFolderLayout bottomLeft = factory.createFolder("bottomLeft", // NON-NLS-1
-			IPageLayout.BOTTOM, 0.25f, "topLeft");
+		IFolderLayout bottomLeft = factory.createFolder("bottomLeft", IPageLayout.BOTTOM, 0.80f, "topLeft");
 		bottomLeft.addView("org.unicase.ui.repository.views.RepositoryView");
 
-		IFolderLayout bottomRight = factory.createFolder("bottomRight", // NON-NLS-1
-			IPageLayout.BOTTOM, 0.25f, factory.getEditorArea());
+		IFolderLayout bottomMiddle = factory.createFolder("bottomMiddle", IPageLayout.BOTTOM, 0.80f,
+			factory.getEditorArea());
 
-		bottomRight.addView("org.unicase.ui.taskview");
-		bottomRight.addView("org.unicase.ui.treeview.views.StatusView");
+		bottomMiddle.addView("org.unicase.ui.taskview");
+		bottomMiddle.addView("org.unicase.ui.treeview.views.StatusView");
+		bottomMiddle.addPlaceholder(IConsoleConstants.ID_CONSOLE_VIEW);
 
-		bottomRight.addPlaceholder(IConsoleConstants.ID_CONSOLE_VIEW);
-
-		IFolderLayout dashboard = factory.createFolder("dashboard", // NON-NLS-1
-			IPageLayout.BOTTOM, 1.0f, factory.getEditorArea());
+		IFolderLayout dashboard = factory.createFolder("dashboard", IPageLayout.BOTTOM, 1.0f, factory.getEditorArea());
 		dashboard.addView("org.unicase.ui.dashboard");
+
+		IFolderLayout bottomRight = factory.createFolder("bottomRight", IPageLayout.RIGHT, 0.80f, "bottomMiddle");
+		bottomRight.addView("org.eclipse.ui.views.ContentOutline");
 
 	}
 
