@@ -4,24 +4,11 @@ Bundle-Name: TraceRecovery
 Bundle-SymbolicName: org.unicase.ui.traceRecovery;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.ui.tracerecovery.Activator
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
- org.unicase.emfstore.esmodel;visibility:=reexport,
- org.unicase.metamodel;visibility:=reexport,
- org.unicase.model;visibility:=reexport,
- org.eclipse.ui,
- org.apache.lucene;visibility:=reexport,
- org.apache.lucene.analysis;visibility:=reexport,
+Require-Bundle: org.unicase.traceRecovery.edit,
+ org.eclipse.core.filesystem,
  org.eclipse.jdt.core,
- org.eclipse.photran.core,
- org.eclipse.photran.core.vpg,
- org.unicase.codetrace,
- org.junit,
- org.unicase.workspace,
- org.eclipse.emf.edit.ui,
- org.unicase.ui.common,
  org.unicase.ui.unicasecommon,
- org.unicase.traceRecovery,
- org.unicase.traceRecovery.edit
+ org.apache.lucene.analysis,
+ org.eclipse.jdt.apt.ui
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
