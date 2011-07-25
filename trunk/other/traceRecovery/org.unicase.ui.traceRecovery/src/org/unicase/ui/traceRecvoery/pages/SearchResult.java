@@ -7,11 +7,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.eclipse.core.filesystem.EFS;
+import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.custom.TableEditor;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -158,11 +162,13 @@ public class SearchResult extends WizardPage implements Listener {
 		TableColumn highlight = new TableColumn(table, SWT.V_SCROLL | SWT.H_SCROLL);
 		
 		
+		
 		source.setText("Source");
 		target.setText("Target");
 		score.setText("Score");
 		linkType.setText("Link Type");
 		highlight.setText("hit text");
+		
 		
 		setControl(composite);
 
@@ -184,7 +190,13 @@ public class SearchResult extends WizardPage implements Listener {
 			text[1] = result.getTarget().getName();
 			text[2] = result.getConfidence() + "";
 			text[3] = result.getType();
-			text[4] = recovery.getRecovery().text.get(i);
+//			text[4] = recovery.getRecovery().text.get(i);
+			TableEditor editor = new TableEditor(table);
+			
+			StyledText textt = new StyledText(table, SWT.V_SCROLL | SWT.H_SCROLL);
+			textt.setText(recovery.getRecovery().text.get(i));
+			editor.setEditor(textt, item, 4);
+			
 
 			item.setText(text);
 		}
@@ -279,9 +291,16 @@ public class SearchResult extends WizardPage implements Listener {
 				
 				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				File file = new File(link.get(table.getSelectionIndex()).getTarget().getDescription());
-				
+				IFileStore fileStore = EFS.getLocalFileSystem().getStore(file.toURI());
 				try {
-					IDE.openEditor(page, file.toURI(), "org.eclipse.jdt.ui.CompilationUnitEditor", true);
+					if(recovery.getCodeLanguage() == "java"){
+//					IDE.openEditor(page, file.toURI(), "org.eclipse.jdt.ui.CompilationUnitEditor", true);
+					IDE.openEditorOnFileStore(page, fileStore);
+					
+					}else{
+//						 IDE.openEditorOnFileStore( page, fileStore );
+						IDE.openEditor(page, file.toURI(), "org.eclipse.photran.ui.FortranEditor", true);
+					}
 				} catch (PartInitException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
