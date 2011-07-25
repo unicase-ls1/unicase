@@ -382,6 +382,8 @@ public class RunRecovery extends WizardPage implements Listener {
 	public IWizardPage getNextPage() {
 
 		recovery = new Search();
+		
+		recovery.setProject(getP());
 
 		Directory codeDir = TraceRecoveryFactory.eINSTANCE.createDirectory();
 		codeDir.setPath(path);
