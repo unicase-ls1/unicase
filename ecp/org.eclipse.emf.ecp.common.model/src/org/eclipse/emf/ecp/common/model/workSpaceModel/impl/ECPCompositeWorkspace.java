@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -34,8 +35,8 @@ import org.eclipse.emf.ecp.common.model.workSpaceModel.util.ECPWorkspaceProvider
  */
 public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 	
-	protected List<ECPWorkspace> workspaceList;
-
+	private List<ECPWorkspace> workspaceList;
+	
 	public ECPCompositeWorkspace(){
 		super();
 	}
@@ -63,7 +64,7 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 				Activator.getDefault().logException(e.getMessage(), e);
 			}
 		}
-		return (EList<ECPWorkspace>) result;
+		return result;
 	}
 	
 /*	public EList<ECPProject> getProjects(){
@@ -91,8 +92,11 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 	@Override
 	public EList<ECPProject> getProjects() {
 		if (projects == null) {
-			projects = new EObjectContainmentWithInverseEList<ECPProject>(ECPProject.class,  this,
-							WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS, WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE);
+			projects = new BasicEList<ECPProject>();
+			for (ECPWorkspace ws : getWorkspaceList()) {
+				projects.addAll(new EObjectContainmentWithInverseEList<ECPProject>(ECPProject.class, (ECPWorkspaceImpl)ws,
+							WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS, WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE));
+			}
 		}
 		return projects;
 	}
@@ -102,7 +106,7 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 	@Override
 	public ECPProject getProject(EObject me) {
 		ECPProject result = null;
-		for (ECPWorkspace ws : workspaceList) {
+		for (ECPWorkspace ws : getWorkspaceList()) {
 
 			for (ECPProject project : ws.getProjects()) {
 				if (project.contains(me)) {
@@ -123,7 +127,7 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 			activeProject = (ECPProject) eResolveProxy(oldActiveProject);
 			if (activeProject != oldActiveProject) {
 				if (eNotificationRequired())
-					for (ECPWorkspace ws : workspaceList){
+					for (ECPWorkspace ws : getWorkspaceList()){
 						eNotify(new ENotificationImpl((ECPWorkspaceImpl)ws, Notification.RESOLVE,
 								WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT, oldActiveProject, activeProject));
 					}
@@ -137,7 +141,7 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 		ECPProject oldActiveProject = activeProject;
 		activeProject = newActiveProject;
 		if (eNotificationRequired()) {
-			for (ECPWorkspace ws : workspaceList){
+			for (ECPWorkspace ws : getWorkspaceList()){
 			eNotify(new ENotificationImpl((ECPWorkspaceImpl)ws, Notification.SET, WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT,
 				oldActiveProject, activeProject));
 			}
