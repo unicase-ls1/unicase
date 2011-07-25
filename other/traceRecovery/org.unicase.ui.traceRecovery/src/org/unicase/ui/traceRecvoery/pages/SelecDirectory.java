@@ -215,10 +215,10 @@ public class SelecDirectory extends WizardPage implements Listener{
 
 		} else if (event.widget == setIndexDirectory) {
 			DirectoryDialog dir = new DirectoryDialog(getShell());
-			if(directoryString.getText().equals("")){
+			if(indexString.getText().equals("")){
 				dir.setFilterPath("/home/taher");	
 			}else {
-				dir.setFilterPath(directoryString.getText());
+				dir.setFilterPath(indexString.getText());
 			}
 			
 			
