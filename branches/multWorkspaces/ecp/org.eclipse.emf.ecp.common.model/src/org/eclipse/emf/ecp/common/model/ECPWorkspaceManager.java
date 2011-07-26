@@ -31,7 +31,7 @@ public final class ECPWorkspaceManager {
 
 	private static ECPWorkspaceManager instance;
 	private static ObserverBus observerBus;
-	private ECPWorkspace currentWorkspace;
+	private ECPCompositeWorkspace currentWorkspace;
 
 	/**
 	 * Singleton Pattern.
@@ -42,35 +42,14 @@ public final class ECPWorkspaceManager {
 		if (instance == null) {
 			instance = new ECPWorkspaceManager();
 			instance.init();
-			instance.notifyECPPostWorkspaceInitiators();
 		}
 		return instance;
 	}
 
 	private void init() {
 		currentWorkspace = new ECPCompositeWorkspace();
-		initObserverBus();
 	}
 
-	private void initObserverBus() {
-		// TODO make more general
-		if ("org.eclipse.emf.ecp.emfstorebridge.EMFECPWorkspace".equals(currentWorkspace.getClass().getName())) {
-			try {
-				Method method = currentWorkspace.getClass().getMethod("getObserverBus");
-				Object invoke = method.invoke(currentWorkspace);
-				if (invoke instanceof ObserverBus) {
-					observerBus = (ObserverBus) invoke;
-				}
-				// BEGIN SUPRESS CATCH EXCEPTION
-			} catch (Exception e) {
-				// fail silently
-			}
-			// END SUPRESS CATCH EXCEPTION
-		}
-		if (observerBus == null) {
-			observerBus = new ObserverBus();
-		}
-	}
 
 	private ECPWorkspaceManager() {
 	}
@@ -82,7 +61,7 @@ public final class ECPWorkspaceManager {
 	 * @throws NoWorkspaceException
 	 *             if there is no workspace
 	 */
-	public ECPWorkspace getWorkSpace() throws NoWorkspaceException {
+	public ECPCompositeWorkspace getWorkSpace() throws NoWorkspaceException {
 		if (currentWorkspace == null) {
 			throw new NoWorkspaceException();
 		}
@@ -107,21 +86,11 @@ public final class ECPWorkspaceManager {
 
 	@SuppressWarnings("static-access")
 	public static ObserverBus getObserverBus() {
-		return getInstance().observerBus;
-	}
-
-	private void notifyECPPostWorkspaceInitiators() {
-		IConfigurationElement[] workspaceObservers = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.eclipse.emf.ecp.model.postinit");
-		for (IConfigurationElement element : workspaceObservers) {
-			try {
-				PostECPWorkspaceInitiator workspaceObserver = (PostECPWorkspaceInitiator) element
-					.createExecutableExtension("class");
-				workspaceObserver.workspaceInitComplete(currentWorkspace);
-			} catch (CoreException e) {
-				Activator.getDefault().logException(e.getMessage(), e);
-			}
+		try {
+			return getInstance().getWorkSpace().getObserverBus();
+		} catch (NoWorkspaceException e) {
+			// TODO make NoWorkspaceException a runtime exception?
+			throw new RuntimeException(e);
 		}
 	}
-
 }

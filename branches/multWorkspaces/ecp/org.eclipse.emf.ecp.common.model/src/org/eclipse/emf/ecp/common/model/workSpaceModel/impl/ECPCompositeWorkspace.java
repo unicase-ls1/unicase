@@ -10,6 +10,7 @@
  ******************************************************************************/
 package org.eclipse.emf.ecp.common.model.workSpaceModel.impl;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +23,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecp.common.model.Activator;
+import org.eclipse.emf.ecp.common.model.PostECPWorkspaceInitiator;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.util.ECPWorkspaceProvider;
+import org.eclipse.emf.emfstore.common.observer.ObserverBus;
 
 /**
  * @author stute
@@ -34,16 +37,15 @@ import org.eclipse.emf.ecp.common.model.workSpaceModel.util.ECPWorkspaceProvider
 public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 	
 	private List<ECPWorkspace> workspaceList;
+	private ObserverBus observerBus;
 	
 	public ECPCompositeWorkspace(){
 		super();
 		workspaceList = getWorkspacesFromExtension();
+		notifyECPPostWorkspaceInitiators();
 	}
 	
 	public List<ECPWorkspace> getWorkspaceList() {
-		if (workspaceList == null){
-			workspaceList = getWorkspacesFromExtension();
-		}
 		return workspaceList;
 	}
 	
@@ -58,6 +60,7 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 			try {
 				ECPWorkspace workspace = ((ECPWorkspaceProvider) element.createExecutableExtension("class"))
 				.getECPWorkspace();
+				initObserverBus(workspace);
 				result.add(workspace);
 			} catch (CoreException e) {
 				Activator.getDefault().logException(e.getMessage(), e);
@@ -66,28 +69,43 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 		return result;
 	}
 	
-/*	public EList<ECPProject> getProjects(){
-		for( ECPWorkspace ws : workspaceList){
-			if (projects == null){
-				projects = new EObjectContainmentWithInverseEList<ECPProject>(null, (ECPWorkspaceImpl) ws, 0, 0);
-			}
-			projects.addAll(((ECPWorkspaceImpl) ws).projects);
-		}
-		return projects;
-	}
-*/	
-//	public EList<ECPProject> getProjects() {
-//		EList<ECPProject> result = new BasicEList<ECPProject>();
-//
-//		if (projects == null) {
-//			for( ECPWorkspace ws : workspaceList){
-//			result.addAll(((ECPWorkspaceImpl) ws).projects);
-//			}
-//			projects = (EList<ECPProject>) result;
-//		}
-//		return projects;
-//	}
+	private void initObserverBus(ECPWorkspace currentWorkspace) {
+		// TODO make more general
+		if ("org.eclipse.emf.ecp.emfstorebridge.EMFECPWorkspace".equals(currentWorkspace.getClass().getName())) {
+			try {
 
+				Method method = currentWorkspace.getClass().getMethod("getObserverBus");
+				Object invoke = method.invoke(currentWorkspace);
+				if (invoke instanceof ObserverBus) {
+					observerBus = (ObserverBus) invoke;
+				}
+				// BEGIN SUPRESS CATCH EXCEPTION
+			} catch (Exception e) {
+				// fail silently
+			}
+			// END SUPRESS CATCH EXCEPTION
+		}
+		if (observerBus == null) {
+			observerBus = new ObserverBus();
+		}
+	}
+	
+
+	private void notifyECPPostWorkspaceInitiators() {
+		IConfigurationElement[] workspaceObservers = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.eclipse.emf.ecp.model.postinit");
+		for (IConfigurationElement element : workspaceObservers) {
+			try {
+				PostECPWorkspaceInitiator workspaceObserver = (PostECPWorkspaceInitiator) element
+					.createExecutableExtension("class");
+				for (ECPWorkspace ws : getWorkspaceList())
+				workspaceObserver.workspaceInitComplete(ws);
+			} catch (CoreException e) {
+				Activator.getDefault().logException(e.getMessage(), e);
+			}
+		}
+	}
+	
 	@Override
 	public EList<ECPProject> getProjects() {
 		if (projects == null) {
@@ -99,8 +117,6 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 		return projects;
 	}
 
-	
-	
 	@Override
 	public ECPProject getProject(EObject me) {
 		ECPProject result = null;
@@ -140,5 +156,9 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 				oldActiveProject, activeProject));
 			}
 		}
+	}
+
+	public ObserverBus getObserverBus() {
+		return observerBus;
 	}
 }
