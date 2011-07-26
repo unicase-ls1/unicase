@@ -20,9 +20,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecp.common.model.Activator;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
@@ -39,6 +37,7 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 	
 	public ECPCompositeWorkspace(){
 		super();
+		workspaceList = getWorkspacesFromExtension();
 	}
 	
 	public List<ECPWorkspace> getWorkspaceList() {
@@ -94,8 +93,7 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 		if (projects == null) {
 			projects = new BasicEList<ECPProject>();
 			for (ECPWorkspace ws : getWorkspaceList()) {
-				projects.addAll(new EObjectContainmentWithInverseEList<ECPProject>(ECPProject.class, (ECPWorkspaceImpl)ws,
-							WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS, WorkSpaceModelPackage.ECP_PROJECT__WORKSPACE));
+				projects.addAll(ws.getProjects());
 			}
 		}
 		return projects;
@@ -122,18 +120,14 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 
 	@Override
 	public ECPProject getActiveProject() {
-		if (activeProject != null && activeProject.eIsProxy()) {
-			InternalEObject oldActiveProject = (InternalEObject) activeProject;
-			activeProject = (ECPProject) eResolveProxy(oldActiveProject);
-			if (activeProject != oldActiveProject) {
-				if (eNotificationRequired())
-					for (ECPWorkspace ws : getWorkspaceList()){
-						eNotify(new ENotificationImpl((ECPWorkspaceImpl)ws, Notification.RESOLVE,
-								WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT, oldActiveProject, activeProject));
-					}
+		
+		for (ECPWorkspace ws : getWorkspaceList()) {
+			ECPProject activeProject = ws.getActiveProject();
+			if(activeProject != null){
+				return activeProject;
 			}
 		}
-		return activeProject;
+		return null;
 	}
 
 	@Override
