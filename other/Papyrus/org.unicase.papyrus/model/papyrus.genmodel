@@ -20,7 +20,7 @@
     </genEnums>
     <genClasses ecoreClass="papyrus.ecore#//UMLModel">
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EReference papyrus.ecore#//UMLModel/gmfDiagram"/>
-      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute papyrus.ecore#//UMLModel/diagramType"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute papyrus.ecore#//UMLModel/diagramType"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
