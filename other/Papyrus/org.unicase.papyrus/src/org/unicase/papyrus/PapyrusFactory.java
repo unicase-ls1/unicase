@@ -23,7 +23,8 @@ public interface PapyrusFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	PapyrusFactory eINSTANCE = org.unicase.papyrus.impl.PapyrusFactoryImpl.init();
+	PapyrusFactory eINSTANCE = org.unicase.papyrus.impl.PapyrusFactoryImpl
+			.init();
 
 	/**
 	 * Returns a new object of class '<em>UML Model</em>'.

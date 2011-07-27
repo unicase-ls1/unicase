@@ -2,12 +2,14 @@ package org.unicase.papyrus.diagram.part;
 
 import static org.eclipse.papyrus.core.Activator.log;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -36,6 +38,7 @@ import org.eclipse.gmf.runtime.common.core.service.ProviderChangeEvent;
 import org.eclipse.gmf.runtime.common.ui.services.marker.MarkerNavigationService;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.parts.DiagramGraphicalViewerKeyHandler;
 import org.eclipse.gmf.runtime.diagram.ui.internal.parts.DirectEditKeyHandler;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener;
@@ -46,6 +49,7 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocu
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.jface.dialogs.ErrorDialog;
@@ -101,6 +105,7 @@ import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.ecp.model.ModelElementContextListener;
 import org.unicase.ecp.model.NoWorkspaceException;
+import org.unicase.ecp.model.workSpaceModel.util.AssociationClassHelper;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.papyrus.PapyrusPackage;
 import org.unicase.papyrus.UMLModel;
@@ -157,8 +162,7 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 			public void focusGained(FocusEvent event) {
 				try {
 					// add association if they are not on the diagram
-					// FIXME
-//					syncDiagramView((Package) UMLDiagramEditor.this.getDiagram().getElement());
+					syncDiagramView((UMLModel) UMLDiagramEditor.this.getDiagram().getElement());
 					doSave(new NullProgressMonitor());
 				} catch (IllegalStateException e) {
 					// do nothing
@@ -179,9 +183,39 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 
 	}
 	
-	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
-		super.init(site, input);
+	private void syncDiagramView(final UMLModel model) {
+		final ECPModelelementContext context = modelElementContext;
+		if (context == null) {
+			return;
+		}
+		// FIXME
+//		final LinkedList<EObject> elements = new LinkedList<EObject>();
+//		elements.addAll(diagram.getElements());
+//		new UnicaseCommand() {
+//			@Override
+//			protected void doRun() {
+//				for (EObject association : AssociationClassHelper.getRelatedAssociationClassToDrop(elements, elements,
+//					context.getMetaModelElementContext())) {
+//					// add reference to the element
+//					diagram.getElements().add((UnicaseModelElement) association);
+//					// create the View for the element
+//					CreateViewCommand command = new CreateViewCommand(new EObjectAdapter(association),
+//						getDiagramEditPart(), null, getPreferencesHint());
+//					try {
+//						command.execute(getProgressMonitor(), null);
+//					} catch (ExecutionException e) {
+//						ModelUtil.logException("Could not create a view for the droped content.", e);
+//					}
+//				}
+//			}
+//		}.run();
+		// refresh all views to reorientate associations
+		List<CanonicalEditPolicy> editPolicies = CanonicalEditPolicy.getRegisteredEditPolicies(model);
+		for (Iterator<CanonicalEditPolicy> it = editPolicies.iterator(); it.hasNext();) {
+			it.next().refresh();
+		}
 	}
+
 
 	/**
 	 * {@inheritDoc}
@@ -246,7 +280,7 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 			if (super.isEnabled(event)) {
 				mesAdd = new LinkedList<EObject>();
 				// FIXME
-//				if (DNDHelper.canDrop(mesDrop, (MEDiagram) getDiagram().getElement(), mesAdd)) {
+//				if (DNDHelper.canDrop(mesDrop, (UMLModel) getDiagram().getElement(), mesAdd)) {
 					DropTarget target = (DropTarget) event.widget;
 					org.eclipse.swt.graphics.Point location = target.getControl().toControl(event.x, event.y);
 					x = location.x;
@@ -439,18 +473,19 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 	 * @generated
 	 */
 	public void doSave(IProgressMonitor progressMonitor) {
-		new UnicaseCommand() {
+		final UMLModel model = (UMLModel) UMLDiagramEditor.this.getDiagram().eContainer();
+		new ECPCommand(model) {
 			@Override
 			protected void doRun() {
 				// FIXME
-//				try {
-//					((Package) UMLDiagramEditor.this.getDiagram().eContainer()).saveDiagramLayout();
-//				} catch (DiagramStoreException e) {
-//					// dengler: handle exception
-//					WorkspaceUtil.logException("Saving diagram failed", e);
-//				}
+				try {
+					model.saveDiagramLayout();
+				} catch (IOException e) {
+					// dengler: handle exception
+					WorkspaceUtil.logException("Saving diagram failed", e);
+				}
 			}
-		}.run();
+		}.run(true);
 	}
 
 	/**

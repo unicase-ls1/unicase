@@ -77,13 +77,10 @@ public class PapyrusSwitch<T> {
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
+		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(
+					eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -96,22 +93,33 @@ public class PapyrusSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case PapyrusPackage.UML_MODEL: {
-				UMLModel umlModel = (UMLModel)theEObject;
-				T result = caseUMLModel(umlModel);
-				if (result == null) result = caseModel(umlModel);
-				if (result == null) result = casePackage(umlModel);
-				if (result == null) result = caseNamespace(umlModel);
-				if (result == null) result = casePackageableElement(umlModel);
-				if (result == null) result = caseTemplateableElement(umlModel);
-				if (result == null) result = caseNamedElement(umlModel);
-				if (result == null) result = caseParameterableElement(umlModel);
-				if (result == null) result = caseElement(umlModel);
-				if (result == null) result = caseEModelElement(umlModel);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case PapyrusPackage.UML_MODEL: {
+			UMLModel umlModel = (UMLModel) theEObject;
+			T result = caseUMLModel(umlModel);
+			if (result == null)
+				result = caseModel(umlModel);
+			if (result == null)
+				result = casePackage(umlModel);
+			if (result == null)
+				result = caseNamespace(umlModel);
+			if (result == null)
+				result = casePackageableElement(umlModel);
+			if (result == null)
+				result = caseTemplateableElement(umlModel);
+			if (result == null)
+				result = caseNamedElement(umlModel);
+			if (result == null)
+				result = caseParameterableElement(umlModel);
+			if (result == null)
+				result = caseElement(umlModel);
+			if (result == null)
+				result = caseEModelElement(umlModel);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

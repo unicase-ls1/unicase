@@ -46,12 +46,8 @@ public final class PapyrusEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public PapyrusEditPlugin() {
-		super
-		  (new ResourceLocator [] {
-		     EcoreEditPlugin.INSTANCE,
-		     NotationEditPlugin.INSTANCE,
-		     UMLEditPlugin.INSTANCE,
-		   });
+		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
+				NotationEditPlugin.INSTANCE, UMLEditPlugin.INSTANCE, });
 	}
 
 	/**

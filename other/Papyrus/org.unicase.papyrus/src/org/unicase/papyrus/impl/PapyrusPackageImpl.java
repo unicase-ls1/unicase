@@ -83,15 +83,19 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	 * @generated NOT
 	 */
 	public static PapyrusPackage init() {
-		if (isInited) return (PapyrusPackage)EPackage.Registry.INSTANCE.getEPackage(PapyrusPackage.eNS_URI);
-		
+		if (isInited)
+			return (PapyrusPackage) EPackage.Registry.INSTANCE
+					.getEPackage(PapyrusPackage.eNS_URI);
+
 		// begin of custom code: change problematic containment references
 		UMLPackage.eINSTANCE.getPackage_NestedPackage().setContainment(true);
 		UMLPackage.eINSTANCE.getPackage_OwnedType().setContainment(true);
 		// end of custom 
 
 		// Obtain or create and register package
-		PapyrusPackageImpl thePapyrusPackage = (PapyrusPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof PapyrusPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new PapyrusPackageImpl());
+		PapyrusPackageImpl thePapyrusPackage = (PapyrusPackageImpl) (EPackage.Registry.INSTANCE
+				.get(eNS_URI) instanceof PapyrusPackageImpl ? EPackage.Registry.INSTANCE
+				.get(eNS_URI) : new PapyrusPackageImpl());
 
 		isInited = true;
 
@@ -108,9 +112,9 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 		// Mark meta-data to indicate it can't be changed
 		thePapyrusPackage.freeze();
 
-  
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(PapyrusPackage.eNS_URI, thePapyrusPackage);
+		EPackage.Registry.INSTANCE.put(PapyrusPackage.eNS_URI,
+				thePapyrusPackage);
 		return thePapyrusPackage;
 	}
 
@@ -129,7 +133,7 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	 * @generated
 	 */
 	public EReference getUMLModel_GmfDiagram() {
-		return (EReference)umlModelEClass.getEStructuralFeatures().get(0);
+		return (EReference) umlModelEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -138,7 +142,16 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	 * @generated
 	 */
 	public EAttribute getUMLModel_DiagramType() {
-		return (EAttribute)umlModelEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) umlModelEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUMLModel_DiagramLayout() {
+		return (EAttribute) umlModelEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -156,7 +169,7 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	 * @generated
 	 */
 	public PapyrusFactory getPapyrusFactory() {
-		return (PapyrusFactory)getEFactoryInstance();
+		return (PapyrusFactory) getEFactoryInstance();
 	}
 
 	/**
@@ -174,13 +187,15 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if (isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
 		umlModelEClass = createEClass(UML_MODEL);
 		createEReference(umlModelEClass, UML_MODEL__GMF_DIAGRAM);
 		createEAttribute(umlModelEClass, UML_MODEL__DIAGRAM_TYPE);
+		createEAttribute(umlModelEClass, UML_MODEL__DIAGRAM_LAYOUT);
 
 		// Create enums
 		umlDiagramTypeEEnum = createEEnum(UML_DIAGRAM_TYPE);
@@ -201,7 +216,8 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if (isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package
@@ -210,8 +226,10 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
-		NotationPackage theNotationPackage = (NotationPackage)EPackage.Registry.INSTANCE.getEPackage(NotationPackage.eNS_URI);
+		UMLPackage theUMLPackage = (UMLPackage) EPackage.Registry.INSTANCE
+				.getEPackage(UMLPackage.eNS_URI);
+		NotationPackage theNotationPackage = (NotationPackage) EPackage.Registry.INSTANCE
+				.getEPackage(NotationPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -221,9 +239,21 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 		umlModelEClass.getESuperTypes().add(theUMLPackage.getModel());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(umlModelEClass, UMLModel.class, "UMLModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUMLModel_GmfDiagram(), theNotationPackage.getDiagram(), null, "gmfDiagram", null, 0, 1, UMLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUMLModel_DiagramType(), this.getUMLDiagramType(), "diagramType", "", 0, 1, UMLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(umlModelEClass, UMLModel.class, "UMLModel", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUMLModel_GmfDiagram(),
+				theNotationPackage.getDiagram(), null, "gmfDiagram", null, 0,
+				1, UMLModel.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUMLModel_DiagramType(), this.getUMLDiagramType(),
+				"diagramType", "", 0, 1, UMLModel.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUMLModel_DiagramLayout(), theUMLPackage.getString(),
+				"diagramLayout", null, 0, 1, UMLModel.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(umlDiagramTypeEEnum, UMLDiagramType.class, "UMLDiagramType");

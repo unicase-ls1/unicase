@@ -40,13 +40,13 @@ public enum UMLDiagramType implements Enumerator {
 	 * @ordered
 	 */
 	NO_DIAGRAM(0, "NoDiagram", "NoDiagram"), /**
-	 * The '<em><b>Activity</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ACTIVITY_VALUE
-	 * @generated
-	 * @ordered
-	 */
+												 * The '<em><b>Activity</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #ACTIVITY_VALUE
+												 * @generated
+												 * @ordered
+												 */
 	ACTIVITY(1, "Activity", "Activity"),
 
 	/**
@@ -260,18 +260,9 @@ public enum UMLDiagramType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final UMLDiagramType[] VALUES_ARRAY =
-		new UMLDiagramType[] {
-			NO_DIAGRAM,
-			ACTIVITY,
-			CLASS,
-			COMMUNICATION,
-			COMPOSITE,
-			PACKAGE,
-			SEQUENCE,
-			STATE_MACHINE,
-			USE_CASE,
-		};
+	private static final UMLDiagramType[] VALUES_ARRAY = new UMLDiagramType[] {
+			NO_DIAGRAM, ACTIVITY, CLASS, COMMUNICATION, COMPOSITE, PACKAGE,
+			SEQUENCE, STATE_MACHINE, USE_CASE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>UML Diagram Type</b></em>' enumerators.
@@ -279,7 +270,8 @@ public enum UMLDiagramType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<UMLDiagramType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<UMLDiagramType> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>UML Diagram Type</b></em>' literal with the specified literal value.
@@ -321,15 +313,24 @@ public enum UMLDiagramType implements Enumerator {
 	 */
 	public static UMLDiagramType get(int value) {
 		switch (value) {
-			case NO_DIAGRAM_VALUE: return NO_DIAGRAM;
-			case ACTIVITY_VALUE: return ACTIVITY;
-			case CLASS_VALUE: return CLASS;
-			case COMMUNICATION_VALUE: return COMMUNICATION;
-			case COMPOSITE_VALUE: return COMPOSITE;
-			case PACKAGE_VALUE: return PACKAGE;
-			case SEQUENCE_VALUE: return SEQUENCE;
-			case STATE_MACHINE_VALUE: return STATE_MACHINE;
-			case USE_CASE_VALUE: return USE_CASE;
+		case NO_DIAGRAM_VALUE:
+			return NO_DIAGRAM;
+		case ACTIVITY_VALUE:
+			return ACTIVITY;
+		case CLASS_VALUE:
+			return CLASS;
+		case COMMUNICATION_VALUE:
+			return COMMUNICATION;
+		case COMPOSITE_VALUE:
+			return COMPOSITE;
+		case PACKAGE_VALUE:
+			return PACKAGE;
+		case SEQUENCE_VALUE:
+			return SEQUENCE;
+		case STATE_MACHINE_VALUE:
+			return STATE_MACHINE;
+		case USE_CASE_VALUE:
+			return USE_CASE;
 		}
 		return null;
 	}
@@ -373,7 +374,7 @@ public enum UMLDiagramType implements Enumerator {
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
@@ -382,7 +383,7 @@ public enum UMLDiagramType implements Enumerator {
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
@@ -391,7 +392,7 @@ public enum UMLDiagramType implements Enumerator {
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -404,5 +405,5 @@ public enum UMLDiagramType implements Enumerator {
 	public String toString() {
 		return literal;
 	}
-	
+
 } //UMLDiagramType
