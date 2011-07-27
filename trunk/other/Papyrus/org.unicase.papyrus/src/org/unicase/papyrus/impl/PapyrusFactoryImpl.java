@@ -32,12 +32,12 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 	 */
 	public static PapyrusFactory init() {
 		try {
-			PapyrusFactory thePapyrusFactory = (PapyrusFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/papyrus"); 
+			PapyrusFactory thePapyrusFactory = (PapyrusFactory) EPackage.Registry.INSTANCE
+					.getEFactory("http://unicase.org/model/papyrus");
 			if (thePapyrusFactory != null) {
 				return thePapyrusFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new PapyrusFactoryImpl();
@@ -61,9 +61,11 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case PapyrusPackage.UML_MODEL: return createUMLModel();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case PapyrusPackage.UML_MODEL:
+			return createUMLModel();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
@@ -75,10 +77,11 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case PapyrusPackage.UML_DIAGRAM_TYPE:
-				return createUMLDiagramTypeFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		case PapyrusPackage.UML_DIAGRAM_TYPE:
+			return createUMLDiagramTypeFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '"
+					+ eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -90,10 +93,11 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case PapyrusPackage.UML_DIAGRAM_TYPE:
-				return convertUMLDiagramTypeToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		case PapyrusPackage.UML_DIAGRAM_TYPE:
+			return convertUMLDiagramTypeToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '"
+					+ eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -112,9 +116,13 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UMLDiagramType createUMLDiagramTypeFromString(EDataType eDataType, String initialValue) {
+	public UMLDiagramType createUMLDiagramTypeFromString(EDataType eDataType,
+			String initialValue) {
 		UMLDiagramType result = UMLDiagramType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue
+					+ "' is not a valid enumerator of '" + eDataType.getName()
+					+ "'");
 		return result;
 	}
 
@@ -123,7 +131,8 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertUMLDiagramTypeToString(EDataType eDataType, Object instanceValue) {
+	public String convertUMLDiagramTypeToString(EDataType eDataType,
+			Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -133,7 +142,7 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 	 * @generated
 	 */
 	public PapyrusPackage getPapyrusPackage() {
-		return (PapyrusPackage)getEPackage();
+		return (PapyrusPackage) getEPackage();
 	}
 
 	/**

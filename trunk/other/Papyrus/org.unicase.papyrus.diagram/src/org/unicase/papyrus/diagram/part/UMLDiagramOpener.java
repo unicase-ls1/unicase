@@ -21,8 +21,6 @@ public class UMLDiagramOpener implements ModelElementOpener {
 	
 	private static Map<UMLDiagramType, String> diagramTypeToEditorID;
 	
-	private static boolean isInitialized;
-
 	public int canOpen(EObject eObject) {
 		if(eObject instanceof UMLModel) {
 			return 2;
@@ -33,12 +31,8 @@ public class UMLDiagramOpener implements ModelElementOpener {
 	public void openModelElement(EObject eObject) {
 		if(eObject instanceof UMLModel) {
 			final UMLModel model = (UMLModel) eObject;
-			//TODO: Find a better place to put this!
-			if(!isInitialized) {
-				model.eResource().eAdapters().add(new UnicaseModelSetQueryAdapter());
-				isInitialized = true;
-			}
-			if(model.getGmfDiagram() == null) {
+
+			if(model.getDiagramType() == UMLDiagramType.NO_DIAGRAM) {
 				initializeModel(model);
 			}
 			String id = getDiagramTypeToEditorID().get(model.getDiagramType()); 

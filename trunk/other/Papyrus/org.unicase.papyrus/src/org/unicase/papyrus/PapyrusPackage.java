@@ -60,7 +60,8 @@ public interface PapyrusPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	PapyrusPackage eINSTANCE = org.unicase.papyrus.impl.PapyrusPackageImpl.init();
+	PapyrusPackage eINSTANCE = org.unicase.papyrus.impl.PapyrusPackageImpl
+			.init();
 
 	/**
 	 * The meta object id for the '{@link org.unicase.papyrus.impl.UMLModelImpl <em>UML Model</em>}' class.
@@ -334,13 +335,22 @@ public interface PapyrusPackage extends EPackage {
 	int UML_MODEL__DIAGRAM_TYPE = UMLPackage.MODEL_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Diagram Layout</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UML_MODEL__DIAGRAM_LAYOUT = UMLPackage.MODEL_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>UML Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UML_MODEL_FEATURE_COUNT = UMLPackage.MODEL_FEATURE_COUNT + 2;
+	int UML_MODEL_FEATURE_COUNT = UMLPackage.MODEL_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.papyrus.UMLDiagramType <em>UML Diagram Type</em>}' enum.
@@ -351,7 +361,6 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 */
 	int UML_DIAGRAM_TYPE = 1;
-
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.papyrus.UMLModel <em>UML Model</em>}'.
@@ -384,6 +393,17 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getUMLModel_DiagramType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.papyrus.UMLModel#getDiagramLayout <em>Diagram Layout</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Diagram Layout</em>'.
+	 * @see org.unicase.papyrus.UMLModel#getDiagramLayout()
+	 * @see #getUMLModel()
+	 * @generated
+	 */
+	EAttribute getUMLModel_DiagramLayout();
 
 	/**
 	 * Returns the meta object for enum '{@link org.unicase.papyrus.UMLDiagramType <em>UML Diagram Type</em>}'.
@@ -441,7 +461,17 @@ public interface PapyrusPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute UML_MODEL__DIAGRAM_TYPE = eINSTANCE.getUMLModel_DiagramType();
+		EAttribute UML_MODEL__DIAGRAM_TYPE = eINSTANCE
+				.getUMLModel_DiagramType();
+
+		/**
+		 * The meta object literal for the '<em><b>Diagram Layout</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute UML_MODEL__DIAGRAM_LAYOUT = eINSTANCE
+				.getUMLModel_DiagramLayout();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.papyrus.UMLDiagramType <em>UML Diagram Type</em>}' enum.

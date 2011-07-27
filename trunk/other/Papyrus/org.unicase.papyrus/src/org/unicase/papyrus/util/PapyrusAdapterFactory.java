@@ -67,7 +67,7 @@ public class PapyrusAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -78,53 +78,62 @@ public class PapyrusAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PapyrusSwitch<Adapter> modelSwitch =
-		new PapyrusSwitch<Adapter>() {
-			@Override
-			public Adapter caseUMLModel(UMLModel object) {
-				return createUMLModelAdapter();
-			}
-			@Override
-			public Adapter caseEModelElement(EModelElement object) {
-				return createEModelElementAdapter();
-			}
-			@Override
-			public Adapter caseElement(Element object) {
-				return createElementAdapter();
-			}
-			@Override
-			public Adapter caseNamedElement(NamedElement object) {
-				return createNamedElementAdapter();
-			}
-			@Override
-			public Adapter caseNamespace(Namespace object) {
-				return createNamespaceAdapter();
-			}
-			@Override
-			public Adapter caseParameterableElement(ParameterableElement object) {
-				return createParameterableElementAdapter();
-			}
-			@Override
-			public Adapter casePackageableElement(PackageableElement object) {
-				return createPackageableElementAdapter();
-			}
-			@Override
-			public Adapter caseTemplateableElement(TemplateableElement object) {
-				return createTemplateableElementAdapter();
-			}
-			@Override
-			public Adapter casePackage(org.eclipse.uml2.uml.Package object) {
-				return createPackageAdapter();
-			}
-			@Override
-			public Adapter caseModel(Model object) {
-				return createModelAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+	protected PapyrusSwitch<Adapter> modelSwitch = new PapyrusSwitch<Adapter>() {
+		@Override
+		public Adapter caseUMLModel(UMLModel object) {
+			return createUMLModelAdapter();
+		}
+
+		@Override
+		public Adapter caseEModelElement(EModelElement object) {
+			return createEModelElementAdapter();
+		}
+
+		@Override
+		public Adapter caseElement(Element object) {
+			return createElementAdapter();
+		}
+
+		@Override
+		public Adapter caseNamedElement(NamedElement object) {
+			return createNamedElementAdapter();
+		}
+
+		@Override
+		public Adapter caseNamespace(Namespace object) {
+			return createNamespaceAdapter();
+		}
+
+		@Override
+		public Adapter caseParameterableElement(ParameterableElement object) {
+			return createParameterableElementAdapter();
+		}
+
+		@Override
+		public Adapter casePackageableElement(PackageableElement object) {
+			return createPackageableElementAdapter();
+		}
+
+		@Override
+		public Adapter caseTemplateableElement(TemplateableElement object) {
+			return createTemplateableElementAdapter();
+		}
+
+		@Override
+		public Adapter casePackage(org.eclipse.uml2.uml.Package object) {
+			return createPackageAdapter();
+		}
+
+		@Override
+		public Adapter caseModel(Model object) {
+			return createModelAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -136,9 +145,8 @@ public class PapyrusAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
-
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.papyrus.UMLModel <em>UML Model</em>}'.

@@ -6,7 +6,6 @@
  */
 package org.unicase.papyrus.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -39,14 +38,9 @@ import org.unicase.papyrus.UMLModel;
  * <!-- end-user-doc -->
  * @generated
  */
-public class UMLModelItemProvider
-	extends ModelItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class UMLModelItemProvider extends ModelItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -68,8 +62,28 @@ public class UMLModelItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addDiagramLayoutPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Diagram Layout feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDiagramLayoutPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_UMLModel_diagramLayout_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_UMLModel_diagramLayout_feature",
+						"_UI_UMLModel_type"),
+				PapyrusPackage.Literals.UML_MODEL__DIAGRAM_LAYOUT, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -80,7 +94,8 @@ public class UMLModelItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/UMLModel"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/UMLModel"));
 	}
 
 	/**
@@ -91,7 +106,7 @@ public class UMLModelItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((UMLModel)object).getName();
+		String label = ((UMLModel) object).getName();
 		return label;
 	}
 
@@ -107,10 +122,12 @@ public class UMLModelItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(UMLModel.class)) {
-			case PapyrusPackage.UML_MODEL__GMF_DIAGRAM:
-			case PapyrusPackage.UML_MODEL__DIAGRAM_TYPE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case PapyrusPackage.UML_MODEL__GMF_DIAGRAM:
+		case PapyrusPackage.UML_MODEL__DIAGRAM_TYPE:
+		case PapyrusPackage.UML_MODEL__DIAGRAM_LAYOUT:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -123,18 +140,17 @@ public class UMLModelItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(UMLPackage.Literals.PACKAGE__PACKAGED_ELEMENT,
-				 PapyrusFactory.eINSTANCE.createUMLModel()));
+		newChildDescriptors.add(createChildParameter(
+				UMLPackage.Literals.PACKAGE__PACKAGED_ELEMENT,
+				PapyrusFactory.eINSTANCE.createUMLModel()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(UMLPackage.Literals.PACKAGE__NESTED_PACKAGE,
-				 PapyrusFactory.eINSTANCE.createUMLModel()));
+		newChildDescriptors.add(createChildParameter(
+				UMLPackage.Literals.PACKAGE__NESTED_PACKAGE,
+				PapyrusFactory.eINSTANCE.createUMLModel()));
 	}
 
 	/**
@@ -144,21 +160,21 @@ public class UMLModelItemProvider
 	 * @generated
 	 */
 	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+	public String getCreateChildText(Object owner, Object feature,
+			Object child, Collection<?> selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify =
-			childFeature == UMLPackage.Literals.NAMED_ELEMENT__NAME_EXPRESSION ||
-			childFeature == UMLPackage.Literals.PACKAGE__PACKAGED_ELEMENT ||
-			childFeature == UMLPackage.Literals.NAMESPACE__OWNED_RULE ||
-			childFeature == UMLPackage.Literals.PACKAGE__OWNED_TYPE ||
-			childFeature == UMLPackage.Literals.PACKAGE__NESTED_PACKAGE;
+		boolean qualify = childFeature == UMLPackage.Literals.NAMED_ELEMENT__NAME_EXPRESSION
+				|| childFeature == UMLPackage.Literals.PACKAGE__PACKAGED_ELEMENT
+				|| childFeature == UMLPackage.Literals.NAMESPACE__OWNED_RULE
+				|| childFeature == UMLPackage.Literals.PACKAGE__OWNED_TYPE
+				|| childFeature == UMLPackage.Literals.PACKAGE__NESTED_PACKAGE;
 
 		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+			return getString("_UI_CreateChild_text2", new Object[] {
+					getTypeText(childObject), getFeatureText(childFeature),
+					getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

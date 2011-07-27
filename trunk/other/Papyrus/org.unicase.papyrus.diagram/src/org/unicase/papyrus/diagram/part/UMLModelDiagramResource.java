@@ -24,7 +24,9 @@ import org.eclipse.emf.ecore.xmi.DOMHandler;
 import org.eclipse.emf.ecore.xmi.DOMHelper;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xml.type.AnyType;
+import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.WorkspaceUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
@@ -94,6 +96,32 @@ public class UMLModelDiagramResource extends ResourceImpl implements Resource, R
 	}
 
 	private void initialize() {
+		// TODO: improve this, maybe move it
+		boolean hasModelSetQuery = false;
+		for(Object adapter : model.eResource().eAdapters()) {
+			if(adapter instanceof UnicaseModelSetQueryAdapter) {
+				hasModelSetQuery = true;
+			}
+		}
+		
+		if(!hasModelSetQuery) {
+			model.eResource().eAdapters().add(new UnicaseModelSetQueryAdapter());
+		}
+		
+		new ECPCommand(model) {
+
+			@Override
+			protected void doRun() {
+				try {
+					model.loadDiagramLayout();
+				} catch (IOException e) {
+					if (!(e.getCause() instanceof NullPointerException)) {
+						WorkspaceUtil.logException("Loading diagram layout failed", e);
+					}
+				}
+			}
+			
+		}.run(true);
 
 		if (model.getGmfDiagram() == null) {
 			UMLInitUtil.initialize(model);
