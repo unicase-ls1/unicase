@@ -60,7 +60,7 @@ public class OpenModelElementDiscussionHandler extends AbstractHandler {
 			org.eclipse.emf.ecp.editor.MEEditorInput input = new org.eclipse.emf.ecp.editor.MEEditorInput(me,
 				org.eclipse.emf.ecp.common.model.ECPWorkspaceManager.getInstance().getWorkSpace().getProject(me));
 			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-				.openEditor(input, "org.unicase.ui.meeditor", true);
+				.openEditor(input, "org.eclipse.emf.ecp.editor.meeditor", true);
 
 			IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 				.getActiveEditor();

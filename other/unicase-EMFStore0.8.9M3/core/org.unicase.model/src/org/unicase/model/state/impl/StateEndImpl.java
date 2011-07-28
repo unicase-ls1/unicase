@@ -13,12 +13,13 @@ import org.unicase.model.state.StatePackage;
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>End</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class StateEndImpl extends StateNodeImpl implements StateEnd {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected StateEndImpl() {
@@ -27,17 +28,12 @@ public class StateEndImpl extends StateNodeImpl implements StateEnd {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return StatePackage.Literals.STATE_END;
-	}
-
-	@Override
-	public String getDescriptionPlainText() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 } // StateEndImpl

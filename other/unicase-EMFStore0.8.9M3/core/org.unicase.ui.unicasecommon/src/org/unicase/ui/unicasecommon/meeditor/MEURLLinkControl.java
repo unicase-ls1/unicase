@@ -105,7 +105,7 @@ public class MEURLLinkControl extends MELinkControl {
 					ModelElementId urlModelElementId = ModelUtil.getProject(urlAttachement).getModelElementId(
 						urlAttachement);
 					MEURLControl.logEvent(contextModelElementId, urlModelElementId,
-						WorkspaceManager.getProjectSpace(urlAttachement), "org.unicase.ui.meeditor");
+						WorkspaceManager.getProjectSpace(urlAttachement), "org.eclipse.emf.ecp.editor.meeditor");
 					super.linkActivated(event);
 
 				}

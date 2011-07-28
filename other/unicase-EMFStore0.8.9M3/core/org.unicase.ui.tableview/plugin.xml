@@ -30,7 +30,7 @@
       <menuContribution
             locationURI="popup:org.unicase.ui.tableview.UnicasetableView_ID">
          <command
-               commandId="org.unicase.ui.common.deleteModelelement"
+               commandId="org.eclipse.emf.ecp.common.deleteModelelement"
                icon="icons/delete.gif"
                label="delete model element"
                style="push"
@@ -53,7 +53,7 @@
       <menuContribution
             locationURI="toolbar:org.unicase.ui.tableview.UnicasetableView_ID?before=org.unicase.ui.tableview.separator1">
          <command
-               commandId="org.unicase.ui.common.deleteModelelement"
+               commandId="org.eclipse.emf.ecp.common.deleteModelelement"
                hoverIcon="icons/delete.gif"
                icon="icons/delete.gif"
                label="delete model element"

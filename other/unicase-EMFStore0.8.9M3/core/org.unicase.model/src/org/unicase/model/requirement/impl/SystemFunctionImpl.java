@@ -38,9 +38,9 @@ import org.unicase.model.requirement.Workspace;
  */
 public class SystemFunctionImpl extends UnicaseModelElementImpl implements SystemFunction {
 	/**
-	 * The default value of the '{@link #getInput() <em>Input</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getInput() <em>Input</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getInput()
 	 * @generated
 	 * @ordered
@@ -58,9 +58,9 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 	protected String input = INPUT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getOutput() <em>Output</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getOutput() <em>Output</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getOutput()
 	 * @generated
 	 * @ordered
@@ -68,9 +68,9 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 	protected static final String OUTPUT_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getOutput() <em>Output</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getOutput() <em>Output</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getOutput()
 	 * @generated
 	 * @ordered
@@ -78,9 +78,9 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 	protected String output = OUTPUT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getException() <em>Exception</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getException() <em>Exception</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getException()
 	 * @generated
 	 * @ordered
@@ -88,9 +88,9 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 	protected static final String EXCEPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getException() <em>Exception</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getException() <em>Exception</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getException()
 	 * @generated
 	 * @ordered
@@ -100,6 +100,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 	/**
 	 * The cached value of the '{@link #getNonFunctionalRequirement() <em>Non Functional Requirement</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getNonFunctionalRequirement()
 	 * @generated
 	 * @ordered
@@ -107,9 +108,9 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 	protected NonFunctionalRequirement nonFunctionalRequirement;
 
 	/**
-	 * The cached value of the '{@link #getUsecases() <em>Usecases</em>}' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getUsecases() <em>Usecases</em>}' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getUsecases()
 	 * @generated
 	 * @ordered
@@ -117,9 +118,9 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 	protected EList<UseCase> usecases;
 
 	/**
-	 * The cached value of the '{@link #getWorkspace() <em>Workspace</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getWorkspace() <em>Workspace</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getWorkspace()
 	 * @generated
 	 * @ordered
@@ -128,6 +129,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SystemFunctionImpl() {
@@ -136,6 +138,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -145,6 +148,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getInput() {
@@ -153,6 +157,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setInput(String newInput) {
@@ -165,6 +170,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getOutput() {
@@ -173,6 +179,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setOutput(String newOutput) {
@@ -185,6 +192,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getException() {
@@ -193,6 +201,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setException(String newException) {
@@ -205,6 +214,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Workspace getWorkspace() {
@@ -222,6 +232,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Workspace basicGetWorkspace() {
@@ -230,6 +241,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetWorkspace(Workspace newWorkspace, NotificationChain msgs) {
@@ -248,6 +260,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setWorkspace(Workspace newWorkspace) {
@@ -269,6 +282,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getUsecases() {
@@ -281,6 +295,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NonFunctionalRequirement getNonFunctionalRequirement() {
@@ -299,6 +314,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NonFunctionalRequirement basicGetNonFunctionalRequirement() {
@@ -307,6 +323,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetNonFunctionalRequirement(NonFunctionalRequirement newNonFunctionalRequirement,
@@ -327,6 +344,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setNonFunctionalRequirement(NonFunctionalRequirement newNonFunctionalRequirement) {
@@ -351,6 +369,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -376,6 +395,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -393,6 +413,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -420,6 +441,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -451,6 +473,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -480,6 +503,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -503,6 +527,7 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -519,12 +544,6 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 		result.append(exception);
 		result.append(')');
 		return result.toString();
-	}
-
-	@Override
-	public String getDescriptionPlainText() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 } // SystemFunctionImpl

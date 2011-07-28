@@ -484,7 +484,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		final NotificationReadEvent readEvent = EventsFactory.eINSTANCE.createNotificationReadEvent();
 		readEvent.setModelElement(modelElementId);
 		readEvent.setNotificationId(getNotification().getIdentifier());
-		readEvent.setReadView("org.unicase.ui.meeditor");
+		readEvent.setReadView("org.eclipse.emf.ecp.editor.meeditor");
 		readEvent.setSourceView(DashboardEditor.ID + "." + source);
 		readEvent.setTimestamp(new Date());
 		new EMFStoreCommand() {

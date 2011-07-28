@@ -141,7 +141,7 @@
       </category>
       <command
             defaultHandler="org.unicase.ui.unicasecommon.common.commands.OpenModelElementDiscussionHandler"
-            id="org.unicase.ui.meeditor.openModelElementDiscussion"
+            id="org.eclipse.emf.ecp.editor.openModelElementDiscussion"
             name="Open Discussion">
       </command>
       <command
@@ -209,7 +209,7 @@
      </menuContribution>
      
      <menuContribution
-           locationURI="toolbar:org.unicase.ui.meeditor.METhreadPage?after=additions">
+           locationURI="toolbar:org.eclipse.emf.ecp.editor.meeditor.METhreadPage?after=additions">
         <command
               commandId="org.unicase.ui.common.commands.addComment"
               icon="icons/Comment.png"
@@ -402,10 +402,10 @@
                     <and>
                     	<instanceof value="org.eclipse.emf.ecore.EObject" />
                     	<not>
-                    		<instanceof value="org.unicase.workspace.ProjectSpace" />
+                    		<instanceof value="org.eclipse.emf.emfstore.client.model.ProjectSpace" />
                     	</not>
                     	<not>
-                    		<instanceof value="org.unicase.metamodel.Project" />
+                    		<instanceof value="org.eclipse.emf.emfstore.common.model.Project" />
                     	</not>
                     </and>
                  </iterate>
@@ -494,17 +494,17 @@
                     </instanceof>
                     <test
                           forcePluginActivation="true"
-                          property="org.unicase.workspace.ui.commands.projectIsShared"
+                          property="org.eclipse.emf.emfstore.client.ui.commands.projectIsShared"
                           value="true">
                     </test>
                     <test
                           forcePluginActivation="true"
-                          property="org.unicase.workspace.ui.commands.isAdmin"
+                          property="org.eclipse.emf.emfstore.client.ui.commands.isAdmin"
                           value="true">
                     </test>
                     <test
                           forcePluginActivation="true"
-                          property="org.unicase.workspace.ui.commands.isACUser"
+                          property="org.eclipse.emf.emfstore.client.ui.commands.isACUser"
                           value="true">
                     </test>
                  </iterate>
@@ -526,7 +526,7 @@
                        ifEmpty="false"
                        operator="and">
                     <instanceof
-                          value="org.eclipse.emf.ecore.EObject">
+                          value="org.unicase.model.UnicaseModelElement">
                     </instanceof>
                     <test
                           forcePluginActivation="true"
@@ -552,7 +552,7 @@
                        ifEmpty="false"
                        operator="and">
                     <instanceof
-                          value="org.eclipse.emf.ecore.EObject">
+                          value="org.unicase.model.UnicaseModelElement">
                     </instanceof>
                     <test
                           forcePluginActivation="true"
@@ -646,7 +646,7 @@
     
      <decorator
            adaptable="true"
-           class="org.unicase.ui.common.decorators.ChildrenDecorator"
+           class="org.eclipse.emf.emfstore.client.ui.decorators.ChildrenDecorator"
            id="org.unicase.ui.common.decorators.ChildrenDecorator"
            label="Children Decorator"
            lightweight="true"
@@ -676,10 +676,10 @@
    <perspectiveExtension
          targetID="org.unicase.ui.unicasecommon.common.UnicasePerspective">
       <viewShortcut
-            id="org.unicase.ui.navigator.viewer">
+            id="org.eclipse.emf.ecp.navigator.viewer">
       </viewShortcut>
       <viewShortcut
-            id="org.unicase.ui.repository.views.RepositoryView">
+            id="org.eclipse.emf.emfstore.client.ui.views.RepositoryView">
       </viewShortcut>
       <viewShortcut
             id="org.unicase.ui.taskview">
@@ -689,7 +689,7 @@
     <extension
           point="org.eclipse.ui.bindings">
        <key
-             commandId="org.unicase.ui.common.handlers.open_me_ID"
+             commandId="org.eclipse.emf.ecp.common.handlers.open_me_ID"
              contextId="org.eclipse.ui.contexts.window"
              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
              sequence="Alt+M">
@@ -783,7 +783,7 @@
  <extension
        point="org.eclipse.ui.preferencePages">
     <page
-          class="org.unicase.ui.common.preferences.UnicasePreferencesPage"
+          class="org.eclipse.emf.ecp.common.preferences.ECPPreferencesPage"
           id="org.unicase.ui.common.unicase"
           name="Unicase">
     </page>

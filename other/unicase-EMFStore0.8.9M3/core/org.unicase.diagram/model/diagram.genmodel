@@ -6,7 +6,7 @@
     editorDirectory="/org.unicase.diagram.editor/src" modelPluginID="org.unicase.diagram"
     modelName="Diagram" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.unicase.diagram.edit"
-    editorPluginID="org.unicase.diagram.editor" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.unicase.emfstore.esmodel/model/esmodel.genmodel#//esmodel ../../org.unicase.metamodel/model/metamodel.genmodel#//metamodel ../../org.unicase.model/model/model.genmodel#//model platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation">
+    editorPluginID="org.unicase.diagram.editor" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.unicase.model/model/model.genmodel#//model platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.genmodel#//model platform:/plugin/org.eclipse.emf.emfstore.server.model/model/server.genmodel#//model">
   <foreignModel>diagram.ecore</foreignModel>
   <genPackages prefix="Diagram" basePackage="org.unicase.model" disposableProviderFactory="true"
       ecorePackage="diagram.ecore#/">

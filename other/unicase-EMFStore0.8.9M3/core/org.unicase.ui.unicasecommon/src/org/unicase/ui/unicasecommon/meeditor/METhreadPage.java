@@ -112,7 +112,7 @@ public class METhreadPage extends AbstractMEEditorPage implements MECommentWidge
 			.getService(IEvaluationService.class);
 		service.addSourceProvider(sourceProvider);
 		menuService.populateContributionManager((ContributionManager) form.getToolBarManager(),
-			"toolbar:org.unicase.ui.meeditor.METhreadPage");
+			"toolbar:org.eclipse.emf.ecp.editor.meeditor.METhreadPage");
 		form.getToolBarManager().update(true);
 	}
 
@@ -190,7 +190,7 @@ public class METhreadPage extends AbstractMEEditorPage implements MECommentWidge
 				form = managedForm.getForm();
 				toolkit.decorateFormHeading(form.getForm());
 				GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(form.getBody());
-				form.setImage(Activator.getImageDescriptor("icons/comments.png").createImage());
+				form.setImage(Activator.getImageDescriptor("icons/Comment.png").createImage());
 				form.setText(getEditor().getTitle() + ": Discussion");
 				form.getBody().setBackgroundMode(SWT.INHERIT_FORCE);
 				form.getBody().setBackground(new Color(Display.getCurrent(), 225, 225, 225));

@@ -13,12 +13,13 @@ import org.unicase.model.activity.ActivityPackage;
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>End</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class ActivityEndImpl extends ActivityObjectImpl implements ActivityEnd {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ActivityEndImpl() {
@@ -27,17 +28,12 @@ public class ActivityEndImpl extends ActivityObjectImpl implements ActivityEnd {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return ActivityPackage.Literals.ACTIVITY_END;
-	}
-
-	@Override
-	public String getDescriptionPlainText() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 } // ActivityEndImpl

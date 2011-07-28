@@ -13,12 +13,13 @@ import org.unicase.model.activity.Branch;
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Branch</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class BranchImpl extends ActivityObjectImpl implements Branch {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected BranchImpl() {
@@ -27,17 +28,12 @@ public class BranchImpl extends ActivityObjectImpl implements Branch {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return ActivityPackage.Literals.BRANCH;
-	}
-
-	@Override
-	public String getDescriptionPlainText() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 } // BranchImpl

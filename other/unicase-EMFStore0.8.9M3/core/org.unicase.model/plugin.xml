@@ -815,13 +815,6 @@
      </package>
   </extension>
   <extension
-        point="org.eclipse.emf.validation.constraintBindings">
-     <binding
-           category="org.unicase.model"
-           context="context">
-     </binding>
-  </extension>
-  <extension
         point="org.eclipse.emf.ecore.generated_package">
      <package
            class="org.unicase.model.release.ReleasePackage"

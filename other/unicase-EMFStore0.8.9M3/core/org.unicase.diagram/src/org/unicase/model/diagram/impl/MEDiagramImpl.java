@@ -31,9 +31,6 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
@@ -240,7 +237,7 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 		// MD: Should we cache this instance?
 		LeafSection leafSection = getLeafSection();
 		if (leafSection == null) {
-			Project project = getProject();
+			org.eclipse.emf.emfstore.common.model.Project project = getProject();
 			if (project == null) {
 				return null;
 			}
@@ -533,7 +530,7 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 			resource.getContents().add(modelElement);
 			if (resource instanceof XMIResource) {
 				XMIResource xmiResource = (XMIResource) resource;
-				ModelElementId modelElementId = ModelUtil.getProject(modelElement).getModelElementId(modelElement);
+				org.eclipse.emf.emfstore.common.model.ModelElementId modelElementId = org.eclipse.emf.emfstore.common.model.util.ModelUtil.getProject(modelElement).getModelElementId(modelElement);
 				xmiResource.setID(modelElement, modelElementId.getId());
 			}
 		}
