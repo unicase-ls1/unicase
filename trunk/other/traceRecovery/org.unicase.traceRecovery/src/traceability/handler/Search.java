@@ -27,6 +27,7 @@ import org.apache.lucene.store.FSDirectory;
 import org.eclipse.photran.internal.core.analysis.binding.ScopingNode;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.trace.CodeLocation;
 import org.unicase.model.trace.TraceFactory;
@@ -35,7 +36,6 @@ import traceRecovery.Directory;
 import traceRecovery.Link;
 import traceRecovery.Query;
 import traceRecovery.TraceRecoveryFactory;
-import traceRecovery.ui.RunRecovery;
 import traceability.fortran.FortranCodeIndexer;
 import traceability.fortran.FortranSourceCodeAnalyzer;
 import traceability.fortran.FortranSourceCodeParser;
@@ -57,6 +57,21 @@ public class Search {
 	private PerFieldAnalyzerWrapper analyzer;
 	private Directory dir;
 	public ArrayList<String> text;
+	Project project;
+
+	/**
+	 * @return the project
+	 */
+	public Project getProject() {
+		return project;
+	}
+
+	/**
+	 * @param project the project to set
+	 */
+	public void setProject(Project project) {
+		this.project = project;
+	}
 
 	/**
 	 * will run to try to link between the objects.
@@ -74,7 +89,7 @@ public class Search {
 		try {
 			File indexDir = new File(dir.getPath());
 
-			analyzer.addAnalyzer("class", new KeywordAnalyzer());
+			analyzer.addAnalyzer("import", new KeywordAnalyzer());
 
 			org.apache.lucene.store.Directory fsDir = FSDirectory.getDirectory(
 					indexDir, false);
@@ -406,8 +421,7 @@ public class Search {
 							.createModelElementId();
 					id.setId(hits.get(i).doc(j).get("id"));
 
-					UnicaseModelElement element = (UnicaseModelElement) RunRecovery
-							.getActiveProject().getModelElement(id);
+					UnicaseModelElement element = (UnicaseModelElement) project.getModelElement(id);
 					link.setTarget(element);
 
 					links.add(link);
