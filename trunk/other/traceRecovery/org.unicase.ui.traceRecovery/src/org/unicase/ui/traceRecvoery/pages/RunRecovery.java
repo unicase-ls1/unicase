@@ -12,19 +12,15 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.jface.wizard.IWizard;
-import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
@@ -69,6 +65,7 @@ import org.unicase.model.state.StateNode;
 import org.unicase.model.state.Transition;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
+import org.unicase.ui.traceRecovery.searchResult.SearchResult;
 import org.unicase.workspace.Workspace;
 
 import traceRecovery.Directory;
@@ -99,7 +96,7 @@ public class RunRecovery extends WizardPage implements Listener {
 
 	Search recovery;
 
-	SearchResult runRecovery;
+//	SearchResult runRecovery;
 
 	TreeItem organization;
 	TreeItem task;
@@ -284,25 +281,25 @@ public class RunRecovery extends WizardPage implements Listener {
 
 	}
 
-	/**
-	 * allows to enable the next button when all fields are choosen correctly
-	 */
-	@Override
-	public boolean canFlipToNextPage() {
-
-		if (!choosenME()
-				|| (!code.getItem(0).getGrayed() && !code.getItem(0)
-						.getChecked())) {
-			return false;
-		} else {
-			return true;
-		}
-
-	}
+//	/**
+//	 * allows to enable the next button when all fields are choosen correctly
+//	 */
+//	@Override
+//	public boolean canFlipToNextPage() {
+//
+//		if (!choosenME()
+//				|| (!code.getItem(0).getGrayed() && !code.getItem(0)
+//						.getChecked())) {
+//			return false;
+//		} else {
+//			return true;
+//		}
+//
+//	}
 
 	public void treeSetUp() {
 		File dir = new File(path);
-		code.removeAll(); //recheck this
+		code.removeAll(); // recheck this
 		if (path != null) {
 
 			code.addListener(SWT.Selection, this);
@@ -378,11 +375,9 @@ public class RunRecovery extends WizardPage implements Listener {
 
 	}
 
-	@Override
-	public IWizardPage getNextPage() {
-
+	public void finish() {
 		recovery = new Search();
-		
+
 		recovery.setProject(getP());
 
 		Directory codeDir = TraceRecoveryFactory.eINSTANCE.createDirectory();
@@ -425,16 +420,84 @@ public class RunRecovery extends WizardPage implements Listener {
 			recovery.indexMe(choosenME, sourceDir);
 		}
 
-		runRecovery = (SearchResult) super.getNextPage();
 		
-		runRecovery.getTable().removeAll();
 		
+		
+		
+		SearchResult runRecovery = new SearchResult();
 		runRecovery.setRecovery(this);
+		runRecovery.setPoint(this.getShell().getBounds());
+		runRecovery.createControl();
+//		runRecovery.Recovery();
+		
+//		runRecovery = 
+		
+//		runRecovery = (SearchResult) super.getNextPage();
 
-		runRecovery.Recovery();
+//		runRecovery.getTable().removeAll();
 
-		return super.getNextPage();
+//		runRecovery.setRecovery(this);
+
+//		runRecovery.Recovery();
 	}
+
+//	@Override
+//	public IWizardPage getNextPage() {
+//
+//		recovery = new Search();
+//
+//		recovery.setProject(getP());
+//
+//		Directory codeDir = TraceRecoveryFactory.eINSTANCE.createDirectory();
+//		codeDir.setPath(path);
+//
+//		Directory sourceDir = TraceRecoveryFactory.eINSTANCE.createDirectory();
+//		sourceDir.setPath(indexPath);
+//
+//		if (choosenME.size() > 0) {
+//			choosenME.clear();
+//
+//		}
+//
+//		choosenME();
+//		recovery.setAnalyzer(codeLanguage);
+//		if (imagevalue == 1) {
+//			if (codeLanguage == "java") {
+//				recovery.setIndexer("java", codeDir, sourceDir);
+//			} else if (codeLanguage == "fortran") {
+//				recovery.setIndexer("fortran", codeDir, sourceDir);
+//			}
+//
+//			if (code.getItem(0).getChecked()) {
+//				recovery.index();
+//			} else {
+//				directoriesBuild(code.getItem(0), code.getItem(0).getText());
+//				recovery.index(dir);
+//			}
+//
+//		} else {
+//
+//			if (code.getItem(0).getChecked()) {
+//				dir.add(code.getItem(0).getText());
+//			} else {
+//				directoriesBuild(code.getItem(0), code.getItem(0).getText());
+//			}
+//
+//			recovery.setIndexer("me", codeDir, sourceDir);
+//
+//			recovery.indexMe(choosenME, sourceDir);
+//		}
+//
+////		runRecovery = (SearchResult) super.getNextPage();
+//
+////		runRecovery.getTable().removeAll();
+//
+////		runRecovery.setRecovery(this);
+//
+////		runRecovery.Recovery();
+//
+//		return super.getNextPage();
+//	}
 
 	/**
 	 * @return the recovery
@@ -454,17 +517,17 @@ public class RunRecovery extends WizardPage implements Listener {
 	/**
 	 * @return the runRecovery
 	 */
-	public SearchResult getRunRecovery() {
-		return runRecovery;
-	}
+//	public SearchResult getRunRecovery() {
+//		return runRecovery;
+//	}
 
 	/**
 	 * @param runRecovery
 	 *            the runRecovery to set
 	 */
-	public void setRunRecovery(SearchResult runRecovery) {
-		this.runRecovery = runRecovery;
-	}
+//	public void setRunRecovery(SearchResult runRecovery) {
+//		this.runRecovery = runRecovery;
+//	}
 
 	/**
 	 * @return the composite
@@ -1307,6 +1370,16 @@ public class RunRecovery extends WizardPage implements Listener {
 		}
 	}
 
+	public boolean canFinish(){
+		if (!choosenME()
+				|| (!code.getItem(0).getGrayed() && !code.getItem(0)
+						.getChecked())) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -1331,17 +1404,21 @@ public class RunRecovery extends WizardPage implements Listener {
 			boolean checked = item.getChecked();
 			checkItems(item, checked);
 			checkPath(item.getParentItem(), checked, false);
-			setPageComplete(false);
+			setPageComplete(canFinish());
+			this.getWizard().canFinish();
 
 		} else if (event.widget == ME) {
 			TreeItem item = (TreeItem) event.item;
 			boolean checked = item.getChecked();
 			checkItems(item, checked);
 			checkPath(item.getParentItem(), checked, false);
-			setPageComplete(false);
+			setPageComplete(canFinish());
+			this.getWizard().canFinish();
 		}
 
 	}
+	
+
 
 	/**
 	 * set the choosen item to checked
