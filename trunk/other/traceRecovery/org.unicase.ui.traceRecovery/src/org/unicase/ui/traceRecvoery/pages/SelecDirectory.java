@@ -154,6 +154,11 @@ public class SelecDirectory extends WizardPage implements Listener{
 		if(directoryString.getText().equals("") || indexString.getText().equals("") || !((java.getSelection()) ^ (fortran.getSelection()))){
 			return false;
 		}else {
+			if(java.getSelection()){
+				language = "java";
+			} else if(fortran.getSelection()){
+				language = "fortran";
+			}
 //			((RunRecovery)super.getNextPage()).setUp();
 			
 //			super.getNextPage().createControl(getShell());
