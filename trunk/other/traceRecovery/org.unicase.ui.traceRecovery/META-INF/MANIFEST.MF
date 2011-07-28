@@ -9,6 +9,8 @@ Require-Bundle: org.unicase.traceRecovery.edit,
  org.eclipse.jdt.core,
  org.unicase.ui.unicasecommon,
  org.apache.lucene.analysis,
- org.eclipse.jdt.apt.ui
+ org.eclipse.jdt.apt.ui,
+ org.eclipse.cdt
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.eclipse.cdt.internal.core.model
