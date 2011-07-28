@@ -42,7 +42,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 	private static AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
 		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
-	private static final String COMMAND_ID = "org.unicase.ui.navigator.createContaiment";
+	private static final String COMMAND_ID = "org.eclipse.emf.ecp.navigator.createContaiment";
 	private EObject selectedME;
 
 	/**

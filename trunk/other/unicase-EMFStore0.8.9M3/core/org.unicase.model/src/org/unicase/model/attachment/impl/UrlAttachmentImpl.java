@@ -17,10 +17,10 @@ import org.unicase.model.impl.AttachmentImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.attachment.impl.UrlAttachmentImpl#getUrl <em>Url</em>}</li>
+ * <li>{@link org.unicase.model.attachment.impl.UrlAttachmentImpl#getUrl <em>Url</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class UrlAttachmentImpl extends AttachmentImpl implements UrlAttachment {
@@ -35,8 +35,8 @@ public class UrlAttachmentImpl extends AttachmentImpl implements UrlAttachment {
 	protected static final String URL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getUrl() <em>Url</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getUrl() <em>Url</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getUrl()
 	 * @generated
 	 * @ordered
@@ -45,6 +45,7 @@ public class UrlAttachmentImpl extends AttachmentImpl implements UrlAttachment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected UrlAttachmentImpl() {
@@ -53,6 +54,7 @@ public class UrlAttachmentImpl extends AttachmentImpl implements UrlAttachment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -62,6 +64,7 @@ public class UrlAttachmentImpl extends AttachmentImpl implements UrlAttachment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getUrl() {
@@ -70,6 +73,7 @@ public class UrlAttachmentImpl extends AttachmentImpl implements UrlAttachment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setUrl(String newUrl) {
@@ -81,6 +85,7 @@ public class UrlAttachmentImpl extends AttachmentImpl implements UrlAttachment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -94,6 +99,7 @@ public class UrlAttachmentImpl extends AttachmentImpl implements UrlAttachment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -108,6 +114,7 @@ public class UrlAttachmentImpl extends AttachmentImpl implements UrlAttachment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -122,6 +129,7 @@ public class UrlAttachmentImpl extends AttachmentImpl implements UrlAttachment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -135,6 +143,7 @@ public class UrlAttachmentImpl extends AttachmentImpl implements UrlAttachment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -147,12 +156,6 @@ public class UrlAttachmentImpl extends AttachmentImpl implements UrlAttachment {
 		result.append(url);
 		result.append(')');
 		return result.toString();
-	}
-
-	@Override
-	public String getDescriptionPlainText() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 } // UrlAttachmentImpl

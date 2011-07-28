@@ -28,8 +28,11 @@ public class OpenDiagramWithMEEditorHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		EObject me = UiUtil.getSelectedModelelement();
 		if (me instanceof MEDiagram) {
-			ECPWorkspaceManager.getObserverBus().notify(ModelElementOpenObserver.class)
-				.onOpen(me, "org.unicase.ui.unicasecommon.OpenDiagramWithMEEditor", "org.unicase.ui.meeditor.MEEditor");
+			ECPWorkspaceManager
+				.getObserverBus()
+				.notify(ModelElementOpenObserver.class)
+				.onOpen(me, "org.unicase.ui.unicasecommon.OpenDiagramWithMEEditor",
+					"org.eclipse.emf.ecp.editor.meeditor.MEEditor");
 			new ModelElementOpener().openModelElement(me);
 		}
 

@@ -23,17 +23,17 @@ import org.unicase.model.rationale.RationalePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.rationale.impl.CriterionImpl#getAssessments <em>Assessments</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.CriterionImpl#getAssessments <em>Assessments</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class CriterionImpl extends UnicaseModelElementImpl implements Criterion {
 	/**
-	 * The cached value of the '{@link #getAssessments() <em>Assessments</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAssessments() <em>Assessments</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAssessments()
 	 * @generated
 	 * @ordered
@@ -42,6 +42,7 @@ public class CriterionImpl extends UnicaseModelElementImpl implements Criterion 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CriterionImpl() {
@@ -50,6 +51,7 @@ public class CriterionImpl extends UnicaseModelElementImpl implements Criterion 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,6 +61,7 @@ public class CriterionImpl extends UnicaseModelElementImpl implements Criterion 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Assessment> getAssessments() {
@@ -71,6 +74,7 @@ public class CriterionImpl extends UnicaseModelElementImpl implements Criterion 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -85,6 +89,7 @@ public class CriterionImpl extends UnicaseModelElementImpl implements Criterion 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,6 +103,7 @@ public class CriterionImpl extends UnicaseModelElementImpl implements Criterion 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -111,6 +117,7 @@ public class CriterionImpl extends UnicaseModelElementImpl implements Criterion 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -127,6 +134,7 @@ public class CriterionImpl extends UnicaseModelElementImpl implements Criterion 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,6 +149,7 @@ public class CriterionImpl extends UnicaseModelElementImpl implements Criterion 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -150,12 +159,6 @@ public class CriterionImpl extends UnicaseModelElementImpl implements Criterion 
 			return assessments != null && !assessments.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	@Override
-	public String getDescriptionPlainText() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 } // CriterionImpl

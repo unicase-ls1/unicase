@@ -19,7 +19,7 @@
                  class="org.unicase.ui.dashboard.prefs.DashboardPropertyPage"
                  id="org.unicase.ui.dashboard.dashboardProperties"
                  name="Dashboard"
-                 objectClass="org.unicase.metamodel.Project">
+                 objectClass="org.eclipse.emf.emfstore.common.model.Project">
               <enabledWhen>
                  <iterate
                        ifEmpty="false"
@@ -28,7 +28,7 @@
                           value="1">
                     </count>
                     <instanceof
-                          value="org.unicase.metamodel.Project">
+                          value="org.eclipse.emf.emfstore.common.model.Project">
                     </instanceof>
                  </iterate>
               </enabledWhen>
@@ -46,7 +46,7 @@
                           value="1">
                     </count>
                     <instanceof
-                          value="org.unicase.metamodel.Project">
+                          value="org.eclipse.emf.emfstore.common.model.Project">
                     </instanceof>
                  </iterate>
               </enabledWhen>
@@ -82,7 +82,7 @@
                        ifEmpty="false"
                        operator="and">
                     <instanceof
-                          value="org.unicase.workspace.ProjectSpace">
+                          value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                     </instanceof>
                     <test
                           forcePluginActivation="true"

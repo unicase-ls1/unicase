@@ -70,7 +70,7 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.annotateActionItemSeperator">
+            locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=org.unicase.ui.common.commands.annotateActionItemSeperator">
          <command
                commandId="org.unicase.ui.stem.ShowInStatusView"
                icon="icons/StatusView.gif"
@@ -86,7 +86,7 @@
                         ifEmpty="false"
                         operator="and">
                      <reference
-                           definitionId="org.unicase.ui.common.commands.modelElement">
+                           definitionId="org.eclipse.emf.ecp.common.commands.modelElement">
                      </reference>
                   </iterate>
                </and>
@@ -94,7 +94,7 @@
          </command>
       </menuContribution>
       <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer?before=org.unicase.ui.stem.ShowInStatusView">
+            locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?before=org.unicase.ui.stem.ShowInStatusView">
          <command
                commandId="org.unicase.ui.stem.ShowSprintStatusView"
                icon="icons/backlog.png"

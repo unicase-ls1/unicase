@@ -20,10 +20,10 @@ import org.unicase.model.rationale.Issue;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.meeting.impl.IssueMeetingSectionImpl#getIncludedIssues <em>Included Issues</em>}</li>
+ * <li>{@link org.unicase.model.meeting.impl.IssueMeetingSectionImpl#getIncludedIssues <em>Included Issues</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class IssueMeetingSectionImpl extends MeetingSectionImpl implements IssueMeetingSection {
@@ -39,6 +39,7 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected IssueMeetingSectionImpl() {
@@ -47,6 +48,7 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -56,6 +58,7 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Issue> getIncludedIssues() {
@@ -68,6 +71,7 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -81,6 +85,7 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -97,6 +102,7 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -111,6 +117,7 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -120,12 +127,6 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 			return includedIssues != null && !includedIssues.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	@Override
-	public String getDescriptionPlainText() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 } // IssueMeetingSectionImpl

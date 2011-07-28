@@ -29,19 +29,19 @@ import org.unicase.model.rationale.RationalePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.rationale.impl.CommentImpl#getSender <em>Sender</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.CommentImpl#getRecipients <em>Recipients</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.CommentImpl#getCommentedElement <em>Commented Element</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.CommentImpl#getSender <em>Sender</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.CommentImpl#getRecipients <em>Recipients</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.CommentImpl#getCommentedElement <em>Commented Element</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 	/**
-	 * The cached value of the '{@link #getSender() <em>Sender</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getSender() <em>Sender</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getSender()
 	 * @generated
 	 * @ordered
@@ -49,9 +49,9 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 	protected OrgUnit sender;
 
 	/**
-	 * The cached value of the '{@link #getRecipients() <em>Recipients</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getRecipients() <em>Recipients</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getRecipients()
 	 * @generated
 	 * @ordered
@@ -60,6 +60,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CommentImpl() {
@@ -68,6 +69,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -77,6 +79,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OrgUnit getSender() {
@@ -94,6 +97,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OrgUnit basicGetSender() {
@@ -102,6 +106,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSender(OrgUnit newSender) {
@@ -113,6 +118,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<OrgUnit> getRecipients() {
@@ -124,6 +130,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UnicaseModelElement getCommentedElement() {
@@ -134,6 +141,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UnicaseModelElement basicGetCommentedElement() {
@@ -144,6 +152,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetCommentedElement(UnicaseModelElement newCommentedElement, NotificationChain msgs) {
@@ -154,6 +163,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCommentedElement(UnicaseModelElement newCommentedElement) {
@@ -177,6 +187,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -192,6 +203,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -205,6 +217,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -219,6 +232,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -240,6 +254,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -262,6 +277,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -282,6 +298,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -331,12 +348,6 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 			parents.addAll(((Comment) parent).getParents());
 		}
 		return parents;
-	}
-
-	@Override
-	public String getDescriptionPlainText() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 } // CommentImpl

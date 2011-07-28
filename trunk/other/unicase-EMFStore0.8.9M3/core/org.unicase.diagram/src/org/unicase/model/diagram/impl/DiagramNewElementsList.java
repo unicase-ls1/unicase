@@ -12,7 +12,6 @@ import java.util.ListIterator;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
-import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.LeafSection;
 
@@ -27,7 +26,7 @@ import org.unicase.model.document.LeafSection;
 public class DiagramNewElementsList extends BasicInternalEList<UnicaseModelElement> {
 
 	private EList<UnicaseModelElement> elements;
-	private Project project;
+	private org.eclipse.emf.emfstore.common.model.Project project;
 	private LeafSection leafsection;
 
 	/**
@@ -36,7 +35,7 @@ public class DiagramNewElementsList extends BasicInternalEList<UnicaseModelEleme
 	 * @param elements The reference feature of the according diagram
 	 * @param project The project of the diagram
 	 */
-	public DiagramNewElementsList(EList<UnicaseModelElement> elements, Project project) {
+	public DiagramNewElementsList(EList<UnicaseModelElement> elements, org.eclipse.emf.emfstore.common.model.Project project) {
 		super(UnicaseModelElement.class);
 		this.elements = elements;
 		this.project = project;

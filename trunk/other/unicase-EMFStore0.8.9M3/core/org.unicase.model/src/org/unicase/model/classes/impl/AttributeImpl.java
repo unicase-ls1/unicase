@@ -27,47 +27,48 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getDefiningClass <em>Defining Class</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getVisibility <em>Visibility</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getScope <em>Scope</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getSignature <em>Signature</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getDefaultValue <em>Default Value</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getProperties <em>Properties</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getLabel <em>Label</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#isId <em>Id</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getImplementationType <em>Implementation Type</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getImplementationEnumeration <em>Implementation Enumeration</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#isTransient <em>Transient</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getDefiningClass <em>Defining Class</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getVisibility <em>Visibility</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getScope <em>Scope</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getSignature <em>Signature</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getType <em>Type</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getDefaultValue <em>Default Value</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getProperties <em>Properties</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getLabel <em>Label</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#isId <em>Id</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getImplementationType <em>Implementation Type</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getImplementationEnumeration <em>Implementation Enumeration
+ * </em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#isTransient <em>Transient</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class AttributeImpl extends UnicaseModelElementImpl implements Attribute {
 
 	/**
-	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getVisibility()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final VisibilityType VISIBILITY_EDEFAULT = VisibilityType.UNDEFINED;
 	/**
-	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getVisibility()
 	 * @generated
 	 * @ordered
 	 */
 	protected VisibilityType visibility = VISIBILITY_EDEFAULT;
 	/**
-	 * The default value of the '{@link #getScope() <em>Scope</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getScope() <em>Scope</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getScope()
 	 * @generated
 	 * @ordered
@@ -84,9 +85,9 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 	protected ScopeType scope = SCOPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSignature() <em>Signature</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getSignature() <em>Signature</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getSignature()
 	 * @generated
 	 * @ordered
@@ -113,36 +114,36 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 	protected String type = TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getDefaultValue()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String DEFAULT_VALUE_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getDefaultValue()
 	 * @generated
 	 * @ordered
 	 */
 	protected String defaultValue = DEFAULT_VALUE_EDEFAULT;
 	/**
-	 * The default value of the '{@link #getProperties() <em>Properties</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getProperties() <em>Properties</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getProperties()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String PROPERTIES_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getProperties()
 	 * @generated
 	 * @ordered
@@ -150,9 +151,9 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 	protected String properties = PROPERTIES_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getLabel()
 	 * @generated
 	 * @ordered
@@ -169,16 +170,16 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 	protected String label = LABEL_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #isId() <em>Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isId()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean ID_EDEFAULT = false;
 	/**
-	 * The cached value of the '{@link #isId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #isId() <em>Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isId()
 	 * @generated
 	 * @ordered
@@ -205,24 +206,25 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 	/**
 	 * The cached value of the '{@link #getImplementationEnumeration() <em>Implementation Enumeration</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getImplementationEnumeration()
 	 * @generated
 	 * @ordered
 	 */
 	protected Enumeration implementationEnumeration;
 	/**
-	 * The default value of the '{@link #isTransient() <em>Transient</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isTransient() <em>Transient</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isTransient()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean TRANSIENT_EDEFAULT = false;
 	/**
-	 * The cached value of the '{@link #isTransient() <em>Transient</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isTransient() <em>Transient</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isTransient()
 	 * @generated
 	 * @ordered
@@ -231,6 +233,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AttributeImpl() {
@@ -239,6 +242,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -248,6 +252,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class getDefiningClass() {
@@ -258,6 +263,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class basicGetDefiningClass() {
@@ -268,6 +274,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetDefiningClass(org.unicase.model.classes.Class newDefiningClass,
@@ -278,6 +285,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDefiningClass(org.unicase.model.classes.Class newDefiningClass) {
@@ -301,6 +309,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public VisibilityType getVisibility() {
@@ -309,6 +318,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setVisibility(VisibilityType newVisibility) {
@@ -321,6 +331,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ScopeType getScope() {
@@ -329,6 +340,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setScope(ScopeType newScope) {
@@ -454,6 +466,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isId() {
@@ -462,6 +475,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setId(boolean newId) {
@@ -473,6 +487,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PrimitiveType getImplementationType() {
@@ -481,6 +496,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setImplementationType(PrimitiveType newImplementationType) {
@@ -493,6 +509,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Enumeration getImplementationEnumeration() {
@@ -511,6 +528,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Enumeration basicGetImplementationEnumeration() {
@@ -519,6 +537,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetImplementationEnumeration(Enumeration newImplementationEnumeration,
@@ -539,6 +558,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setImplementationEnumeration(Enumeration newImplementationEnumeration) {
@@ -560,6 +580,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isTransient() {
@@ -568,6 +589,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTransient(boolean newTransient) {
@@ -580,6 +602,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getType() {
@@ -588,6 +611,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setType(String newType) {
@@ -599,6 +623,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getDefaultValue() {
@@ -607,6 +632,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDefaultValue(String newDefaultValue) {
@@ -619,6 +645,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getProperties() {
@@ -627,6 +654,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setProperties(String newProperties) {
@@ -654,6 +682,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -674,6 +703,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -689,6 +719,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -703,6 +734,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -742,6 +774,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -786,6 +819,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -830,6 +864,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -865,6 +900,7 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -893,12 +929,6 @@ public class AttributeImpl extends UnicaseModelElementImpl implements Attribute 
 		result.append(transient_);
 		result.append(')');
 		return result.toString();
-	}
-
-	@Override
-	public String getDescriptionPlainText() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 } // AttributeImpl

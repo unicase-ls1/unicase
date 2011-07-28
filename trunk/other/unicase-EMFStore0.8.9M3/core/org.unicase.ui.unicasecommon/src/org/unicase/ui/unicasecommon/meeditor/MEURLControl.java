@@ -163,7 +163,7 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 				EObject modelElement = getModelElement();
 				ModelElementId modelElementId = ModelUtil.getProject(modelElement).getModelElementId(modelElement);
 				logEvent(modelElementId, modelElementId, WorkspaceManager.getProjectSpace(modelElement),
-					"org.unicase.ui.meeditor");
+					"org.eclipse.emf.ecp.editor.meeditor");
 				super.linkActivated(event);
 
 			}

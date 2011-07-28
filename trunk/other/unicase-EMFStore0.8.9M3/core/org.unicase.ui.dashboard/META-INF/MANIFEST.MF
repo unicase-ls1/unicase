@@ -18,3 +18,4 @@ Bundle-Vendor: unicase.org
 Import-Package: org.eclipse.emf.ecp.common.util,
  org.eclipse.emf.ecp.common.utilities,
  org.eclipse.emf.edit.ui.provider
+Bundle-ActivationPolicy: lazy

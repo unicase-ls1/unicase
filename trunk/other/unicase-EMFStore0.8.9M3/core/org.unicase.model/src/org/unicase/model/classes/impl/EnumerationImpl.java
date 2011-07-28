@@ -24,11 +24,11 @@ import org.unicase.model.classes.Literal;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.classes.impl.EnumerationImpl#getLiterals <em>Literals</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.EnumerationImpl#getAttributes <em>Attributes</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.EnumerationImpl#getLiterals <em>Literals</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.EnumerationImpl#getAttributes <em>Attributes</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class EnumerationImpl extends PackageElementImpl implements Enumeration {
@@ -43,9 +43,9 @@ public class EnumerationImpl extends PackageElementImpl implements Enumeration {
 	protected EList<Literal> literals;
 
 	/**
-	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAttributes()
 	 * @generated
 	 * @ordered
@@ -54,6 +54,7 @@ public class EnumerationImpl extends PackageElementImpl implements Enumeration {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected EnumerationImpl() {
@@ -62,6 +63,7 @@ public class EnumerationImpl extends PackageElementImpl implements Enumeration {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -71,6 +73,7 @@ public class EnumerationImpl extends PackageElementImpl implements Enumeration {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Literal> getLiterals() {
@@ -83,6 +86,7 @@ public class EnumerationImpl extends PackageElementImpl implements Enumeration {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Attribute> getAttributes() {
@@ -95,6 +99,7 @@ public class EnumerationImpl extends PackageElementImpl implements Enumeration {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -111,6 +116,7 @@ public class EnumerationImpl extends PackageElementImpl implements Enumeration {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -126,6 +132,7 @@ public class EnumerationImpl extends PackageElementImpl implements Enumeration {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,6 +148,7 @@ public class EnumerationImpl extends PackageElementImpl implements Enumeration {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -161,6 +169,7 @@ public class EnumerationImpl extends PackageElementImpl implements Enumeration {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -178,6 +187,7 @@ public class EnumerationImpl extends PackageElementImpl implements Enumeration {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -189,12 +199,6 @@ public class EnumerationImpl extends PackageElementImpl implements Enumeration {
 			return attributes != null && !attributes.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	@Override
-	public String getDescriptionPlainText() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 } // EnumerationImpl

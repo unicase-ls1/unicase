@@ -17,10 +17,10 @@ import org.unicase.model.profile.StereotypeAttributeSimple;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.profile.impl.StereotypeAttributeSimpleImpl#getType <em>Type</em>}</li>
+ * <li>{@link org.unicase.model.profile.impl.StereotypeAttributeSimpleImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl implements StereotypeAttributeSimple {
@@ -46,6 +46,7 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected StereotypeAttributeSimpleImpl() {
@@ -54,6 +55,7 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,6 +65,7 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getType() {
@@ -71,6 +74,7 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setType(String newType) {
@@ -83,6 +87,7 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,6 +101,7 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -110,6 +116,7 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -124,6 +131,7 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -137,6 +145,7 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,12 +158,6 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 		result.append(type);
 		result.append(')');
 		return result.toString();
-	}
-
-	@Override
-	public String getDescriptionPlainText() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 } // StereotypeAttributeSimpleImpl

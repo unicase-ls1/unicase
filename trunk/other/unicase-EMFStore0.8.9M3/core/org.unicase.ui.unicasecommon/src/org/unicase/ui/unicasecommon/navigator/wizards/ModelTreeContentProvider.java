@@ -43,8 +43,8 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 		// EPackage modelPackage = ModelPackageImpl.eINSTANCE;
 		// EList<EPackage> array = modelPackage.getESubpackages();
 		//
-
-		return UnicaseUiUtil.getAllModelPackages().toArray();
+		Object[] array = UnicaseUiUtil.getAllModelPackages().toArray();
+		return array;
 	}
 
 	/**
