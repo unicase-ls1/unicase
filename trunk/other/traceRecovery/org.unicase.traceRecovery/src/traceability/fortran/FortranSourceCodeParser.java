@@ -97,7 +97,8 @@ public class FortranSourceCodeParser {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(f));
 			FixedFormLexerPrepass prepass = new FixedFormLexerPrepass(reader);
-			prepass.read();
+//			prepass.read();
+			prepass.readComments();
 			comments = prepass.getComments();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
