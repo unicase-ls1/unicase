@@ -38,12 +38,12 @@
        point="org.eclipse.ui.popupMenus">
     <viewerContribution
           id="org.unicase.ui.traceRecovery.viewerContribution1"
-          targetID="org.eclipse.photran.ui.FortranView"
-           menubarPath = "Other...">
+          targetID="org.eclipse.photran.ui.FortranView">
        <action
              class="org.unicase.ui.tracerecovery.TraceRecoveryWizard"
              id="fortran"
-             label="Run Recovery">
+             label="Run Recovery"
+             menubarPath = "Other...">
        </action>
     </viewerContribution>
  </extension>
