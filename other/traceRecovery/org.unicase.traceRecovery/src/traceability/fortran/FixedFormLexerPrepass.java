@@ -13,6 +13,8 @@ package traceability.fortran;
  *******************************************************************************/
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
@@ -22,29 +24,32 @@ import java.util.regex.Pattern;
 import org.eclipse.photran.internal.core.preferences.FortranPreferences;
 
 /**
- * Preprocesses the input stream, discarding all whitespaces and comment lines and concatenating
- * continuation lines.  Additionally, it holds a mapping to the character-positions in the file (for
- * correct start/end line/col in the {@link IToken} objects).
+ * Preprocesses the input stream, discarding all whitespaces and comment lines
+ * and concatenating continuation lines. Additionally, it holds a mapping to the
+ * character-positions in the file (for correct start/end line/col in the
+ * {@link IToken} objects).
  * 
  * @author Dirk Rossow
  * @author Timofey Yuvashev - Added whitetext collection (for refactoring)
- * @author Rui Wang, Esfar Huq - Certain comments were lost during whitetext collection (Bug 287764)
+ * @author Rui Wang, Esfar Huq - Certain comments were lost during whitetext
+ *         collection (Bug 287764)
  * @author Jeff Overbey - Disallowed Holleriths in certain statements
  */
 // JO -- Added type parameters to mollify Java 5 compilers
 class FixedFormLexerPrepass {
-	private static final int inStart=0;
-	private static final int inHollerith=1;
-	private static final int inDblQuote=2;
-	private static final int inDblQuoteEnd=3;
-	private static final int inQuote=4;
-	private static final int inQuoteEnd=5;
-	
-	//private String fileContent = "";
+	private static final int inStart = 0;
+	private static final int inHollerith = 1;
+	private static final int inDblQuote = 2;
+	private static final int inDblQuoteEnd = 3;
+	private static final int inQuote = 4;
+	private static final int inQuoteEnd = 5;
+
+	// private String fileContent = "";
 	private StringBuilder strBuilder = new StringBuilder();
 
 	private int state = inStart;
-	private int hollerithLength = -2; //-1: hollerith could start, -2: hollerith cant start
+	private int hollerithLength = -2; // -1: hollerith could start, -2:
+										// hollerith cant start
 
 	private int actLinePos = 0;
 	private PreLexerLine actLine = null;
@@ -53,142 +58,177 @@ class FixedFormLexerPrepass {
 	private DynamicIntArray lineMapping = new DynamicIntArray(1000);
 	private DynamicIntArray columnMapping = new DynamicIntArray(1000);
 	private DynamicIntArray offsetMapping = new DynamicIntArray(1000);
-	
-	//Maps whitespace(string) to position in file (line, col, offset) tuple
-	private HashMap<PositionInFile, String> whiteSpaceMapping = new HashMap<PositionInFile, String>();	
-	//Used to accumulate whitespace between lines (multi-line comments, etc) because
+
+	// Maps whitespace(string) to position in file (line, col, offset) tuple
+	private HashMap<PositionInFile, String> whiteSpaceMapping = new HashMap<PositionInFile, String>();
+	// Used to accumulate whitespace between lines (multi-line comments, etc)
+	// because
 	// the string is processed on per-line basis
 	private String prevWhiteSpace = ""; //$NON-NLS-1$
-	
-	private int EOFLinePos=0;
-	private int EOFColPos=0;
-	private int EOFOffsetPos=0;
-	private ArrayList comments = new ArrayList();
-	
-	
+
+	private int EOFLinePos = 0;
+	private int EOFColPos = 0;
+	private int EOFOffsetPos = 0;
+	private ArrayList<String> comments = new ArrayList<String>();
+
 	public FixedFormLexerPrepass(Reader in) {
 		this.in = new OffsetLineReader(in);
 	}
-	
+
 	public int getLine(int absCharPos) {
-		if (absCharPos<0) return 0;
-        int lastCharPos = lineMapping.length() - 1;
-        return lineMapping.get(Math.min(absCharPos, lastCharPos));
+		if (absCharPos < 0)
+			return 0;
+		int lastCharPos = lineMapping.length() - 1;
+		return lineMapping.get(Math.min(absCharPos, lastCharPos));
 	}
-	
+
 	public int getColumn(int absCharPos) {
-		if (absCharPos<0) return 0;
-        int lastCharPos = lineMapping.length() - 1;
+		if (absCharPos < 0)
+			return 0;
+		int lastCharPos = lineMapping.length() - 1;
 		return columnMapping.get(Math.min(absCharPos, lastCharPos));
 	}
-	
+
 	public int getOffset(int absCharPos) {
-		if (absCharPos<0) return absCharPos;
-        int lastCharPos = lineMapping.length() - 1;
+		if (absCharPos < 0)
+			return absCharPos;
+		int lastCharPos = lineMapping.length() - 1;
 		return offsetMapping.get(Math.min(absCharPos, lastCharPos));
 	}
-	
+
 	public int read() throws Exception {
 		int c = internalRead();
 		return c;
 	}
-	
-	public String getTokenText(int offset, int length)
-	{
-	    int strLen = strBuilder.length();
-	    if(offset >= 0 && length > 0 && offset < strLen && length <= strLen && offset+length < strLen)
-	    {
-	        String res = strBuilder.substring(offset, offset+length);
-	        return res;
-	    }
-	    return ""; //$NON-NLS-1$
+
+	public String getTokenText(int offset, int length) {
+		int strLen = strBuilder.length();
+		if (offset >= 0 && length > 0 && offset < strLen && length <= strLen
+				&& offset + length < strLen) {
+			String res = strBuilder.substring(offset, offset + length);
+			return res;
+		}
+		return ""; //$NON-NLS-1$
 	}
-	
-	public String getTokenText(int offset)
-	{
-	    if(offset >= 0 && offset < strBuilder.length())
-	    {
-	        String res = strBuilder.substring(offset);
-	        return res;
-	    }
-	    return ""; //$NON-NLS-1$
+
+	public String getTokenText(int offset) {
+		if (offset >= 0 && offset < strBuilder.length()) {
+			String res = strBuilder.substring(offset);
+			return res;
+		}
+		return ""; //$NON-NLS-1$
 	}
-	
-	public String getTrailingWhitespace()
-	{
-	    String trimmed = strBuilder.toString().trim();
-	    //This gets the index of the beginning of the whitespace AFTER the first "end of line" symbol on the last line
-	    // with actual text of the file
-	    int start = strBuilder.indexOf(trimmed) + trimmed.length() + in.getFileEOL().length();
-	    String res = strBuilder.substring(start);
-	    return res;
+
+	public String getTrailingWhitespace() {
+		String trimmed = strBuilder.toString().trim();
+		// This gets the index of the beginning of the whitespace AFTER the
+		// first "end of line" symbol on the last line
+		// with actual text of the file
+		int start = strBuilder.indexOf(trimmed) + trimmed.length()
+				+ in.getFileEOL().length();
+		String res = strBuilder.substring(start);
+		return res;
 	}
-	
+
 	private void markPosition(int line, int col, int offset) {
 		offsetMapping.pushBack(offset);
 		lineMapping.pushBack(line);
 		columnMapping.pushBack(col);
 	}
-	
-	private int internalRead() throws Exception 
-	{
-	    PreLexerLine prevLine = null;  
-		for (;;) 
-		{
-			if (actLine==null) 
-			{
-			    actLine=getNextLine();
-				if (actLine==null) 
-				{
-					markPosition(EOFLinePos,EOFColPos,EOFOffsetPos);
+
+	public int readComments() throws IOException {
+		String line = "";
+		while ((line = in.readLine()) != null) {
+			if (line.length() > 0) {
+				if (line.charAt(0) == '!' || line.charAt(0) == 'c'
+						|| line.charAt(0) == 'C') {
+					comments.add(line);
+				} else {
+					for (int i = 1; i < line.length() && i < 72; i++) {
+						if (line.charAt(i) == '!' || line.charAt(i) == 'c'
+								|| line.charAt(i) == 'C') {
+							String com = "";
+							for (int j = i; j < line.length(); j++) {
+								com += line.charAt(j);
+							}
+							
+							comments.add(com);
+						}
+					}
+				}
+			}
+		}
+
+		return 1;
+	}
+
+//	public static void main(String[] args) {
+//
+//		try {
+//			BufferedReader bf = new BufferedReader(new FileReader(
+//					"/home/taher/Desktop/fortran/allocatable.f90"));
+//
+//			FixedFormLexerPrepass lexer = new FixedFormLexerPrepass(bf);
+//			lexer.readComments();
+//			
+//			System.out.println(lexer.comments.get(0));
+//
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
+
+	private int internalRead() throws Exception {
+		PreLexerLine prevLine = null;
+		for (;;) {
+			if (actLine == null) {
+				actLine = getNextLine();
+				if (actLine == null) {
+					markPosition(EOFLinePos, EOFColPos, EOFOffsetPos);
 					return -1;
-				}
-				else 
-				    actLinePos=0;
-			} 
-			else if(actLinePos==actLine.length() || 
-			        actLinePos==FortranPreferences.FIXED_FORM_COMMENT_COLUMN.getValue()) 
-			{ //test if continuation-line follows, else send \n
-				prevLine=actLine;
-				actLine=getNextLine();
-				if (actLine==null) 
-				{ //end of file
-					hollerithLength=-2;
-					state=inStart;
-					markPosition(prevLine.linePos,actLinePos,prevLine.offset+actLinePos+1);
+				} else
+					actLinePos = 0;
+			} else if (actLinePos == actLine.length()
+					|| actLinePos == FortranPreferences.FIXED_FORM_COMMENT_COLUMN
+							.getValue()) { // test if continuation-line follows,
+											// else send \n
+				prevLine = actLine;
+				actLine = getNextLine();
+				if (actLine == null) { // end of file
+					hollerithLength = -2;
+					state = inStart;
+					markPosition(prevLine.linePos, actLinePos, prevLine.offset
+							+ actLinePos + 1);
 					return '\n';
-				} 
-				else if (actLine.type==PreLexerLine.CONTINUATION) 
-				{
-					actLinePos=6;
-				} 
-				else if(actLine.type==PreLexerLine.COMMENT)
-				{
-				    prevWhiteSpace=prevWhiteSpace.concat(actLine.getText());
-				    prevWhiteSpace=prevWhiteSpace.concat(in.getFileEOL());
-				    actLinePos = actLine.length();
-				}
-				else 
-				{
-					actLinePos=0;
-					hollerithLength=-2;
-					state=inStart;
-					//TODO: If previous line is a comment, handle this in a special way
-					markPosition(prevLine.linePos,prevLine.length(),prevLine.offset+prevLine.length());
-					
+				} else if (actLine.type == PreLexerLine.CONTINUATION) {
+					actLinePos = 6;
+				} else if (actLine.type == PreLexerLine.COMMENT) {
+					prevWhiteSpace = prevWhiteSpace.concat(actLine.getText());
+					prevWhiteSpace = prevWhiteSpace.concat(in.getFileEOL());
+					actLinePos = actLine.length();
+				} else {
+					actLinePos = 0;
+					hollerithLength = -2;
+					state = inStart;
+					// TODO: If previous line is a comment, handle this in a
+					// special way
+					markPosition(prevLine.linePos, prevLine.length(),
+							prevLine.offset + prevLine.length());
+
 					return '\n';
 				}
 			}
-			
-			actLinePos = getNextSigPos(actLine,actLinePos);
 
-			if (actLinePos<0) 
-			{
-				actLinePos=actLine.length();
-			} 
-			else 
-			{
-				markPosition(actLine.linePos,actLinePos,actLine.offset+actLinePos);
+			actLinePos = getNextSigPos(actLine, actLinePos);
+
+			if (actLinePos < 0) {
+				actLinePos = actLine.length();
+			} else {
+				markPosition(actLine.linePos, actLinePos, actLine.offset
+						+ actLinePos);
 				return actLine.charAt(actLinePos++);
 			}
 		}
@@ -196,19 +236,25 @@ class FixedFormLexerPrepass {
 
 	private PreLexerLine getNextLine() {
 		try {
-			int actOffset=in.getOffset();
+			int actOffset = in.getOffset();
 			String line = in.readLine();
-			if (line==null) 
-			    return null;
-			
+			if (line == null)
+				return null;
+
 			strBuilder.append(line);
 			strBuilder.append(in.getFileEOL());
-			
-			EOFLinePos=in.getLineNumber()+1;//-1; //Move that token past the last line
-			EOFColPos=0;//line.length();
-			EOFOffsetPos=actOffset+line.length()+in.getFileEOL().length();//To accomodate for End-of-line statement
-			PreLexerLine pll = new PreLexerLine(line,in.getLineNumber()-1,actOffset);
-			if(pll.type == PreLexerLine.COMMENT && pll.getText() != null){
+
+			EOFLinePos = in.getLineNumber() + 1;// -1; //Move that token past
+												// the last line
+			EOFColPos = 0;// line.length();
+			EOFOffsetPos = actOffset + line.length() + in.getFileEOL().length();// To
+																				// accomodate
+																				// for
+																				// End-of-line
+																				// statement
+			PreLexerLine pll = new PreLexerLine(line, in.getLineNumber() - 1,
+					actOffset);
+			if (pll.type == PreLexerLine.COMMENT && pll.getText() != null) {
 				comments.add(pll.getText());
 			}
 			return pll;
@@ -216,7 +262,7 @@ class FixedFormLexerPrepass {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * @return the comments
 	 */
@@ -224,249 +270,220 @@ class FixedFormLexerPrepass {
 		return comments;
 	}
 
-	private boolean isWhitespace(char c)
-	{
-	    return c==' ' || c=='\t' || c=='\r' || c=='\n';
-	}
-	
-	public String getWhitespaceBefore(int ln, int lastCol, int lastOffset)
-	{
-	    int colBefore = lastCol;
-	    int offsetBefore = lastOffset;
-	    
-	    if(colBefore < 0 || offsetBefore < 0)
-	        return ""; //$NON-NLS-1$
-	    
-	    //Create a positionInFile object, with line,col and offset set to the END of the potential whitespace
-	    PositionInFile posInFile = new PositionInFile(ln, colBefore, offsetBefore, false);
-	    String result = (String)whiteSpaceMapping.get(posInFile);
-	   
-	    if(result==null)
-	        return ""; //$NON-NLS-1$
-	    
-	    return result;
-	}
-	
-	private int extractWhitespace(PreLexerLine line, int startPos)
-	{
-	    String whiteAgg = ""; //$NON-NLS-1$
-	    int charPos = startPos;
-	    int startWhitespace = -1;
-	    int length = line.length();
-	    
-	    if(line.type == PreLexerLine.COMMENT) 
-	    {
-	        startWhitespace = saveWhitespace(line, charPos, startWhitespace); 
-            charPos = -1; //Finished line
-            //Don't insert the white-space because full-line comments are associated with whatever token
-            // you find on the NEXT line, so don't add them to the map yet
-            return charPos;
-	    }
-	    
-	    for(;charPos<line.length();charPos++)
-	    {
-	        char c = line.charAt(charPos);
-	        //If it is a continuation line, treat character at position 6 as whitespace
-            if(line.type == PreLexerLine.CONTINUATION && charPos == 6)
-            {
-                if(startWhitespace == -1)
-                    startWhitespace = 0;
-                String prevLineWhite = in.getFileEOL().concat(line.getText().substring(0, 6));
-                whiteAgg = whiteAgg.concat(prevLineWhite);
-            }
-            
-            if(isWhitespace(c))
-	        {
-	            if(startWhitespace == -1)
-	                startWhitespace = charPos;
-	            whiteAgg = whiteAgg.concat(String.valueOf(c));
-	        }
-	        else if(c=='!')// || charPos >= FortranPreferences.FIXED_FORM_COMMENT_COLUMN.getValue()) //It a comment, grab the rest of the line
-	        {
-	            startWhitespace = saveWhitespace(line, charPos, startWhitespace); 
-	            charPos = -1; //Finished line
-	            //Don't insert the white-space because full-line comments are associated with whatever token
-	            // you find on the NEXT line, so don't add them to the map yet
-	            return charPos;
-	            
-	        }
-	        else //Not a whitespace character
-	        {
-	            break;
-	        }
-	    }
-	    if((whiteAgg.length() != 0 || prevWhiteSpace.length() != 0) && startWhitespace != -1)
-	    {
-    	    PositionInFile posInFile = new PositionInFile(line.linePos, 
-    	                                                  startWhitespace,
-    	                                                  charPos,
-    	                                                  line.offset+startWhitespace,
-    	                                                  line.offset+charPos);
-    	    String combinedWhite = prevWhiteSpace.concat(whiteAgg);
-            whiteSpaceMapping.put(posInFile, combinedWhite);
-            prevWhiteSpace = ""; //$NON-NLS-1$
-            
-            //If we moved into the comments, return -1 since we gobbled those up
-//            if(charPos >= FortranPreferences.FIXED_FORM_COMMENT_COLUMN.getValue())
-//                charPos = -1;
-	    }
-	    if(charPos >= length) //If we "gobbled up" the entire line, return -1 to
-	        return -1;                 //signify the end of the line
-	    
-        return charPos;
+	private boolean isWhitespace(char c) {
+		return c == ' ' || c == '\t' || c == '\r' || c == '\n';
 	}
 
-    private int saveWhitespace(PreLexerLine line, int charPos, int startWhitespace)
-    {
-        if(startWhitespace == -1)
-            startWhitespace = charPos;
-        //Append current line to prevWhiteSpace
-        prevWhiteSpace = prevWhiteSpace.concat(line.getText().substring(charPos));
-        //Since PreLexerLine throws away whitespace, attach a "new line" character to our whitespace
-        prevWhiteSpace = prevWhiteSpace.concat(in.getFileEOL());
-        return startWhitespace;
-    }
-	
+	public String getWhitespaceBefore(int ln, int lastCol, int lastOffset) {
+		int colBefore = lastCol;
+		int offsetBefore = lastOffset;
+
+		if (colBefore < 0 || offsetBefore < 0)
+			return ""; //$NON-NLS-1$
+
+		// Create a positionInFile object, with line,col and offset set to the
+		// END of the potential whitespace
+		PositionInFile posInFile = new PositionInFile(ln, colBefore,
+				offsetBefore, false);
+		String result = (String) whiteSpaceMapping.get(posInFile);
+
+		if (result == null)
+			return ""; //$NON-NLS-1$
+
+		return result;
+	}
+
+	private int extractWhitespace(PreLexerLine line, int startPos) {
+		String whiteAgg = ""; //$NON-NLS-1$
+		int charPos = startPos;
+		int startWhitespace = -1;
+		int length = line.length();
+
+		if (line.type == PreLexerLine.COMMENT) {
+			startWhitespace = saveWhitespace(line, charPos, startWhitespace);
+			charPos = -1; // Finished line
+			// Don't insert the white-space because full-line comments are
+			// associated with whatever token
+			// you find on the NEXT line, so don't add them to the map yet
+			return charPos;
+		}
+
+		for (; charPos < line.length(); charPos++) {
+			char c = line.charAt(charPos);
+			// If it is a continuation line, treat character at position 6 as
+			// whitespace
+			if (line.type == PreLexerLine.CONTINUATION && charPos == 6) {
+				if (startWhitespace == -1)
+					startWhitespace = 0;
+				String prevLineWhite = in.getFileEOL().concat(
+						line.getText().substring(0, 6));
+				whiteAgg = whiteAgg.concat(prevLineWhite);
+			}
+
+			if (isWhitespace(c)) {
+				if (startWhitespace == -1)
+					startWhitespace = charPos;
+				whiteAgg = whiteAgg.concat(String.valueOf(c));
+			} else if (c == '!')// || charPos >=
+								// FortranPreferences.FIXED_FORM_COMMENT_COLUMN.getValue())
+								// //It a comment, grab the rest of the line
+			{
+				startWhitespace = saveWhitespace(line, charPos, startWhitespace);
+				charPos = -1; // Finished line
+				// Don't insert the white-space because full-line comments are
+				// associated with whatever token
+				// you find on the NEXT line, so don't add them to the map yet
+				return charPos;
+
+			} else // Not a whitespace character
+			{
+				break;
+			}
+		}
+		if ((whiteAgg.length() != 0 || prevWhiteSpace.length() != 0)
+				&& startWhitespace != -1) {
+			PositionInFile posInFile = new PositionInFile(line.linePos,
+					startWhitespace, charPos, line.offset + startWhitespace,
+					line.offset + charPos);
+			String combinedWhite = prevWhiteSpace.concat(whiteAgg);
+			whiteSpaceMapping.put(posInFile, combinedWhite);
+			prevWhiteSpace = ""; //$NON-NLS-1$
+
+			// If we moved into the comments, return -1 since we gobbled those
+			// up
+			// if(charPos >=
+			// FortranPreferences.FIXED_FORM_COMMENT_COLUMN.getValue())
+			// charPos = -1;
+		}
+		if (charPos >= length) // If we "gobbled up" the entire line, return -1
+								// to
+			return -1; // signify the end of the line
+
+		return charPos;
+	}
+
+	private int saveWhitespace(PreLexerLine line, int charPos,
+			int startWhitespace) {
+		if (startWhitespace == -1)
+			startWhitespace = charPos;
+		// Append current line to prevWhiteSpace
+		prevWhiteSpace = prevWhiteSpace.concat(line.getText()
+				.substring(charPos));
+		// Since PreLexerLine throws away whitespace, attach a "new line"
+		// character to our whitespace
+		prevWhiteSpace = prevWhiteSpace.concat(in.getFileEOL());
+		return startWhitespace;
+	}
+
 	// return: -1 : end of line reached
 	private int getNextSigPos(PreLexerLine line, int startPos) {
 
-		  for (int charPos=startPos;charPos<line.length();++charPos)  
-		  {
+		for (int charPos = startPos; charPos < line.length(); ++charPos) {
 			char c = line.charAt(charPos);
-			
-			if (line.type==PreLexerLine.CPPDIRECTIVE) 
-			    return charPos;
-			if (line.type==PreLexerLine.CONTINUATION && charPos<=5) 
-			    continue;
-			
-			//A bit ugly. This pretty much goes through and stores
-			// all the whitespace from a given character until the 
-			// first non-whitespace character in a map PositionInFile -> String, 
-			// so that it can later be attached to appropriate tokens. 
-			if (state==inStart && 
-			    (
-    			    isWhitespace(c) || 
-                    c=='!' || 
-                    line.type == PreLexerLine.COMMENT || 
-//                    charPos >= FortranPreferences.FIXED_FORM_COMMENT_COLUMN.getValue() || 
-                    line.type == PreLexerLine.CONTINUATION
-                 ))
-            {
-                charPos = extractWhitespace(line, charPos); 
-                //If we got to the end of the line, no need to continue
-                if(charPos >= 0 && charPos < line.length())
-                    c = line.charAt(charPos);
-                else
-                    return -1;
-            }
-			
-			if (state==inStart) 
-			{                                              
-				if (charPos<=4 && !Character.isDigit(c)) 
-				    continue; //only allow digits(label) in column 0-4
-				else if (c=='\'') 
-				{
-					hollerithLength=-1;
-					state=inQuote;
-				} 
-				else if (c=='\"') 
-				{
-					hollerithLength=-1;
-					state=inDblQuote;
-				} 
-				else if ((c=='h' || c=='H') && line.hollerithsOK()) 
-				{
-					if (hollerithLength>0) 
-					    state=inHollerith;
-					else if (hollerithLength<0) 
-					    hollerithLength=-2;
-				} 
-				else if (hollerithLength!=-2 && Character.isDigit(c)) 
-				{
-					if (hollerithLength==-1) 
-					    hollerithLength=Character.digit(c,10);
-					else 
-					    hollerithLength=hollerithLength*10+Character.digit(c,10);
-				} 
-				else if (Character.isLetter(c) || c=='_') 
-				{
-					hollerithLength=-2;
-				} 
-				else 
-				{
-					if (charPos==0) 
-					    hollerithLength=-2;// ignore label at start of line
-					else 
-					    hollerithLength=-1;
+
+			if (line.type == PreLexerLine.CPPDIRECTIVE)
+				return charPos;
+			if (line.type == PreLexerLine.CONTINUATION && charPos <= 5)
+				continue;
+
+			// A bit ugly. This pretty much goes through and stores
+			// all the whitespace from a given character until the
+			// first non-whitespace character in a map PositionInFile -> String,
+			// so that it can later be attached to appropriate tokens.
+			if (state == inStart
+					&& (isWhitespace(c) || c == '!'
+							|| line.type == PreLexerLine.COMMENT ||
+					// charPos >=
+					// FortranPreferences.FIXED_FORM_COMMENT_COLUMN.getValue()
+					// ||
+					line.type == PreLexerLine.CONTINUATION)) {
+				charPos = extractWhitespace(line, charPos);
+				// If we got to the end of the line, no need to continue
+				if (charPos >= 0 && charPos < line.length())
+					c = line.charAt(charPos);
+				else
+					return -1;
+			}
+
+			if (state == inStart) {
+				if (charPos <= 4 && !Character.isDigit(c))
+					continue; // only allow digits(label) in column 0-4
+				else if (c == '\'') {
+					hollerithLength = -1;
+					state = inQuote;
+				} else if (c == '\"') {
+					hollerithLength = -1;
+					state = inDblQuote;
+				} else if ((c == 'h' || c == 'H') && line.hollerithsOK()) {
+					if (hollerithLength > 0)
+						state = inHollerith;
+					else if (hollerithLength < 0)
+						hollerithLength = -2;
+				} else if (hollerithLength != -2 && Character.isDigit(c)) {
+					if (hollerithLength == -1)
+						hollerithLength = Character.digit(c, 10);
+					else
+						hollerithLength = hollerithLength * 10
+								+ Character.digit(c, 10);
+				} else if (Character.isLetter(c) || c == '_') {
+					hollerithLength = -2;
+				} else {
+					if (charPos == 0)
+						hollerithLength = -2;// ignore label at start of line
+					else
+						hollerithLength = -1;
 				}
 				return charPos;
-				
-			} 
-			else if (state==inQuote) 
-			{
-				if (c=='\'') 
-				    state=inQuoteEnd;
+
+			} else if (state == inQuote) {
+				if (c == '\'')
+					state = inQuoteEnd;
 				return charPos;
-			} else if (state==inQuoteEnd) 
-			{
-				if (c=='\'') 
-				{
-					state=inQuote;
+			} else if (state == inQuoteEnd) {
+				if (c == '\'') {
+					state = inQuote;
 					return charPos;
-				} 
-				else 
-				{
-					state=inStart;
+				} else {
+					state = inStart;
 					charPos--;
 				}
-			} 
-			else if (state==inDblQuote) 
-			{
-				if (c=='\"') 
-				    state=inQuoteEnd;
+			} else if (state == inDblQuote) {
+				if (c == '\"')
+					state = inQuoteEnd;
 				return charPos;
-			} 
-			else if (state==inDblQuoteEnd) 
-			{
-				if (c=='\"') 
-				{
-					state=inDblQuote;
+			} else if (state == inDblQuoteEnd) {
+				if (c == '\"') {
+					state = inDblQuote;
 					return charPos;
-				} 
-				else 
-				{
-					state=inStart;
+				} else {
+					state = inStart;
 					charPos--;
-				}				
-			} 
-			else if (state==inHollerith) 
-			{
+				}
+			} else if (state == inHollerith) {
 				hollerithLength--;
-				if (hollerithLength==0) 
-				    state=inStart;
+				if (hollerithLength == 0)
+					state = inStart;
 				return charPos;
-			} 
-			else 
-			{ //undefined state
-				throw new RuntimeException("Undefined state in FixedFormPreLexer"); //$NON-NLS-1$
+			} else { // undefined state
+				throw new RuntimeException(
+						"Undefined state in FixedFormPreLexer"); //$NON-NLS-1$
 			}
 		}
-		return -1; //end of line reached
+		return -1; // end of line reached
 	}
 
-    public String getFileEOL()
-    {
-        return in.getFileEOL();
-    }
+	public String getFileEOL() {
+		return in.getFileEOL();
+	}
 }
 
 class DynamicIntArray {
-	final double RESIZEFAC=1.1;
-	final int RESIZEADD=10;
-	
-	private int[] v=null;
-	private int length=0;
-	
+	final double RESIZEFAC = 1.1;
+	final int RESIZEADD = 10;
+
+	private int[] v = null;
+	private int length = 0;
+
 	DynamicIntArray(int reserveSize) {
 		ensureSize(reserveSize);
 	}
@@ -477,277 +494,268 @@ class DynamicIntArray {
 	int length() {
 		return length;
 	}
-	
+
 	int get(int pos) {
-		if (pos<0 || pos>=length) {
+		if (pos < 0 || pos >= length) {
 			throw new ArrayIndexOutOfBoundsException(pos);
 		}
 		return v[pos];
 	}
-	
+
 	void pushBack(int value) {
-		ensureSize(length+1);
-		v[length]=value;
+		ensureSize(length + 1);
+		v[length] = value;
 		length++;
 	}
-	
+
 	private void ensureSize(int size) {
-		if (v==null || v.length<size) {
-			int[] newArray = new int[(int) (size*RESIZEFAC+RESIZEADD)];
-			if (v!=null) System.arraycopy(v,0,newArray,0,length);
-			v=newArray;
+		if (v == null || v.length < size) {
+			int[] newArray = new int[(int) (size * RESIZEFAC + RESIZEADD)];
+			if (v != null)
+				System.arraycopy(v, 0, newArray, 0, length);
+			v = newArray;
 		}
 	}
-	
-	
+
 }
 
 class PreLexerLine {
-	static final int COMMENT=0;
-	static final int CONTINUATION=1;
-	static final int STMT=2;
-	static final int CPPDIRECTIVE=3;
-	
+	static final int COMMENT = 0;
+	static final int CONTINUATION = 1;
+	static final int STMT = 2;
+	static final int CPPDIRECTIVE = 3;
+
 	final int linePos;
 	final int offset;
 	final int type;
 	private final String lineText;
-	
-	
-		
-	PreLexerLine(String _lineText, int linePos, int offset) {
-		this.linePos=linePos;
-		this.offset=offset;
 
-		/* truncate anything beyond 72 characters */	    
-		/*if (_lineText.length()>COLWIDTH) {
-			lineText=_lineText.substring(0,COLWIDTH);
-		} else {
-			lineText=_lineText;
-		}*/
+	PreLexerLine(String _lineText, int linePos, int offset) {
+		this.linePos = linePos;
+		this.offset = offset;
+
+		/* truncate anything beyond 72 characters */
+		/*
+		 * if (_lineText.length()>COLWIDTH) {
+		 * lineText=_lineText.substring(0,COLWIDTH); } else {
+		 * lineText=_lineText; }
+		 */
 		lineText = _lineText;
 
-		
-		String trimmedText=lineText.trim();
+		String trimmedText = lineText.trim();
 
-//check for empty line
-		if (trimmedText.length()==0) type=COMMENT;
+		// check for empty line
+		if (trimmedText.length() == 0)
+			type = COMMENT;
 
-//		check for f77-style comment
-		else if (lineText.charAt(0)=='C'||
-				lineText.charAt(0)=='c'||
-				lineText.charAt(0)=='*'||
-				lineText.charAt(0)=='$') type=COMMENT;
+		// check for f77-style comment
+		else if (lineText.charAt(0) == 'C' || lineText.charAt(0) == 'c'
+				|| lineText.charAt(0) == '*' || lineText.charAt(0) == '$')
+			type = COMMENT;
 
-//check for f90-style comment
-		else if (trimmedText.startsWith("!")) type=COMMENT; //$NON-NLS-1$
+		// check for f90-style comment
+		else if (trimmedText.startsWith("!"))type = COMMENT; //$NON-NLS-1$
 
-//check for cpp-dirctive
-		else if (trimmedText.startsWith("#")) type=CPPDIRECTIVE; //$NON-NLS-1$
-		
-//check if line is empty up to COLWIDTH
-//		else if (lineText.length()>FortranPreferences.FIXED_FORM_COMMENT_COLUMN.getValue() && lineText.substring(0,FortranPreferences.FIXED_FORM_COMMENT_COLUMN.getValue()).trim().length()==0) type=COMMENT;
-		
-//check for tab in column 0-5
-		else if (lineText.indexOf('\t')>=0 && lineText.indexOf('\t')<=5) type=STMT;
+		// check for cpp-dirctive
+		else if (trimmedText.startsWith("#"))type = CPPDIRECTIVE; //$NON-NLS-1$
 
-//check for continuation
-		else if (lineText.length()>=6 &&
-				lineText.charAt(5)!='0' && lineText.charAt(5)!=' ') type = CONTINUATION;
+		// check if line is empty up to COLWIDTH
+		// else if
+		// (lineText.length()>FortranPreferences.FIXED_FORM_COMMENT_COLUMN.getValue()
+		// &&
+		// lineText.substring(0,FortranPreferences.FIXED_FORM_COMMENT_COLUMN.getValue()).trim().length()==0)
+		// type=COMMENT;
 
-		else type=STMT;
+		// check for tab in column 0-5
+		else if (lineText.indexOf('\t') >= 0 && lineText.indexOf('\t') <= 5)
+			type = STMT;
+
+		// check for continuation
+		else if (lineText.length() >= 6 && lineText.charAt(5) != '0'
+				&& lineText.charAt(5) != ' ')
+			type = CONTINUATION;
+
+		else
+			type = STMT;
 	}
-	 
-    
-    // JO -- Do not recognize holleriths inside DO statements and type declaration statements
-	// IMPORTANT: If this is modified, FixedFormLexerPhase1.flex must also be modified to call
-	//            disallowHolleriths() on the affected statements
-    private static final Pattern DO_STMT_PATTERN = Pattern.compile("^[ \\t0-9]*do[ \\t]*[0-9]+.*", Pattern.CASE_INSENSITIVE); //$NON-NLS-1$
-    private static final Pattern TYPE_DECL_STMT_PATTERN = Pattern.compile("^[ \\t0-9]*(integer|real|double|complex|logical|character).*", Pattern.CASE_INSENSITIVE); //$NON-NLS-1$
-    private static final Pattern LABELED_ASGT_TO_H = Pattern.compile("^[ \\t0-9]+h.*=.*", Pattern.CASE_INSENSITIVE); //$NON-NLS-1$
-    private Boolean hollerithsOK = null;
-    public boolean hollerithsOK()
-    {
-        if (hollerithsOK == null)
-        {
-            hollerithsOK = !DO_STMT_PATTERN.matcher(lineText).matches()
-                        && !TYPE_DECL_STMT_PATTERN.matcher(lineText).matches()
-                        && !LABELED_ASGT_TO_H.matcher(lineText).matches();
-        }
 
-        return hollerithsOK;
-    }
+	// JO -- Do not recognize holleriths inside DO statements and type
+	// declaration statements
+	// IMPORTANT: If this is modified, FixedFormLexerPhase1.flex must also be
+	// modified to call
+	// disallowHolleriths() on the affected statements
+	private static final Pattern DO_STMT_PATTERN = Pattern.compile(
+			"^[ \\t0-9]*do[ \\t]*[0-9]+.*", Pattern.CASE_INSENSITIVE); //$NON-NLS-1$
+	private static final Pattern TYPE_DECL_STMT_PATTERN = Pattern
+			.compile(
+					"^[ \\t0-9]*(integer|real|double|complex|logical|character).*", Pattern.CASE_INSENSITIVE); //$NON-NLS-1$
+	private static final Pattern LABELED_ASGT_TO_H = Pattern.compile(
+			"^[ \\t0-9]+h.*=.*", Pattern.CASE_INSENSITIVE); //$NON-NLS-1$
+	private Boolean hollerithsOK = null;
 
-    public int length() {
+	public boolean hollerithsOK() {
+		if (hollerithsOK == null) {
+			hollerithsOK = !DO_STMT_PATTERN.matcher(lineText).matches()
+					&& !TYPE_DECL_STMT_PATTERN.matcher(lineText).matches()
+					&& !LABELED_ASGT_TO_H.matcher(lineText).matches();
+		}
+
+		return hollerithsOK;
+	}
+
+	public int length() {
 		return lineText.length();
 	}
-	
+
 	public char charAt(int pos) {
 		return lineText.charAt(pos);
 	}
-	
-	public String getText()
-	{
-	    return this.lineText;
+
+	public String getText() {
+		return this.lineText;
 	}
 
 	@Override
-    public String toString() {
-		return "Line "+linePos+": "+lineText;  //$NON-NLS-1$ //$NON-NLS-2$
+	public String toString() {
+		return "Line " + linePos + ": " + lineText; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }
 
-class PositionInFile
-{
-    private int line = -1;
-    private int startCol = -1;
-    private int startOffset = -1;
-    private int endCol = -1;
-    private int endOffset = -1;
-    
-    public PositionInFile(int ln, int stCl, int endCl, int stOfst, int endOfst)
-    {
-        this.line = ln;
-        this.startCol = stCl;
-        this.endCol = endCl;
-        this.startOffset = stOfst;
-        this.endOffset = endOfst;
-    }
-    
-    public PositionInFile(int ln, int cl, int ofst, boolean isStart)
-    {
-        this.line = ln;
-        if(isStart)
-        {
-            this.startCol = cl;
-            this.startOffset = ofst;
-        }
-        else
-        {
-            this.endCol = cl;
-            this.endOffset = ofst;
-        }
-    }
-    
-    public int getLine()
-    {
-        return this.line;
-    }
-    
-    public int getStartCol()
-    {
-        return this.startCol;
-    }
-    
-    public int getStartOffset()
-    {
-        return this.startOffset;
-    }
-    
-    public int getEndCol()
-    {
-        return this.startCol;
-    }
-    
-    public int getEndOffset()
-    {
-        return this.startOffset;
-    }
-    
-    public boolean isSameStart(PositionInFile other)
-    {
-        return (other.line == this.line &&
-                other.startCol == this.startCol &&
-                other.startOffset == this.startOffset);
-    }
-    
-    public boolean isSameEnd(PositionInFile other)
-    {
-        return (other.line == this.line &&
-                other.endCol == this.endCol &&
-                other.endOffset == this.endOffset);
-    }
-    
-    @Override
-    public int hashCode()
-    {
-        return this.endOffset;
-    }
-    
-    @Override
-    public boolean equals(Object obj)
-    {
-        return ((PositionInFile)obj).endOffset == this.endOffset;
-    }
+class PositionInFile {
+	private int line = -1;
+	private int startCol = -1;
+	private int startOffset = -1;
+	private int endCol = -1;
+	private int endOffset = -1;
+
+	public PositionInFile(int ln, int stCl, int endCl, int stOfst, int endOfst) {
+		this.line = ln;
+		this.startCol = stCl;
+		this.endCol = endCl;
+		this.startOffset = stOfst;
+		this.endOffset = endOfst;
+	}
+
+	public PositionInFile(int ln, int cl, int ofst, boolean isStart) {
+		this.line = ln;
+		if (isStart) {
+			this.startCol = cl;
+			this.startOffset = ofst;
+		} else {
+			this.endCol = cl;
+			this.endOffset = ofst;
+		}
+	}
+
+	public int getLine() {
+		return this.line;
+	}
+
+	public int getStartCol() {
+		return this.startCol;
+	}
+
+	public int getStartOffset() {
+		return this.startOffset;
+	}
+
+	public int getEndCol() {
+		return this.startCol;
+	}
+
+	public int getEndOffset() {
+		return this.startOffset;
+	}
+
+	public boolean isSameStart(PositionInFile other) {
+		return (other.line == this.line && other.startCol == this.startCol && other.startOffset == this.startOffset);
+	}
+
+	public boolean isSameEnd(PositionInFile other) {
+		return (other.line == this.line && other.endCol == this.endCol && other.endOffset == this.endOffset);
+	}
+
+	@Override
+	public int hashCode() {
+		return this.endOffset;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return ((PositionInFile) obj).endOffset == this.endOffset;
+	}
 }
 
 class OffsetLineReader {
 	private BufferedReader bReader;
 	private StringBuffer sBuf;
-	private int lineNumber=0;
-	private int offset=0;
+	private int lineNumber = 0;
+	private int offset = 0;
 	private String fileEOL = null;
 
+	private int charBuf = -1;
 
-	private int charBuf=-1;
-	
 	public OffsetLineReader(Reader reader) {
-		bReader=new BufferedReader(reader);
-		sBuf=new StringBuffer();
+		bReader = new BufferedReader(reader);
+		sBuf = new StringBuffer();
 	}
-	
+
 	private int getNextChar() throws IOException {
 		int c = bReader.read();
-		if (c!=-1) offset++;
+		if (c != -1)
+			offset++;
 		return c;
 	}
-	
+
 	public String readLine() throws IOException {
-		if (charBuf<0) {
-			charBuf=getNextChar();
-			if (charBuf<0) return null;
+		if (charBuf < 0) {
+			charBuf = getNextChar();
+			if (charBuf < 0)
+				return null;
 		}
-		
+
 		sBuf.setLength(0);
-		while(true) {
-			if (charBuf=='\n') {
-			    if (fileEOL == null) fileEOL = "\n"; //$NON-NLS-1$
-				charBuf=getNextChar();
+		while (true) {
+			if (charBuf == '\n') {
+				if (fileEOL == null)
+					fileEOL = "\n"; //$NON-NLS-1$
+				charBuf = getNextChar();
 				lineNumber++;
 				break;
-			} else if (charBuf=='\r') {
-				charBuf=getNextChar();
-				if (charBuf=='\n')
-			    {
-                    if (fileEOL == null) fileEOL = "\r\n"; //$NON-NLS-1$
-				    charBuf=getNextChar();
-			    }
-				else
-				{
-				    if (fileEOL == null) fileEOL = "\r"; //$NON-NLS-1$
+			} else if (charBuf == '\r') {
+				charBuf = getNextChar();
+				if (charBuf == '\n') {
+					if (fileEOL == null)
+						fileEOL = "\r\n"; //$NON-NLS-1$
+					charBuf = getNextChar();
+				} else {
+					if (fileEOL == null)
+						fileEOL = "\r"; //$NON-NLS-1$
 				}
 				lineNumber++;
 				break;
-			} else if (charBuf==-1) {
+			} else if (charBuf == -1) {
 				break;
 			} else {
 				sBuf.append((char) charBuf);
-				charBuf=getNextChar();
+				charBuf = getNextChar();
 			}
 		}
 		return sBuf.toString();
 	}
-	
+
 	public int getLineNumber() {
 		return lineNumber;
 	}
-	
+
 	public int getOffset() {
-		if (charBuf<0) return offset;
-		else return offset-1;
+		if (charBuf < 0)
+			return offset;
+		else
+			return offset - 1;
 	}
-	
+
 	public String getFileEOL() {
-	    return fileEOL;
+		return fileEOL;
 	}
 }
