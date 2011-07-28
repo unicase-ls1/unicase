@@ -81,9 +81,12 @@ public class FortranCodeIndexer extends Indexer {
 		// addData(doc,parser);
 		// addComments(doc, parser);
 		Field fileName = new Field("filename", f.getName(), Field.Store.YES, Field.Index.NO);
+		Field path = new Field("path",f.getPath(),Field.Store.YES,Field.Index.NO);
 		doc.add(fileName);
+		doc.add(path);
 		try {
 			writer.addDocument(doc);
+			writer.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -100,7 +103,7 @@ public class FortranCodeIndexer extends Indexer {
 			String docSubroutine = ((ScopingNode) subroutines.get(i))
 					.getName(true);
 			
-			Field subRoutine = new Field("method", docSubroutine, Field.Store.YES, Field.Index.TOKENIZED);
+			Field subRoutine = new Field("class", docSubroutine, Field.Store.YES, Field.Index.TOKENIZED);
 			
 			doc.add(subRoutine);
 		}
