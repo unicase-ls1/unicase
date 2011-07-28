@@ -3,6 +3,9 @@
  */
 package org.unicase.ui.tracerecovery;
 
+import org.eclipse.cdt.internal.core.model.CProject;
+import org.eclipse.cdt.internal.core.model.SourceRoot;
+import org.eclipse.cdt.internal.core.model.TranslationUnit;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -20,6 +23,7 @@ import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
@@ -27,12 +31,14 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.metamodel.Project;
+import org.unicase.ui.traceRecovery.searchResult.SearchResult;
 import org.unicase.ui.traceRecvoery.pages.RunRecovery;
-import org.unicase.ui.traceRecvoery.pages.SearchResult;
 import org.unicase.ui.traceRecvoery.pages.SelecDirectory;
-import org.unicase.ui.traceRecvoery.pages.SelectDirectoryJava;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
+
+import traceRecovery.Directory;
+import traceRecovery.TraceRecoveryFactory;
 
 /**
  * @author taher
@@ -43,6 +49,7 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 
 	Project project;
 	IPath pat;
+	RunRecovery recovery;
 
 	/*
 	 * (non-Javadoc)
@@ -51,8 +58,9 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 	 */
 	@Override
 	public boolean performFinish() {
-		// TODO Auto-generated method stub
-		return false;
+		this.dispose();
+		this.recovery.finish();
+		return true;
 	}
 
 	/**
@@ -71,7 +79,10 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 	}
 
 	boolean bol;
+	SelecDirectory dir;
 
+	
+	
 	/**
 	 * add pages to the wizards
 	 */
@@ -79,30 +90,29 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 	public void addPages() {
 		// if (bol) {
 		setWindowTitle("Run Recovery");
+		dir = new SelecDirectory();
+		dir.setProject(getActiveProject());
+		addPage(dir);
 
-		if (producer.equals("unicase")) {
-			SelecDirectory dir = new SelecDirectory();
-			addPage(dir);
-			dir.setProject(getActiveProject());
-		} else if (producer == "java") {
-			SelectDirectoryJava dir = new SelectDirectoryJava();
-			addPage(dir);
-			dir.setProject(getActiveProject());
+		if (producer == "java") {
+
 			dir.setLastPath(pat.toPortableString());
+			// dir.getDirectoryString().setText(pat.toPortableString());
+			// dir.getDirectoryString().setEnabled(false);
+			// dir.getDirectory().setEnabled(false);
 
 		} else if (producer == "fortran") {
 
 		}
 
-		RunRecovery recovery = new RunRecovery();
+		recovery = new RunRecovery();
 
-		SearchResult result = new SearchResult();
+		
 
 		recovery.setP(getActiveProject());
-		result.setP(getActiveProject());
 
 		addPage(recovery);
-		addPage(result);
+
 
 		// }else {
 		// RunRecovery recovery = new RunRecovery();
@@ -139,6 +149,15 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 
 	String producer;
 
+	public boolean canFinish(){
+		if(recovery.canFinish()){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -151,6 +170,7 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 		TraceRecoveryWizard wizard = new TraceRecoveryWizard();
 
 		Object parent;
+		boolean havePath = false;
 		if (action.getId().toLowerCase().equals("unicase")) {
 			wizard.producer = "unicase";
 		} else if (action.getId().toLowerCase().equals("java")) {
@@ -167,22 +187,19 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 			parent = selection.getFirstElement();
 
 			parent.getClass();
-			boolean havePath = false;
+			
 			IPath path = null;
 			if (parent instanceof IJavaProject) {
 
 				IJavaProject p = (IJavaProject) parent;
-				
+
 				IProject project = p.getProject();
 				wizard.pat = project.getLocation();
 				havePath = true;
-				
 
 			} else if (parent instanceof PackageFragmentRoot) {
 
 				path = ((PackageFragmentRoot) parent).getPath();
-
-				
 
 			} else if (parent instanceof PackageFragment) {
 				path = ((PackageFragment) parent).getPath();
@@ -192,15 +209,46 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 			else if (parent instanceof CompilationUnit) {
 				path = ((CompilationUnit) parent).getPath();
 			}
+
+			if (!havePath) {
+				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+				IFolder folder = root.getFolder(path);
+				wizard.pat = folder.getLocation();
+				havePath = true;
+			}
+		} else if (action.getId().toLowerCase().equals("fortran")) {
+			wizard.producer = "fortran";
+			IWorkbenchWindow window = PlatformUI.getWorkbench()
+					.getActiveWorkbenchWindow();
+
+			IStructuredSelection selection = (IStructuredSelection) window
+					.getSelectionService().getSelection(
+							"org.eclipse.photran.ui.FortranView");
+
+			parent = selection.getFirstElement();
+			IPath path = null;
+			if(parent instanceof CProject){
+				CProject project = (CProject) parent;
+				IProject p = project.getProject();
+				wizard.pat = p.getLocation();
+				havePath = true;
+				
+				
+			}else if(parent instanceof SourceRoot){
+				path = ((SourceRoot) parent).getPath();
+			}else if(parent instanceof TranslationUnit){
+				path = ((TranslationUnit) parent).getPath();
+				
+			}
 			
 			if(!havePath){
 			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 			IFolder folder = root.getFolder(path);
 			wizard.pat = folder.getLocation();
-			havePath = true;
 			}
-		} else if (action.getId().toLowerCase().equals("fortran")) {
-			wizard.producer = "fortran";
+			
+			
+			
 
 		}
 
@@ -215,6 +263,26 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 			WizardDialog dialog = new WizardDialog(getShell(), wizard);
 			dialog.create();
 
+			if (wizard.producer == "fortran") {
+				wizard.dir.getFortran().setSelection(true);
+				wizard.dir.setPageComplete(false);
+				wizard.dir.getJava().setEnabled(false);
+				wizard.dir.getFortran().setEnabled(false);
+			}else if (wizard.producer == "java"){
+				wizard.dir.getJava().setSelection(true);
+				wizard.dir.setPageComplete(false);
+				wizard.dir.getJava().setEnabled(false);
+				wizard.dir.getFortran().setEnabled(false);
+			}
+			if (wizard.producer == "java" || wizard.producer == "fortran") {
+				wizard.dir.getDirectoryString().setText(
+						wizard.pat.toPortableString());
+				wizard.dir.getDirectoryString().setEnabled(false);
+				wizard.dir.getDirectory().setEnabled(false);
+//				wizard.dir.getJava().setSelection(true);
+				
+				
+			} 
 			dialog.open();
 		} else {
 			MessageDialog
