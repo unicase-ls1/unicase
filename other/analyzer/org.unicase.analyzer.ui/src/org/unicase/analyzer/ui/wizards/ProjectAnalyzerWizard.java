@@ -200,7 +200,7 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 			firstElement = selection.getFirstElement();
 			if (firstElement instanceof ProjectSpace) {
 				selectedProject = (ProjectSpace) firstElement;
-				selectedProjectID = (ProjectId) EcoreUtil.copy(selectedProject.getProjectId());
+				selectedProjectID = EcoreUtil.copy(selectedProject.getProjectId());
 				selectedUsersession = ((ProjectSpace) firstElement).getUsersession();
 				if (!selectedUsersession.isLoggedIn()) {
 					loggedIn = false;

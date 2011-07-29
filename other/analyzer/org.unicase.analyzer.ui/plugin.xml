@@ -5,7 +5,7 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="popup:org.unicase.workspace.ui.Other?after=org.unicase.workspace.ui.compareProjects">
+            locationURI="popup:org.unicase.workspace.ui.Other?after=org.unicase.workspace.ui.NewLocalProject">
          <command
                commandId="org.unicase.analyzer.ui.analyzer"
                icon="icon/analysis.png"
