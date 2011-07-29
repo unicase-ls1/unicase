@@ -77,6 +77,6 @@ public class EMFStoreMetaModelElementContext extends AbstractECPMetaModelElement
 	 */
 	@Override
 	public boolean isNonDomainElement(EClass eClass) {
-		return eClass instanceof NonDomainElement;
+		return org.eclipse.emf.emfstore.common.model.ModelPackage.eINSTANCE.getNonDomainElement().isSuperTypeOf(eClass);
 	}
 }
