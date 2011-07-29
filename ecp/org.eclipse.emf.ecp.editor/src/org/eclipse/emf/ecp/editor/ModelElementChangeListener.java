@@ -54,6 +54,9 @@ public abstract class ModelElementChangeListener extends AdapterImpl {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
+		if (notification.isTouch()) {
+			return;
+		}
 		// BEGIN SUPRESS CATCH EXCEPTION
 		try {
 			onChange(notification);
