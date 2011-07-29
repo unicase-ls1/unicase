@@ -223,7 +223,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 							if (mePage != null) {
 								mePage.updateSectionTitle();
 							}
-
+							updateStatusMessage();
 						}
 					});
 
@@ -231,7 +231,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 			};
 
 			initStatusProvider();
-			updateCreatorHint();
+			updateStatusMessage();
 
 			labelProviderListener = new ILabelProviderListener() {
 				public void labelProviderChanged(LabelProviderChangedEvent event) {
@@ -266,7 +266,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 		}
 	}
 
-	private void updateCreatorHint() {
+	private void updateStatusMessage() {
 		if (statusMessageProvider != null) {
 			getEditorSite().getActionBars().getStatusLineManager()
 				.setMessage(statusMessageProvider.getMessage(modelElement));
@@ -299,7 +299,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 		if (mePage != null) {
 			mePage.setFocus();
 		}
-		updateCreatorHint();
+		updateStatusMessage();
 
 	}
 
