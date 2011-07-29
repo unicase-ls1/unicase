@@ -73,7 +73,7 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 
 		dropAdapters = new HashMap<EClass, MEDropAdapter>();
 		IConfigurationElement[] confs = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.eclipse.emf.ecp.common.medropadapter");
+			"org.eclipse.emf.ecp.common.dropadapter");
 		for (IConfigurationElement element : confs) {
 			try {
 				MEDropAdapter dropAdapter = (MEDropAdapter) element.createExecutableExtension("class");
