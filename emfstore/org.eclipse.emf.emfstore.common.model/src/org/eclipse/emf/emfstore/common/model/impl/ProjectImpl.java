@@ -77,6 +77,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	private boolean isNotifiying;
 	private Set<ProjectChangeObserver> exceptionThrowingObservers;
 	private Set<ProjectChangeObserver> observersToRemove;
+	private Set<ProjectChangeObserver> observersToAttach;
 	private Set<ProjectChangeObserver> undetachableObservers;
 
 	private Set<EObject> eObjectsCache;
@@ -113,6 +114,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		isNotifiying = false;
 		exceptionThrowingObservers = new HashSet<ProjectChangeObserver>();
 		observersToRemove = new HashSet<ProjectChangeObserver>();
+		observersToAttach = new HashSet<ProjectChangeObserver>();
 		undetachableObservers = new HashSet<ProjectChangeObserver>();
 		eObjectToIdCache = new HashMap<EObject, ModelElementId>();
 		deletedEObjectToIdMap = new HashMap<EObject, ModelElementId>();
@@ -463,7 +465,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		notifyProjectChangeObservers(command);
 	}
 
-	private void notifyProjectChangeObservers(
+	private synchronized void notifyProjectChangeObservers(
 			ProjectChangeObserverNotificationCommand command) {
 		isNotifiying = true;
 		for (ProjectChangeObserver projectChangeObserver : this.observers) {
@@ -502,6 +504,10 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		for (ProjectChangeObserver observer : this.observersToRemove) {
 			removeProjectChangeObserver(observer);
 		}
+		for (ProjectChangeObserver observer : this.observersToAttach) {
+			addProjectChangeObserver(observer);
+		}
+
 		this.observersToRemove.clear();
 	}
 
@@ -627,9 +633,13 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * 
 	 * @see org.eclipse.emf.emfstore.common.model.Project#addProjectChangeObserver(org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver)
 	 */
-	public void addProjectChangeObserver(
+	public synchronized void addProjectChangeObserver(
 			ProjectChangeObserver projectChangeObserver) {
 		initCaches();
+		if (isNotifiying) {
+			observersToAttach.add(projectChangeObserver);
+			return;
+		}
 		this.observers.add(projectChangeObserver);
 	}
 
@@ -638,7 +648,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * 
 	 * @see org.eclipse.emf.emfstore.common.model.Project#removeProjectChangeObserver(org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver)
 	 */
-	public void removeProjectChangeObserver(
+	public synchronized void removeProjectChangeObserver(
 			ProjectChangeObserver projectChangeObserver) {
 		if (isNotifiying) {
 			observersToRemove.add(projectChangeObserver);
