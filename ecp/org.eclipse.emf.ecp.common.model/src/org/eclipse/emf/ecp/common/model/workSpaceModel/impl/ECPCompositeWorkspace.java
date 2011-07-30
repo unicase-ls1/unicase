@@ -42,7 +42,7 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 	public ECPCompositeWorkspace(){
 		super();
 		workspaceList = getWorkspacesFromExtension();
-		notifyECPPostWorkspaceInitiators();
+		//notifyECPPostWorkspaceInitiators();
 	}
 	
 	public List<ECPWorkspace> getWorkspaceList() {
@@ -91,7 +91,7 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 	}
 	
 
-	private void notifyECPPostWorkspaceInitiators() {
+	public void notifyECPPostWorkspaceInitiators() {
 		IConfigurationElement[] workspaceObservers = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			"org.eclipse.emf.ecp.model.postinit");
 		for (IConfigurationElement element : workspaceObservers) {
