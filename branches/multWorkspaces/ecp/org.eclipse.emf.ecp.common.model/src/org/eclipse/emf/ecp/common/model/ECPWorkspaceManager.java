@@ -48,6 +48,7 @@ public final class ECPWorkspaceManager {
 
 	private void init() {
 		currentWorkspace = new ECPCompositeWorkspace();
+		currentWorkspace.notifyECPPostWorkspaceInitiators();
 	}
 
 
