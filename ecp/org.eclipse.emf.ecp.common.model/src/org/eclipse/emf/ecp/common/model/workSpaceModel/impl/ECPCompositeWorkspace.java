@@ -30,6 +30,7 @@ import org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.util.ECPWorkspaceProvider;
 import org.eclipse.emf.emfstore.common.observer.ObserverBus;
 
+
 /**
  * @author stute
  *
@@ -98,8 +99,9 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 			try {
 				PostECPWorkspaceInitiator workspaceObserver = (PostECPWorkspaceInitiator) element
 					.createExecutableExtension("class");
-				for (ECPWorkspace ws : getWorkspaceList())
+				for (ECPWorkspace ws : getWorkspaceList()){
 				workspaceObserver.workspaceInitComplete(ws);
+				}
 			} catch (CoreException e) {
 				Activator.getDefault().logException(e.getMessage(), e);
 			}
@@ -117,16 +119,11 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 		return projects;
 	}
 
-	@Override
+ 	@Override
 	public ECPProject getProject(EObject me) {
 		ECPProject result = null;
 		for (ECPWorkspace ws : getWorkspaceList()) {
-
-			for (ECPProject project : ws.getProjects()) {
-				if (project.contains(me)) {
-					result =  project;
-				}
-			}
+			result = ws.getProject(me);
 		}
 		if (result == null) {
 			throw new IllegalStateException("Project for element not found!");
@@ -134,6 +131,7 @@ public class ECPCompositeWorkspace extends ECPWorkspaceImpl{
 		return result;
 	}
 
+	
 	@Override
 	public ECPProject getActiveProject() {
 		
