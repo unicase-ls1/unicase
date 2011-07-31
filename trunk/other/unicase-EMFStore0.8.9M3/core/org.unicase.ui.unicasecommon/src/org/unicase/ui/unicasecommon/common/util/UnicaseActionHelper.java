@@ -215,7 +215,7 @@ public final class UnicaseActionHelper {
 	 */
 	public static final String ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE = "meToOpen";
 	private static final String TOGGLE_ADD_COMMENT_VARIABLE = "toggleAddComment";
-	private static final String MEEDITOR_OPENDISCUSSION_COMMAND_ID = "org.eclipse.emf.ecp.editor.meeditor.openModelElementDiscussion";
+	private static final String MEEDITOR_OPENDISCUSSION_COMMAND_ID = "org.eclipse.emf.ecp.editor.openModelElementDiscussion";
 
 	/**
 	 * Opens the discussion page for the meeditor.
