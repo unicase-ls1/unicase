@@ -33,8 +33,9 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.TreeItem;
 
 /**
- * This is the central drop adapter for ECP views. This class acts as a dispatcher. It has a map of (EClass,
- * MEDropAdapter) which contains a reference to a specific drop adapter for each model element type.
+ * This is the central drop adapter for ECP views. This class acts as a
+ * dispatcher. It has a map of (EClass, MEDropAdapter) which contains a
+ * reference to a specific drop adapter for each model element type.
  * 
  * @author Hodaie
  */
@@ -50,21 +51,27 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 	private Map<EClass, MEDropAdapter> dropAdapters;
 
 	/**
-	 * this is used for performance, so that drop method do not need to find the appropriate drop adapter again.
+	 * this is used for performance, so that drop method do not need to find the
+	 * appropriate drop adapter again.
 	 */
 	private MEDropAdapter targetDropAdapter;
 
 	/**
-	 * Actually I should be able to get event feedback from event.feedback But the problem is, the event feedback is
-	 * correctly set in dragOver() method, but in drop() method it is set to 1 (only selection). That's why I save event
-	 * feedback at the end of dragOver() in a variable, and check this variable in drop() instead of event.feedback
+	 * Actually I should be able to get event feedback from event.feedback But
+	 * the problem is, the event feedback is correctly set in dragOver() method,
+	 * but in drop() method it is set to 1 (only selection). That's why I save
+	 * event feedback at the end of dragOver() in a variable, and check this
+	 * variable in drop() instead of event.feedback
 	 */
 	private int eventFeedback;
+
+	private boolean targetIsRoot;
 
 	/**
 	 * Constructor.
 	 * 
-	 * @param viewer viewer
+	 * @param viewer
+	 *            viewer
 	 */
 	public ComposedDropAdapter(StructuredViewer viewer) {
 
@@ -72,11 +79,13 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 		this.viewer = viewer;
 
 		dropAdapters = new HashMap<EClass, MEDropAdapter>();
-		IConfigurationElement[] confs = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.eclipse.emf.ecp.common.dropadapter");
+		IConfigurationElement[] confs = Platform.getExtensionRegistry()
+				.getConfigurationElementsFor(
+						"org.eclipse.emf.ecp.common.dropadapter");
 		for (IConfigurationElement element : confs) {
 			try {
-				MEDropAdapter dropAdapter = (MEDropAdapter) element.createExecutableExtension("class");
+				MEDropAdapter dropAdapter = (MEDropAdapter) element
+						.createExecutableExtension("class");
 				dropAdapter.init(viewer);
 				dropAdapters.put(dropAdapter.isDropAdapterfor(), dropAdapter);
 
@@ -89,7 +98,8 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 	}
 
 	/**
-	 * @param event DropTargetEvent
+	 * @param event
+	 *            DropTargetEvent
 	 */
 	@Override
 	public void drop(final DropTargetEvent event) {
@@ -98,10 +108,21 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 
 			@Override
 			protected void doRun() {
-				if ((eventFeedback & DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER) {
-					targetDropAdapter.dropMove(targetConatiner, target, source, true);
-				} else if ((eventFeedback & DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE) {
-					targetDropAdapter.dropMove(targetConatiner, target, source, false);
+				if (targetIsRoot) {
+					try {
+						ECPProject project = ECPWorkspaceManager.getInstance()
+								.getWorkSpace().getProject(target);
+						for (EObject obj : source) {
+							project.addModelElementToRoot(obj);
+						}
+					} catch (NoWorkspaceException e) {
+					}
+				} else if (isInsertAfter(eventFeedback)) {
+					targetDropAdapter.dropMove(targetConatiner, target, source,
+							true);
+				} else if (isInsertBefore(eventFeedback)) {
+					targetDropAdapter.dropMove(targetConatiner, target, source,
+							false);
 				} else {
 					targetDropAdapter.drop(event, target, source);
 				}
@@ -113,16 +134,65 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 	}
 
 	/**
-	 * This is called continually from dragOver() event handler. This checks drop target and drop source to be not Null,
-	 * and sets the target, source, and dropee fields.
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void dragOver(DropTargetEvent event) {
+		source = null;
+		target = null;
+		targetConatiner = null;
+		targetDropAdapter = null;
+		targetIsRoot = false;
+		eventFeedback = 1;
+
+		event.detail = DND.DROP_COPY;
+		if (!extractDnDSourceAndTarget(event)) {
+			event.detail = DND.DROP_NONE;
+			return;
+		}
+
+		if (targetIsRoot) {
+			return;
+		}
+
+		setInitialEventFeedback(event);
+		eventFeedback = event.feedback;
+
+		if ((isInsertBefore(eventFeedback) || isInsertAfter(eventFeedback))
+				&& target.eContainer() != null) {
+			targetConatiner = target.eContainer();
+			targetDropAdapter = getTargetDropAdapter(targetConatiner.eClass());
+
+		} else {
+			targetDropAdapter = getTargetDropAdapter(target.eClass());
+
+		}
+		if (targetDropAdapter == null) {
+			event.detail = DND.DROP_NONE;
+		} else if (!targetDropAdapter.canDrop(eventFeedback, event, source,
+				target, dropee)) {
+			event.detail = DND.Drop;
+		} else if (targetDropAdapter.canDrop(eventFeedback, event, source,
+				target, dropee)) {
+			event.detail = DND.DROP_COPY;
+		}
+
+	}
+
+	/**
+	 * This is called continually from dragOver() event handler. This checks
+	 * drop target and drop source to be not Null, and sets the target, source,
+	 * and dropee fields.
 	 * 
-	 * @param event DropTargetEvent
+	 * @param event
+	 *            DropTargetEvent
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
 	private boolean extractDnDSourceAndTarget(DropTargetEvent event) {
 		boolean result = true;
-		List<Object> tmpSource = (List<Object>) DragSourcePlaceHolder.getDragSource();
+		List<Object> tmpSource = (List<Object>) DragSourcePlaceHolder
+				.getDragSource();
 		if (tmpSource == null) {
 			result = false;
 		}
@@ -140,7 +210,8 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 
 		// take care that you cannot drop anything on project (project is not a
 		// ModelElement)
-		if (event.item == null || event.item.getData() == null || !(event.item.getData() instanceof EObject)) {
+		if (event.item == null || event.item.getData() == null
+				|| !(event.item.getData() instanceof EObject)) {
 			result = false;
 		}
 
@@ -153,8 +224,13 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 			ECPProject targetProject = null;
 			ECPProject dropeeProject = null;
 			try {
-				targetProject = ECPWorkspaceManager.getInstance().getWorkSpace().getProject(target);
-				dropeeProject = ECPWorkspaceManager.getInstance().getWorkSpace().getProject(dropee);
+				targetProject = ECPWorkspaceManager.getInstance()
+						.getWorkSpace().getProject(target);
+				dropeeProject = ECPWorkspaceManager.getInstance()
+						.getWorkSpace().getProject(dropee);
+				if (targetProject.getRootObject() == target) {
+					targetIsRoot = true;
+				}
 			} catch (NoWorkspaceException e) {
 				Activator.getDefault().logException(e);
 				result = false;
@@ -169,57 +245,22 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 	}
 
 	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void dragOver(DropTargetEvent event) {
-		source = null;
-		target = null;
-		targetConatiner = null;
-		targetDropAdapter = null;
-		eventFeedback = 1;
-
-		event.detail = DND.DROP_COPY;
-		if (!extractDnDSourceAndTarget(event)) {
-			event.detail = DND.DROP_NONE;
-			return;
-		}
-
-		setInitialEventFeedback(event);
-		eventFeedback = event.feedback;
-
-		if ((eventFeedback & DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER
-			|| (eventFeedback & DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE) {
-			targetConatiner = target.eContainer();
-			targetDropAdapter = getTargetDropAdapter(targetConatiner.eClass());
-
-		} else {
-			targetDropAdapter = getTargetDropAdapter(target.eClass());
-
-		}
-		if (targetDropAdapter == null) {
-			event.detail = DND.DROP_NONE;
-		} else if (!targetDropAdapter.canDrop(eventFeedback, event, source, target, dropee)) {
-			event.detail = DND.Drop;
-		} else if (targetDropAdapter.canDrop(eventFeedback, event, source, target, dropee)) {
-			event.detail = DND.DROP_COPY;
-		}
-
-	}
-
-	/**
-	 * This method searches drop adaptors map recursively to find the appropriate drop adapter for this model element
-	 * type or one of its super types in model hierarchy.
+	 * This method searches drop adaptors map recursively to find the
+	 * appropriate drop adapter for this model element type or one of its super
+	 * types in model hierarchy.
 	 * 
 	 * @param targetEClass
-	 * @return specific drop target for this model element type or one of its super types in model hierarchy.
+	 * @return specific drop target for this model element type or one of its
+	 *         super types in model hierarchy.
 	 */
 	private MEDropAdapter getTargetDropAdapter(EClass targetEClass) {
 
 		MEDropAdapter ret = dropAdapters.get(targetEClass);
 		if (ret == null) {
-			EClass superTypeHavingADropAdapter = getSuperTypeHavingADropAdapter(targetEClass.getESuperTypes());
-			if (superTypeHavingADropAdapter != null && superTypeHavingADropAdapter != targetEClass) {
+			EClass superTypeHavingADropAdapter = getSuperTypeHavingADropAdapter(targetEClass
+					.getESuperTypes());
+			if (superTypeHavingADropAdapter != null
+					&& superTypeHavingADropAdapter != targetEClass) {
 				ret = getTargetDropAdapter(superTypeHavingADropAdapter);
 			}
 		}
@@ -228,14 +269,18 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 	}
 
 	/**
-	 * This is used by getDropTarget() method. It takes super classes of targetEClass and tries to find a unique drop
-	 * adapter that matches one of super types. If there are more than one matching drop adapters, an exception is
-	 * thrown. If there is no matching drop adapter, this method searches recursively until it finds one, or throws the
-	 * exception.
+	 * This is used by getDropTarget() method. It takes super classes of
+	 * targetEClass and tries to find a unique drop adapter that matches one of
+	 * super types. If there are more than one matching drop adapters, an
+	 * exception is thrown. If there is no matching drop adapter, this method
+	 * searches recursively until it finds one, or throws the exception.
 	 * 
-	 * @param superClazz super classes of targetEClass. If there is no match at the first call of method, this will be a
-	 *            collection of super classes of each input super class.
-	 * @return an EClass that is both super class of targetEClass (directly of indirectly) and has a drop adapter.
+	 * @param superClazz
+	 *            super classes of targetEClass. If there is no match at the
+	 *            first call of method, this will be a collection of super
+	 *            classes of each input super class.
+	 * @return an EClass that is both super class of targetEClass (directly of
+	 *         indirectly) and has a drop adapter.
 	 */
 	private EClass getSuperTypeHavingADropAdapter(Collection<EClass> superClazz) {
 
@@ -247,7 +292,8 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 		Set<EClass> intersection = new HashSet<EClass>(dropAdapters.keySet());
 		intersection.retainAll(superClazz);
 
-		// check if intersection contains many classes, but if they are in an inheritance hierarchy keep only the
+		// check if intersection contains many classes, but if they are in an
+		// inheritance hierarchy keep only the
 		// deepest class.
 		// This must be discussed as a potential modeling problem.
 
@@ -256,7 +302,8 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 			for (EClass eClass1 : intersection) {
 				for (EClass eClass2 : intersection) {
 					if (!eClass2.equals(eClass1)
-						&& (eClass2.isSuperTypeOf(eClass1) || eClass2.equals(EcorePackage.eINSTANCE.getEObject()))) {
+							&& (eClass2.isSuperTypeOf(eClass1) || eClass2
+									.equals(EcorePackage.eINSTANCE.getEObject()))) {
 						toBeRemoved.add(eClass2);
 					}
 				}
@@ -265,7 +312,8 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 		}
 
 		if (intersection.size() > 1) {
-			throw new IllegalStateException("More than one drop adapter for this type found!");
+			throw new IllegalStateException(
+					"More than one drop adapter for this type found!");
 
 		} else if (intersection.size() == 0) {
 			Set<EClass> eclazz = new HashSet<EClass>();
@@ -281,10 +329,12 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 	}
 
 	/**
-	 * This sets the initial event feedback, and is also responsible for showing INSERT_AFTER and INSERT_BEFORE
-	 * feedbacks according to mouse cursor position.
+	 * This sets the initial event feedback, and is also responsible for showing
+	 * INSERT_AFTER and INSERT_BEFORE feedbacks according to mouse cursor
+	 * position.
 	 * 
-	 * @param event DropTargetEvent
+	 * @param event
+	 *            DropTargetEvent
 	 */
 	private void setInitialEventFeedback(DropTargetEvent event) {
 		event.feedback = DND.FEEDBACK_SELECT;
@@ -304,4 +354,25 @@ public class ComposedDropAdapter extends DropTargetAdapter {
 
 	}
 
+	/**
+	 * Checks whether eventfeedback is a {@link DND#FEEDBACK_INSERT_BEFORE}
+	 * event.
+	 * 
+	 * @param eventFeedback
+	 * @return true if before
+	 */
+	public static boolean isInsertBefore(int eventFeedback) {
+		return (eventFeedback & DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE;
+	}
+
+	/**
+	 * Checks whether eventfeedback is a {@link DND#FEEDBACK_INSERT_AFTER}
+	 * event.
+	 * 
+	 * @param eventFeedback
+	 * @return true if after
+	 */
+	public static boolean isInsertAfter(int eventFeedback) {
+		return (eventFeedback & DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER;
+	}
 }

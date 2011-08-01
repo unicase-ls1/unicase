@@ -18,8 +18,8 @@ import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
 
 /**
- * This is the super class for all model element specific drop adapters. We can consider this class as if ModelElement
- * was drop target.
+ * This is the super class for all model element specific drop adapters. We can
+ * consider this class as if ModelElement was drop target.
  * 
  * @author Hodaie
  */
@@ -37,7 +37,8 @@ public abstract class MEDropAdapter {
 	/**
 	 * Initializes the adapter.
 	 * 
-	 * @param viewer the viewer
+	 * @param viewer
+	 *            the viewer
 	 */
 	public void init(StructuredViewer viewer) {
 		this.viewer = viewer;
@@ -64,12 +65,16 @@ public abstract class MEDropAdapter {
 	public abstract EClass isDropAdapterfor();
 
 	/**
-	 * @param targetContainer target's container
-	 * @param target target
-	 * @param source source
+	 * @param targetContainer
+	 *            target's container
+	 * @param target
+	 *            target
+	 * @param source
+	 *            source
 	 */
 	@SuppressWarnings("unchecked")
-	protected void dropAfter(EObject targetContainer, EObject target, List<EObject> source) {
+	protected void dropAfter(EObject targetContainer, EObject target,
+			List<EObject> source) {
 
 		int targetIndex;
 		EReference theRef = getTargetRef(targetContainer, source.get(0));
@@ -106,13 +111,16 @@ public abstract class MEDropAdapter {
 	}
 
 	/**
-	 * This will be used by drop after and drop before. This returns the EReference of container of the target, matching
-	 * type of source.
+	 * This will be used by drop after and drop before. This returns the
+	 * EReference of container of the target, matching type of source.
 	 * 
-	 * @param targetContainer drop target container
-	 * @param dropee first element drag source
-	 * @return the reference within container of target, which matches source. (Have in mind that we are moving elements
-	 *         within container of target.)
+	 * @param targetContainer
+	 *            drop target container
+	 * @param dropee
+	 *            first element drag source
+	 * @return the reference within container of target, which matches source.
+	 *         (Have in mind that we are moving elements within container of
+	 *         target.)
 	 */
 	protected EReference getTargetRef(EObject targetContainer, EObject dropee) {
 
@@ -125,7 +133,7 @@ public abstract class MEDropAdapter {
 			// of drag source. We suppose that elements with different types are
 			// not allowed to be drag and dropped.
 			if (ref.getEReferenceType().equals(dropee.eClass())
-				|| ref.getEReferenceType().isSuperTypeOf(dropee.eClass())) {
+					|| ref.getEReferenceType().isSuperTypeOf(dropee.eClass())) {
 				return ref;
 			}
 		}
@@ -136,12 +144,16 @@ public abstract class MEDropAdapter {
 	/**
 	 * drop before.
 	 * 
-	 * @param targetContainer target container
-	 * @param target target
-	 * @param source source
+	 * @param targetContainer
+	 *            target container
+	 * @param target
+	 *            target
+	 * @param source
+	 *            source
 	 */
 	@SuppressWarnings("unchecked")
-	protected void dropBefore(EObject targetContainer, EObject target, List<EObject> source) {
+	protected void dropBefore(EObject targetContainer, EObject target,
+			List<EObject> source) {
 
 		int targetIndex;
 
@@ -163,8 +175,10 @@ public abstract class MEDropAdapter {
 		}
 
 		if (haveSameEContainer(target, source.get(0))) {
-			// We are just changing the order of elements inside the same container.
-			// In this case the change recording handles a move notification and creates MultiReferenceMoveOperation.
+			// We are just changing the order of elements inside the same
+			// container.
+			// In this case the change recording handles a move notification and
+			// creates MultiReferenceMoveOperation.
 			int sourceIndex = eList.indexOf(source.get(0));
 			if (sourceIndex >= 0 && sourceIndex < targetIndex) {
 				targetIndex--;
@@ -174,15 +188,18 @@ public abstract class MEDropAdapter {
 			}
 
 		} else {
-			// we are moving an element from its old container to new container and dropping before target.
+			// we are moving an element from its old container to new container
+			// and dropping before target.
 			eList.addAll(targetIndex, source);
 		}
 
 	}
 
 	/**
-	 * @param target target
-	 * @param dropee dropee
+	 * @param target
+	 *            target
+	 * @param dropee
+	 *            dropee
 	 * @return boolean
 	 */
 	protected boolean haveSameEContainer(EObject target, EObject dropee) {
@@ -191,14 +208,18 @@ public abstract class MEDropAdapter {
 	}
 
 	/**
-	 * Drop containment. Note: if we drop a model element with a bidirectional reference, we set the parent for drop
-	 * source, instead of just adding drop source to target (container). This is because of change recording.
+	 * Drop containment. Note: if we drop a model element with a bidirectional
+	 * reference, we set the parent for drop source, instead of just adding drop
+	 * source to target (container). This is because of change recording.
 	 * 
-	 * @param target target
-	 * @param source source
+	 * @param target
+	 *            target
+	 * @param source
+	 *            source
 	 */
 	@SuppressWarnings("unchecked")
-	protected void dropContainment(final EObject target, final List<EObject> source) {
+	protected void dropContainment(final EObject target,
+			final List<EObject> source) {
 
 		EReference theRef = getTargetRef(target, source.get(0));
 		if (theRef == null) {
@@ -206,7 +227,8 @@ public abstract class MEDropAdapter {
 		}
 
 		if (theRef.getEOpposite() != null) {
-			// if it is a bidirectional reference, instead of adding source to target, set target to the opposite
+			// if it is a bidirectional reference, instead of adding source to
+			// target, set target to the opposite
 			// reference.
 			EReference oppositeRef = theRef.getEOpposite();
 			for (EObject me : source) {
@@ -234,20 +256,27 @@ public abstract class MEDropAdapter {
 	}
 
 	/**
-	 * This checks if this source can be dropped on this target (taking also the drop effect into consideration). The
-	 * most general case is if the target has the appropriate containment reference for source. Also if all elements in
-	 * drop source come from the same level in tree (have the same container). These cases are handled here. Sub-Classes
-	 * can override this method, to implement their own conditions.
+	 * This checks if this source can be dropped on this target (taking also the
+	 * drop effect into consideration). The most general case is if the target
+	 * has the appropriate containment reference for source. Also if all
+	 * elements in drop source come from the same level in tree (have the same
+	 * container). These cases are handled here. Sub-Classes can override this
+	 * method, to implement their own conditions.
 	 * 
-	 * @param event drop target event
-	 * @param source source collection
-	 * @param target target model element
-	 * @param dropee first element of source
-	 * @param eventFeedback @see UCDropAdapter.eventFeedback
+	 * @param event
+	 *            drop target event
+	 * @param source
+	 *            source collection
+	 * @param target
+	 *            target model element
+	 * @param dropee
+	 *            first element of source
+	 * @param eventFeedback
+	 *            @see UCDropAdapter.eventFeedback
 	 * @return if this source can be dropped on target
 	 */
-	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<EObject> source, EObject target,
-		EObject dropee) {
+	public boolean canDrop(int eventFeedback, DropTargetEvent event,
+			List<EObject> source, EObject target, EObject dropee) {
 
 		// moved from ComposedDropAdapter
 		if (source.size() > 1) {
@@ -284,9 +313,10 @@ public abstract class MEDropAdapter {
 			return false;
 		}
 
-		if ((eventFeedback & DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER
-			|| (eventFeedback & DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE) {
-			if (!hasThisContainmentReference(target.eContainer(), dropee.eClass())) {
+		if (((eventFeedback & DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER
+				|| (eventFeedback & DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE) && target.eContainer() != null) {
+			if (!hasThisContainmentReference(target.eContainer(),
+					dropee.eClass())) {
 				return false;
 			}
 		}
@@ -295,9 +325,11 @@ public abstract class MEDropAdapter {
 	}
 
 	/**
-	 * This checks if all elements is drag source collection come from the same container (level in tree).
+	 * This checks if all elements is drag source collection come from the same
+	 * container (level in tree).
 	 * 
-	 * @param source source
+	 * @param source
+	 *            source
 	 * @return true or false
 	 */
 	protected boolean haveSameEContainer(List<EObject> source) {
@@ -311,10 +343,13 @@ public abstract class MEDropAdapter {
 	}
 
 	/**
-	 * This checks if target has appropriate containment reference for source. Sub-Classes should override this.
+	 * This checks if target has appropriate containment reference for source.
+	 * Sub-Classes should override this.
 	 * 
-	 * @param target target
-	 * @param refType refType
+	 * @param target
+	 *            target
+	 * @param refType
+	 *            refType
 	 * @return true or false
 	 */
 	protected boolean hasThisContainmentReference(EObject target, EClass refType) {
@@ -324,7 +359,8 @@ public abstract class MEDropAdapter {
 		for (EReference ref : target.eClass().getEAllContainments()) {
 
 			if (!ref.isContainer()
-				&& (ref.getEReferenceType().equals(refType) || ref.getEReferenceType().isSuperTypeOf(refType))) {
+					&& (ref.getEReferenceType().equals(refType) || ref
+							.getEReferenceType().isSuperTypeOf(refType))) {
 
 				result = true;
 				break;
@@ -347,19 +383,23 @@ public abstract class MEDropAdapter {
 	/**
 	 * Drop after or before.
 	 * 
-	 * @param targetContainer target's container
-	 * @param target target
-	 * @param source source
-	 * @param after drop after or drop before
+	 * @param targetContainer
+	 *            target's container
+	 * @param target
+	 *            target
+	 * @param source
+	 *            source
+	 * @param after
+	 *            drop after or drop before
 	 */
-	public void dropMove(final EObject targetContainer, final EObject target, final List<EObject> source,
-		final boolean after) {
+	public void dropMove(final EObject targetContainer, final EObject target,
+			final List<EObject> source, final boolean after) {
 
-		// target is the model element after/before which we drop.
-		if (!getTargetRef(targetContainer, target).equals(getTargetRef(targetContainer, source.get(0)))) {
-
-			return;
-		}
+			// target is the model element after/before which we drop.
+			if (!getTargetRef(targetContainer, target).equals(
+					getTargetRef(targetContainer, source.get(0)))) {
+				return;
+			}
 
 		if (after) {
 			dropAfter(targetContainer, target, source);
