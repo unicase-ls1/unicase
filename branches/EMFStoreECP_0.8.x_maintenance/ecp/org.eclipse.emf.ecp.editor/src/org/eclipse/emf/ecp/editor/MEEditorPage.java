@@ -75,11 +75,16 @@ public class MEEditorPage extends FormPage {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param editor the {@link MEEditor}
-	 * @param id the {@link FormPage#id}
-	 * @param title the title
-	 * @param modelElement the modelElement
-	 * @param modelElementContext the {@link ModelElementContext}
+	 * @param editor
+	 *            the {@link MEEditor}
+	 * @param id
+	 *            the {@link FormPage#id}
+	 * @param title
+	 *            the title
+	 * @param modelElement
+	 *            the modelElement
+	 * @param modelElementContext
+	 *            the {@link ModelElementContext}
 	 */
 	public MEEditorPage(MEEditor editor, String id, String title, ECPModelelementContext modelElementContext,
 		EObject modelElement) {
@@ -92,12 +97,18 @@ public class MEEditorPage extends FormPage {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param editor the {@link MEEditor}
-	 * @param id the {@link FormPage#id}
-	 * @param title the title
-	 * @param modelElement the modelElement
-	 * @param problemFeature the problemFeature
-	 * @param modelElementContext the {@link ModelElementContext}
+	 * @param editor
+	 *            the {@link MEEditor}
+	 * @param id
+	 *            the {@link FormPage#id}
+	 * @param title
+	 *            the title
+	 * @param modelElement
+	 *            the modelElement
+	 * @param problemFeature
+	 *            the problemFeature
+	 * @param modelElementContext
+	 *            the {@link ModelElementContext}
 	 */
 	public MEEditorPage(MEEditor editor, String id, String title, ECPModelelementContext modelElementContext,
 		EObject modelElement, EStructuralFeature problemFeature) {
@@ -121,23 +132,26 @@ public class MEEditorPage extends FormPage {
 		topComposite.setLayout(new GridLayout());
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(topComposite);
 
-		SashForm topSash = new SashForm(topComposite, SWT.HORIZONTAL);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(topSash);
-		toolkit.adapt(topSash, true, true);
-		topSash.setSashWidth(4);
+		sortAndOrderAttributes();
+		if (!rightColumnAttributes.isEmpty()) {
+			SashForm topSash = new SashForm(topComposite, SWT.HORIZONTAL);
+			GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(topSash);
+			toolkit.adapt(topSash, true, true);
+			topSash.setSashWidth(4);
+			leftColumnComposite = toolkit.createComposite(topSash, SWT.NONE);
+			rightColumnComposite = toolkit.createComposite(topSash, SWT.NONE);
+			GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(5, 2, 5, 5)
+				.applyTo(rightColumnComposite);
+			GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).applyTo(rightColumnComposite);
+			int[] topWeights = { 50, 50 };
+			topSash.setWeights(topWeights);
+		} else {
+			leftColumnComposite = toolkit.createComposite(topComposite, SWT.NONE);
+		}
 
-		leftColumnComposite = toolkit.createComposite(topSash, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(2, 5, 5, 5)
 			.applyTo(leftColumnComposite);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).applyTo(leftColumnComposite);
-
-		rightColumnComposite = toolkit.createComposite(topSash, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(5, 2, 5, 5)
-			.applyTo(rightColumnComposite);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).applyTo(rightColumnComposite);
-
-		int[] topWeights = { 50, 50 };
-		topSash.setWeights(topWeights);
 
 		bottomComposite = toolkit.createComposite(topComposite);
 		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(0, 0, 0, 0)
@@ -147,10 +161,11 @@ public class MEEditorPage extends FormPage {
 		form.setImage(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(modelElement));
 		// Sort and order attributes
-		sortAndOrderAttributes();
 		// Create attributes
 		createAttributes(leftColumnComposite, leftColumnAttributes);
-		createAttributes(rightColumnComposite, rightColumnAttributes);
+		if (!rightColumnAttributes.isEmpty()) {
+			createAttributes(rightColumnComposite, rightColumnAttributes);
+		}
 		createAttributes(bottomComposite, bottomAttributes);
 		createToolbar();
 		form.pack();
@@ -308,8 +323,9 @@ public class MEEditorPage extends FormPage {
 	}
 
 	/**
-	 * {@inheritDoc} This method is added to solve the focus bug of navigator. Every time that a ME is opened in editor,
-	 * navigator has to lose focus so that its action contributions are set correctly for next time.
+	 * {@inheritDoc} This method is added to solve the focus bug of navigator.
+	 * Every time that a ME is opened in editor, navigator has to lose focus so
+	 * that its action contributions are set correctly for next time.
 	 */
 	@Override
 	public void setFocus() {
