@@ -10,16 +10,9 @@
  ******************************************************************************/
 package org.eclipse.emf.ecp.common.model;
 
-import java.lang.reflect.Method;
-
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
-import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.impl.ECPCompositeWorkspace;
-import org.eclipse.emf.ecp.common.model.workSpaceModel.util.ECPWorkspaceProvider;
 import org.eclipse.emf.emfstore.common.observer.ObserverBus;
 
 /**
@@ -30,7 +23,6 @@ import org.eclipse.emf.emfstore.common.observer.ObserverBus;
 public final class ECPWorkspaceManager {
 
 	private static ECPWorkspaceManager instance;
-	private static ObserverBus observerBus;
 	private ECPCompositeWorkspace currentWorkspace;
 
 	/**
