@@ -113,11 +113,15 @@ public class CreateBBCodeFormat {
 
 		if (meeting.getName() != null
 				&& cal.getTime().before(meeting.getEndtime()))
+		{
 			BBCodeUtil.writeInBuffer
 					(out, "[size=150]Agenda of the " + meeting.getName() + " [/size]");
+		}
 		else
+		{
 			BBCodeUtil.writeInBuffer
 					 (out, "[size=150]Protocol of the " + meeting.getName() + " [/size]");
+		}
 		BBCodeUtil.newlineBuffer (out);
 		BBCodeUtil.newlineBuffer (out);
 	}
@@ -353,7 +357,7 @@ public class CreateBBCodeFormat {
 				} else {
 
 					BBCodeUtil.writeInBuffer
-							 (out, BBCodeUtil.createCellInTable(BBCodeUtil.notDefined()) + "[/tr]");
+							 (out, BBCodeUtil.createCellInTable("") + "[/tr]");
 				}
 			}
 		}
@@ -454,7 +458,7 @@ public class CreateBBCodeFormat {
 			} else {
 				BBCodeUtil.writeInBuffer
 						(out, "        "+BBCodeUtil.bold("Resolution ")+" ["
-								+ is.getSolution().getCreator() + "]: "+BBCodeUtil.bold("[color=red]<no description defined>[/color]"));
+								+ is.getSolution().getCreator() + "]: "+BBCodeUtil.bold("[color=red] [/color]"));
 			}
 		}
 		BBCodeUtil.newlineBuffer (out);
@@ -557,7 +561,7 @@ public class CreateBBCodeFormat {
 							(out, BBCodeUtil.createCellInTable("[i]" + work_items.get(l).getDescription() + "[/i]") + " [/tr]");
 				} else {
 					BBCodeUtil.writeInBuffer
-							(out, BBCodeUtil.createCellInTable(BBCodeUtil.notDefined())+"[/tr]");
+							(out, BBCodeUtil.createCellInTable("")+"[/tr]");
 				}
 			}
 

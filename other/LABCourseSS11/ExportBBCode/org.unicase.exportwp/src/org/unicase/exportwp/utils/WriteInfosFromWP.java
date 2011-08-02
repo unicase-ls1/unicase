@@ -124,7 +124,7 @@ public class WriteInfosFromWP {
 			bbCodeUtil.writeInString(bbCodeUtil.italic(workpackage
 					.getDescription()));
 		} else {
-			bbCodeUtil.writeInString(bbCodeUtil.notDefined());
+			bbCodeUtil.writeInString("");
 		}
 		bbCodeUtil.newlineString();
 	}
@@ -238,7 +238,7 @@ public class WriteInfosFromWP {
 			BBCodeUtil.writeInBuffer(out,  BBCodeUtil.italic(workpackage
 					.getDescription()));
 		} else {
-			BBCodeUtil.writeInBuffer(out,  BBCodeUtil.notDefined());
+			BBCodeUtil.writeInBuffer(out, "");
 		}
 		BBCodeUtil.newlineBuffer(out);
 	}

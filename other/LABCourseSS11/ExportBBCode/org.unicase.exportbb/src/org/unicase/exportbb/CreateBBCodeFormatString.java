@@ -329,7 +329,7 @@ public class CreateBBCodeFormatString {
 				} else {
 
 					BBCodeUtil.writeInString
-							 (BBCodeUtil.createCellInTable(BBCodeUtil.notDefined()) + "[/tr]");
+							 (BBCodeUtil.createCellInTable("") + "[/tr]");
 				}
 			}
 		}
@@ -421,7 +421,7 @@ public class CreateBBCodeFormatString {
 			BBCodeUtil.newlineString ();
 		}
 		if (is.getSolution() != null) {
-			if (is.getSolution().getDescription() != null
+			if (is.getSolution().getDescription () != null
 					&& is.getSolution().getDescription() != "") {
 				BBCodeUtil.writeInString
 						("        "+BBCodeUtil.bold("Resolution ")+" ["
@@ -430,7 +430,7 @@ public class CreateBBCodeFormatString {
 			} else {
 				BBCodeUtil.writeInString
 						("        "+BBCodeUtil.bold("Resolution ")+" ["
-								+ is.getSolution().getCreator() + "]: "+BBCodeUtil.bold("[color=red]<no description defined>[/color]"));
+								+ is.getSolution().getCreator() + "]: "+BBCodeUtil.bold("[color=red] [/color]"));
 			}
 		}
 		BBCodeUtil.newlineString ();
@@ -533,7 +533,7 @@ public class CreateBBCodeFormatString {
 							(BBCodeUtil.createCellInTable("[i]" + work_items.get(l).getDescription() + "[/i]") + " [/tr]");
 				} else {
 					BBCodeUtil.writeInString
-							(BBCodeUtil.createCellInTable(BBCodeUtil.notDefined())+"[/tr]");
+							(BBCodeUtil.createCellInTable("")+"[/tr]");
 				}
 			}
 
