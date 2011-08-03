@@ -6,6 +6,7 @@
  ******************************************************************************/
 package org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol;
 
+import org.eclipse.core.runtime.AssertionFailedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
 import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
@@ -46,10 +47,13 @@ public class MEHyperLinkAdapter extends HyperlinkAdapter implements IHyperlinkLi
 	 */
 	@Override
 	public void linkActivated(HyperlinkEvent event) {
-		ActionHelper.openModelElement(target, "org.eclipse.emf.ecp.editor");
-		ECPWorkspaceManager.getObserverBus().notify(TraceObserver.class)
+		try {
+			ActionHelper.openModelElement(target, "org.eclipse.emf.ecp.editor");
+			ECPWorkspaceManager.getObserverBus().notify(TraceObserver.class)
 			.onTrace(source, target, featureName, "org.eclipse.emf.ecp.editor");
 
-		super.linkActivated(event);
+			super.linkActivated(event);
+		} catch (AssertionFailedException e) {
+		}
 	}
 }

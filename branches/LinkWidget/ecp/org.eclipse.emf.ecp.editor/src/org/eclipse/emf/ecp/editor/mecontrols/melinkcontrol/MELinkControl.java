@@ -6,12 +6,20 @@
  ******************************************************************************/
 package org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
 import org.eclipse.emf.ecp.common.utilities.ModelElementClassTooltip;
 import org.eclipse.emf.ecp.common.utilities.ShortLabelProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -21,11 +29,13 @@ import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
@@ -39,6 +49,7 @@ import org.eclipse.ui.forms.widgets.ImageHyperlink;
  * 
  * @author helming
  * @author shterev
+ * @author stute
  */
 public class MELinkControl {
 
@@ -53,6 +64,9 @@ public class MELinkControl {
 	protected FormToolkit toolkit;
 	private org.eclipse.emf.ecp.editor.ModelElementChangeListener modelElementChangeListener;
 	private ECPModelelementContext context;
+	private IHyperlinkListener hyperlinkListener;
+	private ShortLabelProvider shortLabelProvider;
+	private int style = SWT.NONE;
 
 	public ECPModelelementContext getContext() {
 		return context;
@@ -80,7 +94,7 @@ public class MELinkControl {
 	protected Control createControl(final Composite parent, int style) {
 		linkComposite = toolkit.createComposite(parent, style);
 		linkComposite.setLayout(new GridLayout(3, false));
-
+		this.style = style;
 		createHyperlink(parent, style);
 		createDeleteAction(style);
 		return linkComposite;
@@ -140,16 +154,92 @@ public class MELinkControl {
 		imageHyperlink.setImage(image);
 		imageHyperlink.setData(link.eClass());
 		ModelElementClassTooltip.enableFor(imageHyperlink);
-		ShortLabelProvider shortLabelProvider = new ShortLabelProvider();
+		shortLabelProvider = new ShortLabelProvider();
 		hyperlink = toolkit.createHyperlink(linkComposite, (shortLabelProvider.getText(link)), style);
 		hyperlink.setToolTipText(shortLabelProvider.getText(link));
-		IHyperlinkListener listener = new MEHyperLinkAdapter(link, contextModelElement, eReference.getName());
-		hyperlink.addHyperlinkListener(listener);
-		imageHyperlink.addHyperlinkListener(listener);
+		hyperlinkListener = new MEHyperLinkAdapter(link, contextModelElement, eReference.getName());
+		
+		hyperlink.addHyperlinkListener(hyperlinkListener);
+		imageHyperlink.addHyperlinkListener(hyperlinkListener);
+		setStatus();
 	}
 
 	private void updateIcon() {
 		imageHyperlink.setImage(labelProvider.getImage(link));
+		setStatus();
+	}
+	
+	private void setStatus() {
+		if (existsInWorkspace(link)) {
+			if (!hyperlink.isDisposed()) {
+				hyperlink.setEnabled(true);
+				imageHyperlink.setEnabled(true);
+			} else {
+				hyperlink = toolkit.createHyperlink(linkComposite, (shortLabelProvider.getText(link)), style);
+				hyperlink.setToolTipText(shortLabelProvider.getText(link));
+				hyperlink.addHyperlinkListener(hyperlinkListener);
+			}
+		} else {
+			if (!hyperlink.isDisposed()) {
+				imageHyperlink.setEnabled(false);
+				hyperlink.setEnabled(false);
+				if (!hasExistingFile(link)) {
+					Composite parent = hyperlink.getParent();
+					hyperlink.removeHyperlinkListener(hyperlinkListener);
+					hyperlink.dispose();
+					Label error = new Label(parent, SWT.NONE);
+					error.setText("<Link could not be resolved>");
+				}
+			}
+		}		
+	}
+	
+	private boolean existsInWorkspace(EObject link){
+		ECPWorkspace currentWorkspace = null;
+		try {
+			currentWorkspace = ECPWorkspaceManager.getInstance().getWorkSpace();
+		} catch (NoWorkspaceException e) {
+						// TODO Auto-generated catch block
+						// Do NOT catch all Exceptions ("catch (Exception e)")
+						// Log AND handle Exceptions if possible 
+			            //
+			            // You can just uncomment one of the lines below to log an exception:
+						// logException will show the logged excpetion to the user
+						// ModelUtil.logException(e);
+						// ModelUtil.logException("YOUR MESSAGE HERE", e);
+						// logWarning will only add the message to the error log
+						// ModelUtil.logWarning("YOUR MESSAGE HERE", e);
+						// ModelUtil.logWarning("YOUR MESSAGE HERE");
+						//			
+						// If handling is not possible declare and rethrow Exception
+		}
+		if (currentWorkspace == null) {
+			return false;
+		}
+		else {
+			EList<ECPProject> projects = currentWorkspace.getProjects();
+			int i = 0;
+			while (i < projects.size()){
+				if (projects.get(i).contains(link)){
+					return true;
+				}
+				i++;
+			}
+		}
+		return false;
+	}
+
+	
+	private boolean hasExistingFile(EObject link) {
+		boolean result = false;
+		Resource resource = link.eResource();
+		if (resource != null) {
+			URI uri = resource.getURI();
+			String path = uri.toFileString();
+			File file = new File(path);
+			result = file.exists();
+		}
+		return result;
 	}
 
 	/**
@@ -172,5 +262,4 @@ public class MELinkControl {
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject link2, EObject contextModelElement2) {
 		return 0;
 	}
-
 }

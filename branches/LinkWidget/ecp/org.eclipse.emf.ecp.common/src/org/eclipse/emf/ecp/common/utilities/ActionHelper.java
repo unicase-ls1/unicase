@@ -11,6 +11,7 @@ import org.eclipse.core.commands.NotEnabledException;
 import org.eclipse.core.commands.NotHandledException;
 import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.core.expressions.IEvaluationContext;
+import org.eclipse.core.runtime.AssertionFailedException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
@@ -93,6 +94,8 @@ public final class ActionHelper {
 		// BEGIN SUPRESS CATCH EXCEPTION
 		try {
 			bestCandidate.openModelElement(me);
+		} catch (AssertionFailedException e) {
+			throw new AssertionFailedException(e.getMessage());
 		} catch (RuntimeException e) {
 			Activator.getDefault().logException(e);
 		}
