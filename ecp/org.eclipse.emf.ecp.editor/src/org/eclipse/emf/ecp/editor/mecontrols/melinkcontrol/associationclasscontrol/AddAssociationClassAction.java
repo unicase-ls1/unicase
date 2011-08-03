@@ -14,7 +14,7 @@ import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.util.AssociationClassHelper;
 import org.eclipse.emf.ecp.common.util.OverlayImageDescriptor;
-import org.eclipse.emf.ecp.editor.MESuggestedSelectionDialog;
+import org.eclipse.emf.ecp.editor.MEExtendedSuggestedSelectionDialog;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -50,8 +50,8 @@ public class AddAssociationClassAction extends Action {
 		@Override
 		protected void doRun() {
 			Collection<EObject> allElements = context.getAllModelElementsbyClass(modelElement.eClass(), false);
-			MESuggestedSelectionDialog dlg = new MESuggestedSelectionDialog("Select Elements", DIALOG_MESSAGE, true,
-				modelElement, eReference, allElements);
+			MEExtendedSuggestedSelectionDialog dlg = new MEExtendedSuggestedSelectionDialog("Select Elements", DIALOG_MESSAGE, true,
+				modelElement, eReference, context, true);
 			if (dlg.open() == Window.OK) {
 				if (eReference.isMany()) {
 					for (Object result : dlg.getResult()) {
