@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.emf.compare.match.engine">
+      <matchengine
+            engineClass="org.eclipse.emf.ecp.compare.history.unicasematchengine.UnicaseMatchEngine"
+            fileExtension="*"
+            label="Unicase Match Engine"
+            priority="highest">
+      </matchengine>
+   </extension>
+   <extension
+         point="org.eclipse.emf.emfstore.client.ui.views.historybrowsercomparator">
+      <Comparator
+            comparator="org.eclipse.emf.ecp.compare.history.handler.EMFCompareComparator"
+            name="org.eclipse.emf.ecp.compare.history.Comparator1">
+      </Comparator>
+   </extension>
+
+</plugin>
