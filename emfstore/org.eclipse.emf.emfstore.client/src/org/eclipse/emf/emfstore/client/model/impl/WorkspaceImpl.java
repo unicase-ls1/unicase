@@ -67,15 +67,23 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.events.PluginStartEvent;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Workspace</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Workspace</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl#getProjectSpaces <em>Project Spaces</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl#getServerInfos <em>Server Infos</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl#getUsersessions <em>Usersessions</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl#getActiveProjectSpace <em>Active Project Space
- * </em>}</li>
+ * <li>
+ * {@link org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl#getProjectSpaces
+ * <em>Project Spaces</em>}</li>
+ * <li>
+ * {@link org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl#getServerInfos
+ * <em>Server Infos</em>}</li>
+ * <li>
+ * {@link org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl#getUsersessions
+ * <em>Usersessions</em>}</li>
+ * <li>
+ * {@link org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl#getActiveProjectSpace
+ * <em>Active Project Space </em>}</li>
  * </ul>
  * </p>
  * 
@@ -89,8 +97,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	private ResourceSet workspaceResourceSet;
 
 	/**
-	 * The cached value of the '{@link #getProjectSpaces() <em>Project Spaces</em>}' containment reference list.
-	 * <!-- begin-user-doc
+	 * The cached value of the '{@link #getProjectSpaces()
+	 * <em>Project Spaces</em>}' containment reference list. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @see #getProjectSpaces()
@@ -100,8 +108,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	protected EList<ProjectSpace> projectSpaces;
 
 	/**
-	 * The cached value of the '{@link #getServerInfos() <em>Server Infos</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getServerInfos() <em>Server Infos</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getServerInfos()
 	 * @generated
@@ -110,8 +118,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	protected EList<ServerInfo> serverInfos;
 
 	/**
-	 * The cached value of the '{@link #getUsersessions() <em>Usersessions</em>} ' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc
+	 * The cached value of the '{@link #getUsersessions() <em>Usersessions</em>}
+	 * ' containment reference list. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @see #getUsersessions()
@@ -121,8 +129,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	protected EList<Usersession> usersessions;
 
 	/**
-	 * The cached value of the '{@link #getActiveProjectSpace() <em>Active Project Space</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getActiveProjectSpace()
+	 * <em>Active Project Space</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getActiveProjectSpace()
@@ -169,8 +177,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public EList<ProjectSpace> getProjectSpaces() {
 		if (projectSpaces == null) {
-			projectSpaces = new EObjectContainmentEList.Resolving<ProjectSpace>(ProjectSpace.class, this,
-				ModelPackage.WORKSPACE__PROJECT_SPACES);
+			projectSpaces = new EObjectContainmentEList.Resolving<ProjectSpace>(
+					ProjectSpace.class, this,
+					ModelPackage.WORKSPACE__PROJECT_SPACES);
 		}
 		return projectSpaces;
 	}
@@ -182,8 +191,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public EList<ServerInfo> getServerInfos() {
 		if (serverInfos == null) {
-			serverInfos = new EObjectContainmentEList.Resolving<ServerInfo>(ServerInfo.class, this,
-				ModelPackage.WORKSPACE__SERVER_INFOS);
+			serverInfos = new EObjectContainmentEList.Resolving<ServerInfo>(
+					ServerInfo.class, this,
+					ModelPackage.WORKSPACE__SERVER_INFOS);
 		}
 		return serverInfos;
 	}
@@ -195,8 +205,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public EList<Usersession> getUsersessions() {
 		if (usersessions == null) {
-			usersessions = new EObjectContainmentEList.Resolving<Usersession>(Usersession.class, this,
-				ModelPackage.WORKSPACE__USERSESSIONS);
+			usersessions = new EObjectContainmentEList.Resolving<Usersession>(
+					Usersession.class, this,
+					ModelPackage.WORKSPACE__USERSESSIONS);
 		}
 		return usersessions;
 	}
@@ -213,7 +224,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			if (activeProjectSpace != oldActiveProjectSpace) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE, oldActiveProjectSpace, activeProjectSpace));
+							ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE,
+							oldActiveProjectSpace, activeProjectSpace));
 			}
 		}
 		return activeProjectSpace;
@@ -237,13 +249,16 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		ProjectSpace oldActiveProjectSpace = activeProjectSpace;
 		activeProjectSpace = newActiveProjectSpace;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE,
-				oldActiveProjectSpace, activeProjectSpace));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE,
+					oldActiveProjectSpace, activeProjectSpace));
 	}
 
-	public ProjectSpace checkout(final Usersession usersession, final ProjectInfo projectInfo) throws EmfStoreException {
-		PrimaryVersionSpec targetSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(),
-			projectInfo.getProjectId(), VersionSpec.HEAD_VERSION);
+	public ProjectSpace checkout(final Usersession usersession,
+			final ProjectInfo projectInfo) throws EmfStoreException {
+		PrimaryVersionSpec targetSpec = this.connectionManager
+				.resolveVersionSpec(usersession.getSessionId(),
+						projectInfo.getProjectId(), VersionSpec.HEAD_VERSION);
 		return checkout(usersession, projectInfo, targetSpec);
 	}
 
@@ -252,8 +267,27 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * 
 	 * @generated NOT
 	 */
-	public ProjectSpace checkout(final Usersession usersession, final ProjectInfo projectInfo,
-		PrimaryVersionSpec targetSpec) throws EmfStoreException {
+	public ProjectSpace checkout(final Usersession usersession,
+			final ProjectInfo projectInfo, PrimaryVersionSpec targetSpec)
+			throws EmfStoreException {
+
+		ProjectSpace projectSpace = getRevision(usersession, projectInfo,
+				targetSpec);
+
+		addProjectSpace(projectSpace);
+		this.save();
+
+		return projectSpace;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 */
+	public ProjectSpace getRevision(Usersession usersession,
+			ProjectInfo projectInfo, PrimaryVersionSpec targetSpec)
+			throws EmfStoreException {
 
 		// MK: hack: set head version manually because esbrowser does not update
 		// revisions properly
@@ -261,14 +295,16 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		projectInfoCopy.setVersion(targetSpec);
 
 		// get Project from server
-		Project project = this.connectionManager.getProject(usersession.getSessionId(), projectInfo.getProjectId(),
-			projectInfoCopy.getVersion());
+		Project project = this.connectionManager.getProject(
+				usersession.getSessionId(), projectInfo.getProjectId(),
+				projectInfoCopy.getVersion());
 
 		if (project == null) {
 			throw new EmfStoreException("Server returned a null project!");
 		}
 
-		final PrimaryVersionSpec primaryVersionSpec = projectInfoCopy.getVersion();
+		final PrimaryVersionSpec primaryVersionSpec = projectInfoCopy
+				.getVersion();
 
 		ProjectSpace projectSpace = ModelFactory.eINSTANCE.createProjectSpace();
 
@@ -282,29 +318,36 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		usersession.addLoginObserver((ProjectSpaceImpl) projectSpace);
 		projectSpace.setProject(project);
 		projectSpace.setResourceCount(0);
-		projectSpace.setLocalOperations(ModelFactory.eINSTANCE.createOperationComposite());
+		projectSpace.setLocalOperations(ModelFactory.eINSTANCE
+				.createOperationComposite());
 
 		projectSpace.initResources(this.workspaceResourceSet);
 
 		// getRecentChanges and generate notifications
 		try {
-			DateVersionSpec dateVersionSpec = VersioningFactory.eINSTANCE.createDateVersionSpec();
+			DateVersionSpec dateVersionSpec = VersioningFactory.eINSTANCE
+					.createDateVersionSpec();
 			Calendar calendar = Calendar.getInstance();
 			calendar.add(Calendar.DAY_OF_YEAR, -10);
 			dateVersionSpec.setDate(calendar.getTime());
 			PrimaryVersionSpec sourceSpec;
 			try {
-				sourceSpec = this.connectionManager.resolveVersionSpec(usersession.getSessionId(),
-					projectSpace.getProjectId(), dateVersionSpec);
+				sourceSpec = this.connectionManager.resolveVersionSpec(
+						usersession.getSessionId(),
+						projectSpace.getProjectId(), dateVersionSpec);
 			} catch (InvalidVersionSpecException e) {
-				sourceSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+				sourceSpec = VersioningFactory.eINSTANCE
+						.createPrimaryVersionSpec();
 				sourceSpec.setIdentifier(0);
 			}
-			List<ChangePackage> changes = connectionManager.getChanges(usersession.getSessionId(),
-				projectSpace.getProjectId(), sourceSpec, targetSpec);
-			List<ESNotification> newNotifications = NotificationGenerator.getInstance(projectSpace)
-				.generateNotifications(changes, usersession.getUsername());
-			projectSpace.getNotificationsFromComposite().addAll(newNotifications);
+			List<ChangePackage> changes = connectionManager.getChanges(
+					usersession.getSessionId(), projectSpace.getProjectId(),
+					sourceSpec, targetSpec);
+			List<ESNotification> newNotifications = NotificationGenerator
+					.getInstance(projectSpace).generateNotifications(changes,
+							usersession.getUsername());
+			projectSpace.getNotificationsFromComposite().addAll(
+					newNotifications);
 			projectSpace.eResource().save(null);
 		} catch (EmfStoreException e) {
 			projectSpace.getNotificationsFromComposite().clear();
@@ -319,10 +362,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			WorkspaceUtil.logWarning("Creating notifications failed!", e);
 		}
 
-		addProjectSpace(projectSpace);
-		this.save();
-
 		return projectSpace;
+
 	}
 
 	/**
@@ -347,14 +388,18 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.WORKSPACE__PROJECT_SPACES:
-			return ((InternalEList<?>) getProjectSpaces()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getProjectSpaces()).basicRemove(
+					otherEnd, msgs);
 		case ModelPackage.WORKSPACE__SERVER_INFOS:
-			return ((InternalEList<?>) getServerInfos()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getServerInfos()).basicRemove(otherEnd,
+					msgs);
 		case ModelPackage.WORKSPACE__USERSESSIONS:
-			return ((InternalEList<?>) getUsersessions()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getUsersessions()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -392,15 +437,18 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		switch (featureID) {
 		case ModelPackage.WORKSPACE__PROJECT_SPACES:
 			getProjectSpaces().clear();
-			getProjectSpaces().addAll((Collection<? extends ProjectSpace>) newValue);
+			getProjectSpaces().addAll(
+					(Collection<? extends ProjectSpace>) newValue);
 			return;
 		case ModelPackage.WORKSPACE__SERVER_INFOS:
 			getServerInfos().clear();
-			getServerInfos().addAll((Collection<? extends ServerInfo>) newValue);
+			getServerInfos()
+					.addAll((Collection<? extends ServerInfo>) newValue);
 			return;
 		case ModelPackage.WORKSPACE__USERSESSIONS:
 			getUsersessions().clear();
-			getUsersessions().addAll((Collection<? extends Usersession>) newValue);
+			getUsersessions().addAll(
+					(Collection<? extends Usersession>) newValue);
 			return;
 		case ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE:
 			setActiveProjectSpace((ProjectSpace) newValue);
@@ -483,9 +531,11 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		// initialize all projectSpaces
 		for (ProjectSpace projectSpace : getProjectSpaces()) {
 			projectSpace.init();
-			projectToProjectSpaceMap.put(projectSpace.getProject(), projectSpace);
+			projectToProjectSpaceMap.put(projectSpace.getProject(),
+					projectSpace);
 			// add plugin start event
-			PluginStartEvent event = EventsFactory.eINSTANCE.createPluginStartEvent();
+			PluginStartEvent event = EventsFactory.eINSTANCE
+					.createPluginStartEvent();
 			event.setPluginId("org.eclipse.emf.emfstore.client");
 			event.setTimestamp(new Date());
 			projectSpace.addEvent(event);
@@ -507,21 +557,27 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * 
 	 * @see org.eclipse.emf.emfstore.client.model.Workspace#importProject(java.lang.String)
 	 */
-	public ProjectSpace importProject(String absoluteFileName) throws IOException {
-		Project project = ResourceHelper.getElementFromResource(absoluteFileName, Project.class, 0);
-		return importProject(project, absoluteFileName.substring(absoluteFileName.lastIndexOf(File.separatorChar) + 1),
-			"Imported from " + absoluteFileName);
+	public ProjectSpace importProject(String absoluteFileName)
+			throws IOException {
+		Project project = ResourceHelper.getElementFromResource(
+				absoluteFileName, Project.class, 0);
+		return importProject(project,
+				absoluteFileName.substring(absoluteFileName
+						.lastIndexOf(File.separatorChar) + 1), "Imported from "
+						+ absoluteFileName);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public ProjectSpace importProject(Project project, String name, String description) {
+	public ProjectSpace importProject(Project project, String name,
+			String description) {
 		ProjectSpace projectSpace = ModelFactory.eINSTANCE.createProjectSpace();
 		projectSpace.setProject(project);
 		projectSpace.setProjectName(name);
 		projectSpace.setProjectDescription(description);
-		projectSpace.setLocalOperations(ModelFactory.eINSTANCE.createOperationComposite());
+		projectSpace.setLocalOperations(ModelFactory.eINSTANCE
+				.createOperationComposite());
 
 		projectSpace.initResources(this.workspaceResourceSet);
 
@@ -536,9 +592,11 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * 
 	 * @see org.eclipse.emf.emfstore.client.model.Workspace#importProjectSpace(java.lang.String)
 	 */
-	public ProjectSpace importProjectSpace(String absoluteFileName) throws IOException {
+	public ProjectSpace importProjectSpace(String absoluteFileName)
+			throws IOException {
 
-		ProjectSpace projectSpace = ResourceHelper.getElementFromResource(absoluteFileName, ProjectSpace.class, 0);
+		ProjectSpace projectSpace = ResourceHelper.getElementFromResource(
+				absoluteFileName, ProjectSpace.class, 0);
 
 		projectSpace.initResources(this.workspaceResourceSet);
 
@@ -588,8 +646,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		Project clonedProject = ModelUtil.clone(projectSpace.getProject());
 		copiedProjectSpace.setProject(clonedProject);
 
-		ResourceHelper.putElementIntoNewResourceWithProject(absoluteFileName, copiedProjectSpace,
-			copiedProjectSpace.getProject());
+		ResourceHelper.putElementIntoNewResourceWithProject(absoluteFileName,
+				copiedProjectSpace, copiedProjectSpace.getProject());
 	}
 
 	/**
@@ -599,13 +657,15 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public void exportWorkSpace(String absoluteFileName) throws IOException {
 
-		Workspace copy = ModelUtil.clone(WorkspaceManager.getInstance().getCurrentWorkspace());
+		Workspace copy = ModelUtil.clone(WorkspaceManager.getInstance()
+				.getCurrentWorkspace());
 
 		int i = 0;
 
 		for (ProjectSpace copiedProjectSpace : copy.getProjectSpaces()) {
-			Project orgProject = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces().get(i++)
-				.getProject();
+			Project orgProject = WorkspaceManager.getInstance()
+					.getCurrentWorkspace().getProjectSpaces().get(i++)
+					.getProject();
 			copiedProjectSpace.setProject(ModelUtil.clone(orgProject));
 		}
 
@@ -629,10 +689,12 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * 
 	 * @see org.eclipse.emf.emfstore.client.model.Workspace#resolve(org.eclipse.emf.emfstore.server.model.url.ProjectUrlFragment)
 	 */
-	public Set<ProjectSpace> resolve(ProjectUrlFragment projectUrlFragment) throws ProjectUrlResolutionException {
+	public Set<ProjectSpace> resolve(ProjectUrlFragment projectUrlFragment)
+			throws ProjectUrlResolutionException {
 		Set<ProjectSpace> result = new HashSet<ProjectSpace>();
 		for (ProjectSpace projectSpace : getProjectSpaces()) {
-			if (projectSpace.getProjectId().equals(projectUrlFragment.getProjectId())) {
+			if (projectSpace.getProjectId().equals(
+					projectUrlFragment.getProjectId())) {
 				result.add(projectSpace);
 			}
 		}
@@ -647,10 +709,12 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * 
 	 * @see org.eclipse.emf.emfstore.client.model.Workspace#resolve(org.eclipse.emf.emfstore.server.model.url.ServerUrl)
 	 */
-	public Set<ServerInfo> resolve(ServerUrl serverUrl) throws ServerUrlResolutionException {
+	public Set<ServerInfo> resolve(ServerUrl serverUrl)
+			throws ServerUrlResolutionException {
 		Set<ServerInfo> result = new HashSet<ServerInfo>();
 		for (ServerInfo serverInfo : getServerInfos()) {
-			boolean matchingHostname = serverInfo.getUrl().equals(serverUrl.getHostName());
+			boolean matchingHostname = serverInfo.getUrl().equals(
+					serverUrl.getHostName());
 			boolean matchingPort = serverInfo.getPort() == serverUrl.getPort();
 			if (matchingHostname && matchingPort) {
 				result.add(serverInfo);
@@ -667,7 +731,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * 
 	 * @see org.eclipse.emf.emfstore.client.model.Workspace#getProjectSpace(org.eclipse.emf.emfstore.common.model.Project)
 	 */
-	public ProjectSpace getProjectSpace(Project project) throws UnkownProjectException {
+	public ProjectSpace getProjectSpace(Project project)
+			throws UnkownProjectException {
 		ProjectSpace projectSpace = projectToProjectSpaceMap.get(project);
 		if (projectSpace == null) {
 			throw new UnkownProjectException();
@@ -680,7 +745,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * 
 	 * @see org.eclipse.emf.emfstore.client.model.Workspace#deleteProjectSpace(org.eclipse.emf.emfstore.client.model.ProjectSpace)
 	 */
-	public void deleteProjectSpace(ProjectSpace projectSpace) throws IOException {
+	public void deleteProjectSpace(ProjectSpace projectSpace)
+			throws IOException {
 
 		// delete project to notify listeners
 		projectSpace.getProject().delete();
@@ -693,10 +759,13 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		projectToProjectSpaceMap.remove(projectSpace.getProject());
 
 		// delete folder of projectSPace
-		String pathToProject = Configuration.getWorkspaceDirectory() + "ps-" + projectSpace.getIdentifier();
+		String pathToProject = Configuration.getWorkspaceDirectory() + "ps-"
+				+ projectSpace.getIdentifier();
 		FileUtil.deleteFolder(new File(pathToProject));
 
-		WorkspaceManager.getObserverBus().notify(DeleteProjectSpaceObserver.class).projectDeleted(projectSpace);
+		WorkspaceManager.getObserverBus()
+				.notify(DeleteProjectSpaceObserver.class)
+				.projectDeleted(projectSpace);
 	}
 
 	/**
@@ -704,13 +773,17 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * 
 	 * @generated NOT
 	 */
-	public ProjectSpace createLocalProject(String projectName, String projectDescription) {
+	public ProjectSpace createLocalProject(String projectName,
+			String projectDescription) {
 
 		ProjectSpace projectSpace = ModelFactory.eINSTANCE.createProjectSpace();
-		projectSpace.setProject(org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createProject());
+		projectSpace
+				.setProject(org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE
+						.createProject());
 		projectSpace.setProjectName(projectName);
 		projectSpace.setProjectDescription(projectDescription);
-		projectSpace.setLocalOperations(ModelFactory.eINSTANCE.createOperationComposite());
+		projectSpace.setLocalOperations(ModelFactory.eINSTANCE
+				.createOperationComposite());
 
 		projectSpace.initResources(this.getWorkspaceResourceSet());
 
