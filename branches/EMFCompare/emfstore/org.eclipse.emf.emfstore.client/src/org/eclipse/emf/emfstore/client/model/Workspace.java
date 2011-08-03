@@ -30,18 +30,26 @@ import org.eclipse.emf.emfstore.server.model.url.ServerUrl;
 import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Workspace</b></em>'.
+ * <!-- begin-user-doc --> A representation of the model object '
+ * <em><b>Workspace</b></em>'.
  * 
  * @implements IAdaptable <!-- end-user-doc -->
  * 
  *             <p>
  *             The following features are supported:
  *             <ul>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.Workspace#getProjectSpaces <em>Project Spaces</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.Workspace#getServerInfos <em>Server Infos</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.Workspace#getUsersessions <em>Usersessions</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.Workspace#getActiveProjectSpace <em>Active Project Space
- *             </em>}</li>
+ *             <li>
+ *             {@link org.eclipse.emf.emfstore.client.model.Workspace#getProjectSpaces
+ *             <em>Project Spaces</em>}</li>
+ *             <li>
+ *             {@link org.eclipse.emf.emfstore.client.model.Workspace#getServerInfos
+ *             <em>Server Infos</em>}</li>
+ *             <li>
+ *             {@link org.eclipse.emf.emfstore.client.model.Workspace#getUsersessions
+ *             <em>Usersessions</em>}</li>
+ *             <li>
+ *             {@link org.eclipse.emf.emfstore.client.model.Workspace#getActiveProjectSpace
+ *             <em>Active Project Space </em>}</li>
  *             </ul>
  *             </p>
  * 
@@ -51,16 +59,18 @@ import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
  */
 public interface Workspace extends EObject, IAdaptable {
 	/**
-	 * Returns the value of the '<em><b>Project Spaces</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.emfstore.client.model.ProjectSpace}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project Spaces</b></em>' containment
+	 * reference list. The list contents are of type
+	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace}. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Project Spaces</em>' reference list isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Project Spaces</em>' reference list isn't
+	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Project Spaces</em>' containment reference list.
+	 * @return the value of the '<em>Project Spaces</em>' containment reference
+	 *         list.
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getWorkspace_ProjectSpaces()
 	 * @model containment="true" resolveProxies="true" keys="identifier"
 	 * @generated
@@ -68,16 +78,18 @@ public interface Workspace extends EObject, IAdaptable {
 	EList<ProjectSpace> getProjectSpaces();
 
 	/**
-	 * Returns the value of the '<em><b>Server Infos</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.emfstore.client.model.ServerInfo}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Server Infos</b></em>' containment
+	 * reference list. The list contents are of type
+	 * {@link org.eclipse.emf.emfstore.client.model.ServerInfo}. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Server Infos</em>' containment reference list isn't clear, there really should be more
-	 * of a description here...
+	 * If the meaning of the '<em>Server Infos</em>' containment reference list
+	 * isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Server Infos</em>' containment reference list.
+	 * @return the value of the '<em>Server Infos</em>' containment reference
+	 *         list.
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getWorkspace_ServerInfos()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
@@ -85,16 +97,18 @@ public interface Workspace extends EObject, IAdaptable {
 	EList<ServerInfo> getServerInfos();
 
 	/**
-	 * Returns the value of the '<em><b>Usersessions</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.emfstore.client.model.Usersession}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Usersessions</b></em>' containment
+	 * reference list. The list contents are of type
+	 * {@link org.eclipse.emf.emfstore.client.model.Usersession}. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Usersessions</em>' containment reference list isn't clear, there really should be more
-	 * of a description here...
+	 * If the meaning of the '<em>Usersessions</em>' containment reference list
+	 * isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Usersessions</em>' containment reference list.
+	 * @return the value of the '<em>Usersessions</em>' containment reference
+	 *         list.
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getWorkspace_Usersessions()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
@@ -102,11 +116,11 @@ public interface Workspace extends EObject, IAdaptable {
 	EList<Usersession> getUsersessions();
 
 	/**
-	 * Returns the value of the '<em><b>Active Project Space</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Active Project Space</b></em>'
+	 * reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Active Project Space</em>' reference isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Active Project Space</em>' reference isn't
+	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -119,11 +133,14 @@ public interface Workspace extends EObject, IAdaptable {
 	ProjectSpace getActiveProjectSpace();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Workspace#getActiveProjectSpace
-	 * <em>Active Project Space</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.client.model.Workspace#getActiveProjectSpace
+	 * <em>Active Project Space</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
-	 * @param value the new value of the '<em>Active Project Space</em>' reference.
+	 * @param value
+	 *            the new value of the '<em>Active Project Space</em>'
+	 *            reference.
 	 * @see #getActiveProjectSpace()
 	 * @generated
 	 */
@@ -132,19 +149,24 @@ public interface Workspace extends EObject, IAdaptable {
 	/**
 	 * Checkout a project to the workspace in the current head revision.
 	 * 
-	 * @param usersession the usersession
-	 * @param projectInfo the project info describing the project and version
-	 * @throws EmfStoreException if checkout fails
+	 * @param usersession
+	 *            the usersession
+	 * @param projectInfo
+	 *            the project info describing the project and version
+	 * @throws EmfStoreException
+	 *             if checkout fails
 	 * @return the project space containing the project
 	 * @model
 	 * @generated NOT
 	 */
-	ProjectSpace checkout(Usersession usersession, ProjectInfo projectInfo) throws EmfStoreException;
+	ProjectSpace checkout(Usersession usersession, ProjectInfo projectInfo)
+			throws EmfStoreException;
 
 	/**
 	 * Set the workspace connection manager.
 	 * 
-	 * @param connectionManager the connection manager
+	 * @param connectionManager
+	 *            the connection manager
 	 * @generated NOT
 	 */
 	void setConnectionManager(ConnectionManager connectionManager);
@@ -152,7 +174,8 @@ public interface Workspace extends EObject, IAdaptable {
 	/**
 	 * Set the workspace resource set.
 	 * 
-	 * @param resourceSet the resource set
+	 * @param resourceSet
+	 *            the resource set
 	 * @generated NOT
 	 */
 	void setWorkspaceResourceSet(ResourceSet resourceSet);
@@ -175,18 +198,23 @@ public interface Workspace extends EObject, IAdaptable {
 	/**
 	 * Import a project from file.
 	 * 
-	 * @param absoluteFileName the file name to import from
+	 * @param absoluteFileName
+	 *            the file name to import from
 	 * @return a project space containing the imported project
-	 * @throws IOException if file access fails
+	 * @throws IOException
+	 *             if file access fails
 	 */
 	ProjectSpace importProject(String absoluteFileName) throws IOException;
 
 	/**
 	 * Imports a project into a projectSpace.
 	 * 
-	 * @param project project
-	 * @param name name
-	 * @param description description
+	 * @param project
+	 *            project
+	 * @param name
+	 *            name
+	 * @param description
+	 *            description
 	 * @return projectspace
 	 */
 	ProjectSpace importProject(Project project, String name, String description);
@@ -194,35 +222,47 @@ public interface Workspace extends EObject, IAdaptable {
 	/**
 	 * Export a project to a file.
 	 * 
-	 * @param projectSpace the projectSpace containing the project
-	 * @param absoluteFileName the file name
-	 * @throws IOException if file access fails
+	 * @param projectSpace
+	 *            the projectSpace containing the project
+	 * @param absoluteFileName
+	 *            the file name
+	 * @throws IOException
+	 *             if file access fails
 	 */
-	void exportProject(ProjectSpace projectSpace, String absoluteFileName) throws IOException;
+	void exportProject(ProjectSpace projectSpace, String absoluteFileName)
+			throws IOException;
 
 	/**
 	 * Export a project space to a file.
 	 * 
-	 * @param projectSpace the project space
-	 * @param absoluteFileName the file name
-	 * @throws IOException if file access fails
+	 * @param projectSpace
+	 *            the project space
+	 * @param absoluteFileName
+	 *            the file name
+	 * @throws IOException
+	 *             if file access fails
 	 */
-	void exportProjectSpace(ProjectSpace projectSpace, String absoluteFileName) throws IOException;
+	void exportProjectSpace(ProjectSpace projectSpace, String absoluteFileName)
+			throws IOException;
 
 	/**
 	 * Export the current workspace to a file.
 	 * 
-	 * @param absoluteFileName the file name
-	 * @throws IOException if file access fails
+	 * @param absoluteFileName
+	 *            the file name
+	 * @throws IOException
+	 *             if file access fails
 	 */
 	void exportWorkSpace(String absoluteFileName) throws IOException;
 
 	/**
 	 * Import a project space from file.
 	 * 
-	 * @param absoluteFileName the file name to import from
+	 * @param absoluteFileName
+	 *            the file name to import from
 	 * @return the project space
-	 * @throws IOException if file access fails
+	 * @throws IOException
+	 *             if file access fails
 	 */
 	ProjectSpace importProjectSpace(String absoluteFileName) throws IOException;
 
@@ -232,62 +272,99 @@ public interface Workspace extends EObject, IAdaptable {
 	void save();
 
 	/**
-	 * Resolves a project url fragment to the project space the project is in. Since a project may have been checked out
-	 * multiple times, a set of project spaces is returned.
+	 * Resolves a project url fragment to the project space the project is in.
+	 * Since a project may have been checked out multiple times, a set of
+	 * project spaces is returned.
 	 * 
-	 * @param projectUrlFragment the project url fragment to resolve
+	 * @param projectUrlFragment
+	 *            the project url fragment to resolve
 	 * @return a set of matching project spaces
-	 * @throws ProjectUrlResolutionException if project cannot be found in workspace
+	 * @throws ProjectUrlResolutionException
+	 *             if project cannot be found in workspace
 	 */
-	Set<ProjectSpace> resolve(ProjectUrlFragment projectUrlFragment) throws ProjectUrlResolutionException;
+	Set<ProjectSpace> resolve(ProjectUrlFragment projectUrlFragment)
+			throws ProjectUrlResolutionException;
 
 	/**
-	 * Resolves a server url to a set server infos if multiple serverInfos match the url.
+	 * Resolves a server url to a set server infos if multiple serverInfos match
+	 * the url.
 	 * 
-	 * @param serverUrl the server url
+	 * @param serverUrl
+	 *            the server url
 	 * @return the server info
-	 * @throws ServerUrlResolutionException if no matching server info can be found
+	 * @throws ServerUrlResolutionException
+	 *             if no matching server info can be found
 	 */
-	Set<ServerInfo> resolve(ServerUrl serverUrl) throws ServerUrlResolutionException;
+	Set<ServerInfo> resolve(ServerUrl serverUrl)
+			throws ServerUrlResolutionException;
 
 	/**
 	 * Checkout a project to the workspace in a given version.
 	 * 
-	 * @param usersession the usersession
-	 * @param projectInfo the project info describing the project and version
-	 * @param targetSpec the target version
-	 * @throws EmfStoreException if checkout fails
+	 * @param usersession
+	 *            the usersession
+	 * @param projectInfo
+	 *            the project info describing the project and version
+	 * @param targetSpec
+	 *            the target version
+	 * @throws EmfStoreException
+	 *             if checkout fails
 	 * @return the project space containing the project
 	 * @model
 	 * @generated NOT
 	 */
-	ProjectSpace checkout(Usersession usersession, ProjectInfo projectInfo, PrimaryVersionSpec targetSpec)
-		throws EmfStoreException;
+	ProjectSpace checkout(Usersession usersession, ProjectInfo projectInfo,
+			PrimaryVersionSpec targetSpec) throws EmfStoreException;
+
+	/**
+	 * Get a project in a given version.
+	 * 
+	 * @param usersession
+	 *            the usersession
+	 * @param projectInfo
+	 *            the project info describing the project and version
+	 * @param targetSpec
+	 *            the target version
+	 * @throws EmfStoreException
+	 *             if retrieving revision fails
+	 * @return the project space containing the project
+	 * @model
+	 * @generated NOT
+	 */
+	ProjectSpace getRevision(Usersession usersession, ProjectInfo projectInfo,
+			PrimaryVersionSpec targetSpec) throws EmfStoreException;
 
 	/**
 	 * Get the project space for the given project.
 	 * 
-	 * @param project the project
+	 * @param project
+	 *            the project
 	 * @return the project space the project is stored in
-	 * @throws UnkownProjectException if the project is not known to the workspace
+	 * @throws UnkownProjectException
+	 *             if the project is not known to the workspace
 	 */
 	ProjectSpace getProjectSpace(Project project) throws UnkownProjectException;
 
 	/**
 	 * Delete the given project space.
 	 * 
-	 * @param projectSpace the project space
-	 * @throws IOException if deleting the obsolete project space files fails
+	 * @param projectSpace
+	 *            the project space
+	 * @throws IOException
+	 *             if deleting the obsolete project space files fails
 	 */
 	void deleteProjectSpace(ProjectSpace projectSpace) throws IOException;
 
 	/**
 	 * Creates a new local project that is not shared with the server yet.
 	 * 
-	 * @param projectName the project name
-	 * @param projectDescription the project description
+	 * @param projectName
+	 *            the project name
+	 * @param projectDescription
+	 *            the project description
 	 * @return the project space that the new project resides in
 	 */
-	ProjectSpace createLocalProject(String projectName, String projectDescription);
+	ProjectSpace createLocalProject(String projectName,
+			String projectDescription);
 
 } // Workspace
