@@ -179,7 +179,7 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 					// OW: why do we need to save here, can we remove? do test!!
 					save(previousHeadVersion);
 					save(projectHistory);
-					throw new StorageException(StorageException.NOSAVE);
+					throw new StorageException(StorageException.NOSAVE, e);
 				}
 
 				// delete projectstate from last revision depending on persistence
