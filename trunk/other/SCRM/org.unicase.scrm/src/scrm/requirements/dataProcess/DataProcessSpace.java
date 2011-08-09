@@ -44,7 +44,7 @@ public interface DataProcessSpace extends SCRMSpace,
 	 * @see scrm.requirements.dataProcess.Process#getContainingDataProcessSpace
 	 * @model opposite="containingDataProcessSpace" containment="true" resolveProxies="true"
 	 *        annotation="org.unicase.ui.meeditor position='right' priority='5'"
-	 * @generated NOT
+	 * @generated NOT: changed type parameter
 	 */
 	EList<SCRMModelElement> getContainedDataProcessSteps();
 

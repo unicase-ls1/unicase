@@ -62,7 +62,7 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getContainedScientificKnowledge()
-	 * @generated NOT
+	 * @generated NOT: custom type
 	 * @ordered
 	 */
 	protected SCRMSpaceContainedModelElementsList<SCRMModelElement> containedScientificKnowledge;
@@ -210,7 +210,7 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated NOT: update diagram in containment list
 	 */
 	public void setRepresentingDiagram(SCRMDiagram newRepresentingDiagram) {
 		if (newRepresentingDiagram != representingDiagram) {
@@ -236,7 +236,7 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated NOT: implemented abstract operation
 	 */
 	public EList<SCRMModelElement> getContainedModelElements() {
 		return getContainedScientificKnowledge();
@@ -245,7 +245,7 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated NOT: custom type
 	 */
 	public SCRMSpaceContainedModelElementsList<SCRMModelElement> getContainedScientificKnowledge() {
 		if (containedScientificKnowledge == null) {

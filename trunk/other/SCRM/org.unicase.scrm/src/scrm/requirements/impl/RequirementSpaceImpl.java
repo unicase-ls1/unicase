@@ -63,7 +63,7 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getContainedInformationofRequirements()
-	 * @generated NOT
+	 * @generated NOT: custom type
 	 * @ordered
 	 */
 	protected SCRMSpaceContainedModelElementsList<SCRMModelElement> containedInformationofRequirements;
@@ -161,7 +161,7 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated NOT: custom type
 	 */
 	public SCRMSpaceContainedModelElementsList<SCRMModelElement> getContainedInformationofRequirements() {
 		if (containedInformationofRequirements == null) {
@@ -232,7 +232,7 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated NOT: update diagram in containment list
 	 */
 	public void setRepresentingDiagram(SCRMDiagram newRepresentingDiagram) {
 		if (newRepresentingDiagram != representingDiagram) {
@@ -260,7 +260,7 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated NOT: implemented abstract operation
 	 */
 	public EList<SCRMModelElement> getContainedModelElements() {
 		return getContainedInformationofRequirements();

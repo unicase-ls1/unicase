@@ -141,7 +141,7 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getContainedDataProcessSteps()
-	 * @generated NOT
+	 * @generated NOT: custom type
 	 * @ordered
 	 */
 	protected SCRMSpaceContainedModelElementsList<SCRMModelElement> containedDataProcessSteps;
@@ -168,7 +168,7 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated NOT: custom type
 	 */
 	public SCRMSpaceContainedModelElementsList<SCRMModelElement> getContainedDataProcessSteps() {
 		if (containedDataProcessSteps == null) {
@@ -238,7 +238,7 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated NOT: update diagram in containment list
 	 */
 	public void setRepresentingDiagram(SCRMDiagram newRepresentingDiagram) {
 		if (newRepresentingDiagram != representingDiagram) {
@@ -266,7 +266,7 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated NOT: implemented abstract operation
 	 */
 	public EList<SCRMModelElement> getContainedModelElements() {
 		return getContainedDataProcessSteps();

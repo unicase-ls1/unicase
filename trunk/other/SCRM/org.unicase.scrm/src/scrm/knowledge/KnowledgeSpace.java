@@ -43,7 +43,7 @@ public interface KnowledgeSpace extends SCRMSpace, ScientificKnowledge {
 	 * @see scrm.knowledge.ScientificKnowledge#getContainingKnowledgeSpace
 	 * @model opposite="containingKnowledgeSpace" containment="true" resolveProxies="true"
 	 *        annotation="org.unicase.ui.meeditor position='right' priority='10'"
-	 * @generated NOT
+	 * @generated NOT: changed type parameter
 	 */
 	EList<SCRMModelElement> getContainedScientificKnowledge();
 

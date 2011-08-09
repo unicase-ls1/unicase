@@ -135,7 +135,7 @@ public class ProcessItemProvider extends RequirementItemProvider implements
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated NOT: return name attribute without EClass-name
 	 */
 	@Override
 	public String getText(Object object) {

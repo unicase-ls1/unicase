@@ -17,9 +17,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.OpenEditPolicy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.metamodel.Project;
 import org.unicase.ui.common.util.ActionHelper;
@@ -50,30 +47,14 @@ public class OpenSCRMSpaceEditPolicy extends OpenEditPolicy {
 		}
 		
 		View view = (View) targetEditPart.getModel();
-		Style link = getLink(view);
-
-		if (!(link instanceof HintedDiagramLinkStyle)) {
-			return null;
-		}
+				
+		SCRMSpace representedSpace = (SCRMSpace) view.getElement();
+		
+		SCRMDiagram containingDiagram = (SCRMDiagram) view
+				.getDiagram().eContainer();
 		
 		return new ICommandProxy(new OpenDiagramCommand(
-				(HintedDiagramLinkStyle) link));
-	}
-
-	private Style getLink(View view) {
-		Style link = view.getStyle(NotationPackage.eINSTANCE
-				.getHintedDiagramLinkStyle());
-		while (!(link instanceof HintedDiagramLinkStyle)) {
-			Object container = view.eContainer();
-			if (container instanceof View) {
-				view = (View) container;
-				link = view.getStyle(NotationPackage.eINSTANCE
-						.getHintedDiagramLinkStyle());
-			} else {
-				return null;
-			}
-		}
-		return link;
+				representedSpace, containingDiagram));
 	}
 
 	/**
@@ -81,10 +62,11 @@ public class OpenSCRMSpaceEditPolicy extends OpenEditPolicy {
 	 * This command will open the diagram and initialize its content, if necessary.
 	 * 
 	 * @author mharut
+	 * @generated NOT
 	 */
 	public static class OpenDiagramCommand extends AbstractTransactionalCommand {
 
-		private final HintedDiagramLinkStyle diagramFacet;
+		private final SCRMSpace representedSpace;
 
 		private final SCRMDiagram containingDiagram;
 
@@ -92,27 +74,27 @@ public class OpenSCRMSpaceEditPolicy extends OpenEditPolicy {
 		 * Creates a new command to open the diagram linked by <code>linkStyle</code>.
 		 * @param linkStyle the link style of the edit part to open the diagram for
 		 */
-		public OpenDiagramCommand(HintedDiagramLinkStyle linkStyle) {
+		public OpenDiagramCommand(SCRMSpace representedSpace,
+				SCRMDiagram containingDiagram) {
 			// editing domain is taken for original diagram, 
 			// if we open diagram from another file, we should use another editing domain
-			super(TransactionUtil.getEditingDomain(linkStyle),
+			super(TransactionUtil.getEditingDomain(representedSpace),
 					Messages.CommandName_OpenDiagram, null);
-			diagramFacet = linkStyle;
-			containingDiagram = (SCRMDiagram) ((View) linkStyle.eContainer()).
-				getDiagram().eContainer();
+			this.representedSpace = representedSpace;
+			this.containingDiagram = containingDiagram;
 		}
 
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 				IAdaptable info) throws ExecutionException {
 			try {
-				SCRMSpace representedSpace = (SCRMSpace) ((View) diagramFacet
-						.eContainer()).getElement();
 				SCRMDiagram scrmDiagram = representedSpace
 						.getRepresentingDiagram();
 				if (scrmDiagram == null) {
-					scrmDiagram = intializeNewDiagram(representedSpace);
+					scrmDiagram = intializeNewDiagram();
 				}
-				containingDiagram.getElements().add(scrmDiagram);
+				if (containingDiagram != null) {
+					containingDiagram.getElements().add(scrmDiagram);
+				}
 				ActionHelper.openModelElement(scrmDiagram, "");
 				scrmDiagram.setNewElementContainer(representedSpace);
 				scrmDiagram.getElements().addAll(getAllContents(representedSpace));
@@ -123,11 +105,11 @@ public class OpenSCRMSpaceEditPolicy extends OpenEditPolicy {
 			}
 		}
 
-		private SCRMDiagram intializeNewDiagram(SCRMSpace representedSpace)
+		private SCRMDiagram intializeNewDiagram()
 				throws ExecutionException {
 			SCRMDiagram scrmDiagram = ScrmFactory.eINSTANCE.createSCRMDiagram();
 			Project project = WorkspaceManager.getProjectSpace(
-					containingDiagram).getProject();
+					representedSpace).getProject();
 			project.addModelElement(scrmDiagram);
 			scrmDiagram.setDiagramType(representedSpace);
 			representedSpace.setRepresentingDiagram(scrmDiagram);
