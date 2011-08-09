@@ -125,6 +125,17 @@ public interface SCRMDiagram extends SCRMModelElement {
 	 * @generated
 	 */
 	void setDiagramType(DiagramType value);
+	
+	/**
+	 * Sets the value of the '{@link scrm.SCRMDiagram#getDiagramType <em>Diagram Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param eObject the represented EObject that determines the '<em>Diagram Type</em>' attribute.
+	 * @see scrm.DiagramType
+	 * @see #getDiagramType()
+	 * @generated NOT: provided method to set diagram type for any EObject
+	 */
+	void setDiagramType(EObject eObject);
 
 	/**
 	 * Returns the value of the '<em><b>Represented Space</b></em>' reference.
@@ -155,17 +166,6 @@ public interface SCRMDiagram extends SCRMModelElement {
 	void setRepresentedSpace(SCRMSpace value);
 
 	/**
-	 * Sets the value of the '{@link scrm.SCRMDiagram#getDiagramType <em>Diagram Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Diagram Type</em>' attribute.
-	 * @see scrm.DiagramType
-	 * @see #getDiagramType()
-	 * @generated NOT
-	 */
-	void setDiagramType(EObject eObject);
-
-	/**
 	 * Returns the value of the '<em><b>Gmfdiagram</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -191,10 +191,19 @@ public interface SCRMDiagram extends SCRMModelElement {
 	 */
 	void setGmfdiagram(Diagram value);
 
+	/**
+	 * @generated NOT
+	 */
 	void saveDiagramLayout() throws DiagramStoreException;
 
+	/**
+	 * @generated NOT
+	 */
 	void loadDiagramLayout() throws DiagramLoadException;
 
+	/**
+	 * @generated NOT
+	 */
 	void setNewElementContainer(EObject newElementContainer);
 
 } // SCRMDiagram

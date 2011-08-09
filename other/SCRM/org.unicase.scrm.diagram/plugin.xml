@@ -1183,6 +1183,7 @@
             locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
          <command
                commandId="org.unicase.scrm.diagram.LoadTemplateCommand"
+               label="Load Template"
                style="push">
             <visibleWhen
                   checkEnabled="false">
@@ -1205,6 +1206,7 @@
             locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
          <command
                commandId="org.unicase.scrm.diagram.SaveTemplateCommand"
+               label="Save Template"
                style="push">
             <visibleWhen
                   checkEnabled="false">
@@ -1222,11 +1224,34 @@
                </and>
             </visibleWhen>
          </command>
+         <command
+               commandId="org.unicase.scrm.diagram.OpenRepresentingDiagramCommand"
+               icon="icons/obj16/ScrmDiagramFile.gif"
+               label="Open Representing Diagram"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <count
+                        value="1">
+                  </count>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <instanceof
+                           value="scrm.SCRMSpace">
+                     </instanceof>
+                  </iterate>
+               </and>
+            </visibleWhen>
+         </command>
       </menuContribution>
       <menuContribution
             locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <command
                commandId="org.unicase.scrm.diagram.OpenRepresentingDiagramCommand"
+               icon="icons/obj16/ScrmDiagramFile.gif"
+               label="Open Representing Diagram"
                style="push">
            <visibleWhen>
               <and>

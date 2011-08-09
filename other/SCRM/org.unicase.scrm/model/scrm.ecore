@@ -498,7 +498,9 @@
       <eClassifiers xsi:type="ecore:EClass" name="InputDataReading" eSuperTypes="#//requirements/dataProcess/Process"/>
       <eClassifiers xsi:type="ecore:EClass" name="DataHandling" eSuperTypes="#//requirements/dataProcess/Process"/>
       <eClassifiers xsi:type="ecore:EClass" name="ResultsOutput" eSuperTypes="#//requirements/dataProcess/Process"/>
-      <eClassifiers xsi:type="ecore:EClass" name="ErrorHandling" eSuperTypes="#//requirements/dataProcess/Process"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ErrorHandling" eSuperTypes="#//requirements/dataProcess/Process">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="handledProcess" eType="#//requirements/dataProcess/Process"/>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="StatusMonitoring" eSuperTypes="#//requirements/dataProcess/Process"/>
       <eClassifiers xsi:type="ecore:EClass" name="DataProcessSpace" eSuperTypes="#//SCRMSpace #//requirements/dataProcess/Process">
         <eStructuralFeatures xsi:type="ecore:EReference" name="containedDataProcessSteps"

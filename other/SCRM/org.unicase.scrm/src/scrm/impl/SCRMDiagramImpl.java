@@ -97,7 +97,7 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getNewElements()
-	 * @generated NOT
+	 * @generated NOT: custom type
 	 * @ordered
 	 */
 	protected SCRMDiagramNewElementsList newElements;
@@ -157,7 +157,7 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	protected SCRMDiagramImpl() {
 		super();
@@ -190,8 +190,9 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Only use with GMF, to obtain elements use {@link #getElements()} instead.
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated NOT: removed containment behavior
 	 */
 	public EList<SCRMModelElement> getNewElements() {
 		if (newElementContainer == null) {
@@ -689,7 +690,7 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 		}
 
 		Diagram gmfDiagram = (Diagram) diagramResource.getContents().get(0);
-		this.syncDiagramLayout(gmfDiagram);
+		syncDiagramLayout(gmfDiagram);
 		EcoreUtil.resolveAll(gmfDiagram);
 
 		setGmfdiagram(gmfDiagram);

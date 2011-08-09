@@ -94,7 +94,7 @@ public abstract class SCRMModelElementImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated NOT: added name initialization
 	 */
 	protected SCRMModelElementImpl() {
 		super();

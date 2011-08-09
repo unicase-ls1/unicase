@@ -30,6 +30,7 @@ public class OpenMEEditorPolicy extends OpenEditPolicy {
 			public void execute() {
 				ActionHelper.openModelElement(element, "");
 			}
+			
 		};
 
 		return command;
