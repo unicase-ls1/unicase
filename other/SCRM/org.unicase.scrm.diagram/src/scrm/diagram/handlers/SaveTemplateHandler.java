@@ -14,11 +14,11 @@ import scrm.diagram.common.TemplateManager;
 
 public class SaveTemplateHandler extends AbstractSaveTemplateHandler {
 	
-	private static final String[] filterExtensions = new String[] {"*.scrm", "*.*"};
+	private static final String[] templateFileExtensions = new String[] {"*.scrm", "*.*"};
 
 	@Override
 	protected EObject getRootEObject(ExecutionEvent event) {
-		SCRMDiagram rootDiagram = getSelectedClass(event, SCRMDiagram.class);
+		SCRMDiagram rootDiagram = getInstanceOfClass(event, SCRMDiagram.class);
 		if(rootDiagram == null) {
 			// no SCRMDiagram was selected -> check if a diagram editor is active
 			IEditorPart editor;
@@ -48,7 +48,7 @@ public class SaveTemplateHandler extends AbstractSaveTemplateHandler {
 
 	@Override
 	protected String[] getTemplateFileExtensions() {
-		return filterExtensions;
+		return templateFileExtensions;
 	}
 
 }

@@ -27,7 +27,7 @@ public abstract class AbstractLoadTemplateHandler extends AbstractTemplateHandle
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		// obtain Project from selection
-		ProjectSpace projectSpace = getSelectedClass(event, ProjectSpace.class);
+		ProjectSpace projectSpace = getInstanceOfClass(event, ProjectSpace.class);
 		Project project = projectSpace.getProject();
 		
 		TemplateManager templateManager = getTemplateManager();
@@ -52,10 +52,6 @@ public abstract class AbstractLoadTemplateHandler extends AbstractTemplateHandle
 		}
 		
 		return null;
-	}
-
-	protected String[] getTemplateFileExtensions() {
-		return new String[] {"*.*"};
 	}
 
 }

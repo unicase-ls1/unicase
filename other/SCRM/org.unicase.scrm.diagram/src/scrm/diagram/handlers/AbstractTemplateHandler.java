@@ -13,7 +13,7 @@ public abstract class AbstractTemplateHandler extends AbstractHandler {
 	
 	private static final String[] templateFileExtensions = new String[] {"*.*"};
 
-	protected <T> T getSelectedClass(ExecutionEvent event, Class<T> clazz) {
+	protected <T> T getInstanceOfClass(ExecutionEvent event, Class<T> clazz) {
 		Object selectedElement = getSelectedElement(event);
 		if(clazz.isInstance(selectedElement)) {
 			return clazz.cast(selectedElement);

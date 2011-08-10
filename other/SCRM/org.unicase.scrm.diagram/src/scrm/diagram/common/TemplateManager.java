@@ -182,15 +182,51 @@ public abstract class TemplateManager {
 			
 			File childFile = templateFiles[i];
 			if(childFile.isDirectory()) {
-				// file is directory -> create directory and copy contents
-				createTemplateDirectory(childFile);
-				copyDirectoryContents(childFile);
+				if(containsTemplate(childFile)) {
+					// file is directory -> create directory and copy contents
+					createTemplateDirectory(childFile);
+					copyDirectoryContents(childFile);
+				}
 			} else {
-				// file is plain file -> only copy it
-				copyTemplate(childFile);
+				if(isTemplateFile(childFile)) {
+					// file is plain file -> only copy it
+					copyTemplate(childFile);
+				}
 			}
 		}
 	}
+
+	protected boolean containsTemplate(File file) {
+		File[] templateFiles = file.listFiles();
+		
+		// for all contained files..
+		for(int i=0; i<templateFiles.length; i++) {
+			File childFile = templateFiles[i];
+			if(childFile.isDirectory()) {
+				if(containsTemplate(childFile)) {
+					return true;
+				}
+			} else {
+				if(isTemplateFile(childFile)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	protected boolean isTemplateFile(File childFile) {
+		String[] templateFileExtensions = getTemplateFileExtensions();
+		for(int i = 0; i < templateFileExtensions.length; i++) {
+			String templateExtension = templateFileExtensions[i];
+			if(childFile.getPath().endsWith(templateExtension)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public abstract String[] getTemplateFileExtensions();
 
 	/**
 	 * Copies a certain directory to the template path specified
@@ -275,12 +311,12 @@ public abstract class TemplateManager {
 	/**
 	 * Saves a rootEObject as a template to the file specified by 
 	 * <code>resourcePath</code>. To perform this operation, all elements that require
-	 * saving are gathered by {@link #gatherElementsToSave(EObject)} and afterwards
+	 * saving are gathered by {@link #getElementsToSave(EObject)} and afterwards
 	 * saved to the file system using EMF's <code>Resource</code>s 
 	 * 
 	 * @param rootEObject the EObject the saving process is initiated from
 	 * @param resourcePath the path to the file to save the template to
-	 * @see #gatherElementsToSave(EObject)
+	 * @see #getElementsToSave(EObject)
 	 * @see #copyElements(EditingDomain, Collection)
 	 */
 	public void doSave(EObject rootEObject, String resourcePath) {
@@ -289,7 +325,7 @@ public abstract class TemplateManager {
 		final Resource templateResource = initializeResource(resourcePath);
 		
 		// initialize elements that need to be saved
-		Collection<EObject> elements = gatherElementsToSave(rootEObject);
+		Collection<EObject> elements = getElementsToSave(rootEObject);
 		
 		// copy all these elements
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(rootEObject);
@@ -326,7 +362,7 @@ public abstract class TemplateManager {
 	 * @param rootEObject the root object to obtain elements from
 	 * @return All elements that need to be saved to the template.
 	 */
-	protected abstract Collection<EObject> gatherElementsToSave(EObject rootEObject);
+	protected abstract Collection<EObject> getElementsToSave(EObject rootEObject);
 
 	/**
 	 * Loads a template from the file specified by <code>resourcePath</code>.

@@ -117,15 +117,15 @@ public class OpenSCRMSpaceEditPolicy extends OpenEditPolicy {
 		}
 		
 		private Collection<SCRMModelElement> getAllContents(
-				SCRMSpace representedSpace) {
+				EObject parent) {
 			List<SCRMModelElement> result = new LinkedList<SCRMModelElement>();
-			for(SCRMModelElement scrmModelElement : representedSpace.getContainedModelElements()) {
-				result.add(scrmModelElement);
-				for(Iterator<EObject> it = scrmModelElement.eAllContents(); it.hasNext();) {
-					EObject content = it.next();
-					if(content instanceof SCRMModelElement) {
-						result.add((SCRMModelElement) content);	
-					}
+			for(EObject content : parent.eContents()) {
+				if(content instanceof SCRMSpace) {
+					result.add((SCRMSpace) content);
+				} else if(content instanceof SCRMModelElement) {
+					SCRMModelElement modelElement = (SCRMModelElement) content;
+					result.add(modelElement);
+					result.addAll(getAllContents(modelElement));
 				}
 			}
 			return result;

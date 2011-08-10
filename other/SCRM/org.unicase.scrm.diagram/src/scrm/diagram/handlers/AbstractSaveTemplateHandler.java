@@ -49,9 +49,9 @@ public abstract class AbstractSaveTemplateHandler extends AbstractTemplateHandle
 		
 		return null;
 	}
-
+	
 	protected EObject getRootEObject(ExecutionEvent event) {
-		return getSelectedClass(event, EObject.class);
+		return getInstanceOfClass(event, EObject.class);
 	}
 	
 	protected String getDefaultTemplateFileName() {
