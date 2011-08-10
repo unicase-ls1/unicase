@@ -24,7 +24,7 @@ public class OpenRepresentingDiagramHandler extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		// obtain edit part from selection
-		Object selectedElement = validateSelection(event);
+		Object selectedElement = obtainSelectedElement(event);
 		if(selectedElement instanceof EditPart) {
 			EditPart editPart = (EditPart) selectedElement;
 			View view = (View) editPart.getModel();
@@ -59,7 +59,7 @@ public class OpenRepresentingDiagramHandler extends AbstractHandler {
 	 * @return the properly obtained <code>EditPart</code>
 	 * @throws ExecutionException if an exception occurred during the execution
 	 */
-	private Object validateSelection(ExecutionEvent event) throws ExecutionException {
+	private Object obtainSelectedElement(ExecutionEvent event) throws ExecutionException {
 		
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
 		

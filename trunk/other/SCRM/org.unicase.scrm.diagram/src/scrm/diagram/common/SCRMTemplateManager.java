@@ -37,6 +37,8 @@ public class SCRMTemplateManager extends TemplateManager {
 	 */
 	public static final String relativeTemplatePath = "SCRMTemplates";
 	
+	public static final String[] templateFileExtensions = {".scrm"};
+	
 	/**
 	 * Default constructor, uses {@link #relativeTemplatePath} as both, template directory
 	 * and relative path to the predefined templates. 
@@ -91,10 +93,10 @@ public class SCRMTemplateManager extends TemplateManager {
 	 * that need to be saved. This is done by traversing through all
 	 * elements, handling contained <code>SCRMDiagram</code>s recursively.
 	 * 
-	 * @see scrm.diagram.common.TemplateManager#gatherElementsToSave(EObject)
+	 * @see scrm.diagram.common.TemplateManager#getElementsToSave(EObject)
 	 */
 	@Override
-	protected Collection<EObject> gatherElementsToSave(EObject rootEObject) {
+	protected Collection<EObject> getElementsToSave(EObject rootEObject) {
 		
 		if(!(rootEObject instanceof SCRMDiagram)) {
 			// cannot save other templates than SCRM templates
@@ -111,7 +113,7 @@ public class SCRMTemplateManager extends TemplateManager {
 				SCRMDiagram containedDiagram = (SCRMDiagram) element;
 				// only if this diagram wasn't traversed before
 				if(!allElements.contains(element)) {
-					allElements.addAll(gatherElementsToSave(containedDiagram));
+					allElements.addAll(getElementsToSave(containedDiagram));
 				}
 			} else {
 				allElements.add(element);
@@ -146,6 +148,11 @@ public class SCRMTemplateManager extends TemplateManager {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public String[] getTemplateFileExtensions() {
+		return templateFileExtensions;
 	}
 	
 }

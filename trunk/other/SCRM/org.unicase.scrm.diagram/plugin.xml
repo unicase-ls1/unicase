@@ -1168,6 +1168,8 @@
             locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <command
                commandId="org.unicase.scrm.diagram.SaveTemplateCommand"
+               icon="icons/obj16/ScrmDiagramFile.gif"
+               label="Save Template"
                style="push">
             <visibleWhen>
                <with
@@ -1183,6 +1185,7 @@
             locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
          <command
                commandId="org.unicase.scrm.diagram.LoadTemplateCommand"
+               icon="icons/obj16/ScrmDiagramFile.gif"
                label="Load Template"
                style="push">
             <visibleWhen
@@ -1206,6 +1209,7 @@
             locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
          <command
                commandId="org.unicase.scrm.diagram.SaveTemplateCommand"
+               icon="icons/obj16/ScrmDiagramFile.gif"
                label="Save Template"
                style="push">
             <visibleWhen
