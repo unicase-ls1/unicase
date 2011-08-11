@@ -3,7 +3,7 @@ for(attachment in model.attachment.FileAttachment.allInstances) {
 	def FILE_NAME_DELIMITER = "_";
 	
 	//	protection against double migration
-	if(attachment.fileID.contains(FILE_NAME_DELIMITER)){
+	if(attachment != null && attachment.fileID != null && attachment.fileID.contains(FILE_NAME_DELIMITER)){
 		throw new RuntimeException("Already migrated")
 	}
 	
