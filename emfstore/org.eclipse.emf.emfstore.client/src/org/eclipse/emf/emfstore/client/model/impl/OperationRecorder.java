@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.Command;
@@ -44,7 +43,6 @@ import org.eclipse.emf.emfstore.client.model.changeTracking.commands.EMFStoreCom
 import org.eclipse.emf.emfstore.client.model.changeTracking.notification.NotificationInfo;
 import org.eclipse.emf.emfstore.client.model.changeTracking.notification.filter.FilterStack;
 import org.eclipse.emf.emfstore.client.model.changeTracking.notification.recording.NotificationRecorder;
-import org.eclipse.emf.emfstore.client.model.observers.PostCreationListener;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.CommonUtil;
 import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
@@ -101,6 +99,8 @@ public class OperationRecorder implements CommandObserver, ProjectChangeObserver
 	private List<OperationRecorderListener> operationRecordedListeners;
 
 	private EObjectChangeNotifier changeNotifier;
+	private boolean checkForIncomingCrossReferences;
+	private boolean cutOffIncomingCrossReferences;
 
 	/**
 	 * Constructor.
@@ -131,21 +131,18 @@ public class OperationRecorder implements CommandObserver, ProjectChangeObserver
 
 		removedElements = new ArrayList<EObject>();
 		converter = new NotificationToOperationConverter(rootEObject);
+		// explicitly disable checks for cross-references
+		checkForIncomingCrossReferences = false;
+		cutOffIncomingCrossReferences = false;
 
-		// BEGIN SUPRESS CATCH EXCEPTION
-		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.eclipse.emf.emfstore.client.notify.postcreationlistener");
-		for (IConfigurationElement e : config) {
-			try {
-				PostCreationListener l = (PostCreationListener) e.createExecutableExtension("class");
-				// postCreationListeners.add(l);
-			} catch (CoreException e1) {
-				WorkspaceUtil.logException("Cannot instantiate extension!", e1);
-			} catch (RuntimeException e2) {
-				WorkspaceUtil.logException("Severe runtime exception occured", e2);
-			}
+		IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.eclipse.emf.emfstore.client.recording.options");
+		if (elements != null && elements.length > 0) {
+			checkForIncomingCrossReferences = Boolean.parseBoolean(elements[0]
+				.getAttribute("checkForIncomingCrossReferences"));
+			cutOffIncomingCrossReferences = Boolean.parseBoolean(elements[0]
+				.getAttribute("cutOffIncomingCrossReferences"));
 		}
-		// END SUPRESS CATCH EXCEPTION
 	}
 
 	public void clearOperations() {
@@ -510,11 +507,9 @@ public class OperationRecorder implements CommandObserver, ProjectChangeObserver
 				"Element was removed from containment of project but still has cross references!: "
 					+ rootEObject.getDeletedModelElementId(deletedElement).getId());
 			// TODO: EM, remove project cast, if possible
-		} else if (ModelUtil.hasIncomingCrossReferences(deletedElement, (Project) rootEObject)) {
-			throw new IllegalStateException(
-				"Element was removed from containment of project but still has incoming cross references!: "
-					+ rootEObject.getDeletedModelElementId(deletedElement).getId());
-
+		} else if (checkForIncomingCrossReferences) {
+			ModelUtil.handleIncomingCrossReferences(deletedElement, (Project) rootEObject,
+				cutOffIncomingCrossReferences);
 		}
 
 		if (!isRecording) {
