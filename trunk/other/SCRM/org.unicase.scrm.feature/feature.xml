@@ -40,6 +40,7 @@
       <import plugin="org.eclipse.gef"/>
       <import plugin="org.unicase.workspace"/>
       <import plugin="org.eclipse.emf.edit"/>
+      <import feature="org.unicase.emfstore.transaction.feature"/>
    </requires>
 
    <plugin
