@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <description name="SCRM Tool" url="http://code.google.com/p/unicase/wiki/SCRM_in_EMFCP">
+   <description name="SCRM Tool" url="http://unicase.googlecode.com/svn/trunk/other/SCRM/org.unicase.scrm.updatesite/site.xml">
       Update Site for the SCRM Tool.
    </description>
    <feature url="features/org.unicase.scrm.feature_1.0.0.201108151817.jar" id="org.unicase.scrm.feature" version="1.0.0.201108151817">
