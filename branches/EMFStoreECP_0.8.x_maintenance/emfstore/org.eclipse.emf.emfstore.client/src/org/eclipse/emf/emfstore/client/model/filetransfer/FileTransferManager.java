@@ -132,7 +132,6 @@ public class FileTransferManager {
 		try {
 			EList<FileIdentifier> uploads = projectSpace.getWaitingUploads();
 			while (!uploads.isEmpty()) {
-				System.out.println(uploads.size());
 				final FileIdentifier fi = uploads.get(0);
 
 				// Is the file present in cache?
