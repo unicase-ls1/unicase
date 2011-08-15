@@ -8,6 +8,10 @@
       This feature will install SCRM, a tool to model requirements for scientific computing projects. The tool provides a meta-model using EMF mechanisms and a graphical editor using GMF mechanisms. For further information, navigate to the provided link.
    </description>
 
+   <url>
+      <update label="SCRM Tool" url="http://unicase.googlecode.com/svn/trunk/other/SCRM/updatesite"/>
+   </url>
+
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.ecore"/>
