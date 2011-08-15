@@ -18,6 +18,7 @@
    <extension-point id="org.eclipse.emf.emfstore.client.notify.postinit" name="Workspace Initiated" schema="schema/org.eclipse.emf.emfstore.client.notify.workspace.exsd"/>
    <extension-point id="org.eclipse.emf.emfstore.client.editingDomainProvider" name="EditingDomain Provider" schema="schema/org.eclipse.emf.emfstore.client.editingDomainProvider.exsd"/>
    <extension-point id="org.eclipse.emf.emfstore.client.persistence.options" name="Persistence Options" schema="schema/org.eclipse.emf.emfstore.client.persistence.options.exsd"/>
+   <extension-point id="org.eclipse.emf.emfstore.client.recording.options" name="Recording options" schema="schema/org.eclipse.emf.emfstore.client.recording.options.exsd"/>
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://eclipse.org/emf/emfstore/client/model" 
