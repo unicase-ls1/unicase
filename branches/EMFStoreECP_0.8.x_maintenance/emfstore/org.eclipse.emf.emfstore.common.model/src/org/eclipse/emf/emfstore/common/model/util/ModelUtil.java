@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -1143,22 +1144,49 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * Tests whether any element within the given {@link Project} has any cross-references to the given {@link EObject}.
+	 * Checks whether any element within the given {@link Project} has any cross-references to the given {@link EObject}
+	 * .
 	 * 
 	 * @param element a {@link EObject}
 	 * @param project a {@link Project}
-	 * @return true, if there are any cross-references to the {@link EObject}
+	 * @param cutOffReferences whether cross-references should get cut off
+	 * @return true, if there are any cross-references to the {@link EObject} within the given {@link Project}
 	 */
-	public static boolean hasIncomingCrossReferences(EObject element, Project project) {
+	public static boolean handleIncomingCrossReferences(EObject element, Project project, boolean cutOffReferences) {
 		Set<EObject> projectContents = project.getAllModelElements();
 		Set<EObject> elementEObjects = getAllContainedModelElements(element, false);
 		elementEObjects.add(element);
 
 		for (EObject eObject : projectContents) {
-			EList<EObject> crossReferences = eObject.eCrossReferences();
-			for (EObject o : elementEObjects) {
-				if (crossReferences.contains(o)) {
-					return true;
+
+			@SuppressWarnings("rawtypes")
+			EContentsEList.FeatureIterator featureIterator = (EContentsEList.FeatureIterator) eObject
+				.eCrossReferences().iterator();
+
+			while (featureIterator.hasNext()) {
+				EObject referencedObject = (EObject) featureIterator.next();
+
+				if (elementEObjects.contains(referencedObject)) {
+					ModelElementId referencedObjectId = project.getModelElementId(referencedObject) == null ? project
+						.getDeletedModelElementId(referencedObject) : project.getModelElementId(referencedObject);
+					ModelElementId elementId = project.getModelElementId(element) == null ? project
+						.getDeletedModelElementId(element) : project.getModelElementId(element);
+					if (cutOffReferences) {
+						EReference eReference = (EReference) featureIterator.feature();
+						if (eReference.isMany()) {
+							@SuppressWarnings("unchecked")
+							List<EObject> eObjects = (List<EObject>) eObject.eGet(eReference);
+							eObjects.remove(referencedObject);
+							logInfo("Cross-reference " + referencedObjectId + " removed from many reference "
+								+ eReference + ".");
+						} else {
+							eObject.eUnset(eReference);
+							logInfo("Cross-reference " + referencedObject + " removed from " + eReference + ".");
+						}
+					} else {
+						throw new IllegalStateException("Cross-reference from " + referencedObject + " to " + elementId
+							+ " detected.");
+					}
 				}
 			}
 		}
