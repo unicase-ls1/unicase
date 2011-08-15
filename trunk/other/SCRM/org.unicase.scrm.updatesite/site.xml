@@ -3,7 +3,7 @@
    <description name="SCRM Tool" url="http://code.google.com/p/unicase/wiki/SCRM_in_EMFCP">
       Update Site for the SCRM Tool.
    </description>
-   <feature url="features/org.unicase.scrm.feature_1.0.0.201108110053.jar" id="org.unicase.scrm.feature" version="1.0.0.201108110053">
+   <feature url="features/org.unicase.scrm.feature_1.0.0.201108151817.jar" id="org.unicase.scrm.feature" version="1.0.0.201108151817">
       <category name="org.unicase.scrm"/>
    </feature>
    <category-def name="org.unicase.scrm" label="SCRM Tool">
