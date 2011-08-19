@@ -1,0 +1,13 @@
+Index: src/org/unicase/ui/navigator/commands/AltKeyDoubleClickAction.java
+===================================================================
+--- src/org/unicase/ui/navigator/commands/AltKeyDoubleClickAction.java	(revision 8868)
++++ src/org/unicase/ui/navigator/commands/AltKeyDoubleClickAction.java	(working copy)
+@@ -32,6 +32,8 @@
+ 	private static String meeditorid = "org.unicase.ui.meeditor";
+ 
+ 	/**
++	 * sdffsfd
++	 * 
+ 	 * <pre>
+ 	 *  1- Adds the listener to the collection of listeners who will be notified when
+ 	 *  an event of the - given type occurs anywhere in a widget. The event type is (SWT.Alt) 

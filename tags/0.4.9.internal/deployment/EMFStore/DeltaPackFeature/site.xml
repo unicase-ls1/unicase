@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/testtesttest_1.0.0.qualifier.jar" id="testtesttest" version="1.0.0.qualifier">
+      <category name="DeltaPack"/>
+   </feature>
+   <category-def name="DeltaPack" label="Delta Pack"/>
+</site>

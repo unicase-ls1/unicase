@@ -1,0 +1,66 @@
+/*
+ * Copyright (c) 2006 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Artem Tikhomirov (Borland) - initial API and implementation
+ */
+
+import "http://www.eclipse.org/gmf/2008/GenModel";
+import "http://www.eclipse.org/emf/2002/Ecore";
+
+// TODO instead, use smth like plugin::Utils::activatorFQN(palette.diagram.editorGen.plugin)
+// i.e. create a system of extensions 
+private String activatorFQN(gmfgen::Palette palette) :
+	palette.diagram.editorGen.plugin.getActivatorQualifiedClassName()
+;
+
+String activatorFQN(gmfgen::AbstractToolEntry toolEntry) :
+	activatorFQN(toolEntry.group.palette)
+;
+
+String activatorFQN(gmfgen::ToolGroup toolGroup) :
+	activatorFQN(toolGroup.palette)
+;
+
+private String i18nKey(gmfgen::EntryBase group) :
+	let rv = group.createMethodName :
+	rv.startsWith("get") ? rv.subString(3) : (rv.startsWith("create") ? rv.subString(6) : rv)
+;
+
+String i18nTitleKey(gmfgen::EntryBase group) :
+    i18nKey(group)+"_title"
+;
+
+String i18nDescKey(gmfgen::EntryBase group) :
+    i18nKey(group)+"_desc"
+;
+
+List[gmfgen::ToolGroup] collectGroups(gmfgen::Palette palette) :
+	palette.groups.union(palette.groups.collectSubGroups())
+;
+
+private List[gmfgen::ToolGroup] collectSubGroups(gmfgen::ToolGroup group) :
+	let rv = group.entries.typeSelect(gmfgen::ToolGroup) :
+	rv.addAll(rv.collect(g| g.collectSubGroups()).flatten())
+;
+
+List[gmfgen::AbstractToolEntry] collectTools(gmfgen::Palette palette) :
+	palette.collectGroups().collect(g | g.entries.typeSelect(gmfgen::AbstractToolEntry)).flatten()
+;
+
+boolean needsNodeToolEntryClass(gmfgen::Palette palette) :
+	collectTools(palette).typeSelect(gmfgen::ToolEntry).exists(e | !e.genNodes.isEmpty())
+;
+
+boolean needsLinkToolEntryClass(gmfgen::Palette palette) :
+	collectTools(palette).typeSelect(gmfgen::ToolEntry).exists(e | !e.genLinks.isEmpty())
+;
+
+String elementTypesClass(gmfgen::ToolEntry entry) :
+	entry.group.palette.diagram.getElementTypesQualifiedClassName()
+;
