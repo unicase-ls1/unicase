@@ -90,7 +90,7 @@ public class DashboardEventWidget extends AbstractDashboardWidget {
 				stringBuilder.append(time.format(date));
 				link.setText(stringBuilder.toString());
 				link.addSelectionListener(URLSelectionListener.getInstance(getDashboard().getProjectSpace()));
-				int height = Activator.getDefault().fixHeightForCocoa(link.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
+				int height = new Activator().fixHeightForCocoa(link.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
 				GridDataFactory.fillDefaults().hint(getComposite().computeSize(SWT.DEFAULT, SWT.DEFAULT).x, height)
 					.grab(true, false).applyTo(link);
 			}
