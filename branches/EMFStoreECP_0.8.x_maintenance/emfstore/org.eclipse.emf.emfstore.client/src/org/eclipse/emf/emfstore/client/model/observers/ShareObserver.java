@@ -10,16 +10,30 @@
  ******************************************************************************/
 package org.eclipse.emf.emfstore.client.model.observers;
 
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.common.observer.IObserver;
+
 /**
- * Share listeners are added to a project space and informed whenever a share is executed.
+ * Share listeners are added to a project space and informed whenever a share is
+ * executed.
  * 
  * @author pfeifferc
  */
-// TODO Chain use ObserverBus and extends IObserver
-public interface ShareObserver {
+public interface ShareObserver extends IObserver {
 
 	/**
 	 * Share is executed.
+	 * 
+	 * @param ps
+	 *            projectspace
 	 */
-	void shareDone();
+	void shareDone(ProjectSpace ps);
+
+	/**
+	 * Read or modify project before it is shared.
+	 * 
+	 * @param ps
+	 *            projectspace
+	 */
+	void beforeShare(ProjectSpace ps);
 }
