@@ -1,23 +1,13 @@
-The Scientific Computing Requirements Model (SCRM) is a tool that allows requirements modeling for scientific computing by making use of core EMF and GMF features and is built on the EMFCP.<br>
-To install SCRM into your Eclipse instance you need to
+The Scientific Computing Requirements Model (SCRM) is a tool that allows requirements modeling for scientific computing projects by making use of core features of EMF, GMF, EMFCP and EMFStore.<br>
+To use SCRM, you will first have to install the following software:
 
-  # Install Eclipse Modeling Tools Edition
-  # Install GMF
-  # Install EMFCP and EMFStore
+  # [http://www.eclipse.org/downloads/packages/eclipse-modeling-tools-includes-incubating-components/heliossr2 Eclipse (Helios), Modeling Tools Edition]   
+  # GMF from this update site: http://download.eclipse.org/releases/helios (expand "Modeling" category and select" Graphical Modeling Framework (GMF) Runtime"
+  # EMFCP and EMFStore from this update site: http://unicase.googlecode.com/svn/updatesite/emfstoreNightly (select all features from the first three categories)
+  # SCRM from this update site: http://unicase.googlecode.com/svn/trunk/other/SCRM/updatesite (select the SCRM feature)
 
-After the installation is complete, checkout the SCRM plug-ins from<br>
-*_http://unicase.googlecode.com/svn/trunk/other/SCRM_*
+After you're done installing and have restarted Eclipse, go to the Navigator View by selecting "Window -> Show View -> Other -> Unicase ->  Navigator" from the menu bar. First, we need to create a project that will contain our requirements model. Open the context menu by right-clicking in the Navigator View and select "Other -> New Project...". Enter a name and description and finish the wizard.
 
-To start the tool, be sure to include the following plugins in your Run/Debug Configuration:
-  * org.unicase.scrm
-  * org.unicase.scrm.edit
-  * org.unicase.scrm.diagram
+From the project's context menu (right-click it) you can create SCRM elements when selecting "New Model Element". To enable graphical modeling, you simply have to choose "SCRMDiagram" in the "New Model Element"-wizard. This will open up a graphical editor.
 
-Select "Run As -> Eclipse Application" to open up a new Eclipse instance. In this instance, select "Window -> Show View -> Other -> Unicase -> Navigator" to open up the Navigator View. Create a new Project from the context menu and, again from the context menu, create a new model element. To get started with modeling, choose SCRMDiagram in the "New Model Element"-Wizard.
-
-This will open up a GMF-Editor, allowing you to do the actual modeling. While the base functionality is the same as for most GMF editors, the SCRM tool provides several features:
-  * *Multiple layer view*: Creating a container node (KnowledgeSpace, RequirementeSpace, DataProcessSpace) lets you structure your diagrams better (by parting them). Any such diagram can be opened by double-clicking the corresponding node. This will create a new diagram for you, containing all the elements that the original node contained. A preview of the newly created diagram is available from the corresponding diagram in the container node.
-  * *Predefined templates*: Some default templates are included in the tool, providing a quick start possibility to the user. The user simply has to fill out some data and adjust the template according to his needs to obtain a complete SCRM-Model. To load such a predefined template, simply rightclick a project in the navigator and select "Load Template". Select the template you want to load, and all the diagrams and elements will get copied to your project. Finally, the uppermost diagram (regarding the hierarchy) will be opened.
-  * *User-defined templates*: It's possible to save and load your own templates from the context menu. Simply create your model, right click the SCRMDiagram (either in the Diagram Editor or in the Navigator) and select "Save Template". This will create an exact copy of your diagram and save it to the filesystem. Loading a template is the same procedure as above.
-
-The SCRM tool was adjusted to work flawlessly with both, EMFCP and EMFStore. Thus, SCRM projects can be shared using the EMFStore.
+Coming soon: Screenshots and more details on the modeling parts.
