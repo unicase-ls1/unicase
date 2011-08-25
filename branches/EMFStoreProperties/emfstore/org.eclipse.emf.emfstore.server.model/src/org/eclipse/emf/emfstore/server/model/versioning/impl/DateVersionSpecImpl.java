@@ -54,6 +54,7 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DateVersionSpecImpl() {
@@ -62,6 +63,7 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -71,6 +73,7 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Date getDate() {
@@ -79,76 +82,84 @@ public class DateVersionSpecImpl extends EObjectImpl implements DateVersionSpec 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDate(Date newDate) {
 		Date oldDate = date;
 		date = newDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.DATE_VERSION_SPEC__DATE, oldDate, date));
+			eNotify(new ENotificationImpl(this, Notification.SET, VersioningPackage.DATE_VERSION_SPEC__DATE, oldDate,
+				date));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case VersioningPackage.DATE_VERSION_SPEC__DATE:
-				return getDate();
+		case VersioningPackage.DATE_VERSION_SPEC__DATE:
+			return getDate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case VersioningPackage.DATE_VERSION_SPEC__DATE:
-				setDate((Date)newValue);
-				return;
+		case VersioningPackage.DATE_VERSION_SPEC__DATE:
+			setDate((Date) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case VersioningPackage.DATE_VERSION_SPEC__DATE:
-				setDate(DATE_EDEFAULT);
-				return;
+		case VersioningPackage.DATE_VERSION_SPEC__DATE:
+			setDate(DATE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case VersioningPackage.DATE_VERSION_SPEC__DATE:
-				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
+		case VersioningPackage.DATE_VERSION_SPEC__DATE:
+			return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (date: ");

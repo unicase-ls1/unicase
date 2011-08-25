@@ -70,27 +70,27 @@ public class MEIntControl extends AbstractMEControl implements IValidatableContr
 		return AbstractMEControl.DO_NOT_RENDER;
 	}
 
-	/**.
-	 * {@inheritDoc}}
+	/**
+	 * . {@inheritDoc}
 	 * */
 	public void handleValidation(Diagnostic diagnostic) {
 		Device device = Display.getCurrent();
 		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
-			Color color = new Color(device, 255, 0 ,0);
+			Color color = new Color(device, 255, 0, 0);
 			this.spinner.setBackground(color);
 			this.spinner.setToolTipText(diagnostic.getMessage());
 		}
 	}
 
-	/**.
-	 * {@inheritDoc}}
+	/**
+	 * . {@inheritDoc}
 	 * */
 	public void resetValidation() {
 		Device device = Display.getCurrent();
 		Color color = new Color(device, 255, 255, 255);
 		this.spinner.setBackground(color);
 		this.spinner.setToolTipText("");
-		
+
 	}
 
 }

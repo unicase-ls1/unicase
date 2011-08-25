@@ -197,18 +197,19 @@ public class ObserverBus {
 			if (method.getReturnType().isPrimitive()) {
 				return getDefaultValueForPrimitive(method.getReturnType());
 			}
-			
+
 			return firstResult;
 		}
+
 		// END SUPRESS CATCH EXCEPTION
 
 		private Object getDefaultValueForPrimitive(Class<?> returnType) {
 			String simpleName = returnType.getSimpleName();
 			return primitiveToObjectDefaultValueMap.get(simpleName);
 		}
-	
+
 	}
-	
+
 	private static final Map<String, Object> primitiveToObjectDefaultValueMap = new HashMap<String, Object>();
 	static {
 		primitiveToObjectDefaultValueMap.put("int", new Integer(0));

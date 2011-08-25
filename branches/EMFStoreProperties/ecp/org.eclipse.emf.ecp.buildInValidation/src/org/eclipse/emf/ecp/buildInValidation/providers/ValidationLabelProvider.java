@@ -22,9 +22,8 @@ public class ValidationLabelProvider extends ColumnLabelProvider {
 	 */
 	public ValidationLabelProvider() {
 		super();
-		this.adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		this.adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	/**
@@ -33,8 +32,7 @@ public class ValidationLabelProvider extends ColumnLabelProvider {
 	@Override
 	public Image getImage(Object object) {
 		if (object instanceof IStatus) {
-			BasicDiagnostic inputElement = (BasicDiagnostic) BasicDiagnostic
-					.toDiagnostic((IStatus) object);
+			BasicDiagnostic inputElement = (BasicDiagnostic) BasicDiagnostic.toDiagnostic((IStatus) object);
 			EObject target = (EObject) inputElement.getData().get(0);
 			if (target instanceof EObject) {
 				return adapterFactoryLabelProvider.getImage(target);
@@ -49,8 +47,7 @@ public class ValidationLabelProvider extends ColumnLabelProvider {
 	@Override
 	public String getText(Object object) {
 		if (object instanceof IStatus) {
-			BasicDiagnostic inputElement = (BasicDiagnostic) BasicDiagnostic
-					.toDiagnostic((IStatus) object);
+			BasicDiagnostic inputElement = (BasicDiagnostic) BasicDiagnostic.toDiagnostic((IStatus) object);
 			EObject target = (EObject) inputElement.getData().get(0);
 			if (target instanceof EObject) {
 				return adapterFactoryLabelProvider.getText(target);

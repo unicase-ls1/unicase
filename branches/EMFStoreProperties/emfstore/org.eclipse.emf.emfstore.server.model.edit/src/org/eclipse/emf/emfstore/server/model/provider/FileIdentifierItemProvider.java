@@ -36,6 +36,7 @@ public class FileIdentifierItemProvider extends IdentifiableElementItemProvider 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FileIdentifierItemProvider(AdapterFactory adapterFactory) {
@@ -45,6 +46,7 @@ public class FileIdentifierItemProvider extends IdentifiableElementItemProvider 
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,6 +61,7 @@ public class FileIdentifierItemProvider extends IdentifiableElementItemProvider 
 	/**
 	 * This returns FileIdentifier.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,14 +72,14 @@ public class FileIdentifierItemProvider extends IdentifiableElementItemProvider 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FileIdentifier)object).getIdentifier();
-		return label == null || label.length() == 0 ?
-			getString("_UI_FileIdentifier_type") :
-			getString("_UI_FileIdentifier_type") + " " + label;
+		String label = ((FileIdentifier) object).getIdentifier();
+		return label == null || label.length() == 0 ? getString("_UI_FileIdentifier_type")
+			: getString("_UI_FileIdentifier_type") + " " + label;
 	}
 
 	/**
@@ -96,6 +99,7 @@ public class FileIdentifierItemProvider extends IdentifiableElementItemProvider 
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -106,6 +110,7 @@ public class FileIdentifierItemProvider extends IdentifiableElementItemProvider 
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

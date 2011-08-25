@@ -34,14 +34,15 @@ import org.eclipse.emf.emfstore.common.model.ModelFactory;
 /**
  * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.client.model.PendingFileTransfer} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class PendingFileTransferItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class PendingFileTransferItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PendingFileTransferItemProvider(AdapterFactory adapterFactory) {
@@ -51,6 +52,7 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -70,77 +72,65 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter
 	/**
 	 * This adds a property descriptor for the File Version feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addFileVersionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_PendingFileTransfer_fileVersion_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_PendingFileTransfer_fileVersion_feature",
-						"_UI_PendingFileTransfer_type"),
-				ModelPackage.Literals.PENDING_FILE_TRANSFER__FILE_VERSION,
-				true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_PendingFileTransfer_fileVersion_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_fileVersion_feature",
+				"_UI_PendingFileTransfer_type"), ModelPackage.Literals.PENDING_FILE_TRANSFER__FILE_VERSION, true,
+			false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Chunk Number feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addChunkNumberPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_PendingFileTransfer_chunkNumber_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_PendingFileTransfer_chunkNumber_feature",
-						"_UI_PendingFileTransfer_type"),
-				ModelPackage.Literals.PENDING_FILE_TRANSFER__CHUNK_NUMBER,
-				true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_PendingFileTransfer_chunkNumber_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_chunkNumber_feature",
+				"_UI_PendingFileTransfer_type"), ModelPackage.Literals.PENDING_FILE_TRANSFER__CHUNK_NUMBER, true,
+			false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Upload feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addUploadPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_PendingFileTransfer_upload_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_PendingFileTransfer_upload_feature",
-						"_UI_PendingFileTransfer_type"),
-				ModelPackage.Literals.PENDING_FILE_TRANSFER__UPLOAD, true,
-				false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null,
-				null));
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_PendingFileTransfer_upload_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_upload_feature",
+				"_UI_PendingFileTransfer_type"), ModelPackage.Literals.PENDING_FILE_TRANSFER__UPLOAD, true, false,
+			false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the File Name feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addFileNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_PendingFileTransfer_fileName_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_PendingFileTransfer_fileName_feature",
-						"_UI_PendingFileTransfer_type"),
-				ModelPackage.Literals.PENDING_FILE_TRANSFER__FILE_NAME, true,
-				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_PendingFileTransfer_fileName_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_fileName_feature",
+				"_UI_PendingFileTransfer_type"), ModelPackage.Literals.PENDING_FILE_TRANSFER__FILE_NAME, true, false,
+			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -150,19 +140,13 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter
 	 * @generated
 	 */
 	protected void addPreliminaryFileNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_PendingFileTransfer_preliminaryFileName_feature"),
-						getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_PendingFileTransfer_preliminaryFileName_feature",
-								"_UI_PendingFileTransfer_type"),
-						ModelPackage.Literals.PENDING_FILE_TRANSFER__PRELIMINARY_FILE_NAME,
-						true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_PendingFileTransfer_preliminaryFileName_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_preliminaryFileName_feature",
+				"_UI_PendingFileTransfer_type"), ModelPackage.Literals.PENDING_FILE_TRANSFER__PRELIMINARY_FILE_NAME,
+			true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -171,21 +155,21 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(ModelPackage.Literals.PENDING_FILE_TRANSFER__ATTACHMENT_ID);
+			childrenFeatures.add(ModelPackage.Literals.PENDING_FILE_TRANSFER__ATTACHMENT_ID);
 		}
 		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -199,24 +183,25 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter
 	/**
 	 * This returns PendingFileTransfer.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/PendingFileTransfer"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PendingFileTransfer"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((PendingFileTransfer) object).getFileName();
 		return label == null || label.length() == 0 ? getString("_UI_PendingFileTransfer_type")
-				: getString("_UI_PendingFileTransfer_type") + " " + label;
+			: getString("_UI_PendingFileTransfer_type") + " " + label;
 	}
 
 	/**
@@ -236,12 +221,10 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter
 		case ModelPackage.PENDING_FILE_TRANSFER__UPLOAD:
 		case ModelPackage.PENDING_FILE_TRANSFER__FILE_NAME:
 		case ModelPackage.PENDING_FILE_TRANSFER__PRELIMINARY_FILE_NAME:
-			fireNotifyChanged(new ViewerNotification(notification,
-					notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case ModelPackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID:
-			fireNotifyChanged(new ViewerNotification(notification,
-					notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -251,21 +234,21 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PENDING_FILE_TRANSFER__ATTACHMENT_ID,
-				ModelFactory.eINSTANCE.createModelElementId()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PENDING_FILE_TRANSFER__ATTACHMENT_ID,
+			ModelFactory.eINSTANCE.createModelElementId()));
 	}
 
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

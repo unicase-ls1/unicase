@@ -30,8 +30,7 @@ import org.eclipse.ui.dialogs.PropertyPage;
  * 
  * @author groeber
  */
-public class ValidationPropertyPage extends PropertyPage implements
-		IWorkbenchPropertyPage {
+public class ValidationPropertyPage extends PropertyPage implements IWorkbenchPropertyPage {
 
 	/**
 	 * Recording command to save the properties in the model.
@@ -43,9 +42,7 @@ public class ValidationPropertyPage extends PropertyPage implements
 		protected void doRun() {
 
 			PropertyManager pm = projectSpace.getPropertyManager();
-			pm.setSharedStringProperty(
-					ValidationPropertyKey.ENABLELIVEVALIDATION.name(),
-					cb.getSelection() + "");
+			pm.setSharedStringProperty(ValidationPropertyKey.ENABLELIVEVALIDATION.name(), cb.getSelection() + "");
 			return;
 		}
 	}
@@ -94,16 +91,13 @@ public class ValidationPropertyPage extends PropertyPage implements
 		try {
 
 			PropertyManager pm = projectSpace.getPropertyManager();
-			String userProp = pm
-					.getSharedStringProperty(ValidationPropertyKey.ENABLELIVEVALIDATION
-							.name());
+			String userProp = pm.getSharedStringProperty(ValidationPropertyKey.ENABLELIVEVALIDATION.name());
 
 			if (userProp != null) {
 				liveValidationEnabled = Boolean.parseBoolean(userProp);
 			}
 		} catch (IllegalStateException e) {
-			if (e.getMessage().contains(
-					"No default value for key ENABLELIVEVALIDATION")) {
+			if (e.getMessage().contains("No default value for key ENABLELIVEVALIDATION")) {
 				// Ignore this case: "first run property wasn't set"
 			} else
 				throw e;
@@ -112,8 +106,7 @@ public class ValidationPropertyPage extends PropertyPage implements
 
 	private boolean init() {
 
-		projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
-				.getActiveProjectSpace();
+		projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
 		return true;
 	}
 
@@ -133,15 +126,11 @@ public class ValidationPropertyPage extends PropertyPage implements
 
 				@Override
 				protected void doRun() {
-					boolean yes = MessageDialog
-							.openQuestion(
-									getShell(),
-									"Transmit properties",
-									"You are currently not logged in! Do you wish to log in and thereby transmit your properties?");
+					boolean yes = MessageDialog.openQuestion(getShell(), "Transmit properties",
+						"You are currently not logged in! Do you wish to log in and thereby transmit your properties?");
 					if (yes) {
-						LoginDialog loginDialog = new LoginDialog(Display
-								.getCurrent().getActiveShell(), projectSpace
-								.getUsersession().getServerInfo());
+						LoginDialog loginDialog = new LoginDialog(Display.getCurrent().getActiveShell(), projectSpace
+							.getUsersession().getServerInfo());
 						loginDialog.open();
 					}
 				}

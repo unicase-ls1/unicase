@@ -14,7 +14,7 @@ import org.junit.runners.Suite;
  * @author chodnick
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { AttributeNotificationTest.class, ReferenceNotificationTest.class, MoveNotificationTest.class,
+@Suite.SuiteClasses({ AttributeNotificationTest.class, ReferenceNotificationTest.class, MoveNotificationTest.class,
 	MultiReferenceNotificationTest.class, ContainmentNotificationTest.class })
 public class AllNotificationTests {
 

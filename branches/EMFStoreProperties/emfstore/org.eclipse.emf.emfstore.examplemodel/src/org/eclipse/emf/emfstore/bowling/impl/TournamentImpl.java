@@ -7,27 +7,20 @@
 package org.eclipse.emf.emfstore.bowling.impl;
 
 import java.util.Collection;
-
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.emf.emfstore.bowling.BowlingPackage;
 import org.eclipse.emf.emfstore.bowling.League;
 import org.eclipse.emf.emfstore.bowling.Matchup;
@@ -42,13 +35,13 @@ import org.eclipse.emf.emfstore.bowling.util.BowlingValidator;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.bowling.impl.TournamentImpl#getTitle <em>Title</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.bowling.impl.TournamentImpl#getMatchups <em>Matchups</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.bowling.impl.TournamentImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.bowling.impl.TournamentImpl#getLeague <em>League</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.bowling.impl.TournamentImpl#getTitle <em>Title</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.bowling.impl.TournamentImpl#getMatchups <em>Matchups</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.bowling.impl.TournamentImpl#getType <em>Type</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.bowling.impl.TournamentImpl#getLeague <em>League</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class TournamentImpl extends EObjectImpl implements Tournament {
@@ -56,6 +49,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	 * The default value of the '{@link #getTitle() <em>Title</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTitle()
 	 * @generated
 	 * @ordered
@@ -66,6 +60,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	 * The cached value of the '{@link #getTitle() <em>Title</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTitle()
 	 * @generated
 	 * @ordered
@@ -76,6 +71,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	 * The cached value of the '{@link #getMatchups() <em>Matchups</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMatchups()
 	 * @generated
 	 * @ordered
@@ -86,6 +82,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -96,6 +93,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -106,6 +104,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	 * The cached value of the '{@link #getLeague() <em>League</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getLeague()
 	 * @generated
 	 * @ordered
@@ -115,6 +114,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TournamentImpl() {
@@ -124,6 +124,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -134,6 +135,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getTitle() {
@@ -143,6 +145,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTitle(String newTitle) {
@@ -155,11 +158,13 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Matchup> getMatchups() {
 		if (matchups == null) {
-			matchups = new EObjectContainmentEList.Resolving<Matchup>(Matchup.class, this, BowlingPackage.TOURNAMENT__MATCHUPS);
+			matchups = new EObjectContainmentEList.Resolving<Matchup>(Matchup.class, this,
+				BowlingPackage.TOURNAMENT__MATCHUPS);
 		}
 		return matchups;
 	}
@@ -167,6 +172,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TournamentType getType() {
@@ -176,6 +182,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setType(TournamentType newType) {
@@ -188,15 +195,17 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public League getLeague() {
 		if (league != null && league.eIsProxy()) {
-			InternalEObject oldLeague = (InternalEObject)league;
-			league = (League)eResolveProxy(oldLeague);
+			InternalEObject oldLeague = (InternalEObject) league;
+			league = (League) eResolveProxy(oldLeague);
 			if (league != oldLeague) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BowlingPackage.TOURNAMENT__LEAGUE, oldLeague, league));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BowlingPackage.TOURNAMENT__LEAGUE,
+						oldLeague, league));
 			}
 		}
 		return league;
@@ -205,6 +214,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public League basicGetLeague() {
@@ -214,6 +224,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setLeague(League newLeague) {
@@ -226,6 +237,7 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public boolean hasTounamentPro(DiagnosticChain diagnosticianChain, Map<?, ?> context) {
@@ -235,13 +247,9 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 		// Ensure that you remove @generated or mark it @generated NOT
 		if (type.getValue() == 1) {
 			if (diagnosticianChain != null) {
-				diagnosticianChain.add
-					(new BasicDiagnostic
-						(Diagnostic.ERROR,
-						 "type",
-						 BowlingValidator.TOURNAMENT__HAS_TOUNAMENT_PRO,
-						 "Tournament type should be Pro",
-						 new Object [] { this, BowlingPackage.eINSTANCE.getTournament_Type() }));
+				diagnosticianChain.add(new BasicDiagnostic(Diagnostic.ERROR, "type",
+					BowlingValidator.TOURNAMENT__HAS_TOUNAMENT_PRO, "Tournament type should be Pro", new Object[] {
+						this, BowlingPackage.eINSTANCE.getTournament_Type() }));
 			}
 			return false;
 		}
@@ -251,13 +259,14 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BowlingPackage.TOURNAMENT__MATCHUPS:
-				return ((InternalEList<?>)getMatchups()).basicRemove(otherEnd, msgs);
+		case BowlingPackage.TOURNAMENT__MATCHUPS:
+			return ((InternalEList<?>) getMatchups()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -265,20 +274,22 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BowlingPackage.TOURNAMENT__TITLE:
-				return getTitle();
-			case BowlingPackage.TOURNAMENT__MATCHUPS:
-				return getMatchups();
-			case BowlingPackage.TOURNAMENT__TYPE:
-				return getType();
-			case BowlingPackage.TOURNAMENT__LEAGUE:
-				if (resolve) return getLeague();
-				return basicGetLeague();
+		case BowlingPackage.TOURNAMENT__TITLE:
+			return getTitle();
+		case BowlingPackage.TOURNAMENT__MATCHUPS:
+			return getMatchups();
+		case BowlingPackage.TOURNAMENT__TYPE:
+			return getType();
+		case BowlingPackage.TOURNAMENT__LEAGUE:
+			if (resolve)
+				return getLeague();
+			return basicGetLeague();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -286,25 +297,26 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BowlingPackage.TOURNAMENT__TITLE:
-				setTitle((String)newValue);
-				return;
-			case BowlingPackage.TOURNAMENT__MATCHUPS:
-				getMatchups().clear();
-				getMatchups().addAll((Collection<? extends Matchup>)newValue);
-				return;
-			case BowlingPackage.TOURNAMENT__TYPE:
-				setType((TournamentType)newValue);
-				return;
-			case BowlingPackage.TOURNAMENT__LEAGUE:
-				setLeague((League)newValue);
-				return;
+		case BowlingPackage.TOURNAMENT__TITLE:
+			setTitle((String) newValue);
+			return;
+		case BowlingPackage.TOURNAMENT__MATCHUPS:
+			getMatchups().clear();
+			getMatchups().addAll((Collection<? extends Matchup>) newValue);
+			return;
+		case BowlingPackage.TOURNAMENT__TYPE:
+			setType((TournamentType) newValue);
+			return;
+		case BowlingPackage.TOURNAMENT__LEAGUE:
+			setLeague((League) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -312,23 +324,24 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BowlingPackage.TOURNAMENT__TITLE:
-				setTitle(TITLE_EDEFAULT);
-				return;
-			case BowlingPackage.TOURNAMENT__MATCHUPS:
-				getMatchups().clear();
-				return;
-			case BowlingPackage.TOURNAMENT__TYPE:
-				setType(TYPE_EDEFAULT);
-				return;
-			case BowlingPackage.TOURNAMENT__LEAGUE:
-				setLeague((League)null);
-				return;
+		case BowlingPackage.TOURNAMENT__TITLE:
+			setTitle(TITLE_EDEFAULT);
+			return;
+		case BowlingPackage.TOURNAMENT__MATCHUPS:
+			getMatchups().clear();
+			return;
+		case BowlingPackage.TOURNAMENT__TYPE:
+			setType(TYPE_EDEFAULT);
+			return;
+		case BowlingPackage.TOURNAMENT__LEAGUE:
+			setLeague((League) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -336,19 +349,20 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BowlingPackage.TOURNAMENT__TITLE:
-				return TITLE_EDEFAULT == null ? title != null : !TITLE_EDEFAULT.equals(title);
-			case BowlingPackage.TOURNAMENT__MATCHUPS:
-				return matchups != null && !matchups.isEmpty();
-			case BowlingPackage.TOURNAMENT__TYPE:
-				return type != TYPE_EDEFAULT;
-			case BowlingPackage.TOURNAMENT__LEAGUE:
-				return league != null;
+		case BowlingPackage.TOURNAMENT__TITLE:
+			return TITLE_EDEFAULT == null ? title != null : !TITLE_EDEFAULT.equals(title);
+		case BowlingPackage.TOURNAMENT__MATCHUPS:
+			return matchups != null && !matchups.isEmpty();
+		case BowlingPackage.TOURNAMENT__TYPE:
+			return type != TYPE_EDEFAULT;
+		case BowlingPackage.TOURNAMENT__LEAGUE:
+			return league != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -356,11 +370,13 @@ public class TournamentImpl extends EObjectImpl implements Tournament {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (title: ");

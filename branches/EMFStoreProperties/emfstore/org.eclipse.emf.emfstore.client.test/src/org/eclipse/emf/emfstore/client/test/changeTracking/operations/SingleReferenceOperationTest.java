@@ -28,15 +28,6 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOper
 import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiReferenceOperationImpl;
 import org.junit.Test;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.rationale.Issue;
-import org.unicase.model.rationale.Proposal;
-import org.unicase.model.rationale.RationaleFactory;
-import org.unicase.model.rationale.RationalePackage;
-import org.unicase.model.requirement.Actor;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.UseCase;
 
 /**
  * Tests the SingleReferenceOperation.

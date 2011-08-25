@@ -6,7 +6,6 @@ import org.eclipse.emf.ecp.buildInValidation.filter.ValidationFilter;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.graphics.Image;
 
-
 /**
  * The "INFO" severity filter.
  * 
@@ -34,8 +33,7 @@ public class Severity1ValidationFilter extends ValidationFilter {
 	 */
 	@Override
 	public Image getImage() {
-		return Activator.getImageDescriptor("icons/flag_blue.png")
-				.createImage();
+		return Activator.getImageDescriptor("icons/flag_blue.png").createImage();
 	}
 
 	/**

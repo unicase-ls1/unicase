@@ -3,11 +3,8 @@ package org.eclipse.emf.ecp.buildInValidation.filter.impl;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecp.buildInValidation.Activator;
 import org.eclipse.emf.ecp.buildInValidation.filter.ValidationFilter;
-
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.graphics.Image;
-
-
 
 public class Severity2ValidationFilter extends ValidationFilter {
 
@@ -30,8 +27,7 @@ public class Severity2ValidationFilter extends ValidationFilter {
 	 */
 	@Override
 	public Image getImage() {
-		return Activator.getImageDescriptor("icons/flag_yellow.png")
-				.createImage();
+		return Activator.getImageDescriptor("icons/flag_yellow.png").createImage();
 	}
 
 	/**

@@ -20,24 +20,26 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>ES Notification</b></em>'. <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getMessage <em>Message</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getDetails <em>Details</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#isSeen <em>Seen</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getCreationDate <em>Creation Date</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getProvider <em>Provider</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getSender <em>Sender</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getRecipient <em>Recipient</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getProject <em>Project</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getRelatedModelElements <em>Related Model Elements</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getRelatedOperations <em>Related Operations</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getName <em>Name</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getMessage <em>Message</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getDetails <em>Details</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#isSeen <em>Seen</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getCreationDate <em>Creation Date</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getProvider <em>Provider</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getSender <em>Sender</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getRecipient <em>Recipient</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getProject <em>Project</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getRelatedModelElements <em>Related
+ * Model Elements</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getRelatedOperations <em>Related
+ * Operations</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.emf.emfstore.server.model.notification.NotificationPackage#getESNotification()
  * @model
  * @generated
@@ -50,6 +52,7 @@ public interface ESNotification extends IdentifiableElement {
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.emf.emfstore.server.model.notification.NotificationPackage#getESNotification_Name()
@@ -59,8 +62,10 @@ public interface ESNotification extends IdentifiableElement {
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getName
+	 * <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
@@ -75,6 +80,7 @@ public interface ESNotification extends IdentifiableElement {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Sender</em>' attribute.
 	 * @see #setSender(String)
 	 * @see org.eclipse.emf.emfstore.server.model.notification.NotificationPackage#getESNotification_Sender()
@@ -84,8 +90,10 @@ public interface ESNotification extends IdentifiableElement {
 	String getSender();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getSender <em>Sender</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getSender
+	 * <em>Sender</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Sender</em>' attribute.
 	 * @see #getSender()
 	 * @generated
@@ -100,6 +108,7 @@ public interface ESNotification extends IdentifiableElement {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Recipient</em>' attribute.
 	 * @see #setRecipient(String)
 	 * @see org.eclipse.emf.emfstore.server.model.notification.NotificationPackage#getESNotification_Recipient()
@@ -109,8 +118,10 @@ public interface ESNotification extends IdentifiableElement {
 	String getRecipient();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getRecipient <em>Recipient</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getRecipient
+	 * <em>Recipient</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Recipient</em>' attribute.
 	 * @see #getRecipient()
 	 * @generated
@@ -125,6 +136,7 @@ public interface ESNotification extends IdentifiableElement {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Project</em>' containment reference.
 	 * @see #setProject(ProjectId)
 	 * @see org.eclipse.emf.emfstore.server.model.notification.NotificationPackage#getESNotification_Project()
@@ -134,8 +146,10 @@ public interface ESNotification extends IdentifiableElement {
 	ProjectId getProject();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getProject <em>Project</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getProject
+	 * <em>Project</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Project</em>' containment reference.
 	 * @see #getProject()
 	 * @generated
@@ -151,6 +165,7 @@ public interface ESNotification extends IdentifiableElement {
 	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Related Model Elements</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.notification.NotificationPackage#getESNotification_RelatedModelElements()
 	 * @model containment="true" resolveProxies="true"
@@ -167,6 +182,7 @@ public interface ESNotification extends IdentifiableElement {
 	 * be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Related Operations</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.notification.NotificationPackage#getESNotification_RelatedOperations()
 	 * @model containment="true" resolveProxies="true"
@@ -182,6 +198,7 @@ public interface ESNotification extends IdentifiableElement {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Message</em>' attribute.
 	 * @see #setMessage(String)
 	 * @see org.eclipse.emf.emfstore.server.model.notification.NotificationPackage#getESNotification_Message()
@@ -191,8 +208,10 @@ public interface ESNotification extends IdentifiableElement {
 	String getMessage();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getMessage <em>Message</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getMessage
+	 * <em>Message</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Message</em>' attribute.
 	 * @see #getMessage()
 	 * @generated
@@ -207,6 +226,7 @@ public interface ESNotification extends IdentifiableElement {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Details</em>' attribute.
 	 * @see #setDetails(String)
 	 * @see org.eclipse.emf.emfstore.server.model.notification.NotificationPackage#getESNotification_Details()
@@ -216,8 +236,10 @@ public interface ESNotification extends IdentifiableElement {
 	String getDetails();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getDetails <em>Details</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getDetails
+	 * <em>Details</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Details</em>' attribute.
 	 * @see #getDetails()
 	 * @generated
@@ -231,6 +253,7 @@ public interface ESNotification extends IdentifiableElement {
 	 * If the meaning of the '<em>Seen</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Seen</em>' attribute.
 	 * @see #setSeen(boolean)
 	 * @see org.eclipse.emf.emfstore.server.model.notification.NotificationPackage#getESNotification_Seen()
@@ -240,8 +263,10 @@ public interface ESNotification extends IdentifiableElement {
 	boolean isSeen();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#isSeen <em>Seen</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#isSeen
+	 * <em>Seen</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Seen</em>' attribute.
 	 * @see #isSeen()
 	 * @generated
@@ -256,6 +281,7 @@ public interface ESNotification extends IdentifiableElement {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Creation Date</em>' attribute.
 	 * @see #setCreationDate(Date)
 	 * @see org.eclipse.emf.emfstore.server.model.notification.NotificationPackage#getESNotification_CreationDate()
@@ -265,8 +291,10 @@ public interface ESNotification extends IdentifiableElement {
 	Date getCreationDate();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getCreationDate <em>Creation Date</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getCreationDate
+	 * <em>Creation Date</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Creation Date</em>' attribute.
 	 * @see #getCreationDate()
 	 * @generated
@@ -281,6 +309,7 @@ public interface ESNotification extends IdentifiableElement {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Provider</em>' attribute.
 	 * @see #setProvider(String)
 	 * @see org.eclipse.emf.emfstore.server.model.notification.NotificationPackage#getESNotification_Provider()
@@ -290,8 +319,10 @@ public interface ESNotification extends IdentifiableElement {
 	String getProvider();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getProvider <em>Provider</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.notification.ESNotification#getProvider
+	 * <em>Provider</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Provider</em>' attribute.
 	 * @see #getProvider()
 	 * @generated

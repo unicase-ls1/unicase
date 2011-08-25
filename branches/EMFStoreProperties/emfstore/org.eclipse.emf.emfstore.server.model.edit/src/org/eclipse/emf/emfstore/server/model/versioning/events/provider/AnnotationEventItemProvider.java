@@ -27,8 +27,10 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.AnnotationEvent;
 import org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.AnnotationEvent} object.
+ * This is the item provider adapter for a
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.events.AnnotationEvent} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class AnnotationEventItemProvider extends EventItemProvider implements IEditingDomainItemProvider,
@@ -36,6 +38,7 @@ public class AnnotationEventItemProvider extends EventItemProvider implements IE
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AnnotationEventItemProvider(AdapterFactory adapterFactory) {
@@ -45,6 +48,7 @@ public class AnnotationEventItemProvider extends EventItemProvider implements IE
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -61,48 +65,39 @@ public class AnnotationEventItemProvider extends EventItemProvider implements IE
 	/**
 	 * This adds a property descriptor for the Annotated Element feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addAnnotatedElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AnnotationEvent_annotatedElement_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AnnotationEvent_annotatedElement_feature", "_UI_AnnotationEvent_type"),
-				 EventsPackage.Literals.ANNOTATION_EVENT__ANNOTATED_ELEMENT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_AnnotationEvent_annotatedElement_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_AnnotationEvent_annotatedElement_feature",
+				"_UI_AnnotationEvent_type"), EventsPackage.Literals.ANNOTATION_EVENT__ANNOTATED_ELEMENT, true, false,
+			true, null, null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Annotation feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addAnnotationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AnnotationEvent_annotation_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AnnotationEvent_annotation_feature", "_UI_AnnotationEvent_type"),
-				 EventsPackage.Literals.ANNOTATION_EVENT__ANNOTATION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_AnnotationEvent_annotation_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_AnnotationEvent_annotation_feature",
+				"_UI_AnnotationEvent_type"), EventsPackage.Literals.ANNOTATION_EVENT__ANNOTATION, true, false, true,
+			null, null, null));
 	}
 
 	/**
 	 * This returns AnnotationEvent.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -113,15 +108,15 @@ public class AnnotationEventItemProvider extends EventItemProvider implements IE
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((AnnotationEvent)object).getTimestamp();
+		Date labelValue = ((AnnotationEvent) object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_AnnotationEvent_type") :
-			getString("_UI_AnnotationEvent_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_AnnotationEvent_type")
+			: getString("_UI_AnnotationEvent_type") + " " + label;
 	}
 
 	/**
@@ -141,6 +136,7 @@ public class AnnotationEventItemProvider extends EventItemProvider implements IE
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

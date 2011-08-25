@@ -43,6 +43,7 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public VersionItemProvider(AdapterFactory adapterFactory) {
@@ -52,6 +53,7 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,43 +70,29 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 	/**
 	 * This adds a property descriptor for the Next Version feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addNextVersionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Version_nextVersion_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Version_nextVersion_feature", "_UI_Version_type"),
-				 VersioningPackage.Literals.VERSION__NEXT_VERSION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Version_nextVersion_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Version_nextVersion_feature", "_UI_Version_type"),
+			VersioningPackage.Literals.VERSION__NEXT_VERSION, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Previous Version feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addPreviousVersionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Version_previousVersion_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Version_previousVersion_feature", "_UI_Version_type"),
-				 VersioningPackage.Literals.VERSION__PREVIOUS_VERSION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Version_previousVersion_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Version_previousVersion_feature", "_UI_Version_type"),
+			VersioningPackage.Literals.VERSION__PREVIOUS_VERSION, true, false, true, null, null, null));
 	}
 
 	/**
@@ -113,6 +101,7 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -130,6 +119,7 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -143,6 +133,7 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 	/**
 	 * This returns Version.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -153,6 +144,7 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -172,13 +164,13 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Version.class)) {
-			case VersioningPackage.VERSION__PROJECT_STATE:
-			case VersioningPackage.VERSION__PRIMARY_SPEC:
-			case VersioningPackage.VERSION__TAG_SPECS:
-			case VersioningPackage.VERSION__CHANGES:
-			case VersioningPackage.VERSION__LOG_MESSAGE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case VersioningPackage.VERSION__PROJECT_STATE:
+		case VersioningPackage.VERSION__PRIMARY_SPEC:
+		case VersioningPackage.VERSION__TAG_SPECS:
+		case VersioningPackage.VERSION__CHANGES:
+		case VersioningPackage.VERSION__LOG_MESSAGE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -187,41 +179,33 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(VersioningPackage.Literals.VERSION__PROJECT_STATE,
-				 ModelFactory.eINSTANCE.createProject()));
+		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.VERSION__PROJECT_STATE,
+			ModelFactory.eINSTANCE.createProject()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(VersioningPackage.Literals.VERSION__PRIMARY_SPEC,
-				 VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.VERSION__PRIMARY_SPEC,
+			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(VersioningPackage.Literals.VERSION__TAG_SPECS,
-				 VersioningFactory.eINSTANCE.createTagVersionSpec()));
+		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.VERSION__TAG_SPECS,
+			VersioningFactory.eINSTANCE.createTagVersionSpec()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(VersioningPackage.Literals.VERSION__CHANGES,
-				 VersioningFactory.eINSTANCE.createChangePackage()));
+		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.VERSION__CHANGES,
+			VersioningFactory.eINSTANCE.createChangePackage()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(VersioningPackage.Literals.VERSION__LOG_MESSAGE,
-				 VersioningFactory.eINSTANCE.createLogMessage()));
+		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.VERSION__LOG_MESSAGE,
+			VersioningFactory.eINSTANCE.createLogMessage()));
 	}
 
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

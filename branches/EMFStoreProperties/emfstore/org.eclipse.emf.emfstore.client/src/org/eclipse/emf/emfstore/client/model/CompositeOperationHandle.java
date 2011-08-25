@@ -41,8 +41,7 @@ public class CompositeOperationHandle {
 	 * @param compositeOperation
 	 *            the composite operation to be handled
 	 */
-	public CompositeOperationHandle(OperationRecorder operationRecorder,
-			CompositeOperation compositeOperation) {
+	public CompositeOperationHandle(OperationRecorder operationRecorder, CompositeOperation compositeOperation) {
 		this.operationRecorder = operationRecorder;
 		removedElements = new HashSet<EObject>();
 		removedElements.addAll(operationRecorder.getRemovedElements());
@@ -100,8 +99,7 @@ public class CompositeOperationHandle {
 	 * @throws InvalidHandleException
 	 *             if the handle is invalid
 	 */
-	public void end(String name, String description,
-			ModelElementId modelElementId) throws InvalidHandleException {
+	public void end(String name, String description, ModelElementId modelElementId) throws InvalidHandleException {
 		checkAndCloseHandle();
 		compositeOperation.setCompositeName(name);
 		compositeOperation.setCompositeDescription(description);
@@ -121,13 +119,11 @@ public class CompositeOperationHandle {
 	 * @throws InvalidHandleException
 	 *             if the handle is invalid
 	 */
-	public void end(SemanticCompositeOperation semanticCompositeOperation)
-			throws InvalidHandleException {
+	public void end(SemanticCompositeOperation semanticCompositeOperation) throws InvalidHandleException {
 		checkAndCloseHandle();
 		semanticCompositeOperation.setClientDate(new Date());
 		semanticCompositeOperation.setReversed(false);
-		semanticCompositeOperation.getSubOperations().addAll(
-				compositeOperation.getSubOperations());
+		semanticCompositeOperation.getSubOperations().addAll(compositeOperation.getSubOperations());
 		operationRecorder.endCompositeOperation(semanticCompositeOperation);
 	}
 }

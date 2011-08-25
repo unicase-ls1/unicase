@@ -42,6 +42,7 @@ public class ReadEventItemProvider extends EventItemProvider implements IEditing
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ReadEventItemProvider(AdapterFactory adapterFactory) {
@@ -51,6 +52,7 @@ public class ReadEventItemProvider extends EventItemProvider implements IEditing
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,43 +69,31 @@ public class ReadEventItemProvider extends EventItemProvider implements IEditing
 	/**
 	 * This adds a property descriptor for the Source View feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addSourceViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ReadEvent_sourceView_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ReadEvent_sourceView_feature", "_UI_ReadEvent_type"),
-				 EventsPackage.Literals.READ_EVENT__SOURCE_VIEW,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ReadEvent_sourceView_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ReadEvent_sourceView_feature", "_UI_ReadEvent_type"),
+			EventsPackage.Literals.READ_EVENT__SOURCE_VIEW, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Read View feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addReadViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ReadEvent_readView_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ReadEvent_readView_feature", "_UI_ReadEvent_type"),
-				 EventsPackage.Literals.READ_EVENT__READ_VIEW,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ReadEvent_readView_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ReadEvent_readView_feature", "_UI_ReadEvent_type"),
+			EventsPackage.Literals.READ_EVENT__READ_VIEW, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -112,6 +102,7 @@ public class ReadEventItemProvider extends EventItemProvider implements IEditing
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -125,6 +116,7 @@ public class ReadEventItemProvider extends EventItemProvider implements IEditing
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -138,6 +130,7 @@ public class ReadEventItemProvider extends EventItemProvider implements IEditing
 	/**
 	 * This returns ReadEvent.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,15 +141,15 @@ public class ReadEventItemProvider extends EventItemProvider implements IEditing
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((ReadEvent)object).getTimestamp();
+		Date labelValue = ((ReadEvent) object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ReadEvent_type") :
-			getString("_UI_ReadEvent_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_ReadEvent_type") : getString("_UI_ReadEvent_type")
+			+ " " + label;
 	}
 
 	/**
@@ -171,13 +164,13 @@ public class ReadEventItemProvider extends EventItemProvider implements IEditing
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ReadEvent.class)) {
-			case EventsPackage.READ_EVENT__SOURCE_VIEW:
-			case EventsPackage.READ_EVENT__READ_VIEW:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case EventsPackage.READ_EVENT__MODEL_ELEMENT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case EventsPackage.READ_EVENT__SOURCE_VIEW:
+		case EventsPackage.READ_EVENT__READ_VIEW:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case EventsPackage.READ_EVENT__MODEL_ELEMENT:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -186,16 +179,15 @@ public class ReadEventItemProvider extends EventItemProvider implements IEditing
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(EventsPackage.Literals.READ_EVENT__MODEL_ELEMENT,
-				 ModelFactory.eINSTANCE.createModelElementId()));
+		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.READ_EVENT__MODEL_ELEMENT,
+			ModelFactory.eINSTANCE.createModelElementId()));
 	}
 
 }

@@ -19,12 +19,13 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerPack
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Event</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class ServerEventImpl extends EventImpl implements ServerEvent {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ServerEventImpl() {
@@ -33,6 +34,7 @@ public abstract class ServerEventImpl extends EventImpl implements ServerEvent {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

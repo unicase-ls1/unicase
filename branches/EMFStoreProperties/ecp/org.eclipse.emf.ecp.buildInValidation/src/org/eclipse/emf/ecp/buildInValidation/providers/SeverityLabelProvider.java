@@ -28,14 +28,11 @@ public class SeverityLabelProvider extends ColumnLabelProvider {
 			int severity = constraint.getSeverity();
 			switch (severity) {
 			case IStatus.ERROR:
-				return Activator.getImageDescriptor("icons/flag_red.png")
-						.createImage();
+				return Activator.getImageDescriptor("icons/flag_red.png").createImage();
 			case IStatus.WARNING:
-				return Activator.getImageDescriptor("icons/flag_yellow.png")
-						.createImage();
+				return Activator.getImageDescriptor("icons/flag_yellow.png").createImage();
 			default:
-				return Activator.getImageDescriptor("icons/flag_blue.png")
-						.createImage();
+				return Activator.getImageDescriptor("icons/flag_blue.png").createImage();
 			}
 		}
 		return super.getImage(element);

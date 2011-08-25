@@ -30,8 +30,7 @@ import org.eclipse.emf.emfstore.server.model.ProjectId;
  * 
  * @author groeber
  */
-public class EMFStorePropertiesSubInterfaceImpl extends
-		AbstractSubEmfstoreInterface {
+public class EMFStorePropertiesSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 
 	/**
 	 * @param parentInterface
@@ -39,35 +38,33 @@ public class EMFStorePropertiesSubInterfaceImpl extends
 	 * @throws FatalEmfStoreException
 	 *             if any fatal error occurs
 	 */
-	public EMFStorePropertiesSubInterfaceImpl(
-			AbstractEmfstoreInterface parentInterface)
-			throws FatalEmfStoreException {
+	public EMFStorePropertiesSubInterfaceImpl(AbstractEmfstoreInterface parentInterface) throws FatalEmfStoreException {
 		super(parentInterface);
 	}
 
 	/**
 	 * Set the Shared Properties from client on server.
 	 * 
-	 * @param properties
-	 *            Properties to be set
+	 * @param property
+	 *            Property to be set
 	 * @param projectId
 	 *            Project where the properties should be saved
 	 * @throws EmfStoreException
 	 *             if the specified project does not exist
 	 */
-	public void setProperty(EMFStoreProperty property, ProjectId projectId)
-			throws EmfStoreException {
+	public void setProperties(List<EMFStoreProperty> properties, ProjectId projectId) throws EmfStoreException {
 		EList<ProjectHistory> serverProjects = getServerSpace().getProjects();
 
-		for (ProjectHistory currentHistory : serverProjects) {
-			if (currentHistory.getProjectId().equals(projectId)) {
-				currentHistory.getSharedProperties().add(property);
-				save();
-				return;
+		for (EMFStoreProperty prop : properties) {
+			for (ProjectHistory currentHistory : serverProjects) {
+				if (currentHistory.getProjectId().equals(projectId)) {
+					currentHistory.getSharedProperties().put(prop.getKey(), prop);
+					save();
+					return;
+				}
 			}
 		}
-		throw new EmfStoreException(
-				"The Project does not exist on the server. Cannot set the properties.");
+		throw new EmfStoreException("The Project does not exist on the server. Cannot set the properties.");
 
 	}
 
@@ -75,8 +72,7 @@ public class EMFStorePropertiesSubInterfaceImpl extends
 		try {
 			getServerSpace().save();
 		} catch (IOException e) {
-			throw new EmfStoreException(
-					"Cannot set the properties on the server.");
+			throw new EmfStoreException("Cannot set the properties on the server.");
 		}
 	}
 
@@ -89,8 +85,7 @@ public class EMFStorePropertiesSubInterfaceImpl extends
 	 * @throws EmfStoreException
 	 *             if specified property does not exist
 	 */
-	public List<EMFStoreProperty> getProperties(ProjectId projectId)
-			throws EmfStoreException {
+	public List<EMFStoreProperty> getProperties(ProjectId projectId) throws EmfStoreException {
 		EList<ProjectHistory> serverProjects = getServerSpace().getProjects();
 
 		ProjectHistory currentHistory = null;
@@ -103,13 +98,12 @@ public class EMFStorePropertiesSubInterfaceImpl extends
 
 		if (currentHistory != null) {
 			List<EMFStoreProperty> temp = new ArrayList<EMFStoreProperty>();
-			for (EMFStoreProperty prop : currentHistory.getSharedProperties()) {
+			for (EMFStoreProperty prop : currentHistory.getSharedProperties().values()) {
 				temp.add(prop);
 			}
 			return temp;
 		}
-		throw new EmfStoreException(
-				"The Project does not exist on the server. Cannot set the properties.");
+		throw new EmfStoreException("The Project does not exist on the server. Cannot set the properties.");
 	}
 
 }

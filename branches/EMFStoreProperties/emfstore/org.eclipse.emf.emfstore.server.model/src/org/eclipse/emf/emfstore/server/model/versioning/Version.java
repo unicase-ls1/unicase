@@ -16,20 +16,20 @@ import org.eclipse.emf.emfstore.common.model.Project;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Version</b></em>'. <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getProjectState <em>Project State</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getPrimarySpec <em>Primary Spec</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getTagSpecs <em>Tag Specs</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getNextVersion <em>Next Version</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getPreviousVersion <em>Previous Version</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getChanges <em>Changes</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getLogMessage <em>Log Message</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getProjectState <em>Project State</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getPrimarySpec <em>Primary Spec</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getTagSpecs <em>Tag Specs</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getNextVersion <em>Next Version</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getPreviousVersion <em>Previous Version</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getChanges <em>Changes</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getLogMessage <em>Log Message</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage#getVersion()
  * @model
  * @generated
@@ -43,6 +43,7 @@ public interface Version extends EObject {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Project State</em>' containment reference.
 	 * @see #setProjectState(Project)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage#getVersion_ProjectState()
@@ -52,8 +53,10 @@ public interface Version extends EObject {
 	Project getProjectState();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getProjectState <em>Project State</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getProjectState
+	 * <em>Project State</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Project State</em>' containment reference.
 	 * @see #getProjectState()
 	 * @generated
@@ -68,6 +71,7 @@ public interface Version extends EObject {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Primary Spec</em>' containment reference.
 	 * @see #setPrimarySpec(PrimaryVersionSpec)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage#getVersion_PrimarySpec()
@@ -77,8 +81,10 @@ public interface Version extends EObject {
 	PrimaryVersionSpec getPrimarySpec();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getPrimarySpec <em>Primary Spec</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getPrimarySpec
+	 * <em>Primary Spec</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Primary Spec</em>' containment reference.
 	 * @see #getPrimarySpec()
 	 * @generated
@@ -94,6 +100,7 @@ public interface Version extends EObject {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Tag Specs</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage#getVersion_TagSpecs()
 	 * @model containment="true" resolveProxies="true"
@@ -122,8 +129,10 @@ public interface Version extends EObject {
 	Version getNextVersion();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getNextVersion <em>Next Version</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getNextVersion
+	 * <em>Next Version</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Next Version</em>' reference.
 	 * @see #getNextVersion()
 	 * @generated
@@ -150,8 +159,10 @@ public interface Version extends EObject {
 	Version getPreviousVersion();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getPreviousVersion <em>Previous Version</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getPreviousVersion
+	 * <em>Previous Version</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Previous Version</em>' reference.
 	 * @see #getPreviousVersion()
 	 * @generated
@@ -166,6 +177,7 @@ public interface Version extends EObject {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Changes</em>' containment reference.
 	 * @see #setChanges(ChangePackage)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage#getVersion_Changes()
@@ -175,8 +187,10 @@ public interface Version extends EObject {
 	ChangePackage getChanges();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getChanges <em>Changes</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getChanges
+	 * <em>Changes</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Changes</em>' containment reference.
 	 * @see #getChanges()
 	 * @generated
@@ -191,6 +205,7 @@ public interface Version extends EObject {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Log Message</em>' containment reference.
 	 * @see #setLogMessage(LogMessage)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage#getVersion_LogMessage()
@@ -200,8 +215,10 @@ public interface Version extends EObject {
 	LogMessage getLogMessage();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getLogMessage <em>Log Message</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.Version#getLogMessage
+	 * <em>Log Message</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Log Message</em>' containment reference.
 	 * @see #getLogMessage()
 	 * @generated

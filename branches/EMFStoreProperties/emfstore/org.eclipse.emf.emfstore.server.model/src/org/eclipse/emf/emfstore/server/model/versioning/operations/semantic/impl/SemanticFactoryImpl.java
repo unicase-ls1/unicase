@@ -15,28 +15,29 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.*;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.SemanticFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.SemanticPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class SemanticFactoryImpl extends EFactoryImpl implements SemanticFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static SemanticFactory init() {
 		try {
-			SemanticFactory theSemanticFactory = (SemanticFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/emf/emfstore/server/model/versioning/operations/semantic"); 
+			SemanticFactory theSemanticFactory = (SemanticFactory) EPackage.Registry.INSTANCE
+				.getEFactory("http://eclipse.org/emf/emfstore/server/model/versioning/operations/semantic");
 			if (theSemanticFactory != null) {
 				return theSemanticFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new SemanticFactoryImpl();
@@ -45,6 +46,7 @@ public class SemanticFactoryImpl extends EFactoryImpl implements SemanticFactory
 	/**
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SemanticFactoryImpl() {
@@ -53,26 +55,29 @@ public class SemanticFactoryImpl extends EFactoryImpl implements SemanticFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SemanticPackage getSemanticPackage() {
-		return (SemanticPackage)getEPackage();
+		return (SemanticPackage) getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

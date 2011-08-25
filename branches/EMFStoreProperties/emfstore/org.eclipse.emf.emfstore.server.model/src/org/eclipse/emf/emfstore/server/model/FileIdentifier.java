@@ -14,8 +14,8 @@ import org.eclipse.emf.emfstore.common.model.IdentifiableElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>File Identifier</b></em>'. <!-- end-user-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getFileIdentifier()
  * @model
  * @generated

@@ -13,7 +13,6 @@ package org.eclipse.emf.emfstore.client.model.provider;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +20,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -43,15 +41,13 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerFactory;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace} object. <!--
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.client.model.ProjectSpace} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
-public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 
 	private Map<Project, ProjectSpace> projectToProjectSpaceMap;;
 
@@ -95,15 +91,12 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 	 */
 	protected void addProjectNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ProjectSpace_projectName_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ProjectSpace_projectName_feature",
-						"_UI_ProjectSpace_type"),
-				ModelPackage.Literals.PROJECT_SPACE__PROJECT_NAME, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ProjectSpace_projectName_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_projectName_feature",
+				"_UI_ProjectSpace_type"), ModelPackage.Literals.PROJECT_SPACE__PROJECT_NAME, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -114,16 +107,12 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 	 */
 	protected void addProjectDescriptionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ProjectSpace_projectDescription_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ProjectSpace_projectDescription_feature",
-						"_UI_ProjectSpace_type"),
-				ModelPackage.Literals.PROJECT_SPACE__PROJECT_DESCRIPTION, true,
-				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ProjectSpace_projectDescription_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_projectDescription_feature",
+				"_UI_ProjectSpace_type"), ModelPackage.Literals.PROJECT_SPACE__PROJECT_DESCRIPTION, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -134,15 +123,12 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 	 */
 	protected void addUsersessionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ProjectSpace_usersession_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ProjectSpace_usersession_feature",
-						"_UI_ProjectSpace_type"),
-				ModelPackage.Literals.PROJECT_SPACE__USERSESSION, true, false,
-				true, null, null, null));
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ProjectSpace_usersession_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_usersession_feature",
+				"_UI_ProjectSpace_type"), ModelPackage.Literals.PROJECT_SPACE__USERSESSION, true, false, true, null,
+			null, null));
 	}
 
 	/**
@@ -153,15 +139,12 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 	 */
 	protected void addLastUpdatedPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ProjectSpace_lastUpdated_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ProjectSpace_lastUpdated_feature",
-						"_UI_ProjectSpace_type"),
-				ModelPackage.Literals.PROJECT_SPACE__LAST_UPDATED, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ProjectSpace_lastUpdated_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_lastUpdated_feature",
+				"_UI_ProjectSpace_type"), ModelPackage.Literals.PROJECT_SPACE__LAST_UPDATED, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -172,16 +155,12 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 	 */
 	protected void addResourceCountPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ProjectSpace_resourceCount_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ProjectSpace_resourceCount_feature",
-						"_UI_ProjectSpace_type"),
-				ModelPackage.Literals.PROJECT_SPACE__RESOURCE_COUNT, true,
-				false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				null, null));
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ProjectSpace_resourceCount_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_resourceCount_feature",
+				"_UI_ProjectSpace_type"), ModelPackage.Literals.PROJECT_SPACE__RESOURCE_COUNT, true, false, false,
+			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -192,15 +171,11 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 	 */
 	protected void addDirtyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ProjectSpace_dirty_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ProjectSpace_dirty_feature",
-						"_UI_ProjectSpace_type"),
-				ModelPackage.Literals.PROJECT_SPACE__DIRTY, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ProjectSpace_dirty_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_dirty_feature", "_UI_ProjectSpace_type"),
+			ModelPackage.Literals.PROJECT_SPACE__DIRTY, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+			null, null));
 	}
 
 	/**
@@ -211,16 +186,12 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 	 */
 	protected void addOldLogMessagesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ProjectSpace_oldLogMessages_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ProjectSpace_oldLogMessages_feature",
-						"_UI_ProjectSpace_type"),
-				ModelPackage.Literals.PROJECT_SPACE__OLD_LOG_MESSAGES, true,
-				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ProjectSpace_oldLogMessages_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ProjectSpace_oldLogMessages_feature",
+				"_UI_ProjectSpace_type"), ModelPackage.Literals.PROJECT_SPACE__OLD_LOG_MESSAGES, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -228,39 +199,31 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ModelPackage.Literals.PROJECT_SPACE__PROJECT);
-			childrenFeatures
-					.add(ModelPackage.Literals.PROJECT_SPACE__PROJECT_ID);
+			childrenFeatures.add(ModelPackage.Literals.PROJECT_SPACE__PROJECT_ID);
 			childrenFeatures.add(ModelPackage.Literals.PROJECT_SPACE__EVENTS);
-			childrenFeatures
-					.add(ModelPackage.Literals.PROJECT_SPACE__BASE_VERSION);
-			childrenFeatures
-					.add(ModelPackage.Literals.PROJECT_SPACE__LOCAL_OPERATIONS);
-			childrenFeatures
-					.add(ModelPackage.Literals.PROJECT_SPACE__NOTIFICATIONS);
-			childrenFeatures
-					.add(ModelPackage.Literals.PROJECT_SPACE__EVENT_COMPOSITE);
-			childrenFeatures
-					.add(ModelPackage.Literals.PROJECT_SPACE__NOTIFICATION_COMPOSITE);
-			childrenFeatures
-					.add(ModelPackage.Literals.PROJECT_SPACE__WAITING_UPLOADS);
-			childrenFeatures
-					.add(ModelPackage.Literals.PROJECT_SPACE__PROPERTIES);
-			childrenFeatures
-					.add(ModelPackage.Literals.PROJECT_SPACE__CHANGED_SHARED_PROPERTIES);
+			childrenFeatures.add(ModelPackage.Literals.PROJECT_SPACE__BASE_VERSION);
+			childrenFeatures.add(ModelPackage.Literals.PROJECT_SPACE__LOCAL_OPERATIONS);
+			childrenFeatures.add(ModelPackage.Literals.PROJECT_SPACE__NOTIFICATIONS);
+			childrenFeatures.add(ModelPackage.Literals.PROJECT_SPACE__EVENT_COMPOSITE);
+			childrenFeatures.add(ModelPackage.Literals.PROJECT_SPACE__NOTIFICATION_COMPOSITE);
+			childrenFeatures.add(ModelPackage.Literals.PROJECT_SPACE__WAITING_UPLOADS);
+			childrenFeatures.add(ModelPackage.Literals.PROJECT_SPACE__PROPERTIES);
+			childrenFeatures.add(ModelPackage.Literals.PROJECT_SPACE__CHANGED_SHARED_PROPERTIES);
 		}
 		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -311,8 +274,8 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 	// end of custom code
 
 	/**
-	 * {@inheritDoc} This handles model notifications by calling
-	 * {@link #updateChildren} to update any cached children and by creating a
+	 * {@inheritDoc} This handles model notifications by calling {@link #updateChildren} to update any cached children
+	 * and by creating a
 	 * viewer notification, which it passes to {@link #fireNotifyChanged}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -323,12 +286,9 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 		// in case the notification comes in from a project then issue a viewer
 		// update on the appropriate projectspace
 
-		if (notification != null
-				&& projectToProjectSpaceMap.get(notification.getNotifier()) != null) {
-			ProjectSpace projectSpace = projectToProjectSpaceMap
-					.get(notification.getNotifier());
-			fireNotifyChanged(new ViewerNotification(notification,
-					projectSpace, true, true));
+		if (notification != null && projectToProjectSpaceMap.get(notification.getNotifier()) != null) {
+			ProjectSpace projectSpace = projectToProjectSpaceMap.get(notification.getNotifier());
+			fireNotifyChanged(new ViewerNotification(notification, projectSpace, true, true));
 			return;
 		}
 		notifyChangedGen(notification);
@@ -347,8 +307,7 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 		case ModelPackage.PROJECT_SPACE__RESOURCE_COUNT:
 		case ModelPackage.PROJECT_SPACE__DIRTY:
 		case ModelPackage.PROJECT_SPACE__OLD_LOG_MESSAGES:
-			fireNotifyChanged(new ViewerNotification(notification,
-					notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case ModelPackage.PROJECT_SPACE__PROJECT:
 		case ModelPackage.PROJECT_SPACE__PROJECT_ID:
@@ -361,8 +320,7 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 		case ModelPackage.PROJECT_SPACE__WAITING_UPLOADS:
 		case ModelPackage.PROJECT_SPACE__PROPERTIES:
 		case ModelPackage.PROJECT_SPACE__CHANGED_SHARED_PROPERTIES:
-			fireNotifyChanged(new ViewerNotification(notification,
-					notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -376,187 +334,141 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__PROJECT,
-				ModelFactory.eINSTANCE.createProject()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__PROJECT,
+			ModelFactory.eINSTANCE.createProject()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__PROJECT_ID,
-				org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE
-						.createProjectId()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__PROJECT_ID,
+			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createProjectId()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createReadEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createReadEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createMergeEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createMergeEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createCheckoutEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createCheckoutEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createExceptionEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createExceptionEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createPluginStartEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createPluginStartEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createUpdateEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createUpdateEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createAnnotationEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createAnnotationEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createRevertEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createRevertEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createShowHistoryEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createShowHistoryEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createPerspectiveEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createPerspectiveEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createDNDEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createDNDEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createLinkEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createLinkEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createTraceEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createTraceEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createNavigatorCreateEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createNavigatorCreateEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createPluginFocusEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createPluginFocusEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createPresentationSwitchEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createPresentationSwitchEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createUndoEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createUndoEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createValidate()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createValidate()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createShowChangesEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createShowChangesEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createNotificationReadEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createNotificationReadEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createNotificationGenerationEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createNotificationGenerationEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createNotificationIgnoreEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createNotificationIgnoreEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createURLEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createURLEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createMergeChoiceEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createMergeChoiceEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				EventsFactory.eINSTANCE.createMergeGlobalChoiceEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createMergeGlobalChoiceEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENTS,
-				ServerFactory.eINSTANCE.createProjectUpdatedEvent()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENTS,
+			ServerFactory.eINSTANCE.createProjectUpdatedEvent()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__BASE_VERSION,
-				VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__BASE_VERSION,
+			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__LOCAL_OPERATIONS,
-				org.eclipse.emf.emfstore.client.model.ModelFactory.eINSTANCE
-						.createOperationComposite()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__LOCAL_OPERATIONS,
+			org.eclipse.emf.emfstore.client.model.ModelFactory.eINSTANCE.createOperationComposite()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__NOTIFICATIONS,
-				NotificationFactory.eINSTANCE.createESNotification()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__NOTIFICATIONS,
+			NotificationFactory.eINSTANCE.createESNotification()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__EVENT_COMPOSITE,
-				org.eclipse.emf.emfstore.client.model.ModelFactory.eINSTANCE
-						.createEventComposite()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__EVENT_COMPOSITE,
+			org.eclipse.emf.emfstore.client.model.ModelFactory.eINSTANCE.createEventComposite()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__NOTIFICATION_COMPOSITE,
-				org.eclipse.emf.emfstore.client.model.ModelFactory.eINSTANCE
-						.createNotificationComposite()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__NOTIFICATION_COMPOSITE,
+			org.eclipse.emf.emfstore.client.model.ModelFactory.eINSTANCE.createNotificationComposite()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.PROJECT_SPACE__WAITING_UPLOADS,
-				org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE
-						.createFileIdentifier()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__WAITING_UPLOADS,
+			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createFileIdentifier()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						ModelPackage.Literals.PROJECT_SPACE__PROPERTIES,
-						ModelFactory.eINSTANCE
-								.create(org.eclipse.emf.emfstore.common.model.ModelPackage.Literals.PROPERTY_MAP_ENTRY)));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__PROPERTIES,
+			ModelFactory.eINSTANCE
+				.create(org.eclipse.emf.emfstore.common.model.ModelPackage.Literals.PROPERTY_MAP_ENTRY)));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						ModelPackage.Literals.PROJECT_SPACE__CHANGED_SHARED_PROPERTIES,
-						ModelFactory.eINSTANCE
-								.create(org.eclipse.emf.emfstore.common.model.ModelPackage.Literals.PROPERTY_MAP_ENTRY)));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_SPACE__CHANGED_SHARED_PROPERTIES,
+			ModelFactory.eINSTANCE
+				.create(org.eclipse.emf.emfstore.common.model.ModelPackage.Literals.PROPERTY_MAP_ENTRY)));
 	}
 
 	/**
 	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public String getCreateChildText(Object owner, Object feature,
-			Object child, Collection<?> selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
 		boolean qualify = childFeature == ModelPackage.Literals.PROJECT_SPACE__PROPERTIES
-				|| childFeature == ModelPackage.Literals.PROJECT_SPACE__CHANGED_SHARED_PROPERTIES;
+			|| childFeature == ModelPackage.Literals.PROJECT_SPACE__CHANGED_SHARED_PROPERTIES;
 
 		if (qualify) {
-			return getString("_UI_CreateChild_text2", new Object[] {
-					getTypeText(childObject), getFeatureText(childFeature),
-					getTypeText(owner) });
+			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
+				getFeatureText(childFeature), getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

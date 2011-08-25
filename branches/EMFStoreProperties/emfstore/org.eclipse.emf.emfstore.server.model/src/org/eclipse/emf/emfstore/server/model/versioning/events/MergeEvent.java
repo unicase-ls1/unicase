@@ -16,18 +16,21 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOpera
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Merge Event</b></em>'. <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent#getNumberOfConflicts <em>Number Of Conflicts</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent#getTotalTime <em>Total Time</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent#getBaseVersion <em>Base Version</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent#getTargetVersion <em>Target Version</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent#getLocalChanges <em>Local Changes</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent#getNumberOfConflicts <em>Number Of
+ * Conflicts</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent#getTotalTime <em>Total Time</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent#getBaseVersion <em>Base Version</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent#getTargetVersion <em>Target Version
+ * </em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent#getLocalChanges <em>Local Changes</em>}
+ * </li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getMergeEvent()
  * @model
  * @generated
@@ -41,6 +44,7 @@ public interface MergeEvent extends Event {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Number Of Conflicts</em>' attribute.
 	 * @see #setNumberOfConflicts(int)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getMergeEvent_NumberOfConflicts()
@@ -50,8 +54,11 @@ public interface MergeEvent extends Event {
 	int getNumberOfConflicts();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent#getNumberOfConflicts <em>Number Of Conflicts</em>}' attribute.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent#getNumberOfConflicts
+	 * <em>Number Of Conflicts</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Number Of Conflicts</em>' attribute.
 	 * @see #getNumberOfConflicts()
 	 * @generated
@@ -66,6 +73,7 @@ public interface MergeEvent extends Event {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Total Time</em>' attribute.
 	 * @see #setTotalTime(int)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getMergeEvent_TotalTime()
@@ -75,8 +83,10 @@ public interface MergeEvent extends Event {
 	int getTotalTime();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent#getTotalTime <em>Total Time</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent#getTotalTime
+	 * <em>Total Time</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Total Time</em>' attribute.
 	 * @see #getTotalTime()
 	 * @generated
@@ -91,6 +101,7 @@ public interface MergeEvent extends Event {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Base Version</em>' containment reference.
 	 * @see #setBaseVersion(PrimaryVersionSpec)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getMergeEvent_BaseVersion()
@@ -100,8 +111,10 @@ public interface MergeEvent extends Event {
 	PrimaryVersionSpec getBaseVersion();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent#getBaseVersion <em>Base Version</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent#getBaseVersion
+	 * <em>Base Version</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Base Version</em>' containment reference.
 	 * @see #getBaseVersion()
 	 * @generated
@@ -116,6 +129,7 @@ public interface MergeEvent extends Event {
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Target Version</em>' containment reference.
 	 * @see #setTargetVersion(PrimaryVersionSpec)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getMergeEvent_TargetVersion()
@@ -125,8 +139,11 @@ public interface MergeEvent extends Event {
 	PrimaryVersionSpec getTargetVersion();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent#getTargetVersion <em>Target Version</em>}' containment reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeEvent#getTargetVersion
+	 * <em>Target Version</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Target Version</em>' containment reference.
 	 * @see #getTargetVersion()
 	 * @generated
@@ -135,13 +152,15 @@ public interface MergeEvent extends Event {
 
 	/**
 	 * Returns the value of the '<em><b>Local Changes</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation}.
+	 * The list contents are of type
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Local Changes</em>' containment reference list isn't clear, there really should be
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Local Changes</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getMergeEvent_LocalChanges()
 	 * @model containment="true" resolveProxies="true"

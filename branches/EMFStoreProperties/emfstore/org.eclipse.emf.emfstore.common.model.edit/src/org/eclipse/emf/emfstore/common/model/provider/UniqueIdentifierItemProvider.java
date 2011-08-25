@@ -32,14 +32,15 @@ import org.eclipse.emf.emfstore.common.model.UniqueIdentifier;
  * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.common.model.UniqueIdentifier} object.
  * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class UniqueIdentifierItemProvider extends RootElementItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class UniqueIdentifierItemProvider extends RootElementItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UniqueIdentifierItemProvider(AdapterFactory adapterFactory) {
@@ -49,6 +50,7 @@ public class UniqueIdentifierItemProvider extends RootElementItemProvider
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,31 +66,30 @@ public class UniqueIdentifierItemProvider extends RootElementItemProvider
 	/**
 	 * This adds a property descriptor for the Id feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addIdPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_UniqueIdentifier_id_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_UniqueIdentifier_id_feature",
-						"_UI_UniqueIdentifier_type"),
-				ModelPackage.Literals.UNIQUE_IDENTIFIER__ID, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_UniqueIdentifier_id_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_UniqueIdentifier_id_feature",
+				"_UI_UniqueIdentifier_type"), ModelPackage.Literals.UNIQUE_IDENTIFIER__ID, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((UniqueIdentifier) object).getId();
 		return label == null || label.length() == 0 ? getString("_UI_UniqueIdentifier_type")
-				: getString("_UI_UniqueIdentifier_type") + " " + label;
+			: getString("_UI_UniqueIdentifier_type") + " " + label;
 	}
 
 	/**
@@ -104,8 +105,7 @@ public class UniqueIdentifierItemProvider extends RootElementItemProvider
 
 		switch (notification.getFeatureID(UniqueIdentifier.class)) {
 		case ModelPackage.UNIQUE_IDENTIFIER__ID:
-			fireNotifyChanged(new ViewerNotification(notification,
-					notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -115,17 +115,18 @@ public class UniqueIdentifierItemProvider extends RootElementItemProvider
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

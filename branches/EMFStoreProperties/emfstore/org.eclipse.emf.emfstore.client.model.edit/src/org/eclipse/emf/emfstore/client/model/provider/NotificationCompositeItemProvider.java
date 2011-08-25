@@ -32,14 +32,15 @@ import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
 /**
  * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.client.model.NotificationComposite} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class NotificationCompositeItemProvider extends ItemProviderAdapter
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class NotificationCompositeItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationCompositeItemProvider(AdapterFactory adapterFactory) {
@@ -49,6 +50,7 @@ public class NotificationCompositeItemProvider extends ItemProviderAdapter
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,21 +68,21 @@ public class NotificationCompositeItemProvider extends ItemProviderAdapter
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(ModelPackage.Literals.NOTIFICATION_COMPOSITE__NOTIFICATIONS);
+			childrenFeatures.add(ModelPackage.Literals.NOTIFICATION_COMPOSITE__NOTIFICATIONS);
 		}
 		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -94,19 +96,18 @@ public class NotificationCompositeItemProvider extends ItemProviderAdapter
 	/**
 	 * This returns NotificationComposite.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(
-				object,
-				getResourceLocator().getImage(
-						"full/obj16/NotificationComposite"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/NotificationComposite"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -127,8 +128,7 @@ public class NotificationCompositeItemProvider extends ItemProviderAdapter
 
 		switch (notification.getFeatureID(NotificationComposite.class)) {
 		case ModelPackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS:
-			fireNotifyChanged(new ViewerNotification(notification,
-					notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -138,21 +138,21 @@ public class NotificationCompositeItemProvider extends ItemProviderAdapter
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.NOTIFICATION_COMPOSITE__NOTIFICATIONS,
-				NotificationFactory.eINSTANCE.createESNotification()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.NOTIFICATION_COMPOSITE__NOTIFICATIONS,
+			NotificationFactory.eINSTANCE.createESNotification()));
 	}
 
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

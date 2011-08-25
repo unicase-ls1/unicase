@@ -73,12 +73,10 @@ public class EObjectChangeNotifier extends EContentAdapter {
 			return;
 		}
 
-		if (currentNotification != null && !currentNotification.isTouch()
-				&& !isInitializing && notifier instanceof EObject
-				&& !ModelUtil.isIgnoredDatatype((EObject) notifier)) {
+		if (currentNotification != null && !currentNotification.isTouch() && !isInitializing
+			&& notifier instanceof EObject && !ModelUtil.isIgnoredDatatype((EObject) notifier)) {
 			EObject modelElement = (EObject) notifier;
-			if (!collection.containsInstance(modelElement)
-					&& isInProject(modelElement)) {
+			if (!collection.containsInstance(modelElement) && isInProject(modelElement)) {
 				collection.modelElementAdded(collection, modelElement);
 			}
 		}
@@ -98,20 +96,17 @@ public class EObjectChangeNotifier extends EContentAdapter {
 			return;
 		}
 
-		if (currentNotification != null
-				&& currentNotification.getFeature() instanceof EReference) {
-			EReference eReference = (EReference) currentNotification
-					.getFeature();
+		if (currentNotification != null && currentNotification.getFeature() instanceof EReference) {
+			EReference eReference = (EReference) currentNotification.getFeature();
 			if (eReference.isContainment() && eReference.getEOpposite() != null
-					&& !eReference.getEOpposite().isTransient()) {
+				&& !eReference.getEOpposite().isTransient()) {
 				return;
 			}
 		}
 
 		if (notifier instanceof EObject) {
 			EObject modelElement = (EObject) notifier;
-			if (!isInProject(modelElement)
-					&& collection.containsInstance(modelElement)) {
+			if (!isInProject(modelElement) && collection.containsInstance(modelElement)) {
 				removedModelElements.add(modelElement);
 			}
 		}
@@ -167,8 +162,7 @@ public class EObjectChangeNotifier extends EContentAdapter {
 		super.notifyChanged(notification);
 
 		// project is not a valid model element
-		if (!notification.isTouch() && notifier instanceof EObject
-				&& !(notifier instanceof Project)) {
+		if (!notification.isTouch() && notifier instanceof EObject && !(notifier instanceof Project)) {
 			collection.notify(notification, collection, (EObject) notifier);
 		}
 		for (EObject removedModelElement : removedModelElements) {
@@ -180,8 +174,7 @@ public class EObjectChangeNotifier extends EContentAdapter {
 	/**
 	 * @param notification
 	 */
-	private void handleContainer(Notification notification,
-			EReference eReference) {
+	private void handleContainer(Notification notification, EReference eReference) {
 		if (notification.getEventType() == Notification.SET) {
 			Object newValue = notification.getNewValue();
 			Object oldValue = notification.getOldValue();

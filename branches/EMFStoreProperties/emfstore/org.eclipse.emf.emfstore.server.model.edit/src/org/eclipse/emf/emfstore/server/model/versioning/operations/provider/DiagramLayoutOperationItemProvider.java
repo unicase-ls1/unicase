@@ -24,9 +24,11 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.DiagramLayoutOperation;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.operations.DiagramLayoutOperation} object.
+ * This is the item provider adapter for a
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.DiagramLayoutOperation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class DiagramLayoutOperationItemProvider extends AttributeOperationItemProvider implements
@@ -35,6 +37,7 @@ public class DiagramLayoutOperationItemProvider extends AttributeOperationItemPr
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DiagramLayoutOperationItemProvider(AdapterFactory adapterFactory) {
@@ -44,6 +47,7 @@ public class DiagramLayoutOperationItemProvider extends AttributeOperationItemPr
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -97,6 +101,7 @@ public class DiagramLayoutOperationItemProvider extends AttributeOperationItemPr
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

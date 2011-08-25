@@ -20,21 +20,18 @@ public class ValidationContentProvider extends AdapterFactoryContentProvider {
 	 * Default constructor.
 	 */
 	public ValidationContentProvider() {
-		super(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider#getElements
 	 * (java.lang.Object)
 	 */
 	@Override
 	public Object[] getElements(Object inputElement) {
-		IStatus status = BasicDiagnostic
-				.toIStatus((BasicDiagnostic) inputElement);
+		IStatus status = BasicDiagnostic.toIStatus((BasicDiagnostic) inputElement);
 
 		List<IStatus> constraints = new ArrayList<IStatus>();
 		if (status.isMultiStatus()) {

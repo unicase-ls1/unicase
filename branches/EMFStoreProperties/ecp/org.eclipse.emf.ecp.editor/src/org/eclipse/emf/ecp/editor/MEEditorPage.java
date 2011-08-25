@@ -329,38 +329,38 @@ public class MEEditorPage extends FormPage {
 		}
 		leftColumnComposite.setFocus();
 	}
-	
+
 	/**
 	 * Triggers live validation of the model attributes.
 	 * **/
-	public void updateLiveValidation() {	
+	public void updateLiveValidation() {
 		Diagnostic diagnostic = Diagnostician.INSTANCE.validate(modelElement);
 		List<AbstractMEControl> affectedControls = new ArrayList<AbstractMEControl>();
-		
-		for (Iterator<Diagnostic> i= diagnostic.getChildren().iterator(); i.hasNext();) {
+
+		for (Iterator<Diagnostic> i = diagnostic.getChildren().iterator(); i.hasNext();) {
 			Diagnostic childDiagnostic = i.next();
 			AbstractMEControl meControl = this.meControls.get(childDiagnostic.getData().get(1));
 			affectedControls.add(meControl);
-			if (meControl instanceof IValidatableControl) { 
+			if (meControl instanceof IValidatableControl) {
 				if (this.valdiatedControls.containsKey(meControl)) {
 					if (childDiagnostic.getSeverity() != this.valdiatedControls.get(meControl).getSeverity()) {
-						((IValidatableControl)meControl).handleValidation(childDiagnostic);
+						((IValidatableControl) meControl).handleValidation(childDiagnostic);
 						this.valdiatedControls.put(meControl, childDiagnostic);
-					} 
+					}
 				} else {
-					((IValidatableControl)meControl).handleValidation(childDiagnostic);
+					((IValidatableControl) meControl).handleValidation(childDiagnostic);
 					this.valdiatedControls.put(meControl, childDiagnostic);
 				}
 			}
 		}
-		
+
 		Map<AbstractMEControl, Diagnostic> temp = new HashMap<AbstractMEControl, Diagnostic>();
 		temp.putAll(this.valdiatedControls);
 		for (Map.Entry<AbstractMEControl, Diagnostic> entry : temp.entrySet()) {
 			AbstractMEControl meControl = entry.getKey();
 			if (!affectedControls.contains(meControl)) {
 				this.valdiatedControls.remove(meControl);
-				((IValidatableControl)meControl).resetValidation();
+				((IValidatableControl) meControl).resetValidation();
 			}
 		}
 	}

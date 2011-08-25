@@ -22,10 +22,10 @@ import org.eclipse.emf.emfstore.common.model.ModelVersion;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.common.model.impl.ModelVersionImpl#getReleaseNumber <em>Release Number</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.common.model.impl.ModelVersionImpl#getReleaseNumber <em>Release Number</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
@@ -33,6 +33,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 	 * The default value of the '{@link #getReleaseNumber() <em>Release Number</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getReleaseNumber()
 	 * @generated
 	 * @ordered
@@ -43,6 +44,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 	 * The cached value of the '{@link #getReleaseNumber() <em>Release Number</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getReleaseNumber()
 	 * @generated
 	 * @ordered
@@ -51,6 +53,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ModelVersionImpl() {
@@ -59,6 +62,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,6 +72,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getReleaseNumber() {
@@ -76,19 +81,20 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setReleaseNumber(int newReleaseNumber) {
 		int oldReleaseNumber = releaseNumber;
 		releaseNumber = newReleaseNumber;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.MODEL_VERSION__RELEASE_NUMBER,
-					oldReleaseNumber, releaseNumber));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.MODEL_VERSION__RELEASE_NUMBER,
+				oldReleaseNumber, releaseNumber));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -102,6 +108,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -116,6 +123,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -130,6 +138,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -143,6 +152,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -12,8 +12,8 @@ package org.eclipse.emf.emfstore.server.model.accesscontrol.roles;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Server Admin</b></em>'. <!-- end-user-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.emf.emfstore.server.model.accesscontrol.roles.RolesPackage#getServerAdmin()
  * @model
  * @generated

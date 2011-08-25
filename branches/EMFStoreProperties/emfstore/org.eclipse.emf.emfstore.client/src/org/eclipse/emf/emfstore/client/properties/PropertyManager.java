@@ -10,6 +10,7 @@
  ******************************************************************************/
 package org.eclipse.emf.emfstore.client.properties;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,7 +54,7 @@ public final class PropertyManager {
 	 * @param value
 	 *            of the local property as EObject
 	 * **/
-	public EMFStoreProperty setLocalProperty(String key, EObject value) {
+	public void setLocalProperty(String key, EObject value) {
 		EMFStoreProperty prop = createProperty(key, value);
 		prop.setType(EMFStorePropertyType.LOCAL);
 		this.projectSpace.getProperties().put(prop.getKey(), prop);
@@ -64,8 +65,6 @@ public final class PropertyManager {
 		}
 
 		this.localProperties.put(key, value);
-		return prop;
-
 	}
 
 	/**
@@ -80,7 +79,7 @@ public final class PropertyManager {
 			this.localProperties = new HashMap<String, EObject>();
 			createMap(this.localProperties, EMFStorePropertyType.LOCAL);
 		}
-		return getProperty(this.localProperties, key);
+		return getPropertyValue(this.localProperties, key);
 	}
 
 	/**
@@ -92,13 +91,11 @@ public final class PropertyManager {
 	 * @param value
 	 *            of the local property
 	 * */
-	public EMFStoreProperty setLocalStringProperty(String key, String value) {
+	public void setLocalStringProperty(String key, String value) {
 		PropertyStringValue propertyValue = org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE
-				.createPropertyStringValue();
+			.createPropertyStringValue();
 		propertyValue.setValue(value);
-		EMFStoreProperty prop = setLocalProperty(key, propertyValue);
-		return prop;
-
+		setLocalProperty(key, propertyValue);
 	}
 
 	/**
@@ -111,7 +108,11 @@ public final class PropertyManager {
 	 * **/
 	public String getLocalStringProperty(String key) {
 		PropertyStringValue propertyValue = (PropertyStringValue) getLocalProperty(key);
-		return propertyValue.getValue();
+		if (propertyValue != null) {
+			return propertyValue.getValue();
+		}
+
+		return null;
 	}
 
 	/**
@@ -124,12 +125,11 @@ public final class PropertyManager {
 	 *            of the shared property as String
 	 * 
 	 * **/
-	public EMFStoreProperty setSharedStringProperty(String key, String value) {
+	public void setSharedStringProperty(String key, String value) {
 		PropertyStringValue propertyValue = org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE
-				.createPropertyStringValue();
+			.createPropertyStringValue();
 		propertyValue.setValue(value);
-		EMFStoreProperty prop = setSharedProperty(key, propertyValue);
-		return prop;
+		setSharedProperty(key, propertyValue);
 	}
 
 	/**
@@ -142,7 +142,9 @@ public final class PropertyManager {
 	public String getSharedStringProperty(String key) {
 		if (key != null) {
 			PropertyStringValue propertyValue = (PropertyStringValue) getSharedProperty(key);
-			return propertyValue.getValue();
+			if (propertyValue != null) {
+				return propertyValue.getValue();
+			}
 		}
 		return null;
 	}
@@ -155,8 +157,8 @@ public final class PropertyManager {
 	 * @param value
 	 *            of the shared property as EObject
 	 * **/
-	public EMFStoreProperty setSharedProperty(String key, EObject value) {
-		EMFStoreProperty prop = createProperty(key, (EObject) value);
+	public void setSharedProperty(String key, EObject value) {
+		EMFStoreProperty prop = createProperty(key, value);
 		prop.setType(EMFStorePropertyType.SHARED);
 		this.projectSpace.getProperties().put(prop.getKey(), prop);
 		this.projectSpace.getChangedSharedProperties().put(prop.getKey(), prop);
@@ -167,7 +169,6 @@ public final class PropertyManager {
 		}
 
 		this.sharedProperties.put(key, value);
-		return prop;
 	}
 
 	/**
@@ -182,7 +183,7 @@ public final class PropertyManager {
 			this.sharedProperties = new HashMap<String, EObject>();
 			createMap(this.sharedProperties, EMFStorePropertyType.SHARED);
 		}
-		return getProperty(this.sharedProperties, key);
+		return getPropertyValue(this.sharedProperties, key);
 	}
 
 	/**
@@ -194,43 +195,37 @@ public final class PropertyManager {
 	 *             if any error occurs in the EmfStore
 	 * */
 	public void transmit() throws EmfStoreException {
-		EMap<String, EMFStoreProperty> changedProperties = this.projectSpace
-				.getChangedSharedProperties();
-		for (EMFStoreProperty prop : changedProperties.values()) {
-			WorkspaceManager
-					.getInstance()
-					.getConnectionManager()
-					.transmitEMFProperties(
-							this.projectSpace.getUsersession().getSessionId(),
-							prop, this.projectSpace.getProjectId());
+		List<EMFStoreProperty> changedProperties = new ArrayList<EMFStoreProperty>();
+
+		for (EMFStoreProperty prop : this.projectSpace.getChangedSharedProperties().values()) {
+			changedProperties.add(prop);
 		}
+
+		WorkspaceManager
+			.getInstance()
+			.getConnectionManager()
+			.transmitEMFProperties(this.projectSpace.getUsersession().getSessionId(), changedProperties,
+				this.projectSpace.getProjectId());
 
 		this.projectSpace.getChangedSharedProperties().clear();
 
-		List<EMFStoreProperty> sharedProperties = WorkspaceManager
-				.getInstance()
-				.getConnectionManager()
-				.getEMFProperties(
-						this.projectSpace.getUsersession().getSessionId(),
-						this.projectSpace.getProjectId());
+		List<EMFStoreProperty> sharedProperties = WorkspaceManager.getInstance().getConnectionManager()
+			.getEMFProperties(this.projectSpace.getUsersession().getSessionId(), this.projectSpace.getProjectId());
 
 		for (EMFStoreProperty prop : sharedProperties) {
-			this.sharedProperties.put(prop.getKey(), prop);
-			this.projectSpace.getProperties().put(prop.getKey(), prop);
+			setUpdatedSharedProperty(prop.getKey(), prop.getValue());
 		}
 	}
 
 	private EMFStoreProperty createProperty(String key, EObject value) {
-		EMFStoreProperty prop = org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE
-				.createEMFStoreProperty();
+		EMFStoreProperty prop = org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createEMFStoreProperty();
 		prop.setKey(key);
 		prop.setValue(value);
 		return prop;
 	}
 
 	private void createMap(Map<String, EObject> map, EMFStorePropertyType type) {
-		EMap<String, EMFStoreProperty> persistendProperties = this.projectSpace
-				.getProperties();
+		EMap<String, EMFStoreProperty> persistendProperties = this.projectSpace.getProperties();
 		for (EMFStoreProperty prop : persistendProperties.values()) {
 			if (prop.getType() == type) {
 				map.put(prop.getKey(), prop.getValue());
@@ -238,12 +233,25 @@ public final class PropertyManager {
 		}
 	}
 
-	private EObject getProperty(Map<String, EObject> map, String key) {
+	private EObject getPropertyValue(Map<String, EObject> map, String key) {
 		if (map.containsKey(key)) {
 			return map.get(key);
 		} else {
 			return null;
 		}
+	}
+
+	private void setUpdatedSharedProperty(String key, EObject value) {
+		EMFStoreProperty prop = createProperty(key, value);
+		prop.setType(EMFStorePropertyType.SHARED);
+		this.projectSpace.getProperties().put(prop.getKey(), prop);
+
+		if (this.sharedProperties == null) {
+			this.sharedProperties = new HashMap<String, EObject>();
+			createMap(this.sharedProperties, EMFStorePropertyType.SHARED);
+		}
+
+		this.sharedProperties.put(key, value);
 	}
 
 }

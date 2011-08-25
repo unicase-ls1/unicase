@@ -145,7 +145,7 @@ public class EMFStoreECPProject extends ECPProjectImpl implements ECPProject, Pr
 		// Do nothing
 
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 

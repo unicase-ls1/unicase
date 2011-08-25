@@ -17,17 +17,15 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
-
 /**
  * Handler to validate the project.
  * 
  * @author carlan
  */
 
-
 /**
  * @author Haunolder
- *
+ * 
  */
 
 public class ValidateHandler extends AbstractHandler {
@@ -43,10 +41,8 @@ public class ValidateHandler extends AbstractHandler {
 		EObject toValidate = UiUtil.getModelElement(event);
 
 		try {
-			if (ECPWorkspaceManager.getInstance().getWorkSpace()
-					.isRootObject(toValidate)) {
-				toValidate = ECPWorkspaceManager.getInstance().getWorkSpace()
-						.getActiveProject().getRootContainer();
+			if (ECPWorkspaceManager.getInstance().getWorkSpace().isRootObject(toValidate)) {
+				toValidate = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject().getRootContainer();
 			}
 		} catch (NoWorkspaceException e) {
 			return null;
@@ -72,12 +68,10 @@ public class ValidateHandler extends AbstractHandler {
 	 * Instantiates the ValidationView
 	 */
 	private void instantiateValidationView() {
-		IWorkbenchPage page = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage();
+		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		ValidationView validationView = null;
 		try {
-			validationView = (ValidationView) page
-					.showView("org.eclipse.emf.ecp.buildInValidation.validationView");
+			validationView = (ValidationView) page.showView("org.eclipse.emf.ecp.buildInValidation.validationView");
 
 		} catch (PartInitException e) {
 			DialogHandler.showExceptionDialog(e);
@@ -93,10 +87,8 @@ public class ValidateHandler extends AbstractHandler {
 	 */
 	public void validateWithoutCommand(EObject object) {
 		diagnostic = Diagnostician.INSTANCE.validate(object);
-		if (diagnostic.getSeverity() == Diagnostic.ERROR
-				|| diagnostic.getSeverity() == Diagnostic.WARNING) {
-			for (Iterator<Diagnostic> i = diagnostic.getChildren().iterator(); i
-					.hasNext();) {
+		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
+			for (Iterator<Diagnostic> i = diagnostic.getChildren().iterator(); i.hasNext();) {
 				Diagnostic childDiagnostic = i.next();
 				switch (childDiagnostic.getSeverity()) {
 				case Diagnostic.ERROR:
