@@ -108,8 +108,15 @@ public class EMFStoreTransactionalCommandStack extends TransactionalCommandStack
 	@Override
 	protected void handleRollback(Command command, RollbackException rbe) {
 		super.handleRollback(command, rbe);
-		notifier.notifiyListenersAboutCommandFailed(command, (rbe.getCause() != null) ? (Exception) rbe.getCause()
-			: rbe);
+		Exception exception = null;
+		if (rbe!=null) {
+			if (rbe.getCause() != null && rbe.getCause() instanceof Exception) {
+				exception = (Exception) rbe.getCause();
+			} else {
+				exception=rbe;
+			}
+		}
+		notifier.notifiyListenersAboutCommandFailed(command, exception);
 
 		if (currentCommand == command) {
 			currentCommand = null;
