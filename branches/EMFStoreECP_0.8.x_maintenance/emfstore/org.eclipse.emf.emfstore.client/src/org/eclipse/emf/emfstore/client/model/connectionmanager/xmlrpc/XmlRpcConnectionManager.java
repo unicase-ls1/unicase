@@ -15,6 +15,7 @@ import java.util.List;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.connectionmanager.AbstractConnectionManager;
 import org.eclipse.emf.emfstore.client.model.connectionmanager.ConnectionManager;
+import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.server.connection.xmlrpc.XmlRpcConnectionHandler;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
@@ -208,5 +209,21 @@ public class XmlRpcConnectionManager extends AbstractConnectionManager<XmlRpcCli
 		throws EmfStoreException {
 		return getConnectionProxy(sessionId).callWithResult("uploadFileChunk", FileTransferInformation.class,
 			sessionId, projectId, fileChunk);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void transmitEMFProperties(SessionId sessionId, List<EMFStoreProperty> properties, ProjectId projectId)
+		throws EmfStoreException {
+		getConnectionProxy(sessionId).call("transmitEMFProperties", sessionId, properties, projectId);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<EMFStoreProperty> getEMFProperties(SessionId sessionId, ProjectId projectId) throws EmfStoreException {
+		return getConnectionProxy(sessionId).callWithListResult("getEMFProperties", EMFStoreProperty.class, sessionId,
+			projectId);
 	}
 }

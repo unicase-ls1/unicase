@@ -14,7 +14,7 @@ import org.junit.runners.Suite;
  * @author koegel
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { CommandTest.class })
+@Suite.SuiteClasses({ CommandTest.class })
 public class AllCommandTests {
 
 }

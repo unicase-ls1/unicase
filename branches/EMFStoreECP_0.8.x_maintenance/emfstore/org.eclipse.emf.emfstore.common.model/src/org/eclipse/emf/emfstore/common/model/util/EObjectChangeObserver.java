@@ -16,8 +16,8 @@ import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
 public interface EObjectChangeObserver {
 
 	/**
-	 * A notification on a model element of the project occured. See
-	 * {@link Notification} documentation for details on the notifications. This
+	 * A notification on a model element of the project occured. See {@link Notification} documentation for details on
+	 * the notifications. This
 	 * method will be called even if the given notification results from an add
 	 * or remove of a model element of the project.
 	 * 
@@ -28,8 +28,7 @@ public interface EObjectChangeObserver {
 	 * @param modelElement
 	 *            the model element the notification originates from
 	 */
-	void notify(Notification notification,
-			IdEObjectCollection project, EObject modelElement);
+	void notify(Notification notification, IdEObjectCollection project, EObject modelElement);
 
 	/**
 	 * The given model element was added to the project. This means it is now in
@@ -40,8 +39,7 @@ public interface EObjectChangeObserver {
 	 * @param modelElement
 	 *            the modelElement
 	 */
-	void modelElementAdded(IdEObjectCollection project,
-			EObject modelElement);
+	void modelElementAdded(IdEObjectCollection project, EObject modelElement);
 
 	/**
 	 * The given model element and its siblings have been removed from the
@@ -53,7 +51,6 @@ public interface EObjectChangeObserver {
 	 * @param modelElement
 	 *            the model element
 	 */
-	void modelElementRemoved(IdEObjectCollection project,
-			EObject modelElement);
+	void modelElementRemoved(IdEObjectCollection project, EObject modelElement);
 
 }

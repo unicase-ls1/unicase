@@ -23,27 +23,24 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPac
 import org.eclipse.emf.emfstore.server.model.versioning.operations.UnkownFeatureException;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Attribute Operation</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Attribute Operation</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.AttributeOperationImpl#getOldValue
- * <em>Old Value</em>}</li>
- * <li>
- * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.AttributeOperationImpl#getNewValue
- * <em>New Value</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.AttributeOperationImpl#getOldValue <em>
+ * Old Value</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.AttributeOperationImpl#getNewValue <em>
+ * New Value</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class AttributeOperationImpl extends FeatureOperationImpl implements
-		AttributeOperation {
+public class AttributeOperationImpl extends FeatureOperationImpl implements AttributeOperation {
 	/**
-	 * The default value of the '{@link #getOldValue() <em>Old Value</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getOldValue() <em>Old Value</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getOldValue()
 	 * @generated
@@ -52,8 +49,8 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements
 	protected static final Object OLD_VALUE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getOldValue() <em>Old Value</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getOldValue() <em>Old Value</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getOldValue()
 	 * @generated
@@ -62,8 +59,8 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements
 	protected Object oldValue = OLD_VALUE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getNewValue() <em>New Value</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getNewValue() <em>New Value</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getNewValue()
 	 * @generated
@@ -72,8 +69,8 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements
 	protected static final Object NEW_VALUE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getNewValue() <em>New Value</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getNewValue() <em>New Value</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getNewValue()
 	 * @generated
@@ -118,9 +115,8 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements
 		Object oldOldValue = oldValue;
 		oldValue = newOldValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.ATTRIBUTE_OPERATION__OLD_VALUE,
-					oldOldValue, oldValue));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.ATTRIBUTE_OPERATION__OLD_VALUE,
+				oldOldValue, oldValue));
 	}
 
 	/**
@@ -141,9 +137,8 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements
 		Object oldNewValue = newValue;
 		newValue = newNewValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.ATTRIBUTE_OPERATION__NEW_VALUE,
-					oldNewValue, newValue));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.ATTRIBUTE_OPERATION__NEW_VALUE,
+				oldNewValue, newValue));
 	}
 
 	/**
@@ -207,11 +202,9 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case OperationsPackage.ATTRIBUTE_OPERATION__OLD_VALUE:
-			return OLD_VALUE_EDEFAULT == null ? oldValue != null
-					: !OLD_VALUE_EDEFAULT.equals(oldValue);
+			return OLD_VALUE_EDEFAULT == null ? oldValue != null : !OLD_VALUE_EDEFAULT.equals(oldValue);
 		case OperationsPackage.ATTRIBUTE_OPERATION__NEW_VALUE:
-			return NEW_VALUE_EDEFAULT == null ? newValue != null
-					: !NEW_VALUE_EDEFAULT.equals(newValue);
+			return NEW_VALUE_EDEFAULT == null ? newValue != null : !NEW_VALUE_EDEFAULT.equals(newValue);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -255,8 +248,7 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements
 
 	@Override
 	public AbstractOperation reverse() {
-		AttributeOperation attributeOperation = OperationsFactory.eINSTANCE
-				.createAttributeOperation();
+		AttributeOperation attributeOperation = OperationsFactory.eINSTANCE.createAttributeOperation();
 		super.reverse(attributeOperation);
 		// swap old and new value
 		attributeOperation.setNewValue(getOldValue());

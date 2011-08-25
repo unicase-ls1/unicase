@@ -32,11 +32,9 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.UnkownFeature
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiAttributeOperationImpl#isAdd
- * <em>Add</em>}</li>
- * <li>
- * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiAttributeOperationImpl#getIndexes
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiAttributeOperationImpl#isAdd <em>Add
+ * </em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiAttributeOperationImpl#getIndexes
  * <em>Indexes</em>}</li>
  * <li>
  * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.MultiAttributeOperationImpl#getReferencedValues
@@ -68,8 +66,8 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	protected boolean add = ADD_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getIndexes() <em>Indexes</em>}'
-	 * attribute list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIndexes() <em>Indexes</em>}' attribute list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getIndexes()
 	 * @generated
@@ -78,8 +76,8 @@ public class MultiAttributeOperationImpl extends FeatureOperationImpl implements
 	protected EList<Integer> indexes;
 
 	/**
-	 * The cached value of the '{@link #getReferencedValues()
-	 * <em>Referenced Values</em>}' attribute list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getReferencedValues() <em>Referenced Values</em>}' attribute list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getReferencedValues()

@@ -30,8 +30,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOpera
  * 
  * @author pfeifferc
  */
-public class ModifiedModelElementsCache implements OperationListener,
-		CommitObserver, ShareObserver {
+public class ModifiedModelElementsCache implements OperationListener, CommitObserver, ShareObserver {
 
 	/**
 	 * Contains the model elements that were changed, and a list of operations
@@ -73,8 +72,7 @@ public class ModifiedModelElementsCache implements OperationListener,
 	 */
 	public void initializeCache() {
 		if (projectSpace != null && projectSpace.getOperations() != null) {
-			for (AbstractOperation abstractOperation : projectSpace
-					.getOperations()) {
+			for (AbstractOperation abstractOperation : projectSpace.getOperations()) {
 				operationExecuted(abstractOperation);
 			}
 		}
@@ -89,7 +87,7 @@ public class ModifiedModelElementsCache implements OperationListener,
 	 */
 	public boolean isModelElementDirty(ModelElementId modelElementId) {
 		return modifiedModelElementParents.containsKey(modelElementId.getId())
-				|| modifiedModelElements.containsKey(modelElementId.getId());
+			|| modifiedModelElements.containsKey(modelElementId.getId());
 	}
 
 	/**
@@ -100,21 +98,16 @@ public class ModifiedModelElementsCache implements OperationListener,
 	public void operationExecuted(AbstractOperation abstractOperation) {
 		// cache the model element and the operation, as well as the modified
 		// parents recursively
-		for (ModelElementId modelElementId : abstractOperation
-				.getAllInvolvedModelElements()) {
+		for (ModelElementId modelElementId : abstractOperation.getAllInvolvedModelElements()) {
 			if (modifiedModelElements.containsKey(modelElementId.getId())) {
-				modifiedModelElements.get(modelElementId.getId()).add(
-						abstractOperation);
+				modifiedModelElements.get(modelElementId.getId()).add(abstractOperation);
 			} else {
 				List<AbstractOperation> abstractOperations = new ArrayList<AbstractOperation>();
 				abstractOperations.add(abstractOperation);
-				modifiedModelElements.put(modelElementId.getId(),
-						abstractOperations);
-				ModelElementId nextParentModelElementId = getNextParentModelElementId(modelElementId
-						.getId());
+				modifiedModelElements.put(modelElementId.getId(), abstractOperations);
+				ModelElementId nextParentModelElementId = getNextParentModelElementId(modelElementId.getId());
 				if (nextParentModelElementId != null) {
-					childParentMapping.put(modelElementId.getId(),
-							nextParentModelElementId.getId());
+					childParentMapping.put(modelElementId.getId(), nextParentModelElementId.getId());
 					addOneToParent(nextParentModelElementId);
 				}
 			}
@@ -146,15 +139,10 @@ public class ModifiedModelElementsCache implements OperationListener,
 		Integer number = modifiedModelElementParents.get(parentModelElementId);
 		if (number == null || number < 1) {
 			number = 1;
-			if (!modifiedModelElements
-					.containsKey(parentModelElementId.getId())) {
-				EObject nextParentModelElement = getModelElementForId(
-						parentModelElementId.getId()).eContainer();
-				if (nextParentModelElement != null
-						&& nextParentModelElement != this.projectSpace
-								.getProject()) {
-					addOneToParent(this.projectSpace.getProject()
-							.getModelElementId(nextParentModelElement));
+			if (!modifiedModelElements.containsKey(parentModelElementId.getId())) {
+				EObject nextParentModelElement = getModelElementForId(parentModelElementId.getId()).eContainer();
+				if (nextParentModelElement != null && nextParentModelElement != this.projectSpace.getProject()) {
+					addOneToParent(this.projectSpace.getProject().getModelElementId(nextParentModelElement));
 				}
 			}
 		} else {
@@ -169,19 +157,16 @@ public class ModifiedModelElementsCache implements OperationListener,
 	 * @return the model element id of the parent of the model element id passed
 	 *         as reference, or null if there is none
 	 */
-	private ModelElementId getNextParentModelElementId(
-			String childModelElementId) {
+	private ModelElementId getNextParentModelElementId(String childModelElementId) {
 		EObject childModelElement = getModelElementForId(childModelElementId);
 		if (childModelElement == null) {
 			return null;
 		}
 		EObject nextParentModelElement = childModelElement.eContainer();
-		if (nextParentModelElement == null
-				|| nextParentModelElement == this.projectSpace.getProject()) {
+		if (nextParentModelElement == null || nextParentModelElement == this.projectSpace.getProject()) {
 			return null;
 		} else {
-			return this.projectSpace.getProject().getModelElementId(
-					nextParentModelElement);
+			return this.projectSpace.getProject().getModelElementId(nextParentModelElement);
 		}
 	}
 
@@ -192,7 +177,7 @@ public class ModifiedModelElementsCache implements OperationListener,
 	 */
 	private EObject getModelElementForId(String modelElementIdString) {
 		ModelElementId modelElementId = org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE
-				.createModelElementId();
+			.createModelElementId();
 		modelElementId.setId(modelElementIdString);
 		return projectSpace.getProject().getModelElement(modelElementId);
 	}
@@ -204,20 +189,16 @@ public class ModifiedModelElementsCache implements OperationListener,
 	 */
 	public void operationUnDone(AbstractOperation operation) {
 		// remove from cache
-		Set<ModelElementId> involvedMEs = operation
-				.getAllInvolvedModelElements();
+		Set<ModelElementId> involvedMEs = operation.getAllInvolvedModelElements();
 		for (ModelElementId childModelElementId : involvedMEs) {
 			// update the model elements directly affected by the changes to the
 			// list of modified model elements
 			if (modifiedModelElements.containsKey(childModelElementId.getId())) {
-				modifiedModelElements.get(childModelElementId.getId()).remove(
-						operation);
-				if (modifiedModelElements.get(childModelElementId.getId())
-						.size() == 0) {
+				modifiedModelElements.get(childModelElementId.getId()).remove(operation);
+				if (modifiedModelElements.get(childModelElementId.getId()).size() == 0) {
 					modifiedModelElements.remove(childModelElementId.getId());
 					if (childParentMapping.get(childModelElementId.getId()) != null) {
-						removeOneFromParent(childParentMapping
-								.get(childModelElementId.getId()));
+						removeOneFromParent(childParentMapping.get(childModelElementId.getId()));
 					}
 				}
 			}
@@ -230,8 +211,7 @@ public class ModifiedModelElementsCache implements OperationListener,
 	 * @see org.eclipse.emf.emfstore.client.model.observers.CommitObserver#commitCompleted(org.eclipse.emf.emfstore.client.model.ProjectSpace,
 	 *      org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec)
 	 */
-	public void commitCompleted(ProjectSpace projectSpace,
-			PrimaryVersionSpec newRevision) {
+	public void commitCompleted(ProjectSpace projectSpace, PrimaryVersionSpec newRevision) {
 		// do the same as when project has been shared
 		shareDone(projectSpace);
 	}
@@ -242,8 +222,7 @@ public class ModifiedModelElementsCache implements OperationListener,
 	 * @see org.eclipse.emf.emfstore.client.model.observers.CommitObserver#inspectChanges(org.eclipse.emf.emfstore.client.model.ProjectSpace,
 	 *      org.eclipse.emf.emfstore.server.model.versioning.ChangePackage)
 	 */
-	public boolean inspectChanges(ProjectSpace projectSpace,
-			ChangePackage changePackage) {
+	public boolean inspectChanges(ProjectSpace projectSpace, ChangePackage changePackage) {
 		return true;
 	}
 

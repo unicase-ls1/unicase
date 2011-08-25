@@ -39,8 +39,7 @@ import org.eclipse.emf.emfstore.common.model.ModelElementId;
  * 
  * @generated
  */
-public class PendingFileTransferImpl extends EObjectImpl implements
-		PendingFileTransfer {
+public class PendingFileTransferImpl extends EObjectImpl implements PendingFileTransfer {
 	/**
 	 * The cached value of the '{@link #getAttachmentId() <em>Attachment Id</em>}' containment reference. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -189,26 +188,17 @@ public class PendingFileTransferImpl extends EObjectImpl implements
 			attachmentId = (ModelElementId) eResolveProxy(oldAttachmentId);
 			if (attachmentId != oldAttachmentId) {
 				InternalEObject newAttachmentId = (InternalEObject) attachmentId;
-				NotificationChain msgs = oldAttachmentId
-						.eInverseRemove(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- ModelPackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID,
-								null, null);
+				NotificationChain msgs = oldAttachmentId.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- ModelPackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID, null, null);
 				if (newAttachmentId.eInternalContainer() == null) {
-					msgs = newAttachmentId
-							.eInverseAdd(
-									this,
-									EOPPOSITE_FEATURE_BASE
-											- ModelPackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID,
-									null, msgs);
+					msgs = newAttachmentId.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- ModelPackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID, null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ModelPackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID,
-							oldAttachmentId, attachmentId));
+						ModelPackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID, oldAttachmentId, attachmentId));
 			}
 		}
 		return attachmentId;
@@ -228,15 +218,12 @@ public class PendingFileTransferImpl extends EObjectImpl implements
 	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetAttachmentId(
-			ModelElementId newAttachmentId, NotificationChain msgs) {
+	public NotificationChain basicSetAttachmentId(ModelElementId newAttachmentId, NotificationChain msgs) {
 		ModelElementId oldAttachmentId = attachmentId;
 		attachmentId = newAttachmentId;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET,
-					ModelPackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID,
-					oldAttachmentId, newAttachmentId);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				ModelPackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID, oldAttachmentId, newAttachmentId);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -254,26 +241,17 @@ public class PendingFileTransferImpl extends EObjectImpl implements
 		if (newAttachmentId != attachmentId) {
 			NotificationChain msgs = null;
 			if (attachmentId != null)
-				msgs = ((InternalEObject) attachmentId)
-						.eInverseRemove(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- ModelPackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID,
-								null, msgs);
+				msgs = ((InternalEObject) attachmentId).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- ModelPackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID, null, msgs);
 			if (newAttachmentId != null)
-				msgs = ((InternalEObject) newAttachmentId)
-						.eInverseAdd(
-								this,
-								EOPPOSITE_FEATURE_BASE
-										- ModelPackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID,
-								null, msgs);
+				msgs = ((InternalEObject) newAttachmentId).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- ModelPackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID, null, msgs);
 			msgs = basicSetAttachmentId(newAttachmentId, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID,
-					newAttachmentId, newAttachmentId));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID,
+				newAttachmentId, newAttachmentId));
 	}
 
 	/**
@@ -294,9 +272,8 @@ public class PendingFileTransferImpl extends EObjectImpl implements
 		int oldFileVersion = fileVersion;
 		fileVersion = newFileVersion;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.PENDING_FILE_TRANSFER__FILE_VERSION,
-					oldFileVersion, fileVersion));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.PENDING_FILE_TRANSFER__FILE_VERSION,
+				oldFileVersion, fileVersion));
 	}
 
 	/**
@@ -317,9 +294,8 @@ public class PendingFileTransferImpl extends EObjectImpl implements
 		int oldChunkNumber = chunkNumber;
 		chunkNumber = newChunkNumber;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.PENDING_FILE_TRANSFER__CHUNK_NUMBER,
-					oldChunkNumber, chunkNumber));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.PENDING_FILE_TRANSFER__CHUNK_NUMBER,
+				oldChunkNumber, chunkNumber));
 	}
 
 	/**
@@ -340,9 +316,8 @@ public class PendingFileTransferImpl extends EObjectImpl implements
 		boolean oldUpload = upload;
 		upload = newUpload;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.PENDING_FILE_TRANSFER__UPLOAD, oldUpload,
-					upload));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.PENDING_FILE_TRANSFER__UPLOAD,
+				oldUpload, upload));
 	}
 
 	/**
@@ -363,9 +338,8 @@ public class PendingFileTransferImpl extends EObjectImpl implements
 		String oldFileName = fileName;
 		fileName = newFileName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.PENDING_FILE_TRANSFER__FILE_NAME, oldFileName,
-					fileName));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.PENDING_FILE_TRANSFER__FILE_NAME,
+				oldFileName, fileName));
 	}
 
 	/**
@@ -387,8 +361,7 @@ public class PendingFileTransferImpl extends EObjectImpl implements
 		preliminaryFileName = newPreliminaryFileName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.PENDING_FILE_TRANSFER__PRELIMINARY_FILE_NAME,
-					oldPreliminaryFileName, preliminaryFileName));
+				ModelPackage.PENDING_FILE_TRANSFER__PRELIMINARY_FILE_NAME, oldPreliminaryFileName, preliminaryFileName));
 	}
 
 	/**
@@ -397,8 +370,7 @@ public class PendingFileTransferImpl extends EObjectImpl implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID:
 			return basicSetAttachmentId(null, msgs);
@@ -509,12 +481,10 @@ public class PendingFileTransferImpl extends EObjectImpl implements
 		case ModelPackage.PENDING_FILE_TRANSFER__UPLOAD:
 			return upload != UPLOAD_EDEFAULT;
 		case ModelPackage.PENDING_FILE_TRANSFER__FILE_NAME:
-			return FILE_NAME_EDEFAULT == null ? fileName != null
-					: !FILE_NAME_EDEFAULT.equals(fileName);
+			return FILE_NAME_EDEFAULT == null ? fileName != null : !FILE_NAME_EDEFAULT.equals(fileName);
 		case ModelPackage.PENDING_FILE_TRANSFER__PRELIMINARY_FILE_NAME:
 			return PRELIMINARY_FILE_NAME_EDEFAULT == null ? preliminaryFileName != null
-					: !PRELIMINARY_FILE_NAME_EDEFAULT
-							.equals(preliminaryFileName);
+				: !PRELIMINARY_FILE_NAME_EDEFAULT.equals(preliminaryFileName);
 		}
 		return super.eIsSet(featureID);
 	}

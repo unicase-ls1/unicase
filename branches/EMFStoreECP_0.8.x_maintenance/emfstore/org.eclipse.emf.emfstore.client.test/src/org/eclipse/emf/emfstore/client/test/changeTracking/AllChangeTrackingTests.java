@@ -20,7 +20,7 @@ import org.junit.runners.Suite;
  * @author chodnick
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { AllNotificationTests.class, AllOperationTests.class, AllTopologyTests.class,
+@Suite.SuiteClasses({ AllNotificationTests.class, AllOperationTests.class, AllTopologyTests.class,
 	AllCanonizationTests.class, AllCachingTests.class, AllCommandTests.class })
 public class AllChangeTrackingTests {
 

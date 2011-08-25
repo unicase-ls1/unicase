@@ -78,8 +78,7 @@ public final class WorkspaceManager {
 				// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (RuntimeException e) {
 				// END SURPRESS CATCH EXCEPTION
-				ModelUtil.logException(
-						"Workspace Initialization failed, shutting down", e);
+				ModelUtil.logException("Workspace Initialization failed, shutting down", e);
 				throw e;
 			}
 
@@ -119,13 +118,12 @@ public final class WorkspaceManager {
 	}
 
 	private void notifyPostWorkspaceInitiators() {
-		IConfigurationElement[] workspaceObservers = Platform
-				.getExtensionRegistry().getConfigurationElementsFor(
-						"org.eclipse.emf.emfstore.client.notify.postinit");
+		IConfigurationElement[] workspaceObservers = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.eclipse.emf.emfstore.client.notify.postinit");
 		for (IConfigurationElement element : workspaceObservers) {
 			try {
 				PostWorkspaceInitiator workspaceObserver = (PostWorkspaceInitiator) element
-						.createExecutableExtension("class");
+					.createExecutableExtension("class");
 				workspaceObserver.workspaceInitComplete(currentWorkspace);
 			} catch (CoreException e) {
 				WorkspaceUtil.logException(e.getMessage(), e);
@@ -217,26 +215,19 @@ public final class WorkspaceManager {
 		if (domainProvider != null) {
 			return domainProvider.getEditingDomain(resourceSet);
 		} else {
-			AdapterFactoryEditingDomain domain = new AdapterFactoryEditingDomain(
-					new ComposedAdapterFactory(
-							ComposedAdapterFactory.Descriptor.Registry.INSTANCE),
-					new EMFStoreBasicCommandStack(), resourceSet);
-			resourceSet.eAdapters().add(
-					new AdapterFactoryEditingDomain.EditingDomainProvider(
-							domain));
+			AdapterFactoryEditingDomain domain = new AdapterFactoryEditingDomain(new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE), new EMFStoreBasicCommandStack(), resourceSet);
+			resourceSet.eAdapters().add(new AdapterFactoryEditingDomain.EditingDomainProvider(domain));
 			return domain;
 		}
 	}
 
 	private EditingDomainProvider getDomainProvider() {
-		IConfigurationElement[] rawExtensions = Platform
-				.getExtensionRegistry()
-				.getConfigurationElementsFor(
-						"org.eclipse.emf.emfstore.client.editingDomainProvider");
+		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.eclipse.emf.emfstore.client.editingDomainProvider");
 		for (IConfigurationElement extension : rawExtensions) {
 			try {
-				EditingDomainProvider provider = (EditingDomainProvider) extension
-						.createExecutableExtension("class");
+				EditingDomainProvider provider = (EditingDomainProvider) extension.createExecutableExtension("class");
 				if (provider != null) {
 					return provider;
 				}
@@ -253,8 +244,7 @@ public final class WorkspaceManager {
 		// no workspace content found, create a workspace
 		resource = resourceSet.createResource(fileURI);
 		workspace = ModelFactory.eINSTANCE.createWorkspace();
-		workspace.getServerInfos()
-				.addAll(Configuration.getDefaultServerInfos());
+		workspace.getServerInfos().addAll(Configuration.getDefaultServerInfos());
 		EList<Usersession> usersessions = workspace.getUsersessions();
 		for (ServerInfo serverInfo : workspace.getServerInfos()) {
 			Usersession lastUsersession = serverInfo.getLastUsersession();
@@ -274,8 +264,7 @@ public final class WorkspaceManager {
 			resource.save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
 			WorkspaceUtil.logException(
-					"Creating new workspace failed! Delete workspace folder: "
-							+ Configuration.getWorkspaceDirectory(), e);
+				"Creating new workspace failed! Delete workspace folder: " + Configuration.getWorkspaceDirectory(), e);
 		}
 		int modelVersionNumber;
 		try {
@@ -288,20 +277,17 @@ public final class WorkspaceManager {
 	}
 
 	private void stampCurrentVersionNumber(int modelReleaseNumber) {
-		URI versionFileUri = URI.createFileURI(Configuration
-				.getModelReleaseNumberFileName());
-		Resource versionResource = new ResourceSetImpl()
-				.createResource(versionFileUri);
-		ModelVersion modelVersion = org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE
-				.createModelVersion();
+		URI versionFileUri = URI.createFileURI(Configuration.getModelReleaseNumberFileName());
+		Resource versionResource = new ResourceSetImpl().createResource(versionFileUri);
+		ModelVersion modelVersion = org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createModelVersion();
 		modelVersion.setReleaseNumber(modelReleaseNumber);
 		versionResource.getContents().add(modelVersion);
 		try {
 			versionResource.save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
 			WorkspaceUtil.logException(
-					"Version stamping workspace failed! Delete workspace folder: "
-							+ Configuration.getWorkspaceDirectory(), e);
+				"Version stamping workspace failed! Delete workspace folder: " + Configuration.getWorkspaceDirectory(),
+				e);
 		}
 	}
 
@@ -312,71 +298,56 @@ public final class WorkspaceManager {
 			modelVersionNumber = ModelUtil.getModelVersionNumber();
 			stampCurrentVersionNumber(modelVersionNumber);
 		} catch (MalformedModelVersionException e1) {
-			WorkspaceUtil.logException(
-					"Loading model version failed, migration skipped!", e1);
+			WorkspaceUtil.logException("Loading model version failed, migration skipped!", e1);
 			return;
 		}
 		if (workspaceModelVersion.getReleaseNumber() == modelVersionNumber) {
 			return;
 		} else if (workspaceModelVersion.getReleaseNumber() > modelVersionNumber) {
 			backupAndRecreateWorkspace(resourceSet);
-			WorkspaceUtil
-					.logException(
-							"Model conforms to a newer version, update client! New workspace was backuped!",
-							new IllegalStateException());
+			WorkspaceUtil.logException("Model conforms to a newer version, update client! New workspace was backuped!",
+				new IllegalStateException());
 			return;
 		}
 
 		// we need to migrate
 		if (!EMFStoreMigratorUtil.isMigratorAvailable()) {
-			WorkspaceUtil
-					.logException(
-							"Model requires migration, but no migrators are registered!",
-							new IllegalStateException());
+			WorkspaceUtil.logException("Model requires migration, but no migrators are registered!",
+				new IllegalStateException());
 			return;
 		}
 
 		backupWorkspace(false);
 		File workspaceFile = new File(Configuration.getWorkspaceDirectory());
 		for (File file : workspaceFile.listFiles()) {
-			if (file.getName().startsWith(
-					Configuration.getProjectSpaceDirectoryPrefix())) {
-				String projectFilePath = file.getAbsolutePath()
-						+ File.separatorChar
-						+ Configuration.getProjectFolderName()
-						+ File.separatorChar + 0
-						+ Configuration.getProjectFragmentFileExtension();
+			if (file.getName().startsWith(Configuration.getProjectSpaceDirectoryPrefix())) {
+				String projectFilePath = file.getAbsolutePath() + File.separatorChar
+					+ Configuration.getProjectFolderName() + File.separatorChar + 0
+					+ Configuration.getProjectFragmentFileExtension();
 				URI projectURI = URI.createFileURI(projectFilePath);
 				String operationsFilePath = null;
 				File[] listFiles = file.listFiles();
 				if (listFiles == null) {
-					WorkspaceUtil.logException(
-							"The migration of the project in projectspace at "
-									+ projectFilePath + " failed!",
-							new IllegalStateException("Broken projectSpace!"));
+					WorkspaceUtil.logException("The migration of the project in projectspace at " + projectFilePath
+						+ " failed!", new IllegalStateException("Broken projectSpace!"));
 					continue;
 				}
 				for (File subDirFile : listFiles) {
-					if (subDirFile.getName().endsWith(
-							Configuration.getOperationCompositeFileExtension())) {
+					if (subDirFile.getName().endsWith(Configuration.getOperationCompositeFileExtension())) {
 						operationsFilePath = subDirFile.getAbsolutePath();
 					}
 				}
 				if (operationsFilePath == null) {
-					WorkspaceUtil.logException(
-							"The migration of the project in projectspace at "
-									+ projectFilePath + " failed!",
-							new IllegalStateException("Broken workspace!"));
+					WorkspaceUtil.logException("The migration of the project in projectspace at " + projectFilePath
+						+ " failed!", new IllegalStateException("Broken workspace!"));
 					backupAndRecreateWorkspace(resourceSet);
 				}
 				URI operationsURI = URI.createFileURI(operationsFilePath);
 				try {
-					migrate(projectURI, operationsURI,
-							workspaceModelVersion.getReleaseNumber());
+					migrate(projectURI, operationsURI, workspaceModelVersion.getReleaseNumber());
 				} catch (EMFStoreMigrationException e) {
-					WorkspaceUtil.logException(
-							"The migration of the project in projectspace at "
-									+ projectFilePath + " failed!", e);
+					WorkspaceUtil.logException("The migration of the project in projectspace at " + projectFilePath
+						+ " failed!", e);
 					backupAndRecreateWorkspace(resourceSet);
 				}
 			}
@@ -393,19 +364,15 @@ public final class WorkspaceManager {
 
 		ModelVersion workspaceModelVersion = getWorkspaceModelVersion();
 		if (!EMFStoreMigratorUtil.isMigratorAvailable()) {
-			ModelUtil
-					.logWarning("No Migrator available to migrate imported file");
+			ModelUtil.logWarning("No Migrator available to migrate imported file");
 			return;
 		}
 
 		try {
-			EMFStoreMigratorUtil.getEMFStoreMigrator().migrate(modelURIs,
-					workspaceModelVersion.getReleaseNumber() - 1,
-					new NullProgressMonitor());
+			EMFStoreMigratorUtil.getEMFStoreMigrator().migrate(modelURIs, workspaceModelVersion.getReleaseNumber() - 1,
+				new NullProgressMonitor());
 		} catch (EMFStoreMigrationException e) {
-			WorkspaceUtil.logWarning(
-					"The migration of the project in the file "
-							+ absoluteFilename + " failed!", e);
+			WorkspaceUtil.logWarning("The migration of the project in the file " + absoluteFilename + " failed!", e);
 		}
 	}
 
@@ -422,10 +389,8 @@ public final class WorkspaceManager {
 		// TODO: if you want the date included in the backup folder you should
 		// change the format. the default format
 		// does not work with every os due to : and other characters.
-		String newWorkspaceDirectory = Configuration.getLocationProvider()
-				.getBackupDirectory()
-				+ "emfstore_backup_"
-				+ System.currentTimeMillis();
+		String newWorkspaceDirectory = Configuration.getLocationProvider().getBackupDirectory() + "emfstore_backup_"
+			+ System.currentTimeMillis();
 
 		File workspacebackupPath = new File(newWorkspaceDirectory);
 		if (move) {
@@ -441,8 +406,7 @@ public final class WorkspaceManager {
 
 	private ModelVersion getWorkspaceModelVersion() {
 		// check for legacy workspace
-		File versionFile = new File(
-				Configuration.getModelReleaseNumberFileName());
+		File versionFile = new File(Configuration.getModelReleaseNumberFileName());
 		if (!versionFile.exists()) {
 			int modelVersionNumber;
 			try {
@@ -454,8 +418,7 @@ public final class WorkspaceManager {
 		}
 
 		// check if we need to migrate
-		URI versionFileUri = URI.createFileURI(Configuration
-				.getModelReleaseNumberFileName());
+		URI versionFileUri = URI.createFileURI(Configuration.getModelReleaseNumberFileName());
 		ResourceSet resourceSet = new ResourceSetImpl();
 		try {
 			Resource resource = resourceSet.getResource(versionFileUri, true);
@@ -468,7 +431,7 @@ public final class WorkspaceManager {
 			// resource can not be loaded, assume version number before
 			// metamodel split
 			ModelVersion modelVersion = org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE
-					.createModelVersion();
+				.createModelVersion();
 			modelVersion.setReleaseNumber(4);
 			return modelVersion;
 		}
@@ -485,13 +448,13 @@ public final class WorkspaceManager {
 	 * @param sourceModelReleaseNumber
 	 * @throws EMFStoreMigrationException
 	 */
-	private void migrate(URI projectURI, URI changesURI,
-			int sourceModelReleaseNumber) throws EMFStoreMigrationException {
+	private void migrate(URI projectURI, URI changesURI, int sourceModelReleaseNumber)
+		throws EMFStoreMigrationException {
 		List<URI> modelURIs = new ArrayList<URI>();
 		modelURIs.add(projectURI);
 		modelURIs.add(changesURI);
-		EMFStoreMigratorUtil.getEMFStoreMigrator().migrate(modelURIs,
-				sourceModelReleaseNumber, new NullProgressMonitor());
+		EMFStoreMigratorUtil.getEMFStoreMigrator().migrate(modelURIs, sourceModelReleaseNumber,
+			new NullProgressMonitor());
 	}
 
 	/**
@@ -551,8 +514,7 @@ public final class WorkspaceManager {
 		Project project = ModelUtil.getProject(modelElement);
 
 		if (project == null) {
-			throw new IllegalArgumentException("The model element "
-					+ modelElement + " has no project");
+			throw new IllegalArgumentException("The model element " + modelElement + " has no project");
 		}
 		return getProjectSpace(project);
 	}
@@ -569,12 +531,10 @@ public final class WorkspaceManager {
 			throw new IllegalArgumentException("The project is null");
 		}
 		// check if my container is a project space
-		if (ModelPackage.eINSTANCE.getProjectSpace().isInstance(
-				project.eContainer())) {
+		if (ModelPackage.eINSTANCE.getProjectSpace().isInstance(project.eContainer())) {
 			return (ProjectSpace) project.eContainer();
 		} else {
-			throw new IllegalStateException(
-					"Project is not contained by any project space");
+			throw new IllegalStateException("Project is not contained by any project space");
 		}
 	}
 

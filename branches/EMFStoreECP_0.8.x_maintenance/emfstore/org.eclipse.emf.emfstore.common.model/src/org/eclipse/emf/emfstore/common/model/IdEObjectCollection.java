@@ -10,8 +10,8 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * A collection of {@link EObject}s where each one can be identified via a
- * {@link ModelElementId}. {@link EObject}s can be added and deleted and checked
+ * A collection of {@link EObject}s where each one can be identified via a {@link ModelElementId}. {@link EObject}s can
+ * be added and deleted and checked
  * whether they are part of the collection.
  * 
  * @author emueller
@@ -29,17 +29,15 @@ public interface IdEObjectCollection extends EObject {
 
 	/**
 	 * Adds the given {@link EObject} to the collection. An additional map can
-	 * be passed in, in order to assign the {@link EObject}(s) pre-defined
-	 * {@link ModelElementId}s.
+	 * be passed in, in order to assign the {@link EObject}(s) pre-defined {@link ModelElementId}s.
 	 * 
 	 * @param eObject
 	 *            the {@link EObject} that should get added to the collection
 	 * @param eObjectToIdMap
-	 *            A map containing {@link ModelElementId}s for the
-	 *            {@link EObject}s that should get added to the collection.
+	 *            A map containing {@link ModelElementId}s for the {@link EObject}s that should get added to the
+	 *            collection.
 	 */
-	void addModelElement(EObject eObject,
-			Map<EObject, ModelElementId> eObjectToIdMap);
+	void addModelElement(EObject eObject, Map<EObject, ModelElementId> eObjectToIdMap);
 
 	/**
 	 * 
@@ -52,8 +50,7 @@ public interface IdEObjectCollection extends EObject {
 	boolean containsInstance(EObject eObject);
 
 	/**
-	 * Checks whether the {@link EObject} with the given {@link ModelElementId}
-	 * is contained in the collection.
+	 * Checks whether the {@link EObject} with the given {@link ModelElementId} is contained in the collection.
 	 * 
 	 * @param eObjectId
 	 *            the {@link ModelElementId} of the {@link EObject}, which
@@ -86,8 +83,7 @@ public interface IdEObjectCollection extends EObject {
 	 * 
 	 * @param modelElementId
 	 *            the ID of the {@link EObject}, that should get retrieved
-	 * @return the {@link EObject} that has the given {@link ModelElementId}
-	 *         assigned
+	 * @return the {@link EObject} that has the given {@link ModelElementId} assigned
 	 */
 	EObject getModelElement(ModelElementId modelElementId);
 

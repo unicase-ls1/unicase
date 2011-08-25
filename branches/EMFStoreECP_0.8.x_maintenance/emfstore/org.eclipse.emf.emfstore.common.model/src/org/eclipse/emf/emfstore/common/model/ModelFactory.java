@@ -62,6 +62,26 @@ public interface ModelFactory extends EFactory {
 	ModelVersion createModelVersion();
 
 	/**
+	 * Returns a new object of class '<em>EMF Store Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>EMF Store Property</em>'.
+	 * @generated
+	 */
+	EMFStoreProperty createEMFStoreProperty();
+
+	/**
+	 * Returns a new object of class '<em>Property String Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Property String Value</em>'.
+	 * @generated
+	 */
+	PropertyStringValue createPropertyStringValue();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
