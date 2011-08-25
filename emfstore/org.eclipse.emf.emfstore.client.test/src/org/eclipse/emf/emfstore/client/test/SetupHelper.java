@@ -406,6 +406,17 @@ public class SetupHelper {
 
 	}
 
+	public static void removeServerTestProfile() {
+		String serverPath = ServerConfiguration.getServerHome();
+		File serverDirectory = new File(serverPath);
+		try {
+			FileUtil.deleteFolder(serverDirectory);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	/**
 	 * Cleans workspace up.
 	 */

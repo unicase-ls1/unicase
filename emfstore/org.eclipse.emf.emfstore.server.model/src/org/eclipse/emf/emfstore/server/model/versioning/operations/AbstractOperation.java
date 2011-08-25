@@ -20,26 +20,21 @@ import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.Project;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>Abstract Operation</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Abstract Operation</b></em>'. <!-- end-user-doc
+ * -->
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getName
- * <em>Name</em>}</li>
- * <li>
- * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getDescription
- * <em> Description</em>}</li>
- * <li>
- * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getModelElementId
- * <em>Model Element Id</em>}</li>
- * <li>
- * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#isAccepted
- * <em>Accepted </em>}</li>
- * <li>
- * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getClientDate
- * <em>Client Date</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getName <em>Name</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getDescription <em>
+ * Description</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getModelElementId <em>Model
+ * Element Id</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#isAccepted <em>Accepted
+ * </em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getClientDate <em>Client
+ * Date</em>}</li>
  * </ul>
  * </p>
  * 
@@ -52,8 +47,7 @@ public interface AbstractOperation extends IdentifiableElement {
 	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!--
 	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really
-	 * should be more of a description here...
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -65,33 +59,32 @@ public interface AbstractOperation extends IdentifiableElement {
 	String getName();
 
 	/**
-	 * Returns the value of the '<em><b>Description</b></em>' attribute. The
-	 * default value is <code>""</code>. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
+	 * The default value is <code>""</code>.
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Description</em>' attribute isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Description</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getAbstractOperation_Description()
-	 * @model default="" transient="true" changeable="false" volatile="true"
-	 *        derived="true"
+	 * @model default="" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	String getDescription();
 
 	/**
-	 * Returns the value of the '<em><b>Model Element Id</b></em>' containment
-	 * reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Model Element Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Model Element Id</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Model Element Id</em>' reference isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Model Element Id</em>' containment
-	 *         reference.
+	 * @return the value of the '<em>Model Element Id</em>' containment reference.
 	 * @see #setModelElementId(ModelElementId)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getAbstractOperation_ModelElementId()
 	 * @model containment="true" resolveProxies="true"
@@ -102,12 +95,11 @@ public interface AbstractOperation extends IdentifiableElement {
 	/**
 	 * Sets the value of the '
 	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getModelElementId
-	 * <em>Model Element Id</em>}' containment reference. <!-- begin-user-doc
+	 * <em>Model Element Id</em>}' containment reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
-	 * @param value
-	 *            the new value of the '<em>Model Element Id</em>' containment
-	 *            reference.
+	 * @param value the new value of the '<em>Model Element Id</em>' containment reference.
 	 * @see #getModelElementId()
 	 * @generated
 	 */
@@ -117,8 +109,8 @@ public interface AbstractOperation extends IdentifiableElement {
 	 * Returns the value of the '<em><b>Accepted</b></em>' attribute. <!--
 	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Accepted</em>' attribute isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Accepted</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -147,8 +139,8 @@ public interface AbstractOperation extends IdentifiableElement {
 	 * Returns the value of the '<em><b>Client Date</b></em>' attribute. <!--
 	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Client Date</em>' attribute isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Client Date</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -163,11 +155,11 @@ public interface AbstractOperation extends IdentifiableElement {
 	/**
 	 * Sets the value of the '
 	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation#getClientDate
-	 * <em>Client Date</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * <em>Client Date</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @param value
-	 *            the new value of the '<em>Client Date</em>' attribute.
+	 * @param value the new value of the '<em>Client Date</em>' attribute.
 	 * @see #getClientDate()
 	 * @generated
 	 */

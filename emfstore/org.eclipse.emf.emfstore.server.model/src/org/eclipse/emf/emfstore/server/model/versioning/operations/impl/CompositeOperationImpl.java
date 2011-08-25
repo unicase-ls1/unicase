@@ -34,33 +34,28 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFac
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Composite Operation</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Composite Operation</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CompositeOperationImpl#getSubOperations
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CompositeOperationImpl#getSubOperations
  * <em>Sub Operations</em>}</li>
- * <li>
- * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CompositeOperationImpl#getMainOperation
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CompositeOperationImpl#getMainOperation
  * <em>Main Operation</em>}</li>
- * <li>
- * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CompositeOperationImpl#getCompositeName
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CompositeOperationImpl#getCompositeName
  * <em>Composite Name</em>}</li>
  * <li>
  * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CompositeOperationImpl#getCompositeDescription
  * <em>Composite Description</em>}</li>
- * <li>
- * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CompositeOperationImpl#isReversed
- * <em>Reversed</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CompositeOperationImpl#isReversed <em>
+ * Reversed</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class CompositeOperationImpl extends AbstractOperationImpl implements
-		CompositeOperation {
+public class CompositeOperationImpl extends AbstractOperationImpl implements CompositeOperation {
 
 	/**
 	 * {@inheritDoc}
@@ -71,16 +66,15 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	public Set<ModelElementId> getOtherInvolvedModelElements() {
 		Set<ModelElementId> result = new HashSet<ModelElementId>();
 		for (AbstractOperation operation : getSubOperations()) {
-			Set<ModelElementId> allInvolvedModelElements = operation
-					.getAllInvolvedModelElements();
+			Set<ModelElementId> allInvolvedModelElements = operation.getAllInvolvedModelElements();
 			result.addAll(allInvolvedModelElements);
 		}
 		return result;
 	}
 
 	/**
-	 * The cached value of the '{@link #getSubOperations()
-	 * <em>Sub Operations</em>}' containment reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getSubOperations() <em>Sub Operations</em>}' containment reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @see #getSubOperations()
@@ -90,8 +84,8 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	protected EList<AbstractOperation> subOperations;
 
 	/**
-	 * The cached value of the '{@link #getMainOperation()
-	 * <em>Main Operation</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getMainOperation() <em>Main Operation</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getMainOperation()
@@ -101,8 +95,8 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	protected AbstractOperation mainOperation;
 
 	/**
-	 * The default value of the '{@link #getCompositeName()
-	 * <em>Composite Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getCompositeName() <em>Composite Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getCompositeName()
@@ -111,8 +105,8 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	 */
 	protected static final String COMPOSITE_NAME_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getCompositeName()
-	 * <em>Composite Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getCompositeName() <em>Composite Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getCompositeName()
@@ -121,8 +115,8 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	 */
 	protected String compositeName = COMPOSITE_NAME_EDEFAULT;
 	/**
-	 * The default value of the '{@link #getCompositeDescription()
-	 * <em>Composite Description</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getCompositeDescription() <em>Composite Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getCompositeDescription()
@@ -131,8 +125,8 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	 */
 	protected static final String COMPOSITE_DESCRIPTION_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getCompositeDescription()
-	 * <em>Composite Description</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getCompositeDescription() <em>Composite Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @see #getCompositeDescription()
@@ -142,8 +136,8 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	protected String compositeDescription = COMPOSITE_DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isReversed() <em>Reversed</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #isReversed() <em>Reversed</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #isReversed()
 	 * @generated
@@ -152,8 +146,8 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	protected static final boolean REVERSED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isReversed() <em>Reversed</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #isReversed() <em>Reversed</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #isReversed()
 	 * @generated
@@ -187,9 +181,8 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	 */
 	public EList<AbstractOperation> getSubOperations() {
 		if (subOperations == null) {
-			subOperations = new EObjectContainmentEList.Resolving<AbstractOperation>(
-					AbstractOperation.class, this,
-					OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS);
+			subOperations = new EObjectContainmentEList.Resolving<AbstractOperation>(AbstractOperation.class, this,
+				OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS);
 		}
 		return subOperations;
 	}
@@ -205,11 +198,8 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 			mainOperation = (AbstractOperation) eResolveProxy(oldMainOperation);
 			if (mainOperation != oldMainOperation) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(
-							this,
-							Notification.RESOLVE,
-							OperationsPackage.COMPOSITE_OPERATION__MAIN_OPERATION,
-							oldMainOperation, mainOperation));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						OperationsPackage.COMPOSITE_OPERATION__MAIN_OPERATION, oldMainOperation, mainOperation));
 			}
 		}
 		return mainOperation;
@@ -234,8 +224,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 		mainOperation = newMainOperation;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.COMPOSITE_OPERATION__MAIN_OPERATION,
-					oldMainOperation, mainOperation));
+				OperationsPackage.COMPOSITE_OPERATION__MAIN_OPERATION, oldMainOperation, mainOperation));
 	}
 
 	/**
@@ -257,8 +246,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 		compositeName = newCompositeName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME,
-					oldCompositeName, compositeName));
+				OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME, oldCompositeName, compositeName));
 	}
 
 	/**
@@ -279,11 +267,9 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 		String oldCompositeDescription = compositeDescription;
 		compositeDescription = newCompositeDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(
-					this,
-					Notification.SET,
-					OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION,
-					oldCompositeDescription, compositeDescription));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION, oldCompositeDescription,
+				compositeDescription));
 	}
 
 	/**
@@ -304,9 +290,8 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 		boolean oldReversed = reversed;
 		reversed = newReversed;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					OperationsPackage.COMPOSITE_OPERATION__REVERSED,
-					oldReversed, reversed));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.COMPOSITE_OPERATION__REVERSED,
+				oldReversed, reversed));
 	}
 
 	// begin of custom code
@@ -328,12 +313,10 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
-			return ((InternalEList<?>) getSubOperations()).basicRemove(
-					otherEnd, msgs);
+			return ((InternalEList<?>) getSubOperations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -373,8 +356,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 		switch (featureID) {
 		case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
 			getSubOperations().clear();
-			getSubOperations().addAll(
-					(Collection<? extends AbstractOperation>) newValue);
+			getSubOperations().addAll((Collection<? extends AbstractOperation>) newValue);
 			return;
 		case OperationsPackage.COMPOSITE_OPERATION__MAIN_OPERATION:
 			setMainOperation((AbstractOperation) newValue);
@@ -432,12 +414,11 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 		case OperationsPackage.COMPOSITE_OPERATION__MAIN_OPERATION:
 			return mainOperation != null;
 		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
-			return COMPOSITE_NAME_EDEFAULT == null ? compositeName != null
-					: !COMPOSITE_NAME_EDEFAULT.equals(compositeName);
+			return COMPOSITE_NAME_EDEFAULT == null ? compositeName != null : !COMPOSITE_NAME_EDEFAULT
+				.equals(compositeName);
 		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION:
 			return COMPOSITE_DESCRIPTION_EDEFAULT == null ? compositeDescription != null
-					: !COMPOSITE_DESCRIPTION_EDEFAULT
-							.equals(compositeDescription);
+				: !COMPOSITE_DESCRIPTION_EDEFAULT.equals(compositeDescription);
 		case OperationsPackage.COMPOSITE_OPERATION__REVERSED:
 			return reversed != REVERSED_EDEFAULT;
 		}
@@ -504,8 +485,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 
 	@Override
 	public AbstractOperation reverse() {
-		CompositeOperation compositeOperation = OperationsFactory.eINSTANCE
-				.createCompositeOperation();
+		CompositeOperation compositeOperation = OperationsFactory.eINSTANCE.createCompositeOperation();
 		// MK: do not call super class reverse since it requires a model element
 		// id that is NOT null
 		// super.reverse(compositeOperation);
@@ -515,15 +495,12 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements
 		compositeOperation.setCompositeDescription(getCompositeDescription());
 		compositeOperation.setReversed(!isReversed());
 		// reverse subOperations and add in reverse order
-		EList<AbstractOperation> copiedSubOperations = compositeOperation
-				.getSubOperations();
+		EList<AbstractOperation> copiedSubOperations = compositeOperation.getSubOperations();
 		for (AbstractOperation abstractOperation : getSubOperations()) {
-			AbstractOperation reversedSubOperation = abstractOperation
-					.reverse();
+			AbstractOperation reversedSubOperation = abstractOperation.reverse();
 			copiedSubOperations.add(0, reversedSubOperation);
 			if (getMainOperation() != null
-					&& getMainOperation().getIdentifier().equals(
-							abstractOperation.getIdentifier())) {
+				&& getMainOperation().getIdentifier().equals(abstractOperation.getIdentifier())) {
 				compositeOperation.setMainOperation(reversedSubOperation);
 			}
 		}

@@ -10,16 +10,22 @@
  ******************************************************************************/
 package org.eclipse.emf.emfstore.common.model.impl;
 
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
+import org.eclipse.emf.emfstore.common.model.EMFStorePropertyType;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.ModelFactory;
 import org.eclipse.emf.emfstore.common.model.ModelPackage;
 import org.eclipse.emf.emfstore.common.model.ModelVersion;
 import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.PropertyStringValue;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,8 +81,46 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 			return createModelElementId();
 		case ModelPackage.MODEL_VERSION:
 			return createModelVersion();
+		case ModelPackage.EMF_STORE_PROPERTY:
+			return createEMFStoreProperty();
+		case ModelPackage.PROPERTY_MAP_ENTRY:
+			return (EObject) createPropertyMapEntry();
+		case ModelPackage.PROPERTY_STRING_VALUE:
+			return createPropertyStringValue();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+		case ModelPackage.EMF_STORE_PROPERTY_TYPE:
+			return createEMFStorePropertyTypeFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+		case ModelPackage.EMF_STORE_PROPERTY_TYPE:
+			return convertEMFStorePropertyTypeToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -111,6 +155,63 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	public ModelVersion createModelVersion() {
 		ModelVersionImpl modelVersion = new ModelVersionImpl();
 		return modelVersion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EMFStoreProperty createEMFStoreProperty() {
+		EMFStorePropertyImpl emfStoreProperty = new EMFStorePropertyImpl();
+		return emfStoreProperty;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Map.Entry<String, EMFStoreProperty> createPropertyMapEntry() {
+		PropertyMapEntryImpl propertyMapEntry = new PropertyMapEntryImpl();
+		return propertyMapEntry;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public PropertyStringValue createPropertyStringValue() {
+		PropertyStringValueImpl propertyStringValue = new PropertyStringValueImpl();
+		return propertyStringValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EMFStorePropertyType createEMFStorePropertyTypeFromString(EDataType eDataType, String initialValue) {
+		EMFStorePropertyType result = EMFStorePropertyType.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
+				+ eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public String convertEMFStorePropertyTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

@@ -10,29 +10,28 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Test Element</b></em>'. <!-- end-user-doc -->
- *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.client.test.testmodel.TestElement#getStrings <em>Strings</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.client.test.testmodel.TestElement#getReferences <em>References</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.test.testmodel.TestElement#getStrings <em>Strings</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.test.testmodel.TestElement#getReferences <em>References</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.emf.emfstore.client.test.testmodel.TestmodelPackage#getTestElement()
  * @model
  * @generated
  */
 public interface TestElement extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Strings</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Strings</b></em>' attribute list. The list contents are of type
+	 * {@link java.lang.String}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Strings</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Strings</em>' attribute list.
 	 * @see org.eclipse.emf.emfstore.client.test.testmodel.TestmodelPackage#getTestElement_Strings()
 	 * @model
@@ -41,14 +40,14 @@ public interface TestElement extends EObject {
 	EList<String> getStrings();
 
 	/**
-	 * Returns the value of the '<em><b>References</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.emf.emfstore.client.test.testmodel.TestElement}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>References</b></em>' reference list. The list contents are of type
+	 * {@link org.eclipse.emf.emfstore.client.test.testmodel.TestElement}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>References</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>References</em>' reference list.
 	 * @see org.eclipse.emf.emfstore.client.test.testmodel.TestmodelPackage#getTestElement_References()
 	 * @model

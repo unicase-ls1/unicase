@@ -75,6 +75,10 @@ public class ServerTests {
 		return generatedProjectId;
 	}
 
+	public static ProjectInfo getProjectInfo() {
+		return projectInfo;
+	}
+
 	/**
 	 * @return the projectsOnServerBeforeTest
 	 */
@@ -93,6 +97,7 @@ public class ServerTests {
 	private static ConnectionManager connectionManager;
 	private static Project generatedProject;
 	private static ProjectId generatedProjectId;
+	private static ProjectInfo projectInfo;
 	private static int projectsOnServerBeforeTest;
 	private static PrimaryVersionSpec generatedProjectVersion;
 	private static HashMap<Class<?>, Object> arguments;
@@ -105,13 +110,13 @@ public class ServerTests {
 	@BeforeClass
 	public static void setUpBeforeClass() throws EmfStoreException {
 		ServerConfiguration.setTesting(true);
+		SetupHelper.removeServerTestProfile();
 		SetupHelper.addUserFileToServer(false);
 		SetupHelper.startSever();
 		connectionManager = WorkspaceManager.getInstance().getConnectionManager();
 		login(SetupHelper.getServerInfo());
 		// FIXME: readd when new project generator is available
-		// TestProjectGenerator projectGenerator = new TestProjectGenerator(new TestProjectParmeters());
-		// generatedProject = projectGenerator.generateProject();
+		generatedProject = ModelFactory.eINSTANCE.createProject();
 		projectsOnServerBeforeTest = 1;
 		initArguments();
 	}
@@ -128,7 +133,11 @@ public class ServerTests {
 			SetupHelper.setUsersRole(getSessionId(), orgUnitId, RolesPackage.eINSTANCE.getReaderRole(),
 				getGeneratedProjectId());
 
-			orgUnitId = SetupHelper.createUserOnServer(getSessionId(), "writer");
+			orgUnitId = SetupHelper.createUserOnServer(getSessionId(), "writer1");
+			SetupHelper.setUsersRole(getSessionId(), orgUnitId, RolesPackage.eINSTANCE.getWriterRole(),
+				getGeneratedProjectId());
+
+			orgUnitId = SetupHelper.createUserOnServer(getSessionId(), "writer2");
 			SetupHelper.setUsersRole(getSessionId(), orgUnitId, RolesPackage.eINSTANCE.getWriterRole(),
 				getGeneratedProjectId());
 
@@ -202,7 +211,7 @@ public class ServerTests {
 	 */
 	@Before
 	public void beforeTest() throws EmfStoreException {
-		ProjectInfo projectInfo = connectionManager.createProject(sessionId, "initialProject", "TestProject",
+		projectInfo = connectionManager.createProject(sessionId, "initialProject", "TestProject",
 			SetupHelper.createLogMessage("super", "a logmessage"), generatedProject);
 		generatedProjectId = projectInfo.getProjectId();
 		generatedProjectVersion = projectInfo.getVersion();

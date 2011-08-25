@@ -22,13 +22,6 @@ import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
 import org.junit.Test;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.UseCase;
-import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.TaskFactory;
-import org.unicase.model.task.WorkPackage;
 
 /**
  * Tests the comnposite operation recording.

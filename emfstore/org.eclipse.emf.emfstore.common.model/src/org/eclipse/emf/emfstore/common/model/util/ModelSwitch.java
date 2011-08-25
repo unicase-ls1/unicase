@@ -11,28 +11,28 @@
 package org.eclipse.emf.emfstore.common.model.util;
 
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.common.model.AssociationClassElement;
+import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.common.model.IdentifiableElement;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.ModelPackage;
 import org.eclipse.emf.emfstore.common.model.ModelVersion;
 import org.eclipse.emf.emfstore.common.model.NonDomainElement;
 import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.PropertyStringValue;
 import org.eclipse.emf.emfstore.common.model.UniqueIdentifier;
 
 /**
- * <!-- begin-user-doc -->
- * The <b>Switch</b> for the model's inheritance hierarchy.
- * It supports the call {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each
- * class of the model,
- * starting with the actual class of the object
- * and proceeding up the inheritance hierarchy
- * until a non-null result is returned,
- * which is the result of the switch.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance
+ * hierarchy. It supports the call {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method
+ * for each class of the model,
+ * starting with the actual class of the object and proceeding up the
+ * inheritance hierarchy until a non-null result is returned, which is the
+ * result of the switch. <!-- end-user-doc -->
  * 
  * @see org.eclipse.emf.emfstore.common.model.ModelPackage
  * @generated
@@ -40,8 +40,7 @@ import org.eclipse.emf.emfstore.common.model.UniqueIdentifier;
 public class ModelSwitch<T> {
 	/**
 	 * The cached model package
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -49,8 +48,8 @@ public class ModelSwitch<T> {
 
 	/**
 	 * Creates an instance of the switch.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -63,8 +62,8 @@ public class ModelSwitch<T> {
 	/**
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
 	 * result.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
@@ -76,8 +75,8 @@ public class ModelSwitch<T> {
 	/**
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
 	 * result.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
@@ -94,8 +93,8 @@ public class ModelSwitch<T> {
 	/**
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
 	 * result.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
@@ -153,6 +152,28 @@ public class ModelSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case ModelPackage.EMF_STORE_PROPERTY: {
+			EMFStoreProperty emfStoreProperty = (EMFStoreProperty) theEObject;
+			T result = caseEMFStoreProperty(emfStoreProperty);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ModelPackage.PROPERTY_MAP_ENTRY: {
+			@SuppressWarnings("unchecked")
+			Map.Entry<String, EMFStoreProperty> propertyMapEntry = (Map.Entry<String, EMFStoreProperty>) theEObject;
+			T result = casePropertyMapEntry(propertyMapEntry);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ModelPackage.PROPERTY_STRING_VALUE: {
+			PropertyStringValue propertyStringValue = (PropertyStringValue) theEObject;
+			T result = casePropertyStringValue(propertyStringValue);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -160,10 +181,9 @@ public class ModelSwitch<T> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Project</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> This implementation returns
+	 * null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
 	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Project</em>'.
@@ -176,10 +196,9 @@ public class ModelSwitch<T> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Unique Identifier</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> This implementation
+	 * returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
 	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Unique Identifier</em>'.
@@ -192,10 +211,9 @@ public class ModelSwitch<T> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> This
+	 * implementation returns null; returning a non-null result will terminate
+	 * the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
@@ -208,10 +226,9 @@ public class ModelSwitch<T> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Element Id</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> This implementation returns
+	 * null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
 	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Element Id</em>'.
@@ -224,10 +241,9 @@ public class ModelSwitch<T> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Version</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> This implementation returns
+	 * null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
 	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Version</em>'.
@@ -240,10 +256,9 @@ public class ModelSwitch<T> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Non Domain Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> This implementation
+	 * returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
 	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Non Domain Element</em>'.
@@ -256,10 +271,9 @@ public class ModelSwitch<T> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Association Class Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> This
+	 * implementation returns null; returning a non-null result will terminate
+	 * the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Association Class Element</em>'.
@@ -271,11 +285,57 @@ public class ModelSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>EMF Store Property</em>'.
+	 * <!-- begin-user-doc --> This implementation
+	 * returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EMF Store Property</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEMFStoreProperty(EMFStoreProperty object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Property Map Entry</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch, but this is the last case anyway.
+	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Property Map Entry</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePropertyMapEntry(Map.Entry<String, EMFStoreProperty> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Property String Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Property String Value</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePropertyStringValue(PropertyStringValue object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
+	 * null; returning a non-null result will terminate the switch, but this is
+	 * the last case anyway. <!-- end-user-doc -->
 	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.

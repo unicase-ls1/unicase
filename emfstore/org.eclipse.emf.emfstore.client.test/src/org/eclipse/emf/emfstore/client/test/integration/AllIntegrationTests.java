@@ -20,7 +20,7 @@ import org.junit.runners.Suite;
  * @author Hodaie
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { AllForwardIntegrationTests.class, AllReversibilityIntegrationTests.class })
+@Suite.SuiteClasses({ AllForwardIntegrationTests.class, AllReversibilityIntegrationTests.class })
 public class AllIntegrationTests {
 
 }

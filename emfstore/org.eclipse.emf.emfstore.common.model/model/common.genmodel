@@ -12,6 +12,10 @@
   <foreignModel>common.ecore</foreignModel>
   <genPackages prefix="Model" basePackage="org.eclipse.emf.emfstore.common" disposableProviderFactory="true"
       ecorePackage="common.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="common.ecore#//EMFStorePropertyType">
+      <genEnumLiterals ecoreEnumLiteral="common.ecore#//EMFStorePropertyType/Shared"/>
+      <genEnumLiterals ecoreEnumLiteral="common.ecore#//EMFStorePropertyType/Local"/>
+    </genEnums>
     <genClasses ecoreClass="common.ecore#//Project">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference common.ecore#//Project/modelElements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference common.ecore#//Project/cutElements"/>
@@ -28,5 +32,17 @@
     </genClasses>
     <genClasses image="false" ecoreClass="common.ecore#//NonDomainElement"/>
     <genClasses image="false" ecoreClass="common.ecore#//AssociationClassElement"/>
+    <genClasses ecoreClass="common.ecore#//EMFStoreProperty">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute common.ecore#//EMFStoreProperty/key"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference common.ecore#//EMFStoreProperty/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute common.ecore#//EMFStoreProperty/type"/>
+    </genClasses>
+    <genClasses ecoreClass="common.ecore#//PropertyMapEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute common.ecore#//PropertyMapEntry/key"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference common.ecore#//PropertyMapEntry/value"/>
+    </genClasses>
+    <genClasses ecoreClass="common.ecore#//PropertyStringValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute common.ecore#//PropertyStringValue/value"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

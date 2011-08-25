@@ -20,18 +20,18 @@ import org.eclipse.emf.emfstore.client.test.testmodel.TestmodelPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.client.test.testmodel.impl.TestElementImpl#getStrings <em>Strings</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.client.test.testmodel.impl.TestElementImpl#getReferences <em>References</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.test.testmodel.impl.TestElementImpl#getStrings <em>Strings</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.test.testmodel.impl.TestElementImpl#getReferences <em>References</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class TestElementImpl extends EObjectImpl implements TestElement {
 	/**
-	 * The cached value of the '{@link #getStrings() <em>Strings</em>}' attribute list.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getStrings() <em>Strings</em>}' attribute list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getStrings()
 	 * @generated
 	 * @ordered
@@ -39,9 +39,9 @@ public class TestElementImpl extends EObjectImpl implements TestElement {
 	protected EList<String> strings;
 
 	/**
-	 * The cached value of the '{@link #getReferences() <em>References</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getReferences() <em>References</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getReferences()
 	 * @generated
 	 * @ordered
@@ -50,6 +50,7 @@ public class TestElementImpl extends EObjectImpl implements TestElement {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TestElementImpl() {
@@ -58,6 +59,7 @@ public class TestElementImpl extends EObjectImpl implements TestElement {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,6 +69,7 @@ public class TestElementImpl extends EObjectImpl implements TestElement {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<String> getStrings() {
@@ -78,89 +81,97 @@ public class TestElementImpl extends EObjectImpl implements TestElement {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<TestElement> getReferences() {
 		if (references == null) {
-			references = new EObjectResolvingEList<TestElement>(TestElement.class, this, TestmodelPackage.TEST_ELEMENT__REFERENCES);
+			references = new EObjectResolvingEList<TestElement>(TestElement.class, this,
+				TestmodelPackage.TEST_ELEMENT__REFERENCES);
 		}
 		return references;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TestmodelPackage.TEST_ELEMENT__STRINGS:
-				return getStrings();
-			case TestmodelPackage.TEST_ELEMENT__REFERENCES:
-				return getReferences();
+		case TestmodelPackage.TEST_ELEMENT__STRINGS:
+			return getStrings();
+		case TestmodelPackage.TEST_ELEMENT__REFERENCES:
+			return getReferences();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TestmodelPackage.TEST_ELEMENT__STRINGS:
-				getStrings().clear();
-				getStrings().addAll((Collection<? extends String>)newValue);
-				return;
-			case TestmodelPackage.TEST_ELEMENT__REFERENCES:
-				getReferences().clear();
-				getReferences().addAll((Collection<? extends TestElement>)newValue);
-				return;
+		case TestmodelPackage.TEST_ELEMENT__STRINGS:
+			getStrings().clear();
+			getStrings().addAll((Collection<? extends String>) newValue);
+			return;
+		case TestmodelPackage.TEST_ELEMENT__REFERENCES:
+			getReferences().clear();
+			getReferences().addAll((Collection<? extends TestElement>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TestmodelPackage.TEST_ELEMENT__STRINGS:
-				getStrings().clear();
-				return;
-			case TestmodelPackage.TEST_ELEMENT__REFERENCES:
-				getReferences().clear();
-				return;
+		case TestmodelPackage.TEST_ELEMENT__STRINGS:
+			getStrings().clear();
+			return;
+		case TestmodelPackage.TEST_ELEMENT__REFERENCES:
+			getReferences().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TestmodelPackage.TEST_ELEMENT__STRINGS:
-				return strings != null && !strings.isEmpty();
-			case TestmodelPackage.TEST_ELEMENT__REFERENCES:
-				return references != null && !references.isEmpty();
+		case TestmodelPackage.TEST_ELEMENT__STRINGS:
+			return strings != null && !strings.isEmpty();
+		case TestmodelPackage.TEST_ELEMENT__REFERENCES:
+			return references != null && !references.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (strings: ");

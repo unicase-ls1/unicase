@@ -12,6 +12,7 @@ package org.eclipse.emf.emfstore.server.connection.xmlrpc;
 
 import java.util.List;
 
+import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.server.EmfStore;
 import org.eclipse.emf.emfstore.server.accesscontrol.AuthenticationControl;
@@ -198,6 +199,22 @@ public class XmlRpcEmfStoreImpl implements EmfStore, AuthenticationControl {
 	public FileTransferInformation uploadFileChunk(SessionId sessionId, ProjectId projectId, FileChunk fileChunk)
 		throws EmfStoreException {
 		return getEmfStore().uploadFileChunk(sessionId, projectId, fileChunk);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void transmitEMFProperties(SessionId sessionId, List<EMFStoreProperty> properties, ProjectId projectId)
+		throws EmfStoreException {
+		getEmfStore().transmitEMFProperties(sessionId, properties, projectId);
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<EMFStoreProperty> getEMFProperties(SessionId sessionId, ProjectId projectId) throws EmfStoreException {
+		return getEmfStore().getEMFProperties(sessionId, projectId);
 	}
 
 }

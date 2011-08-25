@@ -15,12 +15,17 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
+import org.eclipse.emf.emfstore.common.model.impl.PropertyMapEntryImpl;
 import org.eclipse.emf.emfstore.server.model.ModelPackage;
 import org.eclipse.emf.emfstore.server.model.ProjectHistory;
 import org.eclipse.emf.emfstore.server.model.ProjectId;
@@ -105,6 +110,17 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	 * @ordered
 	 */
 	protected String projectDescription = PROJECT_DESCRIPTION_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getSharedProperties() <em>Shared Properties</em>}' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see #getSharedProperties()
+	 * @generated
+	 * @ordered
+	 */
+	protected EMap<String, EMFStoreProperty> sharedProperties;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -273,6 +289,21 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EMap<String, EMFStoreProperty> getSharedProperties() {
+		if (sharedProperties == null) {
+			sharedProperties = new EcoreEMap<String, EMFStoreProperty>(
+				org.eclipse.emf.emfstore.common.model.ModelPackage.Literals.PROPERTY_MAP_ENTRY,
+				PropertyMapEntryImpl.class, this, ModelPackage.PROJECT_HISTORY__SHARED_PROPERTIES);
+		}
+		return sharedProperties;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -284,6 +315,8 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 			return basicSetProjectId(null, msgs);
 		case ModelPackage.PROJECT_HISTORY__VERSIONS:
 			return ((InternalEList<?>) getVersions()).basicRemove(otherEnd, msgs);
+		case ModelPackage.PROJECT_HISTORY__SHARED_PROPERTIES:
+			return ((InternalEList<?>) getSharedProperties()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -306,6 +339,11 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 			return getProjectName();
 		case ModelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
 			return getProjectDescription();
+		case ModelPackage.PROJECT_HISTORY__SHARED_PROPERTIES:
+			if (coreType)
+				return getSharedProperties();
+			else
+				return getSharedProperties().map();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -332,6 +370,9 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 		case ModelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
 			setProjectDescription((String) newValue);
 			return;
+		case ModelPackage.PROJECT_HISTORY__SHARED_PROPERTIES:
+			((EStructuralFeature.Setting) getSharedProperties()).set(newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -356,6 +397,9 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 		case ModelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
 			setProjectDescription(PROJECT_DESCRIPTION_EDEFAULT);
 			return;
+		case ModelPackage.PROJECT_HISTORY__SHARED_PROPERTIES:
+			getSharedProperties().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -377,6 +421,8 @@ public class ProjectHistoryImpl extends EObjectImpl implements ProjectHistory {
 		case ModelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
 			return PROJECT_DESCRIPTION_EDEFAULT == null ? projectDescription != null : !PROJECT_DESCRIPTION_EDEFAULT
 				.equals(projectDescription);
+		case ModelPackage.PROJECT_HISTORY__SHARED_PROPERTIES:
+			return sharedProperties != null && !sharedProperties.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -12,9 +12,11 @@ package org.eclipse.emf.emfstore.server.core;
 
 import java.util.List;
 
+import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.server.EmfStore;
 import org.eclipse.emf.emfstore.server.accesscontrol.AuthorizationControl;
+import org.eclipse.emf.emfstore.server.core.subinterfaces.EMFStorePropertiesSubInterfaceImpl;
 import org.eclipse.emf.emfstore.server.core.subinterfaces.FileTransferSubInterfaceImpl;
 import org.eclipse.emf.emfstore.server.core.subinterfaces.HistorySubInterfaceImpl;
 import org.eclipse.emf.emfstore.server.core.subinterfaces.ProjectPropertiesSubInterfaceImpl;
@@ -55,9 +57,12 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param serverSpace the serverspace
-	 * @param authorizationControl the accesscontrol
-	 * @throws FatalEmfStoreException in case of failure
+	 * @param serverSpace
+	 *            the serverspace
+	 * @param authorizationControl
+	 *            the accesscontrol
+	 * @throws FatalEmfStoreException
+	 *             in case of failure
 	 */
 	public EmfStoreImpl(ServerSpace serverSpace, AuthorizationControl authorizationControl)
 		throws FatalEmfStoreException {
@@ -75,6 +80,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 		addSubInterface(new VersionSubInterfaceImpl(this));
 		addSubInterface(new FileTransferSubInterfaceImpl(this));
 		addSubInterface(new ProjectPropertiesSubInterfaceImpl(this));
+		addSubInterface(new EMFStorePropertiesSubInterfaceImpl(this));
 	}
 
 	/**
@@ -244,6 +250,27 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 		sanityCheckObjects(projectId, user, changedProperty);
 		checkWriteAccess(sessionId, projectId, null);
 		getSubInterface(ProjectPropertiesSubInterfaceImpl.class).setProperty(changedProperty, user, projectId);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void transmitEMFProperties(SessionId sessionId, List<EMFStoreProperty> properties, ProjectId projectId)
+		throws EmfStoreException {
+		sanityCheckObjects(projectId, properties);
+		checkWriteAccess(sessionId, projectId, null);
+		EMFStorePropertiesSubInterfaceImpl temp = getSubInterface(EMFStorePropertiesSubInterfaceImpl.class);
+
+		temp.setProperties(properties, projectId);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<EMFStoreProperty> getEMFProperties(SessionId sessionId, ProjectId projectId) throws EmfStoreException {
+		sanityCheckObjects(sessionId, projectId);
+		checkReadAccess(sessionId, projectId, null);
+		return getSubInterface(EMFStorePropertiesSubInterfaceImpl.class).getProperties(projectId);
 	}
 
 }

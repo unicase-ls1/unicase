@@ -10,12 +10,17 @@
  ******************************************************************************/
 package org.eclipse.emf.emfstore.common.model.impl;
 
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.emfstore.common.model.AssociationClassElement;
+import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
+import org.eclipse.emf.emfstore.common.model.EMFStorePropertyType;
 import org.eclipse.emf.emfstore.common.model.IdentifiableElement;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.ModelFactory;
@@ -23,6 +28,7 @@ import org.eclipse.emf.emfstore.common.model.ModelPackage;
 import org.eclipse.emf.emfstore.common.model.ModelVersion;
 import org.eclipse.emf.emfstore.common.model.NonDomainElement;
 import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.PropertyStringValue;
 import org.eclipse.emf.emfstore.common.model.UniqueIdentifier;
 
 /**
@@ -88,6 +94,38 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	private EClass associationClassElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass emfStorePropertyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass propertyMapEntryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass propertyStringValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EEnum emfStorePropertyTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -278,6 +316,106 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
+	public EClass getEMFStoreProperty() {
+		return emfStorePropertyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getEMFStoreProperty_Key() {
+		return (EAttribute) emfStorePropertyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getEMFStoreProperty_Value() {
+		return (EReference) emfStorePropertyEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getEMFStoreProperty_Type() {
+		return (EAttribute) emfStorePropertyEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getPropertyMapEntry() {
+		return propertyMapEntryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getPropertyMapEntry_Key() {
+		return (EAttribute) propertyMapEntryEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getPropertyMapEntry_Value() {
+		return (EReference) propertyMapEntryEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getPropertyStringValue() {
+		return propertyStringValueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getPropertyStringValue_Value() {
+		return (EAttribute) propertyStringValueEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EEnum getEMFStorePropertyType() {
+		return emfStorePropertyTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public ModelFactory getModelFactory() {
 		return (ModelFactory) getEFactoryInstance();
 	}
@@ -322,6 +460,21 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		nonDomainElementEClass = createEClass(NON_DOMAIN_ELEMENT);
 
 		associationClassElementEClass = createEClass(ASSOCIATION_CLASS_ELEMENT);
+
+		emfStorePropertyEClass = createEClass(EMF_STORE_PROPERTY);
+		createEAttribute(emfStorePropertyEClass, EMF_STORE_PROPERTY__KEY);
+		createEReference(emfStorePropertyEClass, EMF_STORE_PROPERTY__VALUE);
+		createEAttribute(emfStorePropertyEClass, EMF_STORE_PROPERTY__TYPE);
+
+		propertyMapEntryEClass = createEClass(PROPERTY_MAP_ENTRY);
+		createEAttribute(propertyMapEntryEClass, PROPERTY_MAP_ENTRY__KEY);
+		createEReference(propertyMapEntryEClass, PROPERTY_MAP_ENTRY__VALUE);
+
+		propertyStringValueEClass = createEClass(PROPERTY_STRING_VALUE);
+		createEAttribute(propertyStringValueEClass, PROPERTY_STRING_VALUE__VALUE);
+
+		// Create enums
+		emfStorePropertyTypeEEnum = createEEnum(EMF_STORE_PROPERTY_TYPE);
 	}
 
 	/**
@@ -356,6 +509,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		// Add supertypes to classes
 		modelElementIdEClass.getESuperTypes().add(this.getUniqueIdentifier());
+		propertyStringValueEClass.getESuperTypes().add(ecorePackage.getEObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -392,6 +546,36 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		initEClass(associationClassElementEClass, AssociationClassElement.class, "AssociationClassElement",
 			IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(emfStorePropertyEClass, EMFStoreProperty.class, "EMFStoreProperty", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEMFStoreProperty_Key(), ecorePackage.getEString(), "key", null, 0, 1, EMFStoreProperty.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEMFStoreProperty_Value(), ecorePackage.getEObject(), null, "value", null, 0, 1,
+			EMFStoreProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEMFStoreProperty_Type(), this.getEMFStorePropertyType(), "type", null, 0, 1,
+			EMFStoreProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+
+		initEClass(propertyMapEntryEClass, Map.Entry.class, "PropertyMapEntry", !IS_ABSTRACT, !IS_INTERFACE,
+			!IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPropertyMapEntry_Key(), ecorePackage.getEString(), "key", null, 0, 1, Map.Entry.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyMapEntry_Value(), this.getEMFStoreProperty(), null, "value", null, 0, 1,
+			Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(propertyStringValueEClass, PropertyStringValue.class, "PropertyStringValue", !IS_ABSTRACT,
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPropertyStringValue_Value(), ecorePackage.getEString(), "value", null, 0, 1,
+			PropertyStringValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(emfStorePropertyTypeEEnum, EMFStorePropertyType.class, "EMFStorePropertyType");
+		addEEnumLiteral(emfStorePropertyTypeEEnum, EMFStorePropertyType.SHARED);
+		addEEnumLiteral(emfStorePropertyTypeEEnum, EMFStorePropertyType.LOCAL);
 
 		// Create resource
 		createResource(eNS_URI);

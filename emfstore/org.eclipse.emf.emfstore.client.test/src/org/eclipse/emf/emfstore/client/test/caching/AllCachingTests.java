@@ -14,7 +14,7 @@ import org.junit.runners.Suite;
  * @author koegel
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { OneToOneContainmentTest.class })
+@Suite.SuiteClasses({ OneToOneContainmentTest.class })
 public class AllCachingTests {
 
 }

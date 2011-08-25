@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.emfstore.client.model.exceptions.ChangeConflictException;
@@ -28,6 +29,8 @@ import org.eclipse.emf.emfstore.client.model.observers.CommitObserver;
 import org.eclipse.emf.emfstore.client.model.observers.ConflictResolver;
 import org.eclipse.emf.emfstore.client.model.observers.UpdateObserver;
 import org.eclipse.emf.emfstore.client.model.preferences.PropertyKey;
+import org.eclipse.emf.emfstore.client.properties.PropertyManager;
+import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.common.model.IdentifiableElement;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.server.exceptions.BaseVersionOutdatedException;
@@ -48,42 +51,36 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.Event;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>Project Container</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Project Container</b></em>'. <!-- end-user-doc
+ * -->
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProject <em>
- * Project</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectId
- * <em>Project Id</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectName
- * <em>Project Name</em>}</li>
- * <li>
- * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectDescription
- * <em>Project Description</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getOperations
- * <em>Operations</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getEvents <em>
- * Events</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getUsersession
- * <em>Usersession</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getLastUpdated
- * <em>Last Updated</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getBaseVersion
- * <em>Base Version</em>}</li>
- * <li>
- * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getResourceCount
- * <em>Resource Count</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#isDirty <em>
- * Dirty</em>}</li>
- * <li>
- * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getOldLogMessages
- * <em>Old Log Messages</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProject <em>Project</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectId <em>Project Id</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectName <em>Project Name</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectDescription <em>Project Description</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getEvents <em>Events</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getUsersession <em>Usersession</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getLastUpdated <em>Last Updated</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getBaseVersion <em>Base Version</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getResourceCount <em>Resource Count</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#isDirty <em>Dirty</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getOldLogMessages <em>Old Log Messages</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getLocalOperations <em>Local Operations</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getNotifications <em>Notifications</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getEventComposite <em>Event Composite</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getNotificationComposite <em>Notification Composite
+ * </em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getWaitingUploads <em>Waiting Uploads</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProperties <em>Properties</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getChangedSharedProperties <em>Changed Shared
+ * Properties</em>}</li>
  * </ul>
  * </p>
  * 
- * @see org.eclipse.emf.emfstore.client.model.WorkspacePackage#getProjectSpace()
+ * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace()
  * @model
  * @generated
  */
@@ -92,8 +89,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * Returns the value of the '<em><b>Project</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Project</em>' reference isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Project</em>' reference isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -106,24 +103,23 @@ public interface ProjectSpace extends IdentifiableElement {
 	Project getProject();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProject
-	 * <em>Project</em>}' containment reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProject <em>Project</em>}'
+	 * containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @param value
-	 *            the new value of the '<em>Project</em>' containment reference.
+	 * @param value the new value of the '<em>Project</em>' containment reference.
 	 * @see #getProject()
 	 * @generated
 	 */
 	void setProject(Project value);
 
 	/**
-	 * Returns the value of the '<em><b>Project Id</b></em>' containment
-	 * reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Project Id</em>' containment reference isn't
-	 * clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Project Id</em>' containment reference isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -136,14 +132,12 @@ public interface ProjectSpace extends IdentifiableElement {
 	ProjectId getProjectId();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectId
-	 * <em>Project Id</em>}' containment reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectId
+	 * <em>Project Id</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @param value
-	 *            the new value of the '<em>Project Id</em>' containment
-	 *            reference.
+	 * @param value the new value of the '<em>Project Id</em>' containment reference.
 	 * @see #getProjectId()
 	 * @generated
 	 */
@@ -153,8 +147,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * Returns the value of the '<em><b>Project Name</b></em>' attribute. <!--
 	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Project Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Project Name</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -167,13 +161,12 @@ public interface ProjectSpace extends IdentifiableElement {
 	String getProjectName();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectName
-	 * <em>Project Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectName
+	 * <em>Project Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @param value
-	 *            the new value of the '<em>Project Name</em>' attribute.
+	 * @param value the new value of the '<em>Project Name</em>' attribute.
 	 * @see #getProjectName()
 	 * @generated
 	 */
@@ -183,8 +176,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * Returns the value of the '<em><b>Project Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Project Description</em>' attribute isn't
-	 * clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Project Description</em>' attribute isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -197,26 +190,24 @@ public interface ProjectSpace extends IdentifiableElement {
 	String getProjectDescription();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectDescription
-	 * <em>Project Description</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectDescription
+	 * <em>Project Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @param value
-	 *            the new value of the '<em>Project Description</em>' attribute.
+	 * @param value the new value of the '<em>Project Description</em>' attribute.
 	 * @see #getProjectDescription()
 	 * @generated
 	 */
 	void setProjectDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Events</b></em>' containment reference
-	 * list. The list contents are of type
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.Event}.
+	 * Returns the value of the '<em><b>Events</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.emfstore.server.model.versioning.events.Event}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Events</em>' containment reference list isn't
-	 * clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Events</em>' containment reference list isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -231,8 +222,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * Returns the value of the '<em><b>Usersession</b></em>' reference. <!--
 	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Usersession</em>' reference isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Usersession</em>' reference isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -245,13 +236,12 @@ public interface ProjectSpace extends IdentifiableElement {
 	Usersession getUsersession();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getUsersession
-	 * <em>Usersession</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getUsersession
+	 * <em>Usersession</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @param value
-	 *            the new value of the '<em>Usersession</em>' reference.
+	 * @param value the new value of the '<em>Usersession</em>' reference.
 	 * @see #getUsersession()
 	 * @generated
 	 */
@@ -261,8 +251,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * Returns the value of the '<em><b>Last Updated</b></em>' attribute. <!--
 	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Last Updated</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Last Updated</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -275,24 +265,23 @@ public interface ProjectSpace extends IdentifiableElement {
 	Date getLastUpdated();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getLastUpdated
-	 * <em>Last Updated</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getLastUpdated
+	 * <em>Last Updated</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @param value
-	 *            the new value of the '<em>Last Updated</em>' attribute.
+	 * @param value the new value of the '<em>Last Updated</em>' attribute.
 	 * @see #getLastUpdated()
 	 * @generated
 	 */
 	void setLastUpdated(Date value);
 
 	/**
-	 * Returns the value of the '<em><b>Base Version</b></em>' containment
-	 * reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Version</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Version</em>' containment reference isn't
-	 * clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Base Version</em>' containment reference isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -305,14 +294,12 @@ public interface ProjectSpace extends IdentifiableElement {
 	PrimaryVersionSpec getBaseVersion();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getBaseVersion
-	 * <em>Base Version</em>}' containment reference. <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getBaseVersion
+	 * <em>Base Version</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @param value
-	 *            the new value of the '<em>Base Version</em>' containment
-	 *            reference.
+	 * @param value the new value of the '<em>Base Version</em>' containment reference.
 	 * @see #getBaseVersion()
 	 * @generated
 	 */
@@ -322,8 +309,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * Returns the value of the '<em><b>Resource Count</b></em>' attribute. <!--
 	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Resource Count</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Resource Count</em>' attribute isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -336,13 +323,12 @@ public interface ProjectSpace extends IdentifiableElement {
 	int getResourceCount();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getResourceCount
-	 * <em>Resource Count</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getResourceCount
+	 * <em>Resource Count</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @param value
-	 *            the new value of the '<em>Resource Count</em>' attribute.
+	 * @param value the new value of the '<em>Resource Count</em>' attribute.
 	 * @see #getResourceCount()
 	 * @generated
 	 */
@@ -352,8 +338,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * Returns the value of the '<em><b>Dirty</b></em>' attribute. <!--
 	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Dirty</em>' attribute isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Dirty</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -366,12 +352,11 @@ public interface ProjectSpace extends IdentifiableElement {
 	boolean isDirty();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#isDirty
-	 * <em>Dirty</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#isDirty <em>Dirty</em>}'
+	 * attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @param value
-	 *            the new value of the '<em>Dirty</em>' attribute.
+	 * @param value the new value of the '<em>Dirty</em>' attribute.
 	 * @see #isDirty()
 	 * @generated
 	 */
@@ -382,8 +367,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * list. The list contents are of type {@link java.lang.String}. <!--
 	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Old Log Messages</em>' attribute list isn't
-	 * clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Old Log Messages</em>' attribute list isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -395,16 +380,15 @@ public interface ProjectSpace extends IdentifiableElement {
 	EList<String> getOldLogMessages();
 
 	/**
-	 * Returns the value of the '<em><b>Local Operations</b></em>' containment
-	 * reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Local Operations</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Local Operations</em>' containment reference
-	 * isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Local Operations</em>' containment reference isn't clear, there really should be more
+	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Local Operations</em>' containment
-	 *         reference.
+	 * @return the value of the '<em>Local Operations</em>' containment reference.
 	 * @see #setLocalOperations(OperationComposite)
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_LocalOperations()
 	 * @model containment="true" resolveProxies="true"
@@ -413,32 +397,28 @@ public interface ProjectSpace extends IdentifiableElement {
 	OperationComposite getLocalOperations();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getLocalOperations
-	 * <em>Local Operations</em>}' containment reference. <!-- begin-user-doc
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getLocalOperations
+	 * <em>Local Operations</em>}' containment reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
-	 * @param value
-	 *            the new value of the '<em>Local Operations</em>' containment
-	 *            reference.
+	 * @param value the new value of the '<em>Local Operations</em>' containment reference.
 	 * @see #getLocalOperations()
 	 * @generated
 	 */
 	void setLocalOperations(OperationComposite value);
 
 	/**
-	 * Returns the value of the '<em><b>Notifications</b></em>' containment
-	 * reference list. The list contents are of type
-	 * {@link org.eclipse.emf.emfstore.server.model.notification.ESNotification}
-	 * . <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Notifications</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.emfstore.server.model.notification.ESNotification}.
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Notifications</em>' reference list isn't
-	 * clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Notifications</em>' reference list isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Notifications</em>' containment reference
-	 *         list.
+	 * @return the value of the '<em>Notifications</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_Notifications()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
@@ -446,16 +426,15 @@ public interface ProjectSpace extends IdentifiableElement {
 	EList<ESNotification> getNotifications();
 
 	/**
-	 * Returns the value of the '<em><b>Event Composite</b></em>' containment
-	 * reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Event Composite</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Event Composite</em>' containment reference
-	 * isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Event Composite</em>' containment reference isn't clear, there really should be more
+	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Event Composite</em>' containment
-	 *         reference.
+	 * @return the value of the '<em>Event Composite</em>' containment reference.
 	 * @see #setEventComposite(EventComposite)
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_EventComposite()
 	 * @model containment="true" resolveProxies="true"
@@ -464,31 +443,27 @@ public interface ProjectSpace extends IdentifiableElement {
 	EventComposite getEventComposite();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getEventComposite
-	 * <em>Event Composite</em>}' containment reference. <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getEventComposite
+	 * <em>Event Composite</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @param value
-	 *            the new value of the '<em>Event Composite</em>' containment
-	 *            reference.
+	 * @param value the new value of the '<em>Event Composite</em>' containment reference.
 	 * @see #getEventComposite()
 	 * @generated
 	 */
 	void setEventComposite(EventComposite value);
 
 	/**
-	 * Returns the value of the '<em><b>Notification Composite</b></em>'
-	 * containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Notification Composite</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Notification Composite</em>' containment
-	 * reference isn't clear, there really should be more of a description
-	 * here...
+	 * If the meaning of the '<em>Notification Composite</em>' containment reference isn't clear, there really should be
+	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Notification Composite</em>' containment
-	 *         reference.
+	 * @return the value of the '<em>Notification Composite</em>' containment reference.
 	 * @see #setNotificationComposite(NotificationComposite)
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_NotificationComposite()
 	 * @model containment="true" resolveProxies="true"
@@ -497,8 +472,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	NotificationComposite getNotificationComposite();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getNotificationComposite
+	 * Sets the value of the ' {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getNotificationComposite
 	 * <em>Notification Composite</em>}' containment reference. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -512,12 +486,11 @@ public interface ProjectSpace extends IdentifiableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Waiting Uploads</b></em>' containment
-	 * reference list. The list contents are of type
-	 * {@link org.eclipse.emf.emfstore.server.model.FileIdentifier}. <!--
+	 * reference list. The list contents are of type {@link org.eclipse.emf.emfstore.server.model.FileIdentifier}. <!--
 	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Waiting Uploads</em>' containment reference
-	 * list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Waiting Uploads</em>' containment reference list isn't clear, there really should be
+	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -528,6 +501,44 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @generated
 	 */
 	EList<FileIdentifier> getWaitingUploads();
+
+	/**
+	 * Returns the value of the '<em><b>Properties</b></em>' containment
+	 * reference list. The list contents are of type {@link org.eclipse.emf.emfstore.common.model.EMFStoreProperty}.
+	 * <!--
+	 * begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Properties</em>' containment reference list isn't clear, there really should be more
+	 * of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Properties</em>' containment reference
+	 *         list.
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_Properties()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	EMap<String, EMFStoreProperty> getProperties();
+
+	/**
+	 * Returns the value of the '<em><b>Changed Shared Properties</b></em>'
+	 * containment reference list. The list contents are of type
+	 * {@link org.eclipse.emf.emfstore.common.model.EMFStoreProperty}. <!--
+	 * begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Changed Shared Properties</em>' containment reference list isn't clear, there really
+	 * should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Changed Shared Properties</em>' containment
+	 *         reference list.
+	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getProjectSpace_ChangedSharedProperties()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	EMap<String, EMFStoreProperty> getChangedSharedProperties();
 
 	/**
 	 * <!-- begin-user-doc --> Commit the all pending changes of the project.
@@ -568,9 +579,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	 *             if the project space is not up to date, that is its base
 	 *             version is lower then the projects head revision
 	 */
-	PrimaryVersionSpec commit(LogMessage logMessage,
-			CommitObserver commitObserver) throws EmfStoreException,
-			BaseVersionOutdatedException;
+	PrimaryVersionSpec commit(LogMessage logMessage, CommitObserver commitObserver) throws EmfStoreException,
+		BaseVersionOutdatedException;
 
 	/**
 	 * Preparation phase of the commit. The user has to deal with eventual
@@ -584,8 +594,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @throws EmfStoreException
 	 *             if the commit fails
 	 */
-	ChangePackage prepareCommit(CommitObserver commitObserver)
-			throws EmfStoreException;
+	ChangePackage prepareCommit(CommitObserver commitObserver) throws EmfStoreException;
 
 	/**
 	 * A change package will be finally send to the server and a new revision
@@ -602,9 +611,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @throws EmfStoreException
 	 *             if any error in the EmfStore occurs
 	 */
-	PrimaryVersionSpec finalizeCommit(ChangePackage changePackage,
-			LogMessage logMessage, CommitObserver commitObserver)
-			throws EmfStoreException;
+	PrimaryVersionSpec finalizeCommit(ChangePackage changePackage, LogMessage logMessage, CommitObserver commitObserver)
+		throws EmfStoreException;
 
 	/**
 	 * <!-- begin-user-doc --> Update the project to the head version.
@@ -644,8 +652,8 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @throws ChangeConflictException
 	 *             if a conflict with local changes is detected
 	 */
-	PrimaryVersionSpec update(VersionSpec version, UpdateObserver observer)
-			throws EmfStoreException, ChangeConflictException;
+	PrimaryVersionSpec update(VersionSpec version, UpdateObserver observer) throws EmfStoreException,
+		ChangeConflictException;
 
 	/**
 	 * <!-- begin-user-doc --> Resolve a version spec to a primary version spec.
@@ -658,8 +666,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @model
 	 * @generated NOT
 	 */
-	PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec)
-			throws EmfStoreException;
+	PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec) throws EmfStoreException;
 
 	/**
 	 * Initialize the resources of the project space.
@@ -733,8 +740,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 *             if any error in the EmfStore occurs
 	 * @generated NOT
 	 */
-	List<ChangePackage> getChanges(VersionSpec sourceVersion,
-			VersionSpec targetVersion) throws EmfStoreException;
+	List<ChangePackage> getChanges(VersionSpec sourceVersion, VersionSpec targetVersion) throws EmfStoreException;
 
 	/**
 	 * Adds a tag to the specified version of this project.
@@ -746,8 +752,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @throws EmfStoreException
 	 *             if exception occurs on the server
 	 */
-	void addTag(PrimaryVersionSpec versionSpec, TagVersionSpec tag)
-			throws EmfStoreException;
+	void addTag(PrimaryVersionSpec versionSpec, TagVersionSpec tag) throws EmfStoreException;
 
 	/**
 	 * Removes a tag to the specified version of this project.
@@ -759,8 +764,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @throws EmfStoreException
 	 *             if exception occurs on the server
 	 */
-	void removeTag(PrimaryVersionSpec versionSpec, TagVersionSpec tag)
-			throws EmfStoreException;
+	void removeTag(PrimaryVersionSpec versionSpec, TagVersionSpec tag) throws EmfStoreException;
 
 	/**
 	 * Return the list of operations that have already been performed on the
@@ -791,8 +795,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @throws MEUrlResolutionException
 	 *             if model element does not exist in project.
 	 */
-	EObject resolve(ModelElementUrlFragment modelElementUrlFragment)
-			throws MEUrlResolutionException;
+	EObject resolve(ModelElementUrlFragment modelElementUrlFragment) throws MEUrlResolutionException;
 
 	/**
 	 * Get a project info for the project space.
@@ -819,8 +822,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @throws EmfStoreException
 	 *             if exception occurs on the server
 	 */
-	void applyMergeResult(List<AbstractOperation> mergeResult,
-			VersionSpec mergeTargetSpec) throws EmfStoreException;
+	void applyMergeResult(List<AbstractOperation> mergeResult, VersionSpec mergeTargetSpec) throws EmfStoreException;
 
 	/**
 	 * Begin a composite operation on the projectSpace.
@@ -880,8 +882,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 *             if no property exists for this key
 	 * @generated NOT
 	 */
-	OrgUnitProperty getProperty(PropertyKey name)
-			throws PropertyNotFoundException;
+	OrgUnitProperty getProperty(PropertyKey name) throws PropertyNotFoundException;
 
 	/**
 	 * Sets a new OrgUnitProperty for the current user.
@@ -933,8 +934,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @throws EmfStoreException
 	 *             if the conncection to the server fails
 	 */
-	void merge(PrimaryVersionSpec target, ConflictResolver conflictResolver)
-			throws EmfStoreException;
+	void merge(PrimaryVersionSpec target, ConflictResolver conflictResolver) throws EmfStoreException;
 
 	/**
 	 * Shows whether projectSpace is transient.
@@ -976,8 +976,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @throws FileTransferException
 	 *             if any error occurs retrieving the files
 	 */
-	FileDownloadStatus getFile(FileIdentifier fileIdentifier)
-			throws FileTransferException;
+	FileDownloadStatus getFile(FileIdentifier fileIdentifier) throws FileTransferException;
 
 	/**
 	 * Gets the file information for a specific file identifier. This file
@@ -995,4 +994,12 @@ public interface ProjectSpace extends IdentifiableElement {
 	FileInformation getFileInfo(FileIdentifier fileIdentifier);
 
 	OperationManager getOperationManager();
+
+	/**
+	 * Get PropertyManager for this ProjectSpace.
+	 * 
+	 * @return property manager of type PropertyManager
+	 * **/
+	PropertyManager getPropertyManager();
+
 } // ProjectContainer

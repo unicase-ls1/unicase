@@ -121,6 +121,16 @@ public interface ModelPackage extends EPackage {
 	int PROJECT_HISTORY__PROJECT_DESCRIPTION = 3;
 
 	/**
+	 * The feature id for the '<em><b>Shared Properties</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_HISTORY__SHARED_PROPERTIES = 4;
+
+	/**
 	 * The number of structural features of the '<em>Project History</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -128,7 +138,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_HISTORY_FEATURE_COUNT = 4;
+	int PROJECT_HISTORY_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.emfstore.server.model.impl.ProjectInfoImpl
@@ -489,6 +499,19 @@ public interface ModelPackage extends EPackage {
 	EAttribute getProjectHistory_ProjectDescription();
 
 	/**
+	 * Returns the meta object for the map '
+	 * {@link org.eclipse.emf.emfstore.server.model.ProjectHistory#getSharedProperties <em>Shared Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the map '<em>Shared Properties</em>'.
+	 * @see org.eclipse.emf.emfstore.server.model.ProjectHistory#getSharedProperties()
+	 * @see #getProjectHistory()
+	 * @generated
+	 */
+	EReference getProjectHistory_SharedProperties();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.emfstore.server.model.ProjectInfo
 	 * <em>Project Info</em>}'.
 	 * <!-- begin-user-doc -->
@@ -785,6 +808,15 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PROJECT_HISTORY__PROJECT_DESCRIPTION = eINSTANCE.getProjectHistory_ProjectDescription();
+
+		/**
+		 * The meta object literal for the '<em><b>Shared Properties</b></em>' map feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference PROJECT_HISTORY__SHARED_PROPERTIES = eINSTANCE.getProjectHistory_SharedProperties();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.emfstore.server.model.impl.ProjectInfoImpl

@@ -45,20 +45,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenc
 import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
 import org.junit.Test;
-import org.unicase.model.document.CompositeSection;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.DocumentPackage;
-import org.unicase.model.document.LeafSection;
-import org.unicase.model.organization.OrganizationFactory;
-import org.unicase.model.organization.User;
-import org.unicase.model.rationale.Comment;
-import org.unicase.model.rationale.RationaleFactory;
-import org.unicase.model.requirement.Actor;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.UseCase;
-import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.TaskFactory;
-import org.unicase.model.task.WorkPackage;
+import org.w3c.dom.Comment;
 
 /**
  * Tests for the command recording to detect deletes, cuts and copies.

@@ -16,8 +16,6 @@ import org.eclipse.emf.emfstore.client.model.changeTracking.notification.recordi
 import org.eclipse.emf.emfstore.client.model.exceptions.UnsupportedNotificationException;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.junit.Test;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.UseCase;
 
 /**
  * Tests the notification recording for attribute features.

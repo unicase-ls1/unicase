@@ -14,7 +14,7 @@ import org.junit.runners.Suite;
  * @author koegel
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { AttributeTest.class, CompositeTest.class })
+@Suite.SuiteClasses({ AttributeTest.class, CompositeTest.class })
 public class AllCanonizationTests {
 
 }

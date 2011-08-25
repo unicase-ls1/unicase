@@ -464,6 +464,26 @@ public interface ModelPackage extends EPackage {
 	int PROJECT_SPACE__WAITING_UPLOADS = org.eclipse.emf.emfstore.common.model.ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 15;
 
 	/**
+	 * The feature id for the '<em><b>Properties</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_SPACE__PROPERTIES = org.eclipse.emf.emfstore.common.model.ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 16;
+
+	/**
+	 * The feature id for the '<em><b>Changed Shared Properties</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_SPACE__CHANGED_SHARED_PROPERTIES = org.eclipse.emf.emfstore.common.model.ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 17;
+
+	/**
 	 * The number of structural features of the '<em>Project Space</em>' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -471,7 +491,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE_FEATURE_COUNT = org.eclipse.emf.emfstore.common.model.ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 16;
+	int PROJECT_SPACE_FEATURE_COUNT = org.eclipse.emf.emfstore.common.model.ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 18;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.emfstore.client.model.impl.OperationCompositeImpl
@@ -1100,6 +1120,33 @@ public interface ModelPackage extends EPackage {
 	EReference getProjectSpace_WaitingUploads();
 
 	/**
+	 * Returns the meta object for the map '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProperties
+	 * <em>Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the map '<em>Properties</em>'.
+	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#getProperties()
+	 * @see #getProjectSpace()
+	 * @generated
+	 */
+	EReference getProjectSpace_Properties();
+
+	/**
+	 * Returns the meta object for the map '
+	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getChangedSharedProperties
+	 * <em>Changed Shared Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the map '<em>Changed Shared Properties</em>'.
+	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#getChangedSharedProperties()
+	 * @see #getProjectSpace()
+	 * @generated
+	 */
+	EReference getProjectSpace_ChangedSharedProperties();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.emfstore.client.model.OperationComposite
 	 * <em>Operation Composite</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1611,6 +1658,24 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROJECT_SPACE__WAITING_UPLOADS = eINSTANCE.getProjectSpace_WaitingUploads();
+
+		/**
+		 * The meta object literal for the '<em><b>Properties</b></em>' map feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference PROJECT_SPACE__PROPERTIES = eINSTANCE.getProjectSpace_Properties();
+
+		/**
+		 * The meta object literal for the '<em><b>Changed Shared Properties</b></em>' map feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference PROJECT_SPACE__CHANGED_SHARED_PROPERTIES = eINSTANCE.getProjectSpace_ChangedSharedProperties();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.emfstore.client.model.impl.OperationCompositeImpl
