@@ -86,6 +86,9 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 	 */
 	@Override
 	public Object[] getElements(Object inputElement) {
+		if (rootPackages.size() == 1) {
+			return getChildren(rootPackages.iterator().next());
+		}
 		return rootPackages.toArray();
 
 		// // return ModelUtil.getAllModelPackages().toArray();
