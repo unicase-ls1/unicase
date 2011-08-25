@@ -105,6 +105,9 @@ public final class FileUtil {
 	public static void copyDirectory(File source, File destination) throws IOException {
 
 		destination.mkdirs();
+		if (!source.exists()) {
+			return;
+		}
 		for (File file : source.listFiles()) {
 			if (file.isDirectory()) {
 				copyDirectory(file, new File(destination.getAbsolutePath() + File.separatorChar + file.getName()));
