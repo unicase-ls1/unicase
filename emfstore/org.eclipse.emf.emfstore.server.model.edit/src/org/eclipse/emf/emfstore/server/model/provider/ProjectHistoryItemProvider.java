@@ -43,6 +43,7 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectHistoryItemProvider(AdapterFactory adapterFactory) {
@@ -52,6 +53,7 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,22 +70,17 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 	/**
 	 * This adds a property descriptor for the Project Name feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addProjectNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ProjectHistory_projectName_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectHistory_projectName_feature", "_UI_ProjectHistory_type"),
-				 ModelPackage.Literals.PROJECT_HISTORY__PROJECT_NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ProjectHistory_projectName_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ProjectHistory_projectName_feature",
+				"_UI_ProjectHistory_type"), ModelPackage.Literals.PROJECT_HISTORY__PROJECT_NAME, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -93,19 +90,13 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 	 * @generated
 	 */
 	protected void addProjectDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ProjectHistory_projectDescription_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectHistory_projectDescription_feature", "_UI_ProjectHistory_type"),
-				 ModelPackage.Literals.PROJECT_HISTORY__PROJECT_DESCRIPTION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ProjectHistory_projectDescription_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ProjectHistory_projectDescription_feature",
+				"_UI_ProjectHistory_type"), ModelPackage.Literals.PROJECT_HISTORY__PROJECT_DESCRIPTION, true, false,
+			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -114,6 +105,7 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -129,6 +121,7 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -142,6 +135,7 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 	/**
 	 * This returns ProjectHistory.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -152,14 +146,14 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ProjectHistory)object).getProjectName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ProjectHistory_type") :
-			getString("_UI_ProjectHistory_type") + " " + label;
+		String label = ((ProjectHistory) object).getProjectName();
+		return label == null || label.length() == 0 ? getString("_UI_ProjectHistory_type")
+			: getString("_UI_ProjectHistory_type") + " " + label;
 	}
 
 	/**
@@ -174,15 +168,15 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ProjectHistory.class)) {
-			case ModelPackage.PROJECT_HISTORY__PROJECT_NAME:
-			case ModelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case ModelPackage.PROJECT_HISTORY__PROJECT_ID:
-			case ModelPackage.PROJECT_HISTORY__VERSIONS:
-			case ModelPackage.PROJECT_HISTORY__SHARED_PROPERTIES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case ModelPackage.PROJECT_HISTORY__PROJECT_NAME:
+		case ModelPackage.PROJECT_HISTORY__PROJECT_DESCRIPTION:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case ModelPackage.PROJECT_HISTORY__PROJECT_ID:
+		case ModelPackage.PROJECT_HISTORY__VERSIONS:
+		case ModelPackage.PROJECT_HISTORY__SHARED_PROPERTIES:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -191,31 +185,28 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT_HISTORY__PROJECT_ID,
-				 ModelFactory.eINSTANCE.createProjectId()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_HISTORY__PROJECT_ID,
+			ModelFactory.eINSTANCE.createProjectId()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT_HISTORY__VERSIONS,
-				 VersioningFactory.eINSTANCE.createVersion()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_HISTORY__VERSIONS,
+			VersioningFactory.eINSTANCE.createVersion()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.PROJECT_HISTORY__SHARED_PROPERTIES,
-				 org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.create(org.eclipse.emf.emfstore.common.model.ModelPackage.Literals.PROPERTY_MAP_ENTRY)));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_HISTORY__SHARED_PROPERTIES,
+			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE
+				.create(org.eclipse.emf.emfstore.common.model.ModelPackage.Literals.PROPERTY_MAP_ENTRY)));
 	}
 
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -27,7 +27,7 @@ import org.eclipse.ui.PlatformUI;
  * 
  * @author helming
  */
-public class MEBoolControl extends AbstractMEControl implements IValidatableControl{
+public class MEBoolControl extends AbstractMEControl implements IValidatableControl {
 
 	private EAttribute attribute;
 
@@ -66,9 +66,9 @@ public class MEBoolControl extends AbstractMEControl implements IValidatableCont
 		}
 		return AbstractMEControl.DO_NOT_RENDER;
 	}
-	
+
 	/**
-	 * {@inheritDoc}}
+	 * {@inheritDoc}
 	 * */
 	public void handleValidation(Diagnostic diagnostic) {
 		if (diagnostic.getSeverity() == Diagnostic.ERROR || diagnostic.getSeverity() == Diagnostic.WARNING) {
@@ -76,11 +76,11 @@ public class MEBoolControl extends AbstractMEControl implements IValidatableCont
 			this.check.setImage(image);
 			this.check.setToolTipText(diagnostic.getMessage());
 		}
-	
-		
+
 	}
+
 	/**
-	 * {@inheritDoc}}
+	 * {@inheritDoc}
 	 * */
 	public void resetValidation() {
 		this.check.setImage(null);

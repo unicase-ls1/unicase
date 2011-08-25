@@ -31,8 +31,10 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.ModelElementG
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.operations.ModelElementGroup} object.
+ * This is the item provider adapter for a
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.ModelElementGroup} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ModelElementGroupItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
@@ -40,6 +42,7 @@ public class ModelElementGroupItemProvider extends ItemProviderAdapter implement
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementGroupItemProvider(AdapterFactory adapterFactory) {
@@ -49,6 +52,7 @@ public class ModelElementGroupItemProvider extends ItemProviderAdapter implement
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,22 +69,17 @@ public class ModelElementGroupItemProvider extends ItemProviderAdapter implement
 	/**
 	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModelElementGroup_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelElementGroup_name_feature", "_UI_ModelElementGroup_type"),
-				 OperationsPackage.Literals.MODEL_ELEMENT_GROUP__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ModelElementGroup_name_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ModelElementGroup_name_feature",
+				"_UI_ModelElementGroup_type"), OperationsPackage.Literals.MODEL_ELEMENT_GROUP__NAME, true, false,
+			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -101,22 +100,17 @@ public class ModelElementGroupItemProvider extends ItemProviderAdapter implement
 	/**
 	 * This adds a property descriptor for the Model Elements feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addModelElementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModelElementGroup_modelElements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelElementGroup_modelElements_feature", "_UI_ModelElementGroup_type"),
-				 OperationsPackage.Literals.MODEL_ELEMENT_GROUP__MODEL_ELEMENTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ModelElementGroup_modelElements_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ModelElementGroup_modelElements_feature",
+				"_UI_ModelElementGroup_type"), OperationsPackage.Literals.MODEL_ELEMENT_GROUP__MODEL_ELEMENTS, true,
+			false, true, null, null, null));
 	}
 
 	/**
@@ -155,9 +149,9 @@ public class ModelElementGroupItemProvider extends ItemProviderAdapter implement
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ModelElementGroup.class)) {
-			case OperationsPackage.MODEL_ELEMENT_GROUP__NAME:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case OperationsPackage.MODEL_ELEMENT_GROUP__NAME:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -166,6 +160,7 @@ public class ModelElementGroupItemProvider extends ItemProviderAdapter implement
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -176,6 +171,7 @@ public class ModelElementGroupItemProvider extends ItemProviderAdapter implement
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -14,7 +14,7 @@ import org.junit.runners.Suite;
  * @author koegel
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { Topology1to1Test.class, TopologyNtoNTest.class, TopologyNto1Test.class, Topology1toNTest.class })
+@Suite.SuiteClasses({ Topology1to1Test.class, TopologyNtoNTest.class, TopologyNto1Test.class, Topology1toNTest.class })
 public class AllTopologyTests {
 
 }

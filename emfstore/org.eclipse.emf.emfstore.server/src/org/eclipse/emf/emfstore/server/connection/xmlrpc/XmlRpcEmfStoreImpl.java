@@ -55,8 +55,8 @@ public class XmlRpcEmfStoreImpl implements EmfStore, AuthenticationControl {
 	/**
 	 * {@inheritDoc}
 	 */
-	public SessionId logIn(String username, String password,
-			ClientVersionInfo clientVersionInfo) throws AccessControlException {
+	public SessionId logIn(String username, String password, ClientVersionInfo clientVersionInfo)
+		throws AccessControlException {
 		return getAccessControl().logIn(username, password, clientVersionInfo);
 	}
 
@@ -70,172 +70,150 @@ public class XmlRpcEmfStoreImpl implements EmfStore, AuthenticationControl {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void addTag(SessionId sessionId, ProjectId projectId,
-			PrimaryVersionSpec versionSpec, TagVersionSpec tag)
-			throws EmfStoreException {
+	public void addTag(SessionId sessionId, ProjectId projectId, PrimaryVersionSpec versionSpec, TagVersionSpec tag)
+		throws EmfStoreException {
 		getEmfStore().addTag(sessionId, projectId, versionSpec, tag);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public ProjectInfo createEmptyProject(SessionId sessionId, String name,
-			String description, LogMessage logMessage) throws EmfStoreException {
-		return getEmfStore().createEmptyProject(sessionId, name, description,
-				logMessage);
+	public ProjectInfo createEmptyProject(SessionId sessionId, String name, String description, LogMessage logMessage)
+		throws EmfStoreException {
+		return getEmfStore().createEmptyProject(sessionId, name, description, logMessage);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public ProjectInfo createProject(SessionId sessionId, String name,
-			String description, LogMessage logMessage, Project project)
-			throws EmfStoreException {
-		return getEmfStore().createProject(sessionId, name, description,
-				logMessage, project);
+	public ProjectInfo createProject(SessionId sessionId, String name, String description, LogMessage logMessage,
+		Project project) throws EmfStoreException {
+		return getEmfStore().createProject(sessionId, name, description, logMessage, project);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public PrimaryVersionSpec createVersion(SessionId sessionId,
-			ProjectId projectId, PrimaryVersionSpec baseVersionSpec,
-			ChangePackage changePackage, LogMessage logMessage)
-			throws EmfStoreException, InvalidVersionSpecException {
-		return getEmfStore().createVersion(sessionId, projectId,
-				baseVersionSpec, changePackage, logMessage);
+	public PrimaryVersionSpec createVersion(SessionId sessionId, ProjectId projectId,
+		PrimaryVersionSpec baseVersionSpec, ChangePackage changePackage, LogMessage logMessage)
+		throws EmfStoreException, InvalidVersionSpecException {
+		return getEmfStore().createVersion(sessionId, projectId, baseVersionSpec, changePackage, logMessage);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void deleteProject(SessionId sessionId, ProjectId projectId,
-			boolean deleteFiles) throws EmfStoreException {
+	public void deleteProject(SessionId sessionId, ProjectId projectId, boolean deleteFiles) throws EmfStoreException {
 		getEmfStore().deleteProject(sessionId, projectId, deleteFiles);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public FileChunk downloadFileChunk(SessionId sessionId,
-			ProjectId projectId, FileTransferInformation fileInformation)
-			throws EmfStoreException {
-		return getEmfStore().downloadFileChunk(sessionId, projectId,
-				fileInformation);
+	public FileChunk downloadFileChunk(SessionId sessionId, ProjectId projectId, FileTransferInformation fileInformation)
+		throws EmfStoreException {
+		return getEmfStore().downloadFileChunk(sessionId, projectId, fileInformation);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public ProjectHistory exportProjectHistoryFromServer(SessionId sessionId,
-			ProjectId projectId) throws EmfStoreException {
-		return getEmfStore().exportProjectHistoryFromServer(sessionId,
-				projectId);
+	public ProjectHistory exportProjectHistoryFromServer(SessionId sessionId, ProjectId projectId)
+		throws EmfStoreException {
+		return getEmfStore().exportProjectHistoryFromServer(sessionId, projectId);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public List<ChangePackage> getChanges(SessionId sessionId,
-			ProjectId projectId, VersionSpec source, VersionSpec target)
-			throws EmfStoreException {
+	public List<ChangePackage> getChanges(SessionId sessionId, ProjectId projectId, VersionSpec source,
+		VersionSpec target) throws EmfStoreException {
 		return getEmfStore().getChanges(sessionId, projectId, source, target);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public List<HistoryInfo> getHistoryInfo(SessionId sessionId,
-			ProjectId projectId, HistoryQuery historyQuery)
-			throws EmfStoreException {
+	public List<HistoryInfo> getHistoryInfo(SessionId sessionId, ProjectId projectId, HistoryQuery historyQuery)
+		throws EmfStoreException {
 		return getEmfStore().getHistoryInfo(sessionId, projectId, historyQuery);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public Project getProject(SessionId sessionId, ProjectId projectId,
-			VersionSpec versionSpec) throws EmfStoreException {
+	public Project getProject(SessionId sessionId, ProjectId projectId, VersionSpec versionSpec)
+		throws EmfStoreException {
 		return getEmfStore().getProject(sessionId, projectId, versionSpec);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public List<ProjectInfo> getProjectList(SessionId sessionId)
-			throws EmfStoreException {
+	public List<ProjectInfo> getProjectList(SessionId sessionId) throws EmfStoreException {
 		return getEmfStore().getProjectList(sessionId);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public ProjectId importProjectHistoryToServer(SessionId sessionId,
-			ProjectHistory projectHistory) throws EmfStoreException {
-		return getEmfStore().importProjectHistoryToServer(sessionId,
-				projectHistory);
+	public ProjectId importProjectHistoryToServer(SessionId sessionId, ProjectHistory projectHistory)
+		throws EmfStoreException {
+		return getEmfStore().importProjectHistoryToServer(sessionId, projectHistory);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void removeTag(SessionId sessionId, ProjectId projectId,
-			PrimaryVersionSpec versionSpec, TagVersionSpec tag)
-			throws EmfStoreException {
+	public void removeTag(SessionId sessionId, ProjectId projectId, PrimaryVersionSpec versionSpec, TagVersionSpec tag)
+		throws EmfStoreException {
 		getEmfStore().removeTag(sessionId, projectId, versionSpec, tag);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public ACUser resolveUser(SessionId sessionId, ACOrgUnitId id)
-			throws EmfStoreException {
+	public ACUser resolveUser(SessionId sessionId, ACOrgUnitId id) throws EmfStoreException {
 		return getEmfStore().resolveUser(sessionId, id);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId,
-			ProjectId projectId, VersionSpec versionSpec)
-			throws EmfStoreException {
-		return getEmfStore().resolveVersionSpec(sessionId, projectId,
-				versionSpec);
+	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId, ProjectId projectId, VersionSpec versionSpec)
+		throws EmfStoreException {
+		return getEmfStore().resolveVersionSpec(sessionId, projectId, versionSpec);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void transmitProperty(SessionId sessionId,
-			OrgUnitProperty changedProperty, ACUser tmpUser, ProjectId projectId)
-			throws EmfStoreException {
-		getEmfStore().transmitProperty(sessionId, changedProperty, tmpUser,
-				projectId);
+	public void transmitProperty(SessionId sessionId, OrgUnitProperty changedProperty, ACUser tmpUser,
+		ProjectId projectId) throws EmfStoreException {
+		getEmfStore().transmitProperty(sessionId, changedProperty, tmpUser, projectId);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public FileTransferInformation uploadFileChunk(SessionId sessionId,
-			ProjectId projectId, FileChunk fileChunk) throws EmfStoreException {
+	public FileTransferInformation uploadFileChunk(SessionId sessionId, ProjectId projectId, FileChunk fileChunk)
+		throws EmfStoreException {
 		return getEmfStore().uploadFileChunk(sessionId, projectId, fileChunk);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void transmitEMFProperties(SessionId sessionId,
-			EMFStoreProperty property, ProjectId projectId)
-			throws EmfStoreException {
-		getEmfStore().transmitEMFProperties(sessionId, property, projectId);
+	public void transmitEMFProperties(SessionId sessionId, List<EMFStoreProperty> properties, ProjectId projectId)
+		throws EmfStoreException {
+		getEmfStore().transmitEMFProperties(sessionId, properties, projectId);
 
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public List<EMFStoreProperty> getEMFProperties(SessionId sessionId,
-			ProjectId projectId) throws EmfStoreException {
+	public List<EMFStoreProperty> getEMFProperties(SessionId sessionId, ProjectId projectId) throws EmfStoreException {
 		return getEmfStore().getEMFProperties(sessionId, projectId);
 	}
 

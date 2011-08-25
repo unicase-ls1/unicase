@@ -7,15 +7,12 @@
 package org.eclipse.emf.emfstore.common.model.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.common.model.EMFStorePropertyType;
 import org.eclipse.emf.emfstore.common.model.ModelPackage;
@@ -27,20 +24,20 @@ import org.eclipse.emf.emfstore.common.model.ModelPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.common.model.impl.EMFStorePropertyImpl#getKey <em>Key</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.common.model.impl.EMFStorePropertyImpl#getValue <em>Value</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.common.model.impl.EMFStorePropertyImpl#getType <em>Type</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.common.model.impl.EMFStorePropertyImpl#getKey <em>Key</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.common.model.impl.EMFStorePropertyImpl#getValue <em>Value</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.common.model.impl.EMFStorePropertyImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class EMFStorePropertyImpl extends EObjectImpl implements
-		EMFStoreProperty {
+public class EMFStorePropertyImpl extends EObjectImpl implements EMFStoreProperty {
 	/**
 	 * The default value of the '{@link #getKey() <em>Key</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getKey()
 	 * @generated
 	 * @ordered
@@ -51,6 +48,7 @@ public class EMFStorePropertyImpl extends EObjectImpl implements
 	 * The cached value of the '{@link #getKey() <em>Key</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getKey()
 	 * @generated
 	 * @ordered
@@ -61,6 +59,7 @@ public class EMFStorePropertyImpl extends EObjectImpl implements
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -71,6 +70,7 @@ public class EMFStorePropertyImpl extends EObjectImpl implements
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -81,6 +81,7 @@ public class EMFStorePropertyImpl extends EObjectImpl implements
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -90,6 +91,7 @@ public class EMFStorePropertyImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected EMFStorePropertyImpl() {
@@ -99,6 +101,7 @@ public class EMFStorePropertyImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -109,6 +112,7 @@ public class EMFStorePropertyImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getKey() {
@@ -118,19 +122,20 @@ public class EMFStorePropertyImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setKey(String newKey) {
 		String oldKey = key;
 		key = newKey;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.EMF_STORE_PROPERTY__KEY, oldKey, key));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.EMF_STORE_PROPERTY__KEY, oldKey, key));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EObject getValue() {
@@ -139,21 +144,17 @@ public class EMFStorePropertyImpl extends EObjectImpl implements
 			value = eResolveProxy(oldValue);
 			if (value != oldValue) {
 				InternalEObject newValue = (InternalEObject) value;
-				NotificationChain msgs = oldValue.eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- ModelPackage.EMF_STORE_PROPERTY__VALUE, null,
-						null);
+				NotificationChain msgs = oldValue.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- ModelPackage.EMF_STORE_PROPERTY__VALUE, null, null);
 				if (newValue.eInternalContainer() == null) {
-					msgs = newValue.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-							- ModelPackage.EMF_STORE_PROPERTY__VALUE, null,
-							msgs);
+					msgs = newValue.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ModelPackage.EMF_STORE_PROPERTY__VALUE,
+						null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ModelPackage.EMF_STORE_PROPERTY__VALUE, oldValue,
-							value));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.EMF_STORE_PROPERTY__VALUE,
+						oldValue, value));
 			}
 		}
 		return value;
@@ -162,6 +163,7 @@ public class EMFStorePropertyImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EObject basicGetValue() {
@@ -171,16 +173,15 @@ public class EMFStorePropertyImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetValue(EObject newValue,
-			NotificationChain msgs) {
+	public NotificationChain basicSetValue(EObject newValue, NotificationChain msgs) {
 		EObject oldValue = value;
 		value = newValue;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, ModelPackage.EMF_STORE_PROPERTY__VALUE,
-					oldValue, newValue);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				ModelPackage.EMF_STORE_PROPERTY__VALUE, oldValue, newValue);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -192,32 +193,30 @@ public class EMFStorePropertyImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setValue(EObject newValue) {
 		if (newValue != value) {
 			NotificationChain msgs = null;
 			if (value != null)
-				msgs = ((InternalEObject) value).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- ModelPackage.EMF_STORE_PROPERTY__VALUE, null,
-						msgs);
+				msgs = ((InternalEObject) value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- ModelPackage.EMF_STORE_PROPERTY__VALUE, null, msgs);
 			if (newValue != null)
-				msgs = ((InternalEObject) newValue).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE
-								- ModelPackage.EMF_STORE_PROPERTY__VALUE, null,
-						msgs);
+				msgs = ((InternalEObject) newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- ModelPackage.EMF_STORE_PROPERTY__VALUE, null, msgs);
 			msgs = basicSetValue(newValue, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.EMF_STORE_PROPERTY__VALUE, newValue, newValue));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.EMF_STORE_PROPERTY__VALUE, newValue,
+				newValue));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EMFStorePropertyType getType() {
@@ -227,24 +226,24 @@ public class EMFStorePropertyImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setType(EMFStorePropertyType newType) {
 		EMFStorePropertyType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					ModelPackage.EMF_STORE_PROPERTY__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.EMF_STORE_PROPERTY__TYPE, oldType, type));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.EMF_STORE_PROPERTY__VALUE:
 			return basicSetValue(null, msgs);
@@ -255,6 +254,7 @@ public class EMFStorePropertyImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -275,6 +275,7 @@ public class EMFStorePropertyImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -296,6 +297,7 @@ public class EMFStorePropertyImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -317,14 +319,14 @@ public class EMFStorePropertyImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ModelPackage.EMF_STORE_PROPERTY__KEY:
-			return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT
-					.equals(key);
+			return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
 		case ModelPackage.EMF_STORE_PROPERTY__VALUE:
 			return value != null;
 		case ModelPackage.EMF_STORE_PROPERTY__TYPE:
@@ -336,6 +338,7 @@ public class EMFStorePropertyImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -352,4 +355,4 @@ public class EMFStorePropertyImpl extends EObjectImpl implements
 		return result.toString();
 	}
 
-} //EMFStorePropertyImpl
+} // EMFStorePropertyImpl

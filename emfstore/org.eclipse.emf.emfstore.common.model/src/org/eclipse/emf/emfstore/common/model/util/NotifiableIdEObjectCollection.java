@@ -11,7 +11,6 @@ import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
  * @author Edgar
  * 
  */
-public interface NotifiableIdEObjectCollection extends IdEObjectCollection,
-		EObjectChangeObserver {
+public interface NotifiableIdEObjectCollection extends IdEObjectCollection, EObjectChangeObserver {
 
 }

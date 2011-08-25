@@ -15,14 +15,15 @@ import org.osgi.framework.Version;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Version Info</b></em>'. <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.VersionInfo#getEmfStoreVersionString <em>Emf Store Version String</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.VersionInfo#getEmfStoreVersionString <em>Emf Store Version String
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getVersionInfo()
  * @model
  * @generated
@@ -36,6 +37,7 @@ public interface VersionInfo extends EObject {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Emf Store Version String</em>' attribute.
 	 * @see #setEmfStoreVersionString(String)
 	 * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getVersionInfo_EmfStoreVersionString()
@@ -45,8 +47,10 @@ public interface VersionInfo extends EObject {
 	String getEmfStoreVersionString();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.VersionInfo#getEmfStoreVersionString <em>Emf Store Version String</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.VersionInfo#getEmfStoreVersionString
+	 * <em>Emf Store Version String</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Emf Store Version String</em>' attribute.
 	 * @see #getEmfStoreVersionString()
 	 * @generated

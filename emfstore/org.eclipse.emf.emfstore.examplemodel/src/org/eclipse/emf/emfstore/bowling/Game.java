@@ -7,23 +7,22 @@
 package org.eclipse.emf.emfstore.bowling;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Game</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.bowling.Game#getMatchup <em>Matchup</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.bowling.Game#getPlayer <em>Player</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.bowling.Game#getFrames <em>Frames</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.bowling.Game#getMatchup <em>Matchup</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.bowling.Game#getPlayer <em>Player</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.bowling.Game#getFrames <em>Frames</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.emf.emfstore.bowling.BowlingPackage#getGame()
  * @model
  * @generated
@@ -31,13 +30,15 @@ import org.eclipse.emf.ecore.EObject;
 public interface Game extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Matchup</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.emf.emfstore.bowling.Matchup#getGames <em>Games</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.emf.emfstore.bowling.Matchup#getGames <em>Games</em>}
+	 * '.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Matchup</em>' container reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Matchup</em>' container reference.
 	 * @see #setMatchup(Matchup)
 	 * @see org.eclipse.emf.emfstore.bowling.BowlingPackage#getGame_Matchup()
@@ -48,9 +49,11 @@ public interface Game extends EObject {
 	Matchup getMatchup();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.bowling.Game#getMatchup <em>Matchup</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.bowling.Game#getMatchup <em>Matchup</em>}' container
+	 * reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Matchup</em>' container reference.
 	 * @see #getMatchup()
 	 * @generated
@@ -59,13 +62,15 @@ public interface Game extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Player</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.emf.emfstore.bowling.Player#getGames <em>Games</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.emf.emfstore.bowling.Player#getGames <em>Games</em>}
+	 * '.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Player</em>' reference isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Player</em>' reference.
 	 * @see #setPlayer(Player)
 	 * @see org.eclipse.emf.emfstore.bowling.BowlingPackage#getGame_Player()
@@ -79,6 +84,7 @@ public interface Game extends EObject {
 	 * Sets the value of the '{@link org.eclipse.emf.emfstore.bowling.Game#getPlayer <em>Player</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Player</em>' reference.
 	 * @see #getPlayer()
 	 * @generated
@@ -94,6 +100,7 @@ public interface Game extends EObject {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Frames</em>' attribute list.
 	 * @see org.eclipse.emf.emfstore.bowling.BowlingPackage#getGame_Frames()
 	 * @model upper="10"

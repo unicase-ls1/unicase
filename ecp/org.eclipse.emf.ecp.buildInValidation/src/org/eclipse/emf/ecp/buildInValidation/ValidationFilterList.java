@@ -24,9 +24,8 @@ public class ValidationFilterList extends ListSelectionDialog {
 	 * @param message
 	 *            the
 	 */
-	public ValidationFilterList(Shell parentShell, Object input,
-			IStructuredContentProvider contentProvider,
-			ILabelProvider labelProvider, String message) {
+	public ValidationFilterList(Shell parentShell, Object input, IStructuredContentProvider contentProvider,
+		ILabelProvider labelProvider, String message) {
 		super(parentShell, input, contentProvider, labelProvider, message);
 	}
 

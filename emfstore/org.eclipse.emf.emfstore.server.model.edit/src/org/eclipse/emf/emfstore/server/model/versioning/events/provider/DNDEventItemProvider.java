@@ -40,6 +40,7 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DNDEventItemProvider(AdapterFactory adapterFactory) {
@@ -49,6 +50,7 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,43 +69,31 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 	/**
 	 * This adds a property descriptor for the Source View feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addSourceViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DNDEvent_sourceView_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DNDEvent_sourceView_feature", "_UI_DNDEvent_type"),
-				 EventsPackage.Literals.DND_EVENT__SOURCE_VIEW,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_DNDEvent_sourceView_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_DNDEvent_sourceView_feature", "_UI_DNDEvent_type"),
+			EventsPackage.Literals.DND_EVENT__SOURCE_VIEW, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Target View feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addTargetViewPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DNDEvent_targetView_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DNDEvent_targetView_feature", "_UI_DNDEvent_type"),
-				 EventsPackage.Literals.DND_EVENT__TARGET_VIEW,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_DNDEvent_targetView_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_DNDEvent_targetView_feature", "_UI_DNDEvent_type"),
+			EventsPackage.Literals.DND_EVENT__TARGET_VIEW, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -113,19 +103,13 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 	 * @generated
 	 */
 	protected void addDragSourceElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DNDEvent_dragSourceElement_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DNDEvent_dragSourceElement_feature", "_UI_DNDEvent_type"),
-				 EventsPackage.Literals.DND_EVENT__DRAG_SOURCE_ELEMENT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_DNDEvent_dragSourceElement_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_DNDEvent_dragSourceElement_feature",
+				"_UI_DNDEvent_type"), EventsPackage.Literals.DND_EVENT__DRAG_SOURCE_ELEMENT, true, false, true, null,
+			null, null));
 	}
 
 	/**
@@ -135,24 +119,19 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 	 * @generated
 	 */
 	protected void addDropTargetElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DNDEvent_dropTargetElement_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DNDEvent_dropTargetElement_feature", "_UI_DNDEvent_type"),
-				 EventsPackage.Literals.DND_EVENT__DROP_TARGET_ELEMENT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_DNDEvent_dropTargetElement_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_DNDEvent_dropTargetElement_feature",
+				"_UI_DNDEvent_type"), EventsPackage.Literals.DND_EVENT__DROP_TARGET_ELEMENT, true, false, true, null,
+			null, null));
 	}
 
 	/**
 	 * This returns DNDEvent.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -163,15 +142,15 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((DNDEvent)object).getTimestamp();
+		Date labelValue = ((DNDEvent) object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_DNDEvent_type") :
-			getString("_UI_DNDEvent_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_DNDEvent_type") : getString("_UI_DNDEvent_type")
+			+ " " + label;
 	}
 
 	/**
@@ -186,10 +165,10 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(DNDEvent.class)) {
-			case EventsPackage.DND_EVENT__SOURCE_VIEW:
-			case EventsPackage.DND_EVENT__TARGET_VIEW:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case EventsPackage.DND_EVENT__SOURCE_VIEW:
+		case EventsPackage.DND_EVENT__TARGET_VIEW:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -198,6 +177,7 @@ public class DNDEventItemProvider extends EventItemProvider implements IEditingD
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

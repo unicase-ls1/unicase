@@ -25,8 +25,10 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.emfstore.server.model.versioning.events.PerspectiveEvent;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.PerspectiveEvent} object.
+ * This is the item provider adapter for a
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.events.PerspectiveEvent} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class PerspectiveEventItemProvider extends EventItemProvider implements IEditingDomainItemProvider,
@@ -34,6 +36,7 @@ public class PerspectiveEventItemProvider extends EventItemProvider implements I
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PerspectiveEventItemProvider(AdapterFactory adapterFactory) {
@@ -43,6 +46,7 @@ public class PerspectiveEventItemProvider extends EventItemProvider implements I
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -57,6 +61,7 @@ public class PerspectiveEventItemProvider extends EventItemProvider implements I
 	/**
 	 * This returns PerspectiveEvent.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,15 +72,15 @@ public class PerspectiveEventItemProvider extends EventItemProvider implements I
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((PerspectiveEvent)object).getTimestamp();
+		Date labelValue = ((PerspectiveEvent) object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_PerspectiveEvent_type") :
-			getString("_UI_PerspectiveEvent_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_PerspectiveEvent_type")
+			: getString("_UI_PerspectiveEvent_type") + " " + label;
 	}
 
 	/**
@@ -95,6 +100,7 @@ public class PerspectiveEventItemProvider extends EventItemProvider implements I
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

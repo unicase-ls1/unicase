@@ -37,9 +37,8 @@ import org.eclipse.emf.emfstore.server.model.ModelFactory;
  * 
  * @generated
  */
-public class ServerInfoItemProvider extends ItemProviderAdapter implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class ServerInfoItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -74,54 +73,48 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements
 	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ServerInfo_name_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ServerInfo_name_feature", "_UI_ServerInfo_type"),
-				ModelPackage.Literals.SERVER_INFO__NAME, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ServerInfo_name_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_name_feature", "_UI_ServerInfo_type"),
+			ModelPackage.Literals.SERVER_INFO__NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+			null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Url feature.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addUrlPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ServerInfo_url_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ServerInfo_url_feature", "_UI_ServerInfo_type"),
-				ModelPackage.Literals.SERVER_INFO__URL, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ServerInfo_url_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_url_feature", "_UI_ServerInfo_type"),
+			ModelPackage.Literals.SERVER_INFO__URL, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+			null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Port feature.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addPortPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ServerInfo_port_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ServerInfo_port_feature", "_UI_ServerInfo_type"),
-				ModelPackage.Literals.SERVER_INFO__PORT, true, false, false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ServerInfo_port_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_port_feature", "_UI_ServerInfo_type"),
+			ModelPackage.Literals.SERVER_INFO__PORT, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+			null, null));
 	}
 
 	/**
@@ -132,15 +125,12 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements
 	 */
 	protected void addLastUsersessionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ServerInfo_lastUsersession_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ServerInfo_lastUsersession_feature",
-						"_UI_ServerInfo_type"),
-				ModelPackage.Literals.SERVER_INFO__LAST_USERSESSION, true,
-				false, true, null, null, null));
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ServerInfo_lastUsersession_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_lastUsersession_feature",
+				"_UI_ServerInfo_type"), ModelPackage.Literals.SERVER_INFO__LAST_USERSESSION, true, false, true, null,
+			null, null));
 	}
 
 	/**
@@ -151,16 +141,12 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements
 	 */
 	protected void addCertificateAliasPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ServerInfo_certificateAlias_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ServerInfo_certificateAlias_feature",
-						"_UI_ServerInfo_type"),
-				ModelPackage.Literals.SERVER_INFO__CERTIFICATE_ALIAS, true,
-				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_ServerInfo_certificateAlias_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ServerInfo_certificateAlias_feature",
+				"_UI_ServerInfo_type"), ModelPackage.Literals.SERVER_INFO__CERTIFICATE_ALIAS, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -168,21 +154,21 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(ModelPackage.Literals.SERVER_INFO__PROJECT_INFOS);
+			childrenFeatures.add(ModelPackage.Literals.SERVER_INFO__PROJECT_INFOS);
 		}
 		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -201,21 +187,21 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/ServerInfo"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ServerInfo"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((ServerInfo) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_ServerInfo_type")
-				: getString("_UI_ServerInfo_type") + " " + label;
+			: getString("_UI_ServerInfo_type") + " " + label;
 	}
 
 	/**
@@ -223,6 +209,7 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -234,12 +221,10 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements
 		case ModelPackage.SERVER_INFO__URL:
 		case ModelPackage.SERVER_INFO__PORT:
 		case ModelPackage.SERVER_INFO__CERTIFICATE_ALIAS:
-			fireNotifyChanged(new ViewerNotification(notification,
-					notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case ModelPackage.SERVER_INFO__PROJECT_INFOS:
-			fireNotifyChanged(new ViewerNotification(notification,
-					notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -253,13 +238,11 @@ public class ServerInfoItemProvider extends ItemProviderAdapter implements
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.SERVER_INFO__PROJECT_INFOS,
-				ModelFactory.eINSTANCE.createProjectInfo()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.SERVER_INFO__PROJECT_INFOS,
+			ModelFactory.eINSTANCE.createProjectInfo()));
 	}
 
 	/**

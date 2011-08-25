@@ -23,6 +23,15 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecp.buildInValidation.filter.FilterTableViewer;
+import org.eclipse.emf.ecp.buildInValidation.filter.ValidationFilter;
+import org.eclipse.emf.ecp.buildInValidation.providers.ConstraintLabelProvider;
+import org.eclipse.emf.ecp.buildInValidation.providers.SeverityLabelProvider;
+import org.eclipse.emf.ecp.buildInValidation.providers.ValidationContentProvider;
+import org.eclipse.emf.ecp.buildInValidation.providers.ValidationFilterLabelProvider;
+import org.eclipse.emf.ecp.buildInValidation.providers.ValidationLabelProvider;
+import org.eclipse.emf.ecp.buildInValidation.refactoring.strategy.RefactoringResult;
+import org.eclipse.emf.ecp.buildInValidation.refactoring.strategy.RefactoringStrategy;
 import org.eclipse.emf.ecp.common.TableViewerColumnSorter;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
@@ -32,16 +41,6 @@ import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage;
 import org.eclipse.emf.ecp.common.observer.FocusEventObserver;
 import org.eclipse.emf.ecp.common.utilities.ActionHelper;
-import org.eclipse.emf.ecp.buildInValidation.filter.FilterTableViewer;
-import org.eclipse.emf.ecp.buildInValidation.filter.ValidationFilter;
-import org.eclipse.emf.ecp.buildInValidation.providers.SeverityLabelProvider;
-import org.eclipse.emf.ecp.buildInValidation.providers.ConstraintLabelProvider;
-import org.eclipse.emf.ecp.buildInValidation.providers.ValidationContentProvider;
-import org.eclipse.emf.ecp.buildInValidation.providers.ValidationFilterLabelProvider;
-import org.eclipse.emf.ecp.buildInValidation.providers.ValidationLabelProvider;
-import org.eclipse.emf.ecp.buildInValidation.refactoring.strategy.RefactoringResult;
-import org.eclipse.emf.ecp.buildInValidation.refactoring.strategy.RefactoringStrategy;
-
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.DialogSettings;
@@ -76,7 +75,6 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.dialogs.ListDialog;
 import org.eclipse.ui.part.ViewPart;
 
-
 /**
  * The Validation View.
  * 
@@ -109,8 +107,7 @@ public class ValidationView extends ViewPart {
 	 * Default constructor.
 	 */
 	public ValidationView() {
-		IPath path = org.eclipse.emf.ecp.common.Activator.getDefault()
-				.getStateLocation();
+		IPath path = org.eclipse.emf.ecp.common.Activator.getDefault().getStateLocation();
 		filename = path.append("settings.txt").toOSString();
 		settings = new DialogSettings("Top");
 		try {
@@ -131,8 +128,7 @@ public class ValidationView extends ViewPart {
 			public void notifyChanged(Notification msg) {
 				if ((msg.getFeatureID(ECPWorkspace.class)) == WorkSpaceModelPackage.ECP_WORKSPACE__PROJECTS) {
 					if (msg.getOldValue() != null
-							&& (msg.getOldValue() instanceof List<?> || msg
-									.getOldValue() instanceof ECPProject)) {
+						&& (msg.getOldValue() instanceof List<?> || msg.getOldValue() instanceof ECPProject)) {
 						tableViewer.setInput(new ArrayList<IStatus>());
 					}
 
@@ -148,21 +144,18 @@ public class ValidationView extends ViewPart {
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
-		tableViewer = new FilterTableViewer(parent, SWT.SINGLE | SWT.BORDER
-				| SWT.V_SCROLL | SWT.H_SCROLL | SWT.FULL_SELECTION);
+		tableViewer = new FilterTableViewer(parent, SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL
+			| SWT.FULL_SELECTION);
 		createTable();
 		this.shell = parent.getShell();
 		IActionBars bars = getViewSite().getActionBars();
 		IToolBarManager menuManager = bars.getToolBarManager();
 		OpenFilterDialogAction openFilterDialogAction = new OpenFilterDialogAction();
-		openFilterDialogAction.setImageDescriptor(Activator
-				.getImageDescriptor("icons/openfilterlist.png"));
-		openFilterDialogAction
-				.setToolTipText("Add one or more filters to be applied to the validation view.");
+		openFilterDialogAction.setImageDescriptor(Activator.getImageDescriptor("icons/openfilterlist.png"));
+		openFilterDialogAction.setToolTipText("Add one or more filters to be applied to the validation view.");
 		menuManager.add(openFilterDialogAction);
 		hookDoubleClickAction();
-		tableViewer.getTable().addMenuDetectListener(
-				new MenuDetectListenerImplementation());
+		tableViewer.getTable().addMenuDetectListener(new MenuDetectListenerImplementation());
 	}
 
 	/**
@@ -221,13 +214,9 @@ public class ValidationView extends ViewPart {
 	 * @param column
 	 * @param labelProvider
 	 */
-	private void setLabelProviderAndComparator(TableViewerColumn column,
-			ColumnLabelProvider labelProvider) {
+	private void setLabelProviderAndComparator(TableViewerColumn column, ColumnLabelProvider labelProvider) {
 		column.setLabelProvider(labelProvider);
-		column.getViewer()
-				.setComparator(
-						new TableViewerColumnSorter(tableViewer, column,
-								labelProvider));
+		column.getViewer().setComparator(new TableViewerColumnSorter(tableViewer, column, labelProvider));
 	}
 
 	/**
@@ -237,21 +226,16 @@ public class ValidationView extends ViewPart {
 		tableViewer.addDoubleClickListener(new IDoubleClickListener() {
 
 			public void doubleClick(DoubleClickEvent event) {
-				IStructuredSelection selection = (IStructuredSelection) event
-						.getSelection();
-				IStatus constraintStatus = (IStatus) selection
-						.getFirstElement();
-				BasicDiagnostic inputElement = (BasicDiagnostic) BasicDiagnostic
-						.toDiagnostic(constraintStatus);
+				IStructuredSelection selection = (IStructuredSelection) event.getSelection();
+				IStatus constraintStatus = (IStatus) selection.getFirstElement();
+				BasicDiagnostic inputElement = (BasicDiagnostic) BasicDiagnostic.toDiagnostic(constraintStatus);
 				EObject me = (EObject) inputElement.getData().get(0);
-				Iterator<Diagnostic> iterator = inputElement.getChildren()
-						.iterator();
+				Iterator<Diagnostic> iterator = inputElement.getChildren().iterator();
 				if (me instanceof EObject) {
 					EStructuralFeature errorLocation = null;
 					errorLocation = getErrorLocation(iterator, errorLocation);
 					if (errorLocation != null) {
-						ActionHelper.openModelElement(me, errorLocation,
-								viewId, workspace.getProject(me));
+						ActionHelper.openModelElement(me, errorLocation, viewId, workspace.getProject(me));
 					} else {
 						ActionHelper.openModelElement(me, viewId);
 					}
@@ -267,30 +251,22 @@ public class ValidationView extends ViewPart {
 	 * @param status
 	 * @return
 	 */
-	private ArrayList<RefactoringStrategy> getRefactoringStrategiesFromExtensionPoint(
-			IStatus status) {
+	private ArrayList<RefactoringStrategy> getRefactoringStrategiesFromExtensionPoint(IStatus status) {
 		ArrayList<RefactoringStrategy> refactoringStrategies = new ArrayList<RefactoringStrategy>();
-		IConfigurationElement[] config = Platform
-				.getExtensionRegistry()
-				.getConfigurationElementsFor(
-						"org.eclipse.emf.ecp.bulidInValidation.refactoring.strategies");
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.eclipse.emf.ecp.bulidInValidation.refactoring.strategies");
 		for (IConfigurationElement element : config) {
 			try {
-				if (element.getAttribute("applicableFor").equals(
-						status.getCode())) {
-					final Object object = element
-							.createExecutableExtension("strategy");
+				if (element.getAttribute("applicableFor").equals(status.getCode())) {
+					final Object object = element.createExecutableExtension("strategy");
 					RefactoringStrategy strategy = (RefactoringStrategy) object;
 					strategy.setConstraintStatus(status);
 					refactoringStrategies.add(strategy);
 				}
 			} catch (CoreException e) {
 				// TODO: ChainSaw logging done
-				Activator
-						.getDefault()
-						.logWarning(
-								"Exception loading refactoring strategies from the extension point",
-								e);
+				Activator.getDefault().logWarning("Exception loading refactoring strategies from the extension point",
+					e);
 			}
 
 		}
@@ -304,8 +280,7 @@ public class ValidationView extends ViewPart {
 	 * @param errorLocation
 	 * @return
 	 */
-	private EStructuralFeature getErrorLocation(Iterator<Diagnostic> iterator,
-			EStructuralFeature errorLocation) {
+	private EStructuralFeature getErrorLocation(Iterator<Diagnostic> iterator, EStructuralFeature errorLocation) {
 		while (iterator.hasNext()) {
 			Diagnostic nextDiagnostic = iterator.next();
 			EObject next = (EObject) nextDiagnostic.getData().get(0);
@@ -322,8 +297,7 @@ public class ValidationView extends ViewPart {
 	 */
 	@Override
 	public void setFocus() {
-		ECPWorkspaceManager.getObserverBus().notify(FocusEventObserver.class)
-				.onFocusEvent(viewId);
+		ECPWorkspaceManager.getObserverBus().notify(FocusEventObserver.class).onFocusEvent(viewId);
 	}
 
 	/**
@@ -348,9 +322,8 @@ public class ValidationView extends ViewPart {
 	private ArrayList<ValidationFilter> getFiltersFromExtensionPoint() {
 		if (validationFilters == null) {
 			validationFilters = new ArrayList<ValidationFilter>();
-			IConfigurationElement[] config = Platform.getExtensionRegistry()
-					.getConfigurationElementsFor(
-							"org.eclipse.emf.ecp.buildInValidation.filters");
+			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+				"org.eclipse.emf.ecp.buildInValidation.filters");
 			for (IConfigurationElement element : config) {
 				try {
 					Object object = element.createExecutableExtension("filter");
@@ -388,8 +361,7 @@ public class ValidationView extends ViewPart {
 		}
 		RefactoringResult refactoringResult = RefactoringResult.ABORT;
 		if (abstractRefactoringStrategies.size() == 1) {
-			RefactoringStrategy refactoringStrategy = (RefactoringStrategy) abstractRefactoringStrategies
-					.get(0);
+			RefactoringStrategy refactoringStrategy = (RefactoringStrategy) abstractRefactoringStrategies.get(0);
 			refactoringStrategy.setShell(shell);
 			refactoringResult = refactoringStrategy.startRefactoring();
 		} else {
@@ -408,7 +380,7 @@ public class ValidationView extends ViewPart {
 			}
 		}
 		if (refactoringResult == RefactoringResult.NO_VIOLATION
-				|| refactoringResult == RefactoringResult.SUCCESS_CREATE) {
+			|| refactoringResult == RefactoringResult.SUCCESS_CREATE) {
 			tableItem.dispose();
 		}
 	}
@@ -419,13 +391,11 @@ public class ValidationView extends ViewPart {
 	 * @param status
 	 */
 	private void removeAllTableItemsForEObject(final IStatus status) {
-		BasicDiagnostic inputElement1 = (BasicDiagnostic) BasicDiagnostic
-				.toDiagnostic(status);
+		BasicDiagnostic inputElement1 = (BasicDiagnostic) BasicDiagnostic.toDiagnostic(status);
 		EObject deletee = (EObject) inputElement1.getData().get(0);
 		for (TableItem tableItem : tableViewer.getTable().getItems()) {
 			IStatus constraintStatus = (IStatus) tableItem.getData();
-			BasicDiagnostic inputElement2 = (BasicDiagnostic) BasicDiagnostic
-					.toDiagnostic(constraintStatus);
+			BasicDiagnostic inputElement2 = (BasicDiagnostic) BasicDiagnostic.toDiagnostic(constraintStatus);
 			EObject modelElement = (EObject) inputElement2.getData().get(0);
 			if (deletee == modelElement) {
 				tableItem.dispose();
@@ -433,14 +403,12 @@ public class ValidationView extends ViewPart {
 		}
 	}
 
-	private final class MenuDetectListenerImplementation implements
-			MenuDetectListener {
+	private final class MenuDetectListenerImplementation implements MenuDetectListener {
 
 		public void menuDetected(MenuDetectEvent e) {
 			// get the table
 			Table table = (Table) e.getSource();
-			if (table.getSelection() == null
-					|| table.getSelection().length == 0) {
+			if (table.getSelection() == null || table.getSelection().length == 0) {
 				return;
 			}
 			// get the first table item that was selected (no multiple select)
@@ -452,47 +420,39 @@ public class ValidationView extends ViewPart {
 			// add refactoring menu item if refactoring strategies are available
 			List<RefactoringStrategy> refactoringStrategies = getRefactoringStrategiesFromExtensionPoint(status);
 			if (refactoringStrategies.size() != 0) {
-				final MenuItem refactorMenuItem = new MenuItem(leftClickMenu,
-						SWT.NONE);
+				final MenuItem refactorMenuItem = new MenuItem(leftClickMenu, SWT.NONE);
 				// add the menu item
 				refactorMenuItem.setData(tableItem);
 				refactorMenuItem.setText("Perform refactoring");
-				refactorMenuItem.setImage(Activator.getImageDescriptor(
-						"icons/bell.png").createImage());
+				refactorMenuItem.setImage(Activator.getImageDescriptor("icons/bell.png").createImage());
 				// refactorMenuItem.setData(data)
-				refactorMenuItem
-						.addSelectionListener(new RefactoringSelectionListener());
+				refactorMenuItem.addSelectionListener(new RefactoringSelectionListener());
 			}
-//			// ignore constraint menu item
-//			MenuItem ignoreMenuItem = new MenuItem(leftClickMenu, SWT.NONE);
-//			ignoreMenuItem.setData(refactoringStrategies);
-//			ignoreMenuItem.setText("Ignore violation");
-//			ignoreMenuItem.setImage(Activator.getImageDescriptor(
-//					"icons/bell_delete.png").createImage());
+			// // ignore constraint menu item
+			// MenuItem ignoreMenuItem = new MenuItem(leftClickMenu, SWT.NONE);
+			// ignoreMenuItem.setData(refactoringStrategies);
+			// ignoreMenuItem.setText("Ignore violation");
+			// ignoreMenuItem.setImage(Activator.getImageDescriptor(
+			// "icons/bell_delete.png").createImage());
 			// delete model element menu item
 			MenuItem deleteMenuItem = new MenuItem(leftClickMenu, SWT.NONE);
 			deleteMenuItem.setData(refactoringStrategies);
 			deleteMenuItem.setText("Delete underlying element");
-			deleteMenuItem.setImage(Activator.getImageDescriptor(
-					"icons/delete.png").createImage());
+			deleteMenuItem.setImage(Activator.getImageDescriptor("icons/delete.png").createImage());
 			deleteMenuItem.addSelectionListener(new SelectionAdapter() {
 
 				@Override
 				public void widgetSelected(SelectionEvent e) {
-					BasicDiagnostic inputElement = (BasicDiagnostic) BasicDiagnostic
-							.toDiagnostic(status);
+					BasicDiagnostic inputElement = (BasicDiagnostic) BasicDiagnostic.toDiagnostic(status);
 					EObject target = (EObject) inputElement.getData().get(0);
-					if (MessageDialog.openQuestion(shell, "Confirm deletion",
-							"Do you really wish to delete "
-									+ target.getClass().getSimpleName() + "?")) {
+					if (MessageDialog.openQuestion(shell, "Confirm deletion", "Do you really wish to delete "
+						+ target.getClass().getSimpleName() + "?")) {
 						new ECPCommand(target) {
 
 							@Override
 							protected void doRun() {
-								BasicDiagnostic inputElement = (BasicDiagnostic) BasicDiagnostic
-										.toDiagnostic(status);
-								EObject target = (EObject) inputElement
-										.getData().get(0);
+								BasicDiagnostic inputElement = (BasicDiagnostic) BasicDiagnostic.toDiagnostic(status);
+								EObject target = (EObject) inputElement.getData().get(0);
 								EcoreUtil.delete(target);
 							}
 						}.run(false);
@@ -504,8 +464,7 @@ public class ValidationView extends ViewPart {
 			leftClickMenu.setVisible(true);
 		}
 
-		private final class RefactoringSelectionListener implements
-				SelectionListener {
+		private final class RefactoringSelectionListener implements SelectionListener {
 			public void widgetSelected(SelectionEvent e) {
 				// only show selection dialog if there is more than one
 				// refactoring
@@ -526,10 +485,8 @@ public class ValidationView extends ViewPart {
 
 		@Override
 		public void run() {
-			ValidationFilterList validationFilterList = new ValidationFilterList(
-					shell, getFiltersFromExtensionPoint(),
-					new SimpleContentProvider(),
-					new ValidationFilterLabelProvider(), "Test");
+			ValidationFilterList validationFilterList = new ValidationFilterList(shell, getFiltersFromExtensionPoint(),
+				new SimpleContentProvider(), new ValidationFilterLabelProvider(), "Test");
 			validationFilterList.setTitle("Choose one or more filters");
 			validationFilterList.setInitialSelections(tableViewer.getFilters());
 			validationFilterList.open();
@@ -562,13 +519,11 @@ public class ValidationView extends ViewPart {
 
 		@Override
 		public String getText(Object element) {
-			return ((RefactoringStrategy) ((Object[]) element)[0])
-					.getDescription();
+			return ((RefactoringStrategy) ((Object[]) element)[0]).getDescription();
 		}
 	}
 
-	private final class SimpleContentProvider implements
-			IStructuredContentProvider {
+	private final class SimpleContentProvider implements IStructuredContentProvider {
 
 		public Object[] getElements(Object inputElement) {
 			List<?> list = (List<?>) inputElement;

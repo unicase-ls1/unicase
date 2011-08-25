@@ -29,14 +29,13 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOpera
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.OperationCompositeImpl#getOperations <em>Operations</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.model.impl.OperationCompositeImpl#getOperations <em>Operations</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class OperationCompositeImpl extends EObjectImpl implements
-		OperationComposite {
+public class OperationCompositeImpl extends EObjectImpl implements OperationComposite {
 	/**
 	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -49,6 +48,7 @@ public class OperationCompositeImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected OperationCompositeImpl() {
@@ -57,6 +57,7 @@ public class OperationCompositeImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,34 +67,34 @@ public class OperationCompositeImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<AbstractOperation> getOperations() {
 		if (operations == null) {
-			operations = new EObjectContainmentEList.Resolving<AbstractOperation>(
-					AbstractOperation.class, this,
-					ModelPackage.OPERATION_COMPOSITE__OPERATIONS);
+			operations = new EObjectContainmentEList.Resolving<AbstractOperation>(AbstractOperation.class, this,
+				ModelPackage.OPERATION_COMPOSITE__OPERATIONS);
 		}
 		return operations;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.OPERATION_COMPOSITE__OPERATIONS:
-			return ((InternalEList<?>) getOperations()).basicRemove(otherEnd,
-					msgs);
+			return ((InternalEList<?>) getOperations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -107,6 +108,7 @@ public class OperationCompositeImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -115,8 +117,7 @@ public class OperationCompositeImpl extends EObjectImpl implements
 		switch (featureID) {
 		case ModelPackage.OPERATION_COMPOSITE__OPERATIONS:
 			getOperations().clear();
-			getOperations().addAll(
-					(Collection<? extends AbstractOperation>) newValue);
+			getOperations().addAll((Collection<? extends AbstractOperation>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -124,6 +125,7 @@ public class OperationCompositeImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -138,6 +140,7 @@ public class OperationCompositeImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

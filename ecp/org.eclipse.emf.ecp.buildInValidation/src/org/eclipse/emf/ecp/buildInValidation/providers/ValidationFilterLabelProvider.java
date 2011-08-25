@@ -5,7 +5,6 @@ import org.eclipse.emf.ecp.buildInValidation.filter.ValidationFilter;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 
-
 /**
  * The label provider for the validation filter.
  * 
@@ -28,8 +27,7 @@ public class ValidationFilterLabelProvider extends LabelProvider {
 				return image;
 			}
 		}
-		return Activator.getImageDescriptor("icons/defaultfiltericon.png")
-				.createImage();
+		return Activator.getImageDescriptor("icons/defaultfiltericon.png").createImage();
 	}
 
 	/**

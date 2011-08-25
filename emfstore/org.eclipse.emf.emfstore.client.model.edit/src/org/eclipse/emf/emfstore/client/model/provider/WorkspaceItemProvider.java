@@ -36,12 +36,12 @@ import org.eclipse.emf.emfstore.client.model.Workspace;
  * 
  * @generated
  */
-public class WorkspaceItemProvider extends ItemProviderAdapter implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class WorkspaceItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkspaceItemProvider(AdapterFactory adapterFactory) {
@@ -51,6 +51,7 @@ public class WorkspaceItemProvider extends ItemProviderAdapter implements
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -71,15 +72,12 @@ public class WorkspaceItemProvider extends ItemProviderAdapter implements
 	 */
 	protected void addActiveProjectSpacePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Workspace_activeProjectSpace_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Workspace_activeProjectSpace_feature",
-						"_UI_Workspace_type"),
-				ModelPackage.Literals.WORKSPACE__ACTIVE_PROJECT_SPACE, true,
-				false, true, null, null, null));
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Workspace_activeProjectSpace_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Workspace_activeProjectSpace_feature",
+				"_UI_Workspace_type"), ModelPackage.Literals.WORKSPACE__ACTIVE_PROJECT_SPACE, true, false, true, null,
+			null, null));
 	}
 
 	/**
@@ -88,15 +86,14 @@ public class WorkspaceItemProvider extends ItemProviderAdapter implements
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(ModelPackage.Literals.WORKSPACE__PROJECT_SPACES);
+			childrenFeatures.add(ModelPackage.Literals.WORKSPACE__PROJECT_SPACES);
 			childrenFeatures.add(ModelPackage.Literals.WORKSPACE__SERVER_INFOS);
 			childrenFeatures.add(ModelPackage.Literals.WORKSPACE__USERSESSIONS);
 		}
@@ -105,6 +102,7 @@ public class WorkspaceItemProvider extends ItemProviderAdapter implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -118,17 +116,18 @@ public class WorkspaceItemProvider extends ItemProviderAdapter implements
 	/**
 	 * This returns Workspace.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/Workspace"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Workspace"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -151,8 +150,7 @@ public class WorkspaceItemProvider extends ItemProviderAdapter implements
 		case ModelPackage.WORKSPACE__PROJECT_SPACES:
 		case ModelPackage.WORKSPACE__SERVER_INFOS:
 		case ModelPackage.WORKSPACE__USERSESSIONS:
-			fireNotifyChanged(new ViewerNotification(notification,
-					notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -162,29 +160,27 @@ public class WorkspaceItemProvider extends ItemProviderAdapter implements
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.WORKSPACE__PROJECT_SPACES,
-				ModelFactory.eINSTANCE.createProjectSpace()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.WORKSPACE__PROJECT_SPACES,
+			ModelFactory.eINSTANCE.createProjectSpace()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.WORKSPACE__SERVER_INFOS,
-				ModelFactory.eINSTANCE.createServerInfo()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.WORKSPACE__SERVER_INFOS,
+			ModelFactory.eINSTANCE.createServerInfo()));
 
-		newChildDescriptors.add(createChildParameter(
-				ModelPackage.Literals.WORKSPACE__USERSESSIONS,
-				ModelFactory.eINSTANCE.createUsersession()));
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.WORKSPACE__USERSESSIONS,
+			ModelFactory.eINSTANCE.createUsersession()));
 	}
 
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

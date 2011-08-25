@@ -14,16 +14,17 @@ import org.eclipse.emf.emfstore.common.model.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>URL Event</b></em>'. <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent#getSourceModelElement <em>Source Model Element</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent#getSourceView <em>Source View</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent#getSourceURL <em>Source URL</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent#getSourceModelElement <em>Source Model
+ * Element</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent#getSourceView <em>Source View</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent#getSourceURL <em>Source URL</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getURLEvent()
  * @model
  * @generated
@@ -37,6 +38,7 @@ public interface URLEvent extends Event {
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Source Model Element</em>' containment reference.
 	 * @see #setSourceModelElement(ModelElementId)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getURLEvent_SourceModelElement()
@@ -46,8 +48,11 @@ public interface URLEvent extends Event {
 	ModelElementId getSourceModelElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent#getSourceModelElement <em>Source Model Element</em>}' containment reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent#getSourceModelElement
+	 * <em>Source Model Element</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Source Model Element</em>' containment reference.
 	 * @see #getSourceModelElement()
 	 * @generated
@@ -62,6 +67,7 @@ public interface URLEvent extends Event {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Source View</em>' attribute.
 	 * @see #setSourceView(String)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getURLEvent_SourceView()
@@ -71,8 +77,10 @@ public interface URLEvent extends Event {
 	String getSourceView();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent#getSourceView <em>Source View</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent#getSourceView
+	 * <em>Source View</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Source View</em>' attribute.
 	 * @see #getSourceView()
 	 * @generated
@@ -87,6 +95,7 @@ public interface URLEvent extends Event {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Source URL</em>' containment reference.
 	 * @see #setSourceURL(ModelElementId)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getURLEvent_SourceURL()
@@ -96,8 +105,10 @@ public interface URLEvent extends Event {
 	ModelElementId getSourceURL();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent#getSourceURL <em>Source URL</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent#getSourceURL
+	 * <em>Source URL</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Source URL</em>' containment reference.
 	 * @see #getSourceURL()
 	 * @generated

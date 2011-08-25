@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>EMF Store Property Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.emf.emfstore.common.model.ModelPackage#getEMFStorePropertyType()
  * @model
  * @generated
@@ -26,6 +27,7 @@ public enum EMFStorePropertyType implements Enumerator {
 	 * The '<em><b>Shared</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #SHARED_VALUE
 	 * @generated
 	 * @ordered
@@ -36,6 +38,7 @@ public enum EMFStorePropertyType implements Enumerator {
 	 * The '<em><b>Local</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #LOCAL_VALUE
 	 * @generated
 	 * @ordered
@@ -46,10 +49,11 @@ public enum EMFStorePropertyType implements Enumerator {
 	 * The '<em><b>Shared</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Shared</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Shared</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #SHARED
 	 * @model name="Shared"
 	 * @generated
@@ -61,10 +65,11 @@ public enum EMFStorePropertyType implements Enumerator {
 	 * The '<em><b>Local</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Local</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Local</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #LOCAL
 	 * @model name="Local"
 	 * @generated
@@ -76,24 +81,25 @@ public enum EMFStorePropertyType implements Enumerator {
 	 * An array of all the '<em><b>EMF Store Property Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	private static final EMFStorePropertyType[] VALUES_ARRAY = new EMFStorePropertyType[] {
-			SHARED, LOCAL, };
+	private static final EMFStorePropertyType[] VALUES_ARRAY = new EMFStorePropertyType[] { SHARED, LOCAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>EMF Store Property Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public static final List<EMFStorePropertyType> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<EMFStorePropertyType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>EMF Store Property Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static EMFStorePropertyType get(String literal) {
@@ -110,6 +116,7 @@ public enum EMFStorePropertyType implements Enumerator {
 	 * Returns the '<em><b>EMF Store Property Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static EMFStorePropertyType getByName(String name) {
@@ -126,6 +133,7 @@ public enum EMFStorePropertyType implements Enumerator {
 	 * Returns the '<em><b>EMF Store Property Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static EMFStorePropertyType get(int value) {
@@ -141,6 +149,7 @@ public enum EMFStorePropertyType implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
@@ -148,6 +157,7 @@ public enum EMFStorePropertyType implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
@@ -155,6 +165,7 @@ public enum EMFStorePropertyType implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
@@ -163,6 +174,7 @@ public enum EMFStorePropertyType implements Enumerator {
 	 * Only this class can construct instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EMFStorePropertyType(int value, String name, String literal) {
@@ -174,6 +186,7 @@ public enum EMFStorePropertyType implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getValue() {
@@ -183,6 +196,7 @@ public enum EMFStorePropertyType implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -192,6 +206,7 @@ public enum EMFStorePropertyType implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
@@ -202,6 +217,7 @@ public enum EMFStorePropertyType implements Enumerator {
 	 * Returns the literal value of the enumerator, which is its string representation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -209,4 +225,4 @@ public enum EMFStorePropertyType implements Enumerator {
 		return literal;
 	}
 
-} //EMFStorePropertyType
+} // EMFStorePropertyType

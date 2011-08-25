@@ -38,6 +38,7 @@ public class ACOrgUnitIdItemProvider extends UniqueIdentifierItemProvider implem
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ACOrgUnitIdItemProvider(AdapterFactory adapterFactory) {
@@ -47,6 +48,7 @@ public class ACOrgUnitIdItemProvider extends UniqueIdentifierItemProvider implem
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -61,6 +63,7 @@ public class ACOrgUnitIdItemProvider extends UniqueIdentifierItemProvider implem
 	/**
 	 * This returns ACOrgUnitId.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -71,14 +74,14 @@ public class ACOrgUnitIdItemProvider extends UniqueIdentifierItemProvider implem
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ACOrgUnitId)object).getId();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ACOrgUnitId_type") :
-			getString("_UI_ACOrgUnitId_type") + " " + label;
+		String label = ((ACOrgUnitId) object).getId();
+		return label == null || label.length() == 0 ? getString("_UI_ACOrgUnitId_type")
+			: getString("_UI_ACOrgUnitId_type") + " " + label;
 	}
 
 	/**
@@ -98,6 +101,7 @@ public class ACOrgUnitIdItemProvider extends UniqueIdentifierItemProvider implem
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -108,6 +112,7 @@ public class ACOrgUnitIdItemProvider extends UniqueIdentifierItemProvider implem
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -20,8 +20,7 @@ public class OperationManager implements OperationRecorderListener {
 	// private CompositeOperation compositeOperation;
 	private ProjectSpace projectSpace;
 
-	public OperationManager(OperationRecorder operationRecorder,
-			ProjectSpace projectSpace) {
+	public OperationManager(OperationRecorder operationRecorder, ProjectSpace projectSpace) {
 		this.operationRecorder = operationRecorder;
 		operationRecorder.addOperationRecorderListener(this);
 		operationListeners = new ArrayList<OperationListener>();
@@ -35,12 +34,10 @@ public class OperationManager implements OperationRecorderListener {
 	public void undoLastOperation() {
 		if (!projectSpace.getOperations().isEmpty()) {
 			List<AbstractOperation> operations = projectSpace.getOperations();
-			AbstractOperation lastOperation = operations
-					.get(operations.size() - 1);
+			AbstractOperation lastOperation = operations.get(operations.size() - 1);
 			operationRecorder.stopChangeRecording();
 			try {
-				lastOperation.reverse().apply(
-						operationRecorder.getRootEObject());
+				lastOperation.reverse().apply(operationRecorder.getRootEObject());
 				notifyOperationUndone(lastOperation);
 			} finally {
 				operationRecorder.startChangeRecording();
@@ -137,8 +134,7 @@ public class OperationManager implements OperationRecorderListener {
 	 * @param semanticCompositeOperation
 	 *            the semantic operation that replaces the composite operation
 	 */
-	public void endCompositeOperation(
-			SemanticCompositeOperation semanticCompositeOperation) {
+	public void endCompositeOperation(SemanticCompositeOperation semanticCompositeOperation) {
 		List<AbstractOperation> operations = projectSpace.getOperations();
 		operations.remove(operations.size() - 1);
 		operations.add(semanticCompositeOperation);

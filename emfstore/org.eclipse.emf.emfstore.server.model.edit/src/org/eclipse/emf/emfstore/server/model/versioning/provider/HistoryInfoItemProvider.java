@@ -46,6 +46,7 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public HistoryInfoItemProvider(AdapterFactory adapterFactory) {
@@ -71,6 +72,7 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -87,43 +89,33 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 	/**
 	 * This adds a property descriptor for the Primery Spec feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addPrimerySpecPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_HistoryInfo_primerySpec_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_HistoryInfo_primerySpec_feature", "_UI_HistoryInfo_type"),
-				 VersioningPackage.Literals.HISTORY_INFO__PRIMERY_SPEC,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_HistoryInfo_primerySpec_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_HistoryInfo_primerySpec_feature",
+				"_UI_HistoryInfo_type"), VersioningPackage.Literals.HISTORY_INFO__PRIMERY_SPEC, true, false, true,
+			null, null, null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Log Message feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addLogMessagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_HistoryInfo_logMessage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_HistoryInfo_logMessage_feature", "_UI_HistoryInfo_type"),
-				 VersioningPackage.Literals.HISTORY_INFO__LOG_MESSAGE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_HistoryInfo_logMessage_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_HistoryInfo_logMessage_feature",
+				"_UI_HistoryInfo_type"), VersioningPackage.Literals.HISTORY_INFO__LOG_MESSAGE, true, false, true, null,
+			null, null));
 	}
 
 	/**
@@ -132,6 +124,7 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -147,6 +140,7 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -173,6 +167,7 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -192,11 +187,11 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(HistoryInfo.class)) {
-			case VersioningPackage.HISTORY_INFO__TAG_SPECS:
-			case VersioningPackage.HISTORY_INFO__VERSION_PROPERTIES:
-			case VersioningPackage.HISTORY_INFO__CHANGE_PACKAGE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case VersioningPackage.HISTORY_INFO__TAG_SPECS:
+		case VersioningPackage.HISTORY_INFO__VERSION_PROPERTIES:
+		case VersioningPackage.HISTORY_INFO__CHANGE_PACKAGE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -205,31 +200,27 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(VersioningPackage.Literals.HISTORY_INFO__TAG_SPECS,
-				 VersioningFactory.eINSTANCE.createTagVersionSpec()));
+		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.HISTORY_INFO__TAG_SPECS,
+			VersioningFactory.eINSTANCE.createTagVersionSpec()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(VersioningPackage.Literals.HISTORY_INFO__VERSION_PROPERTIES,
-				 VersioningFactory.eINSTANCE.createVersionProperty()));
+		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.HISTORY_INFO__VERSION_PROPERTIES,
+			VersioningFactory.eINSTANCE.createVersionProperty()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(VersioningPackage.Literals.HISTORY_INFO__CHANGE_PACKAGE,
-				 VersioningFactory.eINSTANCE.createChangePackage()));
+		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.HISTORY_INFO__CHANGE_PACKAGE,
+			VersioningFactory.eINSTANCE.createChangePackage()));
 	}
 
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -18,9 +18,6 @@ import org.eclipse.emf.emfstore.client.model.changeTracking.notification.recordi
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.unicase.model.requirement.Actor;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.requirement.UseCase;
 
 /**
  * Tests the notification recording for attribute features.
