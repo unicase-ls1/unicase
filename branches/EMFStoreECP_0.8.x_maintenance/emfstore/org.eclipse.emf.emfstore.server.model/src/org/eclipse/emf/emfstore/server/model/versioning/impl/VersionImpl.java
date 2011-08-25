@@ -538,7 +538,7 @@ public class VersionImpl extends EObjectImpl implements Version {
 					CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation) operation;
 					EMap<EObject, ModelElementId> m = loadIdsFromResource((XMIResource) createDeleteOperation
 						.eResource());
-					createDeleteOperation.getEObjectToIdMap().addAll(m);
+					createDeleteOperation.getEObjectToIdMap().putAll(m);
 				}
 			}
 			return changes;
