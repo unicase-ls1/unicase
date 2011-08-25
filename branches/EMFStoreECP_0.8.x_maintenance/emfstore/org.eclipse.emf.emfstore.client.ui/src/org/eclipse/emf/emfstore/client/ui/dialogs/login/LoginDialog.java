@@ -175,7 +175,7 @@ public class LoginDialog extends TitleAreaDialog {
 	 */
 	public LoginDialog(Shell parentShell, Usersession usersession) {
 		this(parentShell);
-		this.singleSession = true;
+		this.singleSession = false;
 		this.usersession = usersession;
 		this.serverInfo = usersession.getServerInfo();
 	}
