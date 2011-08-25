@@ -12,6 +12,7 @@ package org.eclipse.emf.emfstore.common.model.util;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Stack;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -31,7 +32,7 @@ public class EObjectChangeNotifier extends EContentAdapter {
 	private final NotifiableIdEObjectCollection collection;
 	private boolean isInitializing;
 	private Set<EObject> removedModelElements;
-	private Notification currentNotification;
+	private Stack<Notification> currentNotifications;
 	private int reentrantCallToAddAdapterCounter;
 	private boolean notificationDisabled;
 
@@ -43,6 +44,7 @@ public class EObjectChangeNotifier extends EContentAdapter {
 	 */
 	public EObjectChangeNotifier(NotifiableIdEObjectCollection collection) {
 		this.collection = collection;
+		currentNotifications = new Stack<Notification>();
 		isInitializing = true;
 		collection.eAdapters().add(this);
 		isInitializing = false;
@@ -73,6 +75,11 @@ public class EObjectChangeNotifier extends EContentAdapter {
 			return;
 		}
 
+		if (currentNotifications.isEmpty()) {
+			return;
+		}
+
+		Notification currentNotification = currentNotifications.peek();
 		if (currentNotification != null && !currentNotification.isTouch() && !isInitializing
 			&& notifier instanceof EObject && !ModelUtil.isIgnoredDatatype((EObject) notifier)) {
 			EObject modelElement = (EObject) notifier;
@@ -92,6 +99,7 @@ public class EObjectChangeNotifier extends EContentAdapter {
 		if (isInitializing) {
 			return;
 		}
+		Notification currentNotification = currentNotifications.peek();
 		if (currentNotification != null && currentNotification.isTouch()) {
 			return;
 		}
@@ -142,7 +150,7 @@ public class EObjectChangeNotifier extends EContentAdapter {
 			return;
 		}
 
-		currentNotification = notification;
+		currentNotifications.push(notification);
 		Object feature = notification.getFeature();
 		Object notifier = notification.getNotifier();
 
@@ -160,6 +168,8 @@ public class EObjectChangeNotifier extends EContentAdapter {
 		}
 
 		super.notifyChanged(notification);
+
+		currentNotifications.pop();
 
 		// project is not a valid model element
 		if (!notification.isTouch() && notifier instanceof EObject && !(notifier instanceof Project)) {
