@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: EMFStore Client Tests  (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.emfstore.client.test;singleton:=true
-Bundle-Version: 0.8.9.M5
+Bundle-Version: 0.8.9.M8
 Bundle-ClassPath: .,
  lib/org.apache.commons.io_1.4.0.v20081110-1000.jar
 Bundle-Vendor: Eclipse Modeling Project
@@ -30,6 +30,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.emfstore.common.model;bundle-version="0.7.3",
  org.eclipse.emf.emfstore.server.model;bundle-version="0.7.3",
  org.eclipse.emf.emfstore.client;bundle-version="0.7.3",
- org.eclipse.emf.emfstore.client.model.edit;bundle-version="0.7.3",
- org.eclipse.emf.emfstore.client.transaction;bundle-version="0.7.3"
+ org.eclipse.emf.emfstore.client.model.edit;bundle-version="0.7.3"
 Bundle-ActivationPolicy: lazy
