@@ -21,7 +21,7 @@ import org.eclipse.jdt.core.dom.Name;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
-import traceability.handler.Parser;
+import traceRecovery.handler.Parser;
 
 
 
@@ -87,7 +87,7 @@ public class JavaParser extends Parser {
 	 * this is teh arraylist of comments that are in the file
 	 * @return
 	 */
-	public  ArrayList getComments() {
+	public  ArrayList <String> getComments() {
 		List comments = _unit.getCommentList();
 		if(comments.size() == 0)return null;
 		ArrayList javaDocComments = new ArrayList();
@@ -187,10 +187,10 @@ public class JavaParser extends Parser {
 	 */
 public class JClass {
 	public String className = null;
-	public ArrayList methodDeclarations = new ArrayList();
-	public ArrayList innerClasses = new ArrayList();
+	public ArrayList <JMethod> methodDeclarations = new ArrayList <JMethod> ();
+	public ArrayList <JClass> innerClasses = new ArrayList <JClass>();
 	public String superClass = null;
-	public ArrayList interfaces = new ArrayList();
+	public ArrayList <String> interfaces = new ArrayList<String>();
 }
 
 /**
@@ -203,6 +203,8 @@ public class JMethod{
 	public ArrayList parameters = new ArrayList();
 	public String codeBlock = null;
 	public String returnType = null;
+	
+	
 }
 
 
