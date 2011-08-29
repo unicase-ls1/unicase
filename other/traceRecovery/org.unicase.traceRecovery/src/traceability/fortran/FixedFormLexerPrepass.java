@@ -13,14 +13,13 @@ package traceability.fortran;
  *******************************************************************************/
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
+import org.eclipse.photran.internal.core.lexer.IToken;
 import org.eclipse.photran.internal.core.preferences.FortranPreferences;
 
 /**
@@ -142,14 +141,23 @@ class FixedFormLexerPrepass {
 			if (line.length() > 0) {
 				if (line.charAt(0) == '!' || line.charAt(0) == 'c'
 						|| line.charAt(0) == 'C') {
-					comments.add(line);
+					String com = "";
+					for(int i = 1 ; i < line.length() && i < 72; i++){
+						if(Character.isLetterOrDigit(line.charAt(i)) || Character.isWhitespace(line.charAt(i))){
+							com += line.charAt(i); 
+						}
+					}
+					comments.add(com);
 				} else {
 					for (int i = 1; i < line.length() && i < 72; i++) {
 						if (line.charAt(i) == '!' || line.charAt(i) == 'c'
 								|| line.charAt(i) == 'C') {
 							String com = "";
-							for (int j = i; j < line.length(); j++) {
-								com += line.charAt(j);
+							for (int j = i+1; j < line.length(); j++) {
+								if(Character.isLetterOrDigit(line.charAt(j))){
+									com += line.charAt(j);
+								}
+								
 							}
 							
 							comments.add(com);
@@ -266,7 +274,7 @@ class FixedFormLexerPrepass {
 	/**
 	 * @return the comments
 	 */
-	public ArrayList getComments() {
+	public ArrayList <String> getComments() {
 		return comments;
 	}
 
@@ -285,7 +293,7 @@ class FixedFormLexerPrepass {
 		// END of the potential whitespace
 		PositionInFile posInFile = new PositionInFile(ln, colBefore,
 				offsetBefore, false);
-		String result = (String) whiteSpaceMapping.get(posInFile);
+		String result =  whiteSpaceMapping.get(posInFile);
 
 		if (result == null)
 			return ""; //$NON-NLS-1$
