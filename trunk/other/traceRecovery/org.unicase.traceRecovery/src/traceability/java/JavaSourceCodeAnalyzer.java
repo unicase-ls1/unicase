@@ -20,8 +20,8 @@ import org.apache.lucene.analysis.TokenStream;
  *	will be the analyzer used to analyze the java code before indexing
  */
 public class JavaSourceCodeAnalyzer extends Analyzer {
-	private Set javaStopSet;
-	private Set englishStopSet;
+	private Set <String> javaStopSet;
+	private Set <String> englishStopSet;
 	private static final String[] JAVA_STOP_WORDS = {
 	    "public","private","protected","interface",
 	    "abstract","implements","extends","null","new",
@@ -53,10 +53,10 @@ public class JavaSourceCodeAnalyzer extends Analyzer {
 	        return   new PorterStemFilter(
 	        new StopFilter(
 	        new LowerCaseTokenizer(reader),englishStopSet));
-	    else if (fieldName.equals("method")){
+	    else if (fieldName.equals("method") || fieldName.equals("class")){
 	    	ArrayList<String> methodName = methodName(reader);
 	    	StringReader read = new StringReader(method(methodName));
-	    	return new LowerCaseTokenizer(read);
+	    	return new PorterStemFilter( new LowerCaseTokenizer(read));
 	    	
 	    } else
 	        return   new StopFilter(
@@ -124,7 +124,7 @@ public class JavaSourceCodeAnalyzer extends Analyzer {
 			text = text + " " + methodName.get(i);
 		}
 		
-		return text;
+		return (text+" \n");
 	}
 
 
