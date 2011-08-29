@@ -17,8 +17,8 @@ import org.apache.lucene.analysis.TokenStream;
  *
  */
 public class FortranSourceCodeAnalyzer extends Analyzer{
-	private Set fortranStopSet;
-	private Set englishStopSet;
+	private Set<String> fortranStopSet;
+	private Set<String> englishStopSet;
 	private static final String[] FORTRAN_STOP_WORDS = {
 	    "PROGRAM", "IMPLICIT", "NONE", "END", ".TRUE.", ".FALSE.",
 	    "IF", "THEN", "DO", "INTEGER", "REAL",

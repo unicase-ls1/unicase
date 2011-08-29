@@ -49,7 +49,7 @@ public class FortranSourceCodeParser {
 		
 	}
 			
-	public ArrayList getSubroutines(){
+	public ArrayList <ScopingNode> getSubroutines(){
 		
 //		FortranAST ast = new FortranAST(null, parser.parse(lexer), lexer.getTokenList());
 //		List<Definition> defs = ast.getRoot().getAllDefinitions();
