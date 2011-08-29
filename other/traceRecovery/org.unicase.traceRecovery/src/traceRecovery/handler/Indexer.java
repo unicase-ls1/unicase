@@ -15,8 +15,8 @@ import traceRecovery.Directory;
 import traceRecovery.TraceRecoveryFactory;
 import traceability.fortran.FortranCodeIndexer;
 import traceability.fortran.FortranSourceCodeAnalyzer;
-import traceability.java.JavaSourceCodeAnalyzer;
-import traceability.java.JavaSourceCodeIndexer;
+import traceRecovery.Java.JavaSourceCodeAnalyzer;
+import traceRecovery.Java.JavaSourceCodeIndexer;
 
 /**
  * Indexer class to index files.
