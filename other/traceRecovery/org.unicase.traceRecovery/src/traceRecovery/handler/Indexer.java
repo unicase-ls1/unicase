@@ -13,8 +13,8 @@ import org.unicase.model.UnicaseModelElement;
 
 import traceRecovery.Directory;
 import traceRecovery.TraceRecoveryFactory;
-import traceability.fortran.FortranCodeIndexer;
-import traceability.fortran.FortranSourceCodeAnalyzer;
+import traceRecovery.Fortran.FortranCodeIndexer;
+import traceRecovery.Fortran.FortranSourceCodeAnalyzer;
 import traceRecovery.Java.JavaSourceCodeAnalyzer;
 import traceRecovery.Java.JavaSourceCodeIndexer;
 

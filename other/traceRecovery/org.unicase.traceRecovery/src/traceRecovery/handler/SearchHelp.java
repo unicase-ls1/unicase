@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import org.eclipse.photran.internal.core.analysis.binding.ScopingNode;
 
-import traceability.fortran.FortranSourceCodeParser;
+import traceRecovery.Fortran.FortranSourceCodeParser;
 import traceRecovery.Java.JavaParser;
 import traceRecovery.Java.JavaParser.JMethod;
 
