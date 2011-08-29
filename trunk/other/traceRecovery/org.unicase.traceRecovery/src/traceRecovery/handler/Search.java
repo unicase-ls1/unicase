@@ -43,11 +43,11 @@ import traceRecovery.handler.Indexer;
 import traceability.fortran.FortranCodeIndexer;
 import traceability.fortran.FortranSourceCodeAnalyzer;
 import traceability.fortran.FortranSourceCodeParser;
-import traceability.java.JavaParser;
-import traceability.java.JavaParser.JMethod;
-import traceability.java.JavaSourceCodeAnalyzer;
-import traceability.java.JavaSourceCodeIndexer;
-import traceability.java.KeywordAnalyzer;
+import traceRecovery.Java.JavaParser;
+import traceRecovery.Java.JavaParser.JMethod;
+import traceRecovery.Java.JavaSourceCodeAnalyzer;
+import traceRecovery.Java.JavaSourceCodeIndexer;
+import traceRecovery.Java.KeywordAnalyzer;
 
 /**
  * the controller that will start to control all the search capabilities of
