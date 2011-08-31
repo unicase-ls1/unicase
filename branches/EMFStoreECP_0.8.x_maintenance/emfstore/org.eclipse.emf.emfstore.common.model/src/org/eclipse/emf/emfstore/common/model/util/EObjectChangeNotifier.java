@@ -99,6 +99,11 @@ public class EObjectChangeNotifier extends EContentAdapter {
 		if (isInitializing) {
 			return;
 		}
+
+		if (currentNotifications.isEmpty()) {
+			return;
+		}
+
 		Notification currentNotification = currentNotifications.peek();
 		if (currentNotification != null && currentNotification.isTouch()) {
 			return;
