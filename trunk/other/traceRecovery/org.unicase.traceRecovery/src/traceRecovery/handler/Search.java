@@ -11,8 +11,6 @@ import java.util.Calendar;
 import java.util.StringTokenizer;
 
 import org.apache.lucene.analysis.PerFieldAnalyzerWrapper;
-import org.apache.lucene.analysis.Token;
-import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
@@ -39,15 +37,14 @@ import traceRecovery.Directory;
 import traceRecovery.Link;
 import traceRecovery.Query;
 import traceRecovery.TraceRecoveryFactory;
-import traceRecovery.handler.Indexer;
 import traceRecovery.Fortran.FortranCodeIndexer;
 import traceRecovery.Fortran.FortranSourceCodeAnalyzer;
 import traceRecovery.Fortran.FortranSourceCodeParser;
-import traceRecovery.Java.JavaParser;
-import traceRecovery.Java.JavaParser.JMethod;
+import traceRecovery.Fortran.SearchFortran;
 import traceRecovery.Java.JavaSourceCodeAnalyzer;
 import traceRecovery.Java.JavaSourceCodeIndexer;
 import traceRecovery.Java.KeywordAnalyzer;
+import traceRecovery.Java.SearchJava;
 
 /**
  * the controller that will start to control all the search capabilities of
@@ -118,7 +115,7 @@ public class Search {
 			ArrayList<Integer> mod = new ArrayList<Integer>();
 
 			text = new ArrayList<String>();
-			
+
 			for (int i = 0; i < query.getModelElements().size(); i++) {
 				org.apache.lucene.search.Query q = parser2.parse(query
 						.getModelElements().get(i).getDescription());
@@ -154,89 +151,93 @@ public class Search {
 
 			}
 
-//			 IndexReader r = is.getIndexReader();
-//			
-//			TermEnum term = r.terms(new Term("comment", ""));
-//			
-//			 String terms = "";
-//			 while ("comment".equals(term.term().field())) {
-//			 terms += " " + term.term().text() + " ";
-//			
-//			 if (!term.next()) {
-//			 break;
-//			 }
-//			
-//			
+			// IndexReader r = is.getIndexReader();
+			//
+			// TermEnum term = r.terms(new Term("comment", ""));
+			//
+			// String terms = "";
+			// while ("comment".equals(term.term().field())) {
+			// terms += " " + term.term().text() + " ";
+			//
+			// if (!term.next()) {
+			// break;
 			// }
-
-			
-			
-			
-			
+			//
+			//
+			// }
 
 			for (int i = 0; i < mod.size(); i++) {
 
 				for (int j = 0; j < hits.get(i).length(); j++) {
 
 					String terms = "";
-					String className= "";
+					String className = "";
 					ArrayList<String> comments = new ArrayList<String>();
-					ArrayList <ScopingNode> subroutines = new ArrayList<ScopingNode>();
-					
-					ArrayList <String> methods = new ArrayList<String>();
-					
+					ArrayList<ScopingNode> subroutines = new ArrayList<ScopingNode>();
+
+					ArrayList<String> methods = new ArrayList<String>();
+
 					String method;
 					method = "";
-					
-					if(index.getWriter().getAnalyzer() instanceof JavaSourceCodeAnalyzer){
-						
-					SearchHelp help = new SearchHelp(hits.get(i).doc(j).get("path"));
-					comments = help.getComments();
-					
-					 methods = help.getMethods();
-					 className = help.getClassName();
+					JavaSourceCodeAnalyzer anal = new JavaSourceCodeAnalyzer();
 
-						for(int k = 0; k < methods.size() ; k++){
-							method = methods.get(i)+ "\n";
+					if (index.getWriter().getAnalyzer() instanceof JavaSourceCodeAnalyzer) {
+
+						SearchHelp help = new SearchHelp(hits.get(i).doc(j)
+								.get("path"));
+						comments = help.getComments();
+
+						methods = help.getMethods();
+						className = help.getClassName();
+
+						for (int k = 0; k < methods.size(); k++) {
+							// method = methods.get(i)+ "\n";
+							method += anal
+									.method(anal.methodName(new StringReader(
+											methods.get(i))))
+									+ "\n";
 						}
-					
-					}else if(index.getWriter().getAnalyzer() instanceof FortranSourceCodeAnalyzer){
-						SearchHelp help = new SearchHelp(hits.get(i).doc(j).get("path"));
-						comments = help.getCommentsF();	
+
+					} else if (index.getWriter().getAnalyzer() instanceof FortranSourceCodeAnalyzer) {
+						SearchHelp help = new SearchHelp(hits.get(i).doc(j)
+								.get("path"));
+						comments = help.getCommentsF();
 						subroutines = help.getSubroutines();
 					}
-					
-					
-					for(int k = 0 ; k <subroutines.size(); k++){
-						className += subroutines.get(i) +"\n";
-					}
-					
-					for(int k = 0 ; k < comments.size(); k++){
+
+					// for(int k = 0 ; k <subroutines.size(); k++){
+					// className += subroutines.get(i) +"\n";
+					// }
+
+					className = anal.method(anal.methodName(new StringReader(
+							className)));
+
+					for (int k = 0; k < comments.size(); k++) {
 						terms += comments.get(k) + "\n";
 					}
-					
-					
-					String tex = h.getBestFragment(analyzer, "class",
-							className + " ");
 
-					String t = h1.getBestFragment(analyzer, "method",
-							method+ " ");
+					String tex = h.getBestFragment(analyzer, "class", className
+							+ " ");
 
+					String t = h1.getBestFragment(analyzer, "method", method
+							+ " ");
 
 					String t2 = h2.getBestFragment(analyzer, "comment", terms
 							+ " ");
 
 					if (tex == null && t == null && t2 == null) {
-						create(tex, hits, i, j, query);
+						create(tex, hits, i, j, query,
+								"linking from ME to code");
 					}
 					if (tex != null) {
-						create(tex, hits, i, j, query);
+						create(tex, hits, i, j, query,
+								"linking from ME to code");
 					}
 					if (t != null) {
-						create(t, hits, i, j, query);
+						create(t, hits, i, j, query, "linking from ME to code");
 					}
 					if (t2 != null) {
-						create(t2, hits, i, j, query);
+						create(t2, hits, i, j, query, "linking from ME to code");
 					}
 
 				}
@@ -257,18 +258,15 @@ public class Search {
 
 	ArrayList<Link> links = new ArrayList<Link>();
 
-	
 	File f = new File("/home/taher/Downloads/eclipse (developer)/taher.xml");
-	
-	
-	java.net.URI u = f.toURI();
-	URI uri =  URI.createURI(u.toString());
-	Resource resource = new XMLResourceImpl(uri);
-	public void create(String tex, ArrayList<Hits> hits, int i, int j,
-			Query query) throws IOException {
 
-	
-		
+	java.net.URI u = f.toURI();
+	URI uri = URI.createURI(u.toString());
+	Resource resource = new XMLResourceImpl(uri);
+
+	public void create(String tex, ArrayList<Hits> hits, int i, int j,
+			Query query, String type) throws IOException {
+
 		if (tex != null) {
 
 			StringTokenizer tok = new StringTokenizer(tex, "\n");
@@ -287,16 +285,14 @@ public class Search {
 
 					Link link = TraceRecoveryFactory.eINSTANCE.createLink();
 					link.setConfidence(hits.get(i).score(j));
-					link.setDescription("linking from ME to code");
+					link.setDescription(line);
 					link.setSource(query.getModelElements().get(i));
 					link.setTarget(location);
-					link.setType("linking from ME to code");
-					
-					
+					link.setType(type);
+
 					Resource r = new XMLResourceImpl(uri);
-					r.getContents().add(location);					
-					
-					
+					r.getContents().add(location);
+
 					resource.getContents().add(link);
 					resource.save(null);
 					links.add(link);
@@ -318,13 +314,12 @@ public class Search {
 			location.setName(hits.get(i).doc(j).get("filename"));
 			location.setDescription(hits.get(i).doc(j).get("path"));
 
-			
 			Link link = TraceRecoveryFactory.eINSTANCE.createLink();
 			link.setConfidence(hits.get(i).score(j));
-			link.setDescription("linking from ME to code");
+			link.setDescription("");
 			link.setSource(query.getModelElements().get(i));
 			link.setTarget(location);
-			link.setType("linking from ME to code");
+			link.setType(type);
 			links.add(link);
 			text.add("");
 
@@ -344,13 +339,21 @@ public class Search {
 	 *            this is the type of the parser
 	 */
 	public void createQueryCodeDir(File file, String type) {
-		File[] dirFiles = file.listFiles();
-		ArrayList<File> files = new ArrayList<File>();
-		for (int i = 0; i < dirFiles.length; i++) {
-			files.add(dirFiles[i]);
+		// File[] dirFiles = file.listFiles();
+		// ArrayList<File> files = new ArrayList<File>();
+		// for (int i = 0; i < dirFiles.length; i++) {
+		// files.add(dirFiles[i]);
+		// }
+		// isDir = true;
+		// createQeuryCode(files, type);
+
+		if (type.toLowerCase() == "java") {
+			SearchJava java = new SearchJava();
+			java.createQueryCodeDir(file, type);
+		} else if(type.toLowerCase() == "fortran"){
+			SearchFortran fortran = new SearchFortran();
+			fortran.createQueryCodeDir(file, type);
 		}
-		isDir = true;
-		createQeuryCode(files, type);
 
 	}
 
@@ -365,157 +368,11 @@ public class Search {
 	 *         analyzing
 	 */
 	public Query createQeuryCode(ArrayList<File> file, String type) {
-		try {
-			if (!isDir) {
-				q = TraceRecoveryFactory.eINSTANCE.createQuery();
-			}
-			if (type.toLowerCase() == "java") {
-
-				for (int i = 0; i < file.size(); i++) {
-					if (file.get(i).isDirectory()) {
-
-						createQueryCodeDir(file.get(i), type);
-
-					} else if (file.get(i).getName().endsWith(".java")) {
-						JavaParser parser = new JavaParser();
-						parser.setSource(file.get(i));
-						parser.getDeclaredClass();
-						JavaSourceCodeAnalyzer analyzer = new JavaSourceCodeAnalyzer();
-
-						// System.out.println("this is the value of the analyzer "
-						// + parser.getDeclaredClass().className);
-
-						String className = parser.getDeclaredClass().className;
-
-						StringReader str = new StringReader(className);
-
-						TokenStream token = analyzer.tokenStream("class", str);
-
-						String n = "";
-						Token tok = null;
-						while ((tok = token.next()) != null) {
-							n += " " + tok.termText();
-
-						}
-
-						CodeLocation loc = TraceFactory.eINSTANCE
-								.createCodeLocation();
-						loc.setDescription(n);
-						loc.setName(className);
-
-						q.getModelElements().add(loc);
-
-						ArrayList<String> comments = parser.getComments();
-						String comm = "";
-
-						if (comments != null) {
-
-							for (int j = 0; j < comments.size(); j++) {
-								str = new StringReader(comments.get(j));
-								token = analyzer.tokenStream("comment", str);
-
-								if (token == null) {
-									break;
-								}
-								tok = token.next();
-								if (tok != null) {
-									comm = "";
-									while (tok != null) {
-										comm += " " + tok.termText();
-
-										tok = token.next();
-									}
-
-									loc = TraceFactory.eINSTANCE
-											.createCodeLocation();
-									loc.setDescription(comm);
-									loc.setName(className + ".java");
-									q.getModelElements().add(loc);
-								}
-
-							}
-						}
-
-						ArrayList<JMethod> methods = parser.getDeclaredClass().methodDeclarations;
-						comm = "";
-						for (int j = 0; j < methods.size(); j++) {
-
-							comm = "";
-
-							str = new StringReader(methods.get(j).methodName);
-							token = analyzer.tokenStream("method", str);
-
-							if (token == null) {
-								break;
-							}
-							tok = token.next();
-							if (tok != null) {
-								while (tok != null) {
-									comm += " " + tok.termText();
-
-									tok = token.next();
-								}
-
-								System.out.println(comm
-										+ " this is the string at the end");
-							}
-							loc = TraceFactory.eINSTANCE.createCodeLocation();
-							loc.setDescription(comm);
-							loc.setName(className);
-							q.getModelElements().add(loc);
-						}
-					}
-
-				}
-			} else if (type.toLowerCase() == "fortran") {
-				for (int i = 0; i < file.size(); i++) {
-					if (file.get(i).isDirectory()) {
-						createQueryCodeDir(file.get(i), type);
-					}
-					if (file.get(i).getName().endsWith("f90")
-							|| file.get(i).getName().endsWith("f95")
-							|| file.get(i).getName().endsWith("for")) {
-
-						FortranSourceCodeParser parser = new FortranSourceCodeParser(
-								file.get(i));
-						ArrayList <ScopingNode> subroutines = parser.getSubroutines();
-						ArrayList<String> comments = parser.getComments();
-
-						String name = file.get(i).getName();
-
-						// FortranSourceCodeAnalyzer analyzer = new
-						// FortranSourceCodeAnalyzer();
-						CodeLocation loc;
-						for (int j = 0; j < comments.size(); j++) {
-							loc = TraceFactory.eINSTANCE.createCodeLocation();
-							loc.setDescription(comments.get(j));
-							loc.setName(name);
-							q.getModelElements().add(loc);
-
-						}
-
-						for (int j = 0; j < subroutines.size(); j++) {
-							loc = TraceFactory.eINSTANCE.createCodeLocation();
-							loc.setDescription(( subroutines
-									.get(i)).getName(true));
-							loc.setName(name);
-							q.getModelElements().add(loc);
-
-						}
-					}
-				}
-			}
-			isDir = false;
-			return q;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-
-			// analyzer.tokenStream("class", reader)
-
-		}
+		return null;
 
 	}
+
+	// }
 
 	// public static void main(String[] args) {
 	// Search search = new Search();
@@ -526,7 +383,7 @@ public class Search {
 	// }
 
 	/**
-	 * this will run a recovery from code to model elemnt
+	 * this will run a recovery from code to model element
 	 * 
 	 * @param query
 	 *            this is the query that the search will use to run
@@ -675,42 +532,7 @@ public class Search {
 		}
 	}
 
-	/**
-	 * will create the link between the code and model elements.
-	 * 
-	 * @param hit
-	 *            this is the result of the search
-	 * @param query
-	 *            this is the query which will contain the model elements of the
-	 *            source
-	 * @param type
-	 *            this is the type if it is from ME to code or vice versa.
-	 * @return returns all the links between the model elements and the code
-	 * @throws IOException
-	 *             will throw and exception if while trying to use any input
-	 *             output fails
-	 */
-	public ArrayList<Link> createLinks(ArrayList<Hits> hit, Query query,
-			String type) throws IOException {
-
-		ArrayList<Link> links = new ArrayList<Link>();
-
-		for (int i = 0; i < hit.size(); i++) {
-			Link link = TraceRecoveryFactory.eINSTANCE.createLink();
-			for (int j = 0; j < hit.get(i).length(); j++) {
-				Document doc = hit.get(i).doc(j);
-				link.setConfidence(hit.get(i).score(j));
-				link.setCreationDate(Calendar.getInstance().getTime());
-				link.setDescription("linking between code and data");
-				link.setSource(query.getModelElements().get(i));
-				link.setName(doc.get("filename"));
-				links.add(link);
-
-			}
-		}
-
-		return links;
-	}
+	
 
 	/**
 	 * will set the used analyzer.
