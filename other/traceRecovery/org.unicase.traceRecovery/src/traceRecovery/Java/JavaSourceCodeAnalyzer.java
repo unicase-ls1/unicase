@@ -38,6 +38,7 @@ public class JavaSourceCodeAnalyzer extends Analyzer {
 	    "no", "not", "of", "on", "or", "s", "such",
 	    "that", "the", "their", "then", "there","these",
 	    "they", "this", "to", "was", "will", "with" };
+	@SuppressWarnings("unchecked")
 	public JavaSourceCodeAnalyzer(){
 	    super();
 	    javaStopSet = StopFilter.makeStopSet(JAVA_STOP_WORDS);
