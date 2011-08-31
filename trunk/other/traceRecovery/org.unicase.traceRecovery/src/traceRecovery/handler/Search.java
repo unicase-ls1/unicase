@@ -7,12 +7,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.StringTokenizer;
 
 import org.apache.lucene.analysis.PerFieldAnalyzerWrapper;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.queryParser.ParseException;
@@ -39,7 +37,6 @@ import traceRecovery.Query;
 import traceRecovery.TraceRecoveryFactory;
 import traceRecovery.Fortran.FortranCodeIndexer;
 import traceRecovery.Fortran.FortranSourceCodeAnalyzer;
-import traceRecovery.Fortran.FortranSourceCodeParser;
 import traceRecovery.Fortran.SearchFortran;
 import traceRecovery.Java.JavaSourceCodeAnalyzer;
 import traceRecovery.Java.JavaSourceCodeIndexer;
@@ -191,8 +188,8 @@ public class Search {
 						className = help.getClassName();
 
 						for (int k = 0; k < methods.size(); k++) {
-							// method = methods.get(i)+ "\n";
-							method += anal
+//							 method = methods.get(i)+ "\n";
+							method = anal
 									.method(anal.methodName(new StringReader(
 											methods.get(i))))
 									+ "\n";
@@ -205,12 +202,14 @@ public class Search {
 						subroutines = help.getSubroutines();
 					}
 
-					// for(int k = 0 ; k <subroutines.size(); k++){
-					// className += subroutines.get(i) +"\n";
-					// }
+					 for(int k = 0 ; k <subroutines.size(); k++){
+					 className += subroutines.get(i) +"\n";
+					 }
 
 					className = anal.method(anal.methodName(new StringReader(
 							className)));
+//					
+//					method = anal.method(anal.methodName(new StringReader(method)));
 
 					for (int k = 0; k < comments.size(); k++) {
 						terms += comments.get(k) + "\n";
@@ -465,7 +464,7 @@ public class Search {
 			e.printStackTrace();
 			return null;
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			return null;
 		}
