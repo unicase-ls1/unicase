@@ -31,6 +31,7 @@ public class FortranSourceCodeAnalyzer extends Analyzer{
 	    "no", "not", "of", "on", "or", "s", "such",
 	    "that", "the", "their", "then", "there","these",
 	    "they", "this", "to", "was", "will", "with" };
+	@SuppressWarnings("unchecked")
 	public FortranSourceCodeAnalyzer(){
 	    super();
 	    fortranStopSet = StopFilter.makeStopSet(FORTRAN_STOP_WORDS);
