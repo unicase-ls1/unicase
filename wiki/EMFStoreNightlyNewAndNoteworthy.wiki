@@ -1,10 +1,13 @@
 #summary Describes New and noteworthy information on the EMFStore nightly and milestone builds
 
+0.8.9.M9:
+  * Bugfixes
+
 0.8.9.M3:  
   * Performance optimization (300k+ elements per project tested)
   * Namespace changed to org.eclipse.emf.emfstore
   * Support for Cross-project and Out-of-project links
-  * Removed Java RMI completly (fixes port issues caused by RMI)
+  * Removed Java RMI completely (fixes port issues caused by RMI)
   * Cross-References to Elements ouside of a Project are correctly tracked (even if Element is later added to the Project)
   * Added filters to ignore invalid notifications
   * Change Tracking refactored: Operation Recorder can now be used standalone.
