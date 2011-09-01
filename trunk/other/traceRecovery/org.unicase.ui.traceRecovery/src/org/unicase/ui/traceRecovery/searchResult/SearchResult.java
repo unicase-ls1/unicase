@@ -9,16 +9,25 @@ import java.util.ArrayList;
 
 import org.eclipse.core.filesystem.EFS;
 import org.eclipse.core.filesystem.IFileStore;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.custom.TableEditor;
-import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.FontMetrics;
+import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
@@ -32,6 +41,7 @@ import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.traceRecvoery.pages.RunRecovery;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
+import org.unicase.model.trace.CodeLocation;
 
 import traceRecovery.Directory;
 import traceRecovery.Link;
@@ -51,6 +61,26 @@ public class SearchResult implements Listener {
 	Project p;
 	Shell parent;
 	Rectangle point;
+	FontMetrics fm;
+	int height;
+	Button saveAs;
+	Resource resource;
+	boolean load = false;
+
+	/**
+	 * @return the resource
+	 */
+	public Resource getResource() {
+		return resource;
+	}
+
+	/**
+	 * @param resource
+	 *            the resource to set
+	 */
+	public void setResource(Resource resource) {
+		this.resource = resource;
+	}
 
 	/**
 	 * @return the point
@@ -60,7 +90,8 @@ public class SearchResult implements Listener {
 	}
 
 	/**
-	 * @param rectangle the point to set
+	 * @param rectangle
+	 *            the point to set
 	 */
 	public void setPoint(Rectangle rectangle) {
 		this.point = rectangle;
@@ -69,17 +100,26 @@ public class SearchResult implements Listener {
 	/**
 	 * will start creating the shell
 	 */
-	public void createControl() {
+	public void createControl(String choose) {
 		Display disp = Display.getCurrent();
 
 		parent = new Shell(disp);
 		parent.setLayout(new GridLayout());
-		parent.setBounds(point);
+		parent.setLocation(point.x, point.y);
+		// parent.setBounds(point);
 		composite = new Composite(parent, SWT.NULL);
 
 		composite.setLayout(new GridLayout(3, false));
-		
-		composite.setBounds(point);
+
+		composite.setLocation(point.x, point.y);
+
+		fm = new GC(Display.getCurrent()).getFontMetrics();
+		height = fm.getHeight() * 2;
+		// FileDialog file = new FileDialog(parent, SWT.SAVE);
+		// String save = file.open();
+		// System.out.println("This is the path of the file to be saved " +
+		// save);
+		// File file = new File();
 
 		table = new Table(composite, SWT.MULTI | SWT.BORDER
 				| SWT.FULL_SELECTION);
@@ -88,8 +128,11 @@ public class SearchResult implements Listener {
 		table.setHeaderVisible(true);
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
 		data.heightHint = 200;
+
 		table.setLayoutData(data);
 		table.addListener(SWT.MouseDoubleClick, this);
+
+		table.addListener(SWT.MeasureItem, this);
 
 		TableColumn source = new TableColumn(table, SWT.V_SCROLL | SWT.H_SCROLL);
 
@@ -103,10 +146,53 @@ public class SearchResult implements Listener {
 		source.setText("Source");
 		target.setText("Target");
 		score.setText("Score");
-		linkType.setText("Link Type");
-		highlight.setText("hit text");
+		linkType.setText("Link Type                 ");
+		highlight.setText("hit text                         ");
 
-		Recovery();
+		if (choose.equals("recovery")) {
+
+			saveAs = new Button(composite, SWT.NONE);
+			saveAs.setText("Save As..");
+			saveAs.addListener(SWT.Selection, this);
+
+			Recovery();
+		} else if (choose.equals("load")) {
+			load = true;
+			populate();
+		}
+	}
+
+	EList<EObject> content;
+
+	public void populate() {
+
+		content = resource.getContents();
+
+		for (int i = 0; i < content.size(); i++) {
+			TableItem item = new TableItem(table, SWT.NONE);
+			String[] text = new String[5];
+
+			Link link = (Link) content.get(i);
+
+			text[0] = link.getSource().getName();
+			text[1] = link.getTarget().getName();
+			text[2] = link.getConfidence() + "";
+			text[3] = link.getType();
+
+			for (int j = 0; j < 3; j++) {
+				item.setText(j, text[j]);
+
+			}
+
+		}
+
+		for (int i = 0; i < table.getColumnCount(); i++) {
+			table.getColumn(i).pack();
+		}
+
+		parent.layout();
+		parent.pack();
+		parent.open();
 	}
 
 	/**
@@ -128,15 +214,42 @@ public class SearchResult implements Listener {
 			text[1] = result.getTarget().getName();
 			text[2] = result.getConfidence() + "";
 			text[3] = result.getType();
-			// text[4] = recovery.getRecovery().text.get(i);
+
+			for (int j = 0; j < 4; j++) {
+				item.setText(j, text[j]);
+
+			}
+			ArrayList<StyleRange> range = higlightRange(recovery.getRecovery().text
+					.get(i));
+
+			StyledText textt = new StyledText(table, SWT.WRAP | SWT.V_SCROLL
+					| SWT.BORDER);
+
+			String tex = recovery.getRecovery().text.get(i);
+
+			// tex = tex.replace("<B>", "");
+			// tex = tex.replace("</B>", "");
+
+			textt.setText(tex);
+
+			// String t = textt.getText();
+
+			for (int j = 0; j < range.size(); j++) {
+				textt.setStyleRange(range.get(j));
+
+			}
+
 			TableEditor editor = new TableEditor(table);
 
-			StyledText textt = new StyledText(table, SWT.V_SCROLL
-					| SWT.H_SCROLL);
-			textt.setText(recovery.getRecovery().text.get(i));
+			editor.minimumWidth = textt.getSize().x;
+			editor.grabHorizontal = true;
+			editor.minimumHeight = textt.getSize().y;
+			// editor.horizontalAlignment = SWT.CENTER;
+
 			editor.setEditor(textt, item, 4);
 
-			item.setText(text);
+			// item.setText(text);
+			// item.get
 		}
 
 		// table.layout();
@@ -145,12 +258,71 @@ public class SearchResult implements Listener {
 
 		for (int i = 0; i < table.getColumnCount(); i++) {
 			table.getColumn(i).pack();
+
 		}
 
+		// Display.getCurrent().getActiveShell().addListener(SWT.SYSTEM_MODAL,
+		// this);
 		parent.layout();
 		parent.pack();
 		parent.open();
 
+	}
+
+	public ArrayList<StyleRange> higlightRange(String text) {
+
+		int start;
+		int end;
+
+		// boolean first = false;
+		// int startOffset = 0;
+		// int endOffset = 0;
+		//
+		ArrayList<StyleRange> r = new ArrayList<StyleRange>();
+		for (int i = 0; i < text.length(); i++) {
+			start = text.indexOf("<B>", i);
+			end = text.indexOf("</B>", i);
+
+			if (start == -1) {
+				break;
+			}
+
+			i = end + 3;
+
+			StyleRange range = new StyleRange();
+			range.start = start;
+			range.length = end - start;
+			range.fontStyle = SWT.BOLD;
+			range.foreground = Display.getCurrent().getSystemColor(
+					SWT.COLOR_BLUE);
+			r.add(range);
+
+		}
+
+		return r;
+		// int j = 0;
+		// for (int i = 0; i < text.length(); i++) {
+		// if (text.charAt(i) == '<' && !first) {
+		// startOffset = i;
+		// first = true;
+		// j = 0;
+		//
+		// } else if (text.charAt(i) == '<') {
+		// StyleRange range = new StyleRange();
+		// range.start = startOffset;
+		// range.length = i - startOffset;
+		// endOffset = range.length + 2;
+		// range.fontStyle = SWT.BOLD;
+		// range.foreground = Display.getCurrent().getSystemColor(
+		// SWT.COLOR_BLUE);
+		// r.add(range);
+		// first = false;
+		// }
+		// else{
+		// j++;
+		// }
+		// }
+		// return r;
 	}
 
 	/**
@@ -166,7 +338,9 @@ public class SearchResult implements Listener {
 
 			Query query = TraceRecoveryFactory.eINSTANCE.createQuery();
 			for (int i = 0; i < ME.size(); i++) {
-				query.getModelElements().add(ME.get(i));
+				if (ME.get(i).getDescription() != null) {
+					query.getModelElements().add(ME.get(i));
+				}
 			}
 
 			Directory dir = TraceRecoveryFactory.eINSTANCE.createDirectory();
@@ -298,7 +472,30 @@ public class SearchResult implements Listener {
 	 */
 	@Override
 	public void handleEvent(Event event) {
-		if (event.widget == table) {
+		if (event.type == SWT.MeasureItem) {
+			event.height = height;
+		} else if (event.widget == table) {
+			if(load){
+				IWorkbenchPage page  = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				Link link = (Link) content.get(table.getSelectionIndex());
+				
+				if(link.getTarget() instanceof CodeLocation){
+					File f = new File(((CodeLocation)link.getTarget()).getDescription());
+					IFileStore fileStore = EFS.getLocalFileSystem().getStore(f.toURI());
+					try {
+						IDE.openEditorOnFileStore(page, fileStore);
+					} catch (PartInitException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					
+				}
+				
+				
+				
+			}else 
+			
 			if (recovery.getImagevalue() == 1) {
 
 				IWorkbenchPage page = PlatformUI.getWorkbench()
@@ -315,8 +512,7 @@ public class SearchResult implements Listener {
 
 					} else {
 						// IDE.openEditorOnFileStore( page, fileStore );
-						IDE.openEditor(page, file.toURI(),
-								"org.eclipse.photran.ui.FortranEditor", true);
+						IDE.openEditorOnFileStore(page, fileStore);
 					}
 				} catch (PartInitException e) {
 					// TODO Auto-generated catch block
@@ -324,12 +520,46 @@ public class SearchResult implements Listener {
 				}
 
 			} else if (recovery.getImagevalue() == 2) {
+				link.get(table.getSelectionIndex()).getTarget()
+						.getModelElementId();
+
 				UnicaseActionHelper.openModelElement(
 						p.getModelElement(link.get(table.getSelectionIndex())
 								.getTarget().getModelElementId()),
 						link.get(table.getSelectionIndex()).getTarget()
 								.getModelElementId().getId());
 
+			}
+
+		}
+
+		if (event.widget == saveAs) {
+			FileDialog save = new FileDialog(Display.getCurrent()
+					.getActiveShell(), SWT.SAVE);
+			String path = save.open();
+			if (!path.endsWith("xml")) {
+				path += ".xml";
+			}
+			File f = new File(path);
+			Resource resource = new XMLResourceImpl(URI.createURI(f.toURI()
+					.toString()));
+			saveXML(resource);
+
+		}
+
+		System.out.print("Kalame kalame kalame kalamae");
+
+	}
+
+	public void saveXML(Resource resource) {
+		for (int i = 0; i < link.size(); i++) {
+			resource.getContents().add(link.get(i));
+			try {
+				resource.save(null);
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 
