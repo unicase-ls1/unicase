@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: TraceRecovery
 Bundle-SymbolicName: org.unicase.ui.traceRecovery;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.unicase.ui.tracerecovery.Activator
+Bundle-Activator: org.unicase.ui.traceRecovery.Activator
 Require-Bundle: org.unicase.traceRecovery.edit,
  org.eclipse.core.filesystem,
  org.eclipse.jdt.core,
