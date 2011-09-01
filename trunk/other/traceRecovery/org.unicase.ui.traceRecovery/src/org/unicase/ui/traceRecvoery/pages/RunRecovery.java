@@ -319,17 +319,25 @@ public class RunRecovery extends WizardPage implements Listener {
 		direction.addListener(SWT.Selection, this);
 		FormData fd_btnNewButton = new FormData();
 		fd_btnNewButton.top = new FormAttachment(0, 109);
-		fd_btnNewButton.left = new FormAttachment(ME, 50);
+		fd_btnNewButton.left = new FormAttachment(ME, 90);
 		direction.setLayoutData(fd_btnNewButton);
 
 		
-		Label lblChooseDirection = new Label(composite, SWT.NONE);
+		Label lblChooseDirection = new Label(composite, SWT.WRAP);
 		FormData fd_lblChooseDirection = new FormData();
-		fd_lblChooseDirection.bottom = new FormAttachment(direction, -5);
+		fd_lblChooseDirection.bottom = new FormAttachment(direction, -25);
 		fd_lblChooseDirection.left = new FormAttachment(ME, 50);
+		fd_lblChooseDirection.right = new FormAttachment(code,20,SWT.LEFT);
 		lblChooseDirection.setLayoutData(fd_lblChooseDirection);
-		lblChooseDirection.setText("Click");
+		lblChooseDirection.setText("Click button to change the");
 		
+		Label l = new Label(composite, SWT.NONE);
+		l.setText("direction the recovery is ran");
+		FormData fd_lblChoose = new FormData();
+		fd_lblChoose.bottom = new FormAttachment(direction, -5);
+		fd_lblChoose.left = new FormAttachment(ME, 50);
+		fd_lblChoose.right = new FormAttachment(code,20,SWT.LEFT);
+		l.setLayoutData(fd_lblChoose);
 		
 		
 		selectAllME = new Button(composite, SWT.CHECK);
