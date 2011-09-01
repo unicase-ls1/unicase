@@ -48,4 +48,50 @@
     </viewerContribution>
  </extension>
 
+
+ <extension
+       point="org.eclipse.ui.popupMenus">
+    <viewerContribution
+          id="org.unicase.ui.traceRecovery.viewerContribution1"
+          targetID="org.eclipse.jdt.ui.PackageExplorer">
+       <action
+             class="org.unicase.ui.tracerecovery.TraceRecoveryWizard"
+             id="LoadUnicase"
+             label="Load xml"
+             menubarPath = "Other...">
+       </action>
+    </viewerContribution>
+ </extension>
+ 
+ 
+ <extension
+       id="fortranLoad"
+       point="org.eclipse.ui.popupMenus">
+    <viewerContribution
+          id="org.unicase.ui.traceRecovery.viewerContribution1"
+          targetID="org.eclipse.photran.ui.FortranView">
+       <action
+             class="org.unicase.ui.tracerecovery.TraceRecoveryWizard"
+             id="LoadUnicase"
+             label="Load xml"
+             menubarPath = "Other...">
+       </action>
+    </viewerContribution>
+ </extension>
+ 
+ 
+ <extension
+       point="org.eclipse.ui.popupMenus">
+    <viewerContribution
+          id="org.unicase.ui.traceRecovery.viewerContribution2"
+          targetID="org.unicase.ui.navigator.viewer">
+       <action
+             class="org.unicase.ui.tracerecovery.TraceRecoveryWizard"
+             id="LoadUnicase"
+             label="Load xml"
+             menubarPath = "Other...">
+       </action>
+    </viewerContribution>
+ </extension>
+
 </plugin>
