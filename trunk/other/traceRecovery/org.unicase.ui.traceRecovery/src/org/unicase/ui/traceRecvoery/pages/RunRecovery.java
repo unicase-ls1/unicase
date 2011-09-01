@@ -323,6 +323,8 @@ public class RunRecovery extends WizardPage implements Listener {
 		direction.setLayoutData(fd_btnNewButton);
 
 		
+		
+		
 		Label lblChooseDirection = new Label(composite, SWT.WRAP);
 		FormData fd_lblChooseDirection = new FormData();
 		fd_lblChooseDirection.bottom = new FormAttachment(direction, -25);
