@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.unicase.ui.tracerecovery;
+package org.unicase.ui.traceRecovery;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,8 +39,8 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.metamodel.Project;
 import org.unicase.ui.traceRecovery.searchResult.SearchResult;
-import org.unicase.ui.traceRecvoery.pages.RunRecovery;
-import org.unicase.ui.traceRecvoery.pages.SelecDirectory;
+import org.unicase.ui.traceRecovery.traceRecvoery.pages.RunRecovery;
+import org.unicase.ui.traceRecovery.traceRecvoery.pages.SelecDirectory;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 

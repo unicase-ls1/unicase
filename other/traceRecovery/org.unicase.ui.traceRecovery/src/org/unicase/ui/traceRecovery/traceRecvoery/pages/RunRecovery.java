@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.unicase.ui.traceRecvoery.pages;
+package org.unicase.ui.traceRecovery.traceRecvoery.pages;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -69,13 +69,14 @@ import org.unicase.model.state.StateNode;
 import org.unicase.model.state.Transition;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
+import org.unicase.ui.traceRecovery.searchResult.SearchResult;
+import org.unicase.workspace.Workspace;
+
 import traceRecovery.Directory;
 import traceRecovery.TraceRecoveryFactory;
 import traceRecovery.Fortran.SearchFortran;
 import traceRecovery.Java.SearchJava;
 import traceRecovery.handler.Search;
-import org.unicase.ui.traceRecovery.searchResult.SearchResult;
-import org.unicase.workspace.Workspace;
 
 
 //import traceRecovery.ui.TreeItemHelper;

@@ -1,4 +1,4 @@
-package org.unicase.ui.tracerecovery;
+package org.unicase.ui.traceRecovery;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;

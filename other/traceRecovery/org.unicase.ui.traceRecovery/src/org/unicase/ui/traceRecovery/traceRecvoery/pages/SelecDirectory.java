@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.unicase.ui.traceRecvoery.pages;
+package org.unicase.ui.traceRecovery.traceRecvoery.pages;
 
 import java.io.File;
 

@@ -39,9 +39,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.ui.traceRecvoery.pages.RunRecovery;
-import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.model.trace.CodeLocation;
+import org.unicase.ui.traceRecovery.traceRecvoery.pages.RunRecovery;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 import traceRecovery.Directory;
 import traceRecovery.Link;
