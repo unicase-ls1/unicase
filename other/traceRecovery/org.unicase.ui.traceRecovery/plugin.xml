@@ -7,7 +7,7 @@
             id="org.unicase.ui.traceRecovery.viewerContribution1"
             targetID="org.unicase.ui.navigator.viewer">
          <action
-               class="org.unicase.ui.tracerecovery.TraceRecoveryWizard"
+               class="org.unicase.ui.traceRecovery.TraceRecoveryWizard"
                id="Unicase"
                label="Run Recovery"
                menubarPath="Other..."
@@ -25,7 +25,7 @@
           id="org.unicase.ui.traceRecovery.viewerContribution1"
           targetID="org.eclipse.jdt.ui.PackageExplorer">
        <action
-             class="org.unicase.ui.tracerecovery.TraceRecoveryWizard"
+             class="org.unicase.ui.traceRecovery.TraceRecoveryWizard"
              id="java"
              label="Run Recovery"
              menubarPath = "Other...">
@@ -40,7 +40,7 @@
           id="org.unicase.ui.traceRecovery.viewerContribution1"
           targetID="org.eclipse.photran.ui.FortranView">
        <action
-             class="org.unicase.ui.tracerecovery.TraceRecoveryWizard"
+             class="org.unicase.ui.traceRecovery.TraceRecoveryWizard"
              id="fortran"
              label="Run Recovery"
              menubarPath = "Other...">
@@ -55,7 +55,7 @@
           id="org.unicase.ui.traceRecovery.viewerContribution1"
           targetID="org.eclipse.jdt.ui.PackageExplorer">
        <action
-             class="org.unicase.ui.tracerecovery.TraceRecoveryWizard"
+             class="org.unicase.ui.traceRecovery.TraceRecoveryWizard"
              id="LoadUnicase"
              label="Load xml"
              menubarPath = "Other...">
@@ -71,7 +71,7 @@
           id="org.unicase.ui.traceRecovery.viewerContribution1"
           targetID="org.eclipse.photran.ui.FortranView">
        <action
-             class="org.unicase.ui.tracerecovery.TraceRecoveryWizard"
+             class="org.unicase.ui.traceRecovery.TraceRecoveryWizard"
              id="LoadUnicase"
              label="Load xml"
              menubarPath = "Other...">
@@ -86,7 +86,7 @@
           id="org.unicase.ui.traceRecovery.viewerContribution2"
           targetID="org.unicase.ui.navigator.viewer">
        <action
-             class="org.unicase.ui.tracerecovery.TraceRecoveryWizard"
+             class="org.unicase.ui.traceRecovery.TraceRecoveryWizard"
              id="LoadUnicase"
              label="Load xml"
              menubarPath = "Other...">
