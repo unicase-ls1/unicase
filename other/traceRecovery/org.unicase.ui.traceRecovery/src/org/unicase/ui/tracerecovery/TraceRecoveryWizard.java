@@ -57,6 +57,9 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 	IPath pat;
 	RunRecovery recovery;
 
+	
+	
+	
 	/*
 	 * (non-Javadoc)
 	 * 
