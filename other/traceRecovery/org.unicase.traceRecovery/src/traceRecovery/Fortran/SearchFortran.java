@@ -4,8 +4,12 @@
 package traceRecovery.Fortran;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 
+import org.apache.lucene.analysis.Token;
+import org.apache.lucene.analysis.TokenStream;
 import org.eclipse.photran.internal.core.analysis.binding.ScopingNode;
 import org.unicase.model.trace.CodeLocation;
 import org.unicase.model.trace.TraceFactory;
@@ -61,12 +65,25 @@ public class SearchFortran extends Search {
 
 				String name = file.get(i).getName();
 
-				// FortranSourceCodeAnalyzer analyzer = new
+				 FortranSourceCodeAnalyzer analyzer = new FortranSourceCodeAnalyzer();
 				// FortranSourceCodeAnalyzer();
 				CodeLocation loc;
 				for (int j = 0; j < comments.size(); j++) {
+					StringReader s = new StringReader(comments.get(j));
+					TokenStream stream = analyzer.tokenStream("comment", s);
+					Token token;
+					String commentss = "";
+					try {
+						while((token = stream.next())!=null){
+							commentss += token.termText(); 
+						}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
 					loc = TraceFactory.eINSTANCE.createCodeLocation();
-					loc.setDescription(comments.get(j));
+					loc.setDescription(commentss);
 					loc.setName(name);
 					q.getModelElements().add(loc);
 
@@ -74,7 +91,20 @@ public class SearchFortran extends Search {
 
 				for (int j = 0; j < subroutines.size(); j++) {
 					loc = TraceFactory.eINSTANCE.createCodeLocation();
-					loc.setDescription((subroutines.get(i)).getName(true));
+					
+					StringReader s = new StringReader(subroutines.get(i).getName(true));
+					TokenStream stream = analyzer.tokenStream("class", s);
+					Token token = null;
+					String text = "";
+					try {
+						while((token = stream.next()) != null ){
+							text += token.termText();
+						}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					loc.setDescription(text);
 					loc.setName(name);
 					q.getModelElements().add(loc);
 
