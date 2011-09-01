@@ -21,13 +21,11 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.metamodel.Project;
 
-
-
 /**
  * @author taher
- *
+ * 
  */
-public class SelecDirectory extends WizardPage implements Listener{
+public class SelecDirectory extends WizardPage implements Listener {
 
 	Button java;
 	Button fortran;
@@ -40,7 +38,7 @@ public class SelecDirectory extends WizardPage implements Listener{
 	String lastIndexPath;
 	String language;
 	Project project;
-	
+
 	/**
 	 * @return the project
 	 */
@@ -49,29 +47,34 @@ public class SelecDirectory extends WizardPage implements Listener{
 	}
 
 	/**
-	 * @param project the project to set
+	 * @param project
+	 *            the project to set
 	 */
 	public void setProject(Project project) {
 		this.project = project;
 	}
 
-	public SelecDirectory(){
+	public SelecDirectory() {
 		super("SelectDirectory");
 		setTitle("Select Directory");
 		setDescription("select the language and code,index Directory");
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets
+	 * .Composite)
 	 */
 	@Override
 	public void createControl(Composite parent) {
 		setPageComplete(false);
 		Composite controlor = new Composite(parent, SWT.NULL);
-		
+
 		GridLayout layout = new GridLayout(4, false);
 		controlor.setLayout(layout);
-		
+
 		Label chooseCodeType = new Label(controlor, SWT.NONE);
 		chooseCodeType.setText("Choose Language:");
 
@@ -84,15 +87,15 @@ public class SelecDirectory extends WizardPage implements Listener{
 		fortran = new Button(controlor, SWT.RADIO);
 		fortran.setText("Fortran");
 		fortran.addListener(SWT.Selection, this);
-		
+
 		Label code = new Label(controlor, SWT.NONE);
 		code.setText("Code Directory: ");
 
 		directoryString = new Text(controlor, SWT.BORDER);
 		directoryString.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
 				false, 2, 1));
-		
-		directoryString.setText(" ");
+
+		directoryString.setText("");
 
 		directory = new Button(controlor, SWT.NONE);
 		directory.addListener(SWT.Selection, this);
@@ -100,29 +103,25 @@ public class SelecDirectory extends WizardPage implements Listener{
 				0, 1));
 		directory.setText("Browse...");
 
-		
 		new Label(controlor, SWT.NONE);
 		new Label(controlor, SWT.NONE);
 		new Label(controlor, SWT.NONE);
 		new Label(controlor, SWT.NONE);
 
-		
-		GridData checkButtonLayout = new GridData(SWT.LEFT, SWT.FILL, false, false,
-				4,3 );
-		
+		GridData checkButtonLayout = new GridData(SWT.LEFT, SWT.FILL, false,
+				false, 4, 3);
+
 		checkButton = new Button(controlor, SWT.CHECK);
 		checkButton.setLayoutData(checkButtonLayout);
 		checkButton.setText("Select Lucene Directory");
 		checkButton.addListener(SWT.Selection, this);
-		
-		
+
 		Label index = new Label(controlor, SWT.NONE);
 		index.setText("Index Directory: ");
 
-	
 		FileSystemView fileview = FileSystemView.getFileSystemView();
 		File file = fileview.getHomeDirectory();
-		
+
 		indexString = new Text(controlor, SWT.BORDER);
 		indexString.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false,
 				2, 1));
@@ -136,190 +135,167 @@ public class SelecDirectory extends WizardPage implements Listener{
 		setIndexDirectory.setText("Browse...");
 		setIndexDirectory.setEnabled(false);
 
-		
-		
-		
-		
-		
-		
-		setControl(controlor);
-		
+		new Label(controlor, SWT.NONE);
+		new Label(controlor, SWT.NONE);
+		new Label(controlor, SWT.NONE);
+		new Label(controlor, SWT.NONE);
 
-		
+		Label label = new Label(controlor, SWT.WRAP);
+		label.setText("Choose a directory to place the Lucene index which will contain the indexing of the text to be searched");
+		label.setLayoutData(new GridData(SWT.LEFT, SWT.FILL, false, false, 4, 1));
+
+		setControl(controlor);
+
 	}
-	
-	
+
 	@Override
-	public boolean canFlipToNextPage(){
-		if(directoryString.getText().equals("") || indexString.getText().equals("") || !((java.getSelection()) ^ (fortran.getSelection()))){
+	public boolean canFlipToNextPage() {
+		if (directoryString.getText().equals("")
+				|| indexString.getText().equals("")
+				|| !((java.getSelection()) ^ (fortran.getSelection()))) {
 			return false;
-		}else {
-			if(java.getSelection()){
+		} else {
+			if (java.getSelection()) {
 				language = "java";
-			} else if(fortran.getSelection()){
+			} else if (fortran.getSelection()) {
 				language = "fortran";
 			}
-//			((RunRecovery)super.getNextPage()).setUp();
-			
-//			super.getNextPage().createControl(getShell());
+			// ((RunRecovery)super.getNextPage()).setUp();
+
+			// super.getNextPage().createControl(getShell());
 			return true;
 		}
-		
-//		return false;
+
+		// return false;
 	}
-	
+
 	@Override
 	public IWizardPage getNextPage() {
-		
-		if(super.getNextPage() instanceof RunRecovery){
 
-			
+		if (super.getNextPage() instanceof RunRecovery) {
+
 			RunRecovery recovery = (RunRecovery) super.getNextPage();
-			
 
 			lastPath = directoryString.getText();
 			lastIndexPath = indexString.getText();
-			
+
 			recovery.setP(project);
 			recovery.setPath(lastPath);
 			recovery.setIndexPath(lastIndexPath);
 			recovery.setCodeLanguage(language);
 			recovery.treeSetUp();
-			
 
 		}
 		return super.getNextPage();
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.
+	 * Event)
 	 */
 	@Override
 	public void handleEvent(Event event) {
 		if (event.widget == directory) {
 
 			DirectoryDialog dir = new DirectoryDialog(getShell());
-			if(directoryString.getText().equals(" ")){
+			if (directoryString.getText().equals(" ")) {
 				FileSystemView file = FileSystemView.getFileSystemView();
 				File f = file.getHomeDirectory();
-				dir.setFilterPath(f.getPath());	
-			}else {
+				dir.setFilterPath(f.getPath());
+			} else {
 				dir.setFilterPath(directoryString.getText());
 			}
-			
-			
-			
+
 			String path = dir.open();
 			// directoryString = new StyledText(shell, SWT.NONE);
 			directoryString.setText(path);
-//			canFlipToNextPage();
-//			lastPath = directoryString.getText();
+			// canFlipToNextPage();
+			// lastPath = directoryString.getText();
 			setPageComplete(false);
 			// directoryString.setSize(500, 100);
 			// DirectoryDialog dialog = new DirectoryDialog(shell);
 
 		} else if (event.widget == setIndexDirectory) {
 			DirectoryDialog dir = new DirectoryDialog(getShell());
-			if(indexString.getText().equals("")){
-				dir.setFilterPath("/home/taher");	
-			}else {
+			if (indexString.getText().equals("")) {
+				dir.setFilterPath("/home/taher");
+			} else {
 				dir.setFilterPath(indexString.getText());
 			}
-			
-			
+
 			String path = dir.open();
 			indexString.setText(path);
-//			lastIndexPath = indexString.getText();
+			// lastIndexPath = indexString.getText();
 			setPageComplete(false);
-			
-		} else if (event.widget == java){
+
+		} else if (event.widget == java) {
 			language = "java";
 			setPageComplete(false);
-		} else if (event.widget == fortran){
+		} else if (event.widget == fortran) {
 			language = "fortran";
 			setPageComplete(false);
-		}else if (event.widget == checkButton){
-			if(checkButton.getSelection()){
+		} else if (event.widget == checkButton) {
+			if (checkButton.getSelection()) {
 				indexString.setEnabled(true);
 				setIndexDirectory.setEnabled(true);
-			}else {
+			} else {
 				indexString.setEnabled(false);
 				setIndexDirectory.setEnabled(false);
 			}
-				
+
 		}
 
-		/*else if (event.widget == setDirectory) {
-
-			System.out.println("the next button was clicked");
-
-			File file = new File(directoryString.getText());
-			File f = new File(indexString.getText());
-			lastPath = directoryString.getText();
-			lastIndexPath = indexString.getText();
-			if (!file.exists()) {
-
-				MessageDialog
-						.open(SWT.ERROR,
-								getShell(),
-								"wrong path",
-								"You entered a wrong CODE path please enter a correct path",
-								SWT.None);
-				// sh = new Shell(display);
-				// sh.setLayout(new GridLayout());
-				// Label text = new Label(sh, SWT.None);
-				// text.setText("the entered path is not correct plz enter another path");
-				// ok = new Button(sh, SWT.PUSH);
-				// ok.setText("OK");
-				// ok.addListener(SWT.Selection, this);
-
-				// shell.dispose();
-				//
-				// sh.open();
-
-				// while (!sh.isDisposed()) {
-				// if (!display.readAndDispatch())
-				// display.sleep();
-				// }
-				// display.dispose();
-			} else if (!f.exists()) {
-
-				MessageDialog
-						.open(SWT.ERROR,
-								getShell(),
-								"wrong path",
-								"You entered a wrong INDEX path please enter a correct path",
-								SWT.None);
-
-			} else {
-
-				System.out
-						.println("this will start the check from the java and fortran is choosen");
-				if (!(java.getSelection() || fortran.getSelection())) {
-					MessageDialog.open(SWT.ERROR, getShell(),
-							"Programing Language not choosen",
-							"You must choose a programing language", SWT.None);
-
-				} else {
-
-					String language = "";
-					if (java.getSelection()) {
-						language = "java";
-					} else {
-						language = "fortran";
-					}
-
-					shell.dispose();
-
-					new RunRecovery().run(lastPath,lastIndexPath, language);
-				}
-			}
-		}
-*/
-		
+		/*
+		 * else if (event.widget == setDirectory) {
+		 * 
+		 * System.out.println("the next button was clicked");
+		 * 
+		 * File file = new File(directoryString.getText()); File f = new
+		 * File(indexString.getText()); lastPath = directoryString.getText();
+		 * lastIndexPath = indexString.getText(); if (!file.exists()) {
+		 * 
+		 * MessageDialog .open(SWT.ERROR, getShell(), "wrong path",
+		 * "You entered a wrong CODE path please enter a correct path",
+		 * SWT.None); // sh = new Shell(display); // sh.setLayout(new
+		 * GridLayout()); // Label text = new Label(sh, SWT.None); //
+		 * text.setText
+		 * ("the entered path is not correct plz enter another path"); // ok =
+		 * new Button(sh, SWT.PUSH); // ok.setText("OK"); //
+		 * ok.addListener(SWT.Selection, this);
+		 * 
+		 * // shell.dispose(); // // sh.open();
+		 * 
+		 * // while (!sh.isDisposed()) { // if (!display.readAndDispatch()) //
+		 * display.sleep(); // } // display.dispose(); } else if (!f.exists()) {
+		 * 
+		 * MessageDialog .open(SWT.ERROR, getShell(), "wrong path",
+		 * "You entered a wrong INDEX path please enter a correct path",
+		 * SWT.None);
+		 * 
+		 * } else {
+		 * 
+		 * System.out
+		 * .println("this will start the check from the java and fortran is choosen"
+		 * ); if (!(java.getSelection() || fortran.getSelection())) {
+		 * MessageDialog.open(SWT.ERROR, getShell(),
+		 * "Programing Language not choosen",
+		 * "You must choose a programing language", SWT.None);
+		 * 
+		 * } else {
+		 * 
+		 * String language = ""; if (java.getSelection()) { language = "java"; }
+		 * else { language = "fortran"; }
+		 * 
+		 * shell.dispose();
+		 * 
+		 * new RunRecovery().run(lastPath,lastIndexPath, language); } } }
+		 */
 
 	}
-	
+
 	/**
 	 * @return the checkButton
 	 */
@@ -328,12 +304,12 @@ public class SelecDirectory extends WizardPage implements Listener{
 	}
 
 	/**
-	 * @param checkButton the checkButton to set
+	 * @param checkButton
+	 *            the checkButton to set
 	 */
 	public void setCheckButton(Button checkButton) {
 		this.checkButton = checkButton;
 	}
-
 
 	/**
 	 * @return the java
@@ -343,7 +319,8 @@ public class SelecDirectory extends WizardPage implements Listener{
 	}
 
 	/**
-	 * @param java the java to set
+	 * @param java
+	 *            the java to set
 	 */
 	public void setJava(Button java) {
 		this.java = java;
@@ -357,7 +334,8 @@ public class SelecDirectory extends WizardPage implements Listener{
 	}
 
 	/**
-	 * @param fortran the fortran to set
+	 * @param fortran
+	 *            the fortran to set
 	 */
 	public void setFortran(Button fortran) {
 		this.fortran = fortran;
@@ -371,7 +349,8 @@ public class SelecDirectory extends WizardPage implements Listener{
 	}
 
 	/**
-	 * @param directoryString the directoryString to set
+	 * @param directoryString
+	 *            the directoryString to set
 	 */
 	public void setDirectoryString(Text directoryString) {
 		this.directoryString = directoryString;
@@ -385,7 +364,8 @@ public class SelecDirectory extends WizardPage implements Listener{
 	}
 
 	/**
-	 * @param indexString the indexString to set
+	 * @param indexString
+	 *            the indexString to set
 	 */
 	public void setIndexString(Text indexString) {
 		this.indexString = indexString;
@@ -399,7 +379,8 @@ public class SelecDirectory extends WizardPage implements Listener{
 	}
 
 	/**
-	 * @param directory the directory to set
+	 * @param directory
+	 *            the directory to set
 	 */
 	public void setDirectory(Button directory) {
 		this.directory = directory;
@@ -413,7 +394,8 @@ public class SelecDirectory extends WizardPage implements Listener{
 	}
 
 	/**
-	 * @param setIndexDirectory the setIndexDirectory to set
+	 * @param setIndexDirectory
+	 *            the setIndexDirectory to set
 	 */
 	public void setSetIndexDirectory(Button setIndexDirectory) {
 		this.setIndexDirectory = setIndexDirectory;
@@ -427,7 +409,8 @@ public class SelecDirectory extends WizardPage implements Listener{
 	}
 
 	/**
-	 * @param lastPath the lastPath to set
+	 * @param lastPath
+	 *            the lastPath to set
 	 */
 	public void setLastPath(String lastPath) {
 		this.lastPath = lastPath;
@@ -441,7 +424,8 @@ public class SelecDirectory extends WizardPage implements Listener{
 	}
 
 	/**
-	 * @param lastIndexPath the lastIndexPath to set
+	 * @param lastIndexPath
+	 *            the lastIndexPath to set
 	 */
 	public void setLastIndexPath(String lastIndexPath) {
 		this.lastIndexPath = lastIndexPath;
@@ -455,7 +439,8 @@ public class SelecDirectory extends WizardPage implements Listener{
 	}
 
 	/**
-	 * @param language the language to set
+	 * @param language
+	 *            the language to set
 	 */
 	public void setLanguage(String language) {
 		this.language = language;
