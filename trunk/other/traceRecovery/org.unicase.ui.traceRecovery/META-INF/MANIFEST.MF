@@ -13,4 +13,5 @@ Require-Bundle: org.unicase.traceRecovery.edit,
  org.eclipse.cdt
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: org.eclipse.cdt.internal.core.model
+Import-Package: org.eclipse.cdt.internal.core.model,
+ org.unicase.model.trace
