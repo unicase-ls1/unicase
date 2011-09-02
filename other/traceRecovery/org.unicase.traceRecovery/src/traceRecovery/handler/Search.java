@@ -257,11 +257,11 @@ public class Search {
 
 	ArrayList<Link> links = new ArrayList<Link>();
 
-	File f = new File("/home/taher/Downloads/eclipse (developer)/taher.xml");
-
-	java.net.URI u = f.toURI();
-	URI uri = URI.createURI(u.toString());
-	Resource resource = new XMLResourceImpl(uri);
+//	File f = new File("/home/taher/Downloads/eclipse (developer)/taher.xml");
+//
+//	java.net.URI u = f.toURI();
+//	URI uri = URI.createURI(u.toString());
+//	Resource resource = new XMLResourceImpl(uri);
 
 	public void create(String tex, ArrayList<Hits> hits, int i, int j,
 			Query query, String type) throws IOException {
@@ -289,11 +289,11 @@ public class Search {
 					link.setTarget(location);
 					link.setType(type);
 
-					Resource r = new XMLResourceImpl(uri);
-					r.getContents().add(location);
-
-					resource.getContents().add(link);
-					resource.save(null);
+//					Resource r = new XMLResourceImpl(uri);
+//					r.getContents().add(location);
+//
+//					resource.getContents().add(link);
+//					resource.save(null);
 					links.add(link);
 					text.add(line);
 
