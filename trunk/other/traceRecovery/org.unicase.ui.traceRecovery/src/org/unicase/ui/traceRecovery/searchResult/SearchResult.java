@@ -42,6 +42,7 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.trace.CodeLocation;
 import org.unicase.ui.traceRecovery.traceRecvoery.pages.RunRecovery;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
+import org.unicase.workspace.util.UnicaseCommand;
 
 import traceRecovery.Directory;
 import traceRecovery.Link;
@@ -179,7 +180,7 @@ public class SearchResult implements Listener {
 			text[2] = link.getConfidence() + "";
 			text[3] = link.getType();
 
-			for (int j = 0; j < 3; j++) {
+			for (int j = 0; j < 4; j++) {
 				item.setText(j, text[j]);
 
 			}
@@ -475,27 +476,27 @@ public class SearchResult implements Listener {
 		if (event.type == SWT.MeasureItem) {
 			event.height = height;
 		} else if (event.widget == table) {
-			if(load){
-				IWorkbenchPage page  = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			if (load) {
+				IWorkbenchPage page = PlatformUI.getWorkbench()
+						.getActiveWorkbenchWindow().getActivePage();
 				Link link = (Link) content.get(table.getSelectionIndex());
-				
-				if(link.getTarget() instanceof CodeLocation){
-					File f = new File(((CodeLocation)link.getTarget()).getDescription());
-					IFileStore fileStore = EFS.getLocalFileSystem().getStore(f.toURI());
+
+				if (link.getTarget() instanceof CodeLocation) {
+					File f = new File(
+							((CodeLocation) link.getTarget()).getDescription());
+					IFileStore fileStore = EFS.getLocalFileSystem().getStore(
+							f.toURI());
 					try {
 						IDE.openEditorOnFileStore(page, fileStore);
 					} catch (PartInitException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
-					
+
 				}
-				
-				
-				
-			}else 
-			
+
+			} else
+
 			if (recovery.getImagevalue() == 1) {
 
 				IWorkbenchPage page = PlatformUI.getWorkbench()
@@ -551,16 +552,50 @@ public class SearchResult implements Listener {
 
 	}
 
+	class HelpWrite extends UnicaseCommand{
+		Link link;
+		Project project;
+		public HelpWrite(Link link, Project p){
+			this.link = link;
+			project = p;
+		}
+
+		/* (non-Javadoc)
+		 * @see org.unicase.workspace.util.UnicaseCommand#doRun()
+		 */
+		@Override
+		protected void doRun() {
+			// TODO Auto-generated method stub
+			project.addModelElement(link.getTarget());
+		}
+	}
+	
 	public void saveXML(Resource resource) {
 		for (int i = 0; i < link.size(); i++) {
-			resource.getContents().add(link.get(i));
-			try {
-				resource.save(null);
-
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if (link.get(i).getTarget() instanceof CodeLocation) {
+				
+				new HelpWrite(link.get(i), p).run();
+				
+//				ProjectSpace projectSpace = (ProjectSpace) p.eContainer();
+//				
+//				CompositeOperationHandle operationHandle = projectSpace.beginCompositeOperation();
+//				
+//				
+//				p.getModelElements().add(link.get(i).getTarget());
+//				
+//				p.addModelElement(link.get(i).getTarget());
+			}else {
+				p.addModelElement(link.get(i).getSource());
 			}
+			resource.getContents().add(link.get(i));
+
+		}
+
+		try {
+			resource.save(null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
