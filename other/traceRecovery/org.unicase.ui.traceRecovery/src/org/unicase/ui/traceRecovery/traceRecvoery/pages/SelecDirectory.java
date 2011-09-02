@@ -141,7 +141,7 @@ public class SelecDirectory extends WizardPage implements Listener {
 		new Label(controlor, SWT.NONE);
 
 		Label label = new Label(controlor, SWT.WRAP);
-		label.setText("Choose a directory to place the Lucene index which will contain the indexing of the text to be searched");
+		label.setText("Choose a directory to place the Lucene index in. This index will contain the text that will be searched");
 		label.setLayoutData(new GridData(SWT.LEFT, SWT.FILL, false, false, 4, 1));
 
 		setControl(controlor);
@@ -205,6 +205,7 @@ public class SelecDirectory extends WizardPage implements Listener {
 				FileSystemView file = FileSystemView.getFileSystemView();
 				File f = file.getHomeDirectory();
 				dir.setFilterPath(f.getPath());
+				
 			} else {
 				dir.setFilterPath(directoryString.getText());
 			}
@@ -221,7 +222,10 @@ public class SelecDirectory extends WizardPage implements Listener {
 		} else if (event.widget == setIndexDirectory) {
 			DirectoryDialog dir = new DirectoryDialog(getShell());
 			if (indexString.getText().equals("")) {
-				dir.setFilterPath("/home/taher");
+				
+				FileSystemView file = FileSystemView.getFileSystemView();
+				File f = file.getHomeDirectory();
+				dir.setFilterPath(f.getPath());
 			} else {
 				dir.setFilterPath(indexString.getText());
 			}
