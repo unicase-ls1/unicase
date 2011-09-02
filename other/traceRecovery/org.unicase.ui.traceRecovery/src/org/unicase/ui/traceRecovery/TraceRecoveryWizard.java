@@ -325,12 +325,17 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 
 			if (wizard.producer == "fortran") {
 				wizard.dir.getFortran().setSelection(true);
+
+//				FileSystemView file = FileSystemView.getFileSystemView();
+//				File f = file.getHomeDirectory();
+				
+//				wizard.dir.setIndexString(f.getPath());
 				wizard.dir.setPageComplete(false);
 				wizard.dir.getJava().setEnabled(false);
 				wizard.dir.getFortran().setEnabled(false);
 			}else if (wizard.producer == "java"){
 				wizard.dir.getJava().setSelection(true);
-				wizard.dir.setPageComplete(false);
+				
 				wizard.dir.getJava().setEnabled(false);
 				wizard.dir.getFortran().setEnabled(false);
 			}
@@ -339,6 +344,7 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 						wizard.pat.toPortableString());
 				wizard.dir.getDirectoryString().setEnabled(false);
 				wizard.dir.getDirectory().setEnabled(false);
+				wizard.dir.setPageComplete(false);
 //				wizard.dir.getJava().setSelection(true);
 				
 				
