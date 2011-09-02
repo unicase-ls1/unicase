@@ -335,7 +335,7 @@ public class RunRecovery extends WizardPage implements Listener {
 		lblChooseDirection.setText("Click button to change the");
 		
 		Label l = new Label(composite, SWT.NONE);
-		l.setText("direction the recovery is ran");
+		l.setText("direction the recovery is going to run");
 		FormData fd_lblChoose = new FormData();
 		fd_lblChoose.bottom = new FormAttachment(direction, -5);
 		fd_lblChoose.left = new FormAttachment(ME, 50);
