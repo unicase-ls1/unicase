@@ -57,7 +57,7 @@
        <action
              class="org.unicase.ui.traceRecovery.TraceRecoveryWizard"
              id="LoadUnicase"
-             label="Load xml"
+             label="Load Recovered Links"
              menubarPath = "Other...">
        </action>
     </viewerContribution>
@@ -73,7 +73,7 @@
        <action
              class="org.unicase.ui.traceRecovery.TraceRecoveryWizard"
              id="LoadUnicase"
-             label="Load xml"
+             label="Load Recovered Links"
              menubarPath = "Other...">
        </action>
     </viewerContribution>
@@ -88,7 +88,7 @@
        <action
              class="org.unicase.ui.traceRecovery.TraceRecoveryWizard"
              id="LoadUnicase"
-             label="Load xml"
+             label="Load Recovered Links"
              menubarPath = "Other...">
        </action>
     </viewerContribution>

@@ -13,6 +13,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyleRange;
@@ -39,6 +40,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.document.CompositeSection;
+import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.document.LeafSection;
 import org.unicase.model.trace.CodeLocation;
 import org.unicase.ui.traceRecovery.traceRecvoery.pages.RunRecovery;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
@@ -56,10 +60,10 @@ import traceRecovery.TraceRecoveryFactory;
 public class SearchResult implements Listener {
 
 	Table table;
-	ArrayList<Link> link;
+	ArrayList<Link> links;
 	RunRecovery recovery;
 	Composite composite;
-	Project p;
+	Project project;
 	Shell parent;
 	Rectangle point;
 	FontMetrics fm;
@@ -67,6 +71,12 @@ public class SearchResult implements Listener {
 	Button saveAs;
 	Resource resource;
 	boolean load = false;
+	
+	//for the xml resource
+	EList<EObject> content;
+	private CompositeSection compositeDocument;
+	private LeafSection codeLocationDoc;
+	private LeafSection linkDoc;
 
 	/**
 	 * @return the resource
@@ -156,60 +166,29 @@ public class SearchResult implements Listener {
 			saveAs.setText("Save As..");
 			saveAs.addListener(SWT.Selection, this);
 
-			Recovery();
+			createRecoveryResultPage();
 		} else if (choose.equals("load")) {
 			load = true;
 			populate();
 		}
 	}
 
-	EList<EObject> content;
 
+
+	/**
+	 * Load the XML resource of the recovered links and creates the layout of the recovered links result page.
+	 */
 	public void populate() {
 
 		content = resource.getContents();
 
-		for (int i = 0; i < content.size(); i++) {
-			TableItem item = new TableItem(table, SWT.NONE);
-			String[] text = new String[5];
-
-			Link link = (Link) content.get(i);
-
-			text[0] = link.getSource().getName();
-			text[1] = link.getTarget().getName();
-			text[2] = link.getConfidence() + "";
-			text[3] = link.getType();
-
-			for (int j = 0; j < 4; j++) {
-				item.setText(j, text[j]);
-
-			}
-
-		}
-
-		for (int i = 0; i < table.getColumnCount(); i++) {
-			table.getColumn(i).pack();
-		}
-
-		parent.layout();
-		parent.pack();
-		parent.open();
+		createResultPageLayout();
 	}
 
-	/**
-	 * called to start the recovery process
-	 */
-
-	public void Recovery() {
-		if (recovery.getImagevalue() == 1) {
-			link = recoveryMEtoCode();
-		} else if (recovery.getImagevalue() == 2) {
-			link = recoveryCodetoME(recovery.getCodeLanguage());
-		}
-
-		for (int i = 0; i < link.size(); i++) {
+	private void createResultPageLayout() {
+		for (int i = 0; i < links.size(); i++) {
 			TableItem item = new TableItem(table, SWT.NONE);
-			Link result = link.get(i);
+			Link result = links.get(i);
 			String[] text = new String[5];
 			text[0] = result.getSource().getName();
 			text[1] = result.getTarget().getName();
@@ -267,10 +246,24 @@ public class SearchResult implements Listener {
 		parent.layout();
 		parent.pack();
 		parent.open();
+	}
+
+	/**
+	 * called to start the recovery process
+	 */
+
+	private void createRecoveryResultPage() {
+		if (recovery.getImagevalue() == 1) {
+			links = recoverMEtoCode();
+		} else if (recovery.getImagevalue() == 2) {
+			links = recoverCodetoME(recovery.getCodeLanguage());
+		}
+
+		createResultPageLayout();
 
 	}
 
-	public ArrayList<StyleRange> higlightRange(String text) {
+	private ArrayList<StyleRange> higlightRange(String text) {
 
 		int start;
 		int end;
@@ -301,29 +294,6 @@ public class SearchResult implements Listener {
 		}
 
 		return r;
-		// int j = 0;
-		// for (int i = 0; i < text.length(); i++) {
-		// if (text.charAt(i) == '<' && !first) {
-		// startOffset = i;
-		// first = true;
-		// j = 0;
-		//
-		// } else if (text.charAt(i) == '<') {
-		// StyleRange range = new StyleRange();
-		// range.start = startOffset;
-		// range.length = i - startOffset;
-		// endOffset = range.length + 2;
-		// range.fontStyle = SWT.BOLD;
-		// range.foreground = Display.getCurrent().getSystemColor(
-		// SWT.COLOR_BLUE);
-		// r.add(range);
-		// first = false;
-		// }
-		// else{
-		// j++;
-		// }
-		// }
-		// return r;
 	}
 
 	/**
@@ -333,7 +303,7 @@ public class SearchResult implements Listener {
 	 * @return this is the arraylist of the hits that occured in the search
 	 */
 
-	public ArrayList<Link> recoveryMEtoCode() {
+	private ArrayList<Link> recoverMEtoCode() {
 		try {
 			ArrayList<UnicaseModelElement> ME = recovery.getChoosenME();
 
@@ -367,7 +337,7 @@ public class SearchResult implements Listener {
 	 * @return this is an array list of the links of the result of the search
 	 *         done to retrieve the Model Elements
 	 */
-	public ArrayList<Link> recoveryCodetoME(String type) {
+	private ArrayList<Link> recoverCodetoME(String type) {
 
 		ArrayList<String> dirs = recovery.getDir();
 		ArrayList<File> files = new ArrayList<File>();
@@ -408,7 +378,7 @@ public class SearchResult implements Listener {
 	 * @return the link
 	 */
 	public ArrayList<Link> getLink() {
-		return link;
+		return links;
 	}
 
 	/**
@@ -416,7 +386,7 @@ public class SearchResult implements Listener {
 	 *            the link to set
 	 */
 	public void setLink(ArrayList<Link> link) {
-		this.link = link;
+		this.links = link;
 	}
 
 	/**
@@ -450,18 +420,18 @@ public class SearchResult implements Listener {
 	}
 
 	/**
-	 * @return the p
+	 * @return the project
 	 */
-	public Project getP() {
-		return p;
+	public Project getProject() {
+		return project;
 	}
 
 	/**
 	 * @param p
 	 *            the p to set
 	 */
-	public void setP(Project p) {
-		this.p = p;
+	public void setProject(Project p) {
+		this.project = p;
 	}
 
 	/*
@@ -501,7 +471,7 @@ public class SearchResult implements Listener {
 
 				IWorkbenchPage page = PlatformUI.getWorkbench()
 						.getActiveWorkbenchWindow().getActivePage();
-				File file = new File(link.get(table.getSelectionIndex())
+				File file = new File(links.get(table.getSelectionIndex())
 						.getTarget().getDescription());
 				IFileStore fileStore = EFS.getLocalFileSystem().getStore(
 						file.toURI());
@@ -521,13 +491,13 @@ public class SearchResult implements Listener {
 				}
 
 			} else if (recovery.getImagevalue() == 2) {
-				link.get(table.getSelectionIndex()).getTarget()
+				links.get(table.getSelectionIndex()).getTarget()
 						.getModelElementId();
 
 				UnicaseActionHelper.openModelElement(
-						p.getModelElement(link.get(table.getSelectionIndex())
+						project.getModelElement(links.get(table.getSelectionIndex())
 								.getTarget().getModelElementId()),
-						link.get(table.getSelectionIndex()).getTarget()
+						links.get(table.getSelectionIndex()).getTarget()
 								.getModelElementId().getId());
 
 			}
@@ -566,32 +536,50 @@ public class SearchResult implements Listener {
 		@Override
 		protected void doRun() {
 			// TODO Auto-generated method stub
-			project.addModelElement(link.getTarget());
+	
+			UnicaseModelElement target = link.getTarget();
+			project.addModelElement(target);
+			target.setLeafSection(codeLocationDoc);
+			
+			project.addModelElement(link);
+			link.setLeafSection(linkDoc);
+			
 		}
 	}
 	
-	public void saveXML(Resource resource) {
-		for (int i = 0; i < link.size(); i++) {
-			if (link.get(i).getTarget() instanceof CodeLocation) {
+	private void saveXML(Resource resource) {
+		new UnicaseCommand() {
+			
+			@Override
+			protected void doRun() {
+				compositeDocument = DocumentFactory.eINSTANCE.createCompositeSection();
+				compositeDocument.setName("Traceability");
+				project.addModelElement(compositeDocument);
 				
-				new HelpWrite(link.get(i), p).run();
+				codeLocationDoc = DocumentFactory.eINSTANCE.createLeafSection();
+				codeLocationDoc.setName("Code Locations");
+				project.addModelElement(codeLocationDoc);
+				compositeDocument.getSubsections().add(codeLocationDoc);
 				
-//				ProjectSpace projectSpace = (ProjectSpace) p.eContainer();
-//				
-//				CompositeOperationHandle operationHandle = projectSpace.beginCompositeOperation();
-//				
-//				
-//				p.getModelElements().add(link.get(i).getTarget());
-//				
-//				p.addModelElement(link.get(i).getTarget());
-			}else {
-				p.addModelElement(link.get(i).getSource());
+				linkDoc = DocumentFactory.eINSTANCE.createLeafSection();
+				linkDoc.setName("Traceability Links");
+				project.addModelElement(linkDoc);
+				compositeDocument.getSubsections().add(linkDoc);
+				
 			}
-			resource.getContents().add(link.get(i));
-
+		}.run(true);
+		
+		
+		for (int i = 0; i < links.size(); i++) {
+			
+				
+				new HelpWrite(links.get(i), project).run(true);
+				
+	
 		}
 
 		try {
+			resource.getContents().add(EcoreUtil.copy(linkDoc));
 			resource.save(null);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -90,7 +90,6 @@ public class RunRecovery extends WizardPage implements Listener {
 	Tree code;
 	Tree ME;
 	Display display;
-	boolean firstTime;
 	Queue<TreeItemHelper> directories;
 	Button direction;
 	Button search;
@@ -315,7 +314,7 @@ public class RunRecovery extends WizardPage implements Listener {
 		direction = new Button(composite, SWT.PUSH);
 		direction.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
 		// direction.setText("this is a button");
-		Image image = new Image(display, "Screenshot-1.png");
+		Image image = new Image(display, "/Screenshot-1.png");
 		direction.setImage(image);
 		direction.addListener(SWT.Selection, this);
 		FormData fd_btnNewButton = new FormData();
@@ -369,21 +368,6 @@ public class RunRecovery extends WizardPage implements Listener {
 
 	}
 
-//	/**
-//	 * allows to enable the next button when all fields are choosen correctly
-//	 */
-//	@Override
-//	public boolean canFlipToNextPage() {
-//
-//		if (!choosenME()
-//				|| (!code.getItem(0).getGrayed() && !code.getItem(0)
-//						.getChecked())) {
-//			return false;
-//		} else {
-//			return true;
-//		}
-//
-//	}
 
 	public void treeSetUp() {
 		File dir = new File(path);
@@ -405,7 +389,6 @@ public class RunRecovery extends WizardPage implements Listener {
 		}
 	}
 
-	boolean first = false;
 
 	/**
 	 * this will get the directories of the chosen files from the tree
@@ -418,7 +401,7 @@ public class RunRecovery extends WizardPage implements Listener {
 	 *            from
 	 */
 
-	void directoriesBuild(TreeItem item, String mainPath) {
+	private void directoriesBuild(TreeItem item, String mainPath) {
 
 		// File fff = new File(path);
 
@@ -522,79 +505,13 @@ public class RunRecovery extends WizardPage implements Listener {
 		
 		SearchResult runRecovery = new SearchResult();
 		runRecovery.setRecovery(this);
-		runRecovery.setP(getP());
+		runRecovery.setProject(getP());
 		runRecovery.setPoint(this.getShell().getBounds());
 		runRecovery.createControl("recovery");
-//		runRecovery.Recovery();
-		
-//		runRecovery = 
-		
-//		runRecovery = (SearchResult) super.getNextPage();
 
-//		runRecovery.getTable().removeAll();
-
-//		runRecovery.setRecovery(this);
-
-//		runRecovery.Recovery();
 	}
 
-//	@Override
-//	public IWizardPage getNextPage() {
-//
-//		recovery = new Search();
-//
-//		recovery.setProject(getP());
-//
-//		Directory codeDir = TraceRecoveryFactory.eINSTANCE.createDirectory();
-//		codeDir.setPath(path);
-//
-//		Directory sourceDir = TraceRecoveryFactory.eINSTANCE.createDirectory();
-//		sourceDir.setPath(indexPath);
-//
-//		if (choosenME.size() > 0) {
-//			choosenME.clear();
-//
-//		}
-//
-//		choosenME();
-//		recovery.setAnalyzer(codeLanguage);
-//		if (imagevalue == 1) {
-//			if (codeLanguage == "java") {
-//				recovery.setIndexer("java", codeDir, sourceDir);
-//			} else if (codeLanguage == "fortran") {
-//				recovery.setIndexer("fortran", codeDir, sourceDir);
-//			}
-//
-//			if (code.getItem(0).getChecked()) {
-//				recovery.index();
-//			} else {
-//				directoriesBuild(code.getItem(0), code.getItem(0).getText());
-//				recovery.index(dir);
-//			}
-//
-//		} else {
-//
-//			if (code.getItem(0).getChecked()) {
-//				dir.add(code.getItem(0).getText());
-//			} else {
-//				directoriesBuild(code.getItem(0), code.getItem(0).getText());
-//			}
-//
-//			recovery.setIndexer("me", codeDir, sourceDir);
-//
-//			recovery.indexMe(choosenME, sourceDir);
-//		}
-//
-////		runRecovery = (SearchResult) super.getNextPage();
-//
-////		runRecovery.getTable().removeAll();
-//
-////		runRecovery.setRecovery(this);
-//
-////		runRecovery.Recovery();
-//
-//		return super.getNextPage();
-//	}
+
 
 	/**
 	 * @return the recovery
@@ -641,20 +558,7 @@ public class RunRecovery extends WizardPage implements Listener {
 		this.composite = composite;
 	}
 
-	/**
-	 * @return the first
-	 */
-	public boolean isFirst() {
-		return first;
-	}
 
-	/**
-	 * @param first
-	 *            the first to set
-	 */
-	public void setFirst(boolean first) {
-		this.first = first;
-	}
 
 	/**
 	 * Checks to see if any of the Model elements where chosen to allow for the
@@ -1543,7 +1447,7 @@ public class RunRecovery extends WizardPage implements Listener {
 	 * @param checked
 	 *            if it was checked or unchecked
 	 */
-	void checkItems(TreeItem item, boolean checked) {
+	private void checkItems(TreeItem item, boolean checked) {
 		item.setGrayed(false);
 		item.setChecked(checked);
 		TreeItem[] items = item.getItems();
@@ -1563,7 +1467,7 @@ public class RunRecovery extends WizardPage implements Listener {
 	 * @param grayed
 	 *            if it was grayed or not.
 	 */
-	void checkPath(TreeItem item, boolean checked, boolean grayed) {
+	private void checkPath(TreeItem item, boolean checked, boolean grayed) {
 		if (item == null)
 			return;
 
@@ -1628,20 +1532,7 @@ public class RunRecovery extends WizardPage implements Listener {
 		this.display = display;
 	}
 
-	/**
-	 * @return the firstTime
-	 */
-	public boolean isFirstTime() {
-		return firstTime;
-	}
 
-	/**
-	 * @param firstTime
-	 *            the firstTime to set
-	 */
-	public void setFirstTime(boolean firstTime) {
-		this.firstTime = firstTime;
-	}
 
 	/**
 	 * @return the directories

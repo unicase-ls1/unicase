@@ -40,7 +40,7 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.metamodel.Project;
 import org.unicase.ui.traceRecovery.searchResult.SearchResult;
 import org.unicase.ui.traceRecovery.traceRecvoery.pages.RunRecovery;
-import org.unicase.ui.traceRecovery.traceRecvoery.pages.SelecDirectory;
+import org.unicase.ui.traceRecovery.traceRecvoery.pages.SelectDirectory;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -54,8 +54,12 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 		IViewActionDelegate {
 
 	Project project;
-	IPath pat;
+	IPath path;
 	RunRecovery recovery;
+	
+	String producer;
+	
+	SelectDirectory dirPage;
 
 	
 	
@@ -87,8 +91,7 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 		this.project = project;
 	}
 
-	boolean bol;
-	SelecDirectory dir;
+
 
 	
 	
@@ -99,19 +102,19 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 	public void addPages() {
 		// if (bol) {
 		setWindowTitle("Run Recovery");
-		dir = new SelecDirectory();
-		dir.setProject(getActiveProject());
-		addPage(dir);
+		dirPage = new SelectDirectory();
+		dirPage.setProject(getActiveProject());
+		addPage(dirPage);
 
 		if (producer == "java") {
 
-			dir.setLastPath(pat.toPortableString());
+			dirPage.setLastPath(path.toPortableString());
 			// dir.getDirectoryString().setText(pat.toPortableString());
 			// dir.getDirectoryString().setEnabled(false);
 			// dir.getDirectory().setEnabled(false);
 
 		} else if (producer == "fortran") {
-			dir.setLastPath(pat.toPortableString());
+			dirPage.setLastPath(path.toPortableString());
 		}
 
 		recovery = new RunRecovery();
@@ -151,7 +154,7 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 		return null;
 	}
 
-	String producer;
+	
 
 	@Override
 	public boolean canFinish(){
@@ -202,7 +205,7 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 				IJavaProject p = (IJavaProject) parent;
 
 				IProject project = p.getProject();
-				wizard.pat = project.getLocation();
+				wizard.path = project.getLocation();
 				havePath = true;
 				java = true;
 				
@@ -228,7 +231,7 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 			if (!havePath && java) {
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 				IFolder folder = root.getFolder(path);
-				wizard.pat = folder.getLocation();
+				wizard.path = folder.getLocation();
 				havePath = true;
 			}
 			else if(!java){
@@ -255,7 +258,7 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 			if(parent instanceof CProject){
 				CProject project = (CProject) parent;
 				IProject p = project.getProject();
-				wizard.pat = p.getLocation();
+				wizard.path = p.getLocation();
 				havePath = true;
 				fortran = true;
 				
@@ -271,7 +274,7 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 			if(!havePath && fortran){
 			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 			IFolder folder = root.getFolder(path);
-			wizard.pat = folder.getLocation();
+			wizard.path = folder.getLocation();
 			
 			}else if(!fortran){
 				MessageDialog
@@ -313,10 +316,6 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 		project = getActiveProject();
 		if (project != null) {
 
-			// wizard.addPages();
-//			Shell shell = getShell();
-
-			bol = true;
 
 			if(openWizard &&  !load){
 			
@@ -324,27 +323,31 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 			dialog.create();
 
 			if (wizard.producer == "fortran") {
-				wizard.dir.getFortran().setSelection(true);
+
+				wizard.dirPage.getFortran().setSelection(true);
 
 //				FileSystemView file = FileSystemView.getFileSystemView();
 //				File f = file.getHomeDirectory();
 				
 //				wizard.dir.setIndexString(f.getPath());
-				wizard.dir.setPageComplete(false);
-				wizard.dir.getJava().setEnabled(false);
-				wizard.dir.getFortran().setEnabled(false);
+				wizard.dirPage.setPageComplete(false);
+				wizard.dirPage.getJava().setEnabled(false);
+				wizard.dirPage.getFortran().setEnabled(false);
+
 			}else if (wizard.producer == "java"){
-				wizard.dir.getJava().setSelection(true);
+
+				wizard.dirPage.getJava().setSelection(true);
 				
-				wizard.dir.getJava().setEnabled(false);
-				wizard.dir.getFortran().setEnabled(false);
+				wizard.dirPage.getJava().setEnabled(false);
+				wizard.dirPage.getFortran().setEnabled(false);
+
 			}
 			if (wizard.producer == "java" || wizard.producer == "fortran") {
-				wizard.dir.getDirectoryString().setText(
-						wizard.pat.toPortableString());
-				wizard.dir.getDirectoryString().setEnabled(false);
-				wizard.dir.getDirectory().setEnabled(false);
-				wizard.dir.setPageComplete(false);
+				wizard.dirPage.getDirectoryString().setText(
+						wizard.path.toPortableString());
+				wizard.dirPage.getDirectoryString().setEnabled(false);
+				wizard.dirPage.getDirectory().setEnabled(false);
+				wizard.dirPage.setPageComplete(false);
 //				wizard.dir.getJava().setSelection(true);
 				
 				
