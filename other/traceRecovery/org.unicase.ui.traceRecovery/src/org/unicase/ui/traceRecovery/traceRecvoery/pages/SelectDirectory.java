@@ -25,7 +25,7 @@ import org.unicase.metamodel.Project;
  * @author taher
  * 
  */
-public class SelecDirectory extends WizardPage implements Listener {
+public class SelectDirectory extends WizardPage implements Listener {
 
 	Button java;
 	Button fortran;
@@ -54,7 +54,7 @@ public class SelecDirectory extends WizardPage implements Listener {
 		this.project = project;
 	}
 
-	public SelecDirectory() {
+	public SelectDirectory() {
 		super("SelectDirectory");
 		setTitle("Select Directory");
 		setDescription("select the language and code,index Directory");
@@ -141,7 +141,7 @@ public class SelecDirectory extends WizardPage implements Listener {
 		new Label(controlor, SWT.NONE);
 
 		Label label = new Label(controlor, SWT.WRAP);
-		label.setText("Choose a directory to place the Lucene index in. This index will contain the text that will be searched");
+		label.setText("Choose a directory to place the Lucene index which will contain the indexing of the text to be searched");
 		label.setLayoutData(new GridData(SWT.LEFT, SWT.FILL, false, false, 4, 1));
 
 		setControl(controlor);
@@ -205,7 +205,6 @@ public class SelecDirectory extends WizardPage implements Listener {
 				FileSystemView file = FileSystemView.getFileSystemView();
 				File f = file.getHomeDirectory();
 				dir.setFilterPath(f.getPath());
-				
 			} else {
 				dir.setFilterPath(directoryString.getText());
 			}
@@ -222,10 +221,7 @@ public class SelecDirectory extends WizardPage implements Listener {
 		} else if (event.widget == setIndexDirectory) {
 			DirectoryDialog dir = new DirectoryDialog(getShell());
 			if (indexString.getText().equals("")) {
-				
-				FileSystemView file = FileSystemView.getFileSystemView();
-				File f = file.getHomeDirectory();
-				dir.setFilterPath(f.getPath());
+				dir.setFilterPath("/home/taher");
 			} else {
 				dir.setFilterPath(indexString.getText());
 			}
