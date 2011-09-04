@@ -9,12 +9,14 @@ package traceRecovery.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import traceRecovery.*;
+import traceRecovery.Directory;
+import traceRecovery.Link;
+import traceRecovery.Query;
+import traceRecovery.TraceRecoveryFactory;
+import traceRecovery.TraceRecoveryPackage;
 
 /**
  * <!-- begin-user-doc -->

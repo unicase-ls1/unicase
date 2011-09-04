@@ -13,9 +13,9 @@ import org.apache.lucene.index.IndexWriter;
 
 import traceRecovery.Directory;
 import traceRecovery.TraceRecoveryFactory;
-import traceRecovery.handler.Indexer;
 import traceRecovery.Java.JavaParser.JClass;
 import traceRecovery.Java.JavaParser.JMethod;
+import traceRecovery.handler.Indexer;
 
 /**
  * @author taher will index the java code
