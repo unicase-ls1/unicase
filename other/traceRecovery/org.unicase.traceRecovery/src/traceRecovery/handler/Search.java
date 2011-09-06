@@ -185,7 +185,7 @@ public class Search {
 						className = help.getClassName();
 
 						for (int k = 0; k < methods.size(); k++) {
-//							 method = methods.get(i)+ "\n";
+							// method = methods.get(i)+ "\n";
 							method = anal
 									.method(anal.methodName(new StringReader(
 											methods.get(i))))
@@ -199,17 +199,20 @@ public class Search {
 						subroutines = help.getSubroutines();
 					}
 
-					 for(int k = 0 ; k <subroutines.size(); k++){
-					 className += subroutines.get(i) +"\n";
-					 }
+					for (int k = 0; k < subroutines.size(); k++) {
+						className += subroutines.get(i) + "\n";
+					}
 
 					className = anal.method(anal.methodName(new StringReader(
 							className)));
-//					
-//					method = anal.method(anal.methodName(new StringReader(method)));
+					//
+					// method = anal.method(anal.methodName(new
+					// StringReader(method)));
 
-					for (int k = 0; k < comments.size(); k++) {
-						terms += comments.get(k) + "\n";
+					if (comments != null) {
+						for (int k = 0; k < comments.size(); k++) {
+							terms += comments.get(k) + "\n";
+						}
 					}
 
 					String tex = h.getBestFragment(analyzer, "class", className
@@ -254,11 +257,11 @@ public class Search {
 
 	ArrayList<Link> links = new ArrayList<Link>();
 
-//	File f = new File("/home/taher/Downloads/eclipse (developer)/taher.xml");
-//
-//	java.net.URI u = f.toURI();
-//	URI uri = URI.createURI(u.toString());
-//	Resource resource = new XMLResourceImpl(uri);
+	// File f = new File("/home/taher/Downloads/eclipse (developer)/taher.xml");
+	//
+	// java.net.URI u = f.toURI();
+	// URI uri = URI.createURI(u.toString());
+	// Resource resource = new XMLResourceImpl(uri);
 
 	public void create(String tex, ArrayList<Hits> hits, int i, int j,
 			Query query, String type) throws IOException {
@@ -286,11 +289,11 @@ public class Search {
 					link.setTarget(location);
 					link.setType(type);
 
-//					Resource r = new XMLResourceImpl(uri);
-//					r.getContents().add(location);
-//
-//					resource.getContents().add(link);
-//					resource.save(null);
+					// Resource r = new XMLResourceImpl(uri);
+					// r.getContents().add(location);
+					//
+					// resource.getContents().add(link);
+					// resource.save(null);
 					links.add(link);
 					text.add(line);
 
@@ -346,7 +349,7 @@ public class Search {
 		if (type.toLowerCase() == "java") {
 			SearchJava java = new SearchJava();
 			java.createQueryCodeDir(file, type);
-		} else if(type.toLowerCase() == "fortran"){
+		} else if (type.toLowerCase() == "fortran") {
 			SearchFortran fortran = new SearchFortran();
 			fortran.createQueryCodeDir(file, type);
 		}
@@ -461,7 +464,7 @@ public class Search {
 			e.printStackTrace();
 			return null;
 		} catch (ParseException e) {
-			
+
 			e.printStackTrace();
 			return null;
 		}
@@ -527,8 +530,6 @@ public class Search {
 			return null;
 		}
 	}
-
-	
 
 	/**
 	 * will set the used analyzer.
@@ -597,15 +598,18 @@ public class Search {
 		}
 	}
 
-	/**
-	 * will index the directory
-	 */
-	public void index() {
-		try {
-			index.indexDir(this.index.getWriter(), this.index.getCodeDir(),
-					this.index.getIndexDir());
-		} catch (IOException e) {
-			e.printStackTrace();
+	public void index(Indexer index) {
+		if (index instanceof JavaSourceCodeIndexer) {
+			try {
+				JavaSourceCodeIndexer.indexDirectory(this.index.getWriter(),
+						this.index.getCodeDir());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (index instanceof FortranCodeIndexer) {
+			FortranCodeIndexer.indexDir(this.index.getWriter(),
+					this.index.getCodeDir());
 		}
 	}
 
@@ -615,18 +619,24 @@ public class Search {
 	 * @param dir
 	 *            this is the arraylist of the directires to index
 	 */
-	public void index(ArrayList<String> dir) {
+	public void index(ArrayList<String> dir, Indexer indexer) {
 		try {
-			JavaSourceCodeIndexer javaIndexer = new JavaSourceCodeIndexer();
-			FortranCodeIndexer fortranIndexer = new FortranCodeIndexer();
 
 			for (int i = 0; i < dir.size(); i++) {
 				Directory codeDir = TraceRecoveryFactory.eINSTANCE
 						.createDirectory();
 				codeDir.setPath(dir.get(i));
 
-				index.indexDir(this.index.getWriter(), codeDir,
-						this.index.getIndexDir(), javaIndexer, fortranIndexer);
+				if (indexer instanceof JavaSourceCodeIndexer) {
+
+					JavaSourceCodeIndexer.indexDirectory(
+							this.index.getWriter(), codeDir);
+				} else if (indexer instanceof FortranCodeIndexer) {
+					((FortranCodeIndexer) indexer).indexDir(
+							this.index.getWriter(), codeDir,
+							this.index.getIndexDir());
+				}
+
 			}
 			this.index.getWriter().close();
 		} catch (IOException e) {
