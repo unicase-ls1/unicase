@@ -3,7 +3,6 @@
  */
 package traceRecovery.handler;
 
-import java.io.File;
 import java.io.IOException;
 
 import org.apache.lucene.document.Document;
@@ -12,11 +11,6 @@ import org.apache.lucene.index.IndexWriter;
 import org.unicase.model.UnicaseModelElement;
 
 import traceRecovery.Directory;
-import traceRecovery.TraceRecoveryFactory;
-import traceRecovery.Fortran.FortranCodeIndexer;
-import traceRecovery.Fortran.FortranSourceCodeAnalyzer;
-import traceRecovery.Java.JavaSourceCodeAnalyzer;
-import traceRecovery.Java.JavaSourceCodeIndexer;
 
 /**
  * Indexer class to index files.
@@ -76,124 +70,13 @@ public class Indexer {
 	}
 
 	public void indexDir(IndexWriter writer, Directory codeDir,
-			Directory indexDir) throws IOException {
-		this.writer = writer;
-		this.codeDir = codeDir;
-		this.indexDir = indexDir;
-
-//		File index = new File(this.indexDir.getPath());
-		File code = new File(this.codeDir.getPath());
-
-		File[] files = code.listFiles();
-//		JavaSourceCodeIndexer javaIndexer = new JavaSourceCodeIndexer();
-		FortranCodeIndexer fortranIndexer = new FortranCodeIndexer();
-
-		if (files == null && code != null) {
-			if (code.getName().endsWith(".java")
-					&& writer.getAnalyzer() instanceof JavaSourceCodeAnalyzer) {
-				JavaSourceCodeIndexer.indexFileJava(writer, code);
-			} else if ((code.getName().endsWith(".f")
-					|| code.getName().endsWith(".for")
-					|| code.getName().endsWith(".f90") || code.getName()
-					.endsWith(".f95"))
-					&& writer.getAnalyzer() instanceof FortranSourceCodeAnalyzer) {
-				fortranIndexer.indexFileFortran(writer, code);
-			}
-		} else {
-			for (int i = 0; i < files.length; i++) {
-				File f = files[i];
-				Directory d = TraceRecoveryFactory.eINSTANCE.createDirectory();
-				d.setPath(f.getAbsolutePath());
-				if (f.isDirectory() && !f.isHidden()) {
-					indexDir(writer, d, indexDir);
-				} else if (f.getName().endsWith(".java")
-						&& writer.getAnalyzer() instanceof JavaSourceCodeAnalyzer) {
-
-					JavaSourceCodeIndexer.indexFileJava(writer, f);
-				} else if ((f.getName().endsWith(".f")
-						|| f.getName().endsWith(".for")
-						|| f.getName().endsWith(".f90") || f.getName()
-						.endsWith(".f95"))
-						&& writer.getAnalyzer() instanceof FortranSourceCodeAnalyzer) {
-
-					fortranIndexer.indexFileFortran(writer, f);
-				}
-			}
-		}
+			Directory indexDir)  {
 
 	}
 
-	/**
-	 * index a certain given directory
-	 * @param writer
-	 * @param codeDir
-	 * @param indexDir
-	 * @param javIndexer
-	 * @param fortIndexer
-	 * @throws IOException
-	 */
-	public void indexDir(IndexWriter writer, Directory codeDir,
-			Directory indexDir, JavaSourceCodeIndexer javIndexer,
-			FortranCodeIndexer fortIndexer) throws IOException {
-		this.writer = writer;
-		this.codeDir = codeDir;
-		this.indexDir = indexDir;
+	
 
-//		File index = new File(this.indexDir.getPath());
-		File code = new File(this.codeDir.getPath());
-
-		File[] files = code.listFiles();
-//		JavaSourceCodeIndexer javaIndexer = javIndexer;
-		FortranCodeIndexer fortranIndexer = fortIndexer;
-
-		if (files == null && code != null) {
-			if (code.getName().endsWith(".java")
-					&& writer.getAnalyzer() instanceof JavaSourceCodeAnalyzer) {
-				JavaSourceCodeIndexer.indexFileJava(writer, code);
-			} else if ((code.getName().endsWith(".f")
-					|| code.getName().endsWith(".for")
-					|| code.getName().endsWith(".f90") || code.getName()
-					.endsWith(".f95"))
-					&& writer.getAnalyzer() instanceof FortranSourceCodeAnalyzer) {
-				fortranIndexer.indexFileFortran(writer, code);
-			}
-		} else {
-			for (int i = 0; i < files.length; i++) {
-				File f = files[i];
-				Directory d = TraceRecoveryFactory.eINSTANCE.createDirectory();
-				d.setPath(f.getAbsolutePath());
-				if (f.isDirectory() && !f.isHidden()) {
-					indexDir(writer, d, indexDir);
-				} else if (f.getName().endsWith(".java")
-						&& writer.getAnalyzer() instanceof JavaSourceCodeAnalyzer) {
-
-					JavaSourceCodeIndexer.indexFileJava(writer, f);
-				} else if ((f.getName().endsWith(".f")
-						|| f.getName().endsWith(".for")
-						|| f.getName().endsWith(".f90") || f.getName()
-						.endsWith(".f95"))
-						&& writer.getAnalyzer() instanceof FortranSourceCodeAnalyzer) {
-
-					fortranIndexer.indexFileFortran(writer, f);
-				}
-			}
-		}
-
-	}
-
-	// public void MEIndexer(Query query, Directory dir) {
-	// try {
-	// for (int j = 0; j < query.getModelElements().size(); j++) {
-	// IndexWriter index = new IndexWriter(dir.getPath(),
-	// new StandardAnalyzer(), true);
-	// IndexME(query.getModelElements().get(j), index);
-	//
-	// }
-	//
-	// } catch (IOException e) {
-	// e.printStackTrace();
-	// }
-	// }
+	
 
 	/**
 	 * indexes model elements
