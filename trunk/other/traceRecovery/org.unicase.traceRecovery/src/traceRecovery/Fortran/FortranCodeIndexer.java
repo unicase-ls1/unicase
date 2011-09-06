@@ -12,6 +12,8 @@ import org.apache.lucene.document.Field;
 import org.apache.lucene.index.IndexWriter;
 import org.eclipse.photran.internal.core.analysis.binding.ScopingNode;
 
+import traceRecovery.Directory;
+import traceRecovery.TraceRecoveryFactory;
 import traceRecovery.handler.Indexer;
 
 /**
@@ -25,46 +27,44 @@ public class FortranCodeIndexer extends Indexer {
 
 	}
 
-	// private static final String PROGRAM = "PROGRAM";
-	// private static final String MODULE = "MODULE";
-	// private static final String INTERFACE = "INTERFACE";
-	// private static final String SUBROUTINE = "SUBROUTINE";
-	// private static final String CODE = "code";
 	private static final String COMMENT = "comment";
 
-	// private static final String FUNCTION = "FUNCTION";
-	// private static final String PARAMETER = "parameter";
-	// private static final String DATA = "DATA";
+	/**
+	 * this method will index a single directory
+	 * 
+	 * @param writer
+	 *            the writer that will write in the index file
+	 * @param dir
+	 *            this is the directory that needs to be indexed
+	 */
+	public static void indexDir(IndexWriter writer, Directory dir) {
+		File file = new File(dir.getPath());
+		File[] files = file.listFiles();
 
-	// public static void main(String[] args) {
-	//
-	// try {
-	// File indexDir = new File("lucene-index");
-	// File dataDir = new File("code");
-	// IndexWriter writer = new IndexWriter(indexDir,
-	// new JavaSourceCodeAnalyzer(), true);
-	// indexDirectory(writer, dataDir);
-	// int numFiles = writer.docCount();
-	// writer.close();
-	// System.out.println("Indexing " + numFiles);
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// }
-	// }
+		if (files == null && file != null) {
+			if(file.getName().endsWith("f") || file.getName().endsWith("f90") || file.getName().endsWith("for")){
+				indexFileFortran(writer, file);
+			}
+			
+		} else {
 
-	// public static void indexDirectory(IndexWriter writer, File dir)
-	// throws IOException {
-	// File[] files = dir.listFiles();
-	// for (int i = 0; i < files.length; i++) {
-	// File f = files[i];
-	// if (f.isDirectory())
-	// indexDirectory(writer, f);
-	// else if (f.getName().endsWith(".f90"))
-	// indexFileFortran(writer, f);
-	// }
-	// }
+			for (int i = 0; i < files.length; i++) {
+				Directory directory = TraceRecoveryFactory.eINSTANCE
+						.createDirectory();
+				directory.setPath(files[i].getPath());
+				if (files[i].isDirectory()) {
+					indexDir(writer, directory);
+				} else if (files[i].getName().endsWith(".f")
+						|| files[i].getName().endsWith(".f90")
+						|| files[i].getName().endsWith(".for")) {
+					indexFileFortran(writer, files[i]);
+				}
 
-	public void indexFileFortran(IndexWriter writer, File f) {
+			}
+		}
+	}
+
+	public static void indexFileFortran(IndexWriter writer, File f) {
 		if (f.isHidden() || !f.exists() || !f.canRead())
 			return;
 		Document doc = new Document();
