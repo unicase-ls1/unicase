@@ -66,12 +66,7 @@ public class JavaSourceCodeIndexer extends Indexer {
 					indexDirectory(writer, d);
 				else if (f.getName().endsWith(".java"))
 					indexFileJava(writer, f);
-				// else if(f.getName().endsWith(".f") ||
-				// f.getName().endsWith("for")
-				// || f.getName().endsWith("f90") ||
-				// f.getName().endsWith("f95")){
-				// indexFileFortran(writer,f);
-				// }
+
 			}
 		}
 	}
@@ -115,27 +110,6 @@ public class JavaSourceCodeIndexer extends Indexer {
 	}
 
 	/**
-	 * add the imports to the document
-	 * 
-	 * @param doc
-	 *            the document
-	 * @param parser
-	 *            the java parser that will get me the imports of fthe class
-	 */
-	// private static void addImportDeclarations(Document doc, JavaParser
-	// parser) {
-	// ArrayList <String> imports = parser.getImportDeclarations();
-	// if (imports == null)
-	// return;
-	// for (int i = 0; i < imports.size(); i++) {
-	// String importName = imports.get(i);
-	// Field impor = new Field(IMPORT, importName, Field.Store.YES,
-	// Field.Index.UN_TOKENIZED);
-	// doc.add(impor);
-	// }
-	// }
-
-	/**
 	 * add the comments to the document
 	 * 
 	 * @param doc
@@ -172,19 +146,6 @@ public class JavaSourceCodeIndexer extends Indexer {
 			Field cl = new Field(CLASS, cls.className, Field.Store.YES,
 					Field.Index.TOKENIZED);
 			doc.add(cl);
-			// String superCls = cls.superClass;
-			// if (superCls != null){
-			// Field supercl = new Field(EXTENDS, superCls, Field.Store.YES,
-			// Field.Index.TOKENIZED);
-			// doc.add(supercl);
-			// }
-			// ArrayList interfaces = cls.interfaces;
-			// for (int i = 0; i < interfaces.size(); i++) {
-			// String interfaceName = (String) interfaces.get(i);
-			// Field interfaceNam = new Field(IMPLEMENTS, interfaceName,
-			// Field.Store.YES, Field.Index.TOKENIZED);
-			// doc.add(interfaceNam);
-			// }
 
 			addMethods(cls, doc);
 			ArrayList<JClass> innerCls = cls.innerClasses;
@@ -209,22 +170,7 @@ public class JavaSourceCodeIndexer extends Indexer {
 			Field meth = new Field(METHOD, method.methodName, Field.Store.YES,
 					Field.Index.TOKENIZED);
 			doc.add(meth);
-			// Field ret = new Field(METHOD, method.returnType, Field.Store.YES,
-			// Field.Index.TOKENIZED);
-			// doc.add(ret);
-			// ArrayList params = method.parameters;
-			// for (int k = 0; k < params.size(); k++) {
-			// String paramType = (String) params.get(k);
-			// Field param = new Field(PARAMETER, paramType, Field.Store.YES,
-			// Field.Index.TOKENIZED);
-			// doc.add(param);
-			// }
-			// String code = method.codeBlock;
-			// if (code != null){
-			// Field cod = new Field(CODE, code, Field.Store.YES,
-			// Field.Index.TOKENIZED, Field.TermVector.WITH_POSITIONS);
-			// doc.add(cod);
-			// }
+
 		}
 	}
 
