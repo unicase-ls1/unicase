@@ -49,18 +49,30 @@ public class JavaSourceCodeIndexer extends Indexer {
 			throws IOException {
 		File dir = new File(directory.getPath());
 		File[] files = dir.listFiles();
-		for (int i = 0; i < files.length; i++) {
-			File f = files[i];
-			Directory d = TraceRecoveryFactory.eINSTANCE.createDirectory();
-			d.setPath(f.getAbsolutePath());
-			if (f.isDirectory())
-				indexDirectory(writer, d);
-			else if (f.getName().endsWith(".java"))
-				indexFileJava(writer, f);
-			// else if(f.getName().endsWith(".f") || f.getName().endsWith("for")
-			// || f.getName().endsWith("f90") || f.getName().endsWith("f95")){
-			// indexFileFortran(writer,f);
-			// }
+
+		if (files == null && dir != null) {
+
+			if (dir.getName().endsWith(".java")) {
+				indexFileJava(writer, dir);
+			}
+
+		} else {
+
+			for (int i = 0; i < files.length; i++) {
+				File f = files[i];
+				Directory d = TraceRecoveryFactory.eINSTANCE.createDirectory();
+				d.setPath(f.getAbsolutePath());
+				if (f.isDirectory())
+					indexDirectory(writer, d);
+				else if (f.getName().endsWith(".java"))
+					indexFileJava(writer, f);
+				// else if(f.getName().endsWith(".f") ||
+				// f.getName().endsWith("for")
+				// || f.getName().endsWith("f90") ||
+				// f.getName().endsWith("f95")){
+				// indexFileFortran(writer,f);
+				// }
+			}
 		}
 	}
 
