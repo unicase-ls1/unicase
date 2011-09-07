@@ -71,8 +71,8 @@ public class SearchResult implements Listener {
 	Button saveAs;
 	Resource resource;
 	boolean load = false;
-	
-	//for the xml resource
+
+	// for the xml resource
 	EList<EObject> content;
 	private CompositeSection compositeDocument;
 	private LeafSection codeLocationDoc;
@@ -173,14 +173,26 @@ public class SearchResult implements Listener {
 		}
 	}
 
-
-
 	/**
-	 * Load the XML resource of the recovered links and creates the layout of the recovered links result page.
+	 * Load the XML resource of the recovered links and creates the layout of
+	 * the recovered links result page.
 	 */
 	public void populate() {
 
 		content = resource.getContents();
+		links = new ArrayList<Link>();
+
+		for (int i = 0; i < content.size(); i++) {
+			LeafSection link = (LeafSection) content.get(i);
+
+			EList<UnicaseModelElement> list = link.getModelElements();
+			for (int j = 0; j < list.size(); j++) {
+				Link lin = (Link) list.get(j);
+				links.add(lin);
+			}
+
+			System.out.println("kalam");
+		}
 
 		createResultPageLayout();
 	}
@@ -199,38 +211,44 @@ public class SearchResult implements Listener {
 				item.setText(j, text[j]);
 
 			}
-			ArrayList<StyleRange> range = higlightRange(recovery.getRecovery().text
-					.get(i));
 
-			StyledText textt = new StyledText(table, SWT.WRAP | SWT.V_SCROLL
-					| SWT.BORDER);
+//			if (recovery != null) {
+				ArrayList<StyleRange> range = higlightRange(result.getDescription());
 
-			String tex = recovery.getRecovery().text.get(i);
+				StyledText textt = new StyledText(table, SWT.WRAP
+						| SWT.V_SCROLL | SWT.BORDER);
 
-			// tex = tex.replace("<B>", "");
-			// tex = tex.replace("</B>", "");
+//				String tex = recovery.getRecovery().text.get(i);
 
-			textt.setText(tex);
+				String tex = result.getDescription();
+				
+				// tex = tex.replace("<B>", "");
+				// tex = tex.replace("</B>", "");
 
-			// String t = textt.getText();
+				if (tex != null) {
+					textt.setText(tex);
 
-			for (int j = 0; j < range.size(); j++) {
-				textt.setStyleRange(range.get(j));
+					// String t = textt.getText();
 
+					for (int j = 0; j < range.size(); j++) {
+						textt.setStyleRange(range.get(j));
+
+					}
+
+					TableEditor editor = new TableEditor(table);
+
+					editor.minimumWidth = textt.getSize().x;
+					editor.grabHorizontal = true;
+					editor.minimumHeight = textt.getSize().y;
+					// editor.horizontalAlignment = SWT.CENTER;
+
+					editor.setEditor(textt, item, 4);
+
+					// item.setText(text);
+					// item.get
+				}
 			}
-
-			TableEditor editor = new TableEditor(table);
-
-			editor.minimumWidth = textt.getSize().x;
-			editor.grabHorizontal = true;
-			editor.minimumHeight = textt.getSize().y;
-			// editor.horizontalAlignment = SWT.CENTER;
-
-			editor.setEditor(textt, item, 4);
-
-			// item.setText(text);
-			// item.get
-		}
+//		}
 
 		// table.layout();
 		// table.redraw();
@@ -495,8 +513,9 @@ public class SearchResult implements Listener {
 						.getModelElementId();
 
 				UnicaseActionHelper.openModelElement(
-						project.getModelElement(links.get(table.getSelectionIndex())
-								.getTarget().getModelElementId()),
+						project.getModelElement(links
+								.get(table.getSelectionIndex()).getTarget()
+								.getModelElementId()),
 						links.get(table.getSelectionIndex()).getTarget()
 								.getModelElementId().getId());
 
@@ -522,60 +541,61 @@ public class SearchResult implements Listener {
 
 	}
 
-	class HelpWrite extends UnicaseCommand{
+	class HelpWrite extends UnicaseCommand {
 		Link link;
 		Project project;
-		public HelpWrite(Link link, Project p){
+
+		public HelpWrite(Link link, Project p) {
 			this.link = link;
 			project = p;
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.unicase.workspace.util.UnicaseCommand#doRun()
 		 */
 		@Override
 		protected void doRun() {
 			// TODO Auto-generated method stub
-	
+
 			UnicaseModelElement target = link.getTarget();
 			project.addModelElement(target);
 			target.setLeafSection(codeLocationDoc);
-			
+
 			project.addModelElement(link);
 			link.setLeafSection(linkDoc);
-			
+
 		}
 	}
-	
+
 	private void saveXML(Resource resource) {
 		new UnicaseCommand() {
-			
+
 			@Override
 			protected void doRun() {
-				compositeDocument = DocumentFactory.eINSTANCE.createCompositeSection();
+				compositeDocument = DocumentFactory.eINSTANCE
+						.createCompositeSection();
 				compositeDocument.setName("Traceability");
 				project.addModelElement(compositeDocument);
-				
+
 				codeLocationDoc = DocumentFactory.eINSTANCE.createLeafSection();
 				codeLocationDoc.setName("Code Locations");
 				project.addModelElement(codeLocationDoc);
 				compositeDocument.getSubsections().add(codeLocationDoc);
-				
+
 				linkDoc = DocumentFactory.eINSTANCE.createLeafSection();
 				linkDoc.setName("Traceability Links");
 				project.addModelElement(linkDoc);
 				compositeDocument.getSubsections().add(linkDoc);
-				
+
 			}
 		}.run(true);
-		
-		
+
 		for (int i = 0; i < links.size(); i++) {
-			
-				
-				new HelpWrite(links.get(i), project).run(true);
-				
-	
+
+			new HelpWrite(links.get(i), project).run(true);
+
 		}
 
 		try {
