@@ -74,10 +74,11 @@ import org.unicase.workspace.Workspace;
 
 import traceRecovery.Directory;
 import traceRecovery.TraceRecoveryFactory;
+import traceRecovery.Fortran.FortranCodeIndexer;
 import traceRecovery.Fortran.SearchFortran;
+import traceRecovery.Java.JavaSourceCodeIndexer;
 import traceRecovery.Java.SearchJava;
 import traceRecovery.handler.Search;
-
 
 //import traceRecovery.ui.TreeItemHelper;
 
@@ -104,7 +105,7 @@ public class RunRecovery extends WizardPage implements Listener {
 
 	Search recovery;
 
-//	SearchResult runRecovery;
+	// SearchResult runRecovery;
 
 	TreeItem organization;
 	TreeItem task;
@@ -176,25 +177,21 @@ public class RunRecovery extends WizardPage implements Listener {
 		composite.setLayout(new FormLayout());
 
 		Label chooseModel = new Label(composite, SWT.NONE);
-//		chooseModel.setBounds(10, 10, 161, 17);
+		// chooseModel.setBounds(10, 10, 161, 17);
 
-		
 		FormData fd_lblChooseModelElement = new FormData();
 		fd_lblChooseModelElement.top = new FormAttachment(0, 10);
 		fd_lblChooseModelElement.left = new FormAttachment(0, 10);
 		chooseModel.setLayoutData(fd_lblChooseModelElement);
 		chooseModel.setText("Choose Model Element");
-		
-		
-		
+
 		Label lblChooseDirectory = new Label(composite, SWT.NONE);
 		FormData fd_lblChooseDirectory = new FormData();
 		fd_lblChooseDirectory.top = new FormAttachment(chooseModel, 0, SWT.TOP);
 		fd_lblChooseDirectory.right = new FormAttachment(100, -31);
 		lblChooseDirectory.setLayoutData(fd_lblChooseDirectory);
 		lblChooseDirectory.setText("Choose Directory       ");
-		
-		
+
 		// GridData label1 = new GridData();
 		// label1.horizontalAlignment = 5;
 		//
@@ -241,18 +238,17 @@ public class RunRecovery extends WizardPage implements Listener {
 		// this.indexPath = selectDirecotry.getLastIndexPath();
 
 		// composite.setLayout(gridLayout);
-		
-		
 
-//		GridData treeLayout = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
-		
+		// GridData treeLayout = new GridData(SWT.FILL, SWT.FILL, true, true, 1,
+		// 1);
+
 		// treeLayout.verticalAlignment = SWT.FILL;
 
 		ME = new Tree(composite, SWT.CHECK);
-		
+
 		FormData fd_tree = new FormData();
 		fd_tree.right = new FormAttachment(chooseModel, 0, SWT.RIGHT);
-//		fd_tree.bottom = new FormAttachment(chooseModel, 207, SWT.BOTTOM);
+		// fd_tree.bottom = new FormAttachment(chooseModel, 207, SWT.BOTTOM);
 		fd_tree.top = new FormAttachment(chooseModel, 6);
 		fd_tree.left = new FormAttachment(0, 0);
 		ME.setLayoutData(fd_tree);
@@ -262,24 +258,19 @@ public class RunRecovery extends WizardPage implements Listener {
 		createModelTree(ME);
 		createModel();
 
-		
-		
-//		GridData directionLayout = new GridData();
-//		directionLayout.horizontalSpan = 1;
-//		directionLayout.verticalSpan = 4;
-//		directionLayout.horizontalAlignment = SWT.FILL;
-		
-		
+		// GridData directionLayout = new GridData();
+		// directionLayout.horizontalSpan = 1;
+		// directionLayout.verticalSpan = 4;
+		// directionLayout.horizontalAlignment = SWT.FILL;
 
-		
 		code = new Tree(composite, SWT.CHECK | SWT.V_SCROLL);
 		FormData fd_tree_1 = new FormData();
 		fd_tree_1.bottom = new FormAttachment(ME, 0, SWT.BOTTOM);
 		fd_tree_1.top = new FormAttachment(lblChooseDirectory, 6);
 		fd_tree_1.left = new FormAttachment(lblChooseDirectory, 0, SWT.LEFT);
-		fd_tree_1.right = new FormAttachment(lblChooseDirectory,0,SWT.RIGHT);
+		fd_tree_1.right = new FormAttachment(lblChooseDirectory, 0, SWT.RIGHT);
 
-		 code.setLayoutData(fd_tree_1);
+		code.setLayoutData(fd_tree_1);
 
 		// parent1 = new TreeItem(code, SWT.CHECK);
 		// parent1.setText("emy bentest beky ;)");
@@ -312,9 +303,10 @@ public class RunRecovery extends WizardPage implements Listener {
 		// search.addListener(SWT.Selection, this);
 		// search.setText("Search");
 		direction = new Button(composite, SWT.PUSH);
-		direction.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
+		direction.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false,
+				false, 1, 1));
 		// direction.setText("this is a button");
-		Image image = new Image(display, "/Screenshot-1.png");
+		Image image = new Image(display, "Screenshot-1.png");
 		direction.setImage(image);
 		direction.addListener(SWT.Selection, this);
 		FormData fd_btnNewButton = new FormData();
@@ -322,26 +314,22 @@ public class RunRecovery extends WizardPage implements Listener {
 		fd_btnNewButton.left = new FormAttachment(ME, 90);
 		direction.setLayoutData(fd_btnNewButton);
 
-		
-		
-		
 		Label lblChooseDirection = new Label(composite, SWT.WRAP);
 		FormData fd_lblChooseDirection = new FormData();
 		fd_lblChooseDirection.bottom = new FormAttachment(direction, -25);
 		fd_lblChooseDirection.left = new FormAttachment(ME, 50);
-		fd_lblChooseDirection.right = new FormAttachment(code,20,SWT.LEFT);
+		fd_lblChooseDirection.right = new FormAttachment(code, 20, SWT.LEFT);
 		lblChooseDirection.setLayoutData(fd_lblChooseDirection);
 		lblChooseDirection.setText("Click button to change the");
-		
+
 		Label l = new Label(composite, SWT.NONE);
 		l.setText("direction the recovery is going to run");
 		FormData fd_lblChoose = new FormData();
 		fd_lblChoose.bottom = new FormAttachment(direction, -5);
 		fd_lblChoose.left = new FormAttachment(ME, 50);
-		fd_lblChoose.right = new FormAttachment(code,20,SWT.LEFT);
+		fd_lblChoose.right = new FormAttachment(code, 20, SWT.LEFT);
 		l.setLayoutData(fd_lblChoose);
-		
-		
+
 		selectAllME = new Button(composite, SWT.CHECK);
 		FormData fd_SelectAllME = new FormData();
 		fd_SelectAllME.left = new FormAttachment(ME, 0, SWT.LEFT);
@@ -349,16 +337,15 @@ public class RunRecovery extends WizardPage implements Listener {
 		selectAllME.setLayoutData(fd_SelectAllME);
 		selectAllME.setText("Select All Model Elements");
 		selectAllME.addListener(SWT.Selection, this);
-		
+
 		SelectAllDir = new Button(composite, SWT.CHECK);
 		FormData fd_SelectAllDir = new FormData();
-		fd_SelectAllDir.left = new FormAttachment(code,0,SWT.LEFT);
-		fd_SelectAllDir.top = new FormAttachment(code,10,SWT.BOTTOM);
+		fd_SelectAllDir.left = new FormAttachment(code, 0, SWT.LEFT);
+		fd_SelectAllDir.top = new FormAttachment(code, 10, SWT.BOTTOM);
 		SelectAllDir.setLayoutData(fd_SelectAllDir);
 		SelectAllDir.setText("Select All Directory");
 		SelectAllDir.addListener(SWT.Selection, this);
-		
-		
+
 		code.layout();
 		composite.layout();
 		ME.layout();
@@ -367,7 +354,6 @@ public class RunRecovery extends WizardPage implements Listener {
 		setControl(composite);
 
 	}
-
 
 	public void treeSetUp() {
 		File dir = new File(path);
@@ -388,7 +374,6 @@ public class RunRecovery extends WizardPage implements Listener {
 
 		}
 	}
-
 
 	/**
 	 * this will get the directories of the chosen files from the tree
@@ -447,15 +432,14 @@ public class RunRecovery extends WizardPage implements Listener {
 	}
 
 	public void finish() {
-		
-		
-		if(codeLanguage.toLowerCase() == "java"){
+
+		if (codeLanguage.toLowerCase() == "java") {
 			recovery = new SearchJava();
-		}else if(codeLanguage.toLowerCase() == "fortran"){
+		} else if (codeLanguage.toLowerCase() == "fortran") {
 			recovery = new SearchFortran();
 		}
-		
-//		recovery = new Search();
+
+		// recovery = new Search();
 
 		recovery.setProject(getP());
 
@@ -474,16 +458,31 @@ public class RunRecovery extends WizardPage implements Listener {
 		recovery.setAnalyzer(codeLanguage);
 		if (imagevalue == 1) {
 			if (codeLanguage == "java") {
-				((SearchJava)recovery).setIndexer(codeDir, sourceDir);
+				((SearchJava) recovery).setIndexer(codeDir, sourceDir);
 			} else if (codeLanguage == "fortran") {
 				recovery.setIndexer("fortran", codeDir, sourceDir);
 			}
 
 			if (code.getItem(0).getChecked()) {
-				recovery.index();
+				if (codeLanguage == "java") {
+					JavaSourceCodeIndexer indexer = new JavaSourceCodeIndexer();
+					recovery.index(indexer);
+				} else if (codeLanguage == "fortran") {
+					FortranCodeIndexer indexer = new FortranCodeIndexer();
+					recovery.index(indexer);
+				}
+
+				// recovery.index();
 			} else {
 				directoriesBuild(code.getItem(0), code.getItem(0).getText());
-				recovery.index(dir);
+				if (codeLanguage == "java") {
+					JavaSourceCodeIndexer indexer = new JavaSourceCodeIndexer();
+					recovery.index(dir, indexer);
+				} else if (codeLanguage == "fortran") {
+					FortranCodeIndexer indexer = new FortranCodeIndexer();
+					recovery.index(dir, indexer);
+				}
+
 			}
 
 		} else {
@@ -499,10 +498,6 @@ public class RunRecovery extends WizardPage implements Listener {
 			recovery.indexMe(choosenME, sourceDir);
 		}
 
-		
-		
-		
-		
 		SearchResult runRecovery = new SearchResult();
 		runRecovery.setRecovery(this);
 		runRecovery.setProject(getP());
@@ -510,8 +505,6 @@ public class RunRecovery extends WizardPage implements Listener {
 		runRecovery.createControl("recovery");
 
 	}
-
-
 
 	/**
 	 * @return the recovery
@@ -531,17 +524,17 @@ public class RunRecovery extends WizardPage implements Listener {
 	/**
 	 * @return the runRecovery
 	 */
-//	public SearchResult getRunRecovery() {
-//		return runRecovery;
-//	}
+	// public SearchResult getRunRecovery() {
+	// return runRecovery;
+	// }
 
 	/**
 	 * @param runRecovery
 	 *            the runRecovery to set
 	 */
-//	public void setRunRecovery(SearchResult runRecovery) {
-//		this.runRecovery = runRecovery;
-//	}
+	// public void setRunRecovery(SearchResult runRecovery) {
+	// this.runRecovery = runRecovery;
+	// }
 
 	/**
 	 * @return the composite
@@ -557,8 +550,6 @@ public class RunRecovery extends WizardPage implements Listener {
 	public void setComposite(Composite composite) {
 		this.composite = composite;
 	}
-
-
 
 	/**
 	 * Checks to see if any of the Model elements where chosen to allow for the
@@ -1371,7 +1362,7 @@ public class RunRecovery extends WizardPage implements Listener {
 		}
 	}
 
-	public boolean canFinish(){
+	public boolean canFinish() {
 		if (!choosenME()
 				|| (!code.getItem(0).getGrayed() && !code.getItem(0)
 						.getChecked())) {
@@ -1380,7 +1371,7 @@ public class RunRecovery extends WizardPage implements Listener {
 			return true;
 		}
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -1415,20 +1406,18 @@ public class RunRecovery extends WizardPage implements Listener {
 			checkPath(item.getParentItem(), checked, false);
 			setPageComplete(canFinish());
 			this.getWizard().canFinish();
-		}
-		else if(event.widget == SelectAllDir){
+		} else if (event.widget == SelectAllDir) {
 			boolean checked = SelectAllDir.getSelection();
-			TreeItem [] items =  code.getItems();
-			for(int i=0;i<items.length;i++){
+			TreeItem[] items = code.getItems();
+			for (int i = 0; i < items.length; i++) {
 				TreeItem t = items[i];
 				checkItems(t, checked);
 				checkPath(t, checked, false);
 			}
-		}
-		else if(event.widget == selectAllME){
+		} else if (event.widget == selectAllME) {
 			boolean checked = selectAllME.getSelection();
-			TreeItem [] items = ME.getItems();
-			for(int i=0;i<items.length;i++){
+			TreeItem[] items = ME.getItems();
+			for (int i = 0; i < items.length; i++) {
 				TreeItem t = items[i];
 				checkItems(t, checked);
 				checkPath(t, checked, false);
@@ -1436,8 +1425,6 @@ public class RunRecovery extends WizardPage implements Listener {
 		}
 
 	}
-	
-
 
 	/**
 	 * set the choosen item to checked
@@ -1531,8 +1518,6 @@ public class RunRecovery extends WizardPage implements Listener {
 	public void setDisplay(Display display) {
 		this.display = display;
 	}
-
-
 
 	/**
 	 * @return the directories
