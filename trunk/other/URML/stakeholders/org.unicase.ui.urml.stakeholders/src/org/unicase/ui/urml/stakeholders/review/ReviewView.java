@@ -53,10 +53,11 @@ import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.ui.common.util.ComboView;
 import org.unicase.ui.common.util.ComboView.IComboChangeListener;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.ui.urml.stakeholders.reviewinput.UrmlTreeHandler;
-import org.unicase.ui.urml.stakeholders.stakeholdernavigation.Activator;
+import org.unicase.ui.urml.stakeholders.Activator;
+import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
+import org.unicase.ui.urml.stakeholders.filtering.ReviewedFilter;
+import org.unicase.ui.urml.stakeholders.review.input.UrmlTreeHandler;
 import org.unicase.ui.urml.stakeholders.stakeholdernavigation.StakeholderView;
-import org.unicase.ui.urml.stakeholders.stakeholdernavigation.UrmlSettings;
 
 /**
  * The view for reviewing the requirements. It provides the creating of new danger/hazards
@@ -226,7 +227,7 @@ public class ReviewView extends ViewPart {
 		});
 
 		// FIXME Review view must work, even if no role is chosen
-		EMap<EClass, EList<EStructuralFeature>> reviewSetOfActiveRole = UrmlSettings.INSTANCE.getActiveRole().getReviewSet();
+		EMap<EClass, EList<EStructuralFeature>> reviewSetOfActiveRole = UrmlSettingsManager.INSTANCE.getActiveRole().getReviewSet();
 
 		comboSelectBox.setInput(reviewSetOfActiveRole.keySet());
 
@@ -421,7 +422,7 @@ public class ReviewView extends ViewPart {
 	public void openElement(UrmlModelElement urmlElement) {
 		this.currentlyDisplayedElement = urmlElement;
 		openModelElement.setEnabled(true);
-		contentFactory.createElementContent(urmlElement, UrmlSettings.INSTANCE.getActiveRole());
+		contentFactory.createElementContent(urmlElement, UrmlSettingsManager.INSTANCE.getActiveRole());
 	}
 
 	@Override

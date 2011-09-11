@@ -10,7 +10,6 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.unicase.model.urml.UrmlModelElement;
-import org.unicase.ui.urml.stakeholders.stakeholdernavigation.Listener;
 
 /**
  * Listener for the review view, which updated the changes on some features.

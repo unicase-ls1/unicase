@@ -47,9 +47,13 @@ import org.unicase.metamodel.Project;
 import org.unicase.model.urml.StakeholderRole;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.model.urml.UrmlPackage;
+import org.unicase.ui.urml.stakeholders.Activator;
+import org.unicase.ui.urml.stakeholders.config.DefaultStakeholderRoles;
+import org.unicase.ui.urml.stakeholders.config.ManageRolesDialog;
+import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
+import org.unicase.ui.urml.stakeholders.filtering.FilterManager;
 import org.unicase.ui.urml.stakeholders.review.ReviewView;
-import org.unicase.ui.urml.stakeholders.reviewinput.UrmlTreeHandler;
-import org.unicase.ui.urml.stakeholders.roles.DefaultStakeholderRoles;
+import org.unicase.ui.urml.stakeholders.review.input.UrmlTreeHandler;
 
 /**
  * The stakeholder view with navigation options.
@@ -85,9 +89,9 @@ public class StakeholderView extends ViewPart implements Observer {
 			parent.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 			activeProject = UrmlTreeHandler.getTestProject();
 			Activator.getTracker().addObserver(this);
-			reviewedRequirements = reviewedRequirementSetup(parent, activeProject, true, REVIEWED_ELEMENTS, UrmlSettings.INSTANCE.getActiveRole());
+			reviewedRequirements = reviewedRequirementSetup(parent, activeProject, true, REVIEWED_ELEMENTS, UrmlSettingsManager.INSTANCE.getActiveRole());
 			unreviewedRequirements = reviewedRequirementSetup(parent, activeProject, false, UNREVIEWED_ELEMENTS,
-				UrmlSettings.INSTANCE.getActiveRole());
+				UrmlSettingsManager.INSTANCE.getActiveRole());
 
 			createActiveRoleLabel(parent);
 			createShowPropertyRoleButton(parent);
@@ -121,10 +125,10 @@ public class StakeholderView extends ViewPart implements Observer {
 	private void createActiveRoleLabel(Composite parent) {
 		label = new Label(parent, SWT.NONE);
 		label.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-		if (UrmlSettings.INSTANCE.getActiveRole() == null) {
+		if (UrmlSettingsManager.INSTANCE.getActiveRole() == null) {
 			label.setText("Active role : " + NO_STAKEHOLDER);
 		} else {
-			label.setText("Active role : " + UrmlSettings.INSTANCE.getActiveRole().getName().toString());
+			label.setText("Active role : " + UrmlSettingsManager.INSTANCE.getActiveRole().getName().toString());
 		}
 
 	}
@@ -204,8 +208,8 @@ public class StakeholderView extends ViewPart implements Observer {
 				layoutData.widthHint = 100;
 				txtUser.setLayoutData(layoutData);
 				txtUser.setEditable(false);
-				if (UrmlSettings.INSTANCE.getActiveRole() != null) {
-					txtUser.setText(UrmlSettings.INSTANCE.getActiveRole().getName());
+				if (UrmlSettingsManager.INSTANCE.getActiveRole() != null) {
+					txtUser.setText(UrmlSettingsManager.INSTANCE.getActiveRole().getName());
 				} else {
 					txtUser.setText(NO_STAKEHOLDER);
 				}
@@ -308,9 +312,9 @@ public class StakeholderView extends ViewPart implements Observer {
 	}
 
 	private void setRoleProperties(final StakeholderRole role) {
-		UrmlSettings.INSTANCE.setActiveRole(role);
-		label.setText("Active role : " + UrmlSettings.INSTANCE.getActiveRole().getName());
-		txtUser.setText(UrmlSettings.INSTANCE.getActiveRole().getName());
+		UrmlSettingsManager.INSTANCE.setActiveRole(role);
+		label.setText("Active role : " + UrmlSettingsManager.INSTANCE.getActiveRole().getName());
+		txtUser.setText(UrmlSettingsManager.INSTANCE.getActiveRole().getName());
 	}
 	
 	@Override
