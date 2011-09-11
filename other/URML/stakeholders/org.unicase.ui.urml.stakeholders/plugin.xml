@@ -27,25 +27,25 @@
    <extension
          point="org.unicase.stakeholders.displaycontrols">
       <widget
-            class="org.unicase.ui.urml.stakeholders.reviewcontrols.SingleLineControl"
+            class="org.unicase.ui.urml.stakeholders.review.controls.SingleLineControl"
             name="Stakeholders.SingleLineDisplay"
             showLabel="true"
             type="java.lang.String">
       </widget>
       <widget
-            class="org.unicase.ui.urml.stakeholders.reviewcontrols.MultiLineControl"
+            class="org.unicase.ui.urml.stakeholders.review.controls.MultiLineControl"
             name="Stakeholders.MultiLineControl"
             showLabel="true"
             type="java.lang.String">
       </widget>
       <widget
-            class="org.unicase.ui.urml.stakeholders.reviewcontrols.ReviewedDisplayControl"
+            class="org.unicase.ui.urml.stakeholders.review.controls.ReviewedDisplayControl"
             name="Stakeholders.ReviewedDisplay"
             showLabel="true"
             type="org.eclipse.emf.ecore.EStructuralFeature">
       </widget>
       <widget
-            class="org.unicase.ui.urml.stakeholders.reviewcontrols.MultiReferenceControl"
+            class="org.unicase.ui.urml.stakeholders.review.controls.MultiReferenceControl"
             name="Stakeholders.MultiReferenceControl"
             showLabel="false"
             type="org.unicase.model.urml.UrmlModelElement">
@@ -54,19 +54,19 @@
    <extension
          point="org.unicase.ui.meeditor.attributecontrols">
       <widget
-            class="org.unicase.ui.urml.stakeholders.reviewcontrols.MEEtest"
+            class="org.unicase.ui.urml.stakeholders.review.controls.MEEtest"
             name="org.unicase.ui.urml.stakeholders.widget3"
             showLabel="false"
             type="java.lang.Boolean">
       </widget>
       <widget
-            class="org.unicase.ui.urml.stakeholders.reviewcontrols.MEEtest"
+            class="org.unicase.ui.urml.stakeholders.review.controls.MEEtest"
             name="org.unicase.ui.urml.stakeholders.widget3"
             showLabel="false"
             type="java.lang.Object">
       </widget>
       <widget
-            class="org.unicase.ui.urml.stakeholders.reviewcontrols.MEEtest"
+            class="org.unicase.ui.urml.stakeholders.review.controls.MEEtest"
             name="org.unicase.ui.urml.stakeholders.widget3"
             showLabel="false"
             type="java.lang.Integer">
@@ -75,7 +75,7 @@
    <extension
          point="org.unicase.ui.meeditor.referencecontrols">
       <widget
-            class="org.unicase.ui.urml.stakeholders.reviewcontrols.MEEtest"
+            class="org.unicase.ui.urml.stakeholders.review.controls.MEEtest"
             name="org.unicase.ui.urml.stakeholders.widget2"
             showLabel="false"
             type="org.eclipse.emf.ecore.EObject">
@@ -110,7 +110,7 @@
    <extension
          point="org.unicase.ui.diagram.urmlDiagram.filters">
       <filter
-            class="org.unicase.ui.urml.stakeholders.stakeholdernavigation.StakeholderDiagramFilter">
+            class="org.unicase.ui.urml.stakeholders.filtering.StakeholderDiagramFilter">
       </filter>
    </extension>
 

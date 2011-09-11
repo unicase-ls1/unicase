@@ -46,10 +46,9 @@ import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.urml.Phase;
 import org.unicase.model.urml.UrmlPackage;
 import org.unicase.model.urml.UrmlProjectSettings;
-import org.unicase.ui.urml.stakeholders.phases.DefaultPhases;
-import org.unicase.ui.urml.stakeholders.reviewinput.UrmlTreeHandler;
-import org.unicase.ui.urml.stakeholders.stakeholdernavigation.Activator;
-import org.unicase.ui.urml.stakeholders.stakeholdernavigation.UrmlSettings;
+import org.unicase.ui.urml.stakeholders.Activator;
+import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
+import org.unicase.ui.urml.stakeholders.review.input.UrmlTreeHandler;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -84,7 +83,7 @@ public class AssociationRulesView extends ViewPart {
 		}
 		// to each element his relation lest will be added and stored in datMap
 
-		printPhase("START",UrmlSettings.INSTANCE.getActivePhase());
+		printPhase("START",UrmlSettingsManager.INSTANCE.getActivePhase());
 		createAssociationMap(elementNumberMapping);
 		createColumns(parent, viewer);
 		final Table table = viewer.getTable();
@@ -202,7 +201,7 @@ public class AssociationRulesView extends ViewPart {
 		column.setMoveable(true);
 
 		
-		viewerColumn.setEditingSupport(new CheckboxEditingSupport(this, viewer, columnClassName,sortedElementNames, viewerColumn));
+		viewerColumn.setEditingSupport(new AssociationRulesEditingSupport(this, viewer, columnClassName,sortedElementNames, viewerColumn));
 		viewerColumn.setLabelProvider(new ColumnLabelProvider() {
 
 			@Override
@@ -214,7 +213,7 @@ public class AssociationRulesView extends ViewPart {
 			public Image getImage(Object element) {
 				if (!hasStaticAssociation(columnClassName, (EClass) element) && !hasStaticAssociation((EClass) element, columnClassName)) {
 			
-					EMap<EClass, EList<EClass>> curAllowAss = UrmlSettings.INSTANCE.getActivePhase().getAllowedAssociations();
+					EMap<EClass, EList<EClass>> curAllowAss = UrmlSettingsManager.INSTANCE.getActivePhase().getAllowedAssociations();
 					if(curAllowAss == null){
 						return UNCHECKED;
 					} else {
@@ -243,12 +242,12 @@ public class AssociationRulesView extends ViewPart {
 			public void run() {
 				txtUser.setText(phase.getName());
 
-				printPhase("1",UrmlSettings.INSTANCE.getActivePhase());
+				printPhase("1",UrmlSettingsManager.INSTANCE.getActivePhase());
 				setActivePhase(phase);
-				printPhase("2",UrmlSettings.INSTANCE.getActivePhase());
+				printPhase("2",UrmlSettingsManager.INSTANCE.getActivePhase());
 				viewer.refresh();
 
-				printPhase("3",UrmlSettings.INSTANCE.getActivePhase());
+				printPhase("3",UrmlSettingsManager.INSTANCE.getActivePhase());
 				
 				//setze diese in dem view
 				//aktualisiere das model
@@ -310,7 +309,7 @@ public class AssociationRulesView extends ViewPart {
 					txtUser.setLayoutData(layoutData);
 					txtUser.setEditable(false);
 					
-					txtUser.setText(UrmlSettings.INSTANCE.getActivePhase().getName());
+					txtUser.setText(UrmlSettingsManager.INSTANCE.getActivePhase().getName());
 				
 					return composite;
 				}
@@ -379,7 +378,7 @@ public class AssociationRulesView extends ViewPart {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				UrmlSettings.INSTANCE.setActivePhase(phase);
+				UrmlSettingsManager.INSTANCE.setActivePhase(phase);
 			//	projectSettings.setActivePhase(phase);
 			}
 		}.run();
