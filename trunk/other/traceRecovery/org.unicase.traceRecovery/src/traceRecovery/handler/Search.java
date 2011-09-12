@@ -20,7 +20,6 @@ import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.highlight.Highlighter;
 import org.apache.lucene.search.highlight.QueryScorer;
 import org.apache.lucene.store.FSDirectory;
-import org.eclipse.photran.internal.core.analysis.binding.ScopingNode;
 import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
@@ -70,6 +69,107 @@ public class Search {
 	}
 
 	Highlighter h1, h2, h;
+
+	private void runRecoveryMEToCode(Hits hit, String term, UnicaseModelElement query)
+			throws IOException {
+
+		for (int i = 0; i < hit.length(); i++) {
+			if (index.getWriter().getAnalyzer() instanceof JavaSourceCodeAnalyzer) {
+				JavaSourceCodeAnalyzer java = new JavaSourceCodeAnalyzer();
+				SearchHelp help = new SearchHelp(hit.doc(i).get("path"));
+				if (term.equals("class")) {
+					String className = help.getClassName();
+					className = java.method(java.methodName(new StringReader(
+							className)));
+
+					String text = h2.getBestFragment(analyzer, "comment",
+							className);
+					if (text != null) {
+						create(text, hit, "linking from ME to code", query, i);
+					}
+
+				}else if (term.equals("method")){
+					ArrayList<String> method = help.getMethods();
+					String methodName = "";
+					for(int j = 0; j<method.size();j++){
+						methodName = java.method(java.methodName(new StringReader(method.get(j))))+ "\n";
+						String text = h1.getBestFragment(analyzer, "comment",methodName);
+						if(text != null){
+							create(text, hit, "linking from ME to code", query, i);
+						}
+					}
+				}else if(term.equals("comment")){
+					ArrayList<String> comment = help.getComments();
+					for(int j = 0; j<comment.size();j++){
+						String text = h.getBestFragment(analyzer, "comment",comment.get(j));
+						if(text != null){
+							create(text, hit, "linking from ME to code", query, i);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private void create(String tex, Hits hit, String type, UnicaseModelElement query, int i) throws IOException {
+		if (tex != null) {
+
+			StringTokenizer tok = new StringTokenizer(tex, "\n");
+
+			while (tok.hasMoreElements()) {
+				String line = tok.nextToken();
+				if (containsHighlightedText(line)) {
+					// line = line.replace("<B>", "");
+					// line = line.replace("</B>", "");
+					CodeLocation location = TraceFactory.eINSTANCE
+							.createCodeLocation();
+					// System.out.println(line);
+					// location.setLineContent(line);
+					location.setName(hit.doc(i).get("filename"));
+					location.setDescription(hit.doc(i).get("path"));
+
+					Link link = TraceRecoveryFactory.eINSTANCE.createLink();
+					link.setConfidence(hit.score(i));
+					link.setDescription(line);
+					link.setSource(query);
+					link.setTarget(location);
+					link.setType(type);
+
+					// Resource r = new XMLResourceImpl(uri);
+					// r.getContents().add(location);
+					//
+					// resource.getContents().add(link);
+					// resource.save(null);
+					links.add(link);
+					text.add(line);
+
+				}
+			}
+		} else {
+			// StringTokenizer tok = new StringTokenizer(tex, "\n");
+
+			// while (tok.hasMoreElements()) {
+			// String line = tok.nextToken();
+			// if (containsHighlightedText(line)) {
+			// line = line.replace("<B>", "");
+			// line = line.replace("</B>", "");
+			CodeLocation location = TraceFactory.eINSTANCE.createCodeLocation();
+			// System.out.println(line);
+			// location.setLineContent(line);
+			location.setName(hit.doc(i).get("filename"));
+			location.setDescription(hit.doc(i).get("path"));
+
+			Link link = TraceRecoveryFactory.eINSTANCE.createLink();
+			link.setConfidence(hit.score(i));
+			link.setDescription("");
+			link.setSource(query);
+			link.setTarget(location);
+			link.setType(type);
+			links.add(link);
+			text.add("");
+
+		}
+	}
 
 	/**
 	 * will run to try to link between the objects.
@@ -131,12 +231,16 @@ public class Search {
 				Hits hit2 = is.search(q2);
 
 				if (hit.length() > 0) {
+					runRecoveryMEToCode(hit, "comment", query.getModelElements().get(i));
 					hits.add(hit);
 				}
 				if (hit1.length() > 0) {
+					runRecoveryMEToCode(hit1, "method", query.getModelElements().get(i));
 					hits.add(hit1);
 				}
 				if (hit2.length() > 0) {
+					runRecoveryMEToCode(hit2, "class", query.getModelElements().get(i));
+					
 					hits.add(hit2);
 				}
 				if (hit.length() > 0 || hit1.length() > 0 || hit2.length() > 0) {
@@ -160,87 +264,87 @@ public class Search {
 			//
 			// }
 
-			for (int i = 0; i < mod.size(); i++) {
-
-				for (int j = 0; j < hits.get(i).length(); j++) {
-
-					String terms = "";
-					String className = "";
-					ArrayList<String> comments = new ArrayList<String>();
-					ArrayList<ScopingNode> subroutines = new ArrayList<ScopingNode>();
-
-					ArrayList<String> methods = new ArrayList<String>();
-
-					String method;
-					method = "";
-					JavaSourceCodeAnalyzer anal = new JavaSourceCodeAnalyzer();
-
-					if (index.getWriter().getAnalyzer() instanceof JavaSourceCodeAnalyzer) {
-
-						SearchHelp help = new SearchHelp(hits.get(i).doc(j)
-								.get("path"));
-						comments = help.getComments();
-
-						methods = help.getMethods();
-						className = help.getClassName();
-
-						for (int k = 0; k < methods.size(); k++) {
-							// method = methods.get(i)+ "\n";
-							method = anal
-									.method(anal.methodName(new StringReader(
-											methods.get(i))))
-									+ "\n";
-						}
-
-					} else if (index.getWriter().getAnalyzer() instanceof FortranSourceCodeAnalyzer) {
-						SearchHelp help = new SearchHelp(hits.get(i).doc(j)
-								.get("path"));
-						comments = help.getCommentsF();
-						subroutines = help.getSubroutines();
-					}
-
-					for (int k = 0; k < subroutines.size(); k++) {
-						className += subroutines.get(i) + "\n";
-					}
-
-					className = anal.method(anal.methodName(new StringReader(
-							className)));
-					//
-					// method = anal.method(anal.methodName(new
-					// StringReader(method)));
-
-					if (comments != null) {
-						for (int k = 0; k < comments.size(); k++) {
-							terms += comments.get(k) + "\n";
-						}
-					}
-
-					String tex = h.getBestFragment(analyzer, "class", className
-							+ " ");
-
-					String t = h1.getBestFragment(analyzer, "method", method
-							+ " ");
-
-					String t2 = h2.getBestFragment(analyzer, "comment", terms
-							+ " ");
-
-					if (tex == null && t == null && t2 == null) {
-						create(tex, hits, i, j, query,
-								"linking from ME to code");
-					}
-					if (tex != null) {
-						create(tex, hits, i, j, query,
-								"linking from ME to code");
-					}
-					if (t != null) {
-						create(t, hits, i, j, query, "linking from ME to code");
-					}
-					if (t2 != null) {
-						create(t2, hits, i, j, query, "linking from ME to code");
-					}
-
-				}
-			}
+//			for (int i = 0; i < mod.size(); i++) {
+//
+//				for (int j = 0; j < hits.get(i).length(); j++) {
+//
+//					String terms = "";
+//					String className = "";
+//					ArrayList<String> comments = new ArrayList<String>();
+//					ArrayList<ScopingNode> subroutines = new ArrayList<ScopingNode>();
+//
+//					ArrayList<String> methods = new ArrayList<String>();
+//
+//					String method;
+//					method = "";
+//					JavaSourceCodeAnalyzer anal = new JavaSourceCodeAnalyzer();
+//
+//					if (index.getWriter().getAnalyzer() instanceof JavaSourceCodeAnalyzer) {
+//
+//						SearchHelp help = new SearchHelp(hits.get(i).doc(j)
+//								.get("path"));
+//						comments = help.getComments();
+//
+//						methods = help.getMethods();
+//						className = help.getClassName();
+//						className = anal.method(anal
+//								.methodName(new StringReader(className)));
+//
+//						for (int k = 0; k < methods.size(); k++) {
+//							// method = methods.get(i)+ "\n";
+//							method = anal
+//									.method(anal.methodName(new StringReader(
+//											methods.get(k))))
+//									+ "\n";
+//						}
+//
+//					} else if (index.getWriter().getAnalyzer() instanceof FortranSourceCodeAnalyzer) {
+//						SearchHelp help = new SearchHelp(hits.get(i).doc(j)
+//								.get("path"));
+//						comments = help.getCommentsF();
+//						subroutines = help.getSubroutines();
+//					}
+//
+//					for (int k = 0; k < subroutines.size(); k++) {
+//						className += subroutines.get(k) + "\n";
+//					}
+//
+//					//
+//					// method = anal.method(anal.methodName(new
+//					// StringReader(method)));
+//
+//					if (comments != null) {
+//						for (int k = 0; k < comments.size(); k++) {
+//							terms += comments.get(k) + "\n";
+//						}
+//					}
+//
+//					String tex = h.getBestFragment(analyzer, "class", className
+//							+ " ");
+//
+//					String t = h1.getBestFragment(analyzer, "method", method
+//							+ " ");
+//
+//					String t2 = h2.getBestFragment(analyzer, "comment", terms
+//							+ " ");
+//
+//					if (tex == null && t == null && t2 == null) {
+//						create(tex, hits, i, j, query,
+//								"linking from ME to code");
+//					}
+//					if (tex != null) {
+//						create(tex, hits, i, j, query,
+//								"linking from ME to code");
+//					}
+//					if (t != null) {
+//						create(t, hits, i, j, query, "linking from ME to code");
+//					}
+//					if (t2 != null) {
+//						create(t2, hits, i, j, query, "linking from ME to code");
+//					}
+//
+//				}
+//			}
 
 			// System.out.println(hits.get(0).doc(0).get("code")
 			// + " this is the code that was retrived");
