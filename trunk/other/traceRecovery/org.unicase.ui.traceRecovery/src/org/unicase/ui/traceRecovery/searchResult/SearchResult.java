@@ -242,6 +242,7 @@ public class SearchResult implements Listener {
 					editor.minimumHeight = textt.getSize().y;
 					// editor.horizontalAlignment = SWT.CENTER;
 
+					textt.setEditable(false);
 					editor.setEditor(textt, item, 4);
 
 					// item.setText(text);
@@ -296,6 +297,16 @@ public class SearchResult implements Listener {
 			end = text.indexOf("</B>", i);
 
 			if (start == -1) {
+				break;
+			} else if(end == -1)
+			{
+//				StyleRange range = new StyleRange();
+//				range.start = start;
+//				range.length = text.length()-1;
+//				range.fontStyle = SWT.BOLD;
+//				range.foreground = Display.getCurrent().getSystemColor(
+//						SWT.COLOR_BLUE);
+//				r.add(range);
 				break;
 			}
 
