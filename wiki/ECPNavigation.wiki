@@ -1,5 +1,8 @@
 #summary ECP framework Navigational Page
 
+=Please note: This site is deprecated, EMF Client platform has move to Eclipse - [http://eclipse.org/emfclient]=
+
+
 Looking for the [ModelsTutorial Models 2010 Tutorial]?
 
    * [ECP What is the ECP?]
