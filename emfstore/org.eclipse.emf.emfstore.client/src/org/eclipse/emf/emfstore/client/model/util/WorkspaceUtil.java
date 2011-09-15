@@ -24,9 +24,11 @@ import org.eclipse.emf.emfstore.client.model.Activator;
 import org.eclipse.emf.emfstore.client.model.Configuration;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.observers.ExceptionObserver;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.util.FileUtil;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
 import org.eclipse.emf.emfstore.server.model.versioning.events.CheckoutEvent;
 import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
@@ -272,5 +274,19 @@ public final class WorkspaceUtil {
 		String workspaceDirectory = Configuration.getWorkspaceDirectory();
 		FileUtil.deleteFolder(new File(workspaceDirectory));
 		Configuration.setTesting(isTesting);
+	}
+
+	public static void handleException(RuntimeException exception) {
+		Boolean errorHandeled = WorkspaceManager.getObserverBus().notify(ExceptionObserver.class)
+			.handleError(exception);
+		logException("An error occured.", exception);
+		if (!errorHandeled.booleanValue()) {
+			throw exception;
+		}
+	}
+
+	public static void handleException(String string, EmfStoreException e) {
+		handleException(new RuntimeException(string, e));
+
 	}
 }
