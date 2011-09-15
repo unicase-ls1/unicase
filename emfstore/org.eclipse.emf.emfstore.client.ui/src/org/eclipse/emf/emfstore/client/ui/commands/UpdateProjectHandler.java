@@ -84,7 +84,6 @@ public class UpdateProjectHandler extends ServerRequestCommandHandler implements
 		try {
 			PrimaryVersionSpec baseVersion = projectSpace.getBaseVersion();
 			PrimaryVersionSpec targetVersion = projectSpace.update(VersionSpec.HEAD_VERSION, UpdateProjectHandler.this);
-			WorkspaceUtil.logUpdate(projectSpace, baseVersion, targetVersion);
 
 			// explicitly refresh the decorator since no simple attribute has
 			// been changed
