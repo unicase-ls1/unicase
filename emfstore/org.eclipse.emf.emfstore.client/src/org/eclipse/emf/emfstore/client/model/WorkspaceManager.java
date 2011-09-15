@@ -43,6 +43,7 @@ import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.FileUtil;
 import org.eclipse.emf.emfstore.common.model.util.MalformedModelVersionException;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.observer.IObserver;
 import org.eclipse.emf.emfstore.common.observer.ObserverBus;
 import org.eclipse.emf.emfstore.migration.EMFStoreMigrationException;
 import org.eclipse.emf.emfstore.migration.EMFStoreMigratorUtil;
@@ -111,10 +112,24 @@ public final class WorkspaceManager {
 	}
 
 	private void initialize() {
-		this.observerBus = new ObserverBus();
+		initializeObserverBus();
 		this.connectionManager = initConnectionManager();
 		this.adminConnectionManager = initAdminConnectionManager();
 		this.currentWorkspace = initWorkSpace();
+	}
+
+	private void initializeObserverBus() {
+		this.observerBus = new ObserverBus();
+		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.eclipse.emf.emfstore.client.observers");
+		for (IConfigurationElement extension : rawExtensions) {
+			try {
+				IObserver observer = (IObserver) extension.createExecutableExtension("ObserverClass");
+				observerBus.register(observer);
+			} catch (CoreException e) {
+				WorkspaceUtil.logException(e.getMessage(), e);
+			}
+		}
 	}
 
 	private void notifyPostWorkspaceInitiators() {
