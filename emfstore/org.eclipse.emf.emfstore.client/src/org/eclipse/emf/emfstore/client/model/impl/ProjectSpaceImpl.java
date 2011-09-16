@@ -1486,10 +1486,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public PrimaryVersionSpec update(final VersionSpec version, final UpdateObserver observer) throws EmfStoreException {
 
-		WorkspaceUtil.handleException(new RuntimeException("w1"));
-		WorkspaceUtil.handleException(new RuntimeException("w2"));
-		WorkspaceUtil.handleException(new RuntimeException("w3"));
-
 		final ConnectionManager connectionManager = WorkspaceManager.getInstance().getConnectionManager();
 		final PrimaryVersionSpec resolvedVersion = resolveVersionSpec(version);
 
