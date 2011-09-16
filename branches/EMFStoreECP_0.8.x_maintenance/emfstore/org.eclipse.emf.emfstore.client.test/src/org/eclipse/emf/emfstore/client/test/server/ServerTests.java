@@ -110,7 +110,6 @@ public class ServerTests {
 	@BeforeClass
 	public static void setUpBeforeClass() throws EmfStoreException {
 		ServerConfiguration.setTesting(true);
-		SetupHelper.removeServerTestProfile();
 		SetupHelper.addUserFileToServer(false);
 		SetupHelper.startSever();
 		connectionManager = WorkspaceManager.getInstance().getConnectionManager();

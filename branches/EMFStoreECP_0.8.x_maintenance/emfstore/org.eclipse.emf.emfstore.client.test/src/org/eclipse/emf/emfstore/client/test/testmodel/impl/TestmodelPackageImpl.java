@@ -119,6 +119,15 @@ public class TestmodelPackageImpl extends EPackageImpl implements TestmodelPacka
 	 * 
 	 * @generated
 	 */
+	public EReference getTestElement_ContainedElements() {
+		return (EReference) testElementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public TestmodelFactory getTestmodelFactory() {
 		return (TestmodelFactory) getEFactoryInstance();
 	}
@@ -145,6 +154,7 @@ public class TestmodelPackageImpl extends EPackageImpl implements TestmodelPacka
 		testElementEClass = createEClass(TEST_ELEMENT);
 		createEAttribute(testElementEClass, TEST_ELEMENT__STRINGS);
 		createEReference(testElementEClass, TEST_ELEMENT__REFERENCES);
+		createEReference(testElementEClass, TEST_ELEMENT__CONTAINED_ELEMENTS);
 	}
 
 	/**
@@ -184,6 +194,9 @@ public class TestmodelPackageImpl extends EPackageImpl implements TestmodelPacka
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestElement_References(), this.getTestElement(), null, "references", null, 0, -1,
 			TestElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestElement_ContainedElements(), this.getTestElement(), null, "containedElements", null, 0,
+			-1, TestElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource

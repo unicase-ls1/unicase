@@ -7,11 +7,10 @@ package org.eclipse.emf.emfstore.client.test.integration.reversibility;
 
 import static org.junit.Assert.assertTrue;
 
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.test.integration.forward.IntegrationTestHelper;
 import org.eclipse.emf.emfstore.common.model.util.SerializationException;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 
 /**
@@ -32,14 +31,13 @@ public class AttributeOperationsReversibilityTest extends OperationsReversibilit
 		System.out.println("MultiAttributeMoveReversibilityTest");
 
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
-		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new EMFStoreCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				testHelper.doMultiAttributeMove();
 				getTestProjectSpace().revert();
 			}
-		});
+		}.run(false);
 
 		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
 			"MultiAttributeMoveReversibilityTest"));
@@ -57,16 +55,15 @@ public class AttributeOperationsReversibilityTest extends OperationsReversibilit
 		System.out.println("AttributeChangeReversibilityTest");
 
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
-		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new EMFStoreCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				testHelper.doChangeAttribute();
 				getTestProjectSpace().revert();
 			}
 
-		});
+		}.run(false);
 
 		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
 			"AttributeChangeReversibilityTest"));
@@ -83,16 +80,15 @@ public class AttributeOperationsReversibilityTest extends OperationsReversibilit
 	public void attributeTransitiveChangeReversibilityTest() throws SerializationException, EmfStoreException {
 		System.out.println("AttributeTransitiveChangeReversibilityTest");
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
-		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new EMFStoreCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				testHelper.doAttributeTransitiveChange();
 				getTestProjectSpace().revert();
 			}
 
-		});
+		}.run(false);
 
 		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
 			"AttributeTransitiveChangeReversibilityTest"));

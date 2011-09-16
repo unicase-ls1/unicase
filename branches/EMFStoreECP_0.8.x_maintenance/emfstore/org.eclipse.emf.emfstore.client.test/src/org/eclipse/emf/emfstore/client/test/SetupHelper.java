@@ -43,8 +43,6 @@ import org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId;
 import org.eclipse.emf.emfstore.server.model.versioning.LogMessage;
 import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
 import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * Helper class for setup/cleanup test fixtures.
@@ -55,7 +53,6 @@ public class SetupHelper {
 
 	private static final Logger LOGGER = Logger.getLogger("org.unicase.workspace.test.SetupHelper");
 
-	private TransactionalEditingDomain domain;
 	private Workspace workSpace;
 	private ProjectSpace testProjectSpace;
 	private Project testProject;
@@ -240,7 +237,7 @@ public class SetupHelper {
 		serverInfo.setPort(8080);
 		// serverInfo.setUrl("127.0.0.1");
 		serverInfo.setUrl("localhost");
-		serverInfo.setCertificateAlias("unicase.org test test(!!!) certificate");
+		serverInfo.setCertificateAlias("emfstore test certificate (do not use in production!)");
 
 		return serverInfo;
 	}
@@ -252,7 +249,6 @@ public class SetupHelper {
 		LOGGER.log(Level.INFO, "setting up workspace...");
 		Configuration.setTesting(true);
 		workSpace = WorkspaceManager.getInstance().getCurrentWorkspace();
-		domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 		LOGGER.log(Level.INFO, "workspace initialized");
 
 	}
@@ -301,10 +297,10 @@ public class SetupHelper {
 		final String path;
 		path = template.getPath();
 
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new EMFStoreCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				String uriString = Activator.getDefault().getBundle().getLocation() + path;
 				if (File.separator.equals("/")) {
 					uriString = uriString.replace("reference:file:", "");
@@ -320,7 +316,7 @@ public class SetupHelper {
 				}
 			}
 
-		});
+		}.run(false);
 
 		testProject = testProjectSpace.getProject();
 	}
@@ -332,10 +328,10 @@ public class SetupHelper {
 	 */
 	private void setupTestProjectSpace(final String absolutePath) {
 
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new EMFStoreCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				try {
 					testProjectSpace = importProject(absolutePath);
 				} catch (IOException e) {
@@ -343,7 +339,7 @@ public class SetupHelper {
 				}
 			}
 
-		});
+		}.run(false);
 
 		testProject = testProjectSpace.getProject();
 
@@ -406,17 +402,6 @@ public class SetupHelper {
 
 	}
 
-	public static void removeServerTestProfile() {
-		String serverPath = ServerConfiguration.getServerHome();
-		File serverDirectory = new File(serverPath);
-		try {
-			FileUtil.deleteFolder(serverDirectory);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
-
 	/**
 	 * Cleans workspace up.
 	 */
@@ -465,10 +450,10 @@ public class SetupHelper {
 		final String path;
 		path = projectTemplate.getPath();
 
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new EMFStoreCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				String uriString = Activator.getDefault().getBundle().getLocation() + path;
 				if (File.separator.equals("/")) {
 					uriString = uriString.replace("reference:file:", "");
@@ -484,9 +469,7 @@ public class SetupHelper {
 					e.printStackTrace();
 				}
 			}
-
-		});
-
+		}.run(false);
 	}
 
 	/**
@@ -525,9 +508,10 @@ public class SetupHelper {
 	 */
 	public void commitChanges() {
 		final LogMessage logMessage = createLogMessage(usersession.getUsername(), "some message");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new EMFStoreCommand() {
+
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				System.out.println(IntegrationTestHelper
 					.getChangePackage(getTestProjectSpace().getOperations(), true, false).getOperations().size()
 					+ " operations.");
@@ -541,8 +525,7 @@ public class SetupHelper {
 				}
 
 			}
-		});
-
+		}.run(false);
 	}
 
 	/**
@@ -575,10 +558,11 @@ public class SetupHelper {
 		projectInfo.setName("CompareProject");
 		projectInfo.setDescription("compare project description");
 		projectInfo.setProjectId(projectId);
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new EMFStoreCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
+
 				try {
 					compareProject = WorkspaceManager.getInstance().getCurrentWorkspace()
 						.checkout(usersession, projectInfo).getProject();
@@ -589,7 +573,7 @@ public class SetupHelper {
 
 			}
 
-		});
+		}.run(false);
 		return compareProject;
 	}
 
@@ -612,13 +596,6 @@ public class SetupHelper {
 	 */
 	public Workspace getWorkSpace() {
 		return workSpace;
-	}
-
-	/**
-	 * @return editing domain
-	 */
-	public TransactionalEditingDomain getDomain() {
-		return domain;
 	}
 
 	/**
@@ -659,14 +636,14 @@ public class SetupHelper {
 	 * Creates a new project id.
 	 */
 	public void createNewProjectId() {
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new EMFStoreCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				testProjectSpace.setProjectId(org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE
 					.createProjectId());
 				projectId = testProjectSpace.getProjectId();
 			}
-		});
+		}.run(false);
 	}
 }

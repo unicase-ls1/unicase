@@ -12,6 +12,10 @@ import java.util.Set;
 
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.client.test.model.document.DocumentFactory;
+import org.eclipse.emf.emfstore.client.test.model.document.LeafSection;
+import org.eclipse.emf.emfstore.client.test.model.requirement.Actor;
+import org.eclipse.emf.emfstore.client.test.model.requirement.RequirementFactory;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.server.conflictDetection.ConflictDetector;

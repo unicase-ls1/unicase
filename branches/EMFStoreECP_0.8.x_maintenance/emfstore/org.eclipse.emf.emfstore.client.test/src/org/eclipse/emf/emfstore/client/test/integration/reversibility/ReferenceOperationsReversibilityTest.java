@@ -7,11 +7,10 @@ package org.eclipse.emf.emfstore.client.test.integration.reversibility;
 
 import static org.junit.Assert.assertTrue;
 
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.test.integration.forward.IntegrationTestHelper;
 import org.eclipse.emf.emfstore.common.model.util.SerializationException;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 
 /**
@@ -33,16 +32,15 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 		System.out.println("ContainmentReferenceAddNewReversibilityTest");
 
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
-		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new EMFStoreCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				testHelper.doContainemntReferenceAddNew();
 				getTestProjectSpace().revert();
 			}
 
-		});
+		}.run(false);
 
 		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
 			"ContainmentReferenceAddNewReversibilityTest"));
@@ -62,16 +60,15 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 		System.out.println("ContainmentRefTransitiveChangeReversibilityTest");
 
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
-		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new EMFStoreCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				testHelper.doContainmentRefTransitiveChange();
 				getTestProjectSpace().revert();
 			}
 
-		});
+		}.run(false);
 
 		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
 			"ContainmentRefTransitiveChangeReversibilityTest"));
@@ -88,14 +85,13 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 	public void multiReferenceMoveReversibilityTest() throws SerializationException, EmfStoreException {
 		System.out.println("MultiReferenceMoveReversibilityTest");
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
-		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new EMFStoreCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				testHelper.doMultiReferenceMove();
 				getTestProjectSpace().revert();
 			}
-		});
+		}.run(false);
 
 		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
 			"MultiReferenceMoveReversibilityTest"));
@@ -113,16 +109,15 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 	public void nonContainmentReferenceAddReversibilityTest() throws SerializationException, EmfStoreException {
 		System.out.println("NonContainmentReferenceAddReversibilityTest");
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
-		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new EMFStoreCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				testHelper.doNonContainmentReferenceAdd();
 				getTestProjectSpace().revert();
 			}
 
-		});
+		}.run(false);
 
 		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
 			"NonContainmentReferenceAddReversibilityTest"));
@@ -139,15 +134,14 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 		System.out.println("NonContainmentReferenceRemoveReversibilityTest");
 
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
-		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new EMFStoreCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				testHelper.doNonContainmentReferenceRemove();
 				getTestProjectSpace().revert();
 			}
-		});
+		}.run(false);
 
 		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
 			"NonContainmentReferenceRemoveReversibilityTest"));
@@ -165,15 +159,14 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 	public void containmentReferenceMoveReversibilityTest() throws SerializationException, EmfStoreException {
 		System.out.println("ContainmentReferenceMoveReversibilityTest");
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
-		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new EMFStoreCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				testHelper.doContainmentReferenceMove();
 				getTestProjectSpace().revert();
 			}
-		});
+		}.run(false);
 
 		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
 			"ContainmentReferenceMoveReversibilityTest"));
