@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: ECP Common UI Plug-in (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.ecp.common;singleton:=true
-Bundle-Version: 0.8.9.M8
+Bundle-Version: 0.8.9.M9
 Bundle-Activator: org.eclipse.emf.ecp.common.Activator
 Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.emf.ecp.common.model;visibility:=reexport
