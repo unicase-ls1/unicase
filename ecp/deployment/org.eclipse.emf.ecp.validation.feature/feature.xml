@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.ecp.validation.feature"
       label="ECP Validation (Incubation)"
-      version="0.8.9.M8"
+      version="0.8.9.M9"
       provider-name="Eclipse Modeling Project">
 
    <description url="http://emfcp.org">
