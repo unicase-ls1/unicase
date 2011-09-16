@@ -28,7 +28,7 @@ public class TestmodelFactoryImpl extends EFactoryImpl implements TestmodelFacto
 	public static TestmodelFactory init() {
 		try {
 			TestmodelFactory theTestmodelFactory = (TestmodelFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/workspace/test/testmodel");
+				.getEFactory("http://eclipse.org/emf/emfstore/client/test/testmodel");
 			if (theTestmodelFactory != null) {
 				return theTestmodelFactory;
 			}

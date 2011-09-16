@@ -7,11 +7,15 @@ package org.eclipse.emf.emfstore.client.test.testmodel.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.emfstore.client.test.testmodel.TestElement;
 import org.eclipse.emf.emfstore.client.test.testmodel.TestmodelPackage;
 
@@ -22,6 +26,8 @@ import org.eclipse.emf.emfstore.client.test.testmodel.TestmodelPackage;
  * <ul>
  * <li>{@link org.eclipse.emf.emfstore.client.test.testmodel.impl.TestElementImpl#getStrings <em>Strings</em>}</li>
  * <li>{@link org.eclipse.emf.emfstore.client.test.testmodel.impl.TestElementImpl#getReferences <em>References</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.client.test.testmodel.impl.TestElementImpl#getContainedElements <em>Contained
+ * Elements</em>}</li>
  * </ul>
  * </p>
  * 
@@ -47,6 +53,16 @@ public class TestElementImpl extends EObjectImpl implements TestElement {
 	 * @ordered
 	 */
 	protected EList<TestElement> references;
+
+	/**
+	 * The cached value of the '{@link #getContainedElements() <em>Contained Elements</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getContainedElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TestElement> containedElements;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -97,6 +113,33 @@ public class TestElementImpl extends EObjectImpl implements TestElement {
 	 * 
 	 * @generated
 	 */
+	public EList<TestElement> getContainedElements() {
+		if (containedElements == null) {
+			containedElements = new EObjectContainmentEList<TestElement>(TestElement.class, this,
+				TestmodelPackage.TEST_ELEMENT__CONTAINED_ELEMENTS);
+		}
+		return containedElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case TestmodelPackage.TEST_ELEMENT__CONTAINED_ELEMENTS:
+			return ((InternalEList<?>) getContainedElements()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -104,6 +147,8 @@ public class TestElementImpl extends EObjectImpl implements TestElement {
 			return getStrings();
 		case TestmodelPackage.TEST_ELEMENT__REFERENCES:
 			return getReferences();
+		case TestmodelPackage.TEST_ELEMENT__CONTAINED_ELEMENTS:
+			return getContainedElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -125,6 +170,10 @@ public class TestElementImpl extends EObjectImpl implements TestElement {
 			getReferences().clear();
 			getReferences().addAll((Collection<? extends TestElement>) newValue);
 			return;
+		case TestmodelPackage.TEST_ELEMENT__CONTAINED_ELEMENTS:
+			getContainedElements().clear();
+			getContainedElements().addAll((Collection<? extends TestElement>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -143,6 +192,9 @@ public class TestElementImpl extends EObjectImpl implements TestElement {
 		case TestmodelPackage.TEST_ELEMENT__REFERENCES:
 			getReferences().clear();
 			return;
+		case TestmodelPackage.TEST_ELEMENT__CONTAINED_ELEMENTS:
+			getContainedElements().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -159,6 +211,8 @@ public class TestElementImpl extends EObjectImpl implements TestElement {
 			return strings != null && !strings.isEmpty();
 		case TestmodelPackage.TEST_ELEMENT__REFERENCES:
 			return references != null && !references.isEmpty();
+		case TestmodelPackage.TEST_ELEMENT__CONTAINED_ELEMENTS:
+			return containedElements != null && !containedElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

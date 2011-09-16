@@ -16,7 +16,7 @@ public class Activator extends Plugin {
 	/**
 	 * The plug-in ID.
 	 */
-	public static final String PLUGIN_ID = "org.unicase.workspace.test";
+	public static final String PLUGIN_ID = "org.eclipse.emf.emfstore.client.test";
 
 	/**
 	 * The shared instance.

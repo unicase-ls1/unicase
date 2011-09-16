@@ -7,10 +7,9 @@ package org.eclipse.emf.emfstore.client.test.integration.forward;
 
 import static org.junit.Assert.assertTrue;
 
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.common.model.util.SerializationException;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 
 /**
@@ -31,13 +30,12 @@ public class AttributeTest extends IntegrationTest {
 		System.out.println("MultiAttributeMoveTest");
 
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
-		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new EMFStoreCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				testHelper.doMultiAttributeMove();
 			}
-		});
+		}.run(false);
 
 		commitChanges();
 		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "MultiAttributeMoveTest"));
@@ -55,15 +53,14 @@ public class AttributeTest extends IntegrationTest {
 		System.out.println("AttributeChangeTest");
 
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
-		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new EMFStoreCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				testHelper.doChangeAttribute();
 			}
 
-		});
+		}.run(false);
 
 		commitChanges();
 
@@ -81,16 +78,15 @@ public class AttributeTest extends IntegrationTest {
 	public void attributeTransitiveChangeTest() throws SerializationException, EmfStoreException {
 		System.out.println("AttributeTransitiveChangeTest");
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
-		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new EMFStoreCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				testHelper.doAttributeTransitiveChange();
 
 			}
 
-		});
+		}.run(false);
 
 		commitChanges();
 		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),

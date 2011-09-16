@@ -38,11 +38,13 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.emfstore.client.model.Configuration;
 import org.eclipse.emf.emfstore.client.model.ModelFactory;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.common.model.util.SerializationException;
@@ -52,8 +54,6 @@ import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
 import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * Helper class for testing.
@@ -72,7 +72,7 @@ public final class IntegrationTestHelper {
 	 */
 	public static final int NUM_OF_TESTS = 16;
 
-	private static TransactionalEditingDomain domain;
+	private static EditingDomain domain;
 	private static final String TEMP_PATH = Configuration.getWorkspaceDirectory() + "tmp";
 	private Random random;
 	private Set<EObject> allMEsInProject;
@@ -136,10 +136,10 @@ public final class IntegrationTestHelper {
 		final boolean clearOperations) {
 
 		final ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
-		getDomain().getCommandStack().execute(new RecordingCommand(getDomain()) {
+		new EMFStoreCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				for (AbstractOperation op : operations) {
 					changePackage.getOperations().add(EcoreUtil.copy(op));
 
@@ -153,7 +153,7 @@ public final class IntegrationTestHelper {
 				}
 			}
 
-		});
+		}.run(false);
 		return changePackage;
 	}
 
@@ -206,9 +206,9 @@ public final class IntegrationTestHelper {
 		}
 
 		// apply changes to compare project
-		getDomain().getCommandStack().execute(new RecordingCommand(getDomain()) {
+		new EMFStoreCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				System.out.println("applying changes to compareSpace...");
 				((ProjectSpaceImpl) compareSpace).stopChangeRecording();
 				changePackage.apply(compareSpace.getProject());
@@ -216,7 +216,7 @@ public final class IntegrationTestHelper {
 					testSpace.getOperations().clear();
 				}
 			}
-		});
+		}.run(false);
 	}
 
 	/**
@@ -244,10 +244,10 @@ public final class IntegrationTestHelper {
 	 * 
 	 * @return editing domain
 	 */
-	public static TransactionalEditingDomain getDomain() {
+	public static EditingDomain getDomain() {
 
 		if (domain == null) {
-			domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+			domain = Configuration.getEditingDomain();
 
 		}
 		return domain;
@@ -531,7 +531,7 @@ public final class IntegrationTestHelper {
 		for (EClassifier classifier : ePackage.getEClassifiers()) {
 			if (EcorePackage.eINSTANCE.getEClass().isInstance(classifier)) {
 				EClass subClass = (EClass) classifier;
-				if (clazz.isSuperTypeOf(subClass)
+				if ((clazz.isSuperTypeOf(subClass) || clazz == EcorePackage.eINSTANCE.getEObject())
 					&& (includeAbstractClassesAndInterfaces || canHaveInstances(subClass))) {
 					ret.add(subClass);
 				}
