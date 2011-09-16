@@ -38,14 +38,14 @@ public interface TestmodelPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	String eNS_URI = "http://unicase.org/workspace/test/testmodel";
+	String eNS_URI = "http://eclipse.org/emf/emfstore/client/test/testmodel";
 
 	/**
 	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	String eNS_PREFIX = "org.unicase.workspace.test";
+	String eNS_PREFIX = "org.eclipse.emf.emfstore.client.test";
 
 	/**
 	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -89,13 +89,22 @@ public interface TestmodelPackage extends EPackage {
 	int TEST_ELEMENT__REFERENCES = EcorePackage.EOBJECT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Contained Elements</b></em>' containment reference list. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_ELEMENT__CONTAINED_ELEMENTS = EcorePackage.EOBJECT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Test Element</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_ELEMENT_FEATURE_COUNT = EcorePackage.EOBJECT_FEATURE_COUNT + 2;
+	int TEST_ELEMENT_FEATURE_COUNT = EcorePackage.EOBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.emfstore.client.test.testmodel.TestElement
@@ -130,6 +139,18 @@ public interface TestmodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTestElement_References();
+
+	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.eclipse.emf.emfstore.client.test.testmodel.TestElement#getContainedElements
+	 * <em>Contained Elements</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '<em>Contained Elements</em>'.
+	 * @see org.eclipse.emf.emfstore.client.test.testmodel.TestElement#getContainedElements()
+	 * @see #getTestElement()
+	 * @generated
+	 */
+	EReference getTestElement_ContainedElements();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -177,6 +198,14 @@ public interface TestmodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEST_ELEMENT__REFERENCES = eINSTANCE.getTestElement_References();
+
+		/**
+		 * The meta object literal for the '<em><b>Contained Elements</b></em>' containment reference list feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference TEST_ELEMENT__CONTAINED_ELEMENTS = eINSTANCE.getTestElement_ContainedElements();
 
 	}
 

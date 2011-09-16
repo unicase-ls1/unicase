@@ -43,26 +43,10 @@ public class TestmodelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * <<<<<<< .mine Checks whether this is a switch for the given package. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Checks whether this is a switch for the given package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @parameter ePackage the package in question.
-	 * @return whether this is a switch for the given package. ======= Calls <code>caseXXX</code> for each class of the
-	 *         model until one returns a non null result; it yields that result. <!-- begin-user-doc --> <!--
-	 *         end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
-	 * @generated
-	 */
-	@Override
-	public T doSwitch(EObject theEObject) {
-		return doSwitch(theEObject.eClass(), theEObject);
-	}
-
-	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
-	 * result. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
 	@Override
