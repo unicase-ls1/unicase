@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Navigator Editor-Bridge  (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.ecp.navigatoreditorbridge;singleton:=true
-Bundle-Version: 0.8.9.M8
+Bundle-Version: 0.8.9.M9
 Bundle-Activator: org.eclipse.emf.ecp.navigatoreditorbridge.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
