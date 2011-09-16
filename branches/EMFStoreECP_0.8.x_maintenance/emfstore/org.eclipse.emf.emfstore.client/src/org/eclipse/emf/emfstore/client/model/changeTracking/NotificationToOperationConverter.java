@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.emfstore.client.model.changeTracking.notification.NotificationInfo;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.impl.ProjectImpl;
@@ -330,7 +331,8 @@ public final class NotificationToOperationConverter {
 			id = ((ProjectImpl) project).getDeletedModelElementId(modelElement);
 		}
 		if (id == null) {
-			throw new IllegalStateException("Model element doesn't have an ID.");
+			WorkspaceUtil.handleException(new IllegalStateException("Model Element does not have an ID: "
+				+ modelElement));
 		}
 		operation.setModelElementId(id);
 	}
