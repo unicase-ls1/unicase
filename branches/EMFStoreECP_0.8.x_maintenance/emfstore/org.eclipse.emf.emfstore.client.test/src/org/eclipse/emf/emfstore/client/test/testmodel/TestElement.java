@@ -61,8 +61,8 @@ public interface TestElement extends EObject {
 	 * Returns the value of the '<em><b>Contained Elements</b></em>' containment reference list. The list contents are
 	 * of type {@link org.eclipse.emf.emfstore.client.test.testmodel.TestElement}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Contained Elements</em>' containment reference list isn't clear, there really should
-	 * be more of a description here...
+	 * If the meaning of the '<em>Contained Elements</em>' containment reference isn't clear, there really should be
+	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
