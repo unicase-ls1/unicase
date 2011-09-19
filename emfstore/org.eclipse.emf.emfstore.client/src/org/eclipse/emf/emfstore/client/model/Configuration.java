@@ -348,6 +348,6 @@ public final class Configuration {
 		for (IConfigurationElement extension : rawExtensions) {
 			resourceSplitting = new Boolean(extension.getAttribute("enabled"));
 		}
-		return true;
+		return resourceSplitting.booleanValue();
 	}
 }
