@@ -1,5 +1,6 @@
 package org.unicase.papyrus.diagram.services;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,8 +12,10 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.metamodel.Project;
+import org.unicase.papyrus.UMLModel;
 import org.unicase.ui.common.commands.DeleteModelElementCommand;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.workspace.util.UnicaseCommand;
 
 public class UnicasePageManager implements IPageMngr {
 	
@@ -71,11 +74,30 @@ public class UnicasePageManager implements IPageMngr {
 	}
 
 	public List<Object> allPages() {
-		List<Object> result = new LinkedList<Object>();
-		for(Iterator<EObject> it = project.eAllContents(); it.hasNext();) {
-			EObject me = it.next();
-			if(me instanceof Diagram) {
-				result.add(me);
+		final List<Object> result = new LinkedList<Object>();
+		for(EObject me : project.getAllModelElements()) {
+			if(me instanceof UMLModel) {
+				final UMLModel model = (UMLModel) me;
+				Diagram diagram = model.getGmfDiagram();
+				if(diagram == null) {
+						new UnicaseCommand() {
+
+							@Override
+							protected void doRun() {
+								try {
+									model.loadDiagramLayout();
+									result.add(model.getGmfDiagram());
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							}
+							
+						}.run(true);
+				} else {
+					result.add(diagram);
+				}
+				
 			}
 
 		}

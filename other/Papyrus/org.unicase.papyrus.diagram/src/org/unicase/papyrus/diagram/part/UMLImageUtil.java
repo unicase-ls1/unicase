@@ -1,61 +1,59 @@
 package org.unicase.papyrus.diagram.part;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
+import org.osgi.framework.Bundle;
 
 final public class UMLImageUtil {
 	
-	private static UMLImageUtil instance;
+	private static Bundle bundle = Platform.getBundle("org.unicase.papyrus.diagram");
+	
+	private static String imageDirectoryPath = "/icons/";
 
 	private UMLImageUtil() {
 		
 	}
 	
-	public Image getActivityImage() {
-		return new Image(Display.getCurrent(),
-				getClass().getResourceAsStream("/icons/Activity.gif"));
+	public static Image getActivityImage() throws IOException {
+		return new Image(Display.getCurrent(), getImageStream("Activity.gif"));
 	}
 	
-	public Image getClassImage() {
-		return new Image(Display.getCurrent(),
-				getClass().getResourceAsStream("/icons/Class.gif"));
+	public static Image getClassImage() throws IOException {
+		return new Image(Display.getCurrent(), getImageStream("Class.gif"));
 	}
 	
-	public Image getCommunicationImage() {
-		return new Image(Display.getCurrent(),
-				getClass().getResourceAsStream("/icons/Communication.gif"));
+	public static Image getCommunicationImage() throws IOException {
+		return new Image(Display.getCurrent(), getImageStream("Communication.gif"));
 	}
 	
-	public Image getCompositeImage() {
-		return new Image(Display.getCurrent(),
-				getClass().getResourceAsStream("/icons/Composite.gif"));
+	public static Image getCompositeImage() throws IOException {
+		return new Image(Display.getCurrent(), getImageStream("Composite.gif"));
 	}
 	
-	public Image getSequenceImage() {
-		return new Image(Display.getCurrent(),
-				getClass().getResourceAsStream("/icons/Sequence.gif"));
+	public static Image getSequenceImage() throws IOException {
+		return new Image(Display.getCurrent(), getImageStream("Sequence.gif"));
 	}
 	
-	public Image getStateMachineImage() {
-		return new Image(Display.getCurrent(),
-				getClass().getResourceAsStream("/icons/StateMachine.gif"));
+	public static Image getStateMachineImage() throws IOException {
+		return new Image(Display.getCurrent(), getImageStream("StateMachine.gif"));
 	}
 	
-	public Image getUseCaseImage() {
-		return new Image(Display.getCurrent(),
-				getClass().getResourceAsStream("/icons/UseCase.gif"));
+	public static Image getUseCaseImage() throws IOException {
+		return new Image(Display.getCurrent(), getImageStream("UseCase.gif"));
 	}
 	
-	public Image getPackageImage() {
-		return new Image(Display.getCurrent(),
-				getClass().getResourceAsStream("/icons/Package.gif"));
+	public static Image getPackageImage() throws IOException {
+		return new Image(Display.getCurrent(), getImageStream("Package.gif"));
 	}
 	
-	public static UMLImageUtil getInstance() {
-		if(instance == null) {
-			instance = new UMLImageUtil();
-		}
-		return instance;
+	private static InputStream getImageStream(String fileName) throws IOException {
+		URL imageURL = bundle.getEntry(imageDirectoryPath + fileName);
+		return imageURL.openStream();
 	}
-
+	
 }

@@ -400,7 +400,7 @@
                        ifEmpty="false"
                        operator="and">
                     <and>
-                    	<instanceof value="org.eclipse.emf.ecore.EObject" />
+                    	<instanceof value="org.unicase.model.UnicaseModelElement" />
                     	<not>
                     		<instanceof value="org.unicase.workspace.ProjectSpace" />
                     	</not>
@@ -590,7 +590,7 @@
            id="org.unicase.ui.common.commands.modelElementNotSection">
         <and>
            <instanceof
-                 value="org.eclipse.emf.ecore.EObject">
+                 value="org.unicase.model.UnicaseModelElement">
            </instanceof>
            <not>
               <instanceof
