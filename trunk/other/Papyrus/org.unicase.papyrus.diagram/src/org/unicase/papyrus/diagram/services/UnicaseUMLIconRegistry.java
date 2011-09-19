@@ -1,5 +1,7 @@
 package org.unicase.papyrus.diagram.services;
 
+import java.io.IOException;
+
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.swt.graphics.Image;
@@ -7,6 +9,7 @@ import org.unicase.papyrus.UMLDiagramType;
 import org.unicase.papyrus.UMLModel;
 import org.unicase.papyrus.diagram.part.UMLImageUtil;
 import org.unicase.papyrus.diagram.services.UnicaseUMLIconRegistry;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 public class UnicaseUMLIconRegistry implements IPageIconsRegistry {
 	
@@ -31,25 +34,30 @@ public class UnicaseUMLIconRegistry implements IPageIconsRegistry {
 	}
 
 	private Image getIcon(UMLDiagramType diagramType) {
-		switch(diagramType) {
-			case ACTIVITY:
-				return UMLImageUtil.getInstance().getActivityImage();
-			case CLASS:
-				return UMLImageUtil.getInstance().getClassImage();
-			case COMMUNICATION:
-				return UMLImageUtil.getInstance().getCommunicationImage();
-			case COMPOSITE:
-				return UMLImageUtil.getInstance().getCompositeImage();
-			case SEQUENCE:
-				return UMLImageUtil.getInstance().getSequenceImage();
-			case STATE_MACHINE:
-				return UMLImageUtil.getInstance().getStateMachineImage();
-			case USE_CASE:
-				return UMLImageUtil.getInstance().getUseCaseImage();
-			case PACKAGE:
-				return UMLImageUtil.getInstance().getPackageImage();
-			default:
-				return null;
+		try {
+			switch(diagramType) {
+				case ACTIVITY:
+					return UMLImageUtil.getActivityImage();
+				case CLASS:
+					return UMLImageUtil.getClassImage();
+				case COMMUNICATION:
+					return UMLImageUtil.getCommunicationImage();
+				case COMPOSITE:
+					return UMLImageUtil.getCompositeImage();
+				case SEQUENCE:
+					return UMLImageUtil.getSequenceImage();
+				case STATE_MACHINE:
+					return UMLImageUtil.getStateMachineImage();
+				case USE_CASE:
+					return UMLImageUtil.getUseCaseImage();
+				case PACKAGE:
+					return UMLImageUtil.getPackageImage();
+				default:
+					return null;
+			}
+		} catch (IOException e) {
+			WorkspaceUtil.logException("Failed to load Papyrus icons", e);
+			return null;
 		}
 	}
 	
