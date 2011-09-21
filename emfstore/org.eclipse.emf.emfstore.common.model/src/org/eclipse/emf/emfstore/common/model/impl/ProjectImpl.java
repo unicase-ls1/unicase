@@ -457,8 +457,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		notifyProjectChangeObservers(command);
 	}
 
-	private synchronized void notifyProjectChangeObservers(
-			ProjectChangeObserverNotificationCommand command) {
+	private synchronized void notifyProjectChangeObservers(ProjectChangeObserverNotificationCommand command) {
 		isNotifiying = true;
 		for (ProjectChangeObserver projectChangeObserver : this.observers) {
 			try {
@@ -610,8 +609,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * 
 	 * @see org.eclipse.emf.emfstore.common.model.Project#addProjectChangeObserver(org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver)
 	 */
-	public synchronized void addProjectChangeObserver(
-			ProjectChangeObserver projectChangeObserver) {
+	public synchronized void addProjectChangeObserver(ProjectChangeObserver projectChangeObserver) {
 		initCaches();
 		if (isNotifiying) {
 			observersToAttach.add(projectChangeObserver);
@@ -625,8 +623,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * 
 	 * @see org.eclipse.emf.emfstore.common.model.Project#removeProjectChangeObserver(org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver)
 	 */
-	public synchronized void removeProjectChangeObserver(
-			ProjectChangeObserver projectChangeObserver) {
+	public synchronized void removeProjectChangeObserver(ProjectChangeObserver projectChangeObserver) {
 		if (isNotifiying) {
 			observersToRemove.add(projectChangeObserver);
 			return;

@@ -29,8 +29,7 @@ import org.eclipse.emf.emfstore.server.model.ProjectId;
  * 
  * @author groeber
  */
-public class EMFStorePropertiesSubInterfaceImpl extends
-		AbstractSubEmfstoreInterface {
+public class EMFStorePropertiesSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 
 	/**
 	 * @param parentInterface
@@ -38,9 +37,7 @@ public class EMFStorePropertiesSubInterfaceImpl extends
 	 * @throws FatalEmfStoreException
 	 *             if any fatal error occurs
 	 */
-	public EMFStorePropertiesSubInterfaceImpl(
-			AbstractEmfstoreInterface parentInterface)
-			throws FatalEmfStoreException {
+	public EMFStorePropertiesSubInterfaceImpl(AbstractEmfstoreInterface parentInterface) throws FatalEmfStoreException {
 		super(parentInterface);
 	}
 
@@ -54,11 +51,9 @@ public class EMFStorePropertiesSubInterfaceImpl extends
 	 * @throws EmfStoreException
 	 *             if the specified project does not exist
 	 */
-	public void setProperties(List<EMFStoreProperty> properties,
-			ProjectId projectId) throws EmfStoreException {
+	public void setProperties(List<EMFStoreProperty> properties, ProjectId projectId) throws EmfStoreException {
 		synchronized (getMonitor()) {
-			ProjectHistory history = getSubInterface(
-					ProjectSubInterfaceImpl.class).getProject(projectId);
+			ProjectHistory history = getSubInterface(ProjectSubInterfaceImpl.class).getProject(projectId);
 
 			for (EMFStoreProperty prop : properties) {
 				history.getSharedProperties().put(prop.getKey(), prop);
@@ -71,8 +66,7 @@ public class EMFStorePropertiesSubInterfaceImpl extends
 		try {
 			getServerSpace().save();
 		} catch (IOException e) {
-			throw new EmfStoreException(
-					"Cannot set the properties on the server.");
+			throw new EmfStoreException("Cannot set the properties on the server.");
 		}
 	}
 
@@ -85,12 +79,10 @@ public class EMFStorePropertiesSubInterfaceImpl extends
 	 * @throws EmfStoreException
 	 *             if specified property does not exist
 	 */
-	public List<EMFStoreProperty> getProperties(ProjectId projectId)
-			throws EmfStoreException {
+	public List<EMFStoreProperty> getProperties(ProjectId projectId) throws EmfStoreException {
 
 		synchronized (getMonitor()) {
-			ProjectHistory history = getSubInterface(
-					ProjectSubInterfaceImpl.class).getProject(projectId);
+			ProjectHistory history = getSubInterface(ProjectSubInterfaceImpl.class).getProject(projectId);
 			List<EMFStoreProperty> temp = new ArrayList<EMFStoreProperty>();
 			for (EMFStoreProperty prop : history.getSharedProperties().values()) {
 				temp.add(prop);
