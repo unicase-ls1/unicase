@@ -28,8 +28,7 @@ public class UndoLastOperationHandler extends AbstractHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final ProjectSpace projectSpace = UiUtil.getEventElementByClass(event,
-				ProjectSpace.class);
+		final ProjectSpace projectSpace = UiUtil.getEventElementByClass(event, ProjectSpace.class);
 		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
