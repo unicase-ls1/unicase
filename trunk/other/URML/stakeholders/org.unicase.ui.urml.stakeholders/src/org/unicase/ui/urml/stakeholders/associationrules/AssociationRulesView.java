@@ -12,6 +12,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Set;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -45,7 +46,6 @@ import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.urml.Phase;
 import org.unicase.model.urml.UrmlPackage;
-import org.unicase.model.urml.UrmlProjectSettings;
 import org.unicase.ui.urml.stakeholders.Activator;
 import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
 import org.unicase.ui.urml.stakeholders.review.input.UrmlTreeHandler;

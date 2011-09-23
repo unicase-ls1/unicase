@@ -43,7 +43,7 @@ public class StakeholderDiagramFilter implements UrmlDiagramFilter{
 			
 	}
 	
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public List filter(List elements) {
 		StakeholderRole role = UrmlSettingsManager.INSTANCE.getActiveRole();

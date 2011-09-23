@@ -20,7 +20,7 @@ import org.unicase.model.urml.UrmlPackage;
  * @author kterzieva
  */
 
-public class ReviewedTracker extends Observable {
+public class ReviewCountPublisher extends Observable {
 
 	private Project project;
 
@@ -29,7 +29,7 @@ public class ReviewedTracker extends Observable {
 	 * 
 	 * @param project the project whose elements will be tracked
 	 */
-	public ReviewedTracker(Project project) {
+	public ReviewCountPublisher(Project project) {
 		this.project = project;
 	}
 
@@ -39,10 +39,11 @@ public class ReviewedTracker extends Observable {
 	public void createListeners() {
 		Collection<EObject> urmlElements = project.getAllModelElementsbyClass(UrmlPackage.eINSTANCE
 			.getUrmlModelElement(), new BasicEList<EObject>());
+		ReviewCountListener countListener = new ReviewCountListener(this);
 		for (EObject eo : urmlElements) {
 			UrmlModelElement urml = (UrmlModelElement) eo;
-			ReviewedListener revListener = new ReviewedListener(this, urml);
-			urml.addModelElementChangeListener(revListener);
+			//TODO add count listener when new model element is created
+			urml.addModelElementChangeListener(countListener);
 		}
 	}
 
@@ -67,9 +68,9 @@ public class ReviewedTracker extends Observable {
 	/**
 	 * Updates the observers.
 	 */
-	public void recalculate() {
+	public void notifyObservers() {
 		this.setChanged();
-		this.notifyObservers();
+		super.notifyObservers();
 	}
 
 }

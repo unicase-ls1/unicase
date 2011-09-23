@@ -57,7 +57,6 @@ import org.unicase.ui.urml.stakeholders.Activator;
 import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
 import org.unicase.ui.urml.stakeholders.filtering.ReviewedFilter;
 import org.unicase.ui.urml.stakeholders.review.input.UrmlTreeHandler;
-import org.unicase.ui.urml.stakeholders.stakeholdernavigation.StakeholderView;
 
 /**
  * The view for reviewing the requirements. It provides the creating of new danger/hazards
@@ -93,10 +92,10 @@ public class ReviewView extends ViewPart {
 
 		// **** Creation of the UI Components ***
 		createLeftSide(parent);
-		// the sash (controler) is added to the main view
+		// the sash (controller) is added to the main view
 		sash = new Sash(parent, SWT.VERTICAL);
 		createRightSide(parent);
-		// Finally, after all UI compontents are created, set the global layout
+		// Finally, after all UI components are created, set the global layout
 		setupGlobalLayout(parent);
 
 		// **** Create necessary fields ***
@@ -106,7 +105,7 @@ public class ReviewView extends ViewPart {
 		// *** Setup listeners for the different buttons and other UI actions ***
 		setupListeners();
 
-		createReviewViewAction(elementsViewer.getInput());
+		createShowReviewedElementsAction(elementsViewer.getInput());
 
 		// Test code for filling the view with elements. To be replaced later
 
@@ -159,7 +158,7 @@ public class ReviewView extends ViewPart {
 		}
 	}
 
-	private void createReviewViewAction(Object input) {
+	private void createShowReviewedElementsAction(Object input) {
 		IActionBars bars = getViewSite().getActionBars();
 		IMenuManager menuManager = bars.getMenuManager();
 		createReviewedFilter(menuManager);
@@ -209,7 +208,7 @@ public class ReviewView extends ViewPart {
 	}
 
 	private void createLeftSide(final Composite parent) {
-		// the list viewer (controler) is added to the maim view (parent)
+		// the list viewer (controller) is added to the maim view (parent)
 
 		comp = new Composite(parent, SWT.NONE);
 		comp.setLayout(new GridLayout(1, false));
