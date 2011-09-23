@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.urml.stakeholders.review.controls;
+package org.unicase.ui.urml.stakeholders.filtering;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
@@ -18,14 +18,13 @@ import org.unicase.model.urml.StakeholderRole;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
-import org.unicase.ui.urml.stakeholders.stakeholdernavigation.StakeholderView;
 
 /**
  * Testclass.
  * @author kterzieva
  *
  */
-public class MEEtest extends AbstractMEControl {
+public class MEEditorFilterControl extends AbstractMEControl {
 
 	private Composite composite;
 

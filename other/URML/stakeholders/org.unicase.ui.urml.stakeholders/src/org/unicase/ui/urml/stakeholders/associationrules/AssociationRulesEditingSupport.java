@@ -33,8 +33,8 @@ public class AssociationRulesEditingSupport extends EditingSupport {
 	private EClass columnClass;
 	private AssociationRulesView rulesView;
 	private TableViewerColumn tableViewerColumn;
-	private static final Image CHECKED = Activator.getImageDescriptor("icons/checked.gif").createImage();
-	private static final Image UNCHECKED = Activator.getImageDescriptor("icons/unchecked.gif").createImage();
+//	private static final Image CHECKED = Activator.getImageDescriptor("icons/checked.gif").createImage();
+//	private static final Image UNCHECKED = Activator.getImageDescriptor("icons/unchecked.gif").createImage();
 
 	/**
 	 * The construct.

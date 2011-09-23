@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.urml.stakeholders.stakeholdernavigation;
+package org.unicase.ui.urml.stakeholders.navigation;
 
 import java.util.Collection;
 import java.util.Observable;
@@ -61,7 +61,7 @@ import org.unicase.ui.urml.stakeholders.review.input.UrmlTreeHandler;
  * @author kterzieva
  */
 
-public class StakeholderView extends ViewPart implements Observer {
+public class NavigationView extends ViewPart implements Observer {
 
 	private static final String NO_STAKEHOLDER = "[no stakeholder]";
 	private static final String MANAGE_STAKEHOLDER_ROLES = "Manage stakeholder roles";

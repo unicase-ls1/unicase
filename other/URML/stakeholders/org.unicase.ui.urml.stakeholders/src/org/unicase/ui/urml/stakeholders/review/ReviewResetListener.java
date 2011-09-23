@@ -5,6 +5,9 @@
  */
 package org.unicase.ui.urml.stakeholders.review;
 
+import java.util.Arrays;
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.metamodel.util.ModelElementChangeListener;
@@ -15,7 +18,7 @@ import org.unicase.model.urml.UrmlModelElement;
  * 
  * @author kterzieva
  */
-public abstract class Listener implements ModelElementChangeListener {
+public class ReviewResetListener implements ModelElementChangeListener {
 
 	private UrmlModelElement urmlElement;
 
@@ -28,16 +31,13 @@ public abstract class Listener implements ModelElementChangeListener {
 		return urmlElement;
 	}
 
-	private ReviewedTracker tracker;
-
 	/**
 	 * The construct.
 	 * 
 	 * @param urmlElement .
 	 * @param reviewedTracker the tracker
 	 */
-	public Listener(ReviewedTracker reviewedTracker, UrmlModelElement urmlElement) {
-		this.tracker = reviewedTracker;
+	public ReviewResetListener(UrmlModelElement urmlElement) {
 		this.urmlElement = urmlElement;
 	}
 
@@ -50,19 +50,33 @@ public abstract class Listener implements ModelElementChangeListener {
 		if (notification.getEventType() == Notification.RESOLVE) {
 			return;
 		}
+		//if any model element properties was changed
 		if (wantResetReviewed(notification)) {
-		//	urmlElement.setReviewed(false);
-			tracker.recalculate();
-		}
-		EStructuralFeature feature = getUrmlElement().eClass().getEStructuralFeature("reviewed");
-		if ((notification.getFeature().equals(feature))) {
-			tracker.recalculate();
+			urmlElement.setReviewed(false);
 		}
 	}
+	
+	private boolean wantResetReviewed(Notification notification) {
+		if (featureWasChanged(notification, Arrays.asList("reviewed", "creator", "creationDate"))) {
+			return false;
+		}
+		return true;
+	}
 
-	/**
-	 * @param notification the notification
-	 * @return if the listener wants to send notification to the tracker
-	 */
-	protected abstract boolean wantResetReviewed(Notification notification);
+
+	private boolean featureWasChanged(Notification notification, Collection<String> featureNames) {
+		for (String name : featureNames) {
+			Object feature = getUrmlElement().eClass().getEStructuralFeature(name);
+			if ((notification.getEventType() != Notification.RESOLVE) && 
+				(notification.getFeature().equals(feature))) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public void onRuntimeExceptionInListener(RuntimeException exception) {
+	}
+
 }

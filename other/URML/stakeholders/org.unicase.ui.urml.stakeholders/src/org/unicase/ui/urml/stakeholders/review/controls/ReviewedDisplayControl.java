@@ -19,7 +19,6 @@ import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.model.urml.UrmlPackage;
 import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
 import org.unicase.ui.urml.stakeholders.review.AbstractControlBuilder;
-import org.unicase.ui.urml.stakeholders.stakeholdernavigation.StakeholderView;
 
 /**
  * This is the control to edit boolean value of the reviewed field.
