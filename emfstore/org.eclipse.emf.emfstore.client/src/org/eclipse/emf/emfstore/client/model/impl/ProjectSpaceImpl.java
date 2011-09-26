@@ -1812,7 +1812,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 			// never split maps
 			if (modelElement instanceof BasicEMap.Entry) {
-				assignElementToResource(modelElement.eContainer().eResource(), modelElement);
+				((XMIResource) modelElement.eContainer().eResource()).setID(modelElement, getProject()
+					.getModelElementId(modelElement).getId());
 				continue;
 			}
 
