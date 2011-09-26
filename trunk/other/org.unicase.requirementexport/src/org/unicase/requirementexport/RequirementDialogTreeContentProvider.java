@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.requirementexport;
 
 import java.util.ArrayList;
@@ -19,26 +24,22 @@ import org.unicase.workspace.Workspace;
  */
 public class RequirementDialogTreeContentProvider implements ITreeContentProvider {
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
+	/**
+	 * {@inheritDoc}
 	 */
 	public void dispose() {
 		// nothing to do
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer, java.lang.Object,
-	 * java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		// nothing to do
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.eclipse.jface.viewers.ITreeContentProvider#getElements(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	public Object[] getElements(Object inputElement) {
 		if (inputElement instanceof Workspace) {
@@ -49,9 +50,8 @@ public class RequirementDialogTreeContentProvider implements ITreeContentProvide
 		return new Object[0];
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.eclipse.jface.viewers.ITreeContentProvider#getChildren(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	public Object[] getChildren(Object parentElement) {
 		List<EObject> resultList = new ArrayList<EObject>();
@@ -77,9 +77,8 @@ public class RequirementDialogTreeContentProvider implements ITreeContentProvide
 		return resultList.toArray();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.eclipse.jface.viewers.ITreeContentProvider#getParent(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	public Object getParent(Object element) {
 		// only leaf sections can have parents in this dialog
@@ -98,9 +97,8 @@ public class RequirementDialogTreeContentProvider implements ITreeContentProvide
 		return null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.eclipse.jface.viewers.ITreeContentProvider#hasChildren(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	public boolean hasChildren(Object element) {
 		// dialog only supports project spaces and leaf sections

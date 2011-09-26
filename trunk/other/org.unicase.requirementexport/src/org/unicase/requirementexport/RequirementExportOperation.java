@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.requirementexport;
 
 import java.util.LinkedHashMap;
@@ -32,7 +37,7 @@ public class RequirementExportOperation {
 	 * 
 	 * @see #copyAll(List)
 	 */
-	Map<UnicaseModelElement, UnicaseModelElement> objectToCopy = new LinkedHashMap<UnicaseModelElement, UnicaseModelElement>();
+	private final Map<UnicaseModelElement, UnicaseModelElement> objectToCopy = new LinkedHashMap<UnicaseModelElement, UnicaseModelElement>();
 
 	/**
 	 * Copies a functional requirement to a project. Copying includes copying the requirement itself, all its
@@ -263,6 +268,7 @@ public class RequirementExportOperation {
 	 * Updates references for all copies of the {@link #objectToCopy} map so they equal the references from the original
 	 * elements.
 	 */
+	@SuppressWarnings("unchecked")
 	private void updateReferences() {
 		// for every original element...
 		for (UnicaseModelElement modelElement : objectToCopy.keySet()) {
