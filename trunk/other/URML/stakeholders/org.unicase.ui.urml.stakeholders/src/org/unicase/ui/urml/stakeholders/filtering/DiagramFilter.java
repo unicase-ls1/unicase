@@ -21,54 +21,54 @@ import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
 
 /**
  * Filter class for the urml diagram.
+ * 
  * @author kterzieva
- *
+ * 
  */
-public class StakeholderDiagramFilter implements UrmlDiagramFilter{
+public class DiagramFilter implements UrmlDiagramFilter {
 
 	/**
 	 * The construct.
 	 */
-	public StakeholderDiagramFilter() {
+	public DiagramFilter() {
 		// TODO Auto-generated constructor stub
 	}
-	private boolean select(EObject modelElement, EMap<EClass, EList<EStructuralFeature>> filterSet){
+
+	private boolean select(EObject modelElement,
+			EMap<EClass, EList<EStructuralFeature>> filterSet) {
 		if (!(modelElement instanceof UrmlModelElement)) {
 			return true;
-		} 
-		if(filterSet.containsKey(modelElement.eClass())){
+		}
+		if (filterSet.containsKey(modelElement.eClass())) {
 			return true;
 		}
 		return false;
-			
+
 	}
-	
 
 	@Override
-	public List filter(List elements) {
+	public List<?> filter(List<?> elements) {
 		StakeholderRole role = UrmlSettingsManager.INSTANCE.getActiveRole();
-		
-		if(role == null){
+
+		if (role == null) {
 			return elements;
 		}
-		
-		
-		List result = new ArrayList();
-		
-		for(Object o : elements){
-			if(o instanceof Shape){
+
+		List<Object> result = new ArrayList<Object>();
+
+		for (Object o : elements) {
+			if (o instanceof Shape) {
 				Shape shape = (Shape) o;
 				EObject elem = shape.getElement();
-				if(select(elem, role.getFilterSet())){
+				if (select(elem, role.getFilterSet())) {
 					result.add(shape);
 				}
-				
 			} else {
+				//other elements stay unfiltered
 				result.add(o);
 			}
 		}
-		
-		
+
 		return result;
 	}
 

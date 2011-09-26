@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.urml.stakeholders.review.controls;
+package org.unicase.ui.urml.stakeholders.review.controlbuilder;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
@@ -18,7 +18,6 @@ import org.eclipse.swt.widgets.Control;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.model.urml.UrmlPackage;
 import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
-import org.unicase.ui.urml.stakeholders.review.AbstractControlBuilder;
 
 /**
  * This is the control to edit boolean value of the reviewed field.
@@ -27,7 +26,7 @@ import org.unicase.ui.urml.stakeholders.review.AbstractControlBuilder;
  * 
  */
 
-public class ReviewedDisplayControl extends AbstractControlBuilder {
+public class ReviewedDisplayControlBuilder extends AbstractControlBuilder {
 
 	private static final int PRIORITY = 1;
 	private Button check;

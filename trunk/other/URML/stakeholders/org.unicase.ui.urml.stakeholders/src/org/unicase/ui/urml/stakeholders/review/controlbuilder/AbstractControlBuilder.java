@@ -3,13 +3,14 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.urml.stakeholders.review;
+package org.unicase.ui.urml.stakeholders.review.controlbuilder;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.unicase.ecp.model.ECPModelelementContext;
 import org.unicase.model.urml.UrmlModelElement;
+import org.unicase.ui.urml.stakeholders.review.IDisposable;
 
 /**
  * Abstract class for displaying the review view controls.

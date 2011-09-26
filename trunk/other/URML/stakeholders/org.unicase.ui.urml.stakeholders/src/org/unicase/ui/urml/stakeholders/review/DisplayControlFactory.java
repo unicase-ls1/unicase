@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.unicase.model.urml.UrmlModelElement;
+import org.unicase.ui.urml.stakeholders.review.controlbuilder.AbstractControlBuilder;
 
 /**
  * Factory for generating {@link AbstractControlBuilder}'s according to a {@link IItemPropertyDescriptor}.

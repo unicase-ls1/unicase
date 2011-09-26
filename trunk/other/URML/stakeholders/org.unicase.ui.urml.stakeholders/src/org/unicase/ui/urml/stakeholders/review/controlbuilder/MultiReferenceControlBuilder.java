@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.urml.stakeholders.review.controls;
+package org.unicase.ui.urml.stakeholders.review.controlbuilder;
 
 import java.util.ArrayList;
 
@@ -32,7 +32,6 @@ import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.NewReferenceAction;
-import org.unicase.ui.urml.stakeholders.review.AbstractControlBuilder;
 
 
 /**
@@ -40,7 +39,7 @@ import org.unicase.ui.urml.stakeholders.review.AbstractControlBuilder;
  * 
  * @author kterzieva
  */
-public class MultiReferenceControl extends AbstractControlBuilder {
+public class MultiReferenceControlBuilder extends AbstractControlBuilder {
 
 	private FormToolkit toolKit;
 

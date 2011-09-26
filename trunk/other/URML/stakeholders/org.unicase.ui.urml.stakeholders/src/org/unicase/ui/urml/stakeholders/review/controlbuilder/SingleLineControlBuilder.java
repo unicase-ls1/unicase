@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.urml.stakeholders.review.controls;
+package org.unicase.ui.urml.stakeholders.review.controlbuilder;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -12,57 +12,32 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Label;
 import org.unicase.model.urml.UrmlModelElement;
-import org.unicase.ui.urml.stakeholders.review.AbstractControlBuilder;
-import org.unicase.ui.urml.stakeholders.review.ReviewViewUtil;
+import org.unicase.ui.urml.stakeholders.review.ReviewUtil;
 
 /**
- * The review view widget for multi line text fields.
+ * The widgets to show a single line text attribute.
  * 
  * @author kterzieva
+ * 
  */
-
-public class MultiLineControl extends AbstractControlBuilder {
+public class SingleLineControlBuilder extends AbstractControlBuilder {
 
 	private static final int PRIORITY = 1;
+	//private EAttribute attribute;
 
 	/**
-	 * Creates the widget for multi line text fields.
-	 * 
-	 * @param parent the parent composite
-	 * @param urmlElement the urml element
-	 * @return text the text as control
-	 */
-	
-	public Control doCreateControl(Composite parent, UrmlModelElement urmlElement) {
-		Text text = new Text(parent, SWT.BORDER | SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
-		Object feature = getItemPropertyDescriptor().getFeature(urmlElement);
-		
-		text.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		text.setEditable(false);
-		text.setText(ReviewViewUtil.getValueOfString(urmlElement.eGet((EStructuralFeature) feature)));
-		
-		GridData spec = new GridData(SWT.FILL, SWT.FILL, true, false);
-		spec.heightHint = 100;
-		text.setLayoutData(spec);
-		
-		return (Control) text;
-		
-	}
-	
-	/**
-	 * Gives the render value.
+	 * Gives the render value of this control.
 	 * 
 	 * @param itemPropertyDescriptor the item descriptor
 	 * @param urmlElement the urml element
 	 * @return int the value
 	 */
-	
+
 	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor,
 			UrmlModelElement urmlElement) {
-		if(itemPropertyDescriptor.isMultiLine(urmlElement)){
+		if(!itemPropertyDescriptor.isMultiLine(urmlElement)){
 			Object feature = itemPropertyDescriptor.getFeature(urmlElement);
 			if (feature instanceof EAttribute
 					&& ((EAttribute) feature).getEType().getInstanceClass()
@@ -71,6 +46,30 @@ public class MultiLineControl extends AbstractControlBuilder {
 			}
 		}
 		return AbstractControlBuilder.DO_NOT_RENDER;
+	}
+	
+	
+	/**
+	 * Creates the widget for reviewed fields.
+	 * 
+	 * @param parent the parent composite
+	 * @param urmlElement the urml element
+	 * @return check the check button
+	 */
+	
+	protected Control doCreateControl(Composite parent, UrmlModelElement urmlElement) {
+		Object feature = getItemPropertyDescriptor().getFeature(urmlElement);
+		String text = ReviewUtil.getValueOfString(urmlElement.eGet((EStructuralFeature) feature));
+		Label labelText = new Label(parent, SWT.BORDER);
+	
+		GridData gridData = new GridData();
+		gridData.grabExcessHorizontalSpace = true;
+		gridData.horizontalAlignment = SWT.FILL;
+//		
+		labelText.setLayoutData(gridData);
+		labelText.setText(text);
+		
+		return labelText;
 	}
 
 }

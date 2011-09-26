@@ -8,26 +8,29 @@ package org.unicase.ui.urml.stakeholders.filtering;
 
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.unicase.model.urml.UrmlModelElement;
 
 /**
  * Filters for the review view, which show only the reviewed/unreviewed elements. 
  * @author kterzieva
  *
  */
-public class ReviewedFilter extends ViewerFilter {
+public class ReviewStatusFilter extends ViewerFilter {
+	private boolean selectReviewed;
+
 	/**
 	 * The construct.
 	 * @param selectReviewed defines which filter is used
 	 */
-	public ReviewedFilter(boolean selectReviewed) {
-	//	this.selectReviewed = selectReviewed;
+	public ReviewStatusFilter(boolean selectReviewed) {
+		this.selectReviewed = selectReviewed;
 	}
 
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
-//		if (element instanceof UrmlModelElement){
-//			return ((UrmlModelElement) element).getReviewed()== selectReviewed;
-//		}
-		return false;
+		if (element instanceof UrmlModelElement){
+			return ((UrmlModelElement) element).isReviewed()== selectReviewed;
+		}
+		return true;
 	}
 };
