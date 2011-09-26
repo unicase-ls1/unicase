@@ -54,17 +54,17 @@ public class ReviewCountPublisher extends Observable {
 	 *            will be return.
 	 * @return the value of the elements which are reviewed.
 	 */
-//	public int getReviewedElements(boolean selectReviewed) {
-//		urmlElements = UrmlTreeHandler.getRequirementsFromProject(project);
-//		int reviewed = 0;
-//		for (UrmlModelElement r : urmlElements) {
-//			if (r.isReviewed() == selectReviewed) {
-//				reviewed++;
-//			}
-//		}
-//		return reviewed;
-//	}
-
+/*	public int getReviewedElements(boolean selectReviewed) {
+		urmlElements = UrmlTreeHandler.getRequirementsFromProject(project);
+		int reviewed = 0;
+		for (UrmlModelElement r : urmlElements) {
+			if (r.isReviewed() == selectReviewed) {
+				reviewed++;
+			}
+		}
+		return reviewed;
+	}
+*/
 	/**
 	 * Updates the observers.
 	 */

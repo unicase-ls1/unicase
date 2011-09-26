@@ -28,6 +28,7 @@ import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Rectangle;
@@ -55,7 +56,7 @@ import org.unicase.ui.common.util.ComboView.IComboChangeListener;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.urml.stakeholders.Activator;
 import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
-import org.unicase.ui.urml.stakeholders.filtering.ReviewedFilter;
+import org.unicase.ui.urml.stakeholders.filtering.ReviewStatusFilter;
 import org.unicase.ui.urml.stakeholders.review.input.UrmlTreeHandler;
 
 /**
@@ -67,7 +68,7 @@ import org.unicase.ui.urml.stakeholders.review.input.UrmlTreeHandler;
 public class ReviewView extends ViewPart {
 
 	private TableViewer elementsViewer;
-	private ReviewViewController listenerHandler;
+	private ReviewController controller;
 	private ILabelProvider reviewViewLabelProvider;
 	private TableViewerColumn viewerNameColumn;
 	private Composite rightComposite, buttonComposite, editorComposite, navigatorComposite, referenceComposite;
@@ -84,7 +85,7 @@ public class ReviewView extends ViewPart {
 	@Override
 	public void dispose() {
 		super.dispose();
-		listenerHandler.dispose();
+		controller.dispose();
 	}
 
 	@Override
@@ -100,12 +101,12 @@ public class ReviewView extends ViewPart {
 
 		// **** Create necessary fields ***
 		contentFactory = new ReviewViewContentFactory(editorComposite);
-		listenerHandler = new ReviewViewController(this, elementsViewer);
+		controller = new ReviewController(this, elementsViewer);
 
 		// *** Setup listeners for the different buttons and other UI actions ***
 		setupListeners();
 
-		createShowReviewedElementsAction(elementsViewer.getInput());
+		createMenuActions();
 
 		// Test code for filling the view with elements. To be replaced later
 
@@ -122,7 +123,7 @@ public class ReviewView extends ViewPart {
 
 	private void setReviewViewInput(Collection<UrmlModelElement> collection, EClass filterToClass) {
 		// save the elements in a separate lists for index element mapping
-		List<UrmlModelElement> curContent = listenerHandler.getCurContent();
+		List<UrmlModelElement> curContent = controller.getCurContent();
 		curContent.clear();
 		for (UrmlModelElement e : collection) {
 			if (filterToClass.isSuperTypeOf(e.eClass())) {
@@ -153,21 +154,17 @@ public class ReviewView extends ViewPart {
 					}
 				}
 			};
-			listenerHandler.getListeners().put(listener, urmlElement);
+			controller.getListeners().put(listener, urmlElement);
 			urmlElement.addModelElementChangeListener(listener);
 		}
 	}
 
-	private void createShowReviewedElementsAction(Object input) {
+
+	private void createMenuActions() {
 		IActionBars bars = getViewSite().getActionBars();
 		IMenuManager menuManager = bars.getMenuManager();
-		createReviewedFilter(menuManager);
-
-	}
-
-	private void createReviewedFilter(IMenuManager menuManager) {
-		final ViewerFilter filter = new ReviewedFilter(true);
-		final ViewerFilter filterUnreviewed = new ReviewedFilter(false);
+		final ViewerFilter filter = new ReviewStatusFilter(true);
+		final ViewerFilter filterUnreviewed = new ReviewStatusFilter(false);
 
 		Action showReviewed = new Action() {
 			@Override
@@ -378,20 +375,15 @@ public class ReviewView extends ViewPart {
 
 	private void setupListeners() {
 
-		listenerHandler.createOpenListener(elementsViewer);
-		up.addSelectionListener(listenerHandler.createUpDownListener(true));
-		down.addSelectionListener(listenerHandler.createUpDownListener(false));
+		controller.createOpenListener(elementsViewer);
+		up.addSelectionListener(controller.createUpDownListener(true));
+		down.addSelectionListener(controller.createUpDownListener(false));
 
-		openModelElement.addSelectionListener(new SelectionListener() {
+		openModelElement.addSelectionListener(new SelectionAdapter() {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				UnicaseActionHelper.openModelElement(currentlyDisplayedElement, this.getClass().getName());
-			}
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-
 			}
 		});
 
@@ -436,7 +428,7 @@ public class ReviewView extends ViewPart {
 	 *            shown.
 	 */
 	public void showOnlyReviewedElements(boolean reviewed) {
-		ReviewedFilter filter = new ReviewedFilter(reviewed);
+		ReviewStatusFilter filter = new ReviewStatusFilter(reviewed);
 		elementsViewer.setFilters(new ViewerFilter[] { filter });
 	}
 

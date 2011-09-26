@@ -51,7 +51,7 @@ import org.unicase.ui.urml.stakeholders.Activator;
 import org.unicase.ui.urml.stakeholders.config.DefaultStakeholderRoles;
 import org.unicase.ui.urml.stakeholders.config.ManageRolesDialog;
 import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
-import org.unicase.ui.urml.stakeholders.filtering.FilterManager;
+import org.unicase.ui.urml.stakeholders.filtering.NavigatorFilterManager;
 import org.unicase.ui.urml.stakeholders.review.ReviewView;
 import org.unicase.ui.urml.stakeholders.review.input.UrmlTreeHandler;
 
@@ -72,7 +72,7 @@ public class NavigationView extends ViewPart implements Observer {
 	private IWorkbenchPage page;
 	private Action openReviewView;
 	private MenuManager chooseRole;
-	private FilterManager filterManager = new FilterManager();
+	private NavigatorFilterManager filterManager = new NavigatorFilterManager();
 	private Project activeProject;
 	private Link unreviewedRequirements, reviewedRequirements;
 	//private static StakeholderRole activeRole;

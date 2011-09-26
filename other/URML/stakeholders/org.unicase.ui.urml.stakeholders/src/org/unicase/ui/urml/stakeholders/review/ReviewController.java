@@ -26,7 +26,7 @@ import org.unicase.model.urml.UrmlModelElement;
  * @author kterzieva
  */
 
-public class ReviewViewController {
+public class ReviewController {
 
 	private int lastModelElementIndex = -1;
 	private List<UrmlModelElement> curContent = new ArrayList<UrmlModelElement>();
@@ -41,7 +41,7 @@ public class ReviewViewController {
 	 * @param tableViewer the list viewer
 	 */
 
-	public ReviewViewController(ReviewView reviewView, TableViewer tableViewer) {
+	public ReviewController(ReviewView reviewView, TableViewer tableViewer) {
 		this.listViewer = tableViewer;
 		this.reviewView = reviewView;
 

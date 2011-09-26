@@ -11,9 +11,9 @@ package org.unicase.ui.urml.stakeholders.review;
  * @author kterzieva
  */
 
-public final class ReviewViewUtil {
+public final class ReviewUtil {
 	
-	private ReviewViewUtil() {}
+	private ReviewUtil() {}
 	
 	//gibt value of string zurück, wenn aber der Wert null ist, soll leeres string angezeigt bekomme
 	//also nix

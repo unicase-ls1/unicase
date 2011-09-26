@@ -26,6 +26,7 @@ import org.eclipse.swt.widgets.Label;
 import org.unicase.model.urml.StakeholderRole;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
+import org.unicase.ui.urml.stakeholders.review.controlbuilder.AbstractControlBuilder;
 
 /**
  * Factory for generating the controller for the review view.

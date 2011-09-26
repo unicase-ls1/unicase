@@ -5,8 +5,17 @@
  */
 package org.unicase.ui.urml.stakeholders.filtering;
 
+import java.util.Set;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.urml.URMLDiagram;
 import org.unicase.ui.navigator.TreeView;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Filter manager for applying and removing of filter.
@@ -14,7 +23,7 @@ import org.unicase.ui.navigator.TreeView;
  * @author kterzieva
  */
 
-public class FilterManager {
+public class NavigatorFilterManager {
 
 	/**
 	 * Applies the filter.
@@ -33,7 +42,7 @@ public class FilterManager {
 //					if (eo instanceof URMLDiagram) {
 //						URMLDiagram u = (URMLDiagram) eo;
 //						System.out.println(u.getName());
-//						EList<UnicaseModelElement> test3 = u.getElements();
+//						EList<UnicaseModelElement> test3 =  u.getElements();
 //						for (UnicaseModelElement uni : test3) {
 //							System.out.println(uni.getName());
 //						}

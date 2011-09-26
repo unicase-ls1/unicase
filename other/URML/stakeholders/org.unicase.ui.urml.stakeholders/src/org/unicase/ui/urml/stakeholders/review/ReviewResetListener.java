@@ -23,7 +23,7 @@ public class ReviewResetListener implements ModelElementChangeListener {
 	private UrmlModelElement urmlElement;
 
 	/**
-	 * The construct.
+	 * 
 	 * 
 	 * @return urmlElement the urml element
 	 */
@@ -66,6 +66,7 @@ public class ReviewResetListener implements ModelElementChangeListener {
 
 	private boolean featureWasChanged(Notification notification, Collection<String> featureNames) {
 		for (String name : featureNames) {
+			System.out.println(notification.getFeature().toString());
 			Object feature = getUrmlElement().eClass().getEStructuralFeature(name);
 			if ((notification.getEventType() != Notification.RESOLVE) && 
 				(notification.getFeature().equals(feature))) {
