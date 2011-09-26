@@ -63,8 +63,6 @@ import org.eclipse.emf.emfstore.server.model.versioning.DateVersionSpec;
 import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
 import org.eclipse.emf.emfstore.server.model.versioning.VersionSpec;
 import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
-import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
-import org.eclipse.emf.emfstore.server.model.versioning.events.PluginStartEvent;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Workspace</b></em>'. <!-- end-user-doc -->
@@ -484,11 +482,6 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		for (ProjectSpace projectSpace : getProjectSpaces()) {
 			projectSpace.init();
 			projectToProjectSpaceMap.put(projectSpace.getProject(), projectSpace);
-			// add plugin start event
-			PluginStartEvent event = EventsFactory.eINSTANCE.createPluginStartEvent();
-			event.setPluginId("org.eclipse.emf.emfstore.client");
-			event.setTimestamp(new Date());
-			projectSpace.addEvent(event);
 		}
 	}
 
