@@ -134,7 +134,13 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	 *             if any error in the EmfStore occurs
 	 */
 	public void handleFinalizeCommit(ProjectSpace projectSpace, ChangePackage changePackage) throws EmfStoreException {
-		projectSpace.finalizeCommit(changePackage, logMessage, CommitProjectHandler.this);
+		try {
+			projectSpace.finalizeCommit(changePackage, logMessage, CommitProjectHandler.this);
+		} catch (BaseVersionOutdatedException e) {
+			MessageDialog.openInformation(getShell(), "Project outdated",
+				"Your project is outdated, you need to update again before commit.");
+			handleCommit(projectSpace);
+		}
 	}
 
 	/**
