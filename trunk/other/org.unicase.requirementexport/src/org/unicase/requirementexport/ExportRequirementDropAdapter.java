@@ -28,7 +28,7 @@ import org.unicase.workspace.WorkspacePackage;
  * 
  * @author mharut
  */
-public class RequirementProjectDropAdapter extends DropTargetAdapter {
+public class ExportRequirementDropAdapter extends DropTargetAdapter {
 
 	private List<EObject> source;
 	private EObject target;
@@ -69,7 +69,7 @@ public class RequirementProjectDropAdapter extends DropTargetAdapter {
 		// TODO Move to a better location, this is just here so it doesn't get lost
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
-		TreeView.getTreeViewer().addDropSupport(dndOperations, transfers, new RequirementProjectDropAdapter());
+		TreeView.getTreeViewer().addDropSupport(dndOperations, transfers, new ExportRequirementDropAdapter());
 	}
 
 	@Override
