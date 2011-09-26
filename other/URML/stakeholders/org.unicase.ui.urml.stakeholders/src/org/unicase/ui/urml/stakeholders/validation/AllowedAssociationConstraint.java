@@ -1,4 +1,4 @@
-package org.unicase.ui.urml.stakeholders.associationrules.validation;
+package org.unicase.ui.urml.stakeholders.validation;
 
 	import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;

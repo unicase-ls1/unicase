@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.urml.stakeholders.associationrules;
+package org.unicase.ui.urml.stakeholders.config;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -47,7 +47,6 @@ import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.urml.Phase;
 import org.unicase.model.urml.UrmlPackage;
 import org.unicase.ui.urml.stakeholders.Activator;
-import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
 import org.unicase.ui.urml.stakeholders.review.input.UrmlTreeHandler;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -56,7 +55,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * @author kterzieva
  *
  */
-public class AssociationRulesView extends ViewPart {
+public class PhaseConfigurationView extends ViewPart {
 
 
 	private TableViewer viewer;
@@ -201,7 +200,7 @@ public class AssociationRulesView extends ViewPart {
 		column.setMoveable(true);
 
 		
-		viewerColumn.setEditingSupport(new AssociationRulesEditingSupport(this, viewer, columnClassName,sortedElementNames, viewerColumn));
+		viewerColumn.setEditingSupport(new PhaseConfigurationEditingSupport(this, viewer, columnClassName,sortedElementNames, viewerColumn));
 		viewerColumn.setLabelProvider(new ColumnLabelProvider() {
 
 			@Override

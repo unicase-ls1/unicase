@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.window.Window;
@@ -105,6 +106,8 @@ public class EditRoleDialog extends TitleAreaDialog {
 		// for (Entry<EClass, EList<EStructuralFeature>> entry : stakeholderRole.getFilterSet()) {
 		// filterClassNames.add(entry.getKey());
 		// }
+		
+		
 		
 		createNameLabel();
 		buttonClassMapping = new HashMap<Button, EClass>();

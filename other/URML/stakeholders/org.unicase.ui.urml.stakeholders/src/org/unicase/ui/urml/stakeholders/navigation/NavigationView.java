@@ -88,8 +88,9 @@ public class NavigationView extends ViewPart implements Observer {
 			parent.setLayout(new GridLayout(1, false));
 			parent.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 			activeProject = UrmlTreeHandler.getTestProject();
-			Activator.getTracker().addObserver(this);
-			reviewedRequirements = reviewedRequirementSetup(parent, activeProject, true, REVIEWED_ELEMENTS, UrmlSettingsManager.INSTANCE.getActiveRole());
+			Activator.getCountPublisher().addObserver(this);
+			reviewedRequirements = reviewedRequirementSetup(parent, activeProject, true, REVIEWED_ELEMENTS, 
+				UrmlSettingsManager.INSTANCE.getActiveRole());
 			unreviewedRequirements = reviewedRequirementSetup(parent, activeProject, false, UNREVIEWED_ELEMENTS,
 				UrmlSettingsManager.INSTANCE.getActiveRole());
 

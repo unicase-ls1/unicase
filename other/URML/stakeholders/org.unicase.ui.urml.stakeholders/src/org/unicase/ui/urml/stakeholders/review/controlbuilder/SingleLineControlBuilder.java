@@ -5,15 +5,19 @@
  */
 package org.unicase.ui.urml.stakeholders.review.controlbuilder;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.unicase.model.urml.UrmlModelElement;
+import org.unicase.model.urml.UrmlPackage;
 import org.unicase.ui.urml.stakeholders.review.ReviewUtil;
 
 /**
@@ -58,16 +62,20 @@ public class SingleLineControlBuilder extends AbstractControlBuilder {
 	 */
 	
 	protected Control doCreateControl(Composite parent, UrmlModelElement urmlElement) {
-		Object feature = getItemPropertyDescriptor().getFeature(urmlElement);
-		String text = ReviewUtil.getValueOfString(urmlElement.eGet((EStructuralFeature) feature));
+		EStructuralFeature feature = (EStructuralFeature) getItemPropertyDescriptor().getFeature(urmlElement);
 		Label labelText = new Label(parent, SWT.BORDER);
 	
 		GridData gridData = new GridData();
 		gridData.grabExcessHorizontalSpace = true;
 		gridData.horizontalAlignment = SWT.FILL;
-//		
+		
 		labelText.setLayoutData(gridData);
-		labelText.setText(text);
+		
+		DataBindingContext bindingContext = new DataBindingContext();
+		bindingContext.bindValue(
+				WidgetProperties.text().observe(labelText),
+				EMFProperties.value(feature)
+						.observe(urmlElement));
 		
 		return labelText;
 	}

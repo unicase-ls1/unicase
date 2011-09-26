@@ -56,8 +56,6 @@ public class DefaultPhases {
 		return phaseSettings;
 	}
 
-
-
 	private void createStageSetEntry(EClass className, EClass association, EMap<EClass, EList<EClass>> allowedAssociation){
 		EList<EClass> associations = new BasicEList<EClass>();
 	if(association != null){

@@ -18,7 +18,7 @@
             restorable="true">
       </view>
       <view
-            class="org.unicase.ui.urml.stakeholders.associationrules.AssociationRulesView"
+            class="org.unicase.ui.urml.stakeholders.config.PhaseConfigurationView"
             id="org.unicase.ui.urml.stakeholders.AssociationView"
             name="AssociationView"
             restorable="true">
@@ -92,7 +92,7 @@
          <constraints
                categories="org.unicase.model">
             <constraint
-                  class="org.unicase.ui.urml.stakeholders.associationrules.validation.AllowedAssociationConstraint"
+                  class="org.unicase.ui.urml.stakeholders.validation.AllowedAssociationConstraint"
                   id="org.unicase.ui.urml.stakeholders.AllowedAssociationConstraint"
                   isEnabledByDefault="true"
                   lang="Java"

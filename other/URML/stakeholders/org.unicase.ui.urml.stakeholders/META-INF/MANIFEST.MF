@@ -10,7 +10,8 @@ Require-Bundle: org.eclipse.ui,
  org.unicase.ui.unicasecommon,
  org.unicase.ui.diagram.urmlDiagram,
  org.unicase.ui.meeditor,
- org.unicase.diagram
+ org.unicase.diagram,
+ org.eclipse.core.databinding.property
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: org.unicase.ecp.model.workSpaceModel,

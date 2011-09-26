@@ -51,7 +51,7 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		tracker = (new ReviewCountPublisher(UrmlTreeHandler.getTestProject()));
-		getTracker().createListeners();
+		getCountPublisher().createListeners();
 		ProjectSpace activeProject = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces().get(0);
 		UrmlSettingsManager.INSTANCE.initFromProject(activeProject);
 		
@@ -92,7 +92,7 @@ public class Activator extends AbstractUIPlugin {
 	 * Gets the reviewed tracker.
 	 * @return tracker the tracker
 	 */
-	public static ReviewCountPublisher getTracker() {
+	public static ReviewCountPublisher getCountPublisher() {
 		return tracker;
 	}
 

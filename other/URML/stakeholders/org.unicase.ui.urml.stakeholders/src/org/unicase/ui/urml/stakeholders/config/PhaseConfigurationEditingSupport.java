@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.urml.stakeholders.associationrules;
+package org.unicase.ui.urml.stakeholders.config;
 
 import java.util.ArrayList;
 import org.eclipse.emf.common.util.BasicEList;
@@ -19,7 +19,6 @@ import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.ui.urml.stakeholders.Activator;
-import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -27,11 +26,11 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author kterzieva
  */
-public class AssociationRulesEditingSupport extends EditingSupport {
+public class PhaseConfigurationEditingSupport extends EditingSupport {
 
 	private final TableViewer viewer;
 	private EClass columnClass;
-	private AssociationRulesView rulesView;
+	private PhaseConfigurationView rulesView;
 	private TableViewerColumn tableViewerColumn;
 //	private static final Image CHECKED = Activator.getImageDescriptor("icons/checked.gif").createImage();
 //	private static final Image UNCHECKED = Activator.getImageDescriptor("icons/unchecked.gif").createImage();
@@ -45,7 +44,7 @@ public class AssociationRulesEditingSupport extends EditingSupport {
 	 * @param sortedElementNames
 	 * @param viewerColumn
 	 */
-	public AssociationRulesEditingSupport(AssociationRulesView rulesView, TableViewer viewer, EClass columnClass,
+	public PhaseConfigurationEditingSupport(PhaseConfigurationView rulesView, TableViewer viewer, EClass columnClass,
 		ArrayList<EClass> sortedElementNames, TableViewerColumn viewerColumn) {
 		super(viewer);
 		this.viewer = viewer;

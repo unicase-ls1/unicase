@@ -19,6 +19,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -134,16 +135,13 @@ public class SelectPropertiesDialog extends TitleDialogWithoutMinSize {
 			b.setSelection(!isReviewSet);
 		}
 
-		b.addSelectionListener(new SelectionListener() {
+		b.addSelectionListener(new SelectionAdapter() {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				displayReferenceName = b.getText();
 			}
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-
-			}
+	
 		});
 	}
 
