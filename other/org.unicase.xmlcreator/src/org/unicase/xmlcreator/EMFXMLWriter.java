@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.xmlcreator;
 
 import java.io.PrintWriter;
@@ -20,12 +25,12 @@ public abstract class EMFXMLWriter {
 	/**
 	 * The {@link PrintWriter} that prints to XML.
 	 */
-	protected final PrintWriter out;
+	private final PrintWriter out;
 
 	/**
 	 * Counter for the current whitespace position. Using {@link #addWhitespace()}, one can indent the current line.
 	 */
-	protected int whitespaceCounter;
+	private int whitespaceCounter;
 
 	/**
 	 * Constructor to assign the {@link #out print writer} and the {@link #rootName root's name}. Subclasses are
@@ -40,8 +45,8 @@ public abstract class EMFXMLWriter {
 	}
 
 	/**
-	 * This method is supposed to be called once in the constructor. It will print the XML header and the
-	 * root element, including its attributes. The {@link #whitespaceCounter} is also initialized in this method.
+	 * This method is supposed to be called once in the constructor. It will print the XML header and the root element,
+	 * including its attributes. The {@link #whitespaceCounter} is also initialized in this method.
 	 * 
 	 * @see #printRootAttributes()
 	 */
@@ -71,8 +76,8 @@ public abstract class EMFXMLWriter {
 	protected abstract void printRootAttributes();
 
 	/**
-	 * Prints an {@link EObject} to XML. The specific behavior of how this EObject is printed has to be
-	 * specified in subclasses.
+	 * Prints an {@link EObject} to XML. The specific behavior of how this EObject is printed has to be specified in
+	 * subclasses.
 	 * 
 	 * @param eObject the EObject to print to XML
 	 */
@@ -109,6 +114,41 @@ public abstract class EMFXMLWriter {
 	public void close() {
 		out.println("</" + rootName + ">");
 		out.close();
+	}
+
+	/**
+	 * Prints a {@link String} using the {@link PrintWriter}.
+	 * 
+	 * @see PrintWriter#print(String)
+	 * @param string the String to print
+	 */
+	protected void print(String string) {
+		out.print(string);
+	}
+
+	/**
+	 * Prints a {@link String} using the {@link PrintWriter} and terminates the line.
+	 * 
+	 * @see PrintWriter#println(String)
+	 * @param string the String to print
+	 */
+	protected void println(String string) {
+		out.println(string);
+	}
+
+	/**
+	 * Increases the whitespace counter by two. Should be used whenever new children are added to an XML-element.
+	 */
+	protected void increaseWhitespaceCounter() {
+		whitespaceCounter += 2;
+	}
+
+	/**
+	 * Decreases the whitespace counter by two. Should be used whenever the listing of children of an XML-element is
+	 * finished.
+	 */
+	protected void decreaseWhitespaceCounter() {
+		whitespaceCounter -= 2;
 	}
 
 }
