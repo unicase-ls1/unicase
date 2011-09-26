@@ -56,6 +56,7 @@ import org.unicase.ui.common.util.ComboView.IComboChangeListener;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.urml.stakeholders.Activator;
 import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
+import org.unicase.ui.urml.stakeholders.filtering.ElementTypeFilter;
 import org.unicase.ui.urml.stakeholders.filtering.ReviewStatusFilter;
 import org.unicase.ui.urml.stakeholders.review.input.UrmlTreeHandler;
 
@@ -121,42 +122,8 @@ public class ReviewView extends ViewPart {
 //		 }
 	}
 
-	private void setReviewViewInput(Collection<UrmlModelElement> collection, EClass filterToClass) {
-		// save the elements in a separate lists for index element mapping
-		List<UrmlModelElement> curContent = controller.getCurContent();
-		curContent.clear();
-		for (UrmlModelElement e : collection) {
-			if (filterToClass.isSuperTypeOf(e.eClass())) {
-				curContent.add(e);
-			}
-		}
-		elementsViewer.setInput(curContent);
-		for (final UrmlModelElement urmlElement : collection) {
-			ModelElementChangeListener listener = new ModelElementChangeListener() {
-
-				@Override
-				public void onRuntimeExceptionInListener(RuntimeException exception) {
-
-				}
-
-				@Override
-				public void onChange(Notification notification) {
-					Object notificationFeature = notification.getFeature();
-					if (notification.getEventType() == Notification.RESOLVE) {
-						return;
-					}
-					Object nameFeature = urmlElement.eClass().getEStructuralFeature("name");
-					Object reviewedFeature = urmlElement.eClass().getEStructuralFeature("reviewed");
-					if (notificationFeature.equals(nameFeature) || notificationFeature.equals(reviewedFeature)) {
-						elementsViewer.refresh();
-					} else {
-						return;
-					}
-				}
-			};
-			controller.getListeners().put(listener, urmlElement);
-			urmlElement.addModelElementChangeListener(listener);
-		}
+	private void setReviewViewInput(Collection<UrmlModelElement> collection) {
+		controller.setReviewViewInput(collection);
 	}
 
 
@@ -392,8 +359,9 @@ public class ReviewView extends ViewPart {
 			@Override
 			public void selectionChanged(EClass newSelection) {
 				try {
-					setReviewViewInput(UrmlTreeHandler.getUrmlElementsfromProjects(UrmlTreeHandler.getTestProject()),
-						newSelection);
+					ElementTypeFilter typeFilter = new ElementTypeFilter(newSelection);
+					Collection<UrmlModelElement> filteredElements = typeFilter.filter(UrmlTreeHandler.getUrmlElementsfromProjects(UrmlTreeHandler.getTestProject()));
+					setReviewViewInput(filteredElements);
 				} catch (NoWorkspaceException e) {
 
 					ModelUtil.logException(e);
@@ -468,7 +436,7 @@ public class ReviewView extends ViewPart {
 	 */
 	public void clearInputFromRole() {
 		Collection<UrmlModelElement> result = new ArrayList<UrmlModelElement>();
-		setReviewViewInput(result, null);
+		setReviewViewInput(result);
 
 	}
 

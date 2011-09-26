@@ -6,6 +6,7 @@
 package org.unicase.ui.urml.stakeholders.review;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -146,17 +147,14 @@ public class ReviewController {
 	 * Removes all model element change listeners, which are added to the urml elements.
 	 */
 	public void dispose() {
+		cleanUpListeners();
+	}
+
+	public void cleanUpListeners() {
 		for(Entry<ModelElementChangeListener, UrmlModelElement> entry : getListeners().entrySet()){
 			entry.getValue().removeModelElementChangeListener(entry.getKey());
 		}
-	}
-
-	/**
-	 * Sets the content(model elements) of the current element list. 
-	 * @param curContent the content which is to set
-	 */
-	public void setCurContent(List<UrmlModelElement> curContent) {
-		this.curContent = curContent;
+		getListeners().clear();
 	}
 
 	/**
@@ -181,5 +179,24 @@ public class ReviewController {
 	 */
 	public Map<ModelElementChangeListener, UrmlModelElement> getListeners() {
 		return listeners;
+	}
+	
+	public void setReviewViewInput(Collection<UrmlModelElement> collection) {
+		//clean up listeners of previous input
+		cleanUpListeners();
+		
+		// save the elements in a separate lists for index element mapping
+		//current elements within the review view
+		List<UrmlModelElement> curContent = getCurContent();
+		curContent.clear();
+		curContent.addAll(collection);
+		
+		//result
+		listViewer.setInput(curContent);
+		for (final UrmlModelElement urmlElement : collection) {
+			ModelElementChangeListener listener = new ReviewUpdateListener(urmlElement, listViewer);
+			getListeners().put(listener, urmlElement);
+			urmlElement.addModelElementChangeListener(listener);
+		}
 	}
 }

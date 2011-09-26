@@ -17,7 +17,7 @@ public class UrmlSettingsManager {
 	private StakeholderRole activeRole;
 	private UrmlProjectSettings projectSettings;
 	private ProjectSpace activeProject;
-	private IDialogSettings diaSettings;
+	private IDialogSettings dialogSettings;
 
 	public void initFromProject(ProjectSpace activeProject2){
 		this.activeProject = activeProject2;
@@ -29,7 +29,7 @@ public class UrmlSettingsManager {
 		} else {
 			projectSettings = (UrmlProjectSettings) settings.get(0);
 		}
-		String curRoleName = diaSettings.get(activeProject.getIdentifier());
+		String curRoleName = dialogSettings.get(activeProject.getIdentifier());
 		EList<EObject> roles = activeProject.getProject().getAllModelElementsbyClass(UrmlPackage.eINSTANCE.getStakeholderRole(),
 				new BasicEList<EObject>());
 		for(EObject role: roles){
@@ -41,7 +41,7 @@ public class UrmlSettingsManager {
 	}
 	
 	private UrmlSettingsManager(){
-		 diaSettings = Activator.getDefault().getDialogSettings();
+		 dialogSettings = Activator.getDefault().getDialogSettings();
 	}
 	
 	public StakeholderRole getActiveRole() {
@@ -54,7 +54,7 @@ public class UrmlSettingsManager {
 	
 	public void setActiveRole(StakeholderRole activeRole) {
 		this.activeRole = activeRole;
-		diaSettings.put(activeProject.getIdentifier(), activeRole.getName());
+		dialogSettings.put(activeProject.getIdentifier(), activeRole.getName());
 	}
 	
 	public void setActivePhase(Phase phase){
