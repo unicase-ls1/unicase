@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.xmlcreator;
 
 import java.io.PrintWriter;
@@ -86,9 +91,9 @@ public class EMFDefinitionXMLWriter extends EMFXMLWriter {
 	private void printEPackage(EPackage ePackage) {
 		// begin of package: print name and URI
 		addWhitespace();
-		out.print("<package name=\"" + escape(ePackage.getName()));
-		out.println("\" uri=\"" + escape(ePackage.getNsURI()) + "\">");
-		whitespaceCounter += 2;
+		print("<package name=\"" + escape(ePackage.getName()));
+		println("\" uri=\"" + escape(ePackage.getNsURI()) + "\">");
+		increaseWhitespaceCounter();
 
 		// print contents
 		for (EObject eObject : ePackage.eContents()) {
@@ -101,9 +106,9 @@ public class EMFDefinitionXMLWriter extends EMFXMLWriter {
 		}
 
 		// end of package
-		whitespaceCounter -= 2;
+		decreaseWhitespaceCounter();
 		addWhitespace();
-		out.println("</package>");
+		println("</package>");
 	}
 
 	/**
@@ -115,8 +120,8 @@ public class EMFDefinitionXMLWriter extends EMFXMLWriter {
 	private void printEClass(EClass eClass) {
 		// begin of class: print name
 		addWhitespace();
-		out.println("<class name=\"" + escape(eClass.getName()) + "\">");
-		whitespaceCounter += 2;
+		println("<class name=\"" + escape(eClass.getName()) + "\">");
+		increaseWhitespaceCounter();
 
 		// print attributes
 		for (EAttribute eAttribute : eClass.getEAllAttributes()) {
@@ -132,9 +137,9 @@ public class EMFDefinitionXMLWriter extends EMFXMLWriter {
 		}
 
 		// end of class
-		whitespaceCounter -= 2;
+		decreaseWhitespaceCounter();
 		addWhitespace();
-		out.println("</class>");
+		println("</class>");
 	}
 
 	/**
@@ -175,12 +180,12 @@ public class EMFDefinitionXMLWriter extends EMFXMLWriter {
 	private void printEAttribute(EAttribute eAttribute) {
 		// begin of attribute: print name, type, lower and upper bound
 		addWhitespace();
-		out.print("<attribute name=\"" + escape(eAttribute.getName()));
-		out.print("\" type=\"" + escape(eAttribute.getEType().getInstanceClassName()));
-		out.print("\" lowerBound=\"" + eAttribute.getLowerBound());
-		out.print("\" upperBound=\"" + eAttribute.getUpperBound());
-		out.println("\">");
-		whitespaceCounter += 2;
+		print("<attribute name=\"" + escape(eAttribute.getName()));
+		print("\" type=\"" + escape(eAttribute.getEType().getInstanceClassName()));
+		print("\" lowerBound=\"" + eAttribute.getLowerBound());
+		print("\" upperBound=\"" + eAttribute.getUpperBound());
+		println("\">");
+		increaseWhitespaceCounter();
 
 		// print annotations
 		for (EAnnotation eAnnotation : eAttribute.getEAnnotations()) {
@@ -188,9 +193,9 @@ public class EMFDefinitionXMLWriter extends EMFXMLWriter {
 		}
 
 		// end of attribute
-		whitespaceCounter -= 2;
+		decreaseWhitespaceCounter();
 		addWhitespace();
-		out.println("</attribute>");
+		println("</attribute>");
 	}
 
 	/**
@@ -204,14 +209,14 @@ public class EMFDefinitionXMLWriter extends EMFXMLWriter {
 		for (EReference reference : references) {
 			// begin of reference
 			addWhitespace();
-			out.print("<" + referenceType);
+			print("<" + referenceType);
 
 			// print reference definition
 			printEReference(reference);
 
 			// end of reference
 			addWhitespace();
-			out.println("</" + referenceType + ">");
+			println("</" + referenceType + ">");
 		}
 	}
 
@@ -223,14 +228,14 @@ public class EMFDefinitionXMLWriter extends EMFXMLWriter {
 	 */
 	private void printEReference(EReference eReference) {
 		// print reference attributes: name, type, lower and upper bound
-		out.print(" name=\"" + eReference.getName());
-		out.print("\" type=\"" + escape(eReference.getEReferenceType().getName()));
-		out.print("\" lowerBound=\"" + eReference.getLowerBound());
-		out.print("\" upperBound=\"" + eReference.getUpperBound());
-		out.println("\">");
+		print(" name=\"" + eReference.getName());
+		print("\" type=\"" + escape(eReference.getEReferenceType().getName()));
+		print("\" lowerBound=\"" + eReference.getLowerBound());
+		print("\" upperBound=\"" + eReference.getUpperBound());
+		println("\">");
 
 		// add indent
-		whitespaceCounter += 2;
+		increaseWhitespaceCounter();
 
 		// print annotations
 		for (EAnnotation eAnnotation : eReference.getEAnnotations()) {
@@ -238,7 +243,7 @@ public class EMFDefinitionXMLWriter extends EMFXMLWriter {
 		}
 
 		// remove indent
-		whitespaceCounter -= 2;
+		decreaseWhitespaceCounter();
 	}
 
 	/**
@@ -250,14 +255,14 @@ public class EMFDefinitionXMLWriter extends EMFXMLWriter {
 	private void printEEnum(EEnum eEnum) {
 		// begin of enum: print name
 		addWhitespace();
-		out.println("<enum name=\"" + escape(eEnum.getName()) + "\">");
-		whitespaceCounter += 2;
+		println("<enum name=\"" + escape(eEnum.getName()) + "\">");
+		increaseWhitespaceCounter();
 
 		// print literals
 		for (EEnumLiteral literal : eEnum.getELiterals()) {
 			addWhitespace();
-			out.print("<literal name=\"" + escape(literal.getName()));
-			out.println("\" literal=\"" + escape(literal.getLiteral()) + "\"/>");
+			print("<literal name=\"" + escape(literal.getName()));
+			println("\" literal=\"" + escape(literal.getLiteral()) + "\"/>");
 		}
 
 		// print annotations
@@ -266,9 +271,9 @@ public class EMFDefinitionXMLWriter extends EMFXMLWriter {
 		}
 
 		// end of enum
-		whitespaceCounter -= 2;
+		decreaseWhitespaceCounter();
 		addWhitespace();
-		out.println("</enum>");
+		println("</enum>");
 	}
 
 	/**
@@ -280,14 +285,14 @@ public class EMFDefinitionXMLWriter extends EMFXMLWriter {
 	private void printEDataType(EDataType eDataType) {
 		// begin of data type: print name and instance class name
 		addWhitespace();
-		out.print("<data-type name=\"" + escape(eDataType.getName()) + "\" ");
-		out.print("instance-class-name=\"" + escape(eDataType.getInstanceClassName() + "\" "));
-		whitespaceCounter += 2;
+		print("<data-type name=\"" + escape(eDataType.getName()) + "\" ");
+		print("instance-class-name=\"" + escape(eDataType.getInstanceClassName() + "\" "));
+		increaseWhitespaceCounter();
 
 		// print parameters
 		for (ETypeParameter parameter : eDataType.getETypeParameters()) {
 			addWhitespace();
-			out.println("<parameter name=\"" + escape(parameter.getName()) + "\"/>");
+			println("<parameter name=\"" + escape(parameter.getName()) + "\"/>");
 		}
 
 		// print annotations
@@ -296,9 +301,9 @@ public class EMFDefinitionXMLWriter extends EMFXMLWriter {
 		}
 
 		// end of data type
-		whitespaceCounter -= 2;
+		decreaseWhitespaceCounter();
 		addWhitespace();
-		out.println("</data-type>");
+		println("</data-type>");
 	}
 
 	/**
@@ -309,21 +314,21 @@ public class EMFDefinitionXMLWriter extends EMFXMLWriter {
 	private void printEAnnotation(EAnnotation eAnnotation) {
 		// begin of annotation: print source
 		addWhitespace();
-		out.println("<annotation source=\"" + escape(eAnnotation.getSource()) + "\">");
-		whitespaceCounter += 2;
+		println("<annotation source=\"" + escape(eAnnotation.getSource()) + "\">");
+		increaseWhitespaceCounter();
 
 		// print details
 		for (Entry<String, String> detail : eAnnotation.getDetails()) {
 			addWhitespace();
-			out.print("<detail key=\"" + escape(detail.getKey()));
-			out.print("\" value=\"" + escape(detail.getValue()));
-			out.println("\"/>");
+			print("<detail key=\"" + escape(detail.getKey()));
+			print("\" value=\"" + escape(detail.getValue()));
+			println("\"/>");
 		}
 
 		// end of annotation
-		whitespaceCounter -= 2;
+		decreaseWhitespaceCounter();
 		addWhitespace();
-		out.println("</annotation>");
+		println("</annotation>");
 	}
 
 }

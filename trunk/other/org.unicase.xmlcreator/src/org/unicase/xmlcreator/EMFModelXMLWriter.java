@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.xmlcreator;
 
 import java.io.PrintWriter;
@@ -104,13 +109,15 @@ public class EMFModelXMLWriter extends EMFXMLWriter {
 		}
 
 		// print the 'packages' attribute
-		out.print(" packages=\"" + escape(packagePrefixes.toString()) + "\"");
+		print(" packages=\"" + escape(packagePrefixes.toString()) + "\"");
 	}
 
 	/**
 	 * Prints an {@link EObject} as an instance in XML. This includes its class, its id (see {@link #getID(EObject)}),
 	 * all its attributes, its container, all its contents and all its cross-references. This method can be called
 	 * multiple times to print multiple elements.
+	 * 
+	 * @param eObject the EObject to print
 	 */
 	@Override
 	public void print(EObject eObject) {
@@ -122,9 +129,9 @@ public class EMFModelXMLWriter extends EMFXMLWriter {
 
 		// begin of class: print class name and id
 		addWhitespace();
-		out.print("<instance class=\"" + escape(eClass.getName()) + "\" ");
-		out.println("id=\"" + getID(eObject) + "\">");
-		whitespaceCounter += 2;
+		print("<instance class=\"" + escape(eClass.getName()) + "\" ");
+		println("id=\"" + getID(eObject) + "\">");
+		increaseWhitespaceCounter();
 
 		printAttributes(eObject);
 
@@ -135,9 +142,9 @@ public class EMFModelXMLWriter extends EMFXMLWriter {
 		printReferences(eObject);
 
 		// end of class
-		whitespaceCounter -= 2;
+		decreaseWhitespaceCounter();
 		addWhitespace();
-		out.println("</instance>");
+		println("</instance>");
 	}
 
 	/**
@@ -150,19 +157,19 @@ public class EMFModelXMLWriter extends EMFXMLWriter {
 
 		// begin of attributes
 		addWhitespace();
-		out.print("<attributes ");
+		print("<attributes ");
 		for (EAttribute attribute : eClass.getEAllAttributes()) {
-			out.print(escape(attribute.getName()) + "=\"");
+			print(escape(attribute.getName()) + "=\"");
 			Object value = eObject.eGet(attribute, true);
 			if (value != null) {
-				out.print(escape(value.toString()) + "\" ");
+				print(escape(value.toString()) + "\" ");
 			} else {
-				out.print("null\" ");
+				print("null\" ");
 			}
 		}
 
 		// end of attributes
-		out.println("/>");
+		println("/>");
 	}
 
 	/**
@@ -184,22 +191,22 @@ public class EMFModelXMLWriter extends EMFXMLWriter {
 
 			// begin of container: print container class name and id
 			addWhitespace();
-			out.print("<container type=\"" + escape(containerClass.getName()) + "\" ");
-			out.print("id=\"" + escape(getID(container)) + "\" ");
+			print("<container type=\"" + escape(containerClass.getName()) + "\" ");
+			print("id=\"" + escape(getID(container)) + "\" ");
 
 			// does the container feature exist?
 			if (eObject.eContainmentFeature().getEOpposite() != null) {
 				// if so, print it
-				out.print("container-reference=\"" + escape(eObject.eContainmentFeature().getEOpposite().getName())
+				print("container-reference=\"" + escape(eObject.eContainmentFeature().getEOpposite().getName())
 					+ "\"");
 
 			} else {
 				// otherwise print the containment feature
-				out.print("containment-reference=\"" + escape(eObject.eContainmentFeature().getName()) + "\"");
+				print("containment-reference=\"" + escape(eObject.eContainmentFeature().getName()) + "\"");
 			}
 
 			// end of container
-			out.println("/>");
+			println("/>");
 		}
 	}
 
@@ -209,13 +216,14 @@ public class EMFModelXMLWriter extends EMFXMLWriter {
 	 * 
 	 * @param eObject the EObject to print contents for
 	 */
+	@SuppressWarnings("unchecked")
 	private void printContents(EObject eObject) {
 		EClass eClass = eObject.eClass();
 
 		// begin of contents
 		addWhitespace();
-		out.println("<contents>");
-		whitespaceCounter += 2;
+		println("<contents>");
+		increaseWhitespaceCounter();
 
 		// print contents for every reference
 		for (EReference containment : eClass.getEAllContainments()) {
@@ -224,9 +232,9 @@ public class EMFModelXMLWriter extends EMFXMLWriter {
 
 				// begin containment-reference: print type and name
 				addWhitespace();
-				out.print("<reference type=\"" + escape(containment.getEReferenceType().getName()) + "\" ");
-				out.println("name=\"" + escape(containment.getName()) + "\">");
-				whitespaceCounter += 2;
+				print("<reference type=\"" + escape(containment.getEReferenceType().getName()) + "\" ");
+				println("name=\"" + escape(containment.getName()) + "\">");
+				increaseWhitespaceCounter();
 
 				// is the reference's multiplicity > 1 ?
 				if (containment.isMany()) {
@@ -246,17 +254,17 @@ public class EMFModelXMLWriter extends EMFXMLWriter {
 				}
 
 				// end of containment-reference
-				whitespaceCounter -= 2;
+				decreaseWhitespaceCounter();
 				addWhitespace();
-				out.println("</reference>");
+				println("</reference>");
 			}
 
 		}
 
 		// end of contents
-		whitespaceCounter -= 2;
+		decreaseWhitespaceCounter();
 		addWhitespace();
-		out.println("</contents>");
+		println("</contents>");
 	}
 
 	/**
@@ -265,13 +273,14 @@ public class EMFModelXMLWriter extends EMFXMLWriter {
 	 * 
 	 * @param eObject the EObject to print cross-references for
 	 */
+	@SuppressWarnings("unchecked")
 	private void printReferences(EObject eObject) {
 		EClass eClass = eObject.eClass();
 
 		// begin of cross-references
 		addWhitespace();
-		out.println("<cross-references>");
-		whitespaceCounter += 2;
+		println("<cross-references>");
+		increaseWhitespaceCounter();
 
 		for (EReference reference : eClass.getEAllReferences()) {
 
@@ -285,13 +294,13 @@ public class EMFModelXMLWriter extends EMFXMLWriter {
 
 				// begin of reference: print type and name
 				addWhitespace();
-				out.print("<reference type=\"" + escape(reference.getEReferenceType().getName()) + "\" ");
-				out.print("name=\"" + escape(reference.getName()) + "\"");
+				print("<reference type=\"" + escape(reference.getEReferenceType().getName()) + "\" ");
+				print("name=\"" + escape(reference.getName()) + "\"");
 
 				// is the reference's multiplicity > 1 ?
 				if (reference.isMany()) {
-					out.println(">");
-					whitespaceCounter += 2;
+					println(">");
+					increaseWhitespaceCounter();
 
 					List<EObject> referencedObjects = (List<EObject>) eObject.eGet(reference, true);
 					for (EObject referencedObject : referencedObjects) {
@@ -303,36 +312,36 @@ public class EMFModelXMLWriter extends EMFXMLWriter {
 
 						// begin of cross-reference entry: print class and ID
 						addWhitespace();
-						out.print("<entry ");
-						out.print("class=\"" + escape(referencedObject.eClass().getName()) + "\" ");
-						out.print("id=\"" + escape(getID(referencedObject)) + "\" ");
+						print("<entry ");
+						print("class=\"" + escape(referencedObject.eClass().getName()) + "\" ");
+						print("id=\"" + escape(getID(referencedObject)) + "\" ");
 
 						// end of cross-reference entry
-						out.println("/>");
+						println("/>");
 					}
 					// end of reference
-					whitespaceCounter -= 2;
+					decreaseWhitespaceCounter();
 					addWhitespace();
-					out.println("</reference>");
+					println("</reference>");
 				} else {
 					// multiplicity = 1 -> print the object's class and ID only if its class is allowed
 					EObject referencedObject = (EObject) eObject.eGet(reference, true);
 					if (isForbidden(referencedObject.eClass())) {
 						continue;
 					}
-					out.print(" class=\"" + escape(referencedObject.eClass().getName()) + "\" ");
-					out.print("id=\"" + escape(getID(referencedObject)) + "\" ");
+					print(" class=\"" + escape(referencedObject.eClass().getName()) + "\" ");
+					print("id=\"" + escape(getID(referencedObject)) + "\" ");
 
 					// end of reference
-					out.println("/>");
+					println("/>");
 				}
 			}
 		}
 
 		// end of cross-references
-		whitespaceCounter -= 2;
+		decreaseWhitespaceCounter();
 		addWhitespace();
-		out.println("</cross-references>");
+		println("</cross-references>");
 	}
 
 	/**

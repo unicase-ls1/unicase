@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.xmlcreator;
 
 import java.io.File;
@@ -9,7 +14,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
@@ -151,14 +155,14 @@ public final class XMLCreatorUtil {
 	 * Retrieves all {@link EPackage EPackages} for a collection of NS-URIs by making use of the {@link Registry
 	 * EPackage-Registry}.
 	 * 
-	 * @param URIs a collection of NS-URIs of the EPackages
+	 * @param uris a collection of NS-URIs of the EPackages
 	 * @return all EPackages belonging to <code>URIs</code>
 	 * @see #getEPackagesFromURI(String[])
 	 */
-	public static List<EPackage> getEPackagesFromURI(Collection<String> URIs) {
+	public static List<EPackage> getEPackagesFromURI(Collection<String> uris) {
 		List<EPackage> result = new LinkedList<EPackage>();
 		Registry registry = Registry.INSTANCE;
-		for (String nsURI : URIs) {
+		for (String nsURI : uris) {
 			result.add(registry.getEPackage(nsURI));
 		}
 		return result;
@@ -168,15 +172,15 @@ public final class XMLCreatorUtil {
 	 * Retrieves all {@link EPackage EPackages} for an array of NS-URIs by making use of the {@link Registry
 	 * EPackage-Registry}.
 	 * 
-	 * @param URIs an array of NS-URIs of the EPackages
+	 * @param uris an array of NS-URIs of the EPackages
 	 * @return all EPackages belonging to <code>URIs</code>
 	 * @see #getEPackagesFromURI(Collection)
 	 */
-	public static List<EPackage> getEPackagesFromURI(String[] URIs) {
+	public static List<EPackage> getEPackagesFromURI(String[] uris) {
 		List<EPackage> result = new LinkedList<EPackage>();
 		Registry registry = Registry.INSTANCE;
-		for (int i = 0; i < URIs.length; i++) {
-			result.add(registry.getEPackage(URIs[i]));
+		for (int i = 0; i < uris.length; i++) {
+			result.add(registry.getEPackage(uris[i]));
 		}
 		return result;
 	}
