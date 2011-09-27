@@ -3,6 +3,7 @@
 <plugin>
    <extension-point id="org.eclipse.emf.ecp.common.modelelementopener" name="Open Handler for Modelelements" schema="schema/org.eclipse.emf.ecp.common.modelelementopener.exsd"/>
    <extension-point id="org.eclipse.emf.ecp.common.dropadapter" name="Model element drop adapter" schema="schema/org.eclipse.emf.ecp.common.dropadapter.exsd"/>
+   <extension-point id="org.eclipse.emf.ecp.common.menuContributionEnablement" name="ECP Menu Contribution Enablement" schema="schema/org.eclipse.emf.ecp.common.menuContributionEnablement.exsd"/>
    <extension
         point="org.eclipse.ui.commands">
         <category
@@ -45,6 +46,11 @@
               			 </not>
         			   </and>     
                  </iterate>
+                 <test
+                       args="org.eclipse.emf.ecp.common.deleteModelelement"
+                       property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                       value="true">
+                 </test>
               </and>
            </visibleWhen>
         </command>
@@ -104,6 +110,11 @@
                  <count
                        value="1">
                  </count>
+                 <test
+                       args="org.eclipse.emf.emfstore.client.ui.validate"
+                       property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                       value="true">
+                 </test>
               </and>
            </visibleWhen>
         </command>
@@ -155,6 +166,16 @@
           schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
           sequence="Ctrl+Delete">
     </key>
+ </extension>
+ <extension
+       point="org.eclipse.core.expressions.propertyTesters">
+    <propertyTester
+          class="org.eclipse.emf.ecp.common.commands.ECPMenuContributionsEnablementTester"
+          id="org.eclipse.emf.ecp.common.menuContributionsEnablementTester"
+          namespace="org.eclipse.emf.ecp.common"
+          properties="menuContributionsEnablement"
+          type="java.lang.Object">
+    </propertyTester>
  </extension>
 </plugin>
 
