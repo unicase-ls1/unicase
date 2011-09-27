@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.emfstore.copemigration.feature"
       label="EMFStore Cope Migration (Incubation)"
-      version="0.8.9.M9"
+      version="0.8.9.M901"
       provider-name="Eclipse Modeling Project">
 
    <description url="http://emfstore.org">
