@@ -84,6 +84,11 @@
                           value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
                     </instanceof>
                  </iterate>
+                 <test
+                       args="org.eclipse.emf.emfstore.client.ui.validate"
+                       property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                       value="true">
+                 </test>
               </and>
            </visibleWhen>
         </command>
