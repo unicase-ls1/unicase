@@ -283,6 +283,11 @@
                  <count
                        value="1">
                  </count>
+                 <test
+                       args="org.eclipse.emf.emfstore.client.ui.commitProject"
+                       property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                       value="true">
+                 </test>
               </and>
            </visibleWhen>
         </command>
@@ -309,6 +314,11 @@
                  <count
                        value="1">
                  </count>
+                 <test
+                       args="org.eclipse.emf.emfstore.client.ui.updateProject"
+                       property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                       value="true">
+                 </test>
               </and>
            </visibleWhen>
         </command>
@@ -340,6 +350,11 @@
                  <count
                        value="1">
                  </count>
+                 <test
+                       args="org.eclipse.emf.emfstore.client.ui.updateProjectVersion"
+                       property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                       value="true">
+                 </test>
               </and>
            </visibleWhen>
         </command>
@@ -366,6 +381,11 @@
                  <count
                        value="1">
                  </count>
+                 <test
+                       args="org.eclipse.emf.emfstore.client.ui.shareProject"
+                       property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                       value="true">
+                 </test>
               </and>
            </visibleWhen>
         </command>
@@ -392,6 +412,11 @@
                  <count
                        value="1">
                  </count>
+                 <test
+                       args="org.eclipse.emf.emfstore.client.ui.undoLastOperation"
+                       property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                       value="true">
+                 </test>
               </and>
            </visibleWhen>
         </command>
@@ -414,6 +439,11 @@
                  <count
                        value="1">
                  </count>
+                 <test
+                       args="org.eclipse.emf.emfstore.client.ui.revert"
+                       property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                       value="true">
+                 </test>
               </and>
            </visibleWhen>
         </command>
@@ -444,6 +474,11 @@
                  <count
                        value="1">
                  </count>
+                 <test
+                       args="org.eclipse.emf.emfstore.client.ui.commands.showHistory"
+                       property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                       value="true">
+                 </test>
               </and>
            </visibleWhen>
         </command>
@@ -470,6 +505,11 @@
                  <count
                        value="1">
                  </count>
+                 <test
+                       args="org.eclipse.emf.emfstore.client.ui.deleteProject"
+                       property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                       value="true">
+                 </test>
               </and>
            </visibleWhen>
         </command>
@@ -498,6 +538,11 @@
                        <count
                              value="1">
                        </count>
+                       <test
+                             args="org.eclipse.emf.emfstore.client.ui.exportProject"
+                             property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                             value="true">
+                       </test>
                     </and>
                  </visibleWhen>
               </command>
@@ -524,6 +569,11 @@
                        <count
                              value="1">
                        </count>
+                       <test
+                             args="org.eclipse.emf.emfstore.client.ui.exportChanges"
+                             property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                             value="true">
+                       </test>
                     </and>
                  </visibleWhen>
               </command>
@@ -545,6 +595,11 @@
                        <count
                              value="1">
                        </count>
+                       <test
+                             args="org.eclipse.emf.emfstore.client.ui.exportProjectSpace"
+                             property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                             value="true">
+                       </test>
                     </and>
                  </visibleWhen>
               </command>
@@ -571,6 +626,11 @@
                              </instanceof>
                           </not>
                        </iterate>
+                       <test
+                             args="org.eclipse.emf.emfstore.client.ui.exportWorkSpace"
+                             property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                             value="true">
+                       </test>
                     </and>
                  </visibleWhen>
               </command>
@@ -601,6 +661,11 @@
                        <count
                              value="1">
                        </count>
+                       <test
+                             args="org.eclipse.emf.emfstore.client.ui.importChanges"
+                             property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                             value="true">
+                       </test>
                     </and>
                  </visibleWhen>
               </command>
@@ -620,6 +685,11 @@
                                 value="1">
                           </count>
                        </or>
+                       <test
+                             args="org.eclipse.emf.emfstore.client.ui.importProject"
+                             property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                             value="true">
+                       </test>
                     </and>
                  </visibleWhen>
               </command>
@@ -646,6 +716,11 @@
                              </instanceof>
                           </not>
                        </iterate>
+                       <test
+                             args="org.eclipse.emf.emfstore.client.ui.importProjectSpace"
+                             property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                             value="true">
+                       </test>
                     </and>
                  </visibleWhen>
               </command>
@@ -667,6 +742,11 @@
                        <count
                              value="1">
                        </count>
+                       <test
+                             args="org.eclipse.emf.ecp.navigator.importModel"
+                             property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                             value="true">
+                       </test>
                     </and>
                  </visibleWhen>
               </command>
@@ -690,6 +770,11 @@
                     <count
                           value="1">
                     </count>
+                    <test
+                          args="org.eclipse.emf.emfstore.client.ui.compareProjects"
+                          property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                          value="true">
+                    </test>
                  </and>
               </visibleWhen>
            </command>
@@ -717,6 +802,11 @@
                                 value="org.eclipse.emf.emfstore.common.model.Project" />
                        </or>
                     </iterate>
+                    <test
+                          args="org.eclipse.emf.emfstore.client.ui.NewLocalProject"
+                          property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                          value="true">
+                    </test>
                  </and>
               </visibleWhen>
            </command>
@@ -750,6 +840,11 @@
                  <count
                        value="1">
                  </count>
+                 <test
+                       args="org.eclipse.emf.emfstore.client.ui.projectProperties"
+                       property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                       value="true">
+                 </test>
               </and>
            </visibleWhen>
         </command>
@@ -774,6 +869,11 @@
                            definitionId="org.eclipse.emf.ecp.common.commands.modelElement">
                      </reference>
                   </iterate>
+                  <test
+                        args="org.eclipse.emf.emfstore.client.ui.commands.showHistory"
+                        property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                        value="true">
+                  </test>
                </and>
             </visibleWhen>
          </command>
