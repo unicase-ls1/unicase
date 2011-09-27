@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: EMFStore Client Tests  (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.emfstore.client.test;singleton:=true
-Bundle-Version: 0.8.9.M9
+Bundle-Version: 0.8.9.M901
 Bundle-ClassPath: .,
  lib/org.apache.commons.io_1.4.0.v20081110-1000.jar
 Bundle-Vendor: Eclipse Modeling Project
