@@ -110,13 +110,6 @@ public final class Configuration {
 	 * @return the resource save options
 	 */
 	public static Map<Object, Object> getResourceSaveOptions() {
-		// MK: the options below should only be used with resourcemodification
-		// tracking enabled
-		// if (resourceSaveOptions == null) {
-		// resourceSaveOptions = new HashMap<Object, Object>();
-		// resourceSaveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED,
-		// Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
-		// }
 		return null;
 	}
 
