@@ -645,14 +645,6 @@
                  <visibleWhen
                        checkEnabled="false">
                     <and>
-                       <or>
-                          <count
-                                value="0">
-                          </count>
-                          <count
-                                value="1">
-                          </count>
-                       </or>
                        <iterate>
                           <not>
                              <instanceof
@@ -660,6 +652,9 @@
                              </instanceof>
                           </not>
                        </iterate>
+                       <count
+                             value="1">
+                       </count>
                        <test
                              args="org.eclipse.emf.emfstore.client.ui.exportWorkSpace"
                              property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
