@@ -34,6 +34,9 @@ public class ECPMenuContributionsEnablementTester extends PropertyTester {
 				for (IConfigurationElement child: configurationElement.getChildren()) {
 					String commandID = child.getAttribute("commandID");
 					menuContributionEnabled = !args[0].equals(commandID);
+					if (!menuContributionEnabled) {
+						break;
+					}
 				}
 			}
 			
