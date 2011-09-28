@@ -81,6 +81,7 @@
                style="push">
             <visibleWhen
                   checkEnabled="false">
+               <and>
                <iterate>
                   <and>
                   <instanceof
@@ -94,6 +95,12 @@
                 
 	            </and>
                </iterate>
+               <test
+                     args="org.eclipse.emf.ecp.navigator.exportModel"
+                     property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                     value="true">
+               </test>
+               </and>
             </visibleWhen>
          </command>
          <command
@@ -103,6 +110,7 @@
                style="push">
             <visibleWhen
                   checkEnabled="false">
+               <and>
                <iterate>
                   <and>
                      <instanceof
@@ -115,6 +123,12 @@
                      </test>
                   </and>
                </iterate>
+               <test
+                     args="org.eclipse.emf.ecp.navigator.importModel"
+                     property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                     value="true">
+               </test>
+              </and> 
             </visibleWhen>
          </command>
          <separator
