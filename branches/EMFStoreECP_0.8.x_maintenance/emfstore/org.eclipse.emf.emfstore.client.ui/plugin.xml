@@ -513,6 +513,40 @@
               </and>
            </visibleWhen>
         </command>
+        <command
+              commandId="org.eclipse.emf.emfstore.client.ui.NewLocalProject"
+              icon="icons/serverAdd.png"
+              label="Create Project"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <and>
+                 <or>
+                    <count
+                          value="0">
+                    </count>
+                    <count
+                          value="1">
+                    </count>
+                 </or>
+                 <iterate>
+                    <or>
+                       <instanceof
+                             value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
+                       </instanceof>
+                       <instanceof
+                             value="org.eclipse.emf.emfstore.common.model.Project">
+                       </instanceof>
+                    </or>
+                 </iterate>
+                 <test
+                       args="org.eclipse.emf.emfstore.client.ui.NewLocalProject"
+                       property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                       value="true">
+                 </test>
+              </and>
+           </visibleWhen>
+        </command>
         <menu
               icon="icons/createrepos.gif"
               id="org.eclipse.emf.emfstore.client.ui.Other"
@@ -772,38 +806,6 @@
                     </count>
                     <test
                           args="org.eclipse.emf.emfstore.client.ui.compareProjects"
-                          property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
-                          value="true">
-                    </test>
-                 </and>
-              </visibleWhen>
-           </command>
-           <command
-                 commandId="org.eclipse.emf.emfstore.client.ui.NewLocalProject"
-                 icon="icons/serverAdd.png"
-                 label="New Project..."
-                 style="push">
-              <visibleWhen
-                    checkEnabled="false">
-                 <and>
-                    <or>
-                       <count
-                             value="0">
-                       </count>
-                       <count
-                             value="1">
-                       </count>
-                    </or>
-                    <iterate>
-                       <or>
-                          <instanceof
-                                value="org.eclipse.emf.emfstore.client.model.ProjectSpace" />
-                          <instanceof
-                                value="org.eclipse.emf.emfstore.common.model.Project" />
-                       </or>
-                    </iterate>
-                    <test
-                          args="org.eclipse.emf.emfstore.client.ui.NewLocalProject"
                           property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
                           value="true">
                     </test>
