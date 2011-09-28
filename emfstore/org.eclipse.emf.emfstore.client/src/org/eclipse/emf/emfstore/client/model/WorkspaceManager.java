@@ -180,6 +180,7 @@ public final class WorkspaceManager {
 	 */
 	private Workspace initWorkSpace() {
 		ResourceSet resourceSet = new ResourceSetImpl();
+		resourceSet.getLoadOptions().putAll(ModelUtil.getResourceLoadOptions());
 
 		// register an editing domain on the ressource
 		Configuration.setEditingDomain(createEditingDomain(resourceSet));
