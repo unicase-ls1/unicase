@@ -1,6 +1,7 @@
 /*******************************************************************************
- * Copyright (c) 2008-2011 Chair for Applied Software Engineering, Technische Universitaet Muenchen. All rights
- * reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public
+ * Copyright (c) 2008-2011 Chair for Applied Software Engineering,
+ * Technische Universitaet Muenchen.
+ * All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public
  * License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * Contributors:
  ******************************************************************************/
@@ -13,22 +14,22 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 
 /**
  * Command capable of recording changes on a model element.
- * @param <T> the type of the return value
+ * @param <T> the type of the parameter
  * 
  * @author koegel
  */
-public abstract class ECPCommandWithResult<T> extends ChangeCommand {
+public abstract class ECPCommandWithParameter<T> extends ChangeCommand {
 
 	private EObject eObject;
 	private RuntimeException runtimeException;
-	private T result;
+	private T parameter;
 
 	/**
 	 * Constructor.
 	 * 
 	 * @param eObject the model element whose changes one is interested in
 	 */
-	public ECPCommandWithResult(EObject eObject) {
+	public ECPCommandWithParameter(EObject eObject) {
 		super(eObject);
 		this.eObject = eObject;
 	}
@@ -41,7 +42,7 @@ public abstract class ECPCommandWithResult<T> extends ChangeCommand {
 	@Override
 	protected final void doExecute() {
 		try {
-			result = doRun();
+			doRun(parameter);
 			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
 			// END SUPRESS CATCH EXCEPTION
@@ -53,25 +54,24 @@ public abstract class ECPCommandWithResult<T> extends ChangeCommand {
 	/**
 	 * The actual action that is being executed.
 	 * 
-	 * @return the result of type T
+	 * @param parameter the parameter of type T
 	 */
-	protected abstract T doRun();
+	protected abstract void doRun(T parameter);
 
 	/**
 	 * Executes the command.
 	 * 
-	 * @return the result of type T
+	 * @param parameter the parameter
 	 */
-	public T run() {
+	public void run(T parameter) {
 		runtimeException = null;
-
+		
+		this.parameter=parameter;
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
 		domain.getCommandStack().execute(this);
 
 		if (runtimeException != null) {
 			throw runtimeException;
 		}
-		return result;
 	}
-
 }
