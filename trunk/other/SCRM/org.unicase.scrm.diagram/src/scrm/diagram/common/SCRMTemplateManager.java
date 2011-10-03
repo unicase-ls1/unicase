@@ -13,6 +13,7 @@ import java.util.Set;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.osgi.framework.Bundle;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -153,6 +154,16 @@ public class SCRMTemplateManager extends TemplateManager {
 	@Override
 	public String[] getTemplateFileExtensions() {
 		return templateFileExtensions;
+	}
+	
+	@Override
+	protected boolean isValid(Resource resource) {
+		if(super.isValid(resource)) {
+			if(resource.getContents().get(0) instanceof SCRMDiagram) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }

@@ -8,9 +8,21 @@ Bundle-Activator: scrm.diagram.part.ScrmDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: scrm.diagram.edit.parts,
+Export-Package: scrm.diagram.commands,
+ scrm.diagram.common,
+ scrm.diagram.edit.commands,
+ scrm.diagram.edit.helpers,
+ scrm.diagram.edit.policies, 
+ scrm.diagram.edit.parts,
+ scrm.diagram.handlers,
+ scrm.diagram.navigator,
+ scrm.diagram.opener,
+ scrm.diagram.parsers,
  scrm.diagram.part,
- scrm.diagram.providers
+ scrm.diagram.preferences,
+ scrm.diagram.providers,
+ scrm.diagram.sheet,
+ scrm.diagram.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.core.expressions,

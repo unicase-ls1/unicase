@@ -10,20 +10,18 @@ import org.unicase.workspace.util.WorkspaceUtil;
 
 import scrm.SCRMDiagram;
 import scrm.diagram.common.SCRMTemplateManager;
-import scrm.diagram.common.TemplateManager;
 
 public class SaveTemplateHandler extends AbstractSaveTemplateHandler {
 	
 	private static final String[] templateFileExtensions = new String[] {"*.scrm", "*.*"};
 
 	@Override
-	protected EObject getRootEObject(ExecutionEvent event) {
+	protected SCRMDiagram getRootEObject(ExecutionEvent event) {
 		SCRMDiagram rootDiagram = getInstanceOfClass(event, SCRMDiagram.class);
 		if(rootDiagram == null) {
 			// no SCRMDiagram was selected -> check if a diagram editor is active
-			IEditorPart editor;
 			try {
-				editor = HandlerUtil.getActiveEditorChecked(event);
+				IEditorPart editor = HandlerUtil.getActiveEditorChecked(event);
 				if(editor instanceof DiagramEditor) {
 					DiagramEditor diagramEditor = (DiagramEditor) editor;
 					EObject diagramCanvas = diagramEditor.getDiagram().eContainer();
@@ -32,7 +30,8 @@ public class SaveTemplateHandler extends AbstractSaveTemplateHandler {
 					}
 				}
 			} catch (ExecutionException e) {
-				WorkspaceUtil.logException("Saving template failed: Editor error!", e);
+				WorkspaceUtil.logException("Saving template failed: " +
+						"Editor Error!", e);
 			}
 		}
 		if(rootDiagram == null) {
@@ -42,7 +41,7 @@ public class SaveTemplateHandler extends AbstractSaveTemplateHandler {
 	}
 	
 	@Override
-	protected TemplateManager getTemplateManager() {
+	protected SCRMTemplateManager getTemplateManager() {
 		return new SCRMTemplateManager();
 	}
 
