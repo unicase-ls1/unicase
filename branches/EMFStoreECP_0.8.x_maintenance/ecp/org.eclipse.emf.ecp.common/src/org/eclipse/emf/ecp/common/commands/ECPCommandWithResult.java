@@ -60,30 +60,18 @@ public abstract class ECPCommandWithResult<T> extends ChangeCommand {
 	/**
 	 * Executes the command.
 	 * 
-	 * @param ignoreExceptions true if any thrown exception in the execution of the command should be ignored.
 	 * @return the result of type T
 	 */
-	public T run(boolean ignoreExceptions) {
+	public T run() {
 		runtimeException = null;
 
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
 		domain.getCommandStack().execute(this);
 
-		if (!ignoreExceptions && runtimeException != null) {
+		if (runtimeException != null) {
 			throw runtimeException;
 		}
 		return result;
-	}
-
-	/**
-	 * Executes the command.
-	 * 
-	 * @deprecated use run(boolean) instead.
-	 * @return the result of type T
-	 */
-	@Deprecated
-	public T run() {
-		return run(true);
 	}
 
 }
