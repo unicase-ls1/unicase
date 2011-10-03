@@ -29,8 +29,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeNode;
-import org.eclipse.jface.viewers.TreePath;
-import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
@@ -218,31 +216,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 			return;
 		}
 
-		if (!viewer.getExpandedState(me)) {
-			viewer.expandToLevel(2);
-		}
-
-		// we could easily use the following method.
-		// but it has the problem that it shows the first occurrence of and element.
-		// for example if we have the same element somewhere else linked, and shown as a child (e.g. in
-		// ActionItemMeetingSection),
-		// it just show the first one that it finds. We want only the real containment to be shown.
-		// // TreeView.getTreeViewer().setSelection(new StructuredSelection(me), true);
-
-		EObject container = me.eContainer();
-		if (container != null) {
-			internalSelectionEvent = true;
-			viewer.setSelection(new StructuredSelection(container), true);
-
-			TreeSelection treeSelection = (TreeSelection) viewer.getSelection();
-			if (treeSelection.getPaths().length > 0) {
-				TreePath treePath = treeSelection.getPaths()[0].createChildPath(me);
-
-				TreeSelection newTreeSeleciton = new TreeSelection(treePath);
-				viewer.setSelection(newTreeSeleciton, true);
-			}
-			internalSelectionEvent = false;
-		}
+		viewer.setSelection(new StructuredSelection(me), true);
 	}
 
 	private void addSelectionListener() {
