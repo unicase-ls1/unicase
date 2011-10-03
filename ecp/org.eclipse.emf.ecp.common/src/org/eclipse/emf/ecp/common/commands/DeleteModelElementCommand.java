@@ -12,6 +12,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.util.AssociationClassHelper;
 import org.eclipse.emf.edit.command.DeleteCommand;
@@ -75,8 +76,20 @@ public final class DeleteModelElementCommand {
 			try {
 				removeElementsWithoutRoot(toBeDeleted);
 
-				Command deleteCommand = DeleteCommand.create(context.getEditingDomain(), toBeDeleted);
-				context.getEditingDomain().getCommandStack().execute(deleteCommand);
+				if (toBeDeleted.size() > 0) {
+					new ECPCommandWithParameter<Set<EObject>>(toBeDeleted.iterator().next()) {
+
+						@Override
+						protected void doRun(Set<EObject> parameter) {
+							for (EObject eObject : toBeDeleted) {
+								EcoreUtil.delete(eObject, true);
+							}
+						}
+
+					}.run(toBeDeleted);
+				}
+				// Command deleteCommand = DeleteCommand.create(context.getEditingDomain(), toBeDeleted);
+				// context.getEditingDomain().getCommandStack().execute(deleteCommand);
 			} finally {
 				progressDialog.getProgressMonitor().done();
 				progressDialog.close();
