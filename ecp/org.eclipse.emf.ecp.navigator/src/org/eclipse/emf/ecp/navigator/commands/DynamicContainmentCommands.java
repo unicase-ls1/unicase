@@ -66,7 +66,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 
 		// 2. get its containments
 		Set<EClass> eClazz = CommonUtil.getAllEContainments(selectedME.eClass());
-		if (eClazz.size() > 5) {
+		if (eClazz.size() > getMaxContributionItems()) {
 			return createNewWizard(selectedME.eClass());
 		}
 
@@ -76,6 +76,14 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 		return commands;
 	}
 
+	/**
+	 * Return the maximum number of creation command contributions to generate.
+	 * @return the maximum number
+	 */
+	protected int getMaxContributionItems() {
+		return 5;
+	}
+	
 	private IContributionItem[] createNewWizard(EClass eClass) {
 		CommandContributionItemParameter commandParam = new CommandContributionItemParameter(PlatformUI.getWorkbench(),
 			null, "org.eclipse.emf.ecp.navigator.newModelElementWizard", CommandContributionItem.STYLE_PUSH);
@@ -178,6 +186,17 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 		Set<EClass> eClazz = CommonUtil.getAllSubEClasses(refClass);
 		eClazz.remove(refClass);
 		for (EClass eClass : eClazz) {
+			
+			try {
+				boolean nonDomainElement = ECPWorkspaceManager.getInstance().getWorkSpace().getProject(selectedME)
+				.getMetaModelElementContext().isNonDomainElement(eClass);
+				if (nonDomainElement) {
+					continue;
+				}
+			} catch (NoWorkspaceException e) {
+				Activator.getDefault().logException(e.getMessage(), e);
+			}
+			
 			CommandContributionItemParameter commandParam = new CommandContributionItemParameter(
 				PlatformUI.getWorkbench(), null, COMMAND_ID, CommandContributionItem.STYLE_PUSH);
 
