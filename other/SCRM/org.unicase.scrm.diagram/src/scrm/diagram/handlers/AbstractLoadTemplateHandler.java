@@ -4,12 +4,14 @@ import java.io.IOException;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 import scrm.diagram.common.TemplateManager;
 
@@ -47,7 +49,10 @@ public abstract class AbstractLoadTemplateHandler extends AbstractTemplateHandle
 				// perform the actual loading process
 				templateManager.doLoad(project, resourcePath);
 			} catch (IOException e) {
-				WorkspaceUtil.logException("Loading SCRM template failed!", e);
+				Status status = new Status(IStatus.ERROR, "org.unicase.scrm.diagram", e.getLocalizedMessage(), null);
+				ErrorDialog.openError(Display.getCurrent().getActiveShell(), 
+						"Invalid Template file",
+						"The selected file is not a valid template file!", status);
 			}
 		}
 		
