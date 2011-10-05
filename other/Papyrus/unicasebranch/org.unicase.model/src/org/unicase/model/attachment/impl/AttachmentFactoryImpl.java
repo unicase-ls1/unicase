@@ -62,8 +62,6 @@ public class AttachmentFactoryImpl extends EFactoryImpl implements AttachmentFac
 			return createUrlAttachment();
 		case AttachmentPackage.FILE_ATTACHMENT:
 			return createFileAttachment();
-		case AttachmentPackage.PATCH_ATTACHMENT:
-			return createPatchAttachment();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -113,15 +111,6 @@ public class AttachmentFactoryImpl extends EFactoryImpl implements AttachmentFac
 	public FileAttachment createFileAttachment() {
 		FileAttachmentImpl fileAttachment = new FileAttachmentImpl();
 		return fileAttachment;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PatchAttachment createPatchAttachment() {
-		PatchAttachmentImpl patchAttachment = new PatchAttachmentImpl();
-		return patchAttachment;
 	}
 
 	/**

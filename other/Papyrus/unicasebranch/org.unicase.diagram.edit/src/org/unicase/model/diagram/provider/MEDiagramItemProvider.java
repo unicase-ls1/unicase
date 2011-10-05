@@ -436,10 +436,6 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(
 				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				AttachmentFactory.eINSTANCE.createPatchAttachment()));
-
-		newChildDescriptors.add(createChildParameter(
-				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 				ProfileFactory.eINSTANCE.createProfile()));
 
 		newChildDescriptors.add(createChildParameter(

@@ -8560,10 +8560,10 @@
       </operation>
     </changes>
     <changes xsi:type="history:Create" target="model.ecore#//attachment" referenceName="eClassifiers"
-        element="model.ecore#//attachment/PatchAttachment">
-      <changes xsi:type="history:Set" element="model.ecore#//attachment/PatchAttachment"
+        element="#//@releases.9/@changes.27/@element">
+      <changes xsi:type="history:Set" element="#//@releases.9/@changes.27/@element"
           featureName="name" dataValue="PatchAttachment"/>
-      <changes xsi:type="history:Add" element="model.ecore#//attachment/PatchAttachment"
+      <changes xsi:type="history:Add" element="#//@releases.9/@changes.27/@element"
           featureName="eSuperTypes" referenceValue="model.ecore#//attachment/FileAttachment"/>
     </changes>
     <changes xsi:type="history:Create" target="model.ecore#/" referenceName="eSubpackages"
@@ -8576,65 +8576,56 @@
           dataValue="org.unicase.model.release"/>
     </changes>
     <changes xsi:type="history:Create" target="model.ecore#//release" referenceName="eClassifiers"
-        element="model.ecore#//release/Stream">
-      <changes xsi:type="history:Set" element="model.ecore#//release/Stream" featureName="name"
-          dataValue="Stream"/>
+        element="#//@releases.9/@changes.18/@element">
+      <changes xsi:type="history:Set" element="#//@releases.9/@changes.18/@element"
+          featureName="name" dataValue="Stream"/>
     </changes>
     <changes xsi:type="history:Create" target="model.ecore#//release" referenceName="eClassifiers"
-        element="model.ecore#//release/Release">
-      <changes xsi:type="history:Set" element="model.ecore#//release/Release" featureName="name"
-          dataValue="Release"/>
+        element="model.ecore#//release/AbstractRelease">
+      <changes xsi:type="history:Set" element="model.ecore#//release/AbstractRelease"
+          featureName="name" dataValue="Release"/>
     </changes>
-    <changes xsi:type="history:Create" target="model.ecore#//attachment/PatchAttachment"
-        referenceName="eStructuralFeatures" element="model.ecore#//attachment/PatchAttachment/appliedTo">
-      <changes xsi:type="history:Set" element="model.ecore#//attachment/PatchAttachment/appliedTo"
+    <changes xsi:type="history:Create" target="#//@releases.9/@changes.27/@element"
+        referenceName="eStructuralFeatures" element="#//@releases.9/@changes.27/@element/appliedTo">
+      <changes xsi:type="history:Set" element="#//@releases.9/@changes.27/@element/appliedTo"
           featureName="name" dataValue="appliedTo"/>
-      <changes xsi:type="history:Set" element="model.ecore#//attachment/PatchAttachment/appliedTo"
+      <changes xsi:type="history:Set" element="#//@releases.9/@changes.27/@element/appliedTo"
           featureName="upperBound" dataValue="-1" oldDataValue="1"/>
-      <changes xsi:type="history:Set" element="model.ecore#//attachment/PatchAttachment/appliedTo"
-          featureName="eType" referenceValue="model.ecore#//release/Release"/>
+      <changes xsi:type="history:Set" element="#//@releases.9/@changes.27/@element/appliedTo"
+          featureName="eType" referenceValue="model.ecore#//release/AbstractRelease"/>
     </changes>
-    <changes xsi:type="history:Create" target="model.ecore#//release/Release" referenceName="eStructuralFeatures"
-        element="model.ecore#//release/Release/appliedPatches">
-      <changes xsi:type="history:Set" element="model.ecore#//release/Release/appliedPatches"
-          featureName="name" dataValue="appliedPatches"/>
-      <changes xsi:type="history:Set" element="model.ecore#//release/Release/appliedPatches"
-          featureName="upperBound" dataValue="-1" oldDataValue="1"/>
-      <changes xsi:type="history:Set" element="model.ecore#//release/Release/appliedPatches"
-          featureName="eType" referenceValue="model.ecore#//attachment/PatchAttachment"/>
-      <changes xsi:type="history:Set" element="model.ecore#//release/Release/appliedPatches"
-          featureName="eOpposite" referenceValue="model.ecore#//attachment/PatchAttachment/appliedTo"/>
-      <changes xsi:type="history:Set" element="model.ecore#//attachment/PatchAttachment/appliedTo"
-          featureName="eOpposite" referenceValue="model.ecore#//release/Release/appliedPatches"/>
+    <changes xsi:type="history:Create" target="model.ecore#//release/AbstractRelease"
+        referenceName="eStructuralFeatures">
+      <changes xsi:type="history:Set" featureName="name" dataValue="appliedPatches"/>
+      <changes xsi:type="history:Set" featureName="upperBound" dataValue="-1" oldDataValue="1"/>
+      <changes xsi:type="history:Set" featureName="eType" referenceValue="#//@releases.9/@changes.27/@element"/>
+      <changes xsi:type="history:Set" featureName="eOpposite" referenceValue="#//@releases.9/@changes.27/@element/appliedTo"/>
+      <changes xsi:type="history:Set" element="#//@releases.9/@changes.27/@element/appliedTo"
+          featureName="eOpposite"/>
     </changes>
-    <changes xsi:type="history:Create" target="model.ecore#//release/Release" referenceName="eStructuralFeatures"
-        element="model.ecore#//release/Release/stream">
-      <changes xsi:type="history:Set" element="model.ecore#//release/Release/stream"
-          featureName="name" dataValue="stream"/>
-      <changes xsi:type="history:Set" element="model.ecore#//release/Release/stream"
-          featureName="eType" referenceValue="model.ecore#//release/Stream"/>
+    <changes xsi:type="history:Create" target="model.ecore#//release/AbstractRelease"
+        referenceName="eStructuralFeatures">
+      <changes xsi:type="history:Set" featureName="name" dataValue="stream"/>
+      <changes xsi:type="history:Set" featureName="eType" referenceValue="#//@releases.9/@changes.18/@element"/>
     </changes>
-    <changes xsi:type="history:Create" target="model.ecore#//release/Stream" referenceName="eStructuralFeatures"
-        element="model.ecore#//release/Stream/releases">
-      <changes xsi:type="history:Set" element="model.ecore#//release/Stream/releases"
+    <changes xsi:type="history:Create" target="#//@releases.9/@changes.18/@element"
+        referenceName="eStructuralFeatures" element="#//@releases.9/@changes.18/@element/releases">
+      <changes xsi:type="history:Set" element="#//@releases.9/@changes.18/@element/releases"
           featureName="name" dataValue="releases"/>
-      <changes xsi:type="history:Set" element="model.ecore#//release/Stream/releases"
+      <changes xsi:type="history:Set" element="#//@releases.9/@changes.18/@element/releases"
           featureName="upperBound" dataValue="-1" oldDataValue="1"/>
-      <changes xsi:type="history:Set" element="model.ecore#//release/Stream/releases"
+      <changes xsi:type="history:Set" element="#//@releases.9/@changes.18/@element/releases"
           featureName="containment" dataValue="true" oldDataValue="false"/>
-      <changes xsi:type="history:Set" element="model.ecore#//release/Stream/releases"
-          featureName="eType" referenceValue="model.ecore#//release/Release"/>
-      <changes xsi:type="history:Set" element="model.ecore#//release/Stream/releases"
-          featureName="eOpposite" referenceValue="model.ecore#//release/Release/stream"/>
-      <changes xsi:type="history:Set" element="model.ecore#//release/Release/stream"
-          featureName="eOpposite" referenceValue="model.ecore#//release/Stream/releases"/>
+      <changes xsi:type="history:Set" element="#//@releases.9/@changes.18/@element/releases"
+          featureName="eType" referenceValue="model.ecore#//release/AbstractRelease"/>
+      <changes xsi:type="history:Set" element="#//@releases.9/@changes.18/@element/releases"
+          featureName="eOpposite"/>
+      <changes xsi:type="history:Set" featureName="eOpposite" referenceValue="#//@releases.9/@changes.18/@element/releases"/>
     </changes>
-    <changes xsi:type="history:Create" target="model.ecore#//release/Release" referenceName="eStructuralFeatures"
-        element="model.ecore#//release/Release/predecessor">
-      <changes xsi:type="history:Set" element="model.ecore#//release/Release/predecessor"
-          featureName="name" dataValue="predecessor"/>
-      <changes xsi:type="history:Set" element="model.ecore#//release/Release/predecessor"
-          featureName="eType" referenceValue="model.ecore#//release/Release"/>
+    <changes xsi:type="history:Create" target="model.ecore#//release/AbstractRelease"
+        referenceName="eStructuralFeatures">
+      <changes xsi:type="history:Set" featureName="name" dataValue="predecessor"/>
+      <changes xsi:type="history:Set" featureName="eType" referenceValue="model.ecore#//release/AbstractRelease"/>
     </changes>
     <changes xsi:type="history:Create" target="model.ecore#//task/WorkItem" referenceName="eStructuralFeatures"
         element="model.ecore#//task/WorkItem/includingReleases">
@@ -8643,59 +8634,55 @@
       <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/includingReleases"
           featureName="upperBound" dataValue="-1" oldDataValue="1"/>
       <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/includingReleases"
-          featureName="eType" referenceValue="model.ecore#//release/Release"/>
+          featureName="eType" referenceValue="model.ecore#//release/AbstractRelease"/>
     </changes>
-    <changes xsi:type="history:Create" target="model.ecore#//release/Release" referenceName="eStructuralFeatures"
-        element="model.ecore#//release/Release/successor">
-      <changes xsi:type="history:Set" element="model.ecore#//release/Release/successor"
-          featureName="name" dataValue="successor"/>
-      <changes xsi:type="history:Set" element="model.ecore#//release/Release/successor"
-          featureName="eType" referenceValue="model.ecore#//release/Release"/>
-      <changes xsi:type="history:Set" element="model.ecore#//release/Release/successor"
-          featureName="eOpposite" referenceValue="model.ecore#//release/Release/predecessor"/>
-      <changes xsi:type="history:Set" element="model.ecore#//release/Release/predecessor"
-          featureName="eOpposite" referenceValue="model.ecore#//release/Release/successor"/>
+    <changes xsi:type="history:Create" target="model.ecore#//release/AbstractRelease"
+        referenceName="eStructuralFeatures">
+      <changes xsi:type="history:Set" featureName="name" dataValue="successor"/>
+      <changes xsi:type="history:Set" featureName="eType" referenceValue="model.ecore#//release/AbstractRelease"/>
+      <changes xsi:type="history:Set" featureName="eOpposite"/>
+      <changes xsi:type="history:Set" featureName="eOpposite"/>
     </changes>
-    <changes xsi:type="history:Create" target="model.ecore#//release/Release" referenceName="eStructuralFeatures"
-        element="model.ecore#//release/Release/includedWorkItems">
-      <changes xsi:type="history:Set" element="model.ecore#//release/Release/includedWorkItems"
+    <changes xsi:type="history:Create" target="model.ecore#//release/AbstractRelease"
+        referenceName="eStructuralFeatures" element="model.ecore#//release/AbstractRelease/includedWorkItems">
+      <changes xsi:type="history:Set" element="model.ecore#//release/AbstractRelease/includedWorkItems"
           featureName="name" dataValue="includedWorkItems"/>
-      <changes xsi:type="history:Set" element="model.ecore#//release/Release/includedWorkItems"
+      <changes xsi:type="history:Set" element="model.ecore#//release/AbstractRelease/includedWorkItems"
           featureName="upperBound" dataValue="-1" oldDataValue="1"/>
-      <changes xsi:type="history:Set" element="model.ecore#//release/Release/includedWorkItems"
+      <changes xsi:type="history:Set" element="model.ecore#//release/AbstractRelease/includedWorkItems"
           featureName="eType" referenceValue="model.ecore#//task/WorkItem"/>
-      <changes xsi:type="history:Set" element="model.ecore#//release/Release/includedWorkItems"
+      <changes xsi:type="history:Set" element="model.ecore#//release/AbstractRelease/includedWorkItems"
           featureName="eOpposite" referenceValue="model.ecore#//task/WorkItem/includingReleases"/>
       <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/includingReleases"
-          featureName="eOpposite" referenceValue="model.ecore#//release/Release/includedWorkItems"/>
+          featureName="eOpposite" referenceValue="model.ecore#//release/AbstractRelease/includedWorkItems"/>
     </changes>
     <changes xsi:type="history:Create" target="model.ecore#//release" referenceName="eClassifiers"
-        element="model.ecore#//release/SourceCodeRepositoryRevision">
-      <changes xsi:type="history:Set" element="model.ecore#//release/SourceCodeRepositoryRevision"
+        element="#//@releases.9/@changes.17/@element">
+      <changes xsi:type="history:Set" element="#//@releases.9/@changes.17/@element"
           featureName="name" dataValue="SourceCodeRepositoryRevision"/>
-      <changes xsi:type="history:Set" element="model.ecore#//release/SourceCodeRepositoryRevision"
+      <changes xsi:type="history:Set" element="#//@releases.9/@changes.17/@element"
           featureName="abstract" dataValue="true" oldDataValue="false"/>
     </changes>
-    <changes xsi:type="history:Create" target="model.ecore#//release/Release" referenceName="eStructuralFeatures"
-        element="model.ecore#//release/Release/sourceCodeRepositoryRevision">
-      <changes xsi:type="history:Set" element="model.ecore#//release/Release/sourceCodeRepositoryRevision"
+    <changes xsi:type="history:Create" target="model.ecore#//release/AbstractRelease"
+        referenceName="eStructuralFeatures" element="#//@releases.9/@changes.7/@element">
+      <changes xsi:type="history:Set" element="#//@releases.9/@changes.7/@element"
           featureName="name" dataValue="sourceCodeRepositoryRevision"/>
-      <changes xsi:type="history:Set" element="model.ecore#//release/Release/sourceCodeRepositoryRevision"
-          featureName="eType" referenceValue="model.ecore#//release/SourceCodeRepositoryRevision"/>
+      <changes xsi:type="history:Set" element="#//@releases.9/@changes.7/@element"
+          featureName="eType" referenceValue="#//@releases.9/@changes.17/@element"/>
     </changes>
     <changes xsi:type="history:Create" target="model.ecore#//release" referenceName="eClassifiers"
-        element="model.ecore#//release/SourceCodeRepositoryStream">
-      <changes xsi:type="history:Set" element="model.ecore#//release/SourceCodeRepositoryStream"
+        element="#//@releases.9/@changes.16/@element">
+      <changes xsi:type="history:Set" element="#//@releases.9/@changes.16/@element"
           featureName="name" dataValue="SourceCodeRepositoryStream"/>
-      <changes xsi:type="history:Set" element="model.ecore#//release/SourceCodeRepositoryStream"
+      <changes xsi:type="history:Set" element="#//@releases.9/@changes.16/@element"
           featureName="abstract" dataValue="true" oldDataValue="false"/>
     </changes>
-    <changes xsi:type="history:Create" target="model.ecore#//release/Stream" referenceName="eStructuralFeatures"
-        element="model.ecore#//release/Stream/sourceCodeRepositoryStream">
-      <changes xsi:type="history:Set" element="model.ecore#//release/Stream/sourceCodeRepositoryStream"
+    <changes xsi:type="history:Create" target="#//@releases.9/@changes.18/@element"
+        referenceName="eStructuralFeatures" element="#//@releases.9/@changes.18/@element/sourceCodeRepositoryStream">
+      <changes xsi:type="history:Set" element="#//@releases.9/@changes.18/@element/sourceCodeRepositoryStream"
           featureName="name" dataValue="sourceCodeRepositoryStream"/>
-      <changes xsi:type="history:Set" element="model.ecore#//release/Stream/sourceCodeRepositoryStream"
-          featureName="eType" referenceValue="model.ecore#//release/SourceCodeRepositoryStream"/>
+      <changes xsi:type="history:Set" element="#//@releases.9/@changes.18/@element/sourceCodeRepositoryStream"
+          featureName="eType" referenceValue="#//@releases.9/@changes.16/@element"/>
     </changes>
   </releases>
   <releases>
@@ -8709,5 +8696,67 @@
         featureName="eOpposite" oldReferenceValue="model.ecore#//document/LeafSection/modelElements"/>
     <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/modelElements"
         featureName="eOpposite" oldReferenceValue="model.ecore#//UnicaseModelElement/leafSection"/>
+    <changes xsi:type="history:Set" element="model.ecore#//release/AbstractRelease"
+        featureName="name" dataValue="AbstractRelease" oldDataValue="Release"/>
+    <changes xsi:type="history:Add" element="model.ecore#//release/AbstractRelease"
+        featureName="eSuperTypes" referenceValue="model.ecore#//UnicaseModelElement"/>
+    <changes xsi:type="history:Set" element="model.ecore#//release/AbstractRelease"
+        featureName="abstract" dataValue="true" oldDataValue="false"/>
+    <changes xsi:type="history:Delete" target="model.ecore#//release/AbstractRelease"
+        referenceName="eStructuralFeatures">
+      <element xsi:type="ecore:EReference" name="sourceCodeRepositoryRevision" eType="#//@releases.9/@changes.17/@element"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//release/AbstractRelease/includedWorkItems"
+        referenceName="eAnnotations" element="model.ecore#//release/AbstractRelease/includedWorkItems/%org.unicase.ui.meeditor%"/>
+    <changes xsi:type="history:Set" element="model.ecore#//release/AbstractRelease/includedWorkItems/%org.unicase.ui.meeditor%"
+        featureName="source" dataValue="org.unicase.ui.meeditor"/>
+    <changes xsi:type="history:Create" target="model.ecore#//release/AbstractRelease/includedWorkItems/%org.unicase.ui.meeditor%"
+        referenceName="details" element="model.ecore#//release/AbstractRelease/includedWorkItems/%org.unicase.ui.meeditor%/@details.0"/>
+    <changes xsi:type="history:Set" element="model.ecore#//release/AbstractRelease/includedWorkItems/%org.unicase.ui.meeditor%/@details.0"
+        featureName="key" dataValue="priority"/>
+    <changes xsi:type="history:Set" element="model.ecore#//release/AbstractRelease/includedWorkItems/%org.unicase.ui.meeditor%/@details.0"
+        featureName="value" dataValue="10"/>
+    <changes xsi:type="history:Create" target="model.ecore#//release/AbstractRelease/includedWorkItems/%org.unicase.ui.meeditor%"
+        referenceName="details" element="model.ecore#//release/AbstractRelease/includedWorkItems/%org.unicase.ui.meeditor%/@details.1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//release/AbstractRelease/includedWorkItems/%org.unicase.ui.meeditor%/@details.1"
+        featureName="key" dataValue="position"/>
+    <changes xsi:type="history:Set" element="model.ecore#//release/AbstractRelease/includedWorkItems/%org.unicase.ui.meeditor%/@details.1"
+        featureName="value" dataValue="right"/>
+    <changes xsi:type="history:Delete" target="model.ecore#//release" referenceName="eClassifiers">
+      <element xsi:type="ecore:EClass" name="SourceCodeRepositoryStream" abstract="true"/>
+    </changes>
+    <changes xsi:type="history:Delete" target="model.ecore#//release" referenceName="eClassifiers">
+      <element xsi:type="ecore:EClass" name="SourceCodeRepositoryRevision" abstract="true"/>
+    </changes>
+    <changes xsi:type="history:Delete" target="model.ecore#//release" referenceName="eClassifiers">
+      <element xsi:type="ecore:EClass" name="Stream">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="releases" upperBound="-1"
+            eType="ecore:EClass model.ecore#//release/AbstractRelease" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="sourceCodeRepositoryStream"
+            eType="#//@releases.9/@changes.16/@element"/>
+      </element>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//task/WorkItem/includingReleases"
+        referenceName="eAnnotations" element="model.ecore#//task/WorkItem/includingReleases/%org.unicase.ui.meeditor%"/>
+    <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/includingReleases/%org.unicase.ui.meeditor%"
+        featureName="source" dataValue="org.unicase.ui.meeditor"/>
+    <changes xsi:type="history:Create" target="model.ecore#//task/WorkItem/includingReleases/%org.unicase.ui.meeditor%"
+        referenceName="details" element="model.ecore#//task/WorkItem/includingReleases/%org.unicase.ui.meeditor%/@details.0"/>
+    <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/includingReleases/%org.unicase.ui.meeditor%/@details.0"
+        featureName="key" dataValue="priority"/>
+    <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/includingReleases/%org.unicase.ui.meeditor%/@details.0"
+        featureName="value" dataValue="95"/>
+    <changes xsi:type="history:Create" target="model.ecore#//task/WorkItem/includingReleases/%org.unicase.ui.meeditor%"
+        referenceName="details" element="model.ecore#//task/WorkItem/includingReleases/%org.unicase.ui.meeditor%/@details.1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/includingReleases/%org.unicase.ui.meeditor%/@details.1"
+        featureName="key" dataValue="position"/>
+    <changes xsi:type="history:Set" element="model.ecore#//task/WorkItem/includingReleases/%org.unicase.ui.meeditor%/@details.1"
+        featureName="value" dataValue="right"/>
+    <changes xsi:type="history:Delete" target="model.ecore#//attachment" referenceName="eClassifiers">
+      <element xsi:type="ecore:EClass" name="PatchAttachment" eSuperTypes="model.ecore#//attachment/FileAttachment">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="appliedTo" upperBound="-1"
+            eType="ecore:EClass model.ecore#//release/AbstractRelease"/>
+      </element>
+    </changes>
   </releases>
 </history:History>

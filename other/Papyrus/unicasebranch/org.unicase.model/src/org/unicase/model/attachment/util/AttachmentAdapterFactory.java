@@ -78,11 +78,6 @@ public class AttachmentAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter casePatchAttachment(PatchAttachment object) {
-			return createPatchAttachmentAdapter();
-		}
-
-		@Override
 		public Adapter caseUnicaseModelElement(UnicaseModelElement object) {
 			return createUnicaseModelElementAdapter();
 		}
@@ -134,19 +129,6 @@ public class AttachmentAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFileAttachmentAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.attachment.PatchAttachment <em>Patch Attachment</em>}'.
-	 * <!-- begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-	 * end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.model.attachment.PatchAttachment
-	 * @generated
-	 */
-	public Adapter createPatchAttachmentAdapter() {
 		return null;
 	}
 

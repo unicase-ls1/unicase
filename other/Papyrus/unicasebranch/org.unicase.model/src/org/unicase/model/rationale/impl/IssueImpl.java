@@ -30,6 +30,7 @@ import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.Solution;
+import org.unicase.model.release.AbstractRelease;
 import org.unicase.model.release.Release;
 import org.unicase.model.release.ReleasePackage;
 import org.unicase.model.task.ActivityType;
@@ -235,7 +236,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Release> includingReleases;
+	protected EList<AbstractRelease> includingReleases;
 
 	/**
 	 * The cached value of the '{@link #getProposals() <em>Proposals</em>}' containment reference list. <!--
@@ -775,10 +776,11 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Release> getIncludingReleases() {
+	public EList<AbstractRelease> getIncludingReleases() {
 		if (includingReleases == null) {
-			includingReleases = new EObjectWithInverseResolvingEList.ManyInverse<Release>(Release.class, this,
-				RationalePackage.ISSUE__INCLUDING_RELEASES, ReleasePackage.RELEASE__INCLUDED_WORK_ITEMS);
+			includingReleases = new EObjectWithInverseResolvingEList.ManyInverse<AbstractRelease>(
+				AbstractRelease.class, this, RationalePackage.ISSUE__INCLUDING_RELEASES,
+				ReleasePackage.ABSTRACT_RELEASE__INCLUDED_WORK_ITEMS);
 		}
 		return includingReleases;
 	}
@@ -972,7 +974,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			return;
 		case RationalePackage.ISSUE__INCLUDING_RELEASES:
 			getIncludingReleases().clear();
-			getIncludingReleases().addAll((Collection<? extends Release>) newValue);
+			getIncludingReleases().addAll((Collection<? extends AbstractRelease>) newValue);
 			return;
 		case RationalePackage.ISSUE__PROPOSALS:
 			getProposals().clear();
