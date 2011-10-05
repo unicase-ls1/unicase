@@ -25,7 +25,7 @@ import scrm.diagram.edit.commands.RequirementRefinedRequirementCreateCommand;
 import scrm.diagram.edit.commands.RequirementRefinedRequirementReorientCommand;
 import scrm.diagram.edit.commands.RequirementSpecifiedFeatureCreateCommand;
 import scrm.diagram.edit.commands.RequirementSpecifiedFeatureReorientCommand;
-import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
+import scrm.diagram.edit.parts.PerformanceDescribedMethodEditPart;
 import scrm.diagram.edit.parts.RequirementDefiningDataEditPart;
 import scrm.diagram.edit.parts.RequirementRealizedMethodEditPart;
 import scrm.diagram.edit.parts.RequirementRefinedRequirementEditPart;

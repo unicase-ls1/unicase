@@ -76,25 +76,25 @@ public class RequirementSpaceRequirementSpaceCompartment2ItemSemanticEditPolicy
 		if (ScrmElementTypes.RequirementSpace_3015 == req.getElementType()) {
 			return getGEFWrapper(new RequirementSpace2CreateCommand(req));
 		}
-		if (ScrmElementTypes.StatusMonitoring_3023 == req.getElementType()) {
+		if (ScrmElementTypes.StatusMonitoring_3016 == req.getElementType()) {
 			return getGEFWrapper(new StatusMonitoring2CreateCommand(req));
 		}
-		if (ScrmElementTypes.ResultsOutput_3024 == req.getElementType()) {
+		if (ScrmElementTypes.ResultsOutput_3017 == req.getElementType()) {
 			return getGEFWrapper(new ResultsOutput2CreateCommand(req));
 		}
-		if (ScrmElementTypes.Process_3025 == req.getElementType()) {
+		if (ScrmElementTypes.Process_3018 == req.getElementType()) {
 			return getGEFWrapper(new Process2CreateCommand(req));
 		}
-		if (ScrmElementTypes.InputDataReading_3026 == req.getElementType()) {
+		if (ScrmElementTypes.InputDataReading_3019 == req.getElementType()) {
 			return getGEFWrapper(new InputDataReading2CreateCommand(req));
 		}
-		if (ScrmElementTypes.ErrorHandling_3027 == req.getElementType()) {
+		if (ScrmElementTypes.ErrorHandling_3020 == req.getElementType()) {
 			return getGEFWrapper(new ErrorHandling2CreateCommand(req));
 		}
-		if (ScrmElementTypes.DataHandling_3028 == req.getElementType()) {
+		if (ScrmElementTypes.DataHandling_3021 == req.getElementType()) {
 			return getGEFWrapper(new DataHandling2CreateCommand(req));
 		}
-		if (ScrmElementTypes.DataProcessSpace_3029 == req.getElementType()) {
+		if (ScrmElementTypes.DataProcessSpace_3022 == req.getElementType()) {
 			return getGEFWrapper(new DataProcessSpace2CreateCommand(req));
 		}
 		return super.getCreateCommand(req);

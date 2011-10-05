@@ -734,7 +734,7 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case StatusMonitoring2EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ScrmDiagramUpdater
-						.getStatusMonitoring_3023ContainedLinks(view));
+						.getStatusMonitoring_3016ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -745,7 +745,7 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ResultsOutput2EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ScrmDiagramUpdater
-						.getResultsOutput_3024ContainedLinks(view));
+						.getResultsOutput_3017ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -756,7 +756,7 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case Process2EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ScrmDiagramUpdater
-						.getProcess_3025ContainedLinks(view));
+						.getProcess_3018ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -767,7 +767,7 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case InputDataReading2EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ScrmDiagramUpdater
-						.getInputDataReading_3026ContainedLinks(view));
+						.getInputDataReading_3019ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -778,7 +778,7 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ErrorHandling2EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ScrmDiagramUpdater
-						.getErrorHandling_3027ContainedLinks(view));
+						.getErrorHandling_3020ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -789,7 +789,7 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case DataHandling2EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ScrmDiagramUpdater
-						.getDataHandling_3028ContainedLinks(view));
+						.getDataHandling_3021ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
@@ -800,7 +800,7 @@ public class SCRMDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case DataProcessSpace2EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(ScrmDiagramUpdater
-						.getDataProcessSpace_3029ContainedLinks(view));
+						.getDataProcessSpace_3022ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$

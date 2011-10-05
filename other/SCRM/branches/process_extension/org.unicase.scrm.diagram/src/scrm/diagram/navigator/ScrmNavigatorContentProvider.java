@@ -67,9 +67,9 @@ import scrm.diagram.edit.parts.MathematicalModelRepresentedProblemEditPart;
 import scrm.diagram.edit.parts.NumericalMethod2EditPart;
 import scrm.diagram.edit.parts.NumericalMethodDependenciesEditPart;
 import scrm.diagram.edit.parts.NumericalMethodEditPart;
-import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
 import scrm.diagram.edit.parts.NumericalMethodSolvedProblemEditPart;
 import scrm.diagram.edit.parts.Performance2EditPart;
+import scrm.diagram.edit.parts.PerformanceDescribedMethodEditPart;
 import scrm.diagram.edit.parts.PerformanceEditPart;
 import scrm.diagram.edit.parts.Process2EditPart;
 import scrm.diagram.edit.parts.ProcessEditPart;
@@ -294,10 +294,10 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Node sv = (Node) view;
 			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_ResultsOutput_3024_outgoinglinks,
+					Messages.NavigatorGroupName_ResultsOutput_3017_outgoinglinks,
 					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_ResultsOutput_3024_incominglinks,
+					Messages.NavigatorGroupName_ResultsOutput_3017_incominglinks,
 					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getOutgoingLinksByType(
@@ -1579,10 +1579,10 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Node sv = (Node) view;
 			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_ErrorHandling_3027_outgoinglinks,
+					Messages.NavigatorGroupName_ErrorHandling_3020_outgoinglinks,
 					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_ErrorHandling_3027_incominglinks,
+					Messages.NavigatorGroupName_ErrorHandling_3020_incominglinks,
 					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getOutgoingLinksByType(
@@ -2913,10 +2913,10 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Node sv = (Node) view;
 			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_InputDataReading_3026_outgoinglinks,
+					Messages.NavigatorGroupName_InputDataReading_3019_outgoinglinks,
 					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_InputDataReading_3026_incominglinks,
+					Messages.NavigatorGroupName_InputDataReading_3019_incominglinks,
 					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getOutgoingLinksByType(
@@ -3582,10 +3582,10 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Node sv = (Node) view;
 			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Process_3025_outgoinglinks,
+					Messages.NavigatorGroupName_Process_3018_outgoinglinks,
 					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_Process_3025_incominglinks,
+					Messages.NavigatorGroupName_Process_3018_incominglinks,
 					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getOutgoingLinksByType(
@@ -3795,10 +3795,10 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Node sv = (Node) view;
 			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_StatusMonitoring_3023_outgoinglinks,
+					Messages.NavigatorGroupName_StatusMonitoring_3016_outgoinglinks,
 					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_StatusMonitoring_3023_incominglinks,
+					Messages.NavigatorGroupName_StatusMonitoring_3016_incominglinks,
 					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getOutgoingLinksByType(
@@ -3925,10 +3925,10 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Node sv = (Node) view;
 			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_DataHandling_3028_outgoinglinks,
+					Messages.NavigatorGroupName_DataHandling_3021_outgoinglinks,
 					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_DataHandling_3028_incominglinks,
+					Messages.NavigatorGroupName_DataHandling_3021_incominglinks,
 					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getOutgoingLinksByType(
@@ -4142,10 +4142,10 @@ public class ScrmNavigatorContentProvider implements ICommonContentProvider {
 			LinkedList<ScrmAbstractNavigatorItem> result = new LinkedList<ScrmAbstractNavigatorItem>();
 			Node sv = (Node) view;
 			ScrmNavigatorGroup outgoinglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_DataProcessSpace_3029_outgoinglinks,
+					Messages.NavigatorGroupName_DataProcessSpace_3022_outgoinglinks,
 					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			ScrmNavigatorGroup incominglinks = new ScrmNavigatorGroup(
-					Messages.NavigatorGroupName_DataProcessSpace_3029_incominglinks,
+					Messages.NavigatorGroupName_DataProcessSpace_3022_incominglinks,
 					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getOutgoingLinksByType(

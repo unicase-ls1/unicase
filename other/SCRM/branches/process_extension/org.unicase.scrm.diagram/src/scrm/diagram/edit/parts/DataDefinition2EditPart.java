@@ -295,13 +295,6 @@ public class DataDefinition2EditPart extends ShapeNodeEditPart {
 					types.add(ScrmElementTypes.DataProcessSpace_2046);
 					types.add(ScrmElementTypes.Performance_3011);
 					types.add(ScrmElementTypes.Requirement_3012);
-					types.add(ScrmElementTypes.StatusMonitoring_3023);
-					types.add(ScrmElementTypes.ResultsOutput_3024);
-					types.add(ScrmElementTypes.Process_3025);
-					types.add(ScrmElementTypes.InputDataReading_3026);
-					types.add(ScrmElementTypes.ErrorHandling_3027);
-					types.add(ScrmElementTypes.DataHandling_3028);
-					types.add(ScrmElementTypes.DataProcessSpace_3029);
 					types.add(ScrmElementTypes.StatusMonitoring_3016);
 					types.add(ScrmElementTypes.ResultsOutput_3017);
 					types.add(ScrmElementTypes.Process_3018);

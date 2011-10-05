@@ -904,7 +904,7 @@ public class ScrmVisualIDRegistry {
 				return true;
 			}
 			break;
-		case NumericalMethodPerformanceEditPart.VISUAL_ID:
+		case PerformanceDescribedMethodEditPart.VISUAL_ID:
 			if (WrappingLabel9EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -954,7 +954,7 @@ public class ScrmVisualIDRegistry {
 				return true;
 			}
 			break;
-		case DataDefinitionDefinedRequirementEditPart.VISUAL_ID:
+		case RequirementDefiningDataEditPart.VISUAL_ID:
 			if (WrappingLabel19EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -966,6 +966,16 @@ public class ScrmVisualIDRegistry {
 			break;
 		case ProcessSuccessorEditPart.VISUAL_ID:
 			if (WrappingLabel21EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ErrorHandlingHandledProcessEditPart.VISUAL_ID:
+			if (WrappingLabel22EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case StatusMonitoringMonitoredProcessEditPart.VISUAL_ID:
+			if (WrappingLabel23EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

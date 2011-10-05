@@ -52,7 +52,7 @@ public class InputDataReading2ItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public InputDataReading2ItemSemanticEditPolicy() {
-		super(ScrmElementTypes.InputDataReading_3026);
+		super(ScrmElementTypes.InputDataReading_3019);
 	}
 
 	/**

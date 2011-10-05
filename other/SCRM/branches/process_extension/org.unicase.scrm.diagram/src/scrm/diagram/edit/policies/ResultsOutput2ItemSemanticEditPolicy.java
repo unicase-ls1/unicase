@@ -52,7 +52,7 @@ public class ResultsOutput2ItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public ResultsOutput2ItemSemanticEditPolicy() {
-		super(ScrmElementTypes.ResultsOutput_3024);
+		super(ScrmElementTypes.ResultsOutput_3017);
 	}
 
 	/**

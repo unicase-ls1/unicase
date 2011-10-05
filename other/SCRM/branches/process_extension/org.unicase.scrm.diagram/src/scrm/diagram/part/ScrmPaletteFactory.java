@@ -356,7 +356,6 @@ public class ScrmPaletteFactory {
 	private ToolEntry createInputDataReading12CreationTool() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(ScrmElementTypes.InputDataReading_2036);
-		types.add(ScrmElementTypes.InputDataReading_3026);
 		types.add(ScrmElementTypes.InputDataReading_3019);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.InputDataReading12CreationTool_title, null, types);
@@ -373,7 +372,6 @@ public class ScrmPaletteFactory {
 	private ToolEntry createDataHandling13CreationTool() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(ScrmElementTypes.DataHandling_2037);
-		types.add(ScrmElementTypes.DataHandling_3028);
 		types.add(ScrmElementTypes.DataHandling_3021);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.DataHandling13CreationTool_title, null, types);
@@ -390,7 +388,6 @@ public class ScrmPaletteFactory {
 	private ToolEntry createResultsOutput14CreationTool() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(ScrmElementTypes.ResultsOutput_2038);
-		types.add(ScrmElementTypes.ResultsOutput_3024);
 		types.add(ScrmElementTypes.ResultsOutput_3017);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.ResultsOutput14CreationTool_title, null, types);
@@ -407,7 +404,6 @@ public class ScrmPaletteFactory {
 	private ToolEntry createErrorHandling15CreationTool() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(ScrmElementTypes.ErrorHandling_2039);
-		types.add(ScrmElementTypes.ErrorHandling_3027);
 		types.add(ScrmElementTypes.ErrorHandling_3020);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.ErrorHandling15CreationTool_title, null, types);
@@ -424,7 +420,6 @@ public class ScrmPaletteFactory {
 	private ToolEntry createStatusMonitoring16CreationTool() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(ScrmElementTypes.StatusMonitoring_2040);
-		types.add(ScrmElementTypes.StatusMonitoring_3023);
 		types.add(ScrmElementTypes.StatusMonitoring_3016);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.StatusMonitoring16CreationTool_title, null, types);
@@ -441,7 +436,6 @@ public class ScrmPaletteFactory {
 	private ToolEntry createProcess17CreationTool() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(ScrmElementTypes.Process_2035);
-		types.add(ScrmElementTypes.Process_3025);
 		types.add(ScrmElementTypes.Process_3018);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.Process17CreationTool_title, null, types);
@@ -457,14 +451,13 @@ public class ScrmPaletteFactory {
 	 */
 	private ToolEntry createDataProcessSpace18CreationTool() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
-		types.add(ScrmElementTypes.DataProcessSpace_3029);
 		types.add(ScrmElementTypes.DataProcessSpace_3022);
 		types.add(ScrmElementTypes.DataProcessSpace_2046);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.DataProcessSpace18CreationTool_title, null, types);
 		entry.setId("createDataProcessSpace18CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ScrmElementTypes
-				.getImageDescriptor(ScrmElementTypes.DataProcessSpace_3029));
+				.getImageDescriptor(ScrmElementTypes.DataProcessSpace_2046));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

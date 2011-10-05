@@ -57,9 +57,9 @@ import scrm.diagram.edit.parts.MathematicalModelRepresentedProblemEditPart;
 import scrm.diagram.edit.parts.NumericalMethod2EditPart;
 import scrm.diagram.edit.parts.NumericalMethodDependenciesEditPart;
 import scrm.diagram.edit.parts.NumericalMethodEditPart;
-import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
 import scrm.diagram.edit.parts.NumericalMethodSolvedProblemEditPart;
 import scrm.diagram.edit.parts.Performance2EditPart;
+import scrm.diagram.edit.parts.PerformanceDescribedMethodEditPart;
 import scrm.diagram.edit.parts.PerformanceEditPart;
 import scrm.diagram.edit.parts.Process2EditPart;
 import scrm.diagram.edit.parts.ProcessEditPart;
@@ -291,41 +291,6 @@ public class ScrmElementTypes {
 	 * @generated
 	 */
 	public static final IElementType RequirementSpace_3015 = getElementType("org.unicase.scrm.diagram.RequirementSpace_3015"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType StatusMonitoring_3023 = getElementType("org.unicase.scrm.diagram.StatusMonitoring_3023"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType ResultsOutput_3024 = getElementType("org.unicase.scrm.diagram.ResultsOutput_3024"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Process_3025 = getElementType("org.unicase.scrm.diagram.Process_3025"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType InputDataReading_3026 = getElementType("org.unicase.scrm.diagram.InputDataReading_3026"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType ErrorHandling_3027 = getElementType("org.unicase.scrm.diagram.ErrorHandling_3027"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType DataHandling_3028 = getElementType("org.unicase.scrm.diagram.DataHandling_3028"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType DataProcessSpace_3029 = getElementType("org.unicase.scrm.diagram.DataProcessSpace_3029"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -700,34 +665,6 @@ public class ScrmElementTypes {
 			elements.put(RequirementSpace_3015,
 					RequirementsPackage.eINSTANCE.getRequirementSpace());
 
-			elements.put(StatusMonitoring_3023,
-					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
-							.getStatusMonitoring());
-
-			elements.put(ResultsOutput_3024,
-					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
-							.getResultsOutput());
-
-			elements.put(Process_3025,
-					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
-							.getProcess());
-
-			elements.put(InputDataReading_3026,
-					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
-							.getInputDataReading());
-
-			elements.put(ErrorHandling_3027,
-					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
-							.getErrorHandling());
-
-			elements.put(DataHandling_3028,
-					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
-							.getDataHandling());
-
-			elements.put(DataProcessSpace_3029,
-					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
-							.getDataProcessSpace());
-
 			elements.put(StatusMonitoring_3016,
 					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
 							.getStatusMonitoring());
@@ -897,13 +834,6 @@ public class ScrmElementTypes {
 			KNOWN_ELEMENT_TYPES.add(SoftwareInterface_3013);
 			KNOWN_ELEMENT_TYPES.add(UserInterface_3014);
 			KNOWN_ELEMENT_TYPES.add(RequirementSpace_3015);
-			KNOWN_ELEMENT_TYPES.add(StatusMonitoring_3023);
-			KNOWN_ELEMENT_TYPES.add(ResultsOutput_3024);
-			KNOWN_ELEMENT_TYPES.add(Process_3025);
-			KNOWN_ELEMENT_TYPES.add(InputDataReading_3026);
-			KNOWN_ELEMENT_TYPES.add(ErrorHandling_3027);
-			KNOWN_ELEMENT_TYPES.add(DataHandling_3028);
-			KNOWN_ELEMENT_TYPES.add(DataProcessSpace_3029);
 			KNOWN_ELEMENT_TYPES.add(StatusMonitoring_3016);
 			KNOWN_ELEMENT_TYPES.add(ResultsOutput_3017);
 			KNOWN_ELEMENT_TYPES.add(Process_3018);

@@ -59,9 +59,9 @@ import scrm.diagram.edit.parts.MathematicalModelRepresentedProblemEditPart;
 import scrm.diagram.edit.parts.NumericalMethod2EditPart;
 import scrm.diagram.edit.parts.NumericalMethodDependenciesEditPart;
 import scrm.diagram.edit.parts.NumericalMethodEditPart;
-import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
 import scrm.diagram.edit.parts.NumericalMethodSolvedProblemEditPart;
 import scrm.diagram.edit.parts.Performance2EditPart;
+import scrm.diagram.edit.parts.PerformanceDescribedMethodEditPart;
 import scrm.diagram.edit.parts.PerformanceEditPart;
 import scrm.diagram.edit.parts.Process2EditPart;
 import scrm.diagram.edit.parts.ProcessEditPart;
@@ -560,7 +560,7 @@ public class ScrmDiagramUpdater {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT: include indirect contents as wel
 	 */
 	public static List<ScrmNodeDescriptor> getDataProcessSpaceDataProcessSpaceCompartment_7007SemanticChildren(
 			View view) {
@@ -582,26 +582,32 @@ public class ScrmDiagramUpdater {
 					childElement);
 			if (visualID == StatusMonitoring2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == ResultsOutput2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == Process2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == InputDataReading2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == ErrorHandling2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == DataHandling2EditPart.VISUAL_ID) {
 				result.add(new ScrmNodeDescriptor(childElement, visualID));
+				result.addAll(getAllContents(view, childElement));
 				continue;
 			}
 			if (visualID == DataProcessSpace2EditPart.VISUAL_ID) {

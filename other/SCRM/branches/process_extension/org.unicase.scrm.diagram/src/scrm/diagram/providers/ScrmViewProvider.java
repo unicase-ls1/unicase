@@ -64,7 +64,6 @@ import scrm.diagram.edit.parts.MathematicalModelEditPart;
 import scrm.diagram.edit.parts.MathematicalModelNumericalMethodsEditPart;
 import scrm.diagram.edit.parts.NumericalMethodDependenciesEditPart;
 import scrm.diagram.edit.parts.NumericalMethodEditPart;
-import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
 import scrm.diagram.edit.parts.PerformanceEditPart;
 import scrm.diagram.edit.parts.ProcessEditPart;
 import scrm.diagram.edit.parts.RequirementEditPart;

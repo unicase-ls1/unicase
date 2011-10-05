@@ -29,7 +29,7 @@ public class DataProcessSpaceDataProcessSpaceCompartmentItemSemanticEditPolicy
 	 * @generated
 	 */
 	public DataProcessSpaceDataProcessSpaceCompartmentItemSemanticEditPolicy() {
-		super(ScrmElementTypes.DataProcessSpace_3029);
+		super(ScrmElementTypes.DataProcessSpace_3022);
 	}
 
 	/**

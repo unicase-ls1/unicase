@@ -63,7 +63,7 @@ public class DataProcessSpace2ItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public DataProcessSpace2ItemSemanticEditPolicy() {
-		super(ScrmElementTypes.DataProcessSpace_3029);
+		super(ScrmElementTypes.DataProcessSpace_3022);
 	}
 
 	/**
