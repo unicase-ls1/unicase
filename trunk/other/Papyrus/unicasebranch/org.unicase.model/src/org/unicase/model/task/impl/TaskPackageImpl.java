@@ -587,8 +587,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWorkItem_Resolved(), ecorePackage.getEBoolean(), "resolved", null, 0, 1, WorkItem.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getWorkItem_IncludingReleases(), theReleasePackage.getRelease(),
-			theReleasePackage.getRelease_IncludedWorkItems(), "includingReleases", null, 0, -1, WorkItem.class,
+		initEReference(getWorkItem_IncludingReleases(), theReleasePackage.getAbstractRelease(),
+			theReleasePackage.getAbstractRelease_IncludedWorkItems(), "includingReleases", null, 0, -1, WorkItem.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 
@@ -645,6 +645,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		addAnnotation(getWorkItem_Effort(), source, new String[] { "priority", "19.0", "position", "left" });
 		addAnnotation(getWorkItem_Priority(), source, new String[] { "priority", "12.0", "position", "left" });
 		addAnnotation(getWorkItem_Resolved(), source, new String[] { "priority", "13.0", "position", "left" });
+		addAnnotation(getWorkItem_IncludingReleases(), source, new String[] { "priority", "95", "position", "right" });
 		addAnnotation(getMilestone_ContainedModelElements(), source, new String[] { "priority", "1", "position",
 			"right" });
 	}

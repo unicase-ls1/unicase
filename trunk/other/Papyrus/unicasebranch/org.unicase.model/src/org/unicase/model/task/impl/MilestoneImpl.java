@@ -23,6 +23,7 @@ import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
+import org.unicase.model.release.AbstractRelease;
 import org.unicase.model.release.Release;
 import org.unicase.model.release.ReleasePackage;
 import org.unicase.model.task.Milestone;
@@ -197,7 +198,7 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Release> includingReleases;
+	protected EList<AbstractRelease> includingReleases;
 	/**
 	 * The cached value of the '{@link #getContainedModelElements() <em>Contained Model Elements</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -543,10 +544,11 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Release> getIncludingReleases() {
+	public EList<AbstractRelease> getIncludingReleases() {
 		if (includingReleases == null) {
-			includingReleases = new EObjectWithInverseResolvingEList.ManyInverse<Release>(Release.class, this,
-				TaskPackage.MILESTONE__INCLUDING_RELEASES, ReleasePackage.RELEASE__INCLUDED_WORK_ITEMS);
+			includingReleases = new EObjectWithInverseResolvingEList.ManyInverse<AbstractRelease>(
+				AbstractRelease.class, this, TaskPackage.MILESTONE__INCLUDING_RELEASES,
+				ReleasePackage.ABSTRACT_RELEASE__INCLUDED_WORK_ITEMS);
 		}
 		return includingReleases;
 	}
@@ -726,7 +728,7 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 			return;
 		case TaskPackage.MILESTONE__INCLUDING_RELEASES:
 			getIncludingReleases().clear();
-			getIncludingReleases().addAll((Collection<? extends Release>) newValue);
+			getIncludingReleases().addAll((Collection<? extends AbstractRelease>) newValue);
 			return;
 		case TaskPackage.MILESTONE__CONTAINED_MODEL_ELEMENTS:
 			getContainedModelElements().clear();

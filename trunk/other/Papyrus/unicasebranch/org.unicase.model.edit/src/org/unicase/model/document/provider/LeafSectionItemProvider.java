@@ -350,9 +350,6 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 			AttachmentFactory.eINSTANCE.createFileAttachment()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			AttachmentFactory.eINSTANCE.createPatchAttachment()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			ProfileFactory.eINSTANCE.createProfile()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
@@ -387,12 +384,6 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			ActivityFactory.eINSTANCE.createActivityEnd()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			ReleaseFactory.eINSTANCE.createStream()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			ReleaseFactory.eINSTANCE.createRelease()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			EsmodelFactory.eINSTANCE.createProjectHistory()));

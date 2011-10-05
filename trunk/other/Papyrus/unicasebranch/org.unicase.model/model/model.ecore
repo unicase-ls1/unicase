@@ -235,7 +235,12 @@
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="includingReleases" upperBound="-1"
-          eType="#//release/Release" eOpposite="#//release/Release/includedWorkItems"/>
+          eType="#//release/AbstractRelease" eOpposite="#//release/AbstractRelease/includedWorkItems">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="95"/>
+          <details key="position" value="right"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Milestone" eSuperTypes="#//task/WorkItem">
       <eStructuralFeatures xsi:type="ecore:EReference" name="containedModelElements"
@@ -1328,10 +1333,6 @@
       <eLiterals name="AUDIO" value="2" literal="AUDIO"/>
       <eLiterals name="VIDEO" value="3" literal="VIDEO"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="PatchAttachment" eSuperTypes="#//attachment/FileAttachment">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="appliedTo" upperBound="-1"
-          eType="#//release/Release" eOpposite="#//release/Release/appliedPatches"/>
-    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="profile" nsURI="http://unicase.org/model/profile" nsPrefix="org.unicase.model.profile">
     <eClassifiers xsi:type="ecore:EClass" name="Profile" eSuperTypes="#//UnicaseModelElement">
@@ -1413,27 +1414,14 @@
     <eClassifiers xsi:type="ecore:EClass" name="ActivityEnd" eSuperTypes="#//activity/ActivityObject"/>
   </eSubpackages>
   <eSubpackages name="release" nsURI="http://unicase.org/model/release" nsPrefix="org.unicase.model.release">
-    <eClassifiers xsi:type="ecore:EClass" name="Stream">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="releases" upperBound="-1"
-          eType="#//release/Release" containment="true" eOpposite="#//release/Release/stream"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceCodeRepositoryStream"
-          eType="#//release/SourceCodeRepositoryStream"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Release">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="stream" eType="#//release/Stream"
-          eOpposite="#//release/Stream/releases"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="predecessor" eType="#//release/Release"
-          eOpposite="#//release/Release/successor"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="successor" eType="#//release/Release"
-          eOpposite="#//release/Release/predecessor"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="appliedPatches" upperBound="-1"
-          eType="#//attachment/PatchAttachment" eOpposite="#//attachment/PatchAttachment/appliedTo"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AbstractRelease" abstract="true" eSuperTypes="#//UnicaseModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="includedWorkItems" upperBound="-1"
-          eType="#//task/WorkItem" eOpposite="#//task/WorkItem/includingReleases"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceCodeRepositoryRevision"
-          eType="#//release/SourceCodeRepositoryRevision"/>
+          eType="#//task/WorkItem" eOpposite="#//task/WorkItem/includingReleases">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="10"/>
+          <details key="position" value="right"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SourceCodeRepositoryRevision" abstract="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="SourceCodeRepositoryStream" abstract="true"/>
   </eSubpackages>
 </ecore:EPackage>
