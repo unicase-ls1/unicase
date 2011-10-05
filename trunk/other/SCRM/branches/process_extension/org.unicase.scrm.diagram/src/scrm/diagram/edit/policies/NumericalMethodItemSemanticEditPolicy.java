@@ -19,8 +19,6 @@ import scrm.diagram.edit.commands.MathematicalModelNumericalMethodsCreateCommand
 import scrm.diagram.edit.commands.MathematicalModelNumericalMethodsReorientCommand;
 import scrm.diagram.edit.commands.NumericalMethodDependenciesCreateCommand;
 import scrm.diagram.edit.commands.NumericalMethodDependenciesReorientCommand;
-import scrm.diagram.edit.commands.NumericalMethodPerformanceCreateCommand;
-import scrm.diagram.edit.commands.NumericalMethodPerformanceReorientCommand;
 import scrm.diagram.edit.commands.NumericalMethodSolvedProblemCreateCommand;
 import scrm.diagram.edit.commands.NumericalMethodSolvedProblemReorientCommand;
 import scrm.diagram.edit.commands.PerformanceDescribedMethodCreateCommand;
@@ -29,7 +27,6 @@ import scrm.diagram.edit.commands.RequirementRealizedMethodCreateCommand;
 import scrm.diagram.edit.commands.RequirementRealizedMethodReorientCommand;
 import scrm.diagram.edit.parts.MathematicalModelNumericalMethodsEditPart;
 import scrm.diagram.edit.parts.NumericalMethodDependenciesEditPart;
-import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
 import scrm.diagram.edit.parts.NumericalMethodSolvedProblemEditPart;
 import scrm.diagram.edit.parts.PerformanceDescribedMethodEditPart;
 import scrm.diagram.edit.parts.RequirementRealizedMethodEditPart;

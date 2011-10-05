@@ -52,7 +52,7 @@ public class ErrorHandling2ItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public ErrorHandling2ItemSemanticEditPolicy() {
-		super(ScrmElementTypes.ErrorHandling_3027);
+		super(ScrmElementTypes.ErrorHandling_3020);
 	}
 
 	/**

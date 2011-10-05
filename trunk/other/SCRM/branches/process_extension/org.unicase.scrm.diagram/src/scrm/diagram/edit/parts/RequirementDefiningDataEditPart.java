@@ -128,7 +128,7 @@ public class RequirementDefiningDataEditPart extends ConnectionNodeEditPart
 		private void createContents() {
 
 			fFigureRequirement_DefiningDataLabel = new WrappingLabel();
-			fFigureRequirement_DefiningDataLabel.setText("defines");
+			fFigureRequirement_DefiningDataLabel.setText("uses");
 
 			this.add(fFigureRequirement_DefiningDataLabel);
 

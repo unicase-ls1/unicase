@@ -24,7 +24,6 @@ import scrm.diagram.edit.parts.MathematicalModelRefinedModelEditPart;
 import scrm.diagram.edit.parts.MathematicalModelRepresentedProblemEditPart;
 import scrm.diagram.edit.parts.NumericalMethod2EditPart;
 import scrm.diagram.edit.parts.NumericalMethodDependenciesEditPart;
-import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
 import scrm.diagram.edit.parts.NumericalMethodSolvedProblemEditPart;
 import scrm.diagram.edit.parts.PerformanceDescribedMethodEditPart;
 import scrm.diagram.edit.parts.RequirementRealizedMethodEditPart;

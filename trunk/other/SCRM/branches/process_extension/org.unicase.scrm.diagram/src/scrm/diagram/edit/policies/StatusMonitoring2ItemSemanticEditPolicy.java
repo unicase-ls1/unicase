@@ -52,7 +52,7 @@ public class StatusMonitoring2ItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public StatusMonitoring2ItemSemanticEditPolicy() {
-		super(ScrmElementTypes.StatusMonitoring_3023);
+		super(ScrmElementTypes.StatusMonitoring_3016);
 	}
 
 	/**

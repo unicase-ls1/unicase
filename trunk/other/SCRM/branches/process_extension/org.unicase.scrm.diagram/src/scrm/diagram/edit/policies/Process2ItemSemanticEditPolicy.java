@@ -52,7 +52,7 @@ public class Process2ItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public Process2ItemSemanticEditPolicy() {
-		super(ScrmElementTypes.Process_3025);
+		super(ScrmElementTypes.Process_3018);
 	}
 
 	/**

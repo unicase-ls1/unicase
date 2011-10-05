@@ -52,7 +52,7 @@ public class DataHandling2ItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public DataHandling2ItemSemanticEditPolicy() {
-		super(ScrmElementTypes.DataHandling_3028);
+		super(ScrmElementTypes.DataHandling_3021);
 	}
 
 	/**

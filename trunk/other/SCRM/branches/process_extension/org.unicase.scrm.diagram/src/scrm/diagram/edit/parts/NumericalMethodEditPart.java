@@ -314,7 +314,7 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 			case DEFAULT_DIAGRAM:	
 			case KNOWLEDGE_DIAGRAM:
 				if (targetEditPart instanceof ScientificProblemEditPart) {
-					types.add(ScrmElementTypes.NumericalMethodSolvedProblem_4057);
+				types.add(ScrmElementTypes.NumericalMethodSolvedProblem_4057);
 				}
 				if (targetEditPart instanceof ScientificProblem2EditPart) {
 					types.add(ScrmElementTypes.NumericalMethodSolvedProblem_4057);
@@ -326,6 +326,7 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 					types.add(ScrmElementTypes.NumericalMethodDependencies_4015);
 				}
 		}
+		
 		return types;
 	}
 
@@ -358,7 +359,7 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 		switch(scrmDiagram.getDiagramType()) {
 			case DEFAULT_DIAGRAM: 
 				types.add(ScrmElementTypes.RequirementRealizedMethod_4050);
-				types.add(ScrmElementTypes.NumericalMethodPerformance_4017);
+				types.add(ScrmElementTypes.PerformanceDescribedMethod_4059);
 			case KNOWLEDGE_DIAGRAM:
 				types.add(ScrmElementTypes.MathematicalModelNumericalMethods_4011);
 		}
@@ -394,7 +395,7 @@ public class NumericalMethodEditPart extends ShapeNodeEditPart {
 					types.add(ScrmElementTypes.DataProcessSpace_3022);
 					break;
 				}
-				if (relationshipType == ScrmElementTypes.NumericalMethodPerformance_4017) {
+				if (relationshipType == ScrmElementTypes.PerformanceDescribedMethod_4059) {
 					types.add(ScrmElementTypes.Performance_2015);
 					types.add(ScrmElementTypes.Performance_3011);
 				}

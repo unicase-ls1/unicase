@@ -314,6 +314,9 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case FeatureName2EditPart.VISUAL_ID:
 				return new FeatureName2EditPart(view);
 
+			case FeatureDescription2EditPart.VISUAL_ID:
+				return new FeatureDescription2EditPart(view);
+
 			case Hardware2EditPart.VISUAL_ID:
 				return new Hardware2EditPart(view);
 
@@ -463,8 +466,8 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case WrappingLabel8EditPart.VISUAL_ID:
 				return new WrappingLabel8EditPart(view);
 
-			case NumericalMethodPerformanceEditPart.VISUAL_ID:
-				return new NumericalMethodPerformanceEditPart(view);
+			case PerformanceDescribedMethodEditPart.VISUAL_ID:
+				return new PerformanceDescribedMethodEditPart(view);
 
 			case WrappingLabel9EditPart.VISUAL_ID:
 				return new WrappingLabel9EditPart(view);
@@ -523,6 +526,9 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case WrappingLabel18EditPart.VISUAL_ID:
 				return new WrappingLabel18EditPart(view);
 
+			case RequirementDefiningDataEditPart.VISUAL_ID:
+				return new RequirementDefiningDataEditPart(view);
+
 			case WrappingLabel19EditPart.VISUAL_ID:
 				return new WrappingLabel19EditPart(view);
 
@@ -537,6 +543,18 @@ public class ScrmEditPartFactory implements EditPartFactory {
 
 			case WrappingLabel21EditPart.VISUAL_ID:
 				return new WrappingLabel21EditPart(view);
+
+			case ErrorHandlingHandledProcessEditPart.VISUAL_ID:
+				return new ErrorHandlingHandledProcessEditPart(view);
+
+			case WrappingLabel22EditPart.VISUAL_ID:
+				return new WrappingLabel22EditPart(view);
+
+			case StatusMonitoringMonitoredProcessEditPart.VISUAL_ID:
+				return new StatusMonitoringMonitoredProcessEditPart(view);
+
+			case WrappingLabel23EditPart.VISUAL_ID:
+				return new WrappingLabel23EditPart(view);
 
 			}
 		}
