@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipse.emf.ecp.navigator" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.emf.ecp.navigator" id="org.eclipse.emf.ecp.navigator.replaceLabelProvider" name="Replace Label Provider"/>
+         <meta.schema plugin="org.eclipse.emf.ecp.navigator" id="replaceLabelProvider" name="Replace Label Provider"/>
       </appinfo>
       <documentation>
          Replaces the label provider for the navigator.  If two or more replacements for the label providers are provided, the first one will be used.
