@@ -22,7 +22,6 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.IDialogSettings;
-import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -36,7 +35,6 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
-import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IPartListener2;
@@ -115,10 +113,7 @@ public class TreeView extends ViewPart implements ISelectionListener { // implem
 
 		try {
 			ECPWorkspace workSpace = ECPWorkspaceManager.getInstance().getWorkSpace();
-			IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
-			viewer.setLabelProvider(new DecoratingLabelProvider(new TreeLabelProvider(), decoratorManager
-				.getLabelDecorator()));
-			// viewer.setLabelProvider(new TreeLabelProvider());
+			viewer.setLabelProvider(new TreeLabelProvider().getLabelProvider());
 			viewer.setContentProvider(new TreeContentProvider());
 			viewer.setUseHashlookup(true);
 			viewer.setInput(workSpace);

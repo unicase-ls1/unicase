@@ -62,7 +62,7 @@
          <attribute name="type" type="string" use="required">
             <annotation>
                <documentation>
-                  The type for which the conten provider is replaced
+                  The type for which the content provider is replaced
                </documentation>
                <appinfo>
                   <meta.attribute kind="java" basedOn=":org.eclipse.emf.ecore.EObject"/>
