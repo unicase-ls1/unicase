@@ -3,10 +3,10 @@
 <schema targetNamespace="org.eclipse.emf.ecp.navigator" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.emf.ecp.navigator" id="org.eclipse.emf.ecp.navigator.replaceContentProvider" name="Replace Content Provider"/>
+         <meta.schema plugin="org.eclipse.emf.ecp.navigator" id="org.eclipse.emf.ecp.navigator.replaceLabelProvider" name="Replace Label Provider"/>
       </appinfo>
       <documentation>
-         Replaces a content provider for the navigator
+         Replaces the label provider for the navigator.  If two or more replacements for the label providers are provided, the first one will be used.
       </documentation>
    </annotation>
 
@@ -18,7 +18,7 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="ContentProvider"/>
+            <element ref="LabelProvider"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -47,7 +47,7 @@
       </complexType>
    </element>
 
-   <element name="ContentProvider">
+   <element name="LabelProvider">
       <complexType>
          <attribute name="class" type="string">
             <annotation>
@@ -55,17 +55,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.ecp.navigator.ContentProvider"/>
-               </appinfo>
-            </annotation>
-         </attribute>
-         <attribute name="type" type="string" use="required">
-            <annotation>
-               <documentation>
-                  The type for which the content provider is replaced
-               </documentation>
-               <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.ecore.EObject"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.jface.viewers.IBaseLabelProvider"/>
                </appinfo>
             </annotation>
          </attribute>
