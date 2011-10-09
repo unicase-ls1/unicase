@@ -267,6 +267,7 @@ class FixedFormLexerPrepass {
 			}
 			return pll;
 		} catch (IOException e) {
+			e.printStackTrace();
 			return null;
 		}
 	}

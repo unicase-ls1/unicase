@@ -71,8 +71,9 @@ public class JavaParser extends Parser {
 	 * @return
 	 * 		this is an arraylist of the imports
 	 */
+	@SuppressWarnings("unchecked")
 	public  ArrayList <String> getImportDeclarations() {
-		List imports = _unit.imports();
+		List<ImportDeclaration> imports = _unit.imports();
 		if(imports.size() == 0) return null;
 		ArrayList <String> importDecl = new ArrayList <String>();
 		ListIterator <ImportDeclaration> iter = imports.listIterator();
@@ -87,6 +88,7 @@ public class JavaParser extends Parser {
 	 * this is teh arraylist of comments that are in the file
 	 * @return
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public  ArrayList <String> getComments() {
 		List comments = _unit.getCommentList();
 		if(comments.size() == 0)return null;
@@ -95,6 +97,7 @@ public class JavaParser extends Parser {
 		while(iterator.hasNext()) {
 			Object object =  iterator.next();
 			if(object instanceof Javadoc){
+				@SuppressWarnings("deprecation")
 				String comment = ((Javadoc)object).getComment();
 				javaDocComments.add(comment);
 			}

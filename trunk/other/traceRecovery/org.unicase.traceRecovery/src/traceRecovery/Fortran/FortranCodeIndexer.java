@@ -37,7 +37,7 @@ public class FortranCodeIndexer extends Indexer {
 	 * @param dir
 	 *            this is the directory that needs to be indexed
 	 */
-	public static void indexDir(IndexWriter writer, Directory dir) {
+	public  void indexDir(IndexWriter writer, Directory dir) {
 		File file = new File(dir.getPath());
 		File[] files = file.listFiles();
 
