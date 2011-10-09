@@ -433,9 +433,9 @@ public class RunRecovery extends WizardPage implements Listener {
 
 	public void finish() {
 
-		if (codeLanguage.toLowerCase() == "java") {
+		if (codeLanguage.toLowerCase().equals("java")) {
 			recovery = new SearchJava();
-		} else if (codeLanguage.toLowerCase() == "fortran") {
+		} else if (codeLanguage.toLowerCase().equals("fortran")) {
 			recovery = new SearchFortran();
 		}
 
@@ -457,17 +457,17 @@ public class RunRecovery extends WizardPage implements Listener {
 		choosenME();
 		recovery.setAnalyzer(codeLanguage);
 		if (imagevalue == 1) {
-			if (codeLanguage == "java") {
+			if (codeLanguage.equals("java")) {
 				((SearchJava) recovery).setIndexer(codeDir, sourceDir);
-			} else if (codeLanguage == "fortran") {
+			} else if (codeLanguage.equals("fortran")) {
 				recovery.setIndexer("fortran", codeDir, sourceDir);
 			}
 
 			if (code.getItem(0).getChecked()) {
-				if (codeLanguage == "java") {
+				if (codeLanguage.equals("java")) {
 					JavaSourceCodeIndexer indexer = new JavaSourceCodeIndexer();
 					recovery.index(indexer);
-				} else if (codeLanguage == "fortran") {
+				} else if (codeLanguage.equals("fortran")) {
 					FortranCodeIndexer indexer = new FortranCodeIndexer();
 					recovery.index(indexer);
 				}
@@ -475,10 +475,10 @@ public class RunRecovery extends WizardPage implements Listener {
 				// recovery.index();
 			} else {
 				directoriesBuild(code.getItem(0), code.getItem(0).getText());
-				if (codeLanguage == "java") {
+				if (codeLanguage.equals("java")) {
 					JavaSourceCodeIndexer indexer = new JavaSourceCodeIndexer();
 					recovery.index(dir, indexer);
-				} else if (codeLanguage == "fortran") {
+				} else if (codeLanguage.equals("fortran")) {
 					FortranCodeIndexer indexer = new FortranCodeIndexer();
 					recovery.index(dir, indexer);
 				}
@@ -1363,13 +1363,8 @@ public class RunRecovery extends WizardPage implements Listener {
 	}
 
 	public boolean canFinish() {
-		if (!choosenME()
-				|| (!code.getItem(0).getGrayed() && !code.getItem(0)
-						.getChecked())) {
-			return false;
-		} else {
-			return true;
-		}
+		return !((!choosenME() || (!code.getItem(0).getGrayed() && !code
+				.getItem(0).getChecked())));
 	}
 
 	/*

@@ -106,14 +106,14 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 		dirPage.setProject(getActiveProject());
 		addPage(dirPage);
 
-		if (producer == "java") {
+		if (producer.equals("java")) {
 
 			dirPage.setLastPath(path.toPortableString());
 			// dir.getDirectoryString().setText(pat.toPortableString());
 			// dir.getDirectoryString().setEnabled(false);
 			// dir.getDirectory().setEnabled(false);
 
-		} else if (producer == "fortran") {
+		} else if (producer.equals("fortran")) {
 			dirPage.setLastPath(path.toPortableString());
 		}
 
@@ -158,11 +158,7 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 
 	@Override
 	public boolean canFinish(){
-		if(recovery.canFinish()){
-			return true;
-		} else {
-			return false;
-		}
+		return recovery.canFinish();
 	}
 	
 	
@@ -322,7 +318,7 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 			WizardDialog dialog = new WizardDialog(getShell(), wizard);
 			dialog.create();
 
-			if (wizard.producer == "fortran") {
+			if (wizard.producer.equals("fortran")) {
 
 				wizard.dirPage.getFortran().setSelection(true);
 
@@ -334,7 +330,7 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 				wizard.dirPage.getJava().setEnabled(false);
 				wizard.dirPage.getFortran().setEnabled(false);
 
-			}else if (wizard.producer == "java"){
+			}else if (wizard.producer.equals("java")){
 
 				wizard.dirPage.getJava().setSelection(true);
 				
@@ -342,7 +338,7 @@ public class TraceRecoveryWizard extends Wizard implements IWizard,
 				wizard.dirPage.getFortran().setEnabled(false);
 
 			}
-			if (wizard.producer == "java" || wizard.producer == "fortran") {
+			if (wizard.producer.equals("java") || wizard.producer.equals("fortran")) {
 				wizard.dirPage.getDirectoryString().setText(
 						wizard.path.toPortableString());
 				wizard.dirPage.getDirectoryString().setEnabled(false);

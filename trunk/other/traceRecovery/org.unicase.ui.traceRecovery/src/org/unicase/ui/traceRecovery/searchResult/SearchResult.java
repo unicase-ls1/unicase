@@ -505,7 +505,7 @@ public class SearchResult implements Listener {
 				IFileStore fileStore = EFS.getLocalFileSystem().getStore(
 						file.toURI());
 				try {
-					if (recovery.getCodeLanguage() == "java") {
+					if (recovery.getCodeLanguage().equals("java")) {
 						// IDE.openEditor(page, file.toURI(),
 						// "org.eclipse.jdt.ui.CompilationUnitEditor", true);
 						IDE.openEditorOnFileStore(page, fileStore);
