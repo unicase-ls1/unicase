@@ -30,10 +30,7 @@ public class SearchJava extends Search {
 	Query q;
 
 	public SearchJava() {
-		// super.setIndex(new JavaSourceCodeIndexer());
-		// super.setAnalyzer("java");
-		// super.set
-//		super("nothing");
+
 
 	}
 
