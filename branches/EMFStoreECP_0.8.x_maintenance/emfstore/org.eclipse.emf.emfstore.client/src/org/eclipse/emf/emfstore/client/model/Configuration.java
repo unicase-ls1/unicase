@@ -331,9 +331,14 @@ public final class Configuration {
 	 */
 	private static Boolean resourceSplitting;
 
+	/**
+	 * Returns if resource splitting is configured to be enabled, default is disabled.
+	 * 
+	 * @return true if resource splitting is enabled.
+	 */
 	public static boolean isResourceSplittingEnabled() {
 		if (resourceSplitting != null) {
-			return true;
+			return resourceSplitting;
 		}
 		resourceSplitting = new Boolean(false);
 		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
