@@ -5,15 +5,19 @@
  */
 package org.unicase.requirementexport;
 
-import java.util.LinkedHashMap;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.requirement.FunctionalRequirement;
@@ -35,9 +39,16 @@ public class RequirementExportOperation {
 	/**
 	 * Map from original elements to their copies.
 	 * 
-	 * @see #copyAll(List)
+	 * @see #copyAll(Collection)
 	 */
-	private final Map<UnicaseModelElement, UnicaseModelElement> objectToCopy = new LinkedHashMap<UnicaseModelElement, UnicaseModelElement>();
+	private final Map<UnicaseModelElement, UnicaseModelElement> objectToCopy = new HashMap<UnicaseModelElement, UnicaseModelElement>();
+
+	/**
+	 * Map from elements to the objects that reference them.
+	 * 
+	 * @see #determineCrossReferences(Project)
+	 */
+	private final Map<EObject, Set<EObject>> objectToReferencingObjects = new HashMap<EObject, Set<EObject>>();
 
 	/**
 	 * Copies a functional requirement to a project. Copying includes copying the requirement itself, all its
@@ -47,10 +58,10 @@ public class RequirementExportOperation {
 	 * @param req the {@link FunctionalRequirement} to copy
 	 * @param targetProject the {@link Project} to copy to
 	 * @see #determineElementsToCopy(FunctionalRequirement)
-	 * @see #copyAll(List)
+	 * @see #copyAll(Collection)
 	 */
 	public void copyFunctionalRequirement(FunctionalRequirement req, final Project targetProject) {
-		List<UnicaseModelElement> elementsToCopy = determineElementsToCopy(req);
+		Collection<UnicaseModelElement> elementsToCopy = determineElementsToCopy(req);
 
 		copyAll(elementsToCopy);
 
@@ -78,10 +89,10 @@ public class RequirementExportOperation {
 	 * @param req the {@link FunctionalRequirement} to copy
 	 * @param targetSection the {@link LeafSection} to copy to
 	 * @see #determineElementsToCopy(FunctionalRequirement)
-	 * @see #copyAll(List)
+	 * @see #copyAll(Collection)
 	 */
 	public void copyFunctionalRequirement(FunctionalRequirement req, final LeafSection targetSection) {
-		List<UnicaseModelElement> elementsToCopy = determineElementsToCopy(req);
+		Collection<UnicaseModelElement> elementsToCopy = determineElementsToCopy(req);
 
 		copyAll(elementsToCopy);
 
@@ -108,10 +119,10 @@ public class RequirementExportOperation {
 	 * @param req the {@link NonFunctionalRequirement} to copy
 	 * @param targetProject the {@link Project} to copy to
 	 * @see #determineElementsToCopy(NonFunctionalRequirement)
-	 * @see #copyAll(List)
+	 * @see #copyAll(Collection)
 	 */
 	public void copyNonFunctionalRequirement(NonFunctionalRequirement req, final Project targetProject) {
-		List<UnicaseModelElement> elementsToCopy = determineElementsToCopy(req);
+		Collection<UnicaseModelElement> elementsToCopy = determineElementsToCopy(req);
 
 		copyAll(elementsToCopy);
 
@@ -139,10 +150,10 @@ public class RequirementExportOperation {
 	 * @param req the {@link NonFunctionalRequirement} to copy
 	 * @param targetSection the {@link LeafSection} to copy to
 	 * @see #determineElementsToCopy(NonFunctionalRequirement)
-	 * @see #copyAll(List)
+	 * @see #copyAll(Collection)
 	 */
 	public void copyNonFunctionalRequirement(NonFunctionalRequirement req, final LeafSection targetSection) {
-		List<UnicaseModelElement> elementsToCopy = determineElementsToCopy(req);
+		Collection<UnicaseModelElement> elementsToCopy = determineElementsToCopy(req);
 
 		copyAll(elementsToCopy);
 
@@ -181,10 +192,12 @@ public class RequirementExportOperation {
 	 * @param req the {@link FunctionalRequirement} to determine the elements for
 	 * @return all elements that have to be copied
 	 */
-	private List<UnicaseModelElement> determineElementsToCopy(FunctionalRequirement req) {
+	private Set<UnicaseModelElement> determineElementsToCopy(FunctionalRequirement req) {
+		determineCrossReferences(ModelUtil.getProject(req));
+
 		// allRequirements := all the requirements that need to be checked
 		List<FunctionalRequirement> allRequirements = new LinkedList<FunctionalRequirement>();
-		List<UnicaseModelElement> result = new LinkedList<UnicaseModelElement>();
+		Set<UnicaseModelElement> tempResult = new HashSet<UnicaseModelElement>();
 		allRequirements.add(req);
 
 		while (!allRequirements.isEmpty()) {
@@ -193,16 +206,17 @@ public class RequirementExportOperation {
 			allRequirements.addAll(req.getRefiningRequirements());
 
 			// update result: add the requirement and all its relevant references
-			result.add(req);
-			result.addAll(req.getAnnotations());
-			result.addAll(req.getAppliedStereotypeInstances());
-			result.addAll(req.getAttachments());
-			result.addAll(req.getComments());
-			result.addAll(req.getIncomingDocumentReferences());
-			result.addAll(req.getScenarios());
-			result.addAll(req.getUseCases());
-			result.add(req.getStakeholder());
+			tempResult.add(req);
+			tempResult.addAll(req.getAnnotations());
+			tempResult.addAll(req.getAppliedStereotypeInstances());
+			tempResult.addAll(req.getAttachments());
+			tempResult.addAll(req.getComments());
+			tempResult.addAll(req.getIncomingDocumentReferences());
+			tempResult.addAll(req.getScenarios());
+			tempResult.addAll(req.getUseCases());
+			tempResult.add(req.getStakeholder());
 		}
+		Set<UnicaseModelElement> result = findAllReferencingObjects(tempResult);
 
 		return result;
 	}
@@ -227,20 +241,95 @@ public class RequirementExportOperation {
 	 * @param req the {@link NonFunctionalRequirement} to determine the elements for
 	 * @return all elements that have to be copied
 	 */
-	private List<UnicaseModelElement> determineElementsToCopy(NonFunctionalRequirement req) {
-		List<UnicaseModelElement> result = new LinkedList<UnicaseModelElement>();
+	private Set<UnicaseModelElement> determineElementsToCopy(NonFunctionalRequirement req) {
+		determineCrossReferences(ModelUtil.getProject(req));
 
-		result.add(req);
-		result.addAll(req.getAnnotations());
-		result.addAll(req.getAppliedStereotypeInstances());
-		result.addAll(req.getAttachments());
-		result.addAll(req.getComments());
-		result.addAll(req.getIncomingDocumentReferences());
-		result.addAll(req.getAssessments());
-		result.addAll(req.getRestrictedScenarios());
-		result.addAll(req.getRestrictedUseCases());
-		result.addAll(req.getSystemFunctions());
-		result.addAll(req.getUserTasks());
+		Set<UnicaseModelElement> tempResult = new HashSet<UnicaseModelElement>();
+
+		tempResult.add(req);
+		tempResult.addAll(req.getAnnotations());
+		tempResult.addAll(req.getAppliedStereotypeInstances());
+		tempResult.addAll(req.getAttachments());
+		tempResult.addAll(req.getComments());
+		tempResult.addAll(req.getIncomingDocumentReferences());
+		tempResult.addAll(req.getAssessments());
+		tempResult.addAll(req.getRestrictedScenarios());
+		tempResult.addAll(req.getRestrictedUseCases());
+		tempResult.addAll(req.getSystemFunctions());
+		tempResult.addAll(req.getUserTasks());
+
+		Set<UnicaseModelElement> result = findAllReferencingObjects(tempResult);
+
+		return result;
+	}
+
+	/**
+	 * Determines all cross references in a project, i.e. which element has is referenced from other elements.
+	 * 
+	 * @param project the project to determine the references for
+	 * @see #objectToReferencingObjects
+	 */
+	@SuppressWarnings("unchecked")
+	private void determineCrossReferences(Project project) {
+		/*
+		 * algorithm: for every model element, find all referenced objects. To every of these referenced objects, add
+		 * the model element as a referencing object.
+		 */
+		for (EObject eObject : project.getAllModelElements()) {
+			for (EReference eReference : eObject.eClass().getEAllReferences()) {
+				if (eReference.isMany()) {
+					List<EObject> referencedObjects = (List<EObject>) eObject.eGet(eReference);
+					for (EObject referencedObject : referencedObjects) {
+						Collection<EObject> referencingObjects = objectToReferencingObjects.get(referencedObject);
+						if (referencingObjects == null) {
+							Set<EObject> result = new HashSet<EObject>();
+							result.add(eObject);
+							objectToReferencingObjects.put(referencedObject, result);
+						} else if (!referencingObjects.contains(eObject)) {
+							referencingObjects.add(eObject);
+						}
+					}
+				} else {
+					EObject referencedObject = (EObject) eObject.eGet(eReference);
+					Collection<EObject> referencingObjects = objectToReferencingObjects.get(referencedObject);
+					if (referencingObjects == null) {
+						Set<EObject> result = new HashSet<EObject>();
+						result.add(eObject);
+						objectToReferencingObjects.put(referencedObject, result);
+					} else if (!referencingObjects.contains(eObject)) {
+						referencingObjects.add(eObject);
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Finds all objects that have references to objects contained in <code>modelElements</code>. The result will
+	 * contain all these objects as well as all original model elements.
+	 * 
+	 * @param modelElements the model elements to find the referencing objects for
+	 * @return a set of all objects referencing any of the <code>modelElements</code> as well as the model elements
+	 *         themselves.
+	 */
+	private Set<UnicaseModelElement> findAllReferencingObjects(Set<UnicaseModelElement> modelElements) {
+		Set<UnicaseModelElement> result = new HashSet<UnicaseModelElement>();
+		for (UnicaseModelElement modelElement : modelElements) {
+			// prohibit null elements
+			if (modelElement == null) {
+				continue;
+			}
+			result.add(modelElement);
+			Collection<EObject> referencingObjects = objectToReferencingObjects.get(modelElement);
+			if (referencingObjects != null) {
+				for (EObject referencingObject : referencingObjects) {
+					// only allow unicase model elements so they can be added to leaf sections
+					if (referencingObject != null && referencingObject instanceof UnicaseModelElement) {
+						result.add((UnicaseModelElement) referencingObject);
+					}
+				}
+			}
+		}
 
 		return result;
 	}
@@ -251,10 +340,10 @@ public class RequirementExportOperation {
 	 * 
 	 * @param elementsToCopy the elements to copy
 	 */
-	private void copyAll(List<UnicaseModelElement> elementsToCopy) {
+	private void copyAll(Collection<UnicaseModelElement> elementsToCopy) {
 		for (UnicaseModelElement modelElement : elementsToCopy) {
 			// copy each element only once
-			if (modelElement == null || objectToCopy.containsKey(modelElement)) {
+			if (objectToCopy.containsKey(modelElement)) {
 				continue;
 			}
 
