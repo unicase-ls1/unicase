@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.change.util.ChangeRecorder;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -37,6 +38,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.emfstore.client.model.CompositeOperationHandle;
 import org.eclipse.emf.emfstore.client.model.Configuration;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.changeTracking.NotificationToOperationConverter;
 import org.eclipse.emf.emfstore.client.model.changeTracking.commands.CommandObserver;
 import org.eclipse.emf.emfstore.client.model.changeTracking.commands.EMFStoreCommandStack;
@@ -188,12 +190,6 @@ public class OperationRecorder implements CommandObserver, ProjectChangeObserver
 			return;
 		}
 
-		// TODO: EM, move to persister
-		// addToResource(modelElement);
-
-		// TODO: EM
-		// notifyPostCreationListeners(modelElement);
-
 		if (isRecording) {
 			// setup change recorder, stop operation recording and destruct
 			// cross references
@@ -206,7 +202,12 @@ public class OperationRecorder implements CommandObserver, ProjectChangeObserver
 			stopChangeRecording();
 			try {
 				ModelUtil.deleteOutgoingCrossReferences(modelElement, true, false);
-				ModelUtil.deleteIncomingCrossReferencesFromParent(modelElement, project, true, false);
+
+				// delete incoming cross references
+				Collection<Setting> inverseReferences = WorkspaceManager.getInstance().findInverseCrossReferences(
+					modelElement);
+				ModelUtil.deleteIncomingCrossReferencesFromParent(inverseReferences, modelElement);
+
 			} finally {
 				startChangeRecording();
 			}

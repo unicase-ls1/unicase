@@ -13,6 +13,7 @@ package org.eclipse.emf.emfstore.client.model;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
@@ -22,9 +23,12 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
+import org.eclipse.emf.ecore.util.EcoreUtil.UsageCrossReferencer;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -63,6 +67,9 @@ public final class WorkspaceManager {
 	private AdminConnectionManager adminConnectionManager;
 
 	private ObserverBus observerBus;
+	private ECrossReferenceAdapter crossReferenceAdapter;
+
+	private ResourceSetImpl resourceSet;
 
 	/**
 	 * Get an instance of the workspace manager. Will create an instance if no
@@ -179,8 +186,21 @@ public final class WorkspaceManager {
 	 * @generated NOT
 	 */
 	private Workspace initWorkSpace() {
-		ResourceSet resourceSet = new ResourceSetImpl();
+
+		resourceSet = new ResourceSetImpl();
 		resourceSet.getLoadOptions().putAll(ModelUtil.getResourceLoadOptions());
+
+		IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.eclipse.emf.emfstore.client.inversecrossReferenceCache");
+		if (elements != null && elements.length > 0) {
+			for (IConfigurationElement element : elements) {
+				boolean useCrossReferenceAdapter = Boolean.parseBoolean(element.getAttribute("activated"));
+				if (useCrossReferenceAdapter) {
+					crossReferenceAdapter = new ECrossReferenceAdapter();
+					resourceSet.eAdapters().add(crossReferenceAdapter);
+				}
+			}
+		}
 
 		// register an editing domain on the ressource
 		Configuration.setEditingDomain(createEditingDomain(resourceSet));
@@ -490,6 +510,19 @@ public final class WorkspaceManager {
 	 */
 	public ConnectionManager getConnectionManager() {
 		return connectionManager;
+	}
+
+	/**
+	 * Returns the {@link ECrossReferenceAdapter}, if available.
+	 * 
+	 * @return the {@link ECrossReferenceAdapter}
+	 */
+	public Collection<Setting> findInverseCrossReferences(EObject modelElement) {
+		if (crossReferenceAdapter != null) {
+			return crossReferenceAdapter.getInverseReferences(modelElement, true);
+		}
+
+		return UsageCrossReferencer.find(modelElement, resourceSet);
 	}
 
 	/**
