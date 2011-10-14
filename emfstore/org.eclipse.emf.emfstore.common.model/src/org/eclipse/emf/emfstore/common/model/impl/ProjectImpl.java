@@ -28,11 +28,13 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
+import org.eclipse.emf.ecore.util.EcoreUtil.UsageCrossReferencer;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
@@ -654,7 +656,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 		// remove cross references
 		ModelUtil.deleteOutgoingCrossReferences(modelElement, true, false);
-		ModelUtil.deleteIncomingCrossReferencesFromParent(modelElement, this, true, false);
+		Collection<Setting> settings = UsageCrossReferencer.find(modelElement, this);
+		ModelUtil.deleteIncomingCrossReferencesFromParent(settings, modelElement);
 
 		// remove containment
 		EObject containerModelElement = ModelUtil.getContainerModelElement(modelElement);
