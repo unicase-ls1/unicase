@@ -33,6 +33,7 @@ Export-Package: org.eclipse.emf.ecp.common;
    org.eclipse.swt.dnd,
    org.eclipse.jface.viewers,
    org.eclipse.emf.edit.ui.dnd",
+ org.eclipse.emf.ecp.common.handler,
  org.eclipse.emf.ecp.common.observer;uses:="org.eclipse.emf.ecore,org.eclipse.emf.emfstore.common.observer",
  org.eclipse.emf.ecp.common.preferences;
   uses:="org.eclipse.jface.preference,

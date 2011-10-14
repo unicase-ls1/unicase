@@ -137,15 +137,82 @@
                visible="true">
          </separator>
       </menuContribution>
+      <menuContribution
+           locationURI="toolbar:org.eclipse.emf.ecp.navigator.viewer?before=additions">
+         <command
+               commandId="org.eclipse.emf.ecp.common.handlers.open_me_ID"
+               icon="icons/magnifier.png"
+               id="SearchElementButon"
+               style="push"
+               tooltip="Search for model element">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <iterate>
+                     <and>
+                        <instanceof
+                              value="org.eclipse.emf.ecore.EObject">
+                        </instanceof>
+                        <test
+                              args="org.eclipse.emf.ecp.navigator.importModel"
+                              property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                              value="true">
+                        </test>
+                     </and>
+                  </iterate>
+                  <test
+                        args="org.eclipse.emf.ecp.common.handlers.open_me_ID"
+                        property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                        value="true">
+                  </test>
+               </and>
+            </visibleWhen>
+        </command>
+     </menuContribution>
+     <menuContribution
+           locationURI="toolbar:org.eclipse.ui.main.toolbar">
+        <toolbar
+              id="org.eclipse.emf.ecp.common.ECPToolbar">
+          <command
+                 commandId="org.eclipse.emf.ecp.common.handlers.open_me_ID"
+                 icon="icons/magnifier.png"
+                 style="push"
+                 tooltip="Search model element">
+             <visibleWhen
+                   checkEnabled="false">
+                <and>
+                   <iterate
+                         ifEmpty="false"
+                         operator="and">
+                      <and>
+                         <instanceof
+                               value="org.eclipse.emf.ecore.EObject">
+                         </instanceof>
+                         <not>
+                            <instanceof
+                                  value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
+                            </instanceof>
+                         </not>
+                         <not>
+                            <instanceof
+                                  value="org.eclipse.emf.emfstore.common.model.Project">
+                            </instanceof>
+                         </not>
+                      </and>
+                   </iterate>
+                   <test
+                         args="org.eclipse.emf.ecp.common.handlers.open_me_ID"
+                         property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                         value="true">
+                   </test>
+                </and>
+             </visibleWhen>
+           </command>
+        </toolbar>
+     </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
-              <command
-            categoryId="org.eclipse.emf.ecp.navigator"
-            defaultHandler="org.eclipse.emf.ecp.navigator.handler.SearchModelElementHandler"
-            id="org.eclipse.emf.ecp.common.handlers.open_me_ID"
-            name="Search for Modelelement">
-      </command>
            <command
             categoryId="org.eclipse.emf.ecp.navigator"
             defaultHandler="org.eclipse.emf.ecp.navigator.handler.DeleteModelelementHandler"
@@ -154,7 +221,7 @@
       </command>
       <command
             categoryId="org.eclipse.emf.ecp.navigator"
-            defaultHandler="org.eclipse.emf.ecp.navigator.handler.NewModelElementWizardHandler"
+            defaultHandler="org.eclipse.emf.ecp.common.handler.NewModelElementWizardHandler"
             id="org.eclipse.emf.ecp.navigator.newModelElementWizard"
             name="New ModelElement Wizard">
          <commandParameter
@@ -165,7 +232,7 @@
          </commandParameter>
       </command>
           <command
-            defaultHandler="org.eclipse.emf.ecp.navigator.handler.CreateContainmentHandler"
+            defaultHandler="org.eclipse.emf.ecp.common.handler.CreateContainmentHandler"
             description="This generic command is used by dynamic commands to create containment MEs"
             id="org.eclipse.emf.ecp.navigator.createContaiment"
             name="New Containment ME">

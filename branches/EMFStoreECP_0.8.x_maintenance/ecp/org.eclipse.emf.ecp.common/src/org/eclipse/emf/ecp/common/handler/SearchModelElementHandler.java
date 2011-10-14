@@ -4,19 +4,19 @@
  * License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * Contributors:
  ******************************************************************************/
-package org.eclipse.emf.ecp.navigator.handler;
+package org.eclipse.emf.ecp.common.handler;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.Activator;
+import org.eclipse.emf.ecp.common.dialogs.SearchModelElementDialog;
 import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
 import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
 import org.eclipse.emf.ecp.common.utilities.ActionHelper;
-import org.eclipse.emf.ecp.navigator.Activator;
-import org.eclipse.emf.ecp.navigator.dialogs.SearchModelElementDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.ui.PlatformUI;
