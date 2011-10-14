@@ -8,7 +8,7 @@
  * 
  * Contributors:
  ******************************************************************************/
-package org.eclipse.emf.emfstore.client.model.util;
+package org.eclipse.emf.emfstore.client.model.exceptions;
 
 /**
  * Exception if there is no current User.
