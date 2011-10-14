@@ -141,7 +141,9 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 			} else if (element instanceof AbstractOperation) {
 				ModelElementId modelElementId = ((AbstractOperation) element).getModelElementId();
 				selectedModelElement = projectSpace.getProject().getModelElement(modelElementId);
-				return new StructuredSelection(selectedModelElement);
+				if (selectedModelElement != null) {
+					return new StructuredSelection(selectedModelElement);
+				}
 			} else if (element instanceof EObject) {
 				if (element instanceof ProjectSpace) {
 					selectedModelElement = ((ProjectSpace) element).getProject();
