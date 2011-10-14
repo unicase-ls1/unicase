@@ -15,6 +15,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -35,6 +36,8 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -927,42 +930,21 @@ public final class ModelUtil {
 	 *            removed. These are cross references within the containment
 	 *            tree of the given element)
 	 */
-	public static void deleteIncomingCrossReferencesFromParent(EObject modelElement, EObject parent,
-		boolean includeChildren, boolean includeCrossReferencesFromChildren) {
+	public static void deleteIncomingCrossReferencesFromParent(Collection<Setting> inverseReferences,
+		EObject modelElement) {
+		for (Setting setting : inverseReferences) {
+			EStructuralFeature eStructuralFeature = setting.getEStructuralFeature();
+			EReference reference = (EReference) eStructuralFeature;
 
-		Set<EObject> allModelElements = new HashSet<EObject>();
-		allModelElements.add(modelElement);
-		if (includeChildren) {
-			allModelElements.addAll(ModelUtil.getAllContainedModelElements(modelElement, false));
-		}
-
-		// delete all non containment cross references from other elements in
-		// the project
-		for (EObject otherModelElement : ModelUtil.getAllContainedModelElements(parent, false)) {
-			// check if the element is one of the children and should not loose
-			// its cross references
-			if (!includeCrossReferencesFromChildren && allModelElements.contains(otherModelElement)) {
+			if (reference.isContainer() || reference.isContainment() || reference.isChangeable()) {
 				continue;
 			}
 
-			List<EObject> crossReferences = new ArrayList<EObject>(otherModelElement.eCrossReferences());
-
-			for (EObject otherElementOpposite : crossReferences) {
-				// check if the element references any of the target objects
-				if (allModelElements.contains(otherElementOpposite)) {
-					EList<EReference> references = otherModelElement.eClass().getEAllReferences();
-					// cut of the reference
-					for (EReference reference : references) {
-						if (!reference.isContainment() && !reference.isContainer() && reference.isChangeable()
-							&& isCorrespondingReference(modelElement, otherModelElement, reference)) {
-							if (reference.isMany()) {
-								((EList<?>) otherModelElement.eGet(reference)).remove(modelElement);
-							} else {
-								otherModelElement.eUnset(reference);
-							}
-						}
-					}
-				}
+			EObject opposite = setting.getEObject();
+			if (eStructuralFeature.isMany()) {
+				((EList<?>) opposite.eGet(eStructuralFeature)).remove(modelElement);
+			} else {
+				opposite.eUnset(eStructuralFeature);
 			}
 		}
 	}
