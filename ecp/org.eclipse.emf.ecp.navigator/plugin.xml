@@ -169,47 +169,6 @@
             </visibleWhen>
         </command>
      </menuContribution>
-     <menuContribution
-           locationURI="toolbar:org.eclipse.ui.main.toolbar">
-        <toolbar
-              id="org.eclipse.emf.ecp.common.ECPToolbar">
-          <command
-                 commandId="org.eclipse.emf.ecp.common.handlers.open_me_ID"
-                 icon="icons/magnifier.png"
-                 style="push"
-                 tooltip="Search model element">
-             <visibleWhen
-                   checkEnabled="false">
-                <and>
-                   <iterate
-                         ifEmpty="false"
-                         operator="and">
-                      <and>
-                         <instanceof
-                               value="org.eclipse.emf.ecore.EObject">
-                         </instanceof>
-                         <not>
-                            <instanceof
-                                  value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
-                            </instanceof>
-                         </not>
-                         <not>
-                            <instanceof
-                                  value="org.eclipse.emf.emfstore.common.model.Project">
-                            </instanceof>
-                         </not>
-                      </and>
-                   </iterate>
-                   <test
-                         args="org.eclipse.emf.ecp.common.handlers.open_me_ID"
-                         property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
-                         value="true">
-                   </test>
-                </and>
-             </visibleWhen>
-           </command>
-        </toolbar>
-     </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
