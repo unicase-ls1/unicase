@@ -1748,9 +1748,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		initCompleted = true;
 		String projectSpaceFileNamePrefix = Configuration.getWorkspaceDirectory()
 			+ Configuration.getProjectSpaceDirectoryPrefix() + getIdentifier() + File.separatorChar;
-		String projectSpaceFileName = projectSpaceFileNamePrefix + this.getProjectName()
+		String projectSpaceFileName = projectSpaceFileNamePrefix + this.getIdentifier()
 			+ Configuration.getProjectSpaceFileExtension();
-		String operationsCompositeFileName = projectSpaceFileNamePrefix + this.getProjectName()
+		String operationsCompositeFileName = projectSpaceFileNamePrefix + this.getIdentifier()
 			+ Configuration.getOperationCompositeFileExtension();
 		String projectFragementsFileNamePrefix = projectSpaceFileNamePrefix + Configuration.getProjectFolderName()
 			+ File.separatorChar;
