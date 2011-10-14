@@ -4,11 +4,10 @@
  * License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * Contributors:
  ******************************************************************************/
-package org.eclipse.emf.ecp.navigator.dialogs;
+package org.eclipse.emf.ecp.common.dialogs;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecp.common.dialogs.ModelElementSelectionDialog;
 import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
 import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
 

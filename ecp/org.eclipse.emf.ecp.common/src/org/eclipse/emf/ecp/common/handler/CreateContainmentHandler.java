@@ -4,7 +4,7 @@
  * License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * Contributors:
  ******************************************************************************/
-package org.eclipse.emf.ecp.navigator.handler;
+package org.eclipse.emf.ecp.common.handler;
 
 import java.util.List;
 

@@ -10,6 +10,12 @@
               id="org.eclipse.emf.ecp.common"
               name="org.eclipse.emf.ecp.common">
         </category>
+        <command
+            categoryId="org.eclipse.emf.ecp.common"
+            defaultHandler="org.eclipse.emf.ecp.common.handler.SearchModelElementHandler"
+            id="org.eclipse.emf.ecp.common.handlers.open_me_ID"
+            name="Search for Modelelement">
+        </command>
   </extension>
   <extension
         point="org.eclipse.ui.menus">
@@ -55,58 +61,6 @@
            </visibleWhen>
         </command>
      </menuContribution>
-     
-      <menuContribution
-           locationURI="toolbar:org.eclipse.emf.ecp.navigator.viewer?before=additions">
-         <command
-               commandId="org.eclipse.emf.ecp.common.handlers.open_me_ID"
-               icon="icons/magnifier.png"
-               id="SearchElementButon"
-               style="push"
-               tooltip="Search for model element">
-        </command>
-     </menuContribution>
-     <menuContribution
-           locationURI="toolbar:org.eclipse.ui.main.toolbar">
-        <toolbar
-              id="org.eclipse.emf.ecp.common.ECPToolbar">
-          <command
-                 commandId="org.eclipse.emf.ecp.common.handlers.open_me_ID"
-                 icon="icons/magnifier.png"
-                 style="push"
-                 tooltip="Search model element">
-             <visibleWhen
-                   checkEnabled="false">
-                <and>
-                   <iterate
-                         ifEmpty="false"
-                         operator="and">
-                      <and>
-                         <instanceof
-                               value="org.eclipse.emf.ecore.EObject">
-                         </instanceof>
-                         <not>
-                            <instanceof
-                                  value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
-                            </instanceof>
-                         </not>
-                         <not>
-                            <instanceof
-                                  value="org.eclipse.emf.emfstore.common.model.Project">
-                            </instanceof>
-                         </not>
-                      </and>
-                   </iterate>
-                   <test
-                         args="org.eclipse.emf.ecp.common.handlers.open_me_ID"
-                         property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
-                         value="true">
-                   </test>
-                </and>
-             </visibleWhen>
-           </command>
-        </toolbar>
-     </menuContribution>
      <menuContribution
            locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=org.eclipse.emf.ecp.common.deleteModelelement">
         <command
@@ -148,9 +102,47 @@
            </visibleWhen>
         </command>
      </menuContribution>
-     
-     
-    
+      <menuContribution
+           locationURI="toolbar:org.eclipse.ui.main.toolbar">
+        <toolbar
+              id="org.eclipse.emf.ecp.common.ECPToolbar">
+          <command
+                 commandId="org.eclipse.emf.ecp.common.handlers.open_me_ID"
+                 icon="icons/magnifier.png"
+                 style="push"
+                 tooltip="Search model element">
+             <visibleWhen
+                   checkEnabled="false">
+                <and>
+                   <iterate
+                         ifEmpty="false"
+                         operator="and">
+                      <and>
+                         <instanceof
+                               value="org.eclipse.emf.ecore.EObject">
+                         </instanceof>
+                         <not>
+                            <instanceof
+                                  value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
+                            </instanceof>
+                         </not>
+                         <not>
+                            <instanceof
+                                  value="org.eclipse.emf.emfstore.common.model.Project">
+                            </instanceof>
+                         </not>
+                      </and>
+                   </iterate>
+                   <test
+                         args="org.eclipse.emf.ecp.common.handlers.open_me_ID"
+                         property="org.eclipse.emf.ecp.common.menuContributionsEnablement"
+                         value="true">
+                   </test>
+                </and>
+             </visibleWhen>
+           </command>
+        </toolbar>
+     </menuContribution>
   </extension>
   <extension
         point="org.eclipse.core.expressions.definitions">
