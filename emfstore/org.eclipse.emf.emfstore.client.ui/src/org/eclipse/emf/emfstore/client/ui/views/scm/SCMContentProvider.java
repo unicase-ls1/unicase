@@ -87,7 +87,12 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 			return getChildren(cp, treeNode);
 		} else if (element instanceof EObject) {
 			EObject me = (EObject) element;
-			return getChildren(me, treeNode);
+			// show only model element that are contained in a project
+			// and have an ID
+			ModelElementId modelElementId = projectSpace.getProject().getModelElementId(me);
+			if (modelElementId != null) {
+				return getChildren(me, treeNode);
+			}
 		}
 		return nodify(treeNode, Arrays.asList(contentProvider.getChildren(element))).toArray();
 	}
