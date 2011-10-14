@@ -82,6 +82,11 @@ public class MergeProjectHandler implements ConflictResolver {
 		DecisionManager decisionManager = new DecisionManager(project, myChangePackage, theirChangePackages, base,
 			target);
 
+		if (decisionManager.getConflicts().size() == 0) {
+			// conflict has been resolved automatically
+			return true;
+		}
+
 		MergeWizard wizard = new MergeWizard(decisionManager);
 		WizardDialog dialog = new WizardDialog(Display.getCurrent().getActiveShell(), wizard);
 		dialog.setPageSize(1000, 500);
