@@ -22,7 +22,9 @@ We currently use the following development tools:
 
                  o UNICASE: http://unicase.googlecode.com/svn/updatesite/internal/ <br>
 
-   * *NOTE: Please do not install UNICASE in the same eclipse instance as the one you are using for UNICASE development, else you might face conflicting plugin dependency issue. *
+   * *NOTE: Please do not install Unicase patch Attachment feature shown at the update site within eclipse update manager. *
+          
+              o Code Traceability: http://svn.ifi.uni-heidelberg.de/unicase/0.4.8.internal/codetraceability/
 
           o Findbugs (for static code checking): http://findbugs.cs.umd.edu/eclipse<br>
 
