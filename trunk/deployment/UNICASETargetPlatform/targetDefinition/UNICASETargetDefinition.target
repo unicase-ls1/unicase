@@ -8,28 +8,28 @@
 <repository location="http://unicase.googlecode.com/svn/updatesite/DeltaPack"/>
 </location>
 <location includeAllPlatforms="false" includeMode="slicer" type="InstallableUnit">
-<unit id="org.unicase.ecp.meeditor.feature.group" version="0.7.3"/>
-<unit id="org.unicase.ecp.navigator.feature.group" version="0.7.3"/>
-<unit id="org.unicase.ecp.navigatorMEEditorBridge.feature.group" version="0.7.3"/>
-<unit id="org.unicase.ecp.common.feature.group" version="0.7.3"/>
-<unit id="org.unicase.ecp.validation.feature.group" version="0.7.3"/>
-<unit id="org.unicase.ecp.all.feature.group" version="0.7.3"/>
-<unit id="edu.tum.cs.cope.runtime.feature.feature.group" version="0.2.15"/>
-<unit id="org.unicase.emfstore.copeMigration.feature.group" version="0.7.3"/>
-<unit id="org.unicase.emfstore.backchannel.feature.group" version="0.7.3"/>
-<unit id="edu.tum.cs.cope.feature.feature.group" version="0.2.15"/>
-<unit id="org.unicase.emfstore.transaction.feature.feature.group" version="0.7.3"/>
-<unit id="org.unicase.emfstore.client.feature.group" version="0.7.3"/>
-<unit id="org.unicase.emfstore.client.ui.feature.group" version="0.7.3"/>
-<unit id="org.unicase.emfstore.server.feature.group" version="0.7.3"/>
-<unit id="org.unicase.emfstore.common.feature.group" version="0.7.3"/>
-<unit id="org.unicase.emfstore.backchannel.SDK.feature.group" version="0.7.3"/>
-<unit id="org.unicase.emfstore.SDK.feature.group" version="0.7.3"/>
-<repository location="http://unicase.googlecode.com/svn/updatesite/emfstoreNightly"/>
-</location>
-<location includeAllPlatforms="false" includeMode="slicer" type="InstallableUnit">
 <unit id="org.unicase.targetfeature.feature.group" version="1.0.0.201103171541"/>
 <repository location="http://unicase.googlecode.com/svn/trunk/deployment/UNICASETargetPlatform/targetFeature/"/>
+</location>
+<location includeAllPlatforms="false" includeMode="slicer" type="InstallableUnit">
+<unit id="org.unicase.ecp.common.feature.group" version="0.7.4"/>
+<unit id="org.unicase.ecp.meeditor.feature.group" version="0.7.4"/>
+<unit id="org.unicase.ecp.navigator.feature.group" version="0.7.4"/>
+<unit id="org.unicase.ecp.navigatorMEEditorBridge.feature.group" version="0.7.4"/>
+<unit id="org.unicase.ecp.all.feature.group" version="0.7.4"/>
+<unit id="org.unicase.ecp.validation.feature.group" version="0.7.4"/>
+<unit id="edu.tum.cs.cope.feature.feature.group" version="0.2.15"/>
+<unit id="edu.tum.cs.cope.runtime.feature.feature.group" version="0.2.15"/>
+<unit id="org.unicase.emfstore.backchannel.feature.group" version="0.7.4"/>
+<unit id="org.unicase.emfstore.copeMigration.feature.group" version="0.7.4"/>
+<unit id="org.unicase.emfstore.transaction.feature.feature.group" version="0.7.4"/>
+<unit id="org.unicase.emfstore.client.feature.group" version="0.7.4"/>
+<unit id="org.unicase.emfstore.client.ui.feature.group" version="0.7.4"/>
+<unit id="org.unicase.emfstore.common.feature.group" version="0.7.4"/>
+<unit id="org.unicase.emfstore.server.feature.group" version="0.7.4"/>
+<unit id="org.unicase.emfstore.backchannel.SDK.feature.group" version="0.7.4"/>
+<unit id="org.unicase.emfstore.SDK.feature.group" version="0.7.4"/>
+<repository location="http://unicase.googlecode.com/svn/trunk/deployment/UNICASETargetPlatform/targetFeature/ECP0.7.4/"/>
 </location>
 </locations>
 </target>
