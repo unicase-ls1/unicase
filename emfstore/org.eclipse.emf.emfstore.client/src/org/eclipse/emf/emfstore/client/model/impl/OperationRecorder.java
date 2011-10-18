@@ -426,12 +426,11 @@ public class OperationRecorder implements CommandObserver, ProjectChangeObserver
 			}
 		}
 
-		removedElements.clear();
-
 		for (AbstractOperation op : operations) {
 			operationRecorded(op);
 		}
 
+		removedElements.clear();
 		operations.clear();
 
 		commandIsRunning = false;
