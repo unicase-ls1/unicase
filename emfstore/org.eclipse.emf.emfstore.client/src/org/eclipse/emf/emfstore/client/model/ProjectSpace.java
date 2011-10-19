@@ -944,6 +944,16 @@ public interface ProjectSpace extends IdentifiableElement {
 	boolean isTransient();
 
 	/**
+	 * Determines whether the project is up to date, that is, whether the base revision and the head revision are equal.
+	 * 
+	 * @return true, if the project is up to date, false otherwise
+	 * @throws EmfStoreException if the head revision can not be resolved
+	 * 
+	 * @generated NOT
+	 */
+	boolean isUpdated() throws EmfStoreException;
+
+	/**
 	 * Adds a file to this project space. The file will be uploaded to the
 	 * EMFStore upon commiting. As long as the file is not committed yet, it can
 	 * be removed by calling .getFileInfo(id).removePendingUpload().
@@ -1001,5 +1011,4 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @return property manager of type PropertyManager
 	 * **/
 	PropertyManager getPropertyManager();
-
 } // ProjectContainer
