@@ -2745,14 +2745,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		return operationManager;
 	}
 
-	public void copyBegin() {
-		operationRecorder.disableNotifications(true);
-	}
-
-	public void copyEnd() {
-		operationRecorder.disableNotifications(false);
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -2762,6 +2754,17 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 
 		return this.propertyManager;
+	}
+
+	/**
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#isUpdated()
+	 */
+	public boolean isUpdated() throws EmfStoreException {
+		PrimaryVersionSpec headVersion = resolveVersionSpec(VersionSpec.HEAD_VERSION);
+		return getBaseVersion().equals(headVersion);
 	}
 
 } // ProjectContainerImpl
