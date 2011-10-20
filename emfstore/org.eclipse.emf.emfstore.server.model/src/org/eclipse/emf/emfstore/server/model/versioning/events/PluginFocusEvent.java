@@ -37,7 +37,6 @@ public interface PluginFocusEvent extends Event {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Plugin Id</em>' attribute.
 	 * @see #setPluginId(String)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getPluginFocusEvent_PluginId()
@@ -47,11 +46,8 @@ public interface PluginFocusEvent extends Event {
 	String getPluginId();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.PluginFocusEvent#getPluginId <em>Plugin Id</em>}'
-	 * attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.PluginFocusEvent#getPluginId <em>Plugin Id</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Plugin Id</em>' attribute.
 	 * @see #getPluginId()
 	 * @generated
@@ -66,7 +62,6 @@ public interface PluginFocusEvent extends Event {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Start Date</em>' attribute.
 	 * @see #setStartDate(Date)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getPluginFocusEvent_StartDate()
@@ -76,11 +71,8 @@ public interface PluginFocusEvent extends Event {
 	Date getStartDate();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.PluginFocusEvent#getStartDate <em>Start Date</em>}
-	 * ' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.PluginFocusEvent#getStartDate <em>Start Date</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Start Date</em>' attribute.
 	 * @see #getStartDate()
 	 * @generated

@@ -19,21 +19,17 @@ import org.eclipse.emf.emfstore.common.model.Project;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Create Delete Operation</b></em>'. <!--
  * end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#isDelete <em>Delete
- * </em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#getModelElement <em>
- * Model Element</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#getSubOperations <em>Sub
- * Operations</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#getEObjectToIdMap <em>
- * EObject To Id Map</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#isDelete <em>Delete</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#getModelElement <em>Model Element</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#getSubOperations <em>Sub Operations</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#getEObjectToIdMap <em>EObject To Id Map</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getCreateDeleteOperation()
  * @model
  * @generated
@@ -47,7 +43,6 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Delete</em>' attribute.
 	 * @see #setDelete(boolean)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getCreateDeleteOperation_Delete()
@@ -57,11 +52,8 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	boolean isDelete();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#isDelete
-	 * <em>Delete</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#isDelete <em>Delete</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Delete</em>' attribute.
 	 * @see #isDelete()
 	 * @generated
@@ -76,7 +68,6 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Model Element</em>' containment reference.
 	 * @see #setModelElement(EObject)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getCreateDeleteOperation_ModelElement()
@@ -86,11 +77,8 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	EObject getModelElement();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#getModelElement
-	 * <em>Model Element</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation#getModelElement <em>Model Element</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Model Element</em>' containment reference.
 	 * @see #getModelElement()
 	 * @generated
@@ -99,8 +87,7 @@ public interface CreateDeleteOperation extends AbstractOperation {
 
 	/**
 	 * Returns the value of the '<em><b>Sub Operations</b></em>' containment reference list.
-	 * The list contents are of type
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation}.
+	 * The list contents are of type {@link org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation}.
 	 * <!-- begin-user-doc
 	 * -->
 	 * <p>
@@ -108,7 +95,6 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Sub Operations</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getCreateDeleteOperation_SubOperations()
 	 * @model containment="true" resolveProxies="true"
@@ -126,11 +112,9 @@ public interface CreateDeleteOperation extends AbstractOperation {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>EObject To Id Map</em>' map.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getCreateDeleteOperation_EObjectToIdMap()
-	 * @model mapType=
-	 *        "org.eclipse.emf.emfstore.server.model.versioning.operations.EObjectToModelElementIdMap<org.eclipse.emf.ecore.EObject, org.eclipse.emf.emfstore.common.model.ModelElementId>"
+	 * @model mapType="org.eclipse.emf.emfstore.server.model.versioning.operations.EObjectToModelElementIdMap<org.eclipse.emf.ecore.EObject, org.eclipse.emf.emfstore.common.model.ModelElementId>"
 	 * @generated
 	 */
 	EMap<EObject, ModelElementId> getEObjectToIdMap();
