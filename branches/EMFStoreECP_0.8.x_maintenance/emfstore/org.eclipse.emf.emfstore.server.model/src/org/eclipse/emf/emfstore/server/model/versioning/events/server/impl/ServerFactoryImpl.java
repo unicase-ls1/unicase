@@ -22,24 +22,22 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerPack
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ServerFactoryImpl extends EFactoryImpl implements ServerFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static ServerFactory init() {
 		try {
-			ServerFactory theServerFactory = (ServerFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://eclipse.org/emf/emfstore/server/model/versioning/events/server/");
+			ServerFactory theServerFactory = (ServerFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/emf/emfstore/server/model/versioning/events/server/"); 
 			if (theServerFactory != null) {
 				return theServerFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ServerFactoryImpl();
@@ -48,7 +46,6 @@ public class ServerFactoryImpl extends EFactoryImpl implements ServerFactory {
 	/**
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ServerFactoryImpl() {
@@ -57,22 +54,19 @@ public class ServerFactoryImpl extends EFactoryImpl implements ServerFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case ServerPackage.PROJECT_UPDATED_EVENT:
-			return createProjectUpdatedEvent();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			case ServerPackage.PROJECT_UPDATED_EVENT: return createProjectUpdatedEvent();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ProjectUpdatedEvent createProjectUpdatedEvent() {
@@ -82,16 +76,14 @@ public class ServerFactoryImpl extends EFactoryImpl implements ServerFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ServerPackage getServerPackage() {
-		return (ServerPackage) getEPackage();
+		return (ServerPackage)getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

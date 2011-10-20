@@ -34,7 +34,6 @@ public interface DateVersionSpec extends VersionSpec {
 	 * If the meaning of the '<em>Date</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Date</em>' attribute.
 	 * @see #setDate(Date)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage#getDateVersionSpec_Date()
@@ -44,10 +43,8 @@ public interface DateVersionSpec extends VersionSpec {
 	Date getDate();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.DateVersionSpec#getDate
-	 * <em>Date</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.DateVersionSpec#getDate <em>Date</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Date</em>' attribute.
 	 * @see #getDate()
 	 * @generated

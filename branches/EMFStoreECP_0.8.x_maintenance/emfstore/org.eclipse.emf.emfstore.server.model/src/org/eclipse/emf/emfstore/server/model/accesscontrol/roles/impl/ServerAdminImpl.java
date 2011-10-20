@@ -20,7 +20,7 @@ import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.ServerAdmin;
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Server Admin</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class ServerAdminImpl extends RoleImpl implements ServerAdmin {
@@ -51,7 +51,6 @@ public class ServerAdminImpl extends RoleImpl implements ServerAdmin {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ServerAdminImpl() {
@@ -60,7 +59,6 @@ public class ServerAdminImpl extends RoleImpl implements ServerAdmin {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

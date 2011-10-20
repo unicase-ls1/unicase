@@ -348,7 +348,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//accesscontrol/ACUser/firstName"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//accesscontrol/ACUser/lastName"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference server.ecore#//accesscontrol/ACUser/effectiveRoles"/>
+            ecoreFeature="ecore:EReference server.ecore#//accesscontrol/ACUser/effectiveGroups"/>
       </genClasses>
       <genClasses ecoreClass="server.ecore#//accesscontrol/ACOrgUnit">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute server.ecore#//accesscontrol/ACOrgUnit/name"/>

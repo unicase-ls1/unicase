@@ -28,12 +28,10 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.NotificationGener
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.emf.emfstore.server.model.versioning.events.impl.NotificationGenerationEventImpl#getNotifications
- * <em>Notifications</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.impl.NotificationGenerationEventImpl#getNotifications <em>Notifications</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class NotificationGenerationEventImpl extends EventImpl implements NotificationGenerationEvent {
@@ -49,7 +47,6 @@ public class NotificationGenerationEventImpl extends EventImpl implements Notifi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NotificationGenerationEventImpl() {
@@ -58,7 +55,6 @@ public class NotificationGenerationEventImpl extends EventImpl implements Notifi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,87 +64,80 @@ public class NotificationGenerationEventImpl extends EventImpl implements Notifi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ESNotification> getNotifications() {
 		if (notifications == null) {
-			notifications = new EObjectContainmentEList.Resolving<ESNotification>(ESNotification.class, this,
-				EventsPackage.NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS);
+			notifications = new EObjectContainmentEList.Resolving<ESNotification>(ESNotification.class, this, EventsPackage.NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS);
 		}
 		return notifications;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case EventsPackage.NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS:
-			return ((InternalEList<?>) getNotifications()).basicRemove(otherEnd, msgs);
+			case EventsPackage.NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS:
+				return ((InternalEList<?>)getNotifications()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case EventsPackage.NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS:
-			return getNotifications();
+			case EventsPackage.NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS:
+				return getNotifications();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case EventsPackage.NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS:
-			getNotifications().clear();
-			getNotifications().addAll((Collection<? extends ESNotification>) newValue);
-			return;
+			case EventsPackage.NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS:
+				getNotifications().clear();
+				getNotifications().addAll((Collection<? extends ESNotification>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case EventsPackage.NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS:
-			getNotifications().clear();
-			return;
+			case EventsPackage.NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS:
+				getNotifications().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case EventsPackage.NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS:
-			return notifications != null && !notifications.isEmpty();
+			case EventsPackage.NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS:
+				return notifications != null && !notifications.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
