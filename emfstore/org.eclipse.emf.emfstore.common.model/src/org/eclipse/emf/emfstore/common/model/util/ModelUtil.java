@@ -222,7 +222,7 @@ public final class ModelUtil {
 			throw new SerializationException(e);
 		}
 		String result = stringWriter.toString();
-		// TODO: EM
+
 		if (!overrideHrefCheck) {
 			hrefCheck(result);
 		}
