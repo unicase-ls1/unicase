@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.*;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.ProjectAdminRole;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.ReaderRole;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.Role;

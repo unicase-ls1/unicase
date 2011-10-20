@@ -10,6 +10,9 @@
  ******************************************************************************/
 package org.eclipse.emf.emfstore.server.model.accesscontrol;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.Role;
+
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>AC User</b></em>'. <!-- end-user-doc -->
  * 
@@ -18,6 +21,7 @@ package org.eclipse.emf.emfstore.server.model.accesscontrol;
  * <ul>
  * <li>{@link org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser#getFirstName <em>First Name</em>}</li>
  * <li>{@link org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser#getLastName <em>Last Name</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser#getEffectiveRoles <em>Effective Roles</em>}</li>
  * </ul>
  * </p>
  * 
@@ -81,5 +85,22 @@ public interface ACUser extends ACOrgUnit {
 	 * @generated
 	 */
 	void setLastName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Effective Roles</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.emf.emfstore.server.model.accesscontrol.roles.Role}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Effective Roles</em>' reference list isn't clear, there really should be more of a
+	 * description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Effective Roles</em>' reference list.
+	 * @see org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolPackage#getACUser_EffectiveRoles()
+	 * @model
+	 * @generated
+	 */
+	EList<Role> getEffectiveRoles();
 
 } // ACUser

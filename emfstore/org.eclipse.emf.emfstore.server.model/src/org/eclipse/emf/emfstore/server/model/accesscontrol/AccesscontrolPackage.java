@@ -208,13 +208,23 @@ public interface AccesscontrolPackage extends EPackage {
 	int AC_USER__LAST_NAME = AC_ORG_UNIT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Effective Roles</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int AC_USER__EFFECTIVE_ROLES = AC_ORG_UNIT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>AC User</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int AC_USER_FEATURE_COUNT = AC_ORG_UNIT_FEATURE_COUNT + 2;
+	int AC_USER_FEATURE_COUNT = AC_ORG_UNIT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.emfstore.server.model.accesscontrol.impl.ACGroupImpl
@@ -404,6 +414,19 @@ public interface AccesscontrolPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getACUser_LastName();
+
+	/**
+	 * Returns the meta object for the reference list '
+	 * {@link org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser#getEffectiveRoles <em>Effective Roles</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference list '<em>Effective Roles</em>'.
+	 * @see org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser#getEffectiveRoles()
+	 * @see #getACUser()
+	 * @generated
+	 */
+	EReference getACUser_EffectiveRoles();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnit
@@ -599,6 +622,15 @@ public interface AccesscontrolPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute AC_USER__LAST_NAME = eINSTANCE.getACUser_LastName();
+
+		/**
+		 * The meta object literal for the '<em><b>Effective Roles</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference AC_USER__EFFECTIVE_ROLES = eINSTANCE.getACUser_EffectiveRoles();
 
 		/**
 		 * The meta object literal for the '
