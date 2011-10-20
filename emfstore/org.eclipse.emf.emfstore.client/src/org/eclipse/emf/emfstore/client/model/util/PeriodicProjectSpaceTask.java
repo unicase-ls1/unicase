@@ -24,9 +24,12 @@ import org.eclipse.emf.emfstore.client.model.ProjectSpace;
  */
 public abstract class PeriodicProjectSpaceTask extends TimerTask {
 
-	private final ProjectSpace projectSpace;
-	private final long interval;
+	public static final int DEFAULT_INTERVAL = 900000; // 15 minutes
+
+	private ProjectSpace projectSpace;
+	private long interval;
 	private Timer timer;
+	private boolean isStarted;
 
 	/**
 	 * Constructor.
@@ -46,7 +49,10 @@ public abstract class PeriodicProjectSpaceTask extends TimerTask {
 	 * Starts the task.
 	 */
 	public void start() {
-		timer.schedule(this, getInterval(), getInterval());
+		if (!isStarted) {
+			timer.schedule(this, getInterval(), getInterval());
+			isStarted = true;
+		}
 	}
 
 	/**
