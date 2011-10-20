@@ -10,11 +10,15 @@
  ******************************************************************************/
 package org.eclipse.emf.emfstore.server.model.accesscontrol.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolPackage;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.Role;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>AC User</b></em>'. <!-- end-user-doc -->
@@ -23,6 +27,8 @@ import org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolPackage;
  * <ul>
  * <li>{@link org.eclipse.emf.emfstore.server.model.accesscontrol.impl.ACUserImpl#getFirstName <em>First Name</em>}</li>
  * <li>{@link org.eclipse.emf.emfstore.server.model.accesscontrol.impl.ACUserImpl#getLastName <em>Last Name</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.accesscontrol.impl.ACUserImpl#getEffectiveRoles <em>Effective Roles
+ * </em>}</li>
  * </ul>
  * </p>
  * 
@@ -72,6 +78,17 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	 * @ordered
 	 */
 	protected String lastName = LAST_NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getEffectiveRoles() <em>Effective Roles</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see #getEffectiveRoles()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Role> effectiveRoles;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -137,6 +154,20 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<Role> getEffectiveRoles() {
+		if (effectiveRoles == null) {
+			effectiveRoles = new EObjectResolvingEList<Role>(Role.class, this,
+				AccesscontrolPackage.AC_USER__EFFECTIVE_ROLES);
+		}
+		return effectiveRoles;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -148,6 +179,8 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 			return getFirstName();
 		case AccesscontrolPackage.AC_USER__LAST_NAME:
 			return getLastName();
+		case AccesscontrolPackage.AC_USER__EFFECTIVE_ROLES:
+			return getEffectiveRoles();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -157,6 +190,7 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 	 * 
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -165,6 +199,10 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 			return;
 		case AccesscontrolPackage.AC_USER__LAST_NAME:
 			setLastName((String) newValue);
+			return;
+		case AccesscontrolPackage.AC_USER__EFFECTIVE_ROLES:
+			getEffectiveRoles().clear();
+			getEffectiveRoles().addAll((Collection<? extends Role>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -184,6 +222,9 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 		case AccesscontrolPackage.AC_USER__LAST_NAME:
 			setLastName(LAST_NAME_EDEFAULT);
 			return;
+		case AccesscontrolPackage.AC_USER__EFFECTIVE_ROLES:
+			getEffectiveRoles().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -200,6 +241,8 @@ public class ACUserImpl extends ACOrgUnitImpl implements ACUser {
 			return FIRST_NAME_EDEFAULT == null ? firstName != null : !FIRST_NAME_EDEFAULT.equals(firstName);
 		case AccesscontrolPackage.AC_USER__LAST_NAME:
 			return LAST_NAME_EDEFAULT == null ? lastName != null : !LAST_NAME_EDEFAULT.equals(lastName);
+		case AccesscontrolPackage.AC_USER__EFFECTIVE_ROLES:
+			return effectiveRoles != null && !effectiveRoles.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

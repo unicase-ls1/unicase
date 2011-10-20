@@ -221,6 +221,16 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getACUser_EffectiveRoles() {
+		return (EReference) acUserEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -360,6 +370,7 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		acUserEClass = createEClass(AC_USER);
 		createEAttribute(acUserEClass, AC_USER__FIRST_NAME);
 		createEAttribute(acUserEClass, AC_USER__LAST_NAME);
+		createEReference(acUserEClass, AC_USER__EFFECTIVE_ROLES);
 
 		acOrgUnitEClass = createEClass(AC_ORG_UNIT);
 		createEAttribute(acOrgUnitEClass, AC_ORG_UNIT__NAME);
@@ -427,6 +438,9 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getACUser_LastName(), ecorePackage.getEString(), "lastName", null, 0, 1, ACUser.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getACUser_EffectiveRoles(), theRolesPackage.getRole(), null, "effectiveRoles", null, 0, -1,
+			ACUser.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(acOrgUnitEClass, ACOrgUnit.class, "ACOrgUnit", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);

@@ -14,6 +14,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.*;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.ProjectAdminRole;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.ReaderRole;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.Role;
