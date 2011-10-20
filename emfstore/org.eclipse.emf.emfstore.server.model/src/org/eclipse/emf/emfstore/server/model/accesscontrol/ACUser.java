@@ -81,19 +81,19 @@ public interface ACUser extends ACOrgUnit {
 	void setLastName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Effective Groups</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.emf.emfstore.server.model.accesscontrol.roles.Role}.
+	 * Returns the value of the '<em><b>Effective Groups</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.emfstore.server.model.accesscontrol.ACGroup}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Effective Groups</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Effective Groups</em>' reference list.
+	 * @return the value of the '<em>Effective Groups</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolPackage#getACUser_EffectiveGroups()
-	 * @model
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	EList<Role> getEffectiveGroups();
+	EList<ACGroup> getEffectiveGroups();
 
 } // ACUser

@@ -219,7 +219,12 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 			for (ACGroup group : serverSpace.getGroups()) {
 				if (group.getMembers().contains(orgUnit)) {
 					groups.add(group);
-					groups.addAll(getGroups(group));
+					for (ACGroup g : getGroups(group)) {
+						if (groups.contains(g)) {
+							continue;
+						}
+						groups.add(g);
+					}
 				}
 			}
 			return groups;
@@ -306,11 +311,7 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	public ACUser resolveUser(SessionId sessionId) throws AccessControlException {
 		checkSession(sessionId);
 		ACUser tmpUser = sessionUserMap.get(sessionId).getRawUser();
-		ACUser user = (ACUser) EcoreUtil.copy(tmpUser);
-		for (Role role : getRolesFromGroups(tmpUser)) {
-			user.getRoles().add((Role) EcoreUtil.copy(role));
-		}
-		return user;
+		return copyAndResolveUser(tmpUser);
 	}
 
 	/**
@@ -318,10 +319,22 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	 */
 	public ACUser resolveUser(ACOrgUnitId id) throws AccessControlException {
 		ACUser tmpUser = getUser(id);
+		return copyAndResolveUser(tmpUser);
+	}
+
+	private ACUser copyAndResolveUser(ACUser tmpUser) {
 		ACUser user = (ACUser) EcoreUtil.copy(tmpUser);
 		for (Role role : getRolesFromGroups(tmpUser)) {
 			user.getRoles().add((Role) EcoreUtil.copy(role));
 		}
+
+		for (ACGroup group : getGroups(tmpUser)) {
+			if (user.getEffectiveGroups().contains(group)) {
+				continue;
+			}
+			user.getEffectiveGroups().add((ACGroup) EcoreUtil.copy(group));
+		}
+
 		return user;
 	}
 
