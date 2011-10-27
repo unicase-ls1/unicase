@@ -191,7 +191,7 @@ public final class WorkspaceManager {
 		resourceSet.getLoadOptions().putAll(ModelUtil.getResourceLoadOptions());
 
 		IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.eclipse.emf.emfstore.client.inversecrossReferenceCache");
+			"org.eclipse.emf.emfstore.client.inverseCrossReferenceCache");
 		if (elements != null && elements.length > 0) {
 			for (IConfigurationElement element : elements) {
 				boolean useCrossReferenceAdapter = Boolean.parseBoolean(element.getAttribute("activated"));
