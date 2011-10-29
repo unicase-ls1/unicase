@@ -179,5 +179,11 @@
             uri="http://eclipse.org/emf/emfstore/client/test/model/activity">
       </factory>
    </extension>
+   <extension
+         point="org.eclipse.emf.emfstore.client.inverseCrossReferenceCache">
+      <useInverseCrossReferenceCache
+            activated="true">
+      </useInverseCrossReferenceCache>
+   </extension>
 
 </plugin>
