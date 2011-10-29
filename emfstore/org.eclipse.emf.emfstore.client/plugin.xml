@@ -21,6 +21,7 @@
    <extension-point id="org.eclipse.emf.emfstore.client.recording.options" name="Recording options" schema="schema/org.eclipse.emf.emfstore.client.recording.options.exsd"/>
    <extension-point id="org.eclipse.emf.emfstore.client.observers" name="Workspace Observer" schema="schema/org.eclipse.emf.emfstore.client.observers.exsd"/>
    <extension-point id="org.eclipse.emf.emfstore.client.inverseCrossReferenceCache" name="Inverse Cross Referene Cache" schema="schema/org.eclipse.emf.emfstore.client.inverseCrossReferenceCache.exsd"/>
+   <extension-point id="org.eclipse.emf.emfstore.client.notificationFilter" name="Notification Filter" schema="schema/org.eclipse.emf.emfstore.client.notificationFilter.exsd"/>
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://eclipse.org/emf/emfstore/client/model" 
