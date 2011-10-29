@@ -2435,64 +2435,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		return modifiedModelElementsCache;
 	}
 
-	// /**
-	// * {@inheritDoc}
-	// *
-	// * @param operationListener
-	// */
-	// public void addOperationListener(OperationListener operationListener) {
-	// this.operationListeners.add(operationListener);
-	// }
-
-	// private void notifyOperationUndone(AbstractOperation operation) {
-	// for (OperationListener operationListener : operationListeners) {
-	// operationListener.operationUnDone(operation);
-	// }
-	// }
-
-	// /**
-	// * {@inheritDoc}
-	// *
-	// * @param operationListner
-	// */
-	// public void removeOperationListener(OperationListener operationListner) {
-	// this.operationListeners.remove(operationListner);
-	//
-	// }
-
-	/**
-	 * Notify the operation observer that an operation has just completed.
-	 * 
-	 * @param operation
-	 *            the operation
-	 */
-	// void notifyOperationExecuted(AbstractOperation operation) {
-	// for (OperationListener operationListener : operationListeners) {
-	// operationListener.operationExecuted(operation);
-	// }
-	// }
-
-	/**
-	 * Add operation to the project spaces local operations.
-	 * 
-	 * @param operation
-	 *            the operation
-	 */
-	public void addOperation(AbstractOperation operation) {
-		this.getOperations().add(operation);
-		updateDirtyState();
-
-		// do not notify on composite start, wait until completion
-		if (operation instanceof CompositeOperation) {
-			// check of automatic composite if yes then continue
-			if (((CompositeOperation) operation).getMainOperation() == null) {
-				return;
-			}
-		}
-		operationManager.notifyOperationExecuted(operation);
-		// this.notifyOperationExecuted(operation);
-	}
-
 	/**
 	 * Get the current nofitication recorder.
 	 * 
@@ -2531,7 +2473,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @param addOperation
 	 *            true if operation should be saved in project space.
 	 */
-	public void applyOperations(List<AbstractOperation> operations, boolean addOperation) {
+	public void applyOperations(List<AbstractOperation> operations, boolean addOperations) {
 		stopChangeRecording();
 		try {
 			for (AbstractOperation operation : operations) {
@@ -2540,13 +2482,31 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				} catch (RuntimeException e) {
 					WorkspaceUtil.handleException(e);
 				}
-				if (addOperation) {
-					addOperation(operation);
-				}
+			}
+
+			if (addOperations) {
+				addOperations(operations);
 			}
 
 		} finally {
 			startChangeRecording();
+		}
+	}
+
+	public void addOperations(List<? extends AbstractOperation> operations) {
+		getOperations().addAll(operations);
+		updateDirtyState();
+
+		for (AbstractOperation op : operations) {
+			// do not notify on composite start, wait until completion
+			if (op instanceof CompositeOperation) {
+				// check of automatic composite if yes then continue
+				if (((CompositeOperation) op).getMainOperation() == null) {
+					return;
+				}
+			}
+
+			operationManager.notifyOperationExecuted(op);
 		}
 	}
 
