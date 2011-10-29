@@ -872,8 +872,6 @@ public interface ProjectSpace extends IdentifiableElement {
 	 */
 	// void addOperationListener(OperationListener operationListener);
 
-	void addOperation(AbstractOperation operation);
-
 	/**
 	 * @param name
 	 *            the name of the property
