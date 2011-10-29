@@ -655,7 +655,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		}
 
 		// remove cross references
-		ModelUtil.deleteOutgoingCrossReferences(modelElement, true, false);
+		ModelUtil.deleteOutgoingCrossReferences(modelElement);
 		Collection<Setting> settings = UsageCrossReferencer.find(modelElement, this);
 		ModelUtil.deleteIncomingCrossReferencesFromParent(settings, modelElement);
 
