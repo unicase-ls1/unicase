@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.CompositeOperationHandle;
-import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.observers.OperationListener;
 import org.eclipse.emf.emfstore.client.model.observers.PostCreationListener;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
@@ -18,9 +17,9 @@ public class OperationManager implements OperationRecorderListener {
 	private List<OperationListener> operationListeners;
 	private List<PostCreationListener> postCreationListeners;
 	// private CompositeOperation compositeOperation;
-	private ProjectSpace projectSpace;
+	private ProjectSpaceImpl projectSpace;
 
-	public OperationManager(OperationRecorder operationRecorder, ProjectSpace projectSpace) {
+	public OperationManager(OperationRecorder operationRecorder, ProjectSpaceImpl projectSpace) {
 		this.operationRecorder = operationRecorder;
 		operationRecorder.addOperationRecorderListener(this);
 		operationListeners = new ArrayList<OperationListener>();
@@ -161,8 +160,8 @@ public class OperationManager implements OperationRecorderListener {
 	// }
 	// }
 
-	public void operationRecorded(AbstractOperation operation) {
-		projectSpace.addOperation(operation);
+	public void operationsRecorded(List<? extends AbstractOperation> operations) {
+		projectSpace.addOperations(operations);
 	}
 
 	public void clearOperations() {
