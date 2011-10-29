@@ -47,6 +47,7 @@ public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implemen
 	private final String path;
 	private final String extension;
 	private Resource rootResource;
+	private Set<Resource> dirtyResourceSet;
 
 	/**
 	 * Constructor.
@@ -63,6 +64,7 @@ public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implemen
 			throw new IllegalArgumentException();
 		}
 		this.resourceSet = resourceSet;
+		this.dirtyResourceSet = new HashSet<Resource>();
 		this.path = path;
 		this.extension = extension;
 		this.list = list;
@@ -72,7 +74,8 @@ public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implemen
 			URI fileURI = URI.createFileURI(path + File.separatorChar + ROOT_NAME + extension);
 			rootResource = resourceSet.createResource(fileURI);
 			rootResource.getContents().add(root);
-			saveResource(rootResource);
+			markAsDirty(rootResource);
+			saveDirtyResources();
 		} else {
 			rootResource = eResource;
 		}
@@ -99,7 +102,8 @@ public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implemen
 	public void add(int index, T element) {
 		addToResource(element);
 		list.add(index, element);
-		saveResource(rootResource);
+		markAsDirty(rootResource);
+		saveDirtyResources();
 	}
 
 	/**
@@ -110,7 +114,8 @@ public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implemen
 	public boolean add(T o) {
 		addToResource(o);
 		boolean result = list.add(o);
-		saveResource(rootResource);
+		markAsDirty(rootResource);
+		saveDirtyResources();
 		return result;
 	}
 
@@ -123,7 +128,7 @@ public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implemen
 			currentResourceElementCount = 0;
 		}
 		currentResource.getContents().add(o);
-		saveResource(currentResource);
+		markAsDirty(currentResource);
 		currentResourceElementCount += 1;
 	}
 
@@ -133,20 +138,14 @@ public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implemen
 			return;
 		}
 		eResource.getContents().remove(o);
-		saveResource(eResource);
+		markAsDirty(eResource);
 		if (eResource == currentResource) {
 			currentResourceElementCount -= 1;
 		}
 	}
 
-	private void saveResource(Resource resource) {
-		try {
-			resource.save(null);
-		} catch (IOException e) {
-			String message = "Saving to resource failed!";
-			ModelUtil.log(message, e, IStatus.ERROR);
-			throw new IllegalStateException(message, e);
-		}
+	private void markAsDirty(Resource resource) {
+		dirtyResourceSet.add(resource);
 	}
 
 	/**
@@ -159,7 +158,8 @@ public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implemen
 			addToResource(element);
 		}
 		boolean result = list.addAll(c);
-		saveResource(rootResource);
+		markAsDirty(rootResource);
+		saveDirtyResources();
 		return result;
 	}
 
@@ -173,7 +173,8 @@ public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implemen
 			addToResource(element);
 		}
 		boolean result = list.addAll(index, c);
-		saveResource(rootResource);
+		markAsDirty(rootResource);
+		saveDirtyResources();
 		return result;
 	}
 
@@ -198,7 +199,8 @@ public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implemen
 			}
 		}
 		initCurrentResource(resourceSet);
-		saveResource(rootResource);
+		markAsDirty(rootResource);
+		saveDirtyResources();
 	}
 
 	/**
@@ -290,7 +292,8 @@ public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implemen
 	public T remove(int index) {
 		T t = list.remove(index);
 		removeFromResource(t);
-		saveResource(rootResource);
+		markAsDirty(rootResource);
+		saveDirtyResources();
 		return t;
 	}
 
@@ -305,7 +308,8 @@ public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implemen
 		if (o instanceof EObject) {
 			removeFromResource((T) o);
 		}
-		saveResource(rootResource);
+		markAsDirty(rootResource);
+		saveDirtyResources();
 		return remove;
 	}
 
@@ -322,7 +326,8 @@ public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implemen
 				removeFromResource((T) o);
 			}
 		}
-		saveResource(rootResource);
+		markAsDirty(rootResource);
+		saveDirtyResources();
 		return result;
 	}
 
@@ -342,8 +347,26 @@ public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implemen
 				removeFromResource((T) o);
 			}
 		}
-		saveResource(rootResource);
+		markAsDirty(rootResource);
+		saveDirtyResources();
 		return result;
+	}
+
+	/**
+	 * 
+	 */
+	private void saveDirtyResources() {
+		for (Resource resource : dirtyResourceSet) {
+			try {
+				resource.save(null);
+			} catch (IOException e) {
+				String message = "Saving to resource failed!";
+				ModelUtil.log(message, e, IStatus.ERROR);
+				throw new IllegalStateException(message, e);
+			}
+		}
+
+		dirtyResourceSet.clear();
 	}
 
 	/**
