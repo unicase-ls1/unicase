@@ -7,7 +7,6 @@ package org.eclipse.emf.emfstore.client.test.model.profile.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.emf.emfstore.client.test.model.UnicaseModelElement;
 import org.eclipse.emf.emfstore.client.test.model.profile.Profile;
 import org.eclipse.emf.emfstore.client.test.model.profile.ProfilePackage;
@@ -27,7 +26,7 @@ import org.eclipse.emf.emfstore.client.test.model.profile.StereotypeInstance;
  * @see org.eclipse.emf.emfstore.client.test.model.profile.ProfilePackage
  * @generated
  */
-public class ProfileSwitch<T> extends Switch<T> {
+public class ProfileSwitch<T> {
 	/**
 	 * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -53,7 +52,6 @@ public class ProfileSwitch<T> extends Switch<T> {
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
-	@Override
 	protected boolean isSwitchFor(EPackage ePackage) {
 		return ePackage == modelPackage;
 	}
@@ -65,7 +63,6 @@ public class ProfileSwitch<T> extends Switch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 		case ProfilePackage.PROFILE: {
@@ -260,7 +257,6 @@ public class ProfileSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	@Override
 	public T defaultCase(EObject object) {
 		return null;
 	}

@@ -182,7 +182,7 @@ public class MultiAttributeMoveOperationTest extends WorkspaceTest {
 					operation.getEObjectToIdMap()
 						.get(operation.getModelElement().eContents().get(1).eContents().get(1)));
 
-				CreateDeleteOperation copy = EcoreUtil.copy(operation);
+				CreateDeleteOperation copy = (CreateDeleteOperation) EcoreUtil.copy(operation);
 
 				operation = (CreateDeleteOperation) operation.reverse().reverse();
 

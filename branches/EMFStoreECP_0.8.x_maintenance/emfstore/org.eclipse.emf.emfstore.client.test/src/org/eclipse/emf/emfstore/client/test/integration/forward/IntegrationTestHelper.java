@@ -141,7 +141,7 @@ public final class IntegrationTestHelper {
 			@Override
 			protected void doRun() {
 				for (AbstractOperation op : operations) {
-					changePackage.getOperations().add(EcoreUtil.copy(op));
+					changePackage.getOperations().add((AbstractOperation) EcoreUtil.copy(op));
 
 				}
 				if (clearOperations) {
