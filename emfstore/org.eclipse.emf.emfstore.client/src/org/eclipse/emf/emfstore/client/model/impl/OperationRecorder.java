@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.emfstore.client.model.CompositeOperationHandle;
 import org.eclipse.emf.emfstore.client.model.Configuration;
@@ -196,10 +197,11 @@ public class OperationRecorder implements CommandObserver, ProjectChangeObserver
 			allModelElements.addAll(ModelUtil.getAllContainedModelElements(modelElement, false));
 
 			// collect in- and out-going cross-reference for containment tree of modelElement
-			List<SettingWithReferencedElement> crossReferences = ModelUtil
-				.collectOutgoingCrossReferences(allModelElements);
+			List<SettingWithReferencedElement> crossReferences = ModelUtil.collectOutgoingCrossReferences(rootEObject,
+				allModelElements);
 
-			List<SettingWithReferencedElement> ingoingCrossReferences = collectIngoingCrossReferences(allModelElements);
+			List<SettingWithReferencedElement> ingoingCrossReferences = collectIngoingCrossReferences(rootEObject,
+				allModelElements);
 			crossReferences.addAll(ingoingCrossReferences);
 
 			// TODO: check if all cross-references are cut on copy
@@ -224,14 +226,15 @@ public class OperationRecorder implements CommandObserver, ProjectChangeObserver
 		}
 	}
 
-	public static List<SettingWithReferencedElement> collectIngoingCrossReferences(Set<EObject> allModelElements) {
+	public static List<SettingWithReferencedElement> collectIngoingCrossReferences(IdEObjectCollection collection,
+		Set<EObject> allModelElements) {
 		List<SettingWithReferencedElement> settings = new ArrayList<SettingWithReferencedElement>();
 		for (EObject modelElement : allModelElements) {
 			Collection<Setting> inverseReferences = WorkspaceManager.getInstance().findInverseCrossReferences(
 				modelElement);
 
 			for (Setting setting : inverseReferences) {
-				if (!ModelUtil.shouldBeCollected(allModelElements, setting.getEObject())) {
+				if (!ModelUtil.shouldBeCollected(collection, allModelElements, setting.getEObject())) {
 					continue;
 				}
 				EReference reference = (EReference) setting.getEStructuralFeature();
@@ -384,7 +387,11 @@ public class OperationRecorder implements CommandObserver, ProjectChangeObserver
 
 		List<EObject> allContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(element, false);
 		allContainedModelElements.add(element);
-		EObject copiedElement = EcoreUtil.copy(element);
+
+		Copier copier = new Copier(true, false);
+		EObject copiedElement = copier.copy(element);
+		copier.copyReferences();
+
 		List<EObject> copiedAllContainedModelElements = ModelUtil.getAllContainedModelElementsAsList(copiedElement,
 			false);
 		copiedAllContainedModelElements.add(copiedElement);
