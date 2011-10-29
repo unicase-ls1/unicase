@@ -10,6 +10,7 @@
   <genPackages prefix="Testmodel" basePackage="org.eclipse.emf.emfstore.client.test"
       disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="testmodel.ecore#/">
     <genClasses ecoreClass="testmodel.ecore#//TestElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//TestElement/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testmodel.ecore#//TestElement/strings"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference testmodel.ecore#//TestElement/references"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testmodel.ecore#//TestElement/containedElements"/>
