@@ -1089,6 +1089,23 @@ public class CreateDeleteOperationTest extends WorkspaceTest {
 		}.run(false);
 	}
 
+	// @Test
+	// public void testMap() {
+	// AbstractElement element = ModelFactory.eINSTANCE.createAbstractElement();
+	// StringAttribute attribute = ModelFactory.eINSTANCE.createStringAttribute();
+	// attribute.setName("testAttribute");
+	// AbstractConnection connection = ModelFactory.eINSTANCE.createAbstractConnection();
+	// connection.setComment("sample comment");
+	// element.getAttributeValues().put(attribute, "testValue");
+	// element.getIncomingConnections().add(connection);
+	// Copier copier = new EcoreUtil.Copier(true, false);
+	// AbstractElement copiedElement = (AbstractElement) copier.copy(element);
+	// copier.copyReferences();
+	//
+	// assertEquals(0, copiedElement.getIncomingConnections().size());
+	// assertEquals(null, copiedElement.getAttributeValues().iterator().next().getKey());
+	// }
+
 	/**
 	 * Test creating an element in a non project containment.
 	 */
