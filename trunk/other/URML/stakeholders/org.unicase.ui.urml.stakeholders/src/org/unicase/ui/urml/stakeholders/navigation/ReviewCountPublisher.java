@@ -3,16 +3,16 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.urml.stakeholders.review;
+package org.unicase.ui.urml.stakeholders.navigation;
 
 import java.util.Collection;
-import java.util.Observable;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.Project;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.model.urml.UrmlPackage;
+import org.unicase.ui.urml.stakeholders.Publisher;
 
 /**
  * Tracks the urml model elements for changes.
@@ -20,7 +20,7 @@ import org.unicase.model.urml.UrmlPackage;
  * @author kterzieva
  */
 
-public class ReviewCountPublisher extends Observable {
+public class ReviewCountPublisher extends Publisher {
 
 	private Project project;
 
@@ -65,12 +65,6 @@ public class ReviewCountPublisher extends Observable {
 		return reviewed;
 	}
 */
-	/**
-	 * Updates the observers.
-	 */
-	public void notifyObservers() {
-		this.setChanged();
-		super.notifyObservers();
-	}
+
 
 }

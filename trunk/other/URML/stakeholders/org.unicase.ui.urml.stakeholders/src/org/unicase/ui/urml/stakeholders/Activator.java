@@ -8,9 +8,9 @@ package org.unicase.ui.urml.stakeholders;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.unicase.metamodel.Project;
 import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
-import org.unicase.ui.urml.stakeholders.review.ReviewCountPublisher;
-import org.unicase.ui.urml.stakeholders.review.input.UrmlTreeHandler;
+import org.unicase.ui.urml.stakeholders.navigation.ReviewCountPublisher;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -29,7 +29,8 @@ public class Activator extends AbstractUIPlugin {
 	// The shared instance
 	private static Activator plugin;
 
-	private static ReviewCountPublisher tracker;
+	private static ReviewCountPublisher reviewCountpublisher;
+	private final static Publisher roleChangedPublisher = new Publisher();
 	
 	/**
 	 * The constructor.
@@ -50,11 +51,9 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-		tracker = (new ReviewCountPublisher(UrmlTreeHandler.getTestProject()));
+		reviewCountpublisher = (new ReviewCountPublisher(StakeholderUtil.getActiveProject()));
 		getCountPublisher().createListeners();
-		ProjectSpace activeProject = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces().get(0);
-		UrmlSettingsManager.INSTANCE.initFromProject(activeProject);
-		
+		UrmlSettingsManager.INSTANCE.initFromProject(StakeholderUtil.getActiveProjectSpace());
 	}
 
 	/*
@@ -93,7 +92,11 @@ public class Activator extends AbstractUIPlugin {
 	 * @return tracker the tracker
 	 */
 	public static ReviewCountPublisher getCountPublisher() {
-		return tracker;
+		return reviewCountpublisher;
+	}
+	
+	public static Publisher getRoleChangedPublisher() {
+		return roleChangedPublisher;
 	}
 
 }

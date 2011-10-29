@@ -15,14 +15,14 @@ import org.unicase.model.urml.UrmlModelElement;
  * @author kterzieva
  *
  */
-public class ReviewStatusFilter extends ViewerFilter {
+public class ReviewStatusViewerFilter extends ViewerFilter {
 	private boolean selectReviewed;
 
 	/**
 	 * The construct.
 	 * @param selectReviewed defines which filter is used
 	 */
-	public ReviewStatusFilter(boolean selectReviewed) {
+	public ReviewStatusViewerFilter(boolean selectReviewed) {
 		this.selectReviewed = selectReviewed;
 	}
 

@@ -9,6 +9,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
@@ -31,7 +32,10 @@ public class NavigatorFilterManager {
 	 * @param filter the filter
 	 */
 	public void applyFilter(ViewerFilter filter) {
-		TreeView.getTreeViewer().setFilters(new ViewerFilter[] { filter });
+		TreeViewer viewer = TreeView.getTreeViewer();
+		if(viewer != null){
+			viewer.setFilters(new ViewerFilter[] { filter });
+		}
 //		new UnicaseCommand() {
 //			@Override
 //			protected void doRun() {

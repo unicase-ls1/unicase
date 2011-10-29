@@ -17,4 +17,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: org.unicase.ecp.model.workSpaceModel,
  org.unicase.ui.navigator,
  org.unicase.ui.tableview.viewer
-Export-Package: org.unicase.ui.urml.stakeholders.review
+Export-Package: org.unicase.ui.urml.stakeholders.filtering,
+ org.unicase.ui.urml.stakeholders.review

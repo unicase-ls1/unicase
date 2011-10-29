@@ -8,13 +8,9 @@ package org.unicase.ui.urml.stakeholders.navigation;
 import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Map.Entry;
+
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ControlContribution;
 import org.eclipse.jface.action.IMenuManager;
@@ -23,8 +19,6 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -45,15 +39,16 @@ import org.eclipse.ui.part.ViewPart;
 import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.metamodel.Project;
 import org.unicase.model.urml.StakeholderRole;
-import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.model.urml.UrmlPackage;
 import org.unicase.ui.urml.stakeholders.Activator;
+import org.unicase.ui.urml.stakeholders.Publisher;
+import org.unicase.ui.urml.stakeholders.StakeholderUtil;
 import org.unicase.ui.urml.stakeholders.config.DefaultStakeholderRoles;
 import org.unicase.ui.urml.stakeholders.config.ManageRolesDialog;
 import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
 import org.unicase.ui.urml.stakeholders.filtering.NavigatorFilterManager;
+import org.unicase.ui.urml.stakeholders.filtering.NavigatorViewerFilter;
 import org.unicase.ui.urml.stakeholders.review.ReviewView;
-import org.unicase.ui.urml.stakeholders.review.input.UrmlTreeHandler;
 
 /**
  * The stakeholder view with navigation options.
@@ -62,6 +57,8 @@ import org.unicase.ui.urml.stakeholders.review.input.UrmlTreeHandler;
  */
 
 public class NavigationView extends ViewPart implements Observer {
+
+	
 
 	private static final String NO_STAKEHOLDER = "[no stakeholder]";
 	private static final String MANAGE_STAKEHOLDER_ROLES = "Manage stakeholder roles";
@@ -72,23 +69,39 @@ public class NavigationView extends ViewPart implements Observer {
 	private IWorkbenchPage page;
 	private Action openReviewView;
 	private MenuManager chooseRole;
-	private NavigatorFilterManager filterManager = new NavigatorFilterManager();
 	private Project activeProject;
 	private Link unreviewedRequirements, reviewedRequirements;
+	private Observer roleChangedObserver;
 	//private static StakeholderRole activeRole;
 	private Text txtUser;
 	private Link link;
 	private Label label;
-	private ReviewView test;
-
+	
 	@Override
 	public void createPartControl(Composite parent) {
 
 		try {
 			parent.setLayout(new GridLayout(1, false));
 			parent.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-			activeProject = UrmlTreeHandler.getTestProject();
+			activeProject = StakeholderUtil.getActiveProject();
+			
 			Activator.getCountPublisher().addObserver(this);
+			roleChangedObserver = new Observer() {
+				
+				@Override
+				public void update(Observable o, Object arg) {
+					StakeholderRole role = (StakeholderRole) arg;
+					if(role == null){				
+						txtUser.setText(NO_STAKEHOLDER);
+						label.setText("Active role : " + NO_STAKEHOLDER);
+					} else {	
+						label.setText("Active role : " + UrmlSettingsManager.INSTANCE.getActiveRole().getName());
+						txtUser.setText(UrmlSettingsManager.INSTANCE.getActiveRole().getName());
+					}
+				}
+			};
+			Activator.getRoleChangedPublisher().addObserver(roleChangedObserver);
+			
 			reviewedRequirements = reviewedRequirementSetup(parent, activeProject, true, REVIEWED_ELEMENTS, 
 				UrmlSettingsManager.INSTANCE.getActiveRole());
 			unreviewedRequirements = reviewedRequirementSetup(parent, activeProject, false, UNREVIEWED_ELEMENTS,
@@ -97,7 +110,7 @@ public class NavigationView extends ViewPart implements Observer {
 			createActiveRoleLabel(parent);
 			createShowPropertyRoleButton(parent);
 			createOpenReviewViewAction();
-			createFilterAction(UrmlTreeHandler.getTestProject());
+			createFilterAction(activeProject);
 
 		} catch (NoWorkspaceException e) {
 			e.printStackTrace();
@@ -171,7 +184,7 @@ public class NavigationView extends ViewPart implements Observer {
 				page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 
 				try {
-					test = (ReviewView) page.showView(STATUS_VIEW_ID, null, IWorkbenchPage.VIEW_ACTIVATE);
+					page.showView(STATUS_VIEW_ID, null, IWorkbenchPage.VIEW_ACTIVATE);
 
 				} catch (PartInitException e) {
 					e.printStackTrace();
@@ -229,9 +242,7 @@ public class NavigationView extends ViewPart implements Observer {
 			public void run() {
 				ManageRolesDialog t = new ManageRolesDialog(reviewedRequirements.getShell());
 				t.open();
-				if (t.isRoleListHasChanged()) {
 					refreshRoleList();
-				}
 			}
 		};
 		manageStakeholderRoles.setText(MANAGE_STAKEHOLDER_ROLES);
@@ -242,16 +253,11 @@ public class NavigationView extends ViewPart implements Observer {
 		Action resetFilters = new Action() {
 			@Override
 			public void run() {
-				filterManager.removeFilters();
-				txtUser.setText(NO_STAKEHOLDER);
-				label.setText("Active role : " + NO_STAKEHOLDER);
-				
-				// TODO stakeholder view should be updated! Number of reviewed/unreviewed elem.is 0.
-
+				UrmlSettingsManager.INSTANCE.setActiveRole(null);
 			}
 		};
-		resetFilters.setText("Reset role settings");
-		resetFilters.setToolTipText("Reset maded role settings, hence showing all elements.");
+		resetFilters.setText("No active role");
+		resetFilters.setToolTipText("Sets no role as active, hence all elements are shown.");
 		chooseRole.add(resetFilters);
 
 	}
@@ -288,35 +294,13 @@ public class NavigationView extends ViewPart implements Observer {
 		Action a = new Action() {
 			@Override
 			public void run() {
-				setRoleProperties(role);
-				filterManager.applyFilter(new ViewerFilter() {
-					@Override
-					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						if (element instanceof UrmlModelElement) {
-							EMap<EClass, EList<EStructuralFeature>> filterSet = role.getFilterSet();
-							for (Entry<EClass, EList<EStructuralFeature>> entry : filterSet) {		
-								 if(entry.getKey().getName().equals(((UrmlModelElement) element).eClass().getName())){
-									 return true;
-								 }
-							}
-							return false;
-						}
-						return true;
-					}
-				});				
-				if(test != null){
-					test.setInputFromRole(activeProject, role);
-				}
+				UrmlSettingsManager.INSTANCE.setActiveRole(role);			
+			
 			}
 		};
 		return a;
 	}
 
-	private void setRoleProperties(final StakeholderRole role) {
-		UrmlSettingsManager.INSTANCE.setActiveRole(role);
-		label.setText("Active role : " + UrmlSettingsManager.INSTANCE.getActiveRole().getName());
-		txtUser.setText(UrmlSettingsManager.INSTANCE.getActiveRole().getName());
-	}
 	
 	@Override
 	public void update(Observable o, Object arg) {
@@ -333,6 +317,11 @@ public class NavigationView extends ViewPart implements Observer {
 
 	}
 
+	@Override
+	public void dispose() {
+		super.dispose();
+		Activator.getRoleChangedPublisher().deleteObserver(roleChangedObserver);
+	}
 //	/**
 //	 * Gets the current stakeholder role.
 //	 * 
