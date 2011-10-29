@@ -49,6 +49,7 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.emfstore.common.CommonUtil;
 import org.eclipse.emf.emfstore.common.model.AssociationClassElement;
+import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.ModelFactory;
 import org.eclipse.emf.emfstore.common.model.Project;
@@ -920,11 +921,6 @@ public final class ModelUtil {
 	 * 
 	 * @param modelElement
 	 *            the model element
-	 * @param parent
-	 *            the project
-	 * @param includeChildren
-	 *            set to true, if incoming cross references to any children of
-	 *            the given element should also be deleted
 	 */
 	public static void deleteIncomingCrossReferencesFromParent(Collection<Setting> inverseReferences,
 		EObject modelElement) {
@@ -974,12 +970,13 @@ public final class ModelUtil {
 	 * @param modelElement
 	 *            the model element
 	 */
-	public static void deleteOutgoingCrossReferences(EObject modelElement) {
+	public static void deleteOutgoingCrossReferences(IdEObjectCollection collection, EObject modelElement) {
 		Set<EObject> allModelElements = new HashSet<EObject>();
 		allModelElements.add(modelElement);
 		allModelElements.addAll(ModelUtil.getAllContainedModelElements(modelElement, false));
 
-		List<SettingWithReferencedElement> crossReferences = collectOutgoingCrossReferences(allModelElements);
+		List<SettingWithReferencedElement> crossReferences = collectOutgoingCrossReferences(collection,
+			allModelElements);
 		for (SettingWithReferencedElement settingWithReferencedElement : crossReferences) {
 			Setting setting = settingWithReferencedElement.getSetting();
 			if (!settingWithReferencedElement.getSetting().getEStructuralFeature().isMany()) {
@@ -991,11 +988,13 @@ public final class ModelUtil {
 		}
 	}
 
-	public static List<SettingWithReferencedElement> collectOutgoingCrossReferences(Set<EObject> allModelElements) {
+	public static List<SettingWithReferencedElement> collectOutgoingCrossReferences(IdEObjectCollection collection,
+		Set<EObject> allModelElements) {
 		// result object
 		List<SettingWithReferencedElement> settings = new ArrayList<SettingWithReferencedElement>();
 
 		for (EObject currentElement : allModelElements) {
+
 			for (EReference reference : currentElement.eClass().getEAllReferences()) {
 				EClassifier eType = reference.getEType();
 				// sanity checks
@@ -1011,7 +1010,7 @@ public final class ModelUtil {
 					@SuppressWarnings("unchecked")
 					List<EObject> referencedElements = (List<EObject>) currentElement.eGet(reference);
 					for (EObject referencedElement : referencedElements) {
-						if (shouldBeCollected(allModelElements, referencedElement)) {
+						if (shouldBeCollected(collection, allModelElements, referencedElement)) {
 							settings.add(new SettingWithReferencedElement(setting, referencedElement));
 						}
 					}
@@ -1019,7 +1018,7 @@ public final class ModelUtil {
 					// single references
 
 					EObject referencedElement = (EObject) currentElement.eGet(reference);
-					if (shouldBeCollected(allModelElements, referencedElement)) {
+					if (shouldBeCollected(collection, allModelElements, referencedElement)) {
 						settings.add(new SettingWithReferencedElement(setting, referencedElement));
 					}
 
@@ -1030,9 +1029,10 @@ public final class ModelUtil {
 		return settings;
 	}
 
-	public static boolean shouldBeCollected(Set<EObject> allModelElements, EObject referencedElement) {
+	public static boolean shouldBeCollected(IdEObjectCollection collection, Set<EObject> allModelElements,
+		EObject referencedElement) {
 
-		if (referencedElement == null) {
+		if (referencedElement == null || !collection.containsInstance(referencedElement)) {
 			return false;
 		}
 
