@@ -5,11 +5,12 @@
  */
 package org.unicase.ui.urml.stakeholders.review;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
@@ -28,26 +29,32 @@ import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Sash;
 import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.urml.StakeholderRole;
 import org.unicase.model.urml.UrmlModelElement;
@@ -55,42 +62,62 @@ import org.unicase.ui.common.util.ComboView;
 import org.unicase.ui.common.util.ComboView.IComboChangeListener;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.urml.stakeholders.Activator;
+import org.unicase.ui.urml.stakeholders.StakeholderUtil;
 import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
 import org.unicase.ui.urml.stakeholders.filtering.ElementTypeFilter;
-import org.unicase.ui.urml.stakeholders.filtering.ReviewStatusFilter;
-import org.unicase.ui.urml.stakeholders.review.input.UrmlTreeHandler;
+import org.unicase.ui.urml.stakeholders.filtering.ReviewStatusViewerFilter;
 
 /**
- * The view for reviewing the requirements. It provides the creating of new danger/hazards
+ * The view for reviewing the requirements. It provides the creating of new
+ * danger/hazards
  * 
  * @author kterzieva
  */
 
 public class ReviewView extends ViewPart {
 
-	private TableViewer elementsViewer;
+	protected static final String NAVIGATION_VIEW_ID = "Stakeholders.view1";
+	private TableViewer reviewElementsViewer;
 	private ReviewController controller;
 	private ILabelProvider reviewViewLabelProvider;
 	private TableViewerColumn viewerNameColumn;
-	private Composite rightComposite, buttonComposite, editorComposite, navigatorComposite, referenceComposite;
+	private Composite rightComposite, buttonComposite, editorComposite,
+			navigatorComposite, referenceComposite;
 	private Sash sash;
-	private ReviewViewContentFactory contentFactory;
+	private ReviewViewElementContentFactory contentFactory;
 	private UrmlModelElement currentlyDisplayedElement;
 	private Button openModelElement, up, down;
 	private Composite comp;
 	private ComboView<EClass> comboSelectBox;
+	private Observer roleChangedObserver;
+	private Composite contentComposite;
+	private Composite errorComposite;
+	private StackLayout stackLayout;
+	private Composite mainComposite;
 
-	// private static final Image UNREVIEWED_ICON = Activator.getImageDescriptor("icons/open.png").createImage();
-	// private static final Image REVIEWED_ICON = Activator.getImageDescriptor("icons/closed.gif").createImage();
+	// private static final Image UNREVIEWED_ICON =
+	// Activator.getImageDescriptor("icons/open.png").createImage();
+	// private static final Image REVIEWED_ICON =
+	// Activator.getImageDescriptor("icons/closed.gif").createImage();
 
 	@Override
 	public void dispose() {
 		super.dispose();
 		controller.dispose();
+		Activator.getRoleChangedPublisher().deleteObserver(roleChangedObserver);
 	}
 
 	@Override
-	public void createPartControl(final Composite parent) {
+	public void createPartControl( Composite parent) {
+		
+		mainComposite = new Composite(parent, SWT.NONE);
+		stackLayout = new StackLayout();
+		mainComposite.setLayout(stackLayout);
+		contentComposite = parent = new Composite(mainComposite, SWT.NONE);    
+		contentComposite.setLayout(new FillLayout(SWT.HORIZONTAL));
+		
+		createErrorComposite(mainComposite, stackLayout);
+		
 
 		// **** Creation of the UI Components ***
 		createLeftSide(parent);
@@ -101,67 +128,117 @@ public class ReviewView extends ViewPart {
 		setupGlobalLayout(parent);
 
 		// **** Create necessary fields ***
-		contentFactory = new ReviewViewContentFactory(editorComposite);
-		controller = new ReviewController(this, elementsViewer);
+		contentFactory = new ReviewViewElementContentFactory(editorComposite);
+		controller = new ReviewController(this, reviewElementsViewer);
 
-		// *** Setup listeners for the different buttons and other UI actions ***
+		// *** Setup listeners for the different buttons and other UI actions
+		// ***
 		setupListeners();
 
 		createMenuActions();
 
 		// Test code for filling the view with elements. To be replaced later
 
-//		 try {
-//		 if(StakeholderView.getActiveRole()!= null){
-//		 setReviewViewInput(UrmlTreeHandler.getUrmlElementsfromProjects(UrmlTreeHandler.getTestProject()), null);
-//		 }
-//		 // indexHandler.setInput(UrmlTreeHandler.getRequirementsfromProjects(UrmlTreeHandler.getTestProject()));
-//		 // later getStakeholderElementSet(stakeholder);
-//		 } catch (NoWorkspaceException e1) {
-//		 e1.printStackTrace();
-//		 }
+		// try {
+		// if(StakeholderView.getActiveRole()!= null){
+		// setReviewViewInput(UrmlTreeHandler.getUrmlElementsfromProjects(UrmlTreeHandler.getTestProject()),
+		// null);
+		// }
+		// //
+		// indexHandler.setInput(UrmlTreeHandler.getRequirementsfromProjects(UrmlTreeHandler.getTestProject()));
+		// // later getStakeholderElementSet(stakeholder);
+		// } catch (NoWorkspaceException e1) {
+		// e1.printStackTrace();
+		// }
+		StakeholderRole role = UrmlSettingsManager.INSTANCE.getActiveRole();
+		setInputFromRole(StakeholderUtil.getActiveProject(), role);
+		
+	}
+
+	private void createErrorComposite(Composite c, StackLayout layout) {
+		RowLayout errorLayout = new RowLayout();
+		errorLayout.center = true;
+		errorLayout.type = SWT.VERTICAL;
+		errorLayout.justify = true;
+		errorComposite = new Composite(c, SWT.NONE); 
+		
+
+		Composite subComposite = new Composite(errorComposite, SWT.NONE);
+		subComposite.setLayout(errorLayout);
+		
+		
+		RowLayout outer = new RowLayout();
+		outer.center = true;
+		outer.justify = true;
+		errorComposite.setLayout(outer);
+		
+		
+		Label l = new Label(subComposite, SWT.NONE);
+		l.setText("You must select a stakeholder role in the navigation view before you can start a review!");
+		l.setAlignment(SWT.CENTER);
+		Button b = new Button(subComposite, SWT.PUSH);
+		b.setText("Open navigation view");
+		b.addSelectionListener(new SelectionAdapter() {
+	 
+			
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				try {
+					IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+					 page.showView(NAVIGATION_VIEW_ID, null,
+						IWorkbenchPage.VIEW_ACTIVATE);
+				} catch (PartInitException e1) {
+					e1.printStackTrace();
+				}
+			}
+		
+		});
+		layout.topControl = errorComposite;
 	}
 
 	private void setReviewViewInput(Collection<UrmlModelElement> collection) {
 		controller.setReviewViewInput(collection);
 	}
 
-
 	private void createMenuActions() {
 		IActionBars bars = getViewSite().getActionBars();
 		IMenuManager menuManager = bars.getMenuManager();
-		final ViewerFilter filter = new ReviewStatusFilter(true);
-		final ViewerFilter filterUnreviewed = new ReviewStatusFilter(false);
+		final ViewerFilter filter = new ReviewStatusViewerFilter(true);
+		final ViewerFilter filterUnreviewed = new ReviewStatusViewerFilter(
+				false);
 
 		Action showReviewed = new Action() {
 			@Override
 			public void run() {
-				elementsViewer.setFilters(new ViewerFilter[] { filter });
+				reviewElementsViewer.setFilters(new ViewerFilter[] { filter });
 			}
 		};
 
 		showReviewed.setText("Show reviewed");
 		showReviewed.setToolTipText("Shows the reviewed element.");
-		showReviewed.setImageDescriptor(Activator.getImageDescriptor("icons/closed.gif"));
+		showReviewed.setImageDescriptor(Activator
+				.getImageDescriptor("icons/closed.gif"));
 		menuManager.add(showReviewed);
 
 		Action showUnreviewed = new Action() {
 
 			@Override
 			public void run() {
-				elementsViewer.setFilters(new ViewerFilter[] { filterUnreviewed });
+				reviewElementsViewer
+						.setFilters(new ViewerFilter[] { filterUnreviewed });
 			}
 		};
 
 		showUnreviewed.setText("Show unreviewed");
 		showUnreviewed.setToolTipText("Shows only the unreviewed elements.");
-		showUnreviewed.setImageDescriptor(Activator.getImageDescriptor("icons/open.png"));
+		showUnreviewed.setImageDescriptor(Activator
+				.getImageDescriptor("icons/open.png"));
 		menuManager.add(showUnreviewed);
 
 		Action showAll = new Action() {
 			@Override
 			public void run() {
-				elementsViewer.resetFilters();
+				reviewElementsViewer.resetFilters();
 			}
 		};
 
@@ -177,8 +254,9 @@ public class ReviewView extends ViewPart {
 		comp = new Composite(parent, SWT.NONE);
 		comp.setLayout(new GridLayout(1, false));
 
-		reviewViewLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		reviewViewLabelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 		comboSelectBox = new ComboView<EClass>(comp, SWT.BEGINNING);
 		comboSelectBox.setLabelProvider(new LabelProvider() {
@@ -189,18 +267,17 @@ public class ReviewView extends ViewPart {
 			}
 		});
 
-		// FIXME Review view must work, even if no role is chosen
-		EMap<EClass, EList<EStructuralFeature>> reviewSetOfActiveRole = UrmlSettingsManager.INSTANCE.getActiveRole().getReviewSet();
 
-		comboSelectBox.setInput(reviewSetOfActiveRole.keySet());
+		reviewElementsViewer = new TableViewer(comp, SWT.FULL_SELECTION);
+		reviewElementsViewer.setContentProvider(ArrayContentProvider
+				.getInstance());
 
-		elementsViewer = new TableViewer(comp, SWT.FULL_SELECTION);
-		elementsViewer.setContentProvider(ArrayContentProvider.getInstance());
-
-		elementsViewer.getControl().setLayoutData(new GridData(SWT.BEGINNING, SWT.FILL, false, true));
+		reviewElementsViewer.getControl().setLayoutData(
+				new GridData(SWT.BEGINNING, SWT.FILL, false, true));
 		// elementsViewer.setLabelProvider(reviewViewLabelProvider);
 
-		TableViewerColumn viewerReviewStatusColumn = new TableViewerColumn(elementsViewer, SWT.NONE);
+		TableViewerColumn viewerReviewStatusColumn = new TableViewerColumn(
+				reviewElementsViewer, SWT.NONE);
 		viewerReviewStatusColumn.getColumn().setText("Test");
 		viewerReviewStatusColumn.getColumn().setWidth(36);
 
@@ -215,14 +292,15 @@ public class ReviewView extends ViewPart {
 			}
 		});
 
-		viewerNameColumn = new TableViewerColumn(elementsViewer, SWT.NONE);
+		viewerNameColumn = new TableViewerColumn(reviewElementsViewer, SWT.NONE);
 		viewerNameColumn.getColumn().setText("Test");
 		viewerNameColumn.getColumn().setWidth(2000);
 		// LabelProvider für jede Spalte setzen
 		viewerNameColumn.setLabelProvider(new CellLabelProvider() {
 			public void update(ViewerCell cell) {
 				cell.setText(reviewViewLabelProvider.getText(cell.getElement()));
-				cell.setImage(reviewViewLabelProvider.getImage(cell.getElement()));
+				cell.setImage(reviewViewLabelProvider.getImage(cell
+						.getElement()));
 			}
 		});
 
@@ -239,9 +317,11 @@ public class ReviewView extends ViewPart {
 		GridLayout navigatorLayout = new GridLayout(2, false);
 		navigatorComposite.setLayout(navigatorLayout);
 
-		GridData navigatorCompositeLayoutData = new GridData(SWT.FILL, SWT.DEFAULT, false, false);
+		GridData navigatorCompositeLayoutData = new GridData(SWT.FILL,
+				SWT.DEFAULT, false, false);
 		navigatorComposite.setLayoutData(navigatorCompositeLayoutData);
-		navigatorComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		navigatorComposite.setBackground(Display.getCurrent().getSystemColor(
+				SWT.COLOR_WHITE));
 
 		// Create button composite
 		buttonComposite = new Composite(navigatorComposite, SWT.NONE);
@@ -250,9 +330,11 @@ public class ReviewView extends ViewPart {
 
 		// defines where the composite is located and how it looks like
 		// we use GridData because of the parent layout
-		GridData buttonCompositeLayoutData = new GridData(SWT.FILL, SWT.DEFAULT, false, false);
+		GridData buttonCompositeLayoutData = new GridData(SWT.FILL,
+				SWT.DEFAULT, false, false);
 		buttonComposite.setLayoutData(buttonCompositeLayoutData);
-		buttonComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		buttonComposite.setBackground(Display.getCurrent().getSystemColor(
+				SWT.COLOR_WHITE));
 
 		// Create buttons
 		up = new Button(buttonComposite, SWT.PUSH);
@@ -278,22 +360,30 @@ public class ReviewView extends ViewPart {
 		// Create empty editor composite
 		editorComposite = new Composite(rightComposite, SWT.NONE);
 
-		// defines how the children of editorComposite will be located, data for the children
-		GridLayoutFactory.swtDefaults().numColumns(2).spacing(10, 20).applyTo(editorComposite);
+		// defines how the children of editorComposite will be located, data for
+		// the children
+		GridLayoutFactory.swtDefaults().numColumns(2).spacing(10, 20)
+				.applyTo(editorComposite);
 
-		// defines how the editorComposite is located within rightComposite, data for parent
-		GridData editorCompositeLayoutData = new GridData(SWT.FILL, SWT.FILL, true, false);
+		// defines how the editorComposite is located within rightComposite,
+		// data for parent
+		GridData editorCompositeLayoutData = new GridData(SWT.FILL, SWT.FILL,
+				true, false);
 		editorComposite.setLayoutData(editorCompositeLayoutData);
-		editorComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		editorComposite.getParent().setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		editorComposite.setBackground(Display.getCurrent().getSystemColor(
+				SWT.COLOR_WHITE));
+		editorComposite.getParent().setBackground(
+				Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 
 		referenceComposite = new Composite(rightComposite, SWT.NONE);
 		GridLayout dangerLayout = new GridLayout(1, true);
 		referenceComposite.setLayout(dangerLayout);
 
-		GridData dangerCompositeLayoutData = new GridData(SWT.BEGINNING, SWT.DEFAULT, true, false);
+		GridData dangerCompositeLayoutData = new GridData(SWT.BEGINNING,
+				SWT.DEFAULT, true, false);
 		referenceComposite.setLayoutData(dangerCompositeLayoutData);
-		referenceComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		referenceComposite.setBackground(Display.getCurrent().getSystemColor(
+				SWT.COLOR_WHITE));
 
 	}
 
@@ -301,6 +391,7 @@ public class ReviewView extends ViewPart {
 		final FormLayout form = new FormLayout();
 		parent.setLayout(form);
 
+		
 		// edges position of the leftData-controller can be set using form
 		// attachments
 		FormData leftData = new FormData();
@@ -342,7 +433,16 @@ public class ReviewView extends ViewPart {
 
 	private void setupListeners() {
 
-		controller.createOpenListener(elementsViewer);
+		roleChangedObserver = new Observer() {
+			@Override
+			public void update(Observable o, Object role) {
+				setInputFromRole(StakeholderUtil.getActiveProject(),
+						(StakeholderRole) role);
+			}
+		};
+		Activator.getRoleChangedPublisher().addObserver(roleChangedObserver);
+
+		controller.createOpenListener(reviewElementsViewer);
 		up.addSelectionListener(controller.createUpDownListener(true));
 		down.addSelectionListener(controller.createUpDownListener(false));
 
@@ -350,38 +450,40 @@ public class ReviewView extends ViewPart {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				UnicaseActionHelper.openModelElement(currentlyDisplayedElement, this.getClass().getName());
+				UnicaseActionHelper.openModelElement(currentlyDisplayedElement,
+						this.getClass().getName());
 			}
 		});
 
-		comboSelectBox.addSelectionChangedListener(new IComboChangeListener<EClass>() {
+		comboSelectBox
+				.addSelectionChangedListener(new IComboChangeListener<EClass>() {
 
-			@Override
-			public void selectionChanged(EClass newSelection) {
-				try {
-					ElementTypeFilter typeFilter = new ElementTypeFilter(newSelection);
-					Collection<UrmlModelElement> filteredElements = typeFilter.filter(UrmlTreeHandler.getUrmlElementsfromProjects(UrmlTreeHandler.getTestProject()));
-					setReviewViewInput(filteredElements);
-				} catch (NoWorkspaceException e) {
+					@Override
+					public void selectionChanged(EClass newSelection) {
 
-					ModelUtil.logException(e);
+						ElementTypeFilter typeFilter = new ElementTypeFilter(
+								newSelection);
+						Collection<UrmlModelElement> filteredElements = typeFilter.filter(StakeholderUtil
+								.getUrmlElementsfromProjects(StakeholderUtil
+										.getActiveProject()));
+						setReviewViewInput(filteredElements);
 
-				}
-
-			}
-		});
+					}
+				});
 	}
 
 	/**
 	 * Open a model element in the review view.
 	 * 
-	 * @param urmlElement the urml element
+	 * @param urmlElement
+	 *            the urml element
 	 */
 
 	public void openElement(UrmlModelElement urmlElement) {
 		this.currentlyDisplayedElement = urmlElement;
 		openModelElement.setEnabled(true);
-		contentFactory.createElementContent(urmlElement, UrmlSettingsManager.INSTANCE.getActiveRole());
+		contentFactory.createElementContent(urmlElement,
+				UrmlSettingsManager.INSTANCE.getActiveRole());
 	}
 
 	@Override
@@ -392,42 +494,36 @@ public class ReviewView extends ViewPart {
 	/**
 	 * Show only the reviewed elements using an appropriate filter.
 	 * 
-	 * @param reviewed defines which elements should be shown. If it is false only the unreviewed elements will be
-	 *            shown.
+	 * @param reviewed
+	 *            defines which elements should be shown. If it is false only
+	 *            the unreviewed elements will be shown.
 	 */
 	public void showOnlyReviewedElements(boolean reviewed) {
-		ReviewStatusFilter filter = new ReviewStatusFilter(reviewed);
-		elementsViewer.setFilters(new ViewerFilter[] { filter });
+		ReviewStatusViewerFilter filter = new ReviewStatusViewerFilter(reviewed);
+		reviewElementsViewer.setFilters(new ViewerFilter[] { filter });
 	}
 
 	/**
 	 * Sets the input to the review view depending on the role and the project.
 	 * 
-	 * @param activeProject the project
-	 * @param role the role review set defines which elements should be shown
+	 * @param activeProject
+	 *            the project
+	 * @param role
+	 *            the role review set defines which elements should be shown
 	 */
 	public void setInputFromRole(Project activeProject, StakeholderRole role) {
-//		Collection<UrmlModelElement> result = new ArrayList<UrmlModelElement>();
-//		if (role == null) {
-//			setReviewViewInput(result);
-//		}
-//
-//		Set<EObject> modelElementSet = activeProject.getAllModelElements();
-//
-//		// Set<EClass> reviewClassNames = new HashSet<EClass>();
-//		// for(Entry<EClass, EList<EStructuralFeature>> entry : role.getReviewSet()){
-//		// reviewClassNames.add(entry.getKey());
-//		// }
-//		EMap<EClass, EList<EStructuralFeature>> reviewSet = role.getReviewSet();
-//		for (EObject e : modelElementSet) {
-//			if (e instanceof UrmlModelElement) {
-//				// (((UrmlModelElement) e).eClass().getName()))
-//				if (reviewSet.containsKey(e.eClass())) {
-//					result.add((UrmlModelElement) e);
-//				}
-//			}
-//		}
-//		setReviewViewInput(result);
+		if(role != null){
+			EMap<EClass, EList<EStructuralFeature>> reviewSetOfActiveRole = role.getReviewSet();
+			comboSelectBox.setInput(reviewSetOfActiveRole.keySet());
+			stackLayout.topControl = contentComposite;
+			mainComposite.layout();
+
+		}else{
+			comboSelectBox.setInput(new ArrayList<EClass>(0));
+			stackLayout.topControl = errorComposite;
+			mainComposite.layout();
+		}
+
 	}
 
 	/**
@@ -439,5 +535,7 @@ public class ReviewView extends ViewPart {
 		setReviewViewInput(result);
 
 	}
+	
+	
 
 }

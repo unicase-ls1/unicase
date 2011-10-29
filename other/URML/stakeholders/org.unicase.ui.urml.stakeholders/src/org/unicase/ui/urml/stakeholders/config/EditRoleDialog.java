@@ -8,7 +8,10 @@ package org.unicase.ui.urml.stakeholders.config;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 import java.util.Map.Entry;
 
@@ -46,8 +49,8 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public class EditRoleDialog extends TitleAreaDialog {
 
-	private static final String FILTER_SET = "Filter Set";
-	private static final String REVIEW_SET = "Review Set";
+	private static final String FILTER_SET = "Elements shown in navigator";
+	private static final String REVIEW_SET = "Elements shown in review view";
 	private Composite composite;
 	private StakeholderRole stakeholderRole;
 	private String dialogName, dialogMessage;
@@ -106,9 +109,7 @@ public class EditRoleDialog extends TitleAreaDialog {
 		// for (Entry<EClass, EList<EStructuralFeature>> entry : stakeholderRole.getFilterSet()) {
 		// filterClassNames.add(entry.getKey());
 		// }
-		
-		
-		
+
 		createNameLabel();
 		buttonClassMapping = new HashMap<Button, EClass>();
 		reviewSetElements = createButtonGroup(subClasses, composite, REVIEW_SET, reviewSetCopy);
@@ -202,9 +203,18 @@ public class EditRoleDialog extends TitleAreaDialog {
 		Group group = groupSetUp(composite, setName);
 
 		buttons = new ArrayList<Button>();
-
+		
+		List<EClass> subClassesSorted = new ArrayList<EClass>();
+		subClassesSorted.addAll(subClasses);
+		Collections.sort(subClassesSorted, new Comparator<EClass>() {
+			@Override
+			public int compare(EClass o1, EClass o2) {
+				return o1.getName().compareTo(o2.getName());
+			}
+		});
+		
 		// Create a button for each of the classes
-		for (final EClass eSubClass : subClasses) {
+		for (final EClass eSubClass : subClassesSorted) {
 
 			// Create the button
 			final Button button = new Button(group, SWT.CHECK);

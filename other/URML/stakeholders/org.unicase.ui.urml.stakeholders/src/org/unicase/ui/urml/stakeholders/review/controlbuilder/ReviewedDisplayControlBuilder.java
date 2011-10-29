@@ -44,7 +44,7 @@ public class ReviewedDisplayControlBuilder extends AbstractControlBuilder {
 			UrmlModelElement urmlElement) 
 	 {
 		 Object feature = itemPropertyDescriptor.getFeature(urmlElement);
-			if (feature instanceof EReference && ((EReference) feature).equals(UrmlPackage.eINSTANCE.getUrmlModelElement_Reviewed())) {
+			if (feature instanceof EStructuralFeature && ((EStructuralFeature) feature).equals(UrmlPackage.eINSTANCE.getUrmlModelElement_Reviewed())) {
 
 				return PRIORITY;
 			}
@@ -64,7 +64,7 @@ public class ReviewedDisplayControlBuilder extends AbstractControlBuilder {
 	protected Control doCreateControl(Composite parent,
 			UrmlModelElement urmlElement) {
 		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
-		EReference attribute = (EReference) feature;
+		EStructuralFeature attribute = (EStructuralFeature) feature;
 		check = new Button(parent, SWT.CHECK);
 		EMap<EClass, EList<EStructuralFeature>> test = UrmlSettingsManager.INSTANCE.getActiveRole().getReviewSet();
 		

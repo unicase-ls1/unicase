@@ -25,8 +25,8 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public class DefaultPhases {
 
-	private static final String ANALYSE = "Analyse";
-	private static final String REQUIREMENTS_ELICITATION = "RequirementElicitation";
+	private static final String ANALYSE = "Analysis";
+	private static final String REQUIREMENTS_ELICITATION = "Requirements Elicitation";
 	/**
 	 * Test class.
 	 * @param project the project whose default stakeholder roles are set.

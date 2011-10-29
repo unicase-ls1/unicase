@@ -47,7 +47,7 @@ import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.urml.Phase;
 import org.unicase.model.urml.UrmlPackage;
 import org.unicase.ui.urml.stakeholders.Activator;
-import org.unicase.ui.urml.stakeholders.review.input.UrmlTreeHandler;
+import org.unicase.ui.urml.stakeholders.StakeholderUtil;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -75,14 +75,12 @@ public class PhaseConfigurationView extends ViewPart {
 	public void createPartControl(Composite parent) {
 		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
 		HashMap<EClass, Integer> elementNumberMapping = createElementNumberMapping();
-		try {
-			activeProject = UrmlTreeHandler.getTestProject();
-		} catch (NoWorkspaceException e) {
-			e.printStackTrace();
-		}
+
+		activeProject = StakeholderUtil.getActiveProject();
+
 		// to each element his relation lest will be added and stored in datMap
 
-		printPhase("START",UrmlSettingsManager.INSTANCE.getActivePhase());
+	//	printPhase("START",UrmlSettingsManager.INSTANCE.getActivePhase());
 		createAssociationMap(elementNumberMapping);
 		createColumns(parent, viewer);
 		final Table table = viewer.getTable();
@@ -126,6 +124,7 @@ public class PhaseConfigurationView extends ViewPart {
 		Set<EClass> subClasses = ModelUtil.getSubclasses(UrmlPackage.eINSTANCE.getUrmlModelElement());
 		sortedElementNames = new ArrayList<EClass>();
 		for (EClass eclass : subClasses) {
+			if(!eclass.getName().equals("Phase"))
 			sortedElementNames.add(eclass);
 		}
 
@@ -148,6 +147,7 @@ public class PhaseConfigurationView extends ViewPart {
 		for (EClass eclass : sortedElementNames) {
 			ArrayList<EClass> associationList = createAssociationListToElement(eclass, elementNumberMapping);
 			staticAssociationMap.put(eclass, associationList);
+			
 		}
 		return staticAssociationMap;
 	}
@@ -282,21 +282,24 @@ public class PhaseConfigurationView extends ViewPart {
 				final Phase phase = (Phase) obj;
 				Action a = createSelectedPhaseAction(phase);
 				a.setText(phase.getName());
-				actionSetUp(menuManager, a , phase.getName(), "Test");
+				actionSetUp(menuManager, a , phase.getName(), "");
 				
 			}
 		menuManager.add(new Separator());	
 
-		Action editPhase = new Action() {
+		Action managePhases = new Action() {
 			@Override
 			public void run() {
 				// set the associationView view and model
+				ManagePhasesDialog phaseDialog = new ManagePhasesDialog(viewer.getTable().getShell());
+				phaseDialog.open();
+			//	if (phaseDialog.isRoleListHasChanged()) {
+			//		refreshRoleList();
+			//	}
 			}
 		};
 		
 		 ControlContribution userTextToolbarContribution = new ControlContribution("userTextl") {
-
-				
 
 				@Override
 				protected Control createControl(Composite parent) {
@@ -307,14 +310,12 @@ public class PhaseConfigurationView extends ViewPart {
 					layoutData.widthHint = 100;
 					txtUser.setLayoutData(layoutData);
 					txtUser.setEditable(false);
-					
 					txtUser.setText(UrmlSettingsManager.INSTANCE.getActivePhase().getName());
-				
 					return composite;
 				}
 
 			};
-		actionSetUp(menuManager, editPhase, "Edit Phase", "Test");
+		actionSetUp(menuManager, managePhases, "Manage Phases", "Manage development phases");
 		toolbarManager.add(userTextToolbarContribution);
 
 	}

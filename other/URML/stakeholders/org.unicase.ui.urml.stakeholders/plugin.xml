@@ -7,20 +7,23 @@
          point="org.eclipse.ui.views">
       <view
             class="org.unicase.ui.urml.stakeholders.navigation.NavigationView"
+            icon="icons/discovery.gif"
             id="Stakeholders.view1"
-            name="StakeholderView"
+            name="NavigationView"
             restorable="true">
       </view>
       <view
             class="org.unicase.ui.urml.stakeholders.review.ReviewView"
+            icon="icons/read_obj.gif"
             id="ReviewView"
             name="ReviewView"
             restorable="true">
       </view>
       <view
             class="org.unicase.ui.urml.stakeholders.config.PhaseConfigurationView"
-            id="org.unicase.ui.urml.stakeholders.AssociationView"
-            name="AssociationView"
+            icon="icons/wrench_orange.png"
+            id="org.unicase.ui.urml.stakeholders.PhaseConfigurationView"
+            name="PhaseConfurationView"
             restorable="true">
       </view>
    </extension>
@@ -42,7 +45,7 @@
             class="org.unicase.ui.urml.stakeholders.review.controlbuilder.ReviewedDisplayControlBuilder"
             name="Stakeholders.ReviewedDisplay"
             showLabel="true"
-            type="org.eclipse.emf.ecore.EStructuralFeature">
+            type="java.lang.Boolean">
       </widget>
       <widget
             class="org.unicase.ui.urml.stakeholders.review.controlbuilder.MultiReferenceControlBuilder"
@@ -76,7 +79,7 @@
          point="org.unicase.ui.meeditor.referencecontrols">
       <widget
             class="org.unicase.ui.urml.stakeholders.filtering.MEEditorFilterControl"
-            name="org.unicase.ui.urml.stakeholders.widget2"
+            name="org.unicase.ui.urml.stakeholders.MEEditorFilterControl"
             showLabel="false"
             type="org.eclipse.emf.ecore.EObject">
       </widget>
@@ -97,11 +100,11 @@
                   isEnabledByDefault="true"
                   lang="Java"
                   mode="Batch"
-                  name="Allowed Association Constraint"
+                  name="Disallowed association"
                   severity="ERROR"
                   statusCode="2">
                <message>
-                  Test {0} Test2{1}
+                  Association between {0} and {1} not allowed in phase &quot;{2}&quot;
                </message>
             </constraint>
          </constraints>

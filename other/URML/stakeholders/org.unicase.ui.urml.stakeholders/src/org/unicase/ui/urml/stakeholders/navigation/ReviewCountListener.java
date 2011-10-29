@@ -3,17 +3,12 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.urml.stakeholders.review;
-
-import java.util.Arrays;
-import java.util.Collection;
+package org.unicase.ui.urml.stakeholders.navigation;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.model.urml.UrmlFactory;
-import org.unicase.model.urml.UrmlModelElement;
-import org.unicase.model.urml.UrmlPackage;
 
 /**
  * Abstract class for the reviewed listener.

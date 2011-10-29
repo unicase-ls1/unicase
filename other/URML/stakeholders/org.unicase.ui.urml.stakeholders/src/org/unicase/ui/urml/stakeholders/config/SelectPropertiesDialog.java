@@ -8,6 +8,7 @@ package org.unicase.ui.urml.stakeholders.config;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
@@ -74,11 +75,11 @@ public class SelectPropertiesDialog extends TitleDialogWithoutMinSize {
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		if (reviewSet) {
-			setTitle("Select one reference");
-			setMessage("Choose a reference for the review view");
+			setTitle("Select one model element property");
+			setMessage("Choose a property to be shown in the review view");
 		} else {
-			setTitle("Select references");
-			setMessage("Choose references for the Unicase Navigator which can be shown in MEEditor");
+			setTitle("Select model element properties");
+			setMessage("Choose properties for the Unicase Navigator to be shown in the MEEditor");
 		}
 
 		// Create composite
@@ -103,7 +104,18 @@ public class SelectPropertiesDialog extends TitleDialogWithoutMinSize {
 		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator.getPropertyDescriptors(selectedClassInstance);
 
 		buttons = new ArrayList<Button>();
+		
+		//Remove name, description and reviewed
+		for(ListIterator<IItemPropertyDescriptor> it = propertyDescriptors.listIterator();it.hasNext();){
+			IItemPropertyDescriptor i = it.next();
+			String name = i.getDisplayName(i);
+			if(name.equals("Name")||name.equals("Description")||name.equals("Reviewed")){
+				it.remove();
+			}
+		}
 
+		
+		
 		for (IItemPropertyDescriptor itemDescriptor : propertyDescriptors) {
 			if (reviewSet) {
 				Button b = new Button(group, SWT.RADIO);

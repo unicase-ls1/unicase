@@ -20,7 +20,7 @@ import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
 
 /**
- * Testclass.
+ * Controller, which is used to hide the model element properties in the MEEditor
  * @author kterzieva
  *
  */

@@ -24,16 +24,16 @@ import org.unicase.ui.urml.stakeholders.review.controlbuilder.AbstractControlBui
  * 
  * @author kterzieva
  */
-public class DisplayControlFactory {
+public class ControlBuilderRegistry {
 	private static final String EXTENSION_POINT_ID = "org.unicase.stakeholders.displaycontrols";
 
-	private HashMap<Class<?>, ArrayList<AbstractControlBuilder>> controlRegistry;
+	private HashMap<Class<?>, ArrayList<AbstractControlBuilder>> registeredControlBuilders;
 
 	/**
 	 * Default constructor.
 	 */
-	public DisplayControlFactory() {
-		controlRegistry = new HashMap<Class<?>, ArrayList<AbstractControlBuilder>>();
+	public ControlBuilderRegistry() {
+		registeredControlBuilders = new HashMap<Class<?>, ArrayList<AbstractControlBuilder>>();
 		initializeReviewViewControls();
 	}
 
@@ -49,12 +49,12 @@ public class DisplayControlFactory {
 				AbstractControlBuilder control = (AbstractControlBuilder) e.createExecutableExtension("class");
 				boolean showLabel = Boolean.parseBoolean(e.getAttribute("showLabel"));
 				control.setShowLabel(showLabel);
-				ArrayList<AbstractControlBuilder> list = controlRegistry.get(resolvedType);
+				ArrayList<AbstractControlBuilder> list = registeredControlBuilders.get(resolvedType);
 				if (list == null) {
 					list = new ArrayList<AbstractControlBuilder>();
 				}
 				list.add(control);
-				controlRegistry.put(resolvedType, list);
+				registeredControlBuilders.put(resolvedType, list);
 
 			} catch (ClassNotFoundException e1) {
 				e1.printStackTrace();
@@ -75,7 +75,7 @@ public class DisplayControlFactory {
 	 * @return the {@link AbstractControlBuilder}
 	 */
 
-	public AbstractControlBuilder createDisplayControl(IItemPropertyDescriptor itemPropertyDescriptor,
+	public AbstractControlBuilder selectAppropriateControlBuilder(IItemPropertyDescriptor itemPropertyDescriptor,
 		UrmlModelElement urmlElement) {
 		Object feature = itemPropertyDescriptor.getFeature(urmlElement);
 		if (feature instanceof EStructuralFeature) {
@@ -89,29 +89,33 @@ public class DisplayControlFactory {
 				featureClass = ((EReference) feature).getEType().getInstanceClass();
 			}
 			
-			Set<Class<?>> keySet = controlRegistry.keySet();
+			Set<Class<?>> keySet = registeredControlBuilders.keySet();
 			ArrayList<AbstractControlBuilder> candidates = new ArrayList<AbstractControlBuilder>();
 			for (Class<?> candidateClass : keySet) {
 				if (featureClass.isPrimitive()) {
 					try {
 						Class<?> primitive = (Class<?>) candidateClass.getField("TYPE").get(null);
 						if (primitive.equals(featureClass)) {
-							candidates.addAll(controlRegistry.get(candidateClass));
+							candidates.addAll(registeredControlBuilders.get(candidateClass));
 						}
 
 					} catch (IllegalArgumentException e) {
 						// Do nothing
+						e.printStackTrace();
 					} catch (SecurityException e) {
 						// Do nothing
+						e.printStackTrace();
 					} catch (IllegalAccessException e) {
 						// Do nothing
+						e.printStackTrace();
 					} catch (NoSuchFieldException e) {
 						// Do nothing
+						e.printStackTrace();
 					}
 				}
 				
 				if (candidateClass.isAssignableFrom(featureClass)) {
-					candidates.addAll(controlRegistry.get(candidateClass));
+					candidates.addAll(registeredControlBuilders.get(candidateClass));
 				}
 			}
 		

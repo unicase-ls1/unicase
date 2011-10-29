@@ -20,7 +20,7 @@ import org.unicase.ui.urml.UrmlDiagramFilter;
 import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
 
 /**
- * Filter class for the urml diagram.
+ * Filter class for the URML diagram.
  * 
  * @author kterzieva
  * 

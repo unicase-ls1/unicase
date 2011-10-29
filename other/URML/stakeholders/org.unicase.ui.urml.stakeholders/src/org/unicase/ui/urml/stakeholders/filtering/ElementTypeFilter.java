@@ -16,6 +16,9 @@ public class ElementTypeFilter {
 	
 	public Collection<UrmlModelElement> filter(Collection<UrmlModelElement> elements){
 		Collection<UrmlModelElement> result = new ArrayList<UrmlModelElement>();
+		if(filterToType == null){
+			return result;
+		}
 		for (UrmlModelElement e : elements) {
 			if (filterToType.isSuperTypeOf(e.eClass())) {
 				result.add(e);
