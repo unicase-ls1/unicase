@@ -123,4 +123,15 @@ public abstract class WorkspaceTest {
 		getProject().getModelElements().add(element);
 		return element;
 	}
+
+	/**
+	 * Creates an test element.
+	 * 
+	 * @return test element
+	 */
+	protected TestElement getTestElement(String name) {
+		TestElement element = TestmodelFactory.eINSTANCE.createTestElement();
+		element.setName(name);
+		return element;
+	}
 }

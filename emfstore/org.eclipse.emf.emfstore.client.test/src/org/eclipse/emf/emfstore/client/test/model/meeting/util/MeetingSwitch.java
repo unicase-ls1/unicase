@@ -7,7 +7,6 @@ package org.eclipse.emf.emfstore.client.test.model.meeting.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.emf.emfstore.client.test.model.UnicaseModelElement;
 import org.eclipse.emf.emfstore.client.test.model.meeting.CompositeMeetingSection;
 import org.eclipse.emf.emfstore.client.test.model.meeting.IssueMeetingSection;
@@ -25,7 +24,7 @@ import org.eclipse.emf.emfstore.client.test.model.meeting.WorkItemMeetingSection
  * @see org.eclipse.emf.emfstore.client.test.model.meeting.MeetingPackage
  * @generated
  */
-public class MeetingSwitch<T> extends Switch<T> {
+public class MeetingSwitch<T> {
 	/**
 	 * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -51,7 +50,6 @@ public class MeetingSwitch<T> extends Switch<T> {
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
-	@Override
 	protected boolean isSwitchFor(EPackage ePackage) {
 		return ePackage == modelPackage;
 	}
@@ -63,7 +61,6 @@ public class MeetingSwitch<T> extends Switch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 		case MeetingPackage.MEETING: {
@@ -214,7 +211,6 @@ public class MeetingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	@Override
 	public T defaultCase(EObject object) {
 		return null;
 	}

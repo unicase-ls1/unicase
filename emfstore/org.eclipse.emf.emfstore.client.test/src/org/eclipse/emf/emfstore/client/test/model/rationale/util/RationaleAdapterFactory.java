@@ -149,7 +149,8 @@ public class RationaleAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+		EObject object = (EObject) target;
+		return modelSwitch.doSwitch(object.eClass().getClassifierID(), object);
 	}
 
 	/**

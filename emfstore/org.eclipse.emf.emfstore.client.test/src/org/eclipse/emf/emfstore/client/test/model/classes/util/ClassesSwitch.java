@@ -7,7 +7,6 @@ package org.eclipse.emf.emfstore.client.test.model.classes.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.emf.emfstore.client.test.model.UnicaseModelElement;
 import org.eclipse.emf.emfstore.client.test.model.classes.Association;
 import org.eclipse.emf.emfstore.client.test.model.classes.Attribute;
@@ -28,7 +27,7 @@ import org.eclipse.emf.emfstore.client.test.model.classes.PackageElement;
  * @see org.eclipse.emf.emfstore.client.test.model.classes.ClassesPackage
  * @generated
  */
-public class ClassesSwitch<T> extends Switch<T> {
+public class ClassesSwitch<T> {
 	/**
 	 * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -54,7 +53,6 @@ public class ClassesSwitch<T> extends Switch<T> {
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
-	@Override
 	protected boolean isSwitchFor(EPackage ePackage) {
 		return ePackage == modelPackage;
 	}
@@ -66,7 +64,6 @@ public class ClassesSwitch<T> extends Switch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 		case ClassesPackage.CLASS: {
@@ -326,7 +323,6 @@ public class ClassesSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	@Override
 	public T defaultCase(EObject object) {
 		return null;
 	}

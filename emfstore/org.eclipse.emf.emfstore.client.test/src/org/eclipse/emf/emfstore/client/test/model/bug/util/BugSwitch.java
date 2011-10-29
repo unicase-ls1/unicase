@@ -7,7 +7,6 @@ package org.eclipse.emf.emfstore.client.test.model.bug.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.emf.emfstore.client.test.model.Annotation;
 import org.eclipse.emf.emfstore.client.test.model.UnicaseModelElement;
 import org.eclipse.emf.emfstore.client.test.model.bug.BugPackage;
@@ -24,7 +23,7 @@ import org.eclipse.emf.emfstore.client.test.model.task.WorkItem;
  * @see org.eclipse.emf.emfstore.client.test.model.bug.BugPackage
  * @generated
  */
-public class BugSwitch<T> extends Switch<T> {
+public class BugSwitch<T> {
 	/**
 	 * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -50,7 +49,6 @@ public class BugSwitch<T> extends Switch<T> {
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
-	@Override
 	protected boolean isSwitchFor(EPackage ePackage) {
 		return ePackage == modelPackage;
 	}
@@ -62,7 +60,6 @@ public class BugSwitch<T> extends Switch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 		case BugPackage.BUG_REPORT: {
@@ -161,7 +158,6 @@ public class BugSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	@Override
 	public T defaultCase(EObject object) {
 		return null;
 	}
