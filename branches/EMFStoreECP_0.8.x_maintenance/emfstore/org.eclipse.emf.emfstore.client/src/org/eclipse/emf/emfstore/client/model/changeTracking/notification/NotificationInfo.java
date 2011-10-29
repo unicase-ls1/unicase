@@ -518,4 +518,7 @@ public class NotificationInfo implements Notification {
 
 	}
 
+	public Class<? extends Notification> getNotificationType() {
+		return notification.getClass();
+	}
 }
