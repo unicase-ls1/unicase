@@ -1382,15 +1382,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			AbstractOperation copy = (AbstractOperation) EcoreUtil.copy(abstractOperation);
 			changePackage.getOperations().add(copy);
 		}
-		// copy events from projectspace
-		for (Event event : getEventsFromComposite()) {
-			Event copy = (Event) EcoreUtil.copy(event);
-			changePackage.getEvents().add(copy);
-		}
-
-		if (canonize) {
-			changePackage.cannonize();
-		}
+		// // copy events from projectspace
+		// for (Event event : getEventsFromComposite()) {
+		// Event copy = (Event) EcoreUtil.copy(event);
+		// changePackage.getEvents().add(copy);
+		// }
+		//
+		// if (canonize) {
+		// changePackage.cannonize();
+		// }
 		return changePackage;
 	}
 
