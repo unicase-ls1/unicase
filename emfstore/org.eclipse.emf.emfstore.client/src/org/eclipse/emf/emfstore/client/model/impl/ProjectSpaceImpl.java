@@ -1538,9 +1538,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		// create notifications only if the project is updated to a newer
 		// version
-		if (resolvedVersion.compareTo(baseVersion) == 1) {
-			generateNotifications(changes);
-		}
+		// if (resolvedVersion.compareTo(baseVersion) == 1) {
+		// generateNotifications(changes);
+		// }
 
 		// TODO Chainsaw. Do we need this anymore?
 		if (observer != null) {
