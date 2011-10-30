@@ -17,7 +17,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -45,7 +44,6 @@ import org.eclipse.emf.emfstore.client.model.connectionmanager.ConnectionManager
 import org.eclipse.emf.emfstore.client.model.exceptions.ProjectUrlResolutionException;
 import org.eclipse.emf.emfstore.client.model.exceptions.ServerUrlResolutionException;
 import org.eclipse.emf.emfstore.client.model.exceptions.UnkownProjectException;
-import org.eclipse.emf.emfstore.client.model.notification.NotificationGenerator;
 import org.eclipse.emf.emfstore.client.model.observers.DeleteProjectSpaceObserver;
 import org.eclipse.emf.emfstore.client.model.util.ResourceHelper;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
@@ -55,10 +53,8 @@ import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.emf.emfstore.server.exceptions.InvalidVersionSpecException;
 import org.eclipse.emf.emfstore.server.model.ProjectInfo;
-import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
 import org.eclipse.emf.emfstore.server.model.url.ProjectUrlFragment;
 import org.eclipse.emf.emfstore.server.model.url.ServerUrl;
-import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.DateVersionSpec;
 import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
 import org.eclipse.emf.emfstore.server.model.versioning.VersionSpec;
@@ -298,11 +294,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 				sourceSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 				sourceSpec.setIdentifier(0);
 			}
-			List<ChangePackage> changes = connectionManager.getChanges(usersession.getSessionId(),
-				projectSpace.getProjectId(), sourceSpec, targetSpec);
-			List<ESNotification> newNotifications = NotificationGenerator.getInstance(projectSpace)
-				.generateNotifications(changes, usersession.getUsername());
-			projectSpace.getNotificationsFromComposite().addAll(newNotifications);
+
 			projectSpace.eResource().save(null);
 		} catch (EmfStoreException e) {
 			projectSpace.getNotificationsFromComposite().clear();
