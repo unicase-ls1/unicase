@@ -123,7 +123,12 @@ public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implemen
 		if (o.eResource() != null) {
 			return;
 		}
-		if (currentResourceElementCount > MAX_CAPACITY) {
+
+		URI uri = currentResource.getURI();
+		File file = new File(uri.toFileString());
+
+		// TODO: magic number
+		if (currentResourceElementCount > MAX_CAPACITY || file.length() > 100000) {
 			currentResource = createRandomResource(resourceSet, path);
 			currentResourceElementCount = 0;
 		}
