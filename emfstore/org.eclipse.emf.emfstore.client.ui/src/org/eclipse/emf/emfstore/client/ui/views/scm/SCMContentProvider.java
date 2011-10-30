@@ -85,6 +85,8 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		} else if (element instanceof ChangePackage) {
 			ChangePackage cp = (ChangePackage) element;
 			return getChildren(cp, treeNode);
+		} else if (element instanceof AbstractOperation) {
+			return getChildren((AbstractOperation) element, treeNode);
 		} else if (element instanceof EObject) {
 			EObject me = (EObject) element;
 			// show only model element that are contained in a project
