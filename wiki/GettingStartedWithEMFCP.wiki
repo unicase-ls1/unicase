@@ -1,4 +1,7 @@
 #summary Getting started with the EMF Client Platform
+
+EMF Client Platform has moved to Eclipse, please follow [http://emfcp.org this link].
+
 The following tutorials explain step-by-step, how to use the EMF Client Platform. All tutorials are referencing the example Library model. The first step describes, how to install this model.
 
   # [SetupEMFCP Set-Up the EMF Client Platform (including example model)]
