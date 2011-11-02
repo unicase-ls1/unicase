@@ -1,4 +1,7 @@
 #summary Documentation of ECP
+
+EMF Client Platform has moved to Eclipse, please follow [http://emfcp.org this link].
+
 [ModelsTutorial Models 2010 Tutorial]
 
 [GettingStartedWithEMFCP Getting Started with the EMF Client Platform]
