@@ -63,6 +63,17 @@ public class ReviewViewElementContentFactory {
 	 */
 	public void createElementContent(UrmlModelElement urmlElement,
 			StakeholderRole role) {
+		
+		//Delete previous controls
+		while (!controls.isEmpty()) {
+			IDisposable c = controls.get(controls.size() - 1);
+			c.dispose();
+			controls.remove(controls.size() - 1);
+		}
+		
+		if(urmlElement == null){
+			return;
+		}
 
 		// Finde die refernceToShow, die zu className gehört
 		// EList<EStructuralFeature> reference =
@@ -77,11 +88,7 @@ public class ReviewViewElementContentFactory {
 			shownProperties.add(featureToShow.getName());
 		}
 
-		while (!controls.isEmpty()) {
-			IDisposable c = controls.get(controls.size() - 1);
-			c.dispose();
-			controls.remove(controls.size() - 1);
-		}
+
 
 		// ComposedAdapterFactory is used for providing different elements
 		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(

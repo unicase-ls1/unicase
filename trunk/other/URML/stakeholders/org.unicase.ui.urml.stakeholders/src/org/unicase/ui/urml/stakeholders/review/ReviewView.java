@@ -5,12 +5,13 @@
  */
 package org.unicase.ui.urml.stakeholders.review;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
@@ -32,7 +33,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormAttachment;
@@ -53,15 +54,15 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.urml.StakeholderRole;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.ui.common.util.ComboView;
 import org.unicase.ui.common.util.ComboView.IComboChangeListener;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.urml.stakeholders.Activator;
+import org.unicase.ui.urml.stakeholders.ChangeObserverAdapter;
 import org.unicase.ui.urml.stakeholders.StakeholderUtil;
 import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
 import org.unicase.ui.urml.stakeholders.filtering.ElementTypeFilter;
@@ -94,21 +95,28 @@ public class ReviewView extends ViewPart {
 	private Composite errorComposite;
 	private StackLayout stackLayout;
 	private Composite mainComposite;
+	private Project activeProject;
+	private ProjectChangeObserver projectChangeObserver;
+	private EClass currentlyShownType;
 
-	// private static final Image UNREVIEWED_ICON =
-	// Activator.getImageDescriptor("icons/open.png").createImage();
-	// private static final Image REVIEWED_ICON =
-	// Activator.getImageDescriptor("icons/closed.gif").createImage();
+	 private static final Image UNREVIEWED_ICON =
+	 Activator.getImageDescriptor("icons/open.png").createImage();
+	 private static final Image REVIEWED_ICON =
+	 Activator.getImageDescriptor("icons/closed.gif").createImage();
 
 	@Override
 	public void dispose() {
 		super.dispose();
 		controller.dispose();
 		Activator.getRoleChangedPublisher().deleteObserver(roleChangedObserver);
+		
+		activeProject.removeProjectChangeObserver(projectChangeObserver);
 	}
 
 	@Override
 	public void createPartControl( Composite parent) {
+		
+		activeProject= StakeholderUtil.getActiveProject();
 		
 		mainComposite = new Composite(parent, SWT.NONE);
 		stackLayout = new StackLayout();
@@ -137,21 +145,8 @@ public class ReviewView extends ViewPart {
 
 		createMenuActions();
 
-		// Test code for filling the view with elements. To be replaced later
-
-		// try {
-		// if(StakeholderView.getActiveRole()!= null){
-		// setReviewViewInput(UrmlTreeHandler.getUrmlElementsfromProjects(UrmlTreeHandler.getTestProject()),
-		// null);
-		// }
-		// //
-		// indexHandler.setInput(UrmlTreeHandler.getRequirementsfromProjects(UrmlTreeHandler.getTestProject()));
-		// // later getStakeholderElementSet(stakeholder);
-		// } catch (NoWorkspaceException e1) {
-		// e1.printStackTrace();
-		// }
 		StakeholderRole role = UrmlSettingsManager.INSTANCE.getActiveRole();
-		setInputFromRole(StakeholderUtil.getActiveProject(), role);
+		setInputFromRole(activeProject, role);
 		
 	}
 
@@ -197,6 +192,10 @@ public class ReviewView extends ViewPart {
 	}
 
 	private void setReviewViewInput(Collection<UrmlModelElement> collection) {
+		
+		//After input has changed, no element is selected anymore.
+		openElement(null);
+		
 		controller.setReviewViewInput(collection);
 	}
 
@@ -263,10 +262,15 @@ public class ReviewView extends ViewPart {
 			@Override
 			public String getText(Object element) {
 				EClass eclassName = (EClass) element;
+				if(eclassName == null){
+					return "";
+				}
 				return eclassName.getName();
 			}
 		});
 
+		comboSelectBox.getControl().setLayoutData(
+				new GridData(SWT.BEGINNING, SWT.BEGINNING, false, false));
 
 		reviewElementsViewer = new TableViewer(comp, SWT.FULL_SELECTION);
 		reviewElementsViewer.setContentProvider(ArrayContentProvider
@@ -284,11 +288,11 @@ public class ReviewView extends ViewPart {
 		// LabelProvider für jede Spalte setzen
 		viewerReviewStatusColumn.setLabelProvider(new CellLabelProvider() {
 			public void update(ViewerCell cell) {
-				// if (test.isReviewed()) {
-				// cell.setImage(REVIEWED_ICON);
-				// } else {
-				// cell.setImage(UNREVIEWED_ICON);
-				// }
+				 if (((UrmlModelElement)cell.getElement()).isReviewed()) {
+					 cell.setImage(REVIEWED_ICON);
+				 } else {
+					 cell.setImage(UNREVIEWED_ICON);
+				 }
 			}
 		});
 
@@ -461,15 +465,46 @@ public class ReviewView extends ViewPart {
 					@Override
 					public void selectionChanged(EClass newSelection) {
 
-						ElementTypeFilter typeFilter = new ElementTypeFilter(
-								newSelection);
-						Collection<UrmlModelElement> filteredElements = typeFilter.filter(StakeholderUtil
-								.getUrmlElementsfromProjects(StakeholderUtil
-										.getActiveProject()));
-						setReviewViewInput(filteredElements);
+						showElementsOfType(newSelection);
 
 					}
+
+				
 				});
+		
+		//Observer which reacts to deleted and added model elements by
+		//refreshing the input if necessary
+		projectChangeObserver = new ChangeObserverAdapter(){
+			
+			public void modelElementAdded(Project project, EObject modelElement) {
+				if(currentlyShownType != null && currentlyShownType.isInstance(modelElement)){
+					refreshInput();
+				}
+			}
+			
+			public void modelElementRemoved(Project project, EObject modelElement) {
+				if(currentlyShownType != null && currentlyShownType.isInstance(modelElement)){
+					refreshInput();
+				}
+			}
+		};
+		activeProject.addProjectChangeObserver(projectChangeObserver);
+		
+	}
+	
+	private void refreshInput(){
+		ElementTypeFilter typeFilter = new ElementTypeFilter(
+				currentlyShownType);
+		Collection<UrmlModelElement> filteredElements = typeFilter.filter(StakeholderUtil
+				.getUrmlElementsfromProjects(StakeholderUtil
+						.getActiveProject()));
+		setReviewViewInput(filteredElements);
+		
+	}
+	
+	private void showElementsOfType(EClass newSelection) {
+		currentlyShownType = newSelection;
+		refreshInput();
 	}
 
 	/**
@@ -481,7 +516,7 @@ public class ReviewView extends ViewPart {
 
 	public void openElement(UrmlModelElement urmlElement) {
 		this.currentlyDisplayedElement = urmlElement;
-		openModelElement.setEnabled(true);
+		openModelElement.setEnabled(urmlElement != null);
 		contentFactory.createElementContent(urmlElement,
 				UrmlSettingsManager.INSTANCE.getActiveRole());
 	}
@@ -514,13 +549,19 @@ public class ReviewView extends ViewPart {
 	public void setInputFromRole(Project activeProject, StakeholderRole role) {
 		if(role != null){
 			EMap<EClass, EList<EStructuralFeature>> reviewSetOfActiveRole = role.getReviewSet();
-			comboSelectBox.setInput(reviewSetOfActiveRole.keySet());
+			Set<EClass> types = reviewSetOfActiveRole.keySet();
+			comboSelectBox.setInput(types);
 			stackLayout.topControl = contentComposite;
+			comboSelectBox.getControl().pack();
 			mainComposite.layout();
-
+			EClass selection = comboSelectBox.getSelection();
+			if(selection!=null){
+				showElementsOfType(selection);			
+			}
 		}else{
 			comboSelectBox.setInput(new ArrayList<EClass>(0));
 			stackLayout.topControl = errorComposite;
+			comboSelectBox.getControl().pack();
 			mainComposite.layout();
 		}
 

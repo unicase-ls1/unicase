@@ -7,18 +7,18 @@
 package org.unicase.ui.urml.stakeholders.config;
 
 import java.util.ArrayList;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CheckboxCellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Image;
-import org.unicase.ui.urml.stakeholders.Activator;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -31,7 +31,7 @@ public class PhaseConfigurationEditingSupport extends EditingSupport {
 	private final TableViewer viewer;
 	private EClass columnClass;
 	private PhaseConfigurationView rulesView;
-	private TableViewerColumn tableViewerColumn;
+//	private TableViewerColumn tableViewerColumn;
 //	private static final Image CHECKED = Activator.getImageDescriptor("icons/checked.gif").createImage();
 //	private static final Image UNCHECKED = Activator.getImageDescriptor("icons/unchecked.gif").createImage();
 
@@ -50,7 +50,7 @@ public class PhaseConfigurationEditingSupport extends EditingSupport {
 		this.viewer = viewer;
 		this.columnClass = columnClass;
 		this.rulesView = rulesView;
-		this.tableViewerColumn = viewerColumn;
+	//	this.tableViewerColumn = viewerColumn;
 	}
 
 	@Override
@@ -70,7 +70,14 @@ public class PhaseConfigurationEditingSupport extends EditingSupport {
 
 	@Override
 	protected void setValue(final Object element, Object value) {
-		rulesView.printPhase("SET VALUE",UrmlSettingsManager.INSTANCE.getActivePhase());
+		if(UrmlSettingsManager.INSTANCE.getActivePhase() == null){
+			MessageDialog.openWarning(
+					viewer.getControl().getShell(),
+					"No development phase active",
+					"You must set a development phase as active before you can edit it.");
+			return;
+		}
+		//rulesView.printPhase("SET VALUE",UrmlSettingsManager.INSTANCE.getActivePhase());
 		if (!rulesView.hasStaticAssociation(columnClass, (EClass) element)
 			&& !rulesView.hasStaticAssociation((EClass) element, columnClass)) {
 			new UnicaseCommand(){

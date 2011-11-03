@@ -26,9 +26,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-import org.unicase.ecp.model.NoWorkspaceException;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.urml.Phase;
 import org.unicase.model.urml.UrmlFactory;
@@ -92,16 +90,17 @@ public class ManagePhasesDialog extends TitleDialogWithoutMinSize {
 	
 	private void createAddDialog() {
 		final Phase newPhase = UrmlFactory.eINSTANCE.createPhase();
-		AddPhaseDialog addPhaseDialog = new AddPhaseDialog(addPhaseButton.getShell(), newPhase, ADD_NEW_PHASE, ADD_DIALOG_MESSAGE);
+		final AddPhaseDialog addPhaseDialog = new AddPhaseDialog(addPhaseButton.getShell(), newPhase, ADD_NEW_PHASE, ADD_DIALOG_MESSAGE);
 		addPhaseDialog.setBlockOnOpen(true);
 		if (addPhaseDialog.open() == Window.OK) {
 			new UnicaseCommand() {
 				@Override
 				protected void doRun() {
+					newPhase.setName(addPhaseDialog.getSelectedName());
 					activeProject.addModelElement(newPhase);
-					//roleListHasChanged = true;
 				}
 			}.run();
+			setTableInput();
 		}
 	}
 	

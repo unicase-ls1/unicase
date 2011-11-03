@@ -101,16 +101,12 @@ public class ControlBuilderRegistry {
 
 					} catch (IllegalArgumentException e) {
 						// Do nothing
-						e.printStackTrace();
 					} catch (SecurityException e) {
 						// Do nothing
-						e.printStackTrace();
 					} catch (IllegalAccessException e) {
 						// Do nothing
-						e.printStackTrace();
 					} catch (NoSuchFieldException e) {
 						// Do nothing
-						e.printStackTrace();
 					}
 				}
 				
