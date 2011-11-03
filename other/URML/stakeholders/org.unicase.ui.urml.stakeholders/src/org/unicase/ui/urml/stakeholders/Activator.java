@@ -6,13 +6,11 @@
 package org.unicase.ui.urml.stakeholders;
 
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
-import org.unicase.metamodel.Project;
 import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
 import org.unicase.ui.urml.stakeholders.navigation.ReviewCountPublisher;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * The activator class controls the plug-in life cycle.
@@ -29,14 +27,14 @@ public class Activator extends AbstractUIPlugin {
 	// The shared instance
 	private static Activator plugin;
 
-	private static ReviewCountPublisher reviewCountpublisher;
 	private final static Publisher roleChangedPublisher = new Publisher();
-	
+	private final static Publisher phaseChangedPublisher = new Publisher();
 	/**
 	 * The constructor.
 	 */
 	
 	public Activator() {
+
 	}
 
 	/*
@@ -51,9 +49,17 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-		reviewCountpublisher = (new ReviewCountPublisher(StakeholderUtil.getActiveProject()));
-		getCountPublisher().createListeners();
-		UrmlSettingsManager.INSTANCE.initFromProject(StakeholderUtil.getActiveProjectSpace());
+		Display.getDefault().asyncExec(new Runnable() {
+			
+			@Override
+			public void run() {
+				try{
+					UrmlSettingsManager.INSTANCE.initFromProject(StakeholderUtil.getActiveProjectSpace());
+				} catch (Exception e){
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	/*
@@ -87,16 +93,14 @@ public class Activator extends AbstractUIPlugin {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
 
-	/**
-	 * Gets the reviewed tracker.
-	 * @return tracker the tracker
-	 */
-	public static ReviewCountPublisher getCountPublisher() {
-		return reviewCountpublisher;
-	}
+
 	
 	public static Publisher getRoleChangedPublisher() {
 		return roleChangedPublisher;
+	}
+	
+	public static Publisher getPhaseChangedPublisher() {
+		return phaseChangedPublisher;
 	}
 
 }

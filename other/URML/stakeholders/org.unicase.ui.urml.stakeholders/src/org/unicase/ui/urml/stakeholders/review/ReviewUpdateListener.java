@@ -1,9 +1,7 @@
 package org.unicase.ui.urml.stakeholders.review;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.TableViewer;
-
 import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.model.urml.UrmlModelElement;
 

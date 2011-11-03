@@ -19,6 +19,7 @@ public class AddPhaseDialog extends TitleAreaDialog {
 	private Text phaseName;
 	private Composite composite;
 	private Phase developmentPhase;
+	private String selectedText;
 	
 	public AddPhaseDialog(Shell parentShell, Phase phase, String dialogName, String dialogMessage) {
 		super(parentShell);
@@ -77,6 +78,7 @@ public class AddPhaseDialog extends TitleAreaDialog {
 	protected void buttonPressed(int buttonId) {
 		if (buttonId == Window.OK) {
 			writePhaseNameToProject();
+			selectedText = phaseName.getText();
 		}
 		super.buttonPressed(buttonId);
 	}
@@ -84,5 +86,9 @@ public class AddPhaseDialog extends TitleAreaDialog {
 	private void writePhaseNameToProject() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public String getSelectedName() {
+		return selectedText;
 	}
 }

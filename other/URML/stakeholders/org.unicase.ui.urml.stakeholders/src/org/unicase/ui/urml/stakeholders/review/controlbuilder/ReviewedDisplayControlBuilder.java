@@ -5,12 +5,15 @@
  */
 package org.unicase.ui.urml.stakeholders.review.controlbuilder;
 
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.databinding.EMFDataBindingContext;
+import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -71,9 +74,9 @@ public class ReviewedDisplayControlBuilder extends AbstractControlBuilder {
 		EList<EStructuralFeature> referenceListFromElement = test.get(urmlElement.eClass());
 		
 		//to change the display name use the property descriptor
-		if(!referenceListFromElement.isEmpty()){
-			check.setText("(" + referenceListFromElement.get(0).getName() + ")");
-		}
+//		if(!referenceListFromElement.isEmpty()){
+//			check.setText("(" + referenceListFromElement.get(0).getName() + ")");
+//		}
 		
 		//implement set of properties for a certain element
 		if(!attribute.getName().equals("reviewed")){
@@ -81,9 +84,9 @@ public class ReviewedDisplayControlBuilder extends AbstractControlBuilder {
 			
 		}
 		
-//		IObservableValue model = EMFEditObservables.observeValue(getContext().getEditingDomain(), getModelElement(), attribute);
-//		EMFDataBindingContext dbc = new EMFDataBindingContext();
-//		dbc.bindValue(SWTObservables.observeSelection(check), model, null, null);
+		IObservableValue model = EMFEditObservables.observeValue(getContext().getEditingDomain(), getModelElement(), attribute);
+		EMFDataBindingContext dbc = new EMFDataBindingContext();
+		dbc.bindValue(SWTObservables.observeSelection(check), model, null, null);
 		return check;
 
 	}

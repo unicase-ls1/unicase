@@ -15,11 +15,11 @@ import org.unicase.model.urml.UrmlFactory;
  * 
  * @author kterzieva
  */
+@Deprecated
 public class ReviewCountListener implements ModelElementChangeListener {
 
 	private ReviewCountPublisher publisher;
-
-	private final EStructuralFeature REVIEWED_FEATURE = UrmlFactory.eINSTANCE.getUrmlPackage().getUrmlModelElement().getEStructuralFeature("reviewed");
+	public static final EStructuralFeature REVIEWED_FEATURE = UrmlFactory.eINSTANCE.getUrmlPackage().getUrmlModelElement().getEStructuralFeature("reviewed");
 
 	/**
 	 * The construct.

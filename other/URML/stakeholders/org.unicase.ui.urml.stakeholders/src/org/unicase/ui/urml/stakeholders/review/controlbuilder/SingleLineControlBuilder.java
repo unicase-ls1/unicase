@@ -17,8 +17,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.unicase.model.urml.UrmlModelElement;
-import org.unicase.model.urml.UrmlPackage;
-import org.unicase.ui.urml.stakeholders.review.ReviewUtil;
 
 /**
  * The widgets to show a single line text attribute.
