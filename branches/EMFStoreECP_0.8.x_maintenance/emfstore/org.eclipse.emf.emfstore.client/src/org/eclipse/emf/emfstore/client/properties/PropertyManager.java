@@ -19,9 +19,11 @@ import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.accesscontrol.AccessControlHelper;
 import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.common.model.EMFStorePropertyType;
 import org.eclipse.emf.emfstore.common.model.PropertyStringValue;
+import org.eclipse.emf.emfstore.server.exceptions.AccessControlException;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 
 /**
@@ -195,6 +197,14 @@ public final class PropertyManager {
 	 *             if any error occurs in the EmfStore
 	 * */
 	public void transmit() throws EmfStoreException {
+
+		try {
+			new AccessControlHelper(projectSpace.getUsersession()).checkWriteAccess(projectSpace.getProjectId());
+		} catch (AccessControlException e) {
+			// do not transmit properties if user is a reader
+			return;
+		}
+
 		List<EMFStoreProperty> changedProperties = new ArrayList<EMFStoreProperty>();
 
 		for (EMFStoreProperty prop : this.projectSpace.getChangedSharedProperties().values()) {
