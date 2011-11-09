@@ -2137,9 +2137,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		}
 		Node label5110 = createLabel(node,
 				ScrmVisualIDRegistry.getType(FeatureName2EditPart.VISUAL_ID));
-		Node label5111 = createLabel(node,
-				ScrmVisualIDRegistry
-						.getType(FeatureDescription2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -2755,7 +2752,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		createCompartment(
 				node,
 				ScrmVisualIDRegistry
-						.getType(DataProcessSpaceDataProcessSpaceCompartmentEditPart.VISUAL_ID),
+						.getType(DataProcessSpaceDataProcessSpaceCompartment2EditPart.VISUAL_ID),
 				true, false, false, false);
 		return node;
 	}

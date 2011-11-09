@@ -1631,27 +1631,6 @@ public class ScrmParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser featureDescription_5111Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getFeatureDescription_5111Parser() {
-		if (featureDescription_5111Parser == null) {
-			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
-					.getSCRMModelElement_Description() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			featureDescription_5111Parser = parser;
-		}
-		return featureDescription_5111Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser hardwareName_5112Parser;
 
 	/**
@@ -2602,8 +2581,6 @@ public class ScrmParserProvider extends AbstractProvider implements
 			return getDataFlowName_5108Parser();
 		case FeatureName2EditPart.VISUAL_ID:
 			return getFeatureName_5110Parser();
-		case FeatureDescription2EditPart.VISUAL_ID:
-			return getFeatureDescription_5111Parser();
 		case HardwareName2EditPart.VISUAL_ID:
 			return getHardwareName_5112Parser();
 		case PerformanceName2EditPart.VISUAL_ID:
