@@ -29,16 +29,12 @@ public class OpenRepresentingDiagramHandler extends AbstractHandler {
 			EditPart editPart = (EditPart) selectedElement;
 			View view = (View) editPart.getModel();
 			SCRMSpace representedSpace = (SCRMSpace) view.getElement();
-			SCRMDiagram containingDiagram = (SCRMDiagram) view
-					.getDiagram().eContainer();
 			new ICommandProxy(
-					new OpenDiagramCommand(representedSpace,
-							containingDiagram)).execute();
+					new OpenDiagramCommand(representedSpace)).execute();
 		} else if (selectedElement instanceof SCRMSpace) {
 			SCRMSpace representedSpace = (SCRMSpace) selectedElement;
 			new ICommandProxy(
-					new OpenDiagramCommand(representedSpace,
-							null)).execute();
+					new OpenDiagramCommand(representedSpace)).execute();
 		} else {
 			throw new IllegalArgumentException();
 		}

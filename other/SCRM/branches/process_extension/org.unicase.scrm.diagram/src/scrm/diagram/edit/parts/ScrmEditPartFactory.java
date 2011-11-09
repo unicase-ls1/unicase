@@ -314,9 +314,6 @@ public class ScrmEditPartFactory implements EditPartFactory {
 			case FeatureName2EditPart.VISUAL_ID:
 				return new FeatureName2EditPart(view);
 
-			case FeatureDescription2EditPart.VISUAL_ID:
-				return new FeatureDescription2EditPart(view);
-
 			case Hardware2EditPart.VISUAL_ID:
 				return new Hardware2EditPart(view);
 

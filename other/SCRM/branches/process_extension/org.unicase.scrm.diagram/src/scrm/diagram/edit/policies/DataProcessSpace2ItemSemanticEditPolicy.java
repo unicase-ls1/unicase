@@ -181,7 +181,7 @@ public class DataProcessSpace2ItemSemanticEditPolicy extends
 		for (Iterator<?> nit = view.getChildren().iterator(); nit.hasNext();) {
 			Node node = (Node) nit.next();
 			switch (ScrmVisualIDRegistry.getVisualID(node)) {
-			case DataProcessSpaceDataProcessSpaceCompartmentEditPart.VISUAL_ID:
+			case DataProcessSpaceDataProcessSpaceCompartment2EditPart.VISUAL_ID:
 				for (Iterator<?> cit = node.getChildren().iterator(); cit
 						.hasNext();) {
 					Node cnode = (Node) cit.next();
