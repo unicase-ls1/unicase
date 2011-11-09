@@ -49,7 +49,6 @@ import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.CommonUtil;
 import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.EObjectChangeNotifier;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
@@ -545,8 +544,14 @@ public class OperationRecorder implements CommandObserver, ProjectChangeObserver
 					+ rootEObject.getDeletedModelElementId(deletedElement).getId());
 			// TODO: EM, remove project cast, if possible
 		} else if (checkForIncomingCrossReferences) {
-			ModelUtil.handleIncomingCrossReferences(deletedElement, (Project) rootEObject,
-				cutOffIncomingCrossReferences);
+
+			// delete incoming cross references
+			Collection<Setting> inverseReferences = WorkspaceManager.getInstance().findInverseCrossReferences(
+				deletedElement);
+			ModelUtil.deleteIncomingCrossReferencesFromParent(inverseReferences, deletedElement);
+
+			// ModelUtil.handleIncomingCrossReferences(deletedElement, (Project) rootEObject,
+			// cutOffIncomingCrossReferences);
 		}
 
 		if (!isRecording) {
