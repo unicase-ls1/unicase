@@ -167,7 +167,7 @@ public class DataDefinition2EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT: changed size
 	 */
 	protected NodeFigure createNodePlate() {
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(130, 20);
@@ -263,13 +263,13 @@ public class DataDefinition2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated NOT
 	 */
-	public List<IElementType> getMARelTypesOnSource() {
+	public List<IElementType> getMARelTypesOnTarget() {
 		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
 		List<IElementType> types = new LinkedList<IElementType>();
 		switch(scrmDiagram.getDiagramType()) {
 			case DEFAULT_DIAGRAM:
 			case REQUIREMENTS_DIAGRAM:
-				types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
+				types.add(ScrmElementTypes.RequirementDefiningData_4060);
 		}
 		return types;
 	}
@@ -277,81 +277,13 @@ public class DataDefinition2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated NOT
 	 */
-	public List<IElementType> getMARelTypesOnSourceAndTarget(
-			IGraphicalEditPart targetEditPart) {
+	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
 		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
 		List<IElementType> types = new LinkedList<IElementType>();
 		switch(scrmDiagram.getDiagramType()) {
 			case DEFAULT_DIAGRAM:
 			case REQUIREMENTS_DIAGRAM:
-				if (targetEditPart instanceof ProcessEditPart) {
-					types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
-				}
-				if (targetEditPart instanceof PerformanceEditPart) {
-					types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
-				}
-				if (targetEditPart instanceof InputDataReadingEditPart) {
-					types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
-				}
-				if (targetEditPart instanceof DataHandlingEditPart) {
-					types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
-				}
-				if (targetEditPart instanceof ResultsOutputEditPart) {
-					types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
-				}
-				if (targetEditPart instanceof ErrorHandlingEditPart) {
-					types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
-				}
-				if (targetEditPart instanceof StatusMonitoringEditPart) {
-					types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
-				}
-				if (targetEditPart instanceof RequirementEditPart) {
-					types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
-				}
-				if (targetEditPart instanceof DataProcessSpaceEditPart) {
-					types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
-				}
-				if (targetEditPart instanceof Performance2EditPart) {
-					types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
-				}
-				if (targetEditPart instanceof Requirement2EditPart) {
-					types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
-				}
-				if (targetEditPart instanceof StatusMonitoring2EditPart) {
-					types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
-				}
-				if (targetEditPart instanceof ResultsOutput2EditPart) {
-					types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
-				}
-				if (targetEditPart instanceof Process2EditPart) {
-					types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
-				}
-				if (targetEditPart instanceof InputDataReading2EditPart) {
-					types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
-				}
-				if (targetEditPart instanceof ErrorHandling2EditPart) {
-					types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
-				}
-				if (targetEditPart instanceof DataHandling2EditPart) {
-					types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
-				}
-				if (targetEditPart instanceof DataProcessSpace2EditPart) {
-					types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
-				}
-		}
-		return types;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
-		SCRMDiagram scrmDiagram = (SCRMDiagram) getDiagramView().getElement();
-		List<IElementType> types = new LinkedList<IElementType>();
-		switch(scrmDiagram.getDiagramType()) {
-			case DEFAULT_DIAGRAM:
-			case REQUIREMENTS_DIAGRAM:
-				if (relationshipType == ScrmElementTypes.DataDefinitionDefinedRequirement_4055) {
+				if (relationshipType == ScrmElementTypes.RequirementDefiningData_4060) {
 					types.add(ScrmElementTypes.Process_2035);
 					types.add(ScrmElementTypes.Performance_2015);
 					types.add(ScrmElementTypes.InputDataReading_2036);

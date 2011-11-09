@@ -23,7 +23,6 @@ import scrm.diagram.edit.parts.Constraint2EditPart;
 import scrm.diagram.edit.parts.ConstraintEditPart;
 import scrm.diagram.edit.parts.ConstraintRestrictedFeatureEditPart;
 import scrm.diagram.edit.parts.DataDefinition2EditPart;
-import scrm.diagram.edit.parts.DataDefinitionDefinedRequirementEditPart;
 import scrm.diagram.edit.parts.DataDefinitionEditPart;
 import scrm.diagram.edit.parts.DataFlow2EditPart;
 import scrm.diagram.edit.parts.DataFlowEditPart;
@@ -34,6 +33,7 @@ import scrm.diagram.edit.parts.DataProcessSpace2EditPart;
 import scrm.diagram.edit.parts.DataProcessSpaceEditPart;
 import scrm.diagram.edit.parts.ErrorHandling2EditPart;
 import scrm.diagram.edit.parts.ErrorHandlingEditPart;
+import scrm.diagram.edit.parts.ErrorHandlingHandledProcessEditPart;
 import scrm.diagram.edit.parts.Feature2EditPart;
 import scrm.diagram.edit.parts.FeatureDependenciesEditPart;
 import scrm.diagram.edit.parts.FeatureEditPart;
@@ -57,14 +57,15 @@ import scrm.diagram.edit.parts.MathematicalModelRepresentedProblemEditPart;
 import scrm.diagram.edit.parts.NumericalMethod2EditPart;
 import scrm.diagram.edit.parts.NumericalMethodDependenciesEditPart;
 import scrm.diagram.edit.parts.NumericalMethodEditPart;
-import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
 import scrm.diagram.edit.parts.NumericalMethodSolvedProblemEditPart;
 import scrm.diagram.edit.parts.Performance2EditPart;
+import scrm.diagram.edit.parts.PerformanceDescribedMethodEditPart;
 import scrm.diagram.edit.parts.PerformanceEditPart;
 import scrm.diagram.edit.parts.Process2EditPart;
 import scrm.diagram.edit.parts.ProcessEditPart;
 import scrm.diagram.edit.parts.ProcessSuccessorEditPart;
 import scrm.diagram.edit.parts.Requirement2EditPart;
+import scrm.diagram.edit.parts.RequirementDefiningDataEditPart;
 import scrm.diagram.edit.parts.RequirementEditPart;
 import scrm.diagram.edit.parts.RequirementRealizedMethodEditPart;
 import scrm.diagram.edit.parts.RequirementRefinedRequirementEditPart;
@@ -81,6 +82,7 @@ import scrm.diagram.edit.parts.SoftwareInterface2EditPart;
 import scrm.diagram.edit.parts.SoftwareInterfaceEditPart;
 import scrm.diagram.edit.parts.StatusMonitoring2EditPart;
 import scrm.diagram.edit.parts.StatusMonitoringEditPart;
+import scrm.diagram.edit.parts.StatusMonitoringMonitoredProcessEditPart;
 import scrm.diagram.edit.parts.UserInterface2EditPart;
 import scrm.diagram.edit.parts.UserInterfaceEditPart;
 import scrm.diagram.part.ScrmDiagramEditorPlugin;
@@ -364,7 +366,8 @@ public class ScrmElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType NumericalMethodPerformance_4017 = getElementType("org.unicase.scrm.diagram.NumericalMethodPerformance_4017"); //$NON-NLS-1$
+	public static final IElementType PerformanceDescribedMethod_4059 = getElementType("org.unicase.scrm.diagram.PerformanceDescribedMethod_4059"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -408,7 +411,7 @@ public class ScrmElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType DataDefinitionDefinedRequirement_4055 = getElementType("org.unicase.scrm.diagram.DataDefinitionDefinedRequirement_4055"); //$NON-NLS-1$
+	public static final IElementType RequirementDefiningData_4060 = getElementType("org.unicase.scrm.diagram.RequirementDefiningData_4060"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -419,6 +422,16 @@ public class ScrmElementTypes {
 	 * @generated
 	 */
 	public static final IElementType ProcessSuccessor_4047 = getElementType("org.unicase.scrm.diagram.ProcessSuccessor_4047"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ErrorHandlingHandledProcess_4061 = getElementType("org.unicase.scrm.diagram.ErrorHandlingHandledProcess_4061"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType StatusMonitoringMonitoredProcess_4062 = getElementType("org.unicase.scrm.diagram.StatusMonitoringMonitoredProcess_4062"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -712,7 +725,7 @@ public class ScrmElementTypes {
 					RequirementsPackage.eINSTANCE
 							.getRequirement_RealizedMethod());
 
-			elements.put(NumericalMethodPerformance_4017,
+			elements.put(PerformanceDescribedMethod_4059,
 					RequirementsPackage.eINSTANCE
 							.getPerformance_DescribedMethod());
 
@@ -748,9 +761,8 @@ public class ScrmElementTypes {
 					RequirementsPackage.eINSTANCE
 							.getRequirement_RefinedRequirement());
 
-			elements.put(DataDefinitionDefinedRequirement_4055,
-					RequirementsPackage.eINSTANCE
-							.getDataDefinition_DefinedRequirement());
+			elements.put(RequirementDefiningData_4060,
+					RequirementsPackage.eINSTANCE.getRequirement_DefiningData());
 
 			elements.put(DataFlowSpecifiedProcess_4056,
 					RequirementsPackage.eINSTANCE
@@ -759,6 +771,14 @@ public class ScrmElementTypes {
 			elements.put(ProcessSuccessor_4047,
 					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
 							.getProcess_Successor());
+
+			elements.put(ErrorHandlingHandledProcess_4061,
+					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
+							.getErrorHandling_HandledProcess());
+
+			elements.put(StatusMonitoringMonitoredProcess_4062,
+					scrm.requirements.dataProcess.DataProcessPackage.eINSTANCE
+							.getStatusMonitoring_MonitoredProcess());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -829,7 +849,7 @@ public class ScrmElementTypes {
 			KNOWN_ELEMENT_TYPES.add(MathematicalModelDependencies_4012);
 			KNOWN_ELEMENT_TYPES.add(NumericalMethodDependencies_4015);
 			KNOWN_ELEMENT_TYPES.add(RequirementRealizedMethod_4050);
-			KNOWN_ELEMENT_TYPES.add(NumericalMethodPerformance_4017);
+			KNOWN_ELEMENT_TYPES.add(PerformanceDescribedMethod_4059);
 			KNOWN_ELEMENT_TYPES.add(FeatureRequiredInterfaces_4023);
 			KNOWN_ELEMENT_TYPES.add(FeatureProvidedInterfaces_4024);
 			KNOWN_ELEMENT_TYPES.add(ConstraintRestrictedFeature_4051);
@@ -839,9 +859,11 @@ public class ScrmElementTypes {
 			KNOWN_ELEMENT_TYPES.add(FeatureRequiredFeatures_4030);
 			KNOWN_ELEMENT_TYPES.add(FeatureExcludedFeatures_4032);
 			KNOWN_ELEMENT_TYPES.add(RequirementRefinedRequirement_4054);
-			KNOWN_ELEMENT_TYPES.add(DataDefinitionDefinedRequirement_4055);
+			KNOWN_ELEMENT_TYPES.add(RequirementDefiningData_4060);
 			KNOWN_ELEMENT_TYPES.add(DataFlowSpecifiedProcess_4056);
 			KNOWN_ELEMENT_TYPES.add(ProcessSuccessor_4047);
+			KNOWN_ELEMENT_TYPES.add(ErrorHandlingHandledProcess_4061);
+			KNOWN_ELEMENT_TYPES.add(StatusMonitoringMonitoredProcess_4062);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -957,8 +979,8 @@ public class ScrmElementTypes {
 			return NumericalMethodDependencies_4015;
 		case RequirementRealizedMethodEditPart.VISUAL_ID:
 			return RequirementRealizedMethod_4050;
-		case NumericalMethodPerformanceEditPart.VISUAL_ID:
-			return NumericalMethodPerformance_4017;
+		case PerformanceDescribedMethodEditPart.VISUAL_ID:
+			return PerformanceDescribedMethod_4059;
 		case FeatureRequiredInterfacesEditPart.VISUAL_ID:
 			return FeatureRequiredInterfaces_4023;
 		case FeatureProvidedInterfacesEditPart.VISUAL_ID:
@@ -977,12 +999,16 @@ public class ScrmElementTypes {
 			return FeatureExcludedFeatures_4032;
 		case RequirementRefinedRequirementEditPart.VISUAL_ID:
 			return RequirementRefinedRequirement_4054;
-		case DataDefinitionDefinedRequirementEditPart.VISUAL_ID:
-			return DataDefinitionDefinedRequirement_4055;
+		case RequirementDefiningDataEditPart.VISUAL_ID:
+			return RequirementDefiningData_4060;
 		case DataFlowSpecifiedProcessEditPart.VISUAL_ID:
 			return DataFlowSpecifiedProcess_4056;
 		case ProcessSuccessorEditPart.VISUAL_ID:
 			return ProcessSuccessor_4047;
+		case ErrorHandlingHandledProcessEditPart.VISUAL_ID:
+			return ErrorHandlingHandledProcess_4061;
+		case StatusMonitoringMonitoredProcessEditPart.VISUAL_ID:
+			return StatusMonitoringMonitoredProcess_4062;
 		}
 		return null;
 	}

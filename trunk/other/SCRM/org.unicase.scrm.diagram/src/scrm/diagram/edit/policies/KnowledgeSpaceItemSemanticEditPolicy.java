@@ -24,8 +24,8 @@ import scrm.diagram.edit.parts.MathematicalModelRefinedModelEditPart;
 import scrm.diagram.edit.parts.MathematicalModelRepresentedProblemEditPart;
 import scrm.diagram.edit.parts.NumericalMethod2EditPart;
 import scrm.diagram.edit.parts.NumericalMethodDependenciesEditPart;
-import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
 import scrm.diagram.edit.parts.NumericalMethodSolvedProblemEditPart;
+import scrm.diagram.edit.parts.PerformanceDescribedMethodEditPart;
 import scrm.diagram.edit.parts.RequirementRealizedMethodEditPart;
 import scrm.diagram.edit.parts.ScientificProblem2EditPart;
 import scrm.diagram.edit.parts.ScientificProblemInfluencedFeatureEditPart;
@@ -148,6 +148,16 @@ public class KnowledgeSpaceItemSemanticEditPolicy extends
 										incomingLink));
 								continue;
 							}
+							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == PerformanceDescribedMethodEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										incomingLink.getSource().getElement(),
+										null, incomingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
 						}
 						for (Iterator<?> it = cnode.getSourceEdges().iterator(); it
 								.hasNext();) {
@@ -163,16 +173,6 @@ public class KnowledgeSpaceItemSemanticEditPolicy extends
 								continue;
 							}
 							if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == NumericalMethodDependenciesEditPart.VISUAL_ID) {
-								DestroyReferenceRequest r = new DestroyReferenceRequest(
-										outgoingLink.getSource().getElement(),
-										null, outgoingLink.getTarget()
-												.getElement(), false);
-								cmd.add(new DestroyReferenceCommand(r));
-								cmd.add(new DeleteCommand(getEditingDomain(),
-										outgoingLink));
-								continue;
-							}
-							if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == NumericalMethodPerformanceEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										outgoingLink.getSource().getElement(),
 										null, outgoingLink.getTarget()

@@ -12,6 +12,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
+import scrm.requirements.RequirementSpace;
 import scrm.requirements.dataProcess.DataProcessSpace;
 import scrm.requirements.dataProcess.ErrorHandling;
 
@@ -53,11 +54,11 @@ public class ErrorHandling2CreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		ErrorHandling newElement = scrm.requirements.dataProcess.DataProcessFactory.eINSTANCE
+		scrm.requirements.dataProcess.ErrorHandling newElement = scrm.requirements.dataProcess.DataProcessFactory.eINSTANCE
 				.createErrorHandling();
 
-		DataProcessSpace owner = (scrm.requirements.dataProcess.DataProcessSpace) getElementToEdit();
-		owner.getContainedDataProcessSteps().add(newElement);
+		RequirementSpace owner = (RequirementSpace) getElementToEdit();
+		owner.getContainedInformationofRequirements().add(newElement);
 
 		doConfigure(newElement, monitor, info);
 
@@ -69,7 +70,7 @@ public class ErrorHandling2CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected void doConfigure(
-			ErrorHandling newElement,
+			scrm.requirements.dataProcess.ErrorHandling newElement,
 			IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest())

@@ -53,11 +53,11 @@ public class DataHandling3CreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		DataHandling newElement = scrm.requirements.dataProcess.DataProcessFactory.eINSTANCE
+		scrm.requirements.dataProcess.DataHandling newElement = scrm.requirements.dataProcess.DataProcessFactory.eINSTANCE
 				.createDataHandling();
 
-		RequirementSpace owner = (RequirementSpace) getElementToEdit();
-		owner.getContainedInformationofRequirements().add(newElement);
+		scrm.requirements.dataProcess.DataProcessSpace owner = (scrm.requirements.dataProcess.DataProcessSpace) getElementToEdit();
+		owner.getContainedDataProcessSteps().add(newElement);
 
 		doConfigure(newElement, monitor, info);
 

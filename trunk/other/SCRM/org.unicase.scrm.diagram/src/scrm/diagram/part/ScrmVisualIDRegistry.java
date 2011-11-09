@@ -38,8 +38,7 @@ public class ScrmVisualIDRegistry {
 				return -1;
 			}
 		}
-		return getVisualID(view
-				.getType());
+		return getVisualID(view.getType());
 	}
 
 	/**
@@ -157,8 +156,8 @@ public class ScrmVisualIDRegistry {
 					domainElement.eClass())) {
 				return SoftwareInterfaceEditPart.VISUAL_ID;
 			}
-			if (DataProcessPackage.eINSTANCE
-					.getProcess().equals(domainElement.eClass())) {
+			if (DataProcessPackage.eINSTANCE.getProcess().equals(
+					domainElement.eClass())) {
 				return ProcessEditPart.VISUAL_ID;
 			}
 			if (RequirementsPackage.eINSTANCE.getPerformance().equals(
@@ -173,24 +172,24 @@ public class ScrmVisualIDRegistry {
 					domainElement.eClass())) {
 				return DataDefinitionEditPart.VISUAL_ID;
 			}
-			if (DataProcessPackage.eINSTANCE
-					.getInputDataReading().equals(domainElement.eClass())) {
+			if (DataProcessPackage.eINSTANCE.getInputDataReading().equals(
+					domainElement.eClass())) {
 				return InputDataReadingEditPart.VISUAL_ID;
 			}
-			if (DataProcessPackage.eINSTANCE
-					.getDataHandling().equals(domainElement.eClass())) {
+			if (DataProcessPackage.eINSTANCE.getDataHandling().equals(
+					domainElement.eClass())) {
 				return DataHandlingEditPart.VISUAL_ID;
 			}
-			if (DataProcessPackage.eINSTANCE
-					.getResultsOutput().equals(domainElement.eClass())) {
+			if (DataProcessPackage.eINSTANCE.getResultsOutput().equals(
+					domainElement.eClass())) {
 				return ResultsOutputEditPart.VISUAL_ID;
 			}
-			if (DataProcessPackage.eINSTANCE
-					.getErrorHandling().equals(domainElement.eClass())) {
+			if (DataProcessPackage.eINSTANCE.getErrorHandling().equals(
+					domainElement.eClass())) {
 				return ErrorHandlingEditPart.VISUAL_ID;
 			}
-			if (DataProcessPackage.eINSTANCE
-					.getStatusMonitoring().equals(domainElement.eClass())) {
+			if (DataProcessPackage.eINSTANCE.getStatusMonitoring().equals(
+					domainElement.eClass())) {
 				return StatusMonitoringEditPart.VISUAL_ID;
 			}
 			if (RequirementsPackage.eINSTANCE.getRequirement().equals(
@@ -205,8 +204,8 @@ public class ScrmVisualIDRegistry {
 					domainElement.eClass())) {
 				return RequirementSpaceEditPart.VISUAL_ID;
 			}
-			if (DataProcessPackage.eINSTANCE
-					.getDataProcessSpace().equals(domainElement.eClass())) {
+			if (DataProcessPackage.eINSTANCE.getDataProcessSpace().equals(
+					domainElement.eClass())) {
 				return DataProcessSpaceEditPart.VISUAL_ID;
 			}
 			break;
@@ -277,32 +276,32 @@ public class ScrmVisualIDRegistry {
 			}
 		case DataProcessSpaceDataProcessSpaceCompartmentEditPart.VISUAL_ID:
 		case DataProcessSpaceDataProcessSpaceCompartment2EditPart.VISUAL_ID:
-			if (DataProcessPackage.eINSTANCE
-					.getStatusMonitoring().equals(domainElement.eClass())) {
+			if (DataProcessPackage.eINSTANCE.getStatusMonitoring().equals(
+					domainElement.eClass())) {
 				return StatusMonitoring2EditPart.VISUAL_ID;
 			}
-			if (DataProcessPackage.eINSTANCE
-					.getResultsOutput().equals(domainElement.eClass())) {
+			if (DataProcessPackage.eINSTANCE.getResultsOutput().equals(
+					domainElement.eClass())) {
 				return ResultsOutput2EditPart.VISUAL_ID;
 			}
-			if (DataProcessPackage.eINSTANCE
-					.getProcess().equals(domainElement.eClass())) {
+			if (DataProcessPackage.eINSTANCE.getProcess().equals(
+					domainElement.eClass())) {
 				return Process2EditPart.VISUAL_ID;
 			}
-			if (DataProcessPackage.eINSTANCE
-					.getInputDataReading().equals(domainElement.eClass())) {
+			if (DataProcessPackage.eINSTANCE.getInputDataReading().equals(
+					domainElement.eClass())) {
 				return InputDataReading2EditPart.VISUAL_ID;
 			}
-			if (DataProcessPackage.eINSTANCE
-					.getErrorHandling().equals(domainElement.eClass())) {
+			if (DataProcessPackage.eINSTANCE.getErrorHandling().equals(
+					domainElement.eClass())) {
 				return ErrorHandling2EditPart.VISUAL_ID;
 			}
-			if (DataProcessPackage.eINSTANCE
-					.getDataHandling().equals(domainElement.eClass())) {
+			if (DataProcessPackage.eINSTANCE.getDataHandling().equals(
+					domainElement.eClass())) {
 				return DataHandling2EditPart.VISUAL_ID;
 			}
-			if (DataProcessPackage.eINSTANCE
-					.getDataProcessSpace().equals(domainElement.eClass())) {
+			if (DataProcessPackage.eINSTANCE.getDataProcessSpace().equals(
+					domainElement.eClass())) {
 				return DataProcessSpace2EditPart.VISUAL_ID;
 			}
 			break;
@@ -905,7 +904,7 @@ public class ScrmVisualIDRegistry {
 				return true;
 			}
 			break;
-		case NumericalMethodPerformanceEditPart.VISUAL_ID:
+		case PerformanceDescribedMethodEditPart.VISUAL_ID:
 			if (WrappingLabel9EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -955,7 +954,7 @@ public class ScrmVisualIDRegistry {
 				return true;
 			}
 			break;
-		case DataDefinitionDefinedRequirementEditPart.VISUAL_ID:
+		case RequirementDefiningDataEditPart.VISUAL_ID:
 			if (WrappingLabel19EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -967,6 +966,16 @@ public class ScrmVisualIDRegistry {
 			break;
 		case ProcessSuccessorEditPart.VISUAL_ID:
 			if (WrappingLabel21EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ErrorHandlingHandledProcessEditPart.VISUAL_ID:
+			if (WrappingLabel22EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case StatusMonitoringMonitoredProcessEditPart.VISUAL_ID:
+			if (WrappingLabel23EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

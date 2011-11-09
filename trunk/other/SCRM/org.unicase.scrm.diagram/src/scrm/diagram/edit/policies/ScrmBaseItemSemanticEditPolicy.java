@@ -473,15 +473,18 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateNumericalMethodPerformance_4017(
+		public boolean canCreatePerformanceDescribedMethod_4059(
 				Performance source, NumericalMethod target) {
 			if (source != null) {
 				if (source.getDescribedMethod() != null) {
 					return false;
 				}
 			}
+			if (target != null && (target.getPerformance() != null)) {
+				return false;
+			}
 
-			return canExistNumericalMethodPerformance_4017(source, target);
+			return canExistPerformanceDescribedMethod_4059(source, target);
 		}
 
 		/**
@@ -647,18 +650,18 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateDataDefinitionDefinedRequirement_4055(
-				DataDefinition source, Requirement target) {
+		public boolean canCreateRequirementDefiningData_4060(
+				Requirement source, DataDefinition target) {
 			if (source != null) {
-				if (source.getDefinedRequirement() != null) {
+				if (source.getDefiningData().contains(target)) {
 					return false;
 				}
 			}
-			if (target != null && (target.getDefiningData().contains(target))) {
+			if (target != null && (target.getDefinedRequirement() != null)) {
 				return false;
 			}
 
-			return canExistDataDefinitionDefinedRequirement_4055(source, target);
+			return canExistRequirementDefiningData_4060(source, target);
 		}
 
 		/**
@@ -694,6 +697,42 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			}
 
 			return canExistProcessSuccessor_4047(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canCreateErrorHandlingHandledProcess_4061(
+				scrm.requirements.dataProcess.ErrorHandling source,
+				scrm.requirements.dataProcess.Process target) {
+			if (source != null) {
+				if (source.getHandledProcess() != null) {
+					return false;
+				}
+			}
+			if (target != null && (target.getErrorHandling() != null)) {
+				return false;
+			}
+
+			return canExistErrorHandlingHandledProcess_4061(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canCreateStatusMonitoringMonitoredProcess_4062(
+				scrm.requirements.dataProcess.StatusMonitoring source,
+				scrm.requirements.dataProcess.Process target) {
+			if (source != null) {
+				if (source.getMonitoredProcess() != null) {
+					return false;
+				}
+			}
+			if (target != null && (target.getStatusMonitoring() != null)) {
+				return false;
+			}
+
+			return canExistStatusMonitoringMonitoredProcess_4062(source, target);
 		}
 
 		/**
@@ -763,7 +802,7 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canExistNumericalMethodPerformance_4017(
+		public boolean canExistPerformanceDescribedMethod_4059(
 				Performance source, NumericalMethod target) {
 			return true;
 		}
@@ -843,8 +882,8 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canExistDataDefinitionDefinedRequirement_4055(
-				DataDefinition source, Requirement target) {
+		public boolean canExistRequirementDefiningData_4060(Requirement source,
+				DataDefinition target) {
 			return true;
 		}
 
@@ -861,6 +900,24 @@ public class ScrmBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canExistProcessSuccessor_4047(
 				scrm.requirements.dataProcess.Process source,
+				scrm.requirements.dataProcess.Process target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistErrorHandlingHandledProcess_4061(
+				scrm.requirements.dataProcess.ErrorHandling source,
+				scrm.requirements.dataProcess.Process target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistStatusMonitoringMonitoredProcess_4062(
+				scrm.requirements.dataProcess.StatusMonitoring source,
 				scrm.requirements.dataProcess.Process target) {
 			return true;
 		}

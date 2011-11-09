@@ -236,7 +236,8 @@ public class RequirementSpaceImpl extends SCRMModelElementImpl implements
 	 */
 	public void setRepresentingDiagram(SCRMDiagram newRepresentingDiagram) {
 		if (newRepresentingDiagram != representingDiagram) {
-			getContainedInformationofRequirements().setDiagram(newRepresentingDiagram);
+			getContainedInformationofRequirements().setDiagram(
+					newRepresentingDiagram);
 			NotificationChain msgs = null;
 			if (representingDiagram != null)
 				msgs = ((InternalEObject) representingDiagram).eInverseRemove(

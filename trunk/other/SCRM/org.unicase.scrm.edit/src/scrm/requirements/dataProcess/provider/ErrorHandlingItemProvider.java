@@ -12,12 +12,14 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import scrm.requirements.dataProcess.DataProcessPackage;
 
 /**
  * This is the item provider adapter for a {@link scrm.requirements.dataProcess.ErrorHandling} object.
@@ -49,8 +51,28 @@ public class ErrorHandlingItemProvider extends ProcessItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addHandledProcessPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Handled Process feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addHandledProcessPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ErrorHandling_handledProcess_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_ErrorHandling_handledProcess_feature",
+						"_UI_ErrorHandling_type"),
+				DataProcessPackage.Literals.ERROR_HANDLING__HANDLED_PROCESS,
+				true, false, true, null, null, null));
 	}
 
 	/**

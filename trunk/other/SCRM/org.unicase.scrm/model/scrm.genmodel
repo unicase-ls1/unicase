@@ -169,12 +169,22 @@
           <genFeatures notify="false" createChild="false" propertySortChoices="true"
               ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataProcess/Process/successor"/>
           <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataProcess/Process/containingDataProcessSpace"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataProcess/Process/errorHandling"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataProcess/Process/statusMonitoring"/>
         </genClasses>
         <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/InputDataReading"/>
         <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/DataHandling"/>
         <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/ResultsOutput"/>
-        <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/ErrorHandling"/>
-        <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/StatusMonitoring"/>
+        <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/ErrorHandling">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataProcess/ErrorHandling/handledProcess"/>
+        </genClasses>
+        <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/StatusMonitoring">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataProcess/StatusMonitoring/monitoredProcess"/>
+        </genClasses>
         <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/DataProcessSpace">
           <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataProcess/DataProcessSpace/containedDataProcessSteps"/>
         </genClasses>

@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.EList;
 
 import scrm.SCRMModelElement;
 import scrm.SCRMSpace;
+import scrm.lists.SCRMSpaceContainedModelElementsList;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,6 +46,6 @@ public interface KnowledgeSpace extends SCRMSpace, ScientificKnowledge {
 	 *        annotation="org.unicase.ui.meeditor position='right' priority='10'"
 	 * @generated NOT: changed type parameter
 	 */
-	EList<SCRMModelElement> getContainedScientificKnowledge();
+	SCRMSpaceContainedModelElementsList<SCRMModelElement> getContainedScientificKnowledge();
 
 } // KnowledgeSpace

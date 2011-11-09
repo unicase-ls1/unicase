@@ -34,6 +34,7 @@ import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
 import org.eclipse.gmf.runtime.notation.Routing;
+import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
@@ -63,7 +64,6 @@ import scrm.diagram.edit.parts.MathematicalModelEditPart;
 import scrm.diagram.edit.parts.MathematicalModelNumericalMethodsEditPart;
 import scrm.diagram.edit.parts.NumericalMethodDependenciesEditPart;
 import scrm.diagram.edit.parts.NumericalMethodEditPart;
-import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
 import scrm.diagram.edit.parts.PerformanceEditPart;
 import scrm.diagram.edit.parts.ProcessEditPart;
 import scrm.diagram.edit.parts.RequirementEditPart;
@@ -209,6 +209,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 				case RequirementEditPart.VISUAL_ID:
 				case KnowledgeSpaceEditPart.VISUAL_ID:
 				case RequirementSpaceEditPart.VISUAL_ID:
+				case DataProcessSpace2EditPart.VISUAL_ID:
 				case DataProcessSpaceEditPart.VISUAL_ID:
 				case ScientificProblem2EditPart.VISUAL_ID:
 				case NumericalMethod2EditPart.VISUAL_ID:
@@ -231,7 +232,6 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 				case InputDataReading2EditPart.VISUAL_ID:
 				case ErrorHandling2EditPart.VISUAL_ID:
 				case DataHandling2EditPart.VISUAL_ID:
-				case DataProcessSpace2EditPart.VISUAL_ID:
 					if (domainElement == null
 							|| visualID != ScrmVisualIDRegistry
 									.getNodeVisualID(op.getContainerView(),
@@ -514,8 +514,8 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		case RequirementRealizedMethodEditPart.VISUAL_ID:
 			return createRequirementRealizedMethod_4050(containerView, index,
 					persisted, preferencesHint);
-		case NumericalMethodPerformanceEditPart.VISUAL_ID:
-			return createNumericalMethodPerformance_4017(containerView, index,
+		case PerformanceDescribedMethodEditPart.VISUAL_ID:
+			return createPerformanceDescribedMethod_4059(containerView, index,
 					persisted, preferencesHint);
 		case FeatureRequiredInterfacesEditPart.VISUAL_ID:
 			return createFeatureRequiredInterfaces_4023(containerView, index,
@@ -544,15 +544,21 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		case RequirementRefinedRequirementEditPart.VISUAL_ID:
 			return createRequirementRefinedRequirement_4054(containerView,
 					index, persisted, preferencesHint);
-		case DataDefinitionDefinedRequirementEditPart.VISUAL_ID:
-			return createDataDefinitionDefinedRequirement_4055(containerView,
-					index, persisted, preferencesHint);
+		case RequirementDefiningDataEditPart.VISUAL_ID:
+			return createRequirementDefiningData_4060(containerView, index,
+					persisted, preferencesHint);
 		case DataFlowSpecifiedProcessEditPart.VISUAL_ID:
 			return createDataFlowSpecifiedProcess_4056(containerView, index,
 					persisted, preferencesHint);
 		case ProcessSuccessorEditPart.VISUAL_ID:
 			return createProcessSuccessor_4047(containerView, index, persisted,
 					preferencesHint);
+		case ErrorHandlingHandledProcessEditPart.VISUAL_ID:
+			return createErrorHandlingHandledProcess_4061(containerView, index,
+					persisted, preferencesHint);
+		case StatusMonitoringMonitoredProcessEditPart.VISUAL_ID:
+			return createStatusMonitoringMonitoredProcess_4062(containerView,
+					index, persisted, preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
@@ -1557,11 +1563,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	public Node createKnowledgeSpace_2044(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles()
-				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.getStyles().add(
 				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
@@ -1593,6 +1595,11 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
+		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_FILL_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
+				FigureUtilities.RGBToInteger(fillRGB));
 		Node label5086 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(KnowledgeSpaceNameEditPart.VISUAL_ID));
@@ -1610,11 +1617,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	public Node createRequirementSpace_2045(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles()
-				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.getStyles().add(
 				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
@@ -1646,6 +1649,11 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
+		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_FILL_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
+				FigureUtilities.RGBToInteger(fillRGB));
 		Node label5140 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(RequirementSpaceNameEditPart.VISUAL_ID));
@@ -1663,11 +1671,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	public Node createDataProcessSpace_2046(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles()
-				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.getStyles().add(
 				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
@@ -1699,6 +1703,11 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
+		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_FILL_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
+				FigureUtilities.RGBToInteger(fillRGB));
 		Node label5142 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(DataProcessSpaceNameEditPart.VISUAL_ID));
@@ -1903,11 +1912,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	public Node createKnowledgeSpace_3005(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles()
-				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.getStyles().add(
 				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
@@ -1938,6 +1943,11 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
+		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_FILL_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
+				FigureUtilities.RGBToInteger(fillRGB));
 		Node label5099 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(KnowledgeSpaceName2EditPart.VISUAL_ID));
@@ -2368,11 +2378,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	public Node createRequirementSpace_3015(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles()
-				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.getStyles().add(
 				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
@@ -2403,6 +2409,11 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
+		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_FILL_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
+				FigureUtilities.RGBToInteger(fillRGB));
 		Node label5139 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(RequirementSpaceName2EditPart.VISUAL_ID));
@@ -2455,7 +2466,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5127 = createLabel(node,
+		Node label5143 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(StatusMonitoringName2EditPart.VISUAL_ID));
 		return node;
@@ -2502,7 +2513,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5129 = createLabel(node,
+		Node label5145 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(ResultsOutputName2EditPart.VISUAL_ID));
 		return node;
@@ -2547,7 +2558,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5131 = createLabel(node,
+		Node label5147 = createLabel(node,
 				ScrmVisualIDRegistry.getType(ProcessName2EditPart.VISUAL_ID));
 		return node;
 	}
@@ -2593,7 +2604,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5133 = createLabel(node,
+		Node label5149 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(InputDataReadingName2EditPart.VISUAL_ID));
 		return node;
@@ -2640,7 +2651,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5135 = createLabel(node,
+		Node label5151 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(ErrorHandlingName2EditPart.VISUAL_ID));
 		return node;
@@ -2687,7 +2698,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5137 = createLabel(node,
+		Node label5153 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(DataHandlingName2EditPart.VISUAL_ID));
 		return node;
@@ -2699,11 +2710,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	public Node createDataProcessSpace_3022(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles()
-				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.getStyles().add(
 				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
@@ -2734,7 +2741,12 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
 					.intValue());
 		}
-		Node label5141 = createLabel(node,
+		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_FILL_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
+				FigureUtilities.RGBToInteger(fillRGB));
+		Node label5155 = createLabel(node,
 				ScrmVisualIDRegistry
 						.getType(DataProcessSpaceName2EditPart.VISUAL_ID));
 		createCompartment(
@@ -3223,7 +3235,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	/**
 	 * @generated
 	 */
-	public Edge createNumericalMethodPerformance_4017(View containerView,
+	public Edge createPerformanceDescribedMethod_4059(View containerView,
 			int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
@@ -3237,7 +3249,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
 		edge.setType(ScrmVisualIDRegistry
-				.getType(NumericalMethodPerformanceEditPart.VISUAL_ID));
+				.getType(PerformanceDescribedMethodEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
@@ -3269,13 +3281,13 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		Node label6015 = createLabel(edge,
+		Node label6057 = createLabel(edge,
 				ScrmVisualIDRegistry.getType(WrappingLabel9EditPart.VISUAL_ID));
-		label6015.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6057.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6015 = (Location) label6015.getLayoutConstraint();
-		location6015.setX(0);
-		location6015.setY(10);
+		Location location6057 = (Location) label6057.getLayoutConstraint();
+		location6057.setX(0);
+		location6057.setY(10);
 		return edge;
 	}
 
@@ -3813,7 +3825,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 	/**
 	 * @generated
 	 */
-	public Edge createDataDefinitionDefinedRequirement_4055(View containerView,
+	public Edge createRequirementDefiningData_4060(View containerView,
 			int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
@@ -3827,7 +3839,7 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
 		edge.setType(ScrmVisualIDRegistry
-				.getType(DataDefinitionDefinedRequirementEditPart.VISUAL_ID));
+				.getType(RequirementDefiningDataEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
@@ -3859,13 +3871,13 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		Node label6053 = createLabel(edge,
+		Node label6058 = createLabel(edge,
 				ScrmVisualIDRegistry.getType(WrappingLabel19EditPart.VISUAL_ID));
-		label6053.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6058.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6053 = (Location) label6053.getLayoutConstraint();
-		location6053.setX(0);
-		location6053.setY(10);
+		Location location6058 = (Location) label6058.getLayoutConstraint();
+		location6058.setX(0);
+		location6058.setY(10);
 		return edge;
 	}
 
@@ -3984,6 +3996,124 @@ public class ScrmViewProvider extends AbstractProvider implements IViewProvider 
 		Location location6045 = (Location) label6045.getLayoutConstraint();
 		location6045.setX(0);
 		location6045.setY(10);
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createErrorHandlingHandledProcess_4061(View containerView,
+			int index, boolean persisted, PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
+				.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(ScrmVisualIDRegistry
+				.getType(ErrorHandlingHandledProcessEditPart.VISUAL_ID));
+		edge.setElement(null);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle edgeFontStyle = (FontStyle) edge
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (edgeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			edgeFontStyle.setFontName(fontData.getName());
+			edgeFontStyle.setFontHeight(fontData.getHeight());
+			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Routing routing = Routing.get(prefStore
+				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
+		}
+		Node label6059 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel22EditPart.VISUAL_ID));
+		label6059.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location6059 = (Location) label6059.getLayoutConstraint();
+		location6059.setX(0);
+		location6059.setY(10);
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createStatusMonitoringMonitoredProcess_4062(View containerView,
+			int index, boolean persisted, PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
+				.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(ScrmVisualIDRegistry
+				.getType(StatusMonitoringMonitoredProcessEditPart.VISUAL_ID));
+		edge.setElement(null);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(edge,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle edgeFontStyle = (FontStyle) edge
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (edgeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			edgeFontStyle.setFontName(fontData.getName());
+			edgeFontStyle.setFontHeight(fontData.getHeight());
+			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Routing routing = Routing.get(prefStore
+				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
+		}
+		Node label6060 = createLabel(edge,
+				ScrmVisualIDRegistry.getType(WrappingLabel23EditPart.VISUAL_ID));
+		label6060.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location6060 = (Location) label6060.getLayoutConstraint();
+		location6060.setX(0);
+		location6060.setY(10);
 		return edge;
 	}
 

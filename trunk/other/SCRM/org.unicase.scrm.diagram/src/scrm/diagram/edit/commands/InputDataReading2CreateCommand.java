@@ -11,6 +11,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import scrm.requirements.RequirementSpace;
 
 /**
  * @generated
@@ -53,8 +54,8 @@ public class InputDataReading2CreateCommand extends EditElementCommand {
 		scrm.requirements.dataProcess.InputDataReading newElement = scrm.requirements.dataProcess.DataProcessFactory.eINSTANCE
 				.createInputDataReading();
 
-		scrm.requirements.dataProcess.DataProcessSpace owner = (scrm.requirements.dataProcess.DataProcessSpace) getElementToEdit();
-		owner.getContainedDataProcessSteps().add(newElement);
+		RequirementSpace owner = (RequirementSpace) getElementToEdit();
+		owner.getContainedInformationofRequirements().add(newElement);
 
 		doConfigure(newElement, monitor, info);
 

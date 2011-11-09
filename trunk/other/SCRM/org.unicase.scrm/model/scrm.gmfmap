@@ -1297,7 +1297,7 @@
         href="scrm.gmfgraph#Requirement_DefiningDataConnection"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="scrm.ecore#//requirements/DataDefinition/definedRequirement"/>
+        href="scrm.ecore#//requirements/Requirement/definingData"/>
   </links>
   <links
       relatedDiagrams="//@diagram">
@@ -1322,6 +1322,30 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="scrm.ecore#//requirements/dataProcess/Process/successor"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <labelMappings>
+      <diagramLabel
+          href="scrm.gmfgraph#ErrorHandling_ProcessConnectionLabel"/>
+    </labelMappings>
+    <diagramLink
+        href="scrm.gmfgraph#ErrorHandling_ProcessConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="scrm.ecore#//requirements/dataProcess/ErrorHandling/handledProcess"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <labelMappings>
+      <diagramLabel
+          href="scrm.gmfgraph#StatusMonitoring_ProcessConnectionLabel"/>
+    </labelMappings>
+    <diagramLink
+        href="scrm.gmfgraph#StatusMonitoring_ProcessConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="scrm.ecore#//requirements/dataProcess/StatusMonitoring/monitoredProcess"/>
   </links>
   <diagram>
     <diagramCanvas

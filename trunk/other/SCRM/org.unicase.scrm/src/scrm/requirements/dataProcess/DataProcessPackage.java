@@ -240,13 +240,31 @@ public interface DataProcessPackage extends EPackage {
 	int PROCESS__CONTAINING_DATA_PROCESS_SPACE = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Error Handling</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS__ERROR_HANDLING = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Status Monitoring</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS__STATUS_MONITORING = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Process</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_FEATURE_COUNT = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 4;
+	int PROCESS_FEATURE_COUNT = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -364,6 +382,24 @@ public interface DataProcessPackage extends EPackage {
 	 * @ordered
 	 */
 	int INPUT_DATA_READING__CONTAINING_DATA_PROCESS_SPACE = PROCESS__CONTAINING_DATA_PROCESS_SPACE;
+
+	/**
+	 * The feature id for the '<em><b>Error Handling</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DATA_READING__ERROR_HANDLING = PROCESS__ERROR_HANDLING;
+
+	/**
+	 * The feature id for the '<em><b>Status Monitoring</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DATA_READING__STATUS_MONITORING = PROCESS__STATUS_MONITORING;
 
 	/**
 	 * The number of structural features of the '<em>Input Data Reading</em>' class.
@@ -492,6 +528,24 @@ public interface DataProcessPackage extends EPackage {
 	int DATA_HANDLING__CONTAINING_DATA_PROCESS_SPACE = PROCESS__CONTAINING_DATA_PROCESS_SPACE;
 
 	/**
+	 * The feature id for the '<em><b>Error Handling</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_HANDLING__ERROR_HANDLING = PROCESS__ERROR_HANDLING;
+
+	/**
+	 * The feature id for the '<em><b>Status Monitoring</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_HANDLING__STATUS_MONITORING = PROCESS__STATUS_MONITORING;
+
+	/**
 	 * The number of structural features of the '<em>Data Handling</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -616,6 +670,24 @@ public interface DataProcessPackage extends EPackage {
 	 * @ordered
 	 */
 	int RESULTS_OUTPUT__CONTAINING_DATA_PROCESS_SPACE = PROCESS__CONTAINING_DATA_PROCESS_SPACE;
+
+	/**
+	 * The feature id for the '<em><b>Error Handling</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULTS_OUTPUT__ERROR_HANDLING = PROCESS__ERROR_HANDLING;
+
+	/**
+	 * The feature id for the '<em><b>Status Monitoring</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULTS_OUTPUT__STATUS_MONITORING = PROCESS__STATUS_MONITORING;
 
 	/**
 	 * The number of structural features of the '<em>Results Output</em>' class.
@@ -744,13 +816,40 @@ public interface DataProcessPackage extends EPackage {
 	int ERROR_HANDLING__CONTAINING_DATA_PROCESS_SPACE = PROCESS__CONTAINING_DATA_PROCESS_SPACE;
 
 	/**
+	 * The feature id for the '<em><b>Error Handling</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ERROR_HANDLING__ERROR_HANDLING = PROCESS__ERROR_HANDLING;
+
+	/**
+	 * The feature id for the '<em><b>Status Monitoring</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ERROR_HANDLING__STATUS_MONITORING = PROCESS__STATUS_MONITORING;
+
+	/**
+	 * The feature id for the '<em><b>Handled Process</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ERROR_HANDLING__HANDLED_PROCESS = PROCESS_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Error Handling</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ERROR_HANDLING_FEATURE_COUNT = PROCESS_FEATURE_COUNT + 0;
+	int ERROR_HANDLING_FEATURE_COUNT = PROCESS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -870,13 +969,40 @@ public interface DataProcessPackage extends EPackage {
 	int STATUS_MONITORING__CONTAINING_DATA_PROCESS_SPACE = PROCESS__CONTAINING_DATA_PROCESS_SPACE;
 
 	/**
+	 * The feature id for the '<em><b>Error Handling</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATUS_MONITORING__ERROR_HANDLING = PROCESS__ERROR_HANDLING;
+
+	/**
+	 * The feature id for the '<em><b>Status Monitoring</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATUS_MONITORING__STATUS_MONITORING = PROCESS__STATUS_MONITORING;
+
+	/**
+	 * The feature id for the '<em><b>Monitored Process</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATUS_MONITORING__MONITORED_PROCESS = PROCESS_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Status Monitoring</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATUS_MONITORING_FEATURE_COUNT = PROCESS_FEATURE_COUNT + 0;
+	int STATUS_MONITORING_FEATURE_COUNT = PROCESS_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl <em>Space</em>}' class.
@@ -1015,13 +1141,31 @@ public interface DataProcessPackage extends EPackage {
 	int DATA_PROCESS_SPACE__CONTAINING_DATA_PROCESS_SPACE = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 9;
 
 	/**
+	 * The feature id for the '<em><b>Error Handling</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_PROCESS_SPACE__ERROR_HANDLING = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Status Monitoring</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_PROCESS_SPACE__STATUS_MONITORING = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 11;
+
+	/**
 	 * The feature id for the '<em><b>Contained Data Process Steps</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 10;
+	int DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 12;
 
 	/**
 	 * The number of structural features of the '<em>Space</em>' class.
@@ -1030,7 +1174,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE_FEATURE_COUNT = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 11;
+	int DATA_PROCESS_SPACE_FEATURE_COUNT = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 13;
 
 	/**
 	 * Returns the meta object for class '{@link scrm.requirements.dataProcess.InputDataReading <em>Input Data Reading</em>}'.
@@ -1073,6 +1217,17 @@ public interface DataProcessPackage extends EPackage {
 	EClass getErrorHandling();
 
 	/**
+	 * Returns the meta object for the reference '{@link scrm.requirements.dataProcess.ErrorHandling#getHandledProcess <em>Handled Process</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Handled Process</em>'.
+	 * @see scrm.requirements.dataProcess.ErrorHandling#getHandledProcess()
+	 * @see #getErrorHandling()
+	 * @generated
+	 */
+	EReference getErrorHandling_HandledProcess();
+
+	/**
 	 * Returns the meta object for class '{@link scrm.requirements.dataProcess.StatusMonitoring <em>Status Monitoring</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1081,6 +1236,17 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getStatusMonitoring();
+
+	/**
+	 * Returns the meta object for the reference '{@link scrm.requirements.dataProcess.StatusMonitoring#getMonitoredProcess <em>Monitored Process</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Monitored Process</em>'.
+	 * @see scrm.requirements.dataProcess.StatusMonitoring#getMonitoredProcess()
+	 * @see #getStatusMonitoring()
+	 * @generated
+	 */
+	EReference getStatusMonitoring_MonitoredProcess();
 
 	/**
 	 * Returns the meta object for class '{@link scrm.requirements.dataProcess.Process <em>Process</em>}'.
@@ -1135,6 +1301,28 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getProcess_ContainingDataProcessSpace();
+
+	/**
+	 * Returns the meta object for the reference '{@link scrm.requirements.dataProcess.Process#getErrorHandling <em>Error Handling</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Error Handling</em>'.
+	 * @see scrm.requirements.dataProcess.Process#getErrorHandling()
+	 * @see #getProcess()
+	 * @generated
+	 */
+	EReference getProcess_ErrorHandling();
+
+	/**
+	 * Returns the meta object for the reference '{@link scrm.requirements.dataProcess.Process#getStatusMonitoring <em>Status Monitoring</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Status Monitoring</em>'.
+	 * @see scrm.requirements.dataProcess.Process#getStatusMonitoring()
+	 * @see #getProcess()
+	 * @generated
+	 */
+	EReference getProcess_StatusMonitoring();
 
 	/**
 	 * Returns the meta object for class '{@link scrm.requirements.dataProcess.DataProcessSpace <em>Space</em>}'.
@@ -1220,6 +1408,15 @@ public interface DataProcessPackage extends EPackage {
 		EClass ERROR_HANDLING = eINSTANCE.getErrorHandling();
 
 		/**
+		 * The meta object literal for the '<em><b>Handled Process</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ERROR_HANDLING__HANDLED_PROCESS = eINSTANCE
+				.getErrorHandling_HandledProcess();
+
+		/**
 		 * The meta object literal for the '{@link scrm.requirements.dataProcess.impl.StatusMonitoringImpl <em>Status Monitoring</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1228,6 +1425,15 @@ public interface DataProcessPackage extends EPackage {
 		 * @generated
 		 */
 		EClass STATUS_MONITORING = eINSTANCE.getStatusMonitoring();
+
+		/**
+		 * The meta object literal for the '<em><b>Monitored Process</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATUS_MONITORING__MONITORED_PROCESS = eINSTANCE
+				.getStatusMonitoring_MonitoredProcess();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.dataProcess.impl.ProcessImpl <em>Process</em>}' class.
@@ -1271,6 +1477,24 @@ public interface DataProcessPackage extends EPackage {
 		 */
 		EReference PROCESS__CONTAINING_DATA_PROCESS_SPACE = eINSTANCE
 				.getProcess_ContainingDataProcessSpace();
+
+		/**
+		 * The meta object literal for the '<em><b>Error Handling</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCESS__ERROR_HANDLING = eINSTANCE
+				.getProcess_ErrorHandling();
+
+		/**
+		 * The meta object literal for the '<em><b>Status Monitoring</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCESS__STATUS_MONITORING = eINSTANCE
+				.getProcess_StatusMonitoring();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl <em>Space</em>}' class.

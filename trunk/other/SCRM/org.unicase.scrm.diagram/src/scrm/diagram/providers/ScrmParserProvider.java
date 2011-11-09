@@ -1172,6 +1172,27 @@ public class ScrmParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser scientificProblemDescription_5088Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getScientificProblemDescription_5088Parser() {
+		if (scientificProblemDescription_5088Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			scientificProblemDescription_5088Parser = parser;
+		}
+		return scientificProblemDescription_5088Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser numericalMethodName_5089Parser;
 
 	/**
@@ -1185,6 +1206,69 @@ public class ScrmParserProvider extends AbstractProvider implements
 			numericalMethodName_5089Parser = parser;
 		}
 		return numericalMethodName_5089Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser numericalMethodDescription_5090Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getNumericalMethodDescription_5090Parser() {
+		if (numericalMethodDescription_5090Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			numericalMethodDescription_5090Parser = parser;
+		}
+		return numericalMethodDescription_5090Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser numericalMethodTheory_5091Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getNumericalMethodTheory_5091Parser() {
+		if (numericalMethodTheory_5091Parser == null) {
+			EAttribute[] features = new EAttribute[] { KnowledgePackage.eINSTANCE
+					.getNumericalMethod_Theory() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Theory: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			numericalMethodTheory_5091Parser = parser;
+		}
+		return numericalMethodTheory_5091Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser numericalMethodAlgorithm_5092Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getNumericalMethodAlgorithm_5092Parser() {
+		if (numericalMethodAlgorithm_5092Parser == null) {
+			EAttribute[] features = new EAttribute[] { KnowledgePackage.eINSTANCE
+					.getNumericalMethod_Algorithm() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Algorithm: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			numericalMethodAlgorithm_5092Parser = parser;
+		}
+		return numericalMethodAlgorithm_5092Parser;
 	}
 
 	/**
@@ -1208,6 +1292,69 @@ public class ScrmParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser mathematicalModelDescription_5094Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMathematicalModelDescription_5094Parser() {
+		if (mathematicalModelDescription_5094Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			mathematicalModelDescription_5094Parser = parser;
+		}
+		return mathematicalModelDescription_5094Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser mathematicalModelTheory_5095Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMathematicalModelTheory_5095Parser() {
+		if (mathematicalModelTheory_5095Parser == null) {
+			EAttribute[] features = new EAttribute[] { KnowledgePackage.eINSTANCE
+					.getMathematicalModel_Theory() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Theory: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			mathematicalModelTheory_5095Parser = parser;
+		}
+		return mathematicalModelTheory_5095Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser mathematicalModelMathematicalExpression_5096Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMathematicalModelMathematicalExpression_5096Parser() {
+		if (mathematicalModelMathematicalExpression_5096Parser == null) {
+			EAttribute[] features = new EAttribute[] { KnowledgePackage.eINSTANCE
+					.getMathematicalModel_MathematicalExpression() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Mathematical Expression: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			mathematicalModelMathematicalExpression_5096Parser = parser;
+		}
+		return mathematicalModelMathematicalExpression_5096Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser assumptionName_5097Parser;
 
 	/**
@@ -1221,6 +1368,27 @@ public class ScrmParserProvider extends AbstractProvider implements
 			assumptionName_5097Parser = parser;
 		}
 		return assumptionName_5097Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser assumptionDescription_5098Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAssumptionDescription_5098Parser() {
+		if (assumptionDescription_5098Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			assumptionDescription_5098Parser = parser;
+		}
+		return assumptionDescription_5098Parser;
 	}
 
 	/**
@@ -1259,6 +1427,26 @@ public class ScrmParserProvider extends AbstractProvider implements
 		return constraintName_5100Parser;
 	}
 
+	/**
+	 * @generated
+	 */
+	private IParser constraintDescription_5101Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintDescription_5101Parser() {
+		if (constraintDescription_5101Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			constraintDescription_5101Parser = parser;
+		}
+		return constraintDescription_5101Parser;
+	}
 
 	/**
 	 * @generated
@@ -1277,6 +1465,111 @@ public class ScrmParserProvider extends AbstractProvider implements
 		}
 		return dataDefinitionName_5102Parser;
 	}
+	
+	/**
+	 * @generated
+	 */
+	private IParser dataDefinitionDescription_5103Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDataDefinitionDescription_5103Parser() {
+		if (dataDefinitionDescription_5103Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			dataDefinitionDescription_5103Parser = parser;
+		}
+		return dataDefinitionDescription_5103Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser dataDefinitionAccuracy_5104Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDataDefinitionAccuracy_5104Parser() {
+		if (dataDefinitionAccuracy_5104Parser == null) {
+			EAttribute[] features = new EAttribute[] { RequirementsPackage.eINSTANCE
+					.getDataDefinition_Accuracy() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Accuracy: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			dataDefinitionAccuracy_5104Parser = parser;
+		}
+		return dataDefinitionAccuracy_5104Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser dataDefinitionFormat_5105Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDataDefinitionFormat_5105Parser() {
+		if (dataDefinitionFormat_5105Parser == null) {
+			EAttribute[] features = new EAttribute[] { RequirementsPackage.eINSTANCE
+					.getDataDefinition_Format() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Format: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			dataDefinitionFormat_5105Parser = parser;
+		}
+		return dataDefinitionFormat_5105Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser dataDefinitionRange_5106Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDataDefinitionRange_5106Parser() {
+		if (dataDefinitionRange_5106Parser == null) {
+			EAttribute[] features = new EAttribute[] { RequirementsPackage.eINSTANCE
+					.getDataDefinition_Range() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Range: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			dataDefinitionRange_5106Parser = parser;
+		}
+		return dataDefinitionRange_5106Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser dataDefinitionDataType_5107Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDataDefinitionDataType_5107Parser() {
+		if (dataDefinitionDataType_5107Parser == null) {
+			EAttribute[] features = new EAttribute[] { RequirementsPackage.eINSTANCE
+					.getDataDefinition_DataType() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Data Type: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			dataDefinitionDataType_5107Parser = parser;
+		}
+		return dataDefinitionDataType_5107Parser;
+	}
 
 	/**
 	 * @generated
@@ -1294,6 +1587,27 @@ public class ScrmParserProvider extends AbstractProvider implements
 			dataFlowName_5108Parser = parser;
 		}
 		return dataFlowName_5108Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser dataFlowDescription_5109Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDataFlowDescription_5109Parser() {
+		if (dataFlowDescription_5109Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			dataFlowDescription_5109Parser = parser;
+		}
+		return dataFlowDescription_5109Parser;
 	}
 
 	/**
@@ -1335,6 +1649,90 @@ public class ScrmParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser hardwareDescription_5113Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getHardwareDescription_5113Parser() {
+		if (hardwareDescription_5113Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			hardwareDescription_5113Parser = parser;
+		}
+		return hardwareDescription_5113Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser hardwareProcessor_5114Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getHardwareProcessor_5114Parser() {
+		if (hardwareProcessor_5114Parser == null) {
+			EAttribute[] features = new EAttribute[] { RequirementsPackage.eINSTANCE
+					.getHardware_Processor() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Processor: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			hardwareProcessor_5114Parser = parser;
+		}
+		return hardwareProcessor_5114Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser hardwarePlatform_5115Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getHardwarePlatform_5115Parser() {
+		if (hardwarePlatform_5115Parser == null) {
+			EAttribute[] features = new EAttribute[] { RequirementsPackage.eINSTANCE
+					.getHardware_Platform() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Platform: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			hardwarePlatform_5115Parser = parser;
+		}
+		return hardwarePlatform_5115Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser hardwareMemory_5116Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getHardwareMemory_5116Parser() {
+		if (hardwareMemory_5116Parser == null) {
+			EAttribute[] features = new EAttribute[] { RequirementsPackage.eINSTANCE
+					.getHardware_Memory() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Memory: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			hardwareMemory_5116Parser = parser;
+		}
+		return hardwareMemory_5116Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser performanceName_5117Parser;
 
 	/**
@@ -1350,6 +1748,47 @@ public class ScrmParserProvider extends AbstractProvider implements
 		return performanceName_5117Parser;
 	}
 
+	/**
+	 * @generated
+	 */
+	private IParser performanceDescription_5118Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getPerformanceDescription_5118Parser() {
+		if (performanceDescription_5118Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			performanceDescription_5118Parser = parser;
+		}
+		return performanceDescription_5118Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser performanceProblemSize_5119Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getPerformanceProblemSize_5119Parser() {
+		if (performanceProblemSize_5119Parser == null) {
+			EAttribute[] features = new EAttribute[] { RequirementsPackage.eINSTANCE
+					.getPerformance_ProblemSize() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Problem Size: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			performanceProblemSize_5119Parser = parser;
+		}
+		return performanceProblemSize_5119Parser;
+	}
 
 	/**
 	 * @generated
@@ -1367,6 +1806,27 @@ public class ScrmParserProvider extends AbstractProvider implements
 			requirementName_5120Parser = parser;
 		}
 		return requirementName_5120Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser requirementDescription_5121Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getRequirementDescription_5121Parser() {
+		if (requirementDescription_5121Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			requirementDescription_5121Parser = parser;
+		}
+		return requirementDescription_5121Parser;
 	}
 
 	/**
@@ -1390,6 +1850,48 @@ public class ScrmParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser softwareInterfaceDescription_5123Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getSoftwareInterfaceDescription_5123Parser() {
+		if (softwareInterfaceDescription_5123Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			softwareInterfaceDescription_5123Parser = parser;
+		}
+		return softwareInterfaceDescription_5123Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser softwareInterfaceDataTypes_5124Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getSoftwareInterfaceDataTypes_5124Parser() {
+		if (softwareInterfaceDataTypes_5124Parser == null) {
+			EAttribute[] features = new EAttribute[] { RequirementsPackage.eINSTANCE
+					.getSoftwareInterface_DataTypes() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Data Types: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			softwareInterfaceDataTypes_5124Parser = parser;
+		}
+		return softwareInterfaceDataTypes_5124Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser userInterfaceName_5125Parser;
 
 	/**
@@ -1403,6 +1905,27 @@ public class ScrmParserProvider extends AbstractProvider implements
 			userInterfaceName_5125Parser = parser;
 		}
 		return userInterfaceName_5125Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser userInterfaceDescription_5126Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getUserInterfaceDescription_5126Parser() {
+		if (userInterfaceDescription_5126Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			userInterfaceDescription_5126Parser = parser;
+		}
+		return userInterfaceDescription_5126Parser;
 	}
 
 	/**
@@ -1426,6 +1949,258 @@ public class ScrmParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser statusMonitoringName_5143Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getStatusMonitoringName_5143Parser() {
+		if (statusMonitoringName_5143Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			statusMonitoringName_5143Parser = parser;
+		}
+		return statusMonitoringName_5143Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser statusMonitoringDescription_5144Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getStatusMonitoringDescription_5144Parser() {
+		if (statusMonitoringDescription_5144Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			statusMonitoringDescription_5144Parser = parser;
+		}
+		return statusMonitoringDescription_5144Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser resultsOutputName_5145Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getResultsOutputName_5145Parser() {
+		if (resultsOutputName_5145Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			resultsOutputName_5145Parser = parser;
+		}
+		return resultsOutputName_5145Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser resultsOutputDescription_5146Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getResultsOutputDescription_5146Parser() {
+		if (resultsOutputDescription_5146Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			resultsOutputDescription_5146Parser = parser;
+		}
+		return resultsOutputDescription_5146Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser processName_5147Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getProcessName_5147Parser() {
+		if (processName_5147Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			processName_5147Parser = parser;
+		}
+		return processName_5147Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser processDescription_5148Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getProcessDescription_5148Parser() {
+		if (processDescription_5148Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			processDescription_5148Parser = parser;
+		}
+		return processDescription_5148Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser inputDataReadingName_5149Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInputDataReadingName_5149Parser() {
+		if (inputDataReadingName_5149Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			inputDataReadingName_5149Parser = parser;
+		}
+		return inputDataReadingName_5149Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser inputDataReadingDescription_5150Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInputDataReadingDescription_5150Parser() {
+		if (inputDataReadingDescription_5150Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			inputDataReadingDescription_5150Parser = parser;
+		}
+		return inputDataReadingDescription_5150Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser errorHandlingName_5151Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getErrorHandlingName_5151Parser() {
+		if (errorHandlingName_5151Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			errorHandlingName_5151Parser = parser;
+		}
+		return errorHandlingName_5151Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser errorHandlingDescription_5152Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getErrorHandlingDescription_5152Parser() {
+		if (errorHandlingDescription_5152Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			errorHandlingDescription_5152Parser = parser;
+		}
+		return errorHandlingDescription_5152Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser dataHandlingName_5153Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDataHandlingName_5153Parser() {
+		if (dataHandlingName_5153Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			dataHandlingName_5153Parser = parser;
+		}
+		return dataHandlingName_5153Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser dataHandlingDescription_5154Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDataHandlingDescription_5154Parser() {
+		if (dataHandlingDescription_5154Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			dataHandlingDescription_5154Parser = parser;
+		}
+		return dataHandlingDescription_5154Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser dataProcessSpaceName_5155Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDataProcessSpaceName_5155Parser() {
+		if (dataProcessSpaceName_5155Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			dataProcessSpaceName_5155Parser = parser;
+		}
+		return dataProcessSpaceName_5155Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser statusMonitoringName_5127Parser;
 
 	/**
@@ -1439,6 +2214,27 @@ public class ScrmParserProvider extends AbstractProvider implements
 			statusMonitoringName_5127Parser = parser;
 		}
 		return statusMonitoringName_5127Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser statusMonitoringDescription_5128Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getStatusMonitoringDescription_5128Parser() {
+		if (statusMonitoringDescription_5128Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			statusMonitoringDescription_5128Parser = parser;
+		}
+		return statusMonitoringDescription_5128Parser;
 	}
 
 	/**
@@ -1462,6 +2258,27 @@ public class ScrmParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser resultsOutputDescription_5130Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getResultsOutputDescription_5130Parser() {
+		if (resultsOutputDescription_5130Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			resultsOutputDescription_5130Parser = parser;
+		}
+		return resultsOutputDescription_5130Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser processName_5131Parser;
 
 	/**
@@ -1475,6 +2292,27 @@ public class ScrmParserProvider extends AbstractProvider implements
 			processName_5131Parser = parser;
 		}
 		return processName_5131Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser processDescription_5132Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getProcessDescription_5132Parser() {
+		if (processDescription_5132Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			processDescription_5132Parser = parser;
+		}
+		return processDescription_5132Parser;
 	}
 
 	/**
@@ -1498,6 +2336,27 @@ public class ScrmParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser inputDataReadingDescription_5134Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInputDataReadingDescription_5134Parser() {
+		if (inputDataReadingDescription_5134Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			inputDataReadingDescription_5134Parser = parser;
+		}
+		return inputDataReadingDescription_5134Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser errorHandlingName_5135Parser;
 
 	/**
@@ -1516,6 +2375,27 @@ public class ScrmParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser errorHandlingDescription_5136Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getErrorHandlingDescription_5136Parser() {
+		if (errorHandlingDescription_5136Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			errorHandlingDescription_5136Parser = parser;
+		}
+		return errorHandlingDescription_5136Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser dataHandlingName_5137Parser;
 
 	/**
@@ -1529,6 +2409,27 @@ public class ScrmParserProvider extends AbstractProvider implements
 			dataHandlingName_5137Parser = parser;
 		}
 		return dataHandlingName_5137Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser dataHandlingDescription_5138Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDataHandlingDescription_5138Parser() {
+		if (dataHandlingDescription_5138Parser == null) {
+			EAttribute[] features = new EAttribute[] { ScrmPackage.eINSTANCE
+					.getSCRMModelElement_Description() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("Description: {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			dataHandlingDescription_5138Parser = parser;
+		}
+		return dataHandlingDescription_5138Parser;
 	}
 
 	/**
@@ -1693,19 +2594,19 @@ public class ScrmParserProvider extends AbstractProvider implements
 		case RequirementSpaceName2EditPart.VISUAL_ID:
 			return getRequirementSpaceName_5139Parser();
 		case StatusMonitoringName2EditPart.VISUAL_ID:
-			return getStatusMonitoringName_5127Parser();
+			return getStatusMonitoringName_5143Parser();
 		case ResultsOutputName2EditPart.VISUAL_ID:
-			return getResultsOutputName_5129Parser();
+			return getResultsOutputName_5145Parser();
 		case ProcessName2EditPart.VISUAL_ID:
-			return getProcessName_5131Parser();
+			return getProcessName_5147Parser();
 		case InputDataReadingName2EditPart.VISUAL_ID:
-			return getInputDataReadingName_5133Parser();
+			return getInputDataReadingName_5149Parser();
 		case ErrorHandlingName2EditPart.VISUAL_ID:
-			return getErrorHandlingName_5135Parser();
+			return getErrorHandlingName_5151Parser();
 		case DataHandlingName2EditPart.VISUAL_ID:
-			return getDataHandlingName_5137Parser();
+			return getDataHandlingName_5153Parser();
 		case DataProcessSpaceName2EditPart.VISUAL_ID:
-			return getDataProcessSpaceName_5141Parser();
+			return getDataProcessSpaceName_5155Parser();
 		}
 		return null;
 	}

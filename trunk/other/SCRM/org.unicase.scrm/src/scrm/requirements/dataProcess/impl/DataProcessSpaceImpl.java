@@ -39,6 +39,8 @@ import scrm.requirements.RequirementsPackage;
 import scrm.requirements.dataProcess.Process;
 import scrm.requirements.dataProcess.DataProcessPackage;
 import scrm.requirements.dataProcess.DataProcessSpace;
+import scrm.requirements.dataProcess.ErrorHandling;
+import scrm.requirements.dataProcess.StatusMonitoring;
 
 /**
  * <!-- begin-user-doc -->
@@ -58,6 +60,8 @@ import scrm.requirements.dataProcess.DataProcessSpace;
  *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getPredecessor <em>Predecessor</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getSuccessor <em>Successor</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getContainingDataProcessSpace <em>Containing Data Process Space</em>}</li>
+ *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getErrorHandling <em>Error Handling</em>}</li>
+ *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getStatusMonitoring <em>Status Monitoring</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getContainedDataProcessSteps <em>Contained Data Process Steps</em>}</li>
  * </ul>
  * </p>
@@ -135,6 +139,26 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 	 * @ordered
 	 */
 	protected scrm.requirements.dataProcess.Process successor;
+
+	/**
+	 * The cached value of the '{@link #getErrorHandling() <em>Error Handling</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getErrorHandling()
+	 * @generated
+	 * @ordered
+	 */
+	protected ErrorHandling errorHandling;
+
+	/**
+	 * The cached value of the '{@link #getStatusMonitoring() <em>Status Monitoring</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStatusMonitoring()
+	 * @generated
+	 * @ordered
+	 */
+	protected StatusMonitoring statusMonitoring;
 
 	/**
 	 * The cached value of the '{@link #getContainedDataProcessSteps() <em>Contained Data Process Steps</em>}' containment reference list.
@@ -882,6 +906,164 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ErrorHandling getErrorHandling() {
+		if (errorHandling != null && errorHandling.eIsProxy()) {
+			InternalEObject oldErrorHandling = (InternalEObject) errorHandling;
+			errorHandling = (ErrorHandling) eResolveProxy(oldErrorHandling);
+			if (errorHandling != oldErrorHandling) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(
+							this,
+							Notification.RESOLVE,
+							DataProcessPackage.DATA_PROCESS_SPACE__ERROR_HANDLING,
+							oldErrorHandling, errorHandling));
+			}
+		}
+		return errorHandling;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ErrorHandling basicGetErrorHandling() {
+		return errorHandling;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetErrorHandling(
+			ErrorHandling newErrorHandling, NotificationChain msgs) {
+		ErrorHandling oldErrorHandling = errorHandling;
+		errorHandling = newErrorHandling;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					DataProcessPackage.DATA_PROCESS_SPACE__ERROR_HANDLING,
+					oldErrorHandling, newErrorHandling);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setErrorHandling(ErrorHandling newErrorHandling) {
+		if (newErrorHandling != errorHandling) {
+			NotificationChain msgs = null;
+			if (errorHandling != null)
+				msgs = ((InternalEObject) errorHandling).eInverseRemove(this,
+						DataProcessPackage.ERROR_HANDLING__HANDLED_PROCESS,
+						ErrorHandling.class, msgs);
+			if (newErrorHandling != null)
+				msgs = ((InternalEObject) newErrorHandling).eInverseAdd(this,
+						DataProcessPackage.ERROR_HANDLING__HANDLED_PROCESS,
+						ErrorHandling.class, msgs);
+			msgs = basicSetErrorHandling(newErrorHandling, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					DataProcessPackage.DATA_PROCESS_SPACE__ERROR_HANDLING,
+					newErrorHandling, newErrorHandling));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StatusMonitoring getStatusMonitoring() {
+		if (statusMonitoring != null && statusMonitoring.eIsProxy()) {
+			InternalEObject oldStatusMonitoring = (InternalEObject) statusMonitoring;
+			statusMonitoring = (StatusMonitoring) eResolveProxy(oldStatusMonitoring);
+			if (statusMonitoring != oldStatusMonitoring) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(
+							this,
+							Notification.RESOLVE,
+							DataProcessPackage.DATA_PROCESS_SPACE__STATUS_MONITORING,
+							oldStatusMonitoring, statusMonitoring));
+			}
+		}
+		return statusMonitoring;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StatusMonitoring basicGetStatusMonitoring() {
+		return statusMonitoring;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetStatusMonitoring(
+			StatusMonitoring newStatusMonitoring, NotificationChain msgs) {
+		StatusMonitoring oldStatusMonitoring = statusMonitoring;
+		statusMonitoring = newStatusMonitoring;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					DataProcessPackage.DATA_PROCESS_SPACE__STATUS_MONITORING,
+					oldStatusMonitoring, newStatusMonitoring);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStatusMonitoring(StatusMonitoring newStatusMonitoring) {
+		if (newStatusMonitoring != statusMonitoring) {
+			NotificationChain msgs = null;
+			if (statusMonitoring != null)
+				msgs = ((InternalEObject) statusMonitoring)
+						.eInverseRemove(
+								this,
+								DataProcessPackage.STATUS_MONITORING__MONITORED_PROCESS,
+								StatusMonitoring.class, msgs);
+			if (newStatusMonitoring != null)
+				msgs = ((InternalEObject) newStatusMonitoring)
+						.eInverseAdd(
+								this,
+								DataProcessPackage.STATUS_MONITORING__MONITORED_PROCESS,
+								StatusMonitoring.class, msgs);
+			msgs = basicSetStatusMonitoring(newStatusMonitoring, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					DataProcessPackage.DATA_PROCESS_SPACE__STATUS_MONITORING,
+					newStatusMonitoring, newStatusMonitoring));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
@@ -945,6 +1127,20 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetContainingDataProcessSpace(
 					(DataProcessSpace) otherEnd, msgs);
+		case DataProcessPackage.DATA_PROCESS_SPACE__ERROR_HANDLING:
+			if (errorHandling != null)
+				msgs = ((InternalEObject) errorHandling).eInverseRemove(this,
+						DataProcessPackage.ERROR_HANDLING__HANDLED_PROCESS,
+						ErrorHandling.class, msgs);
+			return basicSetErrorHandling((ErrorHandling) otherEnd, msgs);
+		case DataProcessPackage.DATA_PROCESS_SPACE__STATUS_MONITORING:
+			if (statusMonitoring != null)
+				msgs = ((InternalEObject) statusMonitoring)
+						.eInverseRemove(
+								this,
+								DataProcessPackage.STATUS_MONITORING__MONITORED_PROCESS,
+								StatusMonitoring.class, msgs);
+			return basicSetStatusMonitoring((StatusMonitoring) otherEnd, msgs);
 		case DataProcessPackage.DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getContainedDataProcessSteps())
 					.basicAdd(otherEnd, msgs);
@@ -985,6 +1181,10 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 			return basicSetSuccessor(null, msgs);
 		case DataProcessPackage.DATA_PROCESS_SPACE__CONTAINING_DATA_PROCESS_SPACE:
 			return basicSetContainingDataProcessSpace(null, msgs);
+		case DataProcessPackage.DATA_PROCESS_SPACE__ERROR_HANDLING:
+			return basicSetErrorHandling(null, msgs);
+		case DataProcessPackage.DATA_PROCESS_SPACE__STATUS_MONITORING:
+			return basicSetStatusMonitoring(null, msgs);
 		case DataProcessPackage.DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS:
 			return ((InternalEList<?>) getContainedDataProcessSteps())
 					.basicRemove(otherEnd, msgs);
@@ -1073,6 +1273,14 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 			if (resolve)
 				return getContainingDataProcessSpace();
 			return basicGetContainingDataProcessSpace();
+		case DataProcessPackage.DATA_PROCESS_SPACE__ERROR_HANDLING:
+			if (resolve)
+				return getErrorHandling();
+			return basicGetErrorHandling();
+		case DataProcessPackage.DATA_PROCESS_SPACE__STATUS_MONITORING:
+			if (resolve)
+				return getStatusMonitoring();
+			return basicGetStatusMonitoring();
 		case DataProcessPackage.DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS:
 			return getContainedDataProcessSteps();
 		}
@@ -1125,6 +1333,12 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 		case DataProcessPackage.DATA_PROCESS_SPACE__CONTAINING_DATA_PROCESS_SPACE:
 			setContainingDataProcessSpace((DataProcessSpace) newValue);
 			return;
+		case DataProcessPackage.DATA_PROCESS_SPACE__ERROR_HANDLING:
+			setErrorHandling((ErrorHandling) newValue);
+			return;
+		case DataProcessPackage.DATA_PROCESS_SPACE__STATUS_MONITORING:
+			setStatusMonitoring((StatusMonitoring) newValue);
+			return;
 		case DataProcessPackage.DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS:
 			getContainedDataProcessSteps().clear();
 			getContainedDataProcessSteps()
@@ -1175,6 +1389,12 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 		case DataProcessPackage.DATA_PROCESS_SPACE__CONTAINING_DATA_PROCESS_SPACE:
 			setContainingDataProcessSpace((DataProcessSpace) null);
 			return;
+		case DataProcessPackage.DATA_PROCESS_SPACE__ERROR_HANDLING:
+			setErrorHandling((ErrorHandling) null);
+			return;
+		case DataProcessPackage.DATA_PROCESS_SPACE__STATUS_MONITORING:
+			setStatusMonitoring((StatusMonitoring) null);
+			return;
 		case DataProcessPackage.DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS:
 			getContainedDataProcessSteps().clear();
 			return;
@@ -1212,6 +1432,10 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 			return successor != null;
 		case DataProcessPackage.DATA_PROCESS_SPACE__CONTAINING_DATA_PROCESS_SPACE:
 			return basicGetContainingDataProcessSpace() != null;
+		case DataProcessPackage.DATA_PROCESS_SPACE__ERROR_HANDLING:
+			return errorHandling != null;
+		case DataProcessPackage.DATA_PROCESS_SPACE__STATUS_MONITORING:
+			return statusMonitoring != null;
 		case DataProcessPackage.DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS:
 			return containedDataProcessSteps != null
 					&& !containedDataProcessSteps.isEmpty();
@@ -1260,6 +1484,10 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 				return DataProcessPackage.PROCESS__SUCCESSOR;
 			case DataProcessPackage.DATA_PROCESS_SPACE__CONTAINING_DATA_PROCESS_SPACE:
 				return DataProcessPackage.PROCESS__CONTAINING_DATA_PROCESS_SPACE;
+			case DataProcessPackage.DATA_PROCESS_SPACE__ERROR_HANDLING:
+				return DataProcessPackage.PROCESS__ERROR_HANDLING;
+			case DataProcessPackage.DATA_PROCESS_SPACE__STATUS_MONITORING:
+				return DataProcessPackage.PROCESS__STATUS_MONITORING;
 			default:
 				return -1;
 			}
@@ -1308,6 +1536,10 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 				return DataProcessPackage.DATA_PROCESS_SPACE__SUCCESSOR;
 			case DataProcessPackage.PROCESS__CONTAINING_DATA_PROCESS_SPACE:
 				return DataProcessPackage.DATA_PROCESS_SPACE__CONTAINING_DATA_PROCESS_SPACE;
+			case DataProcessPackage.PROCESS__ERROR_HANDLING:
+				return DataProcessPackage.DATA_PROCESS_SPACE__ERROR_HANDLING;
+			case DataProcessPackage.PROCESS__STATUS_MONITORING:
+				return DataProcessPackage.DATA_PROCESS_SPACE__STATUS_MONITORING;
 			default:
 				return -1;
 			}

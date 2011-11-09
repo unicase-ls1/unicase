@@ -6,10 +6,9 @@
  */
 package scrm.requirements.dataProcess;
 
-import org.eclipse.emf.common.util.EList;
-
 import scrm.SCRMModelElement;
 import scrm.SCRMSpace;
+import scrm.lists.SCRMSpaceContainedModelElementsList;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,6 +45,6 @@ public interface DataProcessSpace extends SCRMSpace,
 	 *        annotation="org.unicase.ui.meeditor position='right' priority='5'"
 	 * @generated NOT: changed type parameter
 	 */
-	EList<SCRMModelElement> getContainedDataProcessSteps();
+	SCRMSpaceContainedModelElementsList<SCRMModelElement> getContainedDataProcessSteps();
 
 } // DataProcessSpace

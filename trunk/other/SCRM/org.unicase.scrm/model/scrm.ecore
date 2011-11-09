@@ -494,14 +494,22 @@
             <details key="priority" value="10"/>
           </eAnnotations>
         </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="errorHandling" eType="#//requirements/dataProcess/ErrorHandling"
+            eOpposite="#//requirements/dataProcess/ErrorHandling/handledProcess"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="statusMonitoring" eType="#//requirements/dataProcess/StatusMonitoring"
+            eOpposite="#//requirements/dataProcess/StatusMonitoring/monitoredProcess"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="InputDataReading" eSuperTypes="#//requirements/dataProcess/Process"/>
       <eClassifiers xsi:type="ecore:EClass" name="DataHandling" eSuperTypes="#//requirements/dataProcess/Process"/>
       <eClassifiers xsi:type="ecore:EClass" name="ResultsOutput" eSuperTypes="#//requirements/dataProcess/Process"/>
       <eClassifiers xsi:type="ecore:EClass" name="ErrorHandling" eSuperTypes="#//requirements/dataProcess/Process">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="handledProcess" eType="#//requirements/dataProcess/Process"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="handledProcess" eType="#//requirements/dataProcess/Process"
+            eOpposite="#//requirements/dataProcess/Process/errorHandling"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="StatusMonitoring" eSuperTypes="#//requirements/dataProcess/Process"/>
+      <eClassifiers xsi:type="ecore:EClass" name="StatusMonitoring" eSuperTypes="#//requirements/dataProcess/Process">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="monitoredProcess" eType="#//requirements/dataProcess/Process"
+            eOpposite="#//requirements/dataProcess/Process/statusMonitoring"/>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="DataProcessSpace" eSuperTypes="#//SCRMSpace #//requirements/dataProcess/Process">
         <eStructuralFeatures xsi:type="ecore:EReference" name="containedDataProcessSteps"
             upperBound="-1" eType="#//requirements/dataProcess/Process" containment="true"

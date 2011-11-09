@@ -619,13 +619,6 @@
         queryText="true"/>
   </linkTraces>
   <linkTraces
-      visualID="4017"
-      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/knowledge' and _eClass_.name = 'NumericalMethod') and _feature_.name = 'performance')">
-    <linkLabelTraces
-        visualID="6015"
-        queryText="true"/>
-  </linkTraces>
-  <linkTraces
       visualID="4023"
       queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements' and _eClass_.name = 'Feature') and _feature_.name = 'requiredInterfaces')">
     <linkLabelTraces
@@ -710,13 +703,6 @@
         queryText="true"/>
   </linkTraces>
   <linkTraces
-      visualID="4055"
-      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements' and _eClass_.name = 'DataDefinition') and _feature_.name = 'definedRequirement')">
-    <linkLabelTraces
-        visualID="6053"
-        queryText="true"/>
-  </linkTraces>
-  <linkTraces
       visualID="4056"
       queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements' and _eClass_.name = 'DataFlow') and _feature_.name = 'specifiedProcess')">
     <linkLabelTraces
@@ -735,6 +721,34 @@
       queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/knowledge' and _eClass_.name = 'MathematicalModel') and _feature_.name = 'refinedModel')">
     <linkLabelTraces
         visualID="6056"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4059"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements' and _eClass_.name = 'Performance') and _feature_.name = 'describedMethod')">
+    <linkLabelTraces
+        visualID="6057"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4060"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements' and _eClass_.name = 'Requirement') and _feature_.name = 'definingData')">
+    <linkLabelTraces
+        visualID="6058"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4061"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements/dataProcess' and _eClass_.name = 'ErrorHandling') and _feature_.name = 'handledProcess')">
+    <linkLabelTraces
+        visualID="6059"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4062"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/scrm/requirements/dataProcess' and _eClass_.name = 'StatusMonitoring') and _feature_.name = 'monitoredProcess')">
+    <linkLabelTraces
+        visualID="6060"
         queryText="true"/>
   </linkTraces>
 </trace:TraceModel>

@@ -17,32 +17,38 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 
-import scrm.diagram.edit.commands.DataDefinitionDefinedRequirementCreateCommand;
-import scrm.diagram.edit.commands.DataDefinitionDefinedRequirementReorientCommand;
 import scrm.diagram.edit.commands.DataFlowSpecifiedProcessCreateCommand;
 import scrm.diagram.edit.commands.DataFlowSpecifiedProcessReorientCommand;
+import scrm.diagram.edit.commands.ErrorHandlingHandledProcessCreateCommand;
+import scrm.diagram.edit.commands.ErrorHandlingHandledProcessReorientCommand;
 import scrm.diagram.edit.commands.ProcessSuccessorCreateCommand;
 import scrm.diagram.edit.commands.ProcessSuccessorReorientCommand;
+import scrm.diagram.edit.commands.RequirementDefiningDataCreateCommand;
+import scrm.diagram.edit.commands.RequirementDefiningDataReorientCommand;
 import scrm.diagram.edit.commands.RequirementRealizedMethodCreateCommand;
 import scrm.diagram.edit.commands.RequirementRealizedMethodReorientCommand;
 import scrm.diagram.edit.commands.RequirementRefinedRequirementCreateCommand;
 import scrm.diagram.edit.commands.RequirementRefinedRequirementReorientCommand;
 import scrm.diagram.edit.commands.RequirementSpecifiedFeatureCreateCommand;
 import scrm.diagram.edit.commands.RequirementSpecifiedFeatureReorientCommand;
-import scrm.diagram.edit.parts.DataDefinitionDefinedRequirementEditPart;
+import scrm.diagram.edit.commands.StatusMonitoringMonitoredProcessCreateCommand;
+import scrm.diagram.edit.commands.StatusMonitoringMonitoredProcessReorientCommand;
 import scrm.diagram.edit.parts.DataFlowSpecifiedProcessEditPart;
 import scrm.diagram.edit.parts.DataHandling2EditPart;
 import scrm.diagram.edit.parts.DataProcessSpace2EditPart;
 import scrm.diagram.edit.parts.DataProcessSpaceDataProcessSpaceCompartmentEditPart;
 import scrm.diagram.edit.parts.ErrorHandling2EditPart;
+import scrm.diagram.edit.parts.ErrorHandlingHandledProcessEditPart;
 import scrm.diagram.edit.parts.InputDataReading2EditPart;
 import scrm.diagram.edit.parts.Process2EditPart;
 import scrm.diagram.edit.parts.ProcessSuccessorEditPart;
+import scrm.diagram.edit.parts.RequirementDefiningDataEditPart;
 import scrm.diagram.edit.parts.RequirementRealizedMethodEditPart;
 import scrm.diagram.edit.parts.RequirementRefinedRequirementEditPart;
 import scrm.diagram.edit.parts.RequirementSpecifiedFeatureEditPart;
 import scrm.diagram.edit.parts.ResultsOutput2EditPart;
 import scrm.diagram.edit.parts.StatusMonitoring2EditPart;
+import scrm.diagram.edit.parts.StatusMonitoringMonitoredProcessEditPart;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
 
@@ -77,14 +83,6 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == DataDefinitionDefinedRequirementEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						incomingLink.getSource().getElement(), null,
-						incomingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
 			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == DataFlowSpecifiedProcessEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						incomingLink.getSource().getElement(), null,
@@ -94,6 +92,22 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 				continue;
 			}
 			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ProcessSuccessorEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(
+						incomingLink.getSource().getElement(), null,
+						incomingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ErrorHandlingHandledProcessEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(
+						incomingLink.getSource().getElement(), null,
+						incomingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == StatusMonitoringMonitoredProcessEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						incomingLink.getSource().getElement(), null,
 						incomingLink.getTarget().getElement(), false);
@@ -121,6 +135,14 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 				continue;
 			}
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementRefinedRequirementEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(
+						outgoingLink.getSource().getElement(), null,
+						outgoingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
+			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementDefiningDataEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						outgoingLink.getSource().getElement(), null,
 						outgoingLink.getTarget().getElement(), false);
@@ -177,16 +199,6 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 										incomingLink));
 								continue;
 							}
-							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == DataDefinitionDefinedRequirementEditPart.VISUAL_ID) {
-								DestroyReferenceRequest r = new DestroyReferenceRequest(
-										incomingLink.getSource().getElement(),
-										null, incomingLink.getTarget()
-												.getElement(), false);
-								cmd.add(new DestroyReferenceCommand(r));
-								cmd.add(new DeleteCommand(getEditingDomain(),
-										incomingLink));
-								continue;
-							}
 							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == DataFlowSpecifiedProcessEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										incomingLink.getSource().getElement(),
@@ -198,6 +210,26 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 								continue;
 							}
 							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ProcessSuccessorEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										incomingLink.getSource().getElement(),
+										null, incomingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ErrorHandlingHandledProcessEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										incomingLink.getSource().getElement(),
+										null, incomingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == StatusMonitoringMonitoredProcessEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										incomingLink.getSource().getElement(),
 										null, incomingLink.getTarget()
@@ -241,7 +273,27 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 										outgoingLink));
 								continue;
 							}
+							if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementDefiningDataEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										outgoingLink.getSource().getElement(),
+										null, outgoingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										outgoingLink));
+								continue;
+							}
 							if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == ProcessSuccessorEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										outgoingLink.getSource().getElement(),
+										null, outgoingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										outgoingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == StatusMonitoringMonitoredProcessEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										outgoingLink.getSource().getElement(),
 										null, outgoingLink.getTarget()
@@ -272,16 +324,6 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 										incomingLink));
 								continue;
 							}
-							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == DataDefinitionDefinedRequirementEditPart.VISUAL_ID) {
-								DestroyReferenceRequest r = new DestroyReferenceRequest(
-										incomingLink.getSource().getElement(),
-										null, incomingLink.getTarget()
-												.getElement(), false);
-								cmd.add(new DestroyReferenceCommand(r));
-								cmd.add(new DeleteCommand(getEditingDomain(),
-										incomingLink));
-								continue;
-							}
 							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == DataFlowSpecifiedProcessEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										incomingLink.getSource().getElement(),
@@ -293,6 +335,26 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 								continue;
 							}
 							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ProcessSuccessorEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										incomingLink.getSource().getElement(),
+										null, incomingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ErrorHandlingHandledProcessEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										incomingLink.getSource().getElement(),
+										null, incomingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == StatusMonitoringMonitoredProcessEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										incomingLink.getSource().getElement(),
 										null, incomingLink.getTarget()
@@ -327,6 +389,16 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 								continue;
 							}
 							if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementRefinedRequirementEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										outgoingLink.getSource().getElement(),
+										null, outgoingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										outgoingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementDefiningDataEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										outgoingLink.getSource().getElement(),
 										null, outgoingLink.getTarget()
@@ -367,16 +439,6 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 										incomingLink));
 								continue;
 							}
-							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == DataDefinitionDefinedRequirementEditPart.VISUAL_ID) {
-								DestroyReferenceRequest r = new DestroyReferenceRequest(
-										incomingLink.getSource().getElement(),
-										null, incomingLink.getTarget()
-												.getElement(), false);
-								cmd.add(new DestroyReferenceCommand(r));
-								cmd.add(new DeleteCommand(getEditingDomain(),
-										incomingLink));
-								continue;
-							}
 							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == DataFlowSpecifiedProcessEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										incomingLink.getSource().getElement(),
@@ -388,6 +450,26 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 								continue;
 							}
 							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ProcessSuccessorEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										incomingLink.getSource().getElement(),
+										null, incomingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ErrorHandlingHandledProcessEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										incomingLink.getSource().getElement(),
+										null, incomingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == StatusMonitoringMonitoredProcessEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										incomingLink.getSource().getElement(),
 										null, incomingLink.getTarget()
@@ -422,6 +504,16 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 								continue;
 							}
 							if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementRefinedRequirementEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										outgoingLink.getSource().getElement(),
+										null, outgoingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										outgoingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementDefiningDataEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										outgoingLink.getSource().getElement(),
 										null, outgoingLink.getTarget()
@@ -462,16 +554,6 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 										incomingLink));
 								continue;
 							}
-							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == DataDefinitionDefinedRequirementEditPart.VISUAL_ID) {
-								DestroyReferenceRequest r = new DestroyReferenceRequest(
-										incomingLink.getSource().getElement(),
-										null, incomingLink.getTarget()
-												.getElement(), false);
-								cmd.add(new DestroyReferenceCommand(r));
-								cmd.add(new DeleteCommand(getEditingDomain(),
-										incomingLink));
-								continue;
-							}
 							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == DataFlowSpecifiedProcessEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										incomingLink.getSource().getElement(),
@@ -483,6 +565,26 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 								continue;
 							}
 							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ProcessSuccessorEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										incomingLink.getSource().getElement(),
+										null, incomingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ErrorHandlingHandledProcessEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										incomingLink.getSource().getElement(),
+										null, incomingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == StatusMonitoringMonitoredProcessEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										incomingLink.getSource().getElement(),
 										null, incomingLink.getTarget()
@@ -517,6 +619,16 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 								continue;
 							}
 							if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementRefinedRequirementEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										outgoingLink.getSource().getElement(),
+										null, outgoingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										outgoingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementDefiningDataEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										outgoingLink.getSource().getElement(),
 										null, outgoingLink.getTarget()
@@ -557,16 +669,6 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 										incomingLink));
 								continue;
 							}
-							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == DataDefinitionDefinedRequirementEditPart.VISUAL_ID) {
-								DestroyReferenceRequest r = new DestroyReferenceRequest(
-										incomingLink.getSource().getElement(),
-										null, incomingLink.getTarget()
-												.getElement(), false);
-								cmd.add(new DestroyReferenceCommand(r));
-								cmd.add(new DeleteCommand(getEditingDomain(),
-										incomingLink));
-								continue;
-							}
 							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == DataFlowSpecifiedProcessEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										incomingLink.getSource().getElement(),
@@ -578,6 +680,26 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 								continue;
 							}
 							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ProcessSuccessorEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										incomingLink.getSource().getElement(),
+										null, incomingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ErrorHandlingHandledProcessEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										incomingLink.getSource().getElement(),
+										null, incomingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == StatusMonitoringMonitoredProcessEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										incomingLink.getSource().getElement(),
 										null, incomingLink.getTarget()
@@ -621,7 +743,27 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 										outgoingLink));
 								continue;
 							}
+							if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementDefiningDataEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										outgoingLink.getSource().getElement(),
+										null, outgoingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										outgoingLink));
+								continue;
+							}
 							if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == ProcessSuccessorEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										outgoingLink.getSource().getElement(),
+										null, outgoingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										outgoingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == ErrorHandlingHandledProcessEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										outgoingLink.getSource().getElement(),
 										null, outgoingLink.getTarget()
@@ -652,16 +794,6 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 										incomingLink));
 								continue;
 							}
-							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == DataDefinitionDefinedRequirementEditPart.VISUAL_ID) {
-								DestroyReferenceRequest r = new DestroyReferenceRequest(
-										incomingLink.getSource().getElement(),
-										null, incomingLink.getTarget()
-												.getElement(), false);
-								cmd.add(new DestroyReferenceCommand(r));
-								cmd.add(new DeleteCommand(getEditingDomain(),
-										incomingLink));
-								continue;
-							}
 							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == DataFlowSpecifiedProcessEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										incomingLink.getSource().getElement(),
@@ -673,6 +805,26 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 								continue;
 							}
 							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ProcessSuccessorEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										incomingLink.getSource().getElement(),
+										null, incomingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ErrorHandlingHandledProcessEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										incomingLink.getSource().getElement(),
+										null, incomingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == StatusMonitoringMonitoredProcessEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										incomingLink.getSource().getElement(),
 										null, incomingLink.getTarget()
@@ -707,6 +859,16 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 								continue;
 							}
 							if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementRefinedRequirementEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										outgoingLink.getSource().getElement(),
+										null, outgoingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										outgoingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementDefiningDataEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										outgoingLink.getSource().getElement(),
 										null, outgoingLink.getTarget()
@@ -747,16 +909,6 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 										incomingLink));
 								continue;
 							}
-							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == DataDefinitionDefinedRequirementEditPart.VISUAL_ID) {
-								DestroyReferenceRequest r = new DestroyReferenceRequest(
-										incomingLink.getSource().getElement(),
-										null, incomingLink.getTarget()
-												.getElement(), false);
-								cmd.add(new DestroyReferenceCommand(r));
-								cmd.add(new DeleteCommand(getEditingDomain(),
-										incomingLink));
-								continue;
-							}
 							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == DataFlowSpecifiedProcessEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										incomingLink.getSource().getElement(),
@@ -768,6 +920,26 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 								continue;
 							}
 							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ProcessSuccessorEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										incomingLink.getSource().getElement(),
+										null, incomingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == ErrorHandlingHandledProcessEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										incomingLink.getSource().getElement(),
+										null, incomingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(incomingLink) == StatusMonitoringMonitoredProcessEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										incomingLink.getSource().getElement(),
 										null, incomingLink.getTarget()
@@ -802,6 +974,16 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 								continue;
 							}
 							if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementRefinedRequirementEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(
+										outgoingLink.getSource().getElement(),
+										null, outgoingLink.getTarget()
+												.getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										outgoingLink));
+								continue;
+							}
+							if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementDefiningDataEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										outgoingLink.getSource().getElement(),
 										null, outgoingLink.getTarget()
@@ -865,9 +1047,10 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 			return getGEFWrapper(new RequirementRefinedRequirementCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.DataDefinitionDefinedRequirement_4055 == req
+		if (ScrmElementTypes.RequirementDefiningData_4060 == req
 				.getElementType()) {
-			return null;
+			return getGEFWrapper(new RequirementDefiningDataCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.DataFlowSpecifiedProcess_4056 == req
 				.getElementType()) {
@@ -876,6 +1059,14 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 		if (ScrmElementTypes.ProcessSuccessor_4047 == req.getElementType()) {
 			return getGEFWrapper(new ProcessSuccessorCreateCommand(req,
 					req.getSource(), req.getTarget()));
+		}
+		if (ScrmElementTypes.ErrorHandlingHandledProcess_4061 == req
+				.getElementType()) {
+			return null;
+		}
+		if (ScrmElementTypes.StatusMonitoringMonitoredProcess_4062 == req
+				.getElementType()) {
+			return null;
 		}
 		return null;
 	}
@@ -898,10 +1089,9 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 			return getGEFWrapper(new RequirementRefinedRequirementCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.DataDefinitionDefinedRequirement_4055 == req
+		if (ScrmElementTypes.RequirementDefiningData_4060 == req
 				.getElementType()) {
-			return getGEFWrapper(new DataDefinitionDefinedRequirementCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return null;
 		}
 		if (ScrmElementTypes.DataFlowSpecifiedProcess_4056 == req
 				.getElementType()) {
@@ -911,6 +1101,16 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 		if (ScrmElementTypes.ProcessSuccessor_4047 == req.getElementType()) {
 			return getGEFWrapper(new ProcessSuccessorCreateCommand(req,
 					req.getSource(), req.getTarget()));
+		}
+		if (ScrmElementTypes.ErrorHandlingHandledProcess_4061 == req
+				.getElementType()) {
+			return getGEFWrapper(new ErrorHandlingHandledProcessCreateCommand(
+					req, req.getSource(), req.getTarget()));
+		}
+		if (ScrmElementTypes.StatusMonitoringMonitoredProcess_4062 == req
+				.getElementType()) {
+			return getGEFWrapper(new StatusMonitoringMonitoredProcessCreateCommand(
+					req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -933,14 +1133,19 @@ public class DataProcessSpaceItemSemanticEditPolicy extends
 		case RequirementRefinedRequirementEditPart.VISUAL_ID:
 			return getGEFWrapper(new RequirementRefinedRequirementReorientCommand(
 					req));
-		case DataDefinitionDefinedRequirementEditPart.VISUAL_ID:
-			return getGEFWrapper(new DataDefinitionDefinedRequirementReorientCommand(
-					req));
+		case RequirementDefiningDataEditPart.VISUAL_ID:
+			return getGEFWrapper(new RequirementDefiningDataReorientCommand(req));
 		case DataFlowSpecifiedProcessEditPart.VISUAL_ID:
 			return getGEFWrapper(new DataFlowSpecifiedProcessReorientCommand(
 					req));
 		case ProcessSuccessorEditPart.VISUAL_ID:
 			return getGEFWrapper(new ProcessSuccessorReorientCommand(req));
+		case ErrorHandlingHandledProcessEditPart.VISUAL_ID:
+			return getGEFWrapper(new ErrorHandlingHandledProcessReorientCommand(
+					req));
+		case StatusMonitoringMonitoredProcessEditPart.VISUAL_ID:
+			return getGEFWrapper(new StatusMonitoringMonitoredProcessReorientCommand(
+					req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

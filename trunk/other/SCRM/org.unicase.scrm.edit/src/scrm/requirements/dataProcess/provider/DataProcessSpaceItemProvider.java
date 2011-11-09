@@ -72,6 +72,8 @@ public class DataProcessSpaceItemProvider extends SCRMModelElementItemProvider
 			addDataFlowPropertyDescriptor(object);
 			addPredecessorPropertyDescriptor(object);
 			addSuccessorPropertyDescriptor(object);
+			addErrorHandlingPropertyDescriptor(object);
+			addStatusMonitoringPropertyDescriptor(object);
 			addContainedDataProcessStepsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -266,6 +268,45 @@ public class DataProcessSpaceItemProvider extends SCRMModelElementItemProvider
 						"_UI_Process_successor_feature", "_UI_Process_type"),
 				DataProcessPackage.Literals.PROCESS__SUCCESSOR, true, false,
 				true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Error Handling feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addErrorHandlingPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_Process_errorHandling_feature"),
+						getString("_UI_PropertyDescriptor_description",
+								"_UI_Process_errorHandling_feature",
+								"_UI_Process_type"),
+						DataProcessPackage.Literals.PROCESS__ERROR_HANDLING,
+						true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Status Monitoring feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStatusMonitoringPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Process_statusMonitoring_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Process_statusMonitoring_feature",
+						"_UI_Process_type"),
+				DataProcessPackage.Literals.PROCESS__STATUS_MONITORING, true,
+				false, true, null, null, null));
 	}
 
 	/**

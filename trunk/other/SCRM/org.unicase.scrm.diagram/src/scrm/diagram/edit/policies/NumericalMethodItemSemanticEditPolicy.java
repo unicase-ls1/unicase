@@ -19,16 +19,16 @@ import scrm.diagram.edit.commands.MathematicalModelNumericalMethodsCreateCommand
 import scrm.diagram.edit.commands.MathematicalModelNumericalMethodsReorientCommand;
 import scrm.diagram.edit.commands.NumericalMethodDependenciesCreateCommand;
 import scrm.diagram.edit.commands.NumericalMethodDependenciesReorientCommand;
-import scrm.diagram.edit.commands.NumericalMethodPerformanceCreateCommand;
-import scrm.diagram.edit.commands.NumericalMethodPerformanceReorientCommand;
 import scrm.diagram.edit.commands.NumericalMethodSolvedProblemCreateCommand;
 import scrm.diagram.edit.commands.NumericalMethodSolvedProblemReorientCommand;
+import scrm.diagram.edit.commands.PerformanceDescribedMethodCreateCommand;
+import scrm.diagram.edit.commands.PerformanceDescribedMethodReorientCommand;
 import scrm.diagram.edit.commands.RequirementRealizedMethodCreateCommand;
 import scrm.diagram.edit.commands.RequirementRealizedMethodReorientCommand;
 import scrm.diagram.edit.parts.MathematicalModelNumericalMethodsEditPart;
 import scrm.diagram.edit.parts.NumericalMethodDependenciesEditPart;
-import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
 import scrm.diagram.edit.parts.NumericalMethodSolvedProblemEditPart;
+import scrm.diagram.edit.parts.PerformanceDescribedMethodEditPart;
 import scrm.diagram.edit.parts.RequirementRealizedMethodEditPart;
 import scrm.diagram.part.ScrmVisualIDRegistry;
 import scrm.diagram.providers.ScrmElementTypes;
@@ -72,6 +72,14 @@ public class NumericalMethodItemSemanticEditPolicy extends
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
+			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == PerformanceDescribedMethodEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(
+						incomingLink.getSource().getElement(), null,
+						incomingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
 		}
 		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
@@ -84,14 +92,6 @@ public class NumericalMethodItemSemanticEditPolicy extends
 				continue;
 			}
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == NumericalMethodDependenciesEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						outgoingLink.getSource().getElement(), null,
-						outgoingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				continue;
-			}
-			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == NumericalMethodPerformanceEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						outgoingLink.getSource().getElement(), null,
 						outgoingLink.getTarget().getElement(), false);
@@ -145,7 +145,7 @@ public class NumericalMethodItemSemanticEditPolicy extends
 				.getElementType()) {
 			return null;
 		}
-		if (ScrmElementTypes.NumericalMethodPerformance_4017 == req
+		if (ScrmElementTypes.PerformanceDescribedMethod_4059 == req
 				.getElementType()) {
 			return null;
 		}
@@ -175,9 +175,9 @@ public class NumericalMethodItemSemanticEditPolicy extends
 			return getGEFWrapper(new RequirementRealizedMethodCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.NumericalMethodPerformance_4017 == req
+		if (ScrmElementTypes.PerformanceDescribedMethod_4059 == req
 				.getElementType()) {
-			return getGEFWrapper(new NumericalMethodPerformanceCreateCommand(
+			return getGEFWrapper(new PerformanceDescribedMethodCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -204,8 +204,8 @@ public class NumericalMethodItemSemanticEditPolicy extends
 		case RequirementRealizedMethodEditPart.VISUAL_ID:
 			return getGEFWrapper(new RequirementRealizedMethodReorientCommand(
 					req));
-		case NumericalMethodPerformanceEditPart.VISUAL_ID:
-			return getGEFWrapper(new NumericalMethodPerformanceReorientCommand(
+		case PerformanceDescribedMethodEditPart.VISUAL_ID:
+			return getGEFWrapper(new PerformanceDescribedMethodReorientCommand(
 					req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);

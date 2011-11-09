@@ -12,12 +12,14 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import scrm.requirements.dataProcess.DataProcessPackage;
 
 /**
  * This is the item provider adapter for a {@link scrm.requirements.dataProcess.StatusMonitoring} object.
@@ -49,8 +51,30 @@ public class StatusMonitoringItemProvider extends ProcessItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addMonitoredProcessPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Monitored Process feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMonitoredProcessPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_StatusMonitoring_monitoredProcess_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_StatusMonitoring_monitoredProcess_feature",
+								"_UI_StatusMonitoring_type"),
+						DataProcessPackage.Literals.STATUS_MONITORING__MONITORED_PROCESS,
+						true, false, true, null, null, null));
 	}
 
 	/**
