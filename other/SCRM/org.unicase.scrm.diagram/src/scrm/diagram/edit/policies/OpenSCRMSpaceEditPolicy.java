@@ -50,11 +50,7 @@ public class OpenSCRMSpaceEditPolicy extends OpenEditPolicy {
 				
 		SCRMSpace representedSpace = (SCRMSpace) view.getElement();
 		
-		SCRMDiagram containingDiagram = (SCRMDiagram) view
-				.getDiagram().eContainer();
-		
-		return new ICommandProxy(new OpenDiagramCommand(
-				representedSpace, containingDiagram));
+		return new ICommandProxy(new OpenDiagramCommand(representedSpace));
 	}
 
 	/**
@@ -68,20 +64,16 @@ public class OpenSCRMSpaceEditPolicy extends OpenEditPolicy {
 
 		private final SCRMSpace representedSpace;
 
-		private final SCRMDiagram containingDiagram;
-
 		/**
 		 * Creates a new command to open the diagram linked by <code>linkStyle</code>.
 		 * @param linkStyle the link style of the edit part to open the diagram for
 		 */
-		public OpenDiagramCommand(SCRMSpace representedSpace,
-				SCRMDiagram containingDiagram) {
+		public OpenDiagramCommand(SCRMSpace representedSpace) {
 			// editing domain is taken for original diagram, 
 			// if we open diagram from another file, we should use another editing domain
 			super(TransactionUtil.getEditingDomain(representedSpace),
 					Messages.CommandName_OpenDiagram, null);
 			this.representedSpace = representedSpace;
-			this.containingDiagram = containingDiagram;
 		}
 
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
@@ -92,7 +84,7 @@ public class OpenSCRMSpaceEditPolicy extends OpenEditPolicy {
 				if (scrmDiagram == null) {
 					scrmDiagram = intializeNewDiagram();
 				}
-				if (containingDiagram != null) {
+				for(SCRMDiagram containingDiagram : representedSpace.getDisplayingDiagrams()) {
 					containingDiagram.getElements().add(scrmDiagram);
 				}
 				ActionHelper.openModelElement(scrmDiagram, "");
@@ -111,6 +103,7 @@ public class OpenSCRMSpaceEditPolicy extends OpenEditPolicy {
 			Project project = WorkspaceManager.getProjectSpace(
 					representedSpace).getProject();
 			project.addModelElement(scrmDiagram);
+			scrmDiagram.setName(representedSpace.getName() + " Diagram");
 			scrmDiagram.setDiagramType(representedSpace);
 			representedSpace.setRepresentingDiagram(scrmDiagram);
 			return scrmDiagram;

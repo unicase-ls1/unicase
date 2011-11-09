@@ -40,24 +40,27 @@ public class ScrmPaletteFactory {
 	 * @generated NOT: take diagram type into account
 	 */
 	public void fillPalette(PaletteRoot paletteRoot) {
-		switch(diagramType) {
+		switch (diagramType) {
 			case KNOWLEDGE_DIAGRAM:
 				paletteRoot.add(createKnowledge1Group());
 				break;
-			case DEFAULT_DIAGRAM:
-				paletteRoot.add(createKnowledge1Group());
-			case REQUIREMENTS_DIAGRAM:
-				paletteRoot.add(createRequirements2Group());
-				break;
-			case DATA_PROCESS_DIAGRAM:
-				PaletteContainer requirementsGroup = createRequirements2Group();
-				requirementsGroup.setLabel(Messages.DataProcessSteps3Group_title);
-				requirementsGroup.setDescription(Messages.DataProcessSteps3Group_desc);
-				List nonDataProcessRequirements = new ArrayList(requirementsGroup.getChildren().subList(0, 10));
-				requirementsGroup.getChildren().removeAll(nonDataProcessRequirements);
-				paletteRoot.add(requirementsGroup);
+		case DEFAULT_DIAGRAM:
+			paletteRoot.add(createKnowledge1Group());
+		case REQUIREMENTS_DIAGRAM:
+			paletteRoot.add(createRequirements2Group());
+			break;
+		case DATA_PROCESS_DIAGRAM:
+			PaletteContainer requirementsGroup = createRequirements2Group();
+			requirementsGroup.setLabel(Messages.DataProcessSteps3Group_title);
+			requirementsGroup
+					.setDescription(Messages.DataProcessSteps3Group_desc);
+			List nonDataProcessRequirements = new ArrayList(requirementsGroup
+					.getChildren().subList(0, 10));
+			requirementsGroup.getChildren().removeAll(
+					nonDataProcessRequirements);
+			paletteRoot.add(requirementsGroup);
 		}
-		
+
 	}
 
 	/**
@@ -351,7 +354,7 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createInputDataReading12CreationTool() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(ScrmElementTypes.InputDataReading_2036);
 		types.add(ScrmElementTypes.InputDataReading_3019);
 		NodeToolEntry entry = new NodeToolEntry(
@@ -367,7 +370,7 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createDataHandling13CreationTool() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(ScrmElementTypes.DataHandling_2037);
 		types.add(ScrmElementTypes.DataHandling_3021);
 		NodeToolEntry entry = new NodeToolEntry(
@@ -383,7 +386,7 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createResultsOutput14CreationTool() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(ScrmElementTypes.ResultsOutput_2038);
 		types.add(ScrmElementTypes.ResultsOutput_3017);
 		NodeToolEntry entry = new NodeToolEntry(
@@ -399,7 +402,7 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createErrorHandling15CreationTool() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(ScrmElementTypes.ErrorHandling_2039);
 		types.add(ScrmElementTypes.ErrorHandling_3020);
 		NodeToolEntry entry = new NodeToolEntry(
@@ -415,7 +418,7 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createStatusMonitoring16CreationTool() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(ScrmElementTypes.StatusMonitoring_2040);
 		types.add(ScrmElementTypes.StatusMonitoring_3016);
 		NodeToolEntry entry = new NodeToolEntry(
@@ -431,7 +434,7 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createProcess17CreationTool() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(ScrmElementTypes.Process_2035);
 		types.add(ScrmElementTypes.Process_3018);
 		NodeToolEntry entry = new NodeToolEntry(
@@ -447,9 +450,9 @@ public class ScrmPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createDataProcessSpace18CreationTool() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(ScrmElementTypes.DataProcessSpace_2046);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(ScrmElementTypes.DataProcessSpace_3022);
+		types.add(ScrmElementTypes.DataProcessSpace_2046);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.DataProcessSpace18CreationTool_title, null, types);
 		entry.setId("createDataProcessSpace18CreationTool"); //$NON-NLS-1$

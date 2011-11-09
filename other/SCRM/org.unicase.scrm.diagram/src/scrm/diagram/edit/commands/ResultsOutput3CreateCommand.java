@@ -54,11 +54,11 @@ public class ResultsOutput3CreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		ResultsOutput newElement = DataProcessFactory.eINSTANCE
+		scrm.requirements.dataProcess.ResultsOutput newElement = scrm.requirements.dataProcess.DataProcessFactory.eINSTANCE
 				.createResultsOutput();
 
-		RequirementSpace owner = (RequirementSpace) getElementToEdit();
-		owner.getContainedInformationofRequirements().add(newElement);
+		scrm.requirements.dataProcess.DataProcessSpace owner = (scrm.requirements.dataProcess.DataProcessSpace) getElementToEdit();
+		owner.getContainedDataProcessSteps().add(newElement);
 
 		doConfigure(newElement, monitor, info);
 

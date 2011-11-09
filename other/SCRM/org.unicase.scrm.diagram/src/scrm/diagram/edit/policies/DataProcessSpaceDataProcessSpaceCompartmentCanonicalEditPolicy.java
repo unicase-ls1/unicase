@@ -66,7 +66,7 @@ public class DataProcessSpaceDataProcessSpaceCompartmentCanonicalEditPolicy
 		View viewObject = (View) getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
 		List<ScrmNodeDescriptor> childDescriptors = ScrmDiagramUpdater
-				.getDataProcessSpaceDataProcessSpaceCompartment_7005SemanticChildren(viewObject);
+				.getDataProcessSpaceDataProcessSpaceCompartment_7007SemanticChildren(viewObject);
 		for (ScrmNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
@@ -109,7 +109,7 @@ public class DataProcessSpaceDataProcessSpaceCompartmentCanonicalEditPolicy
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
 		List<ScrmNodeDescriptor> childDescriptors = ScrmDiagramUpdater
-				.getDataProcessSpaceDataProcessSpaceCompartment_7005SemanticChildren((View) getHost()
+				.getDataProcessSpaceDataProcessSpaceCompartment_7007SemanticChildren((View) getHost()
 						.getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours

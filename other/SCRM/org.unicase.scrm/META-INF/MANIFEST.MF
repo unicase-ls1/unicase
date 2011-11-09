@@ -9,6 +9,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: scrm,
  scrm.impl,
+ scrm.lists,
  scrm.knowledge,
  scrm.knowledge.impl,
  scrm.knowledge.util,

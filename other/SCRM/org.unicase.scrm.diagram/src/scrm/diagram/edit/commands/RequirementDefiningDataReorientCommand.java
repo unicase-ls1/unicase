@@ -10,14 +10,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
 import scrm.diagram.edit.policies.ScrmBaseItemSemanticEditPolicy;
-import scrm.knowledge.NumericalMethod;
-import scrm.requirements.Performance;
+import scrm.requirements.DataDefinition;
+import scrm.requirements.Requirement;
 
 /**
  * @generated
  */
-public class NumericalMethodPerformanceReorientCommand extends
-		EditElementCommand {
+public class RequirementDefiningDataReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -42,7 +41,7 @@ public class NumericalMethodPerformanceReorientCommand extends
 	/**
 	 * @generated
 	 */
-	public NumericalMethodPerformanceReorientCommand(
+	public RequirementDefiningDataReorientCommand(
 			ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
@@ -55,7 +54,7 @@ public class NumericalMethodPerformanceReorientCommand extends
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == referenceOwner instanceof NumericalMethod) {
+		if (false == referenceOwner instanceof Requirement) {
 			return false;
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
@@ -71,11 +70,11 @@ public class NumericalMethodPerformanceReorientCommand extends
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof Performance && newEnd instanceof NumericalMethod)) {
+		if (!(oldEnd instanceof DataDefinition && newEnd instanceof Requirement)) {
 			return false;
 		}
 		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistNumericalMethodPerformance_4017(getNewSource(),
+				.canExistRequirementDefiningData_4060(getNewSource(),
 						getOldTarget());
 	}
 
@@ -83,11 +82,11 @@ public class NumericalMethodPerformanceReorientCommand extends
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Performance && newEnd instanceof Performance)) {
+		if (!(oldEnd instanceof DataDefinition && newEnd instanceof DataDefinition)) {
 			return false;
 		}
 		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistNumericalMethodPerformance_4017(getOldSource(),
+				.canExistRequirementDefiningData_4060(getOldSource(),
 						getNewTarget());
 	}
 
@@ -113,8 +112,8 @@ public class NumericalMethodPerformanceReorientCommand extends
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().setDescribedMethod(null);
-		getNewSource().setDescribedMethod(getOldTarget());
+		getOldSource().getDefiningData().remove(getOldTarget());
+		getNewSource().getDefiningData().add(getOldTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -122,35 +121,36 @@ public class NumericalMethodPerformanceReorientCommand extends
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().setDescribedMethod(getNewTarget());
+		getOldSource().getDefiningData().remove(getOldTarget());
+		getOldSource().getDefiningData().add(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Performance getOldSource() {
-		return (Performance) referenceOwner;
+	protected Requirement getOldSource() {
+		return (Requirement) referenceOwner;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Performance getNewSource() {
-		return (Performance) newEnd;
+	protected Requirement getNewSource() {
+		return (Requirement) newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected NumericalMethod getOldTarget() {
-		return (NumericalMethod) oldEnd;
+	protected DataDefinition getOldTarget() {
+		return (DataDefinition) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected NumericalMethod getNewTarget() {
-		return (NumericalMethod) newEnd;
+	protected DataDefinition getNewTarget() {
+		return (DataDefinition) newEnd;
 	}
 }

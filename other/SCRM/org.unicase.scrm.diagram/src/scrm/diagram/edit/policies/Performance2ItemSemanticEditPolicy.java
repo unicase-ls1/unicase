@@ -15,18 +15,18 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 
-import scrm.diagram.edit.commands.DataDefinitionDefinedRequirementCreateCommand;
-import scrm.diagram.edit.commands.DataDefinitionDefinedRequirementReorientCommand;
-import scrm.diagram.edit.commands.NumericalMethodPerformanceCreateCommand;
-import scrm.diagram.edit.commands.NumericalMethodPerformanceReorientCommand;
+import scrm.diagram.edit.commands.PerformanceDescribedMethodCreateCommand;
+import scrm.diagram.edit.commands.PerformanceDescribedMethodReorientCommand;
+import scrm.diagram.edit.commands.RequirementDefiningDataCreateCommand;
+import scrm.diagram.edit.commands.RequirementDefiningDataReorientCommand;
 import scrm.diagram.edit.commands.RequirementRealizedMethodCreateCommand;
 import scrm.diagram.edit.commands.RequirementRealizedMethodReorientCommand;
 import scrm.diagram.edit.commands.RequirementRefinedRequirementCreateCommand;
 import scrm.diagram.edit.commands.RequirementRefinedRequirementReorientCommand;
 import scrm.diagram.edit.commands.RequirementSpecifiedFeatureCreateCommand;
 import scrm.diagram.edit.commands.RequirementSpecifiedFeatureReorientCommand;
-import scrm.diagram.edit.parts.DataDefinitionDefinedRequirementEditPart;
-import scrm.diagram.edit.parts.NumericalMethodPerformanceEditPart;
+import scrm.diagram.edit.parts.PerformanceDescribedMethodEditPart;
+import scrm.diagram.edit.parts.RequirementDefiningDataEditPart;
 import scrm.diagram.edit.parts.RequirementRealizedMethodEditPart;
 import scrm.diagram.edit.parts.RequirementRefinedRequirementEditPart;
 import scrm.diagram.edit.parts.RequirementSpecifiedFeatureEditPart;
@@ -56,23 +56,7 @@ public class Performance2ItemSemanticEditPolicy extends
 		cmd.setTransactionNestingEnabled(false);
 		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
-			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == NumericalMethodPerformanceEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						incomingLink.getSource().getElement(), null,
-						incomingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
 			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == RequirementRefinedRequirementEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						incomingLink.getSource().getElement(), null,
-						incomingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
-			if (ScrmVisualIDRegistry.getVisualID(incomingLink) == DataDefinitionDefinedRequirementEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						incomingLink.getSource().getElement(), null,
 						incomingLink.getTarget().getElement(), false);
@@ -91,6 +75,14 @@ public class Performance2ItemSemanticEditPolicy extends
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
+			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == PerformanceDescribedMethodEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(
+						outgoingLink.getSource().getElement(), null,
+						outgoingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementSpecifiedFeatureEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						outgoingLink.getSource().getElement(), null,
@@ -100,6 +92,14 @@ public class Performance2ItemSemanticEditPolicy extends
 				continue;
 			}
 			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementRefinedRequirementEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(
+						outgoingLink.getSource().getElement(), null,
+						outgoingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
+			if (ScrmVisualIDRegistry.getVisualID(outgoingLink) == RequirementDefiningDataEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						outgoingLink.getSource().getElement(), null,
 						outgoingLink.getTarget().getElement(), false);
@@ -140,9 +140,10 @@ public class Performance2ItemSemanticEditPolicy extends
 			return getGEFWrapper(new RequirementRealizedMethodCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.NumericalMethodPerformance_4017 == req
+		if (ScrmElementTypes.PerformanceDescribedMethod_4059 == req
 				.getElementType()) {
-			return null;
+			return getGEFWrapper(new PerformanceDescribedMethodCreateCommand(
+					req, req.getSource(), req.getTarget()));
 		}
 		if (ScrmElementTypes.RequirementSpecifiedFeature_4052 == req
 				.getElementType()) {
@@ -154,9 +155,10 @@ public class Performance2ItemSemanticEditPolicy extends
 			return getGEFWrapper(new RequirementRefinedRequirementCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.DataDefinitionDefinedRequirement_4055 == req
+		if (ScrmElementTypes.RequirementDefiningData_4060 == req
 				.getElementType()) {
-			return null;
+			return getGEFWrapper(new RequirementDefiningDataCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -170,10 +172,9 @@ public class Performance2ItemSemanticEditPolicy extends
 				.getElementType()) {
 			return null;
 		}
-		if (ScrmElementTypes.NumericalMethodPerformance_4017 == req
+		if (ScrmElementTypes.PerformanceDescribedMethod_4059 == req
 				.getElementType()) {
-			return getGEFWrapper(new NumericalMethodPerformanceCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return null;
 		}
 		if (ScrmElementTypes.RequirementSpecifiedFeature_4052 == req
 				.getElementType()) {
@@ -184,10 +185,9 @@ public class Performance2ItemSemanticEditPolicy extends
 			return getGEFWrapper(new RequirementRefinedRequirementCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
-		if (ScrmElementTypes.DataDefinitionDefinedRequirement_4055 == req
+		if (ScrmElementTypes.RequirementDefiningData_4060 == req
 				.getElementType()) {
-			return getGEFWrapper(new DataDefinitionDefinedRequirementCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return null;
 		}
 		return null;
 	}
@@ -204,8 +204,8 @@ public class Performance2ItemSemanticEditPolicy extends
 		case RequirementRealizedMethodEditPart.VISUAL_ID:
 			return getGEFWrapper(new RequirementRealizedMethodReorientCommand(
 					req));
-		case NumericalMethodPerformanceEditPart.VISUAL_ID:
-			return getGEFWrapper(new NumericalMethodPerformanceReorientCommand(
+		case PerformanceDescribedMethodEditPart.VISUAL_ID:
+			return getGEFWrapper(new PerformanceDescribedMethodReorientCommand(
 					req));
 		case RequirementSpecifiedFeatureEditPart.VISUAL_ID:
 			return getGEFWrapper(new RequirementSpecifiedFeatureReorientCommand(
@@ -213,9 +213,8 @@ public class Performance2ItemSemanticEditPolicy extends
 		case RequirementRefinedRequirementEditPart.VISUAL_ID:
 			return getGEFWrapper(new RequirementRefinedRequirementReorientCommand(
 					req));
-		case DataDefinitionDefinedRequirementEditPart.VISUAL_ID:
-			return getGEFWrapper(new DataDefinitionDefinedRequirementReorientCommand(
-					req));
+		case RequirementDefiningDataEditPart.VISUAL_ID:
+			return getGEFWrapper(new RequirementDefiningDataReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

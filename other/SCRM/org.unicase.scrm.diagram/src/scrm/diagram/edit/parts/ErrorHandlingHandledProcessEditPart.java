@@ -11,23 +11,23 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 
-import scrm.diagram.edit.policies.DataDefinitionDefinedRequirementItemSemanticEditPolicy;
+import scrm.diagram.edit.policies.ErrorHandlingHandledProcessItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class DataDefinitionDefinedRequirementEditPart extends
-		ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ErrorHandlingHandledProcessEditPart extends ConnectionNodeEditPart
+		implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4055;
+	public static final int VISUAL_ID = 4061;
 
 	/**
 	 * @generated
 	 */
-	public DataDefinitionDefinedRequirementEditPart(View view) {
+	public ErrorHandlingHandledProcessEditPart(View view) {
 		super(view);
 	}
 
@@ -37,17 +37,17 @@ public class DataDefinitionDefinedRequirementEditPart extends
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new DataDefinitionDefinedRequirementItemSemanticEditPolicy());
+				new ErrorHandlingHandledProcessItemSemanticEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel19EditPart) {
-			((WrappingLabel19EditPart) childEditPart)
+		if (childEditPart instanceof WrappingLabel22EditPart) {
+			((WrappingLabel22EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
-							.getFigureRequirement_DefiningDataLabel());
+							.getFigureErrorHandling_ProcessLabel());
 			return true;
 		}
 		return false;
@@ -67,7 +67,7 @@ public class DataDefinitionDefinedRequirementEditPart extends
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel19EditPart) {
+		if (childEditPart instanceof WrappingLabel22EditPart) {
 			return true;
 		}
 		return false;
@@ -93,30 +93,30 @@ public class DataDefinitionDefinedRequirementEditPart extends
 	 */
 
 	protected Connection createConnectionFigure() {
-		return new Requirement_DefiningDataFigure();
+		return new ErrorHandling_ProcessFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public Requirement_DefiningDataFigure getPrimaryShape() {
-		return (Requirement_DefiningDataFigure) getFigure();
+	public ErrorHandling_ProcessFigure getPrimaryShape() {
+		return (ErrorHandling_ProcessFigure) getFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public class Requirement_DefiningDataFigure extends PolylineConnectionEx {
+	public class ErrorHandling_ProcessFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureRequirement_DefiningDataLabel;
+		private WrappingLabel fFigureErrorHandling_ProcessLabel;
 
 		/**
 		 * @generated
 		 */
-		public Requirement_DefiningDataFigure() {
+		public ErrorHandling_ProcessFigure() {
 
 			createContents();
 			setTargetDecoration(createTargetDecoration());
@@ -127,10 +127,10 @@ public class DataDefinitionDefinedRequirementEditPart extends
 		 */
 		private void createContents() {
 
-			fFigureRequirement_DefiningDataLabel = new WrappingLabel();
-			fFigureRequirement_DefiningDataLabel.setText("defines");
+			fFigureErrorHandling_ProcessLabel = new WrappingLabel();
+			fFigureErrorHandling_ProcessLabel.setText("watches");
 
-			this.add(fFigureRequirement_DefiningDataLabel);
+			this.add(fFigureErrorHandling_ProcessLabel);
 
 		}
 
@@ -145,8 +145,8 @@ public class DataDefinitionDefinedRequirementEditPart extends
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureRequirement_DefiningDataLabel() {
-			return fFigureRequirement_DefiningDataLabel;
+		public WrappingLabel getFigureErrorHandling_ProcessLabel() {
+			return fFigureErrorHandling_ProcessLabel;
 		}
 
 	}

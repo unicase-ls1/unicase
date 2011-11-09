@@ -21,6 +21,8 @@ import scrm.requirements.Requirement;
  *   <li>{@link scrm.requirements.dataProcess.Process#getPredecessor <em>Predecessor</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.Process#getSuccessor <em>Successor</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.Process#getContainingDataProcessSpace <em>Containing Data Process Space</em>}</li>
+ *   <li>{@link scrm.requirements.dataProcess.Process#getErrorHandling <em>Error Handling</em>}</li>
+ *   <li>{@link scrm.requirements.dataProcess.Process#getStatusMonitoring <em>Status Monitoring</em>}</li>
  * </ul>
  * </p>
  *
@@ -144,5 +146,61 @@ public interface Process extends Requirement {
 	 * @generated
 	 */
 	void setContainingDataProcessSpace(DataProcessSpace value);
+
+	/**
+	 * Returns the value of the '<em><b>Error Handling</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.dataProcess.ErrorHandling#getHandledProcess <em>Handled Process</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Error Handling</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Error Handling</em>' reference.
+	 * @see #setErrorHandling(ErrorHandling)
+	 * @see scrm.requirements.dataProcess.DataProcessPackage#getProcess_ErrorHandling()
+	 * @see scrm.requirements.dataProcess.ErrorHandling#getHandledProcess
+	 * @model opposite="handledProcess"
+	 * @generated
+	 */
+	ErrorHandling getErrorHandling();
+
+	/**
+	 * Sets the value of the '{@link scrm.requirements.dataProcess.Process#getErrorHandling <em>Error Handling</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Error Handling</em>' reference.
+	 * @see #getErrorHandling()
+	 * @generated
+	 */
+	void setErrorHandling(ErrorHandling value);
+
+	/**
+	 * Returns the value of the '<em><b>Status Monitoring</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.dataProcess.StatusMonitoring#getMonitoredProcess <em>Monitored Process</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Status Monitoring</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Status Monitoring</em>' reference.
+	 * @see #setStatusMonitoring(StatusMonitoring)
+	 * @see scrm.requirements.dataProcess.DataProcessPackage#getProcess_StatusMonitoring()
+	 * @see scrm.requirements.dataProcess.StatusMonitoring#getMonitoredProcess
+	 * @model opposite="monitoredProcess"
+	 * @generated
+	 */
+	StatusMonitoring getStatusMonitoring();
+
+	/**
+	 * Sets the value of the '{@link scrm.requirements.dataProcess.Process#getStatusMonitoring <em>Status Monitoring</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Status Monitoring</em>' reference.
+	 * @see #getStatusMonitoring()
+	 * @generated
+	 */
+	void setStatusMonitoring(StatusMonitoring value);
 
 } // Process

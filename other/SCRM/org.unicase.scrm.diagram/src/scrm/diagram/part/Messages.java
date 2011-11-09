@@ -259,12 +259,12 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String Requirements2Group_desc;
-	
+
 	/**
 	 * @generated NOT
 	 */
 	public static String DataProcessSteps3Group_title;
-	
+
 	/**
 	 * @generated NOT
 	 */
@@ -413,6 +413,11 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String DataProcessSpaceDataProcessSpaceCompartment3EditPart_title;
+
+	/**
+	 * @generated
+	 */
 	public static String CommandName_OpenDiagram;
 
 	/**
@@ -463,6 +468,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_StatusMonitoringMonitoredProcess_4062_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_StatusMonitoringMonitoredProcess_4062_source;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_DataProcessSpace_2046_outgoinglinks;
 
 	/**
@@ -478,6 +493,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_ErrorHandlingHandledProcess_4061_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ErrorHandlingHandledProcess_4061_source;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_Feature_2009_incominglinks;
 
 	/**
@@ -489,11 +514,6 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_Hardware_2010_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DataDefinition_2017_outgoinglinks;
 
 	/**
 	 * @generated
@@ -593,11 +613,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_DataDefinition_3007_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
 	public static String NavigatorGroupName_UserInterface_3014_incominglinks;
 
 	/**
@@ -653,6 +668,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_PerformanceDescribedMethod_4059_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_PerformanceDescribedMethod_4059_source;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_MathematicalModelRefinedModel_4058_target;
 
 	/**
@@ -694,26 +719,6 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_Requirement_2034_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_NumericalMethodPerformance_4017_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_NumericalMethodPerformance_4017_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DataDefinitionDefinedRequirement_4055_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DataDefinitionDefinedRequirement_4055_source;
 
 	/**
 	 * @generated
@@ -934,6 +939,26 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_NumericalMethod_3002_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DataDefinition_2017_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DataDefinition_3007_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_RequirementDefiningData_4060_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_RequirementDefiningData_4060_source;
 
 	/**
 	 * @generated

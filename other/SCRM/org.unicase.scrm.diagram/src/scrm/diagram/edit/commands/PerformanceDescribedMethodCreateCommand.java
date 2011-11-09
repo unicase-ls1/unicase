@@ -9,14 +9,13 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import scrm.diagram.edit.policies.ScrmBaseItemSemanticEditPolicy;
-import scrm.requirements.DataDefinition;
-import scrm.requirements.Requirement;
+import scrm.knowledge.NumericalMethod;
+import scrm.requirements.Performance;
 
 /**
  * @generated
  */
-public class DataDefinitionDefinedRequirementCreateCommand extends
-		EditElementCommand {
+public class PerformanceDescribedMethodCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -31,7 +30,7 @@ public class DataDefinitionDefinedRequirementCreateCommand extends
 	/**
 	 * @generated
 	 */
-	public DataDefinitionDefinedRequirementCreateCommand(
+	public PerformanceDescribedMethodCreateCommand(
 			CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
@@ -45,10 +44,10 @@ public class DataDefinitionDefinedRequirementCreateCommand extends
 		if (source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof DataDefinition) {
+		if (source != null && false == source instanceof Performance) {
 			return false;
 		}
-		if (target != null && false == target instanceof Requirement) {
+		if (target != null && false == target instanceof NumericalMethod) {
 			return false;
 		}
 		if (getSource() == null) {
@@ -56,7 +55,7 @@ public class DataDefinitionDefinedRequirementCreateCommand extends
 		}
 		// target may be null here but it's possible to check constraint
 		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canCreateDataDefinitionDefinedRequirement_4055(getSource(),
+				.canCreatePerformanceDescribedMethod_4059(getSource(),
 						getTarget());
 	}
 
@@ -71,7 +70,7 @@ public class DataDefinitionDefinedRequirementCreateCommand extends
 		}
 
 		if (getSource() != null && getTarget() != null) {
-			getSource().setDefinedRequirement(getTarget());
+			getSource().setDescribedMethod(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
 
@@ -87,14 +86,14 @@ public class DataDefinitionDefinedRequirementCreateCommand extends
 	/**
 	 * @generated
 	 */
-	protected DataDefinition getSource() {
-		return (DataDefinition) source;
+	protected Performance getSource() {
+		return (Performance) source;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Requirement getTarget() {
-		return (Requirement) target;
+	protected NumericalMethod getTarget() {
+		return (NumericalMethod) target;
 	}
 }

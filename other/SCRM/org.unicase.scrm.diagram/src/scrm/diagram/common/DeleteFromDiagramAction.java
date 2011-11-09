@@ -5,6 +5,7 @@
  */
 package scrm.diagram.common;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -16,7 +17,11 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.EdgeImpl;
 import org.eclipse.jface.action.Action;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.workspace.util.UnicaseCommand;
 
 import scrm.diagram.commands.CommandFactory;
 import scrm.diagram.edit.parts.SCRMDiagramEditPart;
@@ -29,9 +34,11 @@ import scrm.diagram.util.EditPartUtility;
 public class DeleteFromDiagramAction extends Action {
 
 	/**
-	 * In case of a diagram node to be deleted: This method deletes the model element behind the node from the diagram's
-	 * elements (done by DeleteFromDiagramCommand) list, but not from the project. In case of a diagram link to be
-	 * deleted: The reference is deleted from the view _and_ from the model.
+	 * In case of a diagram node to be deleted: This method deletes the model
+	 * element behind the node from the diagram's elements (done by
+	 * DeleteFromDiagramCommand) list, but not from the project. In case of a
+	 * diagram link to be deleted: The reference is deleted from the view _and_
+	 * from the model.
 	 * 
 	 * @see org.eclipse.jface.action#run()
 	 */
@@ -40,30 +47,66 @@ public class DeleteFromDiagramAction extends Action {
 		EditPart selectedElement = (EditPart) ActionHelper.getSelection();
 		CompoundCommand ccommand = new CompoundCommand("delete from diagram");
 		View view = EditPartUtility.getView(selectedElement);
-		DiagramEditPart rootEditPart = EditPartUtility.getDiagramEditPart(selectedElement);
+		DiagramEditPart rootEditPart = EditPartUtility
+				.getDiagramEditPart(selectedElement);
 		// if no element of the diagram has been selected
 		if (rootEditPart == null) {
 			return;
 		}
 		if (view instanceof Node) {
-			ccommand.add(CommandFactory.createDeleteFromDiagramCommand(selectedElement));
-			ccommand.add(CommandFactory.createDeleteFromViewCommand(selectedElement));
+			ccommand.add(CommandFactory
+					.createDeleteFromDiagramCommand(selectedElement));
+			ccommand.add(CommandFactory
+					.createDeleteFromViewCommand(selectedElement));
 
 		} else if (view instanceof Edge) {
-
-			DestroyReferenceRequest req = new DestroyReferenceRequest(((Edge) view).getSource().getElement(), null,
-				((Edge) view).getTarget().getElement(), false);
+			Edge edge = (Edge) view;
+			EObject source = edge.getSource().getElement();
+			EObject target = edge.getTarget().getElement();
+			DestroyReferenceRequest req = new DestroyReferenceRequest(source,
+					null, target, false);
 			ccommand.add(new ICommandProxy(new DestroyReferenceCommand(req)));
-			// in case of a transition in state or activity diagram
 			if (view.getElement() != null) {
-				ccommand.add(CommandFactory.createDeleteFromModelCommand(selectedElement));
+				ccommand.add(CommandFactory
+						.createDeleteFromModelCommand(selectedElement));
 			}
-
 		}
-		rootEditPart.getDiagramEditDomain().getDiagramCommandStack().execute(ccommand);
+		rootEditPart.getDiagramEditDomain().getDiagramCommandStack()
+				.execute(ccommand);
 
-		// / Until I find out, while the Editpart is not notified in this case, the following serves as a workaround
-		if (view instanceof EdgeImpl) {
+		// update containment references and diagram view
+		if (view instanceof Edge) {
+			Edge edge = (Edge) view;
+			final EObject source = edge.getSource().getElement();
+			final EObject target = edge.getTarget().getElement();
+			
+			// if the edge represented a containment reference, either source or
+			// target may lack a container after the edge was deleted
+			if (source.eContainer() == null) {
+				new ECPCommand(target) {
+
+					@Override
+					protected void doRun() {
+						// source is an orphan -> target still has a container
+						Project project = ModelUtil.getProject(target);
+						project.addModelElement(source);
+						
+					}
+				}.run(true);
+			} else if (target.eContainer() == null) {
+				new ECPCommand(source) {
+
+					@Override
+					protected void doRun() {
+						// target is an orphan -> source still has a container
+						Project project = ModelUtil.getProject(source);
+						project.addModelElement(target);
+						
+					}
+				}.run(true);
+				
+			}
+			
 			((SCRMDiagramEditPart) rootEditPart).updateView();
 		}
 	}

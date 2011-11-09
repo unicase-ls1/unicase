@@ -150,7 +150,7 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 	 */
 	public ScrmDiagramEditor(boolean hasFlyoutPalette) {
 		super(hasFlyoutPalette);
-		
+
 		focusListener = new FocusListener() {
 			public void focusGained(FocusEvent event) {
 				try {
@@ -262,7 +262,7 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 		getGraphicalViewer().getKeyHandler().put(
 				KeyStroke.getPressed(SWT.DEL, 127, 0),
 				new DeleteFromDiagramAction());
-		
+
 		registerFocusListener();
 		registerModelElementListeners();
 	}
@@ -319,8 +319,8 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 			Set<IClientContext> clientContexts = ClientContextManager
 					.getInstance().getClientContexts();
 			// get all allowed types
-			List allowedTypes = ScrmModelingAssistantProvider.
-				getAllowedTypes(diagram.getDiagramType());
+			List allowedTypes = ScrmModelingAssistantProvider
+					.getAllowedTypes(diagram.getDiagramType());
 			for (IClientContext clientContext : clientContexts) {
 				IElementType[] containedTypes = ElementTypeRegistry
 						.getInstance().getElementTypes(clientContext);
@@ -336,7 +336,7 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 						containedDiagram = true;
 					}
 					if (containedType.equals(dropeeType)) {
-						if(allowedTypes.contains(dropeeType)) {
+						if (allowedTypes.contains(dropeeType)) {
 							containedDropee = true;
 						}
 					}
@@ -350,12 +350,12 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 		
 		private boolean isContainmentCycle(SCRMDiagram diagram, EObject me) {
 			EObject representedSpace = diagram.getRepresentedSpace();
-			if(representedSpace == null) {
+			if (representedSpace == null) {
 				return false;
 			}
 			EObject container = representedSpace;
-			while(container != null) {
-				if(me == container) {
+			while (container != null) {
+				if (me == container) {
 					return true;
 				}
 				container = container.eContainer();
@@ -384,7 +384,7 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 		protected void handleDrop() {
 			if (dropMessageCheck(mesDrop, mesAdd)) {
 				final SCRMDiagram diagram = (SCRMDiagram) getDiagram()
-				.getElement();
+						.getElement();
 				ECPModelelementContext context = getModelElementContext(diagram);
 				if (context == null) {
 					return;
@@ -394,7 +394,7 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 				if (metaContext == null) {
 					return;
 				}
-				
+
 				LinkedList<EObject> elements = new LinkedList<EObject>();
 				elements.addAll(diagram.getElements());
 				mesAdd.addAll(AssociationClassHelper
@@ -406,15 +406,19 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 					protected void doRun() {
 						int counter = 0;
 						for (EObject eObject : mesAdd) {
-							if(!(eObject instanceof SCRMModelElement)) {
+							if (!(eObject instanceof SCRMModelElement)) {
 								continue;
 							}
 							SCRMModelElement scrmME = (SCRMModelElement) eObject;
 							// add reference to the element
 							diagram.getElements().add(scrmME);
-							if(diagram.getRepresentedSpace() != null
-									&& !diagram.getRepresentedSpace().getContainedModelElements().contains(scrmME)) {
-								diagram.getRepresentedSpace().getContainedModelElements().add(scrmME);
+							if (diagram.getRepresentedSpace() != null
+									&& !diagram.getRepresentedSpace()
+											.getContainedModelElements()
+											.contains(scrmME)) {
+								diagram.getRepresentedSpace()
+										.getContainedModelElements()
+										.add(scrmME);
 							}
 							// create the View for the element
 							CreateViewCommand command = new CreateViewCommand(
@@ -551,7 +555,7 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 			@Override
 			public void onChange(Notification msg) {
 				if (msg.getEventType() == Notification.SET
-					&& msg.getFeatureID(SCRMDiagram.class) == ScrmPackage.SCRM_DIAGRAM__NAME) {
+						&& msg.getFeatureID(SCRMDiagram.class) == ScrmPackage.SCRM_DIAGRAM__NAME) {
 					setPartName(msg.getNewStringValue());
 				}
 			}
@@ -580,14 +584,17 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 					return;
 				}
 				EObject meDiagram = diagram.getElement();
-				if (element == meDiagram || !modelElementContext.contains(meDiagram)) {
+				if (element == meDiagram
+						|| !modelElementContext.contains(meDiagram)) {
 					close(false);
 				}
 			}
 
 		};
 
-		modelElementContext.addModelElementContextListener(modelElementContextListener);;
+		modelElementContext
+				.addModelElementContextListener(modelElementContextListener);
+		;
 	}
 
 	/**
@@ -857,11 +864,12 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU,
 				provider, getDiagramGraphicalViewer());
 	}
-	
+
 	private ECPModelelementContext getModelElementContext(EObject eObject) {
-		if(eObject == null) {
+		if (eObject == null) {
 			try {
-				return ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject();
+				return ECPWorkspaceManager.getInstance().getWorkSpace()
+						.getActiveProject();
 			} catch (NoWorkspaceException e) {
 				ModelUtil.logException(e);
 				return null;
@@ -870,5 +878,5 @@ public class ScrmDiagramEditor extends DiagramDocumentEditor implements
 			return ECPWorkspaceManager.getECPProject(eObject);
 		}
 	}
-	
+
 }

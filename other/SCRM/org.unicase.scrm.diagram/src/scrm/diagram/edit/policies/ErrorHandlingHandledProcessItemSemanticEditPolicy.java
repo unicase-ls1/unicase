@@ -9,14 +9,14 @@ import scrm.diagram.providers.ScrmElementTypes;
 /**
  * @generated
  */
-public class DataDefinitionDefinedRequirementItemSemanticEditPolicy extends
+public class ErrorHandlingHandledProcessItemSemanticEditPolicy extends
 		ScrmBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public DataDefinitionDefinedRequirementItemSemanticEditPolicy() {
-		super(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
+	public ErrorHandlingHandledProcessItemSemanticEditPolicy() {
+		super(ScrmElementTypes.ErrorHandlingHandledProcess_4061);
 	}
 
 	/**

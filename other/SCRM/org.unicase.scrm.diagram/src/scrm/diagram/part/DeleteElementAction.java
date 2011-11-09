@@ -10,6 +10,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.actions.AbstractDeleteFromAction;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;

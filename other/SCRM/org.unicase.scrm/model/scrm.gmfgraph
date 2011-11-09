@@ -1749,6 +1749,24 @@
           figure="//@figures.4/@descriptors.19/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
+        name="ErrorHandling_ProcessFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="ErrorHandling_ProcessPolylineConnection"
+          targetDecoration="//@figures.4/@descriptors.20/@actualFigure/@children.1">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="ErrorHandling_ProcessLabel"
+            text="watches"/>
+        <children
+            xsi:type="gmfgraph:PolylineDecoration"
+            name="ErrorHandling_ProcessTargetDecoration"/>
+      </actualFigure>
+      <accessors
+          accessor="getFigureErrorHandling_ProcessLabel"
+          figure="//@figures.4/@descriptors.20/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
         name="Performance_NumericalMethodFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
@@ -1760,7 +1778,7 @@
       </actualFigure>
       <accessors
           accessor="getFigurePerformance_NumericalMethodLabel"
-          figure="//@figures.4/@descriptors.20/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.21/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="DataFlow_SpecifiedProcessFigure">
@@ -1774,7 +1792,7 @@
       </actualFigure>
       <accessors
           accessor="getFigureDataFlow_SpecifiedProcessLabel"
-          figure="//@figures.4/@descriptors.21/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.22/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="DataDefinition_DefinedRequirementFigure">
@@ -1788,14 +1806,14 @@
       </actualFigure>
       <accessors
           accessor="getFigureDataDefinition_DefinedRequirementLabel"
-          figure="//@figures.4/@descriptors.22/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.23/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="DataProcess_SuccessorFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
           name="DataProcess_SuccessorPolylineConnection"
-          targetDecoration="//@figures.4/@descriptors.23/@actualFigure/@children.1">
+          targetDecoration="//@figures.4/@descriptors.24/@actualFigure/@children.1">
         <children
             xsi:type="gmfgraph:Label"
             name="DataProcess_SuccessorLabel"
@@ -1806,7 +1824,25 @@
       </actualFigure>
       <accessors
           accessor="getFigureDataProcess_SuccessorLabel"
-          figure="//@figures.4/@descriptors.23/@actualFigure/@children.0"/>
+          figure="//@figures.4/@descriptors.24/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="StatusMonitoring_ProcessFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="StatusMonitoring_ProcessPolylineConnection"
+          targetDecoration="//@figures.4/@descriptors.25/@actualFigure/@children.1">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="StatusMonitoring_ProcessLabel"
+            text="monitors"/>
+        <children
+            xsi:type="gmfgraph:PolylineDecoration"
+            name="StatusMonitoring_ProcessTargetDecoration"/>
+      </actualFigure>
+      <accessors
+          accessor="getFigureStatusMonitoring_ProcessLabel"
+          figure="//@figures.4/@descriptors.25/@actualFigure/@children.0"/>
     </descriptors>
   </figures>
   <nodes
@@ -1981,6 +2017,9 @@
       name="Process_DataFlowConnection"
       figure="Process_DataFlowFigure"/>
   <connections
+      name="ErrorHandling_ProcessConnection"
+      figure="ErrorHandling_ProcessFigure"/>
+  <connections
       name="Performance_NumericalMethodConnection"
       figure="Performance_NumericalMethodFigure"/>
   <connections
@@ -1992,6 +2031,9 @@
   <connections
       name="DataProcess_SuccessorConnection"
       figure="DataProcess_SuccessorFigure"/>
+  <connections
+      name="StatusMonitoring_ProcessConnection"
+      figure="StatusMonitoring_ProcessFigure"/>
   <compartments
       name="KnowledgeSpaceCompartment"
       figure="KnowledgeSpaceFigure"
@@ -2667,7 +2709,7 @@
       name="Performance_NumericalMethodConnectionLabel"
       figure="Performance_NumericalMethodFigure"
       elementIcon="false"
-      accessor="//@figures.4/@descriptors.20/@accessors.0">
+      accessor="//@figures.4/@descriptors.21/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2679,7 +2721,7 @@
       name="DataFlow_SpecifiedProcessConnectionLabel"
       figure="DataFlow_SpecifiedProcessFigure"
       elementIcon="false"
-      accessor="//@figures.4/@descriptors.21/@accessors.0">
+      accessor="//@figures.4/@descriptors.22/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2691,7 +2733,7 @@
       name="DataDefinition_DefinedRequirementsConnectionLabel"
       figure="DataDefinition_DefinedRequirementFigure"
       elementIcon="false"
-      accessor="//@figures.4/@descriptors.22/@accessors.0">
+      accessor="//@figures.4/@descriptors.23/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>
@@ -2703,7 +2745,31 @@
       name="DataProcess_SuccessorConnectionLabel"
       figure="DataProcess_SuccessorFigure"
       elementIcon="false"
-      accessor="//@figures.4/@descriptors.23/@accessors.0">
+      accessor="//@figures.4/@descriptors.24/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
+  <labels
+      name="ErrorHandling_ProcessConnectionLabel"
+      figure="ErrorHandling_ProcessFigure"
+      elementIcon="false"
+      accessor="//@figures.4/@descriptors.20/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="10"/>
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
+  <labels
+      name="StatusMonitoring_ProcessConnectionLabel"
+      figure="StatusMonitoring_ProcessFigure"
+      elementIcon="false"
+      accessor="//@figures.4/@descriptors.25/@accessors.0">
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="10"/>

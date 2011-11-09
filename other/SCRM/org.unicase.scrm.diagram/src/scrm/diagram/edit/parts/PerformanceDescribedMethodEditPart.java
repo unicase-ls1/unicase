@@ -11,23 +11,23 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 
-import scrm.diagram.edit.policies.NumericalMethodPerformanceItemSemanticEditPolicy;
+import scrm.diagram.edit.policies.PerformanceDescribedMethodItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class NumericalMethodPerformanceEditPart extends ConnectionNodeEditPart
+public class PerformanceDescribedMethodEditPart extends ConnectionNodeEditPart
 		implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4017;
+	public static final int VISUAL_ID = 4059;
 
 	/**
 	 * @generated
 	 */
-	public NumericalMethodPerformanceEditPart(View view) {
+	public PerformanceDescribedMethodEditPart(View view) {
 		super(view);
 	}
 
@@ -37,7 +37,7 @@ public class NumericalMethodPerformanceEditPart extends ConnectionNodeEditPart
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new NumericalMethodPerformanceItemSemanticEditPolicy());
+				new PerformanceDescribedMethodItemSemanticEditPolicy());
 	}
 
 	/**

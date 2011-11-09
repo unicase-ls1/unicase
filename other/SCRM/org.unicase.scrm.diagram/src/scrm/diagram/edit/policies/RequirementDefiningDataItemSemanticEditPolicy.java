@@ -9,14 +9,14 @@ import scrm.diagram.providers.ScrmElementTypes;
 /**
  * @generated
  */
-public class NumericalMethodPerformanceItemSemanticEditPolicy extends
+public class RequirementDefiningDataItemSemanticEditPolicy extends
 		ScrmBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public NumericalMethodPerformanceItemSemanticEditPolicy() {
-		super(ScrmElementTypes.NumericalMethodPerformance_4017);
+	public RequirementDefiningDataItemSemanticEditPolicy() {
+		super(ScrmElementTypes.RequirementDefiningData_4060);
 	}
 
 	/**

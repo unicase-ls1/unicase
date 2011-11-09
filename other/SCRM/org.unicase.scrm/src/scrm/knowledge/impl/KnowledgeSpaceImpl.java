@@ -214,7 +214,8 @@ public class KnowledgeSpaceImpl extends SCRMModelElementImpl implements
 	 */
 	public void setRepresentingDiagram(SCRMDiagram newRepresentingDiagram) {
 		if (newRepresentingDiagram != representingDiagram) {
-			getContainedScientificKnowledge().setDiagram(newRepresentingDiagram);
+			getContainedScientificKnowledge()
+					.setDiagram(newRepresentingDiagram);
 			NotificationChain msgs = null;
 			if (representingDiagram != null)
 				msgs = ((InternalEObject) representingDiagram).eInverseRemove(

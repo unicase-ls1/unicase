@@ -220,8 +220,27 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getErrorHandling_HandledProcess() {
+		return (EReference) errorHandlingEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getStatusMonitoring() {
 		return statusMonitoringEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStatusMonitoring_MonitoredProcess() {
+		return (EReference) statusMonitoringEClass.getEStructuralFeatures()
+				.get(0);
 	}
 
 	/**
@@ -267,6 +286,24 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 	 */
 	public EReference getProcess_ContainingDataProcessSpace() {
 		return (EReference) processEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProcess_ErrorHandling() {
+		return (EReference) processEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProcess_StatusMonitoring() {
+		return (EReference) processEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -322,6 +359,8 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 		createEReference(processEClass, PROCESS__PREDECESSOR);
 		createEReference(processEClass, PROCESS__SUCCESSOR);
 		createEReference(processEClass, PROCESS__CONTAINING_DATA_PROCESS_SPACE);
+		createEReference(processEClass, PROCESS__ERROR_HANDLING);
+		createEReference(processEClass, PROCESS__STATUS_MONITORING);
 
 		inputDataReadingEClass = createEClass(INPUT_DATA_READING);
 
@@ -330,8 +369,11 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 		resultsOutputEClass = createEClass(RESULTS_OUTPUT);
 
 		errorHandlingEClass = createEClass(ERROR_HANDLING);
+		createEReference(errorHandlingEClass, ERROR_HANDLING__HANDLED_PROCESS);
 
 		statusMonitoringEClass = createEClass(STATUS_MONITORING);
+		createEReference(statusMonitoringEClass,
+				STATUS_MONITORING__MONITORED_PROCESS);
 
 		dataProcessSpaceEClass = createEClass(DATA_PROCESS_SPACE);
 		createEReference(dataProcessSpaceEClass,
@@ -412,6 +454,19 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 				scrm.requirements.dataProcess.Process.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProcess_ErrorHandling(), this.getErrorHandling(),
+				this.getErrorHandling_HandledProcess(), "errorHandling", null,
+				0, 1, scrm.requirements.dataProcess.Process.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getProcess_StatusMonitoring(),
+				this.getStatusMonitoring(),
+				this.getStatusMonitoring_MonitoredProcess(),
+				"statusMonitoring", null, 0, 1,
+				scrm.requirements.dataProcess.Process.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inputDataReadingEClass, InputDataReading.class,
 				"InputDataReading", !IS_ABSTRACT, !IS_INTERFACE,
@@ -425,10 +480,21 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 
 		initEClass(errorHandlingEClass, ErrorHandling.class, "ErrorHandling",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getErrorHandling_HandledProcess(), this.getProcess(),
+				this.getProcess_ErrorHandling(), "handledProcess", null, 0, 1,
+				ErrorHandling.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(statusMonitoringEClass, StatusMonitoring.class,
 				"StatusMonitoring", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStatusMonitoring_MonitoredProcess(),
+				this.getProcess(), this.getProcess_StatusMonitoring(),
+				"monitoredProcess", null, 0, 1, StatusMonitoring.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(dataProcessSpaceEClass, DataProcessSpace.class,
 				"DataProcessSpace", !IS_ABSTRACT, !IS_INTERFACE,

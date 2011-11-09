@@ -269,8 +269,10 @@ public class Performance2EditPart extends ShapeNodeEditPart {
 		switch(scrmDiagram.getDiagramType()) {
 			case DEFAULT_DIAGRAM:
 				types.add(ScrmElementTypes.RequirementRealizedMethod_4050);
+				types.add(ScrmElementTypes.PerformanceDescribedMethod_4059);
 			case REQUIREMENTS_DIAGRAM:
 				types.add(ScrmElementTypes.RequirementSpecifiedFeature_4052);
+				types.add(ScrmElementTypes.RequirementDefiningData_4060);
 			case DATA_PROCESS_DIAGRAM:
 				types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
 		}
@@ -288,9 +290,11 @@ public class Performance2EditPart extends ShapeNodeEditPart {
 			case DEFAULT_DIAGRAM:
 				if (targetEditPart instanceof NumericalMethodEditPart) {
 					types.add(ScrmElementTypes.RequirementRealizedMethod_4050);
+					types.add(ScrmElementTypes.PerformanceDescribedMethod_4059);
 				}
 				if (targetEditPart instanceof NumericalMethod2EditPart) {
 					types.add(ScrmElementTypes.RequirementRealizedMethod_4050);
+					types.add(ScrmElementTypes.PerformanceDescribedMethod_4059);
 				}
 			case REQUIREMENTS_DIAGRAM:
 				if (targetEditPart instanceof FeatureEditPart) {
@@ -310,6 +314,12 @@ public class Performance2EditPart extends ShapeNodeEditPart {
 				}
 				if (targetEditPart instanceof Requirement2EditPart) {
 					types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
+				}
+				if (targetEditPart instanceof DataDefinitionEditPart) {
+					types.add(ScrmElementTypes.RequirementDefiningData_4060);
+				}
+				if (targetEditPart instanceof DataDefinition2EditPart) {
+					types.add(ScrmElementTypes.RequirementDefiningData_4060);
 				}
 			case DATA_PROCESS_DIAGRAM:
 				if (targetEditPart instanceof ProcessEditPart) {
@@ -371,10 +381,20 @@ public class Performance2EditPart extends ShapeNodeEditPart {
 					types.add(ScrmElementTypes.NumericalMethod_3002);
 					break;
 				}
+				if (relationshipType == ScrmElementTypes.PerformanceDescribedMethod_4059) {
+					types.add(ScrmElementTypes.NumericalMethod_2006);
+					types.add(ScrmElementTypes.NumericalMethod_3002);
+					break;
+				}
 			case REQUIREMENTS_DIAGRAM:
 				if (relationshipType == ScrmElementTypes.RequirementSpecifiedFeature_4052) {
 					types.add(ScrmElementTypes.Feature_2009);
 					types.add(ScrmElementTypes.Feature_3009);
+					break;
+				}
+				if (relationshipType == ScrmElementTypes.RequirementDefiningData_4060) {
+					types.add(ScrmElementTypes.DataDefinition_2017);
+					types.add(ScrmElementTypes.DataDefinition_3007);
 					break;
 				}
 				if (relationshipType == ScrmElementTypes.RequirementRefinedRequirement_4054) {
@@ -412,9 +432,7 @@ public class Performance2EditPart extends ShapeNodeEditPart {
 		List<IElementType> types = new LinkedList<IElementType>();
 		switch(scrmDiagram.getDiagramType()) {
 			case DEFAULT_DIAGRAM:
-				types.add(ScrmElementTypes.NumericalMethodPerformance_4017);
 			case REQUIREMENTS_DIAGRAM:
-				types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
 			case DATA_PROCESS_DIAGRAM:
 				types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);		
 		}
@@ -429,20 +447,12 @@ public class Performance2EditPart extends ShapeNodeEditPart {
 		List<IElementType> types = new LinkedList<IElementType>();
 		switch(scrmDiagram.getDiagramType()) {
 			case DEFAULT_DIAGRAM:
-				if (relationshipType == ScrmElementTypes.NumericalMethodPerformance_4017) {
-					types.add(ScrmElementTypes.NumericalMethod_2006);
-					types.add(ScrmElementTypes.NumericalMethod_3002);
-				}
 			case REQUIREMENTS_DIAGRAM:
 				 if (relationshipType == ScrmElementTypes.RequirementRefinedRequirement_4054) {
 						types.add(ScrmElementTypes.Performance_2015);
 						types.add(ScrmElementTypes.Requirement_2034);
 						types.add(ScrmElementTypes.Performance_3011);
 						types.add(ScrmElementTypes.Requirement_3012);
-				} else if (relationshipType == ScrmElementTypes.DataDefinitionDefinedRequirement_4055) {
-						types.add(ScrmElementTypes.DataDefinition_2017);
-						types.add(ScrmElementTypes.DataDefinition_3007);
-						break;
 				}
 			case DATA_PROCESS_DIAGRAM:
 				 if (relationshipType == ScrmElementTypes.RequirementRefinedRequirement_4054) {

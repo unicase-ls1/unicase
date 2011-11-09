@@ -282,9 +282,11 @@ public class StatusMonitoringEditPart extends ShapeNodeEditPart {
 				types.add(ScrmElementTypes.RequirementRealizedMethod_4050);
 			case REQUIREMENTS_DIAGRAM:
 				types.add(ScrmElementTypes.RequirementSpecifiedFeature_4052);
+				types.add(ScrmElementTypes.RequirementDefiningData_4060);				
 			case DATA_PROCESS_DIAGRAM:
 				types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
 				types.add(ScrmElementTypes.ProcessSuccessor_4047);
+				types.add(ScrmElementTypes.StatusMonitoringMonitoredProcess_4062);
 		}
 		return types;
 	}
@@ -323,6 +325,12 @@ public class StatusMonitoringEditPart extends ShapeNodeEditPart {
 				if (targetEditPart instanceof Requirement2EditPart) {
 					types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
 				}
+				if (targetEditPart instanceof DataDefinitionEditPart) {
+					types.add(ScrmElementTypes.RequirementDefiningData_4060);
+				}
+				if (targetEditPart instanceof DataDefinition2EditPart) {
+					types.add(ScrmElementTypes.RequirementDefiningData_4060);
+				}
 			case DATA_PROCESS_DIAGRAM:
 				if (targetEditPart instanceof ProcessEditPart) {
 					types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
@@ -408,7 +416,50 @@ public class StatusMonitoringEditPart extends ShapeNodeEditPart {
 				if (targetEditPart instanceof DataProcessSpace2EditPart) {
 					types.add(ScrmElementTypes.ProcessSuccessor_4047);
 				}
+				if (targetEditPart instanceof ProcessEditPart) {
+					types.add(ScrmElementTypes.StatusMonitoringMonitoredProcess_4062);
+				}
+				if (targetEditPart instanceof InputDataReadingEditPart) {
+					types.add(ScrmElementTypes.StatusMonitoringMonitoredProcess_4062);
+				}
+				if (targetEditPart instanceof DataHandlingEditPart) {
+					types.add(ScrmElementTypes.StatusMonitoringMonitoredProcess_4062);
+				}
+				if (targetEditPart instanceof ResultsOutputEditPart) {
+					types.add(ScrmElementTypes.StatusMonitoringMonitoredProcess_4062);
+				}
+				if (targetEditPart instanceof ErrorHandlingEditPart) {
+					types.add(ScrmElementTypes.StatusMonitoringMonitoredProcess_4062);
+				}
+				if (targetEditPart instanceof StatusMonitoringEditPart) {
+					types.add(ScrmElementTypes.StatusMonitoringMonitoredProcess_4062);
+				}
+				if (targetEditPart instanceof DataProcessSpaceEditPart) {
+					types.add(ScrmElementTypes.StatusMonitoringMonitoredProcess_4062);
+				}
+				if (targetEditPart instanceof StatusMonitoring2EditPart) {
+					types.add(ScrmElementTypes.StatusMonitoringMonitoredProcess_4062);
+				}
+				if (targetEditPart instanceof ResultsOutput2EditPart) {
+					types.add(ScrmElementTypes.StatusMonitoringMonitoredProcess_4062);
+				}
+				if (targetEditPart instanceof Process2EditPart) {
+					types.add(ScrmElementTypes.StatusMonitoringMonitoredProcess_4062);
+				}
+				if (targetEditPart instanceof InputDataReading2EditPart) {
+					types.add(ScrmElementTypes.StatusMonitoringMonitoredProcess_4062);
+				}
+				if (targetEditPart instanceof ErrorHandling2EditPart) {
+					types.add(ScrmElementTypes.StatusMonitoringMonitoredProcess_4062);
+				}
+				if (targetEditPart instanceof DataHandling2EditPart) {
+					types.add(ScrmElementTypes.StatusMonitoringMonitoredProcess_4062);
+				}
+				if (targetEditPart instanceof DataProcessSpace2EditPart) {
+					types.add(ScrmElementTypes.StatusMonitoringMonitoredProcess_4062);
+				}
 		}
+		
 		return types;
 	}
 
@@ -430,6 +481,9 @@ public class StatusMonitoringEditPart extends ShapeNodeEditPart {
 					types.add(ScrmElementTypes.Feature_2009);
 					types.add(ScrmElementTypes.Feature_3009);
 					break;
+				} else if (relationshipType == ScrmElementTypes.RequirementDefiningData_4060) {
+					types.add(ScrmElementTypes.DataDefinition_2017);
+					types.add(ScrmElementTypes.DataDefinition_3007);
 				} else if (relationshipType == ScrmElementTypes.RequirementRefinedRequirement_4054) {
 					types.add(ScrmElementTypes.Performance_2015);
 					types.add(ScrmElementTypes.Requirement_2034);
@@ -467,6 +521,21 @@ public class StatusMonitoringEditPart extends ShapeNodeEditPart {
 					types.add(ScrmElementTypes.ErrorHandling_3020);
 					types.add(ScrmElementTypes.DataHandling_3021);
 					types.add(ScrmElementTypes.DataProcessSpace_3022);
+				} else if (relationshipType == ScrmElementTypes.StatusMonitoringMonitoredProcess_4062) {
+					types.add(ScrmElementTypes.Process_2035);
+					types.add(ScrmElementTypes.InputDataReading_2036);
+					types.add(ScrmElementTypes.DataHandling_2037);
+					types.add(ScrmElementTypes.ResultsOutput_2038);
+					types.add(ScrmElementTypes.ErrorHandling_2039);
+					types.add(ScrmElementTypes.StatusMonitoring_2040);
+					types.add(ScrmElementTypes.DataProcessSpace_2046);
+					types.add(ScrmElementTypes.StatusMonitoring_3016);
+					types.add(ScrmElementTypes.ResultsOutput_3017);
+					types.add(ScrmElementTypes.Process_3018);
+					types.add(ScrmElementTypes.InputDataReading_3019);
+					types.add(ScrmElementTypes.ErrorHandling_3020);
+					types.add(ScrmElementTypes.DataHandling_3021);
+					types.add(ScrmElementTypes.DataProcessSpace_3022);
 				}
 		}
 		return types;
@@ -481,11 +550,12 @@ public class StatusMonitoringEditPart extends ShapeNodeEditPart {
 		switch(scrmDiagram.getDiagramType()) {
 			case DEFAULT_DIAGRAM:
 			case REQUIREMENTS_DIAGRAM:
-				types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
 				types.add(ScrmElementTypes.DataFlowSpecifiedProcess_4056);
 			case DATA_PROCESS_DIAGRAM:
 				types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
 				types.add(ScrmElementTypes.ProcessSuccessor_4047);
+				types.add(ScrmElementTypes.ErrorHandlingHandledProcess_4061);
+				types.add(ScrmElementTypes.StatusMonitoringMonitoredProcess_4062);
 		}
 		return types;
 	}
@@ -504,9 +574,6 @@ public class StatusMonitoringEditPart extends ShapeNodeEditPart {
 					types.add(ScrmElementTypes.Requirement_2034);
 					types.add(ScrmElementTypes.Performance_3011);
 					types.add(ScrmElementTypes.Requirement_3012);
-				} else if (relationshipType == ScrmElementTypes.DataDefinitionDefinedRequirement_4055) {
-					types.add(ScrmElementTypes.DataDefinition_2017);
-					types.add(ScrmElementTypes.DataDefinition_3007);
 				} else if (relationshipType == ScrmElementTypes.DataFlowSpecifiedProcess_4056) {
 					types.add(ScrmElementTypes.DataFlow_2016);
 					types.add(ScrmElementTypes.DataFlow_3008);
@@ -527,9 +594,7 @@ public class StatusMonitoringEditPart extends ShapeNodeEditPart {
 					types.add(ScrmElementTypes.ErrorHandling_3020);
 					types.add(ScrmElementTypes.DataHandling_3021);
 					types.add(ScrmElementTypes.DataProcessSpace_3022);
-					break;
-				}
-				if (relationshipType == ScrmElementTypes.ProcessSuccessor_4047) {
+				} else if (relationshipType == ScrmElementTypes.ProcessSuccessor_4047) {
 					types.add(ScrmElementTypes.Process_2035);
 					types.add(ScrmElementTypes.InputDataReading_2036);
 					types.add(ScrmElementTypes.DataHandling_2037);
@@ -544,6 +609,12 @@ public class StatusMonitoringEditPart extends ShapeNodeEditPart {
 					types.add(ScrmElementTypes.ErrorHandling_3020);
 					types.add(ScrmElementTypes.DataHandling_3021);
 					types.add(ScrmElementTypes.DataProcessSpace_3022);
+				} else if (relationshipType == ScrmElementTypes.ErrorHandlingHandledProcess_4061) {
+					types.add(ScrmElementTypes.ErrorHandling_2039);
+					types.add(ScrmElementTypes.ErrorHandling_3020);
+				} else if (relationshipType == ScrmElementTypes.StatusMonitoringMonitoredProcess_4062) {
+					types.add(ScrmElementTypes.StatusMonitoring_2040);
+					types.add(ScrmElementTypes.StatusMonitoring_3016);
 				}
 		}
 		return types;
@@ -645,5 +716,6 @@ public class StatusMonitoringEditPart extends ShapeNodeEditPart {
 	 */
 	static final Font FFIGURESTATUSMONITORING_NAME_FONT = new Font(
 			Display.getCurrent(), "Arial", 11, SWT.BOLD);
+
 
 }

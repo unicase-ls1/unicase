@@ -9,13 +9,12 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import scrm.diagram.edit.policies.ScrmBaseItemSemanticEditPolicy;
-import scrm.knowledge.NumericalMethod;
-import scrm.requirements.Performance;
 
 /**
  * @generated
  */
-public class NumericalMethodPerformanceCreateCommand extends EditElementCommand {
+public class ErrorHandlingHandledProcessCreateCommand extends
+		EditElementCommand {
 
 	/**
 	 * @generated
@@ -30,7 +29,7 @@ public class NumericalMethodPerformanceCreateCommand extends EditElementCommand 
 	/**
 	 * @generated
 	 */
-	public NumericalMethodPerformanceCreateCommand(
+	public ErrorHandlingHandledProcessCreateCommand(
 			CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
@@ -44,10 +43,12 @@ public class NumericalMethodPerformanceCreateCommand extends EditElementCommand 
 		if (source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof Performance) {
+		if (source != null
+				&& false == source instanceof scrm.requirements.dataProcess.ErrorHandling) {
 			return false;
 		}
-		if (target != null && false == target instanceof NumericalMethod) {
+		if (target != null
+				&& false == target instanceof scrm.requirements.dataProcess.Process) {
 			return false;
 		}
 		if (getSource() == null) {
@@ -55,7 +56,7 @@ public class NumericalMethodPerformanceCreateCommand extends EditElementCommand 
 		}
 		// target may be null here but it's possible to check constraint
 		return ScrmBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canCreateNumericalMethodPerformance_4017(getSource(),
+				.canCreateErrorHandlingHandledProcess_4061(getSource(),
 						getTarget());
 	}
 
@@ -70,7 +71,7 @@ public class NumericalMethodPerformanceCreateCommand extends EditElementCommand 
 		}
 
 		if (getSource() != null && getTarget() != null) {
-			getSource().setDescribedMethod(getTarget());
+			getSource().setHandledProcess(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
 
@@ -86,14 +87,14 @@ public class NumericalMethodPerformanceCreateCommand extends EditElementCommand 
 	/**
 	 * @generated
 	 */
-	protected Performance getSource() {
-		return (Performance) source;
+	protected scrm.requirements.dataProcess.ErrorHandling getSource() {
+		return (scrm.requirements.dataProcess.ErrorHandling) source;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected NumericalMethod getTarget() {
-		return (NumericalMethod) target;
+	protected scrm.requirements.dataProcess.Process getTarget() {
+		return (scrm.requirements.dataProcess.Process) target;
 	}
 }

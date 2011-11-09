@@ -53,11 +53,11 @@ public class ErrorHandling3CreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		ErrorHandling newElement = scrm.requirements.dataProcess.DataProcessFactory.eINSTANCE
+		scrm.requirements.dataProcess.ErrorHandling newElement = scrm.requirements.dataProcess.DataProcessFactory.eINSTANCE
 				.createErrorHandling();
 
-		RequirementSpace owner = (RequirementSpace) getElementToEdit();
-		owner.getContainedInformationofRequirements().add(newElement);
+		scrm.requirements.dataProcess.DataProcessSpace owner = (scrm.requirements.dataProcess.DataProcessSpace) getElementToEdit();
+		owner.getContainedDataProcessSteps().add(newElement);
 
 		doConfigure(newElement, monitor, info);
 
@@ -69,7 +69,7 @@ public class ErrorHandling3CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected void doConfigure(
-			ErrorHandling newElement,
+			scrm.requirements.dataProcess.ErrorHandling newElement,
 			IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest())

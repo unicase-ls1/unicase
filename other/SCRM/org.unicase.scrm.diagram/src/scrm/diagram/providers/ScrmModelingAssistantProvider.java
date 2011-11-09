@@ -85,9 +85,10 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host
 				.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof SCRMDiagramEditPart) {
-			SCRMDiagram scrmDiagram = (SCRMDiagram) ((Diagram) editPart.getModel()).getElement();
+			SCRMDiagram scrmDiagram = (SCRMDiagram) ((Diagram) editPart
+					.getModel()).getElement();
 			return getAllowedTypes(scrmDiagram.getDiagramType());
-			
+
 		}
 		if (editPart instanceof KnowledgeSpaceKnowledgeSpaceCompartmentEditPart
 				|| editPart instanceof KnowledgeSpaceKnowledgeSpaceCompartment2EditPart) {
@@ -135,7 +136,7 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		return Collections.emptyList();
 	}
-	
+
 	/**
 	 * Obtains all <code>IElementType</code>s, that are allowed for a certain
 	 * diagram type.
@@ -157,7 +158,7 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		return types;
 	}
-	
+
 	private static List<IElementType> getKnowledgeTypes() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(5);
 		types.add(ScrmElementTypes.ScientificProblem_2007);
@@ -167,7 +168,7 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		types.add(ScrmElementTypes.KnowledgeSpace_2044);
 		return types;
 	}
-	
+
 	private static List<IElementType> getRequirementTypes() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(10);
 		types.add(ScrmElementTypes.Feature_2009);
@@ -182,7 +183,7 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		types.add(ScrmElementTypes.RequirementSpace_2045);
 		return types;
 	}
-	
+
 	private static List<IElementType> getDataProcessTypes() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(7);
 		types.add(ScrmElementTypes.InputDataReading_2036);
@@ -194,7 +195,7 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		types.add(ScrmElementTypes.DataProcessSpace_2046);
 		return types;
 	}
-	
+
 	/**
 	 * @generated
 	 */
@@ -229,10 +230,6 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (sourceEditPart instanceof DataFlowEditPart) {
 			return ((DataFlowEditPart) sourceEditPart).getMARelTypesOnSource();
-		}
-		if (sourceEditPart instanceof DataDefinitionEditPart) {
-			return ((DataDefinitionEditPart) sourceEditPart)
-					.getMARelTypesOnSource();
 		}
 		if (sourceEditPart instanceof InputDataReadingEditPart) {
 			return ((InputDataReadingEditPart) sourceEditPart)
@@ -276,10 +273,6 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (sourceEditPart instanceof Constraint2EditPart) {
 			return ((Constraint2EditPart) sourceEditPart)
-					.getMARelTypesOnSource();
-		}
-		if (sourceEditPart instanceof DataDefinition2EditPart) {
-			return ((DataDefinition2EditPart) sourceEditPart)
 					.getMARelTypesOnSource();
 		}
 		if (sourceEditPart instanceof DataFlow2EditPart) {
@@ -369,6 +362,10 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((PerformanceEditPart) targetEditPart)
 					.getMARelTypesOnTarget();
 		}
+		if (targetEditPart instanceof DataDefinitionEditPart) {
+			return ((DataDefinitionEditPart) targetEditPart)
+					.getMARelTypesOnTarget();
+		}
 		if (targetEditPart instanceof InputDataReadingEditPart) {
 			return ((InputDataReadingEditPart) targetEditPart)
 					.getMARelTypesOnTarget();
@@ -411,6 +408,10 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (targetEditPart instanceof Assumption2EditPart) {
 			return ((Assumption2EditPart) targetEditPart)
+					.getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof DataDefinition2EditPart) {
+			return ((DataDefinition2EditPart) targetEditPart)
 					.getMARelTypesOnTarget();
 		}
 		if (targetEditPart instanceof Feature2EditPart) {
@@ -506,10 +507,6 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((DataFlowEditPart) sourceEditPart)
 					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if (sourceEditPart instanceof DataDefinitionEditPart) {
-			return ((DataDefinitionEditPart) sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
 		if (sourceEditPart instanceof InputDataReadingEditPart) {
 			return ((InputDataReadingEditPart) sourceEditPart)
 					.getMARelTypesOnSourceAndTarget(targetEditPart);
@@ -552,10 +549,6 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (sourceEditPart instanceof Constraint2EditPart) {
 			return ((Constraint2EditPart) sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if (sourceEditPart instanceof DataDefinition2EditPart) {
-			return ((DataDefinition2EditPart) sourceEditPart)
 					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if (sourceEditPart instanceof DataFlow2EditPart) {
@@ -652,6 +645,10 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((PerformanceEditPart) targetEditPart)
 					.getMATypesForSource(relationshipType);
 		}
+		if (targetEditPart instanceof DataDefinitionEditPart) {
+			return ((DataDefinitionEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
 		if (targetEditPart instanceof InputDataReadingEditPart) {
 			return ((InputDataReadingEditPart) targetEditPart)
 					.getMATypesForSource(relationshipType);
@@ -694,6 +691,10 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (targetEditPart instanceof Assumption2EditPart) {
 			return ((Assumption2EditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof DataDefinition2EditPart) {
+			return ((DataDefinition2EditPart) targetEditPart)
 					.getMATypesForSource(relationshipType);
 		}
 		if (targetEditPart instanceof Feature2EditPart) {
@@ -790,10 +791,6 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((DataFlowEditPart) sourceEditPart)
 					.getMATypesForTarget(relationshipType);
 		}
-		if (sourceEditPart instanceof DataDefinitionEditPart) {
-			return ((DataDefinitionEditPart) sourceEditPart)
-					.getMATypesForTarget(relationshipType);
-		}
 		if (sourceEditPart instanceof InputDataReadingEditPart) {
 			return ((InputDataReadingEditPart) sourceEditPart)
 					.getMATypesForTarget(relationshipType);
@@ -836,10 +833,6 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (sourceEditPart instanceof Constraint2EditPart) {
 			return ((Constraint2EditPart) sourceEditPart)
-					.getMATypesForTarget(relationshipType);
-		}
-		if (sourceEditPart instanceof DataDefinition2EditPart) {
-			return ((DataDefinition2EditPart) sourceEditPart)
 					.getMATypesForTarget(relationshipType);
 		}
 		if (sourceEditPart instanceof DataFlow2EditPart) {
@@ -919,14 +912,11 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		if (editPart == null) {
 			return null;
 		}
-		
 		Diagram diagram = (Diagram) editPart.getRoot().getContents().getModel();
-//		Project project = ModelUtil.getProject(diagram.getElement());
 		HashSet<EObject> elements = new HashSet<EObject>();
-//		for (Iterator<EObject> it = project.eAllContents(); it.hasNext();) {
-//			EObject element = it.next();
-		List<EObject> allElements = getAllElements((SCRMDiagram) diagram.getElement());
-		for(EObject element : allElements) {
+		for (Iterator<EObject> it = diagram.getElement().eAllContents(); it
+				.hasNext();) {
+			EObject element = it.next();
 			if (isApplicableElement(element, types)) {
 				elements.add(element);
 			}
@@ -936,16 +926,6 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		return selectElement((EObject[]) elements.toArray(new EObject[elements
 				.size()]));
-	}
-
-	private List<EObject> getAllElements(SCRMDiagram scrmDiagram) {
-		List<EObject> result = new LinkedList<EObject>(scrmDiagram.getElements());
-		for(EObject eObject : scrmDiagram.getElements()) {
-			for(Iterator<EObject> it = eObject.eAllContents(); it.hasNext();) {
-				result.add(it.next());
-			}
-		}
-		return result;
 	}
 
 	/**

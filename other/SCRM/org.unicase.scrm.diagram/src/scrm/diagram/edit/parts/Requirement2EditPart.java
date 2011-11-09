@@ -271,6 +271,7 @@ public class Requirement2EditPart extends ShapeNodeEditPart {
 				types.add(ScrmElementTypes.RequirementRealizedMethod_4050);
 			case REQUIREMENTS_DIAGRAM:
 				types.add(ScrmElementTypes.RequirementSpecifiedFeature_4052);
+				types.add(ScrmElementTypes.RequirementDefiningData_4060);
 			case DATA_PROCESS_DIAGRAM:
 				types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
 		}
@@ -310,6 +311,12 @@ public class Requirement2EditPart extends ShapeNodeEditPart {
 				}
 				if (targetEditPart instanceof Requirement2EditPart) {
 					types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
+				}
+				if (targetEditPart instanceof DataDefinitionEditPart) {
+					types.add(ScrmElementTypes.RequirementDefiningData_4060);
+				}
+				if (targetEditPart instanceof DataDefinition2EditPart) {
+					types.add(ScrmElementTypes.RequirementDefiningData_4060);
 				}
 			case DATA_PROCESS_DIAGRAM:
 				if (targetEditPart instanceof ProcessEditPart) {
@@ -375,7 +382,11 @@ public class Requirement2EditPart extends ShapeNodeEditPart {
 				 if (relationshipType == ScrmElementTypes.RequirementSpecifiedFeature_4052) {
 					types.add(ScrmElementTypes.Feature_2009);
 					types.add(ScrmElementTypes.Feature_3009);
-						break;
+					break;
+				} else if (relationshipType == ScrmElementTypes.RequirementDefiningData_4060) {
+					types.add(ScrmElementTypes.DataDefinition_2017);
+					types.add(ScrmElementTypes.DataDefinition_3007);
+					break;
 				} else if (relationshipType == ScrmElementTypes.RequirementRefinedRequirement_4054) {
 					types.add(ScrmElementTypes.Performance_2015);
 					types.add(ScrmElementTypes.Requirement_2034);
@@ -400,7 +411,6 @@ public class Requirement2EditPart extends ShapeNodeEditPart {
 					types.add(ScrmElementTypes.DataProcessSpace_3022);
 				}
 		}
-		
 		return types;
 	}
 
@@ -413,11 +423,9 @@ public class Requirement2EditPart extends ShapeNodeEditPart {
 		switch(scrmDiagram.getDiagramType()) {
 			case DEFAULT_DIAGRAM:
 			case REQUIREMENTS_DIAGRAM:
-				types.add(ScrmElementTypes.DataDefinitionDefinedRequirement_4055);
 			case DATA_PROCESS_DIAGRAM:
 				types.add(ScrmElementTypes.RequirementRefinedRequirement_4054);
 		}
-		
 		return types;
 	}
 
@@ -430,11 +438,7 @@ public class Requirement2EditPart extends ShapeNodeEditPart {
 		switch(scrmDiagram.getDiagramType()) {
 			case DEFAULT_DIAGRAM:
 			case REQUIREMENTS_DIAGRAM:
-				if (relationshipType == ScrmElementTypes.DataDefinitionDefinedRequirement_4055) {
-					types.add(ScrmElementTypes.DataDefinition_2017);
-					types.add(ScrmElementTypes.DataDefinition_3007);
-					break;
-				} else if (relationshipType == ScrmElementTypes.RequirementRefinedRequirement_4054) {
+				if (relationshipType == ScrmElementTypes.RequirementRefinedRequirement_4054) {
 					types.add(ScrmElementTypes.Performance_2015);
 					types.add(ScrmElementTypes.Requirement_2034);
 					types.add(ScrmElementTypes.Performance_3011);
