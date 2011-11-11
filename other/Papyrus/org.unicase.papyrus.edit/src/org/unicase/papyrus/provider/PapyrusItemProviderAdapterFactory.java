@@ -100,6 +100,52 @@ public class PapyrusItemProviderAdapterFactory extends PapyrusAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.papyrus.SysMLModel} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SysMLModelItemProvider sysMLModelItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.papyrus.SysMLModel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSysMLModelAdapter() {
+		if (sysMLModelItemProvider == null) {
+			sysMLModelItemProvider = new SysMLModelItemProvider(this);
+		}
+
+		return sysMLModelItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.papyrus.SysMLClass} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SysMLClassItemProvider sysMLClassItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.papyrus.SysMLClass}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSysMLClassAdapter() {
+		if (sysMLClassItemProvider == null) {
+			sysMLClassItemProvider = new SysMLClassItemProvider(this);
+		}
+
+		return sysMLClassItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -203,6 +249,10 @@ public class PapyrusItemProviderAdapterFactory extends PapyrusAdapterFactory
 	public void dispose() {
 		if (umlModelItemProvider != null)
 			umlModelItemProvider.dispose();
+		if (sysMLModelItemProvider != null)
+			sysMLModelItemProvider.dispose();
+		if (sysMLClassItemProvider != null)
+			sysMLClassItemProvider.dispose();
 	}
 
 }

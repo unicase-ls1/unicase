@@ -14,14 +14,20 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.uml2.uml.BehavioredClassifier;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.ParameterableElement;
+import org.eclipse.uml2.uml.RedefinableElement;
+import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.TemplateableElement;
 
+import org.eclipse.uml2.uml.Type;
 import org.unicase.papyrus.*;
 
 /**
@@ -85,6 +91,16 @@ public class PapyrusAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseSysMLModel(SysMLModel object) {
+			return createSysMLModelAdapter();
+		}
+
+		@Override
+		public Adapter caseSysMLClass(SysMLClass object) {
+			return createSysMLClassAdapter();
+		}
+
+		@Override
 		public Adapter caseEModelElement(EModelElement object) {
 			return createEModelElementAdapter();
 		}
@@ -130,6 +146,41 @@ public class PapyrusAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseRedefinableElement(RedefinableElement object) {
+			return createRedefinableElementAdapter();
+		}
+
+		@Override
+		public Adapter caseType(Type object) {
+			return createTypeAdapter();
+		}
+
+		@Override
+		public Adapter caseClassifier(Classifier object) {
+			return createClassifierAdapter();
+		}
+
+		@Override
+		public Adapter caseStructuredClassifier(StructuredClassifier object) {
+			return createStructuredClassifierAdapter();
+		}
+
+		@Override
+		public Adapter caseEncapsulatedClassifier(EncapsulatedClassifier object) {
+			return createEncapsulatedClassifierAdapter();
+		}
+
+		@Override
+		public Adapter caseBehavioredClassifier(BehavioredClassifier object) {
+			return createBehavioredClassifierAdapter();
+		}
+
+		@Override
+		public Adapter caseClass(org.eclipse.uml2.uml.Class object) {
+			return createClassAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -159,6 +210,34 @@ public class PapyrusAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUMLModelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.papyrus.SysMLModel <em>Sys ML Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.papyrus.SysMLModel
+	 * @generated
+	 */
+	public Adapter createSysMLModelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.papyrus.SysMLClass <em>Sys ML Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.papyrus.SysMLClass
+	 * @generated
+	 */
+	public Adapter createSysMLClassAdapter() {
 		return null;
 	}
 
@@ -289,6 +368,104 @@ public class PapyrusAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.uml.RedefinableElement <em>Redefinable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.uml.RedefinableElement
+	 * @generated
+	 */
+	public Adapter createRedefinableElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.uml.Type <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.uml.Type
+	 * @generated
+	 */
+	public Adapter createTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.uml.Classifier <em>Classifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.uml.Classifier
+	 * @generated
+	 */
+	public Adapter createClassifierAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.uml.StructuredClassifier <em>Structured Classifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.uml.StructuredClassifier
+	 * @generated
+	 */
+	public Adapter createStructuredClassifierAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.uml.EncapsulatedClassifier <em>Encapsulated Classifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.uml.EncapsulatedClassifier
+	 * @generated
+	 */
+	public Adapter createEncapsulatedClassifierAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.uml.BehavioredClassifier <em>Behaviored Classifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.uml.BehavioredClassifier
+	 * @generated
+	 */
+	public Adapter createBehavioredClassifierAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.uml2.uml.Class <em>Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.uml2.uml.Class
+	 * @generated
+	 */
+	public Adapter createClassAdapter() {
 		return null;
 	}
 

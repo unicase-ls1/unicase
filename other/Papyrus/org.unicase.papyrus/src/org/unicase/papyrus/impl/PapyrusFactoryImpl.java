@@ -63,6 +63,10 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 		switch (eClass.getClassifierID()) {
 		case PapyrusPackage.UML_MODEL:
 			return createUMLModel();
+		case PapyrusPackage.SYS_ML_MODEL:
+			return createSysMLModel();
+		case PapyrusPackage.SYS_ML_CLASS:
+			return createSysMLClass();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -79,6 +83,8 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 		switch (eDataType.getClassifierID()) {
 		case PapyrusPackage.UML_DIAGRAM_TYPE:
 			return createUMLDiagramTypeFromString(eDataType, initialValue);
+		case PapyrusPackage.SYS_ML_DIAGRAM_TYPE:
+			return createSysMLDiagramTypeFromString(eDataType, initialValue);
 		default:
 			throw new IllegalArgumentException("The datatype '"
 					+ eDataType.getName() + "' is not a valid classifier");
@@ -95,6 +101,8 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 		switch (eDataType.getClassifierID()) {
 		case PapyrusPackage.UML_DIAGRAM_TYPE:
 			return convertUMLDiagramTypeToString(eDataType, instanceValue);
+		case PapyrusPackage.SYS_ML_DIAGRAM_TYPE:
+			return convertSysMLDiagramTypeToString(eDataType, instanceValue);
 		default:
 			throw new IllegalArgumentException("The datatype '"
 					+ eDataType.getName() + "' is not a valid classifier");
@@ -109,6 +117,26 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 	public UMLModel createUMLModel() {
 		UMLModelImpl umlModel = new UMLModelImpl();
 		return umlModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SysMLModel createSysMLModel() {
+		SysMLModelImpl sysMLModel = new SysMLModelImpl();
+		return sysMLModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SysMLClass createSysMLClass() {
+		SysMLClassImpl sysMLClass = new SysMLClassImpl();
+		return sysMLClass;
 	}
 
 	/**
@@ -132,6 +160,31 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 	 * @generated
 	 */
 	public String convertUMLDiagramTypeToString(EDataType eDataType,
+			Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SysMLDiagramType createSysMLDiagramTypeFromString(
+			EDataType eDataType, String initialValue) {
+		SysMLDiagramType result = SysMLDiagramType.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue
+					+ "' is not a valid enumerator of '" + eDataType.getName()
+					+ "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSysMLDiagramTypeToString(EDataType eDataType,
 			Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}

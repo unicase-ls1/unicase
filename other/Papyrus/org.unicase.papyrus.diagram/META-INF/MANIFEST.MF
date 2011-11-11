@@ -18,3 +18,4 @@ Require-Bundle: org.unicase.papyrus.edit,
  org.unicase.ui.meeditor;visibility:=reexport,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor,
  org.eclipse.ui.navigator.resources
+Export-Package: org.unicase.papyrus.diagram.services

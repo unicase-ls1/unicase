@@ -6,11 +6,11 @@
  */
 package org.unicase.papyrus.impl;
 
-import java.util.Collection;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -21,13 +21,13 @@ import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EModelElement;
@@ -36,79 +36,98 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectValidator;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.uml2.uml.AggregationKind;
+import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.BehavioredClassifier;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.ConnectableElement;
+import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
-import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.EncapsulatedClassifier;
+import org.eclipse.uml2.uml.Extension;
+import org.eclipse.uml2.uml.Feature;
+import org.eclipse.uml2.uml.Generalization;
+import org.eclipse.uml2.uml.GeneralizationSet;
 import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.PackageImport;
-import org.eclipse.uml2.uml.PackageMerge;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.ParameterableElement;
-import org.eclipse.uml2.uml.PrimitiveType;
-import org.eclipse.uml2.uml.Profile;
-import org.eclipse.uml2.uml.ProfileApplication;
+import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Reception;
+import org.eclipse.uml2.uml.RedefinableElement;
 import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.StringExpression;
+import org.eclipse.uml2.uml.StructuredClassifier;
+import org.eclipse.uml2.uml.Substitution;
 import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.TemplateParameter;
 import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.TemplateableElement;
+import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Usage;
+import org.eclipse.uml2.uml.UseCase;
 import org.eclipse.uml2.uml.VisibilityKind;
 import org.eclipse.uml2.uml.util.UMLValidator;
-import org.eclipse.emf.ecore.xmi.XMIResource;
-
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.uml2.uml.internal.impl.ModelImpl;
+
+import org.eclipse.uml2.uml.internal.impl.ClassImpl;
 
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.papyrus.PapyrusPackage;
-import org.unicase.papyrus.UMLDiagramType;
-import org.unicase.papyrus.UMLModel;
+import org.unicase.papyrus.SysMLClass;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>UML Model</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Sys ML Class</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.papyrus.impl.UMLModelImpl#getGmfDiagram <em>Gmf Diagram</em>}</li>
- *   <li>{@link org.unicase.papyrus.impl.UMLModelImpl#getDiagramType <em>Diagram Type</em>}</li>
- *   <li>{@link org.unicase.papyrus.impl.UMLModelImpl#getDiagramLayout <em>Diagram Layout</em>}</li>
+ * <li>{@link org.unicase.papyrus.impl.SysMLClassImpl#getGmfDiagram <em>Gmf
+ * Diagram</em>}</li>
+ * <li>{@link org.unicase.papyrus.impl.SysMLClassImpl#getDiagramLayout <em>
+ * Diagram Layout</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class UMLModelImpl extends ModelImpl implements UMLModel {
+public class SysMLClassImpl extends ClassImpl implements SysMLClass {
 	/**
-	 * The cached value of the '{@link #getGmfDiagram() <em>Gmf Diagram</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getGmfDiagram() <em>Gmf Diagram</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getGmfDiagram()
 	 * @generated
 	 * @ordered
@@ -116,29 +135,10 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	protected Diagram gmfDiagram;
 
 	/**
-	 * The default value of the '{@link #getDiagramType() <em>Diagram Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDiagramType()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final UMLDiagramType DIAGRAM_TYPE_EDEFAULT = UMLDiagramType.NO_DIAGRAM;
-
-	/**
-	 * The cached value of the '{@link #getDiagramType() <em>Diagram Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDiagramType()
-	 * @generated
-	 * @ordered
-	 */
-	protected UMLDiagramType diagramType = DIAGRAM_TYPE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDiagramLayout() <em>Diagram Layout</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getDiagramLayout()
+	 * <em>Diagram Layout</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getDiagramLayout()
 	 * @generated
 	 * @ordered
@@ -146,9 +146,10 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	protected static final String DIAGRAM_LAYOUT_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDiagramLayout() <em>Diagram Layout</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDiagramLayout()
+	 * <em>Diagram Layout</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getDiagramLayout()
 	 * @generated
 	 * @ordered
@@ -156,28 +157,27 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	protected String diagramLayout = DIAGRAM_LAYOUT_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
 	 */
-	protected UMLModelImpl() {
+	protected SysMLClassImpl() {
 		super();
-		setName("new UML Diagram");
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return PapyrusPackage.Literals.UML_MODEL;
+		return PapyrusPackage.Literals.SYS_ML_CLASS;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Diagram getGmfDiagram() {
@@ -188,19 +188,19 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 				InternalEObject newGmfDiagram = (InternalEObject) gmfDiagram;
 				NotificationChain msgs = oldGmfDiagram.eInverseRemove(this,
 						EOPPOSITE_FEATURE_BASE
-								- PapyrusPackage.UML_MODEL__GMF_DIAGRAM, null,
-						null);
+								- PapyrusPackage.SYS_ML_CLASS__GMF_DIAGRAM,
+						null, null);
 				if (newGmfDiagram.eInternalContainer() == null) {
 					msgs = newGmfDiagram.eInverseAdd(this,
 							EOPPOSITE_FEATURE_BASE
-									- PapyrusPackage.UML_MODEL__GMF_DIAGRAM,
+									- PapyrusPackage.SYS_ML_CLASS__GMF_DIAGRAM,
 							null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							PapyrusPackage.UML_MODEL__GMF_DIAGRAM,
+							PapyrusPackage.SYS_ML_CLASS__GMF_DIAGRAM,
 							oldGmfDiagram, gmfDiagram));
 			}
 		}
@@ -208,8 +208,8 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Diagram basicGetGmfDiagram() {
@@ -217,8 +217,8 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetGmfDiagram(Diagram newGmfDiagram,
@@ -227,7 +227,7 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 		gmfDiagram = newGmfDiagram;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, PapyrusPackage.UML_MODEL__GMF_DIAGRAM,
+					Notification.SET, PapyrusPackage.SYS_ML_CLASS__GMF_DIAGRAM,
 					oldGmfDiagram, newGmfDiagram);
 			if (msgs == null)
 				msgs = notification;
@@ -238,8 +238,8 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setGmfDiagram(Diagram newGmfDiagram) {
@@ -248,49 +248,25 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 			if (gmfDiagram != null)
 				msgs = ((InternalEObject) gmfDiagram).eInverseRemove(this,
 						EOPPOSITE_FEATURE_BASE
-								- PapyrusPackage.UML_MODEL__GMF_DIAGRAM, null,
-						msgs);
+								- PapyrusPackage.SYS_ML_CLASS__GMF_DIAGRAM,
+						null, msgs);
 			if (newGmfDiagram != null)
 				msgs = ((InternalEObject) newGmfDiagram).eInverseAdd(this,
 						EOPPOSITE_FEATURE_BASE
-								- PapyrusPackage.UML_MODEL__GMF_DIAGRAM, null,
-						msgs);
+								- PapyrusPackage.SYS_ML_CLASS__GMF_DIAGRAM,
+						null, msgs);
 			msgs = basicSetGmfDiagram(newGmfDiagram, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					PapyrusPackage.UML_MODEL__GMF_DIAGRAM, newGmfDiagram,
+					PapyrusPackage.SYS_ML_CLASS__GMF_DIAGRAM, newGmfDiagram,
 					newGmfDiagram));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public UMLDiagramType getDiagramType() {
-		return diagramType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDiagramType(UMLDiagramType newDiagramType) {
-		UMLDiagramType oldDiagramType = diagramType;
-		diagramType = newDiagramType == null ? DIAGRAM_TYPE_EDEFAULT
-				: newDiagramType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					PapyrusPackage.UML_MODEL__DIAGRAM_TYPE, oldDiagramType,
-					diagramType));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getDiagramLayout() {
@@ -298,8 +274,8 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDiagramLayout(String newDiagramLayout) {
@@ -307,61 +283,56 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 		diagramLayout = newDiagramLayout;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					PapyrusPackage.UML_MODEL__DIAGRAM_LAYOUT, oldDiagramLayout,
-					diagramLayout));
+					PapyrusPackage.SYS_ML_CLASS__DIAGRAM_LAYOUT,
+					oldDiagramLayout, diagramLayout));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case PapyrusPackage.UML_MODEL__GMF_DIAGRAM:
+		case PapyrusPackage.SYS_ML_CLASS__GMF_DIAGRAM:
 			return basicSetGmfDiagram(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case PapyrusPackage.UML_MODEL__GMF_DIAGRAM:
+		case PapyrusPackage.SYS_ML_CLASS__GMF_DIAGRAM:
 			if (resolve)
 				return getGmfDiagram();
 			return basicGetGmfDiagram();
-		case PapyrusPackage.UML_MODEL__DIAGRAM_TYPE:
-			return getDiagramType();
-		case PapyrusPackage.UML_MODEL__DIAGRAM_LAYOUT:
+		case PapyrusPackage.SYS_ML_CLASS__DIAGRAM_LAYOUT:
 			return getDiagramLayout();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case PapyrusPackage.UML_MODEL__GMF_DIAGRAM:
+		case PapyrusPackage.SYS_ML_CLASS__GMF_DIAGRAM:
 			setGmfDiagram((Diagram) newValue);
 			return;
-		case PapyrusPackage.UML_MODEL__DIAGRAM_TYPE:
-			setDiagramType((UMLDiagramType) newValue);
-			return;
-		case PapyrusPackage.UML_MODEL__DIAGRAM_LAYOUT:
+		case PapyrusPackage.SYS_ML_CLASS__DIAGRAM_LAYOUT:
 			setDiagramLayout((String) newValue);
 			return;
 		}
@@ -369,20 +340,17 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case PapyrusPackage.UML_MODEL__GMF_DIAGRAM:
+		case PapyrusPackage.SYS_ML_CLASS__GMF_DIAGRAM:
 			setGmfDiagram((Diagram) null);
 			return;
-		case PapyrusPackage.UML_MODEL__DIAGRAM_TYPE:
-			setDiagramType(DIAGRAM_TYPE_EDEFAULT);
-			return;
-		case PapyrusPackage.UML_MODEL__DIAGRAM_LAYOUT:
+		case PapyrusPackage.SYS_ML_CLASS__DIAGRAM_LAYOUT:
 			setDiagramLayout(DIAGRAM_LAYOUT_EDEFAULT);
 			return;
 		}
@@ -390,18 +358,16 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case PapyrusPackage.UML_MODEL__GMF_DIAGRAM:
+		case PapyrusPackage.SYS_ML_CLASS__GMF_DIAGRAM:
 			return gmfDiagram != null;
-		case PapyrusPackage.UML_MODEL__DIAGRAM_TYPE:
-			return diagramType != DIAGRAM_TYPE_EDEFAULT;
-		case PapyrusPackage.UML_MODEL__DIAGRAM_LAYOUT:
+		case PapyrusPackage.SYS_ML_CLASS__DIAGRAM_LAYOUT:
 			return DIAGRAM_LAYOUT_EDEFAULT == null ? diagramLayout != null
 					: !DIAGRAM_LAYOUT_EDEFAULT.equals(diagramLayout);
 		}
@@ -409,8 +375,8 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -419,25 +385,10 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (diagramType: ");
-		result.append(diagramType);
-		result.append(", diagramLayout: ");
+		result.append(" (diagramLayout: ");
 		result.append(diagramLayout);
 		result.append(')');
 		return result.toString();
-	}
-
-	/** 
-	 * {@inheritDoc}
-	 * @generated NOT
-	 */
-	@Override
-	public void setName(String newName) {
-		super.setName(newName);
-		Diagram diagram = getGmfDiagram();
-		if (diagram != null) {
-			diagram.setName(newName);
-		}
 	}
 
 	private static final URI VIRTUAL_DIAGRAM_URI = URI
@@ -446,8 +397,9 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 			.createURI("virtual.diagram.elements.uri");
 
 	/*
-	 * This method removes nodes and edges that are no longer contained in the model. This can happen if diagram
-	 * elements are deleted after a diagram is closed.
+	 * This method removes nodes and edges that are no longer contained in the
+	 * model. This can happen if diagram elements are deleted after a diagram is
+	 * closed.
 	 */
 	private void syncDiagramLayout(Diagram gmfDiagram) throws IOException {
 		for (int i = 0; i < gmfDiagram.getPersistedChildren().size(); i++) {
@@ -477,7 +429,8 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	/**
 	 * Load a gmf diagram from a String.
 	 * 
-	 * @throws DiagramLoadException if load fails
+	 * @throws DiagramLoadException
+	 *             if load fails
 	 * @generated NOT
 	 */
 	public void loadDiagramLayout() throws UnsupportedEncodingException,
@@ -549,7 +502,8 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	/**
 	 * Save gmf diagram to a String.
 	 * 
-	 * @throws DiagramStoreException if saving to a string fails
+	 * @throws DiagramStoreException
+	 *             if saving to a string fails
 	 * @generated NOT
 	 */
 	public void saveDiagramLayout() throws IOException {
@@ -593,7 +547,7 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 			EObject parent = remainingParents.remove(0);
 			for (EObject content : parent.eContents()) {
 				if (content instanceof Diagram) {
-					//result.addAll(getHyperlinkedDiagrams(content));
+					// result.addAll(getHyperlinkedDiagrams(content));
 				} else {
 					result.add(content);
 					remainingParents.add(content);
@@ -602,16 +556,17 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 		}
 
 		// FIXME: Error source
-		//		for(EObject eObject : ModelUtil.getProject(this).getAllModelElements()) {
-		//			if(eObject instanceof UMLModel) {
-		//				UMLModel model = (UMLModel) eObject;
-		//				result.add(model);
-		//				if(model.getGmfDiagram() == null) {
-		//					model.loadDiagramLayout();
-		//				}
-		//				result.add(model.getGmfDiagram());
-		//			}
-		//		}
+		// for(EObject eObject :
+		// ModelUtil.getProject(this).getAllModelElements()) {
+		// if(eObject instanceof UMLModel) {
+		// UMLModel model = (UMLModel) eObject;
+		// result.add(model);
+		// if(model.getGmfDiagram() == null) {
+		// model.loadDiagramLayout();
+		// }
+		// result.add(model.getGmfDiagram());
+		// }
+		// }
 		return result;
 	}
 
@@ -633,4 +588,4 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 		return result;
 	}
 
-} //UMLModelImpl
+} // SysMLClassImpl

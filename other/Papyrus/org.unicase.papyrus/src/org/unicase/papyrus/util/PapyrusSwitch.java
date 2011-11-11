@@ -12,14 +12,20 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.uml2.uml.BehavioredClassifier;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.ParameterableElement;
+import org.eclipse.uml2.uml.RedefinableElement;
+import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.TemplateableElement;
 
+import org.eclipse.uml2.uml.Type;
 import org.unicase.papyrus.*;
 
 /**
@@ -118,6 +124,66 @@ public class PapyrusSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case PapyrusPackage.SYS_ML_MODEL: {
+			SysMLModel sysMLModel = (SysMLModel) theEObject;
+			T result = caseSysMLModel(sysMLModel);
+			if (result == null)
+				result = caseModel(sysMLModel);
+			if (result == null)
+				result = casePackage(sysMLModel);
+			if (result == null)
+				result = caseNamespace(sysMLModel);
+			if (result == null)
+				result = casePackageableElement(sysMLModel);
+			if (result == null)
+				result = caseTemplateableElement(sysMLModel);
+			if (result == null)
+				result = caseNamedElement(sysMLModel);
+			if (result == null)
+				result = caseParameterableElement(sysMLModel);
+			if (result == null)
+				result = caseElement(sysMLModel);
+			if (result == null)
+				result = caseEModelElement(sysMLModel);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case PapyrusPackage.SYS_ML_CLASS: {
+			SysMLClass sysMLClass = (SysMLClass) theEObject;
+			T result = caseSysMLClass(sysMLClass);
+			if (result == null)
+				result = caseClass(sysMLClass);
+			if (result == null)
+				result = caseEncapsulatedClassifier(sysMLClass);
+			if (result == null)
+				result = caseBehavioredClassifier(sysMLClass);
+			if (result == null)
+				result = caseStructuredClassifier(sysMLClass);
+			if (result == null)
+				result = caseClassifier(sysMLClass);
+			if (result == null)
+				result = caseNamespace(sysMLClass);
+			if (result == null)
+				result = caseRedefinableElement(sysMLClass);
+			if (result == null)
+				result = caseType(sysMLClass);
+			if (result == null)
+				result = caseTemplateableElement(sysMLClass);
+			if (result == null)
+				result = casePackageableElement(sysMLClass);
+			if (result == null)
+				result = caseNamedElement(sysMLClass);
+			if (result == null)
+				result = caseParameterableElement(sysMLClass);
+			if (result == null)
+				result = caseElement(sysMLClass);
+			if (result == null)
+				result = caseEModelElement(sysMLClass);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -135,6 +201,36 @@ public class PapyrusSwitch<T> {
 	 * @generated
 	 */
 	public T caseUMLModel(UMLModel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Sys ML Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Sys ML Model</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSysMLModel(SysMLModel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Sys ML Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Sys ML Class</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSysMLClass(SysMLClass object) {
 		return null;
 	}
 
@@ -270,6 +366,111 @@ public class PapyrusSwitch<T> {
 	 * @generated
 	 */
 	public T caseModel(Model object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Redefinable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Redefinable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRedefinableElement(RedefinableElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseType(Type object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Classifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Classifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClassifier(Classifier object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Structured Classifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Structured Classifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStructuredClassifier(StructuredClassifier object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Encapsulated Classifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Encapsulated Classifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEncapsulatedClassifier(EncapsulatedClassifier object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Behaviored Classifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Behaviored Classifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBehavioredClassifier(BehavioredClassifier object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Class</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClass(org.eclipse.uml2.uml.Class object) {
 		return null;
 	}
 

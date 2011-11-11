@@ -15,9 +15,9 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -30,19 +30,20 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
-import org.eclipse.uml2.uml.edit.providers.ModelItemProvider;
+import org.eclipse.uml2.uml.edit.providers.ClassItemProvider;
 
 import org.unicase.papyrus.PapyrusFactory;
 import org.unicase.papyrus.PapyrusPackage;
+import org.unicase.papyrus.SysMLClass;
 import org.unicase.papyrus.UMLModel;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.papyrus.UMLModel} object.
+ * This is the item provider adapter for a {@link org.unicase.papyrus.SysMLClass} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class UMLModelItemProvider extends ModelItemProvider implements
+public class SysMLClassItemProvider extends ClassItemProvider implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
@@ -51,7 +52,7 @@ public class UMLModelItemProvider extends ModelItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UMLModelItemProvider(AdapterFactory adapterFactory) {
+	public SysMLClassItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -71,7 +72,7 @@ public class UMLModelItemProvider extends ModelItemProvider implements
 	}
 
 	/**
-	 * This returns UMLModel.gif.
+	 * This returns SysMLClass.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -79,7 +80,7 @@ public class UMLModelItemProvider extends ModelItemProvider implements
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/UMLModel"));
+				getResourceLocator().getImage("full/obj16/SysMLClass"));
 	}
 
 	/**
@@ -90,7 +91,7 @@ public class UMLModelItemProvider extends ModelItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((UMLModel) object).getName();
+		String label = ((SysMLClass) object).getName();
 		return label;
 	}
 
@@ -105,10 +106,9 @@ public class UMLModelItemProvider extends ModelItemProvider implements
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(UMLModel.class)) {
-		case PapyrusPackage.UML_MODEL__GMF_DIAGRAM:
-		case PapyrusPackage.UML_MODEL__DIAGRAM_TYPE:
-		case PapyrusPackage.UML_MODEL__DIAGRAM_LAYOUT:
+		switch (notification.getFeatureID(SysMLClass.class)) {
+		case PapyrusPackage.SYS_ML_CLASS__GMF_DIAGRAM:
+		case PapyrusPackage.SYS_ML_CLASS__DIAGRAM_LAYOUT:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), false, true));
 			return;
@@ -129,28 +129,8 @@ public class UMLModelItemProvider extends ModelItemProvider implements
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-				UMLPackage.Literals.PACKAGE__OWNED_TYPE,
+				UMLPackage.Literals.CLASS__NESTED_CLASSIFIER,
 				PapyrusFactory.eINSTANCE.createSysMLClass()));
-
-		newChildDescriptors.add(createChildParameter(
-				UMLPackage.Literals.PACKAGE__PACKAGED_ELEMENT,
-				PapyrusFactory.eINSTANCE.createUMLModel()));
-
-		newChildDescriptors.add(createChildParameter(
-				UMLPackage.Literals.PACKAGE__PACKAGED_ELEMENT,
-				PapyrusFactory.eINSTANCE.createSysMLModel()));
-
-		newChildDescriptors.add(createChildParameter(
-				UMLPackage.Literals.PACKAGE__PACKAGED_ELEMENT,
-				PapyrusFactory.eINSTANCE.createSysMLClass()));
-
-		newChildDescriptors.add(createChildParameter(
-				UMLPackage.Literals.PACKAGE__NESTED_PACKAGE,
-				PapyrusFactory.eINSTANCE.createUMLModel()));
-
-		newChildDescriptors.add(createChildParameter(
-				UMLPackage.Literals.PACKAGE__NESTED_PACKAGE,
-				PapyrusFactory.eINSTANCE.createSysMLModel()));
 	}
 
 	/**
@@ -165,11 +145,14 @@ public class UMLModelItemProvider extends ModelItemProvider implements
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == UMLPackage.Literals.NAMED_ELEMENT__NAME_EXPRESSION
-				|| childFeature == UMLPackage.Literals.PACKAGE__PACKAGED_ELEMENT
-				|| childFeature == UMLPackage.Literals.NAMESPACE__OWNED_RULE
-				|| childFeature == UMLPackage.Literals.PACKAGE__OWNED_TYPE
-				|| childFeature == UMLPackage.Literals.PACKAGE__NESTED_PACKAGE;
+		boolean qualify = childFeature == UMLPackage.Literals.CLASSIFIER__REPRESENTATION
+				|| childFeature == UMLPackage.Literals.CLASSIFIER__COLLABORATION_USE
+				|| childFeature == UMLPackage.Literals.CLASSIFIER__OWNED_USE_CASE
+				|| childFeature == UMLPackage.Literals.CLASS__NESTED_CLASSIFIER
+				|| childFeature == UMLPackage.Literals.STRUCTURED_CLASSIFIER__OWNED_ATTRIBUTE
+				|| childFeature == UMLPackage.Literals.ENCAPSULATED_CLASSIFIER__OWNED_PORT
+				|| childFeature == UMLPackage.Literals.BEHAVIORED_CLASSIFIER__OWNED_BEHAVIOR
+				|| childFeature == UMLPackage.Literals.BEHAVIORED_CLASSIFIER__CLASSIFIER_BEHAVIOR;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", new Object[] {

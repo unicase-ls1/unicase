@@ -15,9 +15,9 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -34,15 +34,16 @@ import org.eclipse.uml2.uml.edit.providers.ModelItemProvider;
 
 import org.unicase.papyrus.PapyrusFactory;
 import org.unicase.papyrus.PapyrusPackage;
+import org.unicase.papyrus.SysMLModel;
 import org.unicase.papyrus.UMLModel;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.papyrus.UMLModel} object.
+ * This is the item provider adapter for a {@link org.unicase.papyrus.SysMLModel} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class UMLModelItemProvider extends ModelItemProvider implements
+public class SysMLModelItemProvider extends ModelItemProvider implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
@@ -51,7 +52,7 @@ public class UMLModelItemProvider extends ModelItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UMLModelItemProvider(AdapterFactory adapterFactory) {
+	public SysMLModelItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -71,7 +72,7 @@ public class UMLModelItemProvider extends ModelItemProvider implements
 	}
 
 	/**
-	 * This returns UMLModel.gif.
+	 * This returns SysMLModel.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -79,7 +80,7 @@ public class UMLModelItemProvider extends ModelItemProvider implements
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/UMLModel"));
+				getResourceLocator().getImage("full/obj16/SysMLModel"));
 	}
 
 	/**
@@ -90,7 +91,7 @@ public class UMLModelItemProvider extends ModelItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((UMLModel) object).getName();
+		String label = ((SysMLModel) object).getName();
 		return label;
 	}
 
@@ -105,10 +106,10 @@ public class UMLModelItemProvider extends ModelItemProvider implements
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(UMLModel.class)) {
-		case PapyrusPackage.UML_MODEL__GMF_DIAGRAM:
-		case PapyrusPackage.UML_MODEL__DIAGRAM_TYPE:
-		case PapyrusPackage.UML_MODEL__DIAGRAM_LAYOUT:
+		switch (notification.getFeatureID(SysMLModel.class)) {
+		case PapyrusPackage.SYS_ML_MODEL__GMF_DIAGRAM:
+		case PapyrusPackage.SYS_ML_MODEL__DIAGRAM_TYPE:
+		case PapyrusPackage.SYS_ML_MODEL__DIAGRAM_LAYOUT:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), false, true));
 			return;
