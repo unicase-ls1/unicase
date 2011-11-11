@@ -6,6 +6,7 @@
  */
 package org.unicase.papyrus.impl;
 
+import java.util.Collection;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -20,24 +21,66 @@ import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Dependency;
+import org.eclipse.uml2.uml.DirectedRelationship;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ElementImport;
+import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.PackageMerge;
+import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.ParameterableElement;
+import org.eclipse.uml2.uml.PrimitiveType;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.ProfileApplication;
+import org.eclipse.uml2.uml.Relationship;
+import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.StringExpression;
+import org.eclipse.uml2.uml.TemplateBinding;
+import org.eclipse.uml2.uml.TemplateParameter;
+import org.eclipse.uml2.uml.TemplateSignature;
+import org.eclipse.uml2.uml.TemplateableElement;
+import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.Usage;
+import org.eclipse.uml2.uml.VisibilityKind;
+import org.eclipse.uml2.uml.util.UMLValidator;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
-
 import org.eclipse.uml2.uml.internal.impl.ModelImpl;
 
 import org.unicase.metamodel.ModelElementId;
@@ -308,6 +351,7 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -405,7 +449,7 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	 * This method removes nodes and edges that are no longer contained in the model. This can happen if diagram
 	 * elements are deleted after a diagram is closed.
 	 */
-	private void syncDiagramLayout(Diagram gmfDiagram) {
+	private void syncDiagramLayout(Diagram gmfDiagram) throws IOException {
 		for (int i = 0; i < gmfDiagram.getPersistedChildren().size(); i++) {
 			Node node = (Node) gmfDiagram.getPersistedChildren().get(i);
 			if (node.getElement() != null
@@ -440,7 +484,7 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 			IOException {
 
 		// preserve original resource for all involved model elements
-		Set<EObject> elements = this.getProperContents();
+		List<EObject> elements = getProperContents();
 		Map<EObject, Resource> resourceMap = preserveOldResources(elements);
 
 		// put all involved elements into a virtual resource set
@@ -453,6 +497,9 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 
 		String diagramLayout = getDiagramLayout();
 		if (diagramLayout == DIAGRAM_LAYOUT_EDEFAULT) {
+			restoreOldResources(elements, resourceMap, diagramResource,
+					elementsResource);
+
 			return;
 		}
 
@@ -460,8 +507,6 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 		diagramResource
 				.load(new ByteArrayInputStream(diagramLayout.getBytes("UTF-8")),
 						null);
-
-		EObject object = diagramResource.getContents().get(0);
 
 		Diagram gmfDiagram = (Diagram) diagramResource.getContents().get(0);
 		syncDiagramLayout(gmfDiagram);
@@ -475,7 +520,7 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 		gmfDiagram.setElement(this);
 	}
 
-	private void restoreOldResources(Set<EObject> elements,
+	private void restoreOldResources(List<EObject> elements,
 			Map<EObject, Resource> resourceMap, Resource diagramResource,
 			Resource elementsResource) {
 		diagramResource.getContents().remove(getGmfDiagram());
@@ -483,7 +528,8 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 		for (EObject modelElement : resourceMap.keySet()) {
 			Resource resource = resourceMap.get(modelElement);
 			resource.getContents().add(modelElement);
-			if (resource instanceof XMIResource) {
+			if (!(modelElement instanceof Diagram)
+					&& resource instanceof XMIResource) {
 				XMIResource xmiResource = (XMIResource) resource;
 				ModelElementId modelElementId = ModelUtil.getProject(
 						modelElement).getModelElementId(modelElement);
@@ -492,7 +538,7 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 		}
 	}
 
-	private Map<EObject, Resource> preserveOldResources(Set<EObject> elements) {
+	private Map<EObject, Resource> preserveOldResources(List<EObject> elements) {
 		Map<EObject, Resource> resourceMap = new HashMap<EObject, Resource>();
 		for (EObject modelElement : elements) {
 			resourceMap.put(modelElement, modelElement.eResource());
@@ -509,7 +555,7 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	public void saveDiagramLayout() throws IOException {
 		getGmfDiagram().setElement(null);
 		// preserve original resource for all involved model elements
-		Set<EObject> elements = getProperContents();
+		List<EObject> elements = getProperContents();
 		Map<EObject, Resource> resourceMap = preserveOldResources(elements);
 
 		// put all involved elements into a virtual resource set
@@ -539,16 +585,48 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 		}
 	}
 
-	private Set<EObject> getProperContents() {
-		Set<EObject> result = new LinkedHashSet<EObject>();
+	private List<EObject> getProperContents() throws IOException {
+		EList<EObject> result = new BasicEList<EObject>();
 		List<EObject> remainingParents = new LinkedList<EObject>();
 		remainingParents.add(this);
 		while (!remainingParents.isEmpty()) {
 			EObject parent = remainingParents.remove(0);
 			for (EObject content : parent.eContents()) {
-				if (!(content instanceof Diagram)) {
+				if (content instanceof Diagram) {
+					//result.addAll(getHyperlinkedDiagrams(content));
+				} else {
 					result.add(content);
 					remainingParents.add(content);
+				}
+			}
+		}
+
+		// FIXME: Error source
+		//		for(EObject eObject : ModelUtil.getProject(this).getAllModelElements()) {
+		//			if(eObject instanceof UMLModel) {
+		//				UMLModel model = (UMLModel) eObject;
+		//				result.add(model);
+		//				if(model.getGmfDiagram() == null) {
+		//					model.loadDiagramLayout();
+		//				}
+		//				result.add(model.getGmfDiagram());
+		//			}
+		//		}
+		return result;
+	}
+
+	private Set<EObject> getHyperlinkedDiagrams(EObject eObject) {
+		Set<EObject> result = new LinkedHashSet<EObject>();
+		for (Iterator<EObject> it = eObject.eAllContents(); it.hasNext();) {
+			EObject content = it.next();
+			if (content instanceof EModelElement) {
+				EModelElement modelElement = (EModelElement) content;
+				EAnnotation annotation = modelElement
+						.getEAnnotation("PapyrusHyperLink_Diagram");
+				if (annotation != null) {
+					for (EObject hyperlinkDiagram : annotation.getReferences()) {
+						result.add(hyperlinkDiagram.eContainer());
+					}
 				}
 			}
 		}

@@ -12,6 +12,9 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -24,6 +27,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
 import org.eclipse.uml2.uml.edit.providers.ModelItemProvider;
@@ -62,28 +66,8 @@ public class UMLModelItemProvider extends ModelItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addDiagramLayoutPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Diagram Layout feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDiagramLayoutPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_UMLModel_diagramLayout_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_UMLModel_diagramLayout_feature",
-						"_UI_UMLModel_type"),
-				PapyrusPackage.Literals.UML_MODEL__DIAGRAM_LAYOUT, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -145,12 +129,28 @@ public class UMLModelItemProvider extends ModelItemProvider implements
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
+				UMLPackage.Literals.PACKAGE__OWNED_TYPE,
+				PapyrusFactory.eINSTANCE.createSysMLClass()));
+
+		newChildDescriptors.add(createChildParameter(
 				UMLPackage.Literals.PACKAGE__PACKAGED_ELEMENT,
 				PapyrusFactory.eINSTANCE.createUMLModel()));
 
 		newChildDescriptors.add(createChildParameter(
+				UMLPackage.Literals.PACKAGE__PACKAGED_ELEMENT,
+				PapyrusFactory.eINSTANCE.createSysMLModel()));
+
+		newChildDescriptors.add(createChildParameter(
+				UMLPackage.Literals.PACKAGE__PACKAGED_ELEMENT,
+				PapyrusFactory.eINSTANCE.createSysMLClass()));
+
+		newChildDescriptors.add(createChildParameter(
 				UMLPackage.Literals.PACKAGE__NESTED_PACKAGE,
 				PapyrusFactory.eINSTANCE.createUMLModel()));
+
+		newChildDescriptors.add(createChildParameter(
+				UMLPackage.Literals.PACKAGE__NESTED_PACKAGE,
+				PapyrusFactory.eINSTANCE.createSysMLModel()));
 	}
 
 	/**

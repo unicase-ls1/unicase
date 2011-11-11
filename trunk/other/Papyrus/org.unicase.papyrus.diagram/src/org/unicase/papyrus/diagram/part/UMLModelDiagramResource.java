@@ -101,6 +101,7 @@ public class UMLModelDiagramResource extends ResourceImpl implements Resource, R
 		for(Object adapter : model.eResource().eAdapters()) {
 			if(adapter instanceof UnicaseModelSetQueryAdapter) {
 				hasModelSetQuery = true;
+				break;
 			}
 		}
 		

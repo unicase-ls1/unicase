@@ -19,10 +19,26 @@
       <genEnumLiterals ecoreEnumLiteral="papyrus.ecore#//UMLDiagramType/StateMachine"/>
       <genEnumLiterals ecoreEnumLiteral="papyrus.ecore#//UMLDiagramType/UseCase"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="papyrus.ecore#//SysMLDiagramType">
+      <genEnumLiterals ecoreEnumLiteral="papyrus.ecore#//SysMLDiagramType/NoDiagram"/>
+      <genEnumLiterals ecoreEnumLiteral="papyrus.ecore#//SysMLDiagramType/Parametric"/>
+      <genEnumLiterals ecoreEnumLiteral="papyrus.ecore#//SysMLDiagramType/BlockDefinition"/>
+      <genEnumLiterals ecoreEnumLiteral="papyrus.ecore#//SysMLDiagramType/Requirement"/>
+      <genEnumLiterals ecoreEnumLiteral="papyrus.ecore#//SysMLDiagramType/InternalBlock"/>
+    </genEnums>
     <genClasses ecoreClass="papyrus.ecore#//UMLModel">
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EReference papyrus.ecore#//UMLModel/gmfDiagram"/>
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute papyrus.ecore#//UMLModel/diagramType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute papyrus.ecore#//UMLModel/diagramLayout"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute papyrus.ecore#//UMLModel/diagramLayout"/>
+    </genClasses>
+    <genClasses ecoreClass="papyrus.ecore#//SysMLModel">
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EReference papyrus.ecore#//SysMLModel/gmfDiagram"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute papyrus.ecore#//SysMLModel/diagramType"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute papyrus.ecore#//SysMLModel/diagramLayout"/>
+    </genClasses>
+    <genClasses ecoreClass="papyrus.ecore#//SysMLClass">
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EReference papyrus.ecore#//SysMLClass/gmfDiagram"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute papyrus.ecore#//SysMLClass/diagramLayout"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

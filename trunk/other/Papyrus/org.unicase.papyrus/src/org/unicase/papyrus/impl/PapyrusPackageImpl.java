@@ -20,6 +20,9 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 import org.unicase.papyrus.PapyrusFactory;
 import org.unicase.papyrus.PapyrusPackage;
+import org.unicase.papyrus.SysMLClass;
+import org.unicase.papyrus.SysMLDiagramType;
+import org.unicase.papyrus.SysMLModel;
 import org.unicase.papyrus.UMLDiagramType;
 import org.unicase.papyrus.UMLModel;
 
@@ -42,7 +45,28 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass sysMLModelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass sysMLClassEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum umlDiagramTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum sysMLDiagramTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -159,8 +183,80 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSysMLModel() {
+		return sysMLModelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSysMLModel_GmfDiagram() {
+		return (EReference) sysMLModelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSysMLModel_DiagramType() {
+		return (EAttribute) sysMLModelEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSysMLModel_DiagramLayout() {
+		return (EAttribute) sysMLModelEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSysMLClass() {
+		return sysMLClassEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSysMLClass_GmfDiagram() {
+		return (EReference) sysMLClassEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSysMLClass_DiagramLayout() {
+		return (EAttribute) sysMLClassEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getUMLDiagramType() {
 		return umlDiagramTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getSysMLDiagramType() {
+		return sysMLDiagramTypeEEnum;
 	}
 
 	/**
@@ -197,8 +293,18 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 		createEAttribute(umlModelEClass, UML_MODEL__DIAGRAM_TYPE);
 		createEAttribute(umlModelEClass, UML_MODEL__DIAGRAM_LAYOUT);
 
+		sysMLModelEClass = createEClass(SYS_ML_MODEL);
+		createEReference(sysMLModelEClass, SYS_ML_MODEL__GMF_DIAGRAM);
+		createEAttribute(sysMLModelEClass, SYS_ML_MODEL__DIAGRAM_TYPE);
+		createEAttribute(sysMLModelEClass, SYS_ML_MODEL__DIAGRAM_LAYOUT);
+
+		sysMLClassEClass = createEClass(SYS_ML_CLASS);
+		createEReference(sysMLClassEClass, SYS_ML_CLASS__GMF_DIAGRAM);
+		createEAttribute(sysMLClassEClass, SYS_ML_CLASS__DIAGRAM_LAYOUT);
+
 		// Create enums
 		umlDiagramTypeEEnum = createEEnum(UML_DIAGRAM_TYPE);
+		sysMLDiagramTypeEEnum = createEEnum(SYS_ML_DIAGRAM_TYPE);
 	}
 
 	/**
@@ -237,6 +343,8 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 
 		// Add supertypes to classes
 		umlModelEClass.getESuperTypes().add(theUMLPackage.getModel());
+		sysMLModelEClass.getESuperTypes().add(theUMLPackage.getModel());
+		sysMLClassEClass.getESuperTypes().add(theUMLPackage.getClass_());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(umlModelEClass, UMLModel.class, "UMLModel", !IS_ABSTRACT,
@@ -255,6 +363,34 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 
+		initEClass(sysMLModelEClass, SysMLModel.class, "SysMLModel",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSysMLModel_GmfDiagram(),
+				theNotationPackage.getDiagram(), null, "gmfDiagram", null, 0,
+				1, SysMLModel.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSysMLModel_DiagramType(), this.getSysMLDiagramType(),
+				"diagramType", null, 0, 1, SysMLModel.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSysMLModel_DiagramLayout(),
+				theUMLPackage.getString(), "diagramLayout", null, 0, 1,
+				SysMLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(sysMLClassEClass, SysMLClass.class, "SysMLClass",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSysMLClass_GmfDiagram(),
+				theNotationPackage.getDiagram(), null, "gmfDiagram", null, 0,
+				1, SysMLClass.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSysMLClass_DiagramLayout(),
+				theUMLPackage.getString(), "diagramLayout", null, 0, 1,
+				SysMLClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(umlDiagramTypeEEnum, UMLDiagramType.class, "UMLDiagramType");
 		addEEnumLiteral(umlDiagramTypeEEnum, UMLDiagramType.NO_DIAGRAM);
@@ -266,6 +402,15 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 		addEEnumLiteral(umlDiagramTypeEEnum, UMLDiagramType.SEQUENCE);
 		addEEnumLiteral(umlDiagramTypeEEnum, UMLDiagramType.STATE_MACHINE);
 		addEEnumLiteral(umlDiagramTypeEEnum, UMLDiagramType.USE_CASE);
+
+		initEEnum(sysMLDiagramTypeEEnum, SysMLDiagramType.class,
+				"SysMLDiagramType");
+		addEEnumLiteral(sysMLDiagramTypeEEnum, SysMLDiagramType.NO_DIAGRAM);
+		addEEnumLiteral(sysMLDiagramTypeEEnum, SysMLDiagramType.PARAMETRIC);
+		addEEnumLiteral(sysMLDiagramTypeEEnum,
+				SysMLDiagramType.BLOCK_DEFINITION);
+		addEEnumLiteral(sysMLDiagramTypeEEnum, SysMLDiagramType.REQUIREMENT);
+		addEEnumLiteral(sysMLDiagramTypeEEnum, SysMLDiagramType.INTERNAL_BLOCK);
 
 		// Create resource
 		createResource(eNS_URI);

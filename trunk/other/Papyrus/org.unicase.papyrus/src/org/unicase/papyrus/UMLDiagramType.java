@@ -11,15 +11,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.uml2.uml.Activity;
-import org.eclipse.uml2.uml.CommunicationPath;
-import org.eclipse.uml2.uml.SequenceNode;
-import org.eclipse.uml2.uml.StateMachine;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.UseCase;
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.Class;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,14 +30,16 @@ public enum UMLDiagramType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NO_DIAGRAM(0, "NoDiagram", "NoDiagram"), /**
-												 * The '<em><b>Activity</b></em>' literal object.
-												 * <!-- begin-user-doc -->
-												 * <!-- end-user-doc -->
-												 * @see #ACTIVITY_VALUE
-												 * @generated
-												 * @ordered
-												 */
+	NO_DIAGRAM(0, "NoDiagram", "NoDiagram"),
+
+	/**
+	 * The '<em><b>Activity</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ACTIVITY_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	ACTIVITY(1, "Activity", "Activity"),
 
 	/**

@@ -36,6 +36,24 @@ public interface PapyrusFactory extends EFactory {
 	UMLModel createUMLModel();
 
 	/**
+	 * Returns a new object of class '<em>Sys ML Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Sys ML Model</em>'.
+	 * @generated
+	 */
+	SysMLModel createSysMLModel();
+
+	/**
+	 * Returns a new object of class '<em>Sys ML Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Sys ML Class</em>'.
+	 * @generated
+	 */
+	SysMLClass createSysMLClass();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
