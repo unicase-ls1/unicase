@@ -45,6 +45,7 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
+import org.eclipse.ui.services.IEvaluationService;
 
 /**
  * View containing the remote repositories.
@@ -108,6 +109,10 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 							viewer.collapseToLevel(element, 0);
 						}
 						viewer.refresh(element, true);
+						// re-evaluate property tester
+						IEvaluationService service = (IEvaluationService) getSite()
+							.getService(IEvaluationService.class);
+						service.requestEvaluation("org.eclipse.emf.emfstore.client.ui.commands.ServerInfoIsLoggedIn");
 					}
 				});
 			}
