@@ -115,7 +115,7 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		contents.setLayout(new GridLayout(2, false));
 
-		setTitle("Commit your changes");
+		setTitle("Commit your local changes to the server");
 		setMessage("Don't forget the commit message!");
 		// setTitleImage(Activator.getImageDescriptor("icons/dontForget.png").createImage());
 
