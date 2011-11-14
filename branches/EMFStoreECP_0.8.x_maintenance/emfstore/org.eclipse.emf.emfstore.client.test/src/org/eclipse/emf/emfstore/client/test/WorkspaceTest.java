@@ -125,8 +125,9 @@ public abstract class WorkspaceTest {
 	}
 
 	/**
-	 * Creates an test element.
+	 * Creates an test element and sets its name.
 	 * 
+	 * @param name the name of the test element
 	 * @return test element
 	 */
 	protected TestElement getTestElement(String name) {
