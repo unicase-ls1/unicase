@@ -42,12 +42,13 @@ public class UnicaseHyperbolicView implements UnicaseView {
 
 	@Override
 	public UnicaseNode getSelectedNode() {
-		throw new UnsupportedOperationException("This does not work for the Hyperbolicview (yet).");
+		// not implemented for the Hyperbolicview (yet);
+		return null;
 	}
 
 	@Override
 	public void selectNode(UnicaseNode node) {
-		throw new UnsupportedOperationException("This does not work for the Hyperbolicview (yet).");
+		// not implemented for the Hyperbolicview (yet);
 	}
 
 	@Override
@@ -57,7 +58,7 @@ public class UnicaseHyperbolicView implements UnicaseView {
 
 	@Override
 	public void setIsLinked() {
-		throw new UnsupportedOperationException("This does not work for the Hyperbolicview (yet).");
+		// not implemented for the Hyperbolicview (yet);
 	}
 
 }
