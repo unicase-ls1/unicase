@@ -73,10 +73,7 @@ public class UnicaseNodeInfo extends AbstractNodeInfo {
 		
 		if(tree.getColoring().equals(Coloring.CREATION_DATE)){
 			Color c = colors.get(node);
-			if(c == null) {
-				EObject container = node.getObject().eContainer();
-				c = colors.get(tree.getNodes().get(container));
-			}
+			if(c == null) c = getContainerColor(node.getObject());			
 			if(c != null) color = c;
 		} else if (tree.getColoring().equals(Coloring.RANDOM)){
 			color = new Color(stringToRGBInt(node.getObject().eClass().getName()));		
@@ -85,6 +82,20 @@ public class UnicaseNodeInfo extends AbstractNodeInfo {
 			if( color == null ) color = base;
 		}
 		return color;
+	}
+	
+	/**
+	 * Finds the color of a container if there is no color for the {@link EObject}.
+	 * 
+	 * @param obj The {@link EObject} there is no color for.
+	 * @return The color of the next container, which has a color.  
+	 */
+	private Color getContainerColor(EObject obj){
+		if(obj == null) return null;
+		EObject container = obj.eContainer();
+		Color c = colors.get(tree.getNodes().get(container));
+		if(c == null) return getContainerColor(container);
+		return c;
 	}
 	
 	/**
