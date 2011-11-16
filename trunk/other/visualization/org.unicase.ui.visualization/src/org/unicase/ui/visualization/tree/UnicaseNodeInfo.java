@@ -71,15 +71,18 @@ public class UnicaseNodeInfo extends AbstractNodeInfo {
 		
 		Color color = base;
 		
-		if(tree.getColoring().equals(Coloring.CREATION_DATE)){
+		Coloring coloring = tree.getColoring();
+		if(coloring.equals(Coloring.CREATION_DATE)){
 			Color c = colors.get(node);
 			if(c == null) c = getContainerColor(node.getObject());			
 			if(c != null) color = c;
-		} else if (tree.getColoring().equals(Coloring.RANDOM)){
+		} else if (coloring.equals(Coloring.RANDOM)){
 			color = new Color(stringToRGBInt(node.getObject().eClass().getName()));		
-		} else if (tree.getColoring().equals(Coloring.MANUALLY)){
+		} else if (coloring.equals(Coloring.MANUALLY)){
 			color = tree.getColor(node.getObject().eClass());
 			if( color == null ) color = base;
+		} else if (coloring.equals(Coloring.REVISION)){
+			if(tree.getChangedElements().contains(node.getObject())) color = Color.GREEN;
 		}
 		return color;
 	}

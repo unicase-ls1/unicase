@@ -131,6 +131,15 @@
                   value="MANUALLY">
             </parameter>
          </command>
+         <command
+               commandId="org.unicase.ui.visualization.commands.switchColoring"
+               label="Revision"
+               style="push">
+            <parameter
+                  name="org.unicase.ui.visualization.commands.switchColoring.coloringType"
+                  value="REVISION">
+            </parameter>
+         </command>
       </menuContribution>
    </extension>
    <extension

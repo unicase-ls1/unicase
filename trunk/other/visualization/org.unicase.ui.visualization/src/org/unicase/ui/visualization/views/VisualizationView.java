@@ -53,8 +53,9 @@ public class VisualizationView extends ViewPart {
 			public void selectionChanged(IWorkbenchPart part, ISelection selection) {				
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
 				// check for project, build a tree and show it
-				if (obj instanceof ProjectSpace) {
-					setProject((ProjectSpace) obj);					
+				if (obj instanceof ProjectSpace) {										
+					setProject((ProjectSpace) obj);	
+					
 				// check for other EObject and select the node in the visualization
 				} else if(obj instanceof EObject){
 					EObject eObj = (EObject)obj;										
@@ -66,7 +67,7 @@ public class VisualizationView extends ViewPart {
 		
 		frame = SWT_AWT.new_Frame(new Composite(parent, SWT.EMBEDDED | SWT.NO_BACKGROUND));	
 	}
-	
+		
 	/**
 	 * Sets a {@link ProjectSpace}, when it is not already set.
 	 * See {@link #forceSetProject(ProjectSpace)} to force the setting.

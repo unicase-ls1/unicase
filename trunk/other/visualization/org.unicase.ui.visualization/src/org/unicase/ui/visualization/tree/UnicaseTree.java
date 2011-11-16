@@ -1,10 +1,14 @@
 package org.unicase.ui.visualization.tree;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.ui.visualization.util.VisualizationUtil;
+import org.unicase.workspace.ProjectSpace;
 
 import ch.randelshofer.tree.NodeInfo;
 import ch.randelshofer.tree.TreeNode;
@@ -22,11 +26,13 @@ public class UnicaseTree {
 	
 	private HashMap<EObject, UnicaseNode> nodes;
 	
-	public static enum Coloring {CREATION_DATE, RANDOM, MANUALLY}
+	public static enum Coloring {CREATION_DATE, RANDOM, MANUALLY, REVISION}
 	
 	private Coloring coloring = Coloring.CREATION_DATE;
 	
 	private HashMap<EClass, Color> colors;
+	
+	private List<EObject> changedElements = new ArrayList<EObject>();
 			
 	public UnicaseTree(UnicaseNode root){
 		this.root = root;		
@@ -85,9 +91,20 @@ public class UnicaseTree {
 
 	public void setColoring(Coloring coloring) {
 		this.coloring = coloring;
+		if(coloring == Coloring.REVISION){
+			this.changedElements = VisualizationUtil.getChangedElements((ProjectSpace) root.getObject().eContainer());
+		}
 	}
 
 	public Coloring getColoring() {
 		return coloring;
+	}
+
+	public void setChangedElements(List<EObject> changedElements) {
+		this.changedElements = changedElements;
+	}
+
+	public List<EObject> getChangedElements() {
+		return changedElements;
 	}
 }
