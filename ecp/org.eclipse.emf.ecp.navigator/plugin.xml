@@ -180,7 +180,7 @@
       </command>
       <command
             categoryId="org.eclipse.emf.ecp.navigator"
-            defaultHandler="org.eclipse.emf.ecp.common.handler.NewModelElementWizardHandler"
+            defaultHandler="org.eclipse.emf.ecp.navigator.handler.NewModelElementWizardHandler"
             id="org.eclipse.emf.ecp.navigator.newModelElementWizard"
             name="New ModelElement Wizard">
          <commandParameter

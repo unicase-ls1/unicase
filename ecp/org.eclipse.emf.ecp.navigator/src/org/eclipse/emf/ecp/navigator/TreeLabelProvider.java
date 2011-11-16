@@ -11,8 +11,11 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.ui.IDecoratorManager;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * Composed Label provider with all registered label providers.
@@ -29,7 +32,8 @@ public class TreeLabelProvider {
 	 * Default constructor.
 	 */
 	public TreeLabelProvider() {
-		defaultLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		defaultLabelProvider = new DecoratingLabelProvider(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)),
+			PlatformUI.getWorkbench().getDecoratorManager().getLabelDecorator());
 		replaceLabelProvider();
 	}
 
@@ -52,6 +56,12 @@ public class TreeLabelProvider {
 		}
 	}
 
+	/**
+	 * Returns the {@link ILabelProvider}.  If the default label provider has been replaced, that one 
+	 * will be returned.  If more than one label providers have been registered to replace the default
+	 * label provider the first one will be returned.
+	 * @return the label provider to be used by the {@link TreeView}
+	 */
 	public IBaseLabelProvider getLabelProvider() {
 		if (replacedLabelProvider != null) {
 			return replacedLabelProvider;
