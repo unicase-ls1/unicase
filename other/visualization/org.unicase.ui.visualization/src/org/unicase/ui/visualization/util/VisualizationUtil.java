@@ -12,6 +12,7 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.graphics.Image;
@@ -72,7 +73,7 @@ public class VisualizationUtil {
 	public static void setNavigatorSelection(EObject obj, boolean isLinked){
 		if(isLinked){
 			TreeViewer viewer = TreeView.getTreeViewer();
-			viewer.setSelection(new TreeSelection(((TreeSelection) viewer.getSelection()).getPaths()[0].createChildPath(obj)), true);
+			viewer.setSelection(new TreeSelection(new TreeSelection(new TreePath(new Object[]{obj})).getPaths()[0].createChildPath(obj)), true);
 		}
 	}
 	
