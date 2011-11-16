@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.emfstore.client.transaction.feature"
       label="EMFStore Transaction Support (Incubation)"
-      version="0.8.9.M902"
+      version="0.8.9.M905"
       provider-name="Eclipse Modeling Project"
       plugin="org.eclipse.emf.emfstore.branding">
 
