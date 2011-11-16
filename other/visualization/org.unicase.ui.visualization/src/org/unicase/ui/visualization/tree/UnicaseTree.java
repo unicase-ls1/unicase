@@ -8,7 +8,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.ui.visualization.util.VisualizationUtil;
-import org.unicase.workspace.ProjectSpace;
 
 import ch.randelshofer.tree.NodeInfo;
 import ch.randelshofer.tree.TreeNode;
@@ -92,7 +91,7 @@ public class UnicaseTree {
 	public void setColoring(Coloring coloring) {
 		this.coloring = coloring;
 		if(coloring == Coloring.VERSION){
-			this.changedElements = VisualizationUtil.getChangedElements((ProjectSpace) root.getObject().eContainer());
+			this.changedElements = VisualizationUtil.getChangedElements(VisualizationUtil.getProjectSpace(root.getObject()));
 		}
 	}
 

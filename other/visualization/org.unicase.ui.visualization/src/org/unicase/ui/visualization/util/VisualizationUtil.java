@@ -121,8 +121,7 @@ public class VisualizationUtil {
 	 * @param projectSpace The {@link ProjectSpace} to search in.
 	 * @return The changed elements.
 	 */
-	public static List<EObject> getChangedElements(ProjectSpace projectSpace){
-		List<HistoryInfo> infos = getHistoryInfos(projectSpace);
+	public static List<EObject> getChangedElements(ProjectSpace projectSpace){		
 		ListDialog dialog = new ListDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
 		
 		dialog.setTitle("History");
@@ -146,7 +145,8 @@ public class VisualizationUtil {
 			public Image getImage(Object element) {return null;}
 			
 		});
-		dialog.setInput(infos);		
+		dialog.setInput(getHistoryInfos(projectSpace));		
+		
 		if (dialog.open() == Dialog.OK) {
 		    HistoryInfo info = (HistoryInfo) dialog.getResult()[0];
 		    return getChangedElements(projectSpace, info);
@@ -176,7 +176,7 @@ public class VisualizationUtil {
 	}
 	
 	/**
-	 * Receive a {@link HistoryQuery} to query for the version.
+	 * Receive a {@link HistoryQuery} to query for the {@link HistoryInfo}s.
 	 * 
 	 * 
 	 * @param projectSpace The {@link ProjectSpace} where to search.
@@ -188,8 +188,8 @@ public class VisualizationUtil {
 		
 		int end = projectSpace.resolveVersionSpec(VersionSpec.HEAD_VERSION).getIdentifier();			
 		
-		// TODO find out first version
-		int start = 16;
+		// TODO find out first version dynamically
+		int start = 2;
 		
 		PrimaryVersionSpec source = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 		source.setIdentifier(start);
