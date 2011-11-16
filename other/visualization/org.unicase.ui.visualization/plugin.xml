@@ -133,11 +133,11 @@
          </command>
          <command
                commandId="org.unicase.ui.visualization.commands.switchColoring"
-               label="Revision"
+               label="Version"
                style="push">
             <parameter
                   name="org.unicase.ui.visualization.commands.switchColoring.coloringType"
-                  value="REVISION">
+                  value="VERSION">
             </parameter>
          </command>
       </menuContribution>
