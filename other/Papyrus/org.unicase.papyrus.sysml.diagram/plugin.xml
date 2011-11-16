@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.unicase.ui.common.modelelementopener">
+      <ModelElementOpener
+            class="org.unicase.papyrus.sysml.diagram.part.SysMLDiagramOpener"
+            name="org.unicase.papyrus.sysml.diagram.SysMLDiagramOpener">
+      </ModelElementOpener>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.unicase.papyrus.sysml.diagram.editors.SysMLParametricDiagramEditor"
+            default="false"
+            extensions="Parametric_diagram"
+            id="org.unicase.papyrus.sysml.diagram.parametric.SysMLDiagramEditorID"
+            name="ParametricDiagramEditor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.contexts">
+      <context
+            id="org.unicase.papyrus.sysml.diagram.parametric.diagramContext"
+            name="SysMLParametricContext"
+            parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.content_parser">
+      <parser
+            class="org.unicase.papyrus.sysml.diagram.part.SysMLModelDiagramResource"
+            contentTypeIdentifier="SysMLModel">
+      </parser>
+   </extension>
+
+</plugin>
