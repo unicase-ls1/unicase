@@ -1,8 +1,11 @@
 package org.unicase.ui.visualization.util;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionEvent;
@@ -12,6 +15,7 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -23,6 +27,7 @@ import org.eclipse.ui.part.WorkbenchPart;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
+import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
@@ -36,6 +41,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.ui.commands.ServerRequestCommandHandler;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
+import org.unicase.workspace.ui.views.scm.SCMLabelProvider;
 
 /**
  * A util class for visualization purposes.
@@ -44,6 +50,8 @@ import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
  *
  */
 public class VisualizationUtil {
+	
+	public static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
 	
 	/**
 	 * Open an {@link EObject} in the editor. Needed because of the AWT integration to manually set an active {@link WorkbenchPart}. 
@@ -115,6 +123,7 @@ public class VisualizationUtil {
 		}
 		return infos;	
 	}
+
 	
 	/**
 	 * Receive the changed elements of a {@link ProjectSpace} in a . Asks the user to set the version.
@@ -126,12 +135,15 @@ public class VisualizationUtil {
 		ListDialog dialog = new ListDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
 		
 		dialog.setTitle("History");
-		dialog.setMessage("Choose a version");
+		dialog.setMessage("Choose a version");		
 		dialog.setContentProvider(ArrayContentProvider.getInstance());
-		dialog.setLabelProvider(new ILabelProvider() {			
+		
+		final SCMLabelProvider lp = new SCMLabelProvider(projectSpace.getProject());
+		
+		dialog.setLabelProvider(new ILabelProvider() {
 			@Override
 			public String getText(Object element) {
-				return String.valueOf(((HistoryInfo)element).getPrimerySpec().getIdentifier());
+				return lp.getText(new TreeNode(element));			
 			}
 			
 			@Override
@@ -143,7 +155,9 @@ public class VisualizationUtil {
 			@Override
 			public void addListener(ILabelProviderListener listener) {}
 			@Override
-			public Image getImage(Object element) {return null;}
+			public Image getImage(Object element) {
+				return lp.getImage(new TreeNode(element));
+			}
 			
 		});
 		dialog.setInput(getHistoryInfos(projectSpace));		
