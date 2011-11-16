@@ -26,7 +26,7 @@ public class UnicaseTree {
 	
 	private HashMap<EObject, UnicaseNode> nodes;
 	
-	public static enum Coloring {CREATION_DATE, RANDOM, MANUALLY, REVISION}
+	public static enum Coloring {CREATION_DATE, RANDOM, MANUALLY, VERSION}
 	
 	private Coloring coloring = Coloring.CREATION_DATE;
 	
@@ -91,7 +91,7 @@ public class UnicaseTree {
 
 	public void setColoring(Coloring coloring) {
 		this.coloring = coloring;
-		if(coloring == Coloring.REVISION){
+		if(coloring == Coloring.VERSION){
 			this.changedElements = VisualizationUtil.getChangedElements((ProjectSpace) root.getObject().eContainer());
 		}
 	}
