@@ -5,29 +5,31 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.dialogs.ListDialog;
 import org.eclipse.ui.part.WorkbenchPart;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
-import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
@@ -41,6 +43,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.ui.commands.ServerRequestCommandHandler;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
+import org.unicase.workspace.ui.views.scm.SCMContentProvider;
 import org.unicase.workspace.ui.views.scm.SCMLabelProvider;
 
 /**
@@ -95,6 +98,85 @@ public class VisualizationUtil {
 		EObject container = obj.eContainer();
 		return container instanceof ProjectSpace ? (ProjectSpace) container : getProjectSpace(container);
 	}	
+
+	
+	/**
+	 * Receive the changed elements of a {@link ProjectSpace} in a . Asks the user to set the version.
+	 * 
+	 * @param projectSpace The {@link ProjectSpace} to search in.
+	 * @return The changed elements.
+	 */
+	public static List<EObject> getChangedElements(ProjectSpace projectSpace){
+		HistoryInfo info = showVersionHistory(projectSpace);
+		if(info == null) return Collections.emptyList();
+		selectedHistoryInfo = null;
+		return getChangedElements(projectSpace, info);	
+	}
+	
+	/**
+	 * Temporary variable. Necessary to assign in inner dialog definition.
+	 */
+	private static HistoryInfo selectedHistoryInfo;
+	
+	/**
+	 * Shows the Historyversion, to select one {@link HistoryInfo}.
+	 * 
+	 * @param projectSpace The {@link ProjectSpace} where to search in.
+	 * @return The selected {@link HistoryInfo} or <code>null</code> if cancel is pressed or nothing is selected.
+	 */
+	private static HistoryInfo showVersionHistory(final ProjectSpace projectSpace){
+		
+		Dialog dialog = new Dialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell()) {
+		    @Override
+		    protected Control createDialogArea(Composite p) {
+		    	// init ui with viewer
+		    	Composite composite = new Composite(p, SWT.NONE);
+		    	composite.setLayout(new GridLayout());
+		    	ScrolledComposite sc = new ScrolledComposite(composite, SWT.H_SCROLL | SWT.V_SCROLL);
+		    	sc.setLayoutData(new GridData(500,400)); 
+		    	
+		    	TreeViewer viewer = new TreeViewer(sc, SWT.NONE);
+		        
+		        viewer.getControl().setSize(500, 400);
+		        sc.setContent(viewer.getControl());
+		        
+		        // set the providers of the the viewer
+		        SCMLabelProvider labelProvider = new SCMLabelProvider(projectSpace.getProject());
+				viewer.setLabelProvider(labelProvider);
+		        SCMContentProvider.Detailed contentProvider = new SCMContentProvider.Detailed(viewer);
+				viewer.setContentProvider(contentProvider);
+		        
+		        List<HistoryInfo> infos = getHistoryInfos(projectSpace);
+		        List<ChangePackage> changePackages = new ArrayList<ChangePackage>();
+		        for (HistoryInfo historyInfo : infos) {
+					changePackages.add(historyInfo.getChangePackage());
+				}
+		        
+		        ChangePackageVisualizationHelper changePackageVisualizationHelper = new ChangePackageVisualizationHelper(changePackages, projectSpace.getProject());
+				labelProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
+				contentProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
+				
+				// set the input
+		        viewer.setInput(infos);
+		        
+		        // set a selection listener to save the current selection
+		        viewer.addSelectionChangedListener(new ISelectionChangedListener() {
+					
+					@Override
+					public void selectionChanged(SelectionChangedEvent event) {
+						TreeNode treeNode = (TreeNode) ((IStructuredSelection) event.getSelection()).getFirstElement();
+						Object value = treeNode.getValue();
+						if(value instanceof HistoryInfo) selectedHistoryInfo = (HistoryInfo) value;
+					}
+				});
+		        
+		        return composite;
+		    }
+		};
+		    
+		if (dialog.open() == Dialog.OK) return selectedHistoryInfo;		
+		return null;					
+	}
 		
 	/**
 	 * Receive all {@link HistoryInfo}s of a {@link ProjectSpace}.
@@ -103,12 +185,12 @@ public class VisualizationUtil {
 	 * @return The {@link HistoryInfo}s of the {@link ProjectSpace}.
 	 */
 	private static List<HistoryInfo> getHistoryInfos(final ProjectSpace projectSpace){
-
+		
 		final List<HistoryInfo> infos = new ArrayList<HistoryInfo>();
 		
 		try {
 			new ServerRequestCommandHandler() {
-
+				
 				@Override
 				protected Object run() throws EmfStoreException {
 					Usersession usersession = projectSpace.getUsersession();
@@ -122,52 +204,6 @@ public class VisualizationUtil {
 			e.printStackTrace();
 		}
 		return infos;	
-	}
-
-	
-	/**
-	 * Receive the changed elements of a {@link ProjectSpace} in a . Asks the user to set the version.
-	 * 
-	 * @param projectSpace The {@link ProjectSpace} to search in.
-	 * @return The changed elements.
-	 */
-	public static List<EObject> getChangedElements(ProjectSpace projectSpace){		
-		ListDialog dialog = new ListDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
-		
-		dialog.setTitle("History");
-		dialog.setMessage("Choose a version");		
-		dialog.setContentProvider(ArrayContentProvider.getInstance());
-		
-		final SCMLabelProvider lp = new SCMLabelProvider(projectSpace.getProject());
-		
-		dialog.setLabelProvider(new ILabelProvider() {
-			@Override
-			public String getText(Object element) {
-				return lp.getText(new TreeNode(element));			
-			}
-			
-			@Override
-			public void removeListener(ILabelProviderListener listener) {}			
-			@Override
-			public boolean isLabelProperty(Object element, String property) {return false;}			
-			@Override
-			public void dispose() {}			
-			@Override
-			public void addListener(ILabelProviderListener listener) {}
-			@Override
-			public Image getImage(Object element) {
-				return lp.getImage(new TreeNode(element));
-			}
-			
-		});
-		dialog.setInput(getHistoryInfos(projectSpace));		
-		
-		if (dialog.open() == Dialog.OK) {
-		    HistoryInfo info = (HistoryInfo) dialog.getResult()[0];
-		    return getChangedElements(projectSpace, info);
-		}
-		
-		return Collections.emptyList();
 	}
 	
 	/**
