@@ -149,7 +149,10 @@ public class VisualizationUtil {
 		        List<HistoryInfo> infos = getHistoryInfos(projectSpace);
 		        List<ChangePackage> changePackages = new ArrayList<ChangePackage>();
 		        for (HistoryInfo historyInfo : infos) {
-					changePackages.add(historyInfo.getChangePackage());
+		        	ChangePackage changePackage = historyInfo.getChangePackage();
+		        	if(null != changePackage){
+		        		changePackages.add(historyInfo.getChangePackage());
+		        	}
 				}
 		        
 		        ChangePackageVisualizationHelper changePackageVisualizationHelper = new ChangePackageVisualizationHelper(changePackages, projectSpace.getProject());
@@ -216,6 +219,12 @@ public class VisualizationUtil {
 	 */
 	private static List<EObject> getChangedElements(ProjectSpace projectSpace, HistoryInfo info){		
 		ChangePackage changePackage = info.getChangePackage();
+		
+		// this condition occurs when the initial commit happens (there are no changes as 
+		// everything is new)
+		if(null == changePackage){
+			return Collections.emptyList();
+		}
 		ChangePackageVisualizationHelper cpvh = new ChangePackageVisualizationHelper(Arrays.asList(changePackage), projectSpace.getProject());
 		
 		final ArrayList<EObject> elements = new ArrayList<EObject>();
@@ -238,9 +247,7 @@ public class VisualizationUtil {
 		HistoryQuery query = VersioningFactory.eINSTANCE.createHistoryQuery();
 		
 		int end = projectSpace.resolveVersionSpec(VersionSpec.HEAD_VERSION).getIdentifier();			
-		
-		// TODO find out first version dynamically
-		int start = 2;
+		int start = 0;
 		
 		PrimaryVersionSpec source = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 		source.setIdentifier(start);
