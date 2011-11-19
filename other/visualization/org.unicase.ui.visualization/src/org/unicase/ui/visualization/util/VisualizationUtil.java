@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionEvent;
@@ -20,8 +21,11 @@ import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.PartInitException;
@@ -132,36 +136,20 @@ public class VisualizationUtil {
 		    	// init ui with viewer
 		    	Composite composite = new Composite(p, SWT.NONE);
 		    	composite.setLayout(new GridLayout());
+		    	Button reload = new Button(composite, SWT.PUSH);
+		    	reload.setText("Reload History");
+		    	reload.setToolTipText("Clears the cache and reloads History");
+		    	
 		    	ScrolledComposite sc = new ScrolledComposite(composite, SWT.H_SCROLL | SWT.V_SCROLL);
 		    	sc.setLayoutData(new GridData(500,400)); 
 		    	
-		    	TreeViewer viewer = new TreeViewer(sc, SWT.NONE);
+		    	final TreeViewer viewer = new TreeViewer(sc, SWT.BORDER);
 		        
 		        viewer.getControl().setSize(500, 400);
 		        sc.setContent(viewer.getControl());
 		        
-		        // set the providers of the the viewer
-		        SCMLabelProvider labelProvider = new SCMLabelProvider(projectSpace.getProject());
-				viewer.setLabelProvider(labelProvider);
-		        SCMContentProvider.Detailed contentProvider = new SCMContentProvider.Detailed(viewer);
-				viewer.setContentProvider(contentProvider);
-		        
-		        List<HistoryInfo> infos = getHistoryInfos(projectSpace);
-		        List<ChangePackage> changePackages = new ArrayList<ChangePackage>();
-		        for (HistoryInfo historyInfo : infos) {
-		        	ChangePackage changePackage = historyInfo.getChangePackage();
-		        	if(null != changePackage){
-		        		changePackages.add(historyInfo.getChangePackage());
-		        	}
-				}
-		        
-		        ChangePackageVisualizationHelper changePackageVisualizationHelper = new ChangePackageVisualizationHelper(changePackages, projectSpace.getProject());
-				labelProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
-				contentProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
-				
-				// set the input
-		        viewer.setInput(infos);
-		        
+		        setViewerInput(viewer, getHistoryInfos(projectSpace), projectSpace);
+
 		        // set a selection listener to save the current selection
 		        viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 					
@@ -173,6 +161,18 @@ public class VisualizationUtil {
 					}
 				});
 		        
+		        // reload the history
+		        reload.addSelectionListener(new SelectionListener() {
+
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						historyInfos = null;
+						setViewerInput(viewer, getHistoryInfos(projectSpace), projectSpace);
+					}
+					@Override
+					public void widgetDefaultSelected(SelectionEvent e) {}
+		          });
+		        
 		        return composite;
 		    }
 		};
@@ -180,14 +180,42 @@ public class VisualizationUtil {
 		if (dialog.open() == Dialog.OK) return selectedHistoryInfo;		
 		return null;					
 	}
+	
+	private static void setViewerInput(TreeViewer viewer, List<HistoryInfo> infos, ProjectSpace projectSpace){		
+        List<ChangePackage> changePackages = new ArrayList<ChangePackage>();
+        for (HistoryInfo historyInfo : infos) {
+			changePackages.add(historyInfo.getChangePackage());
+		}
+        
+        // set the providers of the the viewer
+        SCMLabelProvider labelProvider = new SCMLabelProvider(projectSpace.getProject());
+		viewer.setLabelProvider(labelProvider);
+        SCMContentProvider.Detailed contentProvider = new SCMContentProvider.Detailed(viewer);
+		viewer.setContentProvider(contentProvider);
+        
+        ChangePackageVisualizationHelper changePackageVisualizationHelper = new ChangePackageVisualizationHelper(changePackages, projectSpace.getProject());
+		labelProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
+		contentProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
+		
+		// set the input
+        viewer.setInput(infos);
+	}
+	
+	/**
+	 * HashMap to cache the fetched {@link HistoryInfo}s.
+	 */
+	private static HashMap<ProjectSpace, List<HistoryInfo>> historyInfos;
 		
 	/**
-	 * Receive all {@link HistoryInfo}s of a {@link ProjectSpace}.
+	 * Receive all {@link HistoryInfo}s of a {@link ProjectSpace}. Caches the infos.
 	 * 
 	 * @param projectSpace The {@link ProjectSpace} where to search in.
 	 * @return The {@link HistoryInfo}s of the {@link ProjectSpace}.
 	 */
 	private static List<HistoryInfo> getHistoryInfos(final ProjectSpace projectSpace){
+		if(historyInfos == null) historyInfos = new HashMap<ProjectSpace, List<HistoryInfo>>();		
+		List<HistoryInfo> i = historyInfos.get(projectSpace);		
+		if(i != null) return i;
 		
 		final List<HistoryInfo> infos = new ArrayList<HistoryInfo>();
 		
@@ -206,6 +234,8 @@ public class VisualizationUtil {
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 		}
+		
+		historyInfos.put(projectSpace, infos);
 		return infos;	
 	}
 	
@@ -247,7 +277,7 @@ public class VisualizationUtil {
 		HistoryQuery query = VersioningFactory.eINSTANCE.createHistoryQuery();
 		
 		int end = projectSpace.resolveVersionSpec(VersionSpec.HEAD_VERSION).getIdentifier();			
-		int start = 0;
+		int start = 2;
 		
 		PrimaryVersionSpec source = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 		source.setIdentifier(start);
