@@ -156,8 +156,11 @@ public class VisualizationUtil {
 					@Override
 					public void selectionChanged(SelectionChangedEvent event) {
 						TreeNode treeNode = (TreeNode) ((IStructuredSelection) event.getSelection()).getFirstElement();
-						Object value = treeNode.getValue();
-						if(value instanceof HistoryInfo) selectedHistoryInfo = (HistoryInfo) value;
+						if(null != treeNode){
+							Object value = treeNode.getValue();
+							if(value instanceof HistoryInfo) {
+								selectedHistoryInfo = (HistoryInfo) value;}
+							}
 					}
 				});
 		        
@@ -184,7 +187,10 @@ public class VisualizationUtil {
 	private static void setViewerInput(TreeViewer viewer, List<HistoryInfo> infos, ProjectSpace projectSpace){		
         List<ChangePackage> changePackages = new ArrayList<ChangePackage>();
         for (HistoryInfo historyInfo : infos) {
-			changePackages.add(historyInfo.getChangePackage());
+        	if(null != historyInfo.getChangePackage()){
+        		changePackages.add(historyInfo.getChangePackage());
+        	}
+			
 		}
         
         // set the providers of the the viewer
@@ -286,7 +292,7 @@ public class VisualizationUtil {
 		HistoryQuery query = VersioningFactory.eINSTANCE.createHistoryQuery();
 		
 		int end = projectSpace.resolveVersionSpec(VersionSpec.HEAD_VERSION).getIdentifier();			
-		int start = 2;
+		int start = 0;
 		
 		PrimaryVersionSpec source = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 		source.setIdentifier(start);
