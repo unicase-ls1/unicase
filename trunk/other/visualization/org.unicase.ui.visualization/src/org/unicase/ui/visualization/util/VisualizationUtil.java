@@ -219,6 +219,15 @@ public class VisualizationUtil {
 		
 		final List<HistoryInfo> infos = new ArrayList<HistoryInfo>();
 		
+		// add local changes
+		HistoryInfo localHistoryInfo = VersioningFactory.eINSTANCE.createHistoryInfo();		
+		localHistoryInfo.setChangePackage(projectSpace.getLocalChangePackage(false));
+		PrimaryVersionSpec versionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+		versionSpec.setIdentifier(-1);
+		localHistoryInfo.setPrimerySpec(versionSpec);
+		infos.add(localHistoryInfo);
+		
+		// add all other versions
 		try {
 			new ServerRequestCommandHandler() {
 				
