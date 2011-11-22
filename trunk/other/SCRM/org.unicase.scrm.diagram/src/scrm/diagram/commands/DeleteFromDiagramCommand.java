@@ -11,6 +11,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
@@ -23,6 +24,7 @@ import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 
 import scrm.SCRMDiagram;
+import scrm.SCRMSpace;
 import scrm.diagram.util.EditPartUtility;
 
 // dengler: refactor use of edit part request and variables
@@ -71,12 +73,26 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 			diag.getElements().remove(additionalME);
 		}
 		
-		final EObject model = ((View) editPart.getModel()).getElement();
-		if(!(model.eContainer() instanceof Project)) {
-			final Project project = ModelUtil.getProject(diag);
-			project.addModelElement(model);
+		EObject model = ((View) editPart.getModel()).getElement();
+		EObject container = model.eContainer();
+		EObject containee = model;
+		
+		while(container instanceof SCRMSpace) {
+			containee = container;
+			container = container.eContainer();
 		}
-
+		
+		if(containee != model) {
+			addToParent(container, containee, model);
+		}
+		
 		return CommandResult.newOKCommandResult();
 	}
+
+	private void addToParent(EObject container, EObject containee, EObject model) {
+		EStructuralFeature containingFeature = containee.eContainingFeature();
+		List containedObjects = (List) container.eGet(containingFeature);
+		containedObjects.add(model);
+	}
+
 }

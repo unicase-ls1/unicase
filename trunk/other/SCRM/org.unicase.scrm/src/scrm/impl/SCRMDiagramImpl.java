@@ -53,30 +53,31 @@ import scrm.requirements.RequirementSpace;
 import scrm.requirements.dataProcess.DataProcessSpace;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>SCRM Diagram</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>SCRM Diagram</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link scrm.impl.SCRMDiagramImpl#getElements <em>Elements</em>}</li>
- *   <li>{@link scrm.impl.SCRMDiagramImpl#getGmfdiagram <em>Gmfdiagram</em>}</li>
- *   <li>{@link scrm.impl.SCRMDiagramImpl#getNewElements <em>New Elements</em>}</li>
- *   <li>{@link scrm.impl.SCRMDiagramImpl#getDiagramLayout <em>Diagram Layout</em>}</li>
- *   <li>{@link scrm.impl.SCRMDiagramImpl#getDiagramType <em>Diagram Type</em>}</li>
- *   <li>{@link scrm.impl.SCRMDiagramImpl#getRepresentedSpace <em>Represented Space</em>}</li>
+ * <li>{@link scrm.impl.SCRMDiagramImpl#getElements <em>Elements</em>}</li>
+ * <li>{@link scrm.impl.SCRMDiagramImpl#getGmfdiagram <em>Gmfdiagram</em>}</li>
+ * <li>{@link scrm.impl.SCRMDiagramImpl#getNewElements <em>New Elements</em>}</li>
+ * <li>{@link scrm.impl.SCRMDiagramImpl#getDiagramLayout <em>Diagram Layout
+ * </em>}</li>
+ * <li>{@link scrm.impl.SCRMDiagramImpl#getDiagramType <em>Diagram Type</em>}</li>
+ * <li>{@link scrm.impl.SCRMDiagramImpl#getRepresentedSpace <em>Represented
+ * Space</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 		SCRMDiagram {
 
 	/**
-	 * The cached value of the '{@link #getElements() <em>Elements</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getElements() <em>Elements</em>}'
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getElements()
 	 * @generated
 	 * @ordered
@@ -84,9 +85,9 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	protected EList<SCRMModelElement> elements;
 
 	/**
-	 * The cached value of the '{@link #getGmfdiagram() <em>Gmfdiagram</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getGmfdiagram() <em>Gmfdiagram</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getGmfdiagram()
 	 * @generated
 	 * @ordered
@@ -94,9 +95,9 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	protected Diagram gmfdiagram;
 
 	/**
-	 * The cached value of the '{@link #getNewElements() <em>New Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getNewElements() <em>New Elements</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getNewElements()
 	 * @generated NOT: custom type
 	 * @ordered
@@ -104,9 +105,10 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	protected SCRMDiagramNewElementsList newElements;
 
 	/**
-	 * The default value of the '{@link #getDiagramLayout() <em>Diagram Layout</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getDiagramLayout()
+	 * <em>Diagram Layout</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getDiagramLayout()
 	 * @generated
 	 * @ordered
@@ -114,9 +116,10 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	protected static final String DIAGRAM_LAYOUT_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDiagramLayout() <em>Diagram Layout</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDiagramLayout()
+	 * <em>Diagram Layout</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getDiagramLayout()
 	 * @generated
 	 * @ordered
@@ -124,9 +127,9 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	protected String diagramLayout = DIAGRAM_LAYOUT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDiagramType() <em>Diagram Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getDiagramType() <em>Diagram Type</em>}
+	 * ' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDiagramType()
 	 * @generated
 	 * @ordered
@@ -134,9 +137,9 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	protected static final DiagramType DIAGRAM_TYPE_EDEFAULT = DiagramType.DEFAULT_DIAGRAM;
 
 	/**
-	 * The cached value of the '{@link #getDiagramType() <em>Diagram Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDiagramType() <em>Diagram Type</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDiagramType()
 	 * @generated
 	 * @ordered
@@ -144,9 +147,10 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	protected DiagramType diagramType = DIAGRAM_TYPE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getRepresentedSpace() <em>Represented Space</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRepresentedSpace()
+	 * <em>Represented Space</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getRepresentedSpace()
 	 * @generated
 	 * @ordered
@@ -156,8 +160,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	private EObject newElementContainer;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SCRMDiagramImpl() {
@@ -165,8 +169,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -175,8 +179,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<SCRMModelElement> getElements() {
@@ -190,9 +194,9 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Only use with GMF, to obtain elements use {@link #getElements()} instead.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Only use with GMF, to obtain elements use
+	 * {@link #getElements()} instead. <!-- end-user-doc -->
+	 * 
 	 * @generated NOT: removed containment behavior
 	 */
 	public EList<SCRMModelElement> getNewElements() {
@@ -200,7 +204,7 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 			newElementContainer = eContainer();
 		}
 		if (newElements == null) {
-			newElements = new SCRMDiagramNewElementsList(getElements(),
+			newElements = new SCRMDiagramNewElementsList(getElements(), this,
 					newElementContainer);
 		}
 		newElements.setContainer(newElementContainer);
@@ -208,8 +212,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getDiagramLayout() {
@@ -217,8 +221,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDiagramLayout(String newDiagramLayout) {
@@ -231,8 +235,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DiagramType getDiagramType() {
@@ -251,8 +255,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDiagramType(DiagramType newDiagramType) {
@@ -266,8 +270,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SCRMSpace getRepresentedSpace() {
@@ -285,8 +289,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SCRMSpace basicGetRepresentedSpace() {
@@ -294,8 +298,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetRepresentedSpace(
@@ -316,8 +320,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRepresentedSpace(SCRMSpace newRepresentedSpace) {
@@ -341,8 +345,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -364,8 +368,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Diagram getGmfdiagram() {
@@ -396,8 +400,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Diagram basicGetGmfdiagram() {
@@ -405,8 +409,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetGmfdiagram(Diagram newGmfdiagram,
@@ -426,8 +430,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setGmfdiagram(Diagram newGmfdiagram) {
@@ -453,8 +457,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -476,8 +480,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -504,8 +508,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -539,8 +543,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -569,8 +573,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -594,8 +598,8 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -796,4 +800,4 @@ public class SCRMDiagramImpl extends SCRMModelElementImpl implements
 		this.newElementContainer = newElementContainer;
 	}
 
-} //SCRMDiagramImpl
+} // SCRMDiagramImpl

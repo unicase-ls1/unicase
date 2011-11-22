@@ -9,6 +9,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
@@ -18,9 +19,7 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.OpenEditPolicy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.metamodel.Project;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.workspace.WorkspaceManager;
 
 import scrm.SCRMDiagram;
 import scrm.SCRMModelElement;
@@ -100,15 +99,21 @@ public class OpenSCRMSpaceEditPolicy extends OpenEditPolicy {
 		private SCRMDiagram intializeNewDiagram()
 				throws ExecutionException {
 			SCRMDiagram scrmDiagram = ScrmFactory.eINSTANCE.createSCRMDiagram();
-			Project project = WorkspaceManager.getProjectSpace(
-					representedSpace).getProject();
-			project.addModelElement(scrmDiagram);
+			addToParent(scrmDiagram);
 			scrmDiagram.setName(representedSpace.getName() + " Diagram");
 			scrmDiagram.setDiagramType(representedSpace);
 			representedSpace.setRepresentingDiagram(scrmDiagram);
 			return scrmDiagram;
 		}
 		
+		@SuppressWarnings({ "rawtypes", "unchecked" })
+		private void addToParent(SCRMDiagram scrmDiagram) {
+			EObject container = representedSpace.eContainer();
+			EStructuralFeature containingFeature = representedSpace.eContainingFeature();
+			List containedObjects = (List) container.eGet(containingFeature);
+			containedObjects.add(scrmDiagram);
+		}
+
 		private Collection<SCRMModelElement> getAllContents(
 				EObject parent) {
 			List<SCRMModelElement> result = new LinkedList<SCRMModelElement>();

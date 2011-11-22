@@ -1,11 +1,15 @@
 package scrm.lists;
 
 import java.util.Collection;
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.unicase.metamodel.Project;
 
+import scrm.SCRMDiagram;
 import scrm.SCRMModelElement;
 import scrm.SCRMSpace;
 
@@ -13,12 +17,13 @@ import scrm.SCRMSpace;
 public class SCRMDiagramNewElementsList extends BasicInternalEList<SCRMModelElement> {
 
 	private EList<SCRMModelElement> elements;
-	private SCRMSpace containingSpace;
-	private Project project;
+	private SCRMDiagram owningDiagram;
+	private EObject container;
 	
-	public SCRMDiagramNewElementsList(EList<SCRMModelElement> elements, EObject container) {
+	public SCRMDiagramNewElementsList(EList<SCRMModelElement> elements, SCRMDiagram owningDiagram, EObject container) {
 		super(SCRMModelElement.class);
 		this.elements = elements;
+		this.owningDiagram = owningDiagram;
 		setContainer(container);
 	}
 	
@@ -34,41 +39,56 @@ public class SCRMDiagramNewElementsList extends BasicInternalEList<SCRMModelElem
 	
 	@Override
 	public boolean add(SCRMModelElement object) {
-		if(project != null) {
-			return project.getModelElements().add(object);
-		} else if (containingSpace != null) {
-			return containingSpace.getContainedModelElements().add(object);
+		List<EObject> containedObjects = getContainmentList();
+		if(containedObjects != null) {
+			containedObjects.add(object);
+			return true;
 		}
 		return false;
 	}
 	
 	@Override
 	public void add(int index, SCRMModelElement object) {
-		if(project != null) {
-			project.getModelElements().add(index, object);
-		} else if (containingSpace != null) {
-			containingSpace.getContainedModelElements().add(index, object);
+		List<EObject> containedObjects = getContainmentList();
+		if(containedObjects != null) {
+			containedObjects.add(index, object);
 		}
 	}
 	
 	@Override
 	public boolean addAll(Collection<? extends SCRMModelElement> objects) {
-		if(project != null) {
-			return project.getModelElements().addAll(objects);
-		} else if (containingSpace != null) {
-			return containingSpace.getContainedModelElements().addAll(objects);
+		List<EObject> containedObjects = getContainmentList();
+		if(containedObjects != null) {
+			containedObjects.addAll(objects);
+			return true;
 		}
 		return false;
 	}
 	
 	@Override
 	public boolean addAll(int index, Collection<? extends SCRMModelElement> objects) {
-		if(project != null) {
-			return project.getModelElements().addAll(index, objects);
-		} else if (containingSpace != null) {
-			return containingSpace.getContainedModelElements().addAll(index, objects);
+		List<EObject> containedObjects = getContainmentList();
+		if(containedObjects != null) {
+			containedObjects.addAll(index, objects);
+			return true;
 		}
 		return false;
+	}
+	
+	private List getContainmentList() {
+		if(container == null) {
+			return null;
+		}
+		if(container == owningDiagram.eContainer()) {
+			EStructuralFeature containingFeature = owningDiagram.eContainingFeature();
+			Object referencedObject = container.eGet(containingFeature);
+			if(referencedObject != null && referencedObject instanceof List) {
+				return (List) referencedObject;
+			}
+		} else if(container instanceof SCRMSpace) {
+			return ((SCRMSpace) container).getContainedModelElements();
+		}
+		return null;
 	}
 	
 //	@Override
@@ -124,13 +144,7 @@ public class SCRMDiagramNewElementsList extends BasicInternalEList<SCRMModelElem
 
 
 	public void setContainer(EObject container) {
-		if(container instanceof Project) {
-			project = (Project) container;
-			containingSpace = null;
-		} else if (container instanceof SCRMSpace) {
-			containingSpace = (SCRMSpace) container;
-			project = null;
-		}
+		this.container = container;
 	}
 	
 }
