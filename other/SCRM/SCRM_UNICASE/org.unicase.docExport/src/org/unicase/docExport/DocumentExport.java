@@ -9,6 +9,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.unicase.docExport.docWriter.DocWriter;
 import org.unicase.docExport.exceptions.DocumentExportException;
@@ -39,7 +40,7 @@ public class DocumentExport implements IRunnableWithProgress {
 	private static HashSet<UnicaseModelElement> linkedModelElements;
 
 	/**
-	 * @param modelElement the ModelElement you want to export
+	 * @param modelElement the EObject to export
 	 * @param docWriter the docWriter used to write the document
 	 * @param documentTemplate the template which defines how the modelElement is rendered
 	 * @param renderer the DocumentRenderer which renders the modelElement using the template
@@ -56,9 +57,9 @@ public class DocumentExport implements IRunnableWithProgress {
 	}
 
 	/**
-	 * exports a the ModelElement to the file.
+	 * exports the EObject to the file.
 	 * 
-	 * @param fileLocation the location where the modelElement shall be exported.
+	 * @param fileLocation the location where the EObject shall be exported.
 	 * @throws DocumentExportException when the export failed for any reason.
 	 */
 	public void export(String fileLocation) throws DocumentExportException {
@@ -94,45 +95,44 @@ public class DocumentExport implements IRunnableWithProgress {
 	}
 
 	/**
-	 * If a ModelElement is linked in the Document, it should be added with this function. This is required for the
-	 * appendix.
+	 * If a EObject is linked in the Document, it should be added with this function. This is required for the appendix.
 	 * 
-	 * @param me The ModelElement to add
+	 * @param me The EObject to add
 	 */
 	public static void addLinkedModelElement(UnicaseModelElement me) {
 		linkedModelElements.add(me);
 	}
 
 	/**
-	 * @return a set of ModelElements which have been linked in the ongoing DocumentExport
+	 * @return a set of EObjects which have been linked in the ongoing DocumentExport
 	 */
 	public static HashSet<UnicaseModelElement> getLinkedModelElements() {
 		return linkedModelElements;
 	}
 
 	/**
-	 * This function is required, to avoid recursive ModelElement rendering.
+	 * This function is required, to avoid recursive EObject rendering.
 	 * 
-	 * @param me the ModelElement which has been rendered to the Document
+	 * @param eObject the EObject which has been rendered to the Document
 	 */
-	public static void addRenderedModelElement(UnicaseModelElement me) {
-		ModelElementId meId = ModelUtil.getProject(me).getModelElementId(me);
+	public static void addRenderedModelElement(EObject eObject) {
+		ModelElementId meId = ModelUtil.getProject(eObject).getModelElementId(eObject);
 		renderedModelElements.add(meId.getId());
 	}
 
 	/**
-	 * @param me the ModelElement which shall be tested, if it has already been rednered to the document
-	 * @return true, if the ModelElement has been rendered yet
+	 * @param eObject the EObject which shall be tested, if it has already been rednered to the document
+	 * @return true, if the EObject has been rendered already
 	 */
-	public static boolean hasAlreadyBeenRendered(UnicaseModelElement me) {
-		ModelElementId meId = ModelUtil.getProject(me).getModelElementId(me);
+	public static boolean hasAlreadyBeenRendered(EObject eObject) {
+		ModelElementId meId = ModelUtil.getProject(eObject).getModelElementId(eObject);
 		return renderedModelElements.contains(meId.getId());
 	}
 
 	/**
-	 * @see #hasAlreadyBeenRendered(ModelElement)
+	 * @see #hasAlreadyBeenRendered(EObject)
 	 * @param modelElementId the ModelElementId of the modelElement which shall be checked for rendering
-	 * @return true, if the ModelElement has been rendered yet
+	 * @return true, if the EObject has been rendered already
 	 */
 	public static boolean hasAlreadyBeenRendered(String modelElementId) {
 		return renderedModelElements.contains(modelElementId);

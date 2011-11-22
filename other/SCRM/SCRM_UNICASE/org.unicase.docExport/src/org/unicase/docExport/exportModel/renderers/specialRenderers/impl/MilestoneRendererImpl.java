@@ -8,6 +8,7 @@ package org.unicase.docExport.exportModel.renderers.specialRenderers.impl;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
 import org.unicase.docExport.exportModel.renderers.elements.UList;
 import org.unicase.docExport.exportModel.renderers.elements.UParagraph;
@@ -50,7 +51,9 @@ public class MilestoneRendererImpl extends ModelElementRendererImpl implements M
 
 	// begin custom code
 	@Override
-	public void doRender(UnicaseModelElement modelElement, UCompositeSection parent) {
+	protected void doRender(EObject eObject, UCompositeSection parent) {
+
+		UnicaseModelElement modelElement = (UnicaseModelElement) eObject;
 		OpeningLinkTaxonomy oLTaxonomy = new OpeningLinkTaxonomy();
 		Set<UnicaseModelElement> test = oLTaxonomy.getLeafOpeners(modelElement);
 

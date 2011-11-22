@@ -54,6 +54,7 @@ import org.unicase.docExport.exportModel.renderers.options.SectionNumberingStyle
 import org.unicase.docExport.exportModel.renderers.options.TextAlign;
 import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.MEDiagram;
@@ -304,7 +305,7 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	}
 
 	// begin custom code
-	public final void render(UnicaseModelElement modelElement, UCompositeSection parent) {
+	public final void render(EObject eObject, UCompositeSection parent) {
 		TemplateRegistry.setMeCount(TemplateRegistry.getMeCount() + 1);
 
 		/*
@@ -312,16 +313,16 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 		 * which will result in a non-terminating algorithm. If this is the first time, the ModelElement is rendred, add
 		 * a reference, so that the ModelElement can be linked.
 		 */
-		if (!DocumentExport.hasAlreadyBeenRendered(modelElement)) {
-			DocumentExport.addRenderedModelElement(modelElement);
-			ModelElementId modelElementId = ModelUtil.getProject(modelElement).getModelElementId(modelElement);
+		if (!DocumentExport.hasAlreadyBeenRendered(eObject)) {
+			DocumentExport.addRenderedModelElement(eObject);
+			ModelElementId modelElementId = ModelUtil.getProject(eObject).getModelElementId(eObject);
 			parent.add(new URef(modelElementId.getId()));
 		} else {
 			return;
 		}
 
-		if (getModelElementDepth(modelElement, 1) <= DocumentExport.getRecursionDepth()) {
-			doRender(modelElement, parent);
+		if (getModelElementDepth(eObject, 1) <= DocumentExport.getRecursionDepth()) {
+			doRender(eObject, parent);
 		}
 	}
 
@@ -424,8 +425,8 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 					}
 					// Multi references (EList)
 					else if (feature.isMany()) {
-						if (((MultiReferenceAttributeOption) option).getListOption().getListStyle().equals(
-							ListStyle.TABLE)) {
+						if (((MultiReferenceAttributeOption) option).getListOption().getListStyle()
+							.equals(ListStyle.TABLE)) {
 							multiProperties.add(propertyDescriptor);
 						} else {
 							multiPropertiesOutsideOfTable.add(propertyDescriptor);
@@ -618,8 +619,9 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 
 				rowCount++;
 
-				UParagraph leftParagraph = new UParagraph(getAttributeName(feature, propertyDescriptor
-					.getDisplayName(modelElement)), template.getLayoutOptions().getDefaultTextOption());
+				UParagraph leftParagraph = new UParagraph(getAttributeName(feature,
+					propertyDescriptor.getDisplayName(modelElement)), template.getLayoutOptions()
+					.getDefaultTextOption());
 				UTableCell tableCellLeft = new UTableCell(leftParagraph);
 				tableCellLeft.getBoxModel().setBorderBottom(PROPERTIES_TABLE_BORDER_SIZE);
 				tableCellLeft.getBoxModel().setBorderStyle(UBorderStyle.DASHED);
@@ -678,8 +680,9 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 					// The last row has no border bottom.
 					par.getChildren().get(par.getChildren().size() - 1).getBoxModel().setBorderBottom(0);
 
-					UTableCell leftTableCell = new UTableCell(getAttributeName(feature, propertyDescriptor
-						.getDisplayName(modelElement)), template.getLayoutOptions().getDefaultTextOption());
+					UTableCell leftTableCell = new UTableCell(getAttributeName(feature,
+						propertyDescriptor.getDisplayName(modelElement)), template.getLayoutOptions()
+						.getDefaultTextOption());
 					leftTableCell.getBoxModel().setBorderBottom(PROPERTIES_TABLE_BORDER_SIZE);
 					leftTableCell.getBoxModel().setBorderStyle(UBorderStyle.DASHED);
 					table.add(leftTableCell);
@@ -727,24 +730,23 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	 * @param depth the depth to start with
 	 * @return the depth of the modelElement.
 	 */
-	public static int getModelElementDepth(UnicaseModelElement modelElement, int depth) {
-		EObject parent = modelElement.eContainer();
-		if (parent == null || parent instanceof LeafSection || parent instanceof CompositeSection) {
+	public static int getModelElementDepth(EObject eObject, int depth) {
+		EObject parent = eObject.eContainer();
+		if (parent == null || parent instanceof LeafSection || parent instanceof CompositeSection
+			|| parent instanceof Project) {
 			return depth;
-		} else if (parent instanceof UnicaseModelElement) {
-			return getModelElementDepth((UnicaseModelElement) parent, depth + 1);
 		} else {
-			return depth;
+			return getModelElementDepth(parent, depth + 1);
 		}
 	}
 
 	/**
 	 * Renders a modelElement into another element.
 	 * 
-	 * @param modelElement the modelElement to render
+	 * @param eObject the modelElement to render
 	 * @param parent the parent element where the modelElement shall be rendered into.
 	 */
-	protected abstract void doRender(UnicaseModelElement modelElement, UCompositeSection parent);
+	protected abstract void doRender(EObject eObject, UCompositeSection parent);
 
 	/**
 	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRenderer#getAttributeRenderer(org.eclipse.emf.ecore.EStructuralFeature)
