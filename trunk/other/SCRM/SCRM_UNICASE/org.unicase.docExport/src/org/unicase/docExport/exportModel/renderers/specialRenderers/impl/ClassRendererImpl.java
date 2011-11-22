@@ -15,6 +15,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.docExport.Activator;
 import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
@@ -60,10 +61,13 @@ public class ClassRendererImpl extends ModelElementRendererImpl implements Class
 
 	@SuppressWarnings("unchecked")
 	@Override
-	protected void doRender(UnicaseModelElement modelElement, UCompositeSection parent) {
+	protected void doRender(EObject eObject, UCompositeSection section) {
+
+		UnicaseModelElement modelElement = (UnicaseModelElement) eObject;
+
 		// Render title and description
 		USection modelElementSection = new USection();
-		parent.add(modelElementSection);
+		section.add(modelElementSection);
 		renderTitleAndDescription(modelElement, modelElementSection, false);
 
 		AttributeRenderer methodsRenderer = getAttributeRendererNotNull(getFeature("methods", modelElement));

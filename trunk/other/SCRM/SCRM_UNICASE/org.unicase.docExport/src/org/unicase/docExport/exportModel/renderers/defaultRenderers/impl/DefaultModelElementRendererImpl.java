@@ -82,7 +82,14 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 	 * Renders a ModelElement into the UCompositeSection parent.
 	 */
 	@Override
-	public void doRender(UnicaseModelElement modelElement, UCompositeSection parent) {
+	public void doRender(EObject eObject, UCompositeSection parent) {
+
+		if (!(eObject instanceof UnicaseModelElement)) {
+			return;
+		}
+
+		UnicaseModelElement modelElement = (UnicaseModelElement) eObject;
+
 		FeatureOrdering ordering = orderFeatures(modelElement);
 
 		// Render title and description

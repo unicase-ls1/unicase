@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
 import org.unicase.docExport.exportModel.renderers.options.RendererOption;
-import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Model Element Renderer</b></em>'. <!--
@@ -93,12 +92,12 @@ public interface ModelElementRenderer extends EObject {
 
 	// begin custom code
 	/**
-	 * Renders a modelElement into another section.
+	 * Renders an EObject into another section.
 	 * 
-	 * @param modelElement the modelElement which shall be rendered.
+	 * @param eObject the EObject which shall be rendered.
 	 * @param parent the parent section of the document tree.
 	 */
-	void render(UnicaseModelElement modelElement, UCompositeSection parent);
+	void render(EObject eObject, UCompositeSection parent);
 
 	/**
 	 * Sets a AttributeRenderer for a feature of a modelElement.
