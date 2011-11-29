@@ -8,9 +8,9 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.visualization.util.VisualizationUtil;
+import org.unicase.ui.visualization.views.VisualizationView;
 
 import ch.randelshofer.tree.TreeNode;
 import ch.randelshofer.tree.sunburst.SunburstNode;
@@ -32,13 +32,13 @@ public class UnicaseSunburstView extends SunburstView implements UnicaseView {
 	
 	private SunburstTree sunburstTree;
 	
-	private ViewPart viewPart;
+	private VisualizationView viewPart;
 	
 	private SunburstNode selectedNode;
 	
 	private boolean isLinked = true;
 	
-	public UnicaseSunburstView(UnicaseTree unicaseTree, SunburstTree sunburstTree, ViewPart view) {		
+	public UnicaseSunburstView(UnicaseTree unicaseTree, SunburstTree sunburstTree, VisualizationView view) {		
 		super(sunburstTree);
 		this.unicaseTree = unicaseTree;	
 		this.sunburstTree = sunburstTree;
@@ -55,7 +55,7 @@ public class UnicaseSunburstView extends SunburstView implements UnicaseView {
 		// if the node is null, it is the root
 		if(node == null) {
 			this.selectedNode = sunburstTree.getRoot();
-			super.setSelectedNode(null);
+			super.setSelectedNode(null);			
 			return;
 		}
 		
@@ -67,6 +67,8 @@ public class UnicaseSunburstView extends SunburstView implements UnicaseView {
 		} else {
 			this.selectedNode = node;
 		}
+		
+		viewPart.setSelectedNode((UnicaseNode) selectedNode.getNode());
 		
 		super.setSelectedNode(this.selectedNode);
 	}
@@ -145,8 +147,8 @@ public class UnicaseSunburstView extends SunburstView implements UnicaseView {
 		}
 	};
 	
-	public void setIsLinked(){
-		isLinked = !isLinked;
+	public boolean  setIsLinked(){
+		return (isLinked = !isLinked);
 	}
 	
 	public boolean isLinked(){

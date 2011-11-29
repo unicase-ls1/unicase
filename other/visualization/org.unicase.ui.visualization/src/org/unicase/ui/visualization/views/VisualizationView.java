@@ -7,6 +7,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
+import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.ISelectionListener;
@@ -27,17 +28,20 @@ import ch.randelshofer.tree.sunburst.SunburstTree;
 
 /**
  * 
- * This view display a visualization of the unicase projects.
+ * This view displays a visualization of the unicase projects.
  * 
  * @author Julian Sommerfeldt
  *
  */
-public class VisualizationView extends ViewPart {
+public class VisualizationView extends ViewPart { 
 
-	private Frame frame;
 	private UnicaseView view;
+	private UnicaseView referenceView;
 	private ProjectSpace currentProjectSpace;
 	private UnicaseTree tree;
+	private Frame mainFrame;
+	private Frame referenceFrame;
+	private SashForm sash;
 	
 	/**
 	 * The different available viewtypes.
@@ -65,7 +69,9 @@ public class VisualizationView extends ViewPart {
 			}
 		});
 		
-		frame = SWT_AWT.new_Frame(new Composite(parent, SWT.EMBEDDED | SWT.NO_BACKGROUND));	
+		sash = new SashForm(parent, SWT.HORIZONTAL);
+		mainFrame = SWT_AWT.new_Frame(new Composite(sash, SWT.EMBEDDED | SWT.NO_BACKGROUND));
+		referenceFrame = SWT_AWT.new_Frame(new Composite(sash, SWT.EMBEDDED | SWT.NO_BACKGROUND));		
 	}
 		
 	/**
@@ -80,7 +86,7 @@ public class VisualizationView extends ViewPart {
 	}
 	
 	/**
-	 * Forces setting a projectspace.
+	 * Forces setting a {@link ProjectSpace}.
 	 * 
 	 * @param projectSpace
 	 */
@@ -115,6 +121,7 @@ public class VisualizationView extends ViewPart {
 	 */
 	public void showSunburstTreeView(){		
 		view = new UnicaseSunburstView(tree, new SunburstTree(tree.getRoot(), tree.getInfo()), this);
+		referenceView = new UnicaseHyperbolicView(tree, new UnicaseNode(""));
 		updateView();
     }
 	
@@ -126,17 +133,30 @@ public class VisualizationView extends ViewPart {
 		updateView();
     }
 	
+	public void setSelectedNode(UnicaseNode node){
+		referenceView = new UnicaseHyperbolicView(tree, node.getReferenceNode());
+		updateView();
+	}
+	
 	/**
 	 * Update the UI.
 	 */
 	public void updateView() {		
-		frame.removeAll();		
-		frame.add(view.getView());
-		frame.validate();
+		mainFrame.removeAll();
+		mainFrame.add(view.getView());
+		referenceFrame.removeAll();
+		referenceFrame.add(referenceView.getView());		
+		mainFrame.validate();
+		referenceFrame.validate();
 	}
-
+	
+	/**
+	 * Set focus to the main composite.
+	 */
 	@Override
-	public void setFocus() {}
+	public void setFocus() {
+		sash.setFocus();
+	}
 
 	/**
 	 * Get the {@link UnicaseView}.

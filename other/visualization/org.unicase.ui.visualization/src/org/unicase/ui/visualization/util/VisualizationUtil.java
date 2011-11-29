@@ -3,7 +3,6 @@ package org.unicase.ui.visualization.util;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -105,16 +104,21 @@ public class VisualizationUtil {
 
 	
 	/**
-	 * Receive the changed elements of a {@link ProjectSpace} in a . Asks the user to set the version.
+	 * Receive the changed elements of a version in a {@link ProjectSpace}. Asks the user to set the version.
 	 * 
 	 * @param projectSpace The {@link ProjectSpace} to search in.
+	 * @param versions The count of versions to ask for. Reasonable values are 1 or 2.
 	 * @return The changed elements.
 	 */
-	public static List<EObject> getChangedElements(ProjectSpace projectSpace){
-		HistoryInfo info = showVersionHistory(projectSpace);
-		if(info == null) return Collections.emptyList();
-		selectedHistoryInfo = null;
-		return getChangedElements(projectSpace, info);	
+	public static List<EObject> getChangedElements(ProjectSpace projectSpace, int versions){
+		List<HistoryInfo> infos = new ArrayList<HistoryInfo>();		
+		for(int i = 0; i < versions; i++){
+			HistoryInfo info = showVersionHistory(projectSpace);
+			if(info == null) return Collections.emptyList();
+			selectedHistoryInfo = null;
+			infos.add(info);
+		}		
+		return getChangedElements(projectSpace, infos);	
 	}
 	
 	/**
@@ -143,7 +147,7 @@ public class VisualizationUtil {
 		    	ScrolledComposite sc = new ScrolledComposite(composite, SWT.H_SCROLL | SWT.V_SCROLL);
 		    	sc.setLayoutData(new GridData(500,400)); 
 		    	
-		    	final TreeViewer viewer = new TreeViewer(sc, SWT.BORDER);
+		    	final TreeViewer viewer = new TreeViewer(sc, SWT.BORDER | SWT.MULTI);
 		        
 		        viewer.getControl().setSize(500, 400);
 		        sc.setContent(viewer.getControl());
@@ -159,8 +163,9 @@ public class VisualizationUtil {
 						if(null != treeNode){
 							Object value = treeNode.getValue();
 							if(value instanceof HistoryInfo) {
-								selectedHistoryInfo = (HistoryInfo) value;}
+								selectedHistoryInfo = (HistoryInfo) value;
 							}
+						}
 					}
 				});
 		        
@@ -189,8 +194,7 @@ public class VisualizationUtil {
         for (HistoryInfo historyInfo : infos) {
         	if(null != historyInfo.getChangePackage()){
         		changePackages.add(historyInfo.getChangePackage());
-        	}
-			
+        	}			
 		}
         
         // set the providers of the the viewer
@@ -262,21 +266,37 @@ public class VisualizationUtil {
 	 * @param info The {@link HistoryInfo} where to get the changes from.
 	 * @return The {@link EObject}s, which are changed in this version.
 	 */
-	private static List<EObject> getChangedElements(ProjectSpace projectSpace, HistoryInfo info){		
-		ChangePackage changePackage = info.getChangePackage();
-		
-		// this condition occurs when the initial commit happens (there are no changes as 
-		// everything is new)
-		if(null == changePackage){
-			return Collections.emptyList();
+	private static List<EObject> getChangedElements(final ProjectSpace projectSpace, final List<HistoryInfo> infos) {
+		// receive the changepackges of the version(s)
+		final List<ChangePackage> changePackages = new ArrayList<ChangePackage>();
+		if(infos.size() == 1) changePackages.add(infos.get(0).getChangePackage());
+		else if (infos.size() == 2){
+			try {
+				new ServerRequestCommandHandler() {
+					
+					@Override
+					protected Object run() throws EmfStoreException {
+						changePackages.addAll(projectSpace.getChanges(infos.get(0).getPrimerySpec(), infos.get(1).getPrimerySpec()));
+						return null;
+					}
+				}.execute(new ExecutionEvent());				
+			} catch (ExecutionException e) {
+				e.printStackTrace();
+			}			
 		}
-		ChangePackageVisualizationHelper cpvh = new ChangePackageVisualizationHelper(Arrays.asList(changePackage), projectSpace.getProject());
 		
-		final ArrayList<EObject> elements = new ArrayList<EObject>();
+		// this condition occurs when the initial commit happens (there are no changes as everything is new)
+		for (ChangePackage cp : changePackages) if(cp == null) return Collections.emptyList();
 		
-		for(AbstractOperation a : changePackage.getOperations()){									
-			elements.add(cpvh.getModelElement(a.getModelElementId()));
-		}	
+		// get the changed elements out of the changepackages
+		ChangePackageVisualizationHelper cpvh = new ChangePackageVisualizationHelper(changePackages, projectSpace.getProject());		
+		ArrayList<EObject> elements = new ArrayList<EObject>();
+		
+		for (ChangePackage changePackage : changePackages) {
+			for(AbstractOperation a : changePackage.getOperations()){									
+				elements.add(cpvh.getModelElement(a.getModelElementId()));
+			}
+		}
 		return elements;
 	}
 	
@@ -292,7 +312,7 @@ public class VisualizationUtil {
 		HistoryQuery query = VersioningFactory.eINSTANCE.createHistoryQuery();
 		
 		int end = projectSpace.resolveVersionSpec(VersionSpec.HEAD_VERSION).getIdentifier();			
-		int start = 0;
+		int start = 2;
 		
 		PrimaryVersionSpec source = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 		source.setIdentifier(start);

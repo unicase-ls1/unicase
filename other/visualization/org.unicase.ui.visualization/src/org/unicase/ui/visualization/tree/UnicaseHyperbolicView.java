@@ -3,7 +3,6 @@ package org.unicase.ui.visualization.tree;
 import javax.swing.JPanel;
 
 import ch.randelshofer.tree.hypertree.HyperTree;
-import ch.randelshofer.tree.hypertree.SwingHTView;
 
 /**
  * Class to represent the hyperbolic view.
@@ -17,12 +16,15 @@ public class UnicaseHyperbolicView implements UnicaseView {
 	
 	private HyperTree hyperTree;
 	
-	private SwingHTView view;
 	
 	public UnicaseHyperbolicView(UnicaseTree unicaseTree) {
 		this.unicaseTree = unicaseTree;
 		hyperTree = new HyperTree(unicaseTree.getRoot(), unicaseTree.getInfo());
-		view = hyperTree.getView();
+	}
+	
+	public UnicaseHyperbolicView(UnicaseTree unicaseTree, UnicaseNode root){
+		this.unicaseTree = unicaseTree;
+		hyperTree = new HyperTree(root, unicaseTree.getInfo());		
 	}
 
 	@Override
@@ -32,7 +34,7 @@ public class UnicaseHyperbolicView implements UnicaseView {
 
 	@Override
 	public void repaintView() {
-		view.repaintView();
+		hyperTree.getView().repaintView();
 	}
 
 	@Override
@@ -42,13 +44,13 @@ public class UnicaseHyperbolicView implements UnicaseView {
 
 	@Override
 	public UnicaseNode getSelectedNode() {
-		// not implemented for the Hyperbolicview (yet);
+		// not implemented for the Hyperbolicview (yet)
 		return null;
 	}
 
 	@Override
 	public void selectNode(UnicaseNode node) {
-		// not implemented for the Hyperbolicview (yet);
+		// not implemented for the Hyperbolicview (yet)
 	}
 
 	@Override
@@ -57,8 +59,9 @@ public class UnicaseHyperbolicView implements UnicaseView {
 	}
 
 	@Override
-	public void setIsLinked() {
-		// not implemented for the Hyperbolicview (yet);
+	public boolean setIsLinked() {
+		// not implemented for the Hyperbolicview (yet)
+		return false;
 	}
 
 }

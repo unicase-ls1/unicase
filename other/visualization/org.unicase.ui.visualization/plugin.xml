@@ -63,11 +63,6 @@
                style="toggle">
          </command>
          <command
-               commandId="referenceToShowViewMenu"
-               label="View"
-               style="pulldown">
-         </command>
-         <command
                commandId="org.unicase.ui.visualization.commands.setTypeColor"
                icon="icons/colors.png"
                label="Set selected Type Color"
@@ -138,6 +133,15 @@
             <parameter
                   name="org.unicase.ui.visualization.commands.switchColoring.coloringType"
                   value="VERSION">
+            </parameter>
+         </command>
+         <command
+               commandId="org.unicase.ui.visualization.commands.switchColoring"
+               label="2 Versions"
+               style="push">
+            <parameter
+                  name="org.unicase.ui.visualization.commands.switchColoring.coloringType"
+                  value="TWO_VERSIONS">
             </parameter>
          </command>
       </menuContribution>
