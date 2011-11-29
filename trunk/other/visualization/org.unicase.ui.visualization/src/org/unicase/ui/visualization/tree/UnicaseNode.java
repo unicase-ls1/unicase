@@ -24,6 +24,8 @@ public class UnicaseNode implements TreeNode, Comparable<UnicaseNode> {
 	
 	private List<UnicaseNode> implicitNodes;
 	
+	private ArrayList<TreeNode> references;
+	
 	private boolean isImplicit;
 	
 	private String name;
@@ -31,7 +33,7 @@ public class UnicaseNode implements TreeNode, Comparable<UnicaseNode> {
 	private List<String> infos;
 	
 	private EObject object;
-				
+					
 	public UnicaseNode(EObject obj){		
 		if(obj instanceof ProjectSpace){
 			ProjectSpace projectSpace = (ProjectSpace)obj;
@@ -51,11 +53,27 @@ public class UnicaseNode implements TreeNode, Comparable<UnicaseNode> {
 	}
 	
 	/**
+	 * Builds a copy of the Node only containing the references.
+	 * 
+	 * @return A copy of the Node.
+	 */
+	public UnicaseNode getReferenceNode(){
+		UnicaseNode node = new UnicaseNode(object);
+		node.children = references;
+		return node;
+	}
+	
+	public void addReference(UnicaseNode node){
+		if(references == null) references = new ArrayList<TreeNode>();
+		references.add(node);
+	}
+		
+	/**
 	 * Receives the children of the node. Containing also the implicit nodes.
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<TreeNode> children() {
+	public List<TreeNode> children() {		
 		if(children == null){
 			return Collections.EMPTY_LIST;
 		} else if(implicitNodes != null) {

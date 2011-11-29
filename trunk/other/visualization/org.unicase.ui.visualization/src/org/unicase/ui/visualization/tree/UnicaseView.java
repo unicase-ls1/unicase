@@ -22,5 +22,5 @@ public interface UnicaseView {
 	
 	public boolean isLinked();
 	
-	public void setIsLinked();
+	public boolean setIsLinked();
 }

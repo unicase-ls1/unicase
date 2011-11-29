@@ -25,14 +25,14 @@ public class UnicaseTree {
 	
 	private HashMap<EObject, UnicaseNode> nodes;
 	
-	public static enum Coloring {CREATION_DATE, RANDOM, MANUALLY, VERSION}
+	public static enum Coloring {CREATION_DATE, RANDOM, MANUALLY, VERSION, TWO_VERSIONS}
 	
 	private Coloring coloring = Coloring.CREATION_DATE;
 	
 	private HashMap<EClass, Color> colors;
 	
 	private List<EObject> changedElements = new ArrayList<EObject>();
-			
+				
 	public UnicaseTree(UnicaseNode root){
 		this.root = root;		
 		buildTree();
@@ -69,8 +69,8 @@ public class UnicaseTree {
 			nodes.put(e, child);
 						
 			// references						
-			for (EObject reference : e.eCrossReferences()) {	
-				child.addChild(new ReferenceUnicaseNode(reference));
+			for (EObject reference : e.eCrossReferences()) {
+				child.addReference(new ReferenceUnicaseNode(reference));
 			}
 			
 			// normal children			
@@ -87,11 +87,13 @@ public class UnicaseTree {
 		if( colors == null ) return null;
 		return colors.get(type);
 	}
-
+	
 	public void setColoring(Coloring coloring) {
 		this.coloring = coloring;
 		if(coloring == Coloring.VERSION){
-			this.changedElements = VisualizationUtil.getChangedElements(VisualizationUtil.getProjectSpace(root.getObject()));
+			this.changedElements = VisualizationUtil.getChangedElements(VisualizationUtil.getProjectSpace(root.getObject()), 1);
+		} else if(coloring == Coloring.TWO_VERSIONS){
+			this.changedElements = VisualizationUtil.getChangedElements(VisualizationUtil.getProjectSpace(root.getObject()), 2);
 		}
 	}
 
