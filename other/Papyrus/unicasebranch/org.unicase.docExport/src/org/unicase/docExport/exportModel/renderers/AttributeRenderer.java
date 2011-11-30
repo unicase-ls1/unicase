@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
 import org.unicase.docExport.exportModel.renderers.options.AttributeOption;
-import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> Superclass of all AttributeRenderers which are able to render any feature of a unicase model.
@@ -60,12 +59,11 @@ public interface AttributeRenderer extends EObject {
 	 * Renders a feature of a modelElement into a section using the layout options of the template.
 	 * 
 	 * @param feature the feature of the unicase attribute.
-	 * @param modelElement the modelElement containing the information of the feature.
+	 * @param eObject the modelElement containing the information of the feature.
 	 * @param section the section where the content is rendered to.
 	 * @param template the template with layout options.
 	 */
-	void render(EStructuralFeature feature, UnicaseModelElement modelElement, UCompositeSection section,
-		Template template);
+	void render(EStructuralFeature feature, EObject eObject, UCompositeSection section, Template template);
 
 	/**
 	 * Hide or show the structural lines.

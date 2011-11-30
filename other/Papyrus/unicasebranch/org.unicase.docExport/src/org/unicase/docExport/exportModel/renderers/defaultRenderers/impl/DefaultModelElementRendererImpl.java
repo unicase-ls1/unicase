@@ -19,11 +19,14 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.image.ImageFileFormat;
 import org.eclipse.gmf.runtime.diagram.ui.render.util.CopyToImageUtil;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
@@ -34,16 +37,15 @@ import org.unicase.docExport.exportModel.renderers.elements.UImage;
 import org.unicase.docExport.exportModel.renderers.elements.UList;
 import org.unicase.docExport.exportModel.renderers.elements.UParagraph;
 import org.unicase.docExport.exportModel.renderers.elements.USection;
+import org.unicase.docExport.exportModel.renderers.elements.UTextPart;
 import org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl;
 import org.unicase.docExport.exportModel.renderers.options.ListOption;
 import org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption;
+import org.unicase.docExport.exportModel.renderers.options.SectionNumberingStyle;
 import org.unicase.docExport.exportModel.renderers.options.TextAlign;
 import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.diagram.impl.DiagramLoadException;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -82,46 +84,114 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 	 * Renders a ModelElement into the UCompositeSection parent.
 	 */
 	@Override
-	public void doRender(UnicaseModelElement modelElement, UCompositeSection parent) {
-		FeatureOrdering ordering = orderFeatures(modelElement);
+	public void doRender(EObject eObject, UCompositeSection parent) {
 
-		// Render title and description
+		FeatureOrdering ordering = orderFeatures(eObject);
+
 		USection modelElementSection = new USection();
 		parent.add(modelElementSection);
-		renderTitleAndDescription(modelElement, modelElementSection, false);
 
-		// Diagrams need to be rendered in a different way.
-		if (modelElement instanceof MEDiagram) {
-			renderDiagram(modelElement, modelElementSection);
+		initSection(modelElementSection, eObject);
+
+		if (eObject instanceof UnicaseModelElement) {
+			renderTitleAndDescription((UnicaseModelElement) eObject, modelElementSection, false);
+		}
+
+		if (eObject instanceof MEDiagram) {
+			renderDiagram(((MEDiagram) eObject).getGmfdiagram(), modelElementSection);
 			return;
 		}
 
+		if (getDiagram(eObject) != null) {
+			Diagram diagram = getDiagram(eObject);
+			renderDiagram(diagram, modelElementSection);
+		}
+
+		renderPropertiesTable(ordering.singleProperties, ordering.multiProperties, eObject, modelElementSection);
+
+		renderMutliProperties(ordering.multiPropertiesOutsideOfTable, eObject, modelElementSection);
+
+		renderContainedProperties(ordering.containedProperties, eObject, modelElementSection);
+		renderContainedProperties(ordering.specialRendererProperties, eObject, modelElementSection);
+
+		EList<EObject> tmp = eObject.eContents();
+		ArrayList<EObject> remainingContainedModelElements = new ArrayList<EObject>(tmp);
+		removeAlreadyRenderedModelElements(remainingContainedModelElements, ordering.containedProperties, eObject);
+
+		removeAlreadyRenderedModelElements(remainingContainedModelElements, ordering.specialRendererProperties, eObject);
+
+		removeAlreadyRenderedModelElements(remainingContainedModelElements, ordering.multiProperties, eObject);
+
+		removeAlreadyRenderedModelElements(remainingContainedModelElements, ordering.multiPropertiesOutsideOfTable,
+			eObject);
+
+	}
+
+	private Diagram getDiagram(EObject eObject) {
+		for (EObject content : eObject.eContents()) {
+			if (content instanceof Diagram) {
+				return (Diagram) content;
+			}
+		}
+		return null;
+	}
+
+	private void initSection(USection modelElementSection, EObject eObject) {
+		modelElementSection.getBoxModel().setMarginTop(SECTION_MARGIN_TOP);
+		modelElementSection.getBoxModel().setMarginBottom(SECTION_MARGIN_BOTTOM);
+
+		int indentionLeft = 0;
+		// Every ModelElement has an indention to the left, if it isn't the first Section
+		// of the document. This happens, if a single ModelElement is rendered to the whole
+		// document.
+		if (modelElementSection.getParent() instanceof USection) {
+			indentionLeft++;
+		}
+		modelElementSection.setIndentionLeft(indentionLeft);
+
+		modelElementSection.getBoxModel().setMarginLeft(INDENTION_WIDTH * modelElementSection.getIndentionLeft());
+		// ModelElements, which have a depth greater than 2 of the document sectioning, a left
+		// border is added, to structure the range of the ModelElement clearly.
+		// The border size of contained ModelElements decrease by the Section depth.
+		if (mayRenderStructuralLine(eObject)) {
+			double borderSize = SECTION_INITIAL_BORDER_SIZE / (modelElementSection.getDepth());
+			modelElementSection.getBoxModel().setBorderLeft(borderSize);
+			modelElementSection.getBoxModel().setBorderStyle(UBorderStyle.GROOVE);
+			modelElementSection.getBoxModel().setPaddingLeft(SECTION_LEFT_BORDER_PADDING);
+		}
+
+		// There is no section numbering for ModelElements
+		modelElementSection.getSectionOption().setLeaveOutPreviousSectionNumbering(true);
+		modelElementSection.getSectionOption().setSectionNumberingStyle(SectionNumberingStyle.NONE);
+
+		UParagraph titleParagraph = new UParagraph(getText(eObject));
+		if (getTemplate().getLayoutOptions().isShowModelElementTypeInSectionTitle()) {
+			UTextPart modelElementType = new UTextPart(" [" + eObject.eClass().getName() + "]", getTemplate()
+				.getLayoutOptions().getDefaultTextOption());
+			modelElementType.getOption().setItalics(true);
+			modelElementType.getOption().setFontSize(modelElementType.getOption().getFontSize() - 2);
+			titleParagraph.add(modelElementType);
+		}
+
+		titleParagraph.setOption(getTemplate().getLayoutOptions().getModelElementTextOption());
+		modelElementSection.setTitle(titleParagraph);
+
+	}
+
+	private void renderUnicaseModelElement(UnicaseModelElement modelElement, UCompositeSection parent) {
+
+		// Render title and description
+
+		// Diagrams need to be rendered in a different way.
+
 		// TODO: fix show image for fileattachments linking to images
-
-		renderPropertiesTable(ordering.singleProperties, ordering.multiProperties, modelElement, modelElementSection);
-
-		renderMutliProperties(ordering.multiPropertiesOutsideOfTable, modelElement, modelElementSection);
-
-		renderContainedProperties(ordering.containedProperties, modelElement, modelElementSection);
-		renderContainedProperties(ordering.specialRendererProperties, modelElement, modelElementSection);
 
 		// Possibly, there are contained ModelElements, which aren't contained in a feature.
 		// In this case, they have to be rendered too.
-		// So I have to get all contained ModelELement (eContents()), and remove the already rendered
+		// So I have to get all contained ModelElements (eContents()), and remove the already rendered
 		// ModelElements from it.
 		// Additionally, i have to convert this stupid EList to an ArrayList because EList remove is buggy
-		EList<EObject> tmp = modelElement.eContents();
-		ArrayList<EObject> remainingContainedModelElements = new ArrayList<EObject>();
-		remainingContainedModelElements.addAll(tmp);
-		removeAlreadyRenderedModelElements(remainingContainedModelElements, ordering.containedProperties, modelElement);
 
-		removeAlreadyRenderedModelElements(remainingContainedModelElements, ordering.specialRendererProperties,
-			modelElement);
-
-		removeAlreadyRenderedModelElements(remainingContainedModelElements, ordering.multiProperties, modelElement);
-
-		removeAlreadyRenderedModelElements(remainingContainedModelElements, ordering.multiPropertiesOutsideOfTable,
-			modelElement);
 	}
 
 	/**
@@ -132,13 +202,10 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 	 * @param modelElement the ModelElement which contains a GMF diagram
 	 * @param parent the parent section where the diagram shall be rendered.
 	 */
-	private void renderDiagram(final UnicaseModelElement modelElement, final USection parent) {
-
-		final MEDiagram diagram = (MEDiagram) modelElement;
+	private void renderDiagram(final Diagram diagram, final USection parent) {
 
 		try {
-			ModelElementId diagramId = ModelUtil.getProject(diagram).getModelElementId(diagram);
-			final File tmpImage = File.createTempFile(diagramId.getId(), ".jpeg");
+			final File tmpImage = File.createTempFile(EcoreUtil.generateUUID(), ".jpeg");
 
 			PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
 				public void run() {
@@ -149,31 +216,17 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 						@Override
 						protected void doRun() {
 							try {
-								diagram.loadDiagramLayout();
-								/*
-								 * View view = diagram.getGmfdiagram(); XMLResource res = (XMLResource)
-								 * view.eResource(); String id = res.getID(view); DiagramEditor openedDiagramEditor =
-								 * DiagramEditorUtil.findOpenedDiagramEditorForID(id);
-								 */
-								Shell shell = new Shell();
-								try {
-
-									DiagramEditPart editPart = util.createDiagramEditPart(diagram.getGmfdiagram(),
-										shell, PreferencesHint.USE_DEFAULTS);
-									Assert.isNotNull(editPart.getDiagramView().getDiagram());
-									Assert.isNotNull(editPart);
-									util.copyToImage(editPart, new Path(tmpImage.toString()), ImageFileFormat.JPEG,
-										new NullProgressMonitor());
-
-								} finally {
-									shell.dispose();
-								}
+								Shell shell = Display.getCurrent().getActiveShell();
+								DiagramEditPart editPart = util.createDiagramEditPart(diagram, shell,
+									PreferencesHint.USE_DEFAULTS);
+								Assert.isNotNull(editPart.getDiagramView().getDiagram());
+								Assert.isNotNull(editPart);
+								util.copyToImage(editPart, new Path(tmpImage.toString()), ImageFileFormat.JPEG,
+									new NullProgressMonitor());
 								/*
 								 * util.copyToImage(diagram.getGmfdiagram(), new Path(tmpImage.toString()),
 								 * ImageFileFormat.SVG, new NullProgressMonitor(), PreferencesHint.USE_DEFAULTS);
 								 */
-							} catch (DiagramLoadException e) {
-								WorkspaceUtil.log("A diagram could not be loaded while exporting.", e, IStatus.WARNING);
 							} catch (CoreException e) {
 								WorkspaceUtil.log("Exception while loading the diagram.", e, IStatus.WARNING);
 							} catch (RuntimeException e) {
@@ -186,22 +239,21 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 				}
 			});
 
-			addDiagramUImage(modelElement, parent, diagram, tmpImage);
+			addDiagramUImage(parent, diagram, tmpImage);
 
 		} catch (IOException e1) {
 			WorkspaceUtil.log("Diagram image rendering error", e1, IStatus.WARNING);
 		}
 	}
 
-	private void addDiagramUImage(UnicaseModelElement modelElement, USection parent, final MEDiagram diagram,
-		final File tmpImage) {
+	private void addDiagramUImage(USection parent, final Diagram diagram, final File tmpImage) {
 		UImage image = new UImage(new Path(tmpImage.toString()));
 		image.getBoxModel().setBorder(0.5);
 		image.getBoxModel().setBorderStyle(UBorderStyle.SOLID);
 		image.setFitToPage(true);
 		parent.add(image);
 
-		UParagraph label = new UParagraph(diagram.getGmfdiagram().getType() + ": " + modelElement.getName(), template
+		UParagraph label = new UParagraph(diagram.getType() + ": " + getText(diagram.eContainer()), template
 			.getLayoutOptions().getDefaultTextOption());
 		label.getOption().setTextAlign(TextAlign.CENTER);
 		label.getBoxModel().setMarginTop(5);
@@ -214,30 +266,30 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 	 * 
 	 * @param multiPropertiesOutsideOfTable properties of the ModelElement, which shall be rendered outside of the
 	 *            properties table
-	 * @param modelElement the modelElement containing the information of the property
+	 * @param eObject the modelElement containing the information of the property
 	 * @param modelElementSection the section of the ModelElement
 	 */
 	@SuppressWarnings("unchecked")
-	private void renderMutliProperties(Vector<IItemPropertyDescriptor> multiPropertiesOutsideOfTable,
-		UnicaseModelElement modelElement, USection modelElementSection) {
+	private void renderMutliProperties(Vector<IItemPropertyDescriptor> multiPropertiesOutsideOfTable, EObject eObject,
+		USection modelElementSection) {
 
 		for (IItemPropertyDescriptor propertyDescriptor : multiPropertiesOutsideOfTable) {
-			UParagraph propertiesHeader = new UParagraph(propertyDescriptor.getDisplayName(modelElement) + ": ",
-				template.getLayoutOptions().getModelElementTextOption());
+			UParagraph propertiesHeader = new UParagraph(propertyDescriptor.getDisplayName(eObject) + ": ", template
+				.getLayoutOptions().getModelElementTextOption());
 			modelElementSection.add(propertiesHeader);
 
-			EStructuralFeature feature = (EStructuralFeature) propertyDescriptor.getFeature(modelElement);
+			EStructuralFeature feature = (EStructuralFeature) propertyDescriptor.getFeature(eObject);
 			String attributeName;
 			// If there is no special name for the attribute of the attribute, use the properties display name
 			if (getAttributeRendererNotNull(feature).getAttributeOption().getAttributeText().equals("")) {
-				attributeName = propertyDescriptor.getDisplayName(modelElement);
+				attributeName = propertyDescriptor.getDisplayName(eObject);
 			} else {
 				attributeName = getAttributeRenderer(feature).getAttributeOption().getAttributeText();
 			}
 
 			modelElementSection.add(new UParagraph(attributeName));
 
-			EList<UnicaseModelElement> objectList = (EList<UnicaseModelElement>) modelElement.eGet(feature);
+			EList<UnicaseModelElement> objectList = (EList<UnicaseModelElement>) eObject.eGet(feature);
 
 			MultiReferenceAttributeOption referenceOption = (MultiReferenceAttributeOption) getAttributeRendererNotNull(
 				feature).getAttributeOption();
@@ -254,18 +306,18 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 
 	@SuppressWarnings("unchecked")
 	private void removeAlreadyRenderedModelElements(ArrayList<EObject> remainingContainedModelElements,
-		Vector<IItemPropertyDescriptor> containedProperties, UnicaseModelElement modelElement) {
+		Vector<IItemPropertyDescriptor> containedProperties, EObject eObject) {
 
 		for (IItemPropertyDescriptor propertyDescriptor : containedProperties) {
-			EStructuralFeature feature = (EStructuralFeature) propertyDescriptor.getFeature(modelElement);
+			EStructuralFeature feature = (EStructuralFeature) propertyDescriptor.getFeature(eObject);
 			if (feature.isMany()) {
-				EList<UnicaseModelElement> objectList = (EList<UnicaseModelElement>) modelElement.eGet(feature);
+				EList<UnicaseModelElement> objectList = (EList<UnicaseModelElement>) eObject.eGet(feature);
 
-				for (EObject eObject : objectList) {
-					remainingContainedModelElements.remove(eObject);
+				for (EObject referencedObject : objectList) {
+					remainingContainedModelElements.remove(referencedObject);
 				}
 			} else {
-				remainingContainedModelElements.remove(modelElement.eGet(feature));
+				remainingContainedModelElements.remove(eObject.eGet(feature));
 			}
 		}
 	}
@@ -273,14 +325,14 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 	/**
 	 * Contained properties (attributes) are just rendered in a their own renderer.
 	 */
-	private void renderContainedProperties(Vector<IItemPropertyDescriptor> properties,
-		UnicaseModelElement modelElement, UCompositeSection parent) {
+	private void renderContainedProperties(Vector<IItemPropertyDescriptor> properties, EObject eObject,
+		UCompositeSection parent) {
 
 		for (IItemPropertyDescriptor propertyDescriptor : properties) {
-			EStructuralFeature feature = (EStructuralFeature) propertyDescriptor.getFeature(modelElement);
+			EStructuralFeature feature = (EStructuralFeature) propertyDescriptor.getFeature(eObject);
 
 			AttributeRenderer renderer = getAttributeRendererNotNull(feature);
-			renderer.render(feature, modelElement, parent, getTemplate());
+			renderer.render(feature, eObject, parent, getTemplate());
 		}
 	}
 
