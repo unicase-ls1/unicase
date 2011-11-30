@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.docExport.Activator;
 import org.unicase.docExport.DocumentExport;
@@ -85,8 +86,7 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 	 * renders an attribute (feature) of a modelElement and adds it to the USection parent of the modelELement. The
 	 * rendering strongly depends on the type of the attribute: EAttribute, single EReference and multi EReference.
 	 */
-	public void render(EStructuralFeature feature, UnicaseModelElement modelElement, UCompositeSection parent,
-		Template template) {
+	public void render(EStructuralFeature feature, EObject eObject, UCompositeSection parent, Template template) {
 		this.layoutOptions = template.getLayoutOptions();
 		this.template = template;
 
@@ -95,16 +95,15 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 		}
 
 		if (feature.isMany()) {
-			renderMultiFeature(feature, modelElement, parent);
+			renderMultiFeature(feature, eObject, parent);
 		} else {
-			renderSingleFeature(feature, modelElement, parent);
+			renderSingleFeature(feature, eObject, parent);
 		}
 
 	}
 
-	private void renderSingleFeature(EStructuralFeature feature, UnicaseModelElement modelElement,
-		UCompositeSection parent) {
-		Object content = modelElement.eGet(feature);
+	private void renderSingleFeature(EStructuralFeature feature, EObject eObject, UCompositeSection parent) {
+		Object content = eObject.eGet(feature);
 		if (feature.eClass().getInstanceClass().equals(EAttribute.class)) {
 			if (content != null) {
 				renderSimpleAttribute(content, parent, feature);
@@ -116,7 +115,7 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 					DocumentExport.addRenderedModelElement((UnicaseModelElement) content);
 				} else {
 					TemplateRegistry.setMeCount(TemplateRegistry.getMeCount());
-					renderLinkedReference((UnicaseModelElement) content, parent, feature);
+					renderLinkedReference((EObject) content, parent, feature);
 				}
 			}
 		}
@@ -225,29 +224,31 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 		}
 	}
 
-	private void renderLinkedReference(UnicaseModelElement content, UCompositeSection parent, EStructuralFeature feature) {
-		String text = "" + feature.getName() + ": " + content.getName();
+	private void renderLinkedReference(EObject content, UCompositeSection parent, EStructuralFeature feature) {
+
+		String name = getText(content);
+		String text = "" + feature.getName() + ": " + name;
 
 		if (getAttributeOption() instanceof MultiReferenceAttributeOption) {
 			MultiReferenceAttributeOption option2 = (MultiReferenceAttributeOption) getAttributeOption();
 			ListOption listOption = option2.getListOption();
 
 			if (listOption.getListStyle() == ListStyle.BULLETED) {
-				text = "- " + content.getName();
+				text = "- " + name;
 			} else if (listOption.getListStyle() == ListStyle.SEPERATED_LIST) {
-				text = content.getName() + ", ";
+				text = name + ", ";
 			} else if (listOption.getListStyle() == ListStyle.JUST_NEW_LINES) {
 				// nothing?!
 			}
 		}
 
-		UParagraph name = new UParagraph(text, layoutOptions.getDefaultTextOption());
-		name.setIndentionLeft(1);
-		parent.add(name);
+		UParagraph nameParagraph = new UParagraph(text, layoutOptions.getDefaultTextOption());
+		nameParagraph.setIndentionLeft(1);
+		parent.add(nameParagraph);
 
 	}
 
-	private void renderContainedReference(UnicaseModelElement content, UCompositeSection attributeSection,
+	private void renderContainedReference(EObject content, UCompositeSection attributeSection,
 		EStructuralFeature feature) {
 		ModelElementRenderer renderer = getModelElementRenderer(content.eClass());
 		try {
@@ -275,22 +276,21 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 	 * renders an attribute with can have more than one reference to a modelElement.
 	 */
 	@SuppressWarnings("unchecked")
-	private void renderMultiFeature(EStructuralFeature feature, UnicaseModelElement modelElement,
-		UCompositeSection parent) {
+	private void renderMultiFeature(EStructuralFeature feature, EObject eObject, UCompositeSection parent) {
 
 		MultiReferenceAttributeOption option = (MultiReferenceAttributeOption) getAttributeOption();
 		ListOption listOption = option.getListOption();
 
 		ReferenceOption refOption = getRefenceOption(getAttributeOption());
 
-		Object attributeValue = modelElement.eGet(feature);
+		Object attributeValue = eObject.eGet(feature);
 
 		if (attributeValue instanceof EList) {
-			EList<UnicaseModelElement> objectList = (EList<UnicaseModelElement>) attributeValue;
+			EList<EObject> objectList = (EList<EObject>) attributeValue;
 
 			if (((ReferenceAttributeOption) getAttributeOption()).isContained()) {
-				for (UnicaseModelElement me : objectList) {
-					renderContainedReference(me, parent, feature);
+				for (EObject referencedObject : objectList) {
+					renderContainedReference(referencedObject, parent, feature);
 				}
 			} else {
 				renderList(parent, objectList, feature, listOption, refOption);
@@ -298,14 +298,14 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 		}
 	}
 
-	private void renderList(UCompositeSection parent, EList<UnicaseModelElement> objectList,
-		EStructuralFeature feature, ListOption listOpion, ReferenceOption refOption) {
+	private void renderList(UCompositeSection parent, EList<EObject> objectList, EStructuralFeature feature,
+		ListOption listOpion, ReferenceOption refOption) {
 
 		UList list = new UList(listOpion, template.getLayoutOptions().getSectionTextOption());
 		list.setIndentionLeft(1);
 
-		for (UnicaseModelElement me : objectList) {
-			list.add(me.getName());
+		for (EObject content : objectList) {
+			list.add(getText(content));
 		}
 
 		UParagraph head = new UParagraph(feature.getName(), template.getLayoutOptions().getSectionTextOption());

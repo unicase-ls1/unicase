@@ -143,7 +143,7 @@ public final class TemplateRegistry {
 				// I couldn't find a function, which generates the correct path string.
 				// so i take this one and manipulate it.
 				// cut the last file separator and the "!"
-				jarFilePath = jarFilePath.substring(0, jarFilePath.length() - 2);
+				jarFilePath = jarFilePath.substring(0, jarFilePath.length() - 1);
 				jarFilePath = jarFilePath.replace("file:", "");
 
 				JarFile jarFile = new JarFile(jarFilePath);
