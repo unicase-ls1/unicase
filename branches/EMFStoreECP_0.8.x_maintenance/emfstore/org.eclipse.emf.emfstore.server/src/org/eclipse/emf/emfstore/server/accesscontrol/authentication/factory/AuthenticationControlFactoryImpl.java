@@ -52,9 +52,13 @@ public class AuthenticationControlFactoryImpl implements AuthenticationControlFa
 					+ "." + ServerConfiguration.AUTHENTICATION_LDAP_BASE);
 				String searchDn = properties.getProperty(ServerConfiguration.AUTHENTICATION_LDAP_PREFIX + "." + count
 					+ "." + ServerConfiguration.AUTHENTICATION_LDAP_SEARCHDN);
+				String authUser = properties.getProperty(ServerConfiguration.AUTHENTICATION_LDAP_PREFIX + "." + count
+					+ "." + ServerConfiguration.AUTHENTICATION_LDAP_AUTHUSER);
+				String authPassword = properties.getProperty(ServerConfiguration.AUTHENTICATION_LDAP_PREFIX + "."
+					+ count + "." + ServerConfiguration.AUTHENTICATION_LDAP_AUTHPASS);
 
 				if (ldapUrl != null && ldapBase != null && searchDn != null) {
-					LDAPVerifier ldapVerifier = new LDAPVerifier(ldapUrl, ldapBase, searchDn);
+					LDAPVerifier ldapVerifier = new LDAPVerifier(ldapUrl, ldapBase, searchDn, authUser, authPassword);
 					chain.getVerifier().add(ldapVerifier);
 					count++;
 				} else {
