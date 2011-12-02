@@ -25,7 +25,7 @@ Sub-projects:
 </wiki:comment>
 
 Step-by-step:
- * [Getting_started_as_developer Getting started as UNICASE Developer]
+ * [http://code.google.com/p/unicase/wiki/Getting_started_as_developer Getting started as UNICASE Developer]
  * [EMFStoreGettingStarted Getting started as EMFStore Framework User]
 <wiki:comment>
  * [EMFGettingStarted Getting started with EMF, ECP and EMFStore]
@@ -38,9 +38,9 @@ General Content:
  * [BuildReleaseDeploy Build, Release and Deploy]
  * [Process]
  * [Mailinglist Mailinglist and Calendar]
- * [Tutorials_and_Documentation Tutorials and Documentation]
- * [Video_Tutorials Video Tutorials]
- * [Links_and_References Links and References]
+ * [http://code.google.com/p/unicase/wiki/Tutorials_and_Documentation Tutorials and Documentation]
+ * [http://code.google.com/p/unicase/wiki/Video_Tutorials Video Tutorials]
+ * [http://code.google.com/p/unicase/wiki/Links_and_References Links and References]
  * [FAQ FAQ]
 
 >> [http://code.google.com/p/unicase/wiki/DeveloperWiki?tm=6 Home]
