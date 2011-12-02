@@ -37,6 +37,8 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 	private boolean useSSL;
 
 	private static final String DEFAULT_CTX = "com.sun.jndi.ldap.LdapCtxFactory";
+	private final String authUser;
+	private final String authPassword;
 
 	/**
 	 * Default constructor.
@@ -44,11 +46,15 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 	 * @param ldapUrl url, if url starts with ldaps:// SSL is used.
 	 * @param ldapBase base
 	 * @param searchDn dn
+	 * @param authUser user to allow access to server
+	 * @param authPassword password of user to allow access to server
 	 */
-	public LDAPVerifier(String ldapUrl, String ldapBase, String searchDn) {
+	public LDAPVerifier(String ldapUrl, String ldapBase, String searchDn, String authUser, String authPassword) {
 		this.ldapUrl = ldapUrl;
 		this.ldapBase = ldapBase;
 		this.searchDn = searchDn;
+		this.authUser = authUser;
+		this.authPassword = authPassword;
 
 		if (ldapUrl.startsWith("ldaps://")) {
 			useSSL = true;
@@ -62,10 +68,16 @@ public class LDAPVerifier extends AbstractAuthenticationControl {
 	@Override
 	public boolean verifyPassword(String username, String password) throws AccessControlException {
 		DirContext dirContext = null;
-
-		// anonymous bind and resolve user
 		try {
-			dirContext = new InitialDirContext(anonymousBind());
+			if (authUser != null && authPassword != null) {
+				// authenticated bind and resolve user
+				Properties authenticatedBind = authenticatedBind(authUser, authPassword);
+				authenticatedBind.put(Context.SECURITY_PRINCIPAL, authUser);
+				dirContext = new InitialDirContext(authenticatedBind);
+			} else {
+				// anonymous bind and resolve user
+				dirContext = new InitialDirContext(anonymousBind());
+			}
 		} catch (NamingException e) {
 			ModelUtil.logWarning("LDAP Directory " + ldapUrl + " not found.", e);
 			return false;
