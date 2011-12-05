@@ -19,7 +19,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.util.NoCurrentUserException;
+import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
 import org.eclipse.emf.emfstore.client.ui.dialogs.CommitDialog;
 import org.eclipse.emf.emfstore.client.ui.dialogs.CommitDialogTray;
 import org.eclipse.emf.emfstore.client.ui.util.URLHelper;

@@ -157,7 +157,6 @@ public class UnicaseTableView extends ViewPart implements
 
 		Listener listener = new Listener() {
 
-			@Override
 			public void handleEvent(Event event) {
 				viewer.refresh();
 			}
@@ -167,14 +166,12 @@ public class UnicaseTableView extends ViewPart implements
 
 		txtFilter.addKeyListener(new KeyListener() {
 
-			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.keyCode == SWT.ARROW_DOWN) {
 					viewer.getTableViewer().getTable().setFocus();
 				}
 			}
 
-			@Override
 			public void keyReleased(KeyEvent e) {
 			}
 
@@ -259,7 +256,6 @@ public class UnicaseTableView extends ViewPart implements
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.eclipse.emf.
 	 */
-	@Override
 	public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
 		viewer.refresh();
 	}
@@ -269,7 +265,6 @@ public class UnicaseTableView extends ViewPart implements
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
-	@Override
 	public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
 		viewer.refresh();
 	}
@@ -280,7 +275,6 @@ public class UnicaseTableView extends ViewPart implements
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
 	 */
-	@Override
 	public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
 		viewer.getTableViewer().update(modelElement, null);
 	}
@@ -290,7 +284,6 @@ public class UnicaseTableView extends ViewPart implements
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
 	 */
-	@Override
 	public void projectDeleted(IdEObjectCollection project) {
 		// TODO Auto-generated method stub
 

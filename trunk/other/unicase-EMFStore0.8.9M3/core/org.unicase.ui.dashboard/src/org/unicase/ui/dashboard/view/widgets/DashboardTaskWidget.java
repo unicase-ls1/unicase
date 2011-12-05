@@ -15,7 +15,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.util.NoCurrentUserException;
+import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
 import org.eclipse.emf.emfstore.client.ui.util.URLHelper;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.layout.GridLayoutFactory;

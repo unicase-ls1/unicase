@@ -12,7 +12,7 @@ import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.observers.PostCreationListener;
-import org.eclipse.emf.emfstore.client.model.util.NoCurrentUserException;
+import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.User;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;

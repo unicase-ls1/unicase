@@ -18,7 +18,7 @@ import org.eclipse.emf.emfstore.client.model.CompositeOperationHandle;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.exceptions.InvalidHandleException;
-import org.eclipse.emf.emfstore.client.model.util.NoCurrentUserException;
+import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.Conflict;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.ConflictOption;
 import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.CustomConflictOption;
