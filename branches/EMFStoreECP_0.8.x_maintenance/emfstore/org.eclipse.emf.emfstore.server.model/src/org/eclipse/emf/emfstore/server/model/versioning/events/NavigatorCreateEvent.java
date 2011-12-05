@@ -15,16 +15,18 @@ import org.eclipse.emf.emfstore.common.model.ModelElementId;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Navigator Create Event</b></em>'. <!--
  * end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.NavigatorCreateEvent#getCreatedElement <em>Created Element</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.NavigatorCreateEvent#getSourceSection <em>Source Section</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.NavigatorCreateEvent#isDynamic <em>Dynamic</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.NavigatorCreateEvent#getCreatedElement <em>Created
+ * Element</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.NavigatorCreateEvent#getSourceSection <em>Source
+ * Section</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.events.NavigatorCreateEvent#isDynamic <em>Dynamic</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getNavigatorCreateEvent()
  * @model
  * @generated
@@ -38,6 +40,7 @@ public interface NavigatorCreateEvent extends Event {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Created Element</em>' containment reference.
 	 * @see #setCreatedElement(ModelElementId)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getNavigatorCreateEvent_CreatedElement()
@@ -47,8 +50,11 @@ public interface NavigatorCreateEvent extends Event {
 	ModelElementId getCreatedElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.NavigatorCreateEvent#getCreatedElement <em>Created Element</em>}' containment reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.NavigatorCreateEvent#getCreatedElement
+	 * <em>Created Element</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Created Element</em>' containment reference.
 	 * @see #getCreatedElement()
 	 * @generated
@@ -63,6 +69,7 @@ public interface NavigatorCreateEvent extends Event {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Source Section</em>' containment reference.
 	 * @see #setSourceSection(ModelElementId)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getNavigatorCreateEvent_SourceSection()
@@ -72,8 +79,11 @@ public interface NavigatorCreateEvent extends Event {
 	ModelElementId getSourceSection();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.NavigatorCreateEvent#getSourceSection <em>Source Section</em>}' containment reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.NavigatorCreateEvent#getSourceSection
+	 * <em>Source Section</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Source Section</em>' containment reference.
 	 * @see #getSourceSection()
 	 * @generated
@@ -88,6 +98,7 @@ public interface NavigatorCreateEvent extends Event {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Dynamic</em>' attribute.
 	 * @see #setDynamic(boolean)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getNavigatorCreateEvent_Dynamic()
@@ -97,8 +108,11 @@ public interface NavigatorCreateEvent extends Event {
 	boolean isDynamic();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.NavigatorCreateEvent#isDynamic <em>Dynamic</em>}' attribute.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.NavigatorCreateEvent#isDynamic <em>Dynamic</em>}'
+	 * attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Dynamic</em>' attribute.
 	 * @see #isDynamic()
 	 * @generated

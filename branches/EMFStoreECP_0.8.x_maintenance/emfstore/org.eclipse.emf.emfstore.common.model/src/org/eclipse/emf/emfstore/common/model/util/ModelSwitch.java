@@ -15,6 +15,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.common.model.*;
 import org.eclipse.emf.emfstore.common.model.AssociationClassElement;
 import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.common.model.IdentifiableElement;
@@ -159,14 +160,6 @@ public class ModelSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ModelPackage.PROPERTY_MAP_ENTRY: {
-			@SuppressWarnings("unchecked")
-			Map.Entry<String, EMFStoreProperty> propertyMapEntry = (Map.Entry<String, EMFStoreProperty>) theEObject;
-			T result = casePropertyMapEntry(propertyMapEntry);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case ModelPackage.PROPERTY_STRING_VALUE: {
 			PropertyStringValue propertyStringValue = (PropertyStringValue) theEObject;
 			T result = casePropertyStringValue(propertyStringValue);
@@ -296,22 +289,6 @@ public class ModelSwitch<T> {
 	 * @generated
 	 */
 	public T caseEMFStoreProperty(EMFStoreProperty object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Property Map Entry</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Property Map Entry</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePropertyMapEntry(Map.Entry<String, EMFStoreProperty> object) {
 		return null;
 	}
 

@@ -37,10 +37,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference common.ecore#//EMFStoreProperty/value"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute common.ecore#//EMFStoreProperty/type"/>
     </genClasses>
-    <genClasses ecoreClass="common.ecore#//PropertyMapEntry">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute common.ecore#//PropertyMapEntry/key"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference common.ecore#//PropertyMapEntry/value"/>
-    </genClasses>
     <genClasses ecoreClass="common.ecore#//PropertyStringValue">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute common.ecore#//PropertyStringValue/value"/>
     </genClasses>

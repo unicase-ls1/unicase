@@ -19,7 +19,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPac
  * end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class DiagramLayoutOperationImpl extends AttributeOperationImpl implements DiagramLayoutOperation {
@@ -35,6 +35,7 @@ public class DiagramLayoutOperationImpl extends AttributeOperationImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DiagramLayoutOperationImpl() {
@@ -43,6 +44,7 @@ public class DiagramLayoutOperationImpl extends AttributeOperationImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -464,7 +464,7 @@ public interface ModelPackage extends EPackage {
 	int PROJECT_SPACE__WAITING_UPLOADS = org.eclipse.emf.emfstore.common.model.ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 15;
 
 	/**
-	 * The feature id for the '<em><b>Properties</b></em>' map.
+	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
@@ -474,7 +474,7 @@ public interface ModelPackage extends EPackage {
 	int PROJECT_SPACE__PROPERTIES = org.eclipse.emf.emfstore.common.model.ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 16;
 
 	/**
-	 * The feature id for the '<em><b>Changed Shared Properties</b></em>' map.
+	 * The feature id for the '<em><b>Changed Shared Properties</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
@@ -1120,12 +1120,12 @@ public interface ModelPackage extends EPackage {
 	EReference getProjectSpace_WaitingUploads();
 
 	/**
-	 * Returns the meta object for the map '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProperties
-	 * <em>Properties</em>}'.
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProperties <em>Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the map '<em>Properties</em>'.
+	 * @return the meta object for the containment reference list '<em>Properties</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#getProperties()
 	 * @see #getProjectSpace()
 	 * @generated
@@ -1133,13 +1133,13 @@ public interface ModelPackage extends EPackage {
 	EReference getProjectSpace_Properties();
 
 	/**
-	 * Returns the meta object for the map '
+	 * Returns the meta object for the containment reference list '
 	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getChangedSharedProperties
 	 * <em>Changed Shared Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the map '<em>Changed Shared Properties</em>'.
+	 * @return the meta object for the containment reference list '<em>Changed Shared Properties</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#getChangedSharedProperties()
 	 * @see #getProjectSpace()
 	 * @generated
@@ -1660,7 +1660,7 @@ public interface ModelPackage extends EPackage {
 		EReference PROJECT_SPACE__WAITING_UPLOADS = eINSTANCE.getProjectSpace_WaitingUploads();
 
 		/**
-		 * The meta object literal for the '<em><b>Properties</b></em>' map feature.
+		 * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * 
@@ -1669,7 +1669,8 @@ public interface ModelPackage extends EPackage {
 		EReference PROJECT_SPACE__PROPERTIES = eINSTANCE.getProjectSpace_Properties();
 
 		/**
-		 * The meta object literal for the '<em><b>Changed Shared Properties</b></em>' map feature.
+		 * The meta object literal for the '<em><b>Changed Shared Properties</b></em>' containment reference list
+		 * feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * 

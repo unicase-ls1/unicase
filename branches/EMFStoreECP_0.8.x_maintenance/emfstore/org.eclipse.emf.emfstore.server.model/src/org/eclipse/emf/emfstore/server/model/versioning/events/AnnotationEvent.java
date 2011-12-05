@@ -38,6 +38,7 @@ public interface AnnotationEvent extends Event {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Annotated Element</em>' containment reference.
 	 * @see #setAnnotatedElement(ModelElementId)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getAnnotationEvent_AnnotatedElement()
@@ -47,8 +48,11 @@ public interface AnnotationEvent extends Event {
 	ModelElementId getAnnotatedElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.AnnotationEvent#getAnnotatedElement <em>Annotated Element</em>}' containment reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.AnnotationEvent#getAnnotatedElement
+	 * <em>Annotated Element</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Annotated Element</em>' containment reference.
 	 * @see #getAnnotatedElement()
 	 * @generated
@@ -63,6 +67,7 @@ public interface AnnotationEvent extends Event {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Annotation</em>' containment reference.
 	 * @see #setAnnotation(ModelElementId)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getAnnotationEvent_Annotation()
@@ -72,8 +77,11 @@ public interface AnnotationEvent extends Event {
 	ModelElementId getAnnotation();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.AnnotationEvent#getAnnotation <em>Annotation</em>}' containment reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.AnnotationEvent#getAnnotation <em>Annotation</em>}
+	 * ' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Annotation</em>' containment reference.
 	 * @see #getAnnotation()
 	 * @generated

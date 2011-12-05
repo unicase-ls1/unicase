@@ -114,6 +114,7 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ModelPackage.Literals.PROJECT_HISTORY__PROJECT_ID);
 			childrenFeatures.add(ModelPackage.Literals.PROJECT_HISTORY__VERSIONS);
+			childrenFeatures.add(ModelPackage.Literals.PROJECT_HISTORY__SHARED_PROPERTIES);
 		}
 		return childrenFeatures;
 	}
@@ -173,6 +174,7 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 			return;
 		case ModelPackage.PROJECT_HISTORY__PROJECT_ID:
 		case ModelPackage.PROJECT_HISTORY__VERSIONS:
+		case ModelPackage.PROJECT_HISTORY__SHARED_PROPERTIES:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -195,6 +197,9 @@ public class ProjectHistoryItemProvider extends ItemProviderAdapter implements I
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_HISTORY__VERSIONS,
 			VersioningFactory.eINSTANCE.createVersion()));
+
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT_HISTORY__SHARED_PROPERTIES,
+			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createEMFStoreProperty()));
 	}
 
 	/**

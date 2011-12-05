@@ -109,14 +109,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
-	private EClass propertyMapEntryEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	private EClass propertyStringValueEClass = null;
 
 	/**
@@ -356,36 +348,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
-	public EClass getPropertyMapEntry() {
-		return propertyMapEntryEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EAttribute getPropertyMapEntry_Key() {
-		return (EAttribute) propertyMapEntryEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getPropertyMapEntry_Value() {
-		return (EReference) propertyMapEntryEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public EClass getPropertyStringValue() {
 		return propertyStringValueEClass;
 	}
@@ -465,10 +427,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEAttribute(emfStorePropertyEClass, EMF_STORE_PROPERTY__KEY);
 		createEReference(emfStorePropertyEClass, EMF_STORE_PROPERTY__VALUE);
 		createEAttribute(emfStorePropertyEClass, EMF_STORE_PROPERTY__TYPE);
-
-		propertyMapEntryEClass = createEClass(PROPERTY_MAP_ENTRY);
-		createEAttribute(propertyMapEntryEClass, PROPERTY_MAP_ENTRY__KEY);
-		createEReference(propertyMapEntryEClass, PROPERTY_MAP_ENTRY__VALUE);
 
 		propertyStringValueEClass = createEClass(PROPERTY_STRING_VALUE);
 		createEAttribute(propertyStringValueEClass, PROPERTY_STRING_VALUE__VALUE);
@@ -557,14 +515,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEAttribute(getEMFStoreProperty_Type(), this.getEMFStorePropertyType(), "type", null, 0, 1,
 			EMFStoreProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-
-		initEClass(propertyMapEntryEClass, Map.Entry.class, "PropertyMapEntry", !IS_ABSTRACT, !IS_INTERFACE,
-			!IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPropertyMapEntry_Key(), ecorePackage.getEString(), "key", null, 0, 1, Map.Entry.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPropertyMapEntry_Value(), this.getEMFStoreProperty(), null, "value", null, 0, 1,
-			Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(propertyStringValueEClass, PropertyStringValue.class, "PropertyStringValue", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

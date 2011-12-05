@@ -1,12 +1,20 @@
 package org.eclipse.emf.emfstore.client.test.server;
 
+import static org.junit.Assert.assertNotNull;
+
+import java.io.IOException;
+
+import org.eclipse.emf.emfstore.client.model.ModelPackage;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.Usersession;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.properties.PropertyManager;
 import org.eclipse.emf.emfstore.client.test.SetupHelper;
+import org.eclipse.emf.emfstore.client.test.testmodel.TestmodelFactory;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.exceptions.AccessControlException;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.junit.Assert;
@@ -29,25 +37,6 @@ public class PropertiesTest extends ServerTests {
 		severInfo = SetupHelper.getServerInfo();
 
 		setUpUsersession();
-	}
-
-	private void setUpUsersession() {
-
-		usersession1 = org.eclipse.emf.emfstore.client.model.ModelFactory.eINSTANCE.createUsersession();
-		usersession1.setServerInfo(severInfo);
-		usersession1.setUsername("writer1");
-		usersession1.setPassword("foo");
-
-		usersession2 = org.eclipse.emf.emfstore.client.model.ModelFactory.eINSTANCE.createUsersession();
-		usersession2.setServerInfo(severInfo);
-		usersession2.setUsername("writer2");
-		usersession2.setPassword("foo");
-
-	}
-
-	@Test
-	public void sharedPropertiesTest() throws EmfStoreException {
-
 		new EMFStoreCommand() {
 
 			@Override
@@ -72,6 +61,35 @@ public class PropertiesTest extends ServerTests {
 
 		propertyManager1 = projectSpace1.getPropertyManager();
 		propertyManager2 = projectSpace2.getPropertyManager();
+	}
+
+	private void setUpUsersession() {
+
+		usersession1 = org.eclipse.emf.emfstore.client.model.ModelFactory.eINSTANCE.createUsersession();
+		usersession1.setServerInfo(severInfo);
+		usersession1.setUsername("writer1");
+		usersession1.setPassword("foo");
+
+		usersession2 = org.eclipse.emf.emfstore.client.model.ModelFactory.eINSTANCE.createUsersession();
+		usersession2.setServerInfo(severInfo);
+		usersession2.setUsername("writer2");
+		usersession2.setPassword("foo");
+
+	}
+
+	@Test
+	public void testLocalProperties() throws IOException {
+		projectSpace1.getPropertyManager().setLocalProperty("foo", TestmodelFactory.eINSTANCE.createTestElement());
+
+		((ProjectSpaceImpl) projectSpace1).saveProjectSpaceOnly();
+		ProjectSpace loadedProjectSpace = ModelUtil.loadEObjectFromResource(ModelPackage.eINSTANCE.getProjectSpace(),
+			projectSpace1.eResource().getURI(), false);
+
+		assertNotNull(loadedProjectSpace.getPropertyManager().getLocalProperty("foo"));
+	}
+
+	@Test
+	public void sharedPropertiesTest() throws EmfStoreException {
 
 		new EMFStoreCommand() {
 			@Override
@@ -80,7 +98,7 @@ public class PropertiesTest extends ServerTests {
 				propertyManager2.setSharedStringProperty("SecondTest", "test2");
 
 				try {
-					projectSpace1.commit();
+					// projectSpace1.commit();
 					propertyManager1.transmit();
 					propertyManager2.transmit();
 					propertyManager1.transmit();

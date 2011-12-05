@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.Enumerator;
 /**
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '
  * <em><b>Merge Global Choice Selection</b></em>', and utility methods for working with them. <!-- end-user-doc -->
+ * 
  * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getMergeGlobalChoiceSelection()
  * @model
  * @generated
@@ -27,6 +28,7 @@ public enum MergeGlobalChoiceSelection implements Enumerator {
 	/**
 	 * The '<em><b>All Mine</b></em>' literal object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #ALL_MINE_VALUE
 	 * @generated
 	 * @ordered
@@ -36,6 +38,7 @@ public enum MergeGlobalChoiceSelection implements Enumerator {
 	/**
 	 * The '<em><b>All Their</b></em>' literal object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #ALL_THEIR_VALUE
 	 * @generated
 	 * @ordered
@@ -45,6 +48,7 @@ public enum MergeGlobalChoiceSelection implements Enumerator {
 	/**
 	 * The '<em><b>Cancel</b></em>' literal object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #CANCEL_VALUE
 	 * @generated
 	 * @ordered
@@ -54,6 +58,7 @@ public enum MergeGlobalChoiceSelection implements Enumerator {
 	/**
 	 * The '<em><b>OK Not Finished</b></em>' literal object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #OK_NOT_FINISHED_VALUE
 	 * @generated
 	 * @ordered
@@ -63,6 +68,7 @@ public enum MergeGlobalChoiceSelection implements Enumerator {
 	/**
 	 * The '<em><b>OK Finished</b></em>' literal object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #OK_FINISHED_VALUE
 	 * @generated
 	 * @ordered
@@ -77,6 +83,7 @@ public enum MergeGlobalChoiceSelection implements Enumerator {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #ALL_MINE
 	 * @model name="AllMine"
 	 * @generated
@@ -92,6 +99,7 @@ public enum MergeGlobalChoiceSelection implements Enumerator {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #ALL_THEIR
 	 * @model name="AllTheir"
 	 * @generated
@@ -107,6 +115,7 @@ public enum MergeGlobalChoiceSelection implements Enumerator {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #CANCEL
 	 * @model name="Cancel"
 	 * @generated
@@ -122,6 +131,7 @@ public enum MergeGlobalChoiceSelection implements Enumerator {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #OK_NOT_FINISHED
 	 * @model name="OKNotFinished"
 	 * @generated
@@ -137,6 +147,7 @@ public enum MergeGlobalChoiceSelection implements Enumerator {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #OK_FINISHED
 	 * @model name="OKFinished"
 	 * @generated
@@ -148,15 +159,11 @@ public enum MergeGlobalChoiceSelection implements Enumerator {
 	 * An array of all the '<em><b>Merge Global Choice Selection</b></em>' enumerators.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	private static final MergeGlobalChoiceSelection[] VALUES_ARRAY = new MergeGlobalChoiceSelection[] {
-			ALL_MINE,
-			ALL_THEIR,
-			CANCEL,
-			OK_NOT_FINISHED,
-			OK_FINISHED,
-		};
+	private static final MergeGlobalChoiceSelection[] VALUES_ARRAY = new MergeGlobalChoiceSelection[] { ALL_MINE,
+		ALL_THEIR, CANCEL, OK_NOT_FINISHED, OK_FINISHED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Merge Global Choice Selection</b></em>' enumerators. <!--
@@ -164,7 +171,8 @@ public enum MergeGlobalChoiceSelection implements Enumerator {
 	 * 
 	 * @generated
 	 */
-	public static final List<MergeGlobalChoiceSelection> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<MergeGlobalChoiceSelection> VALUES = Collections.unmodifiableList(Arrays
+		.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Merge Global Choice Selection</b></em>' literal with the specified literal value. <!--
@@ -186,6 +194,7 @@ public enum MergeGlobalChoiceSelection implements Enumerator {
 	 * Returns the '<em><b>Merge Global Choice Selection</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static MergeGlobalChoiceSelection getByName(String name) {
@@ -206,29 +215,37 @@ public enum MergeGlobalChoiceSelection implements Enumerator {
 	 */
 	public static MergeGlobalChoiceSelection get(int value) {
 		switch (value) {
-			case ALL_MINE_VALUE: return ALL_MINE;
-			case ALL_THEIR_VALUE: return ALL_THEIR;
-			case CANCEL_VALUE: return CANCEL;
-			case OK_NOT_FINISHED_VALUE: return OK_NOT_FINISHED;
-			case OK_FINISHED_VALUE: return OK_FINISHED;
+		case ALL_MINE_VALUE:
+			return ALL_MINE;
+		case ALL_THEIR_VALUE:
+			return ALL_THEIR;
+		case CANCEL_VALUE:
+			return CANCEL;
+		case OK_NOT_FINISHED_VALUE:
+			return OK_NOT_FINISHED;
+		case OK_FINISHED_VALUE:
+			return OK_FINISHED;
 		}
 		return null;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
@@ -236,6 +253,7 @@ public enum MergeGlobalChoiceSelection implements Enumerator {
 	/**
 	 * Only this class can construct instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private MergeGlobalChoiceSelection(int value, String name, String literal) {
@@ -246,32 +264,36 @@ public enum MergeGlobalChoiceSelection implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
 	 * Returns the literal value of the enumerator, which is its string representation.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

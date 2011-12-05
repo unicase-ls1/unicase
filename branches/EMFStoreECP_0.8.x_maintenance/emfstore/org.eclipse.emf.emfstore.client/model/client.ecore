@@ -74,10 +74,10 @@
         eType="ecore:EClass ../../org.eclipse.emf.emfstore.server.model/model/server.ecore#//FileIdentifier"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
-        eType="ecore:EClass ../../org.eclipse.emf.emfstore.common.model/model/common.ecore#//PropertyMapEntry"
+        eType="ecore:EClass ../../org.eclipse.emf.emfstore.common.model/model/common.ecore#//EMFStoreProperty"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="changedSharedProperties"
-        upperBound="-1" eType="ecore:EClass ../../org.eclipse.emf.emfstore.common.model/model/common.ecore#//PropertyMapEntry"
+        upperBound="-1" eType="ecore:EClass ../../org.eclipse.emf.emfstore.common.model/model/common.ecore#//EMFStoreProperty"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperationComposite">

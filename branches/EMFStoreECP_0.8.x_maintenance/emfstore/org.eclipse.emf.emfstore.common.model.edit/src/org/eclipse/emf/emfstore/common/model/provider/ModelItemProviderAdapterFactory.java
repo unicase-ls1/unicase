@@ -162,6 +162,58 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.common.model.EMFStoreProperty}
+	 * instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected EMFStorePropertyItemProvider emfStorePropertyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.common.model.EMFStoreProperty}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createEMFStorePropertyAdapter() {
+		if (emfStorePropertyItemProvider == null) {
+			emfStorePropertyItemProvider = new EMFStorePropertyItemProvider(this);
+		}
+
+		return emfStorePropertyItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all
+	 * {@link org.eclipse.emf.emfstore.common.model.PropertyStringValue} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected PropertyStringValueItemProvider propertyStringValueItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.emfstore.common.model.PropertyStringValue}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createPropertyStringValueAdapter() {
+		if (propertyStringValueItemProvider == null) {
+			propertyStringValueItemProvider = new PropertyStringValueItemProvider(this);
+		}
+
+		return propertyStringValueItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -275,6 +327,10 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 			modelElementIdItemProvider.dispose();
 		if (modelVersionItemProvider != null)
 			modelVersionItemProvider.dispose();
+		if (emfStorePropertyItemProvider != null)
+			emfStorePropertyItemProvider.dispose();
+		if (propertyStringValueItemProvider != null)
+			propertyStringValueItemProvider.dispose();
 	}
 
 }
