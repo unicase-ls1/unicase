@@ -26,6 +26,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.Sema
  * {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each class of the model,
  * starting with the actual class of the object and proceeding up the inheritance hierarchy until a non-null result is
  * returned, which is the result of the switch. <!-- end-user-doc -->
+ * 
  * @see org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.SemanticPackage
  * @generated
  */
@@ -33,6 +34,7 @@ public class SemanticSwitch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected static SemanticPackage modelPackage;
@@ -40,6 +42,7 @@ public class SemanticSwitch<T> {
 	/**
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SemanticSwitch() {
@@ -49,8 +52,10 @@ public class SemanticSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
+	 * result.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
@@ -59,42 +64,47 @@ public class SemanticSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
+	 * result.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
+		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
+	 * result.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case SemanticPackage.SEMANTIC_COMPOSITE_OPERATION: {
-				SemanticCompositeOperation semanticCompositeOperation = (SemanticCompositeOperation)theEObject;
-				T result = caseSemanticCompositeOperation(semanticCompositeOperation);
-				if (result == null) result = caseCompositeOperation(semanticCompositeOperation);
-				if (result == null) result = caseAbstractOperation(semanticCompositeOperation);
-				if (result == null) result = caseIdentifiableElement(semanticCompositeOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case SemanticPackage.SEMANTIC_COMPOSITE_OPERATION: {
+			SemanticCompositeOperation semanticCompositeOperation = (SemanticCompositeOperation) theEObject;
+			T result = caseSemanticCompositeOperation(semanticCompositeOperation);
+			if (result == null)
+				result = caseCompositeOperation(semanticCompositeOperation);
+			if (result == null)
+				result = caseAbstractOperation(semanticCompositeOperation);
+			if (result == null)
+				result = caseIdentifiableElement(semanticCompositeOperation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 
@@ -159,6 +169,7 @@ public class SemanticSwitch<T> {
 	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate the switch, but this is the last case
 	 * anyway. <!-- end-user-doc -->
+	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)

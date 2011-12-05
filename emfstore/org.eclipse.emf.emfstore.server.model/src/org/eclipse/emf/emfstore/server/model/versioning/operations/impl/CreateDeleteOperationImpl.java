@@ -47,13 +47,20 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.UnkownFeature
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CreateDeleteOperationImpl#isDelete <em>Delete</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CreateDeleteOperationImpl#getModelElement <em>Model Element</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CreateDeleteOperationImpl#getSubOperations <em>Sub Operations</em>}</li>
- *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CreateDeleteOperationImpl#getEObjectToIdMap <em>EObject To Id Map</em>}</li>
+ * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CreateDeleteOperationImpl#isDelete <em>
+ * Delete</em>}</li>
+ * <li>
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CreateDeleteOperationImpl#getModelElement
+ * <em>Model Element</em>}</li>
+ * <li>
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CreateDeleteOperationImpl#getSubOperations
+ * <em>Sub Operations</em>}</li>
+ * <li>
+ * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.impl.CreateDeleteOperationImpl#getEObjectToIdMap
+ * <em>EObject To Id Map</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class CreateDeleteOperationImpl extends AbstractOperationImpl implements CreateDeleteOperation {
@@ -160,6 +167,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	/**
 	 * The default value of the '{@link #isDelete() <em>Delete</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isDelete()
 	 * @generated
 	 * @ordered
@@ -169,6 +177,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	/**
 	 * The cached value of the '{@link #isDelete() <em>Delete</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isDelete()
 	 * @generated
 	 * @ordered
@@ -179,6 +188,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	 * The cached value of the '{@link #getModelElement() <em>Model Element</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getModelElement()
 	 * @generated
 	 * @ordered
@@ -189,6 +199,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	 * The cached value of the '{@link #getSubOperations() <em>Sub Operations</em>}' containment reference list.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSubOperations()
 	 * @generated
 	 * @ordered
@@ -199,6 +210,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 	 * The cached value of the '{@link #getEObjectToIdMap() <em>EObject To Id Map</em>}' map.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getEObjectToIdMap()
 	 * @generated
 	 * @ordered
@@ -207,6 +219,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CreateDeleteOperationImpl() {
@@ -215,6 +228,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -224,6 +238,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isDelete() {
@@ -232,32 +247,39 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDelete(boolean newDelete) {
 		boolean oldDelete = delete;
 		delete = newDelete;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.CREATE_DELETE_OPERATION__DELETE, oldDelete, delete));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.CREATE_DELETE_OPERATION__DELETE,
+				oldDelete, delete));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EObject getModelElement() {
 		if (modelElement != null && modelElement.eIsProxy()) {
-			InternalEObject oldModelElement = (InternalEObject)modelElement;
+			InternalEObject oldModelElement = (InternalEObject) modelElement;
 			modelElement = eResolveProxy(oldModelElement);
 			if (modelElement != oldModelElement) {
-				InternalEObject newModelElement = (InternalEObject)modelElement;
-				NotificationChain msgs = oldModelElement.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, null, null);
+				InternalEObject newModelElement = (InternalEObject) modelElement;
+				NotificationChain msgs = oldModelElement.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, null, null);
 				if (newModelElement.eInternalContainer() == null) {
-					msgs = newModelElement.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, null, msgs);
+					msgs = newModelElement.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, null, msgs);
 				}
-				if (msgs != null) msgs.dispatch();
+				if (msgs != null)
+					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, oldModelElement, modelElement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, oldModelElement, modelElement));
 			}
 		}
 		return modelElement;
@@ -265,6 +287,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EObject basicGetModelElement() {
@@ -273,170 +296,194 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetModelElement(EObject newModelElement, NotificationChain msgs) {
 		EObject oldModelElement = modelElement;
 		modelElement = newModelElement;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, oldModelElement, newModelElement);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, oldModelElement, newModelElement);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setModelElement(EObject newModelElement) {
 		if (newModelElement != modelElement) {
 			NotificationChain msgs = null;
 			if (modelElement != null)
-				msgs = ((InternalEObject)modelElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, null, msgs);
+				msgs = ((InternalEObject) modelElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, null, msgs);
 			if (newModelElement != null)
-				msgs = ((InternalEObject)newModelElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, null, msgs);
+				msgs = ((InternalEObject) newModelElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, null, msgs);
 			msgs = basicSetModelElement(newModelElement, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, newModelElement, newModelElement));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT, newModelElement, newModelElement));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ReferenceOperation> getSubOperations() {
 		if (subOperations == null) {
-			subOperations = new EObjectContainmentEList.Resolving<ReferenceOperation>(ReferenceOperation.class, this, OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS);
+			subOperations = new EObjectContainmentEList.Resolving<ReferenceOperation>(ReferenceOperation.class, this,
+				OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS);
 		}
 		return subOperations;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EMap<EObject, ModelElementId> getEObjectToIdMap() {
 		if (eObjectToIdMap == null) {
-			eObjectToIdMap = new EcoreEMap<EObject,ModelElementId>(OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP, EObjectToModelElementIdMapImpl.class, this, OperationsPackage.CREATE_DELETE_OPERATION__EOBJECT_TO_ID_MAP);
+			eObjectToIdMap = new EcoreEMap<EObject, ModelElementId>(
+				OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP, EObjectToModelElementIdMapImpl.class, this,
+				OperationsPackage.CREATE_DELETE_OPERATION__EOBJECT_TO_ID_MAP);
 		}
 		return eObjectToIdMap;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
-				return basicSetModelElement(null, msgs);
-			case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
-				return ((InternalEList<?>)getSubOperations()).basicRemove(otherEnd, msgs);
-			case OperationsPackage.CREATE_DELETE_OPERATION__EOBJECT_TO_ID_MAP:
-				return ((InternalEList<?>)getEObjectToIdMap()).basicRemove(otherEnd, msgs);
+		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
+			return basicSetModelElement(null, msgs);
+		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
+			return ((InternalEList<?>) getSubOperations()).basicRemove(otherEnd, msgs);
+		case OperationsPackage.CREATE_DELETE_OPERATION__EOBJECT_TO_ID_MAP:
+			return ((InternalEList<?>) getEObjectToIdMap()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
-				return isDelete();
-			case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
-				if (resolve) return getModelElement();
-				return basicGetModelElement();
-			case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
-				return getSubOperations();
-			case OperationsPackage.CREATE_DELETE_OPERATION__EOBJECT_TO_ID_MAP:
-				if (coreType) return getEObjectToIdMap();
-				else return getEObjectToIdMap().map();
+		case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
+			return isDelete();
+		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
+			if (resolve)
+				return getModelElement();
+			return basicGetModelElement();
+		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
+			return getSubOperations();
+		case OperationsPackage.CREATE_DELETE_OPERATION__EOBJECT_TO_ID_MAP:
+			if (coreType)
+				return getEObjectToIdMap();
+			else
+				return getEObjectToIdMap().map();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
-				setDelete((Boolean)newValue);
-				return;
-			case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
-				setModelElement((EObject)newValue);
-				return;
-			case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
-				getSubOperations().clear();
-				getSubOperations().addAll((Collection<? extends ReferenceOperation>)newValue);
-				return;
-			case OperationsPackage.CREATE_DELETE_OPERATION__EOBJECT_TO_ID_MAP:
-				((EStructuralFeature.Setting)getEObjectToIdMap()).set(newValue);
-				return;
+		case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
+			setDelete((Boolean) newValue);
+			return;
+		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
+			setModelElement((EObject) newValue);
+			return;
+		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
+			getSubOperations().clear();
+			getSubOperations().addAll((Collection<? extends ReferenceOperation>) newValue);
+			return;
+		case OperationsPackage.CREATE_DELETE_OPERATION__EOBJECT_TO_ID_MAP:
+			((EStructuralFeature.Setting) getEObjectToIdMap()).set(newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
-				setDelete(DELETE_EDEFAULT);
-				return;
-			case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
-				setModelElement((EObject)null);
-				return;
-			case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
-				getSubOperations().clear();
-				return;
-			case OperationsPackage.CREATE_DELETE_OPERATION__EOBJECT_TO_ID_MAP:
-				getEObjectToIdMap().clear();
-				return;
+		case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
+			setDelete(DELETE_EDEFAULT);
+			return;
+		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
+			setModelElement((EObject) null);
+			return;
+		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
+			getSubOperations().clear();
+			return;
+		case OperationsPackage.CREATE_DELETE_OPERATION__EOBJECT_TO_ID_MAP:
+			getEObjectToIdMap().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
-				return delete != DELETE_EDEFAULT;
-			case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
-				return modelElement != null;
-			case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
-				return subOperations != null && !subOperations.isEmpty();
-			case OperationsPackage.CREATE_DELETE_OPERATION__EOBJECT_TO_ID_MAP:
-				return eObjectToIdMap != null && !eObjectToIdMap.isEmpty();
+		case OperationsPackage.CREATE_DELETE_OPERATION__DELETE:
+			return delete != DELETE_EDEFAULT;
+		case OperationsPackage.CREATE_DELETE_OPERATION__MODEL_ELEMENT:
+			return modelElement != null;
+		case OperationsPackage.CREATE_DELETE_OPERATION__SUB_OPERATIONS:
+			return subOperations != null && !subOperations.isEmpty();
+		case OperationsPackage.CREATE_DELETE_OPERATION__EOBJECT_TO_ID_MAP:
+			return eObjectToIdMap != null && !eObjectToIdMap.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (delete: ");

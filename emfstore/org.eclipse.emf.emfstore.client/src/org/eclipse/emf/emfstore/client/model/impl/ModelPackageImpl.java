@@ -951,10 +951,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEReference(getProjectSpace_WaitingUploads(), theModelPackage_1.getFileIdentifier(), null, "waitingUploads",
 			null, 0, -1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectSpace_Properties(), theModelPackage_2.getPropertyMapEntry(), null, "properties", null,
+		initEReference(getProjectSpace_Properties(), theModelPackage_2.getEMFStoreProperty(), null, "properties", null,
 			0, -1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectSpace_ChangedSharedProperties(), theModelPackage_2.getPropertyMapEntry(), null,
+		initEReference(getProjectSpace_ChangedSharedProperties(), theModelPackage_2.getEMFStoreProperty(), null,
 			"changedSharedProperties", null, 0, -1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

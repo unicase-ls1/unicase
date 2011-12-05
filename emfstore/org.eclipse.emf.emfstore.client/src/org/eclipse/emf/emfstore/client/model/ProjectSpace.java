@@ -519,7 +519,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	EMap<String, EMFStoreProperty> getProperties();
+	EList<EMFStoreProperty> getProperties();
 
 	/**
 	 * Returns the value of the '<em><b>Changed Shared Properties</b></em>'
@@ -538,7 +538,7 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	EMap<String, EMFStoreProperty> getChangedSharedProperties();
+	EList<EMFStoreProperty> getChangedSharedProperties();
 
 	/**
 	 * <!-- begin-user-doc --> Commit the all pending changes of the project.

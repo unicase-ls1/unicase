@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.emfstore.common.model.*;
 import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.common.model.EMFStorePropertyType;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
@@ -83,8 +84,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 			return createModelVersion();
 		case ModelPackage.EMF_STORE_PROPERTY:
 			return createEMFStoreProperty();
-		case ModelPackage.PROPERTY_MAP_ENTRY:
-			return (EObject) createPropertyMapEntry();
 		case ModelPackage.PROPERTY_STRING_VALUE:
 			return createPropertyStringValue();
 		default:
@@ -166,17 +165,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	public EMFStoreProperty createEMFStoreProperty() {
 		EMFStorePropertyImpl emfStoreProperty = new EMFStorePropertyImpl();
 		return emfStoreProperty;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public Map.Entry<String, EMFStoreProperty> createPropertyMapEntry() {
-		PropertyMapEntryImpl propertyMapEntry = new PropertyMapEntryImpl();
-		return propertyMapEntry;
 	}
 
 	/**

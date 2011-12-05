@@ -53,8 +53,8 @@ import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
 public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
-	 * The cached value of the '{@link #getModelElements()
-	 * <em>Model Elements</em>}' containment reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getModelElements() <em>Model Elements</em>}' containment reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @see #getModelElements()

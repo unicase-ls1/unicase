@@ -34,6 +34,7 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 	 * The default value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getPluginId()
 	 * @generated
 	 * @ordered
@@ -43,6 +44,7 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 	 * The cached value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getPluginId()
 	 * @generated
 	 * @ordered
@@ -51,6 +53,7 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PluginStartEventImpl() {
@@ -59,6 +62,7 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,6 +72,7 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getPluginId() {
@@ -76,76 +81,84 @@ public class PluginStartEventImpl extends EventImpl implements PluginStartEvent 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPluginId(String newPluginId) {
 		String oldPluginId = pluginId;
 		pluginId = newPluginId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID, oldPluginId, pluginId));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID,
+				oldPluginId, pluginId));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
-				return getPluginId();
+		case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
+			return getPluginId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
-				setPluginId((String)newValue);
-				return;
+		case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
+			setPluginId((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
-				setPluginId(PLUGIN_ID_EDEFAULT);
-				return;
+		case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
+			setPluginId(PLUGIN_ID_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
-				return PLUGIN_ID_EDEFAULT == null ? pluginId != null : !PLUGIN_ID_EDEFAULT.equals(pluginId);
+		case EventsPackage.PLUGIN_START_EVENT__PLUGIN_ID:
+			return PLUGIN_ID_EDEFAULT == null ? pluginId != null : !PLUGIN_ID_EDEFAULT.equals(pluginId);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (pluginId: ");

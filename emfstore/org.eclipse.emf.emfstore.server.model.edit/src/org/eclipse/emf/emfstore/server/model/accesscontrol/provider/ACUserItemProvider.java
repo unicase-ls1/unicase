@@ -59,6 +59,7 @@ public class ACUserItemProvider extends ACOrgUnitItemProvider implements IEditin
 
 			addFirstNamePropertyDescriptor(object);
 			addLastNamePropertyDescriptor(object);
+			addEffectiveGroupsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -91,6 +92,21 @@ public class ACUserItemProvider extends ACOrgUnitItemProvider implements IEditin
 			getString("_UI_PropertyDescriptor_description", "_UI_ACUser_lastName_feature", "_UI_ACUser_type"),
 			AccesscontrolPackage.Literals.AC_USER__LAST_NAME, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Effective Groups feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addEffectiveGroupsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_ACUser_effectiveGroups_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_ACUser_effectiveGroups_feature", "_UI_ACUser_type"),
+			AccesscontrolPackage.Literals.AC_USER__EFFECTIVE_GROUPS, true, false, true, null, null, null));
 	}
 
 	/**

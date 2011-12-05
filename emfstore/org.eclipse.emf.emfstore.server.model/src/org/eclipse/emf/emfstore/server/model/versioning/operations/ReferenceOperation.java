@@ -36,6 +36,7 @@ public interface ReferenceOperation extends FeatureOperation {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Bidirectional</em>' attribute.
 	 * @see #setBidirectional(boolean)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getReferenceOperation_Bidirectional()
@@ -45,8 +46,11 @@ public interface ReferenceOperation extends FeatureOperation {
 	boolean isBidirectional();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation#isBidirectional <em>Bidirectional</em>}' attribute.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation#isBidirectional
+	 * <em>Bidirectional</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Bidirectional</em>' attribute.
 	 * @see #isBidirectional()
 	 * @generated
@@ -61,6 +65,7 @@ public interface ReferenceOperation extends FeatureOperation {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Opposite Feature Name</em>' attribute.
 	 * @see #setOppositeFeatureName(String)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage#getReferenceOperation_OppositeFeatureName()
@@ -70,8 +75,11 @@ public interface ReferenceOperation extends FeatureOperation {
 	String getOppositeFeatureName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation#getOppositeFeatureName <em>Opposite Feature Name</em>}' attribute.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation#getOppositeFeatureName
+	 * <em>Opposite Feature Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Opposite Feature Name</em>' attribute.
 	 * @see #getOppositeFeatureName()
 	 * @generated
@@ -80,13 +88,15 @@ public interface ReferenceOperation extends FeatureOperation {
 
 	/**
 	 * Returns the value of the '<em><b>Containment Type</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.eclipse.emf.emfstore.server.model.versioning.operations.ContainmentType}.
+	 * The literals are from the enumeration
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.ContainmentType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Containment Type</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Containment Type</em>' attribute.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.ContainmentType
 	 * @see #setContainmentType(ContainmentType)
@@ -97,8 +107,11 @@ public interface ReferenceOperation extends FeatureOperation {
 	ContainmentType getContainmentType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation#getContainmentType <em>Containment Type</em>}' attribute.
+	 * Sets the value of the '
+	 * {@link org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation#getContainmentType
+	 * <em>Containment Type</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Containment Type</em>' attribute.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.operations.ContainmentType
 	 * @see #getContainmentType()

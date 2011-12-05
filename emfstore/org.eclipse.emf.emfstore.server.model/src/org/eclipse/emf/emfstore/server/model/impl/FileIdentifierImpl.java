@@ -21,9 +21,9 @@ import org.eclipse.emf.emfstore.server.model.ModelPackage;
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>File Identifier</b></em>'.
  * 
  * @implements Serializable <!-- end-user-doc -->
- * <p>
- * </p>
- *
+ *             <p>
+ *             </p>
+ * 
  * @generated
  */
 public class FileIdentifierImpl extends IdentifiableElementImpl implements FileIdentifier, Serializable {
@@ -31,6 +31,7 @@ public class FileIdentifierImpl extends IdentifiableElementImpl implements FileI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FileIdentifierImpl() {
@@ -39,6 +40,7 @@ public class FileIdentifierImpl extends IdentifiableElementImpl implements FileI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

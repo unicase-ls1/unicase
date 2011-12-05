@@ -483,6 +483,12 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
 			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createModelVersion()));
 
+		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createEMFStoreProperty()));
+
+		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createPropertyStringValue()));
+
 		newChildDescriptors.add(createChildParameter(
 			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS,
 			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
