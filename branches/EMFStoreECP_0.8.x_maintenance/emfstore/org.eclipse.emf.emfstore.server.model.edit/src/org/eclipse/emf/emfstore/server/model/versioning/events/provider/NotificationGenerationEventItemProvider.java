@@ -29,11 +29,9 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage;
 import org.eclipse.emf.emfstore.server.model.versioning.events.NotificationGenerationEvent;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.emf.emfstore.server.model.versioning.events.NotificationGenerationEvent} object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.NotificationGenerationEvent} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class NotificationGenerationEventItemProvider extends EventItemProvider implements IEditingDomainItemProvider,
@@ -41,7 +39,6 @@ public class NotificationGenerationEventItemProvider extends EventItemProvider i
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationGenerationEventItemProvider(AdapterFactory adapterFactory) {
@@ -51,7 +48,6 @@ public class NotificationGenerationEventItemProvider extends EventItemProvider i
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,7 +65,6 @@ public class NotificationGenerationEventItemProvider extends EventItemProvider i
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -83,7 +78,6 @@ public class NotificationGenerationEventItemProvider extends EventItemProvider i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -97,7 +91,6 @@ public class NotificationGenerationEventItemProvider extends EventItemProvider i
 	/**
 	 * This returns NotificationGenerationEvent.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -108,15 +101,15 @@ public class NotificationGenerationEventItemProvider extends EventItemProvider i
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((NotificationGenerationEvent) object).getTimestamp();
+		Date labelValue = ((NotificationGenerationEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_NotificationGenerationEvent_type")
-			: getString("_UI_NotificationGenerationEvent_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_NotificationGenerationEvent_type") :
+			getString("_UI_NotificationGenerationEvent_type") + " " + label;
 	}
 
 	/**
@@ -131,9 +124,9 @@ public class NotificationGenerationEventItemProvider extends EventItemProvider i
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(NotificationGenerationEvent.class)) {
-		case EventsPackage.NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case EventsPackage.NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -142,16 +135,16 @@ public class NotificationGenerationEventItemProvider extends EventItemProvider i
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-			EventsPackage.Literals.NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS,
-			NotificationFactory.eINSTANCE.createESNotification()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EventsPackage.Literals.NOTIFICATION_GENERATION_EVENT__NOTIFICATIONS,
+				 NotificationFactory.eINSTANCE.createESNotification()));
 	}
 
 }

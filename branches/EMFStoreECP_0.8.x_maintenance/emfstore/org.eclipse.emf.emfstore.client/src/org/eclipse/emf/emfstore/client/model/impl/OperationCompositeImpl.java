@@ -29,10 +29,10 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOpera
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.client.model.impl.OperationCompositeImpl#getOperations <em>Operations</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.impl.OperationCompositeImpl#getOperations <em>Operations</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class OperationCompositeImpl extends EObjectImpl implements OperationComposite {
@@ -48,7 +48,6 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected OperationCompositeImpl() {
@@ -57,7 +56,6 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,7 +65,6 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AbstractOperation> getOperations() {
@@ -80,7 +77,6 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -94,7 +90,6 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -108,7 +103,6 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -125,7 +119,6 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -140,7 +133,6 @@ public class OperationCompositeImpl extends EObjectImpl implements OperationComp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

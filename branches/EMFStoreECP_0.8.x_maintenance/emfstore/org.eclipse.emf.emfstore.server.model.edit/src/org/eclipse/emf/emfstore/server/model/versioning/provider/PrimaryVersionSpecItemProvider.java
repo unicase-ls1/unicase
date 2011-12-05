@@ -31,10 +31,8 @@ import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
 import org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec}
- * object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class PrimaryVersionSpecItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
@@ -42,7 +40,6 @@ public class PrimaryVersionSpecItemProvider extends ItemProviderAdapter implemen
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PrimaryVersionSpecItemProvider(AdapterFactory adapterFactory) {
@@ -52,7 +49,6 @@ public class PrimaryVersionSpecItemProvider extends ItemProviderAdapter implemen
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,23 +64,27 @@ public class PrimaryVersionSpecItemProvider extends ItemProviderAdapter implemen
 	/**
 	 * This adds a property descriptor for the Identifier feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addIdentifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_PrimaryVersionSpec_identifier_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_PrimaryVersionSpec_identifier_feature",
-				"_UI_PrimaryVersionSpec_type"), VersioningPackage.Literals.PRIMARY_VERSION_SPEC__IDENTIFIER, true,
-			false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PrimaryVersionSpec_identifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PrimaryVersionSpec_identifier_feature", "_UI_PrimaryVersionSpec_type"),
+				 VersioningPackage.Literals.PRIMARY_VERSION_SPEC__IDENTIFIER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns PrimaryVersionSpec.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -95,12 +95,11 @@ public class PrimaryVersionSpecItemProvider extends ItemProviderAdapter implemen
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		PrimaryVersionSpec primaryVersionSpec = (PrimaryVersionSpec) object;
+		PrimaryVersionSpec primaryVersionSpec = (PrimaryVersionSpec)object;
 		return getString("_UI_PrimaryVersionSpec_type") + " " + primaryVersionSpec.getIdentifier();
 	}
 
@@ -116,9 +115,9 @@ public class PrimaryVersionSpecItemProvider extends ItemProviderAdapter implemen
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PrimaryVersionSpec.class)) {
-		case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case VersioningPackage.PRIMARY_VERSION_SPEC__IDENTIFIER:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -127,7 +126,6 @@ public class PrimaryVersionSpecItemProvider extends ItemProviderAdapter implemen
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -138,7 +136,6 @@ public class PrimaryVersionSpecItemProvider extends ItemProviderAdapter implemen
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

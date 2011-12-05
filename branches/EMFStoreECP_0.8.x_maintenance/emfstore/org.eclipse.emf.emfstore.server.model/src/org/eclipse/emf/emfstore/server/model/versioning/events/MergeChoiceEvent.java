@@ -48,7 +48,6 @@ public interface MergeChoiceEvent extends Event {
 	 * be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>My Accepted Changes</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getMergeChoiceEvent_MyAcceptedChanges()
 	 * @model containment="true" resolveProxies="true"
@@ -65,7 +64,6 @@ public interface MergeChoiceEvent extends Event {
 	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Their Rejected Changes</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getMergeChoiceEvent_TheirRejectedChanges()
 	 * @model containment="true" resolveProxies="true"
@@ -81,7 +79,6 @@ public interface MergeChoiceEvent extends Event {
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Context Model Element</em>' containment reference.
 	 * @see #setContextModelElement(ModelElementId)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getMergeChoiceEvent_ContextModelElement()
@@ -91,11 +88,8 @@ public interface MergeChoiceEvent extends Event {
 	ModelElementId getContextModelElement();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeChoiceEvent#getContextModelElement
-	 * <em>Context Model Element</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeChoiceEvent#getContextModelElement <em>Context Model Element</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Context Model Element</em>' containment reference.
 	 * @see #getContextModelElement()
 	 * @generated
@@ -104,15 +98,13 @@ public interface MergeChoiceEvent extends Event {
 
 	/**
 	 * Returns the value of the '<em><b>Selection</b></em>' attribute.
-	 * The literals are from the enumeration
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeChoiceSelection}.
+	 * The literals are from the enumeration {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeChoiceSelection}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Selection</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Selection</em>' attribute.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.MergeChoiceSelection
 	 * @see #setSelection(MergeChoiceSelection)
@@ -123,11 +115,8 @@ public interface MergeChoiceEvent extends Event {
 	MergeChoiceSelection getSelection();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeChoiceEvent#getSelection <em>Selection</em>}'
-	 * attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeChoiceEvent#getSelection <em>Selection</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Selection</em>' attribute.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.MergeChoiceSelection
 	 * @see #getSelection()
@@ -143,7 +132,6 @@ public interface MergeChoiceEvent extends Event {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Context Feature</em>' attribute.
 	 * @see #setContextFeature(String)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getMergeChoiceEvent_ContextFeature()
@@ -153,11 +141,8 @@ public interface MergeChoiceEvent extends Event {
 	String getContextFeature();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeChoiceEvent#getContextFeature
-	 * <em>Context Feature</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeChoiceEvent#getContextFeature <em>Context Feature</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Context Feature</em>' attribute.
 	 * @see #getContextFeature()
 	 * @generated
@@ -172,7 +157,6 @@ public interface MergeChoiceEvent extends Event {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Created Issue Name</em>' attribute.
 	 * @see #setCreatedIssueName(String)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage#getMergeChoiceEvent_CreatedIssueName()
@@ -182,11 +166,8 @@ public interface MergeChoiceEvent extends Event {
 	String getCreatedIssueName();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeChoiceEvent#getCreatedIssueName
-	 * <em>Created Issue Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.events.MergeChoiceEvent#getCreatedIssueName <em>Created Issue Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Created Issue Name</em>' attribute.
 	 * @see #getCreatedIssueName()
 	 * @generated

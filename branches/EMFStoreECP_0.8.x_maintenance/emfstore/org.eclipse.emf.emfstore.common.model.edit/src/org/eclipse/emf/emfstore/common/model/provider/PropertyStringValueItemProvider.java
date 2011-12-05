@@ -31,7 +31,6 @@ import org.eclipse.emf.emfstore.common.model.PropertyStringValue;
  * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.common.model.PropertyStringValue} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class PropertyStringValueItemProvider extends RootElementItemProvider implements IEditingDomainItemProvider,
@@ -40,7 +39,6 @@ public class PropertyStringValueItemProvider extends RootElementItemProvider imp
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PropertyStringValueItemProvider(AdapterFactory adapterFactory) {
@@ -51,7 +49,6 @@ public class PropertyStringValueItemProvider extends RootElementItemProvider imp
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,7 +65,6 @@ public class PropertyStringValueItemProvider extends RootElementItemProvider imp
 	 * This adds a property descriptor for the Value feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
@@ -85,7 +81,6 @@ public class PropertyStringValueItemProvider extends RootElementItemProvider imp
 	 * This returns PropertyStringValue.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -97,7 +92,6 @@ public class PropertyStringValueItemProvider extends RootElementItemProvider imp
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -112,7 +106,6 @@ public class PropertyStringValueItemProvider extends RootElementItemProvider imp
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -132,7 +125,6 @@ public class PropertyStringValueItemProvider extends RootElementItemProvider imp
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -144,7 +136,6 @@ public class PropertyStringValueItemProvider extends RootElementItemProvider imp
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -40,7 +40,6 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 	 * The cached value of the '{@link #getEvents() <em>Events</em>}' containment reference list.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getEvents()
 	 * @generated
 	 * @ordered
@@ -49,7 +48,6 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EventCompositeImpl() {
@@ -58,7 +56,6 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,7 +65,6 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Event> getEvents() {
@@ -81,7 +77,6 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -95,7 +90,6 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -109,7 +103,6 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -126,7 +119,6 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,7 +133,6 @@ public class EventCompositeImpl extends EObjectImpl implements EventComposite {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -29,10 +29,8 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.CheckoutEvent;
 import org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.CheckoutEvent}
- * object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.CheckoutEvent} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class CheckoutEventItemProvider extends EventItemProvider implements IEditingDomainItemProvider,
@@ -40,7 +38,6 @@ public class CheckoutEventItemProvider extends EventItemProvider implements IEdi
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CheckoutEventItemProvider(AdapterFactory adapterFactory) {
@@ -50,7 +47,6 @@ public class CheckoutEventItemProvider extends EventItemProvider implements IEdi
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,7 +64,6 @@ public class CheckoutEventItemProvider extends EventItemProvider implements IEdi
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -82,7 +77,6 @@ public class CheckoutEventItemProvider extends EventItemProvider implements IEdi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,7 +90,6 @@ public class CheckoutEventItemProvider extends EventItemProvider implements IEdi
 	/**
 	 * This returns CheckoutEvent.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -107,15 +100,15 @@ public class CheckoutEventItemProvider extends EventItemProvider implements IEdi
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((CheckoutEvent) object).getTimestamp();
+		Date labelValue = ((CheckoutEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_CheckoutEvent_type")
-			: getString("_UI_CheckoutEvent_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_CheckoutEvent_type") :
+			getString("_UI_CheckoutEvent_type") + " " + label;
 	}
 
 	/**
@@ -130,9 +123,9 @@ public class CheckoutEventItemProvider extends EventItemProvider implements IEdi
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(CheckoutEvent.class)) {
-		case EventsPackage.CHECKOUT_EVENT__BASE_VERSION:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case EventsPackage.CHECKOUT_EVENT__BASE_VERSION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -141,15 +134,16 @@ public class CheckoutEventItemProvider extends EventItemProvider implements IEdi
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.CHECKOUT_EVENT__BASE_VERSION,
-			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EventsPackage.Literals.CHECKOUT_EVENT__BASE_VERSION,
+				 VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 	}
 
 }

@@ -32,7 +32,6 @@ import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
 /**
  * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.client.model.NotificationComposite} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class NotificationCompositeItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
@@ -40,7 +39,6 @@ public class NotificationCompositeItemProvider extends ItemProviderAdapter imple
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationCompositeItemProvider(AdapterFactory adapterFactory) {
@@ -50,7 +48,6 @@ public class NotificationCompositeItemProvider extends ItemProviderAdapter imple
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,7 +65,6 @@ public class NotificationCompositeItemProvider extends ItemProviderAdapter imple
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -82,7 +78,6 @@ public class NotificationCompositeItemProvider extends ItemProviderAdapter imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,7 +91,6 @@ public class NotificationCompositeItemProvider extends ItemProviderAdapter imple
 	/**
 	 * This returns NotificationComposite.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -107,7 +101,6 @@ public class NotificationCompositeItemProvider extends ItemProviderAdapter imple
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -138,7 +131,6 @@ public class NotificationCompositeItemProvider extends ItemProviderAdapter imple
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -152,7 +144,6 @@ public class NotificationCompositeItemProvider extends ItemProviderAdapter imple
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

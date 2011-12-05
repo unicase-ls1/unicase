@@ -32,7 +32,6 @@ import org.eclipse.emf.emfstore.common.model.ModelPackage;
  * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.common.model.IdentifiableElement} object.
  * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class IdentifiableElementItemProvider extends RootElementItemProvider implements IEditingDomainItemProvider,
@@ -40,7 +39,6 @@ public class IdentifiableElementItemProvider extends RootElementItemProvider imp
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public IdentifiableElementItemProvider(AdapterFactory adapterFactory) {
@@ -50,7 +48,6 @@ public class IdentifiableElementItemProvider extends RootElementItemProvider imp
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,7 +63,6 @@ public class IdentifiableElementItemProvider extends RootElementItemProvider imp
 	/**
 	 * This adds a property descriptor for the Identifier feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addIdentifierPropertyDescriptor(Object object) {
@@ -82,7 +78,6 @@ public class IdentifiableElementItemProvider extends RootElementItemProvider imp
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,7 +110,6 @@ public class IdentifiableElementItemProvider extends RootElementItemProvider imp
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -126,7 +120,6 @@ public class IdentifiableElementItemProvider extends RootElementItemProvider imp
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -39,7 +39,6 @@ public class RoleItemProvider extends ItemProviderAdapter implements IEditingDom
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RoleItemProvider(AdapterFactory adapterFactory) {
@@ -49,7 +48,6 @@ public class RoleItemProvider extends ItemProviderAdapter implements IEditingDom
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,21 +63,27 @@ public class RoleItemProvider extends ItemProviderAdapter implements IEditingDom
 	/**
 	 * This adds a property descriptor for the Projects feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addProjectsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Role_projects_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Role_projects_feature", "_UI_Role_type"),
-			RolesPackage.Literals.ROLE__PROJECTS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Role_projects_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Role_projects_feature", "_UI_Role_type"),
+				 RolesPackage.Literals.ROLE__PROJECTS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -104,7 +108,6 @@ public class RoleItemProvider extends ItemProviderAdapter implements IEditingDom
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,7 +118,6 @@ public class RoleItemProvider extends ItemProviderAdapter implements IEditingDom
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

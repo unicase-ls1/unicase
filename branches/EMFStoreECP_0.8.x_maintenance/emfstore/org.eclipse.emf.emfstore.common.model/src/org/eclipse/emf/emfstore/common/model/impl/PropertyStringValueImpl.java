@@ -20,10 +20,10 @@ import org.eclipse.emf.emfstore.common.model.PropertyStringValue;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.common.model.impl.PropertyStringValueImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.common.model.impl.PropertyStringValueImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class PropertyStringValueImpl extends EObjectImpl implements PropertyStringValue {
@@ -31,7 +31,6 @@ public class PropertyStringValueImpl extends EObjectImpl implements PropertyStri
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -42,7 +41,6 @@ public class PropertyStringValueImpl extends EObjectImpl implements PropertyStri
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -52,7 +50,6 @@ public class PropertyStringValueImpl extends EObjectImpl implements PropertyStri
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PropertyStringValueImpl() {
@@ -62,7 +59,6 @@ public class PropertyStringValueImpl extends EObjectImpl implements PropertyStri
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,7 +69,6 @@ public class PropertyStringValueImpl extends EObjectImpl implements PropertyStri
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getValue() {
@@ -83,7 +78,6 @@ public class PropertyStringValueImpl extends EObjectImpl implements PropertyStri
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setValue(String newValue) {
@@ -97,7 +91,6 @@ public class PropertyStringValueImpl extends EObjectImpl implements PropertyStri
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -112,7 +105,6 @@ public class PropertyStringValueImpl extends EObjectImpl implements PropertyStri
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -128,7 +120,6 @@ public class PropertyStringValueImpl extends EObjectImpl implements PropertyStri
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -144,7 +135,6 @@ public class PropertyStringValueImpl extends EObjectImpl implements PropertyStri
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -159,7 +149,6 @@ public class PropertyStringValueImpl extends EObjectImpl implements PropertyStri
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

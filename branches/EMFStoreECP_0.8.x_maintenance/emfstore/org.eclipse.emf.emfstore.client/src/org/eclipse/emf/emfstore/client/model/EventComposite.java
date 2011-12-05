@@ -16,14 +16,14 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.Event;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Event Composite</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.client.model.EventComposite#getEvents <em>Events</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.EventComposite#getEvents <em>Events</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getEventComposite()
  * @model
  * @generated
@@ -38,7 +38,6 @@ public interface EventComposite extends EObject {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Events</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getEventComposite_Events()
 	 * @model containment="true" resolveProxies="true"
