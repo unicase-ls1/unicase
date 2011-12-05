@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: EMFStore Util  (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.emfstore.common
-Bundle-Version: 0.8.9.M905
+Bundle-Version: 0.8.9.M906
 Bundle-Activator: org.eclipse.emf.emfstore.common.Activator
 Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
  org.eclipse.emf.ecore,
