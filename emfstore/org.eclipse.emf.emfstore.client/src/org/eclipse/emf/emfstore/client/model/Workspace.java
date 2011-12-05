@@ -33,18 +33,17 @@ import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Workspace</b></em>'.
  * 
  * @implements IAdaptable <!-- end-user-doc -->
- * 
- *             <p>
- *             The following features are supported:
- *             <ul>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.Workspace#getProjectSpaces <em>Project Spaces</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.Workspace#getServerInfos <em>Server Infos</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.Workspace#getUsersessions <em>Usersessions</em>}</li>
- *             <li>{@link org.eclipse.emf.emfstore.client.model.Workspace#getActiveProjectSpace <em>Active Project Space
- *             </em>}</li>
- *             </ul>
- *             </p>
- * 
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.Workspace#getProjectSpaces <em>Project Spaces</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.Workspace#getServerInfos <em>Server Infos</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.Workspace#getUsersessions <em>Usersessions</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.client.model.Workspace#getActiveProjectSpace <em>Active Project Space</em>}</li>
+ * </ul>
+ * </p>
+ *
  * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getWorkspace()
  * @model
  * @generated
@@ -59,7 +58,6 @@ public interface Workspace extends EObject, IAdaptable {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Project Spaces</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getWorkspace_ProjectSpaces()
 	 * @model containment="true" resolveProxies="true" keys="identifier"
@@ -76,7 +74,6 @@ public interface Workspace extends EObject, IAdaptable {
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Server Infos</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getWorkspace_ServerInfos()
 	 * @model containment="true" resolveProxies="true"
@@ -93,7 +90,6 @@ public interface Workspace extends EObject, IAdaptable {
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Usersessions</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getWorkspace_Usersessions()
 	 * @model containment="true" resolveProxies="true"
@@ -109,7 +105,6 @@ public interface Workspace extends EObject, IAdaptable {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Active Project Space</em>' reference.
 	 * @see #setActiveProjectSpace(ProjectSpace)
 	 * @see org.eclipse.emf.emfstore.client.model.ModelPackage#getWorkspace_ActiveProjectSpace()
@@ -119,10 +114,8 @@ public interface Workspace extends EObject, IAdaptable {
 	ProjectSpace getActiveProjectSpace();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Workspace#getActiveProjectSpace
-	 * <em>Active Project Space</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.client.model.Workspace#getActiveProjectSpace <em>Active Project Space</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Active Project Space</em>' reference.
 	 * @see #getActiveProjectSpace()
 	 * @generated

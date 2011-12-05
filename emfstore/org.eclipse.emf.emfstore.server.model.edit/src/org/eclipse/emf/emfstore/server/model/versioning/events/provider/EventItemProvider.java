@@ -43,7 +43,6 @@ public class EventItemProvider extends ItemProviderAdapter implements IEditingDo
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EventItemProvider(AdapterFactory adapterFactory) {
@@ -53,7 +52,6 @@ public class EventItemProvider extends ItemProviderAdapter implements IEditingDo
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,22 +67,27 @@ public class EventItemProvider extends ItemProviderAdapter implements IEditingDo
 	/**
 	 * This adds a property descriptor for the Timestamp feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addTimestampPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Event_timestamp_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Event_timestamp_feature", "_UI_Event_type"),
-			EventsPackage.Literals.EVENT__TIMESTAMP, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-			null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Event_timestamp_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Event_timestamp_feature", "_UI_Event_type"),
+				 EventsPackage.Literals.EVENT__TIMESTAMP,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns Event.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -95,15 +98,15 @@ public class EventItemProvider extends ItemProviderAdapter implements IEditingDo
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((Event) object).getTimestamp();
+		Date labelValue = ((Event)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_Event_type") : getString("_UI_Event_type") + " "
-			+ label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_Event_type") :
+			getString("_UI_Event_type") + " " + label;
 	}
 
 	/**
@@ -118,9 +121,9 @@ public class EventItemProvider extends ItemProviderAdapter implements IEditingDo
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Event.class)) {
-		case EventsPackage.EVENT__TIMESTAMP:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case EventsPackage.EVENT__TIMESTAMP:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -129,7 +132,6 @@ public class EventItemProvider extends ItemProviderAdapter implements IEditingDo
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -140,7 +142,6 @@ public class EventItemProvider extends ItemProviderAdapter implements IEditingDo
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

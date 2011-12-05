@@ -29,10 +29,8 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.EventsPackage;
 import org.eclipse.emf.emfstore.server.model.versioning.events.PluginFocusEvent;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.emf.emfstore.server.model.versioning.events.PluginFocusEvent} object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.versioning.events.PluginFocusEvent} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class PluginFocusEventItemProvider extends EventItemProvider implements IEditingDomainItemProvider,
@@ -40,7 +38,6 @@ public class PluginFocusEventItemProvider extends EventItemProvider implements I
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PluginFocusEventItemProvider(AdapterFactory adapterFactory) {
@@ -50,7 +47,6 @@ public class PluginFocusEventItemProvider extends EventItemProvider implements I
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,39 +63,48 @@ public class PluginFocusEventItemProvider extends EventItemProvider implements I
 	/**
 	 * This adds a property descriptor for the Plugin Id feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addPluginIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_PluginFocusEvent_pluginId_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_PluginFocusEvent_pluginId_feature",
-				"_UI_PluginFocusEvent_type"), EventsPackage.Literals.PLUGIN_FOCUS_EVENT__PLUGIN_ID, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PluginFocusEvent_pluginId_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PluginFocusEvent_pluginId_feature", "_UI_PluginFocusEvent_type"),
+				 EventsPackage.Literals.PLUGIN_FOCUS_EVENT__PLUGIN_ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Start Date feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addStartDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_PluginFocusEvent_startDate_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_PluginFocusEvent_startDate_feature",
-				"_UI_PluginFocusEvent_type"), EventsPackage.Literals.PLUGIN_FOCUS_EVENT__START_DATE, true, false,
-			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PluginFocusEvent_startDate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PluginFocusEvent_startDate_feature", "_UI_PluginFocusEvent_type"),
+				 EventsPackage.Literals.PLUGIN_FOCUS_EVENT__START_DATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns PluginFocusEvent.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -110,15 +115,15 @@ public class PluginFocusEventItemProvider extends EventItemProvider implements I
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((PluginFocusEvent) object).getTimestamp();
+		Date labelValue = ((PluginFocusEvent)object).getTimestamp();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_PluginFocusEvent_type")
-			: getString("_UI_PluginFocusEvent_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_PluginFocusEvent_type") :
+			getString("_UI_PluginFocusEvent_type") + " " + label;
 	}
 
 	/**
@@ -133,10 +138,10 @@ public class PluginFocusEventItemProvider extends EventItemProvider implements I
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PluginFocusEvent.class)) {
-		case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
-		case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case EventsPackage.PLUGIN_FOCUS_EVENT__PLUGIN_ID:
+			case EventsPackage.PLUGIN_FOCUS_EVENT__START_DATE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -145,7 +150,6 @@ public class PluginFocusEventItemProvider extends EventItemProvider implements I
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

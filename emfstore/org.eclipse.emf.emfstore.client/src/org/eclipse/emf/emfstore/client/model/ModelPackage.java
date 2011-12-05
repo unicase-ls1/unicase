@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.emf.emfstore.client.model.ModelFactory
  * @model kind="package"
  * @generated
@@ -33,7 +32,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	String eNAME = "model";
@@ -41,7 +39,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The package namespace URI.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://eclipse.org/emf/emfstore/client/model";
@@ -49,7 +46,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The package namespace name.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.eclipse.emfstore.client.model";
@@ -57,16 +53,13 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	ModelPackage eINSTANCE = org.eclipse.emf.emfstore.client.model.impl.ModelPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl <em>Workspace</em>}'
-	 * class.
+	 * The meta object id for the '{@link org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl <em>Workspace</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl
 	 * @see org.eclipse.emf.emfstore.client.model.impl.ModelPackageImpl#getWorkspace()
 	 * @generated
@@ -77,7 +70,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Project Spaces</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -87,7 +79,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Server Infos</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -97,7 +88,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Usersessions</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -107,7 +97,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Active Project Space</b></em>' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -123,10 +112,8 @@ public interface ModelPackage extends EPackage {
 	int WORKSPACE_FEATURE_COUNT = 4;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.emfstore.client.model.impl.ServerInfoImpl
-	 * <em>Server Info</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.emf.emfstore.client.model.impl.ServerInfoImpl <em>Server Info</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.emf.emfstore.client.model.impl.ServerInfoImpl
 	 * @see org.eclipse.emf.emfstore.client.model.impl.ModelPackageImpl#getServerInfo()
 	 * @generated
@@ -136,7 +123,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -145,7 +131,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Url</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -154,7 +139,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Port</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -164,7 +148,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Project Infos</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -198,10 +181,8 @@ public interface ModelPackage extends EPackage {
 	int SERVER_INFO_FEATURE_COUNT = 6;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.emfstore.client.model.impl.UsersessionImpl
-	 * <em>Usersession</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.emf.emfstore.client.model.impl.UsersessionImpl <em>Usersession</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.emf.emfstore.client.model.impl.UsersessionImpl
 	 * @see org.eclipse.emf.emfstore.client.model.impl.ModelPackageImpl#getUsersession()
 	 * @generated
@@ -211,7 +192,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Username</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -220,7 +200,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Password</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -229,7 +208,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Session Id</b></em>' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -247,7 +225,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Server Info</b></em>' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -256,7 +233,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Save Password</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -275,7 +251,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Changed Properties</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -291,10 +266,8 @@ public interface ModelPackage extends EPackage {
 	int USERSESSION_FEATURE_COUNT = 8;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl
-	 * <em>Project Space</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl <em>Project Space</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl
 	 * @see org.eclipse.emf.emfstore.client.model.impl.ModelPackageImpl#getProjectSpace()
 	 * @generated
@@ -304,7 +277,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -323,7 +295,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Project Id</b></em>' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -332,7 +303,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Project Name</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -351,7 +321,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Events</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -360,7 +329,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Usersession</b></em>' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -369,7 +337,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Last Updated</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -379,7 +346,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Base Version</b></em>' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -388,7 +354,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Resource Count</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -397,7 +362,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Dirty</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -407,7 +371,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Old Log Messages</b></em>' attribute list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -417,7 +380,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Local Operations</b></em>' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -427,7 +389,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Notifications</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -437,7 +398,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Event Composite</b></em>' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -447,7 +407,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Notification Composite</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -457,7 +416,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Waiting Uploads</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -467,7 +425,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -477,7 +434,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Changed Shared Properties</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -487,17 +443,14 @@ public interface ModelPackage extends EPackage {
 	 * The number of structural features of the '<em>Project Space</em>' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_SPACE_FEATURE_COUNT = org.eclipse.emf.emfstore.common.model.ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 18;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.emfstore.client.model.impl.OperationCompositeImpl
-	 * <em>Operation Composite</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.emf.emfstore.client.model.impl.OperationCompositeImpl <em>Operation Composite</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.emf.emfstore.client.model.impl.OperationCompositeImpl
 	 * @see org.eclipse.emf.emfstore.client.model.impl.ModelPackageImpl#getOperationComposite()
 	 * @generated
@@ -508,7 +461,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -518,17 +470,14 @@ public interface ModelPackage extends EPackage {
 	 * The number of structural features of the '<em>Operation Composite</em>' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int OPERATION_COMPOSITE_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.emfstore.client.model.impl.PendingFileTransferImpl
-	 * <em>Pending File Transfer</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.emf.emfstore.client.model.impl.PendingFileTransferImpl <em>Pending File Transfer</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.emf.emfstore.client.model.impl.PendingFileTransferImpl
 	 * @see org.eclipse.emf.emfstore.client.model.impl.ModelPackageImpl#getPendingFileTransfer()
 	 * @generated
@@ -539,7 +488,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Attachment Id</b></em>' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -548,7 +496,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>File Version</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -557,7 +504,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Chunk Number</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -566,7 +512,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Upload</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -575,7 +520,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>File Name</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -585,7 +529,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Preliminary File Name</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -595,17 +538,14 @@ public interface ModelPackage extends EPackage {
 	 * The number of structural features of the '<em>Pending File Transfer</em>' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PENDING_FILE_TRANSFER_FEATURE_COUNT = 6;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.emfstore.client.model.impl.EventCompositeImpl
-	 * <em>Event Composite</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.emf.emfstore.client.model.impl.EventCompositeImpl <em>Event Composite</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.emf.emfstore.client.model.impl.EventCompositeImpl
 	 * @see org.eclipse.emf.emfstore.client.model.impl.ModelPackageImpl#getEventComposite()
 	 * @generated
@@ -616,7 +556,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Events</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -626,17 +565,14 @@ public interface ModelPackage extends EPackage {
 	 * The number of structural features of the '<em>Event Composite</em>' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int EVENT_COMPOSITE_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.emfstore.client.model.impl.NotificationCompositeImpl
-	 * <em>Notification Composite</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.emf.emfstore.client.model.impl.NotificationCompositeImpl <em>Notification Composite</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.emf.emfstore.client.model.impl.NotificationCompositeImpl
 	 * @see org.eclipse.emf.emfstore.client.model.impl.ModelPackageImpl#getNotificationComposite()
 	 * @generated
@@ -647,7 +583,6 @@ public interface ModelPackage extends EPackage {
 	 * The feature id for the '<em><b>Notifications</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -657,7 +592,6 @@ public interface ModelPackage extends EPackage {
 	 * The number of structural features of the '<em>Notification Composite</em>' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -666,7 +600,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.emfstore.client.model.Workspace <em>Workspace</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Workspace</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.Workspace
 	 * @generated
@@ -710,10 +643,8 @@ public interface ModelPackage extends EPackage {
 	EReference getWorkspace_Usersessions();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.emf.emfstore.client.model.Workspace#getActiveProjectSpace <em>Active Project Space</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.emf.emfstore.client.model.Workspace#getActiveProjectSpace <em>Active Project Space</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference '<em>Active Project Space</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.Workspace#getActiveProjectSpace()
 	 * @see #getWorkspace()
@@ -722,10 +653,8 @@ public interface ModelPackage extends EPackage {
 	EReference getWorkspace_ActiveProjectSpace();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.emfstore.client.model.ServerInfo <em>Server Info</em>}
-	 * '.
+	 * Returns the meta object for class '{@link org.eclipse.emf.emfstore.client.model.ServerInfo <em>Server Info</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Server Info</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.ServerInfo
 	 * @generated
@@ -733,10 +662,8 @@ public interface ModelPackage extends EPackage {
 	EClass getServerInfo();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.emfstore.client.model.ServerInfo#getName
-	 * <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.emfstore.client.model.ServerInfo#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.ServerInfo#getName()
 	 * @see #getServerInfo()
@@ -745,10 +672,8 @@ public interface ModelPackage extends EPackage {
 	EAttribute getServerInfo_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.emfstore.client.model.ServerInfo#getUrl
-	 * <em>Url</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.emfstore.client.model.ServerInfo#getUrl <em>Url</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Url</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.ServerInfo#getUrl()
 	 * @see #getServerInfo()
@@ -757,10 +682,8 @@ public interface ModelPackage extends EPackage {
 	EAttribute getServerInfo_Url();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.emfstore.client.model.ServerInfo#getPort
-	 * <em>Port</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.emfstore.client.model.ServerInfo#getPort <em>Port</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Port</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.ServerInfo#getPort()
 	 * @see #getServerInfo()
@@ -805,10 +728,8 @@ public interface ModelPackage extends EPackage {
 	EAttribute getServerInfo_CertificateAlias();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.emfstore.client.model.Usersession <em>Usersession</em>}
-	 * '.
+	 * Returns the meta object for class '{@link org.eclipse.emf.emfstore.client.model.Usersession <em>Usersession</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Usersession</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.Usersession
 	 * @generated
@@ -816,10 +737,8 @@ public interface ModelPackage extends EPackage {
 	EClass getUsersession();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.emfstore.client.model.Usersession#getUsername
-	 * <em>Username</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.emfstore.client.model.Usersession#getUsername <em>Username</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Username</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.Usersession#getUsername()
 	 * @see #getUsersession()
@@ -828,10 +747,8 @@ public interface ModelPackage extends EPackage {
 	EAttribute getUsersession_Username();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.emfstore.client.model.Usersession#getPassword
-	 * <em>Password</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.emfstore.client.model.Usersession#getPassword <em>Password</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Password</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.Usersession#getPassword()
 	 * @see #getUsersession()
@@ -840,10 +757,8 @@ public interface ModelPackage extends EPackage {
 	EAttribute getUsersession_Password();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.emfstore.client.model.Usersession#getSessionId
-	 * <em>Session Id</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.emf.emfstore.client.model.Usersession#getSessionId <em>Session Id</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference '<em>Session Id</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.Usersession#getSessionId()
 	 * @see #getUsersession()
@@ -852,10 +767,8 @@ public interface ModelPackage extends EPackage {
 	EReference getUsersession_SessionId();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.eclipse.emf.emfstore.client.model.Usersession#getPersistentPassword <em>Persistent Password</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.emfstore.client.model.Usersession#getPersistentPassword <em>Persistent Password</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Persistent Password</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.Usersession#getPersistentPassword()
 	 * @see #getUsersession()
@@ -888,11 +801,9 @@ public interface ModelPackage extends EPackage {
 	EAttribute getUsersession_SavePassword();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.eclipse.emf.emfstore.client.model.Usersession#getACUser <em>AC User</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.emfstore.client.model.Usersession#getACUser <em>AC User</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference '<em>AC User</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.Usersession#getACUser()
 	 * @see #getUsersession()
@@ -913,10 +824,8 @@ public interface ModelPackage extends EPackage {
 	EReference getUsersession_ChangedProperties();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace
-	 * <em>Project Space</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace <em>Project Space</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Project Space</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace
 	 * @generated
@@ -924,11 +833,9 @@ public interface ModelPackage extends EPackage {
 	EClass getProjectSpace();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProject <em>Project</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProject <em>Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference '<em>Project</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#getProject()
 	 * @see #getProjectSpace()
@@ -937,11 +844,9 @@ public interface ModelPackage extends EPackage {
 	EReference getProjectSpace_Project();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectId <em>Project Id</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectId <em>Project Id</em>}'.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference '<em>Project Id</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectId()
 	 * @see #getProjectSpace()
@@ -962,10 +867,8 @@ public interface ModelPackage extends EPackage {
 	EAttribute getProjectSpace_ProjectName();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectDescription <em>Project Description</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectDescription <em>Project Description</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Project Description</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#getProjectDescription()
 	 * @see #getProjectSpace()
@@ -974,11 +877,9 @@ public interface ModelPackage extends EPackage {
 	EAttribute getProjectSpace_ProjectDescription();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getEvents <em>Events</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getEvents <em>Events</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Events</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#getEvents()
 	 * @see #getProjectSpace()
@@ -1035,10 +936,8 @@ public interface ModelPackage extends EPackage {
 	EAttribute getProjectSpace_ResourceCount();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#isDirty
-	 * <em>Dirty</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#isDirty <em>Dirty</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Dirty</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#isDirty()
 	 * @see #getProjectSpace()
@@ -1095,11 +994,8 @@ public interface ModelPackage extends EPackage {
 	EReference getProjectSpace_EventComposite();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getNotificationComposite
-	 * <em>Notification Composite</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getNotificationComposite <em>Notification Composite</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference '<em>Notification Composite</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#getNotificationComposite()
 	 * @see #getProjectSpace()
@@ -1120,11 +1016,9 @@ public interface ModelPackage extends EPackage {
 	EReference getProjectSpace_WaitingUploads();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProperties <em>Properties</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getProperties <em>Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Properties</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#getProperties()
 	 * @see #getProjectSpace()
@@ -1133,12 +1027,9 @@ public interface ModelPackage extends EPackage {
 	EReference getProjectSpace_Properties();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getChangedSharedProperties
-	 * <em>Changed Shared Properties</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.emfstore.client.model.ProjectSpace#getChangedSharedProperties <em>Changed Shared Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Changed Shared Properties</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.ProjectSpace#getChangedSharedProperties()
 	 * @see #getProjectSpace()
@@ -1147,10 +1038,8 @@ public interface ModelPackage extends EPackage {
 	EReference getProjectSpace_ChangedSharedProperties();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.emfstore.client.model.OperationComposite
-	 * <em>Operation Composite</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.emf.emfstore.client.model.OperationComposite <em>Operation Composite</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Operation Composite</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.OperationComposite
 	 * @generated
@@ -1170,10 +1059,8 @@ public interface ModelPackage extends EPackage {
 	EReference getOperationComposite_Operations();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.emfstore.client.model.PendingFileTransfer
-	 * <em>Pending File Transfer</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.emf.emfstore.client.model.PendingFileTransfer <em>Pending File Transfer</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Pending File Transfer</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.PendingFileTransfer
 	 * @generated
@@ -1217,11 +1104,9 @@ public interface ModelPackage extends EPackage {
 	EAttribute getPendingFileTransfer_ChunkNumber();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.eclipse.emf.emfstore.client.model.PendingFileTransfer#isUpload <em>Upload</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.emfstore.client.model.PendingFileTransfer#isUpload <em>Upload</em>}'.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Upload</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.PendingFileTransfer#isUpload()
 	 * @see #getPendingFileTransfer()
@@ -1242,11 +1127,8 @@ public interface ModelPackage extends EPackage {
 	EAttribute getPendingFileTransfer_FileName();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.eclipse.emf.emfstore.client.model.PendingFileTransfer#getPreliminaryFileName
-	 * <em>Preliminary File Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.emfstore.client.model.PendingFileTransfer#getPreliminaryFileName <em>Preliminary File Name</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Preliminary File Name</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.PendingFileTransfer#getPreliminaryFileName()
 	 * @see #getPendingFileTransfer()
@@ -1255,10 +1137,8 @@ public interface ModelPackage extends EPackage {
 	EAttribute getPendingFileTransfer_PreliminaryFileName();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.emfstore.client.model.EventComposite
-	 * <em>Event Composite</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.emf.emfstore.client.model.EventComposite <em>Event Composite</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Event Composite</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.EventComposite
 	 * @generated
@@ -1266,11 +1146,9 @@ public interface ModelPackage extends EPackage {
 	EClass getEventComposite();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.emf.emfstore.client.model.EventComposite#getEvents <em>Events</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.emfstore.client.model.EventComposite#getEvents <em>Events</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Events</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.EventComposite#getEvents()
 	 * @see #getEventComposite()
@@ -1279,10 +1157,8 @@ public interface ModelPackage extends EPackage {
 	EReference getEventComposite_Events();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.emfstore.client.model.NotificationComposite
-	 * <em>Notification Composite</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.emf.emfstore.client.model.NotificationComposite <em>Notification Composite</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Notification Composite</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.NotificationComposite
 	 * @generated
@@ -1290,10 +1166,8 @@ public interface ModelPackage extends EPackage {
 	EClass getNotificationComposite();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.emf.emfstore.client.model.NotificationComposite#getNotifications <em>Notifications</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.emfstore.client.model.NotificationComposite#getNotifications <em>Notifications</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Notifications</em>'.
 	 * @see org.eclipse.emf.emfstore.client.model.NotificationComposite#getNotifications()
 	 * @see #getNotificationComposite()
@@ -1304,7 +1178,6 @@ public interface ModelPackage extends EPackage {
 	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -1319,15 +1192,12 @@ public interface ModelPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl
-		 * <em>Workspace</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl <em>Workspace</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.emf.emfstore.client.model.impl.WorkspaceImpl
 		 * @see org.eclipse.emf.emfstore.client.model.impl.ModelPackageImpl#getWorkspace()
 		 * @generated
@@ -1362,16 +1232,13 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Active Project Space</b></em>' reference feature.
 		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference WORKSPACE__ACTIVE_PROJECT_SPACE = eINSTANCE.getWorkspace_ActiveProjectSpace();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.emfstore.client.model.impl.ServerInfoImpl
-		 * <em>Server Info</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.emf.emfstore.client.model.impl.ServerInfoImpl <em>Server Info</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.emf.emfstore.client.model.impl.ServerInfoImpl
 		 * @see org.eclipse.emf.emfstore.client.model.impl.ModelPackageImpl#getServerInfo()
 		 * @generated
@@ -1382,7 +1249,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute SERVER_INFO__NAME = eINSTANCE.getServerInfo_Name();
@@ -1391,7 +1257,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Url</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute SERVER_INFO__URL = eINSTANCE.getServerInfo_Url();
@@ -1400,7 +1265,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Port</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute SERVER_INFO__PORT = eINSTANCE.getServerInfo_Port();
@@ -1417,7 +1281,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Last Usersession</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference SERVER_INFO__LAST_USERSESSION = eINSTANCE.getServerInfo_LastUsersession();
@@ -1426,16 +1289,13 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Certificate Alias</b></em>' attribute feature.
 		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute SERVER_INFO__CERTIFICATE_ALIAS = eINSTANCE.getServerInfo_CertificateAlias();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.emfstore.client.model.impl.UsersessionImpl
-		 * <em>Usersession</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.emf.emfstore.client.model.impl.UsersessionImpl <em>Usersession</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.emf.emfstore.client.model.impl.UsersessionImpl
 		 * @see org.eclipse.emf.emfstore.client.model.impl.ModelPackageImpl#getUsersession()
 		 * @generated
@@ -1446,7 +1306,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Username</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute USERSESSION__USERNAME = eINSTANCE.getUsersession_Username();
@@ -1455,7 +1314,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute USERSESSION__PASSWORD = eINSTANCE.getUsersession_Password();
@@ -1464,7 +1322,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Session Id</b></em>' reference feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference USERSESSION__SESSION_ID = eINSTANCE.getUsersession_SessionId();
@@ -1473,7 +1330,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Persistent Password</b></em>' attribute feature.
 		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute USERSESSION__PERSISTENT_PASSWORD = eINSTANCE.getUsersession_PersistentPassword();
@@ -1482,7 +1338,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Server Info</b></em>' reference feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference USERSESSION__SERVER_INFO = eINSTANCE.getUsersession_ServerInfo();
@@ -1491,7 +1346,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Save Password</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute USERSESSION__SAVE_PASSWORD = eINSTANCE.getUsersession_SavePassword();
@@ -1500,7 +1354,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>AC User</b></em>' containment reference feature.
 		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference USERSESSION__AC_USER = eINSTANCE.getUsersession_ACUser();
@@ -1514,10 +1367,8 @@ public interface ModelPackage extends EPackage {
 		EReference USERSESSION__CHANGED_PROPERTIES = eINSTANCE.getUsersession_ChangedProperties();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl
-		 * <em>Project Space</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl <em>Project Space</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl
 		 * @see org.eclipse.emf.emfstore.client.model.impl.ModelPackageImpl#getProjectSpace()
 		 * @generated
@@ -1528,7 +1379,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Project</b></em>' containment reference feature.
 		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference PROJECT_SPACE__PROJECT = eINSTANCE.getProjectSpace_Project();
@@ -1545,7 +1395,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Project Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PROJECT_SPACE__PROJECT_NAME = eINSTANCE.getProjectSpace_ProjectName();
@@ -1554,7 +1403,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Project Description</b></em>' attribute feature.
 		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PROJECT_SPACE__PROJECT_DESCRIPTION = eINSTANCE.getProjectSpace_ProjectDescription();
@@ -1571,7 +1419,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Usersession</b></em>' reference feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference PROJECT_SPACE__USERSESSION = eINSTANCE.getProjectSpace_Usersession();
@@ -1580,7 +1427,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Last Updated</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PROJECT_SPACE__LAST_UPDATED = eINSTANCE.getProjectSpace_LastUpdated();
@@ -1597,7 +1443,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Resource Count</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PROJECT_SPACE__RESOURCE_COUNT = eINSTANCE.getProjectSpace_ResourceCount();
@@ -1606,7 +1451,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Dirty</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PROJECT_SPACE__DIRTY = eINSTANCE.getProjectSpace_Dirty();
@@ -1663,26 +1507,21 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference PROJECT_SPACE__PROPERTIES = eINSTANCE.getProjectSpace_Properties();
 
 		/**
-		 * The meta object literal for the '<em><b>Changed Shared Properties</b></em>' containment reference list
-		 * feature.
+		 * The meta object literal for the '<em><b>Changed Shared Properties</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference PROJECT_SPACE__CHANGED_SHARED_PROPERTIES = eINSTANCE.getProjectSpace_ChangedSharedProperties();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.emfstore.client.model.impl.OperationCompositeImpl
-		 * <em>Operation Composite</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.emf.emfstore.client.model.impl.OperationCompositeImpl <em>Operation Composite</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.emf.emfstore.client.model.impl.OperationCompositeImpl
 		 * @see org.eclipse.emf.emfstore.client.model.impl.ModelPackageImpl#getOperationComposite()
 		 * @generated
@@ -1698,10 +1537,8 @@ public interface ModelPackage extends EPackage {
 		EReference OPERATION_COMPOSITE__OPERATIONS = eINSTANCE.getOperationComposite_Operations();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.emfstore.client.model.impl.PendingFileTransferImpl
-		 * <em>Pending File Transfer</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.emf.emfstore.client.model.impl.PendingFileTransferImpl <em>Pending File Transfer</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.emf.emfstore.client.model.impl.PendingFileTransferImpl
 		 * @see org.eclipse.emf.emfstore.client.model.impl.ModelPackageImpl#getPendingFileTransfer()
 		 * @generated
@@ -1720,7 +1557,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>File Version</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PENDING_FILE_TRANSFER__FILE_VERSION = eINSTANCE.getPendingFileTransfer_FileVersion();
@@ -1729,7 +1565,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Chunk Number</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PENDING_FILE_TRANSFER__CHUNK_NUMBER = eINSTANCE.getPendingFileTransfer_ChunkNumber();
@@ -1738,7 +1573,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Upload</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PENDING_FILE_TRANSFER__UPLOAD = eINSTANCE.getPendingFileTransfer_Upload();
@@ -1747,7 +1581,6 @@ public interface ModelPackage extends EPackage {
 		 * The meta object literal for the '<em><b>File Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PENDING_FILE_TRANSFER__FILE_NAME = eINSTANCE.getPendingFileTransfer_FileName();
@@ -1762,10 +1595,8 @@ public interface ModelPackage extends EPackage {
 			.getPendingFileTransfer_PreliminaryFileName();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.emfstore.client.model.impl.EventCompositeImpl
-		 * <em>Event Composite</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.emf.emfstore.client.model.impl.EventCompositeImpl <em>Event Composite</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.emf.emfstore.client.model.impl.EventCompositeImpl
 		 * @see org.eclipse.emf.emfstore.client.model.impl.ModelPackageImpl#getEventComposite()
 		 * @generated
@@ -1781,10 +1612,8 @@ public interface ModelPackage extends EPackage {
 		EReference EVENT_COMPOSITE__EVENTS = eINSTANCE.getEventComposite_Events();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.emfstore.client.model.impl.NotificationCompositeImpl
-		 * <em>Notification Composite</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.emf.emfstore.client.model.impl.NotificationCompositeImpl <em>Notification Composite</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.emf.emfstore.client.model.impl.NotificationCompositeImpl
 		 * @see org.eclipse.emf.emfstore.client.model.impl.ModelPackageImpl#getNotificationComposite()
 		 * @generated

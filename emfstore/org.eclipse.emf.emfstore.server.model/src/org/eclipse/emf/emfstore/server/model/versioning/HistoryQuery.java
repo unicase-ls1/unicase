@@ -16,18 +16,17 @@ import org.eclipse.emf.emfstore.common.model.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>History Query</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.HistoryQuery#getSource <em>Source</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.HistoryQuery#getTarget <em>Target</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.HistoryQuery#getModelElements <em>Model Elements</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.versioning.HistoryQuery#isIncludeChangePackage <em>Include Change
- * Package</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.HistoryQuery#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.HistoryQuery#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.HistoryQuery#getModelElements <em>Model Elements</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.versioning.HistoryQuery#isIncludeChangePackage <em>Include Change Package</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage#getHistoryQuery()
  * @model
  * @generated
@@ -41,7 +40,6 @@ public interface HistoryQuery extends EObject {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Source</em>' containment reference.
 	 * @see #setSource(PrimaryVersionSpec)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage#getHistoryQuery_Source()
@@ -51,10 +49,8 @@ public interface HistoryQuery extends EObject {
 	PrimaryVersionSpec getSource();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.HistoryQuery#getSource
-	 * <em>Source</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.HistoryQuery#getSource <em>Source</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Source</em>' containment reference.
 	 * @see #getSource()
 	 * @generated
@@ -69,7 +65,6 @@ public interface HistoryQuery extends EObject {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Target</em>' containment reference.
 	 * @see #setTarget(PrimaryVersionSpec)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage#getHistoryQuery_Target()
@@ -79,10 +74,8 @@ public interface HistoryQuery extends EObject {
 	PrimaryVersionSpec getTarget();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.HistoryQuery#getTarget
-	 * <em>Target</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.HistoryQuery#getTarget <em>Target</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Target</em>' containment reference.
 	 * @see #getTarget()
 	 * @generated
@@ -98,7 +91,6 @@ public interface HistoryQuery extends EObject {
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Model Elements</em>' containment reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage#getHistoryQuery_ModelElements()
 	 * @model containment="true" resolveProxies="true"
@@ -114,7 +106,6 @@ public interface HistoryQuery extends EObject {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Include Change Package</em>' attribute.
 	 * @see #setIncludeChangePackage(boolean)
 	 * @see org.eclipse.emf.emfstore.server.model.versioning.VersioningPackage#getHistoryQuery_IncludeChangePackage()
@@ -124,11 +115,8 @@ public interface HistoryQuery extends EObject {
 	boolean isIncludeChangePackage();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.emf.emfstore.server.model.versioning.HistoryQuery#isIncludeChangePackage
-	 * <em>Include Change Package</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.versioning.HistoryQuery#isIncludeChangePackage <em>Include Change Package</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Include Change Package</em>' attribute.
 	 * @see #isIncludeChangePackage()
 	 * @generated

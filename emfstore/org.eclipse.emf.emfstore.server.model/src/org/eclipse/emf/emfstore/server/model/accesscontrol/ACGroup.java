@@ -14,14 +14,14 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>AC Group</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.accesscontrol.ACGroup#getMembers <em>Members</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.accesscontrol.ACGroup#getMembers <em>Members</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolPackage#getACGroup()
  * @model
  * @generated
@@ -36,7 +36,6 @@ public interface ACGroup extends ACOrgUnit {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Members</em>' reference list.
 	 * @see org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolPackage#getACGroup_Members()
 	 * @model keys="identifier"

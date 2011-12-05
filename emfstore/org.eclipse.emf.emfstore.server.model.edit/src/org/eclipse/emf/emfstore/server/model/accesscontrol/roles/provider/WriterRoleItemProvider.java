@@ -23,10 +23,8 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.accesscontrol.roles.WriterRole}
- * object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.server.model.accesscontrol.roles.WriterRole} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class WriterRoleItemProvider extends RoleItemProvider implements IEditingDomainItemProvider,
@@ -34,7 +32,6 @@ public class WriterRoleItemProvider extends RoleItemProvider implements IEditing
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WriterRoleItemProvider(AdapterFactory adapterFactory) {
@@ -44,7 +41,6 @@ public class WriterRoleItemProvider extends RoleItemProvider implements IEditing
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,7 +55,6 @@ public class WriterRoleItemProvider extends RoleItemProvider implements IEditing
 	/**
 	 * This returns WriterRole.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -70,7 +65,6 @@ public class WriterRoleItemProvider extends RoleItemProvider implements IEditing
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -95,7 +89,6 @@ public class WriterRoleItemProvider extends RoleItemProvider implements IEditing
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

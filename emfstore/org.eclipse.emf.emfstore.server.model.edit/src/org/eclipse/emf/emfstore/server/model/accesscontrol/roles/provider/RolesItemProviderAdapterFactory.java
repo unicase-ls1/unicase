@@ -43,7 +43,6 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
@@ -52,7 +51,6 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -68,7 +66,6 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	/**
 	 * This constructs an instance.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RolesItemProviderAdapterFactory() {
@@ -80,11 +77,9 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.accesscontrol.roles.ReaderRole} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.accesscontrol.roles.ReaderRole} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ReaderRoleItemProvider readerRoleItemProvider;
@@ -105,11 +100,9 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.accesscontrol.roles.WriterRole} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.accesscontrol.roles.WriterRole} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected WriterRoleItemProvider writerRoleItemProvider;
@@ -130,11 +123,9 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.accesscontrol.roles.ProjectAdminRole} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.accesscontrol.roles.ProjectAdminRole} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ProjectAdminRoleItemProvider projectAdminRoleItemProvider;
@@ -156,11 +147,9 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.eclipse.emf.emfstore.server.model.accesscontrol.roles.ServerAdmin} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.emfstore.server.model.accesscontrol.roles.ServerAdmin} instances.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ServerAdminItemProvider serverAdminItemProvider;
@@ -183,7 +172,6 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -193,7 +181,6 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	/**
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -202,7 +189,6 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -214,7 +200,6 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	 * This implementation substitutes the factory itself as the key for the adapter.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -224,14 +209,13 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -242,7 +226,6 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	/**
 	 * This adds a listener.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -252,7 +235,6 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	/**
 	 * This removes a listener.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -263,7 +245,6 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
@@ -275,20 +256,15 @@ public class RolesItemProviderAdapterFactory extends RolesAdapterFactory impleme
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory.
+	 * This disposes all of the item providers created by this factory. 
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void dispose() {
-		if (readerRoleItemProvider != null)
-			readerRoleItemProvider.dispose();
-		if (writerRoleItemProvider != null)
-			writerRoleItemProvider.dispose();
-		if (projectAdminRoleItemProvider != null)
-			projectAdminRoleItemProvider.dispose();
-		if (serverAdminItemProvider != null)
-			serverAdminItemProvider.dispose();
+		if (readerRoleItemProvider != null) readerRoleItemProvider.dispose();
+		if (writerRoleItemProvider != null) writerRoleItemProvider.dispose();
+		if (projectAdminRoleItemProvider != null) projectAdminRoleItemProvider.dispose();
+		if (serverAdminItemProvider != null) serverAdminItemProvider.dispose();
 	}
 
 }

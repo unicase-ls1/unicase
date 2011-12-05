@@ -27,7 +27,6 @@ import org.eclipse.emf.emfstore.common.model.ModelElementId;
  * This is the item provider adapter for a {@link org.eclipse.emf.emfstore.common.model.ModelElementId} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ModelElementIdItemProvider extends UniqueIdentifierItemProvider implements IEditingDomainItemProvider,
@@ -35,7 +34,6 @@ public class ModelElementIdItemProvider extends UniqueIdentifierItemProvider imp
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementIdItemProvider(AdapterFactory adapterFactory) {
@@ -45,7 +43,6 @@ public class ModelElementIdItemProvider extends UniqueIdentifierItemProvider imp
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,7 +57,6 @@ public class ModelElementIdItemProvider extends UniqueIdentifierItemProvider imp
 	/**
 	 * This returns ModelElementId.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -71,7 +67,6 @@ public class ModelElementIdItemProvider extends UniqueIdentifierItemProvider imp
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,7 +93,6 @@ public class ModelElementIdItemProvider extends UniqueIdentifierItemProvider imp
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

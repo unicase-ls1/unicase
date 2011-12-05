@@ -15,17 +15,17 @@ import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Project Info</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.emfstore.server.model.ProjectInfo#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.ProjectInfo#getDescription <em>Description</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.ProjectInfo#getProjectId <em>Project Id</em>}</li>
- * <li>{@link org.eclipse.emf.emfstore.server.model.ProjectInfo#getVersion <em>Version</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.ProjectInfo#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.ProjectInfo#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.ProjectInfo#getProjectId <em>Project Id</em>}</li>
+ *   <li>{@link org.eclipse.emf.emfstore.server.model.ProjectInfo#getVersion <em>Version</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getProjectInfo()
  * @model
  * @generated
@@ -38,7 +38,6 @@ public interface ProjectInfo extends EObject {
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getProjectInfo_Name()
@@ -66,7 +65,6 @@ public interface ProjectInfo extends EObject {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
 	 * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getProjectInfo_Description()
@@ -76,10 +74,8 @@ public interface ProjectInfo extends EObject {
 	String getDescription();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.ProjectInfo#getDescription
-	 * <em>Description</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.ProjectInfo#getDescription <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Description</em>' attribute.
 	 * @see #getDescription()
 	 * @generated
@@ -94,7 +90,6 @@ public interface ProjectInfo extends EObject {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Project Id</em>' containment reference.
 	 * @see #setProjectId(ProjectId)
 	 * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getProjectInfo_ProjectId()
@@ -104,10 +99,8 @@ public interface ProjectInfo extends EObject {
 	ProjectId getProjectId();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.ProjectInfo#getProjectId <em>Project Id</em>}
-	 * ' containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.ProjectInfo#getProjectId <em>Project Id</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Project Id</em>' containment reference.
 	 * @see #getProjectId()
 	 * @generated
@@ -122,7 +115,6 @@ public interface ProjectInfo extends EObject {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Version</em>' containment reference.
 	 * @see #setVersion(PrimaryVersionSpec)
 	 * @see org.eclipse.emf.emfstore.server.model.ModelPackage#getProjectInfo_Version()
@@ -132,10 +124,8 @@ public interface ProjectInfo extends EObject {
 	PrimaryVersionSpec getVersion();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.ProjectInfo#getVersion <em>Version</em>}'
-	 * containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.emfstore.server.model.ProjectInfo#getVersion <em>Version</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Version</em>' containment reference.
 	 * @see #getVersion()
 	 * @generated
