@@ -19,7 +19,7 @@ import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.Workspace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.util.NoCurrentUserException;
+import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
 import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ControlContribution;
@@ -459,7 +459,6 @@ public class TaskView extends ViewPart implements org.eclipse.emf.emfstore.commo
 	 * @param project the project
 	 * @param modelElement the model element
 	 */
-	@Override
 	public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
 		if (modelElement instanceof Checkable) {
 			viewer.refresh();
@@ -474,7 +473,6 @@ public class TaskView extends ViewPart implements org.eclipse.emf.emfstore.commo
 	 * @param project the project
 	 * @param modelElement the model element
 	 */
-	@Override
 	public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
 		if (modelElement instanceof Checkable) {
 			viewer.refresh();
@@ -491,7 +489,6 @@ public class TaskView extends ViewPart implements org.eclipse.emf.emfstore.commo
 	 * @param project the project
 	 * @param modelElement the model element
 	 */
-	@Override
 	public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
 		if (modelElement instanceof Checkable) {
 			viewer.refresh();
@@ -633,7 +630,6 @@ public class TaskView extends ViewPart implements org.eclipse.emf.emfstore.commo
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
 	 */
-	@Override
 	public void projectDeleted(IdEObjectCollection project) {
 		viewer.refresh();
 

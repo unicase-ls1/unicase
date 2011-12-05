@@ -28,7 +28,7 @@ import org.eclipse.emf.emfstore.client.model.preferences.PreferenceManager;
 import org.eclipse.emf.emfstore.client.model.preferences.PropertyKey;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommandWithResult;
-import org.eclipse.emf.emfstore.client.ui.dialogs.LoginDialog;
+import org.eclipse.emf.emfstore.client.ui.dialogs.login.LoginDialog;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
@@ -552,7 +552,7 @@ public class DashboardPropertyPage extends PropertyPage {
 						"You are currently not logged in! Do you wish to log in and thereby transmit your properties?");
 					if (yes) {
 						LoginDialog loginDialog = new LoginDialog(Display.getCurrent().getActiveShell(),
-							projectSpace.getUsersession(), projectSpace.getUsersession().getServerInfo());
+							projectSpace.getUsersession());
 						loginDialog.open();
 					}
 				}
