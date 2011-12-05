@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: EMFStore Model Edit  (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.emfstore.server.model.edit;singleton:=true
-Bundle-Version: 0.8.9.M905
+Bundle-Version: 0.8.9.M906
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.emf.emfstore.server.model.provider.ServerEditPlugin$Implementation
 Bundle-Vendor: Eclipse Modeling Project
