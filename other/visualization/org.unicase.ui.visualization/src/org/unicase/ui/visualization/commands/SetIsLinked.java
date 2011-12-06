@@ -19,7 +19,7 @@ import org.unicase.ui.visualization.views.VisualizationView;
  */
 public class SetIsLinked extends AbstractHandler implements IElementUpdater {
 
-	private boolean isLinked;
+	private boolean isLinked = true;
 	
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -31,5 +31,4 @@ public class SetIsLinked extends AbstractHandler implements IElementUpdater {
 	public void updateElement(UIElement element, @SuppressWarnings("rawtypes") Map parameters) {
 		element.setChecked(isLinked);
 	}
-
 }

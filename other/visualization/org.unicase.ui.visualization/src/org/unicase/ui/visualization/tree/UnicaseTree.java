@@ -91,9 +91,9 @@ public class UnicaseTree {
 	public void setColoring(Coloring coloring) {
 		this.coloring = coloring;
 		if(coloring == Coloring.VERSION){
-			this.changedElements = VisualizationUtil.getChangedElements(VisualizationUtil.getProjectSpace(root.getObject()), 1);
+			this.changedElements = VisualizationUtil.getChangedElements(VisualizationUtil.getProjectSpace(root.getObject()), false);
 		} else if(coloring == Coloring.TWO_VERSIONS){
-			this.changedElements = VisualizationUtil.getChangedElements(VisualizationUtil.getProjectSpace(root.getObject()), 2);
+			this.changedElements = VisualizationUtil.getChangedElements(VisualizationUtil.getProjectSpace(root.getObject()), true);
 		}
 	}
 

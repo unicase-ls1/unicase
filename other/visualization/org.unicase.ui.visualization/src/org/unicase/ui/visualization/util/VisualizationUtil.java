@@ -27,6 +27,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.WorkbenchPart;
@@ -110,10 +111,10 @@ public class VisualizationUtil {
 	 * @param versions The count of versions to ask for. Reasonable values are 1 or 2.
 	 * @return The changed elements.
 	 */
-	public static List<EObject> getChangedElements(ProjectSpace projectSpace, int versions){
+	public static List<EObject> getChangedElements(ProjectSpace projectSpace, boolean twoVersions){
 		List<HistoryInfo> infos = new ArrayList<HistoryInfo>();		
-		for(int i = 0; i < versions; i++){
-			HistoryInfo info = showVersionHistory(projectSpace);
+		for(int i = 1; i <= (twoVersions ? 2 : 1); i++){
+			HistoryInfo info = showVersionHistory(projectSpace, twoVersions ? "Please choose version " + i + " of two versions." : "");
 			if(info == null) return Collections.emptyList();
 			selectedHistoryInfo = null;
 			infos.add(info);
@@ -130,9 +131,10 @@ public class VisualizationUtil {
 	 * Shows the Historyversion, to select one {@link HistoryInfo}.
 	 * 
 	 * @param projectSpace The {@link ProjectSpace} where to search in.
+	 * @param string 
 	 * @return The selected {@link HistoryInfo} or <code>null</code> if cancel is pressed or nothing is selected.
 	 */
-	private static HistoryInfo showVersionHistory(final ProjectSpace projectSpace){
+	private static HistoryInfo showVersionHistory(final ProjectSpace projectSpace, final String msg){
 		
 		Dialog dialog = new Dialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell()) {
 		    @Override
@@ -143,6 +145,7 @@ public class VisualizationUtil {
 		    	Button reload = new Button(composite, SWT.PUSH);
 		    	reload.setText("Reload History");
 		    	reload.setToolTipText("Clears the cache and reloads History");
+		    	new Label(composite, SWT.NONE).setText(msg);
 		    	
 		    	ScrolledComposite sc = new ScrolledComposite(composite, SWT.H_SCROLL | SWT.V_SCROLL);
 		    	sc.setLayoutData(new GridData(500,400)); 
