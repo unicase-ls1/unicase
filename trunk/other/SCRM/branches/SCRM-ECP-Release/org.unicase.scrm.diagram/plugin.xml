@@ -1,0 +1,1492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
+      <?gmfgen generated="true"?>
+      <fileTypes type="text" extension="scrm_diagram"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser" id="resource-factory">
+      <?gmfgen generated="true"?>
+      <parser
+         type="scrm_diagram"
+         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
+      </parser>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors" id="gmf-editor">
+      <?gmfgen generated="true"?>
+      <editor
+         id="scrm.diagram.part.ScrmDiagramEditorID"
+         name="%editorName"
+         icon="icons/obj16/ScrmDiagramFile.gif"
+         extensions="scrm_diagram"
+         default="true"
+         class="scrm.diagram.part.ScrmDiagramEditor"
+         matchingStrategy="scrm.diagram.part.ScrmMatchingStrategy"
+         contributorClass="scrm.diagram.part.ScrmDiagramActionBarContributor">
+      </editor>
+   </extension>
+   
+   <extension point="org.eclipse.ui.contexts" id="ui-context">
+      <?gmfgen generated="true"?>
+      <context
+         description="%context.description"
+         id="scrm.diagram.ui.diagramContext"
+         name="%context.name"
+         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
+      <?gmfgen generated="true"?>
+  	  <wizard
+  	     name="%newWizardName"
+  	     icon="icons/obj16/ScrmDiagramFile.gif"
+  	     category="org.eclipse.ui.Examples"
+  	     class="scrm.diagram.part.ScrmCreationWizard"
+  	     id="scrm.diagram.part.ScrmCreationWizardID">
+  	  	 <description>%newWizardDesc</description>  
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.popupMenus" id="init-diagram-action">
+      <?gmfgen generated="true"?>
+      <objectContribution
+            id="org.unicase.scrm.diagram.InitDiagram"
+            nameFilter="*.scrm"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               label="%initDiagramActionLabel"
+               class="scrm.diagram.part.ScrmInitDiagramFileAction"
+               menubarPath="additions"
+               enablesFor="1"
+               id="org.unicase.scrm.diagram.InitDiagramAction">
+         </action>
+      </objectContribution>
+   </extension>
+	
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
+      <?gmfgen generated="true"?>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
+         id="ScrmPresentation">
+         <Priority name="Lowest"/>
+         <ViewId id="scrm.diagram.part.ScrmDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="delete"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
+               <GlobalActionId actionId="save"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
+         id="ScrmPresentationIDE">
+         <Priority name="Lowest"/>
+         <ViewId id="scrm.diagram.part.ScrmDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="bookmark"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+            class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
+            id="ScrmRender">
+         <Priority name="Lowest"/>
+         <ViewId id="scrm.diagram.part.ScrmDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="cut"/>
+               <GlobalActionId actionId="copy"/>
+               <GlobalActionId actionId="paste"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+   </extension>
+
+
+   <extension point="org.eclipse.core.runtime.preferences" id="prefs">
+      <?gmfgen generated="true"?>
+      <initializer class="scrm.diagram.preferences.DiagramPreferenceInitializer"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.preferencePages" id="prefpages">
+      <?gmfgen generated="true"?>
+      <page
+            id="org.unicase.scrm.diagram.general"
+            name="%prefpage.org.unicase.scrm.diagram.general"
+            class="scrm.diagram.preferences.DiagramGeneralPreferencePage">
+      </page>
+      <page
+            id="org.unicase.scrm.diagram.appearance"
+            name="%prefpage.org.unicase.scrm.diagram.appearance"
+            category="org.unicase.scrm.diagram.general"
+            class="scrm.diagram.preferences.DiagramAppearancePreferencePage">
+      </page>
+      <page
+            id="org.unicase.scrm.diagram.connections"
+            name="%prefpage.org.unicase.scrm.diagram.connections"
+            category="org.unicase.scrm.diagram.general"
+            class="scrm.diagram.preferences.DiagramConnectionsPreferencePage">
+      </page>
+      <page
+            id="org.unicase.scrm.diagram.printing"
+            name="%prefpage.org.unicase.scrm.diagram.printing"
+            category="org.unicase.scrm.diagram.general"
+            class="scrm.diagram.preferences.DiagramPrintingPreferencePage">
+      </page>
+      <page
+            id="org.unicase.scrm.diagram.rulersAndGrid"
+            name="%prefpage.org.unicase.scrm.diagram.rulersAndGrid"
+            category="org.unicase.scrm.diagram.general"
+            class="scrm.diagram.preferences.DiagramRulersAndGridPreferencePage">
+      </page>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">
+      <?gmfgen generated="true"?>
+      <propertyContributor
+            contributorId="org.unicase.scrm.diagram"
+            labelProvider="scrm.diagram.sheet.ScrmSheetLabelProvider">
+         <propertyCategory category="domain"/>
+         <propertyCategory category="visual"/>
+         <propertyCategory category="extra"/>
+      </propertyContributor>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs" id="proptabs">
+      <?gmfgen generated="true"?>   
+      <propertyTabs contributorId="org.unicase.scrm.diagram">
+         <propertyTab
+             category="visual"
+             id="property.tab.AppearancePropertySection"
+             label="%tab.appearance"/>
+          <propertyTab
+             category="visual"
+             id="property.tab.DiagramPropertySection"
+             label="%tab.diagram"/>
+          <propertyTab
+             category="domain"
+             id="property.tab.domain"
+             label="%tab.domain"/>
+      </propertyTabs>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertySections" id="propsections">
+      <?gmfgen generated="true"?>   
+      <propertySections contributorId="org.unicase.scrm.diagram">
+         <propertySection id="property.section.ConnectorAppearancePropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ConnectionEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ConnectionAppearancePropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>
+         <propertySection id="property.section.ShapeColorAndFontPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ShapeColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection> 
+         <propertySection id="property.section.DiagramColorsAndFontsPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.DiagramColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>     
+         <propertySection id="property.section.RulerGridPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.grid.RulerGridPropertySection" 
+            tab="property.tab.DiagramPropertySection">
+         </propertySection>     
+         <propertySection
+            id="property.section.domain" 
+            tab="property.tab.domain"
+            class="scrm.diagram.sheet.ScrmPropertySection">
+            <input type="org.eclipse.gmf.runtime.notation.View"/>
+            <input type="org.eclipse.gef.EditPart"/>
+            <input type="scrm.diagram.navigator.ScrmAbstractNavigatorItem"/>
+         </propertySection>
+      </propertySections>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
+      <?gmfgen generated="true"?>
+      <viewProvider class="scrm.diagram.providers.ScrmViewProvider">
+         <Priority name="Lowest"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Scrm"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007,2005,2006,2008,2009,2010,2011,2012,2013,2035,2015,2016,2017,2036,2037,2038,2039,2040,2034,2044,2045,2046,3001,3002,3003,3004,3005,3006,3007,3008,3009,3010,3011,3012,3013,3014,3015,3016,3017,3018,3019,3020,3021,3022"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4048,4057,4008,4058,4011,4012,4015,4050,4059,4023,4024,4051,4026,4052,4053,4030,4032,4054,4060,4056,4047,4061,4062"/>
+      </viewProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
+      <?gmfgen generated="true"?>
+      <editpartProvider class="scrm.diagram.providers.ScrmEditPartProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
+            <method name="getType()" value="Scrm"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
+            <method name="getType()" value="2007,2005,2006,2008,2009,2010,2011,2012,2013,2035,2015,2016,2017,2036,2037,2038,2039,2040,2034,2044,2045,2046,3001,3002,3003,3004,3005,3006,3007,3008,3009,3010,3011,3012,3013,3014,3015,3016,3017,3018,3019,3020,3021,3022"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
+            <method name="getType()" value="4048,4057,4008,4058,4011,4012,4015,4050,4059,4023,4024,4051,4026,4052,4053,4030,4032,4054,4060,4056,4047,4061,4062"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
+            <method name="getType()" value="5003,5019,5001,5020,5021,5022,5002,5023,5024,5025,5004,5026,5005,5027,5006,5028,5029,5030,5031,5007,5032,5008,5033,5009,5034,5035,5074,5075,5011,5037,5038,5012,5039,5013,5040,5041,5042,5043,5044,5076,5077,5078,5079,5080,5081,5082,5083,5084,5085,5072,5073,5086,5140,5142,5087,5088,5089,5090,5091,5092,5093,5094,5095,5096,5097,5098,5099,5100,5101,5102,5103,5104,5105,5106,5107,5108,5109,5110,5111,5112,5113,5114,5115,5116,5117,5118,5119,5120,5121,5122,5123,5124,5125,5126,5139,5143,5144,5145,5146,5147,5148,5149,5150,5151,5152,5153,5154,5155,5127,5128,5129,5130,5131,5132,5133,5134,5135,5136,5137,5138,5141"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
+            <method name="getType()" value="7001,7002,7003,7004,7007,7006,7005"/>
+         </object>
+         <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
+      </editpartProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
+      <?gmfgen generated="false"?>
+      <modelingAssistantProvider class="scrm.diagram.providers.ScrmModelingAssistantProvider">
+         <Priority name="Lowest"/>
+         <object class="scrm.diagram.edit.parts.SCRMDiagramEditPart" id="SCRMDiagram_1000"/>
+         <object class="scrm.diagram.edit.parts.ScientificProblemEditPart" id="ScientificProblem_2007"/>
+         <object class="scrm.diagram.edit.parts.MathematicalModelEditPart" id="MathematicalModel_2005"/>
+         <object class="scrm.diagram.edit.parts.NumericalMethodEditPart" id="NumericalMethod_2006"/>
+         <object class="scrm.diagram.edit.parts.AssumptionEditPart" id="Assumption_2008"/>
+         <object class="scrm.diagram.edit.parts.FeatureEditPart" id="Feature_2009"/>
+         <object class="scrm.diagram.edit.parts.HardwareEditPart" id="Hardware_2010"/>
+         <object class="scrm.diagram.edit.parts.ConstraintEditPart" id="Constraint_2011"/>
+         <object class="scrm.diagram.edit.parts.UserInterfaceEditPart" id="UserInterface_2012"/>
+         <object class="scrm.diagram.edit.parts.SoftwareInterfaceEditPart" id="SoftwareInterface_2013"/>
+         <object class="scrm.diagram.edit.parts.ProcessEditPart" id="Process_2035"/>
+         <object class="scrm.diagram.edit.parts.PerformanceEditPart" id="Performance_2015"/>
+         <object class="scrm.diagram.edit.parts.DataFlowEditPart" id="DataFlow_2016"/>
+         <object class="scrm.diagram.edit.parts.DataDefinitionEditPart" id="DataDefinition_2017"/>
+         <object class="scrm.diagram.edit.parts.InputDataReadingEditPart" id="InputDataReading_2036"/>
+         <object class="scrm.diagram.edit.parts.DataHandlingEditPart" id="DataHandling_2037"/>
+         <object class="scrm.diagram.edit.parts.ResultsOutputEditPart" id="ResultsOutput_2038"/>
+         <object class="scrm.diagram.edit.parts.ErrorHandlingEditPart" id="ErrorHandling_2039"/>
+         <object class="scrm.diagram.edit.parts.StatusMonitoringEditPart" id="StatusMonitoring_2040"/>
+         <object class="scrm.diagram.edit.parts.RequirementEditPart" id="Requirement_2034"/>
+         <object class="scrm.diagram.edit.parts.KnowledgeSpaceEditPart" id="KnowledgeSpace_2044"/>
+         <object class="scrm.diagram.edit.parts.RequirementSpaceEditPart" id="RequirementSpace_2045"/>
+         <object class="scrm.diagram.edit.parts.DataProcessSpaceEditPart" id="DataProcessSpace_2046"/>
+         <!-- Added support for compartment edit parts -->
+         <object class="scrm.diagram.edit.parts.ScientificProblem2EditPart" id="ScientificProblem_3001"/>
+         <object class="scrm.diagram.edit.parts.NumericalMethod2EditPart" id="NumericalMethod_3002"/>
+         <object class="scrm.diagram.edit.parts.MathematicalModel2EditPart" id="MathematicalModel_3003"/>
+         <object class="scrm.diagram.edit.parts.Assumption2EditPart" id="Assumption_3004"/>
+         <object class="scrm.diagram.edit.parts.KnowledgeSpace2EditPart" id="KnowledgeSpace_3005"/>
+         <object class="scrm.diagram.edit.parts.Constraint2EditPart" id="Constraint_3006"/>
+         <object class="scrm.diagram.edit.parts.DataDefinition2EditPart" id="DataDefinition_3007"/>
+         <object class="scrm.diagram.edit.parts.DataFlow2EditPart" id="DataFlow_3008"/>
+         <object class="scrm.diagram.edit.parts.Feature2EditPart" id="Feature_3009"/>
+         <object class="scrm.diagram.edit.parts.Hardware2EditPart" id="Hardware_3010"/>
+         <object class="scrm.diagram.edit.parts.Performance2EditPart" id="Performance_3011"/>
+         <object class="scrm.diagram.edit.parts.Requirement2EditPart" id="Requirement_3012"/>
+         <object class="scrm.diagram.edit.parts.SoftwareInterface2EditPart" id="SoftwareInterface_3013"/>
+         <object class="scrm.diagram.edit.parts.UserInterface2EditPart" id="UserInterface_3014"/>
+         <object class="scrm.diagram.edit.parts.RequirementSpace2EditPart" id="RequirementSpace_3015"/>
+         <object class="scrm.diagram.edit.parts.StatusMonitoring2EditPart" id="StatusMonitoring_3016"/>
+         <object class="scrm.diagram.edit.parts.ResultsOutput2EditPart" id="ResultsOutput_3017"/>
+         <object class="scrm.diagram.edit.parts.Process2EditPart" id="Process_3018"/>
+         <object class="scrm.diagram.edit.parts.InputDataReading2EditPart" id="InputDataReading_3019"/>
+         <object class="scrm.diagram.edit.parts.ErrorHandling2EditPart" id="ErrorHandling_3020"/>
+         <object class="scrm.diagram.edit.parts.DataHandling2EditPart" id="DataHandling_3021"/>
+         <object class="scrm.diagram.edit.parts.DataProcessSpace2EditPart" id="DataProcessSpace_3022"/>
+         <object class="scrm.diagram.edit.parts.KnowledgeSpaceKnowledgeSpaceCompartmentEditPart" id="KnowledgeSpaceKnowledgeSpaceCompartment_7001"/>
+         <object class="scrm.diagram.edit.parts.KnowledgeSpaceKnowledgeSpaceCompartment2EditPart" id="KnowledgeSpaceKnowledgeSpaceCompartment_7002"/>
+         <object class="scrm.diagram.edit.parts.RequirementSpaceRequirementSpaceCompartmentEditPart" id="RequirementSpaceRequirementSpaceCompartment_7003"/>
+         <object class="scrm.diagram.edit.parts.RequirementSpaceRequirementSpaceCompartment2EditPart" id="RequirementSpaceRequirementSpaceCompartment_7004"/>
+         <object class="scrm.diagram.edit.parts.DataProcessSpaceDataProcessSpaceCompartmentEditPart" id="DataProcessSpaceDataProcessSpaceCompartment_7005"/>
+         <object class="scrm.diagram.edit.parts.DataProcessSpaceDataProcessSpaceCompartment2EditPart" id="DataProcessSpaceDataProcessSpaceCompartment_7006"/>
+         <context elements="SCRMDiagram_1000,ScientificProblem_2007,MathematicalModel_2005,NumericalMethod_2006,Assumption_2008,Feature_2009,Hardware_2010,Constraint_2011,UserInterface_2012,SoftwareInterface_2013,Process_2035,Performance_2015,DataFlow_2016,DataDefinition_2017,InputDataReading_2036,DataHandling_2037,ResultsOutput_2038,ErrorHandling_2039,StatusMonitoring_2040,Requirement_2034,KnowledgeSpace_2044,RequirementSpace_2045,DataProcessSpace_2046,
+         ScientificProblem_3001,NumericalMethod_3002,MathematicalModel_3003,Assumption_3004,KnowledgeSpace_3005,Constraint_3006,DataDefinition_3007,DataFlow_3008,Feature_3009,Hardware_3010,Performance_3011,Requirement_3012,SoftwareInterface_3013,UserInterface_3014,RequirementSpace_3015,StatusMonitoring_3016,ResultsOutput_3017,Process_3018,InputDataReading_3019,ErrorHandling_3020,DataHandling_3021,DataProcessSpace_3022,
+         KnowledgeSpaceKnowledgeSpaceCompartment_7001,KnowledgeSpaceKnowledgeSpaceCompartment_7002,RequirementSpaceRequirementSpaceCompartment_7003,RequirementSpaceRequirementSpaceCompartment_7004,DataProcessSpaceDataProcessSpaceCompartment_7005,DataProcessSpaceDataProcessSpaceCompartment_7006"/>
+      </modelingAssistantProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
+      <?gmfgen generated="true"?>
+      <IconProvider class="scrm.diagram.providers.ScrmIconProvider">
+         <Priority name="Low"/>
+      </IconProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
+      <?gmfgen generated="true"?>
+      <metamodel nsURI="http://unicase.org/model/scrm">
+         <metamodelType
+               id="org.unicase.scrm.diagram.SCRMDiagram_1000"
+               name="%metatype.name.SCRMDiagram_1000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="SCRMDiagram"
+               edithelper="scrm.diagram.edit.helpers.SCRMDiagramEditHelper">
+            <param name="semanticHint" value="1000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
+         <metamodelType
+               id="org.unicase.scrm.diagram.ScientificProblem_2007"
+               name="%metatype.name.ScientificProblem_2007"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ScientificProblem"
+               edithelper="scrm.diagram.edit.helpers.ScientificProblemEditHelper">
+            <param name="semanticHint" value="2007"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
+         <metamodelType
+               id="org.unicase.scrm.diagram.MathematicalModel_2005"
+               name="%metatype.name.MathematicalModel_2005"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MathematicalModel"
+               edithelper="scrm.diagram.edit.helpers.MathematicalModelEditHelper">
+            <param name="semanticHint" value="2005"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
+         <metamodelType
+               id="org.unicase.scrm.diagram.NumericalMethod_2006"
+               name="%metatype.name.NumericalMethod_2006"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="NumericalMethod"
+               edithelper="scrm.diagram.edit.helpers.NumericalMethodEditHelper">
+            <param name="semanticHint" value="2006"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
+         <metamodelType
+               id="org.unicase.scrm.diagram.Assumption_2008"
+               name="%metatype.name.Assumption_2008"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Assumption"
+               edithelper="scrm.diagram.edit.helpers.AssumptionEditHelper">
+            <param name="semanticHint" value="2008"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <metamodelType
+               id="org.unicase.scrm.diagram.Feature_2009"
+               name="%metatype.name.Feature_2009"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Feature"
+               edithelper="scrm.diagram.edit.helpers.FeatureEditHelper">
+            <param name="semanticHint" value="2009"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <metamodelType
+               id="org.unicase.scrm.diagram.Hardware_2010"
+               name="%metatype.name.Hardware_2010"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Hardware"
+               edithelper="scrm.diagram.edit.helpers.HardwareEditHelper">
+            <param name="semanticHint" value="2010"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <metamodelType
+               id="org.unicase.scrm.diagram.Constraint_2011"
+               name="%metatype.name.Constraint_2011"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Constraint"
+               edithelper="scrm.diagram.edit.helpers.ConstraintEditHelper">
+            <param name="semanticHint" value="2011"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <metamodelType
+               id="org.unicase.scrm.diagram.UserInterface_2012"
+               name="%metatype.name.UserInterface_2012"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="UserInterface"
+               edithelper="scrm.diagram.edit.helpers.UserInterfaceEditHelper">
+            <param name="semanticHint" value="2012"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <metamodelType
+               id="org.unicase.scrm.diagram.SoftwareInterface_2013"
+               name="%metatype.name.SoftwareInterface_2013"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="SoftwareInterface"
+               edithelper="scrm.diagram.edit.helpers.SoftwareInterfaceEditHelper">
+            <param name="semanticHint" value="2013"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
+         <metamodelType
+               id="org.unicase.scrm.diagram.Process_2035"
+               name="%metatype.name.Process_2035"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Process"
+               edithelper="scrm.diagram.edit.helpers.ProcessEditHelper">
+            <param name="semanticHint" value="2035"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <metamodelType
+               id="org.unicase.scrm.diagram.Performance_2015"
+               name="%metatype.name.Performance_2015"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Performance"
+               edithelper="scrm.diagram.edit.helpers.PerformanceEditHelper">
+            <param name="semanticHint" value="2015"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <metamodelType
+               id="org.unicase.scrm.diagram.DataFlow_2016"
+               name="%metatype.name.DataFlow_2016"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DataFlow"
+               edithelper="scrm.diagram.edit.helpers.DataFlowEditHelper">
+            <param name="semanticHint" value="2016"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <metamodelType
+               id="org.unicase.scrm.diagram.DataDefinition_2017"
+               name="%metatype.name.DataDefinition_2017"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DataDefinition"
+               edithelper="scrm.diagram.edit.helpers.DataDefinitionEditHelper">
+            <param name="semanticHint" value="2017"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
+         <metamodelType
+               id="org.unicase.scrm.diagram.InputDataReading_2036"
+               name="%metatype.name.InputDataReading_2036"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="InputDataReading"
+               edithelper="scrm.diagram.edit.helpers.InputDataReadingEditHelper">
+            <param name="semanticHint" value="2036"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
+         <metamodelType
+               id="org.unicase.scrm.diagram.DataHandling_2037"
+               name="%metatype.name.DataHandling_2037"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DataHandling"
+               edithelper="scrm.diagram.edit.helpers.DataHandlingEditHelper">
+            <param name="semanticHint" value="2037"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
+         <metamodelType
+               id="org.unicase.scrm.diagram.ResultsOutput_2038"
+               name="%metatype.name.ResultsOutput_2038"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ResultsOutput"
+               edithelper="scrm.diagram.edit.helpers.ResultsOutputEditHelper">
+            <param name="semanticHint" value="2038"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
+         <metamodelType
+               id="org.unicase.scrm.diagram.ErrorHandling_2039"
+               name="%metatype.name.ErrorHandling_2039"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ErrorHandling"
+               edithelper="scrm.diagram.edit.helpers.ErrorHandlingEditHelper">
+            <param name="semanticHint" value="2039"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
+         <metamodelType
+               id="org.unicase.scrm.diagram.StatusMonitoring_2040"
+               name="%metatype.name.StatusMonitoring_2040"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="StatusMonitoring"
+               edithelper="scrm.diagram.edit.helpers.StatusMonitoringEditHelper">
+            <param name="semanticHint" value="2040"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <metamodelType
+               id="org.unicase.scrm.diagram.Requirement_2034"
+               name="%metatype.name.Requirement_2034"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Requirement"
+               edithelper="scrm.diagram.edit.helpers.RequirementEditHelper">
+            <param name="semanticHint" value="2034"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
+         <metamodelType
+               id="org.unicase.scrm.diagram.KnowledgeSpace_2044"
+               name="%metatype.name.KnowledgeSpace_2044"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="KnowledgeSpace"
+               edithelper="scrm.diagram.edit.helpers.KnowledgeSpaceEditHelper">
+            <param name="semanticHint" value="2044"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <metamodelType
+               id="org.unicase.scrm.diagram.RequirementSpace_2045"
+               name="%metatype.name.RequirementSpace_2045"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="RequirementSpace"
+               edithelper="scrm.diagram.edit.helpers.RequirementSpaceEditHelper">
+            <param name="semanticHint" value="2045"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
+         <metamodelType
+               id="org.unicase.scrm.diagram.DataProcessSpace_2046"
+               name="%metatype.name.DataProcessSpace_2046"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DataProcessSpace"
+               edithelper="scrm.diagram.edit.helpers.DataProcessSpaceEditHelper">
+            <param name="semanticHint" value="2046"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
+         <specializationType
+               id="org.unicase.scrm.diagram.ScientificProblem_3001"
+               name="%metatype.name.ScientificProblem_3001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.ScientificProblem_2007"/>
+            <param name="semanticHint" value="3001"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
+         <specializationType
+               id="org.unicase.scrm.diagram.NumericalMethod_3002"
+               name="%metatype.name.NumericalMethod_3002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.NumericalMethod_2006"/>
+            <param name="semanticHint" value="3002"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
+         <specializationType
+               id="org.unicase.scrm.diagram.MathematicalModel_3003"
+               name="%metatype.name.MathematicalModel_3003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.MathematicalModel_2005"/>
+            <param name="semanticHint" value="3003"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
+         <specializationType
+               id="org.unicase.scrm.diagram.Assumption_3004"
+               name="%metatype.name.Assumption_3004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.Assumption_2008"/>
+            <param name="semanticHint" value="3004"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
+         <specializationType
+               id="org.unicase.scrm.diagram.KnowledgeSpace_3005"
+               name="%metatype.name.KnowledgeSpace_3005"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.KnowledgeSpace_2044"/>
+            <param name="semanticHint" value="3005"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.Constraint_3006"
+               name="%metatype.name.Constraint_3006"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.Constraint_2011"/>
+            <param name="semanticHint" value="3006"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.DataDefinition_3007"
+               name="%metatype.name.DataDefinition_3007"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.DataDefinition_2017"/>
+            <param name="semanticHint" value="3007"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.DataFlow_3008"
+               name="%metatype.name.DataFlow_3008"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.DataFlow_2016"/>
+            <param name="semanticHint" value="3008"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.Feature_3009"
+               name="%metatype.name.Feature_3009"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.Feature_2009"/>
+            <param name="semanticHint" value="3009"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.Hardware_3010"
+               name="%metatype.name.Hardware_3010"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.Hardware_2010"/>
+            <param name="semanticHint" value="3010"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.Performance_3011"
+               name="%metatype.name.Performance_3011"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.Performance_2015"/>
+            <param name="semanticHint" value="3011"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.Requirement_3012"
+               name="%metatype.name.Requirement_3012"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.Requirement_2034"/>
+            <param name="semanticHint" value="3012"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.SoftwareInterface_3013"
+               name="%metatype.name.SoftwareInterface_3013"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.SoftwareInterface_2013"/>
+            <param name="semanticHint" value="3013"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.UserInterface_3014"
+               name="%metatype.name.UserInterface_3014"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.UserInterface_2012"/>
+            <param name="semanticHint" value="3014"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.RequirementSpace_3015"
+               name="%metatype.name.RequirementSpace_3015"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.RequirementSpace_2045"/>
+            <param name="semanticHint" value="3015"/>
+         </specializationType>
+      </metamodel>
+            <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
+         <specializationType
+               id="org.unicase.scrm.diagram.StatusMonitoring_3016"
+               name="%metatype.name.StatusMonitoring_3016"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.StatusMonitoring_2040"/>
+            <param name="semanticHint" value="3016"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
+         <specializationType
+               id="org.unicase.scrm.diagram.ResultsOutput_3017"
+               name="%metatype.name.ResultsOutput_3017"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.ResultsOutput_2038"/>
+            <param name="semanticHint" value="3017"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
+         <specializationType
+               id="org.unicase.scrm.diagram.Process_3018"
+               name="%metatype.name.Process_3018"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.Process_2035"/>
+            <param name="semanticHint" value="3018"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
+         <specializationType
+               id="org.unicase.scrm.diagram.InputDataReading_3019"
+               name="%metatype.name.InputDataReading_3019"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.InputDataReading_2036"/>
+            <param name="semanticHint" value="3019"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
+         <specializationType
+               id="org.unicase.scrm.diagram.ErrorHandling_3020"
+               name="%metatype.name.ErrorHandling_3020"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.ErrorHandling_2039"/>
+            <param name="semanticHint" value="3020"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
+         <specializationType
+               id="org.unicase.scrm.diagram.DataHandling_3021"
+               name="%metatype.name.DataHandling_3021"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.DataHandling_2037"/>
+            <param name="semanticHint" value="3021"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
+         <specializationType
+               id="org.unicase.scrm.diagram.DataProcessSpace_3022"
+               name="%metatype.name.DataProcessSpace_3022"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.scrm.diagram.DataProcessSpace_2046"/>
+            <param name="semanticHint" value="3022"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
+         <specializationType
+               id="org.unicase.scrm.diagram.MathematicalModelRepresentedProblem_4048"
+               name="%metatype.name.MathematicalModelRepresentedProblem_4048"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4048"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
+         <specializationType
+               id="org.unicase.scrm.diagram.NumericalMethodSolvedProblem_4057"
+               name="%metatype.name.NumericalMethodSolvedProblem_4057"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4057"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
+         <specializationType
+               id="org.unicase.scrm.diagram.ScientificProblemInfluencedFeature_4008"
+               name="%metatype.name.ScientificProblemInfluencedFeature_4008"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4008"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
+         <specializationType
+               id="org.unicase.scrm.diagram.MathematicalModelRefinedModel_4058"
+               name="%metatype.name.MathematicalModelRefinedModel_4058"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4058"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
+         <specializationType
+               id="org.unicase.scrm.diagram.MathematicalModelNumericalMethods_4011"
+               name="%metatype.name.MathematicalModelNumericalMethods_4011"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4011"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
+         <specializationType
+               id="org.unicase.scrm.diagram.MathematicalModelDependencies_4012"
+               name="%metatype.name.MathematicalModelDependencies_4012"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4012"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/knowledge">
+         <specializationType
+               id="org.unicase.scrm.diagram.NumericalMethodDependencies_4015"
+               name="%metatype.name.NumericalMethodDependencies_4015"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4015"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.RequirementRealizedMethod_4050"
+               name="%metatype.name.RequirementRealizedMethod_4050"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4050"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.PerformanceDescribedMethod_4059"
+               name="%metatype.name.PerformanceDescribedMethod_4059"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4059"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.FeatureRequiredInterfaces_4023"
+               name="%metatype.name.FeatureRequiredInterfaces_4023"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4023"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.FeatureProvidedInterfaces_4024"
+               name="%metatype.name.FeatureProvidedInterfaces_4024"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4024"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.ConstraintRestrictedFeature_4051"
+               name="%metatype.name.ConstraintRestrictedFeature_4051"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4051"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.FeatureDependencies_4026"
+               name="%metatype.name.FeatureDependencies_4026"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4026"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.RequirementSpecifiedFeature_4052"
+               name="%metatype.name.RequirementSpecifiedFeature_4052"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4052"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.FeatureSuperFeature_4053"
+               name="%metatype.name.FeatureSuperFeature_4053"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4053"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.FeatureRequiredFeatures_4030"
+               name="%metatype.name.FeatureRequiredFeatures_4030"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4030"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.FeatureExcludedFeatures_4032"
+               name="%metatype.name.FeatureExcludedFeatures_4032"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4032"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.RequirementRefinedRequirement_4054"
+               name="%metatype.name.RequirementRefinedRequirement_4054"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4054"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.RequirementDefiningData_4060"
+               name="%metatype.name.RequirementDefiningData_4060"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4060"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements">
+         <specializationType
+               id="org.unicase.scrm.diagram.DataFlowSpecifiedProcess_4056"
+               name="%metatype.name.DataFlowSpecifiedProcess_4056"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4056"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
+         <specializationType
+               id="org.unicase.scrm.diagram.ProcessSuccessor_4047"
+               name="%metatype.name.ProcessSuccessor_4047"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4047"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
+         <specializationType
+               id="org.unicase.scrm.diagram.ErrorHandlingHandledProcess_4061"
+               name="%metatype.name.ErrorHandlingHandledProcess_4061"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4061"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/scrm/requirements/dataProcess">
+         <specializationType
+               id="org.unicase.scrm.diagram.StatusMonitoringMonitoredProcess_4062"
+               name="%metatype.name.StatusMonitoringMonitoredProcess_4062"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4062"/>
+         </specializationType>
+      </metamodel>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+      <?gmfgen generated="true"?>
+      <clientContext id="org.unicase.scrm.diagram.TypeContext">
+         <enablement>
+            <test
+               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+               value="org.unicase.scrm.diagram.EditingDomain"/>
+         </enablement>
+      </clientContext> 
+      <binding context="org.unicase.scrm.diagram.TypeContext">
+         <elementType ref="org.unicase.scrm.diagram.SCRMDiagram_1000"/>
+         <elementType ref="org.unicase.scrm.diagram.ScientificProblem_2007"/>
+         <elementType ref="org.unicase.scrm.diagram.MathematicalModel_2005"/>
+         <elementType ref="org.unicase.scrm.diagram.NumericalMethod_2006"/>
+         <elementType ref="org.unicase.scrm.diagram.Assumption_2008"/>
+         <elementType ref="org.unicase.scrm.diagram.Feature_2009"/>
+         <elementType ref="org.unicase.scrm.diagram.Hardware_2010"/>
+         <elementType ref="org.unicase.scrm.diagram.Constraint_2011"/>
+         <elementType ref="org.unicase.scrm.diagram.UserInterface_2012"/>
+         <elementType ref="org.unicase.scrm.diagram.SoftwareInterface_2013"/>
+         <elementType ref="org.unicase.scrm.diagram.Process_2035"/>
+         <elementType ref="org.unicase.scrm.diagram.Performance_2015"/>
+         <elementType ref="org.unicase.scrm.diagram.DataFlow_2016"/>
+         <elementType ref="org.unicase.scrm.diagram.DataDefinition_2017"/>
+         <elementType ref="org.unicase.scrm.diagram.InputDataReading_2036"/>
+         <elementType ref="org.unicase.scrm.diagram.DataHandling_2037"/>
+         <elementType ref="org.unicase.scrm.diagram.ResultsOutput_2038"/>
+         <elementType ref="org.unicase.scrm.diagram.ErrorHandling_2039"/>
+         <elementType ref="org.unicase.scrm.diagram.StatusMonitoring_2040"/>
+         <elementType ref="org.unicase.scrm.diagram.Requirement_2034"/>
+         <elementType ref="org.unicase.scrm.diagram.KnowledgeSpace_2044"/>
+         <elementType ref="org.unicase.scrm.diagram.RequirementSpace_2045"/>
+         <elementType ref="org.unicase.scrm.diagram.DataProcessSpace_2046"/>
+         <elementType ref="org.unicase.scrm.diagram.ScientificProblem_3001"/>
+         <elementType ref="org.unicase.scrm.diagram.NumericalMethod_3002"/>
+         <elementType ref="org.unicase.scrm.diagram.MathematicalModel_3003"/>
+         <elementType ref="org.unicase.scrm.diagram.Assumption_3004"/>
+         <elementType ref="org.unicase.scrm.diagram.KnowledgeSpace_3005"/>
+         <elementType ref="org.unicase.scrm.diagram.Constraint_3006"/>
+         <elementType ref="org.unicase.scrm.diagram.DataDefinition_3007"/>
+         <elementType ref="org.unicase.scrm.diagram.DataFlow_3008"/>
+         <elementType ref="org.unicase.scrm.diagram.Feature_3009"/>
+         <elementType ref="org.unicase.scrm.diagram.Hardware_3010"/>
+         <elementType ref="org.unicase.scrm.diagram.Performance_3011"/>
+         <elementType ref="org.unicase.scrm.diagram.Requirement_3012"/>
+         <elementType ref="org.unicase.scrm.diagram.SoftwareInterface_3013"/>
+         <elementType ref="org.unicase.scrm.diagram.UserInterface_3014"/>
+         <elementType ref="org.unicase.scrm.diagram.RequirementSpace_3015"/>
+         <elementType ref="org.unicase.scrm.diagram.StatusMonitoring_3016"/>
+         <elementType ref="org.unicase.scrm.diagram.ResultsOutput_3017"/>
+         <elementType ref="org.unicase.scrm.diagram.Process_3018"/>
+         <elementType ref="org.unicase.scrm.diagram.InputDataReading_3019"/>
+         <elementType ref="org.unicase.scrm.diagram.ErrorHandling_3020"/>
+         <elementType ref="org.unicase.scrm.diagram.DataHandling_3021"/>
+         <elementType ref="org.unicase.scrm.diagram.DataProcessSpace_3022"/>
+         <elementType ref="org.unicase.scrm.diagram.MathematicalModelRepresentedProblem_4048"/>
+         <elementType ref="org.unicase.scrm.diagram.NumericalMethodSolvedProblem_4057"/>
+         <elementType ref="org.unicase.scrm.diagram.ScientificProblemInfluencedFeature_4008"/>
+         <elementType ref="org.unicase.scrm.diagram.MathematicalModelRefinedModel_4058"/>
+         <elementType ref="org.unicase.scrm.diagram.MathematicalModelNumericalMethods_4011"/>
+         <elementType ref="org.unicase.scrm.diagram.MathematicalModelDependencies_4012"/>
+         <elementType ref="org.unicase.scrm.diagram.NumericalMethodDependencies_4015"/>
+         <elementType ref="org.unicase.scrm.diagram.RequirementRealizedMethod_4050"/>
+         <elementType ref="org.unicase.scrm.diagram.PerformanceDescribedMethod_4059"/>
+         <elementType ref="org.unicase.scrm.diagram.FeatureRequiredInterfaces_4023"/>
+         <elementType ref="org.unicase.scrm.diagram.FeatureProvidedInterfaces_4024"/>
+         <elementType ref="org.unicase.scrm.diagram.ConstraintRestrictedFeature_4051"/>
+         <elementType ref="org.unicase.scrm.diagram.FeatureDependencies_4026"/>
+         <elementType ref="org.unicase.scrm.diagram.RequirementSpecifiedFeature_4052"/>
+         <elementType ref="org.unicase.scrm.diagram.FeatureSuperFeature_4053"/>
+         <elementType ref="org.unicase.scrm.diagram.FeatureRequiredFeatures_4030"/>
+         <elementType ref="org.unicase.scrm.diagram.FeatureExcludedFeatures_4032"/>
+         <elementType ref="org.unicase.scrm.diagram.RequirementRefinedRequirement_4054"/>
+         <elementType ref="org.unicase.scrm.diagram.RequirementDefiningData_4060"/>
+         <elementType ref="org.unicase.scrm.diagram.DataFlowSpecifiedProcess_4056"/>
+         <elementType ref="org.unicase.scrm.diagram.ProcessSuccessor_4047"/>
+         <elementType ref="org.unicase.scrm.diagram.ErrorHandlingHandledProcess_4061"/>
+         <elementType ref="org.unicase.scrm.diagram.StatusMonitoringMonitoredProcess_4062"/>
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
+   </extension>
+	   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isURIEditorInput">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="org.unicase.scrm.diagram.URIEditorInputPropertyTester"
+           type="org.eclipse.emf.common.ui.URIEditorInput"
+           namespace="org.unicase.scrm.diagram"
+           properties="isURIEditorInput"
+           class="scrm.diagram.part.ScrmUriEditorInputTester">
+       </propertyTester>
+   </extension>
+
+	   <extension point="org.eclipse.ui.navigator.viewer" id="navigator-viewbinding">
+      <?gmfgen generated="true"?>
+      <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <contentExtension pattern="org.unicase.scrm.diagram.resourceContent"/>
+			<contentExtension pattern="org.unicase.scrm.diagram.domainResourceContent"/>
+            <contentExtension pattern="org.unicase.scrm.diagram.navigatorLinkHelper"/>
+         </includes>
+      </viewerContentBinding>
+      <viewerActionBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <actionExtension pattern="org.unicase.scrm.diagram.navigatorActionProvider"/>
+         </includes>
+      </viewerActionBinding>
+   </extension>
+
+   <extension point="org.eclipse.ui.navigator.navigatorContent" id="navigator-content">
+      <?gmfgen generated="true"?>
+      <navigatorContent
+            id="org.unicase.scrm.diagram.resourceContent" 
+            name="%navigatorContentName" 
+            priority="normal" 
+            contentProvider="scrm.diagram.navigator.ScrmNavigatorContentProvider" 
+            labelProvider="scrm.diagram.navigator.ScrmNavigatorLabelProvider"
+            icon="icons/obj16/ScrmDiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="scrm_diagram"/>
+               </and>
+               <instanceof value="scrm.diagram.navigator.ScrmAbstractNavigatorItem"/>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <or>
+         	   <instanceof value="scrm.diagram.navigator.ScrmAbstractNavigatorItem"/>
+            </or>
+         </possibleChildren>
+         <commonSorter 
+               id="org.unicase.scrm.diagram.navigatorSorter" 
+               class="scrm.diagram.navigator.ScrmNavigatorSorter">
+            <parentExpression>
+               <or>
+	              <and>
+    	             <instanceof value="org.eclipse.core.resources.IFile"/>
+        	         <test property="org.eclipse.core.resources.extension" value="scrm_diagram"/>
+                  </and>
+                  <instanceof value="scrm.diagram.navigator.ScrmAbstractNavigatorItem"/>
+               </or>
+            </parentExpression>
+         </commonSorter>
+      </navigatorContent>
+      <navigatorContent
+            id="org.unicase.scrm.diagram.domainResourceContent" 
+            name="%domainNavigatorContentName" 
+            priority="normal" 
+            contentProvider="scrm.diagram.navigator.ScrmDomainNavigatorContentProvider" 
+            labelProvider="scrm.diagram.navigator.ScrmDomainNavigatorLabelProvider"
+            icon="icons/obj16/ScrmDiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="scrm"/>
+               </and>
+               <instanceof value="scrm.diagram.navigator.ScrmDomainNavigatorItem"/>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <instanceof value="scrm.diagram.navigator.ScrmDomainNavigatorItem"/>
+         </possibleChildren>
+      </navigatorContent>
+      <actionProvider
+            id="org.unicase.scrm.diagram.navigatorActionProvider"
+            class="scrm.diagram.navigator.ScrmNavigatorActionProvider">
+         <enablement>
+            <or>
+               <instanceof value="scrm.diagram.navigator.ScrmAbstractNavigatorItem"/>
+            </or>
+         </enablement>
+      </actionProvider>
+   </extension>
+   
+	   <extension point="org.eclipse.ui.navigator.linkHelper" id="navigator-linkhelper">
+      <?gmfgen generated="true"?>
+      <linkHelper
+            id="org.unicase.scrm.diagram.navigatorLinkHelper"
+            class="scrm.diagram.navigator.ScrmNavigatorLinkHelper">
+         <editorInputEnablement>
+            <and>
+               <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
+               <test property="org.unicase.scrm.diagram.isURIEditorInput"/>
+            </and>
+         </editorInputEnablement>
+         <selectionEnablement>
+            <instanceof value="scrm.diagram.navigator.ScrmAbstractNavigatorItem"/>
+         </selectionEnablement>
+      </linkHelper>
+   </extension>
+   <extension point="org.eclipse.ui.commands" id="update-cmd">
+      <?gmfgen generated="true"?>
+      <command
+         categoryId="org.eclipse.ui.category.edit"
+         defaultHandler="scrm.diagram.part.ScrmDiagramUpdateCommand"
+         description="%update.diagram.description"
+         id="scrm.diagram.updateDiagram"
+         name="%update.diagram.name"/>
+   </extension>
+   
+   <extension point="org.eclipse.ui.bindings" id="update-cmd-binding">
+      <?gmfgen generated="true"?>
+      <key 
+         commandId="scrm.diagram.updateDiagram"
+         contextId="scrm.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="F5"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.menus" id="context-menus">
+      <?gmfgen generated="true"?>
+      <!-- menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=">
+      </menuContribution>
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=">
+      </menuContribution -->
+      <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <command commandId="org.unicase.scrm.diagram.LoadResourceAction">
+            <visibleWhen>
+               <and>
+                  <with variable="activePartId"><equals value="scrm.diagram.part.ScrmDiagramEditorID"/></with>
+                  <with variable="selection"><iterate ifEmpty="false"> 
+                     <instanceof value="scrm.diagram.edit.parts.SCRMDiagramEditPart"/>
+                  </iterate></with>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+    
+    <!-- generated NOT: Template Menu Contributions --> 
+    <extension point="org.eclipse.ui.menus" id="context-menus">
+       <menuContribution
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <command
+               commandId="org.unicase.scrm.diagram.SaveTemplateCommand"
+               icon="icons/obj16/ScrmDiagramFile.gif"
+               label="Save Template"
+               style="push">
+            <visibleWhen>
+               <with
+                     variable="activePartId">
+                  <equals
+                        value="scrm.diagram.part.ScrmDiagramEditorID">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+         <command
+               commandId="org.unicase.scrm.diagram.LoadTemplateCommand"
+               icon="icons/obj16/ScrmDiagramFile.gif"
+               label="Load Template"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <count
+                        value="1">
+                  </count>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <instanceof
+                           value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
+                     </instanceof>
+                  </iterate>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+         <command
+               commandId="org.unicase.scrm.diagram.SaveTemplateCommand"
+               icon="icons/obj16/ScrmDiagramFile.gif"
+               label="Save Template"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <instanceof
+                           value="scrm.SCRMDiagram">
+                     </instanceof>
+                  </iterate>
+                  <count
+                        value="1">
+                  </count>
+               </and>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.scrm.diagram.OpenRepresentingDiagramCommand"
+               icon="icons/obj16/ScrmDiagramFile.gif"
+               label="Open Representing Diagram"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <count
+                        value="1">
+                  </count>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <instanceof
+                           value="scrm.SCRMSpace">
+                     </instanceof>
+                  </iterate>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <command
+               commandId="org.unicase.scrm.diagram.OpenRepresentingDiagramCommand"
+               icon="icons/obj16/ScrmDiagramFile.gif"
+               label="Open Representing Diagram"
+               style="push">
+           <visibleWhen>
+              <and>
+	              <iterate
+	                     ifEmpty="false"
+	                     operator="and">
+	                  <or>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.KnowledgeSpaceEditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.KnowledgeSpaceNameEditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.KnowledgeSpaceKnowledgeSpaceCompartmentEditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.KnowledgeSpaceKnowledgeSpaceCompartment2EditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.KnowledgeSpaceName2EditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.KnowledgeSpace2EditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.RequirementSpaceEditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.RequirementSpaceNameEditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.RequirementSpaceRequirementSpaceCompartmentEditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.RequirementSpaceRequirementSpaceCompartment2EditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.RequirementSpaceName2EditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.RequirementSpace2EditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.DataProcessSpaceEditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.DataProcessSpaceNameEditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.DataProcessSpaceDataProcessSpaceCompartmentEditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.DataProcessSpace2EditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.DataProcessSpaceName2EditPart">
+	                     </instanceof>
+	                     <instanceof
+	                           value="scrm.diagram.edit.parts.DataProcessSpaceDataProcessSpaceCompartment2EditPart">
+	                     </instanceof>
+	                  </or>
+	               </iterate>
+               <count
+                     value="1">
+               </count>
+              </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+   <extension point="org.eclipse.ui.commands" id="menu-commands">
+      <?gmfgen generated="true"?>
+      <category id="scrm.diagram.part.ScrmDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
+      <command id="org.unicase.scrm.diagram.LoadResourceAction"
+         name="Load Resource"
+         categoryId="scrm.diagram.part.ScrmDiagramEditorID"
+         defaultHandler="scrm.diagram.part.LoadResourceAction"/>
+   </extension>
+    
+    <!-- generated NOT: Template Commands -->
+    <extension point="org.eclipse.ui.commands" id="menu-commands">
+      <command
+            defaultHandler="scrm.diagram.handlers.SaveTemplateHandler"
+            id="org.unicase.scrm.diagram.SaveTemplateCommand"
+            name="Save Template">
+      </command>
+      <command
+            defaultHandler="scrm.diagram.handlers.LoadTemplateHandler"
+            id="org.unicase.scrm.diagram.LoadTemplateCommand"
+            name="Load Template">
+      </command>
+      <command
+            defaultHandler="scrm.diagram.handlers.OpenRepresentingDiagramHandler"
+            id="org.unicase.scrm.diagram.OpenRepresentingDiagramCommand"
+            name="Open Representing Diagram">
+      </command>
+   </extension>
+
+   <extension point="org.eclipse.ui.handlers" id="menu-handlers">
+      <?gmfgen generated="true"?>
+   </extension>
+<extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
+      <?gmfgen generated="true"?>
+      <ParserProvider class="scrm.diagram.providers.ScrmParserProvider">
+         <Priority name="Lowest"/>
+      </ParserProvider>
+   </extension>
+<extension
+      point="org.eclipse.emf.ecore.content_parser">
+   <parser
+         class="scrm.diagram.common.SCRMDiagramResource"
+         contentTypeIdentifier="SCRMDiagram">
+   </parser>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+   <contributionItemProvider
+         checkPluginLoaded="false"
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider">
+      <Priority
+            name="High">
+      </Priority>
+      <popupContribution
+            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+         <popupStructuredContributionCriteria
+               objectClass="org.eclipse.gmf.runtime.diagram.ui.internal.editparts.IContainedEditPart">
+            <method
+                  name="getNotationView().getElement()"
+                  notValue="null">
+            </method>
+         </popupStructuredContributionCriteria>
+         <popupPredefinedItem
+               id="deleteFromModelAction"
+               remove="true">
+         </popupPredefinedItem>
+      </popupContribution>
+   </contributionItemProvider>
+</extension>
+<extension
+      point="org.eclipse.emf.ecp.common.modelelementopener">
+   <ModelElementOpener
+         class="scrm.diagram.opener.SCRMDiagramOpener"
+         name="SCRMDiagramOpener">
+   </ModelElementOpener>
+</extension>
+
+<!-- <extension
+      point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+   <contributionItemProvider
+         checkPluginLoaded="false"
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider">
+      <Priority
+            name="Highest">
+      </Priority>
+      <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+					<popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart"/>
+				<popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+    <popupPredefinedItem
+          id="deleteFromModelAction"
+          remove="true">
+    </popupPredefinedItem>
+    <popupPredefinedItem
+          id="showPropertiesViewAction"
+          remove="true">
+    </popupPredefinedItem>
+    <popupPredefinedItem
+          id="properties"
+          remove="true">
+    </popupPredefinedItem>
+			</popupContribution>
+    <popupContribution
+          class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+       <popupStructuredContributionCriteria
+             objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart">
+       </popupStructuredContributionCriteria>
+       <popupPredefinedItem
+             id="showPropertiesViewAction"
+             remove="true">
+       </popupPredefinedItem>
+       <popupPredefinedItem
+             id="properties"
+             remove="true">
+       </popupPredefinedItem>
+       <popupPredefinedItem
+             id="deleteFromDiagramAction"
+             remove="true">
+       </popupPredefinedItem>
+    </popupContribution>
+    <popupContribution
+          class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+       <popupStructuredContributionCriteria
+             objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart">
+       </popupStructuredContributionCriteria>
+       <popupPredefinedItem
+             id="showPropertiesViewAction"
+             remove="true">
+       </popupPredefinedItem>
+       <popupPredefinedItem
+             id="properties"
+             remove="true">
+       </popupPredefinedItem>
+       <popupPredefinedItem
+             id="deleteFromDiagramAction"
+             remove="true">
+       </popupPredefinedItem>
+    </popupContribution>
+		</contributionItemProvider>
+</extension> -->
+
+
+   <!-- optionally, specify keybindings -->
+</plugin>
