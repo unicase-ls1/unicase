@@ -1023,18 +1023,18 @@ public class RequirementsPackageImpl extends EPackageImpl implements
 				!IS_DERIVED, IS_ORDERED);
 
 		// Create annotations
-		// org.unicase.ui.meeditor
+		// org.eclipse.emf.ecp.editor
 		createOrgAnnotations();
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
+	 * Initializes the annotations for <b>org.eclipse.emf.ecp.editor</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {
-		String source = "org.unicase.ui.meeditor";
+		String source = "org.eclipse.emf.ecp.editor";
 		addAnnotation(getIRequirement_ContainingRequirementSpace(), source,
 				new String[] { "position", "left", "priority", "10" });
 		addAnnotation(getInterface_ProvidingFeature(), source, new String[] {

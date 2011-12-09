@@ -38,7 +38,7 @@ public interface Assumption extends ScientificKnowledge {
 	 * @see scrm.knowledge.KnowledgePackage#getAssumption_DependingModel()
 	 * @see scrm.knowledge.MathematicalModel#getDependencies
 	 * @model opposite="dependencies"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='left' priority='15'"
 	 * @generated
 	 */
 	MathematicalModel getDependingModel();
@@ -67,7 +67,7 @@ public interface Assumption extends ScientificKnowledge {
 	 * @see scrm.knowledge.KnowledgePackage#getAssumption_DependingMethod()
 	 * @see scrm.knowledge.NumericalMethod#getDependencies
 	 * @model opposite="dependencies"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='20'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='left' priority='20'"
 	 * @generated
 	 */
 	NumericalMethod getDependingMethod();

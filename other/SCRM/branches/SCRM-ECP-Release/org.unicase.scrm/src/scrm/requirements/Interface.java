@@ -40,7 +40,7 @@ public interface Interface extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getInterface_ProvidingFeature()
 	 * @see scrm.requirements.Feature#getProvidedInterfaces
 	 * @model opposite="providedInterfaces" transient="false"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='left' priority='15'"
 	 * @generated
 	 */
 	Feature getProvidingFeature();
@@ -69,7 +69,7 @@ public interface Interface extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getInterface_RequiringFeatures()
 	 * @see scrm.requirements.Feature#getRequiredInterfaces
 	 * @model opposite="requiredInterfaces"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='10'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='right' priority='10'"
 	 * @generated
 	 */
 	EList<Feature> getRequiringFeatures();

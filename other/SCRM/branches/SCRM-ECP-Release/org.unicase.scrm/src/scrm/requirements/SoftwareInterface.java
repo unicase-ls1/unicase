@@ -34,7 +34,7 @@ public interface SoftwareInterface extends Interface {
 	 * @return the value of the '<em>Data Types</em>' attribute.
 	 * @see #setDataTypes(String)
 	 * @see scrm.requirements.RequirementsPackage#getSoftwareInterface_DataTypes()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='5'"
+	 * @model annotation="org.eclipse.emf.ecp.editor position='left' priority='5'"
 	 * @generated
 	 */
 	String getDataTypes();
