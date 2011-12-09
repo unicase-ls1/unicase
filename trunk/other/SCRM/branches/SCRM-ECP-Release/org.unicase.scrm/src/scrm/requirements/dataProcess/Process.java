@@ -45,7 +45,7 @@ public interface Process extends Requirement {
 	 * @see scrm.requirements.dataProcess.DataProcessPackage#getProcess_DataFlow()
 	 * @see scrm.requirements.DataFlow#getSpecifiedProcess
 	 * @model opposite="specifiedProcess"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='left' priority='15'"
 	 * @generated
 	 */
 	DataFlow getDataFlow();
@@ -74,7 +74,7 @@ public interface Process extends Requirement {
 	 * @see scrm.requirements.dataProcess.DataProcessPackage#getProcess_Predecessor()
 	 * @see scrm.requirements.dataProcess.Process#getSuccessor
 	 * @model opposite="successor"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='left' priority='15'"
 	 * @generated
 	 */
 	Process getPredecessor();
@@ -103,7 +103,7 @@ public interface Process extends Requirement {
 	 * @see scrm.requirements.dataProcess.DataProcessPackage#getProcess_Successor()
 	 * @see scrm.requirements.dataProcess.Process#getPredecessor
 	 * @model opposite="predecessor"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='20'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='left' priority='20'"
 	 * @generated
 	 */
 	Process getSuccessor();
@@ -132,7 +132,7 @@ public interface Process extends Requirement {
 	 * @see scrm.requirements.dataProcess.DataProcessPackage#getProcess_ContainingDataProcessSpace()
 	 * @see scrm.requirements.dataProcess.DataProcessSpace#getContainedDataProcessSteps
 	 * @model opposite="containedDataProcessSteps" transient="false"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='10'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='left' priority='10'"
 	 * @generated
 	 */
 	DataProcessSpace getContainingDataProcessSpace();

@@ -37,7 +37,7 @@ public interface Performance extends Requirement {
 	 * @return the value of the '<em>Problem Size</em>' attribute.
 	 * @see #setProblemSize(String)
 	 * @see scrm.requirements.RequirementsPackage#getPerformance_ProblemSize()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='5'"
+	 * @model annotation="org.eclipse.emf.ecp.editor position='left' priority='5'"
 	 * @generated
 	 */
 	String getProblemSize();

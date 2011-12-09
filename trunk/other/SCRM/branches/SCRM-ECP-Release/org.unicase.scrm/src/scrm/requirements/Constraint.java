@@ -37,7 +37,7 @@ public interface Constraint extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getConstraint_RestrictedFeature()
 	 * @see scrm.requirements.Feature#getConstraints
 	 * @model opposite="constraints"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='left' priority='15'"
 	 * @generated
 	 */
 	Feature getRestrictedFeature();

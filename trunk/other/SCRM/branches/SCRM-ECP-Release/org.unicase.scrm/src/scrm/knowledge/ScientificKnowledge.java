@@ -39,7 +39,7 @@ public interface ScientificKnowledge extends SCRMModelElement {
 	 * @see scrm.knowledge.KnowledgePackage#getScientificKnowledge_ContainingKnowledgeSpace()
 	 * @see scrm.knowledge.KnowledgeSpace#getContainedScientificKnowledge
 	 * @model opposite="containedScientificKnowledge" transient="false"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='10'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='left' priority='10'"
 	 * @generated
 	 */
 	KnowledgeSpace getContainingKnowledgeSpace();

@@ -109,7 +109,12 @@ public class OpenSCRMSpaceEditPolicy extends OpenEditPolicy {
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		private void addToParent(SCRMDiagram scrmDiagram) {
 			EObject container = representedSpace.eContainer();
-			EStructuralFeature containingFeature = representedSpace.eContainingFeature();
+			EObject containee = representedSpace;
+			while(container instanceof SCRMModelElement) {
+				containee = container;
+				container = container.eContainer();
+			}
+			EStructuralFeature containingFeature = containee.eContainingFeature();
 			List containedObjects = (List) container.eGet(containingFeature);
 			containedObjects.add(scrmDiagram);
 		}

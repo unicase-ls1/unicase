@@ -45,7 +45,7 @@ public interface Requirement extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getRequirement_Refinements()
 	 * @see scrm.requirements.Requirement#getRefinedRequirement
 	 * @model opposite="refinedRequirement" containment="true" resolveProxies="true"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='5'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='right' priority='5'"
 	 * @generated
 	 */
 	EList<Requirement> getRefinements();
@@ -64,7 +64,7 @@ public interface Requirement extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getRequirement_RefinedRequirement()
 	 * @see scrm.requirements.Requirement#getRefinements
 	 * @model opposite="refinements" transient="false"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='left' priority='15'"
 	 * @generated
 	 */
 	Requirement getRefinedRequirement();
@@ -93,7 +93,7 @@ public interface Requirement extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getRequirement_SpecifiedFeature()
 	 * @see scrm.requirements.Feature#getDetailedRequirements
 	 * @model opposite="detailedRequirements" transient="false"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='20'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='left' priority='20'"
 	 * @generated
 	 */
 	Feature getSpecifiedFeature();
@@ -122,7 +122,7 @@ public interface Requirement extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getRequirement_DefiningData()
 	 * @see scrm.requirements.DataDefinition#getDefinedRequirement
 	 * @model opposite="definedRequirement"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='10'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='right' priority='10'"
 	 * @generated
 	 */
 	EList<DataDefinition> getDefiningData();
@@ -141,7 +141,7 @@ public interface Requirement extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getRequirement_RealizedMethod()
 	 * @see scrm.knowledge.NumericalMethod#getRealizingRequirement
 	 * @model opposite="realizingRequirement"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='25'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='left' priority='25'"
 	 * @generated
 	 */
 	NumericalMethod getRealizedMethod();

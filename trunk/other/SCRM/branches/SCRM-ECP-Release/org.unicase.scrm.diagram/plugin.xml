@@ -1202,7 +1202,7 @@
          </command>
       </menuContribution>
       <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+            locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=additions">
          <command
                commandId="org.unicase.scrm.diagram.LoadTemplateCommand"
                icon="icons/obj16/ScrmDiagramFile.gif"
@@ -1226,7 +1226,7 @@
          </command>
       </menuContribution>
       <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+            locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=additions">
          <command
                commandId="org.unicase.scrm.diagram.SaveTemplateCommand"
                icon="icons/obj16/ScrmDiagramFile.gif"
@@ -1422,6 +1422,12 @@
          class="scrm.diagram.opener.SCRMDiagramOpener"
          name="SCRMDiagramOpener">
    </ModelElementOpener>
+</extension>
+<extension
+      point="org.eclipse.emf.emfstore.client.editingDomainProvider">
+   <provider
+         class="scrm.diagram.transaction.TransactionalEditingDomainProvider">
+   </provider>
 </extension>
 
 <!-- <extension

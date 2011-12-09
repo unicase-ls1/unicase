@@ -52,7 +52,7 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_Constraints()
 	 * @see scrm.requirements.Constraint#getRestrictedFeature
 	 * @model opposite="restrictedFeature"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='10'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='right' priority='10'"
 	 * @generated
 	 */
 	EList<Constraint> getConstraints();
@@ -71,7 +71,7 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_Dependencies()
 	 * @see scrm.requirements.Hardware#getDependingFeature
 	 * @model opposite="dependingFeature"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='15'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='right' priority='15'"
 	 * @generated
 	 */
 	EList<Hardware> getDependencies();
@@ -90,7 +90,7 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_RequiredInterfaces()
 	 * @see scrm.requirements.Interface#getRequiringFeatures
 	 * @model opposite="requiringFeatures"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='20'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='right' priority='20'"
 	 * @generated
 	 */
 	EList<Interface> getRequiredInterfaces();
@@ -109,7 +109,7 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_ProvidedInterfaces()
 	 * @see scrm.requirements.Interface#getProvidingFeature
 	 * @model opposite="providingFeature" containment="true" resolveProxies="true"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='25'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='right' priority='25'"
 	 * @generated
 	 */
 	EList<Interface> getProvidedInterfaces();
@@ -128,7 +128,7 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_DetailedRequirements()
 	 * @see scrm.requirements.Requirement#getSpecifiedFeature
 	 * @model opposite="specifiedFeature" containment="true" resolveProxies="true"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='5'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='right' priority='5'"
 	 * @generated
 	 */
 	EList<Requirement> getDetailedRequirements();
@@ -147,7 +147,7 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_InfluencingProblem()
 	 * @see scrm.knowledge.ScientificProblem#getInfluencedFeature
 	 * @model opposite="influencedFeature"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='25'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='left' priority='25'"
 	 * @generated
 	 */
 	ScientificProblem getInfluencingProblem();
@@ -176,7 +176,7 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_SubFeatures()
 	 * @see scrm.requirements.Feature#getSuperFeature
 	 * @model opposite="superFeature" containment="true" resolveProxies="true"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='7'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='right' priority='7'"
 	 * @generated
 	 */
 	EList<Feature> getSubFeatures();
@@ -195,7 +195,7 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_SuperFeature()
 	 * @see scrm.requirements.Feature#getSubFeatures
 	 * @model opposite="subFeatures" transient="false"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='left' priority='15'"
 	 * @generated
 	 */
 	Feature getSuperFeature();
@@ -224,7 +224,7 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_RequiredFeatures()
 	 * @see scrm.requirements.Feature#getRequiringFeatures
 	 * @model opposite="requiringFeatures"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='30'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='right' priority='30'"
 	 * @generated
 	 */
 	EList<Feature> getRequiredFeatures();
@@ -243,7 +243,7 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_RequiringFeatures()
 	 * @see scrm.requirements.Feature#getRequiredFeatures
 	 * @model opposite="requiredFeatures"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='35'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='right' priority='35'"
 	 * @generated
 	 */
 	EList<Feature> getRequiringFeatures();
@@ -262,7 +262,7 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_ExcludedFeatures()
 	 * @see scrm.requirements.Feature#getExcludingFeatures
 	 * @model opposite="excludingFeatures"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='40'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='right' priority='40'"
 	 * @generated
 	 */
 	EList<Feature> getExcludedFeatures();
@@ -281,7 +281,7 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_ExcludingFeatures()
 	 * @see scrm.requirements.Feature#getExcludedFeatures
 	 * @model opposite="excludedFeatures"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='45'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='right' priority='45'"
 	 * @generated
 	 */
 	EList<Feature> getExcludingFeatures();

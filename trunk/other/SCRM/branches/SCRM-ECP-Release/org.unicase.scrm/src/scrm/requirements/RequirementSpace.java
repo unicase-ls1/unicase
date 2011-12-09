@@ -41,7 +41,7 @@ public interface RequirementSpace extends SCRMSpace, IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getRequirementSpace_ContainedInformationofRequirements()
 	 * @see scrm.requirements.IRequirement#getContainingRequirementSpace
 	 * @model opposite="containingRequirementSpace" containment="true" resolveProxies="true"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='10'"
+	 *        annotation="org.eclipse.emf.ecp.editor position='right' priority='10'"
 	 * @generated NOT: changed type parameter
 	 */
 	SCRMSpaceContainedModelElementsList<SCRMModelElement> getContainedInformationofRequirements();
