@@ -10,7 +10,9 @@ import java.util.List;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -27,6 +29,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -40,6 +43,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.meeditor.MEEditorInput;
 import org.unicase.ui.navigator.TreeView;
@@ -102,7 +106,80 @@ public class VisualizationUtil {
 		EObject container = obj.eContainer();
 		return container instanceof ProjectSpace ? (ProjectSpace) container : getProjectSpace(container);
 	}	
-
+	
+	/**
+	 * Returns a copy of the given {@link ProjectSpace} reverted to the given {@link VersionSpec}. 
+	 * The Project needs to be on the head version.
+	 * 
+	 * @param projectSpace The current {@link ProjectSpace}.
+	 * @param versionSpec The {@link VersionSpec} to revert to.
+	 * @return A copy of the reverted {@link ProjectSpace}.
+	 */
+	public static ProjectSpace getRevertedProjectSpace(ProjectSpace projectSpace, VersionSpec versionSpec){
+		return getRevertedProjectSpace(projectSpace, getChanges(projectSpace, versionSpec));
+	}
+	
+	/**
+	 * Returns a copy of the given {@link ProjectSpace} reverted with all given {@link ChangePackage}s.
+	 * The Project needs to be on the head version.
+	 * 
+	 * @param projectSpace The current {@link ProjectSpace}.
+	 * @param changePackages The {@link ChangePackage}s to apply reverted.
+	 * @return A copy of the reverted {@link ProjectSpace}.
+	 */
+	public static ProjectSpace getRevertedProjectSpace(ProjectSpace projectSpace, List<ChangePackage> changePackages){
+		// check for head update
+		try {
+			if(!projectSpace.getBaseVersion().equals(projectSpace.resolveVersionSpec(VersionSpec.HEAD_VERSION))){
+				MessageDialog.openWarning(Display.getCurrent().getActiveShell(), "Wrong version", "Please update the project first to the Head version!");
+				return projectSpace;
+			}
+		} catch (EmfStoreException e) {
+			e.printStackTrace();
+		}
+		
+		// apply changes in new ProjectSpace
+		ProjectSpace ps = EcoreUtil.copy(projectSpace);					
+		Project project = ps.getProject();
+		for(ChangePackage changePackage : changePackages){
+			changePackage.reverse().apply(project);
+		}
+		return ps;
+	}
+	
+	/**
+	 * Returns all changes from the Head version to the given {@link VersionSpec}. 
+	 * 
+	 * @param projectSpace The {@link ProjectSpace} to search in.
+	 * @param versionSpec The {@link VersionSpec} to compare with the head version.
+	 * @return A list of {@link ChangePackage}s with the changes. 
+	 */
+	public static List<ChangePackage> getChanges(ProjectSpace projectSpace, VersionSpec versionSpec){		
+		try {
+			return projectSpace.getChanges(versionSpec, VersionSpec.HEAD_VERSION);
+		} catch (EmfStoreException e) {
+			e.printStackTrace();
+		}
+		return Collections.emptyList();
+	}
+	
+	/**
+	 * Asks the user to select one or two versions.
+	 * 
+	 * @param projectSpace The {@link ProjectSpace} to search in.
+	 * @param twoVersions Should the user asked for one or for two versions?
+	 * @return The selected {@link HistoryInfo}s.
+	 */
+	public static List<HistoryInfo> getVersionsFromUser(ProjectSpace projectSpace, boolean twoVersions){
+		List<HistoryInfo> infos = new ArrayList<HistoryInfo>();		
+		for(int i = 1; i <= (twoVersions ? 2 : 1); i++){
+			HistoryInfo info = showVersionHistory(projectSpace, twoVersions ? "Please choose version " + i + " of two versions." : "");
+			if(info == null) return Collections.emptyList();
+			selectedHistoryInfo = null;
+			infos.add(info);			
+		}
+		return infos;
+	}
 	
 	/**
 	 * Receive the changed elements of a version in a {@link ProjectSpace}. Asks the user to set the version.
@@ -111,15 +188,8 @@ public class VisualizationUtil {
 	 * @param versions The count of versions to ask for. Reasonable values are 1 or 2.
 	 * @return The changed elements.
 	 */
-	public static List<EObject> getChangedElements(ProjectSpace projectSpace, boolean twoVersions){
-		List<HistoryInfo> infos = new ArrayList<HistoryInfo>();		
-		for(int i = 1; i <= (twoVersions ? 2 : 1); i++){
-			HistoryInfo info = showVersionHistory(projectSpace, twoVersions ? "Please choose version " + i + " of two versions." : "");
-			if(info == null) return Collections.emptyList();
-			selectedHistoryInfo = null;
-			infos.add(info);
-		}		
-		return getChangedElements(projectSpace, infos);	
+	public static List<EObject> getChangedElements(ProjectSpace projectSpace, boolean twoVersions){			
+		return getChangedElements(projectSpace, getVersionsFromUser(projectSpace, twoVersions));	
 	}
 	
 	/**
@@ -263,13 +333,14 @@ public class VisualizationUtil {
 	
 	/**
 	 * 
-	 * Receive all changed elements of a {@link HistoryInfo}.
+	 * Receive all changed elements of the {@link HistoryInfo}s.
 	 * 
 	 * @param projectSpace The {@link ProjectSpace} where to search in.
-	 * @param info The {@link HistoryInfo} where to get the changes from.
+	 * @param infos The {@link HistoryInfo}s where to get the changes from.
 	 * @return The {@link EObject}s, which are changed in this version.
 	 */
-	private static List<EObject> getChangedElements(final ProjectSpace projectSpace, final List<HistoryInfo> infos) {
+	public static List<EObject> getChangedElements(final ProjectSpace projectSpace, final List<HistoryInfo> infos) {
+		if( infos.size() == 0 ) return Collections.emptyList();
 		// receive the changepackges of the version(s)
 		final List<ChangePackage> changePackages = new ArrayList<ChangePackage>();
 		if(infos.size() == 1) changePackages.add(infos.get(0).getChangePackage());
@@ -315,7 +386,7 @@ public class VisualizationUtil {
 		HistoryQuery query = VersioningFactory.eINSTANCE.createHistoryQuery();
 		
 		int end = projectSpace.resolveVersionSpec(VersionSpec.HEAD_VERSION).getIdentifier();			
-		int start = 2;
+		int start = 0;
 		
 		PrimaryVersionSpec source = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 		source.setIdentifier(start);

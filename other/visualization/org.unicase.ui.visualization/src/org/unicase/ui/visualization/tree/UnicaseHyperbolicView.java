@@ -15,8 +15,7 @@ public class UnicaseHyperbolicView implements UnicaseView {
 	private UnicaseTree unicaseTree;
 	
 	private HyperTree hyperTree;
-	
-	
+		
 	public UnicaseHyperbolicView(UnicaseTree unicaseTree) {
 		this.unicaseTree = unicaseTree;
 		hyperTree = new HyperTree(unicaseTree.getRoot(), unicaseTree.getInfo());
@@ -24,6 +23,7 @@ public class UnicaseHyperbolicView implements UnicaseView {
 	
 	public UnicaseHyperbolicView(UnicaseTree unicaseTree, UnicaseNode root){
 		this.unicaseTree = unicaseTree;
+		root = unicaseTree.getEqualNode(root).getReferenceNode();
 		hyperTree = new HyperTree(root, unicaseTree.getInfo());		
 	}
 
@@ -44,13 +44,7 @@ public class UnicaseHyperbolicView implements UnicaseView {
 
 	@Override
 	public UnicaseNode getSelectedNode() {
-		// not implemented for the Hyperbolicview (yet)
 		return null;
-	}
-
-	@Override
-	public void selectNode(UnicaseNode node) {
-		// not implemented for the Hyperbolicview (yet)
 	}
 
 	@Override
@@ -60,8 +54,9 @@ public class UnicaseHyperbolicView implements UnicaseView {
 
 	@Override
 	public boolean setIsLinked() {
-		// not implemented for the Hyperbolicview (yet)
-		return false;
+		return isLinked();
 	}
 
+	@Override
+	public void selectNode(UnicaseNode node) {}
 }

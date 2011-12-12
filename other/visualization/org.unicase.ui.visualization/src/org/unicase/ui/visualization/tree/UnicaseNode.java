@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.ProjectSpace;
 
@@ -34,7 +35,8 @@ public class UnicaseNode implements TreeNode, Comparable<UnicaseNode> {
 	
 	private EObject object;
 					
-	public UnicaseNode(EObject obj){		
+	public UnicaseNode(EObject obj){	
+		if(obj instanceof Project) obj = obj.eContainer();		
 		if(obj instanceof ProjectSpace){
 			ProjectSpace projectSpace = (ProjectSpace)obj;
 			this.name = projectSpace.getProjectName();
@@ -140,6 +142,26 @@ public class UnicaseNode implements TreeNode, Comparable<UnicaseNode> {
 
 	public boolean isImplicit() {
 		return isImplicit;
+	}
+	
+	@Override
+	public boolean equals(Object o){
+		// it its not a unicasenode
+		if(!(o instanceof UnicaseNode)) return false;
+		EObject eObj = ((UnicaseNode)o).getObject();
+		
+		// if its the same eobject
+		if(eObj.equals(getObject())) return true;
+		
+		// if its the same eobject, but not the same object 
+		if(eObj instanceof UnicaseModelElement && getObject() instanceof UnicaseModelElement){
+			if(((UnicaseModelElement)eObj).getIdentifier().equals( ((UnicaseModelElement)getObject()).getIdentifier() ) ) return true;
+		}
+		if(eObj instanceof Project && getObject() instanceof Project){
+			if( ((ProjectSpace) ((Project)eObj).eContainer()).getProjectId().equals( ((ProjectSpace) ((Project)getObject()).eContainer()).getProjectId() ) ) return true;
+		}
+		
+		return false;
 	}
 	
 	/**

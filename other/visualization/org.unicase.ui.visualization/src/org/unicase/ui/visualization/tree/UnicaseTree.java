@@ -7,7 +7,9 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.ui.visualization.util.VisualizationUtil;
+import org.unicase.workspace.ProjectSpace;
 
 import ch.randelshofer.tree.NodeInfo;
 import ch.randelshofer.tree.TreeNode;
@@ -32,6 +34,10 @@ public class UnicaseTree {
 	private HashMap<EClass, Color> colors;
 	
 	private List<EObject> changedElements = new ArrayList<EObject>();
+
+	private List<HistoryInfo> historyInfos;
+	
+	private List<String> infos;
 				
 	public UnicaseTree(UnicaseNode root){
 		this.root = root;		
@@ -90,15 +96,33 @@ public class UnicaseTree {
 	
 	public void setColoring(Coloring coloring) {
 		this.coloring = coloring;
+		ProjectSpace projectSpace = VisualizationUtil.getProjectSpace(root.getObject());
 		if(coloring == Coloring.VERSION){
-			this.changedElements = VisualizationUtil.getChangedElements(VisualizationUtil.getProjectSpace(root.getObject()), false);
+			this.changedElements = VisualizationUtil.getChangedElements(projectSpace, false);
 		} else if(coloring == Coloring.TWO_VERSIONS){
-			this.changedElements = VisualizationUtil.getChangedElements(VisualizationUtil.getProjectSpace(root.getObject()), true);
+			historyInfos = VisualizationUtil.getVersionsFromUser(projectSpace, true);
+			this.changedElements = VisualizationUtil.getChangedElements(projectSpace, historyInfos);
 		}
 	}
-
+	
 	public Coloring getColoring() {
 		return coloring;
+	}
+	
+	public UnicaseNode getEqualNode(UnicaseNode node){
+		for(UnicaseNode n : nodes.values()){
+			if(n.equals(node)) return n;
+		}
+		return node;
+	}
+	
+	public void addInfo(String s){
+		if(infos == null) infos = new ArrayList<String>();
+		infos.add(s);
+	}
+	
+	public List<String> getInfos(){
+		return infos;
 	}
 
 	public void setChangedElements(List<EObject> changedElements) {
@@ -107,5 +131,9 @@ public class UnicaseTree {
 
 	public List<EObject> getChangedElements() {
 		return changedElements;
+	}
+
+	public List<HistoryInfo> getHistoryInfos() {
+		return historyInfos;
 	}
 }

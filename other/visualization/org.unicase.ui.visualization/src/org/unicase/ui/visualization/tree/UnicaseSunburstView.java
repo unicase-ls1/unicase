@@ -38,6 +38,10 @@ public class UnicaseSunburstView extends SunburstView implements UnicaseView {
 	
 	private boolean isLinked = true;
 	
+	public static UnicaseSunburstView createUnicaseSunburstView(UnicaseTree tree, VisualizationView view){
+		return new UnicaseSunburstView(tree, new SunburstTree(tree.getRoot(), tree.getInfo()), view);
+	}
+	
 	public UnicaseSunburstView(UnicaseTree unicaseTree, SunburstTree sunburstTree, VisualizationView view) {		
 		super(sunburstTree);
 		this.unicaseTree = unicaseTree;	
@@ -46,31 +50,22 @@ public class UnicaseSunburstView extends SunburstView implements UnicaseView {
 		this.viewPart = view;		
 		this.addMouseListener(mouseAdapter);
 	}
-	
+		
 	/**
-	 * Override super method to check for the "real" node, if it is a reference.
+	 * Override super method to save the selected node.
 	 */
 	@Override
 	public void setSelectedNode(SunburstNode node){		
 		// if the node is null, it is the root
 		if(node == null) {
-			this.selectedNode = sunburstTree.getRoot();
-			super.setSelectedNode(null);			
-			return;
+			selectedNode = sunburstTree.getRoot();			
+		} else {			
+			selectedNode = node;	
 		}
 		
-		// check for reference
-		UnicaseNode uNode = (UnicaseNode) node.getNode();
-		if(uNode instanceof ReferenceUnicaseNode){
-			// find the "real" node
-			findNode(unicaseTree.getNodes().get(uNode.getObject()) , sunburstTree.getRoot());
-		} else {
-			this.selectedNode = node;
-		}
+		super.setSelectedNode(sunburstTree.getRoot().equals(node) ? null : node);
 		
 		viewPart.setSelectedNode((UnicaseNode) selectedNode.getNode());
-		
-		super.setSelectedNode(this.selectedNode);
 	}
 	
 	/**
@@ -80,8 +75,9 @@ public class UnicaseSunburstView extends SunburstView implements UnicaseView {
 	 */
 	public void selectNode(UnicaseNode node){
 		if(isLinked){
+			SunburstNode sNode = selectedNode;
 			findNode(node, sunburstTree.getRoot());
-			setSelectedNode(this.selectedNode);
+			if(sNode != selectedNode) setSelectedNode(selectedNode);
 			this.repaintView();
 		}
 	}
@@ -94,6 +90,10 @@ public class UnicaseSunburstView extends SunburstView implements UnicaseView {
 	 */
 	private void findNode(TreeNode node, SunburstNode root){
 		if(node == null) return;
+		if(node.equals(root.getNode())){
+			this.selectedNode = root;
+			return;
+		}
 		for(SunburstNode n : root.children()){
 			TreeNode uNode = n.getNode();
 			if(uNode != null && node.equals(uNode)){
@@ -122,6 +122,18 @@ public class UnicaseSunburstView extends SunburstView implements UnicaseView {
 				}				
 			}
 		}
+		
+		// draw the infos of the tree
+		List<String> infos = unicaseTree.getInfos();
+		if(infos != null){
+			int y = 30;
+			int x = getWidth() - 70;			
+			for(String s : infos){
+				gr.drawString(s, x, y);
+				y += 15;
+			}
+		}
+		
 	}
 		
 	/**

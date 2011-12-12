@@ -19,7 +19,7 @@ public interface UnicaseView {
 	public UnicaseNode getSelectedNode();
 	
 	public void selectNode(UnicaseNode node);
-	
+		
 	public boolean isLinked();
 	
 	public boolean setIsLinked();
