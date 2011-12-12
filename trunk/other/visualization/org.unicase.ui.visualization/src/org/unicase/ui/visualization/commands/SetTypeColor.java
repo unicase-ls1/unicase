@@ -25,13 +25,14 @@ public class SetTypeColor extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {		
-		UnicaseView view = ((VisualizationView) HandlerUtil.getActivePart(event)).getView();
-		if(view == null) return null;
-		if(!view.getUnicaseTree().getColoring().equals(Coloring.MANUALLY)) {
+		VisualizationView visualizationView = (VisualizationView) HandlerUtil.getActivePart(event);
+		UnicaseView unicaseView = visualizationView.getView();
+		if(unicaseView == null) return null;
+		if(!unicaseView.getUnicaseTree().getColoring().equals(Coloring.MANUALLY)) {
 			MessageDialog.openWarning(HandlerUtil.getActiveShell(event), "No valid Coloring", "Please choose manually coloring to set type colors!");
 			return null;
 		}
-		UnicaseNode node = view.getSelectedNode();
+		UnicaseNode node = unicaseView.getSelectedNode();
 		if (node == null){
 			MessageDialog.openWarning(HandlerUtil.getActiveShell(event), "No valid Node", "Please select a node first!");
 			return null;
@@ -45,8 +46,8 @@ public class SetTypeColor extends AbstractHandler {
         RGB rgb = dlg.open();
         if (rgb != null) {
           Color color = new Color(shell.getDisplay(), rgb);          
-          view.getUnicaseTree().setColor(clazz, new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));          
-          view.repaintView();
+          for(UnicaseView view : visualizationView.getViews()) view.getUnicaseTree().setColor(clazz, new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));          
+          visualizationView.repaintAndUpdateViews();
         }
 		return null;
 	}

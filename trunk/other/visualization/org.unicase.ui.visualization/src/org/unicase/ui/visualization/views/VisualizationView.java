@@ -1,7 +1,13 @@
 package org.unicase.ui.visualization.views;
 
 import java.awt.Frame;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -14,7 +20,10 @@ import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
+import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.visualization.tree.UnicaseHyperbolicView;
 import org.unicase.ui.visualization.tree.UnicaseNode;
 import org.unicase.ui.visualization.tree.UnicaseSunburstView;
@@ -23,8 +32,7 @@ import org.unicase.ui.visualization.tree.UnicaseView;
 import org.unicase.ui.visualization.util.VisualizationUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.observers.OperationListener;
-
-import ch.randelshofer.tree.sunburst.SunburstTree;
+import org.unicase.workspace.ui.commands.ServerRequestCommandHandler;
 
 /**
  * 
@@ -34,22 +42,28 @@ import ch.randelshofer.tree.sunburst.SunburstTree;
  *
  */
 public class VisualizationView extends ViewPart { 
-
-	private UnicaseView view;
-	private UnicaseView referenceView;
+	
 	private ProjectSpace currentProjectSpace;
 	private UnicaseTree tree;
-	private Frame mainFrame;
-	private Frame referenceFrame;
-	private SashForm sash;
+	private UnicaseTree treeSpec1;
+	private UnicaseTree treeSpec2;
+		
+	private SashForm sashHor;
+		
+	private HashMap<String, UnicaseView> views;
+	private HashMap<String, Frame> frames;
 	
-	/**
-	 * The different available viewtypes.
-	 */
-	public static enum ViewTypes {SUNBURST, HYPERBOLIC}
+	private final String LEFT = "left";
+	private final String RIGHT_UP_LEFT = "rightUpLeft";
+	private final String RIGHT_UP_RIGHT = "rightUpRight";
+	private final String RIGHT_DOWN_LEFT = "rightDownLeft";
+	private final String RIGHT_DOWN_RIGHT = "rightDownRight";
+	
+	private List<String> locators;
 				
 	/**
 	 * Register the {@link SelectionListener}, to listen on Navigator selection.
+	 * Also inits the UI.
 	 */
 	@Override
 	public void createPartControl(Composite parent) {		
@@ -64,14 +78,29 @@ public class VisualizationView extends ViewPart {
 				} else if(obj instanceof EObject){
 					EObject eObj = (EObject)obj;										
 					setProject(VisualizationUtil.getProjectSpace(eObj));										
-					((UnicaseView)view).selectNode(tree.getNodes().get(eObj));	
+					((UnicaseView)views.get(LEFT)).selectNode(tree.getNodes().get(eObj));	
 				}
 			}
 		});
 		
-		sash = new SashForm(parent, SWT.HORIZONTAL);
-		mainFrame = SWT_AWT.new_Frame(new Composite(sash, SWT.EMBEDDED | SWT.NO_BACKGROUND));
-		referenceFrame = SWT_AWT.new_Frame(new Composite(sash, SWT.EMBEDDED | SWT.NO_BACKGROUND));		
+		views = new HashMap<String, UnicaseView>();	
+		frames = new HashMap<String, Frame>();
+		
+		sashHor = new SashForm(parent, SWT.HORIZONTAL);		
+		
+		frames.put(LEFT, SWT_AWT.new_Frame(new Composite(sashHor, SWT.EMBEDDED | SWT.NO_BACKGROUND)));
+		
+		SashForm sashVerRight = new SashForm(sashHor, SWT.VERTICAL);
+		SashForm sashVerRightHorUp = new SashForm(sashVerRight, SWT.HORIZONTAL);
+		SashForm sashVerRightHorDown = new SashForm(sashVerRight, SWT.HORIZONTAL);
+		
+		frames.put(RIGHT_UP_LEFT, SWT_AWT.new_Frame(new Composite(sashVerRightHorUp, SWT.EMBEDDED | SWT.NO_BACKGROUND)));
+		frames.put(RIGHT_UP_RIGHT, SWT_AWT.new_Frame(new Composite(sashVerRightHorUp, SWT.EMBEDDED | SWT.NO_BACKGROUND)));
+			
+		frames.put(RIGHT_DOWN_LEFT, SWT_AWT.new_Frame(new Composite(sashVerRightHorDown, SWT.EMBEDDED | SWT.NO_BACKGROUND)));
+		frames.put(RIGHT_DOWN_RIGHT, SWT_AWT.new_Frame(new Composite(sashVerRightHorDown, SWT.EMBEDDED | SWT.NO_BACKGROUND)));
+					
+		locators = Arrays.asList(new String[]{LEFT, RIGHT_UP_LEFT, RIGHT_UP_RIGHT, RIGHT_DOWN_LEFT, RIGHT_DOWN_RIGHT});
 	}
 		
 	/**
@@ -96,7 +125,10 @@ public class VisualizationView extends ViewPart {
 			
 		currentProjectSpace = projectSpace;
 		tree = new UnicaseTree(new UnicaseNode(projectSpace));
-		showSunburstTreeView();	
+		
+		for(String locator : locators) views.put(locator, UnicaseSunburstView.createUnicaseSunburstView(tree, this));
+		setSelectedNode((UnicaseNode) tree.getRoot());
+		updateView();
 	}
 	
 	/**
@@ -117,37 +149,69 @@ public class VisualizationView extends ViewPart {
 	};
 		
 	/**
-	 * Show a SunbustView and update the UI.
+	 * Show to different versions of a project.
 	 */
-	public void showSunburstTreeView(){		
-		view = new UnicaseSunburstView(tree, new SunburstTree(tree.getRoot(), tree.getInfo()), this);
-		referenceView = new UnicaseHyperbolicView(tree, new UnicaseNode(""));
-		updateView();
-    }
+	public void showTwoVersionsView(){
+		final VisualizationView vv = this;
+		try {
+			new ServerRequestCommandHandler() {
+				
+				@Override
+				protected Object run() throws EmfStoreException {
+					List<HistoryInfo> infos = tree.getHistoryInfos();
+					if(infos.size() != 2) return null;					
+											
+					PrimaryVersionSpec spec = infos.get(0).getPrimerySpec();
+					treeSpec1 = new UnicaseTree(new UnicaseNode(VisualizationUtil.getRevertedProjectSpace(currentProjectSpace, spec)));
+					treeSpec1.addInfo("Version: " + spec.getIdentifier());
+					
+					spec = infos.get(1).getPrimerySpec();
+					treeSpec2 = new UnicaseTree(new UnicaseNode(VisualizationUtil.getRevertedProjectSpace(currentProjectSpace, spec)));
+					treeSpec2.addInfo("Version: " + spec.getIdentifier());
+										
+					views.put(RIGHT_UP_LEFT, UnicaseSunburstView.createUnicaseSunburstView(treeSpec1, vv));
+					views.put(RIGHT_UP_RIGHT, UnicaseSunburstView.createUnicaseSunburstView(treeSpec2, vv));
+					
+					updateView();								
+					return null;
+				}
+			}.execute(new ExecutionEvent());
+			
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}		
+	}
 	
 	/**
-	 * Show a HyperbolicView and update the UI.
+	 * Set the currently selected {@link UnicaseNode}.
+	 * 
+	 * @param node The {@link UnicaseNode}, which is selected.
 	 */
-	public void showHyperbolicTreeView(){
-		view = new UnicaseHyperbolicView(tree);		
-		updateView();
-    }
-	
 	public void setSelectedNode(UnicaseNode node){
-		referenceView = new UnicaseHyperbolicView(tree, node.getReferenceNode());
+		for(UnicaseView view : views.values()) view.selectNode(node);
+		views.put(RIGHT_DOWN_LEFT, new UnicaseHyperbolicView(treeSpec1 == null ? tree : treeSpec1, node));
+		views.put(RIGHT_DOWN_RIGHT, new UnicaseHyperbolicView(treeSpec2 == null ? tree : treeSpec2, node));
 		updateView();
 	}
 	
 	/**
 	 * Update the UI.
 	 */
-	public void updateView() {		
-		mainFrame.removeAll();
-		mainFrame.add(view.getView());
-		referenceFrame.removeAll();
-		referenceFrame.add(referenceView.getView());		
-		mainFrame.validate();
-		referenceFrame.validate();
+	public void updateView() {	
+		for(String locator : locators){
+			Frame f = frames.get(locator);
+			f.removeAll();
+			f.add(views.get(locator).getView());
+			f.validate();
+		}
+	}
+	
+	/**
+	 * Repaints and updates all views.
+	 */
+	public void repaintAndUpdateViews(){
+		for(UnicaseView view : views.values()) view.repaintView();
+		updateView();
 	}
 	
 	/**
@@ -155,7 +219,7 @@ public class VisualizationView extends ViewPart {
 	 */
 	@Override
 	public void setFocus() {
-		sash.setFocus();
+		sashHor.setFocus();
 	}
 
 	/**
@@ -164,6 +228,15 @@ public class VisualizationView extends ViewPart {
 	 * @return the current {@link UnicaseView}.
 	 */
 	public UnicaseView getView() {
-		return view;
+		return views.get(LEFT);
+	}
+	
+	/**
+	 * Get all Views. 
+	 * 
+	 * @return All {@link UnicaseView}s.
+	 */
+	public Collection<UnicaseView> getViews(){
+		return views.values();
 	}
 }

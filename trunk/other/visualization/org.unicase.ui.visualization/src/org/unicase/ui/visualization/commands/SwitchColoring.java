@@ -5,7 +5,6 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.ui.visualization.tree.UnicaseTree.Coloring;
-import org.unicase.ui.visualization.tree.UnicaseView;
 import org.unicase.ui.visualization.views.VisualizationView;
 
 /**
@@ -18,14 +17,16 @@ public class SwitchColoring extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		UnicaseView view = ((VisualizationView) HandlerUtil.getActivePart(event)).getView();		
+		VisualizationView visualizationView = (VisualizationView) HandlerUtil.getActivePart(event);			
 		String coloringType = event.getParameter("org.unicase.ui.visualization.commands.switchColoring.coloringType");
 		if(coloringType != null){
 			Coloring coloring = Coloring.valueOf(coloringType);
 			if(coloring != null){
-				UnicaseView unicaseView = (UnicaseView)view;
-				unicaseView.getUnicaseTree().setColoring(coloring);			
-				unicaseView.repaintView();
+				visualizationView.getView().getUnicaseTree().setColoring(coloring);
+									
+				if(coloring.equals(Coloring.TWO_VERSIONS)) visualizationView.showTwoVersionsView();
+				
+				visualizationView.repaintAndUpdateViews();
 			}			
 		}		
 		return null;

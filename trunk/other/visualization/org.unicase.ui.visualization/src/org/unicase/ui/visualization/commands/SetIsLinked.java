@@ -19,16 +19,14 @@ import org.unicase.ui.visualization.views.VisualizationView;
  */
 public class SetIsLinked extends AbstractHandler implements IElementUpdater {
 
-	private boolean isLinked = true;
-	
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		isLinked = ((UnicaseView) ((VisualizationView) HandlerUtil.getActivePart(event)).getView()).setIsLinked();		
+		for(UnicaseView view : ((VisualizationView) HandlerUtil.getActivePart(event)).getViews()) view.setIsLinked();	
 		return null;
 	}
 
 	@Override
 	public void updateElement(UIElement element, @SuppressWarnings("rawtypes") Map parameters) {
-		element.setChecked(isLinked);
+		element.setChecked(true);
 	}
 }
