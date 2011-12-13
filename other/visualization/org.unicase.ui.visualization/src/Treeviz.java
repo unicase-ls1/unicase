@@ -9,8 +9,6 @@
  * For details see accompanying license terms.
  */
 
-import org.unicase.ui.visualization.tree.UnicaseTree;
-
 import ch.randelshofer.tree.demo.Main;
 import ch.randelshofer.tree.demo.TreevizApplet;
 
@@ -21,6 +19,6 @@ import ch.randelshofer.tree.demo.TreevizApplet;
 public class Treeviz extends TreevizApplet {
 
     public static void main(String[] args) {
-//        new Main().main(new UnicaseTree());
+        Main.main(args);
     }
 }
