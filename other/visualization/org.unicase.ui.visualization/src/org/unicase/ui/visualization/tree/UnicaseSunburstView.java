@@ -49,8 +49,9 @@ public class UnicaseSunburstView extends SunburstView implements UnicaseView {
 		this.setToolTipEnabled(true);
 		this.viewPart = view;		
 		this.addMouseListener(mouseAdapter);
+		this.selectedNode = sunburstTree.getRoot();
 	}
-		
+	
 	/**
 	 * Override super method to save the selected node.
 	 */
@@ -142,7 +143,7 @@ public class UnicaseSunburstView extends SunburstView implements UnicaseView {
 	private MouseAdapter mouseAdapter = new MouseAdapter() {
 		@Override
 		public void mouseClicked(final MouseEvent e) {
-			final EObject obj = ((UnicaseNode)selectedNode.getNode()).getObject();						
+			final EObject obj = ((UnicaseNode)selectedNode.getNode()).getEObject();						
 			if(obj instanceof UnicaseModelElement){					
 				viewPart.getSite().getShell().getDisplay().syncExec(new Runnable() {
 					

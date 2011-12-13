@@ -16,6 +16,6 @@ public class ReferenceUnicaseNode extends UnicaseNode {
 	
 	@Override
 	public String toString(){
-		return getName() + " (Reference)";
+		return super.toString();
 	}
 }

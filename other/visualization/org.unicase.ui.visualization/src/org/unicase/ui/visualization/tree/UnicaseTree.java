@@ -7,12 +7,12 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EContentsEList.FeatureIterator;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.ui.visualization.util.VisualizationUtil;
 import org.unicase.workspace.ProjectSpace;
 
 import ch.randelshofer.tree.NodeInfo;
-import ch.randelshofer.tree.TreeNode;
 
 /**
  * Represents a tree to visualize.
@@ -40,20 +40,30 @@ public class UnicaseTree {
 	private List<String> infos;
 				
 	public UnicaseTree(UnicaseNode root){
-		this.root = root;		
-		buildTree();
+		this(root, null);
 	}
 	
-	private void buildTree() {
+	public UnicaseTree(UnicaseNode root, List<EClass> eClassTypes){
+		this.root = root;	
 		nodes = new HashMap<EObject, UnicaseNode>();
-		addChildrenNodes(root);
+		addChildrenNodes(eClassTypes, root);		
 	}
-
+	
+	public UnicaseTree getFilteredUnicaseTree(List<EClass> eClassTypes){
+		UnicaseTree tree = new UnicaseTree(new UnicaseNode(root.getEObject()), eClassTypes);
+		tree.coloring = coloring;
+		tree.infos = infos;
+		tree.historyInfos = historyInfos;
+		tree.colors = colors;
+		tree.changedElements = changedElements;
+		return tree;
+	}
+	
 	public void setRoot(UnicaseNode root){
 		this.root = root;
 	}
 
-	public TreeNode getRoot() {
+	public UnicaseNode getRoot() {
 		return root;
 	}
 
@@ -65,25 +75,33 @@ public class UnicaseTree {
 		return nodes;
 	}
 	
-	private void addChildrenNodes(UnicaseNode root) {
-		EObject object = root.getObject();
-		if (object == null) return;
+	private boolean addChildrenNodes(List<EClass> eClassTypes, UnicaseNode root) {
+		boolean ret = false;
+		EObject object = root.getEObject();
+		if (object == null) return ret;
 		for (EObject e : object.eContents()) {
-			// Node			
 			UnicaseNode child = new UnicaseNode(e);			
-			root.addChild(child);
-			nodes.put(e, child);
-						
-			// references						
-			for (EObject reference : e.eCrossReferences()) {
-				child.addReference(new ReferenceUnicaseNode(reference));
-			}
 			
-			// normal children			
-			addChildrenNodes(child);			
+			// filter
+			if(addChildrenNodes(eClassTypes, child) || eClassTypes == null || eClassTypes.contains(e.eClass())){	
+				
+				// Node			
+				root.addChild(child);
+				nodes.put(e, child);
+				
+				// references						
+				for (FeatureIterator<EObject> featureIterator = (FeatureIterator<EObject>)e.eCrossReferences().iterator(); featureIterator.hasNext(); ) {					
+					ReferenceUnicaseNode node = new ReferenceUnicaseNode(featureIterator.next());
+					node.addInfo("ReferenceType: " + featureIterator.feature().getName());
+					child.addReference(node);
+			    } 
+
+				ret = true;
+			}
 		}
+		return ret;
 	}
-	
+		
 	public void setColor(EClass type, Color color){
 		if(colors == null) colors = new HashMap<EClass, Color>();
 		colors.put(type, color);
@@ -96,7 +114,7 @@ public class UnicaseTree {
 	
 	public void setColoring(Coloring coloring) {
 		this.coloring = coloring;
-		ProjectSpace projectSpace = VisualizationUtil.getProjectSpace(root.getObject());
+		ProjectSpace projectSpace = VisualizationUtil.getProjectSpace(root.getEObject());
 		if(coloring == Coloring.VERSION){
 			this.changedElements = VisualizationUtil.getChangedElements(projectSpace, false);
 		} else if(coloring == Coloring.TWO_VERSIONS){
