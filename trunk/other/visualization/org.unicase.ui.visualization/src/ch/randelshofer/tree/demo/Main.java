@@ -37,8 +37,6 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableModel;
 
-import org.unicase.ui.visualization.tree.UnicaseTree;
-
 /**
  *
  * @author  werni
@@ -182,7 +180,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-        setSize(700, 700);
+        setSize(400, 400);
         prefs = PreferencesUtil2.userNodeForPackage(getClass());
 
         String preferredView = prefs.get("viewAs", "hyperbolic");
@@ -210,7 +208,7 @@ public class Main extends javax.swing.JFrame {
         statusPanel.setVisible(false);
     }
 
-    public void updateView() {
+    private void updateView() {
         // remove view panel so that memory can be freed
         if (rootNode == null) {
             statusPanel.setVisible(false);
@@ -994,41 +992,7 @@ public class Main extends javax.swing.JFrame {
                     // Try generic XMLTree
                     tree = new XMLTree(rootFile);
                     return tree;
-                }                
-            }
-
-            @Override
-            public void done(DemoTree result) {
-                rootNode = ((DemoTree) result).getRoot();
-                info = ((DemoTree) result).getInfo();
-                setTitle("Tree Visualizer: " + info.getName(new TreePath2(rootNode)));
-                treeView=null; // remove tree view
-                updateView();
-            }
-
-            @Override
-            public void failed(Throwable t) {
-                String msg = t.getMessage();
-                if (msg == null) {
-                    msg = "";
                 }
-                if (t.getCause() != null && t.getCause().getMessage() != null) {
-
-                    msg += "\n" + t.getCause().getMessage();
-                }
-
-                JOptionPane.showMessageDialog(Main.this, "Could not create tree structure.\n" + msg, "TreeViz", JOptionPane.ERROR_MESSAGE);
-                t.printStackTrace();
-            }
-        }.start();
-    }
-    
-    public void open(final UnicaseTree tree){
-    	new Worker<DemoTree>() {
-
-            @Override
-            public DemoTree construct() throws Exception {
-                return null;
             }
 
             @Override
@@ -1186,7 +1150,7 @@ public class Main extends javax.swing.JFrame {
      *
      * @param args the command line arguments
      */
-    public void main(final UnicaseTree tree) {
+    public static void main(final String args[]) {
         System.setProperty("apple.laf.useScreenMenuBar", "true");
         System.setProperty("com.apple.macos.useScreenMenuBar", "true");
 
@@ -1201,14 +1165,10 @@ public class Main extends javax.swing.JFrame {
                 }
 
                 ToolTipManager.sharedInstance().setDismissDelay(60000); // display tooltip for 10 minutes
-                Main m = new Main();
-                m.setVisible(true);
-                m.open(tree);
-                
+                new Main().setVisible(true);
             }
         });
     }
-        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenu fileMenu;
