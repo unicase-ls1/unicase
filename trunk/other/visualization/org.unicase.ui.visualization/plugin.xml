@@ -37,12 +37,22 @@
             id="org.unicase.ui.visualization.commands.setTypeColor"
             name="SetTypeColor">
       </command>
+      <command
+            id="org.unicase.ui.visualization.filterEClassType"
+            name="FilterEClassType">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="false"
             locationURI="toolbar:org.unicase.ui.visualization.treeview">
+         <command
+               commandId="org.unicase.ui.visualization.filterEClassType"
+               icon="icons/filter.gif"
+               label="Filter EClass Type"
+               style="push">
+         </command>
          <command
                commandId="org.unicase.ui.visualization.setislinked"
                icon="icons/synced.gif"
@@ -124,6 +134,10 @@
       <handler
             class="org.unicase.ui.visualization.commands.SetTypeColor"
             commandId="org.unicase.ui.visualization.commands.setTypeColor">
+      </handler>
+      <handler
+            class="org.unicase.ui.visualization.commands.FilterEClassType"
+            commandId="org.unicase.ui.visualization.filterEClassType">
       </handler>
    </extension>
 

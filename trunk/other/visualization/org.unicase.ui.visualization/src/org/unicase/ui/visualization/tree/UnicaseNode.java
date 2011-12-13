@@ -95,6 +95,10 @@ public class UnicaseNode implements TreeNode, Comparable<UnicaseNode> {
         children.add(child);
     }
 	
+	public void removeChild(TreeNode child){
+		if(children != null) children.remove(child);
+	}
+	
 	public void addImplicitNode(UnicaseNode node){
 		if(implicitNodes == null){
 			implicitNodes = new ArrayList<UnicaseNode>();
@@ -129,10 +133,12 @@ public class UnicaseNode implements TreeNode, Comparable<UnicaseNode> {
         
     @Override
     public String toString(){
-    	return getName();
+    	String ret = "<html>";
+    	for(String s : infos) ret += s + "<br>"; 
+    	return ret + "</html>";
     }
 
-	public EObject getObject() {
+	public EObject getEObject() {
 		return object;
 	}
 
@@ -148,17 +154,17 @@ public class UnicaseNode implements TreeNode, Comparable<UnicaseNode> {
 	public boolean equals(Object o){
 		// it its not a unicasenode
 		if(!(o instanceof UnicaseNode)) return false;
-		EObject eObj = ((UnicaseNode)o).getObject();
+		EObject eObj = ((UnicaseNode)o).getEObject();
 		
 		// if its the same eobject
-		if(eObj.equals(getObject())) return true;
+		if(eObj.equals(getEObject())) return true;
 		
 		// if its the same eobject, but not the same object 
-		if(eObj instanceof UnicaseModelElement && getObject() instanceof UnicaseModelElement){
-			if(((UnicaseModelElement)eObj).getIdentifier().equals( ((UnicaseModelElement)getObject()).getIdentifier() ) ) return true;
+		if(eObj instanceof UnicaseModelElement && getEObject() instanceof UnicaseModelElement){
+			if(((UnicaseModelElement)eObj).getIdentifier().equals( ((UnicaseModelElement)getEObject()).getIdentifier() ) ) return true;
 		}
-		if(eObj instanceof Project && getObject() instanceof Project){
-			if( ((ProjectSpace) ((Project)eObj).eContainer()).getProjectId().equals( ((ProjectSpace) ((Project)getObject()).eContainer()).getProjectId() ) ) return true;
+		if(eObj instanceof Project && getEObject() instanceof Project){
+			if( ((ProjectSpace) ((Project)eObj).eContainer()).getProjectId().equals( ((ProjectSpace) ((Project)getEObject()).eContainer()).getProjectId() ) ) return true;
 		}
 		
 		return false;
@@ -169,7 +175,7 @@ public class UnicaseNode implements TreeNode, Comparable<UnicaseNode> {
 	 */
 	@Override
 	public int compareTo(UnicaseNode node) {
-		EObject o = node.getObject();
+		EObject o = node.getEObject();
 		if(o == null || object == null) return -1;
 		if(object instanceof UnicaseModelElement && o instanceof UnicaseModelElement){
 			Date creationDate1 = ((UnicaseModelElement)object).getCreationDate();

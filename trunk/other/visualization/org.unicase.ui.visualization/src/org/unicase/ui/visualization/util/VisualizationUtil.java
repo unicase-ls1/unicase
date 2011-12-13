@@ -47,6 +47,8 @@ import org.unicase.metamodel.Project;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.meeditor.MEEditorInput;
 import org.unicase.ui.navigator.TreeView;
+import org.unicase.ui.visualization.tree.UnicaseNode;
+import org.unicase.ui.visualization.tree.UnicaseTree;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.ui.commands.ServerRequestCommandHandler;
@@ -117,6 +119,19 @@ public class VisualizationUtil {
 	 */
 	public static ProjectSpace getRevertedProjectSpace(ProjectSpace projectSpace, VersionSpec versionSpec){
 		return getRevertedProjectSpace(projectSpace, getChanges(projectSpace, versionSpec));
+	}
+	
+	/**
+	 * Returns a new {@link UnicaseTree}, reverted to the given {@link PrimaryVersionSpec}.
+	 * 
+	 * @param projectSpace The current {@link ProjectSpace}.
+	 * @param versionSpec The {@link PrimaryVersionSpec} to set the {@link UnicaseTree} to.
+	 * @return A new {@link UnicaseTree}, reverted the the given {@link PrimaryVersionSpec}.
+	 */
+	public static UnicaseTree getRevertedUnicaseTree(ProjectSpace projectSpace, PrimaryVersionSpec versionSpec){		
+		UnicaseTree tree = new UnicaseTree(new UnicaseNode(VisualizationUtil.getRevertedProjectSpace(projectSpace, versionSpec)));
+		tree.addInfo("Version: " + versionSpec.getIdentifier());
+		return tree;
 	}
 	
 	/**

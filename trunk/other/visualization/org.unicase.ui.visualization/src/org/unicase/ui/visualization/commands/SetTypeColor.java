@@ -37,7 +37,7 @@ public class SetTypeColor extends AbstractHandler {
 			MessageDialog.openWarning(HandlerUtil.getActiveShell(event), "No valid Node", "Please select a node first!");
 			return null;
 		}
-		EClass clazz = node.getObject().eClass();
+		EClass clazz = node.getEObject().eClass();
 		
 		Shell shell = HandlerUtil.getActiveShell(event);
 		ColorDialog dlg = new ColorDialog(shell);		
