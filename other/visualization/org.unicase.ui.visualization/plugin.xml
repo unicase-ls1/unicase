@@ -40,6 +40,15 @@
       <command
             id="org.unicase.ui.visualization.filterEClassType"
             name="FilterEClassType">
+         <commandParameter
+               id="org.unicase.ui.visualization.filterEClassType.filterPar"
+               name="FilterParameter"
+               optional="true">
+         </commandParameter>
+      </command>
+      <command
+            id="org.unicase.ui.visualization.reset"
+            name="Reset">
       </command>
    </extension>
    <extension
@@ -48,10 +57,30 @@
             allPopups="false"
             locationURI="toolbar:org.unicase.ui.visualization.treeview">
          <command
+               commandId="org.unicase.ui.visualization.reset"
+               icon="icons/reset.gif"
+               label="Reset"
+               style="push">
+         </command>
+         <command
+               commandId="org.unicase.ui.visualization.filterEClassType"
+               icon="icons/no_filter.gif"
+               label="Show no filtered tree"
+               style="push">
+            <parameter
+                  name="org.unicase.ui.visualization.filterEClassType.filterPar"
+                  value="false">
+            </parameter>
+         </command>
+         <command
                commandId="org.unicase.ui.visualization.filterEClassType"
                icon="icons/filter.gif"
                label="Filter EClass Type"
                style="push">
+            <parameter
+                  name="org.unicase.ui.visualization.filterEClassType.filterPar"
+                  value="true">
+            </parameter>
          </command>
          <command
                commandId="org.unicase.ui.visualization.setislinked"
@@ -138,6 +167,10 @@
       <handler
             class="org.unicase.ui.visualization.commands.FilterEClassType"
             commandId="org.unicase.ui.visualization.filterEClassType">
+      </handler>
+      <handler
+            class="org.unicase.ui.visualization.commands.Reset"
+            commandId="org.unicase.ui.visualization.reset">
       </handler>
    </extension>
 

@@ -17,6 +17,7 @@ import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
@@ -44,9 +45,10 @@ import org.unicase.workspace.ui.commands.ServerRequestCommandHandler;
 public class VisualizationView extends ViewPart { 
 	
 	private ProjectSpace currentProjectSpace;
-		
+	
+	private Composite parent;		
 	private SashForm sashHor;
-		
+	
 	private HashMap<String, UnicaseView> views;
 	private HashMap<String, Frame> frames;
 	private HashMap<String, UnicaseTree> trees;
@@ -69,7 +71,8 @@ public class VisualizationView extends ViewPart {
 	 * Also inits the UI.
 	 */
 	@Override
-	public void createPartControl(Composite parent) {		
+	public void createPartControl(Composite parent) {	
+		this.parent = parent;
 		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().addSelectionListener(new ISelectionListener() {
 			public void selectionChanged(IWorkbenchPart part, ISelection selection) {				
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
@@ -89,23 +92,50 @@ public class VisualizationView extends ViewPart {
 		views = new HashMap<String, UnicaseView>();	
 		frames = new HashMap<String, Frame>();
 		trees = new HashMap<String, UnicaseTree>();
-		
-		sashHor = new SashForm(parent, SWT.HORIZONTAL);		
-		
-		frames.put(LEFT, SWT_AWT.new_Frame(new Composite(sashHor, SWT.EMBEDDED | SWT.NO_BACKGROUND)));
-		
-		SashForm sashVerRight = new SashForm(sashHor, SWT.VERTICAL);
-		SashForm sashVerRightHorUp = new SashForm(sashVerRight, SWT.HORIZONTAL);
-		SashForm sashVerRightHorDown = new SashForm(sashVerRight, SWT.HORIZONTAL);
-		
-		frames.put(RIGHT_UP_LEFT, SWT_AWT.new_Frame(new Composite(sashVerRightHorUp, SWT.EMBEDDED | SWT.NO_BACKGROUND)));
-		frames.put(RIGHT_UP_RIGHT, SWT_AWT.new_Frame(new Composite(sashVerRightHorUp, SWT.EMBEDDED | SWT.NO_BACKGROUND)));
-			
-		frames.put(RIGHT_DOWN_LEFT, SWT_AWT.new_Frame(new Composite(sashVerRightHorDown, SWT.EMBEDDED | SWT.NO_BACKGROUND)));
-		frames.put(RIGHT_DOWN_RIGHT, SWT_AWT.new_Frame(new Composite(sashVerRightHorDown, SWT.EMBEDDED | SWT.NO_BACKGROUND)));
 					
-		locators = Arrays.asList(new String[]{LEFT, RIGHT_UP_LEFT, RIGHT_UP_RIGHT, RIGHT_DOWN_LEFT, RIGHT_DOWN_RIGHT});
-		treeIdentifier = Arrays.asList(new String[]{MAIN_TREE, VERSION_1_TREE, VERSION_2_TREE});
+		updateUIStructure(false);
+	}
+	
+	/**
+	 * Updates the UI Structure. Differs between the normal one version and the two versions view.
+	 * 
+	 * @param twoVersions Display two versions?
+	 */
+	private void updateUIStructure(boolean twoVersions){
+		for(Control c : parent.getChildren()) c.dispose();
+		
+		// differ between two and one version
+		if(twoVersions) sashHor = new SashForm(parent, SWT.HORIZONTAL);		
+		
+		frames.put(LEFT, SWT_AWT.new_Frame(new Composite(twoVersions ? sashHor : parent, SWT.EMBEDDED | SWT.NO_BACKGROUND)));
+		
+		if(twoVersions){
+			SashForm sashVerRight = new SashForm(sashHor, SWT.VERTICAL);
+			SashForm sashVerRightHorUp = new SashForm(sashVerRight, SWT.HORIZONTAL);
+			SashForm sashVerRightHorDown = new SashForm(sashVerRight, SWT.HORIZONTAL);
+			
+			frames.put(RIGHT_UP_LEFT, SWT_AWT.new_Frame(new Composite(sashVerRightHorUp, SWT.EMBEDDED | SWT.NO_BACKGROUND)));
+			frames.put(RIGHT_UP_RIGHT, SWT_AWT.new_Frame(new Composite(sashVerRightHorUp, SWT.EMBEDDED | SWT.NO_BACKGROUND)));
+				
+			frames.put(RIGHT_DOWN_LEFT, SWT_AWT.new_Frame(new Composite(sashVerRightHorDown, SWT.EMBEDDED | SWT.NO_BACKGROUND)));
+			frames.put(RIGHT_DOWN_RIGHT, SWT_AWT.new_Frame(new Composite(sashVerRightHorDown, SWT.EMBEDDED | SWT.NO_BACKGROUND)));
+						
+			locators = Arrays.asList(new String[]{LEFT, RIGHT_UP_LEFT, RIGHT_UP_RIGHT, RIGHT_DOWN_LEFT, RIGHT_DOWN_RIGHT});
+			treeIdentifier = Arrays.asList(new String[]{MAIN_TREE, VERSION_1_TREE, VERSION_2_TREE});
+		} else {
+			locators = Arrays.asList(new String[]{LEFT});
+			treeIdentifier = Arrays.asList(new String[]{MAIN_TREE});
+		}
+		
+		parent.layout();
+	}
+	
+	/**
+	 * Resets the view completely.
+	 */
+	public void reset(){
+		updateUIStructure(false);
+		forceSetProject(currentProjectSpace);
 	}
 		
 	/**
@@ -155,9 +185,10 @@ public class VisualizationView extends ViewPart {
 	};
 		
 	/**
-	 * Show to different versions of a project.
+	 * Show two different versions of a project.
 	 */
 	public void showTwoVersionsView(){
+		updateUIStructure(true);
 		final VisualizationView vv = this;
 		try {
 			new ServerRequestCommandHandler() {
@@ -188,13 +219,14 @@ public class VisualizationView extends ViewPart {
 	/**
 	 * Show a {@link UnicaseTree}, filtered by type.
 	 * 
-	 * @param eClassTypes The type to filter.
+	 * @param eClassTypes The type to filter. Set to null to show non filtered tree.
 	 */
 	public void showFiltered(List<EClass> eClassTypes){
 		for(String s : treeIdentifier) trees.put(s, getValidTree(s).getFilteredUnicaseTree(eClassTypes));		
-		setAndUpdateViews();
+		setViews();
+		updateView();
 	}
-	
+		
 	/**
 	 * Set the currently selected {@link UnicaseNode}.
 	 * 
@@ -210,11 +242,10 @@ public class VisualizationView extends ViewPart {
 	/**
 	 * Reload and update all views.
 	 */
-	private void setAndUpdateViews(){
+	private void setViews(){
 		views.put(LEFT, UnicaseSunburstView.createUnicaseSunburstView(trees.get(MAIN_TREE), this));
 		views.put(RIGHT_UP_LEFT, UnicaseSunburstView.createUnicaseSunburstView(getValidTree(VERSION_1_TREE), this));
-		views.put(RIGHT_UP_RIGHT, UnicaseSunburstView.createUnicaseSunburstView(getValidTree(VERSION_2_TREE), this));	
-		updateView();
+		views.put(RIGHT_UP_RIGHT, UnicaseSunburstView.createUnicaseSunburstView(getValidTree(VERSION_2_TREE), this));
 	}
 	
 	/**
@@ -236,7 +267,7 @@ public class VisualizationView extends ViewPart {
 			f.removeAll();
 			f.add(views.get(locator).getView());
 			f.validate();
-		}
+		}		
 	}
 	
 	/**
@@ -252,7 +283,7 @@ public class VisualizationView extends ViewPart {
 	 */
 	@Override
 	public void setFocus() {
-		sashHor.setFocus();
+		parent.setFocus();
 	}
 
 	/**
