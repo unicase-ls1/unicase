@@ -102,13 +102,14 @@ public class VisualizationView extends ViewPart {
 	 * @param twoVersions Display two versions?
 	 */
 	private void updateUIStructure(boolean twoVersions){
+		// remove old controls 
 		for(Control c : parent.getChildren()) c.dispose();
 		
+		// add new general structure
+		sashHor = new SashForm(parent, SWT.HORIZONTAL);		
+		frames.put(LEFT, SWT_AWT.new_Frame(new Composite(sashHor, SWT.EMBEDDED | SWT.NO_BACKGROUND)));
+		
 		// differ between two and one version
-		if(twoVersions) sashHor = new SashForm(parent, SWT.HORIZONTAL);		
-		
-		frames.put(LEFT, SWT_AWT.new_Frame(new Composite(twoVersions ? sashHor : parent, SWT.EMBEDDED | SWT.NO_BACKGROUND)));
-		
 		if(twoVersions){
 			SashForm sashVerRight = new SashForm(sashHor, SWT.VERTICAL);
 			SashForm sashVerRightHorUp = new SashForm(sashVerRight, SWT.HORIZONTAL);
@@ -123,10 +124,13 @@ public class VisualizationView extends ViewPart {
 			locators = Arrays.asList(new String[]{LEFT, RIGHT_UP_LEFT, RIGHT_UP_RIGHT, RIGHT_DOWN_LEFT, RIGHT_DOWN_RIGHT});
 			treeIdentifier = Arrays.asList(new String[]{MAIN_TREE, VERSION_1_TREE, VERSION_2_TREE});
 		} else {
-			locators = Arrays.asList(new String[]{LEFT});
+			frames.put(RIGHT_DOWN_LEFT, SWT_AWT.new_Frame(new Composite(sashHor, SWT.EMBEDDED | SWT.NO_BACKGROUND)));
+			
+			locators = Arrays.asList(new String[]{LEFT, RIGHT_DOWN_LEFT});
 			treeIdentifier = Arrays.asList(new String[]{MAIN_TREE});
 		}
 		
+		// re-layout the view
 		parent.layout();
 	}
 	
