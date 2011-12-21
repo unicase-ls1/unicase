@@ -9,6 +9,7 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
+import org.eclipse.emf.emfstore.common.model.provider.CommonEditPlugin;
 import org.eclipse.emf.emfstore.server.model.provider.ServerEditPlugin;
 import org.eclipse.gmf.runtime.notation.NotationEditPlugin;
 import org.unicase.model.provider.ModelEditPlugin;
@@ -44,8 +45,8 @@ public final class DiagramEditPlugin extends EMFPlugin {
 	 */
 	public DiagramEditPlugin() {
 		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
-			org.eclipse.emf.emfstore.common.model.provider.CommonEditPlugin.INSTANCE, ServerEditPlugin.INSTANCE,
-				ModelEditPlugin.INSTANCE, NotationEditPlugin.INSTANCE, });
+				ModelEditPlugin.INSTANCE, NotationEditPlugin.INSTANCE,
+				CommonEditPlugin.INSTANCE, ServerEditPlugin.INSTANCE, });
 	}
 
 	/**

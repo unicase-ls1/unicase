@@ -45,7 +45,6 @@ import org.unicase.docExport.exportModel.renderers.options.TextAlign;
 import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.diagram.impl.DiagramLoadException;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Default Model Element Renderer</b></em>'. <!--
@@ -149,7 +148,7 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 						@Override
 						protected void doRun() {
 							try {
-								diagram.loadDiagramLayout();
+								// diagram.loadDiagramLayout();
 								/*
 								 * View view = diagram.getGmfdiagram(); XMLResource res = (XMLResource)
 								 * view.eResource(); String id = res.getID(view); DiagramEditor openedDiagramEditor =
@@ -172,8 +171,9 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 								 * util.copyToImage(diagram.getGmfdiagram(), new Path(tmpImage.toString()),
 								 * ImageFileFormat.SVG, new NullProgressMonitor(), PreferencesHint.USE_DEFAULTS);
 								 */
-							} catch (DiagramLoadException e) {
-								WorkspaceUtil.log("A diagram could not be loaded while exporting.", e, IStatus.WARNING);
+								// } catch (DiagramLoadException e) {
+								// WorkspaceUtil.log("A diagram could not be loaded while exporting.", e,
+								// IStatus.WARNING);
 							} catch (CoreException e) {
 								WorkspaceUtil.log("Exception while loading the diagram.", e, IStatus.WARNING);
 							} catch (RuntimeException e) {
