@@ -10,11 +10,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//UnicaseModelElement"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="gmfdiagram" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"
-        transient="true" containment="true"/>
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="newElements" upperBound="-1"
         eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//UnicaseModelElement"
         transient="true" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramLayout" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramLayout" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassDiagram" eSuperTypes="#//MEDiagram"/>
   <eClassifiers xsi:type="ecore:EClass" name="UseCaseDiagram" eSuperTypes="#//MEDiagram"/>
@@ -22,4 +22,5 @@
   <eClassifiers xsi:type="ecore:EClass" name="StateDiagram" eSuperTypes="#//MEDiagram"/>
   <eClassifiers xsi:type="ecore:EClass" name="ActivityDiagram" eSuperTypes="#//MEDiagram"/>
   <eClassifiers xsi:type="ecore:EClass" name="WorkItemDiagram" eSuperTypes="#//MEDiagram"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MERelativeBendpoints" eSuperTypes="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//RelativeBendpoints"/>
 </ecore:EPackage>

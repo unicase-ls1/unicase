@@ -5,16 +5,16 @@
     modelDirectory="/org.unicase.diagram/src" editDirectory="/org.unicase.diagram.edit/src"
     editorDirectory="/org.unicase.diagram.editor/src" modelPluginID="org.unicase.diagram"
     modelName="Diagram" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" editPluginID="org.unicase.diagram.edit"
+    containmentProxies="true" complianceLevel="5.0" copyrightFields="false" editPluginID="org.unicase.diagram.edit"
     editorPluginID="org.unicase.diagram.editor" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.unicase.model/model/model.genmodel#//model platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.genmodel#//model platform:/plugin/org.eclipse.emf.emfstore.server.model/model/server.genmodel#//model">
   <foreignModel>diagram.ecore</foreignModel>
   <genPackages prefix="Diagram" basePackage="org.unicase.model" disposableProviderFactory="true"
       ecorePackage="diagram.ecore#/">
     <genClasses image="false" ecoreClass="diagram.ecore#//MEDiagram">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference diagram.ecore#//MEDiagram/elements"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagram.ecore#//MEDiagram/gmfdiagram"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagram.ecore#//MEDiagram/newElements"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagram.ecore#//MEDiagram/diagramLayout"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EReference diagram.ecore#//MEDiagram/gmfdiagram"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EReference diagram.ecore#//MEDiagram/newElements"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute diagram.ecore#//MEDiagram/diagramLayout"/>
     </genClasses>
     <genClasses ecoreClass="diagram.ecore#//ClassDiagram"/>
     <genClasses ecoreClass="diagram.ecore#//UseCaseDiagram"/>
@@ -22,5 +22,6 @@
     <genClasses ecoreClass="diagram.ecore#//StateDiagram"/>
     <genClasses ecoreClass="diagram.ecore#//ActivityDiagram"/>
     <genClasses ecoreClass="diagram.ecore#//WorkItemDiagram"/>
+    <genClasses provider="None" ecoreClass="diagram.ecore#//MERelativeBendpoints"/>
   </genPackages>
 </genmodel:GenModel>
