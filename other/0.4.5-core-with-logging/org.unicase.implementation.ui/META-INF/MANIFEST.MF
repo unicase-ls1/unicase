@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Implementation
+Bundle-SymbolicName: org.unicase.implementation.ui;singleton:=true
+Bundle-Version: 0.4.5
+Bundle-Activator: org.unicase.implementation.ui.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.unicase.implementation,
+ org.unicase.implementation.edit,
+ org.eclipse.emf.ecore.editor,
+ org.unicase.workspace,
+ org.eclipse.core.expressions
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: unicase.org
