@@ -3,32 +3,3 @@
 <img src="http://unicase.googlecode.com/files/emfstoreSmall.png" alt="EMF Logo" align="right" />
 
 *NEWS*: EMFStore is now an Eclipse Project, [http://www.eclipse.org/emf-store/ see here].
-
-  * [EMFStore What is EMFStore?]
-
-  * [EMFStoreFeatures Why should I use EMFStore?]
-
-  * [EMFStoreGettingStarted Getting Started with the EMFStore]
-
-  * [EMFStoreCommunication Get in Contact with the Developers]
-
-  * [EMFStoreArchitecture Architecture]
-
-  * [EMFStoreDownloads Downloads]
-
-  * [EMFStoreDocumentation Documentation and Tutorials]
-
-  * [EMFStoreFeedback Reporting Bugs and Feature Requests]
-
-
-
-More information and news also available on our [http://unicase.blogspot.com/ blog] and on the [http://twitter.com/emfstore EMFStore Twitter].
-
-[http://www.eclipsecon.org/2011/ http://www.eclipsecon.org/2011/static/image/friends/130x100_speaking.gif]
-
-[http://www.eclipse.org/donate/images/friendslogo200.jpg]
-
-[http://www.eclipse.org/emf-store/images/logos_exist.png]
-
-
-Das Gründungsprojekt Model Repository wird unterstützt durch das Förderprogramm EXIST-Gründerstipendium des Bundesministeriums für Wirtschaft und Technologie (BMWi), kofinanziert aus dem Europäischen Sozialfonds.
