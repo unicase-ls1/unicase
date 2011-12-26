@@ -209,7 +209,7 @@
      </menuContribution>
      
      <menuContribution
-           locationURI="toolbar:org.eclipse.emf.ecp.editor.meeditor.METhreadPage?after=additions">
+           locationURI="toolbar:org.eclipse.emf.ecp.editor.METhreadPage?after=additions">
         <command
               commandId="org.unicase.ui.common.commands.addComment"
               icon="icons/Comment.png"

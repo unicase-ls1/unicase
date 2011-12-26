@@ -104,7 +104,6 @@ public interface UnicaseModelElement extends EObject {
 	 * @see org.unicase.model.ModelPackage#getModelElement_Annotations()
 	 * @see org.unicase.model.Annotation#getAnnotatedModelElements
 	 * @model opposite="annotatedModelElements" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='100.0' position='right'"
 	 * @generated
 	 */
 	EList<Annotation> getAnnotations();
@@ -124,7 +123,6 @@ public interface UnicaseModelElement extends EObject {
 	 * @see org.unicase.model.ModelPackage#getModelElement_Attachments()
 	 * @see org.unicase.model.Attachment#getReferringModelElements
 	 * @model opposite="referringModelElements" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='101.0' position='right'"
 	 * @generated
 	 */
 	EList<Attachment> getAttachments();

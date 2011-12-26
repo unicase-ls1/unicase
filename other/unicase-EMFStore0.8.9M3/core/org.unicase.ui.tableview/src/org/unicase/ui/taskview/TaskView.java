@@ -21,6 +21,8 @@ import org.eclipse.emf.emfstore.client.model.Workspace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
 import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ControlContribution;
 import org.eclipse.jface.action.GroupMarker;
@@ -62,12 +64,12 @@ import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
  * @author Florian Schneider
  * @author Zardosht Hodaie
  */
-public class TaskView extends ViewPart implements org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver {
+public class TaskView extends ViewPart implements ProjectChangeObserver {
 
 	private METableViewer viewer;
 	private AdapterImpl workspaceListenerAdapter;
-	private org.eclipse.emf.emfstore.client.model.Workspace workspace;
-	private org.eclipse.emf.emfstore.common.model.Project activeProject;
+	private Workspace workspace;
+	private Project activeProject;
 
 	private UncheckedElementsViewerFilter uncheckedFilter;
 	private Action filterToUnchecked;
@@ -128,6 +130,7 @@ public class TaskView extends ViewPart implements org.eclipse.emf.emfstore.commo
 		};
 		workspace.eAdapters().add(workspaceListenerAdapter);
 
+		initLoggedInUser();
 		createActions();
 
 		getSite().setSelectionProvider(viewer.getTableViewer());
@@ -138,7 +141,6 @@ public class TaskView extends ViewPart implements org.eclipse.emf.emfstore.commo
 			activeProject.addProjectChangeObserver(TaskView.this);
 		}
 
-		initLoggedInUser();
 		viewer.setInput(activeProject);
 	}
 

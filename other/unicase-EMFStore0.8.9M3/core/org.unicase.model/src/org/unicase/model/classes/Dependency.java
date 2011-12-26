@@ -9,15 +9,14 @@ import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Dependency</b></em>'. <!-- end-user-doc -->
- *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.classes.Dependency#getSource <em>Source</em>}</li>
- *   <li>{@link org.unicase.model.classes.Dependency#getTarget <em>Target</em>}</li>
+ * <li>{@link org.unicase.model.classes.Dependency#getSource <em>Source</em>}</li>
+ * <li>{@link org.unicase.model.classes.Dependency#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.model.classes.ClassesPackage#getDependency()
  * @model
  * @generated
@@ -37,7 +36,7 @@ public interface Dependency extends UnicaseModelElement {
 	 * @see #setSource(PackageElement)
 	 * @see org.unicase.model.classes.ClassesPackage#getDependency_Source()
 	 * @see org.unicase.model.classes.PackageElement#getOutgoingDependencies
-	 * @model opposite="outgoingDependencies" annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
+	 * @model opposite="outgoingDependencies"
 	 * @generated
 	 */
 	PackageElement getSource();
@@ -66,7 +65,7 @@ public interface Dependency extends UnicaseModelElement {
 	 * @see #setTarget(PackageElement)
 	 * @see org.unicase.model.classes.ClassesPackage#getDependency_Target()
 	 * @see org.unicase.model.classes.PackageElement#getIncomingDependencies
-	 * @model opposite="incomingDependencies" annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
+	 * @model opposite="incomingDependencies"
 	 * @generated
 	 */
 	PackageElement getTarget();

@@ -32,7 +32,7 @@ public class OpenDiagramWithMEEditorHandler extends AbstractHandler {
 				.getObserverBus()
 				.notify(ModelElementOpenObserver.class)
 				.onOpen(me, "org.unicase.ui.unicasecommon.OpenDiagramWithMEEditor",
-					"org.eclipse.emf.ecp.editor.meeditor.MEEditor");
+					"org.eclipse.emf.ecp.editor.MEEditor");
 			new ModelElementOpener().openModelElement(me);
 		}
 

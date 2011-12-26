@@ -16,8 +16,8 @@ import org.eclipse.emf.ecp.editor.MEEditor;
 import org.eclipse.emf.ecp.editor.MEFormPage;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.jface.action.ContributionManager;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -112,7 +112,7 @@ public class METhreadPage extends AbstractMEEditorPage implements MECommentWidge
 			.getService(IEvaluationService.class);
 		service.addSourceProvider(sourceProvider);
 		menuService.populateContributionManager((ContributionManager) form.getToolBarManager(),
-			"toolbar:org.eclipse.emf.ecp.editor.meeditor.METhreadPage");
+			"toolbar:org.eclipse.emf.ecp.editor.METhreadPage");
 		form.getToolBarManager().update(true);
 	}
 
