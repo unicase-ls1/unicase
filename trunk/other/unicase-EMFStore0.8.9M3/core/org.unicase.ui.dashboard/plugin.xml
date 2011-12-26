@@ -69,7 +69,7 @@
                <extension
         point="org.eclipse.ui.menus">
      <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.workspace.ui.showHistory">
+           locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=org.eclipse.emf.emfstore.client.ui.commands.showHistory">
                   <command
               commandId="org.unicase.ui.dashboard.showDashboard"
               icon="icons/dashboard.png"
@@ -86,7 +86,7 @@
                     </instanceof>
                     <test
                           forcePluginActivation="true"
-                          property="org.unicase.workspace.ui.commands.projectIsShared"
+                          property="org.eclipse.emf.emfstore.client.ui.commands.projectIsShared"
                           value="true">
                     </test>
                  </iterate>

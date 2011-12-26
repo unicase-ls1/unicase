@@ -9,14 +9,13 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Group</b></em>'. <!-- end-user-doc -->
- *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.organization.Group#getOrgUnits <em>Org Units</em>}</li>
+ * <li>{@link org.unicase.model.organization.Group#getOrgUnits <em>Org Units</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.model.organization.OrganizationPackage#getGroup()
  * @model
  * @generated
@@ -38,7 +37,6 @@ public interface Group extends OrgUnit {
 	 * @see org.unicase.model.organization.OrganizationPackage#getGroup_OrgUnits()
 	 * @see org.unicase.model.organization.OrgUnit#getGroupMemberships
 	 * @model opposite="groupMemberships" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='10.5' position='right'"
 	 * @generated
 	 */
 	EList<OrgUnit> getOrgUnits();

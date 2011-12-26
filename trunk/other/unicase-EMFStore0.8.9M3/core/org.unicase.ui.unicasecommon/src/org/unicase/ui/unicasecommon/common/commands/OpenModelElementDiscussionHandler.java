@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
 import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.ecp.editor.MEEditor;
+import org.eclipse.emf.ecp.editor.MEEditorInput;
 import org.eclipse.emf.ecp.editor.MEFormPage;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
@@ -57,14 +58,14 @@ public class OpenModelElementDiscussionHandler extends AbstractHandler {
 		}
 
 		try {
-			org.eclipse.emf.ecp.editor.MEEditorInput input = new org.eclipse.emf.ecp.editor.MEEditorInput(me,
-				org.eclipse.emf.ecp.common.model.ECPWorkspaceManager.getInstance().getWorkSpace().getProject(me));
+			MEEditorInput input = new MEEditorInput(me, org.eclipse.emf.ecp.common.model.ECPWorkspaceManager
+				.getInstance().getWorkSpace().getProject(me));
 			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-				.openEditor(input, "org.eclipse.emf.ecp.editor.meeditor", true);
+				.openEditor(input, "org.eclipse.emf.ecp.editor", true);
 
 			IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 				.getActiveEditor();
-			if (activeEditor instanceof org.eclipse.emf.ecp.editor.MEEditor) {
+			if (activeEditor instanceof MEEditor) {
 				MEEditor meEditor = (MEEditor) activeEditor;
 				meEditor.setActivePage("org.unicase.ui.unicasecommon.meeditor.methreadpage");
 				boolean shouldToggle = (toggle != null && toggle.equals("toggle"))
