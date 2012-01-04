@@ -134,7 +134,7 @@ public class UnicaseNode implements TreeNode, Comparable<UnicaseNode> {
     @Override
     public String toString(){
     	String ret = "<html>";
-    	for(String s : infos) ret += s + "<br>"; 
+    	if(infos != null) for(String s : infos) ret += s + "<br>"; 
     	return ret + "</html>";
     }
 

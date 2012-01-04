@@ -21,7 +21,9 @@ public class UnicaseHyperbolicView implements UnicaseView {
 		
 	public UnicaseHyperbolicView(UnicaseTree unicaseTree, UnicaseNode root){
 		this.unicaseTree = unicaseTree;
-		root = unicaseTree.getEqualNode(root).getReferenceNode();
+		UnicaseNode equalNode = unicaseTree.getEqualNode(root);
+		// if there is no corresponding node, set root to a new empty one
+		root = (equalNode == null ? new UnicaseNode("") : equalNode.getReferenceNode());
 		hyperTree = new HyperTree(root, unicaseTree.getInfo());
 		view = hyperTree.getView();
 		view.setToolTipEnabled(true);
