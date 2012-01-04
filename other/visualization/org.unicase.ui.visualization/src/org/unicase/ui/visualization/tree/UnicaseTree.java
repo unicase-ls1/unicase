@@ -131,7 +131,7 @@ public class UnicaseTree {
 		for(UnicaseNode n : nodes.values()){
 			if(n.equals(node)) return n;
 		}
-		return node;
+		return null;
 	}
 	
 	public void addInfo(String s){
