@@ -1,6 +1,6 @@
 Index: src/org/unicase/ui/meeditor/mecontrols/AbstractMEControl.java
 ===================================================================
---- src/org/unicase/ui/meeditor/mecontrols/AbstractMEControl.java	(revision 12223)
+--- src/org/unicase/ui/meeditor/mecontrols/AbstractMEControl.java	(revision 12229)
 +++ src/org/unicase/ui/meeditor/mecontrols/AbstractMEControl.java	(working copy)
 @@ -138,6 +138,10 @@
  
@@ -15,7 +15,7 @@ Index: src/org/unicase/ui/meeditor/mecontrols/AbstractMEControl.java
  	 * 
 Index: src/org/unicase/ui/meeditor/MEEditorPage.java
 ===================================================================
---- src/org/unicase/ui/meeditor/MEEditorPage.java	(revision 12223)
+--- src/org/unicase/ui/meeditor/MEEditorPage.java	(revision 12229)
 +++ src/org/unicase/ui/meeditor/MEEditorPage.java	(working copy)
 @@ -261,7 +261,7 @@
  		for (IItemPropertyDescriptor itemPropertyDescriptor : attributes) {
@@ -34,3 +34,23 @@ Index: src/org/unicase/ui/meeditor/MEEditorPage.java
  			}
  			if (itemPropertyDescriptor.getFeature(modelElement) == problemFeature) {
  				ControlDecoration dec = new ControlDecoration(control, SWT.TOP | SWT.LEFT);
+Index: .project
+===================================================================
+--- .project	(revision 12229)
++++ .project	(working copy)
+@@ -20,15 +20,9 @@
+ 			<arguments>
+ 			</arguments>
+ 		</buildCommand>
+-		<buildCommand>
+-			<name>net.sf.eclipsecs.core.CheckstyleBuilder</name>
+-			<arguments>
+-			</arguments>
+-		</buildCommand>
+ 	</buildSpec>
+ 	<natures>
+ 		<nature>org.eclipse.pde.PluginNature</nature>
+ 		<nature>org.eclipse.jdt.core.javanature</nature>
+-		<nature>net.sf.eclipsecs.core.CheckstyleNature</nature>
+ 	</natures>
+ </projectDescription>
