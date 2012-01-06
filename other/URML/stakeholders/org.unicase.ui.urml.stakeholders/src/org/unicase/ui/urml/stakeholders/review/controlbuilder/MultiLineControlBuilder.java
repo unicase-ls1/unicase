@@ -15,7 +15,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.model.urml.UrmlModelElement;
-import org.unicase.ui.urml.stakeholders.review.ReviewUtil;
 
 /**
  * The review view widget for multi line text fields.
@@ -29,7 +28,6 @@ public class MultiLineControlBuilder extends AbstractControlBuilder {
 
 	/**
 	 * Creates the widget for multi line text fields.
-	 * 
 	 * @param parent the parent composite
 	 * @param urmlElement the urml element
 	 * @return text the text as control
@@ -41,14 +39,26 @@ public class MultiLineControlBuilder extends AbstractControlBuilder {
 		
 		text.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		text.setEditable(false);
-		text.setText(ReviewUtil.getValueOfString(urmlElement.eGet((EStructuralFeature) feature)));
+		text.setText(getValueOfString(urmlElement.eGet((EStructuralFeature) feature)));
 		
 		GridData spec = new GridData(SWT.FILL, SWT.FILL, true, false);
 		spec.heightHint = 100;
 		text.setLayoutData(spec);
-		
 		return (Control) text;
 		
+	}
+	
+	/**
+	 * Gets the string value from a object as input.
+	 * @param o the object 
+	 * @return the string representation of the object
+	 */
+	private static String getValueOfString(Object o){
+		if (o == null){
+			return "";	
+		} else {
+			return o.toString();
+		}
 	}
 	
 	/**

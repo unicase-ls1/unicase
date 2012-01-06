@@ -12,16 +12,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Observable;
-import java.util.Map.Entry;
 import java.util.Observer;
 import java.util.Set;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ControlContribution;
@@ -44,7 +41,6 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.urml.Phase;
 import org.unicase.model.urml.UrmlPackage;
@@ -53,21 +49,17 @@ import org.unicase.ui.urml.stakeholders.StakeholderUtil;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
- * This view shows the allowed model element associations related to the active
- * stage.
+ * This view shows the allowed model element associations related to the active development phase.
  * 
  * @author kterzieva
- * 
  */
 public class PhaseConfigurationView extends ViewPart {
 
 	private TableViewer viewer;
-	private static final Image UNCHECKED = Activator.getImageDescriptor(
-			"icons/unchecked.gif").createImage();
-	private static final Image CHECKEDDISABLED = Activator.getImageDescriptor(
-			"icons/checkedDisabled.gif").createImage();
-	private static final Image CHECKED = Activator.getImageDescriptor(
-			"icons/checked.gif").createImage();
+	private static final Image UNCHECKED = Activator.getImageDescriptor("icons/unchecked.gif").createImage();
+	private static final Image CHECKEDDISABLED = Activator.getImageDescriptor("icons/checkedDisabled.gif")
+		.createImage();
+	private static final Image CHECKED = Activator.getImageDescriptor("icons/checked.gif").createImage();
 	private ArrayList<EClass> sortedElementNames;
 	private HashMap<EClass, ArrayList<EClass>> staticAssociationMap;
 	private ArrayList<EClass> rowElementReferenceListe;
@@ -79,8 +71,7 @@ public class PhaseConfigurationView extends ViewPart {
 
 	@Override
 	public void createPartControl(Composite parent) {
-		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL
-				| SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
+		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
 		HashMap<EClass, Integer> elementNumberMapping = createElementNumberMapping();
 
 		activeProject = StakeholderUtil.getActiveProject();
@@ -88,9 +79,6 @@ public class PhaseConfigurationView extends ViewPart {
 		bars = getViewSite().getActionBars();
 		menuManager = bars.getMenuManager();
 
-		// to each element his relation lest will be added and stored in datMap
-
-		// printPhase("START",UrmlSettingsManager.INSTANCE.getActivePhase());
 		createAssociationMap(elementNumberMapping);
 		createColumns(parent, viewer);
 		final Table table = viewer.getTable();
@@ -104,24 +92,24 @@ public class PhaseConfigurationView extends ViewPart {
 
 		createDevelopmentPhaseItems();
 		createFurtherItems();
-		
+
 		phaseChangeObserver = new Observer() {
-			
+
 			@Override
 			public void update(Observable o, Object arg) {
 				Phase phase = (Phase) arg;
-				if(phase == null){
+				if (phase == null) {
 					txtUser.setText("[no phase]");
 				} else {
 					txtUser.setText(phase.getName());
-				}			
+				}
 				viewer.refresh();
 			}
 		};
 		Activator.getPhaseChangedPublisher().addObserver(phaseChangeObserver);
 
 	}
-	
+
 	@Override
 	public void dispose() {
 		super.dispose();
@@ -131,17 +119,14 @@ public class PhaseConfigurationView extends ViewPart {
 	private void createFurtherItems() {
 
 		IToolBarManager toolbarManager = bars.getToolBarManager();
-		ControlContribution userTextToolbarContribution = new ControlContribution(
-				"userTextl") {
+		ControlContribution userTextToolbarContribution = new ControlContribution("userTextl") {
 
 			@Override
 			protected Control createControl(Composite parent) {
 				Composite composite = new Composite(parent, SWT.NONE);
-				GridLayoutFactory.fillDefaults().margins(1, 0).spacing(0, 0)
-						.applyTo(composite);
+				GridLayoutFactory.fillDefaults().margins(1, 0).spacing(0, 0).applyTo(composite);
 				txtUser = new Text(composite, SWT.NONE);
-				GridData layoutData = new GridData(SWT.FILL, SWT.CENTER, true,
-						true);
+				GridData layoutData = new GridData(SWT.FILL, SWT.CENTER, true, true);
 				layoutData.widthHint = 100;
 				txtUser.setLayoutData(layoutData);
 				txtUser.setEditable(false);
@@ -152,8 +137,10 @@ public class PhaseConfigurationView extends ViewPart {
 		};
 		toolbarManager.add(userTextToolbarContribution);
 	}
-
-
+	
+	/**
+	 * Refresh the list which includes the development phase settings.
+	 */
 	protected void refreshPhaseList() {
 		menuManager.removeAll();
 		createDevelopmentPhaseItems();
@@ -172,20 +159,19 @@ public class PhaseConfigurationView extends ViewPart {
 
 	private HashMap<EClass, Integer> createElementNumberMapping() {
 		HashMap<EClass, Integer> elementNumberMapping = new HashMap<EClass, Integer>();
-		Set<EClass> subClasses = ModelUtil.getSubclasses(UrmlPackage.eINSTANCE
-				.getUrmlModelElement());
+		Set<EClass> subClasses = ModelUtil.getSubclasses(UrmlPackage.eINSTANCE.getUrmlModelElement());
 		sortedElementNames = new ArrayList<EClass>();
 		for (EClass eclass : subClasses) {
-			if (!eclass.getName().equals("Phase"))
+			if (!eclass.getName().equals("Phase")) {
 				sortedElementNames.add(eclass);
+			}
 		}
 
 		Collections.sort(sortedElementNames, new Comparator<EClass>() {
 
 			@Override
 			public int compare(EClass element, EClass elementTwo) {
-				return element.getName().compareToIgnoreCase(
-						elementTwo.getName());
+				return element.getName().compareToIgnoreCase(elementTwo.getName());
 			}
 
 		});
@@ -195,12 +181,10 @@ public class PhaseConfigurationView extends ViewPart {
 		return elementNumberMapping;
 	}
 
-	private HashMap<EClass, ArrayList<EClass>> createAssociationMap(
-			HashMap<EClass, Integer> elementNumberMapping) {
+	private HashMap<EClass, ArrayList<EClass>> createAssociationMap(HashMap<EClass, Integer> elementNumberMapping) {
 		staticAssociationMap = new HashMap<EClass, ArrayList<EClass>>();
 		for (EClass eclass : sortedElementNames) {
-			ArrayList<EClass> associationList = createAssociationListToElement(
-					eclass, elementNumberMapping);
+			ArrayList<EClass> associationList = createAssociationListToElement(eclass, elementNumberMapping);
 			staticAssociationMap.put(eclass, associationList);
 
 		}
@@ -209,7 +193,7 @@ public class PhaseConfigurationView extends ViewPart {
 
 	// creates association list to specific eclass
 	private ArrayList<EClass> createAssociationListToElement(EClass eclass,
-			HashMap<EClass, Integer> elementNumberMapping) {
+		HashMap<EClass, Integer> elementNumberMapping) {
 		ArrayList<EClass> result = new ArrayList<EClass>();
 
 		if (elementNumberMapping.containsKey(eclass)) {
@@ -246,61 +230,42 @@ public class PhaseConfigurationView extends ViewPart {
 		viewer.setContentProvider(new ArrayContentProvider());
 	}
 
-	private TableViewerColumn createTableViewerColumn(
-			final EClass columnClassName, int bound) {
-		final TableViewerColumn viewerColumn = new TableViewerColumn(viewer,
-				SWT.NONE);
+	private TableViewerColumn createTableViewerColumn(final EClass columnClassName, int bound) {
+		final TableViewerColumn viewerColumn = new TableViewerColumn(viewer, SWT.NONE);
 		final TableColumn column = viewerColumn.getColumn();
 		column.setText(columnClassName.getName());
 		column.setWidth(bound);
 		column.setResizable(true);
 		column.setMoveable(true);
 
-		viewerColumn
-				.setEditingSupport(new PhaseConfigurationEditingSupport(this,
-						viewer, columnClassName, sortedElementNames,
-						viewerColumn));
+		viewerColumn.setEditingSupport(new PhaseConfigurationEditingSupport(this, viewer, columnClassName,
+			sortedElementNames, viewerColumn));
 		viewerColumn.setLabelProvider(new ColumnLabelProvider() {
-
 			@Override
 			public String getText(Object element) {
 				return null;
 			}
-
 			@Override
 			public Image getImage(Object element) {
-				
-				if (UrmlSettingsManager.INSTANCE
-							.getActivePhase() == null){
+				if (UrmlSettingsManager.INSTANCE.getActivePhase() == null) {
 					return CHECKEDDISABLED;
 				}
-				if (!hasStaticAssociation(columnClassName, (EClass) element)
-						&& !hasStaticAssociation((EClass) element,
-								columnClassName)) {
-
-					EMap<EClass, EList<EClass>> curAllowAss = UrmlSettingsManager.INSTANCE
-							.getActivePhase().getAllowedAssociations();
+				if (!hasStaticAssociation(columnClassName, (EClass) element) && !hasStaticAssociation((EClass) element, columnClassName)) {
+					EMap<EClass, EList<EClass>> curAllowAss = UrmlSettingsManager.INSTANCE.getActivePhase().getAllowedAssociations();
 					if (curAllowAss == null) {
 						return UNCHECKED;
 					} else {
 						EList<EClass> curValueList = curAllowAss.get(element);
-
-						if (curValueList != null
-								&& curValueList.contains(columnClassName)) {
+						if (curValueList != null && curValueList.contains(columnClassName)) {
 							return CHECKED;
 						}
 					}
-
 					return UNCHECKED;
 				}
-
 				return CHECKEDDISABLED;
 			}
-
 		});
-
 		return viewerColumn;
-
 	}
 
 	private Action createSelectedPhaseAction(final Phase phase) {
@@ -317,29 +282,10 @@ public class PhaseConfigurationView extends ViewPart {
 
 	private void createDevelopmentPhaseItems() {
 
-		Collection<Phase> phases = activeProject
-				.getAllModelElementsbyClass(UrmlPackage.eINSTANCE.getPhase(),
-						new BasicEList<Phase>());
+		Collection<Phase> phases = activeProject.getAllModelElementsbyClass(UrmlPackage.eINSTANCE.getPhase(),
+			new BasicEList<Phase>());
 		for (final Phase p : phases) {
-//			printPhase("XXX", p);
-//			p.addModelElementChangeListener(new ModelElementChangeListener() {
-//
-//				@Override
-//				public void onRuntimeExceptionInListener(
-//						RuntimeException exception) {
-//					// TODO Auto-generated method stub
-//				}
-//
-//				@Override
-//				public void onChange(Notification notification) {
-//					System.out.println(p.getName());
-//					System.out.println(notification.getFeature());
-//					System.out.println(notification.getOldValue() + ", "
-//							+ notification.getNewValue());
-//				}
-//			});
 			actionSetUp(menuManager, createSelectedPhaseAction(p), p.getName(), "");
-
 		}
 		actionSetUp(menuManager, createSelectedPhaseAction(null), "[no phase]", "");
 		menuManager.add(new Separator());
@@ -348,33 +294,25 @@ public class PhaseConfigurationView extends ViewPart {
 			@Override
 			public void run() {
 				// set the associationView view and model
-				ManagePhasesDialog phaseDialog = new ManagePhasesDialog(viewer
-						.getTable().getShell());
+				ManagePhasesDialog phaseDialog = new ManagePhasesDialog(viewer.getTable().getShell());
 				phaseDialog.open();
 				refreshPhaseList();
-
 			}
 		};
 
-		actionSetUp(menuManager, managePhases, "Manage Phases",
-				"Manage development phases");
+		actionSetUp(menuManager, managePhases, "Manage Phases", "Manage development phases");
 
 	}
 
 	/**
 	 * Actions attributes settings.
 	 * 
-	 * @param menuManager
-	 *            the menu manager
-	 * @param actionName
-	 *            the name of the action
-	 * @param text
-	 *            the displayed text of the action
-	 * @param toolTipText
-	 *            .
+	 * @param menuManager the menu manager
+	 * @param actionName the name of the action
+	 * @param text the displayed text of the action
+	 * @param toolTipText .
 	 */
-	public void actionSetUp(IMenuManager menuManager, Action actionName,
-			String text, String toolTipText) {
+	public void actionSetUp(IMenuManager menuManager, Action actionName, String text, String toolTipText) {
 		actionName.setText(text);
 		actionName.setToolTipText(toolTipText);
 		menuManager.add(actionName);
@@ -383,10 +321,8 @@ public class PhaseConfigurationView extends ViewPart {
 	/**
 	 * Checks if association between two elements exists.
 	 * 
-	 * @param from
-	 *            first element
-	 * @param to
-	 *            second element
+	 * @param from first element
+	 * @param to second element
 	 * @return whether association exists
 	 */
 	boolean hasStaticAssociation(final EClass from, EClass to) {
@@ -406,24 +342,10 @@ public class PhaseConfigurationView extends ViewPart {
 		return false;
 	}
 
-	public void printPhase(String prefix, Phase p) {
-		System.err.println(prefix);
-		System.err.println(p.getName());
-		EMap<EClass, EList<EClass>> ass = p.getAllowedAssociations();
-
-		for (Entry<EClass, EList<EClass>> e : ass) {
-			// PhaseSetEntryImpl i = (PhaseSetEntryImpl) e;
-			String name = e.getKey() == null ? "null" : e.getKey().getName();
-			System.err.print(name + " -> ");
-			EList<EClass> vlas = e.getValue();
-			System.err.println("{");
-			for (EClass e2 : vlas) {
-				System.err.println(e2.getName() + " ");
-			}
-			System.err.println("}");
-		}
-	}
-
+	/**
+	 * Set specific phase as active.
+	 * @param phase the development phase to be set as active
+	 */
 	public void setActivePhase(final Phase phase) {
 		new UnicaseCommand() {
 			@Override
@@ -437,5 +359,4 @@ public class PhaseConfigurationView extends ViewPart {
 	public void setFocus() {
 
 	}
-
 }

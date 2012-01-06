@@ -25,17 +25,10 @@ public abstract class AbstractControlBuilder implements IDisposable {
 	 */
 	public static final int DO_NOT_RENDER = -1;
 
-	/**
-	 * the modelElement.
-	 */
 	private UrmlModelElement urmlElement;
-
 	private boolean showLabel;
-
 	private IItemPropertyDescriptor itemPropertyDescriptor;
-
 	private ECPModelelementContext context;
-	
 	private Control createdControl;
 
 	/**
@@ -77,29 +70,34 @@ public abstract class AbstractControlBuilder implements IDisposable {
 
 	/**
 	 * Creates the control.
+	 * 
 	 * @param parent the parent composite
 	 * @param urmlElement the urml element
 	 * @return the control which was created
 	 */
 	protected abstract Control doCreateControl(Composite parent, UrmlModelElement urmlElement);
 
-	
 	/**
-	 * @param showLabel the showLabel to set
+	 * Sets the attribute "showLabel" of the registered control appropriately.
+	 * 
+	 * @param showLabel defines the value of the attribute
 	 */
 	public void setShowLabel(boolean showLabel) {
 		this.showLabel = showLabel;
 	}
 
 	/**
+	 * Gets the value of the "showLabel" attribute.
+	 * 
 	 * @return if the label for this control should be shown.
 	 */
 	public boolean getShowLabel() {
 		return this.showLabel;
 	}
-	
+
 	/**
 	 * The render value of the controller.
+	 * 
 	 * @param itemPropertyDescriptor the item descriptor
 	 * @param urmlElement the urml element
 	 * @return the value
@@ -108,6 +106,7 @@ public abstract class AbstractControlBuilder implements IDisposable {
 	public abstract int canRender(IItemPropertyDescriptor itemPropertyDescriptor, UrmlModelElement urmlElement);
 
 	/**
+	 * Gets the urml model element.
 	 * @return the urmlElement
 	 */
 	public UrmlModelElement getModelElement() {
@@ -115,6 +114,7 @@ public abstract class AbstractControlBuilder implements IDisposable {
 	}
 
 	/**
+	 * Sets the urml model element.
 	 * @param urmlElement the urmlElement to set
 	 */
 	public void setModelElement(UrmlModelElement urmlElement) {
@@ -122,27 +122,19 @@ public abstract class AbstractControlBuilder implements IDisposable {
 	}
 
 	/**
-	 * @return urmlElement the urmlElement to get
-	 */
-
-	public UrmlModelElement getUrmlElement() {
-		return urmlElement;
-	}
-
-	/**
-	 * @return context the model element context to get
+	 * Gets the context.
+	 * @return context the model element context
 	 */
 	public ECPModelelementContext getContext() {
 		return context;
 	}
-	
-	
+
 	/**
-	 * 
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.ui.urml.stakeholders.review.IDisposable#dispose()
 	 */
-	public void dispose(){
+	public void dispose() {
 		createdControl.dispose();
 	}
 

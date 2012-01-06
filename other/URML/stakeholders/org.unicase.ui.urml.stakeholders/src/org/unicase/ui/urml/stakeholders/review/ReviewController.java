@@ -23,7 +23,6 @@ import org.unicase.model.urml.UrmlModelElement;
 
 /**
  * Class for the handling the listener.
- * 
  * @author kterzieva
  */
 
@@ -37,7 +36,6 @@ public class ReviewController {
 
 	/**
 	 * The constructor.
-	 * 
 	 * @param reviewView the view
 	 * @param tableViewer the list viewer
 	 */
@@ -49,12 +47,12 @@ public class ReviewController {
 	}
 
 	/**
-	 * Creates the listener for opening elements.
-	 * 
+	 * Adds a listener to the list viewer within the review view.
+	 * Here, the open event is handled appropriately.
 	 * @param listViewer the list viewer
 	 */
 
-	public void createOpenListener(TableViewer listViewer) {
+	public void addOpenListener(TableViewer listViewer) {
 		listViewer.addOpenListener(new IOpenListener() {
 
 			@Override
@@ -64,7 +62,6 @@ public class ReviewController {
 
 				Object o = selection.getFirstElement();
 				if (o instanceof UrmlModelElement) {
-
 					reviewView.openElement((UrmlModelElement) o);
 					setLastSelectedElementIndex(getIndex((UrmlModelElement) o));
 				}
@@ -77,9 +74,8 @@ public class ReviewController {
 	}
 
 	/**
-	 * Creates the listener for opening elements.
-	 * 
-	 * @param isUp defines the direction for opening the elements
+	 * Creates the listener for navigation through the model elements.
+	 * @param isUp defines the direction of the navigation through the elements
 	 * @return the selection listener
 	 */
 
@@ -88,8 +84,7 @@ public class ReviewController {
 	}
 
 	/**
-	 * Get the index of an element.
-	 * 
+	 * Gets the index of an element.
 	 * @param el the urml model element
 	 * @return index the index
 	 */
@@ -108,8 +103,7 @@ public class ReviewController {
 
 
 	/**
-	 * Listener for handling presses of the up or down button.
-	 * 
+	 * Listener for handling the presses of the up or down button.
 	 * @author kterzieva
 	 */
 	private class UpDownListener implements SelectionListener {
@@ -150,7 +144,7 @@ public class ReviewController {
 		cleanUpListeners();
 	}
 
-	public void cleanUpListeners() {
+	private void cleanUpListeners() {
 		for(Entry<ModelElementChangeListener, UrmlModelElement> entry : getListeners().entrySet()){
 			entry.getValue().removeModelElementChangeListener(entry.getKey());
 		}
@@ -181,6 +175,11 @@ public class ReviewController {
 		return listeners;
 	}
 	
+	/**
+	 * Sets the input for the review view. The input is a set of urml model element.
+	 * Additionally, change listeners are added to each element.
+	 * @param collection the set of model elements as input
+	 */
 	public void setReviewViewInput(Collection<UrmlModelElement> collection) {
 		//clean up listeners of previous input
 		cleanUpListeners();

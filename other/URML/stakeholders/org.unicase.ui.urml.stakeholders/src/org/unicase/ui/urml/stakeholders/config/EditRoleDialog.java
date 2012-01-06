@@ -41,7 +41,7 @@ import org.unicase.model.urml.UrmlPackage;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
- * Dialog for editing or adding one stakeholder role.
+ * Dialog for editing or adding a specific stakeholder role.
  * 
  * @author kterzieva
  */
@@ -49,16 +49,15 @@ public class EditRoleDialog extends TitleAreaDialog {
 
 	private static final String FILTER_SET = "Elements shown in navigator";
 	private static final String REVIEW_SET = "Elements shown in review view";
+	private String dialogName, dialogMessage;
 	private Composite composite;
 	private StakeholderRole stakeholderRole;
-	private String dialogName, dialogMessage;
 	private Text roleName;
 	private Collection<Button> buttons;
 	private ArrayList<Button> reviewSetElements, filterSetElements;
 	private EMap<EClass, EList<EStructuralFeature>> reviewSet;
 	private EMap<EClass, EList<EStructuralFeature>> filterSet;
 	private HashMap<Button, EClass> buttonClassMapping;
-	// private HashMap<EClass, EStructuralFeature> reviewMapping, filterMapping;
 	private BasicEMap<EClass, EList<EStructuralFeature>> reviewSetCopy;
 	private BasicEMap<EClass, EList<EStructuralFeature>> filterSetCopy;
 
@@ -99,15 +98,6 @@ public class EditRoleDialog extends TitleAreaDialog {
 		createSetCopies();
 
 		Set<EClass> subClasses = ModelUtil.getSubclasses(UrmlPackage.eINSTANCE.getUrmlModelElement());
-		// List<EClass> reviewClassNames = new ArrayList<EClass>();
-		// for (Entry<EClass, EList<EStructuralFeature>> entry : stakeholderRole.getReviewSet()) {
-		// reviewClassNames.add(entry.getKey());
-		// }
-		// List<EClass> filterClassNames = new ArrayList<EClass>();
-		// for (Entry<EClass, EList<EStructuralFeature>> entry : stakeholderRole.getFilterSet()) {
-		// filterClassNames.add(entry.getKey());
-		// }
-
 		createNameLabel();
 		buttonClassMapping = new HashMap<Button, EClass>();
 		reviewSetElements = createButtonGroup(subClasses, composite, REVIEW_SET, reviewSetCopy);
@@ -117,17 +107,16 @@ public class EditRoleDialog extends TitleAreaDialog {
 
 	private void createSetCopies() {
 		reviewSetCopy = new BasicEMap<EClass, EList<EStructuralFeature>>();
-		copyMap(stakeholderRole.getReviewSet(),reviewSetCopy);
+		copyMap(stakeholderRole.getReviewSet(), reviewSetCopy);
 		filterSetCopy = new BasicEMap<EClass, EList<EStructuralFeature>>();
-		copyMap(stakeholderRole.getFilterSet(),filterSetCopy);
+		copyMap(stakeholderRole.getFilterSet(), filterSetCopy);
 	}
 
-	private void copyMap(EMap<EClass, EList<EStructuralFeature>> from,
-		BasicEMap<EClass, EList<EStructuralFeature>> to) {
-		for(Entry<EClass, EList<EStructuralFeature>> entry : from){
+	private void copyMap(EMap<EClass, EList<EStructuralFeature>> from, BasicEMap<EClass, EList<EStructuralFeature>> to) {
+		for (Entry<EClass, EList<EStructuralFeature>> entry : from) {
 			to.put(entry.getKey(), entry.getValue());
 		}
-		
+
 	}
 
 	private void createNameLabel() {
@@ -191,6 +180,11 @@ public class EditRoleDialog extends TitleAreaDialog {
 		}
 	}
 
+	/**
+	 * Sets the title of the dialog and the header message.
+	 * @param dialogName the name of the dialog
+	 * @param dialogMessage the message
+	 */
 	private void setTitleAndMessage(String dialogName, String dialogMessage) {
 		setTitle(dialogName);
 		setMessage(dialogMessage);
@@ -201,7 +195,7 @@ public class EditRoleDialog extends TitleAreaDialog {
 		Group group = groupSetUp(composite, setName);
 
 		buttons = new ArrayList<Button>();
-		
+
 		List<EClass> subClassesSorted = new ArrayList<EClass>();
 		subClassesSorted.addAll(subClasses);
 		Collections.sort(subClassesSorted, new Comparator<EClass>() {
@@ -210,7 +204,7 @@ public class EditRoleDialog extends TitleAreaDialog {
 				return o1.getName().compareTo(o2.getName());
 			}
 		});
-		
+
 		// Create a button for each of the classes
 		for (final EClass eSubClass : subClassesSorted) {
 
@@ -242,8 +236,8 @@ public class EditRoleDialog extends TitleAreaDialog {
 					refenceList = set.get(eSubClass);
 
 					if (setName.equals(REVIEW_SET)) {
-						SelectPropertiesDialog referenceDialog = new SelectPropertiesDialog(button.getShell(), eSubClass,
-							true, refenceList);
+						SelectPropertiesDialog referenceDialog = new SelectPropertiesDialog(button.getShell(),
+							eSubClass, true, refenceList);
 						referenceDialog.setBlockOnOpen(true);
 						referenceDialog.open();
 					}

@@ -34,12 +34,10 @@ import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Dialog for selecting the model element properties for the review view.
- * 
  * @author kterzieva
  */
 public class SelectPropertiesDialog extends TitleDialogWithoutMinSize {
 
-	//private String referenceName;
 	private String displayReferenceName;
 	private ArrayList<Button> buttons;
 	private boolean reviewSet;
@@ -52,11 +50,9 @@ public class SelectPropertiesDialog extends TitleDialogWithoutMinSize {
 	 * 
 	 * @param parentShell the parent shell
 	 * @param selectedClass the class is used to represent the name of the references shown in this dialog
+	 * @param reviewSet defines whether the review set or the filter set is to be used
 	 * @param referenceList list with the name/reference mapping
-	 * @param reviewSet
-	 * @param reviewSet .
 	 */
-	//, HashMap<EClass, EStructuralFeature> reviewMapping
 	public SelectPropertiesDialog(Shell parentShell, EClass selectedClass, boolean reviewSet, EList<EStructuralFeature> referenceList) {
 		super(parentShell);
 		setShellStyle(getShellStyle() | SWT.RESIZE);
@@ -83,7 +79,6 @@ public class SelectPropertiesDialog extends TitleDialogWithoutMinSize {
 
 		// Create composite
 		Composite wrap = (Composite) super.createDialogArea(parent);
-
 		Composite composite = new Composite(wrap, SWT.NONE);
 		// Layout stuff
 		GridLayout gridLayout = new GridLayout(1, false);
@@ -112,8 +107,6 @@ public class SelectPropertiesDialog extends TitleDialogWithoutMinSize {
 				it.remove();
 			}
 		}
-
-		
 		
 		for (IItemPropertyDescriptor itemDescriptor : propertyDescriptors) {
 			if (reviewSet) {
@@ -139,7 +132,6 @@ public class SelectPropertiesDialog extends TitleDialogWithoutMinSize {
 		b.setText(currentName);
 		
 		//read the reference list from model for the button settings
-		
 		if (propertiesList.contains(feature)) {
 			b.setSelection(isReviewSet);
 		} else {
@@ -158,7 +150,6 @@ public class SelectPropertiesDialog extends TitleDialogWithoutMinSize {
 
 	/**
 	 * Writes the input made by the user into the model.
-	 * 
 	 * @param displayReferenceName the name of the reference
 	 */
 	protected void writePropertiesInputToModel(final String displayReferenceName) {

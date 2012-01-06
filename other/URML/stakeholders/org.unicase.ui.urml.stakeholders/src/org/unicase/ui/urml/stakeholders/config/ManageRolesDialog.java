@@ -55,19 +55,17 @@ public class ManageRolesDialog extends TitleDialogWithoutMinSize {
 	private static final String SELECT_STAKEHOLDER_ROLE = "Select stakeholder role";
 	private static final String MANAGE_STAKEHOLDER_ROLES = "Manage stakeholder roles";
 	private Button addButton, editButton;
-	Button removeSelectedButton;
-	ArrayList<UnicaseModelElement> stakeholderRoles;
-	Project activeProject;
-	TableViewer tableViewer;
+	private Button removeSelectedButton;
+	private ArrayList<UnicaseModelElement> stakeholderRoles;
+	private Project activeProject;
+	private TableViewer tableViewer;
 	private TableViewerColumn viewerNameColumn;
 	private ILabelProvider tableViewLabelProvider;
 	private DeleteButtonListener dialogListener;
 
 	/**
 	 * The constructor. The list with the created roles is created.
-	 * 
-	 * @param parentShell
-	 *            the shell
+	 * @param parentShell the shell
 	 */
 	public ManageRolesDialog(Shell parentShell) {
 		super(parentShell);
@@ -78,7 +76,6 @@ public class ManageRolesDialog extends TitleDialogWithoutMinSize {
 
 	private void setTableInput() {
 		stakeholderRoles = new ArrayList<UnicaseModelElement>();
-
 		Collection<EObject> basicList = activeProject
 				.getAllModelElementsbyClass(
 						UrmlPackage.eINSTANCE.getStakeholderRole(),
@@ -100,10 +97,11 @@ public class ManageRolesDialog extends TitleDialogWithoutMinSize {
 		EditRoleDialog editDialog = new EditRoleDialog(editButton.getShell(),
 				role, EDIT_DIALOG, EDIT_DIALOG_MESSAGE);
 		editDialog.open();
-		
-		//Refresh role, if currently active
-		StakeholderRole activeRole = UrmlSettingsManager.INSTANCE.getActiveRole();
-		if(role == activeRole){
+
+		// Refresh role, if currently active
+		StakeholderRole activeRole = UrmlSettingsManager.INSTANCE
+				.getActiveRole();
+		if (role == activeRole) {
 			UrmlSettingsManager.INSTANCE.setActiveRole(role);
 		}
 	}
@@ -171,7 +169,8 @@ public class ManageRolesDialog extends TitleDialogWithoutMinSize {
 	}
 
 	private void addListeners() {
-		dialogListener = new DeleteButtonListener(tableViewer,getShell(),activeProject);
+		dialogListener = new DeleteButtonListener(tableViewer, getShell(),
+				activeProject);
 		tableViewer.addDoubleClickListener(new IDoubleClickListener() {
 			@Override
 			public void doubleClick(DoubleClickEvent event) {
@@ -234,8 +233,6 @@ public class ManageRolesDialog extends TitleDialogWithoutMinSize {
 		}
 		return null;
 	}
-
-	
 
 	/**
 	 * {@inheritDoc}

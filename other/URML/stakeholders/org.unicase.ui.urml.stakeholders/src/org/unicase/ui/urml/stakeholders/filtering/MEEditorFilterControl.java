@@ -20,7 +20,8 @@ import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
 
 /**
- * Controller, which is used to hide the model element properties in the MEEditor
+ * Controller, which is used to hide set of model element
+ * properties when the model element is opened  in the MEEditor.
  * @author kterzieva
  *
  */
@@ -34,20 +35,16 @@ public class MEEditorFilterControl extends AbstractMEControl {
 		if (!(modelElement instanceof UrmlModelElement)) {
 			return DO_NOT_RENDER;
 		}
-
 		StakeholderRole activeRole = UrmlSettingsManager.INSTANCE.getActiveRole();
 		if (activeRole == null) {
 			return DO_NOT_RENDER;
 		}
 		EMap<EClass, EList<EStructuralFeature>> filterSet = activeRole.getFilterSet();
-
 		EList<EStructuralFeature> referenceList = filterSet.get(modelElement.eClass());
-
 
 		if (referenceList == null) {
 			return DO_NOT_RENDER;
 		}
-
 		EStructuralFeature featureToShow = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
 
 		if (!referenceList.contains(featureToShow)) {

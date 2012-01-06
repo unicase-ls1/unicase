@@ -11,9 +11,8 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.unicase.model.urml.UrmlModelElement;
 
 /**
- * Filters for the review view, which show only the reviewed/unreviewed elements. 
+ * Filters for the review view, which can show only the reviewed/unreviewed elements. 
  * @author kterzieva
- *
  */
 public class ReviewStatusViewerFilter extends ViewerFilter {
 	private boolean selectReviewed;
