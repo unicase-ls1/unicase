@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
+
 package org.unicase.ui.urml.stakeholders.config;
 
 import java.util.ArrayList;
@@ -34,40 +40,42 @@ import org.unicase.model.urml.UrmlPackage;
 import org.unicase.ui.urml.stakeholders.StakeholderUtil;
 import org.unicase.workspace.util.UnicaseCommand;
 
+/**
+ * This dialog allows the management of development phases according to the current active project.
+ * @author kterzieva
+ *
+ */
 public class ManagePhasesDialog extends TitleDialogWithoutMinSize {
 
-    //private static final String EDIT_DIALOG = "Edit dialog";
 	private static final String ADD_NEW_PHASE = "Add new development phase";
-	//private static final String EDIT_DIALOG_MESSAGE = "Edit the selected staleholder role";
 	private static final String ADD_DIALOG_MESSAGE = "Create new development phase";
 	private static final String SELECT_DEVELOPMENT_PHASE = "Select development phase";
 	private static final String MANAGE_DEVELOPMENT_PHASES = "Manage development phases";
 	private Button addPhaseButton, removePhaseButton;
-//	editButton;
-	
 	private List<UnicaseModelElement> developmentPhases;
 	private Project activeProject;
 	private TableViewer tableViewer;
 	private TableViewerColumn viewerNameColumn;
 	private ILabelProvider tableViewLabelProvider;
 	private DeleteButtonListener dialogListener;
-//	private DeleteButtonListener dialogListener;
-//	private boolean roleListHasChanged;
-
 	
+
+	/**
+	 * The construct.
+	 * @param parentShell the parent shell
+	 */
 	public ManagePhasesDialog(Shell parentShell) {
 		super(parentShell);
 		setShellStyle(getShellStyle() | SWT.RESIZE);
 		activeProject = StakeholderUtil.getActiveProject();
 
 	}
-	
+
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		setTitle(MANAGE_DEVELOPMENT_PHASES);
 		setMessage(SELECT_DEVELOPMENT_PHASE);
 		Composite wrap = (Composite) super.createDialogArea(parent);
-
 		Composite viewComposite = createViewComposite(wrap);
 		tableViewSetUp(viewComposite);
 		setTableInput();
@@ -75,22 +83,29 @@ public class ManagePhasesDialog extends TitleDialogWithoutMinSize {
 		createButtons(viewComposite);
 		return viewComposite;
 	}
-	
+
+	/**
+	 * Sets the current available development phases to be shown within the dialog.
+	 */
 	private void setTableInput() {
 		developmentPhases = new ArrayList<UnicaseModelElement>();
 
-		Collection<EObject> basicList = activeProject.getAllModelElementsbyClass(UrmlPackage.eINSTANCE.getPhase(), 
-				new BasicEList<EObject>());
+		Collection<EObject> basicList = activeProject
+				.getAllModelElementsbyClass(UrmlPackage.eINSTANCE.getPhase(),
+						new BasicEList<EObject>());
 
 		for (EObject phase : basicList) {
 			developmentPhases.add((Phase) phase);
 		}
 		tableViewer.setInput(developmentPhases);
 	}
-	
+
+
 	private void createAddDialog() {
 		final Phase newPhase = UrmlFactory.eINSTANCE.createPhase();
-		final AddPhaseDialog addPhaseDialog = new AddPhaseDialog(addPhaseButton.getShell(), newPhase, ADD_NEW_PHASE, ADD_DIALOG_MESSAGE);
+		final AddPhaseDialog addPhaseDialog = new AddPhaseDialog(
+				addPhaseButton.getShell(), newPhase, ADD_NEW_PHASE,
+				ADD_DIALOG_MESSAGE);
 		addPhaseDialog.setBlockOnOpen(true);
 		if (addPhaseDialog.open() == Window.OK) {
 			new UnicaseCommand() {
@@ -103,7 +118,7 @@ public class ManagePhasesDialog extends TitleDialogWithoutMinSize {
 			setTableInput();
 		}
 	}
-	
+
 	private void tableViewSetUp(Composite composite) {
 		tableViewer = new TableViewer(composite, SWT.BORDER | SWT.MULTI);
 		tableViewer.getControl().setLayoutData(
@@ -122,7 +137,7 @@ public class ManagePhasesDialog extends TitleDialogWithoutMinSize {
 		});
 		viewerNameColumn.getColumn().setWidth(280);
 	}
-	
+
 	private Composite createViewComposite(Composite parent) {
 		// Create composite
 		Composite composite = new Composite(parent, SWT.NONE);
@@ -133,11 +148,10 @@ public class ManagePhasesDialog extends TitleDialogWithoutMinSize {
 		composite.setFont(parent.getFont());
 		return composite;
 	}
-	
-	
 
 	private void addListeners() {
-		 dialogListener = new DeleteButtonListener(tableViewer,getShell(),activeProject);
+		dialogListener = new DeleteButtonListener(tableViewer, getShell(),
+				activeProject);
 		tableViewer
 				.addSelectionChangedListener(new ISelectionChangedListener() {
 					@Override
@@ -146,11 +160,12 @@ public class ManagePhasesDialog extends TitleDialogWithoutMinSize {
 					}
 				});
 	}
-	
+
 	private void createButtons(Composite composite) {
 		addPhaseButton = new Button(composite, SWT.PUSH);
 		addPhaseButton.setText("Add phase...");
-		addPhaseButton.setLayoutData(new GridData(SWT.RIGHT, SWT.BOTTOM, false, false, 1, 1));
+		addPhaseButton.setLayoutData(new GridData(SWT.RIGHT, SWT.BOTTOM, false,
+				false, 1, 1));
 		addPhaseButton.setToolTipText("Add new development phase");
 		addPhaseButton.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -161,9 +176,11 @@ public class ManagePhasesDialog extends TitleDialogWithoutMinSize {
 
 		removePhaseButton = new Button(composite, SWT.PUSH);
 		removePhaseButton.setText("Delete phase");
-		removePhaseButton.setLayoutData(new GridData(SWT.RIGHT, SWT.BOTTOM, false, false, 1, 1));
+		removePhaseButton.setLayoutData(new GridData(SWT.RIGHT, SWT.BOTTOM,
+				false, false, 1, 1));
 		removePhaseButton.setEnabled(false);
-		removePhaseButton.setToolTipText("Remove the selected development phase from the list");
+		removePhaseButton
+				.setToolTipText("Remove the selected development phase from the list");
 		removePhaseButton.addListener(SWT.Selection, dialogListener);
 	}
 }

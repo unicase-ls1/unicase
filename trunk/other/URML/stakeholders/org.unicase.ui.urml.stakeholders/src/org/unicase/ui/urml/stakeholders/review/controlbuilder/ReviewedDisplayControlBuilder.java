@@ -6,11 +6,8 @@
 package org.unicase.ui.urml.stakeholders.review.controlbuilder;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
@@ -20,11 +17,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.unicase.model.urml.UrmlModelElement;
 import org.unicase.model.urml.UrmlPackage;
-import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
 
 /**
  * This is the control to edit boolean value of the reviewed field.
- * 
  * @author kterzieva
  * 
  */
@@ -33,7 +28,6 @@ public class ReviewedDisplayControlBuilder extends AbstractControlBuilder {
 
 	private static final int PRIORITY = 1;
 	private Button check;
-
 
 	/**
 	 * Gives the render value of this control.
@@ -69,19 +63,8 @@ public class ReviewedDisplayControlBuilder extends AbstractControlBuilder {
 		Object feature = getItemPropertyDescriptor().getFeature(getModelElement());
 		EStructuralFeature attribute = (EStructuralFeature) feature;
 		check = new Button(parent, SWT.CHECK);
-		EMap<EClass, EList<EStructuralFeature>> test = UrmlSettingsManager.INSTANCE.getActiveRole().getReviewSet();
-		
-		EList<EStructuralFeature> referenceListFromElement = test.get(urmlElement.eClass());
-		
-		//to change the display name use the property descriptor
-//		if(!referenceListFromElement.isEmpty()){
-//			check.setText("(" + referenceListFromElement.get(0).getName() + ")");
-//		}
-		
-		//implement set of properties for a certain element
 		if(!attribute.getName().equals("reviewed")){
 			check.setEnabled(false);
-			
 		}
 		
 		IObservableValue model = EMFEditObservables.observeValue(getContext().getEditingDomain(), getModelElement(), attribute);

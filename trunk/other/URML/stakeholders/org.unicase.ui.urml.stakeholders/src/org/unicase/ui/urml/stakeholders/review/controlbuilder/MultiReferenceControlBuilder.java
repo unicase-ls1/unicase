@@ -33,7 +33,6 @@ import org.unicase.ui.common.commands.ECPCommand;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.NewReferenceAction;
 
-
 /**
  * GUI Control for the review view reference multilinks.
  * 
@@ -114,29 +113,17 @@ public class MultiReferenceControlBuilder extends AbstractControlBuilder {
 	}
 
 	private EReference eReference;
-
 	private int style;
-
 	private ScrolledComposite scrollPane;
-
 	private Section section;
-
 	private Composite linkArea;
-
 	private Composite composite;
-
 	private ArrayList<MELinkControl> linkControls;
-
 	private GridLayout tableLayout;
-
 	private Composite scrollClient;
-
 	private static final int PRIORITY = 1;
-
 	private Object feature;
-
 	private org.unicase.ui.meeditor.ModelElementChangeListener modelElementChangeListener;
-
 	private void createSectionToolbar(Section section, FormToolkit toolkit) {
 		ToolBarManager toolBarManager = new ToolBarManager(SWT.FLAT);
 		ToolBar toolbar = toolBarManager.createControl(section);
@@ -151,7 +138,6 @@ public class MultiReferenceControlBuilder extends AbstractControlBuilder {
 			}
 		});
 
-		
 		toolBarManager.add(new NewReferenceAction(getModelElement(), eReference, getItemPropertyDescriptor(),
 			getContext()));
 		toolBarManager.update(true);
@@ -176,7 +162,7 @@ public class MultiReferenceControlBuilder extends AbstractControlBuilder {
 			public void onChange(Notification notification) {
 				if ((notification.getEventType() != Notification.RESOLVE)
 					&& (notification.getFeature().equals(feature))) {
-					 rebuildLinkSection();
+					rebuildLinkSection();
 				}
 
 			}
@@ -193,12 +179,6 @@ public class MultiReferenceControlBuilder extends AbstractControlBuilder {
 		rebuildLinkSection();
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(section);
 		section.setClient(composite);
-		
-//		EAttribute attribute = (EAttribute) feature;
-//		IObservableValue model = EMFEditObservables.observeValue(getContext().getEditingDomain(), getModelElement(), attribute);
-//		EMFDataBindingContext dbc = new EMFDataBindingContext();
-//		dbc.bindValue(SWTObservables.observeSelection(section), model, null, null);
-//		
 		return section;
 	}
 

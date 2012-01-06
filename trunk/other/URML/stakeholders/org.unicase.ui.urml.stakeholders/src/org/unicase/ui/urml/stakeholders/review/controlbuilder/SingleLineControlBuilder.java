@@ -20,18 +20,15 @@ import org.unicase.model.urml.UrmlModelElement;
 
 /**
  * The widgets to show a single line text attribute.
- * 
  * @author kterzieva
  * 
  */
 public class SingleLineControlBuilder extends AbstractControlBuilder {
 
 	private static final int PRIORITY = 1;
-	//private EAttribute attribute;
 
 	/**
 	 * Gives the render value of this control.
-	 * 
 	 * @param itemPropertyDescriptor the item descriptor
 	 * @param urmlElement the urml element
 	 * @return int the value

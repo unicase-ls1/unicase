@@ -21,7 +21,6 @@ import org.unicase.ui.urml.stakeholders.config.UrmlSettingsManager;
 
 /**
  * Filter class for the URML diagram.
- * 
  * @author kterzieva
  * 
  */

@@ -134,11 +134,6 @@ public class ControlBuilderRegistry {
 		return null;
 	}
 
-	// candidates - list with the control candidates
-	// itemPropertyDescriptor - one property like Name or Description
-	// feature
-	// modelElement
-
 	private AbstractControlBuilder getBestCandidate(ArrayList<AbstractControlBuilder> candidates,
 		IItemPropertyDescriptor itemPropertyDescriptor, UrmlModelElement urmlElement) {
 		int bestValue = 0;

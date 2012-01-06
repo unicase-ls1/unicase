@@ -10,8 +10,7 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.unicase.ui.navigator.TreeView;
 
 /**
- * Filter manager for applying and removing of filter.
- * 
+ * Filter manager for applying and removing filters.
  * @author kterzieva
  */
 
@@ -19,7 +18,6 @@ public class NavigatorFilterManager {
 
 	/**
 	 * Applies the filter.
-	 * 
 	 * @param filter the filter
 	 */
 	public void applyFilter(ViewerFilter filter) {
@@ -27,37 +25,11 @@ public class NavigatorFilterManager {
 		if(viewer != null){
 			viewer.setFilters(new ViewerFilter[] { filter });
 		}
-//		new UnicaseCommand() {
-//			@Override
-//			protected void doRun() {
-//				Project test = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces().get(0)
-//					.getProject();
-//				Set<EObject> elements = test.getAllModelElements();
-//				for (EObject eo : elements) {
-//					if (eo instanceof URMLDiagram) {
-//						URMLDiagram u = (URMLDiagram) eo;
-//						System.out.println(u.getName());
-//						EList<UnicaseModelElement> test3 =  u.getElements();
-//						for (UnicaseModelElement uni : test3) {
-//							System.out.println(uni.getName());
-//						}
-//						//u.getElements().remove(1);
-//					//	u.getElements().remove(u.getElements().get(1));
-//						EList<UnicaseModelElement> refernceList = u.getReferringModelElements();
-//						for (UnicaseModelElement u1 : refernceList) {
-//							System.out.println(u1.getName());
-//						}
-//						refernceList.remove(0);
-//					}
-//				}
-//			}
-//		}.run();
 	}
 
 	/**
 	 * Removes the filter.
 	 */
-
 	public void removeFilters() {
 		TreeView.getTreeViewer().setFilters(new ViewerFilter[0]);
 	}

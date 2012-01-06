@@ -56,16 +56,16 @@ public class TitleDialogWithoutMinSize extends TitleAreaDialog {
 	}
 	
 	/**
-	 * .
-	 * @return .
+	 * Gets the minimal width, which is 0.
+	 * @return 0
 	 */
 	public int getMinWidth(){
 		return 0;
 	}
 	
 	/**
-	 * .
-	 * @return .
+	 * Gets the minimal width, which is 0.
+	 * @return 0
 	 */
 	public int getMinHeight(){
 		return 0;

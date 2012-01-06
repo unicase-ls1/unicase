@@ -22,7 +22,7 @@ import org.eclipse.swt.SWT;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
- * Supports the editing of table cell content..
+ * Supports the editing of table cell content within the phase configuration view.
  * 
  * @author kterzieva
  */
@@ -31,26 +31,22 @@ public class PhaseConfigurationEditingSupport extends EditingSupport {
 	private final TableViewer viewer;
 	private EClass columnClass;
 	private PhaseConfigurationView rulesView;
-//	private TableViewerColumn tableViewerColumn;
-//	private static final Image CHECKED = Activator.getImageDescriptor("icons/checked.gif").createImage();
-//	private static final Image UNCHECKED = Activator.getImageDescriptor("icons/unchecked.gif").createImage();
 
-	/**
-	 * The construct.
-	 * 
-	 * @param rulesView the view which contains the table view
-	 * @param viewer the table view
-	 * @param columnClass
-	 * @param sortedElementNames
-	 * @param viewerColumn
-	 */
-	public PhaseConfigurationEditingSupport(PhaseConfigurationView rulesView, TableViewer viewer, EClass columnClass,
-		ArrayList<EClass> sortedElementNames, TableViewerColumn viewerColumn) {
+	 /**
+	  * The construct.
+	  * @param rulesView the development phase configuration view, which can be edited
+	  * @param viewer the table viewer
+	  * @param columnClass the type of the column element
+	  * @param sortedElementNames list with the sorted model element names
+	  * @param viewerColumn the column viewer
+	  */
+	public PhaseConfigurationEditingSupport(PhaseConfigurationView rulesView,
+			TableViewer viewer, EClass columnClass,
+			ArrayList<EClass> sortedElementNames, TableViewerColumn viewerColumn) {
 		super(viewer);
 		this.viewer = viewer;
 		this.columnClass = columnClass;
 		this.rulesView = rulesView;
-	//	this.tableViewerColumn = viewerColumn;
 	}
 
 	@Override
@@ -70,67 +66,39 @@ public class PhaseConfigurationEditingSupport extends EditingSupport {
 
 	@Override
 	protected void setValue(final Object element, Object value) {
-		if(UrmlSettingsManager.INSTANCE.getActivePhase() == null){
-			MessageDialog.openWarning(
-					viewer.getControl().getShell(),
-					"No development phase active",
-					"You must set a development phase as active before you can edit it.");
+		if (UrmlSettingsManager.INSTANCE.getActivePhase() == null) {
+			MessageDialog
+					.openWarning(viewer.getControl().getShell(),
+							"No development phase active",
+							"You must set a development phase as active before you can edit it.");
 			return;
 		}
-		//rulesView.printPhase("SET VALUE",UrmlSettingsManager.INSTANCE.getActivePhase());
 		if (!rulesView.hasStaticAssociation(columnClass, (EClass) element)
-			&& !rulesView.hasStaticAssociation((EClass) element, columnClass)) {
-			new UnicaseCommand(){
+				&& !rulesView.hasStaticAssociation((EClass) element,
+						columnClass)) {
+			new UnicaseCommand() {
 
 				@Override
 				protected void doRun() {
-					EMap<EClass, EList<EClass>> allowedAss = UrmlSettingsManager.INSTANCE.getActivePhase().getAllowedAssociations();
+					EMap<EClass, EList<EClass>> allowedAss = UrmlSettingsManager.INSTANCE
+							.getActivePhase().getAllowedAssociations();
 					EList<EClass> valueList = allowedAss.get((EClass) element);
-					if(valueList == null){
+					if (valueList == null) {
 						valueList = new BasicEList<EClass>();
 						valueList.add(columnClass);
 						allowedAss.put((EClass) element, valueList);
 						valueList = allowedAss.get((EClass) element);
 					} else {
-						if(!valueList.contains(columnClass)){
+						if (!valueList.contains(columnClass)) {
 							valueList.add(columnClass);
-						}else{
+						} else {
 							valueList.remove(columnClass);
 						}
 					}
 				}
-				
+
 			}.run();
-			viewer.update(element, null);
-			
-//			tableViewerColumn.setLabelProvider(new CellLabelProvider() {
-//
-//				@Override
-//				public void update(ViewerCell cell) {
-//					if (cell.getElement().equals(element)) {
-//						if(cell.getImage().equals(CHECKED)){
-//							cell.setImage(UNCHECKED);
-//		
-//						}else{
-//							cell.setImage(CHECKED);
-//						}
-//					}
-//
-//				}
-//			});
+			viewer.update(element, null);	
 		}
-//		}else {
-//			tableViewerColumn.setLabelProvider(new CellLabelProvider() {
-//
-//				@Override
-//				public void update(ViewerCell cell) {
-//					if (cell.getElement().equals(element)) {
-//						cell.setImage(UNCHECKED);
-//					}
-//
-//				}
-//			});
-//			viewer.refresh();
-//		}
 	}
 }

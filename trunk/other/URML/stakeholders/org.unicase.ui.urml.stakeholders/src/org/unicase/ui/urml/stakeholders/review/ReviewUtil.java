@@ -6,8 +6,7 @@
 package org.unicase.ui.urml.stakeholders.review;
 
 /**
- *  Util class for the review view.
- * 
+ * Util class for the review view.
  * @author kterzieva
  */
 
@@ -15,10 +14,8 @@ public final class ReviewUtil {
 	
 	private ReviewUtil() {}
 	
-	//gibt value of string zurück, wenn aber der Wert null ist, soll leeres string angezeigt bekomme
-	//also nix
 	/**
-	 * .
+	 * Gets the string value from a object as input.
 	 * @param o the object 
 	 * @return the string representation of the object
 	 */
@@ -30,5 +27,4 @@ public final class ReviewUtil {
 			return o.toString();
 		}
 	}
-	
 }

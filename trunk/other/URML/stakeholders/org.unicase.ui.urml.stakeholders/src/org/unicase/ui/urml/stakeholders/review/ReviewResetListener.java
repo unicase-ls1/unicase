@@ -13,7 +13,9 @@ import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.model.urml.UrmlModelElement;
 
 /**
- * Abstract class for the reviewed listener.
+ * Listener for the changes on the urml model elements. 
+ * It updates the urml model element review status, after some of its properties
+ * were changed.
  * 
  * @author kterzieva
  */
@@ -22,24 +24,21 @@ public class ReviewResetListener implements ModelElementChangeListener {
 	private UrmlModelElement urmlElement;
 
 	/**
-	 * 
-	 * 
-	 * @return urmlElement the urml element
-	 */
-	public UrmlModelElement getUrmlElement() {
-		return urmlElement;
-	}
-
-	/**
 	 * The construct.
-	 * 
-	 * @param urmlElement .
-	 * @param reviewedTracker the tracker
+	 * @param urmlElement the model element
 	 */
 	public ReviewResetListener(UrmlModelElement urmlElement) {
 		this.urmlElement = urmlElement;
 	}
 
+	/**
+	 * Gets the urml model element.
+	 * @return urmlElement the urml element
+	 */
+	public UrmlModelElement getUrmlElement() {
+		return urmlElement;
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 * 
