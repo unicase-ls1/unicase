@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.emfstore.client.ui.feature"
       label="EMFStore Client UI (Incubation)"
-      version="0.8.9.M907"
+      version="0.8.9.M908"
       provider-name="Eclipse Modeling Project"
       plugin="org.eclipse.emf.emfstore.branding">
 
@@ -293,5 +293,8 @@ litigation.
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
+    <includes id="org.eclipse.emf.emfstore.client.ui.source" version="0.0.0"/>
+    
 
 </feature>
