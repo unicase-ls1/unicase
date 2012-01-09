@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.ecp.navigatoreditorbridge.feature"
       label="ECP Navigator Editor Bridge (Incubation)"
-      version="0.8.9.M907"
+      version="0.8.9.M908"
       provider-name="Eclipse Modeling Project">
 
    <description url="http://emfcp.org">
@@ -239,5 +239,7 @@ litigation.
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+         
+   <includes id="org.eclipse.emf.ecp.navigatoreditorbridge.source" version="0.0.0"/>
 
 </feature>
