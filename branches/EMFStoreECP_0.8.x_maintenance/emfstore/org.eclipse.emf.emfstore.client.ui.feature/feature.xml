@@ -294,7 +294,4 @@ litigation.
          version="0.0.0"
          unpack="false"/>
 
-    <includes id="org.eclipse.emf.emfstore.client.ui.source" version="0.0.0"/>
-    
-
 </feature>

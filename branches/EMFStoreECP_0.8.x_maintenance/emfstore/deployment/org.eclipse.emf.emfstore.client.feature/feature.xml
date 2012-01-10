@@ -242,8 +242,5 @@ litigation.
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>
-         
-   <includes id="org.eclipse.emf.emfstore.client.source" version="0.0.0"/>
-   
+         unpack="false"/>   
 </feature>

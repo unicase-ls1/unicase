@@ -257,7 +257,5 @@ litigation.
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
-   <includes id="org.eclipse.emf.ecp.common.source" version="0.0.0"/>         
-
+ 
 </feature>
