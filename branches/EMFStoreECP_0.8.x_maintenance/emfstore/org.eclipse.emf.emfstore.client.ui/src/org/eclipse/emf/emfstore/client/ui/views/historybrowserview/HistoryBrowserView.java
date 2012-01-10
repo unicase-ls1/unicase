@@ -28,7 +28,6 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.util.ProjectSpaceContainer;
-import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.client.ui.Activator;
 import org.eclipse.emf.emfstore.client.ui.commands.ServerRequestCommandHandler;
 import org.eclipse.emf.emfstore.client.ui.util.ElementOpenerHelper;
@@ -660,7 +659,6 @@ public class HistoryBrowserView extends ViewPart implements ProjectSpaceContaine
 	@Override
 	public void setFocus() {
 		viewer.getControl().setFocus();
-		WorkspaceUtil.logFocusEvent("org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView");
 	}
 
 	/**
