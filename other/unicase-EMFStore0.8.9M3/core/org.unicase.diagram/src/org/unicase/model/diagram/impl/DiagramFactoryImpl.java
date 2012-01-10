@@ -5,29 +5,26 @@
  */
 package org.unicase.model.diagram.impl;
 
+import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.unicase.model.diagram.*;
-import org.unicase.model.diagram.ActivityDiagram;
-import org.unicase.model.diagram.ClassDiagram;
-import org.unicase.model.diagram.ComponentDiagram;
-import org.unicase.model.diagram.DiagramFactory;
-import org.unicase.model.diagram.DiagramPackage;
-import org.unicase.model.diagram.StateDiagram;
-import org.unicase.model.diagram.UseCaseDiagram;
-import org.unicase.model.diagram.WorkItemDiagram;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
  * @generated
  */
 public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	/**
 	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	public static DiagramFactory init() {
@@ -45,7 +42,8 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	/**
 	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	public DiagramFactoryImpl() {
@@ -76,6 +74,36 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+		case DiagramPackage.ME_RELATIVE_BENDPOINT:
+			return createMERelativeBendpointFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '"
+					+ eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+		case DiagramPackage.ME_RELATIVE_BENDPOINT:
+			return convertMERelativeBendpointToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '"
+					+ eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -134,13 +162,53 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MERelativeBendpoints createMERelativeBendpoints() {
 		MERelativeBendpointsImpl meRelativeBendpoints = new MERelativeBendpointsImpl();
 		return meRelativeBendpoints;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public MERelativeBendpoint createMERelativeBendpointFromString(
+			EDataType eDataType, String initialValue) {
+		String[] coordinates = initialValue.split(",");
+		if (coordinates.length == 4) {
+			Integer sourceX = Integer.parseInt(coordinates[0]);
+			Integer sourceY = Integer.parseInt(coordinates[1]);
+			Integer targetX = Integer.parseInt(coordinates[2]);
+			Integer targetY = Integer.parseInt(coordinates[3]);
+			return new MERelativeBendpoint(sourceX, sourceY, targetX, targetY);
+		}
+		return (MERelativeBendpoint) super.createFromString(eDataType,
+				initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public String convertMERelativeBendpointToString(EDataType eDataType,
+			Object instanceValue) {
+		if (instanceValue instanceof MERelativeBendpoint) {
+			MERelativeBendpoint point = (MERelativeBendpoint) instanceValue;
+			StringBuffer result = new StringBuffer(super.toString());
+			result.append(point.getSourceX());
+			result.append(",");
+			result.append(point.getSourceY());
+			result.append(",");
+			result.append(point.getTargetX());
+			result.append(",");
+			result.append(point.getTargetY());
+			return result.toString();
+		}
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

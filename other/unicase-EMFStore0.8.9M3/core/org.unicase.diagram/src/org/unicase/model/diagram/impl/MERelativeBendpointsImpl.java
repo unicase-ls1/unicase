@@ -34,24 +34,49 @@ public class MERelativeBendpointsImpl extends RelativeBendpointsImpl implements
 	protected MERelativeBendpointsImpl() {
 		super();
 	}
-	
+
 	public void setPoints(List points) {
 		List<MERelativeBendpoint> actualPoints = new ArrayList<MERelativeBendpoint>(
 				points.size());
+//		List<MEHintPoint> oldHints = new ArrayList<MEHintPoint>(getHintPoints());
+//		getHintPoints().clear();
 		for (Object point : points) {
 			if (point instanceof MERelativeBendpoint) {
-				actualPoints.add((MERelativeBendpoint) point);
+				MERelativeBendpoint mePoint = (MERelativeBendpoint) point;
+//				if (!oldHints.isEmpty()) {
+//					MEHintPoint hintPoint = oldHints.remove(0);
+//					mePoint = new MERelativeBendpoint(hintPoint);
+//				}
+				saveHint(mePoint);
+				actualPoints.add(mePoint);
 			} else if (point instanceof RelativeBendpoint) {
 				RelativeBendpoint relativePoint = (RelativeBendpoint) point;
-				actualPoints
-						.add(new MERelativeBendpoint(
-								relativePoint.getSourceX(), relativePoint
-										.getSourceY(), relativePoint
-										.getTargetX(), relativePoint
-										.getTargetY()));
+				MERelativeBendpoint mePoint = copyPoint(relativePoint);
+				actualPoints.add(mePoint);
 			}
 		}
 		super.setPoints(actualPoints);
+	}
+
+	private void saveHint(MERelativeBendpoint point) {
+//		MEHintPoint hint = DiagramFactory.eINSTANCE.createMEHintPoint();
+//
+//		hint.setSourceX(point.getSourceX());
+//		hint.setSourceY(point.getSourceY());
+//		hint.setTargetX(point.getTargetX());
+//		hint.setTargetY(point.getTargetY());
+//
+//		getHintPoints().add(hint);
+	}
+
+	private MERelativeBendpoint copyPoint(RelativeBendpoint relativePoint) {
+		MERelativeBendpoint copy = new MERelativeBendpoint(
+				relativePoint.getSourceX(), relativePoint.getSourceY(),
+				relativePoint.getTargetX(), relativePoint.getTargetY());
+
+		saveHint(copy);
+
+		return copy;
 	}
 
 	/**
