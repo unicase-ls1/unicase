@@ -21,7 +21,6 @@ import org.eclipse.emf.emfstore.client.model.Usersession;
 import org.eclipse.emf.emfstore.client.model.Workspace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.observers.LoginObserver;
-import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.client.ui.dialogs.login.LoginDialog;
 import org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.provider.ESBrowserContentProvider;
 import org.eclipse.emf.emfstore.client.ui.views.emfstorebrowser.provider.ESBrowserLabelProvider;
@@ -214,7 +213,6 @@ public class ESBrowserView extends ViewPart implements LoginObserver {
 	@Override
 	public void setFocus() {
 		viewer.getControl().setFocus();
-		WorkspaceUtil.logFocusEvent("org.eclipse.emf.emfstore.client.ui.repositorybrowser");
 	}
 
 	/**
