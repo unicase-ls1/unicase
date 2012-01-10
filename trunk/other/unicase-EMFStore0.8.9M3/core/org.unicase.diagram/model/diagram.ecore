@@ -23,4 +23,5 @@
   <eClassifiers xsi:type="ecore:EClass" name="ActivityDiagram" eSuperTypes="#//MEDiagram"/>
   <eClassifiers xsi:type="ecore:EClass" name="WorkItemDiagram" eSuperTypes="#//MEDiagram"/>
   <eClassifiers xsi:type="ecore:EClass" name="MERelativeBendpoints" eSuperTypes="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//RelativeBendpoints"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="MERelativeBendpoint" instanceClassName="org.unicase.model.diagram.impl.MERelativeBendpoint"/>
 </ecore:EPackage>

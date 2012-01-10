@@ -10,6 +10,7 @@
   <foreignModel>diagram.ecore</foreignModel>
   <genPackages prefix="Diagram" basePackage="org.unicase.model" disposableProviderFactory="true"
       ecorePackage="diagram.ecore#/">
+    <genDataTypes ecoreDataType="diagram.ecore#//MERelativeBendpoint"/>
     <genClasses image="false" ecoreClass="diagram.ecore#//MEDiagram">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference diagram.ecore#//MEDiagram/elements"/>
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EReference diagram.ecore#//MEDiagram/gmfdiagram"/>

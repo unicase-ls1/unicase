@@ -5,8 +5,10 @@
  */
 package org.unicase.model.diagram.impl;
 
+import java.util.Map;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -110,6 +112,13 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * @generated
 	 */
 	private EClass meRelativeBendpointsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType meRelativeBendpointEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -276,6 +285,15 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getMERelativeBendpoint() {
+		return meRelativeBendpointEDataType;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -320,6 +338,9 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		workItemDiagramEClass = createEClass(WORK_ITEM_DIAGRAM);
 
 		meRelativeBendpointsEClass = createEClass(ME_RELATIVE_BENDPOINTS);
+
+		// Create data types
+		meRelativeBendpointEDataType = createEDataType(ME_RELATIVE_BENDPOINT);
 	}
 
 	/**
@@ -415,6 +436,11 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		initEClass(meRelativeBendpointsEClass, MERelativeBendpoints.class,
 				"MERelativeBendpoints", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
+
+		// Initialize data types
+		initEDataType(meRelativeBendpointEDataType, MERelativeBendpoint.class,
+				"MERelativeBendpoint", IS_SERIALIZABLE,
+				!IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

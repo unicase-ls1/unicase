@@ -7,6 +7,7 @@ package org.unicase.model.diagram;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -1178,6 +1179,16 @@ public interface DiagramPackage extends EPackage {
 	int ME_RELATIVE_BENDPOINTS_FEATURE_COUNT = NotationPackage.RELATIVE_BENDPOINTS_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '<em>ME Relative Bendpoint</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.diagram.impl.MERelativeBendpoint
+	 * @see org.unicase.model.diagram.impl.DiagramPackageImpl#getMERelativeBendpoint()
+	 * @generated
+	 */
+	int ME_RELATIVE_BENDPOINT = 8;
+
+	/**
 	 * Returns the meta object for class ' {@link org.unicase.model.diagram.MEDiagram <em>ME Diagram</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -1294,6 +1305,17 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getMERelativeBendpoints();
+
+	/**
+	 * Returns the meta object for data type '{@link org.unicase.model.diagram.impl.MERelativeBendpoint <em>ME Relative Bendpoint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>ME Relative Bendpoint</em>'.
+	 * @see org.unicase.model.diagram.impl.MERelativeBendpoint
+	 * @model instanceClass="org.unicase.model.diagram.impl.MERelativeBendpoint"
+	 * @generated
+	 */
+	EDataType getMERelativeBendpoint();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1421,6 +1443,16 @@ public interface DiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ME_RELATIVE_BENDPOINTS = eINSTANCE.getMERelativeBendpoints();
+
+		/**
+		 * The meta object literal for the '<em>ME Relative Bendpoint</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.diagram.impl.MERelativeBendpoint
+		 * @see org.unicase.model.diagram.impl.DiagramPackageImpl#getMERelativeBendpoint()
+		 * @generated
+		 */
+		EDataType ME_RELATIVE_BENDPOINT = eINSTANCE.getMERelativeBendpoint();
 
 	}
 
