@@ -248,5 +248,4 @@ litigation.
          version="0.0.0"
          unpack="false"/>
          
-   <includes id="org.eclipse.emf.emfstore.common.source" version="0.0.0"/>
 </feature>
