@@ -130,7 +130,6 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		};
 		workspace.eAdapters().add(workspaceListenerAdapter);
 
-		initLoggedInUser();
 		createActions();
 
 		getSite().setSelectionProvider(viewer.getTableViewer());
@@ -140,7 +139,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			activeProject = workspace.getActiveProjectSpace().getProject();
 			activeProject.addProjectChangeObserver(TaskView.this);
 		}
-
+		initLoggedInUser();
 		viewer.setInput(activeProject);
 	}
 
