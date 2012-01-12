@@ -1,6 +1,8 @@
 package org.unicase.historyExport;
 
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,6 +22,21 @@ import org.tmatesoft.svn.core.internal.io.dav.DAVRepositoryFactory;
 import org.tmatesoft.svn.core.io.SVNRepository;
 import org.tmatesoft.svn.core.io.SVNRepositoryFactory;
 import org.tmatesoft.svn.core.wc.SVNWCUtil;
+import org.unicase.historyExport.ExportManager.ExportType;
+
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chapter;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 
 /**
  * Exports history for SVN repositories. See {@link HistoryWriter} for details.
@@ -29,19 +46,24 @@ import org.tmatesoft.svn.core.wc.SVNWCUtil;
 public class SVNHistoryWriter extends HistoryWriter {
 
 	/**
-	 * @see HistoryWriter#HistoryWriter(List, String, String, Long, Long, String)
+	 * @see HistoryWriter#HistoryWriter(List, String, String, Long, Long, ExportType, String)
 	 */
-	public SVNHistoryWriter(List<String> URLs, String name, String password, Long start, Long end, String filename)
-		throws Exception {
-		super(URLs, name, password, start, end, filename);
+	public SVNHistoryWriter(List<String> URLs, String name, String password, Long start, Long end,
+		ExportType exportType, String filename) throws Exception {
+		super(URLs, name, password, start, end, exportType, filename);
 	}
-
+	
 	@SuppressWarnings("rawtypes")
 	@Override
-	public void writeToFile() throws IOException {
-
+	public void writeToTxt() throws IOException {
 		// for every repository location...
 		for (String URL : URLs) {
+			Iterable logEntries = urlToLogEntries.get(URL);
+			if (logEntries == null) {
+				System.out.println("Failed to export history for repository at " + URL);
+				continue;
+			}
+
 			// initialize the file writing mechanism
 			FileWriter writer = new FileWriter(filePrefix + "(" + fileCounter++ + ")" + fileExtension);
 			BufferedWriter out = new BufferedWriter(writer);
@@ -56,7 +78,6 @@ public class SVNHistoryWriter extends HistoryWriter {
 			out.newLine();
 
 			// for every log entry
-			Iterable logEntries = urlToLogEntries.get(URL);
 			for (Iterator entries = logEntries.iterator(); entries.hasNext();) {
 				// print basic information about the entry
 				SVNLogEntry logEntry = (SVNLogEntry) entries.next();
@@ -96,6 +117,114 @@ public class SVNHistoryWriter extends HistoryWriter {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
+	public void writeToPdf() throws FileNotFoundException, DocumentException {
+		Document document = new Document(PageSize.A4, 20, 20, 20, 20);
+		PdfWriter.getInstance(document, new FileOutputStream(filePrefix + fileExtension));
+		document.open();
+
+		for (String URL : URLs) {
+			Iterable logEntries = urlToLogEntries.get(URL);
+			if (logEntries == null) {
+				System.out.println("Failed to export history for repository at " + URL);
+				continue;
+			}
+			document.newPage();
+
+			int counter = 0;
+
+			System.out.println("Writing history to file for repository at " + URL);
+			Chapter chapter = new Chapter(new Paragraph("Repository at " + URL, FontFactory.getFont(
+				FontFactory.HELVETICA, 18, Font.BOLD, new BaseColor(0, 0, 255))), 0);
+			chapter.setNumberDepth(0);
+			chapter.add(new Paragraph(" "));
+			chapter.add(new Paragraph(" "));
+			document.add(chapter);
+
+			PdfPTable table = new PdfPTable(4);
+
+			table.setWidths(new float[] { 0.135f, 0.2f, 0.3f, 0.4f });
+
+			PdfPCell revisionHeader = new PdfPCell(new Phrase("Revision"));
+			revisionHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
+			table.addCell(revisionHeader);
+
+			PdfPCell authorHeader = new PdfPCell(new Phrase("Author"));
+			authorHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
+			table.addCell(authorHeader);
+
+			PdfPCell dateHeader = new PdfPCell(new Phrase("Date"));
+			dateHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
+			table.addCell(dateHeader);
+
+			PdfPCell messageHeader = new PdfPCell(new Phrase("Log Message"));
+			messageHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
+			table.addCell(messageHeader);
+			table.setHeaderRows(1);
+
+			for (Iterator entries = logEntries.iterator(); entries.hasNext();) {
+				// print basic information about the entry
+				SVNLogEntry logEntry = (SVNLogEntry) entries.next();
+
+				if (table == null) {
+					table = new PdfPTable(4);
+
+					table.setWidths(new float[] { 0.135f, 0.2f, 0.3f, 0.4f });
+				}
+
+				PdfPCell revisionCell = new PdfPCell(new Phrase(String.valueOf(logEntry.getRevision())));
+				revisionCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+				table.addCell(revisionCell);
+
+				PdfPCell authorCell = new PdfPCell(new Phrase(logEntry.getAuthor()));
+				authorCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+				table.addCell(authorCell);
+
+				table.addCell(logEntry.getDate().toString());
+				table.addCell(logEntry.getMessage());
+
+				// if available, print more detailed information on paths that
+				// have changed
+				if (logEntry.getChangedPaths().size() > 0) {
+					PdfPCell pathHeader = new PdfPCell(new Phrase("Changed Paths:"));
+					pathHeader.setColspan(4);
+					pathHeader.setBorderWidthBottom(0);
+					table.addCell(pathHeader);
+
+					Set changedPathsSet = logEntry.getChangedPaths().keySet();
+
+					for (Iterator changedPaths = changedPathsSet.iterator(); changedPaths.hasNext();) {
+						SVNLogEntryPath entryPath = (SVNLogEntryPath) logEntry.getChangedPaths().get(
+							changedPaths.next());
+						PdfPCell pathEntry = new PdfPCell(new Phrase(" "
+							+ entryPath.getType()
+							+ " "
+							+ entryPath.getPath()
+							+ ((entryPath.getCopyPath() != null) ? " (from " + entryPath.getCopyPath() + " revision "
+								+ entryPath.getCopyRevision() + ")" : "")));
+						pathEntry.setColspan(4);
+						pathEntry.setBorderWidthTop(0);
+						pathEntry.setBorderWidthBottom(0);
+						table.addCell(pathEntry);
+					}
+				}
+				document.add(table);
+				table = null;
+
+				if ((++counter % 5000) == 0) {
+					System.out.println("Finished " + counter + " revisions!");
+				}
+			}
+			System.out.println("Finished repository at " + URL);
+		}
+		document.close();
+	}
+	
+	@Override
+	public void exportToDatabase() {
+		// TODO Implement database export mechanism
+	}
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	protected Iterable getLogEntries(String URL) throws Exception {
@@ -116,7 +245,7 @@ public class SVNHistoryWriter extends HistoryWriter {
 		final List log = new ArrayList((int) (maxEnd - start + 1));
 
 		// array for storing intermediate results for each thread
-		final Collection[] logArray = new Collection[(int) ((maxEnd - start) / 500) + 1];
+		final Collection[] logArray = new Collection[(int) ((maxEnd - start) / 1000) + 1];
 
 		// counter to determine the next index
 		int counter = 0;
@@ -125,10 +254,10 @@ public class SVNHistoryWriter extends HistoryWriter {
 		final CountDownLatch latch = new CountDownLatch(logArray.length);
 
 		// for each 500 entries...
-		for (Long i = start; i <= maxEnd; i += 500) {
+		for (Long i = start; i <= maxEnd; i += 1000) {
 			// determine start and end revision
 			final Long startRevision = i;
-			final Long endRevision = (startRevision + 499) > maxEnd ? maxEnd : (startRevision + 499);
+			final Long endRevision = (startRevision + 999) > maxEnd ? maxEnd : (startRevision + 999);
 			final int index = counter++;
 
 			// create and start thread to fetch the data
@@ -142,6 +271,7 @@ public class SVNHistoryWriter extends HistoryWriter {
 						latch.countDown();
 					} catch (SVNException e) {
 						e.printStackTrace();
+						latch.countDown();
 					}
 				}
 
@@ -154,14 +284,14 @@ public class SVNHistoryWriter extends HistoryWriter {
 		// while there is still a thread running...
 		while (latch.getCount() > 0) {
 			// compute how many revisions have been fetched already
-			long remainingRevisions = latch.getCount() * 500;
+			long remainingRevisions = latch.getCount() * 1000;
 			if (remainingRevisions > maxEnd) {
 				remainingRevisions = maxEnd;
 			}
 			// tell the user about the current status
 			System.out.println("Remaining revisions to fetch for " + URL + ": " + remainingRevisions);
 			// wait for all threads to finish or until 10 seconds have passed
-			latch.await(10, TimeUnit.SECONDS);
+			latch.await(15, TimeUnit.SECONDS);
 		}
 
 		// add all log entries to a list to ensure their order is correct

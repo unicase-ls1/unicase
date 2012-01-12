@@ -13,6 +13,7 @@ import java.util.List;
  * <li>Define at which revision to start and/or at which revision to end the export</li>
  * <li>Save the export to a certain file name</li>
  * <li>Support for SVN and Git</li>
+ * <li>Export to .txt or .pdf files</li>
  * </ul>
  * 
  * @author mharut
@@ -22,8 +23,15 @@ public class ExportManager {
 	/**
 	 * Supported version control types.
 	 */
-	enum VCS_TYPE {
+	enum VcsType {
 		SVN, GIT
+	};
+	
+	/**
+	 * Supported export types.
+	 */
+	enum ExportType {
+		TXT, PDF, DB
 	};
 
 	public static void main(String[] args) {
@@ -34,7 +42,7 @@ public class ExportManager {
 			} else {
 				HistoryWriter historyWriter = parseArgs(args);
 				if (historyWriter != null) {
-					historyWriter.writeToFile();
+					historyWriter.export();
 				}
 			}
 		} catch (Exception e) {
@@ -61,8 +69,9 @@ public class ExportManager {
 		String password = "";
 		Long start = new Long(0);
 		Long end = new Long(-1);
-		String filename = "myHistory.txt";
-		VCS_TYPE type = VCS_TYPE.SVN;
+		String filename = null;
+		VcsType vcsType = VcsType.SVN;
+		ExportType exportType = ExportType.TXT;
 		for (int j = i; j < args.length; j++) {
 			if (args[j].equals("-name")) {
 				j++;
@@ -100,18 +109,30 @@ public class ExportManager {
 				}
 				filename = args[j];
 			} else if (args[j].equals("-git")) {
-				type = VCS_TYPE.GIT;
+				vcsType = VcsType.GIT;
+			} else if (args[j].equals("-pdf")) {
+				exportType = ExportType.PDF;
 			} else {
 				printHelp();
 				return null;
 			}
 		}
-		switch (type) {
+		if(filename == null) {
+			switch(exportType) {
+			case TXT:
+				filename = "myHistory.txt";
+				break;
+			case PDF:
+				filename = "myHistory.pdf";
+				break;
+			}
+		}
+		switch (vcsType) {
 		case GIT:
-			return new GitHistoryWriter(URLs, name, password, start, end, filename);
+			return new GitHistoryWriter(URLs, name, password, start, end, exportType, filename);
 		case SVN:
 		default:
-			return new SVNHistoryWriter(URLs, name, password, start, end, filename);
+			return new SVNHistoryWriter(URLs, name, password, start, end, exportType, filename);
 		}
 	}
 
@@ -120,7 +141,7 @@ public class ExportManager {
 	 */
 	private static void printHelp() {
 		System.out
-			.println("Usage: ExportManager repository-urls [-name name] [-password password] [-start start] [-end end] [-filename filename] [-git]");
+			.println("Usage: ExportManager repository-urls [-name name] [-password password] [-start start] [-end end] [-filename filename] [-git] [-pdf]");
 	}
 
 }

@@ -1,10 +1,15 @@
 package org.unicase.historyExport;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
+
+import org.unicase.historyExport.ExportManager.ExportType;
+
+import com.itextpdf.text.DocumentException;
 
 /**
  * Abstract superclass for all history writers of each repository type. This writer provides the possibility to export
@@ -19,6 +24,7 @@ public abstract class HistoryWriter {
 	String password;
 	Long start;
 	Long end;
+	ExportType exportType;
 	String filePrefix;
 	String fileExtension;
 	int fileCounter;
@@ -34,17 +40,19 @@ public abstract class HistoryWriter {
 	 * @param password the password to use for authentication
 	 * @param start the revision to start with
 	 * @param end the revision to end with (use -1 for all revisions)
+	 * @param exportType how to export the history
 	 * @param filename the name of the file to write to
 	 * @throws Exception if {@link #init() initializing} fails
 	 */
 	@SuppressWarnings("rawtypes")
-	public HistoryWriter(List<String> URLs, String name, String password, Long start, Long end, String filename)
-		throws Exception {
+	public HistoryWriter(List<String> URLs, String name, String password, Long start, Long end, ExportType exportType,
+		String filename) throws Exception {
 		this.URLs = URLs;
 		this.name = name;
 		this.password = password;
 		this.start = start;
 		this.end = end;
+		this.exportType = exportType;
 		int separatorIndex = filename.lastIndexOf('.');
 		filePrefix = filename.substring(0, separatorIndex);
 		fileExtension = filename.substring(separatorIndex);
@@ -75,6 +83,7 @@ public abstract class HistoryWriter {
 						latch.countDown();
 					} catch (Exception e) {
 						e.printStackTrace();
+						latch.countDown();
 					}
 				}
 
@@ -90,11 +99,25 @@ public abstract class HistoryWriter {
 	}
 
 	/**
-	 * Writes and saves the exported history to a file specified by {@link #filename}.
+	 * Writes and saves the exported history to plain text files as specified by {@link #filePrefix} and
+	 * {@link #fileExtension}.
 	 * 
 	 * @throws IOException if file operations fail
 	 */
-	public abstract void writeToFile() throws IOException;
+	public abstract void writeToTxt() throws IOException;
+
+	/**
+	 * Writes and saves the exported history to a PDF file specified by {@link #filePrefix} and {@link #fileExtension}.
+	 * 
+	 * @throws FileNotFoundException if the file can't be created
+	 * @throws DocumentException if writing to the PDF document fails
+	 */
+	public abstract void writeToPdf() throws FileNotFoundException, DocumentException;	
+	
+	/**
+	 * Exports the history to a database.
+	 */
+	public abstract void exportToDatabase();
 
 	/**
 	 * Obtains all log entries (i.e. history) for a repository specified by <code>URL</code>.
@@ -105,5 +128,19 @@ public abstract class HistoryWriter {
 	 */
 	@SuppressWarnings("rawtypes")
 	protected abstract Iterable getLogEntries(String URL) throws Exception;
+
+	public void export() throws DocumentException, IOException {
+		switch (exportType) {
+		case TXT:
+			writeToTxt();
+			break;
+		case PDF:
+			writeToPdf();
+			break;
+		case DB:
+			exportToDatabase();
+		}
+
+	}
 
 }
