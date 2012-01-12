@@ -56,6 +56,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * The cached value of the '{@link #getModelElements() <em>Model Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getModelElements()
 	 * @generated
 	 * @ordered
@@ -65,6 +66,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * The cached value of the '{@link #getCutElements() <em>Cut Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getCutElements()
 	 * @generated
 	 * @ordered
@@ -127,6 +129,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -136,6 +139,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<EObject> getModelElements() {
@@ -148,6 +152,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<EObject> getCutElements() {
@@ -255,6 +260,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -270,6 +276,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -285,6 +292,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -305,6 +313,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -322,6 +331,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -522,6 +532,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 		// remove all IDs that are in use now
 		newEObjectToIdMap.values().removeAll(removableIds);
+		deletedEObjectToIdMap.values().removeAll(removableIds);
 	}
 
 	private void putIntoCaches(EObject modelElement, ModelElementId modelElementId) {
@@ -547,6 +558,52 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			newEObjectToIdMap.put(child, childId);
 			removeFromCaches(child);
 			eObjectToIdCache.remove(child);
+		}
+	}
+
+	/**
+	 * Removes the the given {@link EObject} and all its contained children from
+	 * their respective {@link XMIResource}s.
+	 * 
+	 * @param eObject
+	 *            the {@link EObject} to remove
+	 */
+	public void removeModelElementAndChildrenFromResource(EObject eObject) {
+		Set<EObject> children = ModelUtil.getAllContainedModelElements(eObject, false);
+		for (EObject child : children) {
+			removeModelElementFromResource(child);
+		}
+		removeModelElementFromResource(eObject);
+
+	}
+
+	/**
+	 * Removes the the given {@link EObject} from its {@link XMIResource}.
+	 * 
+	 * @param xmiResource
+	 *            the {@link EObject}'s resource
+	 * @param eObject
+	 *            the {@link EObject} to remove
+	 */
+	private void removeModelElementFromResource(EObject eObject) {
+
+		if (!(eObject.eResource() instanceof XMIResource)) {
+			return;
+		}
+
+		XMIResource xmiResource = (XMIResource) eObject.eResource();
+
+		if (xmiResource.getURI() == null) {
+			return;
+		}
+
+		xmiResource.setID(eObject, null);
+
+		try {
+			xmiResource.save(null);
+		} catch (IOException e) {
+			throw new RuntimeException("XMI Resource for model element " + eObject + " could not be saved. "
+				+ "Reason: " + e.getMessage());
 		}
 	}
 
@@ -656,7 +713,6 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			// getEobjectsIdMap().remove(modelElement);
 			this.getModelElements().remove(modelElement);
 		} else {
-			XMIResource res = (XMIResource) modelElement.eResource();
 			EReference containmentFeature = modelElement.eContainmentFeature();
 			if (containmentFeature.isMany()) {
 				EList<?> containmentList = (EList<?>) containerModelElement.eGet(containmentFeature);
@@ -664,7 +720,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 			} else {
 				containerModelElement.eSet(containmentFeature, null);
 			}
-			ModelUtil.removeModelElementAndChildrenFromResource(res, modelElement);
+			removeModelElementAndChildrenFromResource(modelElement);
 		}
 	}
 
