@@ -546,6 +546,11 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	private void removeModelElementAndChildrenFromCache(EObject modelElement) {
 
 		ModelElementId id = getModelElementId(modelElement);
+
+		if (deletedEObjectToIdMap.containsKey(modelElement)) {
+			return;
+		}
+
 		deletedEObjectToIdMap.put(modelElement, id);
 		newEObjectToIdMap.put(modelElement, id);
 
