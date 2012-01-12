@@ -876,46 +876,6 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * Removes the the given {@link EObject} and all its contained children from
-	 * their respective {@link XMIResource}s.
-	 * 
-	 * @param eObject
-	 *            the {@link EObject} to remove
-	 */
-	public static void removeModelElementAndChildrenFromResource(XMIResource res, EObject eObject) {
-		Set<EObject> children = getAllContainedModelElements(eObject, false);
-		for (EObject child : children) {
-			removeModelElementFromResource(res, child);
-		}
-		removeModelElementFromResource(res, eObject);
-	}
-
-	/**
-	 * Removes the the given {@link EObject} from its {@link XMIResource}.
-	 * 
-	 * @param xmiResource
-	 *            the {@link EObject}'s resource
-	 * @param eObject
-	 *            the {@link EObject} to remove
-	 */
-	private static void removeModelElementFromResource(XMIResource xmiResource, EObject eObject) {
-
-		if (xmiResource == null || xmiResource.getURI() == null) {
-			return;
-		}
-
-		EcoreUtil.delete(eObject);
-		xmiResource.setID(eObject, null);
-
-		try {
-			xmiResource.save(null);
-		} catch (IOException e) {
-			throw new RuntimeException("XMI Resource for model element " + eObject + " could not be saved. "
-				+ "Reason: " + e.getMessage());
-		}
-	}
-
-	/**
 	 * Delete all incoming cross references to the given model element from any
 	 * other model element in the given project.
 	 * 
