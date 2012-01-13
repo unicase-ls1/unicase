@@ -19,6 +19,7 @@ import java.util.jar.JarFile;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.emfstore.client.model.Configuration;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.osgi.framework.Bundle;
 import org.unicase.docExport.commands.ImportTemplate;
 import org.unicase.docExport.exceptions.DefaultTemplateLoadException;
 import org.unicase.docExport.exceptions.InvalidTemplateArchiveException;
@@ -122,7 +124,7 @@ public final class TemplateRegistry {
 				DEFAULT_TEMPLATES_FOLDER + File.separatorChar), Collections.EMPTY_MAP);
 
 			// loading the template in the developer version is easy
-			if (Configuration.isDeveloperVersion()) {
+			if (isDeveloperVersion()) {
 				File templateFolder = new File(FileLocator.resolve(templateFolderUrl).getPath());
 				File[] files = templateFolder.listFiles();
 				for (int i = 0; i < files.length; i++) {
@@ -173,6 +175,12 @@ public final class TemplateRegistry {
 		} catch (TemplateSaveException e) {
 			throw new DefaultTemplateLoadException(e);
 		}
+	}
+
+	private static boolean isDeveloperVersion() {
+		Bundle docExportBundle = Platform.getBundle("org.unicase.docExport");
+		String version = (String) docExportBundle.getHeaders().get(org.osgi.framework.Constants.BUNDLE_VERSION);
+		return version.endsWith("qualifier");
 	}
 
 	/**
