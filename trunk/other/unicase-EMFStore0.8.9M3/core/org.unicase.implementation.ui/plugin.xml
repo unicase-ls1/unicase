@@ -145,7 +145,7 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.navigator.createModelElementCommands">
+            locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=org.unicase.ui.navigator.createModelElementCommands">
          <command
                commandId="org.unicase.implementation.ui.command.ExtractSuperClass"
                icon="platform:/plugin/org.unicase.implementation.edit/icons/full/obj16/ExtractSuperClassOperation.png"
@@ -342,7 +342,7 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.subscribeToModelElement">
+            locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=org.unicase.ui.common.commands.subscribeToModelElement">
          <command
                commandId="org.unicase.model.codeGeneration.command.generateEcore"
                label="Generate Ecore"

@@ -26,7 +26,7 @@ public class ProjectSpaceContentProvider implements ContentProvider {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.navigator.ContentProvider#getChildren(org.unicase.workspace.ProjectSpace)
+	 * @see org.eclipse.emf.ecp.navigator.ContentProvider#getChildren(EObject)
 	 */
 	public Collection<?> getChildren(EObject rootObject) {
 		ProjectSpace projectSpace;
@@ -59,7 +59,7 @@ public class ProjectSpaceContentProvider implements ContentProvider {
 	/**
 	 * Always true since thre is the orphasn folder. {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.navigator.ContentProvider#hasChildren(org.unicase.workspace.ProjectSpace)
+	 * @see org.eclipse.emf.ecp.navigator.ContentProvider#hasChildren(EObject)
 	 */
 	public boolean hasChildren(EObject rootObject) {
 		return true;
