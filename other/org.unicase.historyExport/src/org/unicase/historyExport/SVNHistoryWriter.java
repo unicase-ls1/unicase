@@ -119,11 +119,14 @@ public class SVNHistoryWriter extends HistoryWriter {
 
 	@SuppressWarnings("rawtypes")
 	public void writeToPdf() throws FileNotFoundException, DocumentException {
+		// initialize the PDF document
 		Document document = new Document(PageSize.A4, 20, 20, 20, 20);
 		PdfWriter.getInstance(document, new FileOutputStream(filePrefix + fileExtension));
 		document.open();
 
+		// for every repository location...
 		for (String URL : URLs) {
+			// check if revisions were received successfully
 			Iterable logEntries = urlToLogEntries.get(URL);
 			if (logEntries == null) {
 				System.out.println("Failed to export history for repository at " + URL);
@@ -131,6 +134,7 @@ public class SVNHistoryWriter extends HistoryWriter {
 			}
 			document.newPage();
 
+			// counter for status updates shown to the user
 			int counter = 0;
 
 			System.out.println("Writing history to file for repository at " + URL);
@@ -141,6 +145,7 @@ public class SVNHistoryWriter extends HistoryWriter {
 			chapter.add(new Paragraph(" "));
 			document.add(chapter);
 
+			// initialize the table that will show the revisions's content
 			PdfPTable table = new PdfPTable(4);
 
 			table.setWidths(new float[] { 0.135f, 0.2f, 0.3f, 0.4f });
@@ -172,6 +177,7 @@ public class SVNHistoryWriter extends HistoryWriter {
 					table.setWidths(new float[] { 0.135f, 0.2f, 0.3f, 0.4f });
 				}
 
+				// print basic information of this log entry
 				PdfPCell revisionCell = new PdfPCell(new Phrase(String.valueOf(logEntry.getRevision())));
 				revisionCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 				table.addCell(revisionCell);
@@ -211,6 +217,7 @@ public class SVNHistoryWriter extends HistoryWriter {
 				document.add(table);
 				table = null;
 
+				// inform the user every 5000 finished revisions
 				if ((++counter % 5000) == 0) {
 					System.out.println("Finished " + counter + " revisions!");
 				}
