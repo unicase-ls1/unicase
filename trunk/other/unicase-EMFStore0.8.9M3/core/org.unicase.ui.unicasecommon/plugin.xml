@@ -530,7 +530,7 @@
                     </instanceof>
                     <test
                           forcePluginActivation="true"
-                          property="org.unicase.ui.unicasecommon.common.commands.isNotSubscribed"
+                          property="org.unicase.ui.common.commands.isNotSubscribed"
                           value="true">
                     </test>
                  </iterate>
@@ -556,7 +556,7 @@
                     </instanceof>
                     <test
                           forcePluginActivation="true"
-                          property="org.unicase.ui.unicasecommon.common.commands.isSubscribed"
+                          property="org.unicase.ui.common.commands.isSubscribed"
                           value="true">
                     </test>
                  </iterate>
