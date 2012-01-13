@@ -40,7 +40,7 @@ public class SubscriptionTester extends PropertyTester {
 			if (ModelUtil.getProject(modelElement) == null) {
 				return false;
 			}
-			ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(modelElement.eClass());
+			ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(modelElement);
 			OrgUnitProperty orgUnitProperty = PreferenceManager.INSTANCE.getProperty(projectSpace,
 				DashboardKey.SUBSCRIPTIONS);
 			List<EObject> propertyList = orgUnitProperty.getEObjectListProperty(new ArrayList<EObject>());
