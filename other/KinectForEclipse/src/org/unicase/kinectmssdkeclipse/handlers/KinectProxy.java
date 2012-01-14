@@ -127,6 +127,7 @@ public class KinectProxy {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		
         kinectHandler = new KinectHandler();
         speechRecognitionWrapper = new microsoftkinectwrapper.SpeechRecognition();
 		skeletalTracking = new SkeletalTracking();
