@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
+
 package org.unicase.ui.visualization.tree;
 
 import java.awt.Color;
@@ -78,7 +84,9 @@ public class UnicaseTree {
 	private boolean addChildrenNodes(List<EClass> eClassTypes, UnicaseNode root) {
 		boolean ret = false;
 		EObject object = root.getEObject();
-		if (object == null) return ret;
+		if (object == null){
+			return ret;
+		}
 		for (EObject e : object.eContents()) {
 			UnicaseNode child = new UnicaseNode(e);			
 			
@@ -103,12 +111,16 @@ public class UnicaseTree {
 	}
 		
 	public void setColor(EClass type, Color color){
-		if(colors == null) colors = new HashMap<EClass, Color>();
+		if(colors == null){
+			colors = new HashMap<EClass, Color>();
+		}
 		colors.put(type, color);
 	}
 	
 	public Color getColor(EClass type){
-		if( colors == null ) return null;
+		if( colors == null ){
+			return null;
+		}
 		return colors.get(type);
 	}
 	
@@ -131,13 +143,17 @@ public class UnicaseTree {
 	
 	public UnicaseNode getEqualNode(UnicaseNode node){
 		for(UnicaseNode n : nodes.values()){
-			if(n.equals(node)) return n;
+			if(n.equals(node)){
+				return n;
+			}
 		}
 		return null;
 	}
 	
 	public void addInfo(String s){
-		if(infos == null) infos = new ArrayList<String>();
+		if(infos == null){
+			infos = new ArrayList<String>();
+		}
 		infos.add(s);
 	}
 	

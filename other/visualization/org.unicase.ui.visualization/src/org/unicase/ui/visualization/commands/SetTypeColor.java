@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
+
 package org.unicase.ui.visualization.commands;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -27,7 +33,9 @@ public class SetTypeColor extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {		
 		VisualizationView visualizationView = (VisualizationView) HandlerUtil.getActivePart(event);
 		UnicaseView unicaseView = visualizationView.getView();
-		if(unicaseView == null) return null;
+		if(unicaseView == null){
+			return null;
+		}
 		if(!unicaseView.getUnicaseTree().getColoring().equals(Coloring.MANUALLY)) {
 			MessageDialog.openWarning(HandlerUtil.getActiveShell(event), "No valid Coloring", "Please choose manually coloring to set type colors!");
 			return null;
@@ -46,7 +54,9 @@ public class SetTypeColor extends AbstractHandler {
         RGB rgb = dlg.open();
         if (rgb != null) {
           Color color = new Color(shell.getDisplay(), rgb);          
-          for(UnicaseView view : visualizationView.getViews()) view.getUnicaseTree().setColor(clazz, new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));          
+          for(UnicaseView view : visualizationView.getViews()){
+        	  view.getUnicaseTree().setColor(clazz, new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));          
+          }
           visualizationView.repaintAndUpdateViews();
         }
 		return null;
