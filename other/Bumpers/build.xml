@@ -1,0 +1,93 @@
+<project name="Bumpers" default="buildAll" basedir=".">
+	<description>
+        The Bumpers build file
+    </description>
+	<!-- set global properties for this build -->
+	<property name="src" location="src" />
+	<property name="classes" location="classes" />
+	<property name="build" location="build" />
+
+    <target name="all" depends="buildAll" />
+
+	<target name="buildAll" depends="buildOSX, buildWin" description="Builds the Bumper application for Unix and Mac OS X into the specified dist directory." />
+
+	<target name="compile" depends="" description="Compiles the source code from src into the specified build directory.">
+
+		<mkdir dir="${classes}" />
+		<javac debug="true" debuglevel="lines,vars,source" srcdir="${src}" destdir="${classes}">
+		</javac>
+
+		<copy todir="${classes}/de/tum/in/oose/bumpers">
+			<fileset dir="${src}/de/tum/in/oose/bumpers">
+				<include name="**/*.gif" />
+				<include name="**/*.au" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="buildOSX" depends="compile" description="Builds the Bumper application for Mac OS X into the specifoed dist directory.">
+		<mkdir dir="${build}" />
+		<mkdir dir="${build}/OSXBuild" />
+		<copy todir="${build}/OSXBuild">
+			<fileset dir="etc/MacBuild/" />
+		</copy>
+
+		<jar jarfile="${build}/OSXBuild/Bumpers.app/Contents/Resources/Java/bumpers.jar" basedir="${classes}" />
+		<chmod dir="${build}/OSXBuild/Bumpers.app" perm="ugo+rwx" includes="**/*.*" />
+		<chmod dir="${build}/OSXBuild/Bumpers.app/Contents/MacOS/JavaApplicationStub" perm="ugo+rwx" />
+		<zip destfile="${build}/OSXBuild/Bumpers.app.zip" basedir="${build}/OSXBuild" includes="Bumpers.app" />
+	</target>
+
+	<target name="buildWin" depends="compile" description="Builds the Bumper application for Windows into the specified dist directory.">
+		<mkdir dir="${build}" />
+		<mkdir dir="${build}/WindowsBuild" />
+		<mkdir dir="${build}/WindowsBuild/lib" />
+
+		<jar jarfile="${build}/WindowsBuild/lib/bumpers.jar" basedir="${classes}" />
+		<copy file="etc/WindowsBuild/bumpers.bat" tofile="${build}/WindowsBuild/bumpers.bat" />
+		<chmod dir="${build}/WindowsBuild/bumpers.bat" perm="ugo+rx" />
+		<zip destfile="${build}/WindowsBuild/Bumpers.zip" basedir="${build}/WindowsBuild" includes="bumpers.bat, lib/**" />
+
+	</target>
+
+	<target name="clean" description="Deletes the build and distribution directory.">
+		<delete dir="${classes}" />
+		<delete dir="${build}" />
+		<mkdir dir="${classes}" />
+		<mkdir dir="${build}" />
+	</target>
+
+	<target name="run" depends="buildAll" description="Starts Bumpers">
+		<java classname="de.tum.in.oose.bumpers.Start" fork="true" dir=".">
+			<classpath>
+				<pathelement location="${build}/WindowsBuild/lib/bumpers.jar" />
+			</classpath>
+		</java>
+	</target>
+
+	<target name="test" depends="compile">
+		<mkdir dir="test-classes" />
+		<javac debug="true" debuglevel="lines,vars,source" srcdir="test" destdir="test-classes">
+			<classpath>
+				<pathelement location="classes" />
+				<pathelement location="${build}../lib/junit.jar" />
+			</classpath>
+		</javac>
+
+		<mkdir dir="test-results" />
+		<junit haltonfailure="yes" printsummary="on">
+			<classpath>
+				<pathelement location="classes" />
+				<pathelement location="${build}../lib/junit.jar" />
+				<pathelement location="test-classes" />
+			</classpath>
+			<formatter type="brief" usefile="false" />
+			<formatter type="xml" />
+			<batchtest todir="test-results">
+				<fileset dir="test-classes" includes="**/*Test.class" />
+			</batchtest>
+		</junit>
+	</target>
+
+</project>
