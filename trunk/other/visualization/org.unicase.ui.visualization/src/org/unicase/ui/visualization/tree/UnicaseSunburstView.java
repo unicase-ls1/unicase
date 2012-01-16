@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
+
 package org.unicase.ui.visualization.tree;
 
 import java.awt.Graphics;
@@ -38,10 +44,22 @@ public class UnicaseSunburstView extends SunburstView implements UnicaseView {
 	
 	private boolean isLinked = true;
 	
+	/**
+	 * 
+	 * @param tree The corresponding {@link UnicaseTree}.
+	 * @param view The corresponding {@link VisualizationView}.
+	 * @return The new {@link UnicaseSunburstView}.
+	 */
 	public static UnicaseSunburstView createUnicaseSunburstView(UnicaseTree tree, VisualizationView view){
 		return new UnicaseSunburstView(tree, new SunburstTree(tree.getRoot(), tree.getInfo()), view);
 	}
 	
+	/**
+	 * 
+	 * @param unicaseTree The corresponding {@link UnicaseTree}.
+	 * @param sunburstTree The corresponding {@link SunburstTree}.
+	 * @param view The corresponding {@link VisualizationView}.
+	 */
 	public UnicaseSunburstView(UnicaseTree unicaseTree, SunburstTree sunburstTree, VisualizationView view) {		
 		super(sunburstTree);
 		this.unicaseTree = unicaseTree;	
@@ -54,6 +72,8 @@ public class UnicaseSunburstView extends SunburstView implements UnicaseView {
 	
 	/**
 	 * Override super method to save the selected node.
+	 * 
+	 * @param node The {@link SunburstNode}.
 	 */
 	@Override
 	public void setSelectedNode(SunburstNode node){		
@@ -78,7 +98,9 @@ public class UnicaseSunburstView extends SunburstView implements UnicaseView {
 		if(isLinked){
 			SunburstNode sNode = selectedNode;
 			findNode(node, sunburstTree.getRoot());
-			if(sNode != selectedNode) setSelectedNode(selectedNode);
+			if(sNode != selectedNode){
+				setSelectedNode(selectedNode);
+			}
 			this.repaintView();
 		}
 	}
@@ -90,7 +112,9 @@ public class UnicaseSunburstView extends SunburstView implements UnicaseView {
 	 * @param root The {@link SunburstNode}, to search in.
 	 */
 	private void findNode(TreeNode node, SunburstNode root){
-		if(node == null) return;
+		if(node == null){
+			return;
+		}
 		if(node.equals(root.getNode())){
 			this.selectedNode = root;
 			return;
@@ -107,6 +131,8 @@ public class UnicaseSunburstView extends SunburstView implements UnicaseView {
 	
 	/**
 	 * Overrides the paintComponent method to add functionality. 
+	 * 
+	 * @param gr The graphics.
 	 */
 	@Override
     public void paintComponent(Graphics gr) {
@@ -160,10 +186,19 @@ public class UnicaseSunburstView extends SunburstView implements UnicaseView {
 		}
 	};
 	
-	public boolean  setIsLinked(){
-		return (isLinked = !isLinked);
+	/**
+	 * set to linked.
+	 * 
+	 * @return is it linked?
+	 */
+	public boolean setIsLinked(){
+		isLinked = !isLinked;
+		return isLinked;
 	}
 	
+	/**
+	 * @return is it linked?
+	 */
 	public boolean isLinked(){
 		return isLinked;
 	}
@@ -180,7 +215,9 @@ public class UnicaseSunburstView extends SunburstView implements UnicaseView {
 
 	@Override
 	public UnicaseNode getSelectedNode() {
-		if(selectedNode == null) return null;
+		if(selectedNode == null){
+			return null;
+		}
 		return (UnicaseNode) selectedNode.getNode();		
 	}
 }

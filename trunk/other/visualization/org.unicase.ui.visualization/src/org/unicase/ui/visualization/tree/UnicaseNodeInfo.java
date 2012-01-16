@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
+
 package org.unicase.ui.visualization.tree;
 
 import java.awt.Color;
@@ -39,12 +45,15 @@ public class UnicaseNodeInfo extends AbstractNodeInfo {
 	
 	private float spectrum = 0.4f;
 	
-	private static final Color implicit = new Color(0xd6d6d6);
+	private static final Color IMPLICIT = new Color(0xd6d6d6);
 	
-	private static final Color reference = new Color(0xcb3636);
+	private static final Color REFERENCE = new Color(0xcb3636);
 	
-	private static final Color base = new Color(0xFFB14A);
+	private static final Color BASE = new Color(0xFFB14A);
 	
+	/**
+	 * @param tree The corresponding {@link UnicaseTree}.
+	 */
 	public UnicaseNodeInfo(UnicaseTree tree){
 		this.tree = tree;		
 	}
@@ -61,28 +70,45 @@ public class UnicaseNodeInfo extends AbstractNodeInfo {
 	
 	/**
 	 * Builds the color of a {@link UnicaseNode} according to the selected {@link Coloring}.
+	 * 
+	 * @param path The path.
+	 * @return The color.
 	 */
 	@Override
 	public Color getColor(TreePath2<TreeNode> path) {
 		UnicaseNode node = (UnicaseNode) path.getLastPathComponent(); 
-		if(node instanceof ReferenceUnicaseNode) return reference;
-		if(node.isImplicit()) return implicit;
-		if(node.equals(tree.getRoot())) return Color.WHITE;
+		if(node instanceof ReferenceUnicaseNode){
+			return REFERENCE;
+		}
+		if(node.isImplicit()){
+			return IMPLICIT;
+		}
+		if(node.equals(tree.getRoot())){
+			return Color.WHITE;
+		}
 		
-		Color color = base;
+		Color color = BASE;
 		
 		Coloring coloring = tree.getColoring();
 		if(coloring.equals(Coloring.CREATION_DATE)){
 			Color c = colors.get(node);
-			if(c == null) c = getContainerColor(node.getEObject());			
-			if(c != null) color = c;
+			if(c == null){
+				c = getContainerColor(node.getEObject());			
+			}
+			if(c != null){
+				color = c;
+			}
 		} else if (coloring.equals(Coloring.RANDOM)){
 			color = new Color(stringToRGBInt(node.getEObject().eClass().getName()));		
 		} else if (coloring.equals(Coloring.MANUALLY)){
 			color = tree.getColor(node.getEObject().eClass());
-			if( color == null ) color = base;
+			if( color == null ){
+				color = BASE;
+			}
 		} else if (coloring.equals(Coloring.VERSION) || coloring.equals(Coloring.TWO_VERSIONS)){
-			if(tree.getChangedElements().contains(node.getEObject())) color = Color.GREEN;
+			if(tree.getChangedElements().contains(node.getEObject())){
+				color = Color.GREEN;
+			}
 		}
 		return color;
 	}
@@ -94,10 +120,14 @@ public class UnicaseNodeInfo extends AbstractNodeInfo {
 	 * @return The color of the next container, which has a color.  
 	 */
 	private Color getContainerColor(EObject obj){
-		if(obj == null) return null;
+		if(obj == null){
+			return null;
+		}
 		EObject container = obj.eContainer();
 		Color c = colors.get(tree.getNodes().get(container));
-		if(c == null) return getContainerColor(container);
+		if(c == null){
+			return getContainerColor(container);
+		}
 		return c;
 	}
 	
@@ -108,7 +138,9 @@ public class UnicaseNodeInfo extends AbstractNodeInfo {
 		// sort nodes by timestamp
 		SortedSet<UnicaseNode> sortedNodes = new TreeSet<UnicaseNode>();
 		for(UnicaseNode n : tree.getNodes().values()){			
-			if(n != null) sortedNodes.add(n);
+			if(n != null){
+				sortedNodes.add(n);
+			}
 		}
 		
 		// create colors for nodes

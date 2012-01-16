@@ -1,7 +1,11 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
+
 package org.unicase.ui.visualization.util;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -61,9 +65,7 @@ import org.unicase.workspace.ui.views.scm.SCMLabelProvider;
  *
  */
 public class VisualizationUtil {
-	
-	public static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
-	
+
 	/**
 	 * Open an {@link EObject} in the editor. Needed because of the AWT integration to manually set an active {@link WorkbenchPart}. 
 	 * 
@@ -164,7 +166,9 @@ public class VisualizationUtil {
 		// apply changes in new ProjectSpace
 		ProjectSpace ps = EcoreUtil.copy(projectSpace);					
 		Project project = ps.getProject();
-		for(ChangePackage changePackage : changePackages) changePackage.reverse().apply(project);		
+		for(ChangePackage changePackage : changePackages){
+			changePackage.reverse().apply(project);		
+		}
 		return ps;
 	}
 	
@@ -195,7 +199,9 @@ public class VisualizationUtil {
 		List<HistoryInfo> infos = new ArrayList<HistoryInfo>();		
 		for(int i = 1; i <= (twoVersions ? 2 : 1); i++){
 			HistoryInfo info = showVersionHistory(projectSpace, twoVersions ? "Please choose version " + i + " of two versions." : "");
-			if(info == null) return Collections.emptyList();
+			if(info == null){
+				return Collections.emptyList();
+			}
 			selectedHistoryInfo = null;
 			infos.add(info);			
 		}
@@ -206,7 +212,7 @@ public class VisualizationUtil {
 	 * Receive the changed elements of a version in a {@link ProjectSpace}. Asks the user to set the version.
 	 * 
 	 * @param projectSpace The {@link ProjectSpace} to search in.
-	 * @param versions The count of versions to ask for. Reasonable values are 1 or 2.
+	 * @param twoVersions Get elements of two versions.
 	 * @return The changed elements.
 	 */
 	public static List<EObject> getChangedElements(ProjectSpace projectSpace, boolean twoVersions){			
@@ -279,7 +285,9 @@ public class VisualizationUtil {
 		    }
 		};
 		    
-		if (dialog.open() == Dialog.OK) return selectedHistoryInfo;		
+		if (dialog.open() == Dialog.OK){
+			return selectedHistoryInfo;		
+		}
 		return null;					
 	}
 	
@@ -317,9 +325,13 @@ public class VisualizationUtil {
 	 * @return The {@link HistoryInfo}s of the {@link ProjectSpace}.
 	 */
 	private static List<HistoryInfo> getHistoryInfos(final ProjectSpace projectSpace){
-		if(historyInfos == null) historyInfos = new HashMap<ProjectSpace, List<HistoryInfo>>();		
+		if(historyInfos == null){
+			historyInfos = new HashMap<ProjectSpace, List<HistoryInfo>>();		
+		}
 		List<HistoryInfo> i = historyInfos.get(projectSpace);		
-		if(i != null) return i;
+		if(i != null){
+			return i;
+		}
 		
 		final List<HistoryInfo> infos = new ArrayList<HistoryInfo>();
 		
@@ -421,11 +433,14 @@ public class VisualizationUtil {
 	 * @return The {@link ChangePackage}s between the two infos.
 	 */
 	public static List<ChangePackage> getChangePackages(final ProjectSpace projectSpace, final List<HistoryInfo> infos){
-		if( infos.size() == 0 ) return Collections.emptyList();
+		if( infos.size() == 0 ){
+			return Collections.emptyList();
+		}
 		// receive the changepackages of the version(s)
 		final List<ChangePackage> changePackages = new ArrayList<ChangePackage>();
-		if(infos.size() == 1) changePackages.add(infos.get(0).getChangePackage());
-		else if (infos.size() == 2){
+		if(infos.size() == 1){
+			changePackages.add(infos.get(0).getChangePackage());
+		} else if (infos.size() == 2){
 			try {
 				new ServerRequestCommandHandler() {
 					
@@ -441,7 +456,11 @@ public class VisualizationUtil {
 		}
 		
 		// this condition occurs when the initial commit happens (there are no changes as everything is new)
-		for (ChangePackage cp : changePackages) if(cp == null) return Collections.emptyList();
+		for (ChangePackage cp : changePackages){
+			if(cp == null){
+				return Collections.emptyList();
+			}
+		}
 		
 		return changePackages;
 	}

@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
+
 package org.unicase.ui.visualization.views;
 
 import java.awt.Frame;
@@ -18,7 +24,6 @@ import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Canvas;
@@ -66,15 +71,15 @@ public class VisualizationView extends ViewPart {
 	private HashMap<String, Frame> frames;
 	private HashMap<String, UnicaseTree> trees;
 	
-	private final String LEFT = "left";
-	private final String RIGHT_UP_LEFT = "rightUpLeft";
-	private final String RIGHT_UP_RIGHT = "rightUpRight";
-	private final String RIGHT_DOWN_LEFT = "rightDownLeft";
-	private final String RIGHT_DOWN_RIGHT = "rightDownRight";
+	private static final String LEFT = "left";
+	private static final String RIGHT_UP_LEFT = "rightUpLeft";
+	private static final String RIGHT_UP_RIGHT = "rightUpRight";
+	private static final String RIGHT_DOWN_LEFT = "rightDownLeft";
+	private static final String RIGHT_DOWN_RIGHT = "rightDownRight";
 	
-	private final String MAIN_TREE = "mainTree";
-	private final String VERSION_1_TREE = "version1Tree";
-	private final String VERSION_2_TREE = "version2Tree";
+	private static final String MAIN_TREE = "mainTree";
+	private static final String VERSION_1_TREE = "version1Tree";
+	private static final String VERSION_2_TREE = "version2Tree";
 	
 	private List<String> locators;
 	private List<String> treeIdentifier;
@@ -82,6 +87,8 @@ public class VisualizationView extends ViewPart {
 	/**
 	 * Register the {@link SelectionListener}, to listen on Navigator selection.
 	 * Also inits the UI.
+	 * 
+	 * @param p The parent control.
 	 */
 	@Override
 	public void createPartControl(Composite p) {	
@@ -117,7 +124,9 @@ public class VisualizationView extends ViewPart {
 	 */
 	private void updateUIStructure(boolean twoVersions){
 		// remove old controls 		
-		for(Control c : parent.getChildren()) c.dispose();
+		for(Control c : parent.getChildren()){
+			c.dispose();
+		}
 		getViewSite().getActionBars().getToolBarManager().remove(CONTROL_SCALE);
 		getViewSite().getActionBars().updateActionBars();		
 		
@@ -165,17 +174,21 @@ public class VisualizationView extends ViewPart {
 	 * @param projectSpace The ProjectSpace to set.
 	 */
 	public void setProject(ProjectSpace projectSpace){
-		if(projectSpace.equals(currentProjectSpace)) return;		
+		if(projectSpace.equals(currentProjectSpace)){
+			return;		
+		}
 		forceSetProject(projectSpace);
 	}
 	
 	/**
 	 * Forces setting a {@link ProjectSpace}.
 	 * 
-	 * @param projectSpace
+	 * @param projectSpace The new {@link ProjectSpace}.
 	 */
 	public void forceSetProject(ProjectSpace projectSpace){
-		if(currentProjectSpace != null)	currentProjectSpace.removeOperationListener(operationListener);
+		if(currentProjectSpace != null){
+			currentProjectSpace.removeOperationListener(operationListener);
+		}
 		projectSpace.addOperationListener(operationListener);
 			
 		currentProjectSpace = projectSpace;
@@ -185,7 +198,9 @@ public class VisualizationView extends ViewPart {
 		
 		updateUIStructure(false);
 		
-		for(String locator : locators) views.put(locator, UnicaseSunburstView.createUnicaseSunburstView(tree, this));
+		for(String locator : locators) {
+			views.put(locator, UnicaseSunburstView.createUnicaseSunburstView(tree, this));
+		}
 		setSelectedNode((UnicaseNode) tree.getRoot());
 		updateView();
 	}
@@ -219,7 +234,9 @@ public class VisualizationView extends ViewPart {
 				@Override
 				protected Object run() throws EmfStoreException {
 					List<HistoryInfo> infos = trees.get(MAIN_TREE).getHistoryInfos();
-					if(infos.size() != 2) return null;					
+					if(infos.size() != 2){
+						return null;					
+					}
 										
 					UnicaseTree tree = VisualizationUtil.getRevertedUnicaseTree(currentProjectSpace, infos.get(0).getPrimerySpec());
 					trees.put(VERSION_1_TREE, tree);
@@ -253,7 +270,9 @@ public class VisualizationView extends ViewPart {
 				@Override
 				protected Object run() throws EmfStoreException {
 					List<HistoryInfo> infos = trees.get(MAIN_TREE).getHistoryInfos();
-					if(infos.size() != 2) return null;
+					if(infos.size() != 2){
+						return null;
+					}
 
 					// save history infos
 					historyInfos = VisualizationUtil.getHistoryInfos(currentProjectSpace, infos);
@@ -312,7 +331,8 @@ public class VisualizationView extends ViewPart {
 	 
 	    @Override
 	    protected Control createControl(Composite parent) {
-	    	return (scaleWithText = new ScaleWithText(parent, min, max));
+	    	scaleWithText = new ScaleWithText(parent, min, max);
+	    	return scaleWithText;
 	    }   
 	    
 	    Scale getScale(){
@@ -354,7 +374,9 @@ public class VisualizationView extends ViewPart {
 	 * @param eClassTypes The type to filter. Set to null to show non filtered tree.
 	 */
 	public void showFiltered(List<EClass> eClassTypes){
-		for(String s : treeIdentifier) trees.put(s, getValidTree(s).getFilteredUnicaseTree(eClassTypes));		
+		for(String s : treeIdentifier){
+			trees.put(s, getValidTree(s).getFilteredUnicaseTree(eClassTypes));		
+		}
 		setViews();
 		updateView();
 	}
@@ -365,11 +387,15 @@ public class VisualizationView extends ViewPart {
 	 * @param node The {@link UnicaseNode}, which is selected.
 	 */
 	public void setSelectedNode(UnicaseNode node){
-		if(node == null) return;
+		if(node == null){
+			return;
+		}
 		selectedNode = node;
 		views.put(RIGHT_DOWN_LEFT, new UnicaseHyperbolicView(getValidTree(VERSION_1_TREE), node));
 		views.put(RIGHT_DOWN_RIGHT, new UnicaseHyperbolicView(getValidTree(VERSION_2_TREE), node));
-		for(UnicaseView view : views.values()) view.selectNode(node);
+		for(UnicaseView view : views.values()){
+			view.selectNode(node);
+		}
 		updateView();
 	}
 	
@@ -408,7 +434,9 @@ public class VisualizationView extends ViewPart {
 	 * Repaints and updates all views.
 	 */
 	public void repaintAndUpdateViews(){
-		for(UnicaseView view : views.values()) view.repaintView();
+		for(UnicaseView view : views.values()){
+			view.repaintView();
+		}
 		updateView();
 	}
 	

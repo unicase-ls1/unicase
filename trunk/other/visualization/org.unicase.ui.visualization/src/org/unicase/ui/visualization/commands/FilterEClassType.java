@@ -1,3 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
+
 package org.unicase.ui.visualization.commands;
 
 import java.util.List;
@@ -48,6 +54,9 @@ public class FilterEClassType extends AbstractHandler {
 		return null;
 	}
 	
+	/**
+	 * Wizard for type filtering. 
+	 */
 	class FilterEClassTypeWizard extends Wizard implements IWorkbenchWizard {
 		
 		private List<EClass> eClassTypes;
@@ -56,6 +65,11 @@ public class FilterEClassType extends AbstractHandler {
 		
 		private VisualizationView view;
 		
+		/**
+		 * Constructor.
+		 * 
+		 * @param view The {@link VisualizationView}
+		 */
 		public FilterEClassTypeWizard(VisualizationView view){
 			this.view = view;
 		}
@@ -67,10 +81,13 @@ public class FilterEClassType extends AbstractHandler {
 
 		@Override
 		public boolean performFinish() {
-			if (eClassTypes != null) view.showFiltered(eClassTypes);
+			if (eClassTypes != null){
+				view.showFiltered(eClassTypes);
+			}
 			return true;
 		}
 		
+		@Override
 		public void init(IWorkbench workbench, IStructuredSelection selection) {}
 
 		@Override
@@ -78,18 +95,29 @@ public class FilterEClassType extends AbstractHandler {
 			return treePageCompleted;
 		}
 		
+		/**
+		 * The wizardPage.
+		 */
 		class FilterEClassPage extends WizardPage implements Listener {
 
 			private TreeViewer treeViewer;
 			private static final String PAGE_TITLE = "Filter for model element types";
 			private static final String PAGE_DESCRIPTION = "Select model element types";
-
+			
+			/**
+			 * Constructor.
+			 *  
+			 * @param pageName The name of the page.
+			 */
 			protected FilterEClassPage(String pageName) {
 				super(pageName);
 				setTitle(PAGE_TITLE);
 				setDescription(PAGE_DESCRIPTION);
 			}
-
+			
+			/**
+			 * @param parent The parent.
+			 */
 			public void createControl(Composite parent) {
 
 				Composite composite = new Composite(parent, SWT.NULL);
@@ -137,14 +165,22 @@ public class FilterEClassType extends AbstractHandler {
 				boolean canFinish = false;
 				ISelection sel = treeViewer.getSelection();
 				
-				if (sel == null || !(sel instanceof IStructuredSelection)) canFinish = false;
+				if (sel == null || !(sel instanceof IStructuredSelection)){
+					canFinish = false;
+				}
 				
 				IStructuredSelection ssel = (IStructuredSelection) sel;
-				if (ssel.isEmpty()) canFinish = false;
+				if (ssel.isEmpty()){
+					canFinish = false;
+				}
 							
 				List list = ssel.toList();
 				canFinish = true;
-				for (Object o : list) if(!(o instanceof EClass)) canFinish = false;
+				for (Object o : list){
+					if(!(o instanceof EClass)){
+						canFinish = false;
+					}
+				}
 				
 				if (canFinish) {			
 					eClassTypes = list;
@@ -156,7 +192,10 @@ public class FilterEClassType extends AbstractHandler {
 					return false;
 				}
 			}
-
+			
+			/**
+			 * @param event the event.
+			 */
 			public void handleEvent(Event event) {
 				checkSelection();
 				getWizard().getContainer().updateButtons();
