@@ -12,7 +12,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -29,7 +28,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -135,6 +133,26 @@ public class VisualizationUtil {
 	}
 	
 	/**
+	 * Return a new {@link UnicaseTree}, reverted to the given {@link PrimaryVersionSpec} with the given {@link HistoryInfo}s.
+	 * 
+	 * @param projectSpace The current {@link ProjectSpace}.
+	 * @param versionSpec The {@link PrimaryVersionSpec} to set the {@link UnicaseTree} to.
+	 * @param historyInfos The {@link HistoryInfo}s containing the {@link ChangePackage}s to apply.
+	 * @return A new {@link UnicaseTree}, reverted the the given {@link PrimaryVersionSpec}.
+	 */
+	public static UnicaseTree getRevertedUnicaseTree(ProjectSpace projectSpace, PrimaryVersionSpec versionSpec, List<HistoryInfo> historyInfos){
+		List<ChangePackage> changePackages = new ArrayList<ChangePackage>();
+		for (HistoryInfo info : historyInfos) {
+			if(versionSpec.compareTo(info.getPrimerySpec()) < 0){
+				changePackages.add(info.getChangePackage());
+			}
+		}
+		UnicaseTree tree = new UnicaseTree(new UnicaseNode(VisualizationUtil.getRevertedProjectSpace(projectSpace, changePackages)));
+		tree.addInfo("Version: " + versionSpec.getIdentifier());
+		return tree;
+	}
+	
+	/**
 	 * Returns a copy of the given {@link ProjectSpace} reverted with all given {@link ChangePackage}s.
 	 * The Project needs to be on the head version.
 	 * 
@@ -142,23 +160,11 @@ public class VisualizationUtil {
 	 * @param changePackages The {@link ChangePackage}s to apply reverted.
 	 * @return A copy of the reverted {@link ProjectSpace}.
 	 */
-	public static ProjectSpace getRevertedProjectSpace(ProjectSpace projectSpace, List<ChangePackage> changePackages){
-		// check for head update
-		try {
-			if(!projectSpace.getBaseVersion().equals(projectSpace.resolveVersionSpec(VersionSpec.HEAD_VERSION))){
-				MessageDialog.openWarning(Display.getCurrent().getActiveShell(), "Wrong version", "Please update the project first to the Head version!");
-				return projectSpace;
-			}
-		} catch (EmfStoreException e) {
-			e.printStackTrace();
-		}
-		
+	public static ProjectSpace getRevertedProjectSpace(ProjectSpace projectSpace, List<ChangePackage> changePackages){		
 		// apply changes in new ProjectSpace
 		ProjectSpace ps = EcoreUtil.copy(projectSpace);					
 		Project project = ps.getProject();
-		for(ChangePackage changePackage : changePackages){
-			changePackage.reverse().apply(project);
-		}
+		for(ChangePackage changePackage : changePackages) changePackage.reverse().apply(project);		
 		return ps;
 	}
 	
@@ -347,16 +353,76 @@ public class VisualizationUtil {
 	}
 	
 	/**
+	 * Get all {@link HistoryInfo}s between the two given.
+	 * 
+	 * @param projectSpace The current {@link ProjectSpace}.
+	 * @param infos The two infos to look between.
+	 * @return All {@link HistoryInfo}s between the given two.
+	 */
+	public static List<HistoryInfo> getHistoryInfos(final ProjectSpace projectSpace, final List<HistoryInfo> infos){
+		final List<HistoryInfo> allInfos = new ArrayList<HistoryInfo>();
+		
+		try {
+			new ServerRequestCommandHandler() {
+				
+				@Override
+				protected Object run() throws EmfStoreException {
+					Usersession usersession = projectSpace.getUsersession();
+					usersession.logIn();
+					allInfos.addAll(usersession.getHistoryInfo(projectSpace.getProjectId(), getQuery(projectSpace, infos.get(0).getPrimerySpec().getIdentifier(), infos.get(1).getPrimerySpec().getIdentifier())));									
+					return null;
+				}
+			}.execute(new ExecutionEvent());
+			
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+		
+		return allInfos;
+	}
+	
+	/**
 	 * 
 	 * Receive all changed elements of the {@link HistoryInfo}s.
 	 * 
 	 * @param projectSpace The {@link ProjectSpace} where to search in.
 	 * @param infos The {@link HistoryInfo}s where to get the changes from.
-	 * @return The {@link EObject}s, which are changed in this version.
+	 * @return The {@link EObject}s, which are changed in this versions.
 	 */
 	public static List<EObject> getChangedElements(final ProjectSpace projectSpace, final List<HistoryInfo> infos) {
+		return getChangedElementsOfPackages(projectSpace, getChangePackages(projectSpace, infos));		
+	}
+	
+	/**
+	 * Receive all {@link EObject}s out of a list of {@link ChangePackage}s.
+	 * 
+	 * @param projectSpace The {@link ProjectSpace} where to search in.
+	 * @param changePackages The {@link ChangePackage}s containing the changed elements.
+	 * @return The {@link EObject}s, which are changed in this {@link ChangePackage}s.
+	 */
+	public static List<EObject> getChangedElementsOfPackages(final ProjectSpace projectSpace, List<ChangePackage> changePackages) {
+		// get the changed elements out of the changepackages
+		ChangePackageVisualizationHelper cpvh = new ChangePackageVisualizationHelper(changePackages, projectSpace.getProject());		
+		ArrayList<EObject> elements = new ArrayList<EObject>();
+		
+		for (ChangePackage changePackage : changePackages) {
+			for(AbstractOperation a : changePackage.getOperations()){									
+				elements.add(cpvh.getModelElement(a.getModelElementId()));
+			}
+		}
+		return elements;
+	}
+	
+	/**
+	 * Receive all ChangePackages between the given {@link HistoryInfo}s.
+	 * 
+	 * @param projectSpace The {@link ProjectSpace} where to search in.
+	 * @param infos The {@link HistoryInfo}s where to get the changes between.
+	 * @return The {@link ChangePackage}s between the two infos.
+	 */
+	public static List<ChangePackage> getChangePackages(final ProjectSpace projectSpace, final List<HistoryInfo> infos){
 		if( infos.size() == 0 ) return Collections.emptyList();
-		// receive the changepackges of the version(s)
+		// receive the changepackages of the version(s)
 		final List<ChangePackage> changePackages = new ArrayList<ChangePackage>();
 		if(infos.size() == 1) changePackages.add(infos.get(0).getChangePackage());
 		else if (infos.size() == 2){
@@ -377,40 +443,39 @@ public class VisualizationUtil {
 		// this condition occurs when the initial commit happens (there are no changes as everything is new)
 		for (ChangePackage cp : changePackages) if(cp == null) return Collections.emptyList();
 		
-		// get the changed elements out of the changepackages
-		ChangePackageVisualizationHelper cpvh = new ChangePackageVisualizationHelper(changePackages, projectSpace.getProject());		
-		ArrayList<EObject> elements = new ArrayList<EObject>();
-		
-		for (ChangePackage changePackage : changePackages) {
-			for(AbstractOperation a : changePackage.getOperations()){									
-				elements.add(cpvh.getModelElement(a.getModelElementId()));
-			}
-		}
-		return elements;
+		return changePackages;
 	}
 	
 	/**
-	 * Receive a {@link HistoryQuery} to query for the {@link HistoryInfo}s.
-	 * 
+	 * Receive a query for special start and end versions.
 	 * 
 	 * @param projectSpace The {@link ProjectSpace} where to search.
-	 * @return A Query which searches all versions.
-	 * @throws EmfStoreException
+	 * @param start the start version.
+	 * @param end the end version.
+	 * @return A Query which searches all versions between start and end.
 	 */
-	private static HistoryQuery getQuery(ProjectSpace projectSpace) throws EmfStoreException {
+	private static HistoryQuery getQuery(ProjectSpace projectSpace, int start, int end){
 		HistoryQuery query = VersioningFactory.eINSTANCE.createHistoryQuery();
-		
-		int end = projectSpace.resolveVersionSpec(VersionSpec.HEAD_VERSION).getIdentifier();			
-		int start = 0;
-		
+				
 		PrimaryVersionSpec source = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-		source.setIdentifier(start);
+		source.setIdentifier(start < end ? start : end);
 		PrimaryVersionSpec target = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-		target.setIdentifier(end);
+		target.setIdentifier(end > start ? end : start);
 		query.setSource(source);
 		query.setTarget(target);
 		query.setIncludeChangePackage(true);		
 		
 		return query;
+	}
+	
+	/**
+	 * Receive a {@link HistoryQuery} to query for the {@link HistoryInfo}s.
+	 *  
+	 * @param projectSpace The {@link ProjectSpace} where to search.
+	 * @return A Query which searches all versions.
+	 * @throws EmfStoreException
+	 */
+	private static HistoryQuery getQuery(ProjectSpace projectSpace) throws EmfStoreException {		
+		return getQuery(projectSpace, 0, projectSpace.resolveVersionSpec(VersionSpec.HEAD_VERSION).getIdentifier());
 	}
 }
