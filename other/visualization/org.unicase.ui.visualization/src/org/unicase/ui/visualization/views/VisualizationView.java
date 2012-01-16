@@ -422,12 +422,14 @@ public class VisualizationView extends ViewPart {
 	 * Update the UI.
 	 */
 	public void updateView() {	
+		parent.setRedraw(false);
 		for(String locator : locators){
 			Frame f = frames.get(locator);
 			f.removeAll();
 			f.add(views.get(locator).getView());
 			f.validate();
 		}		
+		parent.setRedraw(true);
 	}
 	
 	/**
