@@ -263,7 +263,6 @@ public class VisualizationView extends ViewPart {
 	 */
 	public void showVersionSlider(){
 		updateUIStructure(false);
-		final VisualizationView vv = this;
 		try {
 			new ServerRequestCommandHandler() {
 				
@@ -273,40 +272,7 @@ public class VisualizationView extends ViewPart {
 					if(infos.size() != 2){
 						return null;
 					}
-
-					// save history infos
-					historyInfos = VisualizationUtil.getHistoryInfos(currentProjectSpace, infos);
-					
-					// get selected versions
-					int min = infos.get(0).getPrimerySpec().getIdentifier();
-					int max = infos.get(1).getPrimerySpec().getIdentifier();
-						
-					// add scale with listener
-					final ControlScale cs = new ControlScale(min < max ? min : max, max > min ? max : min);
-					getViewSite().getActionBars().getToolBarManager().add(cs);					
-					getViewSite().getActionBars().updateActionBars();
-																				
-					cs.getScale().addSelectionListener(new SelectionAdapter() {
-						public void widgetSelected(SelectionEvent e) {        
-							PrimaryVersionSpec versionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-							versionSpec.setIdentifier(cs.getScale().getSelection());
-							UnicaseTree tree = VisualizationUtil.getRevertedUnicaseTree(currentProjectSpace, versionSpec, historyInfos);
-							trees.put(MAIN_TREE, tree);
-							views.put(LEFT, UnicaseSunburstView.createUnicaseSunburstView(tree, vv));
-							setSelectedNode(selectedNode);
-							updateView();
-		                }
-					});
-										
-					// update ui to max version
-					PrimaryVersionSpec versionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-					versionSpec.setIdentifier(max > min ? max : min);
-					UnicaseTree tree = VisualizationUtil.getRevertedUnicaseTree(currentProjectSpace, versionSpec, historyInfos);
-					trees.put(MAIN_TREE, tree);
-					views.put(LEFT, UnicaseSunburstView.createUnicaseSunburstView(tree, vv));
-					updateView();
-					
-					parent.layout();								
+					updateUIForSliding(infos);						
 					return null;
 				}
 			}.execute(new ExecutionEvent());
@@ -316,13 +282,58 @@ public class VisualizationView extends ViewPart {
 		}	
 	}
 	
+	private void updateUIForSliding(List<HistoryInfo> infos){
+		// save history infos
+		historyInfos = VisualizationUtil.getHistoryInfos(currentProjectSpace, infos);
+		
+		// get selected versions
+		int min = infos.get(0).getPrimerySpec().getIdentifier();
+		int max = infos.get(1).getPrimerySpec().getIdentifier();
+			
+		// add scale with listener
+		final ControlScale cs = new ControlScale(min < max ? min : max, max > min ? max : min);
+		getViewSite().getActionBars().getToolBarManager().add(cs);					
+		getViewSite().getActionBars().updateActionBars();
+				
+		final VisualizationView vv = this;
+		cs.getScale().addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {        
+				PrimaryVersionSpec versionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+				versionSpec.setIdentifier(cs.getScale().getSelection());
+				UnicaseTree tree = VisualizationUtil.getRevertedUnicaseTree(currentProjectSpace, versionSpec, historyInfos);
+				trees.put(MAIN_TREE, tree);
+				views.put(LEFT, UnicaseSunburstView.createUnicaseSunburstView(tree, vv));
+				setSelectedNode(selectedNode);
+				updateView();
+            }
+		});
+							
+		// update ui to max version
+		PrimaryVersionSpec versionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+		versionSpec.setIdentifier(max > min ? max : min);
+		UnicaseTree tree = VisualizationUtil.getRevertedUnicaseTree(currentProjectSpace, versionSpec, historyInfos);
+		trees.put(MAIN_TREE, tree);
+		views.put(LEFT, UnicaseSunburstView.createUnicaseSunburstView(tree, this));
+		updateView();
+		
+		parent.layout();		
+	}
 	
+	/**
+	 * Inner class to show slider in toolbar.
+	 */
 	class ControlScale extends ControlContribution {
 				
 		private int max;
 		private int min;
 		private ScaleWithText scaleWithText;
 		 
+		/**
+		 * The Controlscale.
+		 * 
+		 * @param min The minimum of the scale.
+		 * @param max The maximum of the scale.
+		 */
 	    ControlScale(int min, int max) {
 	        super(CONTROL_SCALE);
 	        this.max = max;
@@ -335,16 +346,27 @@ public class VisualizationView extends ViewPart {
 	    	return scaleWithText;
 	    }   
 	    
+	    /**
+	     * @return The {@link Scale}.
+	     */
 	    Scale getScale(){
 	    	return scaleWithText.scale;
 	    }
 	}
 	
+	/**
+	 * A inner class to show the scale with the version.
+	 */
 	class ScaleWithText extends Canvas {
 		 
         private Text text;
         private Scale scale;
- 
+        
+        /**
+         * @param parent The parent control
+         * @param min The minimum of the scale.
+         * @param max The maimum of the scale.
+         */
         ScaleWithText(Composite parent, int min, int max) {
             super(parent, SWT.NONE);
             GridLayout gl = new GridLayout(2, false);

@@ -33,7 +33,35 @@ public class UnicaseTree {
 	
 	private HashMap<EObject, UnicaseNode> nodes;
 	
-	public static enum Coloring {CREATION_DATE, RANDOM, MANUALLY, VERSION, TWO_VERSIONS, VERSION_SLIDER}
+	/**
+	 * The coloring of the tree.
+	 */
+	public static enum Coloring {
+		/**
+		 * Color in creation date.
+		 */
+		CREATION_DATE, 
+		/**
+		 * Color randomly.
+		 */
+		RANDOM, 
+		/**
+		 * Set colors manually.
+		 */
+		MANUALLY, 
+		/**
+		 * Color the diff between a version.
+		 */
+		VERSION, 
+		/**
+		 * Show two versions.
+		 */
+		TWO_VERSIONS, 
+		/**
+		 * Show the version slider.
+		 */
+		VERSION_SLIDER
+	}
 	
 	private Coloring coloring = Coloring.CREATION_DATE;
 	
@@ -45,16 +73,27 @@ public class UnicaseTree {
 	
 	private List<String> infos;
 				
+	/**
+	 * @param root The root of the tree.
+	 */
 	public UnicaseTree(UnicaseNode root){
 		this(root, null);
 	}
 	
+	/**
+	 * @param root The root of the tree.
+	 * @param eClassTypes The {@link EClass}-types to filter for.
+	 */
 	public UnicaseTree(UnicaseNode root, List<EClass> eClassTypes){
 		this.root = root;	
 		nodes = new HashMap<EObject, UnicaseNode>();
 		addChildrenNodes(eClassTypes, root);		
 	}
 	
+	/**
+	 * @param eClassTypes The {@link EClass}-types to filter for.
+	 * @return A new instance of the tree but filtered.
+	 */
 	public UnicaseTree getFilteredUnicaseTree(List<EClass> eClassTypes){
 		UnicaseTree tree = new UnicaseTree(new UnicaseNode(root.getEObject()), eClassTypes);
 		tree.coloring = coloring;
@@ -65,18 +104,30 @@ public class UnicaseTree {
 		return tree;
 	}
 	
+	/**
+	 * @param root The new root.
+	 */
 	public void setRoot(UnicaseNode root){
 		this.root = root;
 	}
 
+	/**
+	 * @return The root of the tree.
+	 */
 	public UnicaseNode getRoot() {
 		return root;
 	}
-
+	
+	/**
+	 * @return The {@link NodeInfo} of the tree.
+	 */
 	public NodeInfo getInfo() {		
 		return new UnicaseNodeInfo(this);
 	}
 
+	/**
+	 * @return The nodes connected to the {@link EObject}s.
+	 */
 	public HashMap<EObject, UnicaseNode> getNodes() {
 		return nodes;
 	}
@@ -110,6 +161,12 @@ public class UnicaseTree {
 		return ret;
 	}
 		
+	/**
+	 * Set the Color for a special {@link EClass}.
+	 * 
+	 * @param type The {@link EClass} type.
+	 * @param color The color.
+	 */
 	public void setColor(EClass type, Color color){
 		if(colors == null){
 			colors = new HashMap<EClass, Color>();
@@ -117,6 +174,12 @@ public class UnicaseTree {
 		colors.put(type, color);
 	}
 	
+	/**
+	 * Get a Color of a given {@link EClass} type.
+	 * 
+	 * @param type The {@link EClass} type.
+	 * @return The color of the given {@link EClass}.
+	 */
 	public Color getColor(EClass type){
 		if( colors == null ){
 			return null;
@@ -124,6 +187,11 @@ public class UnicaseTree {
 		return colors.get(type);
 	}
 	
+	/**
+	 * Set the Coloring for the tree.
+	 * 
+	 * @param coloring The {@link Coloring}.
+	 */
 	public void setColoring(Coloring coloring) {
 		this.coloring = coloring;
 		ProjectSpace projectSpace = VisualizationUtil.getProjectSpace(root.getEObject());
@@ -137,10 +205,17 @@ public class UnicaseTree {
 		}
 	}
 	
+	/**
+	 * @return The {@link Coloring} of the tree.
+	 */
 	public Coloring getColoring() {
 		return coloring;
 	}
 	
+	/**
+	 * @param node The corresponding node.
+	 * @return The corresponding (same) node; e.g. from another tree. 
+	 */
 	public UnicaseNode getEqualNode(UnicaseNode node){
 		for(UnicaseNode n : nodes.values()){
 			if(n.equals(node)){
@@ -150,6 +225,9 @@ public class UnicaseTree {
 		return null;
 	}
 	
+	/**
+	 * @param s The info to add to the tree.
+	 */
 	public void addInfo(String s){
 		if(infos == null){
 			infos = new ArrayList<String>();
@@ -157,14 +235,23 @@ public class UnicaseTree {
 		infos.add(s);
 	}
 	
+	/**
+	 * @return The infos of the tree.
+	 */
 	public List<String> getInfos(){
 		return infos;
 	}
-
+	
+	/**
+	 * @return The elements changed in a previously asked history.
+	 */
 	public List<EObject> getChangedElements() {
 		return changedElements;
 	}
 	
+	/**
+	 * @return The previously asked history infos.
+	 */
 	public List<HistoryInfo> getHistoryInfos() {
 		return historyInfos;
 	}
