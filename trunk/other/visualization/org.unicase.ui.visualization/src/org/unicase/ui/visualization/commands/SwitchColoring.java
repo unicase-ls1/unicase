@@ -25,6 +25,7 @@ public class SwitchColoring extends AbstractHandler {
 				visualizationView.getView().getUnicaseTree().setColoring(coloring);
 									
 				if(coloring.equals(Coloring.TWO_VERSIONS)) visualizationView.showTwoVersionsView();
+				if(coloring.equals(Coloring.VERSION_SLIDER)) visualizationView.showVersionSlider();
 				
 				visualizationView.repaintAndUpdateViews();
 			}			

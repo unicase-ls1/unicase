@@ -10,19 +10,29 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.action.ControlContribution;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Scale;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.visualization.tree.UnicaseHyperbolicView;
@@ -45,9 +55,12 @@ import org.unicase.workspace.ui.commands.ServerRequestCommandHandler;
 public class VisualizationView extends ViewPart { 
 	
 	private ProjectSpace currentProjectSpace;
+	private UnicaseNode selectedNode;
 	
 	private Composite parent;		
 	private SashForm sashHor;
+	
+	private static final String CONTROL_SCALE = "controlScale";
 	
 	private HashMap<String, UnicaseView> views;
 	private HashMap<String, Frame> frames;
@@ -71,8 +84,9 @@ public class VisualizationView extends ViewPart {
 	 * Also inits the UI.
 	 */
 	@Override
-	public void createPartControl(Composite parent) {	
-		this.parent = parent;
+	public void createPartControl(Composite p) {	
+		this.parent = p;		
+		parent.setLayout(new FillLayout(SWT.VERTICAL));		
 		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().addSelectionListener(new ISelectionListener() {
 			public void selectionChanged(IWorkbenchPart part, ISelection selection) {				
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
@@ -92,18 +106,20 @@ public class VisualizationView extends ViewPart {
 		views = new HashMap<String, UnicaseView>();	
 		frames = new HashMap<String, Frame>();
 		trees = new HashMap<String, UnicaseTree>();
-					
-		updateUIStructure(false);
+							
+		updateUIStructure(false);		
 	}
 	
 	/**
 	 * Updates the UI Structure. Differs between the normal one version and the two versions view.
 	 * 
-	 * @param twoVersions Display two versions?
+	 * @param twoVersions Display two versions at the same time?
 	 */
 	private void updateUIStructure(boolean twoVersions){
-		// remove old controls 
+		// remove old controls 		
 		for(Control c : parent.getChildren()) c.dispose();
+		getViewSite().getActionBars().getToolBarManager().remove(CONTROL_SCALE);
+		getViewSite().getActionBars().updateActionBars();		
 		
 		// add new general structure
 		sashHor = new SashForm(parent, SWT.HORIZONTAL);		
@@ -164,7 +180,10 @@ public class VisualizationView extends ViewPart {
 			
 		currentProjectSpace = projectSpace;
 		UnicaseTree tree = new UnicaseTree(new UnicaseNode(projectSpace));
+		tree.addInfo("Version: " + projectSpace.getBaseVersion().getIdentifier());
 		trees.put(MAIN_TREE, tree);
+		
+		updateUIStructure(false);
 		
 		for(String locator : locators) views.put(locator, UnicaseSunburstView.createUnicaseSunburstView(tree, this));
 		setSelectedNode((UnicaseNode) tree.getRoot());
@@ -208,7 +227,7 @@ public class VisualizationView extends ViewPart {
 					
 					tree = VisualizationUtil.getRevertedUnicaseTree(currentProjectSpace, infos.get(1).getPrimerySpec());
 					trees.put(VERSION_2_TREE, tree);
-					views.put(RIGHT_UP_RIGHT, UnicaseSunburstView.createUnicaseSunburstView(tree, vv));
+					views.put(LEFT, UnicaseSunburstView.createUnicaseSunburstView(tree, vv));
 					
 					updateView();								
 					return null;
@@ -219,6 +238,115 @@ public class VisualizationView extends ViewPart {
 			e.printStackTrace();
 		}		
 	}
+	
+	private List<HistoryInfo> historyInfos;
+	
+	/**
+	 * Show the version slider and get historyinfos for caching.
+	 */
+	public void showVersionSlider(){
+		updateUIStructure(false);
+		final VisualizationView vv = this;
+		try {
+			new ServerRequestCommandHandler() {
+				
+				@Override
+				protected Object run() throws EmfStoreException {
+					List<HistoryInfo> infos = trees.get(MAIN_TREE).getHistoryInfos();
+					if(infos.size() != 2) return null;
+
+					// save history infos
+					historyInfos = VisualizationUtil.getHistoryInfos(currentProjectSpace, infos);
+					
+					// get selected versions
+					int min = infos.get(0).getPrimerySpec().getIdentifier();
+					int max = infos.get(1).getPrimerySpec().getIdentifier();
+						
+					// add scale with listener
+					final ControlScale cs = new ControlScale(min < max ? min : max, max > min ? max : min);
+					getViewSite().getActionBars().getToolBarManager().add(cs);					
+					getViewSite().getActionBars().updateActionBars();
+																				
+					cs.getScale().addSelectionListener(new SelectionAdapter() {
+						public void widgetSelected(SelectionEvent e) {        
+							PrimaryVersionSpec versionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+							versionSpec.setIdentifier(cs.getScale().getSelection());
+							UnicaseTree tree = VisualizationUtil.getRevertedUnicaseTree(currentProjectSpace, versionSpec, historyInfos);
+							trees.put(MAIN_TREE, tree);
+							views.put(LEFT, UnicaseSunburstView.createUnicaseSunburstView(tree, vv));
+							setSelectedNode(selectedNode);
+							updateView();
+		                }
+					});
+										
+					// update ui to max version
+					PrimaryVersionSpec versionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+					versionSpec.setIdentifier(max > min ? max : min);
+					UnicaseTree tree = VisualizationUtil.getRevertedUnicaseTree(currentProjectSpace, versionSpec, historyInfos);
+					trees.put(MAIN_TREE, tree);
+					views.put(LEFT, UnicaseSunburstView.createUnicaseSunburstView(tree, vv));
+					updateView();
+					
+					parent.layout();								
+					return null;
+				}
+			}.execute(new ExecutionEvent());
+			
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	
+	class ControlScale extends ControlContribution {
+				
+		private int max;
+		private int min;
+		private ScaleWithText scaleWithText;
+		 
+	    ControlScale(int min, int max) {
+	        super(CONTROL_SCALE);
+	        this.max = max;
+	        this.min = min;
+	    }
+	 
+	    @Override
+	    protected Control createControl(Composite parent) {
+	    	return (scaleWithText = new ScaleWithText(parent, min, max));
+	    }   
+	    
+	    Scale getScale(){
+	    	return scaleWithText.scale;
+	    }
+	}
+	
+	class ScaleWithText extends Canvas {
+		 
+        private Text text;
+        private Scale scale;
+ 
+        ScaleWithText(Composite parent, int min, int max) {
+            super(parent, SWT.NONE);
+            GridLayout gl = new GridLayout(2, false);
+            this.setLayout(gl);
+            text = new Text(this, SWT.NONE);
+            text.setText(String.valueOf(max));
+            
+            scale = new Scale(this, SWT.NONE);            
+            scale.setMinimum(min);
+            scale.setMaximum(max);
+            scale.setIncrement(1);
+            scale.setSelection(max);
+ 
+            scale.addSelectionListener(new SelectionAdapter() {
+                public void widgetSelected(SelectionEvent e) {                    
+                    text.setText(String.valueOf(scale.getSelection()));
+                }
+            });
+ 
+            this.pack();
+        }
+    }
 	
 	/**
 	 * Show a {@link UnicaseTree}, filtered by type.
@@ -237,6 +365,8 @@ public class VisualizationView extends ViewPart {
 	 * @param node The {@link UnicaseNode}, which is selected.
 	 */
 	public void setSelectedNode(UnicaseNode node){
+		if(node == null) return;
+		selectedNode = node;
 		views.put(RIGHT_DOWN_LEFT, new UnicaseHyperbolicView(getValidTree(VERSION_1_TREE), node));
 		views.put(RIGHT_DOWN_RIGHT, new UnicaseHyperbolicView(getValidTree(VERSION_2_TREE), node));
 		for(UnicaseView view : views.values()) view.selectNode(node);

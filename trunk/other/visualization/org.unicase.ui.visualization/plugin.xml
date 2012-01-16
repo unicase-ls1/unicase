@@ -96,7 +96,7 @@
          </command>
          <command
                commandId="referenceToSwitchColoringMenu"
-               label="Coloring"
+               label="Mode"
                style="pulldown">
          </command>
       </menuContribution>
@@ -146,6 +146,15 @@
             <parameter
                   name="org.unicase.ui.visualization.commands.switchColoring.coloringType"
                   value="TWO_VERSIONS">
+            </parameter>
+         </command>
+         <command
+               commandId="org.unicase.ui.visualization.commands.switchColoring"
+               label="Versionslider"
+               style="push">
+            <parameter
+                  name="org.unicase.ui.visualization.commands.switchColoring.coloringType"
+                  value="VERSION_SLIDER">
             </parameter>
          </command>
       </menuContribution>

@@ -4,22 +4,9 @@ Bundle-Name: Visualization
 Bundle-SymbolicName: org.unicase.ui.visualization;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: ch.randelshofer.beans,
- ch.randelshofer.gui,
- ch.randelshofer.io,
- ch.randelshofer.quaqua.filechooser,
- ch.randelshofer.text,
- ch.randelshofer.tree,
- ch.randelshofer.tree.circlemap,
- ch.randelshofer.tree.demo,
- ch.randelshofer.tree.hypertree,
- ch.randelshofer.tree.rectmap,
- ch.randelshofer.tree.sunburst,
- ch.randelshofer.tree.sunray,
- ch.randelshofer.util,
- ch.randelshofer.util.prefs,
- org.unicase.ui.visualization.tree
 Require-Bundle: org.unicase.ui.unicasecommon;bundle-version="0.4.8",
  org.eclipse.emf.workspace.ui;bundle-version="1.3.0",
  org.unicase.emfstore.esmodel;bundle-version="0.4.8.internal"
+Bundle-ClassPath: lib/Treeviz.jar,
+ .
  
