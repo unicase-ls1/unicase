@@ -33,6 +33,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.WorkbenchPart;
@@ -231,64 +232,81 @@ public class VisualizationUtil {
 	 * @param string 
 	 * @return The selected {@link HistoryInfo} or <code>null</code> if cancel is pressed or nothing is selected.
 	 */
-	private static HistoryInfo showVersionHistory(final ProjectSpace projectSpace, final String msg){
-		
-		Dialog dialog = new Dialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell()) {
-		    @Override
-		    protected Control createDialogArea(Composite p) {
-		    	// init ui with viewer
-		    	Composite composite = new Composite(p, SWT.NONE);
-		    	composite.setLayout(new GridLayout());
-		    	Button reload = new Button(composite, SWT.PUSH);
-		    	reload.setText("Reload History");
-		    	reload.setToolTipText("Clears the cache and reloads History");
-		    	new Label(composite, SWT.NONE).setText(msg);
-		    	
-		    	ScrolledComposite sc = new ScrolledComposite(composite, SWT.H_SCROLL | SWT.V_SCROLL);
-		    	sc.setLayoutData(new GridData(500,400)); 
-		    	
-		    	final TreeViewer viewer = new TreeViewer(sc, SWT.BORDER | SWT.MULTI);
-		        
-		        viewer.getControl().setSize(500, 400);
-		        sc.setContent(viewer.getControl());
-		        
-		        setViewerInput(viewer, getHistoryInfos(projectSpace), projectSpace);
-
-		        // set a selection listener to save the current selection
-		        viewer.addSelectionChangedListener(new ISelectionChangedListener() {
-					
-					@Override
-					public void selectionChanged(SelectionChangedEvent event) {
-						TreeNode treeNode = (TreeNode) ((IStructuredSelection) event.getSelection()).getFirstElement();
-						if(null != treeNode){
-							Object value = treeNode.getValue();
-							if(value instanceof HistoryInfo) {
-								selectedHistoryInfo = (HistoryInfo) value;
-							}
-						}
-					}
-				});
-		        
-		        // reload the history
-		        reload.addSelectionListener(new SelectionListener() {
-
-					@Override
-					public void widgetSelected(SelectionEvent e) {
-						historyInfos = null;
-						setViewerInput(viewer, getHistoryInfos(projectSpace), projectSpace);
-					}
-					@Override
-					public void widgetDefaultSelected(SelectionEvent e) {}
-		          });
-		        
-		        return composite;
-		    }
-		};
-		    
-		if (dialog.open() == Dialog.OK){
+	private static HistoryInfo showVersionHistory(final ProjectSpace projectSpace, final String msg){		
+		if (new HistoryDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), projectSpace, msg).open() == Dialog.OK){
 			return selectedHistoryInfo;		
 		}
 		return null;					
+	}
+	
+	/**
+	 * A inner class to ask for histories.
+	 */
+	static class HistoryDialog extends Dialog{
+		
+		private String msg;
+		private ProjectSpace projectSpace;
+		
+		/**
+		 * @param parentShell The parent shell.
+		 * @param projectSpace The projectSpace to search in.
+		 * @param msg The message to show.
+		 */
+		protected HistoryDialog(Shell parentShell, ProjectSpace projectSpace, String msg) {
+			super(parentShell);
+			this.projectSpace = projectSpace;
+			this.msg = msg;
+		}
+
+		@Override
+	    protected Control createDialogArea(Composite p) {
+	    	// init ui with viewer
+	    	Composite composite = new Composite(p, SWT.NONE);
+	    	composite.setLayout(new GridLayout());
+	    	Button reload = new Button(composite, SWT.PUSH);
+	    	reload.setText("Reload History");
+	    	reload.setToolTipText("Clears the cache and reloads History");
+	    	new Label(composite, SWT.NONE).setText(msg);
+	    	
+	    	ScrolledComposite sc = new ScrolledComposite(composite, SWT.H_SCROLL | SWT.V_SCROLL);
+	    	sc.setLayoutData(new GridData(500,400)); 
+	    	
+	    	final TreeViewer viewer = new TreeViewer(sc, SWT.BORDER | SWT.MULTI);
+	        
+	        viewer.getControl().setSize(500, 400);
+	        sc.setContent(viewer.getControl());
+	        
+	        setViewerInput(viewer, getHistoryInfos(projectSpace), projectSpace);
+
+	        // set a selection listener to save the current selection
+	        viewer.addSelectionChangedListener(new ISelectionChangedListener() {
+				
+				@Override
+				public void selectionChanged(SelectionChangedEvent event) {
+					TreeNode treeNode = (TreeNode) ((IStructuredSelection) event.getSelection()).getFirstElement();
+					if(null != treeNode){
+						Object value = treeNode.getValue();
+						if(value instanceof HistoryInfo) {
+							selectedHistoryInfo = (HistoryInfo) value;
+						}
+					}
+				}
+			});
+	        
+	        // reload the history
+	        reload.addSelectionListener(new SelectionListener() {
+
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					historyInfos = null;
+					setViewerInput(viewer, getHistoryInfos(projectSpace), projectSpace);
+				}
+				@Override
+				public void widgetDefaultSelected(SelectionEvent e) {}
+	          });
+	        
+	        return composite;
+		}
 	}
 	
 	private static void setViewerInput(TreeViewer viewer, List<HistoryInfo> infos, ProjectSpace projectSpace){		

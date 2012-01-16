@@ -16,17 +16,40 @@ import javax.swing.JPanel;
  */
 public interface UnicaseView {
 	
-	public UnicaseTree getUnicaseTree();
+	/**
+	 * @return The {@link UnicaseTree).
+	 */
+	UnicaseTree getUnicaseTree();
 	
-	public void repaintView();
+	/**
+	 * Repaint the complete view.
+	 */
+	void repaintView();
 	
-	public JPanel getView();
+	/**
+	 * @return The JPanel containing the view.
+	 */
+	JPanel getView();
 	
-	public UnicaseNode getSelectedNode();
+	/**
+	 * @return The currently selected {@link UnicaseNode}.
+	 */
+	UnicaseNode getSelectedNode();
 	
-	public void selectNode(UnicaseNode node);
+	/**
+	 * @param node The {@link UnicaseNode} to select.
+	 */
+	void selectNode(UnicaseNode node);
 		
-	public boolean isLinked();
+	/**
+	 * @return Is it linked to the navigator?
+	 */
+	boolean isLinked();
 	
-	public boolean setIsLinked();
+	/**
+	 * Sets the view to the opposite of the current value.
+	 * 
+	 * @return The new isLinked value.
+	 */
+	boolean setIsLinked();
 }
