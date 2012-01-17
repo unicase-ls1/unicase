@@ -29,6 +29,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Scale;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.ISelectionListener;
@@ -443,15 +444,21 @@ public class VisualizationView extends ViewPart {
 	/**
 	 * Update the UI.
 	 */
-	public void updateView() {	
-		parent.setRedraw(false);
-		for(String locator : locators){
-			Frame f = frames.get(locator);
-			f.removeAll();
-			f.add(views.get(locator).getView());
-			f.validate();
-		}		
-		parent.setRedraw(true);
+	public void updateView() {
+		Display.getDefault().syncExec(new Runnable() {
+			
+			@Override
+			public void run() {
+				parent.setRedraw(false);
+				for(String locator : locators){
+					Frame f = frames.get(locator);
+					f.removeAll();
+					f.add(views.get(locator).getView());
+					f.validate();
+				}		
+				parent.setRedraw(true);
+			}
+		});
 	}
 	
 	/**
