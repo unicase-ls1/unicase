@@ -104,23 +104,14 @@ public class GameView extends ViewPart implements Listener {
 				//Button has been clicked, what's the current action?
 				if(gameState) {
 					//Stop
-					gameState = false;
-					gameTimer.stopTimer();
-					buttonStart.setText("Reset Game");
+					stop();
 				} else if (!gameState) {
 					if (gameTimer.getTime() != 0) {
 						//Reset
-						gameTimer.reset();
-						index = 0;
-						currentState = gameStates.get(index);
-						currentState.paintScreen(label);
-						buttonStart.setText("Start Game");
+						reset();
 					} else {
 						//Start
-						buttonStart.setText("Stop Game");
-						gameState = true;
-						setFocus();
-						gameTimer.startTimer();
+						start();
 					}
 				}
 			}
@@ -157,14 +148,33 @@ public class GameView extends ViewPart implements Listener {
 				
 				if (index == gameStates.size() - 1) {
 					index = 0;
-					gameState = false;
-					gameTimer.stopTimer();
-					buttonStart.setText("Reset Game");
+					stop();
 					currentState.paintScreen(label);
 					return;
 				}
 			}
 			break;
 		}
+	}
+	
+	private void start() { 
+		buttonStart.setText("Stop Game");
+		gameState = true;
+		setFocus();
+		gameTimer.startTimer();
+	}
+	
+	private void stop() {
+		gameState = false;
+		gameTimer.stopTimer();
+		buttonStart.setText("Reset Game");
+	}
+	
+	private void reset() {
+		gameTimer.reset();
+		index = 0;
+		currentState = gameStates.get(index);
+		currentState.paintScreen(label);
+		buttonStart.setText("Start Game");
 	}
 }
