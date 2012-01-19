@@ -1,6 +1,8 @@
 package gameclipse.game;
 
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import gameclipse.handlers.EclipseActions;
 
 public class IntroState implements GameState {
 
@@ -12,7 +14,11 @@ public class IntroState implements GameState {
 
 	@Override
 	public void performAction() {
-
+		Display.getDefault().syncExec(new Runnable() {
+			public void run() {
+				EclipseActions.runCommand("org.eclipse.debug.ui.commands.DebugLast");
+			}
+		});
 	}
 
 	@Override
