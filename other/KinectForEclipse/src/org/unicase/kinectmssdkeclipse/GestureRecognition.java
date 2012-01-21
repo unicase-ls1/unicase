@@ -7,91 +7,126 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
 */
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.Shell;
+
 import humandiagramgef.HumanBodyEnum;
 
 public class GestureRecognition {
-	private int KINECT_FPS = 30;
-	private boolean wasLefHandUp=false;
+	private boolean wasLeftHandUp = false;
+	private boolean wasRightHandUp = false;
 	private float leftHandYPosition;
-	private float headYPosition;
-	//private long timeLeftHandAboveHead;
 	private float leftHandYPositionBefore;
+	private float rightHandYPosition;
+	private float rightHandYPositionBefore;
+	private float headYPosition;
 	private float headYPositionBefore;
-	private int leftFootY;
-	private int leftFootYBefore;
-	private int rightFootY;
-	private int rightFootYBefore;
-	private Gesture actualRecognizedGesture=null;
+	private float headYNice = 0;
+	private boolean isCalibrated = false;
+	private boolean isStopped = false;
 	private int frameCount = 0;
+	private int status = Constants.STATUS_NICE;
 	
 	public void saveYPositions(HumanBodyEnum humanPart, float positionY) {
 		if (humanPart.equals(HumanBodyEnum.Hand_Left)) {
 			leftHandYPosition = Math.round(positionY * 10);
 		} else if (humanPart.equals(HumanBodyEnum.Head)) {
 			headYPosition = Math.round(positionY * 10);
-		} else if (humanPart.equals(HumanBodyEnum.Foot_Left)) {
-			leftFootY = Math.round(positionY * 10);
-		} else if (humanPart.equals(HumanBodyEnum.Foot_Right)) {
-			rightFootY = Math.round(positionY * 10);
-		}
+		} if (humanPart.equals(HumanBodyEnum.Hand_Right)) {
+			rightHandYPosition = Math.round(positionY * 10);
+		} 
 	}
 
 
 	private boolean isHelloJonas() {
-		if (this.wasLefHandUp && this.leftHandYPosition < this.headYPosition) {
-			this.wasLefHandUp = false;
-			//this.timeLeftHandAboveHead=0;
+		if (this.wasLeftHandUp && this.leftHandYPosition < this.headYPosition) {
+			this.wasLeftHandUp = false;
 			this.headYPositionBefore = 0;
 			this.leftHandYPositionBefore=0;
-			this.actualRecognizedGesture = Gesture.HAND_OVER_HEAD;
+			headYNice = headYPosition;
 			return true;
 		}  else if (this.leftHandYPosition >= this.headYPosition && this.headYPositionBefore == 0 && this.leftHandYPositionBefore == 0) {
 			this.leftHandYPositionBefore = this.leftHandYPosition;
 			this.headYPositionBefore = this.headYPosition;
-			this.wasLefHandUp = true;
+			this.wasLeftHandUp = true;
+		}
+		return false;
+	}
+	
+	private boolean isGoodByeJonas() {
+		if (this.wasRightHandUp && this.rightHandYPosition < this.headYPosition) {
+			this.wasRightHandUp = false;
+			this.headYPositionBefore = 0;
+			this.rightHandYPositionBefore=0;
+			return true;
+		}  else if (this.rightHandYPosition >= (this.headYPosition + Constants.THRESHOLD_GOOD_BYE) && this.rightHandYPositionBefore == 0) {
+			this.rightHandYPositionBefore = this.rightHandYPosition;
+			this.headYPositionBefore = this.headYPosition;
+			this.wasRightHandUp = true;
 		}
 		return false;
 	}
 	
 	private boolean isNice() {
-		boolean ret = false;
-		return ret;
-	}
-	
-	private boolean isJump() {
-		if ((leftFootY > leftFootYBefore) && (rightFootY > rightFootYBefore)) {
+		if (headYPosition == headYNice) {
+			status = Constants.STATUS_NICE;
 			return true;
 		}
 		return false;
 	}
 	
-	private boolean isCrouch() {
-		boolean ret = false;
-		return ret;
+	private boolean isJump() {
+		if (status == Constants.STATUS_NICE) {
+			if (headYPosition >= (headYNice + Constants.THRESHOLD_JUMP)) {
+				status = Constants.STATUS_JUMP;
+				return true;
+			}
+		}
+		return false;
 	}
+	
+	private boolean isCrouch() {
+		if (status == Constants.STATUS_NICE) {
+			if (headYPosition <= (headYNice - Constants.THRESHOLD_CROUCH)) {
+				status = Constants.STATUS_CROUCH;
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	
 	public void checkForGesture() {
 		frameCount++;
-		if (frameCount > KINECT_FPS) {
-			/* Check the gesture every ONE SECOND */
-			frameCount = 0;
-			if (isHelloJonas()) {
-				System.out.println("Hello Jonas!");
-			} else if (isNice()) {
-				
-			} else if (isJump()) {
-				System.out.println("Jump!");
-				
-			} else if (isCrouch()) {
-				
+		if (! isStopped) {
+			if (frameCount > Constants.KINECT_FPS) {
+				frameCount = 0;
+				if (isHelloJonas()) {
+					showText("Hello! " + headYNice);
+					isCalibrated = true;
+				} 
+				if (isCalibrated) {
+					if (isNice()) {
+						/* Do Nothing */
+					}
+					else if (isJump()) {
+						showText("Jump! " + headYPosition);
+						
+					} else if (isCrouch()) {
+						showText("Crouch! " + headYPosition);
+					} else if (isGoodByeJonas()) {
+						showText("Good Bye!");
+						isStopped = true;
+					}
+					headYPositionBefore = headYPosition;
+				}
 			}
-			
-			leftFootYBefore = leftFootY;
-			rightFootYBefore = rightFootY;
-		}	
+		}
 	}
 	
-	/*
 	private void showText(final String text){
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
@@ -107,11 +142,8 @@ public class GestureRecognition {
 			}
 		});
 	}
-	*/
 	
 	public Gesture getActualRecognizedGesture() {
-		return this.actualRecognizedGesture;
+		return Gesture.HAND_OVER_HEAD;
 	}
-	
-	
 }
