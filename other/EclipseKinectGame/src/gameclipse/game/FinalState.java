@@ -1,5 +1,8 @@
 package gameclipse.game;
 
+import gameclipse.handlers.EclipseActions;
+
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 
 public class FinalState implements GameState {
@@ -12,7 +15,11 @@ public class FinalState implements GameState {
 
 	@Override
 	public void performAction() {
-		// TODO Auto-generated method stub
+		Display.getDefault().syncExec(new Runnable() {
+			public void run() {
+				EclipseActions.runCommand("org.eclipse.debug.ui.commands.Resume");
+			}
+		});
 
 	}
 

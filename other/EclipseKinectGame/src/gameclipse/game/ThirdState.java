@@ -16,7 +16,7 @@ public class ThirdState implements GameState {
 	public void performAction() {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
-				EclipseActions.runCommand("org.eclipse.jdt.ui.edit.text.java.correction.assist.proposals");
+				EclipseActions.runCommand("org.eclipse.debug.ui.commands.StepInto");
 			}
 		});
 

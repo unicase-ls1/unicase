@@ -1,6 +1,7 @@
 package gameclipse.views;
 
 import gameclipse.game.FinalState;
+import gameclipse.game.FourthState;
 import gameclipse.game.GameState;
 import gameclipse.game.IntroState;
 import gameclipse.game.SecondState;
@@ -49,11 +50,13 @@ public class GameView extends ViewPart implements Listener {
 		IntroState introState = new IntroState();
 		SecondState secState = new SecondState();
 		ThirdState thState = new ThirdState();
+		FourthState fourthState = new FourthState();
 		FinalState finalState = new FinalState();
 
 		gameStates.add(introState);
 		gameStates.add(secState);
 		gameStates.add(thState);
+		gameStates.add(fourthState);
 		gameStates.add(finalState);
 	}
 
