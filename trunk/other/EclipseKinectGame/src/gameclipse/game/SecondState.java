@@ -17,7 +17,7 @@ public class SecondState implements GameState {
 	public void performAction() {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
-				EclipseActions.runCommand("org.eclipse.debug.ui.commands.StepInto");
+				EclipseActions.runCommand("org.eclipse.debug.ui.commands.StepOver");
 			}
 		});
 
