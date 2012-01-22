@@ -144,6 +144,17 @@
             name="Kinect Game Timer View"
             restorable="true">
       </view>
+      <category
+            name="Kinect"
+            id="EclipseKinectGame">
+      </category>
+      <view
+            class="org.unicase.kinectmssdkeclipse.game.Gameclipse"
+            id="org.unicase.kinectmssdkeclipse.game.Gameclipse"
+            name="Gameclipse"
+            category="EclipseKinectGame"
+            restorable="true">
+      </view>
    </extension>
 
 </plugin>
