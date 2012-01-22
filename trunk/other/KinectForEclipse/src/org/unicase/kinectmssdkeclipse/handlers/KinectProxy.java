@@ -11,6 +11,7 @@ import microsoftkinectwrapper.KinectHandler;
 import net.sf.jni4net.Bridge;
 import org.unicase.kinectmssdkeclipse.SkeletalTracking;
 import org.unicase.kinectmssdkeclipse.SpeechRecognition;
+import org.unicase.kinectmssdkeclipse.game.GestureListener;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -29,36 +30,34 @@ public class KinectProxy {
 	private static void processInput() throws IOException {
 		if (skeletonTrackingInitialized || gestureRecognitionInitialized || speechRecognitionInitialized) {
 			String[] kinectResultArr = null;
+			String[] kinectResultSpeechArr = null;
 			try{
 				
 				String recog = "RECOGNIZED: ";
 				//String skeleton = "SKELETON: ";
 				String kinectResult;
+				String kinectResultSpeech;
 				kinectResult = kinectHandler.getSkeleton();
-				//kinectResult = speechRecognitionWrapper.getSpeech();
+				kinectResultSpeech = speechRecognitionWrapper.getSpeech();
 				
-				if (null != kinectResult) {
-					//System.out.println(kinectResult);
-					kinectResultArr = kinectResult.split("\\*");
+				if (null != kinectResult || null != kinectResultSpeech) {
 					String token;
-					
-					for (int i = 0; i < kinectResultArr.length; i++) {
-						token = kinectResultArr[i];
-						
-						if(token.startsWith(recog)){ 
-								String word = token.substring(recog.length());
-								speechRecognition.fireSpeechEvent(word);
-							} else if(/*token.startsWith(skeleton)*/ true){
-								String xml = /*token.substring(skeleton.length());*/ token;
-								//System.out.println(token);
-								//if ((i + 1)< kinectResultArr.length)
-									//System.out.println(kinectResultArr[i + 1]);
-								//if (token.contains("joint"))
-									//System.out.println(token);
-								DocumentBuilder docBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-								Document doc = docBuilder.parse(new InputSource(new StringReader(xml)));
-								skeletalTracking.parseSkeletonData(doc);
-							}
+					if (null != kinectResult) {
+						kinectResultArr = kinectResult.split("\\*");
+						for (int i = 0; i < kinectResultArr.length; i++) {
+							token = kinectResultArr[i];
+							DocumentBuilder docBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+							Document doc = docBuilder.parse(new InputSource(new StringReader(token)));
+							skeletalTracking.parseSkeletonData(doc);
+						}
+					}
+					if (null != kinectResultSpeech) {
+						kinectResultSpeechArr = kinectResultSpeech.split("\\*");
+						for (int i = 0; i < kinectResultSpeechArr.length; i++) {
+							token = kinectResultSpeechArr[i];
+							String word = token.substring(recog.length());
+							speechRecognition.fireSpeechEvent(word);
+						}
 					}
 				}
 				} catch (ParserConfigurationException e) {
@@ -119,7 +118,7 @@ public class KinectProxy {
 		System.out.println(kinectHandler.setUpAndRun());
 	}
 	
-	public static void handle() {
+	public static void handle(GestureListener listener) {
 		
 		try {
 			Bridge.init();
@@ -131,6 +130,7 @@ public class KinectProxy {
         kinectHandler = new KinectHandler();
         speechRecognitionWrapper = new microsoftkinectwrapper.SpeechRecognition();
 		skeletalTracking = new SkeletalTracking();
+		skeletalTracking.setGestureListener(listener);
 		speechRecognition = new SpeechRecognition();
 		System.out.println("Connected to Kinect!");
 		Thread processInput = new Thread(new Runnable() {

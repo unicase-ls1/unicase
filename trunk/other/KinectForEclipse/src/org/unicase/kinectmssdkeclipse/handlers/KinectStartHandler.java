@@ -41,7 +41,7 @@ public class KinectStartHandler extends AbstractHandler {
 		
 		//KinectConnection client = KinectConnection.getInstance();
 		//client.openConnection();
-		KinectProxy.handle();
+		KinectProxy.handle(null);
 		return null;
 	}
 }

@@ -9,8 +9,7 @@ public class FourthState implements GameState {
 
 	@Override
 	public Gesture getRequiredGesture() {
-		// TODO Auto-generated method stub
-		return null;
+		return Gesture.JUMP;
 	}
 
 	@Override
@@ -23,9 +22,12 @@ public class FourthState implements GameState {
 	}
 
 	@Override
-	public void paintScreen(Label label) {
-		label.setText("Fourth State");
-
+	public void paintScreen(final Label label) {
+		Display.getDefault().syncExec(new Runnable() {
+			public void run() {
+				label.setText("Fourth State");
+			}
+		});
 	}
 
 }

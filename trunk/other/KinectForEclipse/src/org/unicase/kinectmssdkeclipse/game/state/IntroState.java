@@ -8,21 +8,25 @@ public class IntroState implements GameState {
 
 	@Override
 	public Gesture getRequiredGesture() {
-		// TODO Auto-generated method stub
-		return null;
+		return Gesture.JUMP;
 	}
 
 	@Override
 	public void performAction() {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
-				EclipseActions.runCommand("org.eclipse.debug.ui.commands.DebugLast");
+				EclipseActions
+						.runCommand("org.eclipse.debug.ui.commands.DebugLast");
 			}
 		});
 	}
 
 	@Override
-	public void paintScreen(Label label) {
-		label.setText("Initial State");
+	public void paintScreen(final Label label) {
+		Display.getDefault().syncExec(new Runnable(){
+			public void run(){
+				label.setText("Initial State");
+			}
+		});
 	}
 }
