@@ -9,8 +9,7 @@ public class FinalState implements GameState {
 
 	@Override
 	public Gesture getRequiredGesture() {
-		// TODO Auto-generated method stub
-		return null;
+		return Gesture.WAVE_RIGHT;
 	}
 
 	@Override
@@ -24,8 +23,12 @@ public class FinalState implements GameState {
 	}
 
 	@Override
-	public void paintScreen(Label label) {
-		label.setText("Final State");
+	public void paintScreen(final Label label) {
+		Display.getDefault().syncExec(new Runnable() {
+			public void run() {
+				label.setText("Final State");
+			}
+		});
 	}
 
 }

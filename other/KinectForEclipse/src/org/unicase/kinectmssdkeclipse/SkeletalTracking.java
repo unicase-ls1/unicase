@@ -5,6 +5,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
+import org.unicase.kinectmssdkeclipse.game.GestureListener;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -16,7 +17,12 @@ public class SkeletalTracking {
 
 	private final HumanBodyModelUtils humanbody;
 	private GestureRecognition gestureRecognition;
+	private GestureListener gestureListener;
 	
+	public void setGestureListener(GestureListener gestureListener) {
+		this.gestureListener = gestureListener;
+	}
+
 	public GestureRecognition getGestureRecognition() {
 		return gestureRecognition;
 	}
@@ -157,6 +163,7 @@ public class SkeletalTracking {
 	public void startGestureRecoginition() {
 		if (this.gestureRecognition == null) {
 			this.gestureRecognition = new GestureRecognition();
+			this.gestureRecognition.setGestureListener(gestureListener);
 		} else {
 			this.gestureRecognition = null;
 		}

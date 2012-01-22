@@ -8,8 +8,7 @@ public class SecondState implements GameState {
 
 	@Override
 	public Gesture getRequiredGesture() {
-		// TODO Auto-generated method stub
-		return null;
+		return Gesture.CROUCH;
 	}
 
 	@Override
@@ -24,8 +23,12 @@ public class SecondState implements GameState {
 	}
 
 	@Override
-	public void paintScreen(Label label) {
-		label.setText("Second State");
+	public void paintScreen(final Label label) {
+		Display.getDefault().syncExec(new Runnable() {
+			public void run() {
+				label.setText("Second State");
+			}
+		});
 	}
 
 }

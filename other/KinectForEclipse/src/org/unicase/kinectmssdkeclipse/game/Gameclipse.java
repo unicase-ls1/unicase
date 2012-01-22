@@ -18,12 +18,14 @@ import org.eclipse.ui.part.ViewPart;
 import org.unicase.kinectmssdkeclipse.game.state.FinalState;
 import org.unicase.kinectmssdkeclipse.game.state.FourthState;
 import org.unicase.kinectmssdkeclipse.game.state.GameState;
+import org.unicase.kinectmssdkeclipse.game.state.Gesture;
 import org.unicase.kinectmssdkeclipse.game.state.IntroState;
 import org.unicase.kinectmssdkeclipse.game.state.SecondState;
 import org.unicase.kinectmssdkeclipse.game.state.ThirdState;
 import org.unicase.kinectmssdkeclipse.game.timer.GameTimer;
+import org.unicase.kinectmssdkeclipse.handlers.KinectProxy;
 
-public class Gameclipse extends ViewPart implements Listener {
+public class Gameclipse extends ViewPart implements Listener, GestureListener {
 
 	public static final String ID = "org.unicase.kinectmssdkeclipse.game.Gameclipse";
 
@@ -101,6 +103,8 @@ public class Gameclipse extends ViewPart implements Listener {
 		currentState = gameStates.get(index);
 		currentState.paintScreen(label);
 
+		KinectProxy.handle(this);
+
 		buttonStart.addSelectionListener(new SelectionListener() {
 
 			@Override
@@ -108,13 +112,18 @@ public class Gameclipse extends ViewPart implements Listener {
 				// Button has been clicked, what's the current action?
 				if (gameState) {
 					// Stop
+					KinectProxy.stopHandle();
 					stop();
 				} else if (!gameState) {
 					if (gameTimer.getTime() != 0) {
+						KinectProxy.stopHandle();
 						// Reset
 						reset();
 					} else {
 						// Start
+						// init the kinect
+						KinectProxy.startGestureRecognition();
+						KinectProxy.startSpeechRecog();
 						start();
 					}
 				}
@@ -179,5 +188,26 @@ public class Gameclipse extends ViewPart implements Listener {
 		currentState = gameStates.get(index);
 		currentState.paintScreen(label);
 		buttonStart.setText("Start Game");
+	}
+
+	@Override
+	public void gestureDetected(Gesture gesture) {
+		if (currentState.getRequiredGesture().equals(gesture)) {
+			// perform action on the current state
+			currentState.performAction();
+
+			// paint the next state (and update the current state)
+			currentState = gameStates.get(++index);
+			currentState.paintScreen(label);
+
+			if (index == gameStates.size() - 1) {
+				index = 0;
+				stop();
+				currentState.paintScreen(label);
+				return;
+			}
+
+		}
+
 	}
 }
