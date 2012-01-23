@@ -5,7 +5,6 @@ import humanbodymodel.HumanContainer;
 import java.util.Set;
 
 import edu.tum.in.bruegge.epd.kinect.KinectManager;
-import edu.tum.in.bruegge.epd.kinect.KinectManagerFactory;
 import edu.tum.in.bruegge.epd.kinect.gesture.Gesture;
 import edu.tum.in.bruegge.epd.kinect.gesture.GestureListener;
 
@@ -16,7 +15,7 @@ public class GestureKinectManager implements GestureListenerProxy {
 	private Set<GestureListener> gestureListeners;
 
 	public GestureKinectManager() {
-		this.kinectManager = KinectManagerFactory.newInstance();
+		this.kinectManager = KinectManager.INSTANCE;
 
 		// TODO Move out of here ...
 		addGestureDetector(new JumpGestureDetector());
