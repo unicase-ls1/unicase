@@ -71,7 +71,7 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 		this.speechWords.put(listener, listener.getWords());
 		if (listener.isFiltered()) {
 			for (String word : listener.getWords()) {
-				if (this.filteredSpeechListeners.get(word) == null) {
+				if (this.filteredSpeechListeners.containsKey(word)) {
 					this.filteredSpeechListeners.put(word, new HashSet<SpeechListener>());
 				}
 				this.filteredSpeechListeners.get(word).add(listener);
