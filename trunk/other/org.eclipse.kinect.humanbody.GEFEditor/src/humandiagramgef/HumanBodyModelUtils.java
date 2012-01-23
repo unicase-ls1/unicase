@@ -1,16 +1,13 @@
 package humandiagramgef;
 
-import java.util.HashMap;
-
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.ui.PlatformUI;
-
 import humanbodymodel.Human;
 import humanbodymodel.HumanContainer;
 import humanbodymodel.HumanLink;
 import humanbodymodel.HumanbodymodelFactory;
+
+import java.util.HashMap;
+
+import org.eclipse.ui.PlatformUI;
 
 public class HumanBodyModelUtils {
 	
@@ -84,6 +81,10 @@ public class HumanBodyModelUtils {
 			part.setZ(z);
 		}
 		
+	}
+	
+	public HumanContainer getHumanContainer() {
+		return this.container;
 	}
 	
 	public void init() {
