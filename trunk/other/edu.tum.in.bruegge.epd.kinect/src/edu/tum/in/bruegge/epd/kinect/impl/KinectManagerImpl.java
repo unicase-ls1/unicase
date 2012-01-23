@@ -13,10 +13,16 @@ import org.w3c.dom.Document;
 
 import edu.tum.in.bruegge.epd.kinect.KinectManager;
 import edu.tum.in.bruegge.epd.kinect.SpeechListener;
+import edu.tum.in.bruegge.epd.kinect.impl.connection.SocketConnectionManager;
 
 public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 
-	private KinectConnectionManager connectionManager;// = KinectConnectionManager.getInstance();
+	private static final String HOST = "127.0.0.1";
+	private static final int PORT = 12345;
+	
+	private static final KinectManager INSTANCE = new KinectManagerImpl();
+	
+	private ConnectionManager connectionManager;// = KinectConnectionManager.getInstance();
 	
 	private HumanBodyModelUtils humanBodyHandler = new HumanBodyModelUtils();
 	private SkeletonParser skeletonParser;
@@ -26,11 +32,15 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 	private Set<SpeechListener> unfilteredSpeechListeners = new HashSet<SpeechListener>();
 	
 	public KinectManagerImpl() {
-		this.connectionManager = new KinectConnectionManager(this);
-		
+		this.connectionManager = new SocketConnectionManager(HOST, PORT);
+		//this.connectionManager = new ProxyConnectionManager();
 		this.skeletonParser = new SkeletonParser(this.humanBodyHandler);
 	}
 	
+	public static KinectManager getInstance() {
+		return INSTANCE;
+	}
+
 	@Override
 	public void startKinect() {
 		try {
@@ -58,12 +68,12 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 
 	@Override
 	public void startSkeletonTracking() {
-		this.connectionManager.getCommunicationManager().startSkeletonTracking();
+		this.connectionManager.startSkeletonTracking();
 	}
 
 	@Override
 	public void stopSkeletonTracking() {
-		this.connectionManager.getCommunicationManager().stopSkeletonTracking();
+		// empty
 	}
 
 	@Override
@@ -97,12 +107,13 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 			words.addAll(listenerWords);
 		}
 		
-		this.connectionManager.getCommunicationManager().startSpeechRecognition(words);
+		String[] keywords = words.toArray(new String[words.size()]);
+		this.connectionManager.startSpeechRecognition(keywords);
 	}
 
 	@Override
 	public void stopSpeechRecognition() {
-		this.connectionManager.getCommunicationManager().stopSpeechRecognition();
+		// empty
 	}
 
 	@Override
