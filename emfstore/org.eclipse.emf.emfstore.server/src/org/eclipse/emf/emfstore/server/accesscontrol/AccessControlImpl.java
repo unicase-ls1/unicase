@@ -124,10 +124,20 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	 * @throws AccessControlException if there is no such user
 	 */
 	private ACUser resolveUser(String username) throws AccessControlException {
+
+		Boolean ignoreCase = Boolean.parseBoolean(ServerConfiguration.getProperties().getProperty(
+			ServerConfiguration.AUTHENTICATION_MATCH_USERS_IGNORE_CASE, "false"));
+
 		synchronized (MonitorProvider.getInstance().getMonitor()) {
 			for (ACUser user : serverSpace.getUsers()) {
-				if (user.getName().equals(username)) {
-					return user;
+				if (ignoreCase) {
+					if (user.getName().equalsIgnoreCase(username)) {
+						return user;
+					}
+				} else {
+					if (user.getName().equals(username)) {
+						return user;
+					}
 				}
 			}
 			throw new AccessControlException();

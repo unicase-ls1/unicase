@@ -243,6 +243,11 @@ public final class ServerConfiguration {
 	public static final String AUTHENTICATION_SPFV_FILEPATH = "emfstore.accesscontrol.authentication.spfv";
 
 	/**
+	 * Whether user names should be matched case insensitively.
+	 */
+	public static final String AUTHENTICATION_MATCH_USERS_IGNORE_CASE = "emfstore.accesscontrol.authentication.matchusers.ignorecase";
+
+	/**
 	 * Default filepath for spfv authentication.
 	 * 
 	 * @deprecated use {@link #getDefaultSPFVFilePath()}
