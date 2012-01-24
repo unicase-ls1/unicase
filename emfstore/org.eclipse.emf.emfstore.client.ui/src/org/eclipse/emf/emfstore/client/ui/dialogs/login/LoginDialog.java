@@ -79,7 +79,7 @@ public class LoginDialog extends TitleAreaDialog {
 				setReturnCode(OK);
 				close();
 			} catch (EmfStoreException e) {
-				setErrorMessage(e.getMessage());
+				setErrorMessage(e.getMessage() + " Maybe your password changed.");
 			}
 		}
 	}
