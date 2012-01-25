@@ -113,9 +113,7 @@ public class VisualizationView extends ViewPart {
 		
 		views = new HashMap<String, UnicaseView>();	
 		frames = new HashMap<String, Frame>();
-		trees = new HashMap<String, UnicaseTree>();
-							
-		updateUIStructure(false);		
+		trees = new HashMap<String, UnicaseTree>();		
 	}
 	
 	/**
@@ -245,7 +243,7 @@ public class VisualizationView extends ViewPart {
 					
 					tree = VisualizationUtil.getRevertedUnicaseTree(currentProjectSpace, infos.get(1).getPrimerySpec());
 					trees.put(VERSION_2_TREE, tree);
-					views.put(LEFT, UnicaseSunburstView.createUnicaseSunburstView(tree, vv));
+					views.put(RIGHT_UP_RIGHT, UnicaseSunburstView.createUnicaseSunburstView(tree, vv));
 					
 					updateView();								
 					return null;
@@ -453,7 +451,10 @@ public class VisualizationView extends ViewPart {
 				for(String locator : locators){
 					Frame f = frames.get(locator);
 					f.removeAll();
-					f.add(views.get(locator).getView());
+					UnicaseView view = views.get(locator);
+					if(view != null){
+						f.add(view.getView());					
+					}
 					f.validate();
 				}		
 				parent.setRedraw(true);
