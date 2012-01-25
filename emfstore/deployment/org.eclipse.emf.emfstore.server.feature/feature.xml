@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.emfstore.server.feature"
       label="EMFStore Server (Incubation)"
-      version="0.8.9.M910"
+      version="0.8.9.M911"
       provider-name="Eclipse Modeling Project"
       plugin="org.eclipse.emf.emfstore.branding">
 
