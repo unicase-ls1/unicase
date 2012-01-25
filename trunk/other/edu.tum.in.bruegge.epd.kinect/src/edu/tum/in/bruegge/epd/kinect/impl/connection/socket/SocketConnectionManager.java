@@ -1,4 +1,4 @@
-package edu.tum.in.bruegge.epd.kinect.impl.connection;
+package edu.tum.in.bruegge.epd.kinect.impl.connection.socket;
 
 import java.io.IOException;
 
@@ -11,6 +11,11 @@ public class SocketConnectionManager extends ConnectionDataHandler implements Co
 	
 	private String host;
 	private int port;
+	
+	public SocketConnectionManager() {
+		this.host = KinectProtocolConstants.DEFAULT_HOST;
+		this.port = KinectProtocolConstants.DEFAULT_PORT;
+	}
 	
 	public SocketConnectionManager(String host, int port) {
 		this.host = host;

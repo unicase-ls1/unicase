@@ -1,4 +1,4 @@
-package edu.tum.in.bruegge.epd.kinect.impl.connection;
+package edu.tum.in.bruegge.epd.kinect.impl.connection.socket;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,8 +7,6 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import edu.tum.in.bruegge.epd.kinect.impl.ConnectionProcessor;
-import edu.tum.in.bruegge.epd.kinect.impl.KinectProtocolCommands;
-import edu.tum.in.bruegge.epd.kinect.impl.KinectProtocolConstants;
 
 public class SocketConnectionProcessor extends ConnectionProcessor {
 
