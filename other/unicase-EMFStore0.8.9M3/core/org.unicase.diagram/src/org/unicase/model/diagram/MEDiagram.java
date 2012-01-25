@@ -10,7 +10,6 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.impl.DiagramLoadException;
-import org.unicase.model.diagram.impl.DiagramStoreException;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>ME Diagram</b></em>'. <!-- end-user-doc -->
@@ -114,8 +113,8 @@ public interface MEDiagram extends Attachment {
 	void setDiagramLayout(String value);
 
 	//	void saveDiagramLayout() throws DiagramStoreException;
-	
-		void loadDiagramLayout() throws DiagramLoadException;
+
+	void loadDiagramLayout() throws DiagramLoadException;
 
 	String getType();
 

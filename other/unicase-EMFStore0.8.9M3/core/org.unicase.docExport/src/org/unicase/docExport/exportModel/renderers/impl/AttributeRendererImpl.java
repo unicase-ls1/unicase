@@ -8,9 +8,12 @@ package org.unicase.docExport.exportModel.renderers.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 import org.unicase.docExport.exportModel.renderers.RenderersPackage;
 import org.unicase.docExport.exportModel.renderers.options.AttributeOption;
@@ -38,6 +41,8 @@ public abstract class AttributeRendererImpl extends EObjectImpl implements Attri
 	 * @ordered
 	 */
 	protected AttributeOption attributeOption;
+	private final AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
+		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -187,5 +192,8 @@ public abstract class AttributeRendererImpl extends EObjectImpl implements Attri
 	public boolean hideStructuralLines() {
 		return false;
 	}
-	// end custom code
+
+	protected String getText(EObject eObject) {
+		return adapterFactoryItemDelegator.getText(eObject);
+	}// end custom code
 } // AttributeRendererImpl

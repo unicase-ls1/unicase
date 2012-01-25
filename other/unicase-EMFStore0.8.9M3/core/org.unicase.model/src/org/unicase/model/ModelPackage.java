@@ -105,21 +105,12 @@ public interface ModelPackage extends EPackage {
 	int UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = 4;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNICASE_MODEL_ELEMENT__LEAF_SECTION = 5;
-
-	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNICASE_MODEL_ELEMENT__STATE = 6;
+	int UNICASE_MODEL_ELEMENT__STATE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -128,7 +119,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES = 7;
+	int UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES = 6;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -137,7 +128,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNICASE_MODEL_ELEMENT__COMMENTS = 8;
+	int UNICASE_MODEL_ELEMENT__COMMENTS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
@@ -145,7 +136,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNICASE_MODEL_ELEMENT__CREATION_DATE = 9;
+	int UNICASE_MODEL_ELEMENT__CREATION_DATE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute.
@@ -153,7 +144,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNICASE_MODEL_ELEMENT__CREATOR = 10;
+	int UNICASE_MODEL_ELEMENT__CREATOR = 9;
 
 	/**
 	 * The number of structural features of the '<em>Unicase Model Element</em>' class.
@@ -162,7 +153,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNICASE_MODEL_ELEMENT_FEATURE_COUNT = 11;
+	int UNICASE_MODEL_ELEMENT_FEATURE_COUNT = 10;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.AnnotationImpl <em>Annotation</em>}' class. <!--
@@ -216,15 +207,6 @@ public interface ModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ANNOTATION__INCOMING_DOCUMENT_REFERENCES = UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__LEAF_SECTION = UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -338,15 +320,6 @@ public interface ModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTACHMENT__INCOMING_DOCUMENT_REFERENCES = UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTACHMENT__LEAF_SECTION = UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -502,16 +475,6 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getUnicaseModelElement_IncomingDocumentReferences();
-
-	/**
-	 * Returns the meta object for the container reference '{@link org.unicase.model.UnicaseModelElement#getLeafSection <em>Leaf Section</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Leaf Section</em>'.
-	 * @see org.unicase.model.UnicaseModelElement#getLeafSection()
-	 * @see #getUnicaseModelElement()
-	 * @generated
-	 */
-	EReference getUnicaseModelElement_LeafSection();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.model.UnicaseModelElement#getState <em>State</em>}'.
@@ -683,14 +646,6 @@ public interface ModelPackage extends EPackage {
 		 */
 		EReference UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = eINSTANCE
 			.getUnicaseModelElement_IncomingDocumentReferences();
-
-		/**
-		 * The meta object literal for the '<em><b>Leaf Section</b></em>' container reference feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EReference UNICASE_MODEL_ELEMENT__LEAF_SECTION = eINSTANCE.getUnicaseModelElement_LeafSection();
 
 		/**
 		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.

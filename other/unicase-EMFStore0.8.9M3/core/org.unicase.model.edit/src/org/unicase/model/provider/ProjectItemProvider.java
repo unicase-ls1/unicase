@@ -11,6 +11,8 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -274,9 +276,6 @@ public class ProjectItemProvider extends org.eclipse.emf.emfstore.common.model.p
 			AttachmentFactory.eINSTANCE.createFileAttachment()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			AttachmentFactory.eINSTANCE.createPatchAttachment()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			ProfileFactory.eINSTANCE.createProfile()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
@@ -311,12 +310,6 @@ public class ProjectItemProvider extends org.eclipse.emf.emfstore.common.model.p
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			ActivityFactory.eINSTANCE.createActivityEnd()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ReleaseFactory.eINSTANCE.createStream()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ReleaseFactory.eINSTANCE.createRelease()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createProjectHistory()));
@@ -694,9 +687,6 @@ public class ProjectItemProvider extends org.eclipse.emf.emfstore.common.model.p
 			AttachmentFactory.eINSTANCE.createFileAttachment()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			AttachmentFactory.eINSTANCE.createPatchAttachment()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			ProfileFactory.eINSTANCE.createProfile()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
@@ -731,12 +721,6 @@ public class ProjectItemProvider extends org.eclipse.emf.emfstore.common.model.p
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			ActivityFactory.eINSTANCE.createActivityEnd()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ReleaseFactory.eINSTANCE.createStream()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ReleaseFactory.eINSTANCE.createRelease()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createProjectHistory()));

@@ -1,12 +1,14 @@
 package org.unicase.papyrus.sysml.diagram.part;
 
-import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecp.common.commands.ECPCommand;
+import org.eclipse.emf.ecp.common.util.ModelElementOpener;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -16,10 +18,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.papyrus.SysMLDiagramType;
 import org.unicase.papyrus.SysMLModel;
-import org.unicase.papyrus.SysMLDiagramType;
-import org.unicase.ui.common.commands.ECPCommand;
-import org.unicase.ui.util.ModelElementOpener;
-import org.unicase.workspace.util.UnicaseCommand;
 
 public class SysMLDiagramOpener implements ModelElementOpener {
 	

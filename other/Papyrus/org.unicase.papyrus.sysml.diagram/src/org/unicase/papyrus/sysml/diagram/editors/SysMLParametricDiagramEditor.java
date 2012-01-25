@@ -17,7 +17,16 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.commands.ECPCommand;
+import org.eclipse.emf.ecp.common.dnd.DragSourcePlaceHolder;
+import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.ModelElementContextListener;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.editor.ModelElementChangeListener;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.EditPartViewer;
@@ -73,28 +82,20 @@ import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
-import org.unicase.ecp.model.ECPModelelementContext;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.ModelElementContextListener;
-import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.papyrus.PapyrusPackage;
 import org.unicase.papyrus.SysMLClass;
-import org.unicase.papyrus.sysml.diagram.part.SysMLDiagramEditor;
-import org.unicase.ui.common.commands.ECPCommand;
-import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
-import org.unicase.ui.meeditor.ModelElementChangeListener;
-import org.unicase.workspace.util.WorkspaceUtil;
 
-public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implements IMultiDiagramEditor {
-	
+public class SysMLParametricDiagramEditor extends DiagramDocumentEditor
+		implements IMultiDiagramEditor {
+
 	/**
 	 * The {@link FocusListener} for layout save commands.
 	 */
 	private FocusListener focusListener;
-	
+
 	/**
-	 * The {@link ModelElementContext} {@link #modelElementContextListener} listens to.
+	 * The {@link ModelElementContext} {@link #modelElementContextListener}
+	 * listens to.
 	 */
 	private ECPModelelementContext modelElementContext;
 
@@ -102,7 +103,7 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 	 * The {@link ModelElementContextListener} to handle delete operations.
 	 */
 	private ModelElementContextListener modelElementContextListener;
-	
+
 	/**
 	 * The {@link ModelElementChangeListener} to handle name changes.
 	 */
@@ -121,27 +122,30 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 	 * @generated
 	 */
 	public static final String CONTEXT_ID = "org.unicase.papyrus.sysml.diagram.parametric.diagramContext"; //$NON-NLS-1$
-	
+
 	/**
 	 * @generated
 	 */
 	public SysMLParametricDiagramEditor() {
 		this(true);
 	}
-	
+
 	public SysMLParametricDiagramEditor(boolean hasFlyoutPalette) {
 		super(hasFlyoutPalette);
-		
+
 		focusListener = new FocusListener() {
 			public void focusGained(FocusEvent event) {
 				try {
 					// add association if they are not on the diagram
-					syncDiagramView((SysMLClass) SysMLParametricDiagramEditor.this.getDiagram().eContainer());
+					syncDiagramView((SysMLClass) SysMLParametricDiagramEditor.this
+							.getDiagram().eContainer());
 					doSave(new NullProgressMonitor());
 				} catch (IllegalStateException e) {
 					// do nothing
-					// We catch this exception in case we have been in an read only transaction context
-					// and tried to save the layout which is performed with a read/write transaction
+					// We catch this exception in case we have been in an read
+					// only transaction context
+					// and tried to save the layout which is performed with a
+					// read/write transaction
 				}
 			}
 
@@ -156,7 +160,7 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 		};
 
 	}
-	
+
 	/**
 	 * @generated
 	 */
@@ -170,14 +174,14 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 	protected PreferencesHint getPreferencesHint() {
 		return SysmlDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 	}
-	
+
 	/**
 	 * @generated
 	 */
 	public String getContributorId() {
 		return SysmlDiagramEditorPlugin.ID;
 	}
-	
+
 	/**
 	 * @generated
 	 */
@@ -189,58 +193,65 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 			super.setDocumentProvider(input);
 		}
 	}
-	
+
 	/**
 	 * @generated
 	 */
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
-		
+
 		IDiagramGraphicalViewer viewer = getDiagramGraphicalViewer();
 
-		KeyHandler viewerKeyHandler = new DiagramGraphicalViewerKeyHandler(viewer).setParent(getKeyHandler());
-		viewer.setKeyHandler(new OnEnterDirectEditKeyHandler(viewer).setParent(viewerKeyHandler));
-		
+		KeyHandler viewerKeyHandler = new DiagramGraphicalViewerKeyHandler(
+				viewer).setParent(getKeyHandler());
+		viewer.setKeyHandler(new OnEnterDirectEditKeyHandler(viewer)
+				.setParent(viewerKeyHandler));
+
 		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(
 				this, getDiagramGraphicalViewer());
 		getDiagramGraphicalViewer().setContextMenu(provider);
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU,
 				provider, getDiagramGraphicalViewer());
 	}
-	
+
 	private void syncDiagramView(final SysMLClass model) {
 		final ECPModelelementContext context = modelElementContext;
 		if (context == null) {
 			return;
 		}
 		// FIXME
-//		final LinkedList<EObject> elements = new LinkedList<EObject>();
-//		elements.addAll(diagram.getElements());
-//		new UnicaseCommand() {
-//			@Override
-//			protected void doRun() {
-//				for (EObject association : AssociationClassHelper.getRelatedAssociationClassToDrop(elements, elements,
-//					context.getMetaModelElementContext())) {
-//					// add reference to the element
-//					diagram.getElements().add((UnicaseModelElement) association);
-//					// create the View for the element
-//					CreateViewCommand command = new CreateViewCommand(new EObjectAdapter(association),
-//						getDiagramEditPart(), null, getPreferencesHint());
-//					try {
-//						command.execute(getProgressMonitor(), null);
-//					} catch (ExecutionException e) {
-//						ModelUtil.logException("Could not create a view for the droped content.", e);
-//					}
-//				}
-//			}
-//		}.run();
+		// final LinkedList<EObject> elements = new LinkedList<EObject>();
+		// elements.addAll(diagram.getElements());
+		// new UnicaseCommand() {
+		// @Override
+		// protected void doRun() {
+		// for (EObject association :
+		// AssociationClassHelper.getRelatedAssociationClassToDrop(elements,
+		// elements,
+		// context.getMetaModelElementContext())) {
+		// // add reference to the element
+		// diagram.getElements().add((UnicaseModelElement) association);
+		// // create the View for the element
+		// CreateViewCommand command = new CreateViewCommand(new
+		// EObjectAdapter(association),
+		// getDiagramEditPart(), null, getPreferencesHint());
+		// try {
+		// command.execute(getProgressMonitor(), null);
+		// } catch (ExecutionException e) {
+		// ModelUtil.logException("Could not create a view for the droped content.",
+		// e);
+		// }
+		// }
+		// }
+		// }.run();
 		// refresh all views to reorientate associations
-		List<CanonicalEditPolicy> editPolicies = CanonicalEditPolicy.getRegisteredEditPolicies(model);
-		for (Iterator<CanonicalEditPolicy> it = editPolicies.iterator(); it.hasNext();) {
+		List<CanonicalEditPolicy> editPolicies = CanonicalEditPolicy
+				.getRegisteredEditPolicies(model);
+		for (Iterator<CanonicalEditPolicy> it = editPolicies.iterator(); it
+				.hasNext();) {
 			it.next().refresh();
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -263,34 +274,33 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();
 		getDiagramGraphicalViewer().addDropTargetListener(
-			new DropTargetListener(getDiagramGraphicalViewer(), LocalTransfer.getInstance()) {
+				new DropTargetListener(getDiagramGraphicalViewer(),
+						LocalTransfer.getInstance()) {
 
-				@Override
-				protected Object getJavaObject(TransferData data) {
-					return DragSourcePlaceHolder.getDragSource();
-				}
+					@Override
+					protected Object getJavaObject(TransferData data) {
+						return DragSourcePlaceHolder.getDragSource();
+					}
 
-			});
-//		getGraphicalViewer().getKeyHandler().put(KeyStroke.getPressed(SWT.DEL, 127, 0), new DeleteFromDiagramAction());
-		
+				});
+		// getGraphicalViewer().getKeyHandler().put(KeyStroke.getPressed(SWT.DEL,
+		// 127, 0), new DeleteFromDiagramAction());
+
 		final Diagram diagram = getDiagram();
-		
+
 		new ECPCommand(diagram) {
 
 			@Override
 			protected void doRun() {
-				diagram.setName(
-						((SysMLClass) diagram.getElement()).getName());
+				diagram.setName(((SysMLClass) diagram.getElement()).getName());
 			}
-			
+
 		}.run(true);
-		
-		 
 
 		registerFocusListener();
 		registerModelElementListeners();
 	}
-	
+
 	private abstract class DropTargetListener extends DiagramDropTargetListener {
 		private List<EObject> mesDrop, mesAdd;
 		private int x, y;
@@ -305,13 +315,15 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 			if (super.isEnabled(event)) {
 				mesAdd = new LinkedList<EObject>();
 				// FIXME
-//				if (DNDHelper.canDrop(mesDrop, (UMLModel) getDiagram().getElement(), mesAdd)) {
-					DropTarget target = (DropTarget) event.widget;
-					org.eclipse.swt.graphics.Point location = target.getControl().toControl(event.x, event.y);
-					x = location.x;
-					y = location.y;
-					return true;
-//				}
+				// if (DNDHelper.canDrop(mesDrop, (UMLModel)
+				// getDiagram().getElement(), mesAdd)) {
+				DropTarget target = (DropTarget) event.widget;
+				org.eclipse.swt.graphics.Point location = target.getControl()
+						.toControl(event.x, event.y);
+				x = location.x;
+				y = location.y;
+				return true;
+				// }
 			}
 			return false;
 		}
@@ -334,58 +346,66 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 		}
 
 		// FIXME
-//		@Override
-//		protected void handleDrop() {
-//			if (DNDHelper.dropMessageCheck(mesDrop, mesAdd)) {
-//				final ECPModelelementContext context = DNDHelper.getECPModelelementContext();
-//				final Package pckge = (Package) getDiagram().getElement();
-//				if (context == null) {
-//					return;
-//				}
-//				LinkedList<EObject> elements = new LinkedList<EObject>();
-//				elements.addAll(getDiagram().getChildren());
-//				mesAdd.addAll(AssociationClassHelper.getRelatedAssociationClassToDrop(mesAdd, elements, context
-//					.getMetaModelElementContext()));
-//				new UnicaseCommand() {
-//
-//					@Override
-//					protected void doRun() {
-//						int counter = 0;
-//						for (EObject pe : mesAdd) {
-//							// add reference to the element
-//							pckge.getPackagedElements().add((PackageableElement) pe);
-//							// create the View for the element
-//							CreateViewCommand command = new CreateViewCommand(new EObjectAdapter(pe),
-//								getDiagramEditPart(), new Point(x + counter * 20, y + counter * 20),
-//								getPreferencesHint());
-//							try {
-//								command.execute(getProgressMonitor(), null);
-//							} catch (ExecutionException e) {
-//								ModelUtil.logException("Could not create a view for the droped content.", e);
-//							}
-//							if (!context.getMetaModelElementContext().isAssociationClassElement(pe)) {
-//								counter++;
-//							}
-//						}
-//					}
-//				}.run();
-//			}
-//			mesDrop = null;
-//			mesAdd = null;
-//		}
+		// @Override
+		// protected void handleDrop() {
+		// if (DNDHelper.dropMessageCheck(mesDrop, mesAdd)) {
+		// final ECPModelelementContext context =
+		// DNDHelper.getECPModelelementContext();
+		// final Package pckge = (Package) getDiagram().getElement();
+		// if (context == null) {
+		// return;
+		// }
+		// LinkedList<EObject> elements = new LinkedList<EObject>();
+		// elements.addAll(getDiagram().getChildren());
+		// mesAdd.addAll(AssociationClassHelper.getRelatedAssociationClassToDrop(mesAdd,
+		// elements, context
+		// .getMetaModelElementContext()));
+		// new UnicaseCommand() {
+		//
+		// @Override
+		// protected void doRun() {
+		// int counter = 0;
+		// for (EObject pe : mesAdd) {
+		// // add reference to the element
+		// pckge.getPackagedElements().add((PackageableElement) pe);
+		// // create the View for the element
+		// CreateViewCommand command = new CreateViewCommand(new
+		// EObjectAdapter(pe),
+		// getDiagramEditPart(), new Point(x + counter * 20, y + counter * 20),
+		// getPreferencesHint());
+		// try {
+		// command.execute(getProgressMonitor(), null);
+		// } catch (ExecutionException e) {
+		// ModelUtil.logException("Could not create a view for the droped content.",
+		// e);
+		// }
+		// if
+		// (!context.getMetaModelElementContext().isAssociationClassElement(pe))
+		// {
+		// counter++;
+		// }
+		// }
+		// }
+		// }.run();
+		// }
+		// mesDrop = null;
+		// mesAdd = null;
+		// }
 
 		protected abstract Object getJavaObject(TransferData data);
 	}
-	
+
 	/**
 	 * @generated
 	 */
 	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
 		PaletteRoot paletteRoot;
-		if(existingPaletteRoot == null) {
-			paletteRoot = PapyrusPaletteService.getInstance().createPalette(this, getDefaultPaletteContent());
+		if (existingPaletteRoot == null) {
+			paletteRoot = PapyrusPaletteService.getInstance().createPalette(
+					this, getDefaultPaletteContent());
 		} else {
-			PapyrusPaletteService.getInstance().updatePalette(existingPaletteRoot, this, getDefaultPaletteContent());
+			PapyrusPaletteService.getInstance().updatePalette(
+					existingPaletteRoot, this, getDefaultPaletteContent());
 			paletteRoot = existingPaletteRoot;
 		}
 		applyCustomizationsToPalette(paletteRoot);
@@ -403,11 +423,11 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 				}
 			};
 		}
-		
-		if(type == ServicesRegistry.class) {
+
+		if (type == ServicesRegistry.class) {
 			return getServicesRegistry();
 		}
-		
+
 		return super.getAdapter(type);
 	}
 
@@ -443,7 +463,6 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 	public void doSaveAs() {
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -462,8 +481,8 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 		Diagram diagram = document.getDiagram();
 		IFile file = WorkspaceSynchronizer.getFile(diagram.eResource());
 		if (file != null) {
-			SysmlNavigatorItem item = new SysmlNavigatorItem(
-					diagram, file, false);
+			SysmlNavigatorItem item = new SysmlNavigatorItem(diagram, file,
+					false);
 			return new StructuredSelection(item);
 		}
 		return StructuredSelection.EMPTY;
@@ -474,31 +493,20 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 	 */
 	protected void configureDiagramEditDomain() {
 		super.configureDiagramEditDomain();
-		getDiagramEditDomain().getDiagramCommandStack().addCommandStackListener(new CommandStackListener() {
+		getDiagramEditDomain().getDiagramCommandStack()
+				.addCommandStackListener(new CommandStackListener() {
 
-			public void commandStackChanged(EventObject event) {
-				firePropertyChange(IEditorPart.PROP_DIRTY);
-			}
-		});
+					public void commandStackChanged(EventObject event) {
+						firePropertyChange(IEditorPart.PROP_DIRTY);
+					}
+				});
 	}
 
 	/**
 	 * @generated
 	 */
 	public void doSave(IProgressMonitor progressMonitor) {
-		final SysMLClass clazz = (SysMLClass) getDiagram().eContainer();
-		new ECPCommand(clazz) {
-			@Override
-			protected void doRun() {
-				// FIXME
-				try {
-					clazz.saveDiagramLayout();
-				} catch (IOException e) {
-					// dengler: handle exception
-					WorkspaceUtil.logException("Saving diagram failed", e);
-				}
-			}
-		}.run(true);
+
 	}
 
 	/**
@@ -513,8 +521,10 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 	 */
 	public void providerChanged(ProviderChangeEvent event) {
 		// update the palette if the palette service has changed
-		if(PapyrusPaletteService.getInstance().equals(event.getSource())) {
-			PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this, getDefaultPaletteContent());
+		if (PapyrusPaletteService.getInstance().equals(event.getSource())) {
+			PapyrusPaletteService.getInstance().updatePalette(
+					getPaletteViewer().getPaletteRoot(), this,
+					getDefaultPaletteContent());
 		}
 	}
 
@@ -523,19 +533,19 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 	 */
 	public void dispose() {
 		super.dispose();
-		
-		if(modelElementChangeListener != null) {
+
+		if (modelElementChangeListener != null) {
 			modelElementChangeListener.remove();
 		}
-		
+
 		if (modelElementContext != null) {
 			modelElementContext
 					.removeModelElementContextListener(modelElementContextListener);
 		}
 
 		deregisterFocusListener();
-		
-		if(servicesRegistry != null) {
+
+		if (servicesRegistry != null) {
 			try {
 				servicesRegistry.disposeRegistry();
 			} catch (ServiceMultiException e) {
@@ -543,7 +553,7 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 			}
 		}
 	}
-	
+
 	private void deregisterFocusListener() {
 		IDiagramGraphicalViewer diagramGraphicalViewer = getDiagramGraphicalViewer();
 		if (diagramGraphicalViewer == null) {
@@ -571,20 +581,20 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 	}
 
 	/**
-	 * @generated NOT 
+	 * @generated NOT
 	 */
 	private void registerModelElementListeners() {
 
 		Diagram diagram = getDiagram();
-		
+
 		// register listener for changes on the name attribute
 		modelElementChangeListener = new ModelElementChangeListener(diagram) {
 
 			@Override
 			public void onChange(Notification msg) {
 				if (msg.getEventType() == Notification.SET
-					&& (msg.getFeatureID(SysMLClass.class) == PapyrusPackage.SYS_ML_CLASS__NAME
-							|| msg.getFeatureID(Diagram.class) == NotationPackage.DIAGRAM__NAME)) {
+						&& (msg.getFeatureID(SysMLClass.class) == PapyrusPackage.SYS_ML_CLASS__NAME || msg
+								.getFeatureID(Diagram.class) == NotationPackage.DIAGRAM__NAME)) {
 					setPartName(msg.getNewStringValue());
 				}
 			}
@@ -592,14 +602,16 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 
 		// register modelElementContext listener for behavior upon deletion
 		modelElementContext = null;
-		if(diagram == null) {
+		if (diagram == null) {
 			try {
-				modelElementContext = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject();
+				modelElementContext = ECPWorkspaceManager.getInstance()
+						.getWorkSpace().getActiveProject();
 			} catch (NoWorkspaceException e) {
 				ModelUtil.logException(e);
 			}
 		} else {
-			modelElementContext = ECPWorkspaceManager.getECPProject(diagram.getElement());
+			modelElementContext = ECPWorkspaceManager.getECPProject(diagram
+					.getElement());
 		}
 
 		if (modelElementContext == null) {
@@ -617,21 +629,25 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 
 			@Override
 			public void onModelElementDeleted(EObject element) {
-				Diagram diagram = SysMLParametricDiagramEditor.this.getDiagram();
+				Diagram diagram = SysMLParametricDiagramEditor.this
+						.getDiagram();
 				if (diagram == null) {
 					return;
 				}
 				EObject sysMLDiagram = diagram.getElement();
-				if (element == sysMLDiagram || !modelElementContext.contains(sysMLDiagram)) {
+				if (element == sysMLDiagram
+						|| !modelElementContext.contains(sysMLDiagram)) {
 					close(false);
 				}
 			}
 
 		};
 
-		modelElementContext.addModelElementContextListener(modelElementContextListener);;
+		modelElementContext
+				.addModelElementContextListener(modelElementContextListener);
+		;
 	}
-	
+
 	/**
 	 * @generated
 	 */
@@ -664,7 +680,7 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 		IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
 		win.getShell().setText("Java - Eclipse Platform");
 	}
-	
+
 	private class OnEnterDirectEditKeyHandler extends DirectEditKeyHandler {
 
 		public OnEnterDirectEditKeyHandler(GraphicalViewer viewer) {
@@ -692,23 +708,23 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 	}
 
 	public ServicesRegistry getServicesRegistry() {
-		if(servicesRegistry == null) {
+		if (servicesRegistry == null) {
 			servicesRegistry = createServicesRegistry();
 		}
 		return servicesRegistry;
 	}
-	
+
 	private ServicesRegistry createServicesRegistry() {
 		// Create Services Registry
-//		try {
-//			ServicesRegistry servicesRegistry = new UnicaseServicesRegistry(
-//					"org.unicase.papyrus", getDiagram().getElement());
-//			servicesRegistry.startRegistry();
-//			return servicesRegistry;
-//		} catch (ServiceException e) {
-//			// Show log and error
-//			log.error(e.getMessage(), e);
-//		}
+		// try {
+		// ServicesRegistry servicesRegistry = new UnicaseServicesRegistry(
+		// "org.unicase.papyrus", getDiagram().getElement());
+		// servicesRegistry.startRegistry();
+		// return servicesRegistry;
+		// } catch (ServiceException e) {
+		// // Show log and error
+		// log.error(e.getMessage(), e);
+		// }
 		return null;
 	}
 
@@ -722,12 +738,12 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 	}
 
 	public IPropertySheetPage getPropertySheetPage() {
-		if(this.tabbedPropertySheetPage == null) {
+		if (this.tabbedPropertySheetPage == null) {
 			this.tabbedPropertySheetPage = new TabbedPropertySheetPage(this);
 		}
 		return tabbedPropertySheetPage;
 	}
-	
+
 	public DiagramEditDomain getDiagramEditDomain() {
 		return (DiagramEditDomain) super.getDiagramEditDomain();
 	}

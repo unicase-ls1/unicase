@@ -5,10 +5,9 @@
     nsURI="http://unicase.org/model/papyrus" nsPrefix="org.unicase.model.papyrus">
   <eClassifiers xsi:type="ecore:EClass" name="UMLModel" eSuperTypes="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Model">
     <eStructuralFeatures xsi:type="ecore:EReference" name="gmfDiagram" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"
-        transient="true" containment="true"/>
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramType" eType="#//UMLDiagramType"
         defaultValueLiteral=""/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramLayout" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="UMLDiagramType">
     <eLiterals name="NoDiagram"/>
@@ -23,9 +22,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SysMLModel" eSuperTypes="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Model">
     <eStructuralFeatures xsi:type="ecore:EReference" name="gmfDiagram" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"
-        transient="true" containment="true"/>
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramType" eType="#//SysMLDiagramType"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramLayout" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SysMLDiagramType">
     <eLiterals name="NoDiagram"/>
@@ -36,7 +34,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SysMLClass" eSuperTypes="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class">
     <eStructuralFeatures xsi:type="ecore:EReference" name="gmfDiagram" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"
-        transient="true" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramLayout" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//String"/>
+        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

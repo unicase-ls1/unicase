@@ -177,7 +177,7 @@
       <?gmfgen generated="true"?>
       <viewProvider class="org.unicase.ui.diagram.usecaseDiagram.providers.ModelViewProvider">
          <Priority name="Lowest"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="UseCase"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="UnicaseUseCase"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004"/>
       </viewProvider>
@@ -188,7 +188,7 @@
       <editpartProvider class="org.unicase.ui.diagram.usecaseDiagram.providers.ModelEditPartProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
-            <method name="getType()" value="UseCase"/>
+            <method name="getType()" value="UnicaseUseCase"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
             <method name="getType()" value="2001,2002"/>

@@ -2,13 +2,6 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.unicase.ui.common.modelelementopener">
-      <ModelElementOpener
-            class="org.unicase.papyrus.sysml.diagram.part.SysMLDiagramOpener"
-            name="org.unicase.papyrus.sysml.diagram.SysMLDiagramOpener">
-      </ModelElementOpener>
-   </extension>
-   <extension
          point="org.eclipse.ui.editors">
       <editor
             class="org.unicase.papyrus.sysml.diagram.editors.SysMLParametricDiagramEditor"
@@ -32,6 +25,13 @@
             class="org.unicase.papyrus.sysml.diagram.part.SysMLModelDiagramResource"
             contentTypeIdentifier="SysMLModel">
       </parser>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecp.common.modelelementopener">
+      <ModelElementOpener
+            class="org.unicase.papyrus.sysml.diagram.part.SysMLDiagramOpener"
+            name="org.unicase.papyrus.sysml.diagram.SysMLDiagramOpener">
+      </ModelElementOpener>
    </extension>
 
 </plugin>

@@ -9,6 +9,7 @@ Require-Bundle: org.eclipse.papyrus.sysml.diagram.parametric,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor,
  org.eclipse.papyrus.diagram.common,
  org.unicase.papyrus,
- org.unicase.ui.meeditor,
- org.unicase.workspace,
- org.eclipse.ui.navigator.resources
+ org.eclipse.ui.navigator.resources,
+ org.eclipse.emf.ecp.common,
+ org.eclipse.emf.ecp.editor,
+ org.eclipse.emf.emfstore.client

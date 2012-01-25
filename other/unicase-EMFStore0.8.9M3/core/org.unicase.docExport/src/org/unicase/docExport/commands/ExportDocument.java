@@ -16,7 +16,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersFactory;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.impl.UnicaseModelElementImpl;
 
 /**
  * The handler for the document export command.
@@ -44,7 +43,7 @@ public class ExportDocument extends AbstractHandler {
 			return null;
 		}
 
-		final UnicaseModelElementImpl modelElement = (UnicaseModelElementImpl) o;
+		final UnicaseModelElement modelElement = (UnicaseModelElement) o;
 
 		final Shell shell = PlatformUI.getWorkbench().getDisplay().getActiveShell();
 

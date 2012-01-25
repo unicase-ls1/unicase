@@ -6,7 +6,6 @@
 package org.unicase.model.diagram.impl;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Collection;
@@ -29,6 +28,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.gmf.runtime.notation.Bendpoints;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
@@ -243,17 +243,28 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 			return null;
 		}
 
-		// MD: Should we cache this instance?
 		LeafSection leafSection = getLeafSection();
-		if (leafSection == null) {
-			org.eclipse.emf.emfstore.common.model.Project project = getProject();
+
+		if (leafSection != null) {
+			return new DiagramNewElementsList(getElements(), leafSection);
+		} else {
+			Project project = getProject();
 			if (project == null) {
 				return null;
 			}
 			return new DiagramNewElementsList(getElements(), project);
-		} else {
-			return new DiagramNewElementsList(getElements(), leafSection);
 		}
+	}
+
+	private LeafSection getLeafSection() {
+		EObject container = eContainer();
+		while (container != null) {
+			if (container instanceof LeafSection) {
+				return (LeafSection) container;
+			}
+			container = container.eContainer();
+		}
+		return null;
 	}
 
 	/**
@@ -603,47 +614,48 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 		return resourceMap;
 	}
 
-	//	/**
-	//	 * Save gmf diagram to a String.
-	//	 * 
-	//	 * @throws DiagramStoreException
-	//	 *             if saving to a string fails
-	//	 * @generated NOT
-	//	 */
-	//	public void saveDiagramLayout() throws DiagramStoreException {
-	//		getGmfdiagram().setElement(null);
-	//		// preserve original resource for all involved model elements
-	//		EList<UnicaseModelElement> elements = this.getElements();
-	//		Map<UnicaseModelElement, Resource> resourceMap = preserveOldResources(elements);
+	// /**
+	// * Save gmf diagram to a String.
+	// *
+	// * @throws DiagramStoreException
+	// * if saving to a string fails
+	// * @generated NOT
+	// */
+	// public void saveDiagramLayout() throws DiagramStoreException {
+	// getGmfdiagram().setElement(null);
+	// // preserve original resource for all involved model elements
+	// EList<UnicaseModelElement> elements = this.getElements();
+	// Map<UnicaseModelElement, Resource> resourceMap =
+	// preserveOldResources(elements);
 	//
-	//		// put all involved elements into a virtual resource set
-	//		ResourceSet resourceSet = new ResourceSetImpl();
-	//		Resource diagramResource = resourceSet
-	//				.createResource(VIRTUAL_DIAGRAM_URI);
-	//		Resource elementsResource = resourceSet
-	//				.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
-	//		elementsResource.getContents().addAll(elements);
-	//		diagramResource.getContents().add(getGmfdiagram());
+	// // put all involved elements into a virtual resource set
+	// ResourceSet resourceSet = new ResourceSetImpl();
+	// Resource diagramResource = resourceSet
+	// .createResource(VIRTUAL_DIAGRAM_URI);
+	// Resource elementsResource = resourceSet
+	// .createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
+	// elementsResource.getContents().addAll(elements);
+	// diagramResource.getContents().add(getGmfdiagram());
 	//
-	//		// serialize diagram
-	//		ByteArrayOutputStream out = new ByteArrayOutputStream();
-	//		try {
-	//			diagramResource.save(out, null);
-	//		} catch (IOException e) {
-	//			throw new DiagramStoreException("Diagram resource save failed.", e);
-	//		}
+	// // serialize diagram
+	// ByteArrayOutputStream out = new ByteArrayOutputStream();
+	// try {
+	// diagramResource.save(out, null);
+	// } catch (IOException e) {
+	// throw new DiagramStoreException("Diagram resource save failed.", e);
+	// }
 	//
-	//		restoreOldResources(elements, resourceMap, diagramResource,
-	//				elementsResource);
+	// restoreOldResources(elements, resourceMap, diagramResource,
+	// elementsResource);
 	//
-	//		getGmfdiagram().setElement(this);
+	// getGmfdiagram().setElement(this);
 	//
-	//		String layoutString = out.toString();
-	//		// only set diagram layout if it actually changed
-	//		String oldLayout = getDiagramLayout();
-	//		if (oldLayout == null || !oldLayout.equals(layoutString)) {
-	//			setDiagramLayout(layoutString);
-	//		}
-	//	}
+	// String layoutString = out.toString();
+	// // only set diagram layout if it actually changed
+	// String oldLayout = getDiagramLayout();
+	// if (oldLayout == null || !oldLayout.equals(layoutString)) {
+	// setDiagramLayout(layoutString);
+	// }
+	// }
 
 } // MEDiagramImpl

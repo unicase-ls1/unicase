@@ -6,6 +6,7 @@
 package org.unicase.model.document;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.UnicaseModelElement;
 
 /**
@@ -26,8 +27,7 @@ import org.unicase.model.UnicaseModelElement;
 public interface LeafSection extends Section {
 	/**
 	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.model.UnicaseModelElement}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.UnicaseModelElement#getLeafSection <em>Leaf Section</em>}'.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Model Elements</em>' containment reference list isn't clear, there really should be
@@ -36,17 +36,15 @@ public interface LeafSection extends Section {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Model Elements</em>' containment reference list.
 	 * @see org.unicase.model.document.DocumentPackage#getLeafSection_ModelElements()
-	 * @see org.unicase.model.UnicaseModelElement#getLeafSection
-	 * @model opposite="leafSection" containment="true" resolveProxies="true"
+	 * @model containment="true" resolveProxies="true"
 	 *        annotation="org.eclipse.emf.ecp.editor priority='20.0' position='right'"
 	 * @generated
 	 */
-	EList<UnicaseModelElement> getModelElements();
+	EList<EObject> getModelElements();
 
 	/**
 	 * Returns the value of the '<em><b>Referenced Model Elements</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.UnicaseModelElement}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.UnicaseModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}'.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Referenced Model Elements</em>' reference list isn't clear, there really should be
@@ -55,11 +53,9 @@ public interface LeafSection extends Section {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referenced Model Elements</em>' reference list.
 	 * @see org.unicase.model.document.DocumentPackage#getLeafSection_ReferencedModelElements()
-	 * @see org.unicase.model.UnicaseModelElement#getIncomingDocumentReferences
-	 * @model opposite="incomingDocumentReferences"
-	 *        annotation="org.eclipse.emf.ecp.editor priority='21.0' position='right'"
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='21.0' position='right'"
 	 * @generated
 	 */
-	EList<UnicaseModelElement> getReferencedModelElements();
+	EList<EObject> getReferencedModelElements();
 
 } // LeafSection

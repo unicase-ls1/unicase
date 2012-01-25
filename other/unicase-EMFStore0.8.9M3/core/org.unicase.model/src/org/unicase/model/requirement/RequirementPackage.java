@@ -107,15 +107,6 @@ public interface RequirementPackage extends EPackage {
 	int NON_FUNCTIONAL_REQUIREMENT__INCOMING_DOCUMENT_REFERENCES = RationalePackage.CRITERION__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NON_FUNCTIONAL_REQUIREMENT__LEAF_SECTION = RationalePackage.CRITERION__LEAF_SECTION;
-
-	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -202,13 +193,22 @@ public interface RequirementPackage extends EPackage {
 	int NON_FUNCTIONAL_REQUIREMENT__USER_TASKS = RationalePackage.CRITERION_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Done</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NON_FUNCTIONAL_REQUIREMENT__DONE = RationalePackage.CRITERION_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Non Functional Requirement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NON_FUNCTIONAL_REQUIREMENT_FEATURE_COUNT = RationalePackage.CRITERION_FEATURE_COUNT + 4;
+	int NON_FUNCTIONAL_REQUIREMENT_FEATURE_COUNT = RationalePackage.CRITERION_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl <em>Functional Requirement</em>}' class.
@@ -261,15 +261,6 @@ public interface RequirementPackage extends EPackage {
 	 * @ordered
 	 */
 	int FUNCTIONAL_REQUIREMENT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -388,13 +379,22 @@ public interface RequirementPackage extends EPackage {
 	int FUNCTIONAL_REQUIREMENT__COST = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
+	 * The feature id for the '<em><b>Done</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTIONAL_REQUIREMENT__DONE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 9;
+
+	/**
 	 * The number of structural features of the '<em>Functional Requirement</em>' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 9;
+	int FUNCTIONAL_REQUIREMENT_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.UseCaseImpl <em>Use Case</em>}' class. <!--
@@ -448,15 +448,6 @@ public interface RequirementPackage extends EPackage {
 	 * @ordered
 	 */
 	int USE_CASE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USE_CASE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -631,12 +622,21 @@ public interface RequirementPackage extends EPackage {
 	int USE_CASE__SYSTEM_FUNCTIONS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 14;
 
 	/**
+	 * The feature id for the '<em><b>Done</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__DONE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 15;
+
+	/**
 	 * The number of structural features of the '<em>Use Case</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 15;
+	int USE_CASE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 16;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.ScenarioImpl <em>Scenario</em>}' class.
@@ -689,15 +689,6 @@ public interface RequirementPackage extends EPackage {
 	 * @ordered
 	 */
 	int SCENARIO__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SCENARIO__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -814,12 +805,21 @@ public interface RequirementPackage extends EPackage {
 	int SCENARIO__PARTICIPATING_CLASSES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Done</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCENARIO__DONE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
 	 * The number of structural features of the '<em>Scenario</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 8;
+	int SCENARIO_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.ActorImpl <em>Actor</em>}' class. <!--
@@ -873,15 +873,6 @@ public interface RequirementPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTOR__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTOR__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -1030,15 +1021,6 @@ public interface RequirementPackage extends EPackage {
 	int ACTOR_INSTANCE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTOR_INSTANCE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
-
-	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -1168,15 +1150,6 @@ public interface RequirementPackage extends EPackage {
 	 * @ordered
 	 */
 	int STEP__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEP__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -1314,15 +1287,6 @@ public interface RequirementPackage extends EPackage {
 	 * @ordered
 	 */
 	int SYSTEM_FUNCTION__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SYSTEM_FUNCTION__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -1477,15 +1441,6 @@ public interface RequirementPackage extends EPackage {
 	int USER_TASK__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER_TASK__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
-
-	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -1625,15 +1580,6 @@ public interface RequirementPackage extends EPackage {
 	int WORKSPACE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORKSPACE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
-
-	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -1745,6 +1691,17 @@ public interface RequirementPackage extends EPackage {
 	EReference getNonFunctionalRequirement_UserTasks();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.requirement.NonFunctionalRequirement#isDone <em>Done</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Done</em>'.
+	 * @see org.unicase.model.requirement.NonFunctionalRequirement#isDone()
+	 * @see #getNonFunctionalRequirement()
+	 * @generated
+	 */
+	EAttribute getNonFunctionalRequirement_Done();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.requirement.FunctionalRequirement <em>Functional Requirement</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Functional Requirement</em>'.
@@ -1784,6 +1741,17 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFunctionalRequirement_Cost();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.requirement.FunctionalRequirement#isDone <em>Done</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Done</em>'.
+	 * @see org.unicase.model.requirement.FunctionalRequirement#isDone()
+	 * @see #getFunctionalRequirement()
+	 * @generated
+	 */
+	EAttribute getFunctionalRequirement_Done();
 
 	/**
 	 * Returns the meta object for the attribute '
@@ -1943,6 +1911,17 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getUseCase_SystemFunctions();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.requirement.UseCase#isDone <em>Done</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Done</em>'.
+	 * @see org.unicase.model.requirement.UseCase#isDone()
+	 * @see #getUseCase()
+	 * @generated
+	 */
+	EAttribute getUseCase_Done();
 
 	/**
 	 * Returns the meta object for the reference list '
@@ -2115,6 +2094,17 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getScenario_ParticipatingClasses();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.requirement.Scenario#isDone <em>Done</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Done</em>'.
+	 * @see org.unicase.model.requirement.Scenario#isDone()
+	 * @see #getScenario()
+	 * @generated
+	 */
+	EAttribute getScenario_Done();
 
 	/**
 	 * Returns the meta object for class ' {@link org.unicase.model.requirement.Actor <em>Actor</em>}'. <!--
@@ -2478,6 +2468,13 @@ public interface RequirementPackage extends EPackage {
 		 */
 		EReference NON_FUNCTIONAL_REQUIREMENT__USER_TASKS = eINSTANCE.getNonFunctionalRequirement_UserTasks();
 		/**
+		 * The meta object literal for the '<em><b>Done</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NON_FUNCTIONAL_REQUIREMENT__DONE = eINSTANCE.getNonFunctionalRequirement_Done();
+		/**
 		 * The meta object literal for the '{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl <em>Functional Requirement</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.model.requirement.impl.FunctionalRequirementImpl
@@ -2506,6 +2503,13 @@ public interface RequirementPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FUNCTIONAL_REQUIREMENT__COST = eINSTANCE.getFunctionalRequirement_Cost();
+		/**
+		 * The meta object literal for the '<em><b>Done</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FUNCTIONAL_REQUIREMENT__DONE = eINSTANCE.getFunctionalRequirement_Done();
 		/**
 		 * The meta object literal for the '<em><b>Story Points</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -2613,6 +2617,13 @@ public interface RequirementPackage extends EPackage {
 		 * @generated
 		 */
 		EReference USE_CASE__SYSTEM_FUNCTIONS = eINSTANCE.getUseCase_SystemFunctions();
+		/**
+		 * The meta object literal for the '<em><b>Done</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USE_CASE__DONE = eINSTANCE.getUseCase_Done();
 		/**
 		 * The meta object literal for the '<em><b>Participating Actors</b></em> ' reference list feature. <!--
 		 * begin-user-doc --> <!-- end-user-doc -->
@@ -2726,6 +2737,13 @@ public interface RequirementPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SCENARIO__PARTICIPATING_CLASSES = eINSTANCE.getScenario_ParticipatingClasses();
+		/**
+		 * The meta object literal for the '<em><b>Done</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SCENARIO__DONE = eINSTANCE.getScenario_Done();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.requirement.impl.ActorImpl <em>Actor</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->

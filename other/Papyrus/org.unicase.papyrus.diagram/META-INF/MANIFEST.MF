@@ -13,9 +13,9 @@ Require-Bundle: org.unicase.papyrus.edit,
  org.eclipse.papyrus.diagram.sequence;visibility:=reexport,
  org.eclipse.papyrus.diagram.statemachine;visibility:=reexport,
  org.eclipse.papyrus.diagram.usecase;visibility:=reexport,
- org.unicase.ui.common;visibility:=reexport,
- org.unicase.workspace;visibility:=reexport,
- org.unicase.ui.meeditor;visibility:=reexport,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor,
- org.eclipse.ui.navigator.resources
+ org.eclipse.ui.navigator.resources,
+ org.eclipse.emf.ecp.common,
+ org.eclipse.emf.ecp.editor,
+ org.eclipse.emf.emfstore.client
 Export-Package: org.unicase.papyrus.diagram.services

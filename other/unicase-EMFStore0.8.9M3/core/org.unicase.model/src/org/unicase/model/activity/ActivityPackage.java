@@ -106,15 +106,6 @@ public interface ActivityPackage extends EPackage {
 	int ACTIVITY_OBJECT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVITY_OBJECT__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
-
-	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -233,15 +224,6 @@ public interface ActivityPackage extends EPackage {
 	 * @ordered
 	 */
 	int TRANSITION__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -372,15 +354,6 @@ public interface ActivityPackage extends EPackage {
 	int ACTIVITY__INCOMING_DOCUMENT_REFERENCES = ACTIVITY_OBJECT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVITY__LEAF_SECTION = ACTIVITY_OBJECT__LEAF_SECTION;
-
-	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -500,15 +473,6 @@ public interface ActivityPackage extends EPackage {
 	 * @ordered
 	 */
 	int FORK__INCOMING_DOCUMENT_REFERENCES = ACTIVITY_OBJECT__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FORK__LEAF_SECTION = ACTIVITY_OBJECT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -632,15 +596,6 @@ public interface ActivityPackage extends EPackage {
 	int BRANCH__INCOMING_DOCUMENT_REFERENCES = ACTIVITY_OBJECT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BRANCH__LEAF_SECTION = ACTIVITY_OBJECT__LEAF_SECTION;
-
-	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -759,15 +714,6 @@ public interface ActivityPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTIVITY_INITIAL__INCOMING_DOCUMENT_REFERENCES = ACTIVITY_OBJECT__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVITY_INITIAL__LEAF_SECTION = ACTIVITY_OBJECT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -889,15 +835,6 @@ public interface ActivityPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTIVITY_END__INCOMING_DOCUMENT_REFERENCES = ACTIVITY_OBJECT__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVITY_END__LEAF_SECTION = ACTIVITY_OBJECT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.

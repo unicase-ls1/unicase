@@ -1,21 +1,18 @@
 package org.unicase.papyrus.diagram.services;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.commands.DeleteModelElementCommand;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.utilities.ActionHelper;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
-import org.eclipse.swt.widgets.Display;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.metamodel.Project;
 import org.unicase.papyrus.UMLModel;
-import org.unicase.ui.common.commands.DeleteModelElementCommand;
-import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.workspace.util.UnicaseCommand;
 
 public class UnicasePageManager implements IPageMngr {
 	
@@ -79,22 +76,7 @@ public class UnicasePageManager implements IPageMngr {
 			if(me instanceof UMLModel) {
 				final UMLModel model = (UMLModel) me;
 				Diagram diagram = model.getGmfDiagram();
-				if(diagram == null) {
-						new UnicaseCommand() {
-
-							@Override
-							protected void doRun() {
-								try {
-									model.loadDiagramLayout();
-									result.add(model.getGmfDiagram());
-								} catch (IOException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-							}
-							
-						}.run(true);
-				} else {
+				if(diagram != null) {
 					result.add(diagram);
 				}
 				

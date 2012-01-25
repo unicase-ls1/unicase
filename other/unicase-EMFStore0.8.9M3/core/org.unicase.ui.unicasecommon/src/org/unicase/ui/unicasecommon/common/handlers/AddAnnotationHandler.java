@@ -92,8 +92,9 @@ public class AddAnnotationHandler extends AbstractHandler {
 		UnicaseModelElement me = UnicaseActionHelper.getModelElement(event);
 		// 2. extract command and create the appropriate annotation object
 		Project project = ModelUtil.getProject(me);
-		if (!(me.getLeafSection() == null)) {
-			annotation = createAnnotation(me.getLeafSection(), 1);
+		LeafSection leafSection = getLeafSection(me);
+		if (leafSection != null) {
+			annotation = createAnnotation(leafSection, 1);
 		} else if (me.eContainer() instanceof WorkPackage) {
 			annotation = createAnnotation(me, 2);
 		} else if (!(project == null)) {
@@ -108,6 +109,17 @@ public class AddAnnotationHandler extends AbstractHandler {
 		// 3. open annotation object for further editing
 		openAnnotation(annotation);
 
+		return null;
+	}
+
+	private LeafSection getLeafSection(UnicaseModelElement me) {
+		EObject container = me.eContainer();
+		while (container != null) {
+			if (container instanceof LeafSection) {
+				return (LeafSection) container;
+			}
+			container = container.eContainer();
+		}
 		return null;
 	}
 

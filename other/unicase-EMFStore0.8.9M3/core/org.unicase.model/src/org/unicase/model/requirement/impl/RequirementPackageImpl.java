@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.emfstore.server.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
@@ -303,6 +304,15 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNonFunctionalRequirement_Done() {
+		return (EAttribute) nonFunctionalRequirementEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -332,6 +342,15 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	 */
 	public EAttribute getFunctionalRequirement_Cost() {
 		return (EAttribute) functionalRequirementEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFunctionalRequirement_Done() {
+		return (EAttribute) functionalRequirementEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -452,6 +471,15 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	 */
 	public EReference getUseCase_SystemFunctions() {
 		return (EReference) useCaseEClass.getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUseCase_Done() {
+		return (EAttribute) useCaseEClass.getEStructuralFeatures().get(15);
 	}
 
 	/**
@@ -580,6 +608,15 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	 */
 	public EReference getScenario_ParticipatingClasses() {
 		return (EReference) scenarioEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getScenario_Done() {
+		return (EAttribute) scenarioEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -845,6 +882,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		createEReference(nonFunctionalRequirementEClass, NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES);
 		createEReference(nonFunctionalRequirementEClass, NON_FUNCTIONAL_REQUIREMENT__SYSTEM_FUNCTIONS);
 		createEReference(nonFunctionalRequirementEClass, NON_FUNCTIONAL_REQUIREMENT__USER_TASKS);
+		createEAttribute(nonFunctionalRequirementEClass, NON_FUNCTIONAL_REQUIREMENT__DONE);
 
 		functionalRequirementEClass = createEClass(FUNCTIONAL_REQUIREMENT);
 		createEReference(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT);
@@ -856,6 +894,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		createEAttribute(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__REVIEWED);
 		createEReference(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__STAKEHOLDER);
 		createEAttribute(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__COST);
+		createEAttribute(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__DONE);
 
 		useCaseEClass = createEClass(USE_CASE);
 		createEReference(useCaseEClass, USE_CASE__INITIATING_ACTOR);
@@ -873,6 +912,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		createEReference(useCaseEClass, USE_CASE__INCLUDED_USE_CASES);
 		createEReference(useCaseEClass, USE_CASE__EXTENDED_USE_CASES);
 		createEReference(useCaseEClass, USE_CASE__SYSTEM_FUNCTIONS);
+		createEAttribute(useCaseEClass, USE_CASE__DONE);
 
 		scenarioEClass = createEClass(SCENARIO);
 		createEReference(scenarioEClass, SCENARIO__STEPS);
@@ -883,6 +923,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		createEReference(scenarioEClass, SCENARIO__NON_FUNCTIONAL_REQUIREMENTS);
 		createEReference(scenarioEClass, SCENARIO__PARTICIPATING_METHODS);
 		createEReference(scenarioEClass, SCENARIO__PARTICIPATING_CLASSES);
+		createEAttribute(scenarioEClass, SCENARIO__DONE);
 
 		actorEClass = createEClass(ACTOR);
 		createEReference(actorEClass, ACTOR__INITIATED_USER_TASK);
@@ -990,6 +1031,9 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			this.getUserTask_NonFunctionalRequirements(), "userTasks", null, 0, -1, NonFunctionalRequirement.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNonFunctionalRequirement_Done(), ecorePackage.getEBoolean(), "done", null, 0, 1,
+			NonFunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionalRequirementEClass, FunctionalRequirement.class, "FunctionalRequirement", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1022,6 +1066,9 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			"stakeholder", null, 0, 1, FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFunctionalRequirement_Cost(), ecorePackage.getEInt(), "cost", null, 0, 1,
+			FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFunctionalRequirement_Done(), ecorePackage.getEBoolean(), "done", null, 0, 1,
 			FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 
@@ -1071,6 +1118,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		initEReference(getUseCase_SystemFunctions(), this.getSystemFunction(), this.getSystemFunction_Usecases(),
 			"systemFunctions", null, 0, -1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUseCase_Done(), ecorePackage.getEBoolean(), "done", null, 0, 1, UseCase.class, !IS_TRANSIENT,
+			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(scenarioEClass, Scenario.class, "Scenario", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getScenario_Steps(), this.getStep(), null, "steps", null, 0, -1, Scenario.class, !IS_TRANSIENT,
@@ -1103,6 +1152,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			theClassesPackage.getClass_DemoParticipations(), "participatingClasses", null, 0, -1, Scenario.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getScenario_Done(), ecorePackage.getEBoolean(), "done", null, 0, 1, Scenario.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actorEClass, Actor.class, "Actor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getActor_InitiatedUserTask(), this.getUserTask(), this.getUserTask_InitiatingActor(),
@@ -1212,6 +1263,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			"position", "right" });
 		addAnnotation(getNonFunctionalRequirement_UserTasks(), source, new String[] { "priority", "14.0", "position",
 			"right" });
+		addAnnotation(getNonFunctionalRequirement_Done(), source,
+			new String[] { "priority", "17.0", "position", "left" });
 		addAnnotation(getFunctionalRequirement_RefinedRequirement(), source, new String[] { "priority", "10.0",
 			"position", "left" });
 		addAnnotation(getFunctionalRequirement_Priority(), source, new String[] { "priority", "12.0", "position",
@@ -1226,6 +1279,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			"left" });
 		addAnnotation(getFunctionalRequirement_Stakeholder(), source, new String[] { "priority", "11.0", "position",
 			"left" });
+		addAnnotation(getFunctionalRequirement_Done(), source, new String[] { "priority", "17.0", "position", "left" });
 		addAnnotation(getUseCase_InitiatingActor(), source, new String[] { "priority", "10.0", "position", "left" });
 		addAnnotation(getUseCase_ParticipatingActors(), source, new String[] { "priority", "11.0", "position", "left" });
 		addAnnotation(getUseCase_RealizedUserTask(), source, new String[] { "priority", "10.1", "position", "left" });
@@ -1239,6 +1293,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		addAnnotation(getUseCase_IncludedUseCases(), source, new String[] { "priority", "12.0", "position", "left" });
 		addAnnotation(getUseCase_ExtendedUseCases(), source, new String[] { "priority", "13.0", "position", "left" });
 		addAnnotation(getUseCase_SystemFunctions(), source, new String[] { "priority", "15.0", "position", "right" });
+		addAnnotation(getUseCase_Done(), source, new String[] { "priority", "17.0", "position", "left" });
 		addAnnotation(getScenario_InitiatingActorInstance(), source, new String[] { "priority", "10.0", "position",
 			"left" });
 		addAnnotation(getScenario_ParticipatingActorInstances(), source, new String[] { "priority", "11.0", "position",
@@ -1249,6 +1304,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			"right" });
 		addAnnotation(getScenario_NonFunctionalRequirements(), source, new String[] { "priority", "12.0", "position",
 			"right" });
+		addAnnotation(getScenario_Done(), source, new String[] { "priority", "17.0", "position", "left" });
 		addAnnotation(getActor_InitiatedUserTask(), source, new String[] { "priority", "15.0", "position", "left" });
 		addAnnotation(getActor_ParticipatedUserTasks(), source,
 			new String[] { "priority", "15.0", "position", "right" });

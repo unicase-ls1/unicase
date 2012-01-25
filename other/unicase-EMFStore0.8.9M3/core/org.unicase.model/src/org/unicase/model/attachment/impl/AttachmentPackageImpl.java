@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.emfstore.server.model.ModelPackage;
@@ -66,12 +67,6 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 	 * @generated
 	 */
 	private EClass fileAttachmentEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass patchAttachmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -288,22 +283,6 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPatchAttachment() {
-		return patchAttachmentEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPatchAttachment_AppliedTo() {
-		return (EReference) patchAttachmentEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EEnum getFileAttachmentType() {
 		return fileAttachmentTypeEEnum;
 	}
@@ -344,9 +323,6 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__FILE_SIZE);
 		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__FILE_TYPE);
 
-		patchAttachmentEClass = createEClass(PATCH_ATTACHMENT);
-		createEReference(patchAttachmentEClass, PATCH_ATTACHMENT__APPLIED_TO);
-
 		// Create enums
 		fileAttachmentTypeEEnum = createEEnum(FILE_ATTACHMENT_TYPE);
 	}
@@ -376,8 +352,6 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		// Obtain other dependent packages
 		org.unicase.model.ModelPackage theModelPackage_1 = (org.unicase.model.ModelPackage) EPackage.Registry.INSTANCE
 			.getEPackage(org.unicase.model.ModelPackage.eNS_URI);
-		ReleasePackage theReleasePackage = (ReleasePackage) EPackage.Registry.INSTANCE
-			.getEPackage(ReleasePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -386,7 +360,6 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		// Add supertypes to classes
 		urlAttachmentEClass.getESuperTypes().add(theModelPackage_1.getAttachment());
 		fileAttachmentEClass.getESuperTypes().add(theModelPackage_1.getAttachment());
-		patchAttachmentEClass.getESuperTypes().add(this.getFileAttachment());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(urlAttachmentEClass, UrlAttachment.class, "UrlAttachment", !IS_ABSTRACT, !IS_INTERFACE,
@@ -410,13 +383,6 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 			!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFileAttachment_FileType(), this.getFileAttachmentType(), "fileType", null, 0, 1,
 			FileAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-
-		initEClass(patchAttachmentEClass, PatchAttachment.class, "PatchAttachment", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPatchAttachment_AppliedTo(), theReleasePackage.getRelease(),
-			theReleasePackage.getRelease_AppliedPatches(), "appliedTo", null, 0, -1, PatchAttachment.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals

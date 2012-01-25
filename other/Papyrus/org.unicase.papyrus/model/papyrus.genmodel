@@ -29,16 +29,13 @@
     <genClasses ecoreClass="papyrus.ecore#//UMLModel">
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EReference papyrus.ecore#//UMLModel/gmfDiagram"/>
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute papyrus.ecore#//UMLModel/diagramType"/>
-      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute papyrus.ecore#//UMLModel/diagramLayout"/>
     </genClasses>
     <genClasses ecoreClass="papyrus.ecore#//SysMLModel">
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EReference papyrus.ecore#//SysMLModel/gmfDiagram"/>
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute papyrus.ecore#//SysMLModel/diagramType"/>
-      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute papyrus.ecore#//SysMLModel/diagramLayout"/>
     </genClasses>
     <genClasses ecoreClass="papyrus.ecore#//SysMLClass">
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EReference papyrus.ecore#//SysMLClass/gmfDiagram"/>
-      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute papyrus.ecore#//SysMLClass/diagramLayout"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

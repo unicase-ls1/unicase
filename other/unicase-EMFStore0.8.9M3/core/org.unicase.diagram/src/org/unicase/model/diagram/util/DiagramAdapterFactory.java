@@ -5,7 +5,6 @@
  */
 package org.unicase.model.diagram.util;
 
-import java.util.Map;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
@@ -15,7 +14,6 @@ import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.*;
-import org.unicase.model.diagram.impl.MERelativeBendpoint;
 import org.unicase.model.diagram.ActivityDiagram;
 import org.unicase.model.diagram.ClassDiagram;
 import org.unicase.model.diagram.ComponentDiagram;

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
@@ -25,7 +26,6 @@ import org.unicase.docExport.exportModel.renderers.impl.AttributeRendererImpl;
 import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.StepsAttributeRenderer;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.UseCase;
@@ -60,20 +60,19 @@ public class StepsAttributeRendererImpl extends AttributeRendererImpl implements
 
 	// begin custom code
 	@SuppressWarnings("unchecked")
-	public void render(EStructuralFeature feature, UnicaseModelElement modelElement, UCompositeSection section,
-		Template template) {
+	public void render(EStructuralFeature feature, EObject eObject, UCompositeSection section, Template template) {
 
-		Object object = modelElement.eGet(feature);
+		Object object = eObject.eGet(feature);
 
-		if (!feature.getEGenericType().getEClassifier().getName().equals(
-			RequirementPackage.eINSTANCE.getStep().getName())
+		if (!feature.getEGenericType().getEClassifier().getName()
+			.equals(RequirementPackage.eINSTANCE.getStep().getName())
 			|| !(object instanceof EList)) {
 			WorkspaceUtil
 				.log("This Attribute renderer can only render a set of Steps.", new Exception(), IStatus.ERROR);
 			return;
 		}
 
-		EList<Step> steps = (EList<Step>) modelElement.eGet(feature);
+		EList<Step> steps = (EList<Step>) eObject.eGet(feature);
 
 		UTable table = new UTable(2);
 		table.getBoxModel().setMarginTop(10);

@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecp.common.handler.CreateContainmentHandler;
 import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -33,7 +34,8 @@ import org.unicase.ui.unicasecommon.common.util.UnicaseUiUtil;
 
 /**
  * . This class creates a group of commands to create different containments of a model element through context menu.
- * The created commands have all the same ID and are handled with the same handler class {@link CreateMEHandler}.
+ * The created commands have all the same ID and are handled with the same handler class
+ * {@link CreateContainmentHandler}.
  * 
  * @author Hodaie
  */
@@ -117,7 +119,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 
 			Map<Object, Object> commandParams = new HashMap<Object, Object>();
 
-			commandParams.put(CreateMEHandler.COMMAND_ECLASS_PARAM, containment.getEReferenceType());
+			commandParams.put(CreateContainmentHandler.COMMAND_ECLASS_PARAM, containment.getEReferenceType());
 			commandParam.label = "New " + containment.getEReferenceType().getName();
 			commandParam.icon = getImage(containment.getEReferenceType());
 
@@ -157,7 +159,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 				PlatformUI.getWorkbench(), null, COMMAND_ID, CommandContributionItem.STYLE_PUSH);
 
 			Map<Object, Object> commandParams = new HashMap<Object, Object>();
-			commandParams.put(CreateMEHandler.COMMAND_ECLASS_PARAM, eClass);
+			commandParams.put(CreateContainmentHandler.COMMAND_ECLASS_PARAM, eClass);
 			commandParam.label = "New " + eClass.getName();
 			commandParam.icon = getImage(eClass);
 

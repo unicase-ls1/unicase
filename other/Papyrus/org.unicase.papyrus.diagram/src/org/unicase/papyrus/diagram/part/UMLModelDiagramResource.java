@@ -24,14 +24,13 @@ import org.eclipse.emf.ecore.xmi.DOMHandler;
 import org.eclipse.emf.ecore.xmi.DOMHelper;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xml.type.AnyType;
-import org.unicase.ui.common.commands.ECPCommand;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.WorkspaceUtil;
+import org.eclipse.emf.ecp.common.commands.ECPCommand;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.unicase.papyrus.UMLModel;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
-
-import org.unicase.papyrus.UMLModel;
 
 // dengler: review
 /**
@@ -109,21 +108,6 @@ public class UMLModelDiagramResource extends ResourceImpl implements Resource, R
 			model.eResource().eAdapters().add(new UnicaseModelSetQueryAdapter());
 		}
 		
-		new ECPCommand(model) {
-
-			@Override
-			protected void doRun() {
-				try {
-					model.loadDiagramLayout();
-				} catch (IOException e) {
-					if (!(e.getCause() instanceof NullPointerException)) {
-						WorkspaceUtil.logException("Loading diagram layout failed", e);
-					}
-				}
-			}
-			
-		}.run(true);
-
 		if (model.getGmfDiagram() == null) {
 			UMLInitUtil.initialize(model);
 		}

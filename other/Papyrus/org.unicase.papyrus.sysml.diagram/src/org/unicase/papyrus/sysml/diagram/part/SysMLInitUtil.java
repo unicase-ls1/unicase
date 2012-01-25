@@ -1,18 +1,13 @@
 package org.unicase.papyrus.sysml.diagram.part;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.unicase.papyrus.PapyrusFactory;
 import org.unicase.papyrus.SysMLClass;
-import org.unicase.papyrus.SysMLModel;
-import org.unicase.ui.common.commands.ECPCommand;
 
 public class SysMLInitUtil {
 	

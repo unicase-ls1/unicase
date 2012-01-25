@@ -116,28 +116,6 @@ public class AttachmentItemProviderAdapterFactory extends AttachmentAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.attachment.PatchAttachment} instances.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected PatchAttachmentItemProvider patchAttachmentItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.model.attachment.PatchAttachment}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createPatchAttachmentAdapter() {
-		if (patchAttachmentItemProvider == null) {
-			patchAttachmentItemProvider = new PatchAttachmentItemProvider(this);
-		}
-
-		return patchAttachmentItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -233,8 +211,6 @@ public class AttachmentItemProviderAdapterFactory extends AttachmentAdapterFacto
 			urlAttachmentItemProvider.dispose();
 		if (fileAttachmentItemProvider != null)
 			fileAttachmentItemProvider.dispose();
-		if (patchAttachmentItemProvider != null)
-			patchAttachmentItemProvider.dispose();
 	}
 
 }

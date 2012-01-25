@@ -8,8 +8,8 @@ package org.unicase.ui.unicasecommon.navigator.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
@@ -27,7 +27,7 @@ public class NewCompositeSectionHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		UnicaseModelElement me = UnicaseActionHelper.getModelElement(event);
+		EObject me = UnicaseActionHelper.getModelElement(event);
 		if (me == null) {
 			return null;
 		}
