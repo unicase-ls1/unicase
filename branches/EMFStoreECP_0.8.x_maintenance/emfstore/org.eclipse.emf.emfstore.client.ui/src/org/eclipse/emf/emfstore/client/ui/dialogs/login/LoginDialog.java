@@ -419,4 +419,13 @@ public class LoginDialog extends TitleAreaDialog {
 
 	}
 
+	/**
+	 * Returns the logged in usersession.
+	 * 
+	 * @return the usersession or <code>null</code> if the user pressed cancel or could not login
+	 */
+	public Usersession getUsersession() {
+		return usersession;
+	}
+
 }
