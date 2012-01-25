@@ -1,4 +1,4 @@
-package edu.tum.in.bruegge.epd.kinect.impl;
+package edu.tum.in.bruegge.epd.kinect.impl.connection.socket;
 
 public enum KinectProtocolCommands {
 

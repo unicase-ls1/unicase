@@ -13,30 +13,28 @@ import org.w3c.dom.Document;
 
 import edu.tum.in.bruegge.epd.kinect.KinectManager;
 import edu.tum.in.bruegge.epd.kinect.SpeechListener;
-import edu.tum.in.bruegge.epd.kinect.impl.connection.SocketConnectionManager;
+import edu.tum.in.bruegge.epd.kinect.impl.connection.socket.SocketConnectionManager;
 
 public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 
-	private static final String HOST = "127.0.0.1";
-	private static final int PORT = 12345;
-	
 	private static final KinectManager INSTANCE = new KinectManagerImpl();
-	
-	private ConnectionManager connectionManager;// = KinectConnectionManager.getInstance();
-	
+
+	private ConnectionManager connectionManager;// =
+												// KinectConnectionManager.getInstance();
+
 	private HumanBodyModelUtils humanBodyHandler = new HumanBodyModelUtils();
 	private SkeletonParser skeletonParser;
-	
+
 	private Map<SpeechListener, Set<String>> speechWords = new HashMap<SpeechListener, Set<String>>();
 	private Map<String, Set<SpeechListener>> filteredSpeechListeners = new HashMap<String, Set<SpeechListener>>();
 	private Set<SpeechListener> unfilteredSpeechListeners = new HashSet<SpeechListener>();
-	
+
 	public KinectManagerImpl() {
-		this.connectionManager = new SocketConnectionManager(HOST, PORT);
-		//this.connectionManager = new ProxyConnectionManager();
+		this.connectionManager = new SocketConnectionManager();
+		// this.connectionManager = new ProxyConnectionManager();
 		this.skeletonParser = new SkeletonParser(this.humanBodyHandler);
 	}
-	
+
 	public static KinectManager getInstance() {
 		return INSTANCE;
 	}
@@ -60,7 +58,7 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public HumanContainer getSkeletonModel() {
 		return this.humanBodyHandler.getHumanContainer();
@@ -106,7 +104,7 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 		for (Set<String> listenerWords : this.speechWords.values()) {
 			words.addAll(listenerWords);
 		}
-		
+
 		String[] keywords = words.toArray(new String[words.size()]);
 		this.connectionManager.startSpeechRecognition(keywords);
 	}
@@ -126,7 +124,7 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 		Set<SpeechListener> listeners = new HashSet<SpeechListener>();
 		listeners.addAll(this.unfilteredSpeechListeners);
 		listeners.addAll(this.filteredSpeechListeners.get(word));
-		
+
 		for (SpeechListener listener : listeners) {
 			listener.notifySpeech(word);
 		}

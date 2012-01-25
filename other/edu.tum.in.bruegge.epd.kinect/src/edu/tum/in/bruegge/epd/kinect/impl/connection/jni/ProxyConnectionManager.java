@@ -1,4 +1,4 @@
-package edu.tum.in.bruegge.epd.kinect.impl.connection;
+package edu.tum.in.bruegge.epd.kinect.impl.connection.jni;
 
 import java.io.IOException;
 
