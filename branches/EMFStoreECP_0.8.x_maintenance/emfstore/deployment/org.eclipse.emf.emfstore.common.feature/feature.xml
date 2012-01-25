@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.emfstore.common.feature"
       label="EMFStore Common (Incubation)"
-      version="0.8.9.M909"
+      version="0.8.9.M910"
       provider-name="Eclipse Modeling Project"
       plugin="org.eclipse.emf.emfstore.branding">
 
