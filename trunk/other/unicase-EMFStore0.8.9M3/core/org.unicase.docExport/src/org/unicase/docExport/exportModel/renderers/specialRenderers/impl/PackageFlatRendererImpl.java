@@ -8,6 +8,7 @@ package org.unicase.docExport.exportModel.renderers.specialRenderers.impl;
 import java.util.ArrayList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
 import org.unicase.docExport.exportModel.renderers.elements.UParagraph;
@@ -16,7 +17,6 @@ import org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl
 import org.unicase.docExport.exportModel.renderers.options.SectionNumberingStyle;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.PackageFlatRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.classes.Package;
 import org.unicase.model.classes.PackageElement;
 
@@ -50,8 +50,9 @@ public class PackageFlatRendererImpl extends ModelElementRendererImpl implements
 
 	// begin custom code
 	@Override
-	public void doRender(UnicaseModelElement modelElement, UCompositeSection parent) {
-		ArrayList<Package> allPackages = getAllPackagesRecursivly((Package) modelElement);
+	protected void doRender(EObject eObject, UCompositeSection parent) {
+
+		ArrayList<Package> allPackages = getAllPackagesRecursivly((Package) eObject);
 
 		for (Package packageElement : allPackages) {
 			renderPackage(parent, packageElement);

@@ -23,7 +23,6 @@ import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 /**
@@ -83,7 +82,7 @@ public class MEDescriptionPage extends AbstractMEEditorPage {
 	private static final String ID = "org.unicase.ui.unicasecommon.meeditor.descriptionpage";
 	private static final String NAME = "Description";
 
-	private UnicaseModelElement modelElement;
+	private EObject modelElement;
 	private FormToolkit toolkit;
 
 	private ScrolledForm form;
@@ -96,12 +95,7 @@ public class MEDescriptionPage extends AbstractMEEditorPage {
 	 */
 	@Override
 	public FormPage createPage(MEEditor editor, EditingDomain editingDomain, EObject modelElement) {
-		if (modelElement instanceof UnicaseModelElement) {
-			this.modelElement = (UnicaseModelElement) modelElement;
-		} else {
-			throw new IllegalArgumentException("This page is valid only for UnicaseModelElements");
-		}
-
+		this.modelElement = modelElement;
 		FormPage page = new FormPageExtension(editor, ID, NAME);
 		return page;
 
@@ -139,8 +133,8 @@ public class MEDescriptionPage extends AbstractMEEditorPage {
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IItemPropertyDescriptor propertyDescriptor = adapterFactoryItemDelegator.getPropertyDescriptor(modelElement,
 			"description");
-		textWidget = textControl.createControl(body, SWT.NONE, propertyDescriptor, modelElement, UnicaseActionHelper
-			.getContext(modelElement), toolkit);
+		textWidget = textControl.createControl(body, SWT.NONE, propertyDescriptor, modelElement,
+			UnicaseActionHelper.getContext(modelElement), toolkit);
 		GridDataFactory.fillDefaults().hint(200, -1).grab(true, true).applyTo(textWidget);
 	}
 }

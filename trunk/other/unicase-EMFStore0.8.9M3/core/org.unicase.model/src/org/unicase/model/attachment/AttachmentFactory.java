@@ -38,14 +38,6 @@ public interface AttachmentFactory extends EFactory {
 	FileAttachment createFileAttachment();
 
 	/**
-	 * Returns a new object of class '<em>Patch Attachment</em>'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return a new object of class '<em>Patch Attachment</em>'.
-	 * @generated
-	 */
-	PatchAttachment createPatchAttachment();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the package supported by this factory.

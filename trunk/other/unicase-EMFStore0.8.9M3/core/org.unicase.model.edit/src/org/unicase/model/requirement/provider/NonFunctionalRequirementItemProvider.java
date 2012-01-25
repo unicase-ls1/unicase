@@ -18,6 +18,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.rationale.provider.CriterionItemProvider;
 import org.unicase.model.requirement.NonFunctionalRequirement;
@@ -54,6 +56,7 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 			addRestrictedUseCasesPropertyDescriptor(object);
 			addSystemFunctionsPropertyDescriptor(object);
 			addUserTasksPropertyDescriptor(object);
+			addDonePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -124,6 +127,22 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 	}
 
 	/**
+	 * This adds a property descriptor for the Done feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDonePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_NonFunctionalRequirement_done_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_done_feature",
+				"_UI_NonFunctionalRequirement_type"), RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__DONE,
+			true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This returns NonFunctionalRequirement.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -153,6 +172,12 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(NonFunctionalRequirement.class)) {
+		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__DONE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		}
 		super.notifyChanged(notification);
 	}
 

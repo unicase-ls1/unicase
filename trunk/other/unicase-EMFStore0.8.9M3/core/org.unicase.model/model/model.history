@@ -2874,12 +2874,12 @@
             featureName="eSuperTypes" referenceValue="model.ecore#//document/Section"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement"
-          referenceName="eStructuralFeatures" element="model.ecore#//UnicaseModelElement/leafSection">
-        <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/leafSection"
+          referenceName="eStructuralFeatures" element="#//@releases.9/@changes.0/@element">
+        <changes xsi:type="history:Set" element="#//@releases.9/@changes.0/@element"
             featureName="name" dataValue="leafSection"/>
-        <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/leafSection"
+        <changes xsi:type="history:Set" element="#//@releases.9/@changes.0/@element"
             featureName="eType" referenceValue="model.ecore#//document/LeafSection"/>
-        <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement/leafSection"
+        <changes xsi:type="history:Add" element="#//@releases.9/@changes.0/@element"
             featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//document/LeafSection"
@@ -2893,8 +2893,8 @@
         <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/modelElements"
             featureName="eType" referenceValue="model.ecore#//UnicaseModelElement"/>
         <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/modelElements"
-            featureName="eOpposite" referenceValue="model.ecore#//UnicaseModelElement/leafSection"/>
-        <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/leafSection"
+            featureName="eOpposite" referenceValue="#//@releases.9/@changes.0/@element"/>
+        <changes xsi:type="history:Set" element="#//@releases.9/@changes.0/@element"
             featureName="eOpposite" referenceValue="model.ecore#//document/LeafSection/modelElements"/>
         <changes xsi:type="history:Add" element="model.ecore#//document/LeafSection/modelElements"
             featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
@@ -6415,7 +6415,7 @@
           featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/PackageElement/incomingDependencies"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
-      <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/leafSection"
+      <changes xsi:type="history:Remove" element="#//@releases.9/@changes.0/@element"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//document/LeafSection/modelElements"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
@@ -6692,7 +6692,7 @@
           featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement/incomingDocumentReferences"
           featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
-      <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement/leafSection"
+      <changes xsi:type="history:Add" element="#//@releases.9/@changes.0/@element"
           featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement/appliedStereotypeInstances"
           featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
@@ -8050,7 +8050,7 @@
           featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/incomingDocumentReferences"
           featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
-      <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/leafSection"
+      <changes xsi:type="history:Remove" element="#//@releases.9/@changes.0/@element"
           featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/appliedStereotypeInstances"
           featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
@@ -8691,5 +8691,10 @@
           featureName="eType" referenceValue="model.ecore#//release/SourceCodeRepositoryStream"/>
     </changes>
   </releases>
-  <releases/>
+  <releases>
+    <changes xsi:type="history:Delete" target="model.ecore#//UnicaseModelElement"
+        referenceName="eStructuralFeatures">
+      <element xsi:type="ecore:EReference" name="leafSection" eType="ecore:EClass model.ecore#//document/LeafSection"/>
+    </changes>
+  </releases>
 </history:History>

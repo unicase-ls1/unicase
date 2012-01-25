@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-<extension point="edu.tum.cs.cope.migrators">
-<migrator path="migrator/"/></extension>
-<extension
-      point="edu.tum.cs.cope.operations">
-   <operations
-         declaration="operations/operations.declaration">
-   </operations>
-</extension>
+   <extension
+         point="org.eclipse.emf.emfstore.migration.migrator">
+      <Migrator
+            migratorClass="org.unicase.model.migrator.EMFStoreMigrator1">
+      </Migrator>
+   </extension>
 </plugin>

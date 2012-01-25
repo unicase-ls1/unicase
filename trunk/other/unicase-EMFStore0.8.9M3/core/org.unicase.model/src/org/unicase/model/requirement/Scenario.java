@@ -23,6 +23,7 @@ import org.unicase.model.classes.Method;
  *   <li>{@link org.unicase.model.requirement.Scenario#getNonFunctionalRequirements <em>Non Functional Requirements</em>}</li>
  *   <li>{@link org.unicase.model.requirement.Scenario#getParticipatingMethods <em>Participating Methods</em>}</li>
  *   <li>{@link org.unicase.model.requirement.Scenario#getParticipatingClasses <em>Participating Classes</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.Scenario#isDone <em>Done</em>}</li>
  * </ul>
  * </p>
  *
@@ -189,5 +190,31 @@ public interface Scenario extends UnicaseModelElement {
 	 * @generated
 	 */
 	EList<org.unicase.model.classes.Class> getParticipatingClasses();
+
+	/**
+	 * Returns the value of the '<em><b>Done</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Done</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Done</em>' attribute.
+	 * @see #setDone(boolean)
+	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_Done()
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='17.0' position='left'"
+	 * @generated
+	 */
+	boolean isDone();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.requirement.Scenario#isDone <em>Done</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Done</em>' attribute.
+	 * @see #isDone()
+	 * @generated
+	 */
+	void setDone(boolean value);
 
 } // Scenario

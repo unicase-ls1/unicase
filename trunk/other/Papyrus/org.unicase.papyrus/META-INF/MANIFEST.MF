@@ -13,5 +13,7 @@ Export-Package: org.unicase.papyrus,
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.uml2.uml,
  org.eclipse.gmf.runtime.notation,
- org.unicase.metamodel
+ org.eclipse.emf.emfstore.common.model,
+ org.eclipse.emf.ecp.common.model,
+ org.unicase.diagram
 Bundle-ActivationPolicy: lazy

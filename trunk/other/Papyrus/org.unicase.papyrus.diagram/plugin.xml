@@ -54,10 +54,10 @@
          <editor
                class="org.unicase.papyrus.diagram.editors.UMLUseCaseDiagramEditor"
                default="false"
-               extensions="UseCase_diagram"
+               extensions="PapyrusUseCase_diagram"
                icon="icons/UseCase.gif"
                id="org.unicase.papyrus.diagram.usecase.UMLDiagramEditorID"
-               name="UseCaseDiagramEditor">
+               name="PapyrusUseCaseDiagramEditor">
          </editor>
       </extension>
       <extension
@@ -105,13 +105,6 @@
             contentTypeIdentifier="UMLModel">
       </parser>
    </extension>
-      <extension
-            point="org.unicase.ui.common.modelelementopener">
-         <ModelElementOpener
-               class="org.unicase.papyrus.diagram.part.UMLDiagramOpener"
-               name="org.unicase.papyrus.UMLDiagramOpener">
-         </ModelElementOpener>
-      </extension>
             <extension
             point="org.unicase.papyrus.service">
          <serviceFactory
@@ -134,5 +127,12 @@
             startKind="startup">
       </serviceFactory>
       </extension>
+            <extension
+                  point="org.eclipse.emf.ecp.common.modelelementopener">
+               <ModelElementOpener
+                     class="org.unicase.papyrus.diagram.part.UMLDiagramOpener"
+                     name="org.unicase.papyrus.UMLDiagramOpener">
+               </ModelElementOpener>
+            </extension>
       
 </plugin>

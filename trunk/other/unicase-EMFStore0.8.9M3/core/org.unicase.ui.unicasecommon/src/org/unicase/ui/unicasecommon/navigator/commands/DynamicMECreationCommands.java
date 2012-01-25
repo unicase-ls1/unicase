@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -23,7 +24,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.LeafSection;
@@ -100,7 +100,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 	}
 
 	private ImageDescriptor getImage(EClass eClass) {
-		UnicaseModelElement instance = (UnicaseModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		EObject instance = eClass.getEPackage().getEFactoryInstance().create(eClass);
 		Image image = labelProvider.getImage(instance);
 		ImageDescriptor imageDescriptor = ImageDescriptor.createFromImage(image);
 		return imageDescriptor;
@@ -116,7 +116,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 		// create a map of (EClass, EClassCount)
 		Map<Object, Countable> meCounts = new HashMap<Object, Countable>();
 
-		for (UnicaseModelElement me : leafSection.getModelElements()) {
+		for (EObject me : leafSection.getModelElements()) {
 			Object key = null;
 
 			// Same for diagrams and other model elements.

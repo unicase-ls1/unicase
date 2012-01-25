@@ -108,7 +108,6 @@ public class UMLModelItemProvider extends ModelItemProvider implements
 		switch (notification.getFeatureID(UMLModel.class)) {
 		case PapyrusPackage.UML_MODEL__GMF_DIAGRAM:
 		case PapyrusPackage.UML_MODEL__DIAGRAM_TYPE:
-		case PapyrusPackage.UML_MODEL__DIAGRAM_LAYOUT:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), false, true));
 			return;

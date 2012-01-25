@@ -23,9 +23,16 @@
             class="org.unicase.papyrus.util.PapyrusResourceFactoryImpl"/>
    </extension>
    <extension
+         id="http://unicase.org/model/papyrus"
+         name="Papyrus"
+         point="org.eclipse.emf.ecp.model.ecppackage">
+      <Generic>
+         http://unicase.org/model/papyrus</Generic>
+   </extension>
+<!--   <extension
          point="org.unicase.ecp.model.ecpModelPackage">
          <modelPackage
             modelPackage="http://unicase.org/model/papyrus"></modelPackage>
    </extension>
-
+-->
 </plugin>

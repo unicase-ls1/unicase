@@ -268,9 +268,16 @@
                  <iterate
                        ifEmpty="false"
                        operator="and">
-                    <reference
-                          definitionId="org.unicase.ui.common.commands.modelElementNotSection">
-                    </reference>
+                    <and>
+                       <instanceof
+                             value="org.eclipse.emf.ecore.EObject">
+                       </instanceof>
+                       <not>
+                          <instanceof
+                                value="org.unicase.model.document.Section">
+                          </instanceof>
+                       </not>
+                    </and>
                  </iterate>
                  <count
                        value="1">
@@ -400,7 +407,7 @@
                        ifEmpty="false"
                        operator="and">
                     <and>
-                    	<instanceof value="org.eclipse.emf.ecore.EObject" />
+                    	<instanceof value="org.unicase.model.UnicaseModelElement" />
                     	<not>
                     		<instanceof value="org.eclipse.emf.emfstore.client.model.ProjectSpace" />
                     	</not>
@@ -590,7 +597,7 @@
            id="org.unicase.ui.common.commands.modelElementNotSection">
         <and>
            <instanceof
-                 value="org.eclipse.emf.ecore.EObject">
+                 value="org.unicase.model.UnicaseModelElement">
            </instanceof>
            <not>
               <instanceof

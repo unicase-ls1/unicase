@@ -260,6 +260,7 @@
             ecoreFeature="ecore:EReference model.ecore#//requirement/NonFunctionalRequirement/systemFunctions"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/NonFunctionalRequirement/userTasks"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/NonFunctionalRequirement/done"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/FunctionalRequirement">
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/refinedRequirement"/>
@@ -274,6 +275,7 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/stakeholder"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/cost"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/done"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/UseCase">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -302,6 +304,7 @@
             ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/extendedUseCases"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/systemFunctions"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/UseCase/done"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/Scenario">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//requirement/Scenario/steps"/>
@@ -319,6 +322,7 @@
             ecoreFeature="ecore:EReference model.ecore#//requirement/Scenario/participatingMethods"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/Scenario/participatingClasses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/Scenario/done"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/Actor">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -546,10 +550,6 @@
         <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/fileSize"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/fileType"/>
       </genClasses>
-      <genClasses ecoreClass="model.ecore#//attachment/PatchAttachment">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//attachment/PatchAttachment/appliedTo"/>
-      </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Profile" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//profile">
@@ -619,26 +619,10 @@
     </nestedGenPackages>
     <nestedGenPackages prefix="Release" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//release">
-      <genClasses ecoreClass="model.ecore#//release/Stream">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//release/Stream/releases"/>
+      <genClasses image="false" ecoreClass="model.ecore#//release/AbstractRelease">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//release/Stream/sourceCodeRepositoryStream"/>
+            ecoreFeature="ecore:EReference model.ecore#//release/AbstractRelease/includedWorkItems"/>
       </genClasses>
-      <genClasses ecoreClass="model.ecore#//release/Release">
-        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//release/Release/stream"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//release/Release/predecessor"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//release/Release/successor"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//release/Release/appliedPatches"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//release/Release/includedWorkItems"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//release/Release/sourceCodeRepositoryRevision"/>
-      </genClasses>
-      <genClasses image="false" ecoreClass="model.ecore#//release/SourceCodeRepositoryRevision"/>
-      <genClasses image="false" ecoreClass="model.ecore#//release/SourceCodeRepositoryStream"/>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

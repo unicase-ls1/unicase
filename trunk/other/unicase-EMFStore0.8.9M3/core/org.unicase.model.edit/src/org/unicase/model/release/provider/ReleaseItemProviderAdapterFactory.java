@@ -72,52 +72,6 @@ public class ReleaseItemProviderAdapterFactory extends ReleaseAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.release.Stream} instances. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected StreamItemProvider streamItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.model.release.Stream}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createStreamAdapter() {
-		if (streamItemProvider == null) {
-			streamItemProvider = new StreamItemProvider(this);
-		}
-
-		return streamItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.release.Release} instances. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected ReleaseItemProvider releaseItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.model.release.Release}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createReleaseAdapter() {
-		if (releaseItemProvider == null) {
-			releaseItemProvider = new ReleaseItemProvider(this);
-		}
-
-		return releaseItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -209,10 +163,6 @@ public class ReleaseItemProviderAdapterFactory extends ReleaseAdapterFactory imp
 	 * @generated
 	 */
 	public void dispose() {
-		if (streamItemProvider != null)
-			streamItemProvider.dispose();
-		if (releaseItemProvider != null)
-			releaseItemProvider.dispose();
 	}
 
 }

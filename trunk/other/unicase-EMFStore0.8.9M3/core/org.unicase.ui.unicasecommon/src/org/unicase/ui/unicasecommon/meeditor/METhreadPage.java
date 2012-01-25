@@ -51,7 +51,7 @@ import org.unicase.ui.unicasecommon.common.widgets.MECommentWidgetListener;
 public class METhreadPage extends AbstractMEEditorPage implements MECommentWidgetListener {
 	private static final String ID = "org.unicase.ui.unicasecommon.meeditor.methreadpage";
 	private static final String NAME = "Discussion";
-	private UnicaseModelElement modelElement;
+	private EObject modelElement;
 	private FormToolkit toolkit;
 
 	private static String activeModelelement = "activeModelelement";
@@ -77,7 +77,7 @@ public class METhreadPage extends AbstractMEEditorPage implements MECommentWidge
 		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
-				List<Comment> comments = modelElement.getComments();
+				List<Comment> comments = ((UnicaseModelElement) modelElement).getComments();
 				for (Comment c : comments) {
 					MECommentWidget widget = new MECommentWidget(c, body);
 					widget.addCommentWidgetListener(METhreadPage.this);
@@ -150,7 +150,7 @@ public class METhreadPage extends AbstractMEEditorPage implements MECommentWidge
 		if (!toggleReply && currentUser == null) {
 			return;
 		}
-		inputEntry = new MECommentReplyWidget(modelElement, inputComposite, currentUser);
+		inputEntry = new MECommentReplyWidget((UnicaseModelElement) modelElement, inputComposite, currentUser);
 		inputEntry.addCommentWidgetListener(this);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(inputEntry);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(inputComposite);
@@ -166,11 +166,7 @@ public class METhreadPage extends AbstractMEEditorPage implements MECommentWidge
 	 */
 	@Override
 	public FormPage createPage(MEEditor editor, EditingDomain editingDomain, EObject modelElement) {
-		if (modelElement instanceof UnicaseModelElement) {
-			this.modelElement = (UnicaseModelElement) modelElement;
-		} else {
-			throw new IllegalArgumentException("This page is valid only for UnicaseModelElements");
-		}
+		this.modelElement = modelElement;
 		try {
 			currentUser = OrgUnitHelper.getUser(WorkspaceManager.getProjectSpace(this.modelElement));
 		} catch (NoCurrentUserException e1) {

@@ -5,7 +5,6 @@
  */
 package org.unicase.model.diagram.impl;
 
-import java.util.Map;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -15,18 +14,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.activity.ActivityPackage;
-import org.unicase.model.activity.impl.ActivityPackageImpl;
-import org.unicase.model.attachment.AttachmentPackage;
-import org.unicase.model.attachment.impl.AttachmentPackageImpl;
-import org.unicase.model.bug.BugPackage;
-import org.unicase.model.bug.impl.BugPackageImpl;
-import org.unicase.model.change.ChangePackage;
-import org.unicase.model.change.impl.ChangePackageImpl;
-import org.unicase.model.classes.ClassesPackage;
-import org.unicase.model.classes.impl.ClassesPackageImpl;
-import org.unicase.model.component.ComponentPackage;
-import org.unicase.model.component.impl.ComponentPackageImpl;
 import org.unicase.model.diagram.ActivityDiagram;
 import org.unicase.model.diagram.ClassDiagram;
 import org.unicase.model.diagram.ComponentDiagram;
@@ -37,27 +24,6 @@ import org.unicase.model.diagram.MERelativeBendpoints;
 import org.unicase.model.diagram.StateDiagram;
 import org.unicase.model.diagram.UseCaseDiagram;
 import org.unicase.model.diagram.WorkItemDiagram;
-import org.unicase.model.document.DocumentPackage;
-import org.unicase.model.document.impl.DocumentPackageImpl;
-import org.unicase.model.impl.ModelPackageImpl;
-import org.unicase.model.meeting.MeetingPackage;
-import org.unicase.model.meeting.impl.MeetingPackageImpl;
-import org.unicase.model.organization.OrganizationPackage;
-import org.unicase.model.organization.impl.OrganizationPackageImpl;
-import org.unicase.model.profile.ProfilePackage;
-import org.unicase.model.profile.impl.ProfilePackageImpl;
-import org.unicase.model.rationale.RationalePackage;
-import org.unicase.model.rationale.impl.RationalePackageImpl;
-import org.unicase.model.release.ReleasePackage;
-import org.unicase.model.release.impl.ReleasePackageImpl;
-import org.unicase.model.requirement.RequirementPackage;
-import org.unicase.model.requirement.impl.RequirementPackageImpl;
-import org.unicase.model.state.StatePackage;
-import org.unicase.model.state.impl.StatePackageImpl;
-import org.unicase.model.task.TaskPackage;
-import org.unicase.model.task.impl.TaskPackageImpl;
-import org.unicase.model.util.UtilPackage;
-import org.unicase.model.util.impl.UtilPackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->

@@ -19,6 +19,7 @@ import org.unicase.model.rationale.Criterion;
  *   <li>{@link org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedUseCases <em>Restricted Use Cases</em>}</li>
  *   <li>{@link org.unicase.model.requirement.NonFunctionalRequirement#getSystemFunctions <em>System Functions</em>}</li>
  *   <li>{@link org.unicase.model.requirement.NonFunctionalRequirement#getUserTasks <em>User Tasks</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.NonFunctionalRequirement#isDone <em>Done</em>}</li>
  * </ul>
  * </p>
  *
@@ -103,4 +104,30 @@ public interface NonFunctionalRequirement extends Criterion {
 	 * @generated
 	 */
 	EList<UserTask> getUserTasks();
+
+	/**
+	 * Returns the value of the '<em><b>Done</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Done</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Done</em>' attribute.
+	 * @see #setDone(boolean)
+	 * @see org.unicase.model.requirement.RequirementPackage#getNonFunctionalRequirement_Done()
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='17.0' position='left'"
+	 * @generated
+	 */
+	boolean isDone();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.requirement.NonFunctionalRequirement#isDone <em>Done</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Done</em>' attribute.
+	 * @see #isDone()
+	 * @generated
+	 */
+	void setDone(boolean value);
 } // NonFunctionalRequirement

@@ -136,6 +136,24 @@ public final class UnicaseActionHelper {
 		return me;
 	}
 
+	public static EObject getEObject(ExecutionEvent event) {
+		final String meeditorId = "org.eclipse.emf.ecp.editor";
+
+		String partId = HandlerUtil.getActivePartId(event);
+		if (partId != null && partId.equals(meeditorId)) {
+			// extract model element from editor input
+			IEditorInput editorInput = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+				.getActiveEditor().getEditorInput();
+			Object obj = editorInput.getAdapter(EObject.class);
+
+			if (obj instanceof EObject) {
+				return (EObject) obj;
+			}
+
+		}
+		return UiUtil.getSelection(event);
+	}
+
 	/**
 	 * This method opens the MEDiagram.
 	 * 

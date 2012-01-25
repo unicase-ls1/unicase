@@ -107,15 +107,6 @@ public interface BugPackage extends EPackage {
 	int BUG_REPORT__INCOMING_DOCUMENT_REFERENCES = TaskPackage.WORK_ITEM__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUG_REPORT__LEAF_SECTION = TaskPackage.WORK_ITEM__LEAF_SECTION;
-
-	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

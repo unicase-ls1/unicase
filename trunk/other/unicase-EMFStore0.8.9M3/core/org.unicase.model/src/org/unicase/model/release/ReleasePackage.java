@@ -8,6 +8,7 @@ package org.unicase.model.release;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.unicase.model.ModelPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta objects to represent
@@ -52,264 +53,143 @@ public interface ReleasePackage extends EPackage {
 	ReleasePackage eINSTANCE = org.unicase.model.release.impl.ReleasePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.release.impl.StreamImpl <em>Stream</em>}' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see org.unicase.model.release.impl.StreamImpl
-	 * @see org.unicase.model.release.impl.ReleasePackageImpl#getStream()
+	 * The meta object id for the '{@link org.unicase.model.release.impl.AbstractReleaseImpl <em>Abstract Release</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.model.release.impl.AbstractReleaseImpl
+	 * @see org.unicase.model.release.impl.ReleasePackageImpl#getAbstractRelease()
 	 * @generated
 	 */
-	int STREAM = 0;
+	int ABSTRACT_RELEASE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Releases</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STREAM__RELEASES = 0;
-
-	/**
-	 * The feature id for the '<em><b>Source Code Repository Stream</b></em>' reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STREAM__SOURCE_CODE_REPOSITORY_STREAM = 1;
-
-	/**
-	 * The number of structural features of the '<em>Stream</em>' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STREAM_FEATURE_COUNT = 2;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.model.release.impl.ReleaseImpl <em>Release</em>}' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see org.unicase.model.release.impl.ReleaseImpl
-	 * @see org.unicase.model.release.impl.ReleasePackageImpl#getRelease()
-	 * @generated
-	 */
-	int RELEASE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Stream</b></em>' container reference. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int RELEASE__STREAM = 0;
-
-	/**
-	 * The feature id for the '<em><b>Predecessor</b></em>' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RELEASE__PREDECESSOR = 1;
-
-	/**
-	 * The feature id for the '<em><b>Successor</b></em>' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RELEASE__SUCCESSOR = 2;
-
-	/**
-	 * The feature id for the '<em><b>Applied Patches</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RELEASE__APPLIED_PATCHES = 3;
-
-	/**
-	 * The feature id for the '<em><b>Included Work Items</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RELEASE__INCLUDED_WORK_ITEMS = 4;
-
-	/**
-	 * The feature id for the '<em><b>Source Code Repository Revision</b></em>' reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RELEASE__SOURCE_CODE_REPOSITORY_REVISION = 5;
-
-	/**
-	 * The number of structural features of the '<em>Release</em>' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RELEASE_FEATURE_COUNT = 6;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.model.release.impl.SourceCodeRepositoryRevisionImpl <em>Source Code Repository Revision</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.unicase.model.release.impl.SourceCodeRepositoryRevisionImpl
-	 * @see org.unicase.model.release.impl.ReleasePackageImpl#getSourceCodeRepositoryRevision()
-	 * @generated
-	 */
-	int SOURCE_CODE_REPOSITORY_REVISION = 2;
-
-	/**
-	 * The number of structural features of the '<em>Source Code Repository Revision</em>' class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOURCE_CODE_REPOSITORY_REVISION_FEATURE_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.model.release.impl.SourceCodeRepositoryStreamImpl <em>Source Code Repository Stream</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.unicase.model.release.impl.SourceCodeRepositoryStreamImpl
-	 * @see org.unicase.model.release.impl.ReleasePackageImpl#getSourceCodeRepositoryStream()
-	 * @generated
-	 */
-	int SOURCE_CODE_REPOSITORY_STREAM = 3;
-
-	/**
-	 * The number of structural features of the '<em>Source Code Repository Stream</em>' class.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_CODE_REPOSITORY_STREAM_FEATURE_COUNT = 0;
+	int ABSTRACT_RELEASE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.release.Stream <em>Stream</em>}'.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Stream</em>'.
-	 * @see org.unicase.model.release.Stream
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_RELEASE__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_RELEASE__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_RELEASE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_RELEASE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_RELEASE__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_RELEASE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_RELEASE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_RELEASE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_RELEASE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Included Work Items</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_RELEASE__INCLUDED_WORK_ITEMS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Abstract Release</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_RELEASE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.release.AbstractRelease <em>Abstract Release</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Abstract Release</em>'.
+	 * @see org.unicase.model.release.AbstractRelease
 	 * @generated
 	 */
-	EClass getStream();
+	EClass getAbstractRelease();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.model.release.Stream#getReleases <em>Releases</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Releases</em>'.
-	 * @see org.unicase.model.release.Stream#getReleases()
-	 * @see #getStream()
-	 * @generated
-	 */
-	EReference getStream_Releases();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.release.Stream#getSourceCodeRepositoryStream <em>Source Code Repository Stream</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source Code Repository Stream</em>'.
-	 * @see org.unicase.model.release.Stream#getSourceCodeRepositoryStream()
-	 * @see #getStream()
-	 * @generated
-	 */
-	EReference getStream_SourceCodeRepositoryStream();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.model.release.Release <em>Release</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for class '<em>Release</em>'.
-	 * @see org.unicase.model.release.Release
-	 * @generated
-	 */
-	EClass getRelease();
-
-	/**
-	 * Returns the meta object for the container reference '{@link org.unicase.model.release.Release#getStream <em>Stream</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Stream</em>'.
-	 * @see org.unicase.model.release.Release#getStream()
-	 * @see #getRelease()
-	 * @generated
-	 */
-	EReference getRelease_Stream();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.release.Release#getPredecessor <em>Predecessor</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Predecessor</em>'.
-	 * @see org.unicase.model.release.Release#getPredecessor()
-	 * @see #getRelease()
-	 * @generated
-	 */
-	EReference getRelease_Predecessor();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.release.Release#getSuccessor <em>Successor</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Successor</em>'.
-	 * @see org.unicase.model.release.Release#getSuccessor()
-	 * @see #getRelease()
-	 * @generated
-	 */
-	EReference getRelease_Successor();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.release.Release#getAppliedPatches <em>Applied Patches</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Applied Patches</em>'.
-	 * @see org.unicase.model.release.Release#getAppliedPatches()
-	 * @see #getRelease()
-	 * @generated
-	 */
-	EReference getRelease_AppliedPatches();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.release.Release#getIncludedWorkItems <em>Included Work Items</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference list '{@link org.unicase.model.release.AbstractRelease#getIncludedWorkItems <em>Included Work Items</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Included Work Items</em>'.
-	 * @see org.unicase.model.release.Release#getIncludedWorkItems()
-	 * @see #getRelease()
+	 * @see org.unicase.model.release.AbstractRelease#getIncludedWorkItems()
+	 * @see #getAbstractRelease()
 	 * @generated
 	 */
-	EReference getRelease_IncludedWorkItems();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.release.Release#getSourceCodeRepositoryRevision <em>Source Code Repository Revision</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source Code Repository Revision</em>'.
-	 * @see org.unicase.model.release.Release#getSourceCodeRepositoryRevision()
-	 * @see #getRelease()
-	 * @generated
-	 */
-	EReference getRelease_SourceCodeRepositoryRevision();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.model.release.SourceCodeRepositoryRevision <em>Source Code Repository Revision</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Source Code Repository Revision</em>'.
-	 * @see org.unicase.model.release.SourceCodeRepositoryRevision
-	 * @generated
-	 */
-	EClass getSourceCodeRepositoryRevision();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.model.release.SourceCodeRepositoryStream <em>Source Code Repository Stream</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Source Code Repository Stream</em>'.
-	 * @see org.unicase.model.release.SourceCodeRepositoryStream
-	 * @generated
-	 */
-	EClass getSourceCodeRepositoryStream();
+	EReference getAbstractRelease_IncludedWorkItems();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -332,104 +212,22 @@ public interface ReleasePackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.release.impl.StreamImpl <em>Stream</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * @see org.unicase.model.release.impl.StreamImpl
-		 * @see org.unicase.model.release.impl.ReleasePackageImpl#getStream()
+		 * The meta object literal for the '{@link org.unicase.model.release.impl.AbstractReleaseImpl <em>Abstract Release</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.release.impl.AbstractReleaseImpl
+		 * @see org.unicase.model.release.impl.ReleasePackageImpl#getAbstractRelease()
 		 * @generated
 		 */
-		EClass STREAM = eINSTANCE.getStream();
+		EClass ABSTRACT_RELEASE = eINSTANCE.getAbstractRelease();
 
 		/**
-		 * The meta object literal for the '<em><b>Releases</b></em>' containment reference list feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EReference STREAM__RELEASES = eINSTANCE.getStream_Releases();
-
-		/**
-		 * The meta object literal for the '<em><b>Source Code Repository Stream</b></em>' reference feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EReference STREAM__SOURCE_CODE_REPOSITORY_STREAM = eINSTANCE.getStream_SourceCodeRepositoryStream();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.model.release.impl.ReleaseImpl <em>Release</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * @see org.unicase.model.release.impl.ReleaseImpl
-		 * @see org.unicase.model.release.impl.ReleasePackageImpl#getRelease()
-		 * @generated
-		 */
-		EClass RELEASE = eINSTANCE.getRelease();
-
-		/**
-		 * The meta object literal for the '<em><b>Stream</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Included Work Items</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RELEASE__STREAM = eINSTANCE.getRelease_Stream();
-
-		/**
-		 * The meta object literal for the '<em><b>Predecessor</b></em>' reference feature.
-		 * <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
-		 * @generated
-		 */
-		EReference RELEASE__PREDECESSOR = eINSTANCE.getRelease_Predecessor();
-
-		/**
-		 * The meta object literal for the '<em><b>Successor</b></em>' reference feature.
-		 * <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
-		 * @generated
-		 */
-		EReference RELEASE__SUCCESSOR = eINSTANCE.getRelease_Successor();
-
-		/**
-		 * The meta object literal for the '<em><b>Applied Patches</b></em>' reference list feature.
-		 * <!-- begin-user-doc
-		 * --> <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference RELEASE__APPLIED_PATCHES = eINSTANCE.getRelease_AppliedPatches();
-
-		/**
-		 * The meta object literal for the '<em><b>Included Work Items</b></em>' reference list feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EReference RELEASE__INCLUDED_WORK_ITEMS = eINSTANCE.getRelease_IncludedWorkItems();
-
-		/**
-		 * The meta object literal for the '<em><b>Source Code Repository Revision</b></em>' reference feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EReference RELEASE__SOURCE_CODE_REPOSITORY_REVISION = eINSTANCE.getRelease_SourceCodeRepositoryRevision();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.model.release.impl.SourceCodeRepositoryRevisionImpl <em>Source Code Repository Revision</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * @see org.unicase.model.release.impl.SourceCodeRepositoryRevisionImpl
-		 * @see org.unicase.model.release.impl.ReleasePackageImpl#getSourceCodeRepositoryRevision()
-		 * @generated
-		 */
-		EClass SOURCE_CODE_REPOSITORY_REVISION = eINSTANCE.getSourceCodeRepositoryRevision();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.model.release.impl.SourceCodeRepositoryStreamImpl <em>Source Code Repository Stream</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * @see org.unicase.model.release.impl.SourceCodeRepositoryStreamImpl
-		 * @see org.unicase.model.release.impl.ReleasePackageImpl#getSourceCodeRepositoryStream()
-		 * @generated
-		 */
-		EClass SOURCE_CODE_REPOSITORY_STREAM = eINSTANCE.getSourceCodeRepositoryStream();
+		EReference ABSTRACT_RELEASE__INCLUDED_WORK_ITEMS = eINSTANCE.getAbstractRelease_IncludedWorkItems();
 
 	}
 

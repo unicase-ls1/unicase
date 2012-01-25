@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
@@ -31,7 +32,6 @@ import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.unicase.papyrus.UMLModel;
-import org.unicase.ui.common.commands.ECPCommand;
 
 public class UMLInitUtil {
 	

@@ -85,9 +85,9 @@
                   <iterate
                         ifEmpty="false"
                         operator="and">
-                     <reference
-                           definitionId="org.eclipse.emf.ecp.common.commands.modelElement">
-                     </reference>
+                     <instanceof
+                           value="org.unicase.model.UnicaseModelElement">
+                     </instanceof>
                   </iterate>
                </and>
             </visibleWhen>

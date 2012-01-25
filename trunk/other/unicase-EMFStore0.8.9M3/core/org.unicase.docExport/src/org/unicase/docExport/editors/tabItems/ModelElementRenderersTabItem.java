@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -33,7 +34,6 @@ import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
 import org.unicase.docExport.exportModel.renderers.options.RendererOption;
-import org.unicase.model.UnicaseModelElement;
 
 /**
  * A TemplateEditor TabItem where the ModelElementRenderer of a ModelElement type can be chosen, and its options can be
@@ -123,8 +123,8 @@ public class ModelElementRenderersTabItem extends TemplateEditorTabItem {
 		modelElementRendererSelect.addModifyListener(new ModifyListener() {
 
 			public void modifyText(ModifyEvent e) {
-				rebuildModelElementRendererOptions(modelElementRenderers.get(modelElementRendererSelect
-					.getSelectionIndex()), modelElementEClass);
+				rebuildModelElementRendererOptions(
+					modelElementRenderers.get(modelElementRendererSelect.getSelectionIndex()), modelElementEClass);
 				getEditor().testDirty();
 			}
 		});
@@ -132,8 +132,8 @@ public class ModelElementRenderersTabItem extends TemplateEditorTabItem {
 		// if there currently is a renderer - choose it!
 		if (currentRenderer != null) {
 			for (int i = 0; i < modelElementRenderers.size(); i++) {
-				if (modelElementRenderers.get(i).eClass().getInstanceClass().equals(
-					currentRenderer.eClass().getInstanceClass())) {
+				if (modelElementRenderers.get(i).eClass().getInstanceClass()
+					.equals(currentRenderer.eClass().getInstanceClass())) {
 					modelElementRendererSelect.select(i);
 				}
 			}
@@ -177,8 +177,7 @@ public class ModelElementRenderersTabItem extends TemplateEditorTabItem {
 			((Group) rendererOptionsContainer).setText(" Renderer options ");
 
 			final ArrayList<IItemPropertyDescriptor> attributes = getPropertyDescriptors(eClass);
-			final UnicaseModelElement modelElement = (UnicaseModelElement) eClass.getEPackage().getEFactoryInstance()
-				.create(eClass);
+			final EObject modelElement = eClass.getEPackage().getEFactoryInstance().create(eClass);
 
 			attributeOptionsSelector = new Combo(attributeOptionsContainer, SWT.READ_ONLY);
 			for (int i = 0; i < attributes.size(); i++) {
@@ -273,8 +272,8 @@ public class ModelElementRenderersTabItem extends TemplateEditorTabItem {
 			attributeRendererSelector.select(0);
 		} else {
 			for (int i = 0; i < renderers.size(); i++) {
-				if (renderers.get(i).eClass().getInstanceClass().equals(
-					currentAttributeRenderer.eClass().getInstanceClass())) {
+				if (renderers.get(i).eClass().getInstanceClass()
+					.equals(currentAttributeRenderer.eClass().getInstanceClass())) {
 					attributeRendererSelector.select(i + 1);
 				}
 			}
@@ -284,8 +283,7 @@ public class ModelElementRenderersTabItem extends TemplateEditorTabItem {
 	private ArrayList<IItemPropertyDescriptor> getPropertyDescriptors(EClass eClass) {
 		final ArrayList<IItemPropertyDescriptor> attributes = new ArrayList<IItemPropertyDescriptor>();
 
-		final UnicaseModelElement modelElement = (UnicaseModelElement) eClass.getEPackage().getEFactoryInstance()
-			.create(eClass);
+		final EObject modelElement = eClass.getEPackage().getEFactoryInstance().create(eClass);
 
 		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));

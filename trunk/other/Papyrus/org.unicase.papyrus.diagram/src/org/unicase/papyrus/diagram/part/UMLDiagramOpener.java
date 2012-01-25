@@ -1,23 +1,22 @@
 package org.unicase.papyrus.diagram.part;
 
-import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecp.common.commands.ECPCommand;
+import org.eclipse.emf.ecp.common.util.ModelElementOpener;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.papyrus.UMLModel;
 import org.unicase.papyrus.UMLDiagramType;
-import org.unicase.ui.common.commands.ECPCommand;
-import org.unicase.ui.util.ModelElementOpener;
-import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.papyrus.UMLModel;
 
 public class UMLDiagramOpener implements ModelElementOpener {
 	
@@ -49,20 +48,6 @@ public class UMLDiagramOpener implements ModelElementOpener {
 				ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error",
 						e.getMessage(), e.getStatus());
 			}
-			new UnicaseCommand() {
-
-				@Override
-				protected void doRun() {
-					try {
-						model.saveDiagramLayout();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				
-			}.run(true);
-			
 		}
 		
 	}

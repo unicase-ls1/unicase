@@ -10,9 +10,9 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.IssueMeetingSection;
@@ -50,10 +50,9 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 		Object o = event.getObjectParameterForExecution(COMMAND_ECLASS_PARAM);
 		if (o instanceof EClass) {
 			EClass newMEType = (EClass) o;
-			final UnicaseModelElement newMEInstance;
+			final EObject newMEInstance;
 			// create a new model element from this EClass
-			newMEInstance = (UnicaseModelElement) newMEType.getEPackage().getEFactoryInstance().create(newMEType);
-			newMEInstance.setName("new " + newMEType.getName());
+			newMEInstance = newMEType.getEPackage().getEFactoryInstance().create(newMEType);
 
 			// if model element if MEDiagram, set the diagram type
 

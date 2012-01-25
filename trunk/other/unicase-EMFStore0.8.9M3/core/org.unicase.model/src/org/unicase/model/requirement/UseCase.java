@@ -10,27 +10,29 @@ import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Use Case</b></em>'. <!-- end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.requirement.UseCase#getInitiatingActor <em>Initiating Actor</em>}</li>
- * <li>{@link org.unicase.model.requirement.UseCase#getParticipatingActors <em>Participating Actors</em>}</li>
- * <li>{@link org.unicase.model.requirement.UseCase#getRealizedUserTask <em>Realized User Task</em>}</li>
- * <li>{@link org.unicase.model.requirement.UseCase#getPrecondition <em>Precondition</em>}</li>
- * <li>{@link org.unicase.model.requirement.UseCase#getUseCaseSteps <em>Use Case Steps</em>}</li>
- * <li>{@link org.unicase.model.requirement.UseCase#getPostcondition <em>Postcondition</em>}</li>
- * <li>{@link org.unicase.model.requirement.UseCase#getRules <em>Rules</em>}</li>
- * <li>{@link org.unicase.model.requirement.UseCase#getException <em>Exception</em>}</li>
- * <li>{@link org.unicase.model.requirement.UseCase#getScenarios <em>Scenarios</em>}</li>
- * <li>{@link org.unicase.model.requirement.UseCase#getFunctionalRequirements <em>Functional Requirements</em>}</li>
- * <li>{@link org.unicase.model.requirement.UseCase#getNonFunctionalRequirements <em>Non Functional Requirements</em>}</li>
- * <li>{@link org.unicase.model.requirement.UseCase#getIdentifiedClasses <em>Identified Classes</em>}</li>
- * <li>{@link org.unicase.model.requirement.UseCase#getIncludedUseCases <em>Included Use Cases</em>}</li>
- * <li>{@link org.unicase.model.requirement.UseCase#getExtendedUseCases <em>Extended Use Cases</em>}</li>
- * <li>{@link org.unicase.model.requirement.UseCase#getSystemFunctions <em>System Functions</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UseCase#getInitiatingActor <em>Initiating Actor</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UseCase#getParticipatingActors <em>Participating Actors</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UseCase#getRealizedUserTask <em>Realized User Task</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UseCase#getPrecondition <em>Precondition</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UseCase#getUseCaseSteps <em>Use Case Steps</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UseCase#getPostcondition <em>Postcondition</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UseCase#getRules <em>Rules</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UseCase#getException <em>Exception</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UseCase#getScenarios <em>Scenarios</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UseCase#getFunctionalRequirements <em>Functional Requirements</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UseCase#getNonFunctionalRequirements <em>Non Functional Requirements</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UseCase#getIdentifiedClasses <em>Identified Classes</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UseCase#getIncludedUseCases <em>Included Use Cases</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UseCase#getExtendedUseCases <em>Extended Use Cases</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UseCase#getSystemFunctions <em>System Functions</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UseCase#isDone <em>Done</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.model.requirement.RequirementPackage#getUseCase()
  * @model
  * @generated
@@ -56,9 +58,8 @@ public interface UseCase extends UnicaseModelElement {
 	Actor getInitiatingActor();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.requirement.UseCase#getInitiatingActor <em>Initiating Actor</em>}
-	 * ' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.requirement.UseCase#getInitiatingActor <em>Initiating Actor</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Initiating Actor</em>' reference.
 	 * @see #getInitiatingActor()
 	 * @generated
@@ -85,39 +86,40 @@ public interface UseCase extends UnicaseModelElement {
 	EList<Scenario> getScenarios();
 
 	/**
-	 * Returns the value of the '<em><b>Functional Requirements</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.requirement.FunctionalRequirement}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.requirement.FunctionalRequirement#getUseCases <em>Use Cases</em>}'. <!-- begin-user-doc
+	 * Returns the value of the '<em><b>Functional Requirements</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.requirement.FunctionalRequirement}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.FunctionalRequirement#getUseCases <em>Use Cases</em>}'.
+	 * <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Functional Requirements</em>' reference list isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Functional Requirements</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_FunctionalRequirements()
 	 * @see org.unicase.model.requirement.FunctionalRequirement#getUseCases
-	 * @model opposite="useCases" annotation="org.eclipse.emf.ecp.editor priority='11.0' position='right'"
+	 * @model opposite="useCases"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='11.0' position='right'"
 	 * @generated
 	 */
 	EList<FunctionalRequirement> getFunctionalRequirements();
 
 	/**
-	 * Returns the value of the '<em><b>Non Functional Requirements</b></em>' reference list. The list contents are of
-	 * type {@link org.unicase.model.requirement.NonFunctionalRequirement}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedUseCases
-	 * <em>Restricted Use Cases</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Non Functional Requirements</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.requirement.NonFunctionalRequirement}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedUseCases <em>Restricted Use Cases</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Non Functional Requirements</em>' reference list isn't clear, there really should be
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Non Functional Requirements</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_NonFunctionalRequirements()
 	 * @see org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedUseCases
-	 * @model opposite="restrictedUseCases" annotation="org.eclipse.emf.ecp.editor priority='12.0' position='right'"
+	 * @model opposite="restrictedUseCases"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='12.0' position='right'"
 	 * @generated
 	 */
 	EList<NonFunctionalRequirement> getNonFunctionalRequirements();
@@ -142,14 +144,14 @@ public interface UseCase extends UnicaseModelElement {
 	EList<org.unicase.model.classes.Class> getIdentifiedClasses();
 
 	/**
-	 * Returns the value of the '<em><b>Included Use Cases</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.requirement.UseCase}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Included Use Cases</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.requirement.UseCase}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Included Use Cases</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Included Use Cases</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_IncludedUseCases()
 	 * @model annotation="org.eclipse.emf.ecp.editor priority='12.0' position='left'"
@@ -158,14 +160,14 @@ public interface UseCase extends UnicaseModelElement {
 	EList<UseCase> getIncludedUseCases();
 
 	/**
-	 * Returns the value of the '<em><b>Extended Use Cases</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.requirement.UseCase}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Extended Use Cases</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.requirement.UseCase}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Extended Use Cases</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Extended Use Cases</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_ExtendedUseCases()
 	 * @model annotation="org.eclipse.emf.ecp.editor priority='13.0' position='left'"
@@ -174,22 +176,49 @@ public interface UseCase extends UnicaseModelElement {
 	EList<UseCase> getExtendedUseCases();
 
 	/**
-	 * Returns the value of the '<em><b>System Functions</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.requirement.SystemFunction}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.requirement.SystemFunction#getUsecases <em>Usecases</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>System Functions</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.requirement.SystemFunction}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.SystemFunction#getUsecases <em>Usecases</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>System Functions</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>System Functions</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_SystemFunctions()
 	 * @see org.unicase.model.requirement.SystemFunction#getUsecases
-	 * @model opposite="usecases" annotation="org.eclipse.emf.ecp.editor priority='15.0' position='right'"
+	 * @model opposite="usecases"
+	 *        annotation="org.eclipse.emf.ecp.editor priority='15.0' position='right'"
 	 * @generated
 	 */
 	EList<SystemFunction> getSystemFunctions();
+
+	/**
+	 * Returns the value of the '<em><b>Done</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Done</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Done</em>' attribute.
+	 * @see #setDone(boolean)
+	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_Done()
+	 * @model annotation="org.eclipse.emf.ecp.editor priority='17.0' position='left'"
+	 * @generated
+	 */
+	boolean isDone();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.requirement.UseCase#isDone <em>Done</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Done</em>' attribute.
+	 * @see #isDone()
+	 * @generated
+	 */
+	void setDone(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Participating Actors</b></em>' reference list. The list contents are of type
@@ -230,9 +259,8 @@ public interface UseCase extends UnicaseModelElement {
 	UserTask getRealizedUserTask();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.requirement.UseCase#getRealizedUserTask
-	 * <em>Realized User Task</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.requirement.UseCase#getRealizedUserTask <em>Realized User Task</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Realized User Task</em>' reference.
 	 * @see #getRealizedUserTask()
 	 * @generated
@@ -240,13 +268,13 @@ public interface UseCase extends UnicaseModelElement {
 	void setRealizedUserTask(UserTask value);
 
 	/**
-	 * Returns the value of the '<em><b>Precondition</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Precondition</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Precondition</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Precondition</em>' attribute.
 	 * @see #setPrecondition(String)
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_Precondition()
@@ -256,9 +284,8 @@ public interface UseCase extends UnicaseModelElement {
 	String getPrecondition();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.requirement.UseCase#getPrecondition <em>Precondition</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.requirement.UseCase#getPrecondition <em>Precondition</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Precondition</em>' attribute.
 	 * @see #getPrecondition()
 	 * @generated
@@ -266,15 +293,15 @@ public interface UseCase extends UnicaseModelElement {
 	void setPrecondition(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Use Case Steps</b></em>' containment reference list. The list contents are of
-	 * type {@link org.unicase.model.requirement.Step}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.requirement.Step#getUseCase <em>Use Case</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Use Case Steps</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.model.requirement.Step}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.Step#getUseCase <em>Use Case</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Use Case Steps</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Use Case Steps</em>' containment reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_UseCaseSteps()
 	 * @see org.unicase.model.requirement.Step#getUseCase
@@ -285,13 +312,13 @@ public interface UseCase extends UnicaseModelElement {
 	EList<Step> getUseCaseSteps();
 
 	/**
-	 * Returns the value of the '<em><b>Postcondition</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Postcondition</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Postcondition</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Postcondition</em>' attribute.
 	 * @see #setPostcondition(String)
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_Postcondition()
@@ -301,9 +328,8 @@ public interface UseCase extends UnicaseModelElement {
 	String getPostcondition();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.requirement.UseCase#getPostcondition <em>Postcondition</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.requirement.UseCase#getPostcondition <em>Postcondition</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Postcondition</em>' attribute.
 	 * @see #getPostcondition()
 	 * @generated
@@ -338,13 +364,13 @@ public interface UseCase extends UnicaseModelElement {
 	void setRules(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Exception</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Exception</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Exception</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Exception</em>' attribute.
 	 * @see #setException(String)
 	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_Exception()
@@ -356,7 +382,6 @@ public interface UseCase extends UnicaseModelElement {
 	/**
 	 * Sets the value of the '{@link org.unicase.model.requirement.UseCase#getException <em>Exception</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Exception</em>' attribute.
 	 * @see #getException()
 	 * @generated

@@ -55,31 +55,9 @@ public class ReleaseFactoryImpl extends EFactoryImpl implements ReleaseFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case ReleasePackage.STREAM:
-			return createStream();
-		case ReleasePackage.RELEASE:
-			return createRelease();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Stream createStream() {
-		StreamImpl stream = new StreamImpl();
-		return stream;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Release createRelease() {
-		ReleaseImpl release = new ReleaseImpl();
-		return release;
 	}
 
 	/**

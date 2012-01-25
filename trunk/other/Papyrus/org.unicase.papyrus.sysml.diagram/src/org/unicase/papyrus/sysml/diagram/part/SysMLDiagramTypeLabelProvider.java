@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.papyrus.SysMLDiagramType;
-import org.unicase.papyrus.SysMLModel;
 
 public class SysMLDiagramTypeLabelProvider extends LabelProvider {
 	

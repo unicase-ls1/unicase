@@ -111,15 +111,6 @@ public interface DiagramPackage extends EPackage {
 	int ME_DIAGRAM__INCOMING_DOCUMENT_REFERENCES = ModelPackage.ATTACHMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ME_DIAGRAM__LEAF_SECTION = ModelPackage.ATTACHMENT__LEAF_SECTION;
-
-	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -265,15 +256,6 @@ public interface DiagramPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLASS_DIAGRAM__INCOMING_DOCUMENT_REFERENCES = ME_DIAGRAM__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_DIAGRAM__LEAF_SECTION = ME_DIAGRAM__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -423,15 +405,6 @@ public interface DiagramPackage extends EPackage {
 	int USE_CASE_DIAGRAM__INCOMING_DOCUMENT_REFERENCES = ME_DIAGRAM__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USE_CASE_DIAGRAM__LEAF_SECTION = ME_DIAGRAM__LEAF_SECTION;
-
-	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -577,15 +550,6 @@ public interface DiagramPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_DIAGRAM__INCOMING_DOCUMENT_REFERENCES = ME_DIAGRAM__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_DIAGRAM__LEAF_SECTION = ME_DIAGRAM__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -735,15 +699,6 @@ public interface DiagramPackage extends EPackage {
 	int STATE_DIAGRAM__INCOMING_DOCUMENT_REFERENCES = ME_DIAGRAM__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_DIAGRAM__LEAF_SECTION = ME_DIAGRAM__LEAF_SECTION;
-
-	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -891,15 +846,6 @@ public interface DiagramPackage extends EPackage {
 	int ACTIVITY_DIAGRAM__INCOMING_DOCUMENT_REFERENCES = ME_DIAGRAM__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVITY_DIAGRAM__LEAF_SECTION = ME_DIAGRAM__LEAF_SECTION;
-
-	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -1045,15 +991,6 @@ public interface DiagramPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORK_ITEM_DIAGRAM__INCOMING_DOCUMENT_REFERENCES = ME_DIAGRAM__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_DIAGRAM__LEAF_SECTION = ME_DIAGRAM__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.

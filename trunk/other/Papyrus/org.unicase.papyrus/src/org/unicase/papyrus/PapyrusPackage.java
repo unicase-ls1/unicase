@@ -335,22 +335,13 @@ public interface PapyrusPackage extends EPackage {
 	int UML_MODEL__DIAGRAM_TYPE = UMLPackage.MODEL_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Diagram Layout</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UML_MODEL__DIAGRAM_LAYOUT = UMLPackage.MODEL_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>UML Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UML_MODEL_FEATURE_COUNT = UMLPackage.MODEL_FEATURE_COUNT + 3;
+	int UML_MODEL_FEATURE_COUNT = UMLPackage.MODEL_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.papyrus.impl.SysMLModelImpl <em>Sys ML Model</em>}' class.
@@ -624,22 +615,13 @@ public interface PapyrusPackage extends EPackage {
 	int SYS_ML_MODEL__DIAGRAM_TYPE = UMLPackage.MODEL_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Diagram Layout</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SYS_ML_MODEL__DIAGRAM_LAYOUT = UMLPackage.MODEL_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Sys ML Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SYS_ML_MODEL_FEATURE_COUNT = UMLPackage.MODEL_FEATURE_COUNT + 3;
+	int SYS_ML_MODEL_FEATURE_COUNT = UMLPackage.MODEL_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.papyrus.impl.SysMLClassImpl <em>Sys ML Class</em>}' class.
@@ -1129,22 +1111,13 @@ public interface PapyrusPackage extends EPackage {
 	int SYS_ML_CLASS__GMF_DIAGRAM = UMLPackage.CLASS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Diagram Layout</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SYS_ML_CLASS__DIAGRAM_LAYOUT = UMLPackage.CLASS_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Sys ML Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SYS_ML_CLASS_FEATURE_COUNT = UMLPackage.CLASS_FEATURE_COUNT + 2;
+	int SYS_ML_CLASS_FEATURE_COUNT = UMLPackage.CLASS_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.papyrus.UMLDiagramType <em>UML Diagram Type</em>}' enum.
@@ -1199,17 +1172,6 @@ public interface PapyrusPackage extends EPackage {
 	EAttribute getUMLModel_DiagramType();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.papyrus.UMLModel#getDiagramLayout <em>Diagram Layout</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Diagram Layout</em>'.
-	 * @see org.unicase.papyrus.UMLModel#getDiagramLayout()
-	 * @see #getUMLModel()
-	 * @generated
-	 */
-	EAttribute getUMLModel_DiagramLayout();
-
-	/**
 	 * Returns the meta object for class '{@link org.unicase.papyrus.SysMLModel <em>Sys ML Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1242,17 +1204,6 @@ public interface PapyrusPackage extends EPackage {
 	EAttribute getSysMLModel_DiagramType();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.papyrus.SysMLModel#getDiagramLayout <em>Diagram Layout</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Diagram Layout</em>'.
-	 * @see org.unicase.papyrus.SysMLModel#getDiagramLayout()
-	 * @see #getSysMLModel()
-	 * @generated
-	 */
-	EAttribute getSysMLModel_DiagramLayout();
-
-	/**
 	 * Returns the meta object for class '{@link org.unicase.papyrus.SysMLClass <em>Sys ML Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1272,17 +1223,6 @@ public interface PapyrusPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSysMLClass_GmfDiagram();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.papyrus.SysMLClass#getDiagramLayout <em>Diagram Layout</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Diagram Layout</em>'.
-	 * @see org.unicase.papyrus.SysMLClass#getDiagramLayout()
-	 * @see #getSysMLClass()
-	 * @generated
-	 */
-	EAttribute getSysMLClass_DiagramLayout();
 
 	/**
 	 * Returns the meta object for enum '{@link org.unicase.papyrus.UMLDiagramType <em>UML Diagram Type</em>}'.
@@ -1354,15 +1294,6 @@ public interface PapyrusPackage extends EPackage {
 				.getUMLModel_DiagramType();
 
 		/**
-		 * The meta object literal for the '<em><b>Diagram Layout</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute UML_MODEL__DIAGRAM_LAYOUT = eINSTANCE
-				.getUMLModel_DiagramLayout();
-
-		/**
 		 * The meta object literal for the '{@link org.unicase.papyrus.impl.SysMLModelImpl <em>Sys ML Model</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1391,15 +1322,6 @@ public interface PapyrusPackage extends EPackage {
 				.getSysMLModel_DiagramType();
 
 		/**
-		 * The meta object literal for the '<em><b>Diagram Layout</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SYS_ML_MODEL__DIAGRAM_LAYOUT = eINSTANCE
-				.getSysMLModel_DiagramLayout();
-
-		/**
 		 * The meta object literal for the '{@link org.unicase.papyrus.impl.SysMLClassImpl <em>Sys ML Class</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1417,15 +1339,6 @@ public interface PapyrusPackage extends EPackage {
 		 */
 		EReference SYS_ML_CLASS__GMF_DIAGRAM = eINSTANCE
 				.getSysMLClass_GmfDiagram();
-
-		/**
-		 * The meta object literal for the '<em><b>Diagram Layout</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SYS_ML_CLASS__DIAGRAM_LAYOUT = eINSTANCE
-				.getSysMLClass_DiagramLayout();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.papyrus.UMLDiagramType <em>UML Diagram Type</em>}' enum.

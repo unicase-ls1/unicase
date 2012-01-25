@@ -7,10 +7,12 @@ package org.unicase.model.requirement.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.rationale.impl.CriterionImpl;
@@ -31,6 +33,7 @@ import org.unicase.model.requirement.UserTask;
  *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getRestrictedUseCases <em>Restricted Use Cases</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getSystemFunctions <em>System Functions</em>}</li>
  *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getUserTasks <em>User Tasks</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#isDone <em>Done</em>}</li>
  * </ul>
  * </p>
  *
@@ -74,6 +77,25 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 	 * @ordered
 	 */
 	protected EList<UserTask> userTasks;
+
+	/**
+	 * The default value of the '{@link #isDone() <em>Done</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDone()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DONE_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isDone() <em>Done</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDone()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean done = DONE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -145,6 +167,28 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isDone() {
+		return done;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDone(boolean newDone) {
+		boolean oldDone = done;
+		done = newDone;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__DONE,
+				oldDone, done));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -200,6 +244,8 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 			return getSystemFunctions();
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__USER_TASKS:
 			return getUserTasks();
+		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__DONE:
+			return isDone();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -228,6 +274,9 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 			getUserTasks().clear();
 			getUserTasks().addAll((Collection<? extends UserTask>) newValue);
 			return;
+		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__DONE:
+			setDone((Boolean) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -251,6 +300,9 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__USER_TASKS:
 			getUserTasks().clear();
 			return;
+		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__DONE:
+			setDone(DONE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -270,8 +322,27 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 			return systemFunctions != null && !systemFunctions.isEmpty();
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__USER_TASKS:
 			return userTasks != null && !userTasks.isEmpty();
+		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__DONE:
+			return done != DONE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (done: ");
+		result.append(done);
+		result.append(')');
+		return result.toString();
 	}
 
 } // NonFunctionalRequirementImpl

@@ -108,7 +108,6 @@ public class SysMLClassItemProvider extends ClassItemProvider implements
 
 		switch (notification.getFeatureID(SysMLClass.class)) {
 		case PapyrusPackage.SYS_ML_CLASS__GMF_DIAGRAM:
-		case PapyrusPackage.SYS_ML_CLASS__DIAGRAM_LAYOUT:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), false, true));
 			return;

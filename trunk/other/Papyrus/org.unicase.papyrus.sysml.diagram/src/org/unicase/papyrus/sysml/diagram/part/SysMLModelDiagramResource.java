@@ -24,16 +24,15 @@ import org.eclipse.emf.ecore.xmi.DOMHandler;
 import org.eclipse.emf.ecore.xmi.DOMHelper;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xml.type.AnyType;
-import org.unicase.ui.common.commands.ECPCommand;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.WorkspaceUtil;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.xml.sax.InputSource;
-
+import org.eclipse.emf.ecp.common.commands.ECPCommand;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.unicase.papyrus.PapyrusFactory;
 import org.unicase.papyrus.SysMLClass;
 import org.unicase.papyrus.SysMLModel;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.xml.sax.InputSource;
 
 // dengler: review
 /**
@@ -116,21 +115,13 @@ public class SysMLModelDiagramResource extends ResourceImpl implements Resource,
 
 			@Override
 			protected void doRun() {
-				try {
-					switch(model.getDiagramType()) {
-					case PARAMETRIC:
-						clazz = PapyrusFactory.eINSTANCE.createSysMLClass();
-						clazz.setName("Parametric");
-						model.getOwnedTypes().add(clazz);
-						clazz.loadDiagramLayout();
-						break;
-					default:
-						model.loadDiagramLayout();
-					}
-				} catch (IOException e) {
-					if (!(e.getCause() instanceof NullPointerException)) {
-						WorkspaceUtil.logException("Loading diagram layout failed", e);
-					}
+				switch(model.getDiagramType()) {
+				case PARAMETRIC:
+					clazz = PapyrusFactory.eINSTANCE.createSysMLClass();
+					clazz.setName("Parametric");
+					model.getOwnedTypes().add(clazz);
+					break;
+				default:
 				}
 			}
 			

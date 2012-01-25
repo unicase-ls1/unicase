@@ -2,14 +2,13 @@ package org.unicase.papyrus.diagram.services;
 
 import java.io.IOException;
 
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.papyrus.UMLDiagramType;
 import org.unicase.papyrus.UMLModel;
 import org.unicase.papyrus.diagram.part.UMLImageUtil;
-import org.unicase.papyrus.diagram.services.UnicaseUMLIconRegistry;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 public class UnicaseUMLIconRegistry implements IPageIconsRegistry {
 	

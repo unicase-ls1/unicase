@@ -63,6 +63,7 @@ public class FunctionalRequirementItemProvider extends UnicaseModelElementItemPr
 			addReviewedPropertyDescriptor(object);
 			addStakeholderPropertyDescriptor(object);
 			addCostPropertyDescriptor(object);
+			addDonePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -110,6 +111,22 @@ public class FunctionalRequirementItemProvider extends UnicaseModelElementItemPr
 			getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_cost_feature",
 				"_UI_FunctionalRequirement_type"), RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__COST, true,
 			false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Done feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDonePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_FunctionalRequirement_done_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_done_feature",
+				"_UI_FunctionalRequirement_type"), RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__DONE, true,
+			false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -256,6 +273,7 @@ public class FunctionalRequirementItemProvider extends UnicaseModelElementItemPr
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__PRIORITY:
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REVIEWED:
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__COST:
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__DONE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS:

@@ -1,11 +1,10 @@
 package org.unicase.papyrus.diagram.services;
 
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.papyrus.core.services.IServiceFactory;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
-import org.unicase.metamodel.Project;
-import org.unicase.papyrus.diagram.services.UnicasePageManager;
 
 public class UnicasePageManagerServiceFactory implements IServiceFactory {
 	
