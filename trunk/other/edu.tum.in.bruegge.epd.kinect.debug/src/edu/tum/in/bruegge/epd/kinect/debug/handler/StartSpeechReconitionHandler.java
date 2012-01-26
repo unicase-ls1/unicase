@@ -5,13 +5,18 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 
 import edu.tum.in.bruegge.epd.kinect.KinectManager;
-import edu.tum.in.bruegge.epd.kinect.debug.listener.DebugSpeechListener;
+import edu.tum.in.bruegge.epd.kinect.debug.speech.DebugSpeechListener;
 
 public class StartSpeechReconitionHandler extends AbstractHandler {
 
+	private static boolean addedListener = false;
+
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		KinectManager.INSTANCE.addSpeechListener(new DebugSpeechListener());
+		if (!addedListener) {
+			KinectManager.INSTANCE.addSpeechListener(new DebugSpeechListener());
+			addedListener = true;
+		}
 		KinectManager.INSTANCE.startSpeechRecognition();
 		return null;
 	}
