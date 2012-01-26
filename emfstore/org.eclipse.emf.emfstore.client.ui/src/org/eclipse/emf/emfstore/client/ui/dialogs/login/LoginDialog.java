@@ -17,6 +17,7 @@ import org.eclipse.emf.emfstore.client.model.Workspace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.ui.Activator;
+import org.eclipse.emf.emfstore.server.exceptions.AccessControlException;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
@@ -78,8 +79,14 @@ public class LoginDialog extends TitleAreaDialog {
 				usersession.getServerInfo().setLastUsersession(usersession);
 				setReturnCode(OK);
 				close();
-			} catch (EmfStoreException e) {
+			} catch (AccessControlException e) {
 				setErrorMessage(e.getMessage() + " Maybe your password changed.");
+			} catch (EmfStoreException e) {
+				MessageDialog.openWarning(getShell(), "Server not reachable",
+					"The server is currently not reachable.  Your password can not be verified, but it has been saved nevertheless. "
+						+ "Your current login information has been changed.");
+				setReturnCode(OK);
+				close();
 			}
 		}
 	}
@@ -354,6 +361,7 @@ public class LoginDialog extends TitleAreaDialog {
 			passText.setText(pass);
 			savePassButton.setSelection(session.isSavePassword());
 		}
+		this.isPasswordModified = false;
 	}
 
 	/**
