@@ -239,6 +239,9 @@ litigation.
    <includes
          id="org.eclipse.emf.emfstore.client.feature"
          version="0.0.0"/>
+         
+   <includes id="org.eclipse.emf.emfstore.client.ui.source" 
+         version="0.0.0"/>         
 
    <requires>
       <import plugin="org.eclipse.ui"/>

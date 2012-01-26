@@ -221,6 +221,9 @@ litigation.
    <includes
          id="org.eclipse.emf.ecp.editor.feature"
          version="0.0.0"/>
+         
+   <includes id="org.eclipse.emf.ecp.navigatoreditorbridge.source" 
+         version="0.0.0"/>
 
    <includes
          id="org.eclipse.emf.ecp.navigator.feature"

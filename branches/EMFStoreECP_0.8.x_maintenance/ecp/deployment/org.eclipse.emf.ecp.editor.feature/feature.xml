@@ -220,7 +220,10 @@ litigation.
    <includes
          id="org.eclipse.emf.ecp.common.feature"
          version="0.0.0"/>
-
+   
+   <includes id="org.eclipse.emf.ecp.editor.source" 
+         version="0.0.0"/>
+         
    <requires>
       <import plugin="org.eclipse.jface.text"/>
       <import plugin="org.eclipse.emf.ecp.common"/>

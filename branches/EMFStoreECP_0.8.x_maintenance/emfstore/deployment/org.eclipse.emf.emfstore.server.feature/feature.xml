@@ -222,6 +222,9 @@ litigation.
    <includes
          id="org.eclipse.emf.emfstore.common.feature"
          version="0.0.0"/>
+         
+   <includes id="org.eclipse.emf.emfstore.server.source" 
+         version="0.0.0"/>
 
    <requires>
       <import plugin="org.apache.commons.codec" version="1.3.0" match="greaterOrEqual"/>
