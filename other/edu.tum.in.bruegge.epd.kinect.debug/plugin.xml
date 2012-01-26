@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="edu.tum.in.bruegge.epd.kinect.debug.startSpeech"
+            name="Start Speech">
+      </command>
+      <command
+            id="edu.tum.in.bruegge.epd.kinect.debug.stopSpeech"
+            name="Stop Speech">
+      </command>
+      <command
+            id="edu.tum.in.bruegge.epd.kinect.debug.startKinect"
+            name="Start Kinect">
+      </command>
+      <command
+            id="edu.tum.in.bruegge.epd.kinect.debug.stopKinect"
+            name="Stop Kinect">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="edu.tum.in.bruegge.epd.kinect.debug.handler.StartSpeechReconitionHandler"
+            commandId="edu.tum.in.bruegge.epd.kinect.debug.startSpeech">
+      </handler>
+      <handler
+            class="edu.tum.in.bruegge.epd.kinect.debug.handler.StopSpeechRecognitionHandler"
+            commandId="edu.tum.in.bruegge.epd.kinect.debug.stopSpeech">
+      </handler>
+      <handler
+            class="edu.tum.in.bruegge.epd.kinect.debug.handler.StartKinectHandler"
+            commandId="edu.tum.in.bruegge.epd.kinect.debug.startKinect">
+      </handler>
+      <handler
+            class="edu.tum.in.bruegge.epd.kinect.debug.handler.StopKinectHandler"
+            commandId="edu.tum.in.bruegge.epd.kinect.debug.stopKinect">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="edu.tum.in.bruegge.epd.kinect.debug.speech">
+            <command
+                  commandId="edu.tum.in.bruegge.epd.kinect.debug.startSpeech"
+                  style="push">
+            </command>
+            <command
+                  commandId="edu.tum.in.bruegge.epd.kinect.debug.stopSpeech"
+                  style="push">
+            </command>
+         </toolbar>
+         <toolbar
+               id="edu.tum.in.bruegge.epd.kinect.debug.kinect">
+            <command
+                  commandId="edu.tum.in.bruegge.epd.kinect.debug.startKinect"
+                  style="push">
+            </command>
+            <command
+                  commandId="edu.tum.in.bruegge.epd.kinect.debug.stopKinect"
+                  style="push">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+
+</plugin>
