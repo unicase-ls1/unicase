@@ -13,6 +13,7 @@ import org.w3c.dom.Document;
 
 import edu.tum.in.bruegge.epd.kinect.KinectManager;
 import edu.tum.in.bruegge.epd.kinect.SpeechListener;
+import edu.tum.in.bruegge.epd.kinect.impl.connection.jni.ProxyConnectionManager;
 import edu.tum.in.bruegge.epd.kinect.impl.connection.socket.SocketConnectionManager;
 
 public class KinectManagerImpl implements KinectManager, KinectDataHandler {
@@ -30,8 +31,8 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 	private Set<SpeechListener> unfilteredSpeechListeners = new HashSet<SpeechListener>();
 
 	public KinectManagerImpl() {
-		this.connectionManager = new SocketConnectionManager();
-		// this.connectionManager = new ProxyConnectionManager();
+		// this.connectionManager = new SocketConnectionManager();
+		this.connectionManager = new ProxyConnectionManager();
 		this.skeletonParser = new SkeletonParser(this.humanBodyHandler);
 	}
 
@@ -79,7 +80,7 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 		this.speechWords.put(listener, listener.getWords());
 		if (listener.isFiltered()) {
 			for (String word : listener.getWords()) {
-				if (this.filteredSpeechListeners.containsKey(word)) {
+				if (!this.filteredSpeechListeners.containsKey(word)) {
 					this.filteredSpeechListeners.put(word, new HashSet<SpeechListener>());
 				}
 				this.filteredSpeechListeners.get(word).add(listener);
