@@ -19,6 +19,14 @@
             id="edu.tum.in.bruegge.epd.kinect.debug.stopKinect"
             name="Stop Kinect">
       </command>
+      <command
+            id="edu.tum.in.bruegge.epd.kinect.debug.startSkeleton"
+            name="Start SkeletonTracking">
+      </command>
+      <command
+            id="edu.tum.in.bruegge.epd.kinect.debug.stopSkeleton"
+            name="Stop SkeletonTracking">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -37,6 +45,14 @@
       <handler
             class="edu.tum.in.bruegge.epd.kinect.debug.handler.StopKinectHandler"
             commandId="edu.tum.in.bruegge.epd.kinect.debug.stopKinect">
+      </handler>
+      <handler
+            class="edu.tum.in.bruegge.epd.kinect.debug.handler.StartSkeletonTrackingHandler"
+            commandId="edu.tum.in.bruegge.epd.kinect.debug.startSkeleton">
+      </handler>
+      <handler
+            class="edu.tum.in.bruegge.epd.kinect.debug.handler.StopSkeletonTrackingHandler"
+            commandId="edu.tum.in.bruegge.epd.kinect.debug.stopSkeleton">
       </handler>
    </extension>
    <extension
@@ -62,6 +78,17 @@
             </command>
             <command
                   commandId="edu.tum.in.bruegge.epd.kinect.debug.stopKinect"
+                  style="push">
+            </command>
+         </toolbar>
+         <toolbar
+               id="edu.tum.in.bruegge.epd.kinect.debug.skeleton">
+            <command
+                  commandId="edu.tum.in.bruegge.epd.kinect.debug.startSkeleton"
+                  style="push">
+            </command>
+            <command
+                  commandId="edu.tum.in.bruegge.epd.kinect.debug.stopSkeleton"
                   style="push">
             </command>
          </toolbar>

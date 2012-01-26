@@ -1,16 +1,12 @@
-package edu.tum.in.bruegge.epd.kinect.debug.listener;
+package edu.tum.in.bruegge.epd.kinect.debug.speech;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.core.commands.Command;
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IParameter;
-import org.eclipse.core.commands.NotEnabledException;
-import org.eclipse.core.commands.NotHandledException;
 import org.eclipse.core.commands.Parameterization;
 import org.eclipse.core.commands.ParameterizedCommand;
-import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.jdt.core.search.IJavaSearchConstants;
 import org.eclipse.jdt.internal.ui.JavaUIMessages;
 import org.eclipse.jdt.internal.ui.dialogs.OpenTypeSelectionDialog;
@@ -27,6 +23,7 @@ import org.eclipse.ui.handlers.IHandlerService;
 
 import edu.tum.in.bruegge.epd.kinect.KinectManager;
 import edu.tum.in.bruegge.epd.kinect.SpeechListener;
+import edu.tum.in.bruegge.epd.kinect.debug.DebugHelper;
 
 public class DebugSpeechListener extends SpeechListener {
 
@@ -63,35 +60,15 @@ public class DebugSpeechListener extends SpeechListener {
 		if (HELLO.equalsIgnoreCase(speech)) {
 			showText("Welcome back. What would you like to do?");
 		} else if (DEBUG_START.equalsIgnoreCase(speech)) {
-			Display.getDefault().syncExec(new Runnable() {
-				public void run() {
-					runCommand("org.eclipse.debug.ui.commands.DebugLast");
-				}
-			});
+			DebugHelper.runLastDebug();
 		} else if (STEP_OVER.equalsIgnoreCase(speech)) {
-			Display.getDefault().syncExec(new Runnable() {
-				public void run() {
-					runCommand("org.eclipse.debug.ui.commands.StepOver");
-				}
-			});
+			DebugHelper.stepOver();
 		} else if (STEP_INTO.equalsIgnoreCase(speech)) {
-			Display.getDefault().syncExec(new Runnable() {
-				public void run() {
-					runCommand("org.eclipse.debug.ui.commands.StepInto");
-				}
-			});
+			DebugHelper.stepInto();
 		} else if (STEP_RETURN.equalsIgnoreCase(speech)) {
-			Display.getDefault().syncExec(new Runnable() {
-				public void run() {
-					runCommand("org.eclipse.debug.ui.commands.StepReturn");
-				}
-			});
+			DebugHelper.stepReturn();
 		} else if (RESUME.equalsIgnoreCase(speech)) {
-			Display.getDefault().syncExec(new Runnable() {
-				public void run() {
-					runCommand("org.eclipse.debug.ui.commands.Resume");
-				}
-			});
+			DebugHelper.resume();
 		} else if (JAVA_PERSPECTIVE.equalsIgnoreCase(speech)) {
 			Display.getDefault().syncExec(new Runnable() {
 				public void run() {
@@ -147,22 +124,7 @@ public class DebugSpeechListener extends SpeechListener {
 			}
 		});
 	}
-	private void runCommand(String command) {
-		System.out.println("Executing command " + command);
-		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
-		try {
-			handlerService.executeCommand(command, null);
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		} catch (NotDefinedException e) {
-			e.printStackTrace();
-		} catch (NotEnabledException e) {
-			e.printStackTrace();
-		} catch (NotHandledException e) {
-			e.printStackTrace();
-		}
-
-	}
+	
 	private void openTypeDialog() {
 		if (!isOpenTypeDialogOpen) {
 			isOpenTypeDialogOpen = true;
