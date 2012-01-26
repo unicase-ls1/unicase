@@ -7,4 +7,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: edu.tum.in.bruegge.epd.kinect;bundle-version="1.0.0",
  org.eclipse.emf.ecore;bundle-version="2.7.0",
  org.eclipse.kinect.humabodymodel;bundle-version="1.0.0"
-Export-Package: edu.tum.in.bruegge.epd.kinect.gesture
+Export-Package: edu.tum.in.bruegge.epd.kinect.gesture,
+ edu.tum.in.bruegge.epd.kinect.gesture.detectors

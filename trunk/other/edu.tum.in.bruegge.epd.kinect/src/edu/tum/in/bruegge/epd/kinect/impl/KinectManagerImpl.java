@@ -14,12 +14,13 @@ import org.w3c.dom.Document;
 import edu.tum.in.bruegge.epd.kinect.KinectManager;
 import edu.tum.in.bruegge.epd.kinect.SpeechListener;
 import edu.tum.in.bruegge.epd.kinect.impl.connection.jni.ProxyConnectionManager;
-import edu.tum.in.bruegge.epd.kinect.impl.connection.socket.SocketConnectionManager;
 
 public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 
 	private static final KinectManager INSTANCE = new KinectManagerImpl();
-
+	public static KinectManager getInstance() {
+		return INSTANCE;
+	}
 	private ConnectionManager connectionManager;// =
 												// KinectConnectionManager.getInstance();
 
@@ -36,9 +37,7 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 		this.skeletonParser = new SkeletonParser(this.humanBodyHandler);
 	}
 
-	public static KinectManager getInstance() {
-		return INSTANCE;
-	}
+	
 
 	@Override
 	public void startKinect() {

@@ -1,10 +1,10 @@
-package edu.tum.in.bruegge.epd.kinect.gesture.impl;
+package edu.tum.in.bruegge.epd.kinect.gesture.detectors;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import edu.tum.in.bruegge.epd.kinect.gesture.Gesture;
 
-public class JumpGestureDetector extends Gesture {
+public class CrouchGestureDetector extends Gesture {
 
 	@Override
 	public boolean isGestureDetected(Notification notification) {
