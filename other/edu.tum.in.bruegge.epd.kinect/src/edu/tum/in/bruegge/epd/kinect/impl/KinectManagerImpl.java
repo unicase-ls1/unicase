@@ -18,14 +18,15 @@ import edu.tum.in.bruegge.epd.kinect.impl.connection.jni.ProxyConnectionManager;
 public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 
 	private static final KinectManager INSTANCE = new KinectManagerImpl();
+	
 	public static KinectManager getInstance() {
 		return INSTANCE;
 	}
-	private ConnectionManager connectionManager;// =
-												// KinectConnectionManager.getInstance();
-
-	private HumanBodyModelUtils humanBodyHandler = new HumanBodyModelUtils();
+	
+	private ConnectionManager connectionManager;
+	
 	private SkeletonParser skeletonParser;
+	private HumanBodyModelUtils humanBodyModel = new HumanBodyModelUtils();
 
 	private Map<SpeechListener, Set<String>> speechWords = new HashMap<SpeechListener, Set<String>>();
 	private Map<String, Set<SpeechListener>> filteredSpeechListeners = new HashMap<String, Set<SpeechListener>>();
@@ -34,10 +35,10 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 	public KinectManagerImpl() {
 		// this.connectionManager = new SocketConnectionManager();
 		this.connectionManager = new ProxyConnectionManager();
-		this.skeletonParser = new SkeletonParser(this.humanBodyHandler);
+		this.connectionManager.setDataHandler(this);
+		
+		this.skeletonParser = new SkeletonParser(this.humanBodyModel);
 	}
-
-	
 
 	@Override
 	public void startKinect() {
@@ -61,7 +62,7 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 
 	@Override
 	public HumanContainer getSkeletonModel() {
-		return this.humanBodyHandler.getHumanContainer();
+		return this.humanBodyModel.getHumanContainer();
 	}
 
 	@Override
@@ -71,7 +72,7 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 
 	@Override
 	public void stopSkeletonTracking() {
-		// empty
+		this.connectionManager.stopSkeletonTracking();
 	}
 
 	@Override
@@ -111,7 +112,7 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 
 	@Override
 	public void stopSpeechRecognition() {
-		// empty
+		this.connectionManager.stopSpeechRecognition();
 	}
 
 	@Override
@@ -122,12 +123,18 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 	@Override
 	public void handleSpeechData(String word) {
 		Set<SpeechListener> listeners = new HashSet<SpeechListener>();
+		
+		// Add all listeners that want to get notified on every recognized word
 		listeners.addAll(this.unfilteredSpeechListeners);
-		listeners.addAll(this.filteredSpeechListeners.get(word));
-
+		
+		// Add all listeners that only want to be notified on specific words
+		if (this.filteredSpeechListeners.containsKey(word)) {
+			listeners.addAll(this.filteredSpeechListeners.get(word));
+		}
+		
+		// Notify speech listeners
 		for (SpeechListener listener : listeners) {
 			listener.notifySpeech(word);
 		}
 	}
-
 }

@@ -13,10 +13,10 @@ import org.xml.sax.SAXException;
 
 public class ConnectionDataHandler {
 
-	private KinectDataHandler dataHandler;
+	protected KinectDataHandler dataHandler;
 	private DocumentBuilder docBuilder;
 	
-	public void init() {
+	public ConnectionDataHandler() {
 		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		try {
 			this.docBuilder = docBuilderFactory.newDocumentBuilder();

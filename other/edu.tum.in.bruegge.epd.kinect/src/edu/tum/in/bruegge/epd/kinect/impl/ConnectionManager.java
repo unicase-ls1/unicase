@@ -8,5 +8,10 @@ public interface ConnectionManager {
 	void closeConnection() throws IOException;
 
 	void startSkeletonTracking();
+	void stopSkeletonTracking();
+	
 	void startSpeechRecognition(String[] keywords);
+	void stopSpeechRecognition();
+	
+	void setDataHandler(KinectDataHandler dataHandler);
 }

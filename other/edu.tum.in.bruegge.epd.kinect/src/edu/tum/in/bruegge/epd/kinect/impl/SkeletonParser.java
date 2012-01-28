@@ -1,23 +1,38 @@
 package edu.tum.in.bruegge.epd.kinect.impl;
 
+import humandiagramgef.HumanBodyEnum;
+import humandiagramgef.HumanBodyModelUtils;
+
+import java.util.logging.Logger;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import humandiagramgef.HumanBodyEnum;
-import humandiagramgef.HumanBodyModelUtils;
-
 public class SkeletonParser {
 	
+	public static final String SKELETON_KEYWORD = "skeletonData";
+	
+	private Logger logger = Logger.getLogger(this.getClass().getSimpleName());
+	
 	private HumanBodyModelUtils humanBodyModel;
+	
+	private int oldNumSkeletons = -1;
 
 
-	public SkeletonParser(HumanBodyModelUtils humanBodyHandler) {
-		this.humanBodyModel = humanBodyHandler;
+	public SkeletonParser(HumanBodyModelUtils humanBodyModel) {
+		this.humanBodyModel = humanBodyModel;
 	}
 	
 	public void parseSkeleton(Document doc) {
-		NodeList skeletons = doc.getElementsByTagName("skeletonData");
+		NodeList skeletons = doc.getElementsByTagName(SKELETON_KEYWORD);
+		
+		// Check whether number of skeletons has changed
+		if (skeletons.getLength() != oldNumSkeletons) {
+			oldNumSkeletons = skeletons.getLength();
+			logger.info("Found " + skeletons.getLength() + " skeletons");
+		}
+		
 		for (int i = 0; i < skeletons.getLength(); i++) {
 			Node skeleton = skeletons.item(i);
 			NodeList skeletonData = skeleton.getChildNodes();
@@ -69,9 +84,8 @@ public class SkeletonParser {
 		private HumanBodyEnum part;
 	}
 	
-	
 	private static HumanBodyEnum getHumanPart(String jointId) {
-		// TODO Use proper names in XML
+		// TODO Use proper names in XML. Needs to be fixed in C/C#-Code.
 		// return HumanBodyEnum.valueOf(jointId);
 		if (jointId.equals("Head")) {
 			return HumanBodyEnum.Head;

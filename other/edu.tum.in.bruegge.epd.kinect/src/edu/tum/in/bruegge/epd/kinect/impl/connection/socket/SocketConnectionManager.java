@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import edu.tum.in.bruegge.epd.kinect.impl.ConnectionDataHandler;
 import edu.tum.in.bruegge.epd.kinect.impl.ConnectionManager;
+import edu.tum.in.bruegge.epd.kinect.impl.KinectDataHandler;
 
 public class SocketConnectionManager extends ConnectionDataHandler implements ConnectionManager {
 
@@ -41,9 +42,27 @@ public class SocketConnectionManager extends ConnectionDataHandler implements Co
 	}
 
 	@Override
+	public void stopSkeletonTracking() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	public void startSpeechRecognition(String[] keywords) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void stopSpeechRecognition() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setDataHandler(KinectDataHandler dataHandler) {
+		// TODO Auto-generated method stub
+		this.dataHandler = dataHandler;
 	}
 
 }
