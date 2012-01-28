@@ -10,6 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -161,8 +162,8 @@ public abstract class FopWriter implements DocWriter {
 			DefaultConfigurationBuilder cfgBuilder = new DefaultConfigurationBuilder();
 			Configuration cfg;
 			try {
-				// FIXME: use relative path
-				cfg = cfgBuilder.buildFromFile(new File("/Users/davidfu/Downloads/conf.xml"));
+				InputStream configurationStream = getClass().getResourceAsStream("/lib/conf.xml");
+				cfg = cfgBuilder.build(configurationStream);
 			} catch (ConfigurationException e) {
 				throw new DocumentExportException("Couldn't read/write the files", e);
 			} catch (SAXException e) {
