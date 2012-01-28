@@ -16,6 +16,7 @@ public class CrouchGestureDetector extends Gesture {
 	
 	private MovingAverageCalculator yMovingAvgHead;
 	
+	
 	public CrouchGestureDetector() {
 		this.yMovingAvgHead = new MovingAverageCalculator(NUM_PERIODS);
 	}
