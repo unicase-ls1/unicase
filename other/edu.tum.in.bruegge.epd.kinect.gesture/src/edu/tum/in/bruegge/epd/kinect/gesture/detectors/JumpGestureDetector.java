@@ -22,9 +22,6 @@ public class JumpGestureDetector extends Gesture {
 	private boolean gestureFootLeft = false;
 	private boolean gestureFootRight = false;
 	
-	float max = Float.MIN_VALUE;
-	float min = Float.MAX_VALUE;
-	
 	
 	public JumpGestureDetector() {
 		this.yMovingAvgHead = new MovingAverageCalculator(NUM_PERIODS);
