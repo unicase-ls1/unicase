@@ -21,9 +21,14 @@ public class ProxySpeechConnectionProcessor extends ConnectionProcessor {
 	
 	public void init() {
 		try {
+			File dll = new File("lib/MicrosoftKinectWrapper.j4n.dll");
+			if (!dll.exists()) {
+				URL dllUrl = this.getClass().getResource("/MicrosoftKinectWrapper.j4n.dll");
+				dll = new File(dllUrl.toURI());
+			}
+			
 			Bridge.init();
-			URL url = this.getClass().getResource("/MicrosoftKinectWrapper.j4n.dll");
-			Bridge.LoadAndRegisterAssemblyFrom(new File(url.toURI()));
+			Bridge.LoadAndRegisterAssemblyFrom(dll);
 		} catch (IOException ioe) {
 			// TODO: handle exception
 			ioe.printStackTrace();
