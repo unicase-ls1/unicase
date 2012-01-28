@@ -1,19 +1,7 @@
 package org.unicase.ui.descriptionpage;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Insets;
-import java.awt.image.BufferedImage;
-import java.awt.image.DirectColorModel;
-import java.awt.image.IndexColorModel;
-import java.awt.image.WritableRaster;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 
-import javax.imageio.ImageIO;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -33,9 +21,7 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
-import org.eclipse.swt.graphics.PaletteData;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -82,6 +68,8 @@ public class LatexDescriptionPage extends AbstractMEEditorPage {
 
 	private static final String ID = "org.unicase.ui.descriptionpage.latexDescriptionPage";
 	private static final String NAME = "LatexPreview";
+	private String imagePath = "testTempExport.png";
+
 	private UnicaseModelElement modelElement;
 	private FormToolkit toolkit;
 	private ScrolledForm form;
@@ -141,58 +129,60 @@ public class LatexDescriptionPage extends AbstractMEEditorPage {
 	}
 
 	private void createPreviewButton() {
+		final Button previewButton = new Button(buttonPanel, SWT.PUSH);
+		previewButton.setText("Preview");
+		previewButton.addListener(SWT.Selection, new Listener() {
+
+			@Override
+			public void handleEvent(Event event) {
+				if (event.widget == previewButton) {
+					body.setFocus();
+					exportToPng();
+					Image newImg = createImage();
+					previewImage = newImg;
+					previewWidget.redraw();
+				}
+			}
+		});
+	}
+
+	private void createButtonPanel() {
 		buttonPanel = new Composite(body, SWT.NONE);
 		buttonPanel.setLayout(new GridLayout());
 		GridData gridData = new GridData();
 		gridData.verticalAlignment = GridData.BEGINNING;
 		buttonPanel.setLayoutData(gridData);
-		final Button button = new Button(buttonPanel, SWT.PUSH);
-		button.setText("Preview");
-
-		Listener buttonListener = new Listener() {
-
-			@Override
-			public void handleEvent(Event event) {
-				if (event.widget == button) {
-					body.setFocus();
-					Image newImg = createImage(exportToPng());
-					previewImage = newImg;
-					previewWidget.redraw();
-				}
-			}
-		};
-		button.addListener(SWT.Selection, buttonListener);
 	}
 
 	private void createResizeButtons() {
-		final Button zoomIn = new Button(buttonPanel, SWT.PUSH);
-		zoomIn.setText("Zoom in");
+		final Button zoomInButton = new Button(buttonPanel, SWT.PUSH);
+		zoomInButton.setText("Zoom in");
 		GridData gridData = new GridData();
 		gridData.verticalAlignment = GridData.BEGINNING;
-		zoomIn.setLayoutData(gridData);
-		zoomIn.addListener(SWT.Selection, new Listener() {
+		zoomInButton.setLayoutData(gridData);
+		zoomInButton.addListener(SWT.Selection, new Listener() {
 
 			@Override
 			public void handleEvent(Event event) {
-				if (event.widget == zoomIn) {
+				if (event.widget == zoomInButton) {
 					ImageData imgData = previewImage.getImageData();
-					previewImage = resize(previewImage, imgData.width * 2,
+					previewImage = resizeImage(previewImage, imgData.width * 2,
 							imgData.height * 2);
 					previewWidget.redraw();
 				}
 			}
 		});
 
-		final Button zoomOut = new Button(buttonPanel, SWT.PUSH);
-		zoomOut.setText("Zoom out");
-		zoomOut.setLayoutData(gridData);
-		zoomOut.addListener(SWT.Selection, new Listener() {
+		final Button zoomOutButton = new Button(buttonPanel, SWT.PUSH);
+		zoomOutButton.setText("Zoom out");
+		zoomOutButton.setLayoutData(gridData);
+		zoomOutButton.addListener(SWT.Selection, new Listener() {
 
 			@Override
 			public void handleEvent(Event event) {
-				if (event.widget == zoomOut) {
+				if (event.widget == zoomOutButton) {
 					ImageData imgData = previewImage.getImageData();
-					previewImage = resize(previewImage, imgData.width / 2,
+					previewImage = resizeImage(previewImage, imgData.width / 2,
 							imgData.height / 2);
 					previewWidget.redraw();
 				}
@@ -200,7 +190,7 @@ public class LatexDescriptionPage extends AbstractMEEditorPage {
 		});
 	}
 
-	private Image resize(Image image, int newWidth, int newHeight) {
+	private Image resizeImage(Image image, int newWidth, int newHeight) {
 		toolkit.getColors().getDisplay();
 		Image scaled = new Image(Display.getDefault(), newWidth, newHeight);
 		GC gc = new GC(scaled);
@@ -217,9 +207,8 @@ public class LatexDescriptionPage extends AbstractMEEditorPage {
 	 * Create the preview here, which is the "right half" of the view.
 	 */
 	private void createPreviewWidget() {
-		ByteArrayOutputStream stream = exportToPng();
-		createBufferedImage(stream);
-		previewImage = createImage(stream);
+		exportToPng();
+		previewImage = createImage();
 
 		previewWidget = new Canvas(body, SWT.NO_BACKGROUND
 				| SWT.NO_REDRAW_RESIZE | SWT.H_SCROLL | SWT.V_SCROLL);
@@ -286,6 +275,9 @@ public class LatexDescriptionPage extends AbstractMEEditorPage {
 			}
 		});
 
+		/*
+		 * Adapt the sizes of the scroll bars upon resizing of the window.
+		 */
 		previewWidget.addListener(SWT.Resize, new Listener() {
 			public void handleEvent(Event e) {
 				Rectangle rect = previewImage.getBounds();
@@ -318,121 +310,15 @@ public class LatexDescriptionPage extends AbstractMEEditorPage {
 	 * 
 	 * @param outputStream
 	 */
-	private Image createImage(ByteArrayOutputStream outputStream) {
-
-//		TeXFormula formula = new TeXFormula(modelElement.getDescription());
-//		TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 20);
-//		icon.setInsets(new Insets(5, 5, 5, 5));
-//
-//		BufferedImage image = new BufferedImage(icon.getIconWidth(),
-//				icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
-//		Graphics2D g2 = image.createGraphics();
-//		g2.setColor(Color.white);
-//		g2.fillRect(0, 0, icon.getIconWidth(), icon.getIconHeight());
-//		File file = new File("Example1.png");
-//		try {
-//			ImageIO.write(image, "png", file.getAbsoluteFile());
-//		} catch (IOException ex) {
-//		}
-//		Image swtImage = new Image(toolkit.getColors().getDisplay(),
-//				"Example1.png");
-//		return swtImage;
-//		BufferedImage bufImg = createBufferedImage(outputStream);
-//		ImageData imgData = convertToSWTImage(bufImg);
-//		Image img = new Image(toolkit.getColors().getDisplay(), imgData);
-//		return img;
-
-		// FIXME Use relative file path!
+	private Image createImage() {
 		 return new Image(toolkit.getColors().getDisplay(),
-		 "testTempExport.png");
-	}
-	
-
-	/**
-	 * Creates a buffered image out of an outputStream.
-	 * 
-	 * @param outputStream
-	 * @return
-	 */
-	private BufferedImage createBufferedImage(ByteArrayOutputStream outputStream) {
-		InputStream inputStream = new ByteArrayInputStream(
-				outputStream.toByteArray());
-		BufferedImage bufferedImage = null;
-		try {
-			bufferedImage = ImageIO.read(inputStream);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		/*
-		 * Convert bufferedImage into a new BufferedImage with a ColorModel
-		 * different to ComponentColorModel.
-		 */
-		BufferedImage newImg = new BufferedImage(bufferedImage.getWidth(),
-				bufferedImage.getHeight(), BufferedImage.TYPE_INT_RGB);
-		newImg.setData(bufferedImage.getData());
-		return newImg;
+		 imagePath);
 	}
 
 	/**
-	 * Convert a BufferedImage into SWT ImageData
+	 * Writes the given object to a file located at imagePath.
 	 */
-	private ImageData convertToSWTImage(BufferedImage bufferedImage) {
-		if (bufferedImage.getColorModel() instanceof DirectColorModel) {
-			DirectColorModel colorModel = (DirectColorModel) bufferedImage
-					.getColorModel();
-			PaletteData palette = new PaletteData(colorModel.getRedMask(),
-					colorModel.getGreenMask(), colorModel.getBlueMask());
-			ImageData data = new ImageData(bufferedImage.getWidth(),
-					bufferedImage.getHeight(), colorModel.getPixelSize(),
-					palette);
-			WritableRaster raster = bufferedImage.getRaster();
-			int[] pixelArray = new int[3];
-			for (int y = 0; y < data.height; y++) {
-				for (int x = 0; x < data.width; x++) {
-					raster.getPixel(x, y, pixelArray);
-					int pixel = palette.getPixel(new RGB(pixelArray[0],
-							pixelArray[1], pixelArray[2]));
-					data.setPixel(x, y, pixel);
-				}
-			}
-			return data;
-		} else if (bufferedImage.getColorModel() instanceof IndexColorModel) {
-			IndexColorModel colorModel = (IndexColorModel) bufferedImage
-					.getColorModel();
-			int size = colorModel.getMapSize();
-			byte[] reds = new byte[size];
-			byte[] greens = new byte[size];
-			byte[] blues = new byte[size];
-			colorModel.getReds(reds);
-			colorModel.getGreens(greens);
-			colorModel.getBlues(blues);
-			RGB[] rgbs = new RGB[size];
-			for (int i = 0; i < rgbs.length; i++) {
-				rgbs[i] = new RGB(reds[i] & 0xFF, greens[i] & 0xFF,
-						blues[i] & 0xFF);
-			}
-			PaletteData palette = new PaletteData(rgbs);
-			ImageData data = new ImageData(bufferedImage.getWidth(),
-					bufferedImage.getHeight(), colorModel.getPixelSize(),
-					palette);
-			data.transparentPixel = colorModel.getTransparentPixel();
-			WritableRaster raster = bufferedImage.getRaster();
-			int[] pixelArray = new int[1];
-			for (int y = 0; y < data.height; y++) {
-				for (int x = 0; x < data.width; x++) {
-					raster.getPixel(x, y, pixelArray);
-					data.setPixel(x, y, pixelArray[0]);
-				}
-			}
-			return data;
-		}
-		return null;
-	}
-
-	/**
-	 * Returns an output stream containing the data created by a FopPngWriter
-	 */
-	private ByteArrayOutputStream writeXslFile(URootCompositeSection root) {
+	private void writeXslFile(URootCompositeSection root) {
 		FopPngWriter writer = new FopPngWriter();
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory
@@ -441,27 +327,21 @@ public class LatexDescriptionPage extends AbstractMEEditorPage {
 
 			Document doc = parser.newDocument();
 			writer.setDoc(doc);
-			File temp = new File("testTempExport.png");
-			System.out.println(temp.getAbsolutePath());
-			// uncomment next line if export to a local file is wanted.
-			// FIXME Use relative file path!
-			 writer.export(temp.getAbsolutePath(), root);
-			return writer.exportToStream(root);
+			File temp = new File(imagePath);
+			writer.export(temp.getAbsolutePath(), root);
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		} catch (DocumentExportException e) {
 			e.printStackTrace();
 		}
-		return null;
 	}
 
 	/**
 	 * Export the description text to a png output stream
 	 */
-	private ByteArrayOutputStream exportToPng() {
+	private void exportToPng() {
 		/*
-		 * Put description text into a UParagraph (see ModelElementRenderer
-		 * 508ff).
+		 * Put description text into a UParagraph.
 		 */
 		Template newTemplate = DefaultDocumentTemplateFactory.build();
 		UParagraph description = new UParagraph(
@@ -471,8 +351,7 @@ public class LatexDescriptionPage extends AbstractMEEditorPage {
 		description.getOption().setTextAlign(TextAlign.JUSTIFY);
 
 		/*
-		 * Put UParagraph into a USection and then into a URootCompositeSection
-		 * (see DefaultDocumentRenderer 91ff).
+		 * Put UParagraph into a USection.
 		 */
 		USection section = new USection();
 		UParagraph titleParagraph = new UParagraph("");
@@ -491,7 +370,10 @@ public class LatexDescriptionPage extends AbstractMEEditorPage {
 		setHeader(root, newTemplate);
 		setFooter(root, modelElement, newTemplate);
 		root.setLayoutOptions(newTemplate.getLayoutOptions());
-		return writeXslFile(root);
+		/*
+		 * Pass the whole thing to the fop writer.
+		 */
+		writeXslFile(root);
 	}
 
 	private void setFooter(URootCompositeSection root,
@@ -539,6 +421,7 @@ public class LatexDescriptionPage extends AbstractMEEditorPage {
 			form.setText(getEditor().getTitle() + ": Description");
 			createBody();
 			createDescriptionWidget();
+			createButtonPanel();
 			createPreviewButton();
 			createResizeButtons();
 			createPreviewWidget();
