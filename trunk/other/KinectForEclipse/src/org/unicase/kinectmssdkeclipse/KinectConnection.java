@@ -54,14 +54,13 @@ public class KinectConnection {
 	
 	public KinectConnection() {
 		this.skeletalTracking = new SkeletalTracking();
-		this.speechRecognition = new SpeechRecognition(/*this*/);
-		this.kinectGame= new KinectGame();
-		this.kinectGame= new KinectGame();
-		this.kinectGame= new KinectGame();
-		this.kinectGame= new KinectGame();
-		this.kinectGame= new KinectGame();
-		this.kinectGame= new KinectGame();
-		
+		this.speechRecognition = new SpeechRecognition(/* this */);
+		this.kinectGame = new KinectGame();
+		this.kinectGame = new KinectGame();
+		this.kinectGame = new KinectGame();
+		this.kinectGame = new KinectGame();
+		this.kinectGame = new KinectGame();
+		this.kinectGame = new KinectGame();
 	}
 
 	public static KinectConnection getInstance(){
