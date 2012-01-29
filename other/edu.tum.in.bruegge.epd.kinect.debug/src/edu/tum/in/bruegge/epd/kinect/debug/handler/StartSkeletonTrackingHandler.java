@@ -5,7 +5,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 
 import edu.tum.in.bruegge.epd.kinect.KinectManager;
-import edu.tum.in.bruegge.epd.kinect.debug.gesture.DebugGestureListener;
+import edu.tum.in.bruegge.epd.kinect.debug.listener.DebugGestureListener;
 import edu.tum.in.bruegge.epd.kinect.gesture.GestureProxy;
 import edu.tum.in.bruegge.epd.kinect.gesture.detectors.CrouchGestureDetector;
 import edu.tum.in.bruegge.epd.kinect.gesture.detectors.JumpGestureDetector;
