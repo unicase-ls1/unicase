@@ -38,7 +38,9 @@ public class DebugSpeechListener extends SpeechListener {
 	private static final String STOP_SPEECH_RECOGNITION = "Stop speech recognition";
 	private static final String OPEN_PRESENTATION = "Open Presentation";
 	private static final String OPEN_TYPE = "Open Type";
+	
 	private static final Set<String> words = new HashSet<String>();
+	
 	private static boolean isOpenTypeDialogOpen = false;
 	
 	static {
@@ -74,20 +76,15 @@ public class DebugSpeechListener extends SpeechListener {
 				public void run() {
 					IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
 					ICommandService commandService = (ICommandService) PlatformUI.getWorkbench().getService(ICommandService.class);
-					Command showView = commandService
-					.getCommand("org.eclipse.ui.perspectives.showPerspective");
-					IParameter persIdParm;
+					Command showView = commandService.getCommand("org.eclipse.ui.perspectives.showPerspective");
 					try {
-						persIdParm = showView
-						.getParameter("org.eclipse.ui.perspectives.showPerspective.perspectiveId");
+						IParameter persIdParm = showView.getParameter("org.eclipse.ui.perspectives.showPerspective.perspectiveId");
 
 						Parameterization parm = new Parameterization(persIdParm, "org.eclipse.jdt.ui.JavaPerspective");
-						ParameterizedCommand parmCommand = new ParameterizedCommand(
-								showView, new Parameterization[] { parm });
+						ParameterizedCommand parmCommand = new ParameterizedCommand(showView, new Parameterization[] { parm });
 
 						handlerService.executeCommand(parmCommand, null);
-					} catch (Exception e)
-					{
+					} catch (Exception e) {
 						
 					}
 				}
@@ -97,11 +94,10 @@ public class DebugSpeechListener extends SpeechListener {
 		} else if (STOP_SPEECH_RECOGNITION.equalsIgnoreCase(speech)) {
 			KinectManager.INSTANCE.stopSpeechRecognition();
 		} else if (OPEN_PRESENTATION.equalsIgnoreCase(speech)) {
-
+			
 		} else if (OPEN_TYPE.equalsIgnoreCase(speech)) {
 			openTypeDialog();
 		}
-
 	}
 
 	@Override
@@ -133,9 +129,7 @@ public class DebugSpeechListener extends SpeechListener {
 				public void run() {
 					IWorkbench wb = PlatformUI.getWorkbench();
 					IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
-					@SuppressWarnings("restriction")
-					OpenTypeSelectionDialog dialog = new OpenTypeSelectionDialog(win.getShell(), true, PlatformUI.getWorkbench()
-							.getProgressService(), null, IJavaSearchConstants.TYPE);
+					OpenTypeSelectionDialog dialog = new OpenTypeSelectionDialog(win.getShell(), true, PlatformUI.getWorkbench().getProgressService(), null, IJavaSearchConstants.TYPE);
 					dialog.setTitle(JavaUIMessages.OpenTypeAction_dialogTitle);
 					dialog.setMessage(JavaUIMessages.OpenTypeAction_dialogMessage);
 					dialog.setBlockOnOpen(false);
