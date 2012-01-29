@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="org.unicase.kineclipse.gestureCommandBindings" name="gestureCommandBindings" schema="schema/org.unicase.kineclipse.gestureCommandBindings.exsd"/>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.unicase.kinectmssdkeclipse.handlers.KinectStartHandler"
+            commandId="KinectMsSdkEclipse.command">
+      </handler>
+      <handler
+            class="org.unicase.kinectmssdkeclipse.handlers.SkeletalTrackingHandler"
+            commandId="KinectMsSdkEclipse.command2">
+      </handler>
+      <handler
+            class="org.unicase.kinectmssdkeclipse.handlers.SpeechRecognitionHandler"
+            commandId="KinectMsSdkEclipse.command3">
+      </handler>
+      <handler
+            class="org.unicase.kinectmssdkeclipse.handlers.KinectStopHandler"
+            commandId="KinectMsSdkEclipse.command4">
+      </handler>
+      <handler
+            class="org.unicase.kinectmssdkeclipse.handlers.GestureRecognitionHandler"
+            commandId="KinectMsSdkEclipse.command5">
+      </handler>
+      <handler
+            class="org.unicase.kinectmssdkeclipse.handlers.KinectGameHandler"
+            commandId="KinectMsSdkEclipse.command6">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="KinectMsSdkEclipse.command"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+6">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               id="Kineclipse.menus.sampleMenu"
+               label="Sample Menu"
+               mnemonic="M">
+            <command
+                  commandId="KinectMsSdkEclipse.command"
+                  id="Kineclipse.menus.kineclipseCommand"
+                  mnemonic="S">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="Kineclipse.toolbars.kineclipseToolbar">
+  <command
+                  commandId="KinectMsSdkEclipse.command"
+                  icon="icons/sample.gif"
+                  id="Kineclipse.toolbars.kineclipseCommand"
+                  tooltip="Open connection to Kinect server">
+            </command>
+  <command
+        commandId="KinectMsSdkEclipse.command4"
+        icon="icons/delete.png"
+        id="Kineclipse.toolbars.kinectStopCommand"
+        style="push"
+        tooltip="Stop Connection to Kinect">
+  </command>
+            <command
+                  commandId="KinectMsSdkEclipse.command2"
+                  icon="icons/heart.png"
+            	id="Kineclipse.toolbars.skeletalTrackingCommand"
+            	tooltip="Start skeletal tracking">
+            </command>
+            <command
+                  commandId="KinectMsSdkEclipse.command5"
+                  icon="icons/star.png"
+                  id="Kineclipse.toolbars.gestureRecogCommandartCommand"
+                  tooltip="Start Gesture Recognition">
+            </command>
+            <command
+                  commandId="KinectMsSdkEclipse.command3"
+                  icon="icons/emoticon_surprised.png"
+            id="Kineclipse.toolbars.speechRecogCommandartCommand"
+                 tooltip="Start speech recognition">
+            </command>
+            <command
+                  commandId="KinectMsSdkEclipse.command6"
+                  icon="icons/com.brightai.kinect_icon.png"
+                  id="Kineclipse.toolbars.startKinectGameCommand"
+                  tooltip="Start Kinect Game">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="KinectMsSdkEclipse.category"
+            name="Kineclipse Category">
+      </category>
+      <command
+            categoryId="KinectMsSdkEclipse.category"
+            id="KinectMsSdkEclipse.command"
+            name="Kineclipse Command">
+      </command>
+      <command
+            categoryId="KinectMsSdkEclipse.category"
+            id="KinectMsSdkEclipse.command2"
+        name="SkeletalTrackingCommandartCommand">
+      </command>
+      <command
+            categoryId="KinectMsSdkEclipse.category"
+            id="KinectMsSdkEclipse.command3"
+        name="SpeechRecognitionCommandtopCommand">
+      </command>
+      <command
+            categoryId="KinectMsSdkEclipse.category"
+            id="KinectMsSdkEclipse.command4"
+            name="KinectStopCommandtopCommand">
+      </command>
+      <command
+            categoryId="KinectMsSdkEclipse.category"
+            id="KinectMsSdkEclipse.command5"
+            name="GestureRecognitionCommandtopCommand">
+      </command>
+      <command
+            categoryId="KinectMsSdkEclipse.category"
+            id="KinectMsSdkEclipse.command6"
+            name="Kineclipse.toolbars.startKinectGameCommand">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="KinectMsSdkEclipse.category"
+            class="org.unicase.kinectmssdkeclipse.game.KinectGameTimer"
+            icon="icons/com.brightai.kinect_icon.png"
+            id="KinectMsSdkEclipse.kinectGameTimerView"
+            name="Kinect Game Timer View"
+            restorable="true">
+      </view>
+      <category
+            name="Kinect"
+            id="EclipseKinectGame">
+      </category>
+      <view
+            class="org.unicase.kinectmssdkeclipse.game.Gameclipse"
+            id="org.unicase.kinectmssdkeclipse.game.Gameclipse"
+            name="Gameclipse"
+            category="EclipseKinectGame"
+            restorable="true">
+      </view>
+   </extension>
+
+</plugin>
