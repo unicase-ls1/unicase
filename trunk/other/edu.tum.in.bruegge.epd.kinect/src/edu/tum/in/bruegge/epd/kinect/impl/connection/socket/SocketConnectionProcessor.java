@@ -61,10 +61,10 @@ public class SocketConnectionProcessor extends ConnectionProcessor {
 	private void processInput(String input) {
 		if (input.startsWith(KinectProtocolConstants.SPEECH)) {
 			String speech = input.substring(KinectProtocolConstants.SPEECH.length());
-			this.inputDataHandler.handleSpeechInput(speech);
+			this.connectionDataHandler.handleSpeechInput(speech);
 		} else if (input.startsWith(KinectProtocolConstants.SKELETON)) {
 			String xml = input.substring(KinectProtocolConstants.SKELETON.length());
-			this.inputDataHandler.handleSkeletonInput(xml);
+			this.connectionDataHandler.handleSkeletonInput(xml);
 		} else {
 			// TODO Handle unrecognized response
 			System.out.println("Unrecognized: " + input);// throws IOException

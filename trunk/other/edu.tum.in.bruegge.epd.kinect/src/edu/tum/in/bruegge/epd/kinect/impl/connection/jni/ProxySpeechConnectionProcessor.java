@@ -55,7 +55,7 @@ public class ProxySpeechConnectionProcessor extends ConnectionProcessor {
 				for (int i = 0; i < inputParts.length; i++) {
 					// TODO The recognized words are prefixed with some constant that needs to be stripped off. This has to be changed in the C/C#-Code.
 					String word = inputParts[i].substring(KinectProtocolConstants.SPEECH.length());
-					this.inputDataHandler.handleSpeechInput(word);
+					this.connectionDataHandler.handleSpeechInput(word);
 				}
 			}
 			
