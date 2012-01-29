@@ -1,4 +1,4 @@
-package edu.tum.in.bruegge.epd.kinect.debug.speech;
+package edu.tum.in.bruegge.epd.kinect.debug.listener;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package edu.tum.in.bruegge.epd.kinect.debug.gesture;
+package edu.tum.in.bruegge.epd.kinect.debug.listener;
 
 import edu.tum.in.bruegge.epd.kinect.debug.DebugHelper;
 import edu.tum.in.bruegge.epd.kinect.gesture.Gesture;
