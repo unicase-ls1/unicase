@@ -66,7 +66,8 @@ public class GestureRecognition {
 
 	private boolean isGoodByeJonas() {
 		if (status == Constants.STATUS_NICE) {
-			if (this.wasRightHandUp && this.rightHandYPosition < this.headYPosition) {
+			if (this.wasRightHandUp
+					&& this.rightHandYPosition < this.headYPosition) {
 				this.wasRightHandUp = false;
 				this.headYPositionBefore = 0;
 				this.rightHandYPositionBefore = 0;
@@ -110,35 +111,53 @@ public class GestureRecognition {
 	}
 
 	public void checkForGesture() {
-		frameCount++;
 		if (!isStopped) {
+			frameCount++;
 			if (frameCount > Constants.KINECT_FPS) {
 				frameCount = 0;
 				if (isHelloJonas()) {
-					showText("Hello! " + headYNice);
 					isCalibrated = true;
+					// showText("Hello! " + headYNice);
+					gestureListener
+							.gestureDetected(org.unicase.kinectmssdkeclipse.game.state.Gesture.CALIBRATE);
 				}
 				if (isCalibrated) {
 					if (isNice()) {
 						/* Do Nothing */
 					} else if (isJump()) {
-						gestureListener.gestureDetected(org.unicase.kinectmssdkeclipse.game.state.Gesture.JUMP);
-//						showText("Jump! " + headYPosition);
+						gestureListener
+								.gestureDetected(org.unicase.kinectmssdkeclipse.game.state.Gesture.JUMP);
 
 					} else if (isCrouch()) {
-						gestureListener.gestureDetected(org.unicase.kinectmssdkeclipse.game.state.Gesture.CROUCH);
-//						showText("Crouch! " + headYPosition);
+						gestureListener
+								.gestureDetected(org.unicase.kinectmssdkeclipse.game.state.Gesture.CROUCH);
 					} else if (isGoodByeJonas()) {
-						gestureListener.gestureDetected(org.unicase.kinectmssdkeclipse.game.state.Gesture.WAVE_RIGHT);
+						gestureListener
+								.gestureDetected(org.unicase.kinectmssdkeclipse.game.state.Gesture.WAVE_RIGHT);
 						showText("Good Bye!");
 						isStopped = true;
+					} else if (isHelloJonas()) {
+						gestureListener
+								.gestureDetected(org.unicase.kinectmssdkeclipse.game.state.Gesture.WAVE_LEFT);
 					}
 					headYPositionBefore = headYPosition;
 				}
 			}
 		}
 	}
-
+	
+	
+	public void stopGestureRecognition() {
+		isStopped = true;
+		isCalibrated = false;
+		headYNice = 0;
+		frameCount = 0;
+	}
+	
+	public void enableGestureRecognition() {
+		isStopped = false;
+	}
+	
 	private void showText(final String text) {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {

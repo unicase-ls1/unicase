@@ -8,7 +8,7 @@ public class SecondState implements GameState {
 
 	@Override
 	public Gesture getRequiredGesture() {
-		return Gesture.CROUCH;
+		return Gesture.JUMP;
 	}
 
 	@Override
@@ -16,7 +16,7 @@ public class SecondState implements GameState {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
 				EclipseActions
-						.runCommand("org.eclipse.debug.ui.commands.StepOver");
+						.runCommand("org.eclipse.debug.ui.commands.DebugLast");
 			}
 		});
 
@@ -26,9 +26,24 @@ public class SecondState implements GameState {
 	public void paintScreen(final Label label) {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
-				label.setText("Second State");
+				label.setText("Say \"Start Debug Mode\"..");
 			}
 		});
+	}
+
+	@Override
+	public String getRequiredSpeechString() {
+		return "Start debug mode";
+	}
+
+	@Override
+	public boolean isGestureEnabled() {
+		return false;
+	}
+
+	@Override
+	public boolean isSpeechEnabled() {
+		return true;
 	}
 
 }

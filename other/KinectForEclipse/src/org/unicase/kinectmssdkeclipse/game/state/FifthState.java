@@ -4,7 +4,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.unicase.kinectmssdkeclipse.handlers.EclipseActions;
 
-public class ThirdState implements GameState {
+public class FifthState implements GameState {
 
 	@Override
 	public Gesture getRequiredGesture() {
@@ -16,7 +16,7 @@ public class ThirdState implements GameState {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
 				EclipseActions
-						.runCommand("org.eclipse.debug.ui.commands.StepOver");
+						.runCommand("org.eclipse.debug.ui.commands.Resume");
 			}
 		});
 	}
@@ -25,7 +25,7 @@ public class ThirdState implements GameState {
 	public void paintScreen(final Label label) {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
-				label.setText("JUMP to Step Over");
+				label.setText("Jump to Resume and stop the game");
 			}
 		});
 	}
