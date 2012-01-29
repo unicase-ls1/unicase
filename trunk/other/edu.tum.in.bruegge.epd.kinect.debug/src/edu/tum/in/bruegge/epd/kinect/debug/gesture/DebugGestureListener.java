@@ -10,13 +10,10 @@ public class DebugGestureListener extends GestureListener {
 
 	@Override
 	public void notifyGestureDetected(Class<? extends Gesture> gesture) {
-		if(gesture.equals(JumpGestureDetector.class)){
+		if (JumpGestureDetector.class.equals(gesture)) {
 			DebugHelper.stepOver();
-		}
-		else if(gesture.equals(CrouchGestureDetector.class)){
+		} else if(CrouchGestureDetector.class.equals(gesture)) {
 			DebugHelper.stepInto();
 		}
-		
 	}
-
 }
