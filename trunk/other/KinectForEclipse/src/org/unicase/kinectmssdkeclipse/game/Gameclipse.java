@@ -12,16 +12,17 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.kinectmssdkeclipse.game.state.FifthState;
 import org.unicase.kinectmssdkeclipse.game.state.FinalState;
 import org.unicase.kinectmssdkeclipse.game.state.FourthState;
 import org.unicase.kinectmssdkeclipse.game.state.GameState;
 import org.unicase.kinectmssdkeclipse.game.state.Gesture;
+import org.unicase.kinectmssdkeclipse.game.state.IntroState;
 import org.unicase.kinectmssdkeclipse.game.state.SecondState;
+import org.unicase.kinectmssdkeclipse.game.state.SeventhState;
+import org.unicase.kinectmssdkeclipse.game.state.SixthState;
 import org.unicase.kinectmssdkeclipse.game.state.ThirdState;
 import org.unicase.kinectmssdkeclipse.game.timer.GameTimer;
 import org.unicase.kinectmssdkeclipse.handlers.KinectProxy;
@@ -32,8 +33,8 @@ import org.unicase.kinectmssdkeclipse.handlers.KinectProxy;
  * @author Deepak Srinathan
  * 
  */
-public class Gameclipse extends ViewPart implements Listener,
-		SelectionListener, GestureListener, SpeechListener {
+public class Gameclipse extends ViewPart implements SelectionListener,
+		GestureListener, SpeechListener {
 
 	public static final String ID = "org.unicase.kinectmssdkeclipse.game.Gameclipse";
 
@@ -75,19 +76,24 @@ public class Gameclipse extends ViewPart implements Listener,
 	 * Initialize the states ande its members and the state transitions
 	 */
 	private void initStates() {
-		// IntroState introState = new IntroState();
+		IntroState introState = new IntroState();
 		SecondState secState = new SecondState();
 		ThirdState thState = new ThirdState();
 		FourthState fourthState = new FourthState();
 		FifthState fifthState = new FifthState();
+		SixthState sixthState = new SixthState();
+		SeventhState seventhState = new SeventhState();
 		FinalState finalState = new FinalState();
 
-		// gameStates.add(introState);
+		gameStates.add(introState);
 		gameStates.add(secState);
 		gameStates.add(thState);
 		gameStates.add(fourthState);
 		gameStates.add(fifthState);
+		gameStates.add(sixthState);
+		gameStates.add(seventhState);
 		gameStates.add(finalState);
+
 	}
 
 	/**
@@ -140,8 +146,6 @@ public class Gameclipse extends ViewPart implements Listener,
 		buttonStart.addSelectionListener(this);
 
 		gameTimer = new GameTimer(thisComp.getDisplay(), label_time);
-
-		parent.getDisplay().addFilter(SWT.KeyDown, this);
 		parent.setFocus();
 	}
 
@@ -151,33 +155,6 @@ public class Gameclipse extends ViewPart implements Listener,
 	@Override
 	public void setFocus() {
 		thisComp.setFocus();
-	}
-
-	/**
-	 * Keyboard handler event
-	 */
-	@Override
-	public void handleEvent(Event e) {
-		char c = e.character;
-		switch (c) {
-		case 'a':
-			if (gameState) {
-				// perform action on the current state
-				currentState.performAction();
-
-				// paint the next state (and update the current state)
-				currentState = gameStates.get(++index);
-				currentState.paintScreen(label);
-
-				if (index == gameStates.size() - 1) {
-					index = 0;
-					stop();
-					currentState.paintScreen(label);
-					return;
-				}
-			}
-			break;
-		}
 	}
 
 	/**
@@ -239,7 +216,6 @@ public class Gameclipse extends ViewPart implements Listener,
 			start();
 		}
 
-		System.out.println(gesture);
 		if (isCalibrated && currentState.isGestureEnabled()
 				&& currentState.getRequiredGesture().equals(gesture)) {
 			performStateOperation();
@@ -288,21 +264,21 @@ public class Gameclipse extends ViewPart implements Listener,
 	@Override
 	public void widgetDefaultSelected(SelectionEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	private void performStateOperation() {
-		// perform action on the current state
-		currentState.performAction();
+		if (gameState) {
+			// perform action on the current state
+			currentState.performAction();
 
-		// paint the next state (and update the current state)
-		currentState = gameStates.get(++index);
-		currentState.paintScreen(label);
-
-		if (index == gameStates.size() - 1) {
-			index = 0;
-			stop();
+			// paint the next state (and update the current state)
+			currentState = gameStates.get(++index);
 			currentState.paintScreen(label);
+
+			if (index == gameStates.size() - 1) {
+				index = 0;
+				stop();
+			}
 		}
 	}
 
@@ -314,4 +290,5 @@ public class Gameclipse extends ViewPart implements Listener,
 			performStateOperation();
 		}
 	}
+
 }

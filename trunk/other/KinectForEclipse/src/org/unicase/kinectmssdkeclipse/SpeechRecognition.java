@@ -63,7 +63,7 @@ public class SpeechRecognition {
 		words += "Stop speech recognition, ";
 		words += "Open Presentation, ";
 		words += "Open Type, ";
-		words += "Open Type Test";
+		words += "Open Type Test, ";
 		words += "Fix Bug";
 		return words;
 	}

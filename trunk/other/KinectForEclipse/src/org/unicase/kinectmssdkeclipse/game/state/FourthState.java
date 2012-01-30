@@ -8,7 +8,7 @@ public class FourthState implements GameState {
 
 	@Override
 	public Gesture getRequiredGesture() {
-		return Gesture.CROUCH;
+		return Gesture.JUMP;
 	}
 
 	@Override
@@ -16,7 +16,7 @@ public class FourthState implements GameState {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
 				EclipseActions
-						.runCommand("org.eclipse.debug.ui.commands.StepInto");
+						.runCommand("org.eclipse.debug.ui.commands.StepOver");
 			}
 		});
 	}
@@ -25,7 +25,7 @@ public class FourthState implements GameState {
 	public void paintScreen(final Label label) {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
-				label.setText("Crouch to Step Into");
+				label.setText("Jump to Step Over");
 			}
 		});
 	}

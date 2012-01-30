@@ -16,34 +16,34 @@ public class SecondState implements GameState {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
 				EclipseActions
-						.runCommand("org.eclipse.debug.ui.commands.DebugLast");
+						.runCommand("org.eclipse.debug.ui.commands.StepOver");
 			}
 		});
-
 	}
 
 	@Override
 	public void paintScreen(final Label label) {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
-				label.setText("Say \"Start Debug Mode\"..");
+				label.setText("JUMP to Step Over");
 			}
 		});
 	}
 
 	@Override
 	public String getRequiredSpeechString() {
-		return "Start debug mode";
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public boolean isGestureEnabled() {
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isSpeechEnabled() {
-		return true;
+		return false;
 	}
 
 }

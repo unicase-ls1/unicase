@@ -8,7 +8,7 @@ public class ThirdState implements GameState {
 
 	@Override
 	public Gesture getRequiredGesture() {
-		return Gesture.JUMP;
+		return Gesture.CROUCH;
 	}
 
 	@Override
@@ -16,7 +16,7 @@ public class ThirdState implements GameState {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
 				EclipseActions
-						.runCommand("org.eclipse.debug.ui.commands.StepOver");
+						.runCommand("org.eclipse.debug.ui.commands.StepInto");
 			}
 		});
 	}
@@ -25,26 +25,23 @@ public class ThirdState implements GameState {
 	public void paintScreen(final Label label) {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
-				label.setText("JUMP to Step Over");
+				label.setText("Crouch to Step Into");
 			}
 		});
 	}
 
 	@Override
 	public String getRequiredSpeechString() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean isGestureEnabled() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isSpeechEnabled() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
