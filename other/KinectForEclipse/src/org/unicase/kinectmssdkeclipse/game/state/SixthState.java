@@ -4,11 +4,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.unicase.kinectmssdkeclipse.handlers.EclipseActions;
 
-public class SecondState implements GameState {
+public class SixthState implements GameState {
 
 	@Override
 	public Gesture getRequiredGesture() {
-		return Gesture.JUMP;
+		return Gesture.CROUCH;
 	}
 
 	@Override
@@ -16,7 +16,7 @@ public class SecondState implements GameState {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
 				EclipseActions
-						.runCommand("org.eclipse.debug.ui.commands.StepOver");
+						.runCommand("org.eclipse.debug.ui.commands.StepInto");
 			}
 		});
 	}
@@ -25,19 +25,19 @@ public class SecondState implements GameState {
 	public void paintScreen(final Label label) {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
-				label.setText("JUMP to Step Over");
+				label.setText("Crouch again to Step Into");
 			}
 		});
 	}
 
 	@Override
 	public String getRequiredSpeechString() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean isGestureEnabled() {
+		// TODO Auto-generated method stub
 		return true;
 	}
 
@@ -45,5 +45,4 @@ public class SecondState implements GameState {
 	public boolean isSpeechEnabled() {
 		return false;
 	}
-
 }

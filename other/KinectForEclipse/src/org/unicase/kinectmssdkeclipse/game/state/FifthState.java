@@ -16,7 +16,7 @@ public class FifthState implements GameState {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
 				EclipseActions
-						.runCommand("org.eclipse.debug.ui.commands.Resume");
+						.runCommand("org.eclipse.debug.ui.commands.StepOver");
 			}
 		});
 	}
@@ -25,7 +25,7 @@ public class FifthState implements GameState {
 	public void paintScreen(final Label label) {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
-				label.setText("Jump to Resume and stop the game");
+				label.setText("Jump again to Step Over");
 			}
 		});
 	}
@@ -47,5 +47,4 @@ public class FifthState implements GameState {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 }

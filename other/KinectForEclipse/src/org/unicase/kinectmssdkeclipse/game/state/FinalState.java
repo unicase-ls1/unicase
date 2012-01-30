@@ -7,7 +7,7 @@ public class FinalState implements GameState {
 
 	@Override
 	public Gesture getRequiredGesture() {
-		return Gesture.JUMP;
+		return null;
 	}
 
 	@Override
@@ -19,7 +19,7 @@ public class FinalState implements GameState {
 	public void paintScreen(final Label label) {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
-				label.setText("Thanks.. Reset to play again");
+				label.setText("Thanks for playing the game..");
 			}
 		});
 	}
@@ -33,7 +33,7 @@ public class FinalState implements GameState {
 	@Override
 	public boolean isGestureEnabled() {
 		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
 
 	@Override
@@ -41,4 +41,5 @@ public class FinalState implements GameState {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 }
