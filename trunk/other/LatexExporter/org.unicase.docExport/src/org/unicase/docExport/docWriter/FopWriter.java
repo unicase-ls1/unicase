@@ -103,7 +103,7 @@ public abstract class FopWriter implements DocWriter {
 			DefaultConfigurationBuilder cfgBuilder = new DefaultConfigurationBuilder();
 			Configuration cfg;
 			try {
-				cfg = cfgBuilder.buildFromFile(new File("/Users/davidfu/Downloads/conf.xml"));
+				cfg = cfgBuilder.build(getClass().getResourceAsStream("/lib/conf.xml"));
 			} catch (ConfigurationException e) {
 				throw new DocumentExportException("Couldn't read/write the files", e);
 			} catch (SAXException e) {
