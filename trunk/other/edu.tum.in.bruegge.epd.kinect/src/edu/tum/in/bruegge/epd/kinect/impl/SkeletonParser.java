@@ -18,6 +18,7 @@ public class SkeletonParser {
 	private HumanBodyModelUtils humanBodyModel;
 	
 	private int oldNumSkeletons = -1;
+	private int frame = -1;
 
 
 	public SkeletonParser(HumanBodyModelUtils humanBodyModel) {
@@ -25,24 +26,31 @@ public class SkeletonParser {
 	}
 	
 	public void parseSkeleton(Document doc) {
-		NodeList skeletons = doc.getElementsByTagName(SKELETON_KEYWORD);
-		
-		// Check whether number of skeletons has changed
-		if (skeletons.getLength() != oldNumSkeletons) {
-			oldNumSkeletons = skeletons.getLength();
-			logger.info("Found " + skeletons.getLength() + " skeletons");
-		}
-		
-		for (int i = 0; i < skeletons.getLength(); i++) {
-			Node skeleton = skeletons.item(i);
-			NodeList skeletonData = skeleton.getChildNodes();
+		NodeList frameNodes = doc.getElementsByTagName("frameNumber");
+		// TODO Possible NPE if document is invalid
+		Node frameNode = frameNodes.item(0);
+		int currentFrame = Integer.parseInt(frameNode.getTextContent());
+		if (currentFrame > this.frame) { // TODO I receive the same document multiple times
+			this.frame = currentFrame;
+			NodeList skeletons = doc.getElementsByTagName(SKELETON_KEYWORD);
 			
-			for (int j = 0; j < skeletonData.getLength(); j++) {
-				Node data = skeletonData.item(j);
+			// Check whether number of skeletons has changed
+			if (skeletons.getLength() != oldNumSkeletons) {
+				oldNumSkeletons = skeletons.getLength();
+				logger.info("Found " + skeletons.getLength() + " skeletons");
+			}
+			
+			for (int i = 0; i < skeletons.getLength(); i++) {
+				Node skeleton = skeletons.item(i);
+				NodeList skeletonData = skeleton.getChildNodes();
 				
-				if (data.getNodeName().equals("joint")) {
-					Joint joint = parseJoint(data);
-					updateModel(joint);
+				for (int j = 0; j < skeletonData.getLength(); j++) {
+					Node data = skeletonData.item(j);
+					
+					if (data.getNodeName().equals("joint")) {
+						Joint joint = parseJoint(data);
+						updateModel(joint);
+					}
 				}
 			}
 		}
