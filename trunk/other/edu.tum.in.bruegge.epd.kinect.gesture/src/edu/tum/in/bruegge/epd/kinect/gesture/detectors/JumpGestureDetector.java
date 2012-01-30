@@ -22,6 +22,8 @@ public class JumpGestureDetector extends Gesture {
 	private boolean gestureFootLeft = false;
 	private boolean gestureFootRight = false;
 	
+	private boolean alreadyNotified = false;
+	
 	
 	public JumpGestureDetector() {
 		this.yMovingAvgHead = new MovingAverageCalculator(NUM_PERIODS);
@@ -55,7 +57,12 @@ public class JumpGestureDetector extends Gesture {
 				}
 				
 				if (gestureHead && gestureFootLeft && gestureFootRight) {
-					return true;
+					if (!this.alreadyNotified) {
+						this.alreadyNotified = true;
+						return true;
+					}
+				} else {
+					this.alreadyNotified = false;
 				}
 			}
 		}

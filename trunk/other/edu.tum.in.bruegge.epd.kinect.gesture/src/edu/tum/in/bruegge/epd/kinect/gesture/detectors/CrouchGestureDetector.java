@@ -16,6 +16,8 @@ public class CrouchGestureDetector extends Gesture {
 	
 	private MovingAverageCalculator yMovingAvgHead;
 	
+	private boolean alreadyNotified = false;
+	
 	
 	public CrouchGestureDetector() {
 		this.yMovingAvgHead = new MovingAverageCalculator(NUM_PERIODS);
@@ -30,10 +32,15 @@ public class CrouchGestureDetector extends Gesture {
 			if ("y".equals(feature.getName()) && HumanBodyEnum.Head.name().equals(humanBodyPart.getName())) {
 				float sensorValue = notification.getNewFloatValue();
 				float avgHeadValue = this.yMovingAvgHead.calculateMovingAvg(sensorValue);
-				float delta = sensorValue - avgHeadValue;
+				float delta = avgHeadValue - sensorValue;
 				
-				if (-delta > avgHeadValue * THRESHOLD) {
-					return true;
+				if (delta > avgHeadValue * THRESHOLD) {
+					if (!this.alreadyNotified) {
+						this.alreadyNotified = true;
+						return true;
+					}
+				} else {
+					this.alreadyNotified = false;
 				}
 			}
 		}
