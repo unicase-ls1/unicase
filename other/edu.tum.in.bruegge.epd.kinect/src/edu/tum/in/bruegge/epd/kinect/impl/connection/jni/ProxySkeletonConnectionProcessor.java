@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import microsoftkinectwrapper.KinectHandler;
@@ -13,7 +14,7 @@ import edu.tum.in.bruegge.epd.kinect.impl.SkeletonParser;
 
 public class ProxySkeletonConnectionProcessor extends ConnectionProcessor {
 
-	private Logger logger = Logger.getLogger(this.getClass().getName());
+	private final Logger logger = Logger.getLogger(this.getClass().getName());
 	
 	private boolean run = false;
 
@@ -30,11 +31,9 @@ public class ProxySkeletonConnectionProcessor extends ConnectionProcessor {
 			Bridge.init();
 			Bridge.LoadAndRegisterAssemblyFrom(dll);
 		} catch (IOException ioe) {
-			// TODO: handle exception
-			ioe.printStackTrace();
+			logger.log(Level.SEVERE, ioe.getLocalizedMessage(), ioe);
 		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		}
 		
 		this.kinectHandlerProxy = new KinectHandler();
@@ -43,10 +42,8 @@ public class ProxySkeletonConnectionProcessor extends ConnectionProcessor {
 	@Override
 	public void run() {
 		logger.info("Starting skeleton tracking");
-		super.run();
-
+		
 		this.run = true;
-
 		while (this.run) {
 			doRun();
 		}
@@ -80,8 +77,7 @@ public class ProxySkeletonConnectionProcessor extends ConnectionProcessor {
 		try {
 			Thread.sleep(50);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		}
 	}
 	
