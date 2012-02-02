@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="edu.tum.in.bruegge.epd.kinect.api.feature"
+      label="Kinect API Feature"
+      version="1.0.0.qualifier">
+
+   <description url="http://www.example.com/description">
+      This feature contains all necessary plugins for building plugins interacting with kinect. This is basicly the api.
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <plugin
+         id="edu.tum.in.bruegge.epd.kinect"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.tum.in.bruegge.epd.kinect.gesture"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.kinect.humabodymodel"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.kinect.humanbody.GEFEditor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
