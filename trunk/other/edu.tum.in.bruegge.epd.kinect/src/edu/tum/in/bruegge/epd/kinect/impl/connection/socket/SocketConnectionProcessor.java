@@ -5,10 +5,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import edu.tum.in.bruegge.epd.kinect.impl.ConnectionProcessor;
 
 public class SocketConnectionProcessor extends ConnectionProcessor {
+	
+	private final Logger logger = Logger.getLogger(this.getClass().getName());
 
 	private String host;
 	private int port;
@@ -26,8 +30,6 @@ public class SocketConnectionProcessor extends ConnectionProcessor {
 
 	@Override
 	public void run() {
-		super.run();
-
 		this.run = true;
 
 		try {
@@ -40,8 +42,7 @@ public class SocketConnectionProcessor extends ConnectionProcessor {
 					String input = reader.readLine();
 					processInput(input);
 				} catch (IOException e) {
-					// TODO Handle properly
-					e.printStackTrace();
+					logger.log(Level.SEVERE, e.getLocalizedMessage(), e);
 				}
 			}
 
@@ -49,8 +50,7 @@ public class SocketConnectionProcessor extends ConnectionProcessor {
 			this.writer.close();
 			this.socket.close();
 		} catch (IOException ioe) {
-			// TODO Handle properly
-			ioe.printStackTrace();
+			logger.log(Level.SEVERE, ioe.getLocalizedMessage(), ioe);
 		}
 	}
 

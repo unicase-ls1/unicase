@@ -10,13 +10,16 @@ public interface KinectManager {
 	
 	void startKinect();
 	void stopKinect();
+	boolean isStarted();
 	
 	HumanContainer getSkeletonModel();
 	void startSkeletonTracking();
 	void stopSkeletonTracking();
+	boolean isSkeletonTrackingStarted();
 	
 	void addSpeechListener(SpeechListener listener);
 	void removeSpeechListener(SpeechListener listener);
 	void startSpeechRecognition();
 	void stopSpeechRecognition();
+	boolean isSpeechRecognitionStarted();
 }

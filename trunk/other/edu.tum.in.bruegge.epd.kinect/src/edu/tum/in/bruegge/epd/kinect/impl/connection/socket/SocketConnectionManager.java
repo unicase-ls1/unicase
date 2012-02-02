@@ -9,6 +9,7 @@ import edu.tum.in.bruegge.epd.kinect.impl.KinectDataHandler;
 public class SocketConnectionManager extends ConnectionDataHandler implements ConnectionManager {
 
 	private SocketConnectionProcessor socketProcessor;
+	private Thread socketProcessorThread;
 	
 	private String host;
 	private int port;
@@ -27,7 +28,9 @@ public class SocketConnectionManager extends ConnectionDataHandler implements Co
 	public void openConnection() throws IOException {
 		this.socketProcessor = new SocketConnectionProcessor(this.host, this.port);
 		this.socketProcessor.setConnectionDataHandler(this);
-		this.socketProcessor.start();
+		
+		this.socketProcessorThread = new Thread(this.socketProcessor, this.socketProcessor.getClass().getSimpleName());
+		this.socketProcessorThread.start();
 	}
 
 	@Override
@@ -63,6 +66,24 @@ public class SocketConnectionManager extends ConnectionDataHandler implements Co
 	public void setDataHandler(KinectDataHandler dataHandler) {
 		// TODO Auto-generated method stub
 		this.dataHandler = dataHandler;
+	}
+
+	@Override
+	public boolean isConnected() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isSkeletonTrackingStarted() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isSpeechRecognitionStarted() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.w3c.dom.Document;
 
@@ -17,6 +19,8 @@ import edu.tum.in.bruegge.epd.kinect.impl.connection.jni.ProxyConnectionManager;
 
 public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 
+	private final Logger logger = Logger.getLogger(this.getClass().getName());
+	
 	private static final KinectManager INSTANCE = new KinectManagerImpl();
 	
 	public static KinectManager getInstance() {
@@ -38,6 +42,9 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 		this.connectionManager.setDataHandler(this);
 		
 		this.skeletonParser = new SkeletonParser(this.humanBodyModel);
+		
+		// TODO Dirty hack
+		this.humanBodyModel.init();
 	}
 
 	@Override
@@ -45,8 +52,7 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 		try {
 			this.connectionManager.openConnection();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		}
 	}
 
@@ -55,8 +61,7 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 		try {
 			this.connectionManager.closeConnection();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		}
 	}
 
@@ -136,5 +141,20 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 		for (SpeechListener listener : listeners) {
 			listener.notifySpeech(word);
 		}
+	}
+
+	@Override
+	public boolean isStarted() {
+		return this.connectionManager.isConnected();
+	}
+
+	@Override
+	public boolean isSkeletonTrackingStarted() {
+		return this.connectionManager.isSkeletonTrackingStarted();
+	}
+
+	@Override
+	public boolean isSpeechRecognitionStarted() {
+		return this.connectionManager.isSpeechRecognitionStarted();
 	}
 }
