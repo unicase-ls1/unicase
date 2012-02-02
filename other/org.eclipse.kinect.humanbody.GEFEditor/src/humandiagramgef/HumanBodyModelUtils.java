@@ -38,6 +38,9 @@ public class HumanBodyModelUtils {
 		handLeft.setColor_r(255);
 		handLeft.setColor_g(0);
 		handLeft.setColor_b(0);
+		handRight.setColor_r(255);
+		
+		head.setColor_b(255);
 		
 		Human spine = createHuman(HumanBodyEnum.Spine);
 		Human hipCenter = createHuman(HumanBodyEnum.Hip_Center);
@@ -49,6 +52,9 @@ public class HumanBodyModelUtils {
 		Human ankleRight = createHuman(HumanBodyEnum.Ankle_Right);
 		Human footLeft = createHuman(HumanBodyEnum.Foot_Left);
 		Human footRight = createHuman(HumanBodyEnum.Foot_Right);
+		
+		footLeft.setColor_g(255);
+		footRight.setColor_g(255);
 		
 		createLink(head, shoulderCenter);
 		createLink(shoulderCenter, shoulderLeft);
