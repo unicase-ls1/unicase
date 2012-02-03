@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: ECP Common Util  (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.ecp.common.util
-Bundle-Version: 0.8.9.M911
+Bundle-Version: 0.8.9.M912
 Bundle-Activator: org.eclipse.emf.ecp.common.util.Activator
 Require-Bundle: org.eclipse.core.expressions;visibility:=reexport,
  org.eclipse.ui;visibility:=reexport,
