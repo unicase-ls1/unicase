@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: KinectGame
+Bundle-SymbolicName: edu.tum.in.bruegge.epd.kinect.game; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: edu.tum.in.bruegge.epd.kinect.game.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ edu.tum.in.bruegge.epd.kinect;bundle-version="1.0.0",
+ edu.tum.in.bruegge.epd.kinect.gesture;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
