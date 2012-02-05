@@ -8,6 +8,9 @@ import edu.tum.in.bruegge.epd.kinect.impl.KinectDataHandler;
 
 public class SocketConnectionManager extends ConnectionDataHandler implements ConnectionManager {
 
+	// The socket connection is not yet fully implemented!
+	
+	
 	private SocketConnectionProcessor socketProcessor;
 	private Thread socketProcessorThread;
 	
