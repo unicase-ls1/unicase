@@ -56,7 +56,14 @@ public class DebugSpeechListener extends SpeechListener {
 	}
 	
 	@Override
+	public Set<String> getWords() {
+		return words;
+	}
+
+	@Override
 	public void notifySpeech(String speech) {
+		System.out.println("Speech recongized: " + speech);
+		/*
 		if (HELLO.equalsIgnoreCase(speech)) {
 			showText("Welcome back. What would you like to do?");
 		} else if (DEBUG_START.equalsIgnoreCase(speech)) {
@@ -94,11 +101,7 @@ public class DebugSpeechListener extends SpeechListener {
 		} else if (OPEN_TYPE.equalsIgnoreCase(speech)) {
 			openTypeDialog();
 		}
-	}
-
-	@Override
-	public Set<String> getWords() {
-		return words;
+		*/
 	}
 
 	private void showText(final String text) {
