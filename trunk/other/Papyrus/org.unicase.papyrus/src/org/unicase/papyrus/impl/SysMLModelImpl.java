@@ -61,10 +61,11 @@ public class SysMLModelImpl extends ModelImpl implements SysMLModel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected SysMLModelImpl() {
 		super();
+		setName("new SysML Diagram");
 	}
 
 	/**
