@@ -25,6 +25,11 @@ public class SkeletonParser {
 		this.humanBodyModel = humanBodyModel;
 	}
 	
+	public void reset() {
+		this.oldNumSkeletons = -1;
+		this.frame = -1;
+	}
+	
 	public void parseSkeleton(Document doc) {
 		NodeList frameNodes = doc.getElementsByTagName("frameNumber");
 		// TODO Possible NPE if document is invalid

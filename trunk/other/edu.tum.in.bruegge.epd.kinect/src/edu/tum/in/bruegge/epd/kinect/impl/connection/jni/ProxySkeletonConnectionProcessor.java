@@ -37,6 +37,7 @@ public class ProxySkeletonConnectionProcessor extends ConnectionProcessor {
 		}
 		
 		this.kinectHandlerProxy = new KinectHandler();
+		this.kinectHandlerProxy.setUpAndRun(); // Ignoring the return value "Setup Done!"
 	}
 	
 	@Override
@@ -79,16 +80,5 @@ public class ProxySkeletonConnectionProcessor extends ConnectionProcessor {
 		} catch (InterruptedException e) {
 			logger.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		}
-	}
-	
-	public void startSkeletonTracking() {
-		logger.info("Initializing skeleton tracking");
-		this.kinectHandlerProxy.setUpAndRun(); // Ignoring the return value "Setup Done!"
-	}
-	
-	public void testSkeletonTracking() {
-		logger.info("Testing skeleton tracking");
-		String result = this.kinectHandlerProxy.testSkeletonTracking();
-		System.out.println("Result: " + result);
 	}
 }
