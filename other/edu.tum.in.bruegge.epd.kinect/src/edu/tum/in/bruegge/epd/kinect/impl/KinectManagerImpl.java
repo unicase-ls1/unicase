@@ -42,9 +42,6 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 		this.connectionManager.setDataHandler(this);
 		
 		this.skeletonParser = new SkeletonParser(this.humanBodyModel);
-		
-		// TODO Dirty hack
-		this.humanBodyModel.init();
 	}
 
 	@Override
@@ -72,6 +69,7 @@ public class KinectManagerImpl implements KinectManager, KinectDataHandler {
 
 	@Override
 	public void startSkeletonTracking() {
+		this.skeletonParser.reset();
 		this.connectionManager.startSkeletonTracking();
 	}
 

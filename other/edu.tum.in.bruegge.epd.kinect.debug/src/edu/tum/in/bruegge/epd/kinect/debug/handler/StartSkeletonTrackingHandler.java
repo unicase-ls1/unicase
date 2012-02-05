@@ -1,8 +1,11 @@
 package edu.tum.in.bruegge.epd.kinect.debug.handler;
 
+import humandiagramgef.HumanDiagramGraphicalEditor;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.ui.PlatformUI;
 
 import edu.tum.in.bruegge.epd.kinect.KinectManager;
 import edu.tum.in.bruegge.epd.kinect.debug.listener.DebugGestureListener;
@@ -23,6 +26,9 @@ public class StartSkeletonTrackingHandler extends AbstractHandler {
 			addedGestures = true;
 		}
 		KinectManager.INSTANCE.startSkeletonTracking();
+		
+		((HumanDiagramGraphicalEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor()).setContent(KinectManager.INSTANCE.getSkeletonModel());
+		
 		return null;
 	}
 

@@ -36,7 +36,6 @@ public class DebugSpeechListener extends SpeechListener {
 	private static final String JAVA_PERSPECTIVE = "Open Java perspective";
 	private static final String EXIT = "Bye Bye Eclipse";
 	private static final String STOP_SPEECH_RECOGNITION = "Stop speech recognition";
-	private static final String OPEN_PRESENTATION = "Open Presentation";
 	private static final String OPEN_TYPE = "Open Type";
 	
 	private static final Set<String> words = new HashSet<String>();
@@ -53,7 +52,6 @@ public class DebugSpeechListener extends SpeechListener {
 		words.add(RESUME);
 //		words.add(JAVA_PERSPECTIVE);
 //		words.add(STOP_SPEECH_RECOGNITION);
-//		words.add(OPEN_PRESENTATION);
 //		words.add(OPEN_TYPE);
 	}
 	
@@ -93,8 +91,6 @@ public class DebugSpeechListener extends SpeechListener {
 			showText("See you soon!");
 		} else if (STOP_SPEECH_RECOGNITION.equalsIgnoreCase(speech)) {
 			KinectManager.INSTANCE.stopSpeechRecognition();
-		} else if (OPEN_PRESENTATION.equalsIgnoreCase(speech)) {
-			
 		} else if (OPEN_TYPE.equalsIgnoreCase(speech)) {
 			openTypeDialog();
 		}
