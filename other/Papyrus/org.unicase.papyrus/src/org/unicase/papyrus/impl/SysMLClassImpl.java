@@ -45,6 +45,7 @@ public class SysMLClassImpl extends ClassImpl implements SysMLClass {
 	 */
 	protected SysMLClassImpl() {
 		super();
+		setName("new SysML Diagram");
 	}
 
 	/**
