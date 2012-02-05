@@ -1,7 +1,9 @@
 package edu.tum.in.bruegge.epd.kinect.game.views;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -16,10 +18,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.part.ViewPart;
 
 import edu.tum.in.bruegge.epd.kinect.KinectManager;
-import edu.tum.in.bruegge.epd.kinect.game.listeners.GameGestureListener;
-import edu.tum.in.bruegge.epd.kinect.game.listeners.GameSpeechListener;
-import edu.tum.in.bruegge.epd.kinect.game.listeners.IGestureListener;
-import edu.tum.in.bruegge.epd.kinect.game.listeners.ISpeechListener;
+import edu.tum.in.bruegge.epd.kinect.SpeechListener;
 import edu.tum.in.bruegge.epd.kinect.game.states.FifthState;
 import edu.tum.in.bruegge.epd.kinect.game.states.FinalState;
 import edu.tum.in.bruegge.epd.kinect.game.states.FourthState;
@@ -31,6 +30,7 @@ import edu.tum.in.bruegge.epd.kinect.game.states.SixthState;
 import edu.tum.in.bruegge.epd.kinect.game.states.ThirdState;
 import edu.tum.in.bruegge.epd.kinect.game.timer.GameTimer;
 import edu.tum.in.bruegge.epd.kinect.gesture.Gesture;
+import edu.tum.in.bruegge.epd.kinect.gesture.GestureListener;
 import edu.tum.in.bruegge.epd.kinect.gesture.GestureProxy;
 import edu.tum.in.bruegge.epd.kinect.gesture.detectors.CrouchGestureDetector;
 import edu.tum.in.bruegge.epd.kinect.gesture.detectors.JumpGestureDetector;
@@ -41,8 +41,7 @@ import edu.tum.in.bruegge.epd.kinect.gesture.detectors.JumpGestureDetector;
  * @author Deepak Srinathan
  * 
  */
-public class Gameclipse extends ViewPart implements SelectionListener,
-		IGestureListener, ISpeechListener {
+public class Gameclipse extends ViewPart implements SelectionListener {
 
 	public static final String ID = "edu.tum.in.bruegge.epd.kinect.game.views.Gameclipse";
 
@@ -77,9 +76,15 @@ public class Gameclipse extends ViewPart implements SelectionListener,
 	// isKinectConnectedFlag
 	private boolean isKinectConnected = false;
 
-	private GameGestureListener gameGestureListener = null;
+	// the gesture listener
+	private GestureListener gestureListener = null;
 
-	private GameSpeechListener gameSpeechListener = null;
+	// the speech listener
+	private SpeechListener speechListener = null;
+
+	// String for speech recognition
+	private static final String DEBUG_START = "Start debug mode";
+	private static final String FIX_BUG = "Fix bug";
 
 	/**
 	 * Initialize the states ande its members and the state transitions
@@ -114,9 +119,6 @@ public class Gameclipse extends ViewPart implements SelectionListener,
 
 		// initialize the game states
 		initStates();
-
-		gameGestureListener = new GameGestureListener(this);
-		gameSpeechListener = new GameSpeechListener(this);
 
 		// Game not running
 		gameState = false;
@@ -277,9 +279,43 @@ public class Gameclipse extends ViewPart implements SelectionListener,
 	 */
 	private void intiKinect() {
 		if (!isKinectConnected) {
+
+			gestureListener = new GestureListener() {
+				@Override
+				public void notifyGestureDetected(
+						Class<? extends Gesture> gesture) {
+					if (currentState.isGestureEnabled()
+							&& currentState.getRequiredGesture()
+									.equals(gesture)) {
+						performStateOperation();
+					}
+				}
+			};
+
+			speechListener = new SpeechListener() {
+
+				@Override
+				public void notifySpeech(String speech) {
+					if (currentState.isSpeechEnabled()
+							&& currentState.getRequiredSpeechString()
+									.equalsIgnoreCase(speech)) {
+						performStateOperation();
+					}
+				}
+
+				@Override
+				public Set<String> getWords() {
+					Set<String> words = new HashSet<String>();
+					words.add(DEBUG_START);
+					words.add(FIX_BUG);
+					return words;
+				}
+
+			};
+
 			KinectManager.INSTANCE.startKinect();
-			KinectManager.INSTANCE.addSpeechListener(gameSpeechListener);
-			GestureProxy.INSTANCE.addGestureListener(gameGestureListener);
+			KinectManager.INSTANCE.addSpeechListener(speechListener);
+			GestureProxy.INSTANCE.addGestureListener(gestureListener);
 			KinectManager.INSTANCE.startSkeletonTracking();
 			KinectManager.INSTANCE.startSpeechRecognition();
 			GestureProxy.INSTANCE.addGestureDetector(new JumpGestureDetector());
@@ -288,22 +324,4 @@ public class Gameclipse extends ViewPart implements SelectionListener,
 			isKinectConnected = true;
 		}
 	}
-
-	@Override
-	public void notifySpeech(String speech) {
-		if (currentState.isSpeechEnabled()
-				&& currentState.getRequiredSpeechString().equalsIgnoreCase(
-						speech)) {
-			performStateOperation();
-		}
-	}
-
-	@Override
-	public void notifyGestureDetected(Class<? extends Gesture> gesture) {
-		if (currentState.isGestureEnabled()
-				&& currentState.getRequiredGesture().equals(gesture)) {
-			performStateOperation();
-		}
-	}
-
 }
