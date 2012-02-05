@@ -13,7 +13,6 @@ import java.util.List;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -109,24 +108,10 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 
 		focusListener = new FocusListener() {
 			public void focusGained(FocusEvent event) {
-				try {
-					// add association if they are not on the diagram
-					syncDiagramView((MEDiagram) ModelDiagramEditor.this.getDiagram().getElement());
-					doSave(new NullProgressMonitor());
-				} catch (IllegalStateException e) {
-					// do nothing
-					// We catch this exception in case we have been in an read only transaction context
-					// and tried to save the layout which is performed with a read/write transaction
-				}
+				syncDiagramView((MEDiagram) ModelDiagramEditor.this.getDiagram().getElement());
 			}
 
 			public void focusLost(FocusEvent event) {
-				try {
-					doSave(new NullProgressMonitor());
-				} catch (IllegalStateException e) {
-					// do nothing
-					// @see focusGained
-				}
 			}
 		};
 
@@ -177,17 +162,6 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	 */
 	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
-		// new EMFStoreCommand() {
-		// @Override
-		// protected void doRun() {
-		// try {
-		// ((MEDiagram) ModelDiagramEditor.this.getDiagram().eContainer()).saveDiagramLayout();
-		// } catch (DiagramStoreException e) {
-		// // dengler: handle exception
-		// WorkspaceUtil.logException("Saving diagram failed", e);
-		// }
-		// }
-		// }.run();
 	}
 
 	// dengler: document
