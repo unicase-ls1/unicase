@@ -105,7 +105,8 @@ public final class ModelUtil {
 	 * @return id as object
 	 */
 	public static ModelElementId createModelElementId(String id) {
-		ModelElementId modelElementId = ModelFactory.eINSTANCE.createModelElementId();
+		ModelElementId modelElementId = ModelFactory.eINSTANCE
+				.createModelElementId();
 		modelElementId.setId(id);
 		return modelElementId;
 	}
@@ -142,21 +143,28 @@ public final class ModelUtil {
 	 * @throws SerializationException
 	 *             if a serialization problem occurs
 	 */
-	public static String eObjectToString(EObject object) throws SerializationException {
+	public static String eObjectToString(EObject object)
+			throws SerializationException {
 
 		boolean containmentCheckEnabled = false;
 		boolean hrefCheckEnabled = false;
 		boolean proxyCheckEnabled = false;
 
-		IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.eclipse.emf.emfstore.common.model.serializationoptions");
+		IConfigurationElement[] elements = Platform
+				.getExtensionRegistry()
+				.getConfigurationElementsFor(
+						"org.eclipse.emf.emfstore.common.model.serializationoptions");
 		if (elements != null && elements.length > 0) {
-			hrefCheckEnabled = Boolean.parseBoolean(elements[0].getAttribute("HrefCheck"));
-			proxyCheckEnabled = Boolean.parseBoolean(elements[0].getAttribute("ProxyCheck"));
-			containmentCheckEnabled = Boolean.parseBoolean(elements[0].getAttribute("SelfContainmentCheck"));
+			hrefCheckEnabled = Boolean.parseBoolean(elements[0]
+					.getAttribute("HrefCheck"));
+			proxyCheckEnabled = Boolean.parseBoolean(elements[0]
+					.getAttribute("ProxyCheck"));
+			containmentCheckEnabled = Boolean.parseBoolean(elements[0]
+					.getAttribute("SelfContainmentCheck"));
 		}
 
-		return eObjectToString(object, !containmentCheckEnabled, !hrefCheckEnabled, !proxyCheckEnabled);
+		return eObjectToString(object, !containmentCheckEnabled,
+				!hrefCheckEnabled, !proxyCheckEnabled);
 	}
 
 	/**
@@ -175,24 +183,28 @@ public final class ModelUtil {
 	 * @throws SerializationException
 	 *             if a serialization problem occurs
 	 */
-	public static String eObjectToString(EObject object, boolean overrideContainmentCheck, boolean overrideHrefCheck,
-		boolean overrideProxyCheck) throws SerializationException {
+	public static String eObjectToString(EObject object,
+			boolean overrideContainmentCheck, boolean overrideHrefCheck,
+			boolean overrideProxyCheck) throws SerializationException {
 		if (object == null) {
 			return null;
 		}
 
-		XMIResource res = (XMIResource) (new ResourceSetImpl()).createResource(VIRTUAL_URI);
+		XMIResource res = (XMIResource) (new ResourceSetImpl())
+				.createResource(VIRTUAL_URI);
 
 		EObject copy;
 		if (object instanceof Project) {
 			Project project = (Project) object;
 			Project copiedProject = (Project) clone(object);
 
-			for (ModelElementId modelElementId : project.getAllModelElementIds()) {
+			for (ModelElementId modelElementId : project
+					.getAllModelElementIds()) {
 				if (isIgnoredDatatype(project.getModelElement(modelElementId))) {
 					continue;
 				}
-				res.setID(copiedProject.getModelElement(modelElementId), modelElementId.getId());
+				res.setID(copiedProject.getModelElement(modelElementId),
+						modelElementId.getId());
 			}
 			res.getContents().add(copiedProject);
 			copy = copiedProject;
@@ -202,7 +214,8 @@ public final class ModelUtil {
 		}
 
 		if (!overrideContainmentCheck && !(copy instanceof EClass)) {
-			if (!CommonUtil.isSelfContained(copy) || !CommonUtil.isContainedInResource(copy, res)) {
+			if (!CommonUtil.isSelfContained(copy)
+					|| !CommonUtil.isContainedInResource(copy, res)) {
 				throw new SerializationException(copy);
 			}
 		}
@@ -234,13 +247,15 @@ public final class ModelUtil {
 	/**
 	 * @param result
 	 */
-	private static void proxyCheck(Resource resource) throws SerializationException {
+	private static void proxyCheck(Resource resource)
+			throws SerializationException {
 		EcoreUtil.resolveAll(resource);
 		TreeIterator<EObject> contents = resource.getAllContents();
 		while (contents.hasNext()) {
 			EObject eObject = contents.next();
 			if (eObject.eIsProxy()) {
-				throw new SerializationException("Serialization failed due to unresolved proxy detection.");
+				throw new SerializationException(
+						"Serialization failed due to unresolved proxy detection.");
 			}
 		}
 	}
@@ -255,7 +270,8 @@ public final class ModelUtil {
 			}
 			if (!insideQuotes && character == needle[pointer]) {
 				if (++pointer == needle.length) {
-					throw new SerializationException("Serialization failed due to href detection.");
+					throw new SerializationException(
+							"Serialization failed due to href detection.");
 				}
 			} else {
 				pointer = 0;
@@ -274,19 +290,23 @@ public final class ModelUtil {
 
 		if (ignoredDataTypes == null) {
 			ignoredDataTypes = new HashSet<String>();
-			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				"org.eclipse.emf.emfstore.common.model.ignoredatatype");
+			IConfigurationElement[] config = Platform
+					.getExtensionRegistry()
+					.getConfigurationElementsFor(
+							"org.eclipse.emf.emfstore.common.model.ignoredatatype");
 			for (IConfigurationElement extension : config) {
 				String className = extension.getAttribute("type");
 				ignoredDataTypes.add(className);
 			}
 		}
 
-		return ignoredDataTypes.contains(eObject.eClass().getInstanceClassName());
+		return ignoredDataTypes.contains(eObject.eClass()
+				.getInstanceClassName());
 	}
 
 	/**
-	 * Converts a {@link String} to an {@link EObject}. <b>Note</b>: {@link String} must be the result of
+	 * Converts a {@link String} to an {@link EObject}. <b>Note</b>:
+	 * {@link String} must be the result of
 	 * {@link ModelUtil#eObjectToString(EObject)}
 	 * 
 	 * @param object
@@ -295,15 +315,18 @@ public final class ModelUtil {
 	 * @throws SerializationException
 	 *             if deserialization fails
 	 */
-	public static EObject stringToEObject(String object) throws SerializationException {
+	public static EObject stringToEObject(String object)
+			throws SerializationException {
 		if (object == null) {
 			return null;
 		}
 
-		XMIResource res = (XMIResource) (new ResourceSetImpl()).createResource(VIRTUAL_URI);
+		XMIResource res = (XMIResource) (new ResourceSetImpl())
+				.createResource(VIRTUAL_URI);
 
 		try {
-			res.load(new InputSource(new StringReader(object)), getResourceLoadOptions());
+			res.load(new InputSource(new StringReader(object)),
+					getResourceLoadOptions());
 		} catch (UnsupportedEncodingException e) {
 			throw new SerializationException(e);
 		} catch (IOException e) {
@@ -329,10 +352,13 @@ public final class ModelUtil {
 				}
 
 				if (id == null) {
-					throw new SerializationException("Failed to retrieve ID for EObject contained in project: " + me);
+					throw new SerializationException(
+							"Failed to retrieve ID for EObject contained in project: "
+									+ me);
 				}
 
-				ModelElementId meId = ModelFactory.eINSTANCE.createModelElementId();
+				ModelElementId meId = ModelFactory.eINSTANCE
+						.createModelElementId();
 				meId.setId(id);
 				eObjectToIdMap.put(me, meId);
 				idToEObjectMap.put(meId, me);
@@ -349,8 +375,8 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * Delivers a map of options for loading resources. Especially {@link XMLResource#OPTION_DEFER_IDREF_RESOLUTION}
-	 * which speeds up loading
+	 * Delivers a map of options for loading resources. Especially
+	 * {@link XMLResource#OPTION_DEFER_IDREF_RESOLUTION} which speeds up loading
 	 * due to our id based resources.
 	 * 
 	 * @return map of options for {@link XMIResource} or {@link XMLResource}.
@@ -359,8 +385,11 @@ public final class ModelUtil {
 		if (resourceLoadOptions == null) {
 			resourceLoadOptions = new HashMap<Object, Object>();
 			// options.put(XMLResource.OPTION_CONFIGURATION_CACHE, true)
-			resourceLoadOptions.put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
-			resourceLoadOptions.put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
+			resourceLoadOptions.put(
+					XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE,
+					Boolean.TRUE);
+			resourceLoadOptions.put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION,
+					true);
 		}
 		return resourceLoadOptions;
 	}
@@ -373,7 +402,9 @@ public final class ModelUtil {
 	public static Map<Object, Object> getResourceSaveOptions() {
 		if (resourceSaveOptions == null) {
 			resourceSaveOptions = new HashMap<Object, Object>();
-			resourceSaveOptions.put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
+			resourceSaveOptions.put(
+					XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE,
+					Boolean.TRUE);
 		}
 		return resourceSaveOptions;
 	}
@@ -448,9 +479,12 @@ public final class ModelUtil {
 	 * @throws LoggedException
 	 */
 	public static void log(String message, Throwable exception, int statusInt) {
-		Status status = new Status(statusInt, Platform.getBundle(ORG_ECLIPSE_EMF_EMFSTORE_COMMON_MODEL)
-			.getSymbolicName(), statusInt, message, exception);
-		Platform.getLog(Platform.getBundle(ORG_ECLIPSE_EMF_EMFSTORE_COMMON_MODEL)).log(status);
+		Status status = new Status(statusInt, Platform.getBundle(
+				ORG_ECLIPSE_EMF_EMFSTORE_COMMON_MODEL).getSymbolicName(),
+				statusInt, message, exception);
+		Platform.getLog(
+				Platform.getBundle(ORG_ECLIPSE_EMF_EMFSTORE_COMMON_MODEL)).log(
+				status);
 	}
 
 	/**
@@ -582,8 +616,8 @@ public final class ModelUtil {
 	 *             if loading the object from the resource fails.
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends EObject> T loadEObjectFromResource(EClass eClass, URI resourceURI, boolean checkConstraints)
-		throws IOException {
+	public static <T extends EObject> T loadEObjectFromResource(EClass eClass,
+			URI resourceURI, boolean checkConstraints) throws IOException {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource;
 
@@ -616,7 +650,8 @@ public final class ModelUtil {
 			TreeIterator<EObject> it = project.eAllContents();
 			while (it.hasNext()) {
 				EObject obj = it.next();
-				ModelElementId objId = ModelFactory.eINSTANCE.createModelElementId();
+				ModelElementId objId = ModelFactory.eINSTANCE
+						.createModelElementId();
 				String id = xmiResource.getID(obj);
 				if (id != null) {
 					objId.setId(id);
@@ -646,7 +681,8 @@ public final class ModelUtil {
 	 * @throws IOException
 	 *             if saving to the resource fails
 	 */
-	public static void saveEObjectToResource(List<? extends EObject> eObjects, URI resourceURI) throws IOException {
+	public static void saveEObjectToResource(List<? extends EObject> eObjects,
+			URI resourceURI) throws IOException {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(resourceURI);
 		EList<EObject> contents = resource.getContents();
@@ -671,9 +707,11 @@ public final class ModelUtil {
 	 * @param xmiResource
 	 *            the resource that will contain the XMI IDs
 	 */
-	public static void setXmiIdsOnResource(Project project, XMIResource xmiResource) {
+	public static void setXmiIdsOnResource(Project project,
+			XMIResource xmiResource) {
 		for (EObject modelElement : project.getAllModelElements()) {
-			ModelElementId modelElementId = project.getModelElementId(modelElement);
+			ModelElementId modelElementId = project
+					.getModelElementId(modelElement);
 			xmiResource.setID(modelElement, modelElementId.getId());
 		}
 	}
@@ -688,7 +726,8 @@ public final class ModelUtil {
 	 * @throws IOException
 	 *             if saving to the resource fails.
 	 */
-	public static void saveEObjectToResource(EObject eObject, URI resourceURI) throws IOException {
+	public static void saveEObjectToResource(EObject eObject, URI resourceURI)
+			throws IOException {
 		ArrayList<EObject> list = new ArrayList<EObject>();
 		list.add(eObject);
 		saveEObjectToResource(list, resourceURI);
@@ -701,12 +740,15 @@ public final class ModelUtil {
 	 * @throws MalformedModelVersionException
 	 *             if there is no well formed or defined model version
 	 */
-	public static int getModelVersionNumber() throws MalformedModelVersionException {
-		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.eclipse.emf.emfstore.common.model.modelversion");
+	public static int getModelVersionNumber()
+			throws MalformedModelVersionException {
+		IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry()
+				.getConfigurationElementsFor(
+						"org.eclipse.emf.emfstore.common.model.modelversion");
 		if (rawExtensions.length != 1) {
-			String message = "There is " + rawExtensions.length
-				+ " Model Version(s) registered for the given model. Migrator will assume model version 0.";
+			String message = "There is "
+					+ rawExtensions.length
+					+ " Model Version(s) registered for the given model. Migrator will assume model version 0.";
 			logInfo(message);
 			return 0;
 		}
@@ -716,8 +758,9 @@ public final class ModelUtil {
 			int version = Integer.parseInt(string);
 			return version;
 		} catch (NumberFormatException e) {
-			throw new MalformedModelVersionException("Version identifier was malformed, it must be an integer: "
-				+ string);
+			throw new MalformedModelVersionException(
+					"Version identifier was malformed, it must be an integer: "
+							+ string);
 		}
 	}
 
@@ -731,7 +774,8 @@ public final class ModelUtil {
 	public static Project getProject(EObject modelElement) {
 		Set<EObject> seenModelElements = new HashSet<EObject>();
 		seenModelElements.add(modelElement);
-		return (Project) getParent(Project.class, modelElement, seenModelElements);
+		return (Project) getParent(Project.class, modelElement,
+				seenModelElements);
 	}
 
 	/**
@@ -744,19 +788,22 @@ public final class ModelUtil {
 	 *            the model element whose container should get returned
 	 * @return the container
 	 */
-	public static EObject getParent(Class<? extends EObject> parent, EObject child) {
+	public static EObject getParent(Class<? extends EObject> parent,
+			EObject child) {
 		Set<EObject> seenModelElements = new HashSet<EObject>();
 		seenModelElements.add(child);
 		return getParent(parent, child, seenModelElements);
 	}
 
-	private static EObject getParent(Class<? extends EObject> parent, EObject child, Set<EObject> seenModelElements) {
+	private static EObject getParent(Class<? extends EObject> parent,
+			EObject child, Set<EObject> seenModelElements) {
 		if (child == null) {
 			return null;
 		}
 
 		if (seenModelElements.contains(child.eContainer())) {
-			throw new IllegalStateException("ModelElement is in a containment cycle");
+			throw new IllegalStateException(
+					"ModelElement is in a containment cycle");
 		}
 
 		if (parent.isInstance(child)) {
@@ -779,10 +826,12 @@ public final class ModelUtil {
 	 * @return if it is an association
 	 */
 	public static boolean isAssociationClassElement(EClass eClazz) {
-		if (eClazz == null || eClazz.isAbstract() || eClazz.getInstanceClass() == null) {
+		if (eClazz == null || eClazz.isAbstract()
+				|| eClazz.getInstanceClass() == null) {
 			return false;
 		}
-		return AssociationClassElement.class.isAssignableFrom(eClazz.getInstanceClass());
+		return AssociationClassElement.class.isAssignableFrom(eClazz
+				.getInstanceClass());
 	}
 
 	/**
@@ -795,8 +844,10 @@ public final class ModelUtil {
 	 *            result
 	 * @return a set of contained model elements
 	 */
-	public static Set<EObject> getAllContainedModelElements(EObject modelElement, boolean includeTransientContainments) {
-		return getAllContainedModelElements(modelElement, includeTransientContainments, false);
+	public static Set<EObject> getAllContainedModelElements(
+			EObject modelElement, boolean includeTransientContainments) {
+		return getAllContainedModelElements(modelElement,
+				includeTransientContainments, false);
 	}
 
 	/**
@@ -812,13 +863,16 @@ public final class ModelUtil {
 	 *            EString
 	 * @return a set of contained model elements
 	 */
-	public static Set<EObject> getAllContainedModelElements(EObject modelElement, boolean includeTransientContainments,
-		boolean ignoreSingletonDatatypes) {
+	public static Set<EObject> getAllContainedModelElements(
+			EObject modelElement, boolean includeTransientContainments,
+			boolean ignoreSingletonDatatypes) {
 		Set<EObject> result = new HashSet<EObject>();
 		for (EObject containee : modelElement.eContents()) {
-			if (!isSingleton(containee) || !containee.eContainingFeature().isTransient()
-				|| includeTransientContainments) {
-				Set<EObject> elements = getAllContainedModelElements(containee, includeTransientContainments);
+			if (!isSingleton(containee)
+					|| !containee.eContainingFeature().isTransient()
+					|| includeTransientContainments) {
+				Set<EObject> elements = getAllContainedModelElements(containee,
+						includeTransientContainments);
 				result.add(containee);
 				result.addAll(elements);
 			}
@@ -838,7 +892,8 @@ public final class ModelUtil {
 		if (container == null) {
 			return null;
 		}
-		if (EcoreFactory.eINSTANCE.getEcorePackage().getEObject().isInstance(container)) {
+		if (EcoreFactory.eINSTANCE.getEcorePackage().getEObject()
+				.isInstance(container)) {
 			return container;
 		}
 		return null;
@@ -854,17 +909,19 @@ public final class ModelUtil {
 	 *            result
 	 * @return a list of contained model elements
 	 */
-	public static List<EObject> getAllContainedModelElementsAsList(EObject modelElement,
-		boolean includeTransientContainments) {
+	public static List<EObject> getAllContainedModelElementsAsList(
+			EObject modelElement, boolean includeTransientContainments) {
 
 		TreeIterator<EObject> it = modelElement.eAllContents();
 
 		List<EObject> result = new ArrayList<EObject>();
 		while (it.hasNext()) {
 			EObject containee = it.next();
-			if (containee.eContainingFeature() != null && !containee.eContainingFeature().isTransient()
-				|| includeTransientContainments) {
-				List<EObject> elements = getAllContainedModelElementsAsList(containee, includeTransientContainments);
+			if (containee.eContainingFeature() != null
+					&& !containee.eContainingFeature().isTransient()
+					|| includeTransientContainments) {
+				List<EObject> elements = getAllContainedModelElementsAsList(
+						containee, includeTransientContainments);
 				if (!result.contains(containee)) {
 					result.add(containee);
 				}
@@ -882,19 +939,22 @@ public final class ModelUtil {
 	 * @param modelElement
 	 *            the model element
 	 */
-	public static void deleteIncomingCrossReferencesFromParent(Collection<Setting> inverseReferences,
-		EObject modelElement) {
+	public static void deleteIncomingCrossReferencesFromParent(
+			Collection<Setting> inverseReferences, EObject modelElement) {
 		for (Setting setting : inverseReferences) {
-			EStructuralFeature eStructuralFeature = setting.getEStructuralFeature();
+			EStructuralFeature eStructuralFeature = setting
+					.getEStructuralFeature();
 			EReference reference = (EReference) eStructuralFeature;
 
-			if (reference.isContainer() || reference.isContainment() || reference.isChangeable()) {
+			if (reference.isContainer() || reference.isContainment()
+					|| !reference.isChangeable()) {
 				continue;
 			}
 
 			EObject opposite = setting.getEObject();
 			if (eStructuralFeature.isMany()) {
-				((EList<?>) opposite.eGet(eStructuralFeature)).remove(modelElement);
+				((EList<?>) opposite.eGet(eStructuralFeature))
+						.remove(modelElement);
 			} else {
 				opposite.eUnset(eStructuralFeature);
 			}
@@ -912,13 +972,14 @@ public final class ModelUtil {
 	 *            candidate reference feature of first element
 	 * @return true if the reference feature links the two elements
 	 */
-	private static boolean isCorrespondingReference(EObject modelElement, EObject otherModelElement,
-		EReference reference) {
+	private static boolean isCorrespondingReference(EObject modelElement,
+			EObject otherModelElement, EReference reference) {
 		if (reference.isMany()) {
 			if (otherModelElement.eGet(reference) == null) {
 				return false;
 			}
-			return ((List<?>) otherModelElement.eGet(reference)).contains(modelElement);
+			return ((List<?>) otherModelElement.eGet(reference))
+					.contains(modelElement);
 		} else {
 			return modelElement.equals(otherModelElement.eGet(reference));
 		}
@@ -930,56 +991,70 @@ public final class ModelUtil {
 	 * @param modelElement
 	 *            the model element
 	 */
-	public static void deleteOutgoingCrossReferences(IdEObjectCollection collection, EObject modelElement) {
+	public static void deleteOutgoingCrossReferences(
+			IdEObjectCollection collection, EObject modelElement) {
 		Set<EObject> allModelElements = new HashSet<EObject>();
 		allModelElements.add(modelElement);
-		allModelElements.addAll(ModelUtil.getAllContainedModelElements(modelElement, false));
+		allModelElements.addAll(ModelUtil.getAllContainedModelElements(
+				modelElement, false));
 
-		List<SettingWithReferencedElement> crossReferences = collectOutgoingCrossReferences(collection,
-			allModelElements);
+		List<SettingWithReferencedElement> crossReferences = collectOutgoingCrossReferences(
+				collection, allModelElements);
 		for (SettingWithReferencedElement settingWithReferencedElement : crossReferences) {
 			Setting setting = settingWithReferencedElement.getSetting();
-			if (!settingWithReferencedElement.getSetting().getEStructuralFeature().isMany()) {
+			if (!settingWithReferencedElement.getSetting()
+					.getEStructuralFeature().isMany()) {
 				setting.getEObject().eUnset(setting.getEStructuralFeature());
 			} else {
-				List<EObject> references = (List<EObject>) setting.getEObject().eGet(setting.getEStructuralFeature());
-				references.remove(settingWithReferencedElement.getReferencedElement());
+				List<EObject> references = (List<EObject>) setting.getEObject()
+						.eGet(setting.getEStructuralFeature());
+				references.remove(settingWithReferencedElement
+						.getReferencedElement());
 			}
 		}
 	}
 
-	public static List<SettingWithReferencedElement> collectOutgoingCrossReferences(IdEObjectCollection collection,
-		Set<EObject> allModelElements) {
+	public static List<SettingWithReferencedElement> collectOutgoingCrossReferences(
+			IdEObjectCollection collection, Set<EObject> allModelElements) {
 		// result object
 		List<SettingWithReferencedElement> settings = new ArrayList<SettingWithReferencedElement>();
 
 		for (EObject currentElement : allModelElements) {
 
-			for (EReference reference : currentElement.eClass().getEAllReferences()) {
+			for (EReference reference : currentElement.eClass()
+					.getEAllReferences()) {
 				EClassifier eType = reference.getEType();
 				// sanity checks
-				if (reference.isContainer() || reference.isContainment() || !reference.isChangeable()
-					|| (!(eType instanceof EClass))) {
+				if (reference.isContainer() || reference.isContainment()
+						|| !reference.isChangeable()
+						|| (!(eType instanceof EClass))) {
 					continue;
 				}
 
-				Setting setting = ((InternalEObject) currentElement).eSetting(reference);
+				Setting setting = ((InternalEObject) currentElement)
+						.eSetting(reference);
 
 				// multi references
 				if (reference.isMany()) {
 					@SuppressWarnings("unchecked")
-					List<EObject> referencedElements = (List<EObject>) currentElement.eGet(reference);
+					List<EObject> referencedElements = (List<EObject>) currentElement
+							.eGet(reference);
 					for (EObject referencedElement : referencedElements) {
-						if (shouldBeCollected(collection, allModelElements, referencedElement)) {
-							settings.add(new SettingWithReferencedElement(setting, referencedElement));
+						if (shouldBeCollected(collection, allModelElements,
+								referencedElement)) {
+							settings.add(new SettingWithReferencedElement(
+									setting, referencedElement));
 						}
 					}
 				} else {
 					// single references
 
-					EObject referencedElement = (EObject) currentElement.eGet(reference);
-					if (shouldBeCollected(collection, allModelElements, referencedElement)) {
-						settings.add(new SettingWithReferencedElement(setting, referencedElement));
+					EObject referencedElement = (EObject) currentElement
+							.eGet(reference);
+					if (shouldBeCollected(collection, allModelElements,
+							referencedElement)) {
+						settings.add(new SettingWithReferencedElement(setting,
+								referencedElement));
 					}
 
 				}
@@ -989,15 +1064,17 @@ public final class ModelUtil {
 		return settings;
 	}
 
-	public static boolean shouldBeCollected(IdEObjectCollection collection, Set<EObject> allModelElements,
-		EObject referencedElement) {
+	public static boolean shouldBeCollected(IdEObjectCollection collection,
+			Set<EObject> allModelElements, EObject referencedElement) {
 
-		if (referencedElement == null || !collection.containsInstance(referencedElement)) {
+		if (referencedElement == null
+				|| !collection.containsInstance(referencedElement)) {
 			return false;
 		}
 
-		return !ModelUtil.isSingleton(referencedElement) && !ModelUtil.isIgnoredDatatype(referencedElement)
-			&& !allModelElements.contains(referencedElement);
+		return !ModelUtil.isSingleton(referencedElement)
+				&& !ModelUtil.isIgnoredDatatype(referencedElement)
+				&& !allModelElements.contains(referencedElement);
 	}
 
 	/**
@@ -1075,64 +1152,84 @@ public final class ModelUtil {
 		if (singletonIdResolvers == null) {
 			// collect singleton ID resolvers
 			singletonIdResolvers = new HashSet<SingletonIdResolver>();
-			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				"org.eclipse.emf.emfstore.common.model.singletonidresolver");
+			IConfigurationElement[] config = Platform
+					.getExtensionRegistry()
+					.getConfigurationElementsFor(
+							"org.eclipse.emf.emfstore.common.model.singletonidresolver");
 
 			for (IConfigurationElement extension : config) {
 				SingletonIdResolver resolver;
 				try {
-					resolver = (SingletonIdResolver) extension.createExecutableExtension("class");
+					resolver = (SingletonIdResolver) extension
+							.createExecutableExtension("class");
 					singletonIdResolvers.add(resolver);
 				} catch (CoreException e) {
-					ModelUtil.logWarning("Couldn't instantiate Singleton ID resolver:" + e.getMessage());
+					ModelUtil
+							.logWarning("Couldn't instantiate Singleton ID resolver:"
+									+ e.getMessage());
 				}
 			}
 		}
 	}
 
 	/**
-	 * Checks whether any element within the given {@link Project} has any cross-references to the given {@link EObject}
-	 * .
+	 * Checks whether any element within the given {@link Project} has any
+	 * cross-references to the given {@link EObject} .
 	 * 
-	 * @param element a {@link EObject}
-	 * @param project a {@link Project}
-	 * @param cutOffReferences whether cross-references should get cut off
-	 * @return true, if there are any cross-references to the {@link EObject} within the given {@link Project}
+	 * @param element
+	 *            a {@link EObject}
+	 * @param project
+	 *            a {@link Project}
+	 * @param cutOffReferences
+	 *            whether cross-references should get cut off
+	 * @return true, if there are any cross-references to the {@link EObject}
+	 *         within the given {@link Project}
 	 */
-	public static boolean handleIncomingCrossReferences(EObject element, Project project, boolean cutOffReferences) {
+	public static boolean handleIncomingCrossReferences(EObject element,
+			Project project, boolean cutOffReferences) {
 		Set<EObject> projectContents = project.getAllModelElements();
-		Set<EObject> elementEObjects = getAllContainedModelElements(element, false);
+		Set<EObject> elementEObjects = getAllContainedModelElements(element,
+				false);
 		elementEObjects.add(element);
 
 		for (EObject eObject : projectContents) {
 
 			@SuppressWarnings("rawtypes")
 			EContentsEList.FeatureIterator featureIterator = (EContentsEList.FeatureIterator) eObject
-				.eCrossReferences().iterator();
+					.eCrossReferences().iterator();
 
 			while (featureIterator.hasNext()) {
 				EObject referencedObject = (EObject) featureIterator.next();
 
 				if (elementEObjects.contains(referencedObject)) {
-					ModelElementId referencedObjectId = project.getModelElementId(referencedObject) == null ? project
-						.getDeletedModelElementId(referencedObject) : project.getModelElementId(referencedObject);
-					ModelElementId elementId = project.getModelElementId(element) == null ? project
-						.getDeletedModelElementId(element) : project.getModelElementId(element);
+					ModelElementId referencedObjectId = project
+							.getModelElementId(referencedObject) == null ? project
+							.getDeletedModelElementId(referencedObject)
+							: project.getModelElementId(referencedObject);
+					ModelElementId elementId = project
+							.getModelElementId(element) == null ? project
+							.getDeletedModelElementId(element) : project
+							.getModelElementId(element);
 					if (cutOffReferences) {
-						EReference eReference = (EReference) featureIterator.feature();
+						EReference eReference = (EReference) featureIterator
+								.feature();
 						if (eReference.isMany()) {
 							@SuppressWarnings("unchecked")
-							List<EObject> eObjects = (List<EObject>) eObject.eGet(eReference);
+							List<EObject> eObjects = (List<EObject>) eObject
+									.eGet(eReference);
 							eObjects.remove(referencedObject);
-							logInfo("Cross-reference " + referencedObjectId + " removed from many reference "
-								+ eReference + ".");
+							logInfo("Cross-reference " + referencedObjectId
+									+ " removed from many reference "
+									+ eReference + ".");
 						} else {
 							eObject.eUnset(eReference);
-							logInfo("Cross-reference " + referencedObject + " removed from " + eReference + ".");
+							logInfo("Cross-reference " + referencedObject
+									+ " removed from " + eReference + ".");
 						}
 					} else {
-						throw new IllegalStateException("Cross-reference from " + referencedObject + " to " + elementId
-							+ " detected.");
+						throw new IllegalStateException("Cross-reference from "
+								+ referencedObject + " to " + elementId
+								+ " detected.");
 					}
 				}
 			}
