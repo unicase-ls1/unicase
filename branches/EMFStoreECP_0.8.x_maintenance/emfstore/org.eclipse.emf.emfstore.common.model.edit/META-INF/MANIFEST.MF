@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: EMFStore Common Model Edit  (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.emfstore.common.model.edit;singleton:=true
-Bundle-Version: 0.8.9.M912
+Bundle-Version: 0.8.9.M913
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.emf.emfstore.common.model.provider.CommonEditPlugin$Implementation
 Bundle-Vendor: Eclipse Modeling Project
