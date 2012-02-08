@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -295,8 +294,6 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 	 * @return the type
 	 */
 	public String getType() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException(
 				"getType is not implemented. Must be implmented in any subtype of MEDiagram");
 	}
@@ -537,7 +534,7 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 		setDiagramLayout(DIAGRAM_LAYOUT_EDEFAULT);
 	}
 
-	public void exchangeBendpoints(Diagram gmfDiagram) {
+	private void exchangeBendpoints(Diagram gmfDiagram) {
 		for (Object child : gmfDiagram.getEdges()) {
 			if (child instanceof Edge) {
 				Edge edge = (Edge) child;
