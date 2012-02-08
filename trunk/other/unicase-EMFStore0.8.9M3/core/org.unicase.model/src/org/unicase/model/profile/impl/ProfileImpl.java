@@ -25,11 +25,11 @@ import org.unicase.model.profile.Stereotype;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.profile.impl.ProfileImpl#getAffectedContainers <em>Affected Containers</em>}</li>
- *   <li>{@link org.unicase.model.profile.impl.ProfileImpl#getStereotypes <em>Stereotypes</em>}</li>
+ * <li>{@link org.unicase.model.profile.impl.ProfileImpl#getAffectedContainers <em>Affected Containers</em>}</li>
+ * <li>{@link org.unicase.model.profile.impl.ProfileImpl#getStereotypes <em>Stereotypes</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
@@ -55,6 +55,7 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProfileImpl() {
@@ -63,6 +64,7 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -72,6 +74,7 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UnicaseModelElement> getAffectedContainers() {
@@ -84,6 +87,7 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Stereotype> getStereotypes() {
@@ -96,6 +100,7 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -110,6 +115,7 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -123,6 +129,7 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -138,6 +145,7 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -158,6 +166,7 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -175,6 +184,7 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

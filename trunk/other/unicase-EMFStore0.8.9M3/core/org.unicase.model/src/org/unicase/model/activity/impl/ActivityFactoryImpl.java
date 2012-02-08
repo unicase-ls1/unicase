@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.model.activity.*;
 import org.unicase.model.activity.Activity;
 import org.unicase.model.activity.ActivityEnd;
 import org.unicase.model.activity.ActivityFactory;
@@ -22,12 +21,13 @@ import org.unicase.model.activity.Transition;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ActivityFactory init() {
@@ -44,8 +44,8 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ActivityFactoryImpl() {
@@ -54,6 +54,7 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -78,6 +79,7 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Transition createTransition() {
@@ -87,6 +89,7 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Activity createActivity() {
@@ -96,6 +99,7 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Fork createFork() {
@@ -105,6 +109,7 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Branch createBranch() {
@@ -114,6 +119,7 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ActivityInitial createActivityInitial() {
@@ -123,6 +129,7 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ActivityEnd createActivityEnd() {
@@ -132,6 +139,7 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ActivityPackage getActivityPackage() {
@@ -140,6 +148,7 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

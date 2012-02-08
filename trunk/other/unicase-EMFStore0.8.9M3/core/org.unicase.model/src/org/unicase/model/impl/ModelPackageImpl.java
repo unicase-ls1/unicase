@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.model.Annotation;
 import org.unicase.model.Attachment;
@@ -52,29 +51,34 @@ import org.unicase.model.util.impl.UtilPackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass unicaseModelElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass annotationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass attachmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass projectEClass = null;
@@ -98,17 +102,18 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
-	 * <p>This method is used to initialize {@link ModelPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link ModelPackage#eINSTANCE} when that field is accessed. Clients should not
+	 * invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -222,6 +227,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getUnicaseModelElement() {
@@ -230,6 +236,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getUnicaseModelElement_Name() {
@@ -238,6 +245,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getUnicaseModelElement_Description() {
@@ -246,6 +254,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getUnicaseModelElement_Annotations() {
@@ -254,6 +263,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getUnicaseModelElement_Attachments() {
@@ -262,6 +272,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getUnicaseModelElement_IncomingDocumentReferences() {
@@ -270,6 +281,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getUnicaseModelElement_State() {
@@ -278,6 +290,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getUnicaseModelElement_AppliedStereotypeInstances() {
@@ -286,6 +299,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getUnicaseModelElement_Comments() {
@@ -294,6 +308,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getUnicaseModelElement_Creator() {
@@ -302,6 +317,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getUnicaseModelElement_CreationDate() {
@@ -310,6 +326,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAnnotation() {
@@ -318,6 +335,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAnnotation_AnnotatedModelElements() {
@@ -326,6 +344,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAttachment() {
@@ -334,6 +353,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAttachment_ReferringModelElements() {
@@ -342,6 +362,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getProject() {
@@ -350,6 +371,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelFactory getModelFactory() {
@@ -358,14 +380,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
+	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -397,14 +420,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
+	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -538,8 +562,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.eclipse.emf.ecp.editor</b>.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Initializes the annotations for <b>org.eclipse.emf.ecp.editor</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {

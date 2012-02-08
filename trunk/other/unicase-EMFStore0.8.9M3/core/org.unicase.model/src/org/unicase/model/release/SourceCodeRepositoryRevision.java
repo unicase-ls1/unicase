@@ -10,8 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Source Code Repository Revision</b></em>'. <!--
  * end-user-doc -->
- *
- *
+ * 
  * @see org.unicase.model.release.ReleasePackage#getSourceCodeRepositoryRevision()
  * @model abstract="true"
  * @generated

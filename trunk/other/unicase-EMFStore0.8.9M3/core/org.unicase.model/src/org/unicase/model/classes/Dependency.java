@@ -9,15 +9,14 @@ import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Dependency</b></em>'. <!-- end-user-doc -->
- *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.classes.Dependency#getSource <em>Source</em>}</li>
- *   <li>{@link org.unicase.model.classes.Dependency#getTarget <em>Target</em>}</li>
+ * <li>{@link org.unicase.model.classes.Dependency#getSource <em>Source</em>}</li>
+ * <li>{@link org.unicase.model.classes.Dependency#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.model.classes.ClassesPackage#getDependency()
  * @model
  * @generated

@@ -26,16 +26,16 @@ import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.Transition;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.state.Transition} object.
- * <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.state.Transition} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TransitionItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TransitionItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +43,8 @@ public class TransitionItemProvider extends UnicaseModelElementItemProvider impl
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,8 +60,8 @@ public class TransitionItemProvider extends UnicaseModelElementItemProvider impl
 	}
 
 	/**
-	 * This adds a property descriptor for the Condition feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Condition feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addConditionPropertyDescriptor(Object object) {
@@ -74,8 +74,8 @@ public class TransitionItemProvider extends UnicaseModelElementItemProvider impl
 	}
 
 	/**
-	 * This adds a property descriptor for the Source feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Source feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addSourcePropertyDescriptor(Object object) {
@@ -87,8 +87,8 @@ public class TransitionItemProvider extends UnicaseModelElementItemProvider impl
 	}
 
 	/**
-	 * This adds a property descriptor for the Target feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Target feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
@@ -100,8 +100,8 @@ public class TransitionItemProvider extends UnicaseModelElementItemProvider impl
 	}
 
 	/**
-	 * This returns Transition.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Transition.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -110,8 +110,8 @@ public class TransitionItemProvider extends UnicaseModelElementItemProvider impl
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,9 +141,9 @@ public class TransitionItemProvider extends UnicaseModelElementItemProvider impl
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -152,8 +152,8 @@ public class TransitionItemProvider extends UnicaseModelElementItemProvider impl
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

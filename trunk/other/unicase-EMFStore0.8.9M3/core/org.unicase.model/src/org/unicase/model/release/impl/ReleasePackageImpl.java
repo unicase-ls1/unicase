@@ -8,7 +8,6 @@ package org.unicase.model.release.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.emfstore.server.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
@@ -35,12 +34,8 @@ import org.unicase.model.profile.impl.ProfilePackageImpl;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.impl.RationalePackageImpl;
 import org.unicase.model.release.AbstractRelease;
-import org.unicase.model.release.Release;
 import org.unicase.model.release.ReleaseFactory;
 import org.unicase.model.release.ReleasePackage;
-import org.unicase.model.release.SourceCodeRepositoryRevision;
-import org.unicase.model.release.SourceCodeRepositoryStream;
-import org.unicase.model.release.Stream;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.impl.RequirementPackageImpl;
 import org.unicase.model.state.StatePackage;
@@ -52,12 +47,13 @@ import org.unicase.model.util.impl.UtilPackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ReleasePackageImpl extends EPackageImpl implements ReleasePackage {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass abstractReleaseEClass = null;
@@ -81,17 +77,18 @@ public class ReleasePackageImpl extends EPackageImpl implements ReleasePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
-	 * <p>This method is used to initialize {@link ReleasePackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc
+	 * <p>
+	 * This method is used to initialize {@link ReleasePackage#eINSTANCE} when that field is accessed. Clients should
+	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -204,8 +201,8 @@ public class ReleasePackageImpl extends EPackageImpl implements ReleasePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAbstractRelease() {
@@ -213,8 +210,8 @@ public class ReleasePackageImpl extends EPackageImpl implements ReleasePackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAbstractRelease_IncludedWorkItems() {
@@ -223,6 +220,7 @@ public class ReleasePackageImpl extends EPackageImpl implements ReleasePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ReleaseFactory getReleaseFactory() {
@@ -231,14 +229,15 @@ public class ReleasePackageImpl extends EPackageImpl implements ReleasePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
+	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -253,14 +252,15 @@ public class ReleasePackageImpl extends EPackageImpl implements ReleasePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
+	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -299,9 +299,8 @@ public class ReleasePackageImpl extends EPackageImpl implements ReleasePackage {
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {

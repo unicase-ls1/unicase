@@ -11,8 +11,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -41,24 +39,23 @@ import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.profile.ProfileFactory;
 import org.unicase.model.rationale.RationaleFactory;
-import org.unicase.model.release.ReleaseFactory;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.state.StateFactory;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.util.UtilFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.Project} object.
- * <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.model.Project} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
+ * 
  * @generated
  */
 public class ProjectItemProvider extends org.eclipse.emf.emfstore.common.model.provider.ProjectItemProvider implements
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectItemProvider(AdapterFactory adapterFactory) {
@@ -66,8 +63,8 @@ public class ProjectItemProvider extends org.eclipse.emf.emfstore.common.model.p
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -113,9 +110,9 @@ public class ProjectItemProvider extends org.eclipse.emf.emfstore.common.model.p
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -946,9 +943,9 @@ public class ProjectItemProvider extends org.eclipse.emf.emfstore.common.model.p
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -967,8 +964,8 @@ public class ProjectItemProvider extends org.eclipse.emf.emfstore.common.model.p
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -10,30 +10,29 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Stream</b></em>'. <!-- end-user-doc -->
- *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.release.Stream#getReleases <em>Releases</em>}</li>
- *   <li>{@link org.unicase.model.release.Stream#getSourceCodeRepositoryStream <em>Source Code Repository Stream</em>}</li>
+ * <li>{@link org.unicase.model.release.Stream#getReleases <em>Releases</em>}</li>
+ * <li>{@link org.unicase.model.release.Stream#getSourceCodeRepositoryStream <em>Source Code Repository Stream</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.model.release.ReleasePackage#getStream()
  * @model
  * @generated
  */
 public interface Stream extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Releases</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.model.release.Release}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.release.Release#getStream <em>Stream</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Releases</b></em>' containment reference list. The list contents are of type
+	 * {@link org.unicase.model.release.Release}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.release.Release#getStream <em>Stream</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Releases</em>' containment reference list isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Releases</em>' containment reference list.
 	 * @see org.unicase.model.release.ReleasePackage#getStream_Releases()
 	 * @see org.unicase.model.release.Release#getStream
@@ -43,13 +42,13 @@ public interface Stream extends EObject {
 	EList<Release> getReleases();
 
 	/**
-	 * Returns the value of the '<em><b>Source Code Repository Stream</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Source Code Repository Stream</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Code Repository Stream</em>' reference isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Source Code Repository Stream</em>' reference.
 	 * @see #setSourceCodeRepositoryStream(SourceCodeRepositoryStream)
 	 * @see org.unicase.model.release.ReleasePackage#getStream_SourceCodeRepositoryStream()
@@ -59,8 +58,9 @@ public interface Stream extends EObject {
 	SourceCodeRepositoryStream getSourceCodeRepositoryStream();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.release.Stream#getSourceCodeRepositoryStream <em>Source Code Repository Stream</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.release.Stream#getSourceCodeRepositoryStream
+	 * <em>Source Code Repository Stream</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Source Code Repository Stream</em>' reference.
 	 * @see #getSourceCodeRepositoryStream()
 	 * @generated

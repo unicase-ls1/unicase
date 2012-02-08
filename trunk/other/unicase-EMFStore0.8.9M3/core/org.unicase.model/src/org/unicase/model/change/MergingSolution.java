@@ -25,14 +25,15 @@ import org.unicase.model.rationale.Solution;
  */
 public interface MergingSolution extends Solution {
 	/**
-	 * Returns the value of the '<em><b>Applied Operations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Applied Operations</b></em>' containment reference list. The list contents are
+	 * of type {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation}. <!--
+	 * begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Applied Operations</em>' containment reference list isn't clear, there really should
 	 * be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Applied Operations</em>' containment reference list.
 	 * @see org.unicase.model.change.ChangePackage#getMergingSolution_AppliedOperations()
 	 * @model containment="true" resolveProxies="true"

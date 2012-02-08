@@ -8,41 +8,34 @@ package org.unicase.model.release.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.unicase.model.impl.UnicaseModelElementImpl;
-
 import org.unicase.model.release.AbstractRelease;
 import org.unicase.model.release.ReleasePackage;
-
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Abstract Release</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Abstract Release</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.release.impl.AbstractReleaseImpl#getIncludedWorkItems <em>Included Work Items</em>}</li>
+ * <li>{@link org.unicase.model.release.impl.AbstractReleaseImpl#getIncludedWorkItems <em>Included Work Items</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class AbstractReleaseImpl extends UnicaseModelElementImpl implements AbstractRelease {
 	/**
-	 * The cached value of the '{@link #getIncludedWorkItems() <em>Included Work Items</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIncludedWorkItems() <em>Included Work Items</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIncludedWorkItems()
 	 * @generated
 	 * @ordered
@@ -50,8 +43,8 @@ public abstract class AbstractReleaseImpl extends UnicaseModelElementImpl implem
 	protected EList<WorkItem> includedWorkItems;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AbstractReleaseImpl() {
@@ -59,8 +52,8 @@ public abstract class AbstractReleaseImpl extends UnicaseModelElementImpl implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,8 +62,8 @@ public abstract class AbstractReleaseImpl extends UnicaseModelElementImpl implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getIncludedWorkItems() {
@@ -82,8 +75,8 @@ public abstract class AbstractReleaseImpl extends UnicaseModelElementImpl implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -98,8 +91,8 @@ public abstract class AbstractReleaseImpl extends UnicaseModelElementImpl implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -112,8 +105,8 @@ public abstract class AbstractReleaseImpl extends UnicaseModelElementImpl implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -126,8 +119,8 @@ public abstract class AbstractReleaseImpl extends UnicaseModelElementImpl implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -143,8 +136,8 @@ public abstract class AbstractReleaseImpl extends UnicaseModelElementImpl implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -158,8 +151,8 @@ public abstract class AbstractReleaseImpl extends UnicaseModelElementImpl implem
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -171,4 +164,4 @@ public abstract class AbstractReleaseImpl extends UnicaseModelElementImpl implem
 		return super.eIsSet(featureID);
 	}
 
-} //AbstractReleaseImpl
+} // AbstractReleaseImpl
