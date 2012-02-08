@@ -34,8 +34,8 @@ import org.unicase.model.requirement.RequirementPackage;
 public class NonFunctionalRequirementItemProvider extends CriterionItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NonFunctionalRequirementItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +43,8 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,8 +96,8 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the System Functions feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the System Functions feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addSystemFunctionsPropertyDescriptor(Object object) {
@@ -112,8 +112,8 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the User Tasks feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the User Tasks feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addUserTasksPropertyDescriptor(Object object) {
@@ -127,9 +127,8 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Done feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Done feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addDonePropertyDescriptor(Object object) {
@@ -143,8 +142,8 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 	}
 
 	/**
-	 * This returns NonFunctionalRequirement.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns NonFunctionalRequirement.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -182,9 +181,9 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -193,8 +192,8 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -21,35 +21,36 @@ import org.unicase.model.ModelPackage;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * 
  * @see org.unicase.model.task.TaskFactory
  * @model kind="package"
  * @generated
  */
 public interface TaskPackage extends EPackage {
 	/**
-	 * The package name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNAME = "task";
 
 	/**
-	 * The package namespace URI.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/model/task";
 
 	/**
-	 * The package namespace name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.model.task";
 
 	/**
-	 * The singleton instance of the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	TaskPackage eINSTANCE = org.unicase.model.task.impl.TaskPackageImpl.init();
@@ -65,16 +66,16 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM = 2;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_ITEM__NAME = ModelPackage.ANNOTATION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -99,17 +100,17 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__ATTACHMENTS = ModelPackage.ANNOTATION__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
-	 * <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_ITEM__INCOMING_DOCUMENT_REFERENCES = ModelPackage.ANNOTATION__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -125,43 +126,43 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.ANNOTATION__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_ITEM__COMMENTS = ModelPackage.ANNOTATION__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_ITEM__CREATION_DATE = ModelPackage.ANNOTATION__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_ITEM__CREATOR = ModelPackage.ANNOTATION__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_ITEM__ANNOTATED_MODEL_ELEMENTS = ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -177,24 +178,24 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__PREDECESSORS = ModelPackage.ANNOTATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Successors</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Successors</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_ITEM__SUCCESSORS = ModelPackage.ANNOTATION_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Assignee</b></em>' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Assignee</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_ITEM__ASSIGNEE = ModelPackage.ANNOTATION_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Reviewer</b></em>' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Reviewer</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -210,49 +211,49 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__PARTICIPANTS = ModelPackage.ANNOTATION_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Due Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Due Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_ITEM__DUE_DATE = ModelPackage.ANNOTATION_FEATURE_COUNT + 6;
 
 	/**
-	 * The feature id for the '<em><b>Estimate</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Estimate</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_ITEM__ESTIMATE = ModelPackage.ANNOTATION_FEATURE_COUNT + 7;
 
 	/**
-	 * The feature id for the '<em><b>Effort</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Effort</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_ITEM__EFFORT = ModelPackage.ANNOTATION_FEATURE_COUNT + 8;
 
 	/**
-	 * The feature id for the '<em><b>Priority</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Priority</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_ITEM__PRIORITY = ModelPackage.ANNOTATION_FEATURE_COUNT + 9;
 
 	/**
-	 * The feature id for the '<em><b>Resolved</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Resolved</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_ITEM__RESOLVED = ModelPackage.ANNOTATION_FEATURE_COUNT + 10;
 
 	/**
-	 * The feature id for the '<em><b>Including Releases</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Including Releases</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -278,16 +279,16 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTION_ITEM__NAME = WORK_ITEM__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -312,17 +313,17 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__ATTACHMENTS = WORK_ITEM__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
-	 * <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTION_ITEM__INCOMING_DOCUMENT_REFERENCES = WORK_ITEM__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -338,43 +339,43 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__APPLIED_STEREOTYPE_INSTANCES = WORK_ITEM__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTION_ITEM__COMMENTS = WORK_ITEM__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTION_ITEM__CREATION_DATE = WORK_ITEM__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTION_ITEM__CREATOR = WORK_ITEM__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTION_ITEM__ANNOTATED_MODEL_ELEMENTS = WORK_ITEM__ANNOTATED_MODEL_ELEMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -390,24 +391,24 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__PREDECESSORS = WORK_ITEM__PREDECESSORS;
 
 	/**
-	 * The feature id for the '<em><b>Successors</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Successors</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTION_ITEM__SUCCESSORS = WORK_ITEM__SUCCESSORS;
 
 	/**
-	 * The feature id for the '<em><b>Assignee</b></em>' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Assignee</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTION_ITEM__ASSIGNEE = WORK_ITEM__ASSIGNEE;
 
 	/**
-	 * The feature id for the '<em><b>Reviewer</b></em>' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Reviewer</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -423,73 +424,73 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__PARTICIPANTS = WORK_ITEM__PARTICIPANTS;
 
 	/**
-	 * The feature id for the '<em><b>Due Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Due Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTION_ITEM__DUE_DATE = WORK_ITEM__DUE_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Estimate</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Estimate</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTION_ITEM__ESTIMATE = WORK_ITEM__ESTIMATE;
 
 	/**
-	 * The feature id for the '<em><b>Effort</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Effort</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTION_ITEM__EFFORT = WORK_ITEM__EFFORT;
 
 	/**
-	 * The feature id for the '<em><b>Priority</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Priority</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTION_ITEM__PRIORITY = WORK_ITEM__PRIORITY;
 
 	/**
-	 * The feature id for the '<em><b>Resolved</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Resolved</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTION_ITEM__RESOLVED = WORK_ITEM__RESOLVED;
 
 	/**
-	 * The feature id for the '<em><b>Including Releases</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Including Releases</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTION_ITEM__INCLUDING_RELEASES = WORK_ITEM__INCLUDING_RELEASES;
 
 	/**
-	 * The feature id for the '<em><b>Checked</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Checked</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTION_ITEM__CHECKED = WORK_ITEM_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Done</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Done</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACTION_ITEM__DONE = WORK_ITEM_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Activity</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Activity</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -507,6 +508,7 @@ public interface TaskPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.unicase.model.task.impl.WorkPackageImpl <em>Work Package</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.unicase.model.task.impl.WorkPackageImpl
 	 * @see org.unicase.model.task.impl.TaskPackageImpl#getWorkPackage()
 	 * @generated
@@ -514,16 +516,16 @@ public interface TaskPackage extends EPackage {
 	int WORK_PACKAGE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_PACKAGE__NAME = WORK_ITEM__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -548,17 +550,17 @@ public interface TaskPackage extends EPackage {
 	int WORK_PACKAGE__ATTACHMENTS = WORK_ITEM__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
-	 * <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_PACKAGE__INCOMING_DOCUMENT_REFERENCES = WORK_ITEM__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -574,43 +576,43 @@ public interface TaskPackage extends EPackage {
 	int WORK_PACKAGE__APPLIED_STEREOTYPE_INSTANCES = WORK_ITEM__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_PACKAGE__COMMENTS = WORK_ITEM__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_PACKAGE__CREATION_DATE = WORK_ITEM__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_PACKAGE__CREATOR = WORK_ITEM__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_PACKAGE__ANNOTATED_MODEL_ELEMENTS = WORK_ITEM__ANNOTATED_MODEL_ELEMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -626,24 +628,24 @@ public interface TaskPackage extends EPackage {
 	int WORK_PACKAGE__PREDECESSORS = WORK_ITEM__PREDECESSORS;
 
 	/**
-	 * The feature id for the '<em><b>Successors</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Successors</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_PACKAGE__SUCCESSORS = WORK_ITEM__SUCCESSORS;
 
 	/**
-	 * The feature id for the '<em><b>Assignee</b></em>' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Assignee</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_PACKAGE__ASSIGNEE = WORK_ITEM__ASSIGNEE;
 
 	/**
-	 * The feature id for the '<em><b>Reviewer</b></em>' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Reviewer</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -659,74 +661,74 @@ public interface TaskPackage extends EPackage {
 	int WORK_PACKAGE__PARTICIPANTS = WORK_ITEM__PARTICIPANTS;
 
 	/**
-	 * The feature id for the '<em><b>Due Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Due Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_PACKAGE__DUE_DATE = WORK_ITEM__DUE_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Estimate</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Estimate</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_PACKAGE__ESTIMATE = WORK_ITEM__ESTIMATE;
 
 	/**
-	 * The feature id for the '<em><b>Effort</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Effort</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_PACKAGE__EFFORT = WORK_ITEM__EFFORT;
 
 	/**
-	 * The feature id for the '<em><b>Priority</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Priority</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_PACKAGE__PRIORITY = WORK_ITEM__PRIORITY;
 
 	/**
-	 * The feature id for the '<em><b>Resolved</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Resolved</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_PACKAGE__RESOLVED = WORK_ITEM__RESOLVED;
 
 	/**
-	 * The feature id for the '<em><b>Including Releases</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Including Releases</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_PACKAGE__INCLUDING_RELEASES = WORK_ITEM__INCLUDING_RELEASES;
 
 	/**
-	 * The feature id for the '<em><b>Contained Work Items</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Contained Work Items</b></em>' containment reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_PACKAGE__CONTAINED_WORK_ITEMS = WORK_ITEM_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Start Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Start Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int WORK_PACKAGE__START_DATE = WORK_ITEM_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>End Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>End Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -752,16 +754,16 @@ public interface TaskPackage extends EPackage {
 	int MILESTONE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MILESTONE__NAME = WORK_ITEM__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -786,17 +788,17 @@ public interface TaskPackage extends EPackage {
 	int MILESTONE__ATTACHMENTS = WORK_ITEM__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
-	 * <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MILESTONE__INCOMING_DOCUMENT_REFERENCES = WORK_ITEM__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -812,43 +814,43 @@ public interface TaskPackage extends EPackage {
 	int MILESTONE__APPLIED_STEREOTYPE_INSTANCES = WORK_ITEM__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MILESTONE__COMMENTS = WORK_ITEM__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MILESTONE__CREATION_DATE = WORK_ITEM__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MILESTONE__CREATOR = WORK_ITEM__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MILESTONE__ANNOTATED_MODEL_ELEMENTS = WORK_ITEM__ANNOTATED_MODEL_ELEMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Containing Workpackage</b></em>' container reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -864,24 +866,24 @@ public interface TaskPackage extends EPackage {
 	int MILESTONE__PREDECESSORS = WORK_ITEM__PREDECESSORS;
 
 	/**
-	 * The feature id for the '<em><b>Successors</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Successors</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MILESTONE__SUCCESSORS = WORK_ITEM__SUCCESSORS;
 
 	/**
-	 * The feature id for the '<em><b>Assignee</b></em>' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Assignee</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MILESTONE__ASSIGNEE = WORK_ITEM__ASSIGNEE;
 
 	/**
-	 * The feature id for the '<em><b>Reviewer</b></em>' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Reviewer</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -897,58 +899,58 @@ public interface TaskPackage extends EPackage {
 	int MILESTONE__PARTICIPANTS = WORK_ITEM__PARTICIPANTS;
 
 	/**
-	 * The feature id for the '<em><b>Due Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Due Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MILESTONE__DUE_DATE = WORK_ITEM__DUE_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Estimate</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Estimate</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MILESTONE__ESTIMATE = WORK_ITEM__ESTIMATE;
 
 	/**
-	 * The feature id for the '<em><b>Effort</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Effort</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MILESTONE__EFFORT = WORK_ITEM__EFFORT;
 
 	/**
-	 * The feature id for the '<em><b>Priority</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Priority</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MILESTONE__PRIORITY = WORK_ITEM__PRIORITY;
 
 	/**
-	 * The feature id for the '<em><b>Resolved</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Resolved</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MILESTONE__RESOLVED = WORK_ITEM__RESOLVED;
 
 	/**
-	 * The feature id for the '<em><b>Including Releases</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Including Releases</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MILESTONE__INCLUDING_RELEASES = WORK_ITEM__INCLUDING_RELEASES;
 
 	/**
-	 * The feature id for the '<em><b>Contained Model Elements</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Contained Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -974,16 +976,16 @@ public interface TaskPackage extends EPackage {
 	int CHECKABLE = 4;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int CHECKABLE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1008,17 +1010,17 @@ public interface TaskPackage extends EPackage {
 	int CHECKABLE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
-	 * <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int CHECKABLE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1034,33 +1036,33 @@ public interface TaskPackage extends EPackage {
 	int CHECKABLE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int CHECKABLE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int CHECKABLE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int CHECKABLE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Checked</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Checked</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1107,8 +1109,9 @@ public interface TaskPackage extends EPackage {
 	EAttribute getActionItem_Done();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.task.ActionItem#getActivity <em>Activity</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute '{@link org.unicase.model.task.ActionItem#getActivity
+	 * <em>Activity</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Activity</em>'.
 	 * @see org.unicase.model.task.ActionItem#getActivity()
 	 * @see #getActionItem()
@@ -1139,8 +1142,9 @@ public interface TaskPackage extends EPackage {
 	EReference getWorkPackage_ContainedWorkItems();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.task.WorkPackage#getStartDate <em>Start Date</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute '{@link org.unicase.model.task.WorkPackage#getStartDate
+	 * <em>Start Date</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Start Date</em>'.
 	 * @see org.unicase.model.task.WorkPackage#getStartDate()
 	 * @see #getWorkPackage()
@@ -1149,8 +1153,9 @@ public interface TaskPackage extends EPackage {
 	EAttribute getWorkPackage_StartDate();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.task.WorkPackage#getEndDate <em>End Date</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute '{@link org.unicase.model.task.WorkPackage#getEndDate
+	 * <em>End Date</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>End Date</em>'.
 	 * @see org.unicase.model.task.WorkPackage#getEndDate()
 	 * @see #getWorkPackage()
@@ -1181,8 +1186,9 @@ public interface TaskPackage extends EPackage {
 	EReference getWorkItem_ContainingWorkpackage();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.task.WorkItem#getPredecessors <em>Predecessors</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference list '{@link org.unicase.model.task.WorkItem#getPredecessors
+	 * <em>Predecessors</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Predecessors</em>'.
 	 * @see org.unicase.model.task.WorkItem#getPredecessors()
 	 * @see #getWorkItem()
@@ -1191,8 +1197,9 @@ public interface TaskPackage extends EPackage {
 	EReference getWorkItem_Predecessors();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.task.WorkItem#getSuccessors <em>Successors</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference list '{@link org.unicase.model.task.WorkItem#getSuccessors
+	 * <em>Successors</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Successors</em>'.
 	 * @see org.unicase.model.task.WorkItem#getSuccessors()
 	 * @see #getWorkItem()
@@ -1201,8 +1208,9 @@ public interface TaskPackage extends EPackage {
 	EReference getWorkItem_Successors();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.task.WorkItem#getAssignee <em>Assignee</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference '{@link org.unicase.model.task.WorkItem#getAssignee <em>Assignee</em>}
+	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Assignee</em>'.
 	 * @see org.unicase.model.task.WorkItem#getAssignee()
 	 * @see #getWorkItem()
@@ -1211,8 +1219,9 @@ public interface TaskPackage extends EPackage {
 	EReference getWorkItem_Assignee();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.task.WorkItem#getReviewer <em>Reviewer</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference '{@link org.unicase.model.task.WorkItem#getReviewer <em>Reviewer</em>}
+	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Reviewer</em>'.
 	 * @see org.unicase.model.task.WorkItem#getReviewer()
 	 * @see #getWorkItem()
@@ -1221,8 +1230,9 @@ public interface TaskPackage extends EPackage {
 	EReference getWorkItem_Reviewer();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.task.WorkItem#getParticipants <em>Participants</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference list '{@link org.unicase.model.task.WorkItem#getParticipants
+	 * <em>Participants</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Participants</em>'.
 	 * @see org.unicase.model.task.WorkItem#getParticipants()
 	 * @see #getWorkItem()
@@ -1233,6 +1243,7 @@ public interface TaskPackage extends EPackage {
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.model.task.WorkItem#getDueDate <em>Due Date</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Due Date</em>'.
 	 * @see org.unicase.model.task.WorkItem#getDueDate()
 	 * @see #getWorkItem()
@@ -1241,8 +1252,9 @@ public interface TaskPackage extends EPackage {
 	EAttribute getWorkItem_DueDate();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.task.WorkItem#getEstimate <em>Estimate</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute '{@link org.unicase.model.task.WorkItem#getEstimate <em>Estimate</em>}
+	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Estimate</em>'.
 	 * @see org.unicase.model.task.WorkItem#getEstimate()
 	 * @see #getWorkItem()
@@ -1253,6 +1265,7 @@ public interface TaskPackage extends EPackage {
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.model.task.WorkItem#getEffort <em>Effort</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Effort</em>'.
 	 * @see org.unicase.model.task.WorkItem#getEffort()
 	 * @see #getWorkItem()
@@ -1261,8 +1274,9 @@ public interface TaskPackage extends EPackage {
 	EAttribute getWorkItem_Effort();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.task.WorkItem#getPriority <em>Priority</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute '{@link org.unicase.model.task.WorkItem#getPriority <em>Priority</em>}
+	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Priority</em>'.
 	 * @see org.unicase.model.task.WorkItem#getPriority()
 	 * @see #getWorkItem()
@@ -1273,6 +1287,7 @@ public interface TaskPackage extends EPackage {
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.model.task.WorkItem#isResolved <em>Resolved</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Resolved</em>'.
 	 * @see org.unicase.model.task.WorkItem#isResolved()
 	 * @see #getWorkItem()
@@ -1281,8 +1296,9 @@ public interface TaskPackage extends EPackage {
 	EAttribute getWorkItem_Resolved();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.task.WorkItem#getIncludingReleases <em>Including Releases</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference list '{@link org.unicase.model.task.WorkItem#getIncludingReleases
+	 * <em>Including Releases</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Including Releases</em>'.
 	 * @see org.unicase.model.task.WorkItem#getIncludingReleases()
 	 * @see #getWorkItem()
@@ -1325,6 +1341,7 @@ public interface TaskPackage extends EPackage {
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.model.task.Checkable#isChecked <em>Checked</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Checked</em>'.
 	 * @see org.unicase.model.task.Checkable#isChecked()
 	 * @see #getCheckable()
@@ -1343,8 +1360,8 @@ public interface TaskPackage extends EPackage {
 	EEnum getActivityType();
 
 	/**
-	 * Returns the factory that creates the instances of the model.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -1359,12 +1376,14 @@ public interface TaskPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.task.impl.ActionItemImpl <em>Action Item</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '{@link org.unicase.model.task.impl.ActionItemImpl <em>Action Item</em>}'
+		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @see org.unicase.model.task.impl.ActionItemImpl
 		 * @see org.unicase.model.task.impl.TaskPackageImpl#getActionItem()
 		 * @generated
@@ -1372,24 +1391,25 @@ public interface TaskPackage extends EPackage {
 		EClass ACTION_ITEM = eINSTANCE.getActionItem();
 
 		/**
-		 * The meta object literal for the '<em><b>Done</b></em>' attribute feature.
-		 * <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Done</b></em>' attribute feature. <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute ACTION_ITEM__DONE = eINSTANCE.getActionItem_Done();
 
 		/**
-		 * The meta object literal for the '<em><b>Activity</b></em>' attribute feature.
-		 * <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Activity</b></em>' attribute feature. <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute ACTION_ITEM__ACTIVITY = eINSTANCE.getActionItem_Activity();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.task.impl.WorkPackageImpl <em>Work Package</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '{@link org.unicase.model.task.impl.WorkPackageImpl <em>Work Package</em>}'
+		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @see org.unicase.model.task.impl.WorkPackageImpl
 		 * @see org.unicase.model.task.impl.TaskPackageImpl#getWorkPackage()
 		 * @generated
@@ -1399,22 +1419,23 @@ public interface TaskPackage extends EPackage {
 		/**
 		 * The meta object literal for the '<em><b>Contained Work Items</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference WORK_PACKAGE__CONTAINED_WORK_ITEMS = eINSTANCE.getWorkPackage_ContainedWorkItems();
 
 		/**
-		 * The meta object literal for the '<em><b>Start Date</b></em>' attribute feature.
-		 * <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Start Date</b></em>' attribute feature. <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute WORK_PACKAGE__START_DATE = eINSTANCE.getWorkPackage_StartDate();
 
 		/**
-		 * The meta object literal for the '<em><b>End Date</b></em>' attribute feature.
-		 * <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>End Date</b></em>' attribute feature. <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute WORK_PACKAGE__END_DATE = eINSTANCE.getWorkPackage_EndDate();
@@ -1438,81 +1459,81 @@ public interface TaskPackage extends EPackage {
 		EReference WORK_ITEM__CONTAINING_WORKPACKAGE = eINSTANCE.getWorkItem_ContainingWorkpackage();
 
 		/**
-		 * The meta object literal for the '<em><b>Predecessors</b></em>' reference list feature.
-		 * <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Predecessors</b></em>' reference list feature. <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference WORK_ITEM__PREDECESSORS = eINSTANCE.getWorkItem_Predecessors();
 
 		/**
-		 * The meta object literal for the '<em><b>Successors</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Successors</b></em>' reference list feature. <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference WORK_ITEM__SUCCESSORS = eINSTANCE.getWorkItem_Successors();
 
 		/**
-		 * The meta object literal for the '<em><b>Assignee</b></em>' reference feature.
-		 * <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Assignee</b></em>' reference feature. <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference WORK_ITEM__ASSIGNEE = eINSTANCE.getWorkItem_Assignee();
 
 		/**
-		 * The meta object literal for the '<em><b>Reviewer</b></em>' reference feature.
-		 * <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Reviewer</b></em>' reference feature. <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference WORK_ITEM__REVIEWER = eINSTANCE.getWorkItem_Reviewer();
 
 		/**
-		 * The meta object literal for the '<em><b>Participants</b></em>' reference list feature.
-		 * <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Participants</b></em>' reference list feature. <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference WORK_ITEM__PARTICIPANTS = eINSTANCE.getWorkItem_Participants();
 
 		/**
-		 * The meta object literal for the '<em><b>Due Date</b></em>' attribute feature.
-		 * <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Due Date</b></em>' attribute feature. <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute WORK_ITEM__DUE_DATE = eINSTANCE.getWorkItem_DueDate();
 
 		/**
-		 * The meta object literal for the '<em><b>Estimate</b></em>' attribute feature.
-		 * <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Estimate</b></em>' attribute feature. <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute WORK_ITEM__ESTIMATE = eINSTANCE.getWorkItem_Estimate();
 
 		/**
-		 * The meta object literal for the '<em><b>Effort</b></em>' attribute feature.
-		 * <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Effort</b></em>' attribute feature. <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute WORK_ITEM__EFFORT = eINSTANCE.getWorkItem_Effort();
 
 		/**
-		 * The meta object literal for the '<em><b>Priority</b></em>' attribute feature.
-		 * <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Priority</b></em>' attribute feature. <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute WORK_ITEM__PRIORITY = eINSTANCE.getWorkItem_Priority();
 
 		/**
-		 * The meta object literal for the '<em><b>Resolved</b></em>' attribute feature.
-		 * <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Resolved</b></em>' attribute feature. <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute WORK_ITEM__RESOLVED = eINSTANCE.getWorkItem_Resolved();
@@ -1528,6 +1549,7 @@ public interface TaskPackage extends EPackage {
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.task.impl.MilestoneImpl <em>Milestone</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @see org.unicase.model.task.impl.MilestoneImpl
 		 * @see org.unicase.model.task.impl.TaskPackageImpl#getMilestone()
 		 * @generated
@@ -1553,9 +1575,9 @@ public interface TaskPackage extends EPackage {
 		EClass CHECKABLE = eINSTANCE.getCheckable();
 
 		/**
-		 * The meta object literal for the '<em><b>Checked</b></em>' attribute feature.
-		 * <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Checked</b></em>' attribute feature. <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute CHECKABLE__CHECKED = eINSTANCE.getCheckable_Checked();
@@ -1563,6 +1585,7 @@ public interface TaskPackage extends EPackage {
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.task.ActivityType <em>Activity Type</em>}' enum.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @see org.unicase.model.task.ActivityType
 		 * @see org.unicase.model.task.impl.TaskPackageImpl#getActivityType()
 		 * @generated

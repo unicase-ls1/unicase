@@ -10,8 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Source Code Repository Stream</b></em>'. <!--
  * end-user-doc -->
- *
- *
+ * 
  * @see org.unicase.model.release.ReleasePackage#getSourceCodeRepositoryStream()
  * @model abstract="true"
  * @generated

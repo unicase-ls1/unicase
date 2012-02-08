@@ -14,31 +14,32 @@ import org.eclipse.emf.common.util.Enumerator;
 /**
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Activity Type</b></em>', and
  * utility methods for working with them. <!-- end-user-doc -->
+ * 
  * @see org.unicase.model.task.TaskPackage#getActivityType()
  * @model
  * @generated
  */
 public enum ActivityType implements Enumerator {
 	/**
-	 * The '<em><b>NONE</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The '<em><b>NONE</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #NONE_VALUE
 	 * @generated
 	 * @ordered
 	 */
 	NONE(0, "NONE", "<please select>"), /**
-										 * The '<em><b>ANALYSIS</b></em>' literal object.
-										 * <!-- begin-user-doc --> <!--
-										 * end-user-doc -->
-										 * @see #ANALYSIS_VALUE
-										 * @generated
-										 * @ordered
-										 */
+	 * The '<em><b>ANALYSIS</b></em>' literal object. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #ANALYSIS_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	ANALYSIS(1, "ANALYSIS", "Analysis"),
 
 	/**
-	 * The '<em><b>SYSTEM DESIGN</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The '<em><b>SYSTEM DESIGN</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #SYSTEM_DESIGN_VALUE
 	 * @generated
 	 * @ordered
@@ -46,8 +47,8 @@ public enum ActivityType implements Enumerator {
 	SYSTEM_DESIGN(2, "SYSTEM_DESIGN", "System Design"),
 
 	/**
-	 * The '<em><b>OBJECT DESIGN</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The '<em><b>OBJECT DESIGN</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #OBJECT_DESIGN_VALUE
 	 * @generated
 	 * @ordered
@@ -55,8 +56,8 @@ public enum ActivityType implements Enumerator {
 	OBJECT_DESIGN(3, "OBJECT_DESIGN", "Object Design"),
 
 	/**
-	 * The '<em><b>IMPLEMENTATION</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The '<em><b>IMPLEMENTATION</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #IMPLEMENTATION_VALUE
 	 * @generated
 	 * @ordered
@@ -64,30 +65,30 @@ public enum ActivityType implements Enumerator {
 	IMPLEMENTATION(4, "IMPLEMENTATION", "Implementation"),
 
 	/**
-	 * The '<em><b>TESTING</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The '<em><b>TESTING</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #TESTING_VALUE
 	 * @generated
 	 * @ordered
 	 */
 	TESTING(5, "TESTING", "Testing"), /**
-										 * The '<em><b>MANAGEMENT</b></em>' literal object.
-										 * <!-- begin-user-doc --> <!--
-										 * end-user-doc -->
-										 * @see #MANAGEMENT_VALUE
-										 * @generated
-										 * @ordered
-										 */
+	 * The '<em><b>MANAGEMENT</b></em>' literal object. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #MANAGEMENT_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	MANAGEMENT(6, "MANAGEMENT", "Management");
 
 	/**
-	 * The '<em><b>NONE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>NONE</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>NONE</b></em>' literal object isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #NONE
 	 * @model literal="<please select>"
 	 * @generated
@@ -96,13 +97,13 @@ public enum ActivityType implements Enumerator {
 	public static final int NONE_VALUE = 0;
 
 	/**
-	 * The '<em><b>ANALYSIS</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>ANALYSIS</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>ANALYSIS</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #ANALYSIS
 	 * @model literal="Analysis"
 	 * @generated
@@ -111,13 +112,13 @@ public enum ActivityType implements Enumerator {
 	public static final int ANALYSIS_VALUE = 1;
 
 	/**
-	 * The '<em><b>SYSTEM DESIGN</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>SYSTEM DESIGN</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>SYSTEM DESIGN</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #SYSTEM_DESIGN
 	 * @model literal="System Design"
 	 * @generated
@@ -126,13 +127,13 @@ public enum ActivityType implements Enumerator {
 	public static final int SYSTEM_DESIGN_VALUE = 2;
 
 	/**
-	 * The '<em><b>OBJECT DESIGN</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>OBJECT DESIGN</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>OBJECT DESIGN</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #OBJECT_DESIGN
 	 * @model literal="Object Design"
 	 * @generated
@@ -141,13 +142,13 @@ public enum ActivityType implements Enumerator {
 	public static final int OBJECT_DESIGN_VALUE = 3;
 
 	/**
-	 * The '<em><b>IMPLEMENTATION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>IMPLEMENTATION</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>IMPLEMENTATION</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #IMPLEMENTATION
 	 * @model literal="Implementation"
 	 * @generated
@@ -156,13 +157,13 @@ public enum ActivityType implements Enumerator {
 	public static final int IMPLEMENTATION_VALUE = 4;
 
 	/**
-	 * The '<em><b>TESTING</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>TESTING</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>TESTING</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #TESTING
 	 * @model literal="Testing"
 	 * @generated
@@ -171,13 +172,13 @@ public enum ActivityType implements Enumerator {
 	public static final int TESTING_VALUE = 5;
 
 	/**
-	 * The '<em><b>MANAGEMENT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>MANAGEMENT</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>MANAGEMENT</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #MANAGEMENT
 	 * @model literal="Management"
 	 * @generated
@@ -186,25 +187,25 @@ public enum ActivityType implements Enumerator {
 	public static final int MANAGEMENT_VALUE = 6;
 
 	/**
-	 * An array of all the '<em><b>Activity Type</b></em>' enumerators.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * An array of all the '<em><b>Activity Type</b></em>' enumerators. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static final ActivityType[] VALUES_ARRAY = new ActivityType[] { NONE, ANALYSIS, SYSTEM_DESIGN,
 		OBJECT_DESIGN, IMPLEMENTATION, TESTING, MANAGEMENT, };
 
 	/**
-	 * A public read-only list of all the '<em><b>Activity Type</b></em>' enumerators.
-	 * <!-- begin-user-doc --> <!--
+	 * A public read-only list of all the '<em><b>Activity Type</b></em>' enumerators. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final List<ActivityType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Activity Type</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Activity Type</b></em>' literal with the specified literal value. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ActivityType get(String literal) {
@@ -218,9 +219,9 @@ public enum ActivityType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Activity Type</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc --> <!--
+	 * Returns the '<em><b>Activity Type</b></em>' literal with the specified name. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ActivityType getByName(String name) {
@@ -234,9 +235,9 @@ public enum ActivityType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Activity Type</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Activity Type</b></em>' literal with the specified integer value. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ActivityType get(int value) {
@@ -261,25 +262,28 @@ public enum ActivityType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Only this class can construct instances. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private ActivityType(int value, String name, String literal) {
@@ -290,6 +294,7 @@ public enum ActivityType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getValue() {
@@ -298,6 +303,7 @@ public enum ActivityType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -306,6 +312,7 @@ public enum ActivityType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
@@ -313,9 +320,9 @@ public enum ActivityType implements Enumerator {
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc --> <!--
+	 * Returns the literal value of the enumerator, which is its string representation. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

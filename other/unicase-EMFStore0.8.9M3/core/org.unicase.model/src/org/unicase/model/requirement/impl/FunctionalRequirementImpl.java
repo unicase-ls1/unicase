@@ -30,27 +30,29 @@ import org.unicase.model.requirement.UseCase;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getRefinedRequirement <em>Refined Requirement</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getStoryPoints <em>Story Points</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getPriority <em>Priority</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getRefiningRequirements <em>Refining Requirements</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getUseCases <em>Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getScenarios <em>Scenarios</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#isReviewed <em>Reviewed</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getStakeholder <em>Stakeholder</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getCost <em>Cost</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#isDone <em>Done</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getRefinedRequirement <em>Refined Requirement
+ * </em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getStoryPoints <em>Story Points</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getPriority <em>Priority</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getRefiningRequirements <em>Refining
+ * Requirements</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getUseCases <em>Use Cases</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getScenarios <em>Scenarios</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#isReviewed <em>Reviewed</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getStakeholder <em>Stakeholder</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#getCost <em>Cost</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl#isDone <em>Done</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class FunctionalRequirementImpl extends UnicaseModelElementImpl implements FunctionalRequirement {
 
 	/**
-	 * The default value of the '{@link #getStoryPoints() <em>Story Points</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getStoryPoints() <em>Story Points</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getStoryPoints()
 	 * @generated
 	 * @ordered
@@ -58,9 +60,9 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 	protected static final int STORY_POINTS_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getStoryPoints() <em>Story Points</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getStoryPoints() <em>Story Points</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getStoryPoints()
 	 * @generated
 	 * @ordered
@@ -68,9 +70,9 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 	protected int storyPoints = STORY_POINTS_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getPriority() <em>Priority</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getPriority() <em>Priority</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getPriority()
 	 * @generated
 	 * @ordered
@@ -78,9 +80,9 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 	protected static final int PRIORITY_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getPriority()
 	 * @generated
 	 * @ordered
@@ -88,8 +90,9 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 	protected int priority = PRIORITY_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getRefiningRequirements() <em>Refining Requirements</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRefiningRequirements() <em>Refining Requirements</em>}' containment reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getRefiningRequirements()
 	 * @generated
 	 * @ordered
@@ -97,9 +100,9 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 	protected EList<FunctionalRequirement> refiningRequirements;
 
 	/**
-	 * The cached value of the '{@link #getUseCases() <em>Use Cases</em>}' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getUseCases() <em>Use Cases</em>}' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getUseCases()
 	 * @generated
 	 * @ordered
@@ -107,9 +110,9 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 	protected EList<UseCase> useCases;
 
 	/**
-	 * The cached value of the '{@link #getScenarios() <em>Scenarios</em>}' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getScenarios() <em>Scenarios</em>}' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getScenarios()
 	 * @generated
 	 * @ordered
@@ -117,9 +120,9 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 	protected EList<Scenario> scenarios;
 
 	/**
-	 * The default value of the '{@link #isReviewed() <em>Reviewed</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isReviewed() <em>Reviewed</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isReviewed()
 	 * @generated
 	 * @ordered
@@ -127,9 +130,9 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 	protected static final boolean REVIEWED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isReviewed() <em>Reviewed</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isReviewed() <em>Reviewed</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isReviewed()
 	 * @generated
 	 * @ordered
@@ -137,9 +140,9 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 	protected boolean reviewed = REVIEWED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getStakeholder() <em>Stakeholder</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getStakeholder() <em>Stakeholder</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getStakeholder()
 	 * @generated
 	 * @ordered
@@ -167,9 +170,9 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 	protected int cost = COST_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isDone() <em>Done</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #isDone() <em>Done</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #isDone()
 	 * @generated
 	 * @ordered
@@ -177,9 +180,9 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 	protected static final boolean DONE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isDone() <em>Done</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #isDone() <em>Done</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #isDone()
 	 * @generated
 	 * @ordered
@@ -188,6 +191,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FunctionalRequirementImpl() {
@@ -196,6 +200,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -205,6 +210,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isReviewed() {
@@ -213,6 +219,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setReviewed(boolean newReviewed) {
@@ -225,6 +232,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OrgUnit getStakeholder() {
@@ -242,6 +250,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OrgUnit basicGetStakeholder() {
@@ -250,6 +259,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setStakeholder(OrgUnit newStakeholder) {
@@ -262,6 +272,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getCost() {
@@ -270,6 +281,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCost(int newCost) {
@@ -281,8 +293,8 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isDone() {
@@ -290,8 +302,8 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDone(boolean newDone) {
@@ -304,6 +316,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getStoryPoints() {
@@ -312,6 +325,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setStoryPoints(int newStoryPoints) {
@@ -324,6 +338,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getPriority() {
@@ -332,6 +347,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPriority(int newPriority) {
@@ -344,6 +360,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<FunctionalRequirement> getRefiningRequirements() {
@@ -357,6 +374,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionalRequirement getRefinedRequirement() {
@@ -367,6 +385,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionalRequirement basicGetRefinedRequirement() {
@@ -377,6 +396,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetRefinedRequirement(FunctionalRequirement newRefinedRequirement,
@@ -388,6 +408,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRefinedRequirement(FunctionalRequirement newRefinedRequirement) {
@@ -413,6 +434,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getUseCases() {
@@ -426,6 +448,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getScenarios() {
@@ -439,6 +462,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -462,6 +486,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -481,6 +506,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -495,6 +521,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -530,6 +557,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -575,6 +603,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -616,6 +645,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -647,6 +677,7 @@ public class FunctionalRequirementImpl extends UnicaseModelElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

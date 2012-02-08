@@ -23,10 +23,10 @@ import org.unicase.model.meeting.MeetingSection;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.meeting.impl.CompositeMeetingSectionImpl#getSubsections <em>Subsections</em>}</li>
+ * <li>{@link org.unicase.model.meeting.impl.CompositeMeetingSectionImpl#getSubsections <em>Subsections</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements CompositeMeetingSection {
@@ -42,6 +42,7 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CompositeMeetingSectionImpl() {
@@ -50,6 +51,7 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,6 +61,7 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<MeetingSection> getSubsections() {
@@ -71,6 +74,7 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -84,6 +88,7 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -97,6 +102,7 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -113,6 +119,7 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -127,6 +134,7 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

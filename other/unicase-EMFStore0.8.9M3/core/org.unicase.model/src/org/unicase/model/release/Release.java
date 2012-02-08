@@ -12,33 +12,33 @@ import org.unicase.model.task.WorkItem;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Release</b></em>'. <!-- end-user-doc -->
- *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.release.Release#getStream <em>Stream</em>}</li>
- *   <li>{@link org.unicase.model.release.Release#getPredecessor <em>Predecessor</em>}</li>
- *   <li>{@link org.unicase.model.release.Release#getSuccessor <em>Successor</em>}</li>
- *   <li>{@link org.unicase.model.release.Release#getAppliedPatches <em>Applied Patches</em>}</li>
- *   <li>{@link org.unicase.model.release.Release#getIncludedWorkItems <em>Included Work Items</em>}</li>
- *   <li>{@link org.unicase.model.release.Release#getSourceCodeRepositoryRevision <em>Source Code Repository Revision</em>}</li>
+ * <li>{@link org.unicase.model.release.Release#getStream <em>Stream</em>}</li>
+ * <li>{@link org.unicase.model.release.Release#getPredecessor <em>Predecessor</em>}</li>
+ * <li>{@link org.unicase.model.release.Release#getSuccessor <em>Successor</em>}</li>
+ * <li>{@link org.unicase.model.release.Release#getAppliedPatches <em>Applied Patches</em>}</li>
+ * <li>{@link org.unicase.model.release.Release#getIncludedWorkItems <em>Included Work Items</em>}</li>
+ * <li>{@link org.unicase.model.release.Release#getSourceCodeRepositoryRevision <em>Source Code Repository Revision
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.model.release.ReleasePackage#getRelease()
  * @model
  * @generated
  */
 public interface Release extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Stream</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.release.Stream#getReleases <em>Releases</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Stream</b></em>' container reference. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.release.Stream#getReleases <em>Releases</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Stream</em>' container reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Stream</em>' container reference.
 	 * @see #setStream(Stream)
 	 * @see org.unicase.model.release.ReleasePackage#getRelease_Stream()
@@ -51,6 +51,7 @@ public interface Release extends EObject {
 	/**
 	 * Sets the value of the '{@link org.unicase.model.release.Release#getStream <em>Stream</em>}' container reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Stream</em>' container reference.
 	 * @see #getStream()
 	 * @generated
@@ -58,14 +59,14 @@ public interface Release extends EObject {
 	void setStream(Stream value);
 
 	/**
-	 * Returns the value of the '<em><b>Predecessor</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.release.Release#getSuccessor <em>Successor</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Predecessor</b></em>' reference. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.release.Release#getSuccessor <em>Successor</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Predecessor</em>' reference isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Predecessor</em>' reference.
 	 * @see #setPredecessor(Release)
 	 * @see org.unicase.model.release.ReleasePackage#getRelease_Predecessor()
@@ -78,6 +79,7 @@ public interface Release extends EObject {
 	/**
 	 * Sets the value of the '{@link org.unicase.model.release.Release#getPredecessor <em>Predecessor</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Predecessor</em>' reference.
 	 * @see #getPredecessor()
 	 * @generated
@@ -85,14 +87,14 @@ public interface Release extends EObject {
 	void setPredecessor(Release value);
 
 	/**
-	 * Returns the value of the '<em><b>Successor</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.release.Release#getPredecessor <em>Predecessor</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Successor</b></em>' reference. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.release.Release#getPredecessor <em>Predecessor</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Successor</em>' reference isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Successor</em>' reference.
 	 * @see #setSuccessor(Release)
 	 * @see org.unicase.model.release.ReleasePackage#getRelease_Successor()
@@ -113,15 +115,15 @@ public interface Release extends EObject {
 	void setSuccessor(Release value);
 
 	/**
-	 * Returns the value of the '<em><b>Applied Patches</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.attachment.PatchAttachment}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.attachment.PatchAttachment#getAppliedTo <em>Applied To</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Applied Patches</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.attachment.PatchAttachment}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.attachment.PatchAttachment#getAppliedTo <em>Applied To</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Applied Patches</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Applied Patches</em>' reference list.
 	 * @see org.unicase.model.release.ReleasePackage#getRelease_AppliedPatches()
 	 * @see org.unicase.model.attachment.PatchAttachment#getAppliedTo
@@ -131,16 +133,16 @@ public interface Release extends EObject {
 	EList<PatchAttachment> getAppliedPatches();
 
 	/**
-	 * Returns the value of the '<em><b>Included Work Items</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.task.WorkItem}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.task.WorkItem#getIncludingReleases <em>Including Releases</em>}'.
-	 * <!-- begin-user-doc
+	 * Returns the value of the '<em><b>Included Work Items</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.task.WorkItem}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.task.WorkItem#getIncludingReleases <em>Including Releases</em>}'. <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Included Work Items</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Included Work Items</em>' reference list.
 	 * @see org.unicase.model.release.ReleasePackage#getRelease_IncludedWorkItems()
 	 * @see org.unicase.model.task.WorkItem#getIncludingReleases
@@ -150,13 +152,13 @@ public interface Release extends EObject {
 	EList<WorkItem> getIncludedWorkItems();
 
 	/**
-	 * Returns the value of the '<em><b>Source Code Repository Revision</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Source Code Repository Revision</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Code Repository Revision</em>' reference isn't clear, there really should be
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Source Code Repository Revision</em>' reference.
 	 * @see #setSourceCodeRepositoryRevision(SourceCodeRepositoryRevision)
 	 * @see org.unicase.model.release.ReleasePackage#getRelease_SourceCodeRepositoryRevision()
@@ -166,8 +168,9 @@ public interface Release extends EObject {
 	SourceCodeRepositoryRevision getSourceCodeRepositoryRevision();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.release.Release#getSourceCodeRepositoryRevision <em>Source Code Repository Revision</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.release.Release#getSourceCodeRepositoryRevision
+	 * <em>Source Code Repository Revision</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Source Code Repository Revision</em>' reference.
 	 * @see #getSourceCodeRepositoryRevision()
 	 * @generated

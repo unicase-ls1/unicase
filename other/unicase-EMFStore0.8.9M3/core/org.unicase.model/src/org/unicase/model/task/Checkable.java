@@ -9,27 +9,26 @@ import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Checkable</b></em>'. <!-- end-user-doc -->
- *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.task.Checkable#isChecked <em>Checked</em>}</li>
+ * <li>{@link org.unicase.model.task.Checkable#isChecked <em>Checked</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.model.task.TaskPackage#getCheckable()
  * @model interface="true" abstract="true"
  * @generated
  */
 public interface Checkable extends UnicaseModelElement {
 	/**
-	 * Returns the value of the '<em><b>Checked</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Checked</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Checked</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Checked</em>' attribute.
 	 * @see #setChecked(boolean)
 	 * @see org.unicase.model.task.TaskPackage#getCheckable_Checked()

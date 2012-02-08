@@ -24,15 +24,15 @@ import org.unicase.model.release.Release;
  */
 public interface PatchAttachment extends FileAttachment {
 	/**
-	 * Returns the value of the '<em><b>Applied To</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.release.Release}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.release.Release#getAppliedPatches <em>Applied Patches</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Applied To</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.release.Release}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.release.Release#getAppliedPatches <em>Applied Patches</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Applied To</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Applied To</em>' reference list.
 	 * @see org.unicase.model.attachment.AttachmentPackage#getPatchAttachment_AppliedTo()
 	 * @see org.unicase.model.release.Release#getAppliedPatches
