@@ -183,6 +183,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	/**
 	 * Creates a {@link MERelativeBendpoint} from its string representation.
+	 * 
 	 * @param eDataType the {@link EDataType} corresponding to the bendpoint
 	 * @param initialValue the string representation of the bendpoint
 	 * @return the newly created bendpoint
@@ -202,6 +203,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	/**
 	 * Converts a {@link MERelativeBendpoint} into its string representation.
+	 * 
 	 * @param eDataType the {@link EDataType} corresponding to the bendpoint
 	 * @param instanceValue the bendpoint instance to convert
 	 * @return the string representation of <code>instanceValue</code>

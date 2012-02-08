@@ -19,17 +19,16 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.diagram.UseCaseDiagram;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.diagram.UseCaseDiagram} object.
- * <!-- begin-user-doc
+ * This is the item provider adapter for a {@link org.unicase.model.diagram.UseCaseDiagram} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class UseCaseDiagramItemProvider extends MEDiagramItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class UseCaseDiagramItemProvider extends MEDiagramItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UseCaseDiagramItemProvider(AdapterFactory adapterFactory) {
@@ -37,8 +36,8 @@ public class UseCaseDiagramItemProvider extends MEDiagramItemProvider implements
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -51,26 +50,25 @@ public class UseCaseDiagramItemProvider extends MEDiagramItemProvider implements
 	}
 
 	/**
-	 * This returns UseCaseDiagram.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns UseCaseDiagram.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/UseCaseDiagram"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/UseCaseDiagram"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((UseCaseDiagram) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_UseCaseDiagram_type")
-				: getString("_UI_UseCaseDiagram_type") + " " + label;
+			: getString("_UI_UseCaseDiagram_type") + " " + label;
 	}
 
 	/**
@@ -87,14 +85,13 @@ public class UseCaseDiagramItemProvider extends MEDiagramItemProvider implements
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

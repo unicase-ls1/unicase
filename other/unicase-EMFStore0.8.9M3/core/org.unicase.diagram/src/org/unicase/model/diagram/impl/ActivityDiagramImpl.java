@@ -17,10 +17,10 @@ import org.unicase.model.diagram.DiagramPackage;
  * 
  * @generated
  */
-public class ActivityDiagramImpl extends MEDiagramImpl implements
-		ActivityDiagram {
+public class ActivityDiagramImpl extends MEDiagramImpl implements ActivityDiagram {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ActivityDiagramImpl() {
@@ -34,6 +34,7 @@ public class ActivityDiagramImpl extends MEDiagramImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
