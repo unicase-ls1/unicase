@@ -160,7 +160,7 @@ public class UTable extends UCompositeSection {
 	 * @param defaultTextOption the defaultTextOption to set
 	 */
 	public void setDefaultTextOption(TextOption defaultTextOption) {
-		this.defaultTextOption = (TextOption) EcoreUtil.copy(defaultTextOption);
+		this.defaultTextOption = EcoreUtil.copy(defaultTextOption);
 	}
 
 	/**

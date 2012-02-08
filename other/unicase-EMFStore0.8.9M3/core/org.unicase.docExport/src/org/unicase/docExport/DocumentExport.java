@@ -97,7 +97,7 @@ public class DocumentExport implements IRunnableWithProgress {
 	/**
 	 * If a EObject is linked in the Document, it should be added with this function. This is required for the appendix.
 	 * 
-	 * @param me The EObject to add
+	 * @param eObject The EObject to add
 	 */
 	public static void addLinkedModelElement(EObject eObject) {
 		linkedModelElements.add(eObject);

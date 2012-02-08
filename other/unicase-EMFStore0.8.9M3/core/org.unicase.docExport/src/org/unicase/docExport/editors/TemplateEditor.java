@@ -83,7 +83,7 @@ public class TemplateEditor extends EditorPart {
 			messageBox.setMessage("you can't save a default template. Use save as instead");
 			messageBox.open();
 
-			Template newTemplate = (Template) EcoreUtil.copy(template);
+			Template newTemplate = EcoreUtil.copy(template);
 
 			TemplateSaveAsDialog dialog = new TemplateSaveAsDialog(PlatformUI.getWorkbench().getDisplay()
 				.getActiveShell(), newTemplate);
@@ -92,7 +92,7 @@ public class TemplateEditor extends EditorPart {
 		} else {
 			try {
 				TemplateRegistry.saveTemplate(getTemplate());
-				oldTemplate = (Template) EcoreUtil.copy(template);
+				oldTemplate = EcoreUtil.copy(template);
 				testDirty();
 			} catch (TemplatesFileNotFoundException e) {
 				WorkspaceUtil.log("could not save the Template", e, IStatus.WARNING);
@@ -108,7 +108,7 @@ public class TemplateEditor extends EditorPart {
 	 */
 	@Override
 	public void doSaveAs() {
-		Template template2 = (Template) EcoreUtil.copy(getTemplate());
+		Template template2 = EcoreUtil.copy(getTemplate());
 		template2.setDefaultTemplate(false);
 		TemplateSaveAsDialog dialog = new TemplateSaveAsDialog(this.getSite().getShell(), template2);
 		dialog.open();
@@ -124,7 +124,7 @@ public class TemplateEditor extends EditorPart {
 		setInput(input);
 
 		this.template = ((TemplateEditorInput) input).getTemplate();
-		this.oldTemplate = (Template) EcoreUtil.copy(this.getTemplate());
+		this.oldTemplate = EcoreUtil.copy(this.getTemplate());
 		setPartName(getTemplate().getName());
 	}
 

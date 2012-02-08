@@ -49,7 +49,7 @@ public class ExportTemplateDialog extends TitleAreaDialog {
 		super(parentShell);
 		setHelpAvailable(false);
 
-		this.template = (Template) EcoreUtil.copy(template);
+		this.template = EcoreUtil.copy(template);
 	}
 
 	// /**

@@ -100,7 +100,7 @@ public class UParagraph extends UCompositeSection {
 		if (option == null) {
 			WorkspaceUtil.log("Can't set null as TextOption", new Exception(), IStatus.WARNING);
 		} else {
-			this.option = (TextOption) EcoreUtil.copy(option);
+			this.option = EcoreUtil.copy(option);
 		}
 	}
 
