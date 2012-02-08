@@ -178,22 +178,6 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 
 	}
 
-	private void renderUnicaseModelElement(UnicaseModelElement modelElement, UCompositeSection parent) {
-
-		// Render title and description
-
-		// Diagrams need to be rendered in a different way.
-
-		// TODO: fix show image for fileattachments linking to images
-
-		// Possibly, there are contained ModelElements, which aren't contained in a feature.
-		// In this case, they have to be rendered too.
-		// So I have to get all contained ModelElements (eContents()), and remove the already rendered
-		// ModelElements from it.
-		// Additionally, i have to convert this stupid EList to an ArrayList because EList remove is buggy
-
-	}
-
 	/**
 	 * A Diagram needs to be rendered into the document as an image. Therefore, the GMF diagram must be exported
 	 * temporarily to an image format like SVG. Then the image must be added to the section of the ModelElement and must

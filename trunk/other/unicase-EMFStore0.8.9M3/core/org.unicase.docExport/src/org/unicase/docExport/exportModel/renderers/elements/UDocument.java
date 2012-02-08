@@ -46,7 +46,7 @@ public abstract class UDocument {
 	 * @param boxModel the boxModel to set
 	 */
 	public void setBoxModel(BoxModelOption boxModel) {
-		this.boxModel = (BoxModelOption) EcoreUtil.copy(boxModel);
+		this.boxModel = EcoreUtil.copy(boxModel);
 	}
 
 	/**
