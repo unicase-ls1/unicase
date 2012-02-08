@@ -16,9 +16,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.unicase.model.ModelPackage;
 import org.unicase.model.diagram.ActivityDiagram;
-import org.unicase.model.diagram.DiagramPackage;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.diagram.ActivityDiagram} object.

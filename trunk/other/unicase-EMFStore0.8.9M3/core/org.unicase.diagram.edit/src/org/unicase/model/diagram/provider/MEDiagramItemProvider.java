@@ -11,7 +11,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -19,29 +18,10 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.gmf.runtime.notation.NotationFactory;
-import org.unicase.model.ModelPackage;
-import org.unicase.model.activity.ActivityFactory;
-import org.unicase.model.attachment.AttachmentFactory;
-import org.unicase.model.bug.BugFactory;
-import org.unicase.model.change.ChangeFactory;
-import org.unicase.model.classes.ClassesFactory;
-import org.unicase.model.component.ComponentFactory;
-import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.meeting.MeetingFactory;
-import org.unicase.model.organization.OrganizationFactory;
-import org.unicase.model.profile.ProfileFactory;
 import org.unicase.model.provider.AttachmentItemProvider;
-import org.unicase.model.provider.ModelEditPlugin;
-import org.unicase.model.rationale.RationaleFactory;
-import org.unicase.model.requirement.RequirementFactory;
-import org.unicase.model.state.StateFactory;
-import org.unicase.model.task.TaskFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.diagram.MEDiagram} object.
