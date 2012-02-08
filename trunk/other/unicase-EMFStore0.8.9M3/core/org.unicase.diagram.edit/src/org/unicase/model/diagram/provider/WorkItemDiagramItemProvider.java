@@ -19,17 +19,16 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.diagram.WorkItemDiagram;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.diagram.WorkItemDiagram} object.
- * <!-- begin-user-doc
+ * This is the item provider adapter for a {@link org.unicase.model.diagram.WorkItemDiagram} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class WorkItemDiagramItemProvider extends MEDiagramItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class WorkItemDiagramItemProvider extends MEDiagramItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkItemDiagramItemProvider(AdapterFactory adapterFactory) {
@@ -37,8 +36,8 @@ public class WorkItemDiagramItemProvider extends MEDiagramItemProvider
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -51,26 +50,25 @@ public class WorkItemDiagramItemProvider extends MEDiagramItemProvider
 	}
 
 	/**
-	 * This returns WorkItemDiagram.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns WorkItemDiagram.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/WorkItemDiagram"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/WorkItemDiagram"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((WorkItemDiagram) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_WorkItemDiagram_type")
-				: getString("_UI_WorkItemDiagram_type") + " " + label;
+			: getString("_UI_WorkItemDiagram_type") + " " + label;
 	}
 
 	/**
@@ -87,14 +85,13 @@ public class WorkItemDiagramItemProvider extends MEDiagramItemProvider
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

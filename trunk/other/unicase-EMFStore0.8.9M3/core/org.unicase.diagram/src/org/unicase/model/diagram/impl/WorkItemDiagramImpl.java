@@ -17,10 +17,10 @@ import org.unicase.model.diagram.WorkItemDiagram;
  * 
  * @generated
  */
-public class WorkItemDiagramImpl extends MEDiagramImpl implements
-		WorkItemDiagram {
+public class WorkItemDiagramImpl extends MEDiagramImpl implements WorkItemDiagram {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected WorkItemDiagramImpl() {
@@ -29,6 +29,7 @@ public class WorkItemDiagramImpl extends MEDiagramImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

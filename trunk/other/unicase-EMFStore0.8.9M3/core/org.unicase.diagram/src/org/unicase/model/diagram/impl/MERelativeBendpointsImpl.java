@@ -17,15 +17,14 @@ import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MERelativeBendpoints;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>ME Relative Bendpoints</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>ME Relative Bendpoints</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * </p>
  * 
  * @generated
  */
-public class MERelativeBendpointsImpl extends RelativeBendpointsImpl implements
-		MERelativeBendpoints {
+public class MERelativeBendpointsImpl extends RelativeBendpointsImpl implements MERelativeBendpoints {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -37,8 +36,7 @@ public class MERelativeBendpointsImpl extends RelativeBendpointsImpl implements
 
 	@SuppressWarnings("rawtypes")
 	public void setPoints(List points) {
-		List<MERelativeBendpoint> actualPoints = new ArrayList<MERelativeBendpoint>(
-				points.size());
+		List<MERelativeBendpoint> actualPoints = new ArrayList<MERelativeBendpoint>(points.size());
 		for (Object point : points) {
 			if (point instanceof MERelativeBendpoint) {
 				MERelativeBendpoint mePoint = (MERelativeBendpoint) point;
@@ -53,9 +51,8 @@ public class MERelativeBendpointsImpl extends RelativeBendpointsImpl implements
 	}
 
 	private MERelativeBendpoint copyPoint(RelativeBendpoint relativePoint) {
-		MERelativeBendpoint copy = new MERelativeBendpoint(
-				relativePoint.getSourceX(), relativePoint.getSourceY(),
-				relativePoint.getTargetX(), relativePoint.getTargetY());
+		MERelativeBendpoint copy = new MERelativeBendpoint(relativePoint.getSourceX(), relativePoint.getSourceY(),
+			relativePoint.getTargetX(), relativePoint.getTargetY());
 
 		return copy;
 	}

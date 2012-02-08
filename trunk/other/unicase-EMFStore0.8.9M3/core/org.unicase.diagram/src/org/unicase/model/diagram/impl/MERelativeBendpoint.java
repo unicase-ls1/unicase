@@ -11,10 +11,10 @@ import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
 
 /**
  * Serializable extension of GMF's {@link RelativeBendpoint}.
+ * 
  * @author mharut
  */
-public class MERelativeBendpoint extends RelativeBendpoint implements
-		Serializable {
+public class MERelativeBendpoint extends RelativeBendpoint implements Serializable {
 
 	private static final long serialVersionUID = -6307559151584936745L;
 
@@ -27,13 +27,13 @@ public class MERelativeBendpoint extends RelativeBendpoint implements
 
 	/**
 	 * Initializes a bendpoint by setting the required coordinates.
+	 * 
 	 * @param sourceX the source's x-coordinate
 	 * @param sourceY the source's y-coordinate
 	 * @param targetX the target's x-coordinate
 	 * @param targetY the target's y-coordinate
 	 */
-	public MERelativeBendpoint(int sourceX, int sourceY, int targetX,
-			int targetY) {
+	public MERelativeBendpoint(int sourceX, int sourceY, int targetX, int targetY) {
 		super(sourceX, sourceY, targetX, targetY);
 	}
 
