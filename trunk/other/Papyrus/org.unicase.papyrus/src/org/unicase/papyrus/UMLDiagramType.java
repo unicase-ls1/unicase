@@ -1,8 +1,7 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.papyrus;
 
@@ -13,19 +12,17 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>UML Diagram Type</b></em>',
- * and utility methods for working with them.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>UML Diagram Type</b></em>', and
+ * utility methods for working with them. <!-- end-user-doc -->
+ * 
  * @see org.unicase.papyrus.PapyrusPackage#getUMLDiagramType()
  * @model
  * @generated
  */
 public enum UMLDiagramType implements Enumerator {
 	/**
-	 * The '<em><b>No Diagram</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>No Diagram</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #NO_DIAGRAM_VALUE
 	 * @generated
 	 * @ordered
@@ -33,9 +30,8 @@ public enum UMLDiagramType implements Enumerator {
 	NO_DIAGRAM(0, "NoDiagram", "NoDiagram"),
 
 	/**
-	 * The '<em><b>Activity</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>Activity</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #ACTIVITY_VALUE
 	 * @generated
 	 * @ordered
@@ -43,9 +39,8 @@ public enum UMLDiagramType implements Enumerator {
 	ACTIVITY(1, "Activity", "Activity"),
 
 	/**
-	 * The '<em><b>Class</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>Class</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #CLASS_VALUE
 	 * @generated
 	 * @ordered
@@ -53,9 +48,8 @@ public enum UMLDiagramType implements Enumerator {
 	CLASS(2, "Class", "Class"),
 
 	/**
-	 * The '<em><b>Communication</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>Communication</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #COMMUNICATION_VALUE
 	 * @generated
 	 * @ordered
@@ -63,9 +57,8 @@ public enum UMLDiagramType implements Enumerator {
 	COMMUNICATION(3, "Communication", "Communication"),
 
 	/**
-	 * The '<em><b>Composite</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>Composite</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #COMPOSITE_VALUE
 	 * @generated
 	 * @ordered
@@ -73,9 +66,8 @@ public enum UMLDiagramType implements Enumerator {
 	COMPOSITE(4, "Composite", "Composite"),
 
 	/**
-	 * The '<em><b>Package</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>Package</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #PACKAGE_VALUE
 	 * @generated
 	 * @ordered
@@ -83,9 +75,8 @@ public enum UMLDiagramType implements Enumerator {
 	PACKAGE(5, "Package", "Package"),
 
 	/**
-	 * The '<em><b>Sequence</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>Sequence</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #SEQUENCE_VALUE
 	 * @generated
 	 * @ordered
@@ -93,9 +84,8 @@ public enum UMLDiagramType implements Enumerator {
 	SEQUENCE(6, "Sequence", "Sequence"),
 
 	/**
-	 * The '<em><b>State Machine</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>State Machine</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #STATE_MACHINE_VALUE
 	 * @generated
 	 * @ordered
@@ -103,9 +93,8 @@ public enum UMLDiagramType implements Enumerator {
 	STATE_MACHINE(7, "StateMachine", "StateMachine"),
 
 	/**
-	 * The '<em><b>Use Case</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>Use Case</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #USE_CASE_VALUE
 	 * @generated
 	 * @ordered
@@ -113,13 +102,13 @@ public enum UMLDiagramType implements Enumerator {
 	USE_CASE(8, "UseCase", "UseCase");
 
 	/**
-	 * The '<em><b>No Diagram</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>No Diagram</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>No Diagram</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>No Diagram</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #NO_DIAGRAM
 	 * @model name="NoDiagram"
 	 * @generated
@@ -128,13 +117,13 @@ public enum UMLDiagramType implements Enumerator {
 	public static final int NO_DIAGRAM_VALUE = 0;
 
 	/**
-	 * The '<em><b>Activity</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Activity</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Activity</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Activity</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #ACTIVITY
 	 * @model name="Activity"
 	 * @generated
@@ -143,13 +132,13 @@ public enum UMLDiagramType implements Enumerator {
 	public static final int ACTIVITY_VALUE = 1;
 
 	/**
-	 * The '<em><b>Class</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Class</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Class</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Class</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #CLASS
 	 * @model name="Class"
 	 * @generated
@@ -158,13 +147,13 @@ public enum UMLDiagramType implements Enumerator {
 	public static final int CLASS_VALUE = 2;
 
 	/**
-	 * The '<em><b>Communication</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Communication</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Communication</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Communication</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #COMMUNICATION
 	 * @model name="Communication"
 	 * @generated
@@ -173,13 +162,13 @@ public enum UMLDiagramType implements Enumerator {
 	public static final int COMMUNICATION_VALUE = 3;
 
 	/**
-	 * The '<em><b>Composite</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Composite</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Composite</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Composite</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #COMPOSITE
 	 * @model name="Composite"
 	 * @generated
@@ -188,13 +177,13 @@ public enum UMLDiagramType implements Enumerator {
 	public static final int COMPOSITE_VALUE = 4;
 
 	/**
-	 * The '<em><b>Package</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Package</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Package</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Package</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #PACKAGE
 	 * @model name="Package"
 	 * @generated
@@ -203,13 +192,13 @@ public enum UMLDiagramType implements Enumerator {
 	public static final int PACKAGE_VALUE = 5;
 
 	/**
-	 * The '<em><b>Sequence</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Sequence</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Sequence</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Sequence</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #SEQUENCE
 	 * @model name="Sequence"
 	 * @generated
@@ -218,13 +207,13 @@ public enum UMLDiagramType implements Enumerator {
 	public static final int SEQUENCE_VALUE = 6;
 
 	/**
-	 * The '<em><b>State Machine</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>State Machine</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>State Machine</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>State Machine</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #STATE_MACHINE
 	 * @model name="StateMachine"
 	 * @generated
@@ -233,13 +222,13 @@ public enum UMLDiagramType implements Enumerator {
 	public static final int STATE_MACHINE_VALUE = 7;
 
 	/**
-	 * The '<em><b>Use Case</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Use Case</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Use Case</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Use Case</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #USE_CASE
 	 * @model name="UseCase"
 	 * @generated
@@ -248,28 +237,25 @@ public enum UMLDiagramType implements Enumerator {
 	public static final int USE_CASE_VALUE = 8;
 
 	/**
-	 * An array of all the '<em><b>UML Diagram Type</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * An array of all the '<em><b>UML Diagram Type</b></em>' enumerators. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	private static final UMLDiagramType[] VALUES_ARRAY = new UMLDiagramType[] {
-			NO_DIAGRAM, ACTIVITY, CLASS, COMMUNICATION, COMPOSITE, PACKAGE,
-			SEQUENCE, STATE_MACHINE, USE_CASE, };
+	private static final UMLDiagramType[] VALUES_ARRAY = new UMLDiagramType[] { NO_DIAGRAM, ACTIVITY, CLASS,
+		COMMUNICATION, COMPOSITE, PACKAGE, SEQUENCE, STATE_MACHINE, USE_CASE, };
 
 	/**
-	 * A public read-only list of all the '<em><b>UML Diagram Type</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * A public read-only list of all the '<em><b>UML Diagram Type</b></em>' enumerators. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public static final List<UMLDiagramType> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<UMLDiagramType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>UML Diagram Type</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc -->
+	 * Returns the '<em><b>UML Diagram Type</b></em>' literal with the specified literal value. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static UMLDiagramType get(String literal) {
@@ -283,9 +269,9 @@ public enum UMLDiagramType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>UML Diagram Type</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the '<em><b>UML Diagram Type</b></em>' literal with the specified name. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static UMLDiagramType getByName(String name) {
@@ -299,9 +285,9 @@ public enum UMLDiagramType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>UML Diagram Type</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc -->
+	 * Returns the '<em><b>UML Diagram Type</b></em>' literal with the specified integer value. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static UMLDiagramType get(int value) {
@@ -329,30 +315,29 @@ public enum UMLDiagramType implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Only this class can construct instances. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private UMLDiagramType(int value, String name, String literal) {
@@ -362,8 +347,8 @@ public enum UMLDiagramType implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getValue() {
@@ -371,8 +356,8 @@ public enum UMLDiagramType implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -380,8 +365,8 @@ public enum UMLDiagramType implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
@@ -389,9 +374,9 @@ public enum UMLDiagramType implements Enumerator {
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the literal value of the enumerator, which is its string representation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -399,4 +384,4 @@ public enum UMLDiagramType implements Enumerator {
 		return literal;
 	}
 
-} //UMLDiagramType
+} // UMLDiagramType

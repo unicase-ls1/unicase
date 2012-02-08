@@ -1,34 +1,32 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.papyrus.diagram.part;
 
 import static org.eclipse.papyrus.core.Activator.log;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
-import org.eclipse.emf.ecp.common.dnd.DragSourcePlaceHolder;
 import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
 import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
 import org.eclipse.emf.ecp.common.model.ModelElementContextListener;
 import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
 import org.eclipse.emf.ecp.editor.ModelElementChangeListener;
-import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
-import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.KeyHandler;
 import org.eclipse.gef.Request;
@@ -40,7 +38,6 @@ import org.eclipse.gmf.runtime.common.ui.services.marker.MarkerNavigationService
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.parts.DiagramGraphicalViewerKeyHandler;
 import org.eclipse.gmf.runtime.diagram.ui.internal.parts.DirectEditKeyHandler;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
@@ -58,10 +55,6 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.diagram.activity.navigator.UMLNavigatorItem;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteViewer;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
-import org.eclipse.swt.dnd.DropTarget;
-import org.eclipse.swt.dnd.DropTargetEvent;
-import org.eclipse.swt.dnd.Transfer;
-import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.KeyEvent;
@@ -82,18 +75,17 @@ import org.unicase.papyrus.UMLModel;
 import org.unicase.papyrus.diagram.services.UnicaseServicesRegistry;
 
 /**
- * GMF-Diagram Editor that also implements {@link IMultiDiagramEditor} to support
- * Papyrus diagrams.
+ * GMF-Diagram Editor that also implements {@link IMultiDiagramEditor} to support Papyrus diagrams.
  * 
  * @author mharut
  */
 public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements IMultiDiagramEditor {
-	
+
 	/**
 	 * The {@link FocusListener} for layout save commands.
 	 */
 	private FocusListener focusListener;
-	
+
 	/**
 	 * The {@link ModelElementContext} {@link #modelElementContextListener} listens to.
 	 */
@@ -103,12 +95,15 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 	 * The {@link ModelElementContextListener} to handle delete operations.
 	 */
 	private ModelElementContextListener modelElementContextListener;
-	
+
 	/**
 	 * The {@link ModelElementChangeListener} to handle name changes.
 	 */
 	private ModelElementChangeListener modelElementChangeListener;
 
+	/**
+	 * The {@link ServicesRegistry} to provide services required by Papyrus diagrams.
+	 */
 	private ServicesRegistry servicesRegistry;
 
 	private IPropertySheetPage tabbedPropertySheetPage;
@@ -119,68 +114,30 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 	public UMLDiagramEditor() {
 		this(true);
 	}
-	
+
 	public UMLDiagramEditor(boolean hasFlyoutPalette) {
 		super(hasFlyoutPalette);
-		
+
 		focusListener = new FocusListener() {
 			public void focusGained(FocusEvent event) {
-				try {
-					// add association if they are not on the diagram
-					syncDiagramView((UMLModel) UMLDiagramEditor.this.getDiagram().getElement());
-					doSave(new NullProgressMonitor());
-				} catch (IllegalStateException e) {
-					// do nothing
-					// We catch this exception in case we have been in an read only transaction context
-					// and tried to save the layout which is performed with a read/write transaction
-				}
+				// add association if they are not on the diagram
+				syncDiagramView((UMLModel) UMLDiagramEditor.this.getDiagram().getElement());
 			}
 
 			public void focusLost(FocusEvent event) {
-				try {
-					doSave(new NullProgressMonitor());
-				} catch (IllegalStateException e) {
-					// do nothing
-					// @see focusGained
-				}
+				// do nothing
 			}
 		};
 
 	}
-	
+
 	private void syncDiagramView(final UMLModel model) {
-		final ECPModelelementContext context = modelElementContext;
-		if (context == null) {
-			return;
-		}
-		// FIXME
-//		final LinkedList<EObject> elements = new LinkedList<EObject>();
-//		elements.addAll(diagram.getElements());
-//		new UnicaseCommand() {
-//			@Override
-//			protected void doRun() {
-//				for (EObject association : AssociationClassHelper.getRelatedAssociationClassToDrop(elements, elements,
-//					context.getMetaModelElementContext())) {
-//					// add reference to the element
-//					diagram.getElements().add((UnicaseModelElement) association);
-//					// create the View for the element
-//					CreateViewCommand command = new CreateViewCommand(new EObjectAdapter(association),
-//						getDiagramEditPart(), null, getPreferencesHint());
-//					try {
-//						command.execute(getProgressMonitor(), null);
-//					} catch (ExecutionException e) {
-//						ModelUtil.logException("Could not create a view for the droped content.", e);
-//					}
-//				}
-//			}
-//		}.run();
 		// refresh all views to reorientate associations
 		List<CanonicalEditPolicy> editPolicies = CanonicalEditPolicy.getRegisteredEditPolicies(model);
 		for (Iterator<CanonicalEditPolicy> it = editPolicies.iterator(); it.hasNext();) {
 			it.next().refresh();
 		}
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -202,127 +159,28 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 	@Override
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();
-		getDiagramGraphicalViewer().addDropTargetListener(
-			new DropTargetListener(getDiagramGraphicalViewer(), LocalTransfer.getInstance()) {
 
-				@Override
-				protected Object getJavaObject(TransferData data) {
-					return DragSourcePlaceHolder.getDragSource();
-				}
-
-			});
-//		getGraphicalViewer().getKeyHandler().put(KeyStroke.getPressed(SWT.DEL, 127, 0), new DeleteFromDiagramAction());
-		
 		final Diagram diagram = getDiagram();
-		
+
 		new ECPCommand(diagram) {
 
 			@Override
 			protected void doRun() {
-				diagram.setName(
-						((UMLModel) diagram.getElement()).getName());
+				diagram.setName(((UMLModel) diagram.getElement()).getName());
 			}
-			
+
 		}.run(true);
-		
-		 
 
 		registerFocusListener();
 		registerModelElementListeners();
 	}
-	
-	private abstract class DropTargetListener extends DiagramDropTargetListener {
-		private List<EObject> mesDrop, mesAdd;
-		private int x, y;
 
-		public DropTargetListener(EditPartViewer viewer, Transfer xfer) {
-			super(viewer, xfer);
-		}
-
-		@Override
-		public boolean isEnabled(DropTargetEvent event) {
-			setEnablementDeterminedByCommand(false);
-			if (super.isEnabled(event)) {
-				mesAdd = new LinkedList<EObject>();
-				// FIXME
-//				if (DNDHelper.canDrop(mesDrop, (UMLModel) getDiagram().getElement(), mesAdd)) {
-					DropTarget target = (DropTarget) event.widget;
-					org.eclipse.swt.graphics.Point location = target.getControl().toControl(event.x, event.y);
-					x = location.x;
-					y = location.y;
-					return true;
-//				}
-			}
-			return false;
-		}
-
-		@Override
-		protected List<EObject> getObjectsBeingDropped() {
-			TransferData data = getCurrentEvent().currentDataType;
-			Object transferedObject = getJavaObject(data);
-			mesDrop = new ArrayList<EObject>();
-			if (transferedObject instanceof List<?>) {
-				List<?> selection = (List<?>) transferedObject;
-				for (Iterator<?> it = selection.iterator(); it.hasNext();) {
-					Object nextSelectedObject = it.next();
-					if (nextSelectedObject instanceof EObject) {
-						mesDrop.add((EObject) nextSelectedObject);
-					}
-				}
-			}
-			return mesDrop;
-		}
-
-		// FIXME
-//		@Override
-//		protected void handleDrop() {
-//			if (DNDHelper.dropMessageCheck(mesDrop, mesAdd)) {
-//				final ECPModelelementContext context = DNDHelper.getECPModelelementContext();
-//				final Package pckge = (Package) getDiagram().getElement();
-//				if (context == null) {
-//					return;
-//				}
-//				LinkedList<EObject> elements = new LinkedList<EObject>();
-//				elements.addAll(getDiagram().getChildren());
-//				mesAdd.addAll(AssociationClassHelper.getRelatedAssociationClassToDrop(mesAdd, elements, context
-//					.getMetaModelElementContext()));
-//				new UnicaseCommand() {
-//
-//					@Override
-//					protected void doRun() {
-//						int counter = 0;
-//						for (EObject pe : mesAdd) {
-//							// add reference to the element
-//							pckge.getPackagedElements().add((PackageableElement) pe);
-//							// create the View for the element
-//							CreateViewCommand command = new CreateViewCommand(new EObjectAdapter(pe),
-//								getDiagramEditPart(), new Point(x + counter * 20, y + counter * 20),
-//								getPreferencesHint());
-//							try {
-//								command.execute(getProgressMonitor(), null);
-//							} catch (ExecutionException e) {
-//								ModelUtil.logException("Could not create a view for the droped content.", e);
-//							}
-//							if (!context.getMetaModelElementContext().isAssociationClassElement(pe)) {
-//								counter++;
-//							}
-//						}
-//					}
-//				}.run();
-//			}
-//			mesDrop = null;
-//			mesAdd = null;
-//		}
-
-		protected abstract Object getJavaObject(TransferData data);
-	}
-	
 	/**
 	 * @generated
 	 */
 	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
 		PaletteRoot paletteRoot;
-		if(existingPaletteRoot == null) {
+		if (existingPaletteRoot == null) {
 			paletteRoot = PapyrusPaletteService.getInstance().createPalette(this, getDefaultPaletteContent());
 		} else {
 			PapyrusPaletteService.getInstance().updatePalette(existingPaletteRoot, this, getDefaultPaletteContent());
@@ -343,11 +201,11 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 				}
 			};
 		}
-		
-		if(type == ServicesRegistry.class) {
+
+		if (type == ServicesRegistry.class) {
 			return getServicesRegistry();
 		}
-		
+
 		return super.getAdapter(type);
 	}
 
@@ -355,8 +213,7 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 	 * @generated
 	 */
 	public TransactionalEditingDomain getEditingDomain() {
-		IDocument document = getEditorInput() != null ? getDocumentProvider()
-				.getDocument(getEditorInput()) : null;
+		IDocument document = getEditorInput() != null ? getDocumentProvider().getDocument(getEditorInput()) : null;
 		if (document instanceof IDiagramDocument) {
 			return ((IDiagramDocument) document).getEditingDomain();
 		}
@@ -383,7 +240,6 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 	public void doSaveAs() {
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -402,8 +258,7 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 		Diagram diagram = document.getDiagram();
 		IFile file = WorkspaceSynchronizer.getFile(diagram.eResource());
 		if (file != null) {
-			UMLNavigatorItem item = new UMLNavigatorItem(
-					diagram, file, false);
+			UMLNavigatorItem item = new UMLNavigatorItem(diagram, file, false);
 			return new StructuredSelection(item);
 		}
 		return StructuredSelection.EMPTY;
@@ -438,7 +293,7 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 	 * @generated
 	 */
 	public void doSave(IProgressMonitor progressMonitor) {
-		
+
 	}
 
 	/**
@@ -453,8 +308,9 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 	 */
 	public void providerChanged(ProviderChangeEvent event) {
 		// update the palette if the palette service has changed
-		if(PapyrusPaletteService.getInstance().equals(event.getSource())) {
-			PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this, getDefaultPaletteContent());
+		if (PapyrusPaletteService.getInstance().equals(event.getSource())) {
+			PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this,
+				getDefaultPaletteContent());
 		}
 	}
 
@@ -463,19 +319,18 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 	 */
 	public void dispose() {
 		super.dispose();
-		
-		if(modelElementChangeListener != null) {
+
+		if (modelElementChangeListener != null) {
 			modelElementChangeListener.remove();
 		}
-		
+
 		if (modelElementContext != null) {
-			modelElementContext
-					.removeModelElementContextListener(modelElementContextListener);
+			modelElementContext.removeModelElementContextListener(modelElementContextListener);
 		}
 
 		deregisterFocusListener();
-		
-		if(servicesRegistry != null) {
+
+		if (servicesRegistry != null) {
 			try {
 				servicesRegistry.disposeRegistry();
 			} catch (ServiceMultiException e) {
@@ -483,7 +338,7 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 			}
 		}
 	}
-	
+
 	private void deregisterFocusListener() {
 		IDiagramGraphicalViewer diagramGraphicalViewer = getDiagramGraphicalViewer();
 		if (diagramGraphicalViewer == null) {
@@ -511,20 +366,20 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 	}
 
 	/**
-	 * @generated NOT 
+	 * @generated NOT
 	 */
 	private void registerModelElementListeners() {
 
 		Diagram diagram = getDiagram();
-		
+
 		// register listener for changes on the name attribute
 		modelElementChangeListener = new ModelElementChangeListener(diagram) {
 
 			@Override
 			public void onChange(Notification msg) {
 				if (msg.getEventType() == Notification.SET
-					&& (msg.getFeatureID(UMLModel.class) == PapyrusPackage.UML_MODEL__NAME
-							|| msg.getFeatureID(Diagram.class) == NotationPackage.DIAGRAM__NAME)) {
+					&& (msg.getFeatureID(UMLModel.class) == PapyrusPackage.UML_MODEL__NAME || msg
+						.getFeatureID(Diagram.class) == NotationPackage.DIAGRAM__NAME)) {
 					setPartName(msg.getNewStringValue());
 				}
 			}
@@ -532,7 +387,7 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 
 		// register modelElementContext listener for behavior upon deletion
 		modelElementContext = null;
-		if(diagram == null) {
+		if (diagram == null) {
 			try {
 				modelElementContext = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject();
 			} catch (NoWorkspaceException e) {
@@ -569,9 +424,9 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 
 		};
 
-		modelElementContext.addModelElementContextListener(modelElementContextListener);;
+		modelElementContext.addModelElementContextListener(modelElementContextListener);
 	}
-	
+
 	/**
 	 * @generated
 	 */
@@ -604,7 +459,7 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 		IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
 		win.getShell().setText("Java - Eclipse Platform");
 	}
-	
+
 	private class OnEnterDirectEditKeyHandler extends DirectEditKeyHandler {
 
 		public OnEnterDirectEditKeyHandler(GraphicalViewer viewer) {
@@ -632,17 +487,17 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 	}
 
 	public ServicesRegistry getServicesRegistry() {
-		if(servicesRegistry == null) {
+		if (servicesRegistry == null) {
 			servicesRegistry = createServicesRegistry();
 		}
 		return servicesRegistry;
 	}
-	
+
 	private ServicesRegistry createServicesRegistry() {
 		// Create Services Registry
 		try {
-			ServicesRegistry servicesRegistry = new UnicaseServicesRegistry(
-					"org.unicase.papyrus", getDiagram().getElement());
+			ServicesRegistry servicesRegistry = new UnicaseServicesRegistry("org.unicase.papyrus", getDiagram()
+				.getElement());
 			servicesRegistry.startRegistry();
 			return servicesRegistry;
 		} catch (ServiceException e) {
@@ -662,12 +517,12 @@ public abstract class UMLDiagramEditor extends DiagramDocumentEditor implements 
 	}
 
 	public IPropertySheetPage getPropertySheetPage() {
-		if(this.tabbedPropertySheetPage == null) {
+		if (this.tabbedPropertySheetPage == null) {
 			this.tabbedPropertySheetPage = new TabbedPropertySheetPage(this);
 		}
 		return tabbedPropertySheetPage;
 	}
-	
+
 	public DiagramEditDomain getDiagramEditDomain() {
 		return (DiagramEditDomain) super.getDiagramEditDomain();
 	}

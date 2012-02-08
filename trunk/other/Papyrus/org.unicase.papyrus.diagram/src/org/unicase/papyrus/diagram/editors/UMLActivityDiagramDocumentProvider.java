@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.papyrus.diagram.editors;
 
 import java.io.IOException;
@@ -40,55 +45,48 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
 import org.unicase.papyrus.diagram.part.UMLDocumentProvider;
 
+/**
+ * Document provider for Papyrus activity diagrams.
+ * 
+ * @author mharut
+ */
 public class UMLActivityDiagramDocumentProvider extends UMLDocumentProvider {
-	
-	protected ElementInfo createElementInfo(Object element)	throws CoreException {
-		if (false == element instanceof FileEditorInput
-				&& false == element instanceof URIEditorInput) {
-			throw new CoreException(
-					new Status(
-							IStatus.ERROR,
-							UMLDiagramEditorPlugin.ID,
-						0,
-						NLS
-								.bind(
-										Messages.UMLDocumentProvider_IncorrectInputError,
-										new Object[] {
-												element,
-												"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-						null));
+
+	/**
+	 * {@inheritDoc}
+	 */
+	protected ElementInfo createElementInfo(Object element) throws CoreException {
+		if (!(element instanceof FileEditorInput) && !(element instanceof URIEditorInput)) {
+			throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0, NLS.bind(
+				Messages.UMLDocumentProvider_IncorrectInputError, new Object[] { element,
+					"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+				null));
 		}
 		IEditorInput editorInput = (IEditorInput) element;
 		IDiagramDocument document = (IDiagramDocument) createDocument(editorInput);
-		
+
 		ResourceSetInfo info = new ResourceSetInfo(document, editorInput);
 		info.setModificationStamp(computeModificationStamp(info));
 		info.fStatus = null;
 		return info;
 	}
-	
+
+	/**
+	 * {@inheritDoc}
+	 */
 	protected IDocument createDocument(Object element) throws CoreException {
-		if (false == element instanceof FileEditorInput
-				&& false == element instanceof URIEditorInput) {
-			throw new CoreException(
-					new Status(
-							IStatus.ERROR,
-							UMLDiagramEditorPlugin.ID,
-							0,
-							NLS
-									.bind(
-											Messages.UMLDocumentProvider_IncorrectInputError,
-											new Object[] {
-													element,
-													"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-							null));
+		if (!(element instanceof FileEditorInput) && !(element instanceof URIEditorInput)) {
+			throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0, NLS.bind(
+				Messages.UMLDocumentProvider_IncorrectInputError, new Object[] { element,
+					"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+				null));
 		}
 		IDocument document = createEmptyDocument();
 		setDocumentContent(document, (IEditorInput) element);
 		setupDocument(element, document);
 		return document;
 	}
-	
+
 	/**
 	 * @generated
 	 */
@@ -99,7 +97,7 @@ public class UMLActivityDiagramDocumentProvider extends UMLDocumentProvider {
 		}
 		return super.getModificationStamp(element);
 	}
-	
+
 	/**
 	 * @generated
 	 */
@@ -110,12 +108,7 @@ public class UMLActivityDiagramDocumentProvider extends UMLDocumentProvider {
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
-					UMLDiagramEditorPlugin
-							.getInstance()
-							.logError(
-									Messages.UMLDocumentProvider_isModifiable,
-									ex);
-					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
+					UMLDiagramEditorPlugin.getInstance().logError(Messages.UMLDocumentProvider_isModifiable, ex);
 				}
 			}
 			return info.isReadOnly();
@@ -128,8 +121,7 @@ public class UMLActivityDiagramDocumentProvider extends UMLDocumentProvider {
 	 */
 	public boolean isModifiable(Object element) {
 		if (!isStateValidated(element)) {
-			if (element instanceof FileEditorInput
-					|| element instanceof URIEditorInput) {
+			if (element instanceof FileEditorInput || element instanceof URIEditorInput) {
 				return true;
 			}
 		}
@@ -139,19 +131,14 @@ public class UMLActivityDiagramDocumentProvider extends UMLDocumentProvider {
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
-					UMLDiagramEditorPlugin
-							.getInstance()
-							.logError(
-									Messages.UMLDocumentProvider_isModifiable,
-									ex);
-					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
+					UMLDiagramEditorPlugin.getInstance().logError(Messages.UMLDocumentProvider_isModifiable, ex);
 				}
 			}
 			return info.isModifiable();
 		}
 		return super.isModifiable(element);
 	}
-	
+
 	/**
 	 * @generated
 	 */
@@ -180,39 +167,42 @@ public class UMLActivityDiagramDocumentProvider extends UMLDocumentProvider {
 	protected ISchedulingRule getResetRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
+			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
+																							 * <org.eclipse.core.runtime.
+																							 * jobs.ISchedulingRule>
+																							 */();
+			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+				.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
-					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory()
-							.modifyRule(file));
+					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules
-					.toArray(new ISchedulingRule[rules.size()]));
+			return new MultiRule((ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
 	}
-	
+
 	/**
 	 * @generated
 	 */
 	protected ISchedulingRule getSaveRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
+			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
+																							 * <org.eclipse.core.runtime.
+																							 * jobs.ISchedulingRule>
+																							 */();
+			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+				.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
 					rules.add(computeSchedulingRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules
-					.toArray(new ISchedulingRule[rules.size()]));
+			return new MultiRule((ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
 	}
@@ -223,18 +213,19 @@ public class UMLActivityDiagramDocumentProvider extends UMLDocumentProvider {
 	protected ISchedulingRule getSynchronizeRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
+			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
+																							 * <org.eclipse.core.runtime.
+																							 * jobs.ISchedulingRule>
+																							 */();
+			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+				.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
-					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory()
-							.refreshRule(file));
+					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory().refreshRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules
-					.toArray(new ISchedulingRule[rules.size()]));
+			return new MultiRule((ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
 	}
@@ -245,9 +236,12 @@ public class UMLActivityDiagramDocumentProvider extends UMLDocumentProvider {
 	protected ISchedulingRule getValidateStateRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/files = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
+			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */files = new ArrayList/*
+																							 * <org.eclipse.core.runtime.
+																							 * jobs.ISchedulingRule>
+																							 */();
+			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+				.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
@@ -255,8 +249,7 @@ public class UMLActivityDiagramDocumentProvider extends UMLDocumentProvider {
 				}
 			}
 			return ResourcesPlugin.getWorkspace().getRuleFactory()
-					.validateEditRule(
-							(IFile[]) files.toArray(new IFile[files.size()]));
+				.validateEditRule((IFile[]) files.toArray(new IFile[files.size()]));
 		}
 		return null;
 	}
@@ -266,34 +259,25 @@ public class UMLActivityDiagramDocumentProvider extends UMLDocumentProvider {
 	 */
 	private ISchedulingRule computeSchedulingRule(IResource toCreateOrModify) {
 		if (toCreateOrModify.exists())
-			return ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(
-					toCreateOrModify);
+			return ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(toCreateOrModify);
 
 		IResource parent = toCreateOrModify;
 		do {
-			/*
-			 * XXX This is a workaround for
-			 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=67601
-			 * IResourceRuleFactory.createRule should iterate the hierarchy
-			 * itself.
-			 */
 			toCreateOrModify = parent;
 			parent = toCreateOrModify.getParent();
 		} while (parent != null && !parent.exists());
 
-		return ResourcesPlugin.getWorkspace().getRuleFactory().createRule(
-				toCreateOrModify);
+		return ResourcesPlugin.getWorkspace().getRuleFactory().createRule(toCreateOrModify);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void doSynchronize(Object element, IProgressMonitor monitor)
-			throws CoreException {
+	protected void doSynchronize(Object element, IProgressMonitor monitor) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
+			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+				.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				handleElementChanged(info, nextResource, monitor);
 			}
@@ -305,49 +289,31 @@ public class UMLActivityDiagramDocumentProvider extends UMLDocumentProvider {
 	/**
 	 * @generated
 	 */
-	protected void doSaveDocument(IProgressMonitor monitor, Object element,
-			IDocument document, boolean overwrite) throws CoreException {
+	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite)
+		throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
 			if (!overwrite && !info.isSynchronized()) {
-				throw new CoreException(
-						new Status(
-								IStatus.ERROR,
-								UMLDiagramEditorPlugin.ID,
-								IResourceStatus.OUT_OF_SYNC_LOCAL,
-								Messages.UMLDocumentProvider_UnsynchronizedFileSaveError,
-								null));
+				throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID,
+					IResourceStatus.OUT_OF_SYNC_LOCAL, Messages.UMLDocumentProvider_UnsynchronizedFileSaveError, null));
 			}
 			info.stopResourceListening();
 			fireElementStateChanging(element);
 			try {
-				monitor
-						.beginTask(
-								Messages.UMLDocumentProvider_SaveDiagramTask,
-								info.getResourceSet().getResources().size() + 1); //"Saving diagram"
-				for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-						.getLoadedResourcesIterator(); it.hasNext();) {
+				monitor.beginTask(Messages.UMLDocumentProvider_SaveDiagramTask, info.getResourceSet().getResources()
+					.size() + 1); // "Saving diagram"
+				for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+					.hasNext();) {
 					Resource nextResource = (Resource) it.next();
-					monitor
-							.setTaskName(NLS
-									.bind(
-											Messages.UMLDocumentProvider_SaveNextResourceTask,
-											nextResource.getURI()));
-					if (nextResource.isLoaded()
-							&& !info.getEditingDomain()
-									.isReadOnly(nextResource)) {
+					monitor.setTaskName(NLS.bind(Messages.UMLDocumentProvider_SaveNextResourceTask,
+						nextResource.getURI()));
+					if (nextResource.isLoaded() && !info.getEditingDomain().isReadOnly(nextResource)) {
 						try {
-							nextResource
-									.save(UMLDiagramEditorUtil
-											.getSaveOptions());
+							nextResource.save(UMLDiagramEditorUtil.getSaveOptions());
 						} catch (IOException e) {
 							fireElementStateChangeFailed(element);
-							throw new CoreException(
-									new Status(
-											IStatus.ERROR,
-											UMLDiagramEditorPlugin.ID,
-											EditorStatusCodes.RESOURCE_FAILURE,
-											e.getLocalizedMessage(), null));
+							throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID,
+								EditorStatusCodes.RESOURCE_FAILURE, e.getLocalizedMessage(), null));
 						}
 					}
 					monitor.worked(1);
@@ -366,70 +332,47 @@ public class UMLActivityDiagramDocumentProvider extends UMLDocumentProvider {
 			if (element instanceof FileEditorInput) {
 				IFile newFile = ((FileEditorInput) element).getFile();
 				affectedFiles = Collections.singletonList(newFile);
-				newResoruceURI = URI.createPlatformResourceURI(newFile
-						.getFullPath().toString(), true);
+				newResoruceURI = URI.createPlatformResourceURI(newFile.getFullPath().toString(), true);
 			} else if (element instanceof URIEditorInput) {
 				newResoruceURI = ((URIEditorInput) element).getURI();
 			} else {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(
-						new Status(
-								IStatus.ERROR,
-								UMLDiagramEditorPlugin.ID,
-								0,
-								NLS
-										.bind(
-												Messages.UMLDocumentProvider_IncorrectInputError,
-												new Object[] {
-														element,
-														"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-								null));
+				throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0, NLS.bind(
+					Messages.UMLDocumentProvider_IncorrectInputError, new Object[] { element,
+						"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+					null));
 			}
 			if (false == document instanceof IDiagramDocument) {
 				fireElementStateChangeFailed(element);
 				throw new CoreException(
-						new Status(
-								IStatus.ERROR,
-								UMLDiagramEditorPlugin.ID,
-								0,
-								"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
+					new Status(
+						IStatus.ERROR,
+						UMLDiagramEditorPlugin.ID,
+						0,
+						"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 			IDiagramDocument diagramDocument = (IDiagramDocument) document;
-			final Resource newResource = diagramDocument.getEditingDomain()
-					.getResourceSet().createResource(newResoruceURI);
-			final Diagram diagramCopy = (Diagram) EcoreUtil
-					.copy(diagramDocument.getDiagram());
+			final Resource newResource = diagramDocument.getEditingDomain().getResourceSet()
+				.createResource(newResoruceURI);
+			final Diagram diagramCopy = (Diagram) EcoreUtil.copy(diagramDocument.getDiagram());
 			try {
-				new AbstractTransactionalCommand(
-						diagramDocument.getEditingDomain(),
-						NLS
-								.bind(
-										Messages.UMLDocumentProvider_SaveAsOperation,
-										diagramCopy.getName()), affectedFiles) {
-					protected CommandResult doExecuteWithResult(
-							IProgressMonitor monitor, IAdaptable info)
-							throws ExecutionException {
+				new AbstractTransactionalCommand(diagramDocument.getEditingDomain(), NLS.bind(
+					Messages.UMLDocumentProvider_SaveAsOperation, diagramCopy.getName()), affectedFiles) {
+					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
+						throws ExecutionException {
 						newResource.getContents().add(diagramCopy);
 						return CommandResult.newOKCommandResult();
 					}
 				}.execute(monitor, null);
-				newResource
-						.save(UMLDiagramEditorUtil
-								.getSaveOptions());
+				newResource.save(UMLDiagramEditorUtil.getSaveOptions());
 			} catch (ExecutionException e) {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(
-						new Status(
-								IStatus.ERROR,
-								UMLDiagramEditorPlugin.ID,
-								0, e.getLocalizedMessage(), null));
+				throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0,
+					e.getLocalizedMessage(), null));
 			} catch (IOException e) {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(
-						new Status(
-								IStatus.ERROR,
-								UMLDiagramEditorPlugin.ID,
-								0, e.getLocalizedMessage(), null));
+				throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0,
+					e.getLocalizedMessage(), null));
 			}
 			newResource.unload();
 		}
@@ -449,8 +392,7 @@ public class UMLActivityDiagramDocumentProvider extends UMLDocumentProvider {
 	/**
 	 * @generated
 	 */
-	public IEditorInput createInputWithEditingDomain(IEditorInput editorInput,
-			TransactionalEditingDomain domain) {
+	public IEditorInput createInputWithEditingDomain(IEditorInput editorInput, TransactionalEditingDomain domain) {
 		return editorInput;
 	}
 

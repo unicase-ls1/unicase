@@ -1,8 +1,7 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.papyrus.impl;
 
@@ -19,15 +18,12 @@ import org.unicase.papyrus.UMLModel;
 import org.unicase.papyrus.custom.BendpointsAdapter;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>UML Model</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>UML Model</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.papyrus.impl.UMLModelImpl#getGmfDiagram <em>Gmf
- * Diagram</em>}</li>
- * <li>{@link org.unicase.papyrus.impl.UMLModelImpl#getDiagramType <em>Diagram
- * Type</em>}</li>
+ * <li>{@link org.unicase.papyrus.impl.UMLModelImpl#getGmfDiagram <em>Gmf Diagram</em>}</li>
+ * <li>{@link org.unicase.papyrus.impl.UMLModelImpl#getDiagramType <em>Diagram Type</em>}</li>
  * </ul>
  * </p>
  * 
@@ -35,8 +31,8 @@ import org.unicase.papyrus.custom.BendpointsAdapter;
  */
 public class UMLModelImpl extends ModelImpl implements UMLModel {
 	/**
-	 * The cached value of the '{@link #getGmfDiagram() <em>Gmf Diagram</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getGmfDiagram() <em>Gmf Diagram</em>}' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getGmfDiagram()
 	 * @generated
@@ -45,8 +41,8 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	protected Diagram gmfDiagram;
 
 	/**
-	 * The default value of the '{@link #getDiagramType() <em>Diagram Type</em>}
-	 * ' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getDiagramType() <em>Diagram Type</em>} ' attribute. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getDiagramType()
 	 * @generated
@@ -55,8 +51,8 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	protected static final UMLDiagramType DIAGRAM_TYPE_EDEFAULT = UMLDiagramType.NO_DIAGRAM;
 
 	/**
-	 * The cached value of the '{@link #getDiagramType() <em>Diagram Type</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDiagramType() <em>Diagram Type</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getDiagramType()
 	 * @generated
@@ -95,22 +91,17 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 			gmfDiagram = (Diagram) eResolveProxy(oldGmfDiagram);
 			if (gmfDiagram != oldGmfDiagram) {
 				InternalEObject newGmfDiagram = (InternalEObject) gmfDiagram;
-				NotificationChain msgs = oldGmfDiagram.eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- PapyrusPackage.UML_MODEL__GMF_DIAGRAM, null,
-						null);
+				NotificationChain msgs = oldGmfDiagram.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- PapyrusPackage.UML_MODEL__GMF_DIAGRAM, null, null);
 				if (newGmfDiagram.eInternalContainer() == null) {
-					msgs = newGmfDiagram.eInverseAdd(this,
-							EOPPOSITE_FEATURE_BASE
-									- PapyrusPackage.UML_MODEL__GMF_DIAGRAM,
-							null, msgs);
+					msgs = newGmfDiagram.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- PapyrusPackage.UML_MODEL__GMF_DIAGRAM, null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							PapyrusPackage.UML_MODEL__GMF_DIAGRAM,
-							oldGmfDiagram, gmfDiagram));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PapyrusPackage.UML_MODEL__GMF_DIAGRAM,
+						oldGmfDiagram, gmfDiagram));
 			}
 		}
 		return gmfDiagram;
@@ -130,14 +121,12 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetGmfDiagram(Diagram newGmfDiagram,
-			NotificationChain msgs) {
+	public NotificationChain basicSetGmfDiagram(Diagram newGmfDiagram, NotificationChain msgs) {
 		Diagram oldGmfDiagram = gmfDiagram;
 		gmfDiagram = newGmfDiagram;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, PapyrusPackage.UML_MODEL__GMF_DIAGRAM,
-					oldGmfDiagram, newGmfDiagram);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				PapyrusPackage.UML_MODEL__GMF_DIAGRAM, oldGmfDiagram, newGmfDiagram);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -155,23 +144,18 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 		if (newGmfDiagram != gmfDiagram) {
 			NotificationChain msgs = null;
 			if (gmfDiagram != null)
-				msgs = ((InternalEObject) gmfDiagram).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- PapyrusPackage.UML_MODEL__GMF_DIAGRAM, null,
-						msgs);
+				msgs = ((InternalEObject) gmfDiagram).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- PapyrusPackage.UML_MODEL__GMF_DIAGRAM, null, msgs);
 			if (newGmfDiagram != null)
-				msgs = ((InternalEObject) newGmfDiagram).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE
-								- PapyrusPackage.UML_MODEL__GMF_DIAGRAM, null,
-						msgs);
+				msgs = ((InternalEObject) newGmfDiagram).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- PapyrusPackage.UML_MODEL__GMF_DIAGRAM, null, msgs);
 			msgs = basicSetGmfDiagram(newGmfDiagram, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 			gmfDiagram.eAdapters().add(new BendpointsAdapter(gmfDiagram));
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					PapyrusPackage.UML_MODEL__GMF_DIAGRAM, newGmfDiagram,
-					newGmfDiagram));
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusPackage.UML_MODEL__GMF_DIAGRAM, newGmfDiagram,
+				newGmfDiagram));
 	}
 
 	/**
@@ -190,12 +174,10 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	 */
 	public void setDiagramType(UMLDiagramType newDiagramType) {
 		UMLDiagramType oldDiagramType = diagramType;
-		diagramType = newDiagramType == null ? DIAGRAM_TYPE_EDEFAULT
-				: newDiagramType;
+		diagramType = newDiagramType == null ? DIAGRAM_TYPE_EDEFAULT : newDiagramType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					PapyrusPackage.UML_MODEL__DIAGRAM_TYPE, oldDiagramType,
-					diagramType));
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusPackage.UML_MODEL__DIAGRAM_TYPE,
+				oldDiagramType, diagramType));
 	}
 
 	/**
@@ -204,8 +186,7 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case PapyrusPackage.UML_MODEL__GMF_DIAGRAM:
 			return basicSetGmfDiagram(null, msgs);

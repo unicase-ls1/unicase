@@ -1,8 +1,7 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.papyrus.impl;
 
@@ -10,30 +9,31 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.unicase.papyrus.*;
+import org.unicase.papyrus.PapyrusFactory;
+import org.unicase.papyrus.PapyrusPackage;
+import org.unicase.papyrus.SysMLClass;
+import org.unicase.papyrus.SysMLDiagramType;
+import org.unicase.papyrus.SysMLModel;
+import org.unicase.papyrus.UMLDiagramType;
+import org.unicase.papyrus.UMLModel;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static PapyrusFactory init() {
 		try {
 			PapyrusFactory thePapyrusFactory = (PapyrusFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://unicase.org/model/papyrus");
+				.getEFactory("http://unicase.org/model/papyrus");
 			if (thePapyrusFactory != null) {
 				return thePapyrusFactory;
 			}
@@ -44,9 +44,8 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PapyrusFactoryImpl() {
@@ -54,8 +53,8 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,14 +67,13 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 		case PapyrusPackage.SYS_ML_CLASS:
 			return createSysMLClass();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,14 +84,13 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 		case PapyrusPackage.SYS_ML_DIAGRAM_TYPE:
 			return createSysMLDiagramTypeFromString(eDataType, initialValue);
 		default:
-			throw new IllegalArgumentException("The datatype '"
-					+ eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -104,14 +101,13 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 		case PapyrusPackage.SYS_ML_DIAGRAM_TYPE:
 			return convertSysMLDiagramTypeToString(eDataType, instanceValue);
 		default:
-			throw new IllegalArgumentException("The datatype '"
-					+ eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UMLModel createUMLModel() {
@@ -120,8 +116,8 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SysMLModel createSysMLModel() {
@@ -130,8 +126,8 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SysMLClass createSysMLClass() {
@@ -140,58 +136,52 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public UMLDiagramType createUMLDiagramTypeFromString(EDataType eDataType,
-			String initialValue) {
+	public UMLDiagramType createUMLDiagramTypeFromString(EDataType eDataType, String initialValue) {
 		UMLDiagramType result = UMLDiagramType.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
+				+ eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public String convertUMLDiagramTypeToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertUMLDiagramTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public SysMLDiagramType createSysMLDiagramTypeFromString(
-			EDataType eDataType, String initialValue) {
+	public SysMLDiagramType createSysMLDiagramTypeFromString(EDataType eDataType, String initialValue) {
 		SysMLDiagramType result = SysMLDiagramType.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
+				+ eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public String convertSysMLDiagramTypeToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertSysMLDiagramTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PapyrusPackage getPapyrusPackage() {
@@ -199,8 +189,8 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -209,4 +199,4 @@ public class PapyrusFactoryImpl extends EFactoryImpl implements PapyrusFactory {
 		return PapyrusPackage.eINSTANCE;
 	}
 
-} //PapyrusFactoryImpl
+} // PapyrusFactoryImpl

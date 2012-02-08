@@ -1,8 +1,7 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.papyrus.impl;
 
@@ -19,22 +18,22 @@ import org.unicase.papyrus.SysMLModel;
 import org.unicase.papyrus.custom.BendpointsAdapter;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Sys ML Model</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Sys ML Model</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.papyrus.impl.SysMLModelImpl#getGmfDiagram <em>Gmf Diagram</em>}</li>
- *   <li>{@link org.unicase.papyrus.impl.SysMLModelImpl#getDiagramType <em>Diagram Type</em>}</li>
+ * <li>{@link org.unicase.papyrus.impl.SysMLModelImpl#getGmfDiagram <em>Gmf Diagram</em>}</li>
+ * <li>{@link org.unicase.papyrus.impl.SysMLModelImpl#getDiagramType <em>Diagram Type</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class SysMLModelImpl extends ModelImpl implements SysMLModel {
 	/**
-	 * The cached value of the '{@link #getGmfDiagram() <em>Gmf Diagram</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getGmfDiagram() <em>Gmf Diagram</em>}' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getGmfDiagram()
 	 * @generated
 	 * @ordered
@@ -42,8 +41,9 @@ public class SysMLModelImpl extends ModelImpl implements SysMLModel {
 	protected Diagram gmfDiagram;
 
 	/**
-	 * The default value of the '{@link #getDiagramType() <em>Diagram Type</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getDiagramType() <em>Diagram Type</em>}' attribute. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getDiagramType()
 	 * @generated
 	 * @ordered
@@ -51,8 +51,9 @@ public class SysMLModelImpl extends ModelImpl implements SysMLModel {
 	protected static final SysMLDiagramType DIAGRAM_TYPE_EDEFAULT = SysMLDiagramType.NO_DIAGRAM;
 
 	/**
-	 * The cached value of the '{@link #getDiagramType() <em>Diagram Type</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDiagramType() <em>Diagram Type</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getDiagramType()
 	 * @generated
 	 * @ordered
@@ -61,6 +62,7 @@ public class SysMLModelImpl extends ModelImpl implements SysMLModel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	protected SysMLModelImpl() {
@@ -70,6 +72,7 @@ public class SysMLModelImpl extends ModelImpl implements SysMLModel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -79,6 +82,7 @@ public class SysMLModelImpl extends ModelImpl implements SysMLModel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Diagram getGmfDiagram() {
@@ -87,22 +91,17 @@ public class SysMLModelImpl extends ModelImpl implements SysMLModel {
 			gmfDiagram = (Diagram) eResolveProxy(oldGmfDiagram);
 			if (gmfDiagram != oldGmfDiagram) {
 				InternalEObject newGmfDiagram = (InternalEObject) gmfDiagram;
-				NotificationChain msgs = oldGmfDiagram.eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- PapyrusPackage.SYS_ML_MODEL__GMF_DIAGRAM,
-						null, null);
+				NotificationChain msgs = oldGmfDiagram.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- PapyrusPackage.SYS_ML_MODEL__GMF_DIAGRAM, null, null);
 				if (newGmfDiagram.eInternalContainer() == null) {
-					msgs = newGmfDiagram.eInverseAdd(this,
-							EOPPOSITE_FEATURE_BASE
-									- PapyrusPackage.SYS_ML_MODEL__GMF_DIAGRAM,
-							null, msgs);
+					msgs = newGmfDiagram.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- PapyrusPackage.SYS_ML_MODEL__GMF_DIAGRAM, null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							PapyrusPackage.SYS_ML_MODEL__GMF_DIAGRAM,
-							oldGmfDiagram, gmfDiagram));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PapyrusPackage.SYS_ML_MODEL__GMF_DIAGRAM,
+						oldGmfDiagram, gmfDiagram));
 			}
 		}
 		return gmfDiagram;
@@ -110,6 +109,7 @@ public class SysMLModelImpl extends ModelImpl implements SysMLModel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Diagram basicGetGmfDiagram() {
@@ -118,16 +118,15 @@ public class SysMLModelImpl extends ModelImpl implements SysMLModel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetGmfDiagram(Diagram newGmfDiagram,
-			NotificationChain msgs) {
+	public NotificationChain basicSetGmfDiagram(Diagram newGmfDiagram, NotificationChain msgs) {
 		Diagram oldGmfDiagram = gmfDiagram;
 		gmfDiagram = newGmfDiagram;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, PapyrusPackage.SYS_ML_MODEL__GMF_DIAGRAM,
-					oldGmfDiagram, newGmfDiagram);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				PapyrusPackage.SYS_ML_MODEL__GMF_DIAGRAM, oldGmfDiagram, newGmfDiagram);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -138,33 +137,30 @@ public class SysMLModelImpl extends ModelImpl implements SysMLModel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setGmfDiagram(Diagram newGmfDiagram) {
 		if (newGmfDiagram != gmfDiagram) {
 			NotificationChain msgs = null;
 			if (gmfDiagram != null)
-				msgs = ((InternalEObject) gmfDiagram).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE
-								- PapyrusPackage.SYS_ML_MODEL__GMF_DIAGRAM,
-						null, msgs);
+				msgs = ((InternalEObject) gmfDiagram).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- PapyrusPackage.SYS_ML_MODEL__GMF_DIAGRAM, null, msgs);
 			if (newGmfDiagram != null)
-				msgs = ((InternalEObject) newGmfDiagram).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE
-								- PapyrusPackage.SYS_ML_MODEL__GMF_DIAGRAM,
-						null, msgs);
+				msgs = ((InternalEObject) newGmfDiagram).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- PapyrusPackage.SYS_ML_MODEL__GMF_DIAGRAM, null, msgs);
 			msgs = basicSetGmfDiagram(newGmfDiagram, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 			gmfDiagram.eAdapters().add(new BendpointsAdapter(gmfDiagram));
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					PapyrusPackage.SYS_ML_MODEL__GMF_DIAGRAM, newGmfDiagram,
-					newGmfDiagram));
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusPackage.SYS_ML_MODEL__GMF_DIAGRAM,
+				newGmfDiagram, newGmfDiagram));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SysMLDiagramType getDiagramType() {
@@ -173,25 +169,24 @@ public class SysMLModelImpl extends ModelImpl implements SysMLModel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDiagramType(SysMLDiagramType newDiagramType) {
 		SysMLDiagramType oldDiagramType = diagramType;
-		diagramType = newDiagramType == null ? DIAGRAM_TYPE_EDEFAULT
-				: newDiagramType;
+		diagramType = newDiagramType == null ? DIAGRAM_TYPE_EDEFAULT : newDiagramType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					PapyrusPackage.SYS_ML_MODEL__DIAGRAM_TYPE, oldDiagramType,
-					diagramType));
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusPackage.SYS_ML_MODEL__DIAGRAM_TYPE,
+				oldDiagramType, diagramType));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case PapyrusPackage.SYS_ML_MODEL__GMF_DIAGRAM:
 			return basicSetGmfDiagram(null, msgs);
@@ -201,6 +196,7 @@ public class SysMLModelImpl extends ModelImpl implements SysMLModel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -218,6 +214,7 @@ public class SysMLModelImpl extends ModelImpl implements SysMLModel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -236,6 +233,7 @@ public class SysMLModelImpl extends ModelImpl implements SysMLModel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -253,6 +251,7 @@ public class SysMLModelImpl extends ModelImpl implements SysMLModel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -268,6 +267,7 @@ public class SysMLModelImpl extends ModelImpl implements SysMLModel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -281,9 +281,10 @@ public class SysMLModelImpl extends ModelImpl implements SysMLModel {
 		result.append(')');
 		return result.toString();
 	}
-	
-	/** 
+
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @generated NOT
 	 */
 	@Override
