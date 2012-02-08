@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.papyrus.diagram.part;
 
 import java.io.IOException;
@@ -42,11 +47,12 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
 
 /**
- * This document provider is the superclass of all document providers for Papyrus UML diagrams. 
+ * This document provider is the superclass of all document providers for Papyrus UML diagrams.
+ * 
  * @author mharut
  */
 public abstract class UMLDocumentProvider extends AbstractDocumentProvider implements IDiagramDocumentProvider {
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -59,7 +65,7 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 			.getEditingDomain());
 		return document;
 	}
-	
+
 	/**
 	 * This method sets the diagram content.
 	 * 
@@ -83,9 +89,6 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 				if (!resource.isLoaded()) {
 					try {
 						Map options = new HashMap(GMFResourceFactory.getDefaultLoadOptions());
-						// @see 171060
-						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.
-						// OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
 						resource.load(options);
 					} catch (IOException e) {
 						resource.unload();
@@ -117,32 +120,25 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	protected IDocument createDocument(Object element) throws CoreException {
-		if (false == element instanceof FileEditorInput
-				&& false == element instanceof URIEditorInput) {
-			throw new CoreException(
-					new Status(
-							IStatus.ERROR,
-							UMLDiagramEditorPlugin.ID,
-							0,
-							NLS
-									.bind(
-											Messages.UMLDocumentProvider_IncorrectInputError,
-											new Object[] {
-													element,
-													"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-							null));
+		if (!(element instanceof FileEditorInput) && !(element instanceof URIEditorInput)) {
+			throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0, NLS.bind(
+				Messages.UMLDocumentProvider_IncorrectInputError, new Object[] { element,
+					"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+				null));
 		}
 		IDocument document = createEmptyDocument();
 		setDocumentContent(document, (IEditorInput) element);
 		setupDocument(element, document);
 		return document;
 	}
-	
+
 	/**
-	 * Sets up the given document as it would be provided for the given element. The
-	 * content of the document is not changed. This default implementation is empty.
-	 * Subclasses may reimplement.
+	 * Sets up the given document as it would be provided for the given element. The content of the document is not
+	 * changed. This default implementation is empty. Subclasses may reimplement.
 	 * 
 	 * @param element the blue-print element
 	 * @param document the document to set up
@@ -161,8 +157,7 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 			Resource diagramResource = document.getDiagram().eResource();
 			if (diagramResource != null) {
 				IFile file = WorkspaceSynchronizer.getFile(diagramResource);
-				return file == null || file.getLocation() == null
-						|| !file.getLocation().toFile().exists();
+				return file == null || file.getLocation() == null || !file.getLocation().toFile().exists();
 			}
 		}
 		return super.isDeleted(element);
@@ -178,13 +173,15 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 	/**
 	 * @generated
 	 */
-	protected void doValidateState(Object element, Object computationContext)
-			throws CoreException {
+	protected void doValidateState(Object element, Object computationContext) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.resources.IFile>*/files2Validate = new ArrayList/*<org.eclipse.core.resources.IFile>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
+			Collection/* <org.eclipse.core.resources.IFile> */files2Validate = new ArrayList/*
+																						 * <org.eclipse.core.resources.IFile
+																						 * >
+																						 */();
+			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+				.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null && file.isReadOnly()) {
@@ -192,14 +189,11 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 				}
 			}
 			ResourcesPlugin.getWorkspace().validateEdit(
-					(IFile[]) files2Validate.toArray(new IFile[files2Validate
-							.size()]), computationContext);
+				(IFile[]) files2Validate.toArray(new IFile[files2Validate.size()]), computationContext);
 		}
 
 		super.doValidateState(element, computationContext);
 	}
-
-
 
 	/**
 	 * @generated
@@ -207,8 +201,8 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 	protected void updateCache(Object element) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
+			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+				.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null && file.isReadOnly()) {
@@ -222,14 +216,13 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 			return;
 		}
 	}
-	
+
 	/**
 	 * @generated
 	 */
 	protected long computeModificationStamp(ResourceSetInfo info) {
 		int result = 0;
-		for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-				.getLoadedResourcesIterator(); it.hasNext();) {
+		for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it.hasNext();) {
 			Resource nextResource = (Resource) it.next();
 			IFile file = WorkspaceSynchronizer.getFile(nextResource);
 			if (file != null) {
@@ -242,23 +235,18 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 		}
 		return result;
 	}
-	
+
 	/**
 	 * @generated
 	 */
-	protected void handleElementChanged(ResourceSetInfo info,
-			Resource changedResource, IProgressMonitor monitor) {
+	protected void handleElementChanged(ResourceSetInfo info, Resource changedResource, IProgressMonitor monitor) {
 		IFile file = WorkspaceSynchronizer.getFile(changedResource);
 		if (file != null) {
 			try {
 				file.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 			} catch (CoreException ex) {
-				UMLDiagramEditorPlugin
-						.getInstance()
-						.logError(
-								Messages.UMLDocumentProvider_handleElementContentChanged,
-								ex);
-				// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
+				UMLDiagramEditorPlugin.getInstance().logError(Messages.UMLDocumentProvider_handleElementContentChanged,
+					ex);
 			}
 		}
 		changedResource.unload();
@@ -283,13 +271,11 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 	 */
 	protected void handleElementMoved(IEditorInput input, URI uri) {
 		if (input instanceof FileEditorInput) {
-			IFile newFile = ResourcesPlugin.getWorkspace().getRoot().getFile(
-					new Path(URI.decode(uri.path())).removeFirstSegments(1));
-			fireElementMoved(input, newFile == null ? null
-					: new FileEditorInput(newFile));
+			IFile newFile = ResourcesPlugin.getWorkspace().getRoot()
+				.getFile(new Path(URI.decode(uri.path())).removeFirstSegments(1));
+			fireElementMoved(input, newFile == null ? null : new FileEditorInput(newFile));
 			return;
 		}
-		// TODO: append suffix to the URI! (use diagram as a parameter)
 		fireElementMoved(input, new URIEditorInput(uri));
 	}
 
@@ -346,8 +332,7 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 		/**
 		 * @generated
 		 */
-		public ResourceSetInfo(IDiagramDocument document,
-				IEditorInput editorInput) {
+		public ResourceSetInfo(IDiagramDocument document, IEditorInput editorInput) {
 			super(document);
 			myDocument = document;
 			myEditorInput = editorInput;
@@ -387,9 +372,9 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 		/**
 		 * @generated
 		 */
-		public Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/getLoadedResourcesIterator() {
-			return new ArrayList/*<org.eclipse.emf.ecore.resource.Resource>*/(
-					getResourceSet().getResources()).iterator();
+		public Iterator/* <org.eclipse.emf.ecore.resource.Resource> */getLoadedResourcesIterator() {
+			return new ArrayList/* <org.eclipse.emf.ecore.resource.Resource> */(getResourceSet().getResources())
+				.iterator();
 		}
 
 		/**
@@ -403,8 +388,8 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 		 * @generated NOT
 		 */
 		public void dispose() {
-			 stopResourceListening();
-			 getResourceSet().eAdapters().remove(myResourceSetListener);
+			stopResourceListening();
+			getResourceSet().eAdapters().remove(myResourceSetListener);
 			// for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = getLoadedResourcesIterator(); it
 			// .hasNext();) {
 			// Resource resource = (Resource) it.next();
@@ -445,8 +430,7 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 		 * @generated
 		 */
 		public final void startResourceListening() {
-			mySynchronizer = new WorkspaceSynchronizer(getEditingDomain(),
-					new SynchronizerDelegate());
+			mySynchronizer = new WorkspaceSynchronizer(getEditingDomain(), new SynchronizerDelegate());
 		}
 
 		/**
@@ -494,8 +478,7 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 		/**
 		 * @generated
 		 */
-		private class SynchronizerDelegate implements
-				WorkspaceSynchronizer.Delegate {
+		private class SynchronizerDelegate implements WorkspaceSynchronizer.Delegate {
 
 			/**
 			 * @generated
@@ -515,8 +498,7 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 				}
 				Display.getDefault().asyncExec(new Runnable() {
 					public void run() {
-						handleElementChanged(ResourceSetInfo.this, resource,
-								null);
+						handleElementChanged(ResourceSetInfo.this, resource, null);
 					}
 				});
 				return true;
@@ -534,8 +516,7 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 				}
 				Display.getDefault().asyncExec(new Runnable() {
 					public void run() {
-						fireElementDeleted(ResourceSetInfo.this
-								.getEditorInput());
+						fireElementDeleted(ResourceSetInfo.this.getEditorInput());
 					}
 				});
 				return true;
@@ -544,8 +525,7 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 			/**
 			 * @generated
 			 */
-			public boolean handleResourceMoved(Resource resource,
-					final URI newURI) {
+			public boolean handleResourceMoved(Resource resource, final URI newURI) {
 				synchronized (ResourceSetInfo.this) {
 					if (ResourceSetInfo.this.fCanBeSaved) {
 						ResourceSetInfo.this.setUnSynchronized(resource);
@@ -555,8 +535,7 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 				if (myDocument.getDiagram().eResource() == resource) {
 					Display.getDefault().asyncExec(new Runnable() {
 						public void run() {
-							handleElementMoved(ResourceSetInfo.this
-									.getEditorInput(), newURI);
+							handleElementMoved(ResourceSetInfo.this.getEditorInput(), newURI);
 						}
 					});
 				} else {
@@ -589,12 +568,9 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 		 */
 		public ResourceSetModificationListener(ResourceSetInfo info) {
 			myInfo = info;
-			myModifiedFilter = NotificationFilter.createEventTypeFilter(
-					Notification.SET).or(
-					NotificationFilter
-							.createEventTypeFilter(Notification.UNSET)).and(
-					NotificationFilter.createFeatureFilter(Resource.class,
-							Resource.RESOURCE__IS_MODIFIED));
+			myModifiedFilter = NotificationFilter.createEventTypeFilter(Notification.SET)
+				.or(NotificationFilter.createEventTypeFilter(Notification.UNSET))
+				.and(NotificationFilter.createFeatureFilter(Resource.class, Resource.RESOURCE__IS_MODIFIED));
 		}
 
 		/**
@@ -604,15 +580,13 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 			if (notification.getNotifier() instanceof ResourceSet) {
 				super.notifyChanged(notification);
 			}
-			if (!notification.isTouch()
-					&& myModifiedFilter.matches(notification)) {
+			if (!notification.isTouch() && myModifiedFilter.matches(notification)) {
 				if (notification.getNotifier() instanceof Resource) {
 					Resource resource = (Resource) notification.getNotifier();
 					if (resource.isLoaded()) {
 						boolean modified = false;
-						for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = myInfo
-								.getLoadedResourcesIterator(); it.hasNext()
-								&& !modified;) {
+						for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = myInfo
+							.getLoadedResourcesIterator(); it.hasNext() && !modified;) {
 							Resource nextResource = (Resource) it.next();
 							if (nextResource.isLoaded()) {
 								modified = nextResource.isModified();
@@ -629,12 +603,10 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 							}
 						}
 						if (dirtyStateChanged) {
-							fireElementDirtyStateChanged(myInfo
-									.getEditorInput(), modified);
+							fireElementDirtyStateChanged(myInfo.getEditorInput(), modified);
 
 							if (!modified) {
-								myInfo
-										.setModificationStamp(computeModificationStamp(myInfo));
+								myInfo.setModificationStamp(computeModificationStamp(myInfo));
 							}
 						}
 					}

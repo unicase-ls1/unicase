@@ -1,8 +1,7 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.papyrus;
 
@@ -13,19 +12,17 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Sys ML Diagram Type</b></em>',
- * and utility methods for working with them.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Sys ML Diagram Type</b></em>',
+ * and utility methods for working with them. <!-- end-user-doc -->
+ * 
  * @see org.unicase.papyrus.PapyrusPackage#getSysMLDiagramType()
  * @model
  * @generated
  */
 public enum SysMLDiagramType implements Enumerator {
 	/**
-	 * The '<em><b>No Diagram</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>No Diagram</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #NO_DIAGRAM_VALUE
 	 * @generated
 	 * @ordered
@@ -33,9 +30,8 @@ public enum SysMLDiagramType implements Enumerator {
 	NO_DIAGRAM(0, "NoDiagram", "NoDiagram"),
 
 	/**
-	 * The '<em><b>Parametric</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>Parametric</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #PARAMETRIC_VALUE
 	 * @generated
 	 * @ordered
@@ -43,9 +39,8 @@ public enum SysMLDiagramType implements Enumerator {
 	PARAMETRIC(1, "Parametric", "Parametric"),
 
 	/**
-	 * The '<em><b>Block Definition</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>Block Definition</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #BLOCK_DEFINITION_VALUE
 	 * @generated
 	 * @ordered
@@ -53,9 +48,8 @@ public enum SysMLDiagramType implements Enumerator {
 	BLOCK_DEFINITION(2, "BlockDefinition", "BlockDefinition"),
 
 	/**
-	 * The '<em><b>Requirement</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>Requirement</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #REQUIREMENT_VALUE
 	 * @generated
 	 * @ordered
@@ -63,9 +57,8 @@ public enum SysMLDiagramType implements Enumerator {
 	REQUIREMENT(3, "Requirement", "Requirement"),
 
 	/**
-	 * The '<em><b>Internal Block</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>Internal Block</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #INTERNAL_BLOCK_VALUE
 	 * @generated
 	 * @ordered
@@ -73,13 +66,13 @@ public enum SysMLDiagramType implements Enumerator {
 	INTERNAL_BLOCK(4, "InternalBlock", "InternalBlock");
 
 	/**
-	 * The '<em><b>No Diagram</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>No Diagram</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>No Diagram</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>No Diagram</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #NO_DIAGRAM
 	 * @model name="NoDiagram"
 	 * @generated
@@ -88,13 +81,13 @@ public enum SysMLDiagramType implements Enumerator {
 	public static final int NO_DIAGRAM_VALUE = 0;
 
 	/**
-	 * The '<em><b>Parametric</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Parametric</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Parametric</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Parametric</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #PARAMETRIC
 	 * @model name="Parametric"
 	 * @generated
@@ -103,13 +96,13 @@ public enum SysMLDiagramType implements Enumerator {
 	public static final int PARAMETRIC_VALUE = 1;
 
 	/**
-	 * The '<em><b>Block Definition</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Block Definition</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Block Definition</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Block Definition</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #BLOCK_DEFINITION
 	 * @model name="BlockDefinition"
 	 * @generated
@@ -118,13 +111,13 @@ public enum SysMLDiagramType implements Enumerator {
 	public static final int BLOCK_DEFINITION_VALUE = 2;
 
 	/**
-	 * The '<em><b>Requirement</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Requirement</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Requirement</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Requirement</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #REQUIREMENT
 	 * @model name="Requirement"
 	 * @generated
@@ -133,13 +126,13 @@ public enum SysMLDiagramType implements Enumerator {
 	public static final int REQUIREMENT_VALUE = 3;
 
 	/**
-	 * The '<em><b>Internal Block</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Internal Block</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Internal Block</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>Internal Block</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #INTERNAL_BLOCK
 	 * @model name="InternalBlock"
 	 * @generated
@@ -148,28 +141,26 @@ public enum SysMLDiagramType implements Enumerator {
 	public static final int INTERNAL_BLOCK_VALUE = 4;
 
 	/**
-	 * An array of all the '<em><b>Sys ML Diagram Type</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * An array of all the '<em><b>Sys ML Diagram Type</b></em>' enumerators. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
-	private static final SysMLDiagramType[] VALUES_ARRAY = new SysMLDiagramType[] {
-			NO_DIAGRAM, PARAMETRIC, BLOCK_DEFINITION, REQUIREMENT,
-			INTERNAL_BLOCK, };
+	private static final SysMLDiagramType[] VALUES_ARRAY = new SysMLDiagramType[] { NO_DIAGRAM, PARAMETRIC,
+		BLOCK_DEFINITION, REQUIREMENT, INTERNAL_BLOCK, };
 
 	/**
-	 * A public read-only list of all the '<em><b>Sys ML Diagram Type</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
+	 * A public read-only list of all the '<em><b>Sys ML Diagram Type</b></em>' enumerators. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public static final List<SysMLDiagramType> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<SysMLDiagramType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Sys ML Diagram Type</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the '<em><b>Sys ML Diagram Type</b></em>' literal with the specified literal value. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static SysMLDiagramType get(String literal) {
@@ -183,9 +174,9 @@ public enum SysMLDiagramType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Sys ML Diagram Type</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the '<em><b>Sys ML Diagram Type</b></em>' literal with the specified name. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static SysMLDiagramType getByName(String name) {
@@ -199,9 +190,9 @@ public enum SysMLDiagramType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Sys ML Diagram Type</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the '<em><b>Sys ML Diagram Type</b></em>' literal with the specified integer value. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static SysMLDiagramType get(int value) {
@@ -221,30 +212,29 @@ public enum SysMLDiagramType implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Only this class can construct instances. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private SysMLDiagramType(int value, String name, String literal) {
@@ -254,8 +244,8 @@ public enum SysMLDiagramType implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getValue() {
@@ -263,8 +253,8 @@ public enum SysMLDiagramType implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -272,8 +262,8 @@ public enum SysMLDiagramType implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
@@ -281,9 +271,9 @@ public enum SysMLDiagramType implements Enumerator {
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the literal value of the enumerator, which is its string representation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -291,4 +281,4 @@ public enum SysMLDiagramType implements Enumerator {
 		return literal;
 	}
 
-} //SysMLDiagramType
+} // SysMLDiagramType

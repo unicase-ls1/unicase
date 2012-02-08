@@ -19,14 +19,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.DOMHandler;
 import org.eclipse.emf.ecore.xmi.DOMHelper;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xml.type.AnyType;
-import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.unicase.papyrus.UMLModel;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -61,19 +58,19 @@ public class UMLModelDiagramResource extends ResourceImpl implements Resource, R
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void delete(Map<?, ?> options) throws IOException {
-		// TODO Auto-generated method stub
+		// do nothing
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public TreeIterator<EObject> getAllContents() {
-		// TODO Auto-generated method stub
+		// do nothing
 		return null;
 	}
 
@@ -97,17 +94,17 @@ public class UMLModelDiagramResource extends ResourceImpl implements Resource, R
 	private void initialize() {
 		// TODO: improve this, maybe move it
 		boolean hasModelSetQuery = false;
-		for(Object adapter : model.eResource().eAdapters()) {
-			if(adapter instanceof UnicaseModelSetQueryAdapter) {
+		for (Object adapter : model.eResource().eAdapters()) {
+			if (adapter instanceof UnicaseModelSetQueryAdapter) {
 				hasModelSetQuery = true;
 				break;
 			}
 		}
-		
-		if(!hasModelSetQuery) {
+
+		if (!hasModelSetQuery) {
 			model.eResource().eAdapters().add(new UnicaseModelSetQueryAdapter());
 		}
-		
+
 		if (model.getGmfDiagram() == null) {
 			UMLInitUtil.initialize(model);
 		}
@@ -115,42 +112,41 @@ public class UMLModelDiagramResource extends ResourceImpl implements Resource, R
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public EObject getEObject(String uriFragment) {
-		// TODO Auto-generated method stub
+		// do nothing
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public EList<Diagnostic> getErrors() {
-		// TODO Auto-generated method stub
+		// do nothing
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public ResourceSet getResourceSet() {
 		if (model.eResource() != null) {
 			return model.eResource().getResourceSet();
 		} else {
-			// evil hack
-			return new ResourceSetImpl();
+			return null;
 		}
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public long getTimeStamp() {
-		// TODO Auto-generated method stub
+		// do nothing
 		return 0;
 	}
 
@@ -164,15 +160,12 @@ public class UMLModelDiagramResource extends ResourceImpl implements Resource, R
 		if (model.eResource() != null) {
 			return model.eResource().getURI();
 		} else {
-			// evil hack
-			ResourceSetImpl resourceSetImpl = new ResourceSetImpl();
-			Resource resource = resourceSetImpl.createResource(URI.createURI("blaaaaaa"));
-			return resource.getURI();
+			return null;
 		}
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getURIFragment(EObject object) {
@@ -181,80 +174,73 @@ public class UMLModelDiagramResource extends ResourceImpl implements Resource, R
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public EList<Diagnostic> getWarnings() {
-		// TODO Auto-generated method stub
+		// do nothing
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isLoaded() {
-
 		return model.eResource().isLoaded();
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isModified() {
-		// TODO Auto-generated method stub
+		// do nothing
 		return false;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isTrackingModification() {
-		// JH has to be false, otherwise nullpointer
 		return super.isTrackingModification();
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void load(Map<?, ?> options) throws IOException {
-		// TODO Auto-generated method stub
-
+		// do nothing
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void save(Map<?, ?> options) throws IOException {
-		// TODO Auto-generated method stub
-
+		// do nothing
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setModified(boolean isModified) {
-		// TODO Auto-generated method stub
-		System.out.print("huha");
-
+		// do nothing
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setTimeStamp(long timeStamp) {
-		// TODO Auto-generated method stub
-
+		// do nothing
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setTrackingModification(boolean isTrackingModification) {
@@ -262,16 +248,15 @@ public class UMLModelDiagramResource extends ResourceImpl implements Resource, R
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setURI(URI uri) {
-		// TODO Auto-generated method stub
-
+		// do nothing
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean eDeliver() {
@@ -279,25 +264,23 @@ public class UMLModelDiagramResource extends ResourceImpl implements Resource, R
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void eNotify(Notification notification) {
-		// TODO Auto-generated method stub
-
+		// do nothing
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void eSetDeliver(boolean deliver) {
-		// TODO Auto-generated method stub
-
+		// do nothing
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public Resource createResource(URI uri) {
 		Resource resource = WorkspaceManager.getInstance().getCurrentWorkspace().eResource();
@@ -311,208 +294,198 @@ public class UMLModelDiagramResource extends ResourceImpl implements Resource, R
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void attached(EObject object) {
-		// JH Implement this?
+		// do nothing
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public NotificationChain basicSetResourceSet(ResourceSet resourceSet, NotificationChain notifications) {
-
-		// JH Check what this is for. This is called and maybe causes trouble
+		// do nothing
 		return super.basicSetResourceSet(resourceSet, notifications);
 
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void detached(EObject object) {
-		// TODO Auto-generated method stub
+		// do nothing
 
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isLoading() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public DOMHelper getDOMHelper() {
-		// TODO Auto-generated method stub
+		// do nothing
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public Map<Object, Object> getDefaultLoadOptions() {
-		// TODO Auto-generated method stub
+		// do nothing
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public Map<Object, Object> getDefaultSaveOptions() {
-		// TODO Auto-generated method stub
+		// do nothing
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public Map<EObject, AnyType> getEObjectToExtensionMap() {
-		// TODO Auto-generated method stub
+		// do nothing
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public Map<EObject, String> getEObjectToIDMap() {
-		// TODO Auto-generated method stub
+		// do nothing
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public String getEncoding() {
-		// TODO Auto-generated method stub
+		// do nothing
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public String getID(EObject object) {
-		// JH super?
+		// do nothing
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public Map<String, EObject> getIDToEObjectMap() {
-		// TODO Auto-generated method stub
+		// do nothing
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public String getPublicId() {
-		// TODO Auto-generated method stub
+		// do nothing
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public String getSystemId() {
-		// TODO Auto-generated method stub
+		// do nothing
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public String getXMLVersion() {
-		// TODO Auto-generated method stub
+		// do nothing
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void load(Node node, Map<?, ?> options) throws IOException {
-		// TODO Auto-generated method stub
-
+		// do nothing
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void load(InputSource inputSource, Map<?, ?> options) throws IOException {
-		// TODO Auto-generated method stub
-
+		// do nothing
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void save(Writer writer, Map<?, ?> options) throws IOException {
-		// TODO Auto-generated method stub
-
+		// do nothing
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public Document save(Document document, Map<?, ?> options, DOMHandler handler) {
-		// TODO Auto-generated method stub
+		// do nothing
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void setDoctypeInfo(String publicId, String systemId) {
-		// TODO Auto-generated method stub
-
+		// do nothing
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void setEncoding(String encoding) {
-		// TODO Auto-generated method stub
-
+		// do nothing
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void setID(EObject object, String id) {
-		// TODO Auto-generated method stub
-
+		// do nothing
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void setUseZip(boolean useZip) {
-		// TODO Auto-generated method stub
-
+		// do nothing
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void setXMLVersion(String version) {
-		// TODO Auto-generated method stub
-
+		// do nothing
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean useZip() {
-		// TODO Auto-generated method stub
+		// do nothing
 		return super.useZip();
 	}
 }

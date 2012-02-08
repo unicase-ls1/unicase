@@ -1,8 +1,7 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.papyrus.impl;
 
@@ -11,13 +10,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-
 import org.eclipse.uml2.uml.UMLPackage;
-
 import org.unicase.papyrus.PapyrusFactory;
 import org.unicase.papyrus.PapyrusPackage;
 import org.unicase.papyrus.SysMLClass;
@@ -27,57 +22,54 @@ import org.unicase.papyrus.UMLDiagramType;
 import org.unicase.papyrus.UMLModel;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Package</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass umlModelEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass sysMLModelEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass sysMLClassEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum umlDiagramTypeEEnum = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum sysMLDiagramTypeEEnum = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
+	 * EPackage.Registry} by the package package URI value.
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also
+	 * performs initialization of the package, or returns the registered package, if one already exists. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.unicase.papyrus.PapyrusPackage#eNS_URI
 	 * @see #init()
@@ -88,38 +80,38 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * <p>
+	 * This method is used to initialize {@link PapyrusPackage#eINSTANCE} when that field is accessed. Clients should
+	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
-	 * <p>This method is used to initialize {@link PapyrusPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
+	 * @return a newly initialized {@link PapyrusPackage}
 	 * @generated NOT
 	 */
 	public static PapyrusPackage init() {
-		if (isInited)
-			return (PapyrusPackage) EPackage.Registry.INSTANCE
-					.getEPackage(PapyrusPackage.eNS_URI);
+		if (isInited) {
+			return (PapyrusPackage) EPackage.Registry.INSTANCE.getEPackage(PapyrusPackage.eNS_URI);
+		}
 
 		// begin of custom code: change problematic containment references
 		UMLPackage.eINSTANCE.getPackage_NestedPackage().setContainment(true);
 		UMLPackage.eINSTANCE.getPackage_OwnedType().setContainment(true);
-		// end of custom 
+		// end of custom
 
 		// Obtain or create and register package
-		PapyrusPackageImpl thePapyrusPackage = (PapyrusPackageImpl) (EPackage.Registry.INSTANCE
-				.get(eNS_URI) instanceof PapyrusPackageImpl ? EPackage.Registry.INSTANCE
-				.get(eNS_URI) : new PapyrusPackageImpl());
+		PapyrusPackageImpl thePapyrusPackage = (PapyrusPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof PapyrusPackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI) : new PapyrusPackageImpl());
 
 		isInited = true;
 
@@ -137,14 +129,13 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 		thePapyrusPackage.freeze();
 
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(PapyrusPackage.eNS_URI,
-				thePapyrusPackage);
+		EPackage.Registry.INSTANCE.put(PapyrusPackage.eNS_URI, thePapyrusPackage);
 		return thePapyrusPackage;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getUMLModel() {
@@ -152,8 +143,8 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getUMLModel_GmfDiagram() {
@@ -161,8 +152,8 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getUMLModel_DiagramType() {
@@ -170,8 +161,8 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getSysMLModel() {
@@ -179,8 +170,8 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getSysMLModel_GmfDiagram() {
@@ -188,8 +179,8 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getSysMLModel_DiagramType() {
@@ -197,8 +188,8 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getSysMLClass() {
@@ -206,8 +197,8 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getSysMLClass_GmfDiagram() {
@@ -215,8 +206,8 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getUMLDiagramType() {
@@ -224,8 +215,8 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getSysMLDiagramType() {
@@ -233,8 +224,8 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PapyrusFactory getPapyrusFactory() {
@@ -242,17 +233,16 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
+	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -278,17 +268,16 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
+	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -302,10 +291,9 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		UMLPackage theUMLPackage = (UMLPackage) EPackage.Registry.INSTANCE
-				.getEPackage(UMLPackage.eNS_URI);
+		UMLPackage theUMLPackage = (UMLPackage) EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 		NotationPackage theNotationPackage = (NotationPackage) EPackage.Registry.INSTANCE
-				.getEPackage(NotationPackage.eNS_URI);
+			.getEPackage(NotationPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -317,37 +305,27 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 		sysMLClassEClass.getESuperTypes().add(theUMLPackage.getClass_());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(umlModelEClass, UMLModel.class, "UMLModel", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUMLModel_GmfDiagram(),
-				theNotationPackage.getDiagram(), null, "gmfDiagram", null, 0,
-				1, UMLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUMLModel_DiagramType(), this.getUMLDiagramType(),
-				"diagramType", "", 0, 1, UMLModel.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEClass(umlModelEClass, UMLModel.class, "UMLModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUMLModel_GmfDiagram(), theNotationPackage.getDiagram(), null, "gmfDiagram", null, 0, 1,
+			UMLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUMLModel_DiagramType(), this.getUMLDiagramType(), "diagramType", "", 0, 1, UMLModel.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(sysMLModelEClass, SysMLModel.class, "SysMLModel",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSysMLModel_GmfDiagram(),
-				theNotationPackage.getDiagram(), null, "gmfDiagram", null, 0,
-				1, SysMLModel.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSysMLModel_DiagramType(), this.getSysMLDiagramType(),
-				"diagramType", null, 0, 1, SysMLModel.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEClass(sysMLModelEClass, SysMLModel.class, "SysMLModel", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSysMLModel_GmfDiagram(), theNotationPackage.getDiagram(), null, "gmfDiagram", null, 0, 1,
+			SysMLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSysMLModel_DiagramType(), this.getSysMLDiagramType(), "diagramType", null, 0, 1,
+			SysMLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
-		initEClass(sysMLClassEClass, SysMLClass.class, "SysMLClass",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSysMLClass_GmfDiagram(),
-				theNotationPackage.getDiagram(), null, "gmfDiagram", null, 0,
-				1, SysMLClass.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(sysMLClassEClass, SysMLClass.class, "SysMLClass", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSysMLClass_GmfDiagram(), theNotationPackage.getDiagram(), null, "gmfDiagram", null, 0, 1,
+			SysMLClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(umlDiagramTypeEEnum, UMLDiagramType.class, "UMLDiagramType");
@@ -361,12 +339,10 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 		addEEnumLiteral(umlDiagramTypeEEnum, UMLDiagramType.STATE_MACHINE);
 		addEEnumLiteral(umlDiagramTypeEEnum, UMLDiagramType.USE_CASE);
 
-		initEEnum(sysMLDiagramTypeEEnum, SysMLDiagramType.class,
-				"SysMLDiagramType");
+		initEEnum(sysMLDiagramTypeEEnum, SysMLDiagramType.class, "SysMLDiagramType");
 		addEEnumLiteral(sysMLDiagramTypeEEnum, SysMLDiagramType.NO_DIAGRAM);
 		addEEnumLiteral(sysMLDiagramTypeEEnum, SysMLDiagramType.PARAMETRIC);
-		addEEnumLiteral(sysMLDiagramTypeEEnum,
-				SysMLDiagramType.BLOCK_DEFINITION);
+		addEEnumLiteral(sysMLDiagramTypeEEnum, SysMLDiagramType.BLOCK_DEFINITION);
 		addEEnumLiteral(sysMLDiagramTypeEEnum, SysMLDiagramType.REQUIREMENT);
 		addEEnumLiteral(sysMLDiagramTypeEEnum, SysMLDiagramType.INTERNAL_BLOCK);
 
@@ -374,4 +350,4 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 		createResource(eNS_URI);
 	}
 
-} //PapyrusPackageImpl
+} // PapyrusPackageImpl
