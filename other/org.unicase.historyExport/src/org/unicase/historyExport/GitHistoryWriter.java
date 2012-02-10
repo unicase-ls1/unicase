@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.historyExport;
 
 import java.io.BufferedWriter;
@@ -6,8 +11,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
+
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
@@ -36,12 +44,11 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class GitHistoryWriter extends HistoryWriter {
 
 	/**
-	 * @param exportType
 	 * @see HistoryWriter#HistoryWriter(List, String, String, Long, Long, ExportType, String)
 	 */
-	public GitHistoryWriter(List<String> URLs, String name, String password, Long start, Long end,
+	public GitHistoryWriter(List<String> urls, String name, String password, Long start, Long end,
 		ExportType exportType, String filename) throws Exception {
-		super(URLs, name, password, start, end, exportType, filename);
+		super(urls, name, password, start, end, exportType, filename);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -49,36 +56,59 @@ public class GitHistoryWriter extends HistoryWriter {
 	public void writeToTxt() throws IOException {
 
 		// for every repository location...
-		for (String URL : URLs) {
+		for (String url : urls) {
+			Iterable<RevCommit> logEntries = urlToLogEntries.get(url);
+			if (logEntries == null) {
+				System.out.println("Failed to export history for repository at " + url);
+				continue;
+			}
 			// initialize the file writing mechanism
 			FileWriter writer = new FileWriter(filePrefix + "(" + fileCounter++ + ")" + fileExtension);
 			BufferedWriter out = new BufferedWriter(writer);
 
 			// begin writing to the file
-			System.out.println("Writing history to file for repository at " + URL);
+			System.out.println("Writing history to file for repository at " + url);
 			out.write("############################################");
 			out.newLine();
-			out.write("Repository at " + URL);
+			out.write("Repository at " + url);
 			out.newLine();
 			out.write("############################################");
 			out.newLine();
 
+			List<RevCommit> commits = reverseLog(logEntries);
+
 			// for every log entry...
-			Iterable<RevCommit> log = urlToLogEntries.get(URL);
-			for (RevCommit commit : log) {
+			for (RevCommit commit : commits) {
 				// print basic information about the entry
 				out.write("---------------------------------------------");
 				out.newLine();
-				out.write("revision: " + commit.getParentCount());
+				out.write("committer: " + commit.getCommitterIdent().getName()
+					+ commit.getCommitterIdent().getEmailAddress() != null ? (", " + commit.getCommitterIdent()
+					.getEmailAddress()) : "");
 				out.newLine();
-				out.write("author: " + commit.getAuthorIdent().getName());
+				out.write("author: " + commit.getAuthorIdent().getName() + commit.getAuthorIdent().getEmailAddress() != null ? (", " + commit
+					.getAuthorIdent().getEmailAddress()) : "");
 				out.newLine();
 				out.write("date: " + new Date(commit.getCommitTime()));
 				out.newLine();
 				out.write("log message: " + commit.getFullMessage());
 				out.newLine();
 			}
+			out.close();
+			System.out.println("Finished repository at " + url);
 		}
+	}
+
+	private List<RevCommit> reverseLog(Iterable<RevCommit> logEntries) {
+		List<RevCommit> result = new LinkedList<RevCommit>();
+
+		for (RevCommit commit : logEntries) {
+			result.add(commit);
+		}
+
+		Collections.reverse(result);
+
+		return result;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -88,18 +118,18 @@ public class GitHistoryWriter extends HistoryWriter {
 		PdfWriter.getInstance(document, new FileOutputStream(filePrefix + fileExtension));
 		document.open();
 
-		for (String URL : URLs) {
-			Iterable<RevCommit> logEntries = urlToLogEntries.get(URL);
+		for (String url : urls) {
+			Iterable<RevCommit> logEntries = urlToLogEntries.get(url);
 			if (logEntries == null) {
-				System.out.println("Failed to export history for repository at " + URL);
+				System.out.println("Failed to export history for repository at " + url);
 				continue;
 			}
 			document.newPage();
 
 			int counter = 0;
 
-			System.out.println("Writing history to file for repository at " + URL);
-			Chapter chapter = new Chapter(new Paragraph("Repository at " + URL, FontFactory.getFont(
+			System.out.println("Writing history to file for repository at " + url);
+			Chapter chapter = new Chapter(new Paragraph("Repository at " + url, FontFactory.getFont(
 				FontFactory.HELVETICA, 18, Font.BOLD, new BaseColor(0, 0, 255))), 0);
 			chapter.setNumberDepth(0);
 			chapter.add(new Paragraph(" "));
@@ -127,7 +157,9 @@ public class GitHistoryWriter extends HistoryWriter {
 			table.addCell(messageHeader);
 			table.setHeaderRows(1);
 
-			for (RevCommit commit : logEntries) {
+			List<RevCommit> commits = reverseLog(logEntries);
+
+			for (RevCommit commit : commits) {
 				if (table == null) {
 					table = new PdfPTable(4);
 
@@ -152,21 +184,23 @@ public class GitHistoryWriter extends HistoryWriter {
 					System.out.println("Finished " + counter + " revisions!");
 				}
 			}
-			System.out.println("Finished repository at " + URL);
+			System.out.println("Finished repository at " + url);
 		}
 		document.close();
 	}
 
-	@Override
-	public void exportToDatabase() {
-		// TODO Implement database export mechanism
-	}
-	
 	@SuppressWarnings("rawtypes")
 	@Override
-	protected Iterable getLogEntries(String URL) throws Exception {
+	protected Iterable getLogEntries(String url) throws Exception {
+		// UsernamePasswordCredentialsProvider credentialsProvider = new UsernamePasswordCredentialsProvider(name,
+		// password);
+		// RemoteSession session = JschConfigSessionFactory.getInstance().getSession(new URIish(url),
+		// credentialsProvider,
+		// FS.detect(), 10000);
+		// Process process = session.exec("LogCommand", 1000);
+		// System.out.println(process.getInputStream().toString());
 		FileRepositoryBuilder builder = new FileRepositoryBuilder();
-		Repository repository = builder.setGitDir(new File(URL)).readEnvironment().findGitDir().build();
+		Repository repository = builder.setGitDir(new File(url)).readEnvironment().findGitDir().build();
 		return new Git(repository).log().call();
 	}
 

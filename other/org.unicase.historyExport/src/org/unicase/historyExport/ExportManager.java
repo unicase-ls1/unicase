@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.historyExport;
 
 import java.util.LinkedList;
@@ -18,20 +23,40 @@ import java.util.List;
  * 
  * @author mharut
  */
-public class ExportManager {
+public final class ExportManager {
+
+	private ExportManager() {
+		// nothing to do
+	}
 
 	/**
 	 * Supported version control types.
 	 */
 	enum VcsType {
-		SVN, GIT
+		/**
+		 * Literal for SVN repositories.
+		 */
+		SVN,
+
+		/**
+		 * Literal for Git repositories.
+		 */
+		GIT
 	};
-	
+
 	/**
 	 * Supported export types.
 	 */
 	enum ExportType {
-		TXT, PDF, DB
+		/**
+		 * Literal for text files.
+		 */
+		TXT,
+
+		/**
+		 * Literal for pdf files.
+		 */
+		PDF
 	};
 
 	public static void main(String[] args) {
@@ -60,9 +85,9 @@ public class ExportManager {
 	 */
 	private static HistoryWriter parseArgs(String[] args) throws Exception {
 		int i = 0;
-		List<String> URLs = new LinkedList<String>();
+		List<String> urls = new LinkedList<String>();
 		while (i < args.length && !args[i].startsWith("-")) {
-			URLs.add(args[i]);
+			urls.add(args[i]);
 			i++;
 		}
 		String name = "";
@@ -117,22 +142,24 @@ public class ExportManager {
 				return null;
 			}
 		}
-		if(filename == null) {
-			switch(exportType) {
+		if (filename == null) {
+			switch (exportType) {
 			case TXT:
 				filename = "myHistory.txt";
 				break;
 			case PDF:
 				filename = "myHistory.pdf";
 				break;
+			default:
+				break;
 			}
 		}
 		switch (vcsType) {
 		case GIT:
-			return new GitHistoryWriter(URLs, name, password, start, end, exportType, filename);
+			return new GitHistoryWriter(urls, name, password, start, end, exportType, filename);
 		case SVN:
 		default:
-			return new SVNHistoryWriter(URLs, name, password, start, end, exportType, filename);
+			return new SVNHistoryWriter(urls, name, password, start, end, exportType, filename);
 		}
 	}
 

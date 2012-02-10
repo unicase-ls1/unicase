@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.historyExport;
 
 import java.io.BufferedWriter;
@@ -48,19 +53,19 @@ public class SVNHistoryWriter extends HistoryWriter {
 	/**
 	 * @see HistoryWriter#HistoryWriter(List, String, String, Long, Long, ExportType, String)
 	 */
-	public SVNHistoryWriter(List<String> URLs, String name, String password, Long start, Long end,
+	public SVNHistoryWriter(List<String> urls, String name, String password, Long start, Long end,
 		ExportType exportType, String filename) throws Exception {
-		super(URLs, name, password, start, end, exportType, filename);
+		super(urls, name, password, start, end, exportType, filename);
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void writeToTxt() throws IOException {
 		// for every repository location...
-		for (String URL : URLs) {
-			Iterable logEntries = urlToLogEntries.get(URL);
+		for (String url : urls) {
+			Iterable logEntries = urlToLogEntries.get(url);
 			if (logEntries == null) {
-				System.out.println("Failed to export history for repository at " + URL);
+				System.out.println("Failed to export history for repository at " + url);
 				continue;
 			}
 
@@ -69,10 +74,10 @@ public class SVNHistoryWriter extends HistoryWriter {
 			BufferedWriter out = new BufferedWriter(writer);
 
 			// begin writing to the file
-			System.out.println("Writing history to file for repository at " + URL);
+			System.out.println("Writing history to file for repository at " + url);
 			out.write("############################################");
 			out.newLine();
-			out.write("Repository at " + URL);
+			out.write("Repository at " + url);
 			out.newLine();
 			out.write("############################################");
 			out.newLine();
@@ -117,6 +122,9 @@ public class SVNHistoryWriter extends HistoryWriter {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("rawtypes")
 	public void writeToPdf() throws FileNotFoundException, DocumentException {
 		// initialize the PDF document
@@ -125,11 +133,11 @@ public class SVNHistoryWriter extends HistoryWriter {
 		document.open();
 
 		// for every repository location...
-		for (String URL : URLs) {
+		for (String url : urls) {
 			// check if revisions were received successfully
-			Iterable logEntries = urlToLogEntries.get(URL);
+			Iterable logEntries = urlToLogEntries.get(url);
 			if (logEntries == null) {
-				System.out.println("Failed to export history for repository at " + URL);
+				System.out.println("Failed to export history for repository at " + url);
 				continue;
 			}
 			document.newPage();
@@ -137,8 +145,8 @@ public class SVNHistoryWriter extends HistoryWriter {
 			// counter for status updates shown to the user
 			int counter = 0;
 
-			System.out.println("Writing history to file for repository at " + URL);
-			Chapter chapter = new Chapter(new Paragraph("Repository at " + URL, FontFactory.getFont(
+			System.out.println("Writing history to file for repository at " + url);
+			Chapter chapter = new Chapter(new Paragraph("Repository at " + url, FontFactory.getFont(
 				FontFactory.HELVETICA, 18, Font.BOLD, new BaseColor(0, 0, 255))), 0);
 			chapter.setNumberDepth(0);
 			chapter.add(new Paragraph(" "));
@@ -222,21 +230,16 @@ public class SVNHistoryWriter extends HistoryWriter {
 					System.out.println("Finished " + counter + " revisions!");
 				}
 			}
-			System.out.println("Finished repository at " + URL);
+			System.out.println("Finished repository at " + url);
 		}
 		document.close();
-	}
-	
-	@Override
-	public void exportToDatabase() {
-		// TODO Implement database export mechanism
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	protected Iterable getLogEntries(String URL) throws Exception {
+	protected Iterable getLogEntries(String url) throws Exception {
 		// initialize the repository
-		SVNURL svnURL = SVNURL.parseURIEncoded(URL);
+		SVNURL svnURL = SVNURL.parseURIEncoded(url);
 
 		DAVRepositoryFactory.setup();
 
@@ -286,7 +289,7 @@ public class SVNHistoryWriter extends HistoryWriter {
 		}
 
 		// update status for the user
-		System.out.println("Starting to fetch revisions for repository at " + URL);
+		System.out.println("Starting to fetch revisions for repository at " + url);
 
 		// while there is still a thread running...
 		while (latch.getCount() > 0) {
@@ -296,7 +299,7 @@ public class SVNHistoryWriter extends HistoryWriter {
 				remainingRevisions = maxEnd;
 			}
 			// tell the user about the current status
-			System.out.println("Remaining revisions to fetch for " + URL + ": " + remainingRevisions);
+			System.out.println("Remaining revisions to fetch for " + url + ": " + remainingRevisions);
 			// wait for all threads to finish or until 10 seconds have passed
 			latch.await(15, TimeUnit.SECONDS);
 		}
@@ -310,7 +313,7 @@ public class SVNHistoryWriter extends HistoryWriter {
 		}
 
 		// we are done -> inform the user
-		System.out.println("Finished fetching revisions for repository at " + URL);
+		System.out.println("Finished fetching revisions for repository at " + url);
 
 		return log;
 	}
