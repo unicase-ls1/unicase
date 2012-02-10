@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.historyExport;
 
 import java.io.FileNotFoundException;
@@ -19,15 +24,54 @@ import com.itextpdf.text.DocumentException;
  */
 public abstract class HistoryWriter {
 
-	List<String> URLs;
-	String name;
-	String password;
-	Long start;
-	Long end;
-	ExportType exportType;
-	String filePrefix;
-	String fileExtension;
+	/**
+	 * URLs to the repositories.
+	 */
+	final List<String> urls;
+
+	/**
+	 * Name used for authentication.
+	 */
+	final String name;
+
+	/**
+	 * Password used for authentication.
+	 */
+	final String password;
+
+	/**
+	 * Revision to start with.
+	 */
+	final Long start;
+
+	/**
+	 * Revision to end with.
+	 */
+	final Long end;
+
+	/**
+	 * File format to export to.
+	 */
+	private final ExportType exportType;
+
+	/**
+	 * Prefix for all files to write to.
+	 */
+	final String filePrefix;
+
+	/**
+	 * Extension of the files to write to.
+	 */
+	final String fileExtension;
+
+	/**
+	 * Counts the amount of files already written to.
+	 */
 	int fileCounter;
+
+	/**
+	 * Maps every URL to the corresponding log.
+	 */
 	@SuppressWarnings("rawtypes")
 	Map<String, Iterable> urlToLogEntries;
 
@@ -35,7 +79,7 @@ public abstract class HistoryWriter {
 	 * Constructs a {@link HistoryWriter} with all required arguments. This will also initialize the writer using
 	 * {@link #init()}.
 	 * 
-	 * @param URLs the locations of all repositories
+	 * @param urls the locations of all repositories
 	 * @param name the name to use for authentication
 	 * @param password the password to use for authentication
 	 * @param start the revision to start with
@@ -45,9 +89,9 @@ public abstract class HistoryWriter {
 	 * @throws Exception if {@link #init() initializing} fails
 	 */
 	@SuppressWarnings("rawtypes")
-	public HistoryWriter(List<String> URLs, String name, String password, Long start, Long end, ExportType exportType,
+	public HistoryWriter(List<String> urls, String name, String password, Long start, Long end, ExportType exportType,
 		String filename) throws Exception {
-		this.URLs = URLs;
+		this.urls = urls;
 		this.name = name;
 		this.password = password;
 		this.start = start;
@@ -68,17 +112,17 @@ public abstract class HistoryWriter {
 	private void init() {
 
 		// use a latch to ensure all threads have finished before returning
-		final CountDownLatch latch = new CountDownLatch(URLs.size());
+		final CountDownLatch latch = new CountDownLatch(urls.size());
 
 		// for every repository location...
-		for (final String URL : URLs) {
+		for (final String url : urls) {
 			// use a thread to fetch history
 			new Thread(new Runnable() {
 
 				public void run() {
 					try {
 						// fetch history and save it
-						urlToLogEntries.put(URL, getLogEntries(URL));
+						urlToLogEntries.put(url, getLogEntries(url));
 						// thread is finish -> count down the latch
 						latch.countDown();
 					} catch (Exception e) {
@@ -112,23 +156,24 @@ public abstract class HistoryWriter {
 	 * @throws FileNotFoundException if the file can't be created
 	 * @throws DocumentException if writing to the PDF document fails
 	 */
-	public abstract void writeToPdf() throws FileNotFoundException, DocumentException;	
-	
-	/**
-	 * Exports the history to a database.
-	 */
-	public abstract void exportToDatabase();
+	public abstract void writeToPdf() throws FileNotFoundException, DocumentException;
 
 	/**
-	 * Obtains all log entries (i.e. history) for a repository specified by <code>URL</code>.
+	 * Obtains all log entries (i.e. history) for a repository specified by <code>url</code>.
 	 * 
-	 * @param URL the location of the repository
+	 * @param url the location of the repository
 	 * @return all log entries as an {@link Iterable}
 	 * @throws Exception if obtaining the log entries fails
 	 */
 	@SuppressWarnings("rawtypes")
-	protected abstract Iterable getLogEntries(String URL) throws Exception;
+	protected abstract Iterable getLogEntries(String url) throws Exception;
 
+	/**
+	 * Exports the log messages to the specified file format.
+	 * 
+	 * @throws DocumentException if creating the pdf document fails
+	 * @throws IOException if creating the file fails
+	 */
 	public void export() throws DocumentException, IOException {
 		switch (exportType) {
 		case TXT:
@@ -137,8 +182,8 @@ public abstract class HistoryWriter {
 		case PDF:
 			writeToPdf();
 			break;
-		case DB:
-			exportToDatabase();
+		default:
+			break;
 		}
 
 	}
