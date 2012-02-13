@@ -74,7 +74,8 @@ public final class ServerConfiguration {
 	public static final String SERVER_KEYSTORE_FILE = "emfstoreServer.keystore";
 
 	/**
-	 * Password of keystore, in which the certificate for rmi encryption and password decryption is saved.
+	 * Password of keystore, in which the certificate for rmi encryption and
+	 * password decryption is saved.
 	 * 
 	 * @see #KEYSTORE_ALIAS
 	 */
@@ -118,19 +119,23 @@ public final class ServerConfiguration {
 	public static final String KEYSTORE_CIPHER_ALGORITHM_DEFAULT = "RSA";
 
 	/**
-	 * Property for projectstate persistence policy in versions. Possible values are <b>lastVersionOnly</b> and
-	 * <b>everyVersion</b>. If you don't have every project state the server has to recalulate certain revisions if
-	 * requested. On the other side saving every project state is quite redundant.
+	 * Property for projectstate persistence policy in versions. Possible values
+	 * are <b>lastVersionOnly</b> and <b>everyVersion</b>. If you don't have
+	 * every project state the server has to recalulate certain revisions if
+	 * requested. On the other side saving every project state is quite
+	 * redundant.
 	 */
 	public static final String PROJECTSTATE_VERSION_PERSISTENCE = "emfstore.persistence.version.projectstate";
 
 	/**
-	 * Only the project state from the first and last version is stored, the other states are calculated by the changes.
+	 * Only the project state from the first and last version is stored, the
+	 * other states are calculated by the changes.
 	 */
 	public static final String PROJECTSTATE_VERSION_PERSISTENCE_FIRSTANDLASTVERSIONONLY = "firstAndLastVersionOnly";
 
 	/**
-	 * The projectstate of every x versions will be stored. This is used to save memory. Use x=1 to save every version.
+	 * The projectstate of every x versions will be stored. This is used to save
+	 * memory. Use x=1 to save every version.
 	 */
 	public static final String PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS = "everyXVersion";
 
@@ -145,12 +150,23 @@ public final class ServerConfiguration {
 	public static final String PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS_X_DEFAULT = "1";
 
 	/**
+	 * Whether to perform the clean memory task.
+	 */
+	public static final String PERFORM_CLEAN_MEMORY_TASK = "emfstore.cleanmemorytask";
+
+	/**
+	 * Default value for {@link #PERFORM_CLEAN_MEMORY_TASK}.
+	 */
+	public static final String PERFORM_CLEAN_MEMORY_TASK_DEFAULT = TRUE;
+
+	/**
 	 * Default value for projectstate persistence policy in versions.
 	 */
 	public static final String PROJECTSPACE_VERSION_PERSISTENCE_DEFAULT = PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS;
 
 	/**
-	 * Property for the count of versions, needed by the BACKUP everyXVersion policy.
+	 * Property for the count of versions, needed by the BACKUP everyXVersion
+	 * policy.
 	 */
 	@Deprecated
 	public static final String PROJECTSTATE_VERSION_BACKUP_PERSISTENCE_EVERYXVERSIONS_X = "emfstore.persistence.version.backup.projectstate.everyxversions";
@@ -192,7 +208,8 @@ public final class ServerConfiguration {
 	public static final String SUPER_USER_PASSWORD_DEFAULT = "super";
 
 	/**
-	 * Property for authentication policy used by server. E.g. ldap or property file.
+	 * Property for authentication policy used by server. E.g. ldap or property
+	 * file.
 	 */
 	public static final String AUTHENTICATION_POLICY = "emfstore.accesscontrol.authentication.policy";
 
@@ -202,8 +219,10 @@ public final class ServerConfiguration {
 	public static final String AUTHENTICATION_LDAP = "ldap";
 
 	/**
-	 * Beginng tag of every ldap property. Format for ldap configuration is {@link #AUTHENTICATION_LDAP_PREFIX}
-	 * .[numberOfLdapConfiguration].{ {@link #AUTHENTICATION_LDAP_URL}/ {@link #AUTHENTICATION_LDAP_BASE_DEFAULT}/
+	 * Beginng tag of every ldap property. Format for ldap configuration is
+	 * {@link #AUTHENTICATION_LDAP_PREFIX} .[numberOfLdapConfiguration].{
+	 * {@link #AUTHENTICATION_LDAP_URL}/
+	 * {@link #AUTHENTICATION_LDAP_BASE_DEFAULT}/
 	 * {@link #AUTHENTICATION_LDAP_SEARCHDN} .
 	 */
 	public static final String AUTHENTICATION_LDAP_PREFIX = "emfstore.accesscontrol.authentication.ldap";
@@ -253,7 +272,8 @@ public final class ServerConfiguration {
 	 * @deprecated use {@link #getDefaultSPFVFilePath()}
 	 */
 	@Deprecated
-	public static final String AUTHENTICATION_SPFV_FILEPATH_DEFAULT = getConfDirectory() + "user.properties";
+	public static final String AUTHENTICATION_SPFV_FILEPATH_DEFAULT = getConfDirectory()
+			+ "user.properties";
 
 	/**
 	 * Property to validate server on start up.
@@ -261,12 +281,16 @@ public final class ServerConfiguration {
 	public static final String VALIDATE_SERVERSPACE_ON_SERVERSTART = "emfstore.validation";
 
 	/**
-	 * Sets the level of validation. The level is set via bitmask, use the values
-	 * {@link org.eclipse.emf.emfstore.server.startup.EmfStoreValidator#RESOLVEALL},
-	 * {@link org.eclipse.emf.emfstore.server.startup.EmfStoreValidator#MODELELEMENTID} and
-	 * {@link org.eclipse.emf.emfstore.server.startup.EmfStoreValidator#PROJECTGENERATION}. E.g.: If you want to resolve
-	 * all elements and check use the modelelement id validation, you have to set the level to <code>1 | 2</code>, which
-	 * is 3.
+	 * Sets the level of validation. The level is set via bitmask, use the
+	 * values
+	 * {@link org.eclipse.emf.emfstore.server.startup.EmfStoreValidator#RESOLVEALL}
+	 * ,
+	 * {@link org.eclipse.emf.emfstore.server.startup.EmfStoreValidator#MODELELEMENTID}
+	 * and
+	 * {@link org.eclipse.emf.emfstore.server.startup.EmfStoreValidator#PROJECTGENERATION}
+	 * . E.g.: If you want to resolve all elements and check use the
+	 * modelelement id validation, you have to set the level to
+	 * <code>1 | 2</code>, which is 3.
 	 */
 	public static final String VALIDATION_LEVEL = "emfstore.validation.level";
 
@@ -276,7 +300,8 @@ public final class ServerConfiguration {
 	public static final String VALIDATION_LEVEL_DEFAULT = "7";
 
 	/**
-	 * Exclude projects from validation, use {@link #MULTI_PROPERTY_SEPERATOR} to seperate them.
+	 * Exclude projects from validation, use {@link #MULTI_PROPERTY_SEPERATOR}
+	 * to seperate them.
 	 */
 	public static final String VALIDATION_PROJECT_EXCLUDE = "emfstore.validation.exclude";
 
@@ -301,8 +326,8 @@ public final class ServerConfiguration {
 	public static final String LOAD_STARTUP_LISTENER_DEFAULT = TRUE;
 
 	/**
-	 * Property name of accepted client versions. Enter the version's names or any, seperate multiple entries with
-	 * {@link #MULTI_PROPERTY_SEPERATOR}.
+	 * Property name of accepted client versions. Enter the version's names or
+	 * any, seperate multiple entries with {@link #MULTI_PROPERTY_SEPERATOR}.
 	 */
 	public static final String ACCEPTED_VERSIONS = "emfstore.acceptedversions";
 
@@ -424,7 +449,8 @@ public final class ServerConfiguration {
 	 * @return the dir path string
 	 */
 	public static String getServerHome() {
-		String workspaceDirectory = getLocationProvider().getWorkspaceDirectory();
+		String workspaceDirectory = getLocationProvider()
+				.getWorkspaceDirectory();
 		File workspace = new File(workspaceDirectory);
 		if (!workspace.exists()) {
 			workspace.mkdirs();
@@ -437,17 +463,20 @@ public final class ServerConfiguration {
 	}
 
 	/**
-	 * Returns the registered {@link LocationProvider} or if not existent, the {@link DefaultWorkspaceLocationProvider}.
+	 * Returns the registered {@link LocationProvider} or if not existent, the
+	 * {@link DefaultWorkspaceLocationProvider}.
 	 * 
 	 * @return workspace location provider
 	 */
 	public static LocationProvider getLocationProvider() {
 		if (locationProvider == null) {
-			IConfigurationElement[] rawExtensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				"org.eclipse.emf.emfstore.server.locationprovider");
+			IConfigurationElement[] rawExtensions = Platform
+					.getExtensionRegistry().getConfigurationElementsFor(
+							"org.eclipse.emf.emfstore.server.locationprovider");
 			for (IConfigurationElement extension : rawExtensions) {
 				try {
-					Object executableExtension = extension.createExecutableExtension("providerClass");
+					Object executableExtension = extension
+							.createExecutableExtension("providerClass");
 					if (executableExtension instanceof LocationProvider) {
 						locationProvider = (LocationProvider) executableExtension;
 					}
@@ -459,22 +488,25 @@ public final class ServerConfiguration {
 			if (locationProvider == null) {
 				locationProvider = new DefaultServerWorkspaceLocationProvider();
 			}
-			ModelUtil.logInfo("Using default path for EMFStore home:" + locationProvider.getWorkspaceDirectory());
+			ModelUtil.logInfo("Using default path for EMFStore home:"
+					+ locationProvider.getWorkspaceDirectory());
 		}
 
 		return locationProvider;
 	}
 
 	/**
-	 * Gets startup parameter from {@link Platform#getApplicationArgs()} which are in the form of
-	 * -[parameterkey]=[parametervalue].
+	 * Gets startup parameter from {@link Platform#getApplicationArgs()} which
+	 * are in the form of -[parameterkey]=[parametervalue].
 	 * 
-	 * @param parameter name of parameter key
+	 * @param parameter
+	 *            name of parameter key
 	 * @return parameter as string or null
 	 */
 	public static String getStartArgument(String parameter) {
 		for (String arg : Platform.getApplicationArgs()) {
-			if (arg.startsWith(parameter) && arg.length() > parameter.length() && arg.charAt(parameter.length()) == '=') {
+			if (arg.startsWith(parameter) && arg.length() > parameter.length()
+					&& arg.charAt(parameter.length()) == '=') {
 				return arg.substring(parameter.length() + 1, arg.length());
 			}
 		}
@@ -484,7 +516,8 @@ public final class ServerConfiguration {
 	/**
 	 * Checks whether a parameter is set.
 	 * 
-	 * @param parameter checks existence of parameter
+	 * @param parameter
+	 *            checks existence of parameter
 	 * @return boolean
 	 */
 	public static boolean isStartArgSet(String parameter) {
@@ -518,10 +551,11 @@ public final class ServerConfiguration {
 	}
 
 	/**
-	 * This method calls {@link Properties#getProperty(String)} and splits the resulting string, using
-	 * {@link #MULTI_PROPERTY_SEPERATOR}.
+	 * This method calls {@link Properties#getProperty(String)} and splits the
+	 * resulting string, using {@link #MULTI_PROPERTY_SEPERATOR}.
 	 * 
-	 * @param property property key
+	 * @param property
+	 *            property key
 	 * @return String array or null
 	 */
 	public static String[] getSplittedProperty(String property) {
@@ -530,21 +564,25 @@ public final class ServerConfiguration {
 	}
 
 	/**
-	 * This method calls {@link Properties#getProperty(String, String)} and splits the resulting string, using
-	 * {@link #MULTI_PROPERTY_SEPERATOR}.
+	 * This method calls {@link Properties#getProperty(String, String)} and
+	 * splits the resulting string, using {@link #MULTI_PROPERTY_SEPERATOR}.
 	 * 
-	 * @param property property key
-	 * @param defaultValue default value
+	 * @param property
+	 *            property key
+	 * @param defaultValue
+	 *            default value
 	 * @return String array or null
 	 */
-	public static String[] getSplittedProperty(String property, String defaultValue) {
+	public static String[] getSplittedProperty(String property,
+			String defaultValue) {
 		String result = getProperties().getProperty(property, defaultValue);
 		return (result == null) ? null : splitProperty(result);
 	}
 
 	private static String[] splitProperty(String property) {
 		ArrayList<String> result = new ArrayList<String>();
-		for (String str : property.split(ServerConfiguration.MULTI_PROPERTY_SEPERATOR)) {
+		for (String str : property
+				.split(ServerConfiguration.MULTI_PROPERTY_SEPERATOR)) {
 			result.add(str.trim());
 		}
 		return result.toArray(new String[result.size()]);
@@ -553,7 +591,8 @@ public final class ServerConfiguration {
 	/**
 	 * Sets the server's properties.
 	 * 
-	 * @param prop properties
+	 * @param prop
+	 *            properties
 	 */
 	public static void setProperties(Properties prop) {
 		properties = prop;
@@ -569,15 +608,17 @@ public final class ServerConfiguration {
 	}
 
 	/**
-	 * Get the server version as in the org.eclipse.emf.emfstore.server manifest file.
+	 * Get the server version as in the org.eclipse.emf.emfstore.server manifest
+	 * file.
 	 * 
 	 * @return the server version number
 	 */
 	public static String getServerVersion() {
 
-		Bundle emfStoreBundle = Platform.getBundle("org.eclipse.emf.emfstore.server");
-		String emfStoreVersionString = (String) emfStoreBundle.getHeaders().get(
-			org.osgi.framework.Constants.BUNDLE_VERSION);
+		Bundle emfStoreBundle = Platform
+				.getBundle("org.eclipse.emf.emfstore.server");
+		String emfStoreVersionString = (String) emfStoreBundle.getHeaders()
+				.get(org.osgi.framework.Constants.BUNDLE_VERSION);
 		return emfStoreVersionString;
 	}
 
@@ -587,7 +628,8 @@ public final class ServerConfiguration {
 	 * @return true if it is a release version
 	 */
 	public static boolean isReleaseVersion() {
-		return !getServerVersion().endsWith("qualifier") && !isInternalReleaseVersion();
+		return !getServerVersion().endsWith("qualifier")
+				&& !isInternalReleaseVersion();
 	}
 
 	/**
@@ -609,8 +651,8 @@ public final class ServerConfiguration {
 	}
 
 	/**
-	 * Return the name of the model release number file. This file identifies the release number of the model in the
-	 * workspace.
+	 * Return the name of the model release number file. This file identifies
+	 * the release number of the model in the workspace.
 	 * 
 	 * @return the file name
 	 */
@@ -619,7 +661,8 @@ public final class ServerConfiguration {
 	}
 
 	/**
-	 * @param testing if server is running for testing
+	 * @param testing
+	 *            if server is running for testing
 	 */
 	public static void setTesting(boolean testing) {
 		ServerConfiguration.testing = testing;
