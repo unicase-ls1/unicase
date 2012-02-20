@@ -78,6 +78,7 @@ public class DashboardProjectObserver implements DeleteProjectSpaceObserver, Che
 	 */
 	public void checkoutDone(ProjectSpace projectSpace) {
 		generateNotifications(projectSpace);
+		WorkspaceManager.getInstance().getCurrentWorkspace().setActiveProjectSpace(projectSpace);
 		UnicaseActionHelper.openDashboard(projectSpace);
 
 	}
@@ -89,6 +90,7 @@ public class DashboardProjectObserver implements DeleteProjectSpaceObserver, Che
 	 */
 	public void updateCompleted(ProjectSpace projectSpace) {
 		generateNotifications(projectSpace);
+		WorkspaceManager.getInstance().getCurrentWorkspace().setActiveProjectSpace(projectSpace);
 		UnicaseActionHelper.openDashboard(projectSpace);
 	}
 
