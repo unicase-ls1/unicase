@@ -74,8 +74,7 @@ public class DashboardEditor extends SharedHeaderFormEditor {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void init(IEditorSite site, final IEditorInput eInput)
-			throws PartInitException {
+	public void init(IEditorSite site, final IEditorInput eInput) throws PartInitException {
 		super.init(site, eInput);
 		if (eInput instanceof DashboardEditorInput) {
 			setInput(eInput);
@@ -83,8 +82,7 @@ public class DashboardEditor extends SharedHeaderFormEditor {
 			setPartName(input.getName());
 			setTitleImage(input.getImageDescriptor().createImage());
 		} else {
-			throw new PartInitException(
-					"The Dashboard can only function with a dashboard input.");
+			throw new PartInitException("The Dashboard can only function with a dashboard input.");
 		}
 	}
 

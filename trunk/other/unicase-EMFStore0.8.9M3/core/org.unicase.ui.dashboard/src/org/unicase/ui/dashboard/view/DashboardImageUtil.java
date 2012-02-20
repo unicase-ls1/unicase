@@ -24,17 +24,14 @@ public final class DashboardImageUtil {
 	}
 
 	/**
-	 * Fetches an image from the given path and automatically caches it in the
-	 * ImageRegistry.
+	 * Fetches an image from the given path and automatically caches it in the ImageRegistry.
 	 * 
-	 * @param path
-	 *            the path
+	 * @param path the path
 	 * @return the image
 	 */
 	public static Image getImage(String path) {
 		final String key = "dashboard_" + path;
-		ImageDescriptor regImage = JFaceResources.getImageRegistry()
-				.getDescriptor(key);
+		ImageDescriptor regImage = JFaceResources.getImageRegistry().getDescriptor(key);
 		if (regImage == null) {
 			regImage = Activator.getImageDescriptor("icons/" + path);
 			JFaceResources.getImageRegistry().put(key, regImage);
@@ -43,22 +40,17 @@ public final class DashboardImageUtil {
 	}
 
 	/**
-	 * Fetches an image from the given path, adds a transparency to it and
-	 * automatically caches it in the ImageRegistry.
+	 * Fetches an image from the given path, adds a transparency to it and automatically caches it in the ImageRegistry.
 	 * 
-	 * @param path
-	 *            the path
-	 * @param lightFactor
-	 *            the light factor
+	 * @param path the path
+	 * @param lightFactor the light factor
 	 * @return the light image
 	 */
 	public static Image getLightImage(String path, int lightFactor) {
 		final String key = "dashboard_light_" + path;
-		ImageDescriptor regImage = JFaceResources.getImageRegistry()
-				.getDescriptor(key);
+		ImageDescriptor regImage = JFaceResources.getImageRegistry().getDescriptor(key);
 		if (regImage == null) {
-			Image image = Activator.getImageDescriptor("icons/" + path)
-					.createImage();
+			Image image = Activator.getImageDescriptor("icons/" + path).createImage();
 			ImageData imageData = image.getImageData();
 			for (int i = 0; i < imageData.alphaData.length; i++) {
 				int orig = imageData.alphaData[i] & 0xFF;

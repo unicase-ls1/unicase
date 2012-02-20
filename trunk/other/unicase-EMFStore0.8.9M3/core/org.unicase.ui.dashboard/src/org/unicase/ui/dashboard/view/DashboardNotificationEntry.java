@@ -439,7 +439,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 				public void mouseUp(MouseEvent event) {
 					IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 					HistoryBrowserView historyBrowserView = null;
-					String viewId = "org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView";
+					String viewId = "org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView";
 					try {
 						historyBrowserView = (HistoryBrowserView) page.showView(viewId);
 					} catch (PartInitException e) {

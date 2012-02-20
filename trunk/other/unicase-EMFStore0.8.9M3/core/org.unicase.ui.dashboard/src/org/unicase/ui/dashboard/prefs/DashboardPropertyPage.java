@@ -534,7 +534,7 @@ public class DashboardPropertyPage extends PropertyPage {
 	@Override
 	public boolean performOk() {
 		final EMFStoreCommandWithResult<Object> command = new SavePropertiesCommand();
-		command.run();
+		command.run(true);
 		if (projectSpace.getUsersession().isLoggedIn()) {
 			new EMFStoreCommand() {
 

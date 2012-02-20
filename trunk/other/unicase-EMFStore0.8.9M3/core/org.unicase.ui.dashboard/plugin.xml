@@ -3,6 +3,7 @@
 <plugin>
   
      <extension-point id="org.unicase.ui.dashboard.widgets" name="Dashboard Widgets" schema="schema/dashboardWidgets.exsd"/>
+     <extension-point id="org.unicase.ui.dashboard.notification.providers" name="notificationProviders" schema="schema/org.unicase.ui.dashboard.notification.providers.exsd"/>
   <extension
          point="org.eclipse.ui.editors">
       <editor
@@ -131,7 +132,7 @@
       </initiator>
    </extension>
    <extension
-         point="org.eclipse.emf.emfstore.client.notification.providers">
+         point="org.unicase.ui.dashboard.notification.providers">
       <provider
             class="org.unicase.ui.dashboard.notificationProviders.CommentsNotificationProvider"
             name="Comment Notifications"

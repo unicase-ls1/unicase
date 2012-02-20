@@ -29,8 +29,7 @@ public class DashboardEditorInput implements IEditorInput {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param ps
-	 *            the projectSpace
+	 * @param ps the projectSpace
 	 */
 	public DashboardEditorInput(ProjectSpace ps) {
 		super();
@@ -40,8 +39,7 @@ public class DashboardEditorInput implements IEditorInput {
 	/**
 	 * Custom equals() for this class.
 	 * 
-	 * @param obj
-	 *            the compared object.
+	 * @param obj the compared object.
 	 * @return the boolean state. {@inheritDoc}
 	 */
 	@Override
@@ -105,7 +103,7 @@ public class DashboardEditorInput implements IEditorInput {
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public Object getAdapter(Class adapter) {
 		return null;
 	}
@@ -114,10 +112,9 @@ public class DashboardEditorInput implements IEditorInput {
 	 * @return the list of all notifications in the current project space.
 	 */
 	public List<ESNotification> getNotifications() {
-		List<ESNotification> originalNotifications = getProjectSpace()
-				.getNotificationsFromComposite();
-		ArrayList<ESNotification> notifications = new ArrayList<ESNotification>();
-		notifications.addAll(originalNotifications);
+
+		List<ESNotification> originalNotifications = projectSpace.getNotificationsFromComposite();
+		ArrayList<ESNotification> notifications = new ArrayList<ESNotification>(originalNotifications);
 		Collections.sort(notifications, new Comparator<ESNotification>() {
 			public int compare(ESNotification arg0, ESNotification arg1) {
 				if (arg0 == null) {
@@ -126,8 +123,7 @@ public class DashboardEditorInput implements IEditorInput {
 				if (arg1 == null) {
 					return -1;
 				}
-				return (arg0.getCreationDate().after(arg1.getCreationDate()) ? -1
-						: 1);
+				return (arg0.getCreationDate().after(arg1.getCreationDate()) ? -1 : 1);
 			}
 		});
 		return notifications;
