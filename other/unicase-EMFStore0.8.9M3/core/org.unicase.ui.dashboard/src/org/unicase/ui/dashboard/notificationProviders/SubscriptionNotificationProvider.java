@@ -20,7 +20,6 @@ import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
-import org.unicase.model.UnicaseModelElement;
 
 /**
  * Provides notifications for subscribed MEs.
@@ -69,7 +68,10 @@ public class SubscriptionNotificationProvider extends AbstractNotificationProvid
 		if (subscriptionIds.isEmpty()) {
 			return result;
 		}
-		return super.provideNotifications(projectSpace, changePackages, currentUsername);
+
+		super.provideNotifications(projectSpace, changePackages, currentUsername);
+
+		return result;
 	}
 
 	/**
@@ -94,10 +96,9 @@ public class SubscriptionNotificationProvider extends AbstractNotificationProvid
 
 	private void createOperation(ModelElementId mid, AbstractOperation op) {
 		EObject modelElement = getProjectSpace().getProject().getModelElement(mid);
-		if (modelElement == null || !(modelElement instanceof UnicaseModelElement)) {
+		if (modelElement == null) {
 			return;
 		}
-		UnicaseModelElement unicaseModelElement = (UnicaseModelElement) modelElement;
 		getExcludedOperations().add(op.getOperationId());
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 		notification.setName("Subscriptions");
@@ -107,7 +108,7 @@ public class SubscriptionNotificationProvider extends AbstractNotificationProvid
 		notification.setProvider(getName());
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("An element on your watch list has changed: ");
-		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(unicaseModelElement, getProjectSpace()));
+		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(mid, getProjectSpace()));
 		notification.setMessage(stringBuilder.toString());
 		notification.setCreationDate(op.getClientDate());
 		notification.getRelatedOperations().add(op.getOperationId());

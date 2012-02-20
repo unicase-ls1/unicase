@@ -26,10 +26,8 @@ public class DashboardToolbarAction extends ImageHyperlink {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent
-	 *            the parent
-	 * @param imagePath
-	 *            the image path
+	 * @param parent the parent
+	 * @param imagePath the image path
 	 */
 	public DashboardToolbarAction(Composite parent, String imagePath) {
 		this(parent, imagePath, DEFAULT_LIGHT_FACTOR);
@@ -38,15 +36,11 @@ public class DashboardToolbarAction extends ImageHyperlink {
 	/**
 	 * Constructor with a manual light factor.
 	 * 
-	 * @param parent
-	 *            the parent
-	 * @param imagePath
-	 *            the image path
-	 * @param lightFactor
-	 *            the light factor
+	 * @param parent the parent
+	 * @param imagePath the image path
+	 * @param lightFactor the light factor
 	 */
-	public DashboardToolbarAction(Composite parent, String imagePath,
-			int lightFactor) {
+	public DashboardToolbarAction(Composite parent, String imagePath, int lightFactor) {
 		super(parent, SWT.BOTTOM);
 		image = DashboardImageUtil.getImage(imagePath);
 		lightImage = DashboardImageUtil.getLightImage(imagePath, lightFactor);

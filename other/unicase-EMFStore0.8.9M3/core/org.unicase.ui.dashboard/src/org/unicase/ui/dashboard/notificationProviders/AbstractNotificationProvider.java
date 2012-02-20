@@ -13,7 +13,6 @@ import java.util.Set;
 import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
-import org.eclipse.emf.emfstore.client.model.notification.NotificationProvider;
 import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
 import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;

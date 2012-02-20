@@ -5,13 +5,25 @@
  */
 package org.unicase.ui.dashboard.notificationProviders;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.unicase.model.UnicaseModelElement;
 
@@ -23,6 +35,108 @@ import org.unicase.model.UnicaseModelElement;
 public final class NotificationHelper {
 
 	private NotificationHelper() {
+
+	}
+
+	/**
+	 * Generates notifications from a list of changes for a certain project space.
+	 * 
+	 * @param projectSpace the project space to generate notifications for
+	 * @param changePackages the changes to generate notifications from
+	 * @return all generated notifications as a list
+	 */
+	public static List<ESNotification> generateNotifications(ProjectSpace projectSpace,
+		List<ChangePackage> changePackages) {
+
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.ui.dashboard.notification.providers");
+
+		final List<NotificationProvider> providers = new ArrayList<NotificationProvider>(config.length);
+		final Map<NotificationProvider, Integer> providersByPriority = new HashMap<NotificationProvider, Integer>();
+
+		for (IConfigurationElement e : config) {
+			Object o;
+			try {
+				o = e.createExecutableExtension("class");
+				if (o instanceof NotificationProvider) {
+					NotificationProvider provider = (NotificationProvider) o;
+					String priority = e.getAttribute("priority");
+					try {
+						providersByPriority.put(provider, new Integer(priority));
+					} catch (NumberFormatException ex) {
+						WorkspaceUtil.logException(
+							"Wrong priority parameter for NotificationProvider: " + provider.getName(), ex);
+					}
+				}
+			} catch (CoreException e1) {
+				WorkspaceUtil.logException(e1.getMessage(), e1);
+			}
+		}
+
+		// sort the providers
+		providers.addAll(providersByPriority.keySet());
+		Collections.sort(providers, new Comparator<NotificationProvider>() {
+			public int compare(NotificationProvider arg0, NotificationProvider arg1) {
+				return providersByPriority.get(arg0).compareTo(providersByPriority.get(arg1));
+			}
+		});
+
+		return generateNotificationsByProvider(projectSpace, providers, changePackages);
+	}
+
+	/**
+	 * Generates notifications from a list of changes using notifications providers for a certain project space.
+	 * 
+	 * @param projectSpace the project space to generate notifications for
+	 * @param providers the providers to use to generate notifications
+	 * @param changePackages the changes to generate notifications from
+	 * @return all generated notifications as a list
+	 */
+	public static List<ESNotification> generateNotificationsByProvider(ProjectSpace projectSpace,
+		List<NotificationProvider> providers, List<ChangePackage> changePackages) {
+
+		List<ESNotification> result = new ArrayList<ESNotification>();
+
+		String username = projectSpace.getUsersession().getUsername();
+
+		if (changePackages == null || username == null) {
+			return result;
+		}
+
+		// rectify client date if neccessary
+		for (ChangePackage changePackage : changePackages) {
+			for (AbstractOperation operation : changePackage.getOperations()) {
+				if (operation.getClientDate() == null) {
+					operation.setClientDate(changePackage.getLogMessage().getDate());
+				}
+			}
+		}
+
+		Iterator<NotificationProvider> iterator = providers.iterator();
+
+		NotificationProvider prev = null;
+		while (iterator.hasNext()) {
+			NotificationProvider current = iterator.next();
+
+			current.getExcludedOperations().clear();
+			if (prev != null) {
+				current.getExcludedOperations().addAll(prev.getExcludedOperations());
+			}
+			try {
+				List<ESNotification> provideNotifications = current.provideNotifications(projectSpace, changePackages,
+					username);
+				result.addAll(provideNotifications);
+				prev = current;
+
+				// BEGIN SUPRESS CATCH EXCEPTION
+			} catch (RuntimeException e) {
+				// END SUPRESS CATCH EXCEPTION
+				WorkspaceUtil.logException("Notification Provider " + current.getName()
+					+ " threw an exception, its notifications where discarded", e);
+			}
+		}
+
+		return result;
 
 	}
 
@@ -114,7 +228,7 @@ public final class NotificationHelper {
 		if (label.length() > 53) {
 			label = label.substring(0, 50) + " ...";
 		}
-		StringBuilder ret = new StringBuilder("<a href=\"unicase://current:0/");
+		StringBuilder ret = new StringBuilder("<a href=\"emfstore://current:0/");
 		ret.append(projectSpace.getProjectName());
 		ret.append("%");
 		ret.append(projectSpace.getProjectId().getId());

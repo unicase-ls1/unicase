@@ -35,20 +35,14 @@ public class UpdateDashboardEntry extends AbstractDashboardEntry {
 	/**
 	 * Default constuctor.
 	 * 
-	 * @param parent
-	 *            the parent composite.
-	 * @param style
-	 *            the style.
-	 * @param notification
-	 *            the notification.
-	 * @param project
-	 *            the project.
-	 * @param page
-	 *            a back link to the dashboard page (needed only for layout
-	 *            purposes).
+	 * @param parent the parent composite.
+	 * @param style the style.
+	 * @param notification the notification.
+	 * @param project the project.
+	 * @param page a back link to the dashboard page (needed only for layout purposes).
 	 */
-	public UpdateDashboardEntry(DashboardPage page, Composite parent,
-			int style, ESNotification notification, ProjectSpace project) {
+	public UpdateDashboardEntry(DashboardPage page, Composite parent, int style, ESNotification notification,
+		ProjectSpace project) {
 		super(page, parent, style, notification, project);
 
 		left = Activator.getImageDescriptor("icons/left.png").createImage();
@@ -65,33 +59,27 @@ public class UpdateDashboardEntry extends AbstractDashboardEntry {
 	 */
 	@Override
 	protected void createEntry() {
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(
-				true, false).applyTo(this);
-		GridLayoutFactory.fillDefaults().numColumns(5).equalWidth(false)
-				.extendedMargins(0, 12, 6, 6).spacing(0, 0).applyTo(this);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(this);
+		GridLayoutFactory.fillDefaults().numColumns(5).equalWidth(false).extendedMargins(0, 12, 6, 6).spacing(0, 0)
+			.applyTo(this);
 
-		Composite updated = createRoundedLabel(this, getNotification()
-				.getMessage());
+		Composite updated = createRoundedLabel(this, getNotification().getMessage());
 		GridDataFactory.fillDefaults().applyTo(updated);
 
 		Composite space = new Composite(this, SWT.NONE);
-		GridDataFactory.fillDefaults().grab(true, false).hint(10, 15).applyTo(
-				space);
+		GridDataFactory.fillDefaults().grab(true, false).hint(10, 15).applyTo(space);
 		space.setBackgroundImage(line);
 
-		Composite date = createRoundedLabel(this, format
-				.format(getNotification().getCreationDate()));
+		Composite date = createRoundedLabel(this, format.format(getNotification().getCreationDate()));
 		GridDataFactory.fillDefaults().applyTo(date);
 
-		GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING).applyTo(
-				date);
+		GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING).applyTo(date);
 	}
 
 	private Composite createRoundedLabel(Composite parent, String text) {
 
 		Composite c = new Composite(parent, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false)
-				.spacing(0, 0).applyTo(c);
+		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).spacing(0, 0).applyTo(c);
 
 		Composite left = new Composite(c, SWT.NONE);
 		left.setBackgroundImage(this.left);
