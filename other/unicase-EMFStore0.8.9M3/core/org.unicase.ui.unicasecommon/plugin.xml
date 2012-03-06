@@ -966,4 +966,10 @@
            class="org.unicase.ui.unicasecommon.changetracking.TransactionalEditingDomainProvider">
      </provider>
   </extension>
+  <extension
+        point="org.eclipse.emf.emfstore.client.notify.postinit">
+     <initiator
+           class="org.unicase.ui.unicasecommon.common.AdapterInitiator">
+     </initiator>
+  </extension>
 </plugin>
