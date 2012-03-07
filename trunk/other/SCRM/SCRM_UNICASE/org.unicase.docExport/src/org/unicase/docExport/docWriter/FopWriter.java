@@ -6,10 +6,14 @@
 package org.unicase.docExport.docWriter;
 
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -27,6 +31,9 @@ import javax.xml.transform.sax.SAXResult;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+import org.apache.avalon.framework.configuration.Configuration;
+import org.apache.avalon.framework.configuration.ConfigurationException;
+import org.apache.avalon.framework.configuration.DefaultConfigurationBuilder;
 import org.apache.fop.apps.FOPException;
 import org.apache.fop.apps.FOUserAgent;
 import org.apache.fop.apps.Fop;
@@ -54,8 +61,10 @@ import org.unicase.docExport.exportModel.renderers.options.TextAlign;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.unicase.workspace.util.WorkspaceUtil;
+import org.w3c.dom.CDATASection;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
 
 /**
  * This DocWriter generates a XSL-FO document based on the W3C recommendation. Afterwards the XSL-FO file is transformed
@@ -91,6 +100,17 @@ public abstract class FopWriter implements DocWriter {
 		OutputStream out = null;
 
 		try {
+			DefaultConfigurationBuilder cfgBuilder = new DefaultConfigurationBuilder();
+			Configuration cfg;
+			try {
+				cfg = cfgBuilder.build(getClass().getResourceAsStream("/lib/conf.xml"));
+			} catch (ConfigurationException e) {
+				throw new DocumentExportException("Couldn't read/write the files", e);
+			} catch (SAXException e) {
+				throw new DocumentExportException("Couldn't read/write the files", e);
+			}
+			fopFactory.setUserConfig(cfg);
+
 			FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
 
 			// Setup output stream. Note: Using BufferedOutputStream
@@ -130,6 +150,54 @@ public abstract class FopWriter implements DocWriter {
 		}
 	}
 
+	/*
+	 * Exports the given document to a stream that can be read e.g. as a buffered image.
+	 */
+	public ByteArrayOutputStream exportToStream(URootCompositeSection doc) throws DocumentExportException {
+		setURoot(doc);
+		File xslFo = createFOFile(doc);
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
+		try {
+			DefaultConfigurationBuilder cfgBuilder = new DefaultConfigurationBuilder();
+			Configuration cfg;
+			try {
+				InputStream configurationStream = getClass().getResourceAsStream("/lib/conf.xml");
+				cfg = cfgBuilder.build(configurationStream);
+			} catch (ConfigurationException e) {
+				throw new DocumentExportException("Couldn't read/write the files", e);
+			} catch (SAXException e) {
+				throw new DocumentExportException("Couldn't read/write the files", e);
+			}
+			fopFactory.setUserConfig(cfg);
+
+			FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
+
+			// Construct fop with desired output format
+			Fop fop = fopFactory.newFop(this.getOutputFormat(), foUserAgent, outputStream);
+
+			// Setup JAXP using identity transformer
+			TransformerFactory factory = TransformerFactory.newInstance();
+			Transformer transformer = factory.newTransformer(); // identity transformer
+
+			Source src = new StreamSource(xslFo);
+
+			// Resulting SAX events (the generated FO) must be piped through to FOP
+			Result res = new SAXResult(fop.getDefaultHandler());
+
+			// Start XSLT transformation and FOP processing
+			transformer.transform(src, res);
+			return outputStream;
+
+		} catch (IOException e) {
+			throw new DocumentExportException("Couldn't read/write the files", e);
+		} catch (FOPException e) {
+			throw new DocumentExportException("FOP error: " + e.getMessage(), e);
+		} catch (TransformerException e) {
+			throw new DocumentExportException("Transformation error", e);
+		}
+	}
+
 	/**
 	 * Create the XSL-FO File from the internal document model.
 	 * 
@@ -163,6 +231,7 @@ public abstract class FopWriter implements DocWriter {
 			writeUDocument(content, uDoc);
 
 			final File tmpFoFile = File.createTempFile("docExportFoFile", null);
+			System.out.println(tmpFoFile.getAbsolutePath().toString());
 
 			Transformer tFormer = TransformerFactory.newInstance().newTransformer();
 			// Output Types (text/xml/html)
@@ -516,36 +585,237 @@ public abstract class FopWriter implements DocWriter {
 		}
 	}
 
+	/*
+	 * Renders a line containing both beginning and ending latex clauses.
+	 * @param parentElement Uppermost parent element representing the UParagraph.
+	 * @param textBlock The text block that the parsed line is to be added to.
+	 * @param latexMatcher The input string that has been matched to the latex pattern.
+	 * @param latexPattern The pattern used to match the input line.
+	 * @param emptyBlockCount Number of consecutive empty blocks before this.
+	 * @param paragraph The input UParagraph
+	 */
+	private void createLatexLine(Element parentElement, Element textBlock, Matcher latexMatcher, Pattern latexPattern,
+		int emptyBlockCount, UParagraph paragraph) {
+		String textBefore = latexMatcher.group(1);
+		String latexText = latexMatcher.group(3);
+		String textAfter = latexMatcher.group(5);
+		// add the text before the latex expression.
+		if (!textBefore.equals("")) {
+			Element textBeforeLatex = getDoc().createElement("fo:inline");
+			textBeforeLatex.setAttribute("white-space-collapse", "false");
+			textBeforeLatex.setAttribute("margin-top", paragraph.getOption().getFontSize() * emptyBlockCount + "pt");
+			emptyBlockCount = 0;
+			setParagraphOptions(textBeforeLatex, paragraph);
+			textBlock.appendChild(textBeforeLatex);
+			textBeforeLatex.setTextContent(textBefore);
+		}
+		// add the latex expression
+		createLatexPart(parentElement, latexText, textBlock);
+		// see if there are more latex expressions in this line. If yes, parse it.
+		latexMatcher = latexPattern.matcher(textAfter);
+		if (latexMatcher.matches()) {
+			createLatexLine(parentElement, textBlock, latexMatcher, latexPattern, emptyBlockCount, paragraph);
+		}
+		// case there is no more latex. add the normal text to the element.
+		else if (!textAfter.equals("")) {
+			Element textAfterLatex = getDoc().createElement("fo:inline");
+			textAfterLatex.setAttribute("white-space-collapse", "false");
+			textAfterLatex.setAttribute("margin-top", paragraph.getOption().getFontSize() * emptyBlockCount + "pt");
+			emptyBlockCount = 0;
+			setParagraphOptions(textAfterLatex, paragraph);
+			textBlock.appendChild(textAfterLatex);
+			textAfterLatex.setTextContent(textAfter + "\n");
+		}
+	}
+
 	/**
+	 * Renders a line containing a beginning latex clause.
+	 * 
+	 * @param parentElement Uppermost parent element representing the UParagraph.
+	 * @param textBlock The text block that the parsed line is to be added to.
+	 * @param latexMatcher The input string that has been matched to the latex pattern.
+	 * @param emptyBlockCount Number of consecutive empty blocks before this.
+	 * @param paragraph The input UParagraph
+	 */
+	private void createLatexBegin(Element parentElement, Element textBlock, Matcher latexMatcher, int emptyBlockCount,
+		UParagraph paragraph) {
+		String textBefore = latexMatcher.group(1);
+		String textAfter = latexMatcher.group(3);
+		/* add the text before the \begin{latex} clause */
+		if (!textBefore.equals("")) {
+			Element textBeforeLatex = getDoc().createElement("fo:inline");
+			textBeforeLatex.setAttribute("white-space-collapse", "false");
+			textBeforeLatex.setAttribute("margin-top", paragraph.getOption().getFontSize() * emptyBlockCount + "pt");
+			emptyBlockCount = 0;
+			setParagraphOptions(textBeforeLatex, paragraph);
+			textBlock.appendChild(textBeforeLatex);
+			textBeforeLatex.setTextContent(textBefore);
+		}
+		/* add the text after the latex clause */
+		if (!textAfter.equals("")) {
+			createLatexPart(parentElement, textAfter, textBlock);
+		}
+	}
+
+	/**
+	 * /** Renders a line containing an ending latex clause.
+	 * 
+	 * @param parentElement Uppermost parent element representing the UParagraph.
+	 * @param textBlock The text block that the parsed line is to be added to.
+	 * @param latexMatcher The input string that has been matched to the latex pattern.
+	 * @param emptyBlockCount Number of consecutive empty blocks before this.
+	 * @param paragraph The input UParagraph
+	 */
+	private void createLatexEnd(Element parentElement, Element textBlock, Matcher latexMatcher, int emptyBlockCount,
+		UParagraph paragraph) {
+		String textBefore = latexMatcher.group(1);
+		String textAfter = latexMatcher.group(3);
+		/* add the text before the \end{latex} clause */
+		if (!textBefore.equals("")) {
+			createLatexPart(parentElement, textBefore, textBlock);
+		}
+		/* add the text after the latex clause */
+		if (!textAfter.equals("")) {
+			Element textAfterLatex = getDoc().createElement("fo:inline");
+			textAfterLatex.setAttribute("white-space-collapse", "false");
+			textAfterLatex.setAttribute("margin-top", paragraph.getOption().getFontSize() * emptyBlockCount + "pt");
+			emptyBlockCount = 0;
+			setParagraphOptions(textAfterLatex, paragraph);
+			textBlock.appendChild(textAfterLatex);
+			textAfterLatex.setTextContent(textAfter + "\n");
+		}
+	}
+
+	/**
+	 * Renders a UParagraph element of a document. This modified method also supports the parsing of latex expressions.
+	 * 
 	 * @param parent the parent fo xml node
 	 * @param child the paragraph which shall be written
 	 */
 	protected void writeUParagraph(Element parent, UParagraph child) {
-		Element text = getDoc().createElement("fo:block");
-		applyBoxModel(text, child.getBoxModel());
-		parent.appendChild(text);
-		setParagraphOptions(text, child);
+		Element paragraphElement = getDoc().createElement("fo:block");
+		applyBoxModel(paragraphElement, child.getBoxModel());
+		parent.appendChild(paragraphElement);
+		setParagraphOptions(paragraphElement, child);
 
+		/* initializing variables */
+		Matcher latexLineMatcher;
+		Matcher latexBeginMatcher;
+		Matcher latexEndMatcher;
+		Pattern latexLinePattern = createLatexLinePattern();
+		Pattern latexBeginPattern = createLatexBeginPattern();
+		Pattern latexEndPattern = createLatexEndPattern();
+		boolean isLatex = false;
 		int emptyBlockCount = 0;
+
 		if (child.getText() != null) {
 			for (String textPart : child.getText().split("\n")) {
+				latexLineMatcher = latexLinePattern.matcher(textPart);
+				latexBeginMatcher = latexBeginPattern.matcher(textPart);
+				latexEndMatcher = latexEndPattern.matcher(textPart);
 				if (textPart.equals("")) {
 					emptyBlockCount++;
-				} else {
-					Element text2 = getDoc().createElement("fo:block");
-					text2.setAttribute("white-space-collapse", "false");
-					text2.setAttribute("margin-top", child.getOption().getFontSize() * emptyBlockCount + "pt");
+				}
+				/* case when the line looks like this: [...]\begin{latex}[...]\end{latex}[...] */
+				else if (latexLineMatcher.find()) {
+					Element blockElement = getDoc().createElement("fo:block");
+					blockElement.setAttribute("white-space-collapse", "false");
+					blockElement.setAttribute("margin-top", child.getOption().getFontSize() * emptyBlockCount + "pt");
+					setParagraphOptions(blockElement, child);
+					paragraphElement.appendChild(blockElement);
+					createLatexLine(paragraphElement, blockElement, latexLineMatcher, latexLinePattern,
+						emptyBlockCount, child);
+				}
+				/* case when there is a beginning but no ending latex clause */
+				else if (latexBeginMatcher.find()) {
+					isLatex = true;
+					Element blockElement = getDoc().createElement("fo:block");
+					blockElement.setAttribute("white-space-collapse", "false");
+					blockElement.setAttribute("margin-top", child.getOption().getFontSize() * emptyBlockCount + "pt");
+					setParagraphOptions(blockElement, child);
+					paragraphElement.appendChild(blockElement);
+					createLatexBegin(paragraphElement, blockElement, latexBeginMatcher, emptyBlockCount, child);
+				}
+				/* case when there is a ending but no beginning latex clause */
+				else if (latexEndMatcher.find()) {
+					isLatex = false;
+					Element blockElement = getDoc().createElement("fo:block");
+					blockElement.setAttribute("white-space-collapse", "false");
+					blockElement.setAttribute("margin-top", child.getOption().getFontSize() * emptyBlockCount + "pt");
+					setParagraphOptions(blockElement, child);
+					paragraphElement.appendChild(blockElement);
+					createLatexEnd(paragraphElement, blockElement, latexEndMatcher, emptyBlockCount, child);
+				}
+				/* case when there is no latex expression at all */
+				else {
+					Element blockElement = getDoc().createElement("fo:block");
+					blockElement.setAttribute("white-space-collapse", "false");
+					blockElement.setAttribute("margin-top", child.getOption().getFontSize() * emptyBlockCount + "pt");
 					emptyBlockCount = 0;
-					text.appendChild(text2);
-					setParagraphOptions(text2, child);
-					text2.setTextContent(textPart);
+					setParagraphOptions(blockElement, child);
+					if (isLatex) {
+						createLatexPart(paragraphElement, textPart, blockElement);
+						paragraphElement.appendChild(blockElement);
+					} else {
+						paragraphElement.appendChild(blockElement);
+						blockElement.setTextContent(textPart + "\n");
+					}
 				}
 			}
 		}
-
 		for (UDocument subChild : child.getChildren()) {
-			writeUDocument(text, subChild);
+			writeUDocument(paragraphElement, subChild);
 		}
+	}
+
+	/**
+	 * Returns a pattern for detecting lines with beginning and ending latex clauses.
+	 */
+	private Pattern createLatexLinePattern() {
+		String pattern = "(.*?)(\\\\begin\\{latex\\})(.*?)(\\\\end\\{latex\\})(.*)";
+		Pattern latexPattern = Pattern.compile(pattern);
+		return latexPattern;
+	}
+
+	/**
+	 * Returns a pattern for detecting lines containing beginning latex clauses.
+	 */
+	private Pattern createLatexBeginPattern() {
+		String pattern = "(.*?)(\\\\begin\\{latex\\})(.*)";
+		Pattern latexPattern = Pattern.compile(pattern);
+		return latexPattern;
+	}
+
+	/**
+	 * Returns a pattern for detecting lines containing ending latex clauses.
+	 */
+	private Pattern createLatexEndPattern() {
+		String pattern = "(.*?)(\\\\end\\{latex\\})(.*)";
+		Pattern latexPattern = Pattern.compile(pattern);
+		return latexPattern;
+	}
+
+	/**
+	 * Creates a latex section and inserts it into the output file.
+	 * 
+	 * @param parentElement The parent element that the latex part will be attached to.
+	 * @param latexPart The string to be interpreted as latex.
+	 * @param currentBlockElement The current fo block that is to contain the text.
+	 */
+	private void createLatexPart(Element parentElement, String latexPart, Element currentBlockElement) {
+		Element first = getDoc().createElement("fo:instream-foreign-object");
+		currentBlockElement.appendChild(first);
+		// parentElement.appendChild(first);
+		Element latexContainer;
+
+		latexContainer = getDoc().createElement("latex");
+		latexContainer.setAttribute("style", "display");
+		latexContainer.setAttribute("xmlns", "http://forge.scilab.org/p/jlatexmath");
+
+		CDATASection cdata = getDoc().createCDATASection(latexPart);
+
+		latexContainer.appendChild(cdata);
+		first.appendChild(latexContainer);
 	}
 
 	private void writeSection(Element parent, USection child) {
@@ -819,7 +1089,7 @@ public abstract class FopWriter implements DocWriter {
 	/**
 	 * @param doc the doc to set
 	 */
-	protected void setDoc(Document doc) {
+	public void setDoc(Document doc) {
 		this.doc = doc;
 	}
 

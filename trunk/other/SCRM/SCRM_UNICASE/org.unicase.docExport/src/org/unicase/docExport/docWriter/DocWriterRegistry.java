@@ -32,6 +32,7 @@ public final class DocWriterRegistry {
 		docWriters.add(new ITextPdfWriter());
 		docWriters.add(new ITextRtfWriter());
 		docWriters.add(new ITextRtfHeadingWriter());
+		docWriters.add(new FopPngWriter());
 
 		return docWriters;
 	}

@@ -21,3 +21,4 @@ Import-Package: org.eclipse.core.filesystem.provider,
 Bundle-Activator: org.unicase.codetrace.Activator
 Bundle-Vendor: unicase.org
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.unicase.model.trace
