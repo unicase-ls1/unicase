@@ -64,7 +64,6 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 			addStubbedPropertyDescriptor(object);
 			addCalledMethodsPropertyDescriptor(object);
 			addCallingMethodsPropertyDescriptor(object);
-			addDemoParticipationsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -203,23 +202,6 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 			getString("_UI_Method_callingMethods_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Method_callingMethods_feature", "_UI_Method_type"),
 			ClassesPackage.Literals.METHOD__CALLING_METHODS, true, false, true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Demo Participations feature. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 */
-	protected void addDemoParticipationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Method_demoParticipations_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Method_demoParticipations_feature",
-					"_UI_Method_type"), ClassesPackage.Literals.METHOD__DEMO_PARTICIPATIONS, true, false, true, null,
-				null, null));
 	}
 
 	/**

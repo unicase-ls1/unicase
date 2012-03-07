@@ -39,8 +39,6 @@ import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.impl.RationalePackageImpl;
 import org.unicase.model.release.ReleasePackage;
 import org.unicase.model.release.impl.ReleasePackageImpl;
-import org.unicase.model.requirement.RequirementPackage;
-import org.unicase.model.requirement.impl.RequirementPackageImpl;
 import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.impl.StatePackageImpl;
 import org.unicase.model.task.TaskPackage;
@@ -129,9 +127,6 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
-		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
 		RationalePackageImpl theRationalePackage = (RationalePackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(RationalePackage.eNS_URI) : RationalePackage.eINSTANCE);
@@ -170,7 +165,6 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 		theOrganizationPackage.createPackageContents();
 		theTaskPackage.createPackageContents();
 		theClassesPackage.createPackageContents();
-		theRequirementPackage.createPackageContents();
 		theRationalePackage.createPackageContents();
 		theChangePackage.createPackageContents();
 		theBugPackage.createPackageContents();
@@ -189,7 +183,6 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 		theOrganizationPackage.initializePackageContents();
 		theTaskPackage.initializePackageContents();
 		theClassesPackage.initializePackageContents();
-		theRequirementPackage.initializePackageContents();
 		theRationalePackage.initializePackageContents();
 		theChangePackage.initializePackageContents();
 		theBugPackage.initializePackageContents();

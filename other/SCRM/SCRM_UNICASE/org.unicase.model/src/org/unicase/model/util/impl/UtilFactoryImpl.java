@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.model.util.*;
 import org.unicase.model.util.ModelElementPath;
 import org.unicase.model.util.UtilFactory;
 import org.unicase.model.util.UtilPackage;

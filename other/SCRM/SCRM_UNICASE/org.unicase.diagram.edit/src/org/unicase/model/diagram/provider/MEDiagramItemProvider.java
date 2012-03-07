@@ -37,9 +37,7 @@ import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.profile.ProfileFactory;
 import org.unicase.model.provider.AttachmentItemProvider;
-import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.rationale.RationaleFactory;
-import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.state.StateFactory;
 import org.unicase.model.task.TaskFactory;
 
@@ -72,7 +70,7 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements
 			super.getPropertyDescriptors(object);
 
 			addElementsPropertyDescriptor(object);
-			//addDiagramLayoutPropertyDescriptor(object);
+			addDiagramLayoutPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -102,19 +100,39 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-//	protected void addDiagramLayoutPropertyDescriptor(Object object) {
-//		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-//				((ComposeableAdapterFactory) adapterFactory)
-//						.getRootAdapterFactory(),
-//				getResourceLocator(),
-//				getString("_UI_MEDiagram_diagramLayout_feature"),
-//				getString("_UI_PropertyDescriptor_description",
-//						"_UI_MEDiagram_diagramLayout_feature",
-//						"_UI_MEDiagram_type"),
-//				DiagramPackage.Literals.ME_DIAGRAM__DIAGRAM_LAYOUT, true,
-//				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-//				null));
-//	}
+	protected void addDiagramLayoutPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_MEDiagram_diagramLayout_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_MEDiagram_diagramLayout_feature",
+						"_UI_MEDiagram_type"),
+				DiagramPackage.Literals.ME_DIAGRAM__DIAGRAM_LAYOUT, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Diagram Layout feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	//	protected void addDiagramLayoutPropertyDescriptor(Object object) {
+	//		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+	//				((ComposeableAdapterFactory) adapterFactory)
+	//						.getRootAdapterFactory(),
+	//				getResourceLocator(),
+	//				getString("_UI_MEDiagram_diagramLayout_feature"),
+	//				getString("_UI_PropertyDescriptor_description",
+	//						"_UI_MEDiagram_diagramLayout_feature",
+	//						"_UI_MEDiagram_type"),
+	//				DiagramPackage.Literals.ME_DIAGRAM__DIAGRAM_LAYOUT, true,
+	//				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+	//				null));
+	//	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
@@ -124,10 +142,15 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements
 	 * end-user-doc -->
 	 * @generated
 	 */
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS);
+			childrenFeatures
+					.add(DiagramPackage.Literals.ME_DIAGRAM__GMFDIAGRAM);
+			childrenFeatures
+					.add(DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -187,9 +210,6 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements
 		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), true, false));
-			return;
-		case DiagramPackage.ME_DIAGRAM__ELEMENTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -301,46 +321,6 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
 				DocumentFactory.eINSTANCE.createCompositeSection()));
-
-		newChildDescriptors.add(createChildParameter(
-				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
-
-		newChildDescriptors.add(createChildParameter(
-				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				RequirementFactory.eINSTANCE.createFunctionalRequirement()));
-
-		newChildDescriptors.add(createChildParameter(
-				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				RequirementFactory.eINSTANCE.createUseCase()));
-
-		newChildDescriptors.add(createChildParameter(
-				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				RequirementFactory.eINSTANCE.createScenario()));
-
-		newChildDescriptors.add(createChildParameter(
-				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				RequirementFactory.eINSTANCE.createActor()));
-
-		newChildDescriptors.add(createChildParameter(
-				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				RequirementFactory.eINSTANCE.createActorInstance()));
-
-		newChildDescriptors.add(createChildParameter(
-				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				RequirementFactory.eINSTANCE.createStep()));
-
-		newChildDescriptors.add(createChildParameter(
-				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				RequirementFactory.eINSTANCE.createSystemFunction()));
-
-		newChildDescriptors.add(createChildParameter(
-				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				RequirementFactory.eINSTANCE.createUserTask()));
-
-		newChildDescriptors.add(createChildParameter(
-				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,
-				RequirementFactory.eINSTANCE.createWorkspace()));
 
 		newChildDescriptors.add(createChildParameter(
 				DiagramPackage.Literals.ME_DIAGRAM__NEW_ELEMENTS,

@@ -12,7 +12,6 @@ import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.requirement.UseCase;
 import org.unicase.model.util.ValidationConstraintHelper;
 
 /**
@@ -38,7 +37,7 @@ public class DiagramConstraint extends AbstractModelConstraint {
 						(MEDiagram) eObj, "name");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
-						+ ((UseCase) eObj).getName() + "'" });
+						 + "'" });
 				}
 			}
 		}

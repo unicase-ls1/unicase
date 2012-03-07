@@ -45,7 +45,6 @@
           disposableProviderFactory="true" ecorePackage="exportModel.ecore#//renderers/specialRenderers">
         <genClasses ecoreClass="exportModel.ecore#//renderers/specialRenderers/MeetingRenderer"/>
         <genClasses ecoreClass="exportModel.ecore#//renderers/specialRenderers/MilestoneRenderer"/>
-        <genClasses ecoreClass="exportModel.ecore#//renderers/specialRenderers/StepsAttributeRenderer"/>
         <genClasses ecoreClass="exportModel.ecore#//renderers/specialRenderers/MethodRenderer"/>
         <genClasses ecoreClass="exportModel.ecore#//renderers/specialRenderers/PackageFlatRenderer"/>
         <genClasses ecoreClass="exportModel.ecore#//renderers/specialRenderers/ClassRenderer"/>

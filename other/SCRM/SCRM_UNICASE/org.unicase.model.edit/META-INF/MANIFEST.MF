@@ -21,7 +21,6 @@ Export-Package: org.unicase.model.activity.provider,
  org.unicase.model.provider,
  org.unicase.model.rationale.provider,
  org.unicase.model.release.provider,
- org.unicase.model.requirement.provider,
  org.unicase.model.state.provider,
  org.unicase.model.task.provider,
  org.unicase.model.util.provider

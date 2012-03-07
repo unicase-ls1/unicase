@@ -9,7 +9,8 @@ import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
 
 /**
  * <!-- begin-user-doc --> A special renderer for a Meeting. <!-- end-user-doc -->
- * 
+ *
+ *
  * @see org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage#getMeetingRenderer()
  * @model
  * @generated

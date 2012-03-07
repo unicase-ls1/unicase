@@ -14,10 +14,8 @@ import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.builders.attributeRenderers.AttributeRendererBuilder;
 import org.unicase.docExport.exportModel.builders.attributeRenderers.ClassAttributeRendererBuilder;
 import org.unicase.docExport.exportModel.builders.attributeRenderers.MethodRendererBuilder;
-import org.unicase.docExport.exportModel.builders.attributeRenderers.StepRendererBuilder;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 import org.unicase.model.classes.ClassesPackage;
-import org.unicase.model.requirement.RequirementPackage;
 
 /**
  * This class creates a mapping from a ModelElement's feature to a its possible AttributeRenderers. So if you create a
@@ -46,11 +44,7 @@ public final class AttributeRendererRegistry {
 
 		if (feature instanceof EReference) {
 			EClass referenceType = ((EReference) feature).getEReferenceType();
-			if (referenceType.equals(RequirementPackage.eINSTANCE.getStep())) {
-				builder = new StepRendererBuilder();
-			} else if (referenceType.equals(RequirementPackage.eINSTANCE.getStep())) {
-				builder = new StepRendererBuilder();
-			} else if (referenceType.equals(ClassesPackage.eINSTANCE.getMethod())) {
+			if (referenceType.equals(ClassesPackage.eINSTANCE.getMethod())) {
 				builder = new MethodRendererBuilder();
 			} else if (referenceType.equals(ClassesPackage.eINSTANCE.getAttribute())) {
 				builder = new ClassAttributeRendererBuilder();

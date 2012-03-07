@@ -14,15 +14,14 @@ import org.eclipse.emf.common.util.Enumerator;
 /**
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Page Citation Style</b></em>',
  * and utility methods for working with them. <!-- end-user-doc -->
- * 
  * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getPageCitationStyle()
  * @model
  * @generated
  */
 public enum PageCitationStyle implements Enumerator {
 	/**
-	 * The '<em><b>PAGE</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>PAGE</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #PAGE_VALUE
 	 * @generated
 	 * @ordered
@@ -38,8 +37,8 @@ public enum PageCitationStyle implements Enumerator {
 	EMPTY(1, "EMPTY", "empty"),
 
 	/**
-	 * The '<em><b>PAGE AND LAST PAGE</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>PAGE AND LAST PAGE</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #PAGE_AND_LAST_PAGE_VALUE
 	 * @generated
 	 * @ordered
@@ -47,13 +46,13 @@ public enum PageCitationStyle implements Enumerator {
 	PAGE_AND_LAST_PAGE(2, "PAGE_AND_LAST_PAGE", "page / lastpage");
 
 	/**
-	 * The '<em><b>PAGE</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>PAGE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>PAGE</b></em>' literal object isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #PAGE
 	 * @model literal="page"
 	 * @generated
@@ -62,13 +61,13 @@ public enum PageCitationStyle implements Enumerator {
 	public static final int PAGE_VALUE = 0;
 
 	/**
-	 * The '<em><b>EMPTY</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>EMPTY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>EMPTY</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #EMPTY
 	 * @model literal="empty"
 	 * @generated
@@ -77,13 +76,13 @@ public enum PageCitationStyle implements Enumerator {
 	public static final int EMPTY_VALUE = 1;
 
 	/**
-	 * The '<em><b>PAGE AND LAST PAGE</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>PAGE AND LAST PAGE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>PAGE AND LAST PAGE</b></em>' literal object isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #PAGE_AND_LAST_PAGE
 	 * @model literal="page / lastpage"
 	 * @generated
@@ -97,20 +96,24 @@ public enum PageCitationStyle implements Enumerator {
 	 * 
 	 * @generated
 	 */
-	private static final PageCitationStyle[] VALUES_ARRAY = new PageCitationStyle[] { PAGE, EMPTY, PAGE_AND_LAST_PAGE, };
+	private static final PageCitationStyle[] VALUES_ARRAY = new PageCitationStyle[] {
+			PAGE,
+			EMPTY,
+			PAGE_AND_LAST_PAGE,
+		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Page Citation Style</b></em>' enumerators. <!-- begin-user-doc -->
+	 * A public read-only list of all the '<em><b>Page Citation Style</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static final List<PageCitationStyle> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Page Citation Style</b></em>' literal with the specified literal value. <!-- begin-user-doc
+	 * Returns the '<em><b>Page Citation Style</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static PageCitationStyle get(String literal) {
@@ -124,9 +127,9 @@ public enum PageCitationStyle implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Page Citation Style</b></em>' literal with the specified name. <!-- begin-user-doc --> <!--
+	 * Returns the '<em><b>Page Citation Style</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static PageCitationStyle getByName(String name) {
@@ -140,47 +143,41 @@ public enum PageCitationStyle implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Page Citation Style</b></em>' literal with the specified integer value. <!-- begin-user-doc
+	 * Returns the '<em><b>Page Citation Style</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static PageCitationStyle get(int value) {
 		switch (value) {
-		case PAGE_VALUE:
-			return PAGE;
-		case EMPTY_VALUE:
-			return EMPTY;
-		case PAGE_AND_LAST_PAGE_VALUE:
-			return PAGE_AND_LAST_PAGE;
+			case PAGE_VALUE: return PAGE;
+			case EMPTY_VALUE: return EMPTY;
+			case PAGE_AND_LAST_PAGE_VALUE: return PAGE_AND_LAST_PAGE;
 		}
 		return null;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private PageCitationStyle(int value, String name, String literal) {
@@ -191,35 +188,32 @@ public enum PageCitationStyle implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getValue() {
-		return value;
+	  return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
-		return name;
+	  return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
-		return literal;
+	  return literal;
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation. <!-- begin-user-doc --> <!--
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

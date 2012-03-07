@@ -59,6 +59,8 @@ import org.unicase.workspace.Configuration;
 import org.unicase.workspace.util.WorkspaceUtil;
 import org.w3c.dom.Document;
 
+import scrm.SCRMModelElement;
+
 /**
  * Adds a new page to the meEditor which shows a latex preview of the
  * description text box.
@@ -71,7 +73,7 @@ public class LatexDescriptionPage extends AbstractMEEditorPage {
 	private static final String NAME = "LatexPreview";
 	private String imagePath = "testTempExport.png";
 
-	private UnicaseModelElement modelElement;
+	private EObject modelElement;
 	private FormToolkit toolkit;
 	private ScrolledForm form;
 	private Composite body;
@@ -88,12 +90,8 @@ public class LatexDescriptionPage extends AbstractMEEditorPage {
 	@Override
 	public FormPage createPage(MEEditor editor, EditingDomain editingDomain,
 			EObject modelElement) {
-		if (modelElement instanceof UnicaseModelElement) {
-			this.modelElement = (UnicaseModelElement) modelElement;
-		} else {
-			throw new IllegalArgumentException(
-					"This page is valid only for UnicaseModelElements");
-		}
+		this.modelElement = modelElement;
+		
 		FormPage page = new FormPageExtension(editor, ID, NAME);
 		return page;
 	}
@@ -345,9 +343,17 @@ public class LatexDescriptionPage extends AbstractMEEditorPage {
 		 * Put description text into a UParagraph.
 		 */
 		Template newTemplate = DefaultDocumentTemplateFactory.build();
-		UParagraph description = new UParagraph(
-				WorkspaceUtil.cleanFormatedText(modelElement.getDescription()),
+		UParagraph description = new UParagraph();
+		if(modelElement instanceof UnicaseModelElement){ 
+			description = new UParagraph(
+				WorkspaceUtil.cleanFormatedText(((UnicaseModelElement) modelElement).getDescription()),
 				newTemplate.getLayoutOptions().getDefaultTextOption());
+		}
+		if(modelElement instanceof SCRMModelElement){ 
+			description = new UParagraph(
+				WorkspaceUtil.cleanFormatedText(((SCRMModelElement) modelElement).getDescription()),
+				newTemplate.getLayoutOptions().getDefaultTextOption());
+		}
 		description.getBoxModel().setKeepWithPrevious(true);
 		description.getOption().setTextAlign(TextAlign.JUSTIFY);
 
@@ -378,7 +384,7 @@ public class LatexDescriptionPage extends AbstractMEEditorPage {
 	}
 
 	private void setFooter(URootCompositeSection root,
-			UnicaseModelElement modelElement, Template template) {
+			EObject modelElement, Template template) {
 
 		UTable footerTable = new UTable(3);
 		root.setFooter(footerTable);

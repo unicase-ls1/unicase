@@ -29,7 +29,7 @@ import org.unicase.model.organization.OrgUnit;
  * end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class FhmMeetingRendererImpl extends MeetingRendererImpl implements FhmMeetingRenderer {
@@ -50,7 +50,6 @@ public class FhmMeetingRendererImpl extends MeetingRendererImpl implements FhmMe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected FhmMeetingRendererImpl() {
@@ -59,7 +58,6 @@ public class FhmMeetingRendererImpl extends MeetingRendererImpl implements FhmMe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

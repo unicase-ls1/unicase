@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -23,7 +22,6 @@ import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
-import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.ui.common.util.CannotMatchUserInProjectException;
@@ -80,23 +78,8 @@ public class DashboardRelatedTasksWidget extends AbstractDashboardWidget {
 				}
 			}
 
-			Set<FunctionalRequirement> frs = new HashSet<FunctionalRequirement>();
-			for (WorkItem wi : workItems) {
-				for (EObject me : wi.getAnnotatedModelElements()) {
-					if (me instanceof FunctionalRequirement) {
-						frs.add((FunctionalRequirement) me);
-					}
-				}
-			}
-
 			allWI.removeAll(workItems);
-			for (WorkItem wi : allWI) {
-				for (EObject me : wi.getAnnotatedModelElements()) {
-					if (me instanceof FunctionalRequirement && frs.contains(me)) {
-						relatedTasks.add(wi);
-					}
-				}
-			}
+
 		} catch (NoCurrentUserException e) {
 			return;
 		} catch (CannotMatchUserInProjectException e) {

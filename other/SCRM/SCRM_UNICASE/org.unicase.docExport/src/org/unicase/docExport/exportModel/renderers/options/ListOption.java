@@ -7,13 +7,14 @@ package org.unicase.docExport.exportModel.renderers.options;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>List Option</b></em>'. <!-- end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.docExport.exportModel.renderers.options.ListOption#getListStyle <em>List Style</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.ListOption#getListStyle <em>List Style</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getListOption()
  * @model
  * @generated
@@ -21,14 +22,14 @@ package org.unicase.docExport.exportModel.renderers.options;
 public interface ListOption extends RendererOption {
 
 	/**
-	 * Returns the value of the '<em><b>List Style</b></em>' attribute. The literals are from the enumeration
-	 * {@link org.unicase.docExport.exportModel.renderers.options.ListStyle}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>List Style</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.unicase.docExport.exportModel.renderers.options.ListStyle}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>List Style</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>List Style</em>' attribute.
 	 * @see org.unicase.docExport.exportModel.renderers.options.ListStyle
 	 * @see #setListStyle(ListStyle)
@@ -39,9 +40,8 @@ public interface ListOption extends RendererOption {
 	ListStyle getListStyle();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.ListOption#getListStyle
-	 * <em>List Style</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.ListOption#getListStyle <em>List Style</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>List Style</em>' attribute.
 	 * @see org.unicase.docExport.exportModel.renderers.options.ListStyle
 	 * @see #getListStyle()

@@ -334,22 +334,13 @@ public interface ClassesPackage extends EPackage {
 	int CLASS__INSTANTIATION_TYPE = PACKAGE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Participated Use Cases</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__PARTICIPATED_USE_CASES = PACKAGE_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Super Classes</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__SUPER_CLASSES = PACKAGE_ELEMENT_FEATURE_COUNT + 2;
+	int CLASS__SUPER_CLASSES = PACKAGE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Sub Classes</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -358,7 +349,7 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__SUB_CLASSES = PACKAGE_ELEMENT_FEATURE_COUNT + 3;
+	int CLASS__SUB_CLASSES = PACKAGE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Associations</b></em>' reference list.
@@ -367,7 +358,7 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__INCOMING_ASSOCIATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 4;
+	int CLASS__INCOMING_ASSOCIATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing Associations</b></em>' reference list.
@@ -376,7 +367,7 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OUTGOING_ASSOCIATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 5;
+	int CLASS__OUTGOING_ASSOCIATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
@@ -385,7 +376,7 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__ATTRIBUTES = PACKAGE_ELEMENT_FEATURE_COUNT + 6;
+	int CLASS__ATTRIBUTES = PACKAGE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Methods</b></em>' containment reference list.
@@ -394,16 +385,7 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__METHODS = PACKAGE_ELEMENT_FEATURE_COUNT + 7;
-
-	/**
-	 * The feature id for the '<em><b>Demo Participations</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__DEMO_PARTICIPATIONS = PACKAGE_ELEMENT_FEATURE_COUNT + 8;
+	int CLASS__METHODS = PACKAGE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Class</em>' class.
@@ -411,7 +393,7 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 9;
+	int CLASS_FEATURE_COUNT = PACKAGE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.impl.PackageImpl <em>Package</em>}' class. <!--
@@ -1156,21 +1138,12 @@ public interface ClassesPackage extends EPackage {
 	int METHOD__CALLING_METHODS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
-	 * The feature id for the '<em><b>Demo Participations</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METHOD__DEMO_PARTICIPATIONS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 11;
-
-	/**
 	 * The number of structural features of the '<em>Method</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METHOD_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 12;
+	int METHOD_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.classes.impl.MethodArgumentImpl <em>Method Argument</em>}' class.
@@ -1815,16 +1788,6 @@ public interface ClassesPackage extends EPackage {
 	EAttribute getClass_InstantiationType();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.classes.Class#getParticipatedUseCases <em>Participated Use Cases</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Participated Use Cases</em>'.
-	 * @see org.unicase.model.classes.Class#getParticipatedUseCases()
-	 * @see #getClass_()
-	 * @generated
-	 */
-	EReference getClass_ParticipatedUseCases();
-
-	/**
 	 * Returns the meta object for the reference list '{@link org.unicase.model.classes.Class#getSuperClasses <em>Super Classes</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Super Classes</em>'.
@@ -1883,16 +1846,6 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getClass_Methods();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.classes.Class#getDemoParticipations <em>Demo Participations</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Demo Participations</em>'.
-	 * @see org.unicase.model.classes.Class#getDemoParticipations()
-	 * @see #getClass_()
-	 * @generated
-	 */
-	EReference getClass_DemoParticipations();
 
 	/**
 	 * Returns the meta object for class ' {@link org.unicase.model.classes.Package <em>Package</em>}'. <!--
@@ -2312,16 +2265,6 @@ public interface ClassesPackage extends EPackage {
 	EReference getMethod_CallingMethods();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.classes.Method#getDemoParticipations <em>Demo Participations</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Demo Participations</em>'.
-	 * @see org.unicase.model.classes.Method#getDemoParticipations()
-	 * @see #getMethod()
-	 * @generated
-	 */
-	EReference getMethod_DemoParticipations();
-
-	/**
 	 * Returns the meta object for class '{@link org.unicase.model.classes.MethodArgument <em>Method Argument</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Method Argument</em>'.
@@ -2564,13 +2507,6 @@ public interface ClassesPackage extends EPackage {
 		 */
 		EAttribute CLASS__INSTANTIATION_TYPE = eINSTANCE.getClass_InstantiationType();
 		/**
-		 * The meta object literal for the ' <em><b>Participated Use Cases</b></em>' reference list feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EReference CLASS__PARTICIPATED_USE_CASES = eINSTANCE.getClass_ParticipatedUseCases();
-		/**
 		 * The meta object literal for the '<em><b>Super Classes</b></em>' reference list feature.
 		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
@@ -2612,13 +2548,6 @@ public interface ClassesPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CLASS__METHODS = eINSTANCE.getClass_Methods();
-		/**
-		 * The meta object literal for the '<em><b>Demo Participations</b></em>' reference list feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EReference CLASS__DEMO_PARTICIPATIONS = eINSTANCE.getClass_DemoParticipations();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.impl.PackageImpl <em>Package</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -2910,13 +2839,6 @@ public interface ClassesPackage extends EPackage {
 		 * @generated
 		 */
 		EReference METHOD__CALLING_METHODS = eINSTANCE.getMethod_CallingMethods();
-		/**
-		 * The meta object literal for the '<em><b>Demo Participations</b></em>' reference list feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EReference METHOD__DEMO_PARTICIPATIONS = eINSTANCE.getMethod_DemoParticipations();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.classes.impl.MethodArgumentImpl <em>Method Argument</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->

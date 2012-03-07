@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.diagram.*;
 import org.unicase.model.diagram.ActivityDiagram;
 import org.unicase.model.diagram.ClassDiagram;
 import org.unicase.model.diagram.ComponentDiagram;
@@ -21,19 +22,18 @@ import org.unicase.model.diagram.WorkItemDiagram;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static DiagramFactory init() {
 		try {
 			DiagramFactory theDiagramFactory = (DiagramFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/model/diagram");
+					.getEFactory("http://unicase.org/model/diagram");
 			if (theDiagramFactory != null) {
 				return theDiagramFactory;
 			}
@@ -44,8 +44,8 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public DiagramFactoryImpl() {
@@ -54,7 +54,6 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,13 +72,13 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		case DiagramPackage.WORK_ITEM_DIAGRAM:
 			return createWorkItemDiagram();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ClassDiagram createClassDiagram() {
@@ -89,7 +88,6 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UseCaseDiagram createUseCaseDiagram() {
@@ -99,7 +97,6 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ComponentDiagram createComponentDiagram() {
@@ -109,7 +106,6 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public StateDiagram createStateDiagram() {
@@ -119,7 +115,6 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ActivityDiagram createActivityDiagram() {
@@ -129,7 +124,6 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkItemDiagram createWorkItemDiagram() {
@@ -139,7 +133,6 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DiagramPackage getDiagramPackage() {
@@ -148,7 +141,6 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

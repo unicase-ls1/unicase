@@ -9,7 +9,8 @@ import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 
 /**
  * <!-- begin-user-doc --> A special renderer for a Method of a class. <!-- end-user-doc -->
- * 
+ *
+ *
  * @see org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage#getMethodRenderer()
  * @model
  * @generated

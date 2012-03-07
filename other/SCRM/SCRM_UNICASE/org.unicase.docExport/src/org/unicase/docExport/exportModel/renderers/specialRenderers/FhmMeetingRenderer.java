@@ -8,7 +8,8 @@ package org.unicase.docExport.exportModel.renderers.specialRenderers;
 /**
  * <!-- begin-user-doc --> A special renderer for the meeting fulfilling the layout requirements of the airport munich.
  * <!-- end-user-doc -->
- * 
+ *
+ *
  * @see org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage#getFhmMeetingRenderer()
  * @model
  * @generated

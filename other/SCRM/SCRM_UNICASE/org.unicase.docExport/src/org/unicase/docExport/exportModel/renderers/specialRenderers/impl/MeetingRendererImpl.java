@@ -62,7 +62,6 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

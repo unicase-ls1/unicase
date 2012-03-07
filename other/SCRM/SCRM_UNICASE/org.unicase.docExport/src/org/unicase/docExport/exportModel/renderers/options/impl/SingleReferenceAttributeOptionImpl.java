@@ -15,7 +15,7 @@ import org.unicase.docExport.exportModel.renderers.options.SingleReferenceAttrib
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class SingleReferenceAttributeOptionImpl extends ReferenceAttributeOptionImpl implements
@@ -32,7 +32,6 @@ public class SingleReferenceAttributeOptionImpl extends ReferenceAttributeOption
 
 	/**
 	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

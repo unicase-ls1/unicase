@@ -10,7 +10,6 @@ import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.WorkItem;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -41,7 +40,7 @@ public class HierarchyTabPriorityEditingSupport extends EditingSupport {
 	@Override
 	protected boolean canEdit(Object element) {
 
-		return element instanceof FunctionalRequirement || element instanceof WorkItem;
+		return element instanceof WorkItem;
 	}
 
 	/**
@@ -61,9 +60,7 @@ public class HierarchyTabPriorityEditingSupport extends EditingSupport {
 	 */
 	@Override
 	protected Object getValue(Object element) {
-		if (element instanceof FunctionalRequirement) {
-			return ((FunctionalRequirement) element).getPriority() + "";
-		} else if (element instanceof WorkItem) {
+		if (element instanceof WorkItem) {
 			return ((WorkItem) element).getPriority() + "";
 		}
 
@@ -95,9 +92,7 @@ public class HierarchyTabPriorityEditingSupport extends EditingSupport {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				if (element instanceof FunctionalRequirement) {
-					((FunctionalRequirement) element).setPriority(priority);
-				} else if (element instanceof WorkItem) {
+				if (element instanceof WorkItem) {
 					((WorkItem) element).setPriority(priority);
 				}
 			}

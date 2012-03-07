@@ -6,11 +6,8 @@
 package org.unicase.model.task.validation;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
@@ -22,7 +19,6 @@ import org.eclipse.emf.validation.IValidationContext;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Issue;
-import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.ActivityType;
 import org.unicase.model.util.ValidationConstraintHelper;
@@ -66,11 +62,7 @@ public class FunctionalRequirementTasksHaveEarlierDueDateThanRefinedFunctionalRe
 		}
 		EList<UnicaseModelElement> annotatedModelElements = annotation.getAnnotatedModelElements();
 		List<Annotation> otherAnnotations = new ArrayList<Annotation>();
-		for (UnicaseModelElement me : annotatedModelElements) {
-			if (me instanceof FunctionalRequirement) {
-				otherAnnotations.addAll(getRefiningAnnoations((FunctionalRequirement) me));
-			}
-		}
+
 		return toAvoidCyclomaticComplexity(ctx, eObj, dueDate, otherAnnotations);
 	}
 
@@ -95,16 +87,6 @@ public class FunctionalRequirementTasksHaveEarlierDueDateThanRefinedFunctionalRe
 			}
 		}
 		return ctx.createSuccessStatus();
-	}
-
-	private Collection<? extends Annotation> getRefiningAnnoations(FunctionalRequirement fr) {
-		Set<Annotation> ret = new HashSet<Annotation>();
-		EList<FunctionalRequirement> refiningRequirements = fr.getRefiningRequirements();
-		for (FunctionalRequirement functionalRequirement : refiningRequirements) {
-			ret.addAll(functionalRequirement.getAnnotations());
-			ret.addAll(getRefiningAnnoations(functionalRequirement));
-		}
-		return ret;
 	}
 
 }

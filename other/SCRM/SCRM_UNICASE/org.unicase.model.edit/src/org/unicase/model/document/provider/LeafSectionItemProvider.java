@@ -49,7 +49,6 @@ import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.UnicaseModelElementItemProvider;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.release.ReleaseFactory;
-import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.state.StateFactory;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.util.UtilFactory;
@@ -246,36 +245,6 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			ClassesFactory.eINSTANCE.createLiteral()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createFunctionalRequirement()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createUseCase()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createScenario()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createActor()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createActorInstance()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createStep()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createSystemFunction()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createUserTask()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createWorkspace()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			RationaleFactory.eINSTANCE.createIssue()));

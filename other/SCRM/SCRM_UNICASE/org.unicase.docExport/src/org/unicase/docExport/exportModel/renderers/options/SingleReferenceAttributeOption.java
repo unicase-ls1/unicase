@@ -8,7 +8,8 @@ package org.unicase.docExport.exportModel.renderers.options;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Single Reference Attribute Option</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
+ *
  * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getSingleReferenceAttributeOption()
  * @model
  * @generated
