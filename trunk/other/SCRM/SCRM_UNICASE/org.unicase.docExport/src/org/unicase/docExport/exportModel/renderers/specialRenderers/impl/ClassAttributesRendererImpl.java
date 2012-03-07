@@ -23,13 +23,12 @@ import org.unicase.model.classes.Attribute;
  * end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class ClassAttributesRendererImpl extends AttributeRendererImpl implements ClassAttributesRenderer {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ClassAttributesRendererImpl() {
@@ -38,7 +37,6 @@ public class ClassAttributesRendererImpl extends AttributeRendererImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

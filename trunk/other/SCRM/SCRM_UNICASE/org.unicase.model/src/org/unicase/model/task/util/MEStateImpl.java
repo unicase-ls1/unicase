@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
@@ -175,15 +174,6 @@ public class MEStateImpl implements MEState {
 				return CLOSED;
 			}
 			return OPEN;
-		}
-
-		// If the me is a FunctionalRequirement the reviewed attribute is
-		// effective.
-		if (modelElement instanceof FunctionalRequirement) {
-			FunctionalRequirement fr = (FunctionalRequirement) modelElement;
-			if (!fr.isReviewed()) {
-				return OPEN;
-			}
 		}
 
 		// Else the me is closed

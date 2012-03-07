@@ -11,8 +11,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -43,7 +41,6 @@ import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.profile.ProfileFactory;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.release.ReleaseFactory;
-import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.state.StateFactory;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.util.UtilFactory;
@@ -173,36 +170,6 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			DocumentFactory.eINSTANCE.createCompositeSection()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createFunctionalRequirement()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createUseCase()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createScenario()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createActor()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createActorInstance()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createStep()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createSystemFunction()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createUserTask()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createWorkspace()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			RationaleFactory.eINSTANCE.createIssue()));
@@ -593,36 +560,6 @@ public class ProjectItemProvider extends org.unicase.metamodel.provider.ProjectI
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			DocumentFactory.eINSTANCE.createCompositeSection()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RequirementFactory.eINSTANCE.createFunctionalRequirement()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RequirementFactory.eINSTANCE.createUseCase()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RequirementFactory.eINSTANCE.createScenario()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RequirementFactory.eINSTANCE.createActor()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RequirementFactory.eINSTANCE.createActorInstance()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RequirementFactory.eINSTANCE.createStep()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RequirementFactory.eINSTANCE.createSystemFunction()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RequirementFactory.eINSTANCE.createUserTask()));
-
-		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RequirementFactory.eINSTANCE.createWorkspace()));
 
 		newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
 			RationaleFactory.eINSTANCE.createIssue()));

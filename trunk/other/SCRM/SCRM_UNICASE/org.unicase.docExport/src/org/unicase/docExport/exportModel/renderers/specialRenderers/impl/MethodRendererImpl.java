@@ -29,7 +29,6 @@ import org.unicase.model.classes.Method;
 public class MethodRendererImpl extends AttributeRendererImpl implements MethodRenderer {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MethodRendererImpl() {
@@ -38,7 +37,6 @@ public class MethodRendererImpl extends AttributeRendererImpl implements MethodR
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

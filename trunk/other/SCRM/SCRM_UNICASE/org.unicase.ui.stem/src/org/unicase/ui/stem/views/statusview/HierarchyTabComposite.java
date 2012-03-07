@@ -26,7 +26,6 @@ import org.eclipse.swt.widgets.Tree;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
@@ -92,8 +91,8 @@ public class HierarchyTabComposite extends Composite implements ProjectChangeObs
 					}
 					// add listener to get notified when work items get deleted/added/changed
 					if (workspace.getActiveProjectSpace() != null) {
-						workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(
-							HierarchyTabComposite.this);
+						workspace.getActiveProjectSpace().getProject()
+							.addProjectChangeObserver(HierarchyTabComposite.this);
 					}
 				}
 			}
@@ -175,9 +174,7 @@ public class HierarchyTabComposite extends Composite implements ProjectChangeObs
 				if (element instanceof WorkItem) {
 					return ((WorkItem) element).getPriority() + "";
 				}
-				if (element instanceof FunctionalRequirement) {
-					return ((FunctionalRequirement) element).getPriority() + "";
-				}
+
 				return "";
 			}
 

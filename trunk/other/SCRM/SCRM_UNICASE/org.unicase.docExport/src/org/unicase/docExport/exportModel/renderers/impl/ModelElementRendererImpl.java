@@ -68,14 +68,12 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl#getRendererOptions <em>Renderer
- * Options</em>}</li>
- * <li>{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl#getTemplate <em>Template</em>}</li>
- * <li>{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl#getAttributeRendererMapping <em>
- * Attribute Renderer Mapping</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl#getRendererOptions <em>Renderer Options</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl#getTemplate <em>Template</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl#getAttributeRendererMapping <em>Attribute Renderer Mapping</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class ModelElementRendererImpl extends EObjectImpl implements ModelElementRenderer {
@@ -92,7 +90,6 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	/**
 	 * The cached value of the '{@link #getRendererOptions() <em>Renderer Options</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getRendererOptions()
 	 * @generated
 	 * @ordered
@@ -100,9 +97,9 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	protected EList<RendererOption> rendererOptions;
 
 	/**
-	 * The cached value of the '{@link #getTemplate() <em>Template</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getTemplate() <em>Template</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getTemplate()
 	 * @generated
 	 * @ordered
@@ -110,9 +107,8 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	protected Template template;
 
 	/**
-	 * The cached value of the '{@link #getAttributeRendererMapping() <em>Attribute Renderer Mapping</em>}' containment
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getAttributeRendererMapping() <em>Attribute Renderer Mapping</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getAttributeRendererMapping()
 	 * @generated
 	 * @ordered
@@ -121,7 +117,6 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ModelElementRendererImpl() {
@@ -130,7 +125,6 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -140,30 +134,26 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<RendererOption> getRendererOptions() {
 		if (rendererOptions == null) {
-			rendererOptions = new EObjectContainmentEList<RendererOption>(RendererOption.class, this,
-				RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS);
+			rendererOptions = new EObjectContainmentEList<RendererOption>(RendererOption.class, this, RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS);
 		}
 		return rendererOptions;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Template getTemplate() {
 		if (template != null && template.eIsProxy()) {
-			InternalEObject oldTemplate = (InternalEObject) template;
-			template = (Template) eResolveProxy(oldTemplate);
+			InternalEObject oldTemplate = (InternalEObject)template;
+			template = (Template)eResolveProxy(oldTemplate);
 			if (template != oldTemplate) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE, oldTemplate, template));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE, oldTemplate, template));
 			}
 		}
 		return template;
@@ -171,7 +161,6 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Template basicGetTemplate() {
@@ -180,126 +169,115 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTemplate(Template newTemplate) {
 		Template oldTemplate = template;
 		template = newTemplate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE,
-				oldTemplate, template));
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE, oldTemplate, template));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AttributeRendererMapping> getAttributeRendererMapping() {
 		if (attributeRendererMapping == null) {
-			attributeRendererMapping = new EObjectContainmentEList<AttributeRendererMapping>(
-				AttributeRendererMapping.class, this,
-				RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING);
+			attributeRendererMapping = new EObjectContainmentEList<AttributeRendererMapping>(AttributeRendererMapping.class, this, RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING);
 		}
 		return attributeRendererMapping;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
-			return ((InternalEList<?>) getRendererOptions()).basicRemove(otherEnd, msgs);
-		case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
-			return ((InternalEList<?>) getAttributeRendererMapping()).basicRemove(otherEnd, msgs);
+			case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
+				return ((InternalEList<?>)getRendererOptions()).basicRemove(otherEnd, msgs);
+			case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
+				return ((InternalEList<?>)getAttributeRendererMapping()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
-			return getRendererOptions();
-		case RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE:
-			if (resolve)
-				return getTemplate();
-			return basicGetTemplate();
-		case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
-			return getAttributeRendererMapping();
+			case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
+				return getRendererOptions();
+			case RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE:
+				if (resolve) return getTemplate();
+				return basicGetTemplate();
+			case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
+				return getAttributeRendererMapping();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
-			getRendererOptions().clear();
-			getRendererOptions().addAll((Collection<? extends RendererOption>) newValue);
-			return;
-		case RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE:
-			setTemplate((Template) newValue);
-			return;
-		case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
-			getAttributeRendererMapping().clear();
-			getAttributeRendererMapping().addAll((Collection<? extends AttributeRendererMapping>) newValue);
-			return;
+			case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
+				getRendererOptions().clear();
+				getRendererOptions().addAll((Collection<? extends RendererOption>)newValue);
+				return;
+			case RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE:
+				setTemplate((Template)newValue);
+				return;
+			case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
+				getAttributeRendererMapping().clear();
+				getAttributeRendererMapping().addAll((Collection<? extends AttributeRendererMapping>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
-			getRendererOptions().clear();
-			return;
-		case RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE:
-			setTemplate((Template) null);
-			return;
-		case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
-			getAttributeRendererMapping().clear();
-			return;
+			case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
+				getRendererOptions().clear();
+				return;
+			case RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE:
+				setTemplate((Template)null);
+				return;
+			case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
+				getAttributeRendererMapping().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
-			return rendererOptions != null && !rendererOptions.isEmpty();
-		case RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE:
-			return template != null;
-		case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
-			return attributeRendererMapping != null && !attributeRendererMapping.isEmpty();
+			case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
+				return rendererOptions != null && !rendererOptions.isEmpty();
+			case RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE:
+				return template != null;
+			case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
+				return attributeRendererMapping != null && !attributeRendererMapping.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

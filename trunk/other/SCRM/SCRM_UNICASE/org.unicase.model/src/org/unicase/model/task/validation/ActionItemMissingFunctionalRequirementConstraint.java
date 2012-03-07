@@ -13,7 +13,6 @@ import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.ActivityType;
 import org.unicase.model.util.ValidationConstraintHelper;
@@ -42,11 +41,7 @@ public class ActionItemMissingFunctionalRequirementConstraint extends AbstractMo
 			return ctx.createSuccessStatus();
 		}
 		EList<UnicaseModelElement> annotatedModelElements = actionItem.getAnnotatedModelElements();
-		for (UnicaseModelElement me : annotatedModelElements) {
-			if (me instanceof FunctionalRequirement) {
-				return ctx.createSuccessStatus();
-			}
-		}
+
 		EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
 			(UnicaseModelElement) eObj, "annotatedModelElements");
 		ctx.addResult(errorFeature);

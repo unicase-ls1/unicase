@@ -45,7 +45,6 @@
         nsPrefix="org.unicase.docExport.exportModel.renderers.specialRenderers">
       <eClassifiers xsi:type="ecore:EClass" name="MeetingRenderer" eSuperTypes="#//renderers/ModelElementRenderer"/>
       <eClassifiers xsi:type="ecore:EClass" name="MilestoneRenderer" eSuperTypes="#//renderers/ModelElementRenderer"/>
-      <eClassifiers xsi:type="ecore:EClass" name="StepsAttributeRenderer" eSuperTypes="#//renderers/AttributeRenderer"/>
       <eClassifiers xsi:type="ecore:EClass" name="MethodRenderer" eSuperTypes="#//renderers/AttributeRenderer"/>
       <eClassifiers xsi:type="ecore:EClass" name="PackageFlatRenderer" eSuperTypes="#//renderers/ModelElementRenderer"/>
       <eClassifiers xsi:type="ecore:EClass" name="ClassRenderer" eSuperTypes="#//renderers/ModelElementRenderer"/>

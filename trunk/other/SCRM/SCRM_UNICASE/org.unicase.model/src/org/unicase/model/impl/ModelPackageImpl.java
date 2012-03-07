@@ -42,8 +42,6 @@ import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.impl.RationalePackageImpl;
 import org.unicase.model.release.ReleasePackage;
 import org.unicase.model.release.impl.ReleasePackageImpl;
-import org.unicase.model.requirement.RequirementPackage;
-import org.unicase.model.requirement.impl.RequirementPackageImpl;
 import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.impl.StatePackageImpl;
 import org.unicase.model.task.TaskPackage;
@@ -140,9 +138,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
-		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
 		RationalePackageImpl theRationalePackage = (RationalePackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(RationalePackage.eNS_URI) : RationalePackage.eINSTANCE);
@@ -181,7 +176,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		theTaskPackage.createPackageContents();
 		theClassesPackage.createPackageContents();
 		theDocumentPackage.createPackageContents();
-		theRequirementPackage.createPackageContents();
 		theRationalePackage.createPackageContents();
 		theChangePackage.createPackageContents();
 		theBugPackage.createPackageContents();
@@ -200,7 +194,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		theTaskPackage.initializePackageContents();
 		theClassesPackage.initializePackageContents();
 		theDocumentPackage.initializePackageContents();
-		theRequirementPackage.initializePackageContents();
 		theRationalePackage.initializePackageContents();
 		theChangePackage.initializePackageContents();
 		theBugPackage.initializePackageContents();
@@ -435,8 +428,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 			.getEPackage(ClassesPackage.eNS_URI);
 		DocumentPackage theDocumentPackage = (DocumentPackage) EPackage.Registry.INSTANCE
 			.getEPackage(DocumentPackage.eNS_URI);
-		RequirementPackage theRequirementPackage = (RequirementPackage) EPackage.Registry.INSTANCE
-			.getEPackage(RequirementPackage.eNS_URI);
 		RationalePackage theRationalePackage = (RationalePackage) EPackage.Registry.INSTANCE
 			.getEPackage(RationalePackage.eNS_URI);
 		ChangePackage theChangePackage = (ChangePackage) EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI);
@@ -463,7 +454,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		getESubpackages().add(theTaskPackage);
 		getESubpackages().add(theClassesPackage);
 		getESubpackages().add(theDocumentPackage);
-		getESubpackages().add(theRequirementPackage);
 		getESubpackages().add(theRationalePackage);
 		getESubpackages().add(theChangePackage);
 		getESubpackages().add(theBugPackage);

@@ -26,8 +26,6 @@ import org.unicase.model.classes.MethodArgument;
 import org.unicase.model.classes.ScopeType;
 import org.unicase.model.classes.VisibilityType;
 import org.unicase.model.impl.UnicaseModelElementImpl;
-import org.unicase.model.requirement.RequirementPackage;
-import org.unicase.model.requirement.Scenario;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Method</b></em>'. <!-- end-user-doc -->
@@ -45,7 +43,6 @@ import org.unicase.model.requirement.Scenario;
  *   <li>{@link org.unicase.model.classes.impl.MethodImpl#isStubbed <em>Stubbed</em>}</li>
  *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getCalledMethods <em>Called Methods</em>}</li>
  *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getCallingMethods <em>Calling Methods</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getDemoParticipations <em>Demo Participations</em>}</li>
  * </ul>
  * </p>
  *
@@ -211,16 +208,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 	 * @ordered
 	 */
 	protected EList<Method> callingMethods;
-
-	/**
-	 * The cached value of the '{@link #getDemoParticipations() <em>Demo Participations</em>}' reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #getDemoParticipations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Scenario> demoParticipations;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -433,9 +420,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getCalledMethods()).basicAdd(otherEnd, msgs);
 		case ClassesPackage.METHOD__CALLING_METHODS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getCallingMethods()).basicAdd(otherEnd, msgs);
-		case ClassesPackage.METHOD__DEMO_PARTICIPATIONS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDemoParticipations()).basicAdd(otherEnd,
-				msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -455,8 +439,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 			return ((InternalEList<?>) getCalledMethods()).basicRemove(otherEnd, msgs);
 		case ClassesPackage.METHOD__CALLING_METHODS:
 			return ((InternalEList<?>) getCallingMethods()).basicRemove(otherEnd, msgs);
-		case ClassesPackage.METHOD__DEMO_PARTICIPATIONS:
-			return ((InternalEList<?>) getDemoParticipations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -506,8 +488,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 			return getCalledMethods();
 		case ClassesPackage.METHOD__CALLING_METHODS:
 			return getCallingMethods();
-		case ClassesPackage.METHOD__DEMO_PARTICIPATIONS:
-			return getDemoParticipations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -553,10 +533,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 			getCallingMethods().clear();
 			getCallingMethods().addAll((Collection<? extends Method>) newValue);
 			return;
-		case ClassesPackage.METHOD__DEMO_PARTICIPATIONS:
-			getDemoParticipations().clear();
-			getDemoParticipations().addAll((Collection<? extends Scenario>) newValue);
-			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -598,9 +574,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 		case ClassesPackage.METHOD__CALLING_METHODS:
 			getCallingMethods().clear();
 			return;
-		case ClassesPackage.METHOD__DEMO_PARTICIPATIONS:
-			getDemoParticipations().clear();
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -634,8 +607,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 			return calledMethods != null && !calledMethods.isEmpty();
 		case ClassesPackage.METHOD__CALLING_METHODS:
 			return callingMethods != null && !callingMethods.isEmpty();
-		case ClassesPackage.METHOD__DEMO_PARTICIPATIONS:
-			return demoParticipations != null && !demoParticipations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -815,18 +786,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 				ClassesPackage.METHOD__CALLING_METHODS, ClassesPackage.METHOD__CALLED_METHODS);
 		}
 		return callingMethods;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Scenario> getDemoParticipations() {
-		if (demoParticipations == null) {
-			demoParticipations = new EObjectWithInverseResolvingEList.ManyInverse<Scenario>(Scenario.class, this,
-				ClassesPackage.METHOD__DEMO_PARTICIPATIONS, RequirementPackage.SCENARIO__PARTICIPATING_METHODS);
-		}
-		return demoParticipations;
 	}
 
 } // MethodImpl

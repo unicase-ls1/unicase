@@ -51,14 +51,12 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 			super.getPropertyDescriptors(object);
 
 			addInstantiationTypePropertyDescriptor(object);
-			addParticipatedUseCasesPropertyDescriptor(object);
 			addSuperClassesPropertyDescriptor(object);
 			addSubClassesPropertyDescriptor(object);
 			addIncomingAssociationsPropertyDescriptor(object);
 			addOutgoingAssociationsPropertyDescriptor(object);
 			addAttributesPropertyDescriptor(object);
 			addMethodsPropertyDescriptor(object);
-			addDemoParticipationsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -75,23 +73,6 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 			getString("_UI_PropertyDescriptor_description", "_UI_Class_instantiationType_feature", "_UI_Class_type"),
 			ClassesPackage.Literals.CLASS__INSTANTIATION_TYPE, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Participated Use Cases feature. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 */
-	protected void addParticipatedUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-			.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Class_participatedUseCases_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Class_participatedUseCases_feature",
-					"_UI_Class_type"), ClassesPackage.Literals.CLASS__PARTICIPATED_USE_CASES, true, false, true, null,
-				null, null));
 	}
 
 	/**
@@ -178,20 +159,6 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 			getString("_UI_Class_methods_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Class_methods_feature", "_UI_Class_type"),
 			ClassesPackage.Literals.CLASS__METHODS, true, false, false, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Demo Participations feature. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 */
-	protected void addDemoParticipationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Class_demoParticipations_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Class_demoParticipations_feature", "_UI_Class_type"),
-			ClassesPackage.Literals.CLASS__DEMO_PARTICIPATIONS, true, false, true, null, null, null));
 	}
 
 	/**

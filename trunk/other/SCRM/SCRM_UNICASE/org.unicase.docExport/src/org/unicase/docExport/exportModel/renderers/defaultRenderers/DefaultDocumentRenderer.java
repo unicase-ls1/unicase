@@ -10,7 +10,8 @@ import org.unicase.docExport.exportModel.renderers.DocumentRenderer;
 /**
  * <!-- begin-user-doc --> This is the first Renderer which is called on any export. It decides what shall be done, and
  * which renderers are called. <!-- end-user-doc -->
- * 
+ *
+ *
  * @see org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersPackage#getDefaultDocumentRenderer()
  * @model
  * @generated

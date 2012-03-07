@@ -21,11 +21,10 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.MultiReferenceAttributeOptionImpl#getListOption
- * <em>List Option</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.MultiReferenceAttributeOptionImpl#getListOption <em>List Option</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class MultiReferenceAttributeOptionImpl extends ReferenceAttributeOptionImpl implements
@@ -53,7 +52,6 @@ public class MultiReferenceAttributeOptionImpl extends ReferenceAttributeOptionI
 
 	/**
 	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,7 +61,6 @@ public class MultiReferenceAttributeOptionImpl extends ReferenceAttributeOptionI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ListOption getListOption() {
@@ -72,113 +69,99 @@ public class MultiReferenceAttributeOptionImpl extends ReferenceAttributeOptionI
 
 	/**
 	 * <!-- begin-user-doc -->. <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetListOption(ListOption newListOption, NotificationChain msgs) {
 		ListOption oldListOption = listOption;
 		listOption = newListOption;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION, oldListOption, newListOption);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION, oldListOption, newListOption);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setListOption(ListOption newListOption) {
 		if (newListOption != listOption) {
 			NotificationChain msgs = null;
 			if (listOption != null)
-				msgs = ((InternalEObject) listOption).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION, null, msgs);
+				msgs = ((InternalEObject)listOption).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION, null, msgs);
 			if (newListOption != null)
-				msgs = ((InternalEObject) newListOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION, null, msgs);
+				msgs = ((InternalEObject)newListOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION, null, msgs);
 			msgs = basicSetListOption(newListOption, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION, newListOption, newListOption));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION, newListOption, newListOption));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION:
-			return basicSetListOption(null, msgs);
+			case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION:
+				return basicSetListOption(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION:
-			return getListOption();
+			case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION:
+				return getListOption();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION:
-			setListOption((ListOption) newValue);
-			return;
+			case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION:
+				setListOption((ListOption)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION:
-			setListOption((ListOption) null);
-			return;
+			case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION:
+				setListOption((ListOption)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION:
-			return listOption != null;
+			case OptionsPackage.MULTI_REFERENCE_ATTRIBUTE_OPTION__LIST_OPTION:
+				return listOption != null;
 		}
 		return super.eIsSet(featureID);
 	}

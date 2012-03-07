@@ -6,8 +6,6 @@
 package org.unicase.model.classes;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.requirement.Scenario;
-import org.unicase.model.requirement.UseCase;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Class</b></em>'. <!-- end-user-doc -->
@@ -16,14 +14,12 @@ import org.unicase.model.requirement.UseCase;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.model.classes.Class#getInstantiationType <em>Instantiation Type</em>}</li>
- *   <li>{@link org.unicase.model.classes.Class#getParticipatedUseCases <em>Participated Use Cases</em>}</li>
  *   <li>{@link org.unicase.model.classes.Class#getSuperClasses <em>Super Classes</em>}</li>
  *   <li>{@link org.unicase.model.classes.Class#getSubClasses <em>Sub Classes</em>}</li>
  *   <li>{@link org.unicase.model.classes.Class#getIncomingAssociations <em>Incoming Associations</em>}</li>
  *   <li>{@link org.unicase.model.classes.Class#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
  *   <li>{@link org.unicase.model.classes.Class#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link org.unicase.model.classes.Class#getMethods <em>Methods</em>}</li>
- *   <li>{@link org.unicase.model.classes.Class#getDemoParticipations <em>Demo Participations</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,26 +56,6 @@ public interface Class extends PackageElement {
 	 * @generated
 	 */
 	void setInstantiationType(InstantiationType value);
-
-	/**
-	 * Returns the value of the '<em><b>Participated Use Cases</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.requirement.UseCase}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.requirement.UseCase#getIdentifiedClasses <em>Identified Classes</em>}'. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Participated Use Cases</em>' reference list isn't clear, there really should be more
-	 * of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Participated Use Cases</em>' reference list.
-	 * @see org.unicase.model.classes.ClassesPackage#getClass_ParticipatedUseCases()
-	 * @see org.unicase.model.requirement.UseCase#getIdentifiedClasses
-	 * @model opposite="identifiedClasses" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='20.0' position='left'"
-	 * @generated
-	 */
-	EList<UseCase> getParticipatedUseCases();
 
 	/**
 	 * Returns the value of the '<em><b>Super Classes</b></em>' reference list.
@@ -194,24 +170,4 @@ public interface Class extends PackageElement {
 	 * @generated
 	 */
 	EList<Method> getMethods();
-
-	/**
-	 * Returns the value of the '<em><b>Demo Participations</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.requirement.Scenario}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.requirement.Scenario#getParticipatingClasses <em>Participating Classes</em>}'. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Demo Participations</em>' reference list isn't clear, there really should be more of a
-	 * description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Demo Participations</em>' reference list.
-	 * @see org.unicase.model.classes.ClassesPackage#getClass_DemoParticipations()
-	 * @see org.unicase.model.requirement.Scenario#getParticipatingClasses
-	 * @model opposite="participatingClasses" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='9.0' position='right'"
-	 * @generated
-	 */
-	EList<Scenario> getDemoParticipations();
 } // Class

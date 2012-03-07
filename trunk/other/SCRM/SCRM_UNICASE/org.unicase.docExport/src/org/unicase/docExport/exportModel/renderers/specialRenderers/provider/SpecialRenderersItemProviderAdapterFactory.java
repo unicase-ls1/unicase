@@ -131,22 +131,6 @@ public class SpecialRenderersItemProviderAdapterFactory extends SpecialRenderers
 	protected StepsAttributeRendererItemProvider stepsAttributeRendererItemProvider;
 
 	/**
-	 * This creates an adapter for a
-	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.StepsAttributeRenderer}. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createStepsAttributeRendererAdapter() {
-		if (stepsAttributeRendererItemProvider == null) {
-			stepsAttributeRendererItemProvider = new StepsAttributeRendererItemProvider(this);
-		}
-
-		return stepsAttributeRendererItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all
 	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.MethodRenderer} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->

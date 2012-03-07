@@ -20,13 +20,11 @@ import org.unicase.docExport.exportModel.renderers.RenderersPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.docExport.exportModel.renderers.impl.AttributeRendererMappingImpl#getAttributeRenderer <em>
- * Attribute Renderer</em>}</li>
- * <li>{@link org.unicase.docExport.exportModel.renderers.impl.AttributeRendererMappingImpl#getFeatureName <em>Feature
- * Name</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.impl.AttributeRendererMappingImpl#getAttributeRenderer <em>Attribute Renderer</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.impl.AttributeRendererMappingImpl#getFeatureName <em>Feature Name</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class AttributeRendererMappingImpl extends EObjectImpl implements AttributeRendererMapping {
@@ -41,9 +39,9 @@ public class AttributeRendererMappingImpl extends EObjectImpl implements Attribu
 	protected AttributeRenderer attributeRenderer;
 
 	/**
-	 * The default value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getFeatureName()
 	 * @generated
 	 * @ordered
@@ -51,9 +49,9 @@ public class AttributeRendererMappingImpl extends EObjectImpl implements Attribu
 	protected static final String FEATURE_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getFeatureName()
 	 * @generated
 	 * @ordered
@@ -62,7 +60,6 @@ public class AttributeRendererMappingImpl extends EObjectImpl implements Attribu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AttributeRendererMappingImpl() {
@@ -71,7 +68,6 @@ public class AttributeRendererMappingImpl extends EObjectImpl implements Attribu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -81,7 +77,6 @@ public class AttributeRendererMappingImpl extends EObjectImpl implements Attribu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AttributeRenderer getAttributeRenderer() {
@@ -90,50 +85,38 @@ public class AttributeRendererMappingImpl extends EObjectImpl implements Attribu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetAttributeRenderer(AttributeRenderer newAttributeRenderer, NotificationChain msgs) {
 		AttributeRenderer oldAttributeRenderer = attributeRenderer;
 		attributeRenderer = newAttributeRenderer;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER, oldAttributeRenderer,
-				newAttributeRenderer);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER, oldAttributeRenderer, newAttributeRenderer);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setAttributeRenderer(AttributeRenderer newAttributeRenderer) {
 		if (newAttributeRenderer != attributeRenderer) {
 			NotificationChain msgs = null;
 			if (attributeRenderer != null)
-				msgs = ((InternalEObject) attributeRenderer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER, null, msgs);
+				msgs = ((InternalEObject)attributeRenderer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER, null, msgs);
 			if (newAttributeRenderer != null)
-				msgs = ((InternalEObject) newAttributeRenderer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER, null, msgs);
+				msgs = ((InternalEObject)newAttributeRenderer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER, null, msgs);
 			msgs = basicSetAttributeRenderer(newAttributeRenderer, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER, newAttributeRenderer,
-				newAttributeRenderer));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER, newAttributeRenderer, newAttributeRenderer));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getFeatureName() {
@@ -142,108 +125,99 @@ public class AttributeRendererMappingImpl extends EObjectImpl implements Attribu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setFeatureName(String newFeatureName) {
 		String oldFeatureName = featureName;
 		featureName = newFeatureName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__FEATURE_NAME, oldFeatureName, featureName));
+			eNotify(new ENotificationImpl(this, Notification.SET, RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__FEATURE_NAME, oldFeatureName, featureName));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER:
-			return basicSetAttributeRenderer(null, msgs);
+			case RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER:
+				return basicSetAttributeRenderer(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER:
-			return getAttributeRenderer();
-		case RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__FEATURE_NAME:
-			return getFeatureName();
+			case RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER:
+				return getAttributeRenderer();
+			case RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__FEATURE_NAME:
+				return getFeatureName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER:
-			setAttributeRenderer((AttributeRenderer) newValue);
-			return;
-		case RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__FEATURE_NAME:
-			setFeatureName((String) newValue);
-			return;
+			case RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER:
+				setAttributeRenderer((AttributeRenderer)newValue);
+				return;
+			case RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__FEATURE_NAME:
+				setFeatureName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER:
-			setAttributeRenderer((AttributeRenderer) null);
-			return;
-		case RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__FEATURE_NAME:
-			setFeatureName(FEATURE_NAME_EDEFAULT);
-			return;
+			case RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER:
+				setAttributeRenderer((AttributeRenderer)null);
+				return;
+			case RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__FEATURE_NAME:
+				setFeatureName(FEATURE_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER:
-			return attributeRenderer != null;
-		case RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__FEATURE_NAME:
-			return FEATURE_NAME_EDEFAULT == null ? featureName != null : !FEATURE_NAME_EDEFAULT.equals(featureName);
+			case RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER:
+				return attributeRenderer != null;
+			case RenderersPackage.ATTRIBUTE_RENDERER_MAPPING__FEATURE_NAME:
+				return FEATURE_NAME_EDEFAULT == null ? featureName != null : !FEATURE_NAME_EDEFAULT.equals(featureName);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (featureName: ");

@@ -9,7 +9,8 @@ import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 
 /**
  * <!-- begin-user-doc --> A AttributeRenderer which works for all feature of EMF. <!-- end-user-doc -->
- * 
+ *
+ *
  * @see org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersPackage#getDefaultAttributeRenderer()
  * @model
  * @generated

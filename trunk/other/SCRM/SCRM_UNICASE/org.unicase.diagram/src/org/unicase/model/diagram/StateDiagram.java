@@ -7,7 +7,8 @@ package org.unicase.model.diagram;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>State Diagram</b></em>'. <!-- end-user-doc -->
- * 
+ *
+ *
  * @see org.unicase.model.diagram.DiagramPackage#getStateDiagram()
  * @model
  * @generated

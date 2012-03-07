@@ -9,7 +9,8 @@ import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
 
 /**
  * <!-- begin-user-doc --> A ModelElementRenderer which can render any unicase model. <!-- end-user-doc -->
- * 
+ *
+ *
  * @see org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersPackage#getDefaultModelElementRenderer()
  * @model
  * @generated

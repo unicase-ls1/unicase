@@ -50,7 +50,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements DefaultDocumentRenderer {
@@ -60,7 +60,6 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DefaultDocumentRendererImpl() {
@@ -69,7 +68,6 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

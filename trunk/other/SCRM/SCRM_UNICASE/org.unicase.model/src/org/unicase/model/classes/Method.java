@@ -7,7 +7,6 @@ package org.unicase.model.classes;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.requirement.Scenario;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Method</b></em>'. <!-- end-user-doc -->
@@ -26,7 +25,6 @@ import org.unicase.model.requirement.Scenario;
  *   <li>{@link org.unicase.model.classes.Method#isStubbed <em>Stubbed</em>}</li>
  *   <li>{@link org.unicase.model.classes.Method#getCalledMethods <em>Called Methods</em>}</li>
  *   <li>{@link org.unicase.model.classes.Method#getCallingMethods <em>Calling Methods</em>}</li>
- *   <li>{@link org.unicase.model.classes.Method#getDemoParticipations <em>Demo Participations</em>}</li>
  * </ul>
  * </p>
  *
@@ -292,25 +290,5 @@ public interface Method extends UnicaseModelElement {
 	 * @generated
 	 */
 	EList<Method> getCallingMethods();
-
-	/**
-	 * Returns the value of the '<em><b>Demo Participations</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.requirement.Scenario}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.requirement.Scenario#getParticipatingMethods <em>Participating Methods</em>}'. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Demo Participations</em>' reference list isn't clear, there really should be more of a
-	 * description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Demo Participations</em>' reference list.
-	 * @see org.unicase.model.classes.ClassesPackage#getMethod_DemoParticipations()
-	 * @see org.unicase.model.requirement.Scenario#getParticipatingMethods
-	 * @model opposite="participatingMethods" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='9.0' position='right'"
-	 * @generated
-	 */
-	EList<Scenario> getDemoParticipations();
 
 } // Method

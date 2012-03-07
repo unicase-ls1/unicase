@@ -7,7 +7,6 @@ package org.unicase.model.document;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Leaf Section</b></em>'. <!-- end-user-doc -->

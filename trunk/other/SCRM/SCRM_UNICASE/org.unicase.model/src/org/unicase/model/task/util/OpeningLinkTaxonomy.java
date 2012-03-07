@@ -14,12 +14,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.classes.Class;
-import org.unicase.model.classes.Method;
 import org.unicase.model.organization.OrgUnit;
-import org.unicase.model.requirement.FunctionalRequirement;
-import org.unicase.model.requirement.Scenario;
-import org.unicase.model.requirement.UseCase;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.Milestone;
 import org.unicase.model.task.WorkItem;
@@ -51,16 +46,6 @@ public class OpeningLinkTaxonomy {
 
 		openers.addAll(me.getAnnotations());
 
-		if (me instanceof UseCase) {
-			EList<FunctionalRequirement> functionalRequirements = ((UseCase) me).getFunctionalRequirements();
-			openers.addAll(functionalRequirements);
-		}
-		if (me instanceof Scenario) {
-			EList<Class> participatingClasses = ((Scenario) me).getParticipatingClasses();
-			EList<Method> participatingMethods = ((Scenario) me).getParticipatingMethods();
-			openers.addAll(participatingClasses);
-			openers.addAll(participatingMethods);
-		}
 		if (me instanceof Milestone) {
 			EList<UnicaseModelElement> containedModelElements = ((Milestone) me).getContainedModelElements();
 			openers.addAll(containedModelElements);
@@ -86,22 +71,7 @@ public class OpeningLinkTaxonomy {
 			Annotation annotation = (Annotation) modelElement;
 			opened.addAll(annotation.getAnnotatedModelElements());
 		}
-		if (modelElement instanceof FunctionalRequirement) {
-			EList<UseCase> useCases = ((FunctionalRequirement) modelElement).getUseCases();
-			opened.addAll(useCases);
-		}
-		if (modelElement instanceof UseCase) {
-			EList<Scenario> scenarios = ((UseCase) modelElement).getScenarios();
-			opened.addAll(scenarios);
-		}
-		if (modelElement instanceof Method) {
-			EList<Scenario> demoParticipations = ((Method) modelElement).getDemoParticipations();
-			opened.addAll(demoParticipations);
-		}
-		if (modelElement instanceof Class) {
-			EList<Scenario> demoParticipations = ((Class) modelElement).getDemoParticipations();
-			opened.addAll(demoParticipations);
-		}
+
 		opened.remove(modelElement);
 		return opened;
 	}

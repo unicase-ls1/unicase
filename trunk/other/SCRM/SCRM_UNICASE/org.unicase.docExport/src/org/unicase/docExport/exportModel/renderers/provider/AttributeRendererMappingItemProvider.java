@@ -66,10 +66,11 @@ public class AttributeRendererMappingItemProvider extends ItemProviderAdapter im
 	 * @generated
 	 */
 	protected void addFeatureNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_AttributeRendererMapping_featureName_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_AttributeRendererMapping_featureName_feature",
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_AttributeRendererMapping_featureName_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_AttributeRendererMapping_featureName_feature",
 				"_UI_AttributeRendererMapping_type"),
 			RenderersPackage.Literals.ATTRIBUTE_RENDERER_MAPPING__FEATURE_NAME, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
@@ -160,20 +161,16 @@ public class AttributeRendererMappingItemProvider extends ItemProviderAdapter im
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-			RenderersPackage.Literals.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER, DefaultRenderersFactory.eINSTANCE
-				.createDefaultAttributeRenderer()));
+			RenderersPackage.Literals.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER,
+			DefaultRenderersFactory.eINSTANCE.createDefaultAttributeRenderer()));
 
 		newChildDescriptors.add(createChildParameter(
-			RenderersPackage.Literals.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER, SpecialRenderersFactory.eINSTANCE
-				.createStepsAttributeRenderer()));
+			RenderersPackage.Literals.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER,
+			SpecialRenderersFactory.eINSTANCE.createMethodRenderer()));
 
 		newChildDescriptors.add(createChildParameter(
-			RenderersPackage.Literals.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER, SpecialRenderersFactory.eINSTANCE
-				.createMethodRenderer()));
-
-		newChildDescriptors.add(createChildParameter(
-			RenderersPackage.Literals.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER, SpecialRenderersFactory.eINSTANCE
-				.createClassAttributesRenderer()));
+			RenderersPackage.Literals.ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER,
+			SpecialRenderersFactory.eINSTANCE.createClassAttributesRenderer()));
 	}
 
 	/**
