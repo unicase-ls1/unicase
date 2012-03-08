@@ -8,12 +8,12 @@ package org.unicase.model.trace.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.unicase.model.trace.*;
+import org.unicase.model.trace.CodeLocation;
+import org.unicase.model.trace.LineHash;
+import org.unicase.model.trace.TraceFactory;
+import org.unicase.model.trace.TracePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +38,7 @@ public class TraceFactoryImpl extends EFactoryImpl implements TraceFactory {
 	public static TraceFactory init() {
 		try {
 			TraceFactory theTraceFactory = (TraceFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/model/codetrace");
+					.getEFactory("http://unicase.org/model/codetrace");
 			if (theTraceFactory != null) {
 				return theTraceFactory;
 			}
@@ -63,7 +63,7 @@ public class TraceFactoryImpl extends EFactoryImpl implements TraceFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 		case TracePackage.CODE_LOCATION:
@@ -71,7 +71,8 @@ public class TraceFactoryImpl extends EFactoryImpl implements TraceFactory {
 		case TracePackage.LINE_HASH:
 			return createLineHash();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 

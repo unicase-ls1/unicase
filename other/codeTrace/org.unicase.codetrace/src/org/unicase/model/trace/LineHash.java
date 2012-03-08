@@ -5,6 +5,7 @@
  */
 package org.unicase.model.trace;
 
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.NonDomainElement;
 
 /**
@@ -23,7 +24,7 @@ import org.unicase.metamodel.NonDomainElement;
  * @model
  * @generated
  */
-public interface LineHash extends NonDomainElement {
+public interface LineHash extends ModelElement, NonDomainElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

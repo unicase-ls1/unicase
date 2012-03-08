@@ -7,17 +7,17 @@ package org.unicase.model.trace.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
+import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.NonDomainElement;
-
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.trace.CodeLocation;
+import org.unicase.model.trace.LineHash;
+import org.unicase.model.trace.TracePackage;
 
-import org.unicase.model.trace.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -63,7 +63,7 @@ public class TraceAdapterFactory extends AdapterFactoryImpl {
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
-	@Override
+	
 	public boolean isFactoryForType(Object object) {
 		if (object == modelPackage) {
 			return true;
@@ -81,32 +81,42 @@ public class TraceAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected TraceSwitch<Adapter> modelSwitch = new TraceSwitch<Adapter>() {
-		@Override
+		
 		public Adapter caseCodeLocation(CodeLocation object) {
 			return createCodeLocationAdapter();
 		}
 
-		@Override
+		
 		public Adapter caseLineHash(LineHash object) {
 			return createLineHashAdapter();
 		}
 
-		@Override
+		
+		public Adapter caseIdentifiableElement(IdentifiableElement object) {
+			return createIdentifiableElementAdapter();
+		}
+
+		
+		public Adapter caseModelElement(ModelElement object) {
+			return createModelElementAdapter();
+		}
+
+		
 		public Adapter caseUnicaseModelElement(UnicaseModelElement object) {
 			return createUnicaseModelElementAdapter();
 		}
 
-		@Override
+		
 		public Adapter caseAttachment(Attachment object) {
 			return createAttachmentAdapter();
 		}
 
-		@Override
+		
 		public Adapter caseNonDomainElement(NonDomainElement object) {
 			return createNonDomainElementAdapter();
 		}
 
-		@Override
+		
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -120,7 +130,7 @@ public class TraceAdapterFactory extends AdapterFactoryImpl {
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
-	@Override
+	
 	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject) target);
 	}
@@ -150,6 +160,34 @@ public class TraceAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLineHashAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.IdentifiableElement <em>Identifiable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.metamodel.IdentifiableElement
+	 * @generated
+	 */
+	public Adapter createIdentifiableElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.ModelElement <em>Model Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.metamodel.ModelElement
+	 * @generated
+	 */
+	public Adapter createModelElementAdapter() {
 		return null;
 	}
 

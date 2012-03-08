@@ -9,9 +9,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.unicase.metamodel.MetamodelPackage;
-
 import org.unicase.model.ModelPackage;
 
 /**
@@ -67,7 +65,8 @@ public interface TracePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	TracePackage eINSTANCE = org.unicase.model.trace.impl.TracePackageImpl.init();
+	TracePackage eINSTANCE = org.unicase.model.trace.impl.TracePackageImpl
+			.init();
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.trace.impl.CodeLocationImpl <em>Code Location</em>}' class.
@@ -78,6 +77,33 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 */
 	int CODE_LOCATION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CODE_LOCATION__IDENTIFIER = ModelPackage.ATTACHMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CODE_LOCATION__CREATOR = ModelPackage.ATTACHMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CODE_LOCATION__CREATION_DATE = ModelPackage.ATTACHMENT__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -161,24 +187,6 @@ public interface TracePackage extends EPackage {
 	int CODE_LOCATION__COMMENTS = ModelPackage.ATTACHMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CODE_LOCATION__CREATION_DATE = ModelPackage.ATTACHMENT__CREATION_DATE;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CODE_LOCATION__CREATOR = ModelPackage.ATTACHMENT__CREATOR;
-
-	/**
 	 * The feature id for the '<em><b>Referring Model Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -252,13 +260,40 @@ public interface TracePackage extends EPackage {
 	int LINE_HASH = 1;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINE_HASH__IDENTIFIER = MetamodelPackage.MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINE_HASH__CREATOR = MetamodelPackage.MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINE_HASH__CREATION_DATE = MetamodelPackage.MODEL_ELEMENT__CREATION_DATE;
+
+	/**
 	 * The feature id for the '<em><b>Hash</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINE_HASH__HASH = MetamodelPackage.NON_DOMAIN_ELEMENT_FEATURE_COUNT + 0;
+	int LINE_HASH__HASH = MetamodelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Line Hash</em>' class.
@@ -267,7 +302,7 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINE_HASH_FEATURE_COUNT = MetamodelPackage.NON_DOMAIN_ELEMENT_FEATURE_COUNT + 1;
+	int LINE_HASH_FEATURE_COUNT = MetamodelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.trace.CodeLocation <em>Code Location</em>}'.
@@ -393,7 +428,8 @@ public interface TracePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CODE_LOCATION__LINE_CONTENT = eINSTANCE.getCodeLocation_LineContent();
+		EAttribute CODE_LOCATION__LINE_CONTENT = eINSTANCE
+				.getCodeLocation_LineContent();
 
 		/**
 		 * The meta object literal for the '<em><b>Project Name</b></em>' attribute feature.
@@ -401,7 +437,8 @@ public interface TracePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CODE_LOCATION__PROJECT_NAME = eINSTANCE.getCodeLocation_ProjectName();
+		EAttribute CODE_LOCATION__PROJECT_NAME = eINSTANCE
+				.getCodeLocation_ProjectName();
 
 		/**
 		 * The meta object literal for the '<em><b>Path In Project</b></em>' attribute feature.
@@ -409,7 +446,8 @@ public interface TracePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CODE_LOCATION__PATH_IN_PROJECT = eINSTANCE.getCodeLocation_PathInProject();
+		EAttribute CODE_LOCATION__PATH_IN_PROJECT = eINSTANCE
+				.getCodeLocation_PathInProject();
 
 		/**
 		 * The meta object literal for the '<em><b>Lines Before</b></em>' containment reference list feature.
@@ -417,7 +455,8 @@ public interface TracePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CODE_LOCATION__LINES_BEFORE = eINSTANCE.getCodeLocation_LinesBefore();
+		EReference CODE_LOCATION__LINES_BEFORE = eINSTANCE
+				.getCodeLocation_LinesBefore();
 
 		/**
 		 * The meta object literal for the '<em><b>Lines After</b></em>' containment reference list feature.
@@ -425,7 +464,8 @@ public interface TracePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CODE_LOCATION__LINES_AFTER = eINSTANCE.getCodeLocation_LinesAfter();
+		EReference CODE_LOCATION__LINES_AFTER = eINSTANCE
+				.getCodeLocation_LinesAfter();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.trace.impl.LineHashImpl <em>Line Hash</em>}' class.

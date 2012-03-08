@@ -9,13 +9,9 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.unicase.metamodel.MetamodelPackage;
-
 import org.unicase.model.ModelPackage;
-
 import org.unicase.model.trace.CodeLocation;
 import org.unicase.model.trace.LineHash;
 import org.unicase.model.trace.TraceFactory;
@@ -89,11 +85,14 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 */
 	public static TracePackage init() {
 		if (isInited)
-			return (TracePackage) EPackage.Registry.INSTANCE.getEPackage(TracePackage.eNS_URI);
+			return (TracePackage) EPackage.Registry.INSTANCE
+					.getEPackage(TracePackage.eNS_URI);
 
 		// Obtain or create and register package
-		TracePackageImpl theTracePackage = (TracePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof TracePackageImpl ? EPackage.Registry.INSTANCE
-			.get(eNS_URI) : new TracePackageImpl());
+		TracePackageImpl theTracePackage = (TracePackageImpl) (EPackage.Registry.INSTANCE
+				.get(eNS_URI) instanceof TracePackageImpl ? EPackage.Registry.INSTANCE
+				.get(eNS_URI)
+				: new TracePackageImpl());
 
 		isInited = true;
 
@@ -251,41 +250,55 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE
+				.getEPackage(ModelPackage.eNS_URI);
 		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(MetamodelPackage.eNS_URI);
+				.getEPackage(MetamodelPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		codeLocationEClass.getESuperTypes().add(theModelPackage.getAttachment());
-		codeLocationEClass.getESuperTypes().add(theMetamodelPackage.getNonDomainElement());
-		lineHashEClass.getESuperTypes().add(theMetamodelPackage.getNonDomainElement());
+		codeLocationEClass.getESuperTypes()
+				.add(theModelPackage.getAttachment());
+		codeLocationEClass.getESuperTypes().add(
+				theMetamodelPackage.getNonDomainElement());
+		lineHashEClass.getESuperTypes().add(
+				theMetamodelPackage.getModelElement());
+		lineHashEClass.getESuperTypes().add(
+				theMetamodelPackage.getNonDomainElement());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(codeLocationEClass, CodeLocation.class, "CodeLocation", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCodeLocation_LineContent(), ecorePackage.getEString(), "lineContent", null, 0, 1,
-			CodeLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCodeLocation_ProjectName(), ecorePackage.getEString(), "projectName", null, 0, 1,
-			CodeLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCodeLocation_PathInProject(), ecorePackage.getEString(), "pathInProject", null, 0, 1,
-			CodeLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEReference(getCodeLocation_LinesBefore(), this.getLineHash(), null, "linesBefore", null, 0, -1,
-			CodeLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCodeLocation_LinesAfter(), this.getLineHash(), null, "linesAfter", null, 0, -1,
-			CodeLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(codeLocationEClass, CodeLocation.class, "CodeLocation",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCodeLocation_LineContent(),
+				ecorePackage.getEString(), "lineContent", null, 0, 1,
+				CodeLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCodeLocation_ProjectName(),
+				ecorePackage.getEString(), "projectName", null, 0, 1,
+				CodeLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCodeLocation_PathInProject(), ecorePackage
+				.getEString(), "pathInProject", null, 0, 1, CodeLocation.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCodeLocation_LinesBefore(), this.getLineHash(), null,
+				"linesBefore", null, 0, -1, CodeLocation.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCodeLocation_LinesAfter(), this.getLineHash(), null,
+				"linesAfter", null, 0, -1, CodeLocation.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(lineHashEClass, LineHash.class, "LineHash", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLineHash_Hash(), ecorePackage.getEInt(), "hash", null, 0, 1, LineHash.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(lineHashEClass, LineHash.class, "LineHash", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLineHash_Hash(), ecorePackage.getEInt(), "hash",
+				null, 0, 1, LineHash.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -6,12 +6,9 @@
 package org.unicase.model.trace.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
+import org.unicase.metamodel.impl.ModelElementImpl;
 import org.unicase.model.trace.LineHash;
 import org.unicase.model.trace.TracePackage;
 
@@ -28,7 +25,7 @@ import org.unicase.model.trace.TracePackage;
  *
  * @generated
  */
-public class LineHashImpl extends EObjectImpl implements LineHash {
+public class LineHashImpl extends ModelElementImpl implements LineHash {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +67,7 @@ public class LineHashImpl extends EObjectImpl implements LineHash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	protected EClass eStaticClass() {
 		return TracePackage.Literals.LINE_HASH;
 	}
@@ -93,7 +90,8 @@ public class LineHashImpl extends EObjectImpl implements LineHash {
 		int oldHash = hash;
 		hash = newHash;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.LINE_HASH__HASH, oldHash, hash));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					TracePackage.LINE_HASH__HASH, oldHash, hash));
 	}
 
 	/**
@@ -101,7 +99,7 @@ public class LineHashImpl extends EObjectImpl implements LineHash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case TracePackage.LINE_HASH__HASH:
@@ -115,7 +113,7 @@ public class LineHashImpl extends EObjectImpl implements LineHash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case TracePackage.LINE_HASH__HASH:
@@ -130,7 +128,7 @@ public class LineHashImpl extends EObjectImpl implements LineHash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case TracePackage.LINE_HASH__HASH:
@@ -145,7 +143,7 @@ public class LineHashImpl extends EObjectImpl implements LineHash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case TracePackage.LINE_HASH__HASH:
@@ -159,7 +157,7 @@ public class LineHashImpl extends EObjectImpl implements LineHash {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public String toString() {
 		if (eIsProxy())
 			return super.toString();
