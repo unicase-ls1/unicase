@@ -41,14 +41,11 @@ public class AttachLocationCommand extends UnicaseCommand {
 	 */
 	
 	protected void doRun() {
-//		Project p = attachTo.getProject();
-//
-//			final ProjectSpace projectSpace = WorkspaceManager
-//					.getProjectSpace(p);
+		Project p = attachTo.getProject();
 
-			final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(attachTo);
-			Project p = projectSpace.getProject();
-			
+			final ProjectSpace projectSpace = WorkspaceManager
+					.getProjectSpace(p);
+
 			// Begin composite operation
 			CompositeOperationHandle operationHandle = projectSpace.beginCompositeOperation();
 

@@ -10,18 +10,15 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
+import org.unicase.metamodel.provider.ModelElementItemProvider;
 import org.unicase.model.trace.LineHash;
 import org.unicase.model.trace.TracePackage;
 
@@ -31,8 +28,9 @@ import org.unicase.model.trace.TracePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class LineHashItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class LineHashItemProvider extends ModelElementItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,7 +54,7 @@ public class LineHashItemProvider extends ItemProviderAdapter implements IEditin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
@@ -69,11 +67,13 @@ public class LineHashItemProvider extends ItemProviderAdapter implements IEditin
 	 * This returns LineHash.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
+	 * @param object object
 	 */
-	@Override
+	
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/LineHash"));
+		return overlayImage(object, getResourceLocator().getImage(
+				"LineHash.png"));
 	}
 
 	/**
@@ -82,10 +82,11 @@ public class LineHashItemProvider extends ItemProviderAdapter implements IEditin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public String getText(Object object) {
-		LineHash lineHash = (LineHash) object;
-		return getString("_UI_LineHash_type") + " " + lineHash.getHash();
+		String label = ((LineHash) object).getIdentifier();
+		return label == null || label.length() == 0 ? getString("_UI_LineHash_type")
+				: getString("_UI_LineHash_type") + " " + label;
 	}
 
 	/**
@@ -95,13 +96,14 @@ public class LineHashItemProvider extends ItemProviderAdapter implements IEditin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LineHash.class)) {
 		case TracePackage.LINE_HASH__HASH:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification, notification
+					.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -114,8 +116,9 @@ public class LineHashItemProvider extends ItemProviderAdapter implements IEditin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -125,7 +128,7 @@ public class LineHashItemProvider extends ItemProviderAdapter implements IEditin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public ResourceLocator getResourceLocator() {
 		return TracemodelEditPlugin.INSTANCE;
 	}

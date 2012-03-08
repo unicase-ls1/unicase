@@ -12,15 +12,10 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.edit.command.CommandParameter;
-
 import org.eclipse.emf.edit.domain.EditingDomain;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -33,24 +28,19 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-
 import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsSwitch;
-
 import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.Project;
-
 import org.unicase.metamodel.util.MetamodelSwitch;
-
+import org.unicase.model.diagram.DiagramPackage;
+import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.diagram.util.DiagramSwitch;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
-
 import org.unicase.model.document.util.DocumentSwitch;
-
 import org.unicase.model.trace.TraceFactory;
-
 import org.unicase.model.trace.util.TraceAdapterFactory;
 
 /**
@@ -62,8 +52,8 @@ import org.unicase.model.trace.util.TraceAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class TraceItemProviderAdapterFactory extends TraceAdapterFactory implements ComposeableAdapterFactory,
-	IChangeNotifier, IDisposable {
+public class TraceItemProviderAdapterFactory extends TraceAdapterFactory
+		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -123,7 +113,7 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public Adapter createCodeLocationAdapter() {
 		if (codeLocationItemProvider == null) {
 			codeLocationItemProvider = new CodeLocationItemProvider(this);
@@ -146,7 +136,7 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public Adapter createLineHashAdapter() {
 		if (lineHashItemProvider == null) {
 			lineHashItemProvider = new LineHashItemProvider(this);
@@ -162,7 +152,8 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+		return parentAdapterFactory == null ? this : parentAdapterFactory
+				.getRootAdapterFactory();
 	}
 
 	/**
@@ -171,7 +162,8 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
+	public void setParentAdapterFactory(
+			ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
 
@@ -180,7 +172,7 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public boolean isFactoryForType(Object type) {
 		return supportedTypes.contains(type) || super.isFactoryForType(type);
 	}
@@ -191,7 +183,7 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public Adapter adapt(Notifier notifier, Object type) {
 		return super.adapt(notifier, this);
 	}
@@ -201,11 +193,12 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>)
+					|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -266,7 +259,8 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static class OperationsChildCreationExtender implements IChildCreationExtender {
+	public static class OperationsChildCreationExtender implements
+			IChildCreationExtender {
 		/**
 		 * The switch for creating child descriptors specific to each extended class.
 		 * <!-- begin-user-doc -->
@@ -296,7 +290,8 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
+			CreationSwitch(List<Object> newChildDescriptors,
+					EditingDomain editingDomain) {
 				this.newChildDescriptors = newChildDescriptors;
 				this.editingDomain = editingDomain;
 			}
@@ -306,15 +301,17 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			@Override
+			
 			public Object caseCreateDeleteOperation(CreateDeleteOperation object) {
-				newChildDescriptors.add(createChildParameter(
-					OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-					TraceFactory.eINSTANCE.createCodeLocation()));
+				newChildDescriptors
+						.add(createChildParameter(
+								OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+								TraceFactory.eINSTANCE.createCodeLocation()));
 
-				newChildDescriptors.add(createChildParameter(
-					OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
-					TraceFactory.eINSTANCE.createLineHash()));
+				newChildDescriptors
+						.add(createChildParameter(
+								OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+								TraceFactory.eINSTANCE.createLineHash()));
 
 				return null;
 			}
@@ -324,7 +321,8 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			protected CommandParameter createChildParameter(Object feature, Object child) {
+			protected CommandParameter createChildParameter(Object feature,
+					Object child) {
 				return new CommandParameter(null, feature, child);
 			}
 
@@ -335,9 +333,11 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+		public Collection<Object> getNewChildDescriptors(Object object,
+				EditingDomain editingDomain) {
 			ArrayList<Object> result = new ArrayList<Object>();
-			new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
+			new CreationSwitch(result, editingDomain)
+					.doSwitch((EObject) object);
 			return result;
 		}
 
@@ -357,7 +357,8 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static class MetamodelChildCreationExtender implements IChildCreationExtender {
+	public static class MetamodelChildCreationExtender implements
+			IChildCreationExtender {
 		/**
 		 * The switch for creating child descriptors specific to each extended class.
 		 * <!-- begin-user-doc -->
@@ -387,7 +388,8 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
+			CreationSwitch(List<Object> newChildDescriptors,
+					EditingDomain editingDomain) {
 				this.newChildDescriptors = newChildDescriptors;
 				this.editingDomain = editingDomain;
 			}
@@ -397,19 +399,15 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			@Override
+			
 			public Object caseProject(Project object) {
-				newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-					TraceFactory.eINSTANCE.createCodeLocation()));
+				newChildDescriptors.add(createChildParameter(
+						MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						TraceFactory.eINSTANCE.createCodeLocation()));
 
-				newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-					TraceFactory.eINSTANCE.createLineHash()));
-
-				newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
-					TraceFactory.eINSTANCE.createCodeLocation()));
-
-				newChildDescriptors.add(createChildParameter(MetamodelPackage.Literals.PROJECT__CUT_ELEMENTS,
-					TraceFactory.eINSTANCE.createLineHash()));
+				newChildDescriptors.add(createChildParameter(
+						MetamodelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						TraceFactory.eINSTANCE.createLineHash()));
 
 				return null;
 			}
@@ -419,7 +417,8 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			protected CommandParameter createChildParameter(Object feature, Object child) {
+			protected CommandParameter createChildParameter(Object feature,
+					Object child) {
 				return new CommandParameter(null, feature, child);
 			}
 
@@ -430,9 +429,103 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+		public Collection<Object> getNewChildDescriptors(Object object,
+				EditingDomain editingDomain) {
 			ArrayList<Object> result = new ArrayList<Object>();
-			new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
+			new CreationSwitch(result, editingDomain)
+					.doSwitch((EObject) object);
+			return result;
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public ResourceLocator getResourceLocator() {
+			return TracemodelEditPlugin.INSTANCE;
+		}
+	}
+
+	/**
+	 * A child creation extender for the {@link DiagramPackage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static class DiagramChildCreationExtender implements
+			IChildCreationExtender {
+		/**
+		 * The switch for creating child descriptors specific to each extended class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected static class CreationSwitch extends DiagramSwitch<Object> {
+			/**
+			 * The child descriptors being populated.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected List<Object> newChildDescriptors;
+
+			/**
+			 * The domain in which to create the children.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected EditingDomain editingDomain;
+
+			/**
+			 * Creates the a switch for populating child descriptors in the given domain.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			CreationSwitch(List<Object> newChildDescriptors,
+					EditingDomain editingDomain) {
+				this.newChildDescriptors = newChildDescriptors;
+				this.editingDomain = editingDomain;
+			}
+
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			
+			public Object caseMEDiagram(MEDiagram object) {
+				newChildDescriptors.add(createChildParameter(
+						DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+						TraceFactory.eINSTANCE.createCodeLocation()));
+
+				return null;
+			}
+
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected CommandParameter createChildParameter(Object feature,
+					Object child) {
+				return new CommandParameter(null, feature, child);
+			}
+
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public Collection<Object> getNewChildDescriptors(Object object,
+				EditingDomain editingDomain) {
+			ArrayList<Object> result = new ArrayList<Object>();
+			new CreationSwitch(result, editingDomain)
+					.doSwitch((EObject) object);
 			return result;
 		}
 
@@ -452,7 +545,8 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static class DocumentChildCreationExtender implements IChildCreationExtender {
+	public static class DocumentChildCreationExtender implements
+			IChildCreationExtender {
 		/**
 		 * The switch for creating child descriptors specific to each extended class.
 		 * <!-- begin-user-doc -->
@@ -482,7 +576,8 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
+			CreationSwitch(List<Object> newChildDescriptors,
+					EditingDomain editingDomain) {
 				this.newChildDescriptors = newChildDescriptors;
 				this.editingDomain = editingDomain;
 			}
@@ -492,10 +587,11 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			@Override
+			
 			public Object caseLeafSection(LeafSection object) {
-				newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-					TraceFactory.eINSTANCE.createCodeLocation()));
+				newChildDescriptors.add(createChildParameter(
+						DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+						TraceFactory.eINSTANCE.createCodeLocation()));
 
 				return null;
 			}
@@ -505,7 +601,8 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
-			protected CommandParameter createChildParameter(Object feature, Object child) {
+			protected CommandParameter createChildParameter(Object feature,
+					Object child) {
 				return new CommandParameter(null, feature, child);
 			}
 
@@ -516,9 +613,11 @@ public class TraceItemProviderAdapterFactory extends TraceAdapterFactory impleme
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+		public Collection<Object> getNewChildDescriptors(Object object,
+				EditingDomain editingDomain) {
 			ArrayList<Object> result = new ArrayList<Object>();
-			new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
+			new CreationSwitch(result, editingDomain)
+					.doSwitch((EObject) object);
 			return result;
 		}
 

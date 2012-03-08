@@ -12,8 +12,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.IDialogSettings;
@@ -22,6 +20,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
 import org.unicase.metamodel.MetamodelPackage;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.WorkItem;
@@ -34,7 +33,7 @@ import org.unicase.ui.common.Activator;
  */
 public class ChooseModelElementDialog extends FilteredItemsSelectionDialog{
 	private static final String DIALOG_SETTINGS = "STANDARD_DIALOG_SETTING";
-	private EList<EObject> elements;
+	private EList<ModelElement> elements;
 	private AdapterFactoryLabelProvider labelProvider;
 	
 	/**
@@ -45,11 +44,11 @@ public class ChooseModelElementDialog extends FilteredItemsSelectionDialog{
 	 */
 	public ChooseModelElementDialog(Project p, String message){
 		super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),true);
-		elements = p.getAllModelElementsbyClass(EcorePackage.Literals.EOBJECT,new BasicEList<EObject>());
+		elements = p.getAllModelElementsbyClass(MetamodelPackage.Literals.MODEL_ELEMENT,new BasicEList<ModelElement>());
 		
-		EList<EObject> elementsFiltered = new BasicEList<EObject>();
+		EList<ModelElement> elementsFiltered = new BasicEList<ModelElement>();
 		if (elements != null) {
-			for (EObject me : (EList<EObject>) elements) {
+			for (ModelElement me : (EList<ModelElement>) elements) {
 				if (me instanceof WorkItem){
 					elementsFiltered.add(me);
 				}
@@ -101,7 +100,7 @@ public class ChooseModelElementDialog extends FilteredItemsSelectionDialog{
 			ItemsFilter itemsFilter, IProgressMonitor progressMonitor) {
 
 		progressMonitor.beginTask("Searching", elements.size());
-		for (EObject me : elements) {
+		for (ModelElement me : elements) {
 			contentProvider.add(me, itemsFilter);
 			progressMonitor.worked(1);
 		}
