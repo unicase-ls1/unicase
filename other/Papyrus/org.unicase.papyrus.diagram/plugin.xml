@@ -134,5 +134,34 @@
                      name="org.unicase.papyrus.UMLDiagramOpener">
                </ModelElementOpener>
             </extension>
+            <extension
+                  point="org.eclipse.ui.commands">
+               <command
+                     defaultHandler="org.unicase.papyrus.diagram.importer.ExportUMLHandler"
+                     id="org.unicase.papyrus.diagram.ExportUML"
+                     name="Export UML">
+               </command>
+            </extension>
+            <extension
+                  point="org.eclipse.ui.menus">
+               <menuContribution
+                     locationURI="popup:org.eclipse.emf.ecp.navigator.viewer">
+                  <command
+                        commandId="org.unicase.papyrus.diagram.ExportUML"
+                        label="Export UML"
+                        style="push">
+                     <visibleWhen
+                           checkEnabled="false">
+                        <iterate
+                              ifEmpty="false"
+                              operator="and">
+                           <instanceof
+                                 value="org.eclipse.uml2.uml.Package">
+                           </instanceof>
+                        </iterate>
+                     </visibleWhen>
+                  </command>
+               </menuContribution>
+            </extension>
       
 </plugin>
