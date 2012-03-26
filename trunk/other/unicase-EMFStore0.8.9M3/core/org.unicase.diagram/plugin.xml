@@ -16,5 +16,11 @@
             class="org.unicase.model.diagram.DiagramPackage"
             genModel="model/diagram.genmodel"/>
    </extension>
+   <extension
+         point="org.eclipse.emf.ecp.model.ecppackage">
+      <modelPackage
+            modelPackage="http://unicase.org/model/diagram">
+      </modelPackage>
+   </extension>
 
 </plugin>

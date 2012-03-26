@@ -16,5 +16,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.unicase.model;visibility:=reexport,
  org.eclipse.gmf.runtime.notation;visibility:=reexport,
  org.eclipse.ocl.ecore;visibility:=reexport,
- org.eclipse.emf.emfstore.common.model
+ org.eclipse.emf.emfstore.common.model,
+ org.eclipse.emf.ecp.common.model
 Bundle-ActivationPolicy: lazy

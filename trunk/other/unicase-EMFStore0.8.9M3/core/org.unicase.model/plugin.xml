@@ -828,4 +828,11 @@
            versionIdentifier="7">
      </ModelVersion>
   </extension>
+  <extension
+        point="org.eclipse.emf.ecp.model.ecppackage">
+     <modelPackage
+           modelPackage="http://unicase.org/model">
+     </modelPackage>
+     <modelPackage></modelPackage>
+  </extension>
 </plugin>
