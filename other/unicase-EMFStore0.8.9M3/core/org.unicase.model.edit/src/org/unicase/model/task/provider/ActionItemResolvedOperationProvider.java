@@ -5,22 +5,17 @@
  */
 package org.unicase.model.task.provider;
 
-import java.util.Map;
-
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.eclipse.emf.emfstore.server.model.provider.AbstractOperationCustomLabelProvider;
+import org.eclipse.emf.emfstore.client.ui.views.changes.DefaultOperationLabelProvider;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.provider.AbstractOperationItemProvider;
-import org.unicase.model.provider.ModelEditPlugin;
 
 /**
  * Provider class for visualization of resolved/unresolved operations in the commitDialog.
  * 
  * @author Michael Kagel
  */
-public class ActionItemResolvedOperationProvider extends AbstractOperationCustomLabelProvider {
+public class ActionItemResolvedOperationProvider extends DefaultOperationLabelProvider {
 
 	/**
 	 * Checks if the attributeOperation is a resolved or unresolved operation, if this is true the method returns 1
@@ -56,22 +51,6 @@ public class ActionItemResolvedOperationProvider extends AbstractOperationCustom
 			return "Unresolved "
 				+ AbstractOperationItemProvider.getModelElementClassAndName((attOp.getModelElementId()));
 		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.emfstore.esmodel.provider.AbstractOperationCustomLabelProvider#getImage(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
-	 */
-	@Override
-	public Object getImage(AbstractOperation operation) {
-		return ModelEditPlugin.INSTANCE.getImage("full/obj16/AttributeOperation.png");
-	}
-
-	@Override
-	public String getModelElementName(Map<ModelElementId, EObject> modelElementMap, ModelElementId modelElementId) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

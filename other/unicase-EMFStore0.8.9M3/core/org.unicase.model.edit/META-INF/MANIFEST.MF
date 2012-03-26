@@ -29,7 +29,8 @@ Require-Bundle: org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.unicase.model;visibility:=reexport,
  org.eclipse.emf.emfstore.common.model,
  org.eclipse.emf.emfstore.server.model,
- org.eclipse.emf.emfstore.server.model.edit
+ org.eclipse.emf.emfstore.server.model.edit,
+ org.eclipse.emf.emfstore.client.ui;bundle-version="0.8.9"
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.emf.emfstore.common.model.provider,
  org.eclipse.emf.emfstore.server.model.provider,

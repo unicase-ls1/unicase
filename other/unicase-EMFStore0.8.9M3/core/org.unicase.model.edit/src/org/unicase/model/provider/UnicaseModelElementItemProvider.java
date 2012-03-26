@@ -59,8 +59,8 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 			addAnnotationsPropertyDescriptor(object);
 			addAttachmentsPropertyDescriptor(object);
 			addCommentsPropertyDescriptor(object);
-			addCreationDatePropertyDescriptor(object);
-			addCreatorPropertyDescriptor(object);
+			// addCreationDatePropertyDescriptor(object);
+			// addCreatorPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
