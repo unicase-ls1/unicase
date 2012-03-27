@@ -114,11 +114,16 @@ public class AddAnnotationHandler extends AbstractHandler {
 
 	private LeafSection getLeafSection(UnicaseModelElement me) {
 		EObject container = me.eContainer();
+		// try to find a parent LeafSection
 		while (container != null) {
 			if (container instanceof LeafSection) {
 				return (LeafSection) container;
 			}
 			container = container.eContainer();
+		}
+		// check if element is itself a LeafSection
+		if (me instanceof LeafSection) {
+			return (LeafSection) me;
 		}
 		return null;
 	}
