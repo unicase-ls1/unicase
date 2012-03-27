@@ -10,7 +10,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.dnd.DropTargetEvent;
-import org.unicase.model.Annotation;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
 
@@ -22,23 +21,17 @@ import org.unicase.model.document.LeafSection;
 public class LeafSectionDropAdapter extends UCDropAdapter {
 
 	/**
-	 * {@inheritDoc} Note: if we drop a model element with a bidirectional reference, we set the parent for drop source,
-	 * instead of just adding drop source to target (container). This is because of change recording.
+	 * {@inheritDoc} Adds the source list of {@link EObject EObjects} to the target {@link LeafSection}'s model
+	 * elements.
 	 * 
 	 * @see org.unicase.ui.common.dnd.MEDropAdapter#drop(org.eclipse.swt.dnd.DropTargetEvent,
 	 *      org.unicase.metamodel.ModelElement, java.util.List)
 	 */
 	@Override
 	public void drop(DropTargetEvent event, EObject target, List<EObject> source) {
-		EObject dropee = source.get(0);
-		if (!(dropee instanceof Annotation)) {
-			super.drop(event, target, source);
-		} else {
-			for (EObject me : source) {
-				((LeafSection) target).getModelElements().add(me);
-			}
+		for (EObject me : source) {
+			((LeafSection) target).getModelElements().add(me);
 		}
-
 	}
 
 	/**

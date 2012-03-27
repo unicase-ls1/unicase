@@ -972,4 +972,35 @@
            class="org.unicase.ui.unicasecommon.common.AdapterInitiator">
      </initiator>
   </extension>
+  <extension
+        point="org.eclipse.ui.activities">
+     <activity
+           description="Hides the &quot;New Project &quot;entry in the ECP-Navigator."
+           id="org.unicase.ui.unicasecommon.HideNewLocalProject"
+           name="HideNewLocalProject">
+     </activity>
+     <activityPatternBinding
+           activityId="org.unicase.ui.unicasecommon.HideNewLocalProject"
+           isEqualityPattern="true"
+           pattern="org.eclipse.emf.emfstore.client.ui/org.eclipse.emf.emfstore.client.ui.NewLocalProject">
+     </activityPatternBinding>
+  </extension>
+  <extension
+        point="org.eclipse.ui.menus">
+     <menuContribution
+           locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?before=additions">
+        <command
+              commandId="org.eclipse.emf.emfstore.client.ui.NewLocalProject"
+              icon="icons/serverAdd.png"
+              label="New Project..."
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <count
+                    value="0">
+              </count>
+           </visibleWhen>
+        </command>
+     </menuContribution>
+  </extension>
 </plugin>
