@@ -148,6 +148,7 @@
                      locationURI="popup:org.eclipse.emf.ecp.navigator.viewer">
                   <command
                         commandId="org.unicase.papyrus.diagram.ExportUML"
+                        icon="icons/UMLModel.gif"
                         label="Export UML"
                         style="push">
                      <visibleWhen
