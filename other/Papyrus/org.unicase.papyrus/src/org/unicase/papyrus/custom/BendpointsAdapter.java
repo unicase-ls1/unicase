@@ -39,6 +39,8 @@ public class BendpointsAdapter extends AdapterImpl {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void notifyChanged(Notification notification) {
+		super.notifyChanged(notification);
+		
 		// for all edges...
 		for (Object object : gmfDiagram.getEdges()) {
 			if (object instanceof Edge) {

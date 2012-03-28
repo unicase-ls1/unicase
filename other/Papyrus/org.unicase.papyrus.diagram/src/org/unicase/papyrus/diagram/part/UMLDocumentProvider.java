@@ -102,7 +102,6 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 						return;
 					}
 				}
-				// }
 				throw new RuntimeException("Diagram is not present in resource");
 			} catch (IOException e) {
 				String msg = e.getLocalizedMessage();
