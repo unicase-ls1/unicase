@@ -48,19 +48,19 @@
       
       <viewerContribution
       		id="org.eclipse.jdt.debug.ui.CompilationUnitRulerPopupActions"
-      		targetID="#CompilationUnitRulerContext">
+      		targetID="#AbstractTextEditorRulerContext">
       	<action
-      		class="org.unicase.codetrace.popup.actions.AttachCodeLocationActionDelegate"
-    		id="org.unicase.codetrace.action1"
-   			label="Link Source Code to Unicase"
-   	 		icon="icons/unicase.png"
-   			menubarPath="additions" >
-  		</action>
+             class="org.unicase.codetrace.popup.actions.AttachCodeLocationActionDelegate"
+             icon="icons/unicase.png"
+             id="org.unicase.codetrace.action1"
+             label="Link Source Code to Unicase"
+             menubarPath="additions">
+         </action>
 	</viewerContribution>
 	
   <viewerContribution
         id="org.eclipse.jdt.debug.ui.CompilationUnitRulerPopupActions"
-        targetID="#CompilationUnitRulerContext">
+        targetID="#AbstractTextEditorRulerContext">
      <action
            class="org.unicase.codetrace.popup.actions.JumpToCodeLocationActionDelegate"
            icon="icons/unicase.png"
