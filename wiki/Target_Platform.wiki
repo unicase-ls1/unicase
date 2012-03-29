@@ -12,7 +12,7 @@ We use target platform for UNICASE development which allows all the developers t
 o In order to get the target platform defintion, checkout [http://unicase.googlecode.com/svn/trunk/deployment/UNICASETargetPlatform/ targetDefinition] folder using subclipse in your eclipse workspace.
 
 
-o In eclipse preferences go to > Plug-in Development > Target Platform. If you are done with step one then you should be able to see a target defintion named "UNICASETargetDefinition" within the folder targetDefinition. 
+o In eclipse preferences go to > Plug-in Development > Target Platform. If you are done with step one then you should be able to see a target defintion named "UNICASETargetDefinition.target" within the folder targetDefinition. 
 
 
 o Select the check-box in front on previously mentioned traget defintion, click on apply and finally OK. This will autmoatically resolve the traget defintion and download the plug-ins locally.
