@@ -19,7 +19,7 @@ We currently use the following development tools:
 
                  o UNICASE: http://unicase.googlecode.com/svn/updatesite/internal/ <br>
 
-   * *NOTE: Please do not install Unicase in the same eclipse instance as the one used for development. You might face plugin version conflict issue.*
+   * *NOTE: Please do not install UNICASE in the same eclipse instance as the one used for development. You might face plugin version conflict issue.*
           
 
           o Findbugs (for static code checking): http://findbugs.cs.umd.edu/eclipse<br>
