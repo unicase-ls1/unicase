@@ -13,18 +13,14 @@ We currently use the following development tools:
 
    * *NOTE: If you are not using Windows 32 Bit you might run into problems with Subclipse because Java is started in 64bit mode by default. Here is a possible solution for the problem http://subclipse.tigris.org/wiki/JavaHL * <br>
 
-
-          o GMF : http://download.eclipse.org/releases/helios <br>
-
  
           o Checkstyle (the previously used version 4.4.x is no longer available at the update site. So, download the latest 5.x release.): - http://eclipse-cs.sf.net/update/<br>
 
 
                  o UNICASE: http://unicase.googlecode.com/svn/updatesite/internal/ <br>
 
-   * *NOTE: Please do not install Unicase patch Attachment feature shown at the update site within eclipse update manager. *
+   * *NOTE: Please do not install Unicase in the same eclipse instance as the one used for development. You might face plugin version conflict issue.*
           
-              o UNICASE Code Traceability: http://svn.ifi.uni-heidelberg.de/unicase/0.4.8.internal/codetraceability/
 
           o Findbugs (for static code checking): http://findbugs.cs.umd.edu/eclipse<br>
 
