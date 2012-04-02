@@ -1,19 +1,21 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.model.changetracking.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import org.unicase.model.changetracking.*;
-import org.unicase.model.changetracking.ChangetrackingFactory;
-import org.unicase.model.changetracking.ChangetrackingPackage;
-import org.unicase.model.changetracking.Release;
-import org.unicase.model.changetracking.Stream;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,20 +23,26 @@ import org.unicase.model.changetracking.Stream;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ChangetrackingFactoryImpl extends EFactoryImpl implements ChangetrackingFactory {
+public class ChangetrackingFactoryImpl extends EFactoryImpl implements ChangetrackingFactory
+{
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ChangetrackingFactory init() {
-		try {
-			ChangetrackingFactory theChangetrackingFactory = (ChangetrackingFactory) EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/changetracking");
-			if (theChangetrackingFactory != null) {
+	public static ChangetrackingFactory init()
+	{
+		try
+		{
+			ChangetrackingFactory theChangetrackingFactory = (ChangetrackingFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/changetracking"); 
+			if (theChangetrackingFactory != null)
+			{
 				return theChangetrackingFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ChangetrackingFactoryImpl();
@@ -46,7 +54,8 @@ public class ChangetrackingFactoryImpl extends EFactoryImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChangetrackingFactoryImpl() {
+	public ChangetrackingFactoryImpl()
+	{
 		super();
 	}
 
@@ -56,14 +65,14 @@ public class ChangetrackingFactoryImpl extends EFactoryImpl implements Changetra
 	 * @generated
 	 */
 	@Override
-	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-		case ChangetrackingPackage.RELEASE:
-			return createRelease();
-		case ChangetrackingPackage.STREAM:
-			return createStream();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+	public EObject create(EClass eClass)
+	{
+		switch (eClass.getClassifierID())
+		{
+			case ChangetrackingPackage.RELEASE: return createRelease();
+			case ChangetrackingPackage.STREAM: return createStream();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -72,7 +81,8 @@ public class ChangetrackingFactoryImpl extends EFactoryImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Release createRelease() {
+	public Release createRelease()
+	{
 		ReleaseImpl release = new ReleaseImpl();
 		return release;
 	}
@@ -82,7 +92,8 @@ public class ChangetrackingFactoryImpl extends EFactoryImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Stream createStream() {
+	public Stream createStream()
+	{
 		StreamImpl stream = new StreamImpl();
 		return stream;
 	}
@@ -92,8 +103,9 @@ public class ChangetrackingFactoryImpl extends EFactoryImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChangetrackingPackage getChangetrackingPackage() {
-		return (ChangetrackingPackage) getEPackage();
+	public ChangetrackingPackage getChangetrackingPackage()
+	{
+		return (ChangetrackingPackage)getEPackage();
 	}
 
 	/**
@@ -103,7 +115,8 @@ public class ChangetrackingFactoryImpl extends EFactoryImpl implements Changetra
 	 * @generated
 	 */
 	@Deprecated
-	public static ChangetrackingPackage getPackage() {
+	public static ChangetrackingPackage getPackage()
+	{
 		return ChangetrackingPackage.eINSTANCE;
 	}
 

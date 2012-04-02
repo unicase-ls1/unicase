@@ -1,25 +1,28 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.model.changetracking.git.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
+
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.RepositoryRevision;
 import org.unicase.model.changetracking.RepositoryStream;
+
 import org.unicase.model.changetracking.git.*;
-import org.unicase.model.changetracking.git.GitBranch;
-import org.unicase.model.changetracking.git.GitBranchChangePackage;
-import org.unicase.model.changetracking.git.GitPackage;
-import org.unicase.model.changetracking.git.GitRepository;
-import org.unicase.model.changetracking.git.GitRevision;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +32,8 @@ import org.unicase.model.changetracking.git.GitRevision;
  * @see org.unicase.model.changetracking.git.GitPackage
  * @generated
  */
-public class GitAdapterFactory extends AdapterFactoryImpl {
+public class GitAdapterFactory extends AdapterFactoryImpl
+{
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -44,8 +48,10 @@ public class GitAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GitAdapterFactory() {
-		if (modelPackage == null) {
+	public GitAdapterFactory()
+	{
+		if (modelPackage == null)
+		{
 			modelPackage = GitPackage.eINSTANCE;
 		}
 	}
@@ -59,12 +65,15 @@ public class GitAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	@Override
-	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
+	public boolean isFactoryForType(Object object)
+	{
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+		if (object instanceof EObject)
+		{
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -75,62 +84,65 @@ public class GitAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GitSwitch<Adapter> modelSwitch = new GitSwitch<Adapter>() {
-		@Override
-		public Adapter caseGitBranchChangePackage(GitBranchChangePackage object) {
-			return createGitBranchChangePackageAdapter();
-		}
-
-		@Override
-		public Adapter caseGitBranch(GitBranch object) {
-			return createGitBranchAdapter();
-		}
-
-		@Override
-		public Adapter caseGitRevision(GitRevision object) {
-			return createGitRevisionAdapter();
-		}
-
-		@Override
-		public Adapter caseGitRepository(GitRepository object) {
-			return createGitRepositoryAdapter();
-		}
-
-		@Override
-		public Adapter caseUnicaseModelElement(UnicaseModelElement object) {
-			return createUnicaseModelElementAdapter();
-		}
-
-		@Override
-		public Adapter caseAttachment(Attachment object) {
-			return createAttachmentAdapter();
-		}
-
-		@Override
-		public Adapter caseChangePackage(ChangePackage object) {
-			return createChangePackageAdapter();
-		}
-
-		@Override
-		public Adapter caseRepositoryStream(RepositoryStream object) {
-			return createRepositoryStreamAdapter();
-		}
-
-		@Override
-		public Adapter caseRepositoryRevision(RepositoryRevision object) {
-			return createRepositoryRevisionAdapter();
-		}
-
-		@Override
-		public Adapter caseRepositoryLocation(RepositoryLocation object) {
-			return createRepositoryLocationAdapter();
-		}
-
-		@Override
-		public Adapter defaultCase(EObject object) {
-			return createEObjectAdapter();
-		}
-	};
+	protected GitSwitch<Adapter> modelSwitch =
+		new GitSwitch<Adapter>()
+		{
+			@Override
+			public Adapter caseGitBranchChangePackage(GitBranchChangePackage object)
+			{
+				return createGitBranchChangePackageAdapter();
+			}
+			@Override
+			public Adapter caseGitBranch(GitBranch object)
+			{
+				return createGitBranchAdapter();
+			}
+			@Override
+			public Adapter caseGitRevision(GitRevision object)
+			{
+				return createGitRevisionAdapter();
+			}
+			@Override
+			public Adapter caseGitRepository(GitRepository object)
+			{
+				return createGitRepositoryAdapter();
+			}
+			@Override
+			public Adapter caseUnicaseModelElement(UnicaseModelElement object)
+			{
+				return createUnicaseModelElementAdapter();
+			}
+			@Override
+			public Adapter caseAttachment(Attachment object)
+			{
+				return createAttachmentAdapter();
+			}
+			@Override
+			public Adapter caseChangePackage(ChangePackage object)
+			{
+				return createChangePackageAdapter();
+			}
+			@Override
+			public Adapter caseRepositoryStream(RepositoryStream object)
+			{
+				return createRepositoryStreamAdapter();
+			}
+			@Override
+			public Adapter caseRepositoryRevision(RepositoryRevision object)
+			{
+				return createRepositoryRevisionAdapter();
+			}
+			@Override
+			public Adapter caseRepositoryLocation(RepositoryLocation object)
+			{
+				return createRepositoryLocationAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object)
+			{
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -141,9 +153,11 @@ public class GitAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	@Override
-	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+	public Adapter createAdapter(Notifier target)
+	{
+		return modelSwitch.doSwitch((EObject)target);
 	}
+
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.model.changetracking.git.GitBranchChangePackage <em>Branch Change Package</em>}'.
@@ -155,7 +169,8 @@ public class GitAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.changetracking.git.GitBranchChangePackage
 	 * @generated
 	 */
-	public Adapter createGitBranchChangePackageAdapter() {
+	public Adapter createGitBranchChangePackageAdapter()
+	{
 		return null;
 	}
 
@@ -169,7 +184,8 @@ public class GitAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.changetracking.git.GitBranch
 	 * @generated
 	 */
-	public Adapter createGitBranchAdapter() {
+	public Adapter createGitBranchAdapter()
+	{
 		return null;
 	}
 
@@ -183,7 +199,8 @@ public class GitAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.changetracking.git.GitRevision
 	 * @generated
 	 */
-	public Adapter createGitRevisionAdapter() {
+	public Adapter createGitRevisionAdapter()
+	{
 		return null;
 	}
 
@@ -197,7 +214,8 @@ public class GitAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.changetracking.git.GitRepository
 	 * @generated
 	 */
-	public Adapter createGitRepositoryAdapter() {
+	public Adapter createGitRepositoryAdapter()
+	{
 		return null;
 	}
 
@@ -211,7 +229,8 @@ public class GitAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.UnicaseModelElement
 	 * @generated
 	 */
-	public Adapter createUnicaseModelElementAdapter() {
+	public Adapter createUnicaseModelElementAdapter()
+	{
 		return null;
 	}
 
@@ -225,7 +244,8 @@ public class GitAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.Attachment
 	 * @generated
 	 */
-	public Adapter createAttachmentAdapter() {
+	public Adapter createAttachmentAdapter()
+	{
 		return null;
 	}
 
@@ -239,7 +259,8 @@ public class GitAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.changetracking.ChangePackage
 	 * @generated
 	 */
-	public Adapter createChangePackageAdapter() {
+	public Adapter createChangePackageAdapter()
+	{
 		return null;
 	}
 
@@ -253,7 +274,8 @@ public class GitAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.changetracking.RepositoryStream
 	 * @generated
 	 */
-	public Adapter createRepositoryStreamAdapter() {
+	public Adapter createRepositoryStreamAdapter()
+	{
 		return null;
 	}
 
@@ -267,7 +289,8 @@ public class GitAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.changetracking.RepositoryRevision
 	 * @generated
 	 */
-	public Adapter createRepositoryRevisionAdapter() {
+	public Adapter createRepositoryRevisionAdapter()
+	{
 		return null;
 	}
 
@@ -281,7 +304,8 @@ public class GitAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.changetracking.RepositoryLocation
 	 * @generated
 	 */
-	public Adapter createRepositoryLocationAdapter() {
+	public Adapter createRepositoryLocationAdapter()
+	{
 		return null;
 	}
 
@@ -293,7 +317,8 @@ public class GitAdapterFactory extends AdapterFactoryImpl {
 	 * @return the new adapter.
 	 * @generated
 	 */
-	public Adapter createEObjectAdapter() {
+	public Adapter createEObjectAdapter()
+	{
 		return null;
 	}
 

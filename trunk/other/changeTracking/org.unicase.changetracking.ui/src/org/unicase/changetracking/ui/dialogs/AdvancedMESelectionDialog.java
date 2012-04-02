@@ -1,7 +1,8 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.changetracking.ui.dialogs;
 
@@ -16,6 +17,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.resource.CompositeImageDescriptor;
@@ -36,24 +38,18 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.unicase.changetracking.common.ChangeTrackingUtil;
 import org.unicase.changetracking.ui.Activator;
-import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.common.dialogs.ModelElementSelectionDialog;
-import org.unicase.ui.common.util.CannotMatchUserInProjectException;
-import org.unicase.ui.common.util.ComboView;
+import org.eclipse.emf.ecp.common.utilities.ComboView;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.NoCurrentUserException;
-import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.ui.unicasecommon.common.util.UnicaseUiUtil;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.common.model.ModelFactory;
 
 /**
  * The attachee selection dialog allows to select a work item to attach a source
@@ -65,7 +61,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * @author jfinis
  * 
  */
-public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDialog {
+public abstract class AdvancedMESelectionDialog extends org.eclipse.emf.ecp.common.dialogs.ModelElementSelectionDialog {
 
 	/**
 	 * The image with which "create new xxx" entries are decorated.
@@ -81,12 +77,12 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 	/**
 	 * The user selection combo box.
 	 */
-	private ComboView<User> userBar;
+	private org.eclipse.emf.ecp.common.utilities.ComboView<User> userBar;
 
 	/**
 	 * The project selection combo box.
 	 */
-	private ComboView<ProjectSpace> projectBar;
+	private org.eclipse.emf.ecp.common.utilities.ComboView<org.eclipse.emf.emfstore.client.model.ProjectSpace> projectBar;
 
 	/**
 	 * This variable is part of a hack which is used to inject new content
@@ -138,7 +134,7 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		setBlockOnOpen(true);
 
 		// Create the "create new" entries
-		Set<EClass> classes = ModelUtil.getSubclasses(TaskPackage.eINSTANCE.getWorkItem());
+		Set<EClass> classes = UnicaseUiUtil.getSubclasses(TaskPackage.eINSTANCE.getWorkItem());
 		for (EClass cls : classes) {
 
 			// Only add class if it is in the list of elements to show
@@ -221,7 +217,7 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		
 		//Do the placement
 		final UnicaseModelElement selectedElement = getSelectedModelElement();
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				ChangeTrackingUtil.putInto(selectedElement, placementDialog.getSelection());
@@ -272,7 +268,7 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 	 * 
 	 * @return the selected project space
 	 */
-	public ProjectSpace getSelectedProjectSpace() {
+	public org.eclipse.emf.emfstore.client.model.ProjectSpace getSelectedProjectSpace() {
 		return projectBar.getSelection();
 	}
 
@@ -337,9 +333,9 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		l.setLayoutData(new GridData(SWT.LEFT));
 		Combo combo = new Combo(subComposite, SWT.READ_ONLY);
 		combo.setLayoutData(new GridData(SWT.LEFT));
-		projectBar = new ComboView<ProjectSpace>(combo);
-		projectBar.addSelectionChangedListener(new ComboView.IComboChangeListener<ProjectSpace>() {
-			public void selectionChanged(ProjectSpace newSelection) {
+		projectBar = new org.eclipse.emf.ecp.common.utilities.ComboView<org.eclipse.emf.emfstore.client.model.ProjectSpace>(combo);
+		projectBar.addSelectionChangedListener(new org.eclipse.emf.ecp.common.utilities.ComboView.IComboChangeListener<org.eclipse.emf.emfstore.client.model.ProjectSpace>() {
+			public void selectionChanged(org.eclipse.emf.emfstore.client.model.ProjectSpace newSelection) {
 				populateUserBar(newSelection, userBar.getSelection(), true);
 			}
 		});
@@ -448,7 +444,7 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 
 		// --- project ---
 		String lastProj = settings.get("LAST_PROJECT");
-		Workspace w = WorkspaceManager.getInstance().getCurrentWorkspace();
+		org.eclipse.emf.emfstore.client.model.Workspace w = WorkspaceManager.getInstance().getCurrentWorkspace();
 
 		ProjectSpace selectedProject = getDefaultProject();
 
@@ -468,7 +464,7 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 
 		String lastUser = settings.get("LAST_USER");
 		if (lastUser != null) {
-			ModelElementId userId = MetamodelFactory.eINSTANCE.createModelElementId();
+			org.eclipse.emf.emfstore.common.model.ModelElementId userId = ModelFactory.eINSTANCE.createModelElementId();
 			userId.setId(lastUser);
 			selectedUser = (User) selectedProject.getProject().getModelElement(userId);
 
@@ -503,9 +499,9 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 		if (selectedUser2 == null) {
 			try {
 				selectedUser2 = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance().getCurrentWorkspace());
-			} catch (NoCurrentUserException e) {
+			} catch (org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException e) {
 
-			} catch (CannotMatchUserInProjectException e) {}
+			} catch (org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException e) {}
 		}
 
 		// Build list of users
@@ -527,7 +523,7 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 	 * @param fireChangeEvents if a change event should be fired
 	 */
 	private void populateProjectBar(ProjectSpace selectedProject2, boolean fireChangeEvents) {
-		Workspace w = WorkspaceManager.getInstance().getCurrentWorkspace();
+		org.eclipse.emf.emfstore.client.model.Workspace w = WorkspaceManager.getInstance().getCurrentWorkspace();
 		EList<ProjectSpace> spaces = w.getProjectSpaces();
 
 		projectBar.setInput(spaces, selectedProject2, fireChangeEvents);
@@ -540,7 +536,7 @@ public abstract class AdvancedMESelectionDialog extends ModelElementSelectionDia
 	 * @return the first project in the workspace.
 	 */
 	private ProjectSpace getDefaultProject() {
-		Workspace w = WorkspaceManager.getInstance().getCurrentWorkspace();
+		org.eclipse.emf.emfstore.client.model.Workspace w = WorkspaceManager.getInstance().getCurrentWorkspace();
 		return w.getProjectSpaces().get(0);
 	}
 

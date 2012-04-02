@@ -1,7 +1,8 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.changetracking.ui.dialogs;
 
@@ -36,10 +37,10 @@ import org.eclipse.swt.widgets.Text;
 import org.unicase.changetracking.common.ChangeTrackingUtil;
 import org.unicase.changetracking.ui.Activator;
 import org.unicase.changetracking.ui.widgets.ImageAndTextLabel;
-import org.unicase.metamodel.Project;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 
 /**
  * Dialog which allows to choose a location in which a newly created model
@@ -65,7 +66,7 @@ public class ModelElementPlacementDialog extends TitleAreaDialog {
 	private boolean allowNameChoosing;
 	private Text nameInput;
 	private String nameText;
-	private ProjectSpace[] projects;
+	private org.eclipse.emf.emfstore.client.model.ProjectSpace[] projects;
 	private String defaultName;
 
 	/**

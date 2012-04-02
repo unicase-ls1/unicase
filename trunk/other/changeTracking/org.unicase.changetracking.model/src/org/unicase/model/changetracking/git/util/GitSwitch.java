@@ -1,25 +1,26 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.model.changetracking.git.util;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
+
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.RepositoryRevision;
 import org.unicase.model.changetracking.RepositoryStream;
+
 import org.unicase.model.changetracking.git.*;
-import org.unicase.model.changetracking.git.GitBranch;
-import org.unicase.model.changetracking.git.GitBranchChangePackage;
-import org.unicase.model.changetracking.git.GitPackage;
-import org.unicase.model.changetracking.git.GitRepository;
-import org.unicase.model.changetracking.git.GitRevision;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +35,8 @@ import org.unicase.model.changetracking.git.GitRevision;
  * @see org.unicase.model.changetracking.git.GitPackage
  * @generated
  */
-public class GitSwitch<T> {
+public class GitSwitch<T>
+{
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -49,8 +51,10 @@ public class GitSwitch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GitSwitch() {
-		if (modelPackage == null) {
+	public GitSwitch()
+	{
+		if (modelPackage == null)
+		{
 			modelPackage = GitPackage.eINSTANCE;
 		}
 	}
@@ -62,7 +66,8 @@ public class GitSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	public T doSwitch(EObject theEObject) {
+	public T doSwitch(EObject theEObject)
+	{
 		return doSwitch(theEObject.eClass(), theEObject);
 	}
 
@@ -73,12 +78,19 @@ public class GitSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
+	protected T doSwitch(EClass theEClass, EObject theEObject)
+	{
+		if (theEClass.eContainer() == modelPackage)
+		{
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		} else {
+		}
+		else
+		{
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
+			return
+				eSuperTypes.isEmpty() ?
+					defaultCase(theEObject) :
+					doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -89,56 +101,48 @@ public class GitSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-		case GitPackage.GIT_BRANCH_CHANGE_PACKAGE: {
-			GitBranchChangePackage gitBranchChangePackage = (GitBranchChangePackage) theEObject;
-			T result = caseGitBranchChangePackage(gitBranchChangePackage);
-			if (result == null)
-				result = caseChangePackage(gitBranchChangePackage);
-			if (result == null)
-				result = caseAttachment(gitBranchChangePackage);
-			if (result == null)
-				result = caseUnicaseModelElement(gitBranchChangePackage);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case GitPackage.GIT_BRANCH: {
-			GitBranch gitBranch = (GitBranch) theEObject;
-			T result = caseGitBranch(gitBranch);
-			if (result == null)
-				result = caseRepositoryStream(gitBranch);
-			if (result == null)
-				result = caseUnicaseModelElement(gitBranch);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case GitPackage.GIT_REVISION: {
-			GitRevision gitRevision = (GitRevision) theEObject;
-			T result = caseGitRevision(gitRevision);
-			if (result == null)
-				result = caseRepositoryRevision(gitRevision);
-			if (result == null)
-				result = caseUnicaseModelElement(gitRevision);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case GitPackage.GIT_REPOSITORY: {
-			GitRepository gitRepository = (GitRepository) theEObject;
-			T result = caseGitRepository(gitRepository);
-			if (result == null)
-				result = caseRepositoryLocation(gitRepository);
-			if (result == null)
-				result = caseUnicaseModelElement(gitRepository);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+	protected T doSwitch(int classifierID, EObject theEObject)
+	{
+		switch (classifierID)
+		{
+			case GitPackage.GIT_BRANCH_CHANGE_PACKAGE:
+			{
+				GitBranchChangePackage gitBranchChangePackage = (GitBranchChangePackage)theEObject;
+				T result = caseGitBranchChangePackage(gitBranchChangePackage);
+				if (result == null) result = caseChangePackage(gitBranchChangePackage);
+				if (result == null) result = caseAttachment(gitBranchChangePackage);
+				if (result == null) result = caseUnicaseModelElement(gitBranchChangePackage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GitPackage.GIT_BRANCH:
+			{
+				GitBranch gitBranch = (GitBranch)theEObject;
+				T result = caseGitBranch(gitBranch);
+				if (result == null) result = caseRepositoryStream(gitBranch);
+				if (result == null) result = caseUnicaseModelElement(gitBranch);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GitPackage.GIT_REVISION:
+			{
+				GitRevision gitRevision = (GitRevision)theEObject;
+				T result = caseGitRevision(gitRevision);
+				if (result == null) result = caseRepositoryRevision(gitRevision);
+				if (result == null) result = caseUnicaseModelElement(gitRevision);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GitPackage.GIT_REPOSITORY:
+			{
+				GitRepository gitRepository = (GitRepository)theEObject;
+				T result = caseGitRepository(gitRepository);
+				if (result == null) result = caseRepositoryLocation(gitRepository);
+				if (result == null) result = caseUnicaseModelElement(gitRepository);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
 		}
 	}
 
@@ -153,7 +157,8 @@ public class GitSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGitBranchChangePackage(GitBranchChangePackage object) {
+	public T caseGitBranchChangePackage(GitBranchChangePackage object)
+	{
 		return null;
 	}
 
@@ -168,7 +173,8 @@ public class GitSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGitBranch(GitBranch object) {
+	public T caseGitBranch(GitBranch object)
+	{
 		return null;
 	}
 
@@ -183,7 +189,8 @@ public class GitSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGitRevision(GitRevision object) {
+	public T caseGitRevision(GitRevision object)
+	{
 		return null;
 	}
 
@@ -198,7 +205,8 @@ public class GitSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGitRepository(GitRepository object) {
+	public T caseGitRepository(GitRepository object)
+	{
 		return null;
 	}
 
@@ -213,7 +221,8 @@ public class GitSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseUnicaseModelElement(UnicaseModelElement object) {
+	public T caseUnicaseModelElement(UnicaseModelElement object)
+	{
 		return null;
 	}
 
@@ -228,7 +237,8 @@ public class GitSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAttachment(Attachment object) {
+	public T caseAttachment(Attachment object)
+	{
 		return null;
 	}
 
@@ -243,7 +253,8 @@ public class GitSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseChangePackage(ChangePackage object) {
+	public T caseChangePackage(ChangePackage object)
+	{
 		return null;
 	}
 
@@ -258,7 +269,8 @@ public class GitSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRepositoryStream(RepositoryStream object) {
+	public T caseRepositoryStream(RepositoryStream object)
+	{
 		return null;
 	}
 
@@ -273,7 +285,8 @@ public class GitSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRepositoryRevision(RepositoryRevision object) {
+	public T caseRepositoryRevision(RepositoryRevision object)
+	{
 		return null;
 	}
 
@@ -288,7 +301,8 @@ public class GitSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRepositoryLocation(RepositoryLocation object) {
+	public T caseRepositoryLocation(RepositoryLocation object)
+	{
 		return null;
 	}
 
@@ -303,7 +317,8 @@ public class GitSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	public T defaultCase(EObject object) {
+	public T defaultCase(EObject object)
+	{
 		return null;
 	}
 

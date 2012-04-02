@@ -1,7 +1,8 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.changetracking.common;
 
@@ -11,14 +12,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.unicase.changetracking.exceptions.ErrorInModelException;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.changetracking.Release;
 import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.RepositoryStream;
 import org.unicase.model.changetracking.Stream;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Main utility class of the changetracking plug-in.
@@ -46,7 +45,7 @@ public final class ChangeTrackingUtil {
 	 */
 	public static void addToProjectRelative(final EObject toAdd, final EObject relativeTo, boolean wrapInUnicaseCommand) {
 		if (wrapInUnicaseCommand) {
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 				@Override
 				protected void doRun() {
 					addToProjectRelative(toAdd, relativeTo, false);
@@ -54,7 +53,7 @@ public final class ChangeTrackingUtil {
 			};
 		} else {
 			if (!placeRelative(toAdd, relativeTo)) {
-				Project p = ModelUtil.getProject(relativeTo);
+				org.eclipse.emf.emfstore.common.model.Project p = org.eclipse.emf.emfstore.common.model.util.ModelUtil.getProject(relativeTo);
 				if (p != null) {
 					p.addModelElement(toAdd);
 				}

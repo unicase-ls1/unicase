@@ -5,9 +5,15 @@ Bundle-SymbolicName: org.unicase.changetracking.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.changetracking.ui.Activator
 Require-Bundle: org.unicase.changetracking;visibility:=reexport,
- org.unicase.ui.unicasecommon
+ org.unicase.ui.unicasecommon,
+ org.eclipse.emf.emfstore.common,
+ org.eclipse.emf.ecp.common,
+ org.eclipse.emf.emfstore.client,
+ org.eclipse.emf.ecp.editor
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.changetracking.ui,
  org.unicase.changetracking.ui.dialogs,
  org.unicase.changetracking.ui.handlers
+Import-Package: org.eclipse.emf.emfstore.common.model,
+ org.eclipse.emf.emfstore.common.model.util

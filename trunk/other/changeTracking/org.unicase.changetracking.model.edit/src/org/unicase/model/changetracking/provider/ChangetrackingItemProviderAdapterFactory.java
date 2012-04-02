@@ -1,7 +1,11 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
+
 package org.unicase.model.changetracking.provider;
 
 import java.util.ArrayList;
@@ -10,6 +14,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -21,6 +26,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
 import org.unicase.model.changetracking.util.ChangetrackingAdapterFactory;
 
 /**
@@ -32,7 +38,8 @@ import org.unicase.model.changetracking.util.ChangetrackingAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ChangetrackingItemProviderAdapterFactory extends ChangetrackingAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class ChangetrackingItemProviderAdapterFactory extends ChangetrackingAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable
+{
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -63,7 +70,8 @@ public class ChangetrackingItemProviderAdapterFactory extends ChangetrackingAdap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChangetrackingItemProviderAdapterFactory() {
+	public ChangetrackingItemProviderAdapterFactory()
+	{
 		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);
@@ -86,8 +94,10 @@ public class ChangetrackingItemProviderAdapterFactory extends ChangetrackingAdap
 	 * @generated
 	 */
 	@Override
-	public Adapter createReleaseAdapter() {
-		if (releaseItemProvider == null) {
+	public Adapter createReleaseAdapter()
+	{
+		if (releaseItemProvider == null)
+		{
 			releaseItemProvider = new ReleaseItemProvider(this);
 		}
 
@@ -109,8 +119,10 @@ public class ChangetrackingItemProviderAdapterFactory extends ChangetrackingAdap
 	 * @generated
 	 */
 	@Override
-	public Adapter createStreamAdapter() {
-		if (streamItemProvider == null) {
+	public Adapter createStreamAdapter()
+	{
+		if (streamItemProvider == null)
+		{
 			streamItemProvider = new StreamItemProvider(this);
 		}
 
@@ -123,7 +135,8 @@ public class ChangetrackingItemProviderAdapterFactory extends ChangetrackingAdap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComposeableAdapterFactory getRootAdapterFactory() {
+	public ComposeableAdapterFactory getRootAdapterFactory()
+	{
 		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
 
@@ -133,7 +146,8 @@ public class ChangetrackingItemProviderAdapterFactory extends ChangetrackingAdap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
+	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory)
+	{
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
 
@@ -143,7 +157,8 @@ public class ChangetrackingItemProviderAdapterFactory extends ChangetrackingAdap
 	 * @generated
 	 */
 	@Override
-	public boolean isFactoryForType(Object type) {
+	public boolean isFactoryForType(Object type)
+	{
 		return supportedTypes.contains(type) || super.isFactoryForType(type);
 	}
 
@@ -154,7 +169,8 @@ public class ChangetrackingItemProviderAdapterFactory extends ChangetrackingAdap
 	 * @generated
 	 */
 	@Override
-	public Adapter adapt(Notifier notifier, Object type) {
+	public Adapter adapt(Notifier notifier, Object type)
+	{
 		return super.adapt(notifier, this);
 	}
 
@@ -164,10 +180,13 @@ public class ChangetrackingItemProviderAdapterFactory extends ChangetrackingAdap
 	 * @generated
 	 */
 	@Override
-	public Object adapt(Object object, Object type) {
-		if (isFactoryForType(type)) {
+	public Object adapt(Object object, Object type)
+	{
+		if (isFactoryForType(type))
+		{
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
+			{
 				return adapter;
 			}
 		}
@@ -181,7 +200,8 @@ public class ChangetrackingItemProviderAdapterFactory extends ChangetrackingAdap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void addListener(INotifyChangedListener notifyChangedListener) {
+	public void addListener(INotifyChangedListener notifyChangedListener)
+	{
 		changeNotifier.addListener(notifyChangedListener);
 	}
 
@@ -191,7 +211,8 @@ public class ChangetrackingItemProviderAdapterFactory extends ChangetrackingAdap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void removeListener(INotifyChangedListener notifyChangedListener) {
+	public void removeListener(INotifyChangedListener notifyChangedListener)
+	{
 		changeNotifier.removeListener(notifyChangedListener);
 	}
 
@@ -201,10 +222,12 @@ public class ChangetrackingItemProviderAdapterFactory extends ChangetrackingAdap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void fireNotifyChanged(Notification notification) {
+	public void fireNotifyChanged(Notification notification)
+	{
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
+		if (parentAdapterFactory != null)
+		{
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
@@ -215,11 +238,10 @@ public class ChangetrackingItemProviderAdapterFactory extends ChangetrackingAdap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void dispose() {
-		if (releaseItemProvider != null)
-			releaseItemProvider.dispose();
-		if (streamItemProvider != null)
-			streamItemProvider.dispose();
+	public void dispose()
+	{
+		if (releaseItemProvider != null) releaseItemProvider.dispose();
+		if (streamItemProvider != null) streamItemProvider.dispose();
 	}
 
 }

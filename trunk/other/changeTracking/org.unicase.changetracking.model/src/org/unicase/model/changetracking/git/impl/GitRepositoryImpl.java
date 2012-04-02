@@ -1,14 +1,21 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.model.changetracking.git.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.unicase.model.changetracking.git.GitPackage;
 import org.unicase.model.changetracking.git.GitRepository;
+
 import org.unicase.model.changetracking.impl.RepositoryLocationImpl;
 
 /**
@@ -25,7 +32,8 @@ import org.unicase.model.changetracking.impl.RepositoryLocationImpl;
  *
  * @generated
  */
-public class GitRepositoryImpl extends RepositoryLocationImpl implements GitRepository {
+public class GitRepositoryImpl extends RepositoryLocationImpl implements GitRepository
+{
 	/**
 	 * The default value of the '{@link #getUrl() <em>Url</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -71,7 +79,8 @@ public class GitRepositoryImpl extends RepositoryLocationImpl implements GitRepo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GitRepositoryImpl() {
+	protected GitRepositoryImpl()
+	{
 		super();
 	}
 
@@ -81,7 +90,8 @@ public class GitRepositoryImpl extends RepositoryLocationImpl implements GitRepo
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return GitPackage.Literals.GIT_REPOSITORY;
 	}
 
@@ -90,7 +100,8 @@ public class GitRepositoryImpl extends RepositoryLocationImpl implements GitRepo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getUrl() {
+	public String getUrl()
+	{
 		return url;
 	}
 
@@ -99,7 +110,8 @@ public class GitRepositoryImpl extends RepositoryLocationImpl implements GitRepo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUrl(String newUrl) {
+	public void setUrl(String newUrl)
+	{
 		String oldUrl = url;
 		url = newUrl;
 		if (eNotificationRequired())
@@ -111,7 +123,8 @@ public class GitRepositoryImpl extends RepositoryLocationImpl implements GitRepo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getIdentifyingCommitHash() {
+	public String getIdentifyingCommitHash()
+	{
 		return identifyingCommitHash;
 	}
 
@@ -120,7 +133,8 @@ public class GitRepositoryImpl extends RepositoryLocationImpl implements GitRepo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIdentifyingCommitHash(String newIdentifyingCommitHash) {
+	public void setIdentifyingCommitHash(String newIdentifyingCommitHash)
+	{
 		String oldIdentifyingCommitHash = identifyingCommitHash;
 		identifyingCommitHash = newIdentifyingCommitHash;
 		if (eNotificationRequired())
@@ -133,12 +147,14 @@ public class GitRepositoryImpl extends RepositoryLocationImpl implements GitRepo
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case GitPackage.GIT_REPOSITORY__URL:
-			return getUrl();
-		case GitPackage.GIT_REPOSITORY__IDENTIFYING_COMMIT_HASH:
-			return getIdentifyingCommitHash();
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
+			case GitPackage.GIT_REPOSITORY__URL:
+				return getUrl();
+			case GitPackage.GIT_REPOSITORY__IDENTIFYING_COMMIT_HASH:
+				return getIdentifyingCommitHash();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -149,14 +165,16 @@ public class GitRepositoryImpl extends RepositoryLocationImpl implements GitRepo
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case GitPackage.GIT_REPOSITORY__URL:
-			setUrl((String) newValue);
-			return;
-		case GitPackage.GIT_REPOSITORY__IDENTIFYING_COMMIT_HASH:
-			setIdentifyingCommitHash((String) newValue);
-			return;
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
+			case GitPackage.GIT_REPOSITORY__URL:
+				setUrl((String)newValue);
+				return;
+			case GitPackage.GIT_REPOSITORY__IDENTIFYING_COMMIT_HASH:
+				setIdentifyingCommitHash((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -167,14 +185,16 @@ public class GitRepositoryImpl extends RepositoryLocationImpl implements GitRepo
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-		case GitPackage.GIT_REPOSITORY__URL:
-			setUrl(URL_EDEFAULT);
-			return;
-		case GitPackage.GIT_REPOSITORY__IDENTIFYING_COMMIT_HASH:
-			setIdentifyingCommitHash(IDENTIFYING_COMMIT_HASH_EDEFAULT);
-			return;
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
+			case GitPackage.GIT_REPOSITORY__URL:
+				setUrl(URL_EDEFAULT);
+				return;
+			case GitPackage.GIT_REPOSITORY__IDENTIFYING_COMMIT_HASH:
+				setIdentifyingCommitHash(IDENTIFYING_COMMIT_HASH_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -185,12 +205,14 @@ public class GitRepositoryImpl extends RepositoryLocationImpl implements GitRepo
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case GitPackage.GIT_REPOSITORY__URL:
-			return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT.equals(url);
-		case GitPackage.GIT_REPOSITORY__IDENTIFYING_COMMIT_HASH:
-			return IDENTIFYING_COMMIT_HASH_EDEFAULT == null ? identifyingCommitHash != null : !IDENTIFYING_COMMIT_HASH_EDEFAULT.equals(identifyingCommitHash);
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
+			case GitPackage.GIT_REPOSITORY__URL:
+				return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT.equals(url);
+			case GitPackage.GIT_REPOSITORY__IDENTIFYING_COMMIT_HASH:
+				return IDENTIFYING_COMMIT_HASH_EDEFAULT == null ? identifyingCommitHash != null : !IDENTIFYING_COMMIT_HASH_EDEFAULT.equals(identifyingCommitHash);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -201,9 +223,9 @@ public class GitRepositoryImpl extends RepositoryLocationImpl implements GitRepo
 	 * @generated
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (url: ");

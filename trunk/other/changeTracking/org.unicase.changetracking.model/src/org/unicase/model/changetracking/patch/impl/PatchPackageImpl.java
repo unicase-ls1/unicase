@@ -1,19 +1,30 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.model.changetracking.patch.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.unicase.model.ModelPackage;
+
 import org.unicase.model.attachment.AttachmentPackage;
+
 import org.unicase.model.changetracking.ChangetrackingPackage;
+
 import org.unicase.model.changetracking.git.GitPackage;
+
 import org.unicase.model.changetracking.git.impl.GitPackageImpl;
+
 import org.unicase.model.changetracking.impl.ChangetrackingPackageImpl;
+
 import org.unicase.model.changetracking.patch.PatchChangePackage;
 import org.unicase.model.changetracking.patch.PatchFactory;
 import org.unicase.model.changetracking.patch.PatchPackage;
@@ -24,7 +35,8 @@ import org.unicase.model.changetracking.patch.PatchPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
+public class PatchPackageImpl extends EPackageImpl implements PatchPackage
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -47,7 +59,8 @@ public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
 	 * @see #init()
 	 * @generated
 	 */
-	private PatchPackageImpl() {
+	private PatchPackageImpl()
+	{
 		super(eNS_URI, PatchFactory.eINSTANCE);
 	}
 
@@ -70,12 +83,12 @@ public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static PatchPackage init() {
-		if (isInited)
-			return (PatchPackage) EPackage.Registry.INSTANCE.getEPackage(PatchPackage.eNS_URI);
+	public static PatchPackage init()
+	{
+		if (isInited) return (PatchPackage)EPackage.Registry.INSTANCE.getEPackage(PatchPackage.eNS_URI);
 
 		// Obtain or create and register package
-		PatchPackageImpl thePatchPackage = (PatchPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof PatchPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new PatchPackageImpl());
+		PatchPackageImpl thePatchPackage = (PatchPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof PatchPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new PatchPackageImpl());
 
 		isInited = true;
 
@@ -84,8 +97,8 @@ public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
 		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ChangetrackingPackageImpl theChangetrackingPackage = (ChangetrackingPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI) instanceof ChangetrackingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI) : ChangetrackingPackage.eINSTANCE);
-		GitPackageImpl theGitPackage = (GitPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(GitPackage.eNS_URI) instanceof GitPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GitPackage.eNS_URI) : GitPackage.eINSTANCE);
+		ChangetrackingPackageImpl theChangetrackingPackage = (ChangetrackingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI) instanceof ChangetrackingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI) : ChangetrackingPackage.eINSTANCE);
+		GitPackageImpl theGitPackage = (GitPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GitPackage.eNS_URI) instanceof GitPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GitPackage.eNS_URI) : GitPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		thePatchPackage.createPackageContents();
@@ -100,6 +113,7 @@ public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
 		// Mark meta-data to indicate it can't be changed
 		thePatchPackage.freeze();
 
+  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(PatchPackage.eNS_URI, thePatchPackage);
 		return thePatchPackage;
@@ -110,7 +124,8 @@ public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPatchChangePackage() {
+	public EClass getPatchChangePackage()
+	{
 		return patchChangePackageEClass;
 	}
 
@@ -119,8 +134,9 @@ public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PatchFactory getPatchFactory() {
-		return (PatchFactory) getEFactoryInstance();
+	public PatchFactory getPatchFactory()
+	{
+		return (PatchFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -137,9 +153,9 @@ public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void createPackageContents() {
-		if (isCreated)
-			return;
+	public void createPackageContents()
+	{
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -160,9 +176,9 @@ public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void initializePackageContents() {
-		if (isInitialized)
-			return;
+	public void initializePackageContents()
+	{
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -171,8 +187,8 @@ public class PatchPackageImpl extends EPackageImpl implements PatchPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ChangetrackingPackage theChangetrackingPackage = (ChangetrackingPackage) EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI);
-		AttachmentPackage theAttachmentPackage = (AttachmentPackage) EPackage.Registry.INSTANCE.getEPackage(AttachmentPackage.eNS_URI);
+		ChangetrackingPackage theChangetrackingPackage = (ChangetrackingPackage)EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI);
+		AttachmentPackage theAttachmentPackage = (AttachmentPackage)EPackage.Registry.INSTANCE.getEPackage(AttachmentPackage.eNS_URI);
 
 		// Create type parameters
 

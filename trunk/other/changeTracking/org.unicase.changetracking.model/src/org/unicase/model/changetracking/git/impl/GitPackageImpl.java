@@ -1,7 +1,10 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.model.changetracking.git.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -9,17 +12,24 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.unicase.model.ModelPackage;
+
 import org.unicase.model.changetracking.ChangetrackingPackage;
+
 import org.unicase.model.changetracking.git.GitBranch;
 import org.unicase.model.changetracking.git.GitBranchChangePackage;
 import org.unicase.model.changetracking.git.GitFactory;
 import org.unicase.model.changetracking.git.GitPackage;
 import org.unicase.model.changetracking.git.GitRepository;
 import org.unicase.model.changetracking.git.GitRevision;
+
 import org.unicase.model.changetracking.impl.ChangetrackingPackageImpl;
+
 import org.unicase.model.changetracking.patch.PatchPackage;
+
 import org.unicase.model.changetracking.patch.impl.PatchPackageImpl;
 
 /**
@@ -28,7 +38,8 @@ import org.unicase.model.changetracking.patch.impl.PatchPackageImpl;
  * <!-- end-user-doc -->
  * @generated
  */
-public class GitPackageImpl extends EPackageImpl implements GitPackage {
+public class GitPackageImpl extends EPackageImpl implements GitPackage
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,7 +83,8 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 	 * @see #init()
 	 * @generated
 	 */
-	private GitPackageImpl() {
+	private GitPackageImpl()
+	{
 		super(eNS_URI, GitFactory.eINSTANCE);
 	}
 
@@ -95,12 +107,12 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static GitPackage init() {
-		if (isInited)
-			return (GitPackage) EPackage.Registry.INSTANCE.getEPackage(GitPackage.eNS_URI);
+	public static GitPackage init()
+	{
+		if (isInited) return (GitPackage)EPackage.Registry.INSTANCE.getEPackage(GitPackage.eNS_URI);
 
 		// Obtain or create and register package
-		GitPackageImpl theGitPackage = (GitPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof GitPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new GitPackageImpl());
+		GitPackageImpl theGitPackage = (GitPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof GitPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new GitPackageImpl());
 
 		isInited = true;
 
@@ -109,8 +121,8 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ChangetrackingPackageImpl theChangetrackingPackage = (ChangetrackingPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI) instanceof ChangetrackingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI) : ChangetrackingPackage.eINSTANCE);
-		PatchPackageImpl thePatchPackage = (PatchPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(PatchPackage.eNS_URI) instanceof PatchPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PatchPackage.eNS_URI) : PatchPackage.eINSTANCE);
+		ChangetrackingPackageImpl theChangetrackingPackage = (ChangetrackingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI) instanceof ChangetrackingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI) : ChangetrackingPackage.eINSTANCE);
+		PatchPackageImpl thePatchPackage = (PatchPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(PatchPackage.eNS_URI) instanceof PatchPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PatchPackage.eNS_URI) : PatchPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theGitPackage.createPackageContents();
@@ -125,6 +137,7 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 		// Mark meta-data to indicate it can't be changed
 		theGitPackage.freeze();
 
+  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(GitPackage.eNS_URI, theGitPackage);
 		return theGitPackage;
@@ -135,7 +148,8 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGitBranchChangePackage() {
+	public EClass getGitBranchChangePackage()
+	{
 		return gitBranchChangePackageEClass;
 	}
 
@@ -144,8 +158,9 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGitBranchChangePackage_Branch() {
-		return (EReference) gitBranchChangePackageEClass.getEStructuralFeatures().get(0);
+	public EReference getGitBranchChangePackage_Branch()
+	{
+		return (EReference)gitBranchChangePackageEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -153,7 +168,8 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGitBranch() {
+	public EClass getGitBranch()
+	{
 		return gitBranchEClass;
 	}
 
@@ -162,8 +178,9 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGitBranch_ReferringChangePackages() {
-		return (EReference) gitBranchEClass.getEStructuralFeatures().get(0);
+	public EReference getGitBranch_ReferringChangePackages()
+	{
+		return (EReference)gitBranchEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -171,8 +188,9 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGitBranch_BranchName() {
-		return (EAttribute) gitBranchEClass.getEStructuralFeatures().get(1);
+	public EAttribute getGitBranch_BranchName()
+	{
+		return (EAttribute)gitBranchEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -180,7 +198,8 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGitRevision() {
+	public EClass getGitRevision()
+	{
 		return gitRevisionEClass;
 	}
 
@@ -189,8 +208,9 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGitRevision_Hash() {
-		return (EAttribute) gitRevisionEClass.getEStructuralFeatures().get(0);
+	public EAttribute getGitRevision_Hash()
+	{
+		return (EAttribute)gitRevisionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -198,8 +218,9 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGitRevision_TagName() {
-		return (EAttribute) gitRevisionEClass.getEStructuralFeatures().get(1);
+	public EAttribute getGitRevision_TagName()
+	{
+		return (EAttribute)gitRevisionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -207,7 +228,8 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGitRepository() {
+	public EClass getGitRepository()
+	{
 		return gitRepositoryEClass;
 	}
 
@@ -216,8 +238,9 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGitRepository_Url() {
-		return (EAttribute) gitRepositoryEClass.getEStructuralFeatures().get(0);
+	public EAttribute getGitRepository_Url()
+	{
+		return (EAttribute)gitRepositoryEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -225,8 +248,9 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGitRepository_IdentifyingCommitHash() {
-		return (EAttribute) gitRepositoryEClass.getEStructuralFeatures().get(1);
+	public EAttribute getGitRepository_IdentifyingCommitHash()
+	{
+		return (EAttribute)gitRepositoryEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -234,8 +258,9 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GitFactory getGitFactory() {
-		return (GitFactory) getEFactoryInstance();
+	public GitFactory getGitFactory()
+	{
+		return (GitFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -252,9 +277,9 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void createPackageContents() {
-		if (isCreated)
-			return;
+	public void createPackageContents()
+	{
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -288,9 +313,9 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void initializePackageContents() {
-		if (isInitialized)
-			return;
+	public void initializePackageContents()
+	{
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -299,8 +324,8 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ChangetrackingPackage theChangetrackingPackage = (ChangetrackingPackage) EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		ChangetrackingPackage theChangetrackingPackage = (ChangetrackingPackage)EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -339,9 +364,17 @@ public class GitPackageImpl extends EPackageImpl implements GitPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createOrgAnnotations() {
-		String source = "org.unicase.ui.meeditor";
-		addAnnotation(getGitBranch_ReferringChangePackages(), source, new String[] { "priority", "15.0", "position", "right" });
+	protected void createOrgAnnotations()
+	{
+		String source = "org.unicase.ui.meeditor";		
+		addAnnotation
+		  (getGitBranch_ReferringChangePackages(), 
+		   source, 
+		   new String[] 
+		   {
+			 "priority", "15.0",
+			 "position", "right"
+		   });
 	}
 
 } //GitPackageImpl

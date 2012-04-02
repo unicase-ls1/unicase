@@ -1,20 +1,27 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.model.changetracking.patch.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
+
 import org.unicase.model.attachment.FileAttachment;
+
 import org.unicase.model.changetracking.ChangePackage;
+
 import org.unicase.model.changetracking.patch.*;
-import org.unicase.model.changetracking.patch.PatchChangePackage;
-import org.unicase.model.changetracking.patch.PatchPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +31,8 @@ import org.unicase.model.changetracking.patch.PatchPackage;
  * @see org.unicase.model.changetracking.patch.PatchPackage
  * @generated
  */
-public class PatchAdapterFactory extends AdapterFactoryImpl {
+public class PatchAdapterFactory extends AdapterFactoryImpl
+{
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -39,8 +47,10 @@ public class PatchAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PatchAdapterFactory() {
-		if (modelPackage == null) {
+	public PatchAdapterFactory()
+	{
+		if (modelPackage == null)
+		{
 			modelPackage = PatchPackage.eINSTANCE;
 		}
 	}
@@ -54,12 +64,15 @@ public class PatchAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	@Override
-	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
+	public boolean isFactoryForType(Object object)
+	{
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+		if (object instanceof EObject)
+		{
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -70,37 +83,40 @@ public class PatchAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PatchSwitch<Adapter> modelSwitch = new PatchSwitch<Adapter>() {
-		@Override
-		public Adapter casePatchChangePackage(PatchChangePackage object) {
-			return createPatchChangePackageAdapter();
-		}
-
-		@Override
-		public Adapter caseUnicaseModelElement(UnicaseModelElement object) {
-			return createUnicaseModelElementAdapter();
-		}
-
-		@Override
-		public Adapter caseAttachment(Attachment object) {
-			return createAttachmentAdapter();
-		}
-
-		@Override
-		public Adapter caseChangePackage(ChangePackage object) {
-			return createChangePackageAdapter();
-		}
-
-		@Override
-		public Adapter caseFileAttachment(FileAttachment object) {
-			return createFileAttachmentAdapter();
-		}
-
-		@Override
-		public Adapter defaultCase(EObject object) {
-			return createEObjectAdapter();
-		}
-	};
+	protected PatchSwitch<Adapter> modelSwitch =
+		new PatchSwitch<Adapter>()
+		{
+			@Override
+			public Adapter casePatchChangePackage(PatchChangePackage object)
+			{
+				return createPatchChangePackageAdapter();
+			}
+			@Override
+			public Adapter caseUnicaseModelElement(UnicaseModelElement object)
+			{
+				return createUnicaseModelElementAdapter();
+			}
+			@Override
+			public Adapter caseAttachment(Attachment object)
+			{
+				return createAttachmentAdapter();
+			}
+			@Override
+			public Adapter caseChangePackage(ChangePackage object)
+			{
+				return createChangePackageAdapter();
+			}
+			@Override
+			public Adapter caseFileAttachment(FileAttachment object)
+			{
+				return createFileAttachmentAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object)
+			{
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -111,9 +127,11 @@ public class PatchAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	@Override
-	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+	public Adapter createAdapter(Notifier target)
+	{
+		return modelSwitch.doSwitch((EObject)target);
 	}
+
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.model.changetracking.patch.PatchChangePackage <em>Change Package</em>}'.
@@ -125,7 +143,8 @@ public class PatchAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.changetracking.patch.PatchChangePackage
 	 * @generated
 	 */
-	public Adapter createPatchChangePackageAdapter() {
+	public Adapter createPatchChangePackageAdapter()
+	{
 		return null;
 	}
 
@@ -139,7 +158,8 @@ public class PatchAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.UnicaseModelElement
 	 * @generated
 	 */
-	public Adapter createUnicaseModelElementAdapter() {
+	public Adapter createUnicaseModelElementAdapter()
+	{
 		return null;
 	}
 
@@ -153,7 +173,8 @@ public class PatchAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.Attachment
 	 * @generated
 	 */
-	public Adapter createAttachmentAdapter() {
+	public Adapter createAttachmentAdapter()
+	{
 		return null;
 	}
 
@@ -167,7 +188,8 @@ public class PatchAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.changetracking.ChangePackage
 	 * @generated
 	 */
-	public Adapter createChangePackageAdapter() {
+	public Adapter createChangePackageAdapter()
+	{
 		return null;
 	}
 
@@ -181,7 +203,8 @@ public class PatchAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.attachment.FileAttachment
 	 * @generated
 	 */
-	public Adapter createFileAttachmentAdapter() {
+	public Adapter createFileAttachmentAdapter()
+	{
 		return null;
 	}
 
@@ -193,7 +216,8 @@ public class PatchAdapterFactory extends AdapterFactoryImpl {
 	 * @return the new adapter.
 	 * @generated
 	 */
-	public Adapter createEObjectAdapter() {
+	public Adapter createEObjectAdapter()
+	{
 		return null;
 	}
 

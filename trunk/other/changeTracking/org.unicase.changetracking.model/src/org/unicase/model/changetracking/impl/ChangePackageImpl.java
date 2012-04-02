@@ -1,14 +1,21 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.model.changetracking.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.ChangetrackingPackage;
+
 import org.unicase.model.impl.AttachmentImpl;
 
 /**
@@ -24,7 +31,8 @@ import org.unicase.model.impl.AttachmentImpl;
  *
  * @generated
  */
-public abstract class ChangePackageImpl extends AttachmentImpl implements ChangePackage {
+public abstract class ChangePackageImpl extends AttachmentImpl implements ChangePackage
+{
 	/**
 	 * The default value of the '{@link #getShortDescription() <em>Short Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -50,7 +58,8 @@ public abstract class ChangePackageImpl extends AttachmentImpl implements Change
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ChangePackageImpl() {
+	protected ChangePackageImpl()
+	{
 		super();
 	}
 
@@ -60,7 +69,8 @@ public abstract class ChangePackageImpl extends AttachmentImpl implements Change
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return ChangetrackingPackage.Literals.CHANGE_PACKAGE;
 	}
 
@@ -69,7 +79,8 @@ public abstract class ChangePackageImpl extends AttachmentImpl implements Change
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getShortDescription() {
+	public String getShortDescription()
+	{
 		return shortDescription;
 	}
 
@@ -78,7 +89,8 @@ public abstract class ChangePackageImpl extends AttachmentImpl implements Change
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setShortDescription(String newShortDescription) {
+	public void setShortDescription(String newShortDescription)
+	{
 		String oldShortDescription = shortDescription;
 		shortDescription = newShortDescription;
 		if (eNotificationRequired())
@@ -91,10 +103,12 @@ public abstract class ChangePackageImpl extends AttachmentImpl implements Change
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case ChangetrackingPackage.CHANGE_PACKAGE__SHORT_DESCRIPTION:
-			return getShortDescription();
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
+			case ChangetrackingPackage.CHANGE_PACKAGE__SHORT_DESCRIPTION:
+				return getShortDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -105,11 +119,13 @@ public abstract class ChangePackageImpl extends AttachmentImpl implements Change
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case ChangetrackingPackage.CHANGE_PACKAGE__SHORT_DESCRIPTION:
-			setShortDescription((String) newValue);
-			return;
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
+			case ChangetrackingPackage.CHANGE_PACKAGE__SHORT_DESCRIPTION:
+				setShortDescription((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -120,11 +136,13 @@ public abstract class ChangePackageImpl extends AttachmentImpl implements Change
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-		case ChangetrackingPackage.CHANGE_PACKAGE__SHORT_DESCRIPTION:
-			setShortDescription(SHORT_DESCRIPTION_EDEFAULT);
-			return;
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
+			case ChangetrackingPackage.CHANGE_PACKAGE__SHORT_DESCRIPTION:
+				setShortDescription(SHORT_DESCRIPTION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -135,10 +153,12 @@ public abstract class ChangePackageImpl extends AttachmentImpl implements Change
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case ChangetrackingPackage.CHANGE_PACKAGE__SHORT_DESCRIPTION:
-			return SHORT_DESCRIPTION_EDEFAULT == null ? shortDescription != null : !SHORT_DESCRIPTION_EDEFAULT.equals(shortDescription);
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
+			case ChangetrackingPackage.CHANGE_PACKAGE__SHORT_DESCRIPTION:
+				return SHORT_DESCRIPTION_EDEFAULT == null ? shortDescription != null : !SHORT_DESCRIPTION_EDEFAULT.equals(shortDescription);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -149,9 +169,9 @@ public abstract class ChangePackageImpl extends AttachmentImpl implements Change
 	 * @generated
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (shortDescription: ");

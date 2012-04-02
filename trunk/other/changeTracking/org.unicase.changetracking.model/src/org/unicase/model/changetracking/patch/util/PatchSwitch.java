@@ -1,20 +1,25 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.model.changetracking.patch.util;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
+
 import org.unicase.model.attachment.FileAttachment;
+
 import org.unicase.model.changetracking.ChangePackage;
+
 import org.unicase.model.changetracking.patch.*;
-import org.unicase.model.changetracking.patch.PatchChangePackage;
-import org.unicase.model.changetracking.patch.PatchPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +34,8 @@ import org.unicase.model.changetracking.patch.PatchPackage;
  * @see org.unicase.model.changetracking.patch.PatchPackage
  * @generated
  */
-public class PatchSwitch<T> {
+public class PatchSwitch<T>
+{
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -44,8 +50,10 @@ public class PatchSwitch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PatchSwitch() {
-		if (modelPackage == null) {
+	public PatchSwitch()
+	{
+		if (modelPackage == null)
+		{
 			modelPackage = PatchPackage.eINSTANCE;
 		}
 	}
@@ -57,7 +65,8 @@ public class PatchSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	public T doSwitch(EObject theEObject) {
+	public T doSwitch(EObject theEObject)
+	{
 		return doSwitch(theEObject.eClass(), theEObject);
 	}
 
@@ -68,12 +77,19 @@ public class PatchSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
+	protected T doSwitch(EClass theEClass, EObject theEObject)
+	{
+		if (theEClass.eContainer() == modelPackage)
+		{
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		} else {
+		}
+		else
+		{
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
+			return
+				eSuperTypes.isEmpty() ?
+					defaultCase(theEObject) :
+					doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -84,25 +100,22 @@ public class PatchSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-		case PatchPackage.PATCH_CHANGE_PACKAGE: {
-			PatchChangePackage patchChangePackage = (PatchChangePackage) theEObject;
-			T result = casePatchChangePackage(patchChangePackage);
-			if (result == null)
-				result = caseChangePackage(patchChangePackage);
-			if (result == null)
-				result = caseFileAttachment(patchChangePackage);
-			if (result == null)
-				result = caseAttachment(patchChangePackage);
-			if (result == null)
-				result = caseUnicaseModelElement(patchChangePackage);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+	protected T doSwitch(int classifierID, EObject theEObject)
+	{
+		switch (classifierID)
+		{
+			case PatchPackage.PATCH_CHANGE_PACKAGE:
+			{
+				PatchChangePackage patchChangePackage = (PatchChangePackage)theEObject;
+				T result = casePatchChangePackage(patchChangePackage);
+				if (result == null) result = caseChangePackage(patchChangePackage);
+				if (result == null) result = caseFileAttachment(patchChangePackage);
+				if (result == null) result = caseAttachment(patchChangePackage);
+				if (result == null) result = caseUnicaseModelElement(patchChangePackage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
 		}
 	}
 
@@ -117,7 +130,8 @@ public class PatchSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePatchChangePackage(PatchChangePackage object) {
+	public T casePatchChangePackage(PatchChangePackage object)
+	{
 		return null;
 	}
 
@@ -132,7 +146,8 @@ public class PatchSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseUnicaseModelElement(UnicaseModelElement object) {
+	public T caseUnicaseModelElement(UnicaseModelElement object)
+	{
 		return null;
 	}
 
@@ -147,7 +162,8 @@ public class PatchSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAttachment(Attachment object) {
+	public T caseAttachment(Attachment object)
+	{
 		return null;
 	}
 
@@ -162,7 +178,8 @@ public class PatchSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseChangePackage(ChangePackage object) {
+	public T caseChangePackage(ChangePackage object)
+	{
 		return null;
 	}
 
@@ -177,7 +194,8 @@ public class PatchSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFileAttachment(FileAttachment object) {
+	public T caseFileAttachment(FileAttachment object)
+	{
 		return null;
 	}
 
@@ -192,7 +210,8 @@ public class PatchSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	public T defaultCase(EObject object) {
+	public T defaultCase(EObject object)
+	{
 		return null;
 	}
 

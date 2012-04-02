@@ -1,23 +1,22 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.model.changetracking.util;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
+
 import org.unicase.model.changetracking.*;
-import org.unicase.model.changetracking.ChangePackage;
-import org.unicase.model.changetracking.ChangetrackingPackage;
-import org.unicase.model.changetracking.Release;
-import org.unicase.model.changetracking.RepositoryLocation;
-import org.unicase.model.changetracking.RepositoryRevision;
-import org.unicase.model.changetracking.RepositoryStream;
-import org.unicase.model.changetracking.Stream;
+
 import org.unicase.model.release.AbstractRelease;
 
 /**
@@ -33,7 +32,8 @@ import org.unicase.model.release.AbstractRelease;
  * @see org.unicase.model.changetracking.ChangetrackingPackage
  * @generated
  */
-public class ChangetrackingSwitch<T> {
+public class ChangetrackingSwitch<T>
+{
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -48,8 +48,10 @@ public class ChangetrackingSwitch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChangetrackingSwitch() {
-		if (modelPackage == null) {
+	public ChangetrackingSwitch()
+	{
+		if (modelPackage == null)
+		{
 			modelPackage = ChangetrackingPackage.eINSTANCE;
 		}
 	}
@@ -61,7 +63,8 @@ public class ChangetrackingSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	public T doSwitch(EObject theEObject) {
+	public T doSwitch(EObject theEObject)
+	{
 		return doSwitch(theEObject.eClass(), theEObject);
 	}
 
@@ -72,12 +75,19 @@ public class ChangetrackingSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
+	protected T doSwitch(EClass theEClass, EObject theEObject)
+	{
+		if (theEClass.eContainer() == modelPackage)
+		{
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		} else {
+		}
+		else
+		{
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
+			return
+				eSuperTypes.isEmpty() ?
+					defaultCase(theEObject) :
+					doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -88,68 +98,61 @@ public class ChangetrackingSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-		case ChangetrackingPackage.RELEASE: {
-			Release release = (Release) theEObject;
-			T result = caseRelease(release);
-			if (result == null)
-				result = caseAbstractRelease(release);
-			if (result == null)
-				result = caseUnicaseModelElement(release);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ChangetrackingPackage.STREAM: {
-			Stream stream = (Stream) theEObject;
-			T result = caseStream(stream);
-			if (result == null)
-				result = caseUnicaseModelElement(stream);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ChangetrackingPackage.CHANGE_PACKAGE: {
-			ChangePackage changePackage = (ChangePackage) theEObject;
-			T result = caseChangePackage(changePackage);
-			if (result == null)
-				result = caseAttachment(changePackage);
-			if (result == null)
-				result = caseUnicaseModelElement(changePackage);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ChangetrackingPackage.REPOSITORY_REVISION: {
-			RepositoryRevision repositoryRevision = (RepositoryRevision) theEObject;
-			T result = caseRepositoryRevision(repositoryRevision);
-			if (result == null)
-				result = caseUnicaseModelElement(repositoryRevision);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ChangetrackingPackage.REPOSITORY_STREAM: {
-			RepositoryStream repositoryStream = (RepositoryStream) theEObject;
-			T result = caseRepositoryStream(repositoryStream);
-			if (result == null)
-				result = caseUnicaseModelElement(repositoryStream);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ChangetrackingPackage.REPOSITORY_LOCATION: {
-			RepositoryLocation repositoryLocation = (RepositoryLocation) theEObject;
-			T result = caseRepositoryLocation(repositoryLocation);
-			if (result == null)
-				result = caseUnicaseModelElement(repositoryLocation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+	protected T doSwitch(int classifierID, EObject theEObject)
+	{
+		switch (classifierID)
+		{
+			case ChangetrackingPackage.RELEASE:
+			{
+				Release release = (Release)theEObject;
+				T result = caseRelease(release);
+				if (result == null) result = caseAbstractRelease(release);
+				if (result == null) result = caseUnicaseModelElement(release);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ChangetrackingPackage.STREAM:
+			{
+				Stream stream = (Stream)theEObject;
+				T result = caseStream(stream);
+				if (result == null) result = caseUnicaseModelElement(stream);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ChangetrackingPackage.CHANGE_PACKAGE:
+			{
+				ChangePackage changePackage = (ChangePackage)theEObject;
+				T result = caseChangePackage(changePackage);
+				if (result == null) result = caseAttachment(changePackage);
+				if (result == null) result = caseUnicaseModelElement(changePackage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ChangetrackingPackage.REPOSITORY_REVISION:
+			{
+				RepositoryRevision repositoryRevision = (RepositoryRevision)theEObject;
+				T result = caseRepositoryRevision(repositoryRevision);
+				if (result == null) result = caseUnicaseModelElement(repositoryRevision);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ChangetrackingPackage.REPOSITORY_STREAM:
+			{
+				RepositoryStream repositoryStream = (RepositoryStream)theEObject;
+				T result = caseRepositoryStream(repositoryStream);
+				if (result == null) result = caseUnicaseModelElement(repositoryStream);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ChangetrackingPackage.REPOSITORY_LOCATION:
+			{
+				RepositoryLocation repositoryLocation = (RepositoryLocation)theEObject;
+				T result = caseRepositoryLocation(repositoryLocation);
+				if (result == null) result = caseUnicaseModelElement(repositoryLocation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
 		}
 	}
 
@@ -164,7 +167,8 @@ public class ChangetrackingSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRelease(Release object) {
+	public T caseRelease(Release object)
+	{
 		return null;
 	}
 
@@ -179,7 +183,8 @@ public class ChangetrackingSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStream(Stream object) {
+	public T caseStream(Stream object)
+	{
 		return null;
 	}
 
@@ -194,7 +199,8 @@ public class ChangetrackingSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseChangePackage(ChangePackage object) {
+	public T caseChangePackage(ChangePackage object)
+	{
 		return null;
 	}
 
@@ -209,7 +215,8 @@ public class ChangetrackingSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRepositoryRevision(RepositoryRevision object) {
+	public T caseRepositoryRevision(RepositoryRevision object)
+	{
 		return null;
 	}
 
@@ -224,7 +231,8 @@ public class ChangetrackingSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRepositoryStream(RepositoryStream object) {
+	public T caseRepositoryStream(RepositoryStream object)
+	{
 		return null;
 	}
 
@@ -239,7 +247,8 @@ public class ChangetrackingSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRepositoryLocation(RepositoryLocation object) {
+	public T caseRepositoryLocation(RepositoryLocation object)
+	{
 		return null;
 	}
 
@@ -254,7 +263,8 @@ public class ChangetrackingSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseUnicaseModelElement(UnicaseModelElement object) {
+	public T caseUnicaseModelElement(UnicaseModelElement object)
+	{
 		return null;
 	}
 
@@ -269,7 +279,8 @@ public class ChangetrackingSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAbstractRelease(AbstractRelease object) {
+	public T caseAbstractRelease(AbstractRelease object)
+	{
 		return null;
 	}
 
@@ -284,7 +295,8 @@ public class ChangetrackingSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAttachment(Attachment object) {
+	public T caseAttachment(Attachment object)
+	{
 		return null;
 	}
 
@@ -299,7 +311,8 @@ public class ChangetrackingSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	public T defaultCase(EObject object) {
+	public T defaultCase(EObject object)
+	{
 		return null;
 	}
 

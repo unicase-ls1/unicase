@@ -13,3 +13,5 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: 
  org.unicase.changetracking.git,
  org.unicase.changetracking.git.common
+Import-Package: org.eclipse.emf.emfstore.common.model,
+ org.eclipse.emf.emfstore.common.model.util

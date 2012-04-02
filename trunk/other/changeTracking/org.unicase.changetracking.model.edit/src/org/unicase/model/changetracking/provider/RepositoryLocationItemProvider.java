@@ -1,15 +1,22 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
+
 package org.unicase.model.changetracking.provider;
+
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -17,8 +24,10 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
 import org.unicase.model.changetracking.ChangetrackingPackage;
 import org.unicase.model.changetracking.RepositoryLocation;
+
 import org.unicase.model.provider.UnicaseModelElementItemProvider;
 
 /**
@@ -27,14 +36,23 @@ import org.unicase.model.provider.UnicaseModelElementItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RepositoryLocationItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class RepositoryLocationItemProvider
+	extends UnicaseModelElementItemProvider
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource
+{
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RepositoryLocationItemProvider(AdapterFactory adapterFactory) {
+	public RepositoryLocationItemProvider(AdapterFactory adapterFactory)
+	{
 		super(adapterFactory);
 	}
 
@@ -45,8 +63,10 @@ public class RepositoryLocationItemProvider extends UnicaseModelElementItemProvi
 	 * @generated
 	 */
 	@Override
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addStreamsPropertyDescriptor(object);
@@ -60,8 +80,21 @@ public class RepositoryLocationItemProvider extends UnicaseModelElementItemProvi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStreamsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_RepositoryLocation_streams_feature"), getString("_UI_PropertyDescriptor_description", "_UI_RepositoryLocation_streams_feature", "_UI_RepositoryLocation_type"), ChangetrackingPackage.Literals.REPOSITORY_LOCATION__STREAMS, true, false, true, null, null, null));
+	protected void addStreamsPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_RepositoryLocation_streams_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RepositoryLocation_streams_feature", "_UI_RepositoryLocation_type"),
+				 ChangetrackingPackage.Literals.REPOSITORY_LOCATION__STREAMS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -71,9 +104,12 @@ public class RepositoryLocationItemProvider extends UnicaseModelElementItemProvi
 	 * @generated
 	 */
 	@Override
-	public String getText(Object object) {
-		String label = ((RepositoryLocation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_RepositoryLocation_type") : getString("_UI_RepositoryLocation_type") + " " + label;
+	public String getText(Object object)
+	{
+		String label = ((RepositoryLocation)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_RepositoryLocation_type") :
+			getString("_UI_RepositoryLocation_type") + " " + label;
 	}
 
 	/**
@@ -84,7 +120,8 @@ public class RepositoryLocationItemProvider extends UnicaseModelElementItemProvi
 	 * @generated
 	 */
 	@Override
-	public void notifyChanged(Notification notification) {
+	public void notifyChanged(Notification notification)
+	{
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -97,7 +134,8 @@ public class RepositoryLocationItemProvider extends UnicaseModelElementItemProvi
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
+	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -108,7 +146,8 @@ public class RepositoryLocationItemProvider extends UnicaseModelElementItemProvi
 	 * @generated
 	 */
 	@Override
-	public ResourceLocator getResourceLocator() {
+	public ResourceLocator getResourceLocator()
+	{
 		return ChangeTrackingEditPlugin.INSTANCE;
 	}
 

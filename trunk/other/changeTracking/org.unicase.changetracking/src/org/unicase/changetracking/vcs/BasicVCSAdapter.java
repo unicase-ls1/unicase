@@ -1,7 +1,8 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.changetracking.vcs;
 
@@ -18,7 +19,6 @@ import org.unicase.changetracking.exceptions.NotSupportedByAdapterException;
 import org.unicase.changetracking.exceptions.VCSException;
 import org.unicase.changetracking.release.ReleaseBuildingSettings;
 import org.unicase.changetracking.release.ReleaseCheckReport;
-import org.unicase.metamodel.Project;
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.Release;
 import org.unicase.model.changetracking.RepositoryLocation;
@@ -124,7 +124,7 @@ public abstract class BasicVCSAdapter implements IVCSAdapter {
 	/**
 	 * {@inheritDoc}
 	 */
-	public RepositoryLocation findRepoLocation(IProject[] workspaceProjects, Project unicaseProject) throws VCSException {
+	public RepositoryLocation findRepoLocation(IProject[] workspaceProjects, org.eclipse.emf.emfstore.common.model.Project unicaseProject) throws VCSException {
 		throw new NotSupportedByAdapterException("repository location retrieval");
 	}
 
