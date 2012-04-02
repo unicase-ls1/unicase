@@ -1,14 +1,21 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.model.changetracking.git.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.unicase.model.changetracking.git.GitPackage;
 import org.unicase.model.changetracking.git.GitRevision;
+
 import org.unicase.model.changetracking.impl.RepositoryRevisionImpl;
 
 /**
@@ -25,7 +32,8 @@ import org.unicase.model.changetracking.impl.RepositoryRevisionImpl;
  *
  * @generated
  */
-public class GitRevisionImpl extends RepositoryRevisionImpl implements GitRevision {
+public class GitRevisionImpl extends RepositoryRevisionImpl implements GitRevision
+{
 	/**
 	 * The default value of the '{@link #getHash() <em>Hash</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -71,7 +79,8 @@ public class GitRevisionImpl extends RepositoryRevisionImpl implements GitRevisi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GitRevisionImpl() {
+	protected GitRevisionImpl()
+	{
 		super();
 	}
 
@@ -81,7 +90,8 @@ public class GitRevisionImpl extends RepositoryRevisionImpl implements GitRevisi
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return GitPackage.Literals.GIT_REVISION;
 	}
 
@@ -90,7 +100,8 @@ public class GitRevisionImpl extends RepositoryRevisionImpl implements GitRevisi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getHash() {
+	public String getHash()
+	{
 		return hash;
 	}
 
@@ -99,7 +110,8 @@ public class GitRevisionImpl extends RepositoryRevisionImpl implements GitRevisi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHash(String newHash) {
+	public void setHash(String newHash)
+	{
 		String oldHash = hash;
 		hash = newHash;
 		if (eNotificationRequired())
@@ -111,7 +123,8 @@ public class GitRevisionImpl extends RepositoryRevisionImpl implements GitRevisi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getTagName() {
+	public String getTagName()
+	{
 		return tagName;
 	}
 
@@ -120,7 +133,8 @@ public class GitRevisionImpl extends RepositoryRevisionImpl implements GitRevisi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTagName(String newTagName) {
+	public void setTagName(String newTagName)
+	{
 		String oldTagName = tagName;
 		tagName = newTagName;
 		if (eNotificationRequired())
@@ -133,12 +147,14 @@ public class GitRevisionImpl extends RepositoryRevisionImpl implements GitRevisi
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case GitPackage.GIT_REVISION__HASH:
-			return getHash();
-		case GitPackage.GIT_REVISION__TAG_NAME:
-			return getTagName();
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
+			case GitPackage.GIT_REVISION__HASH:
+				return getHash();
+			case GitPackage.GIT_REVISION__TAG_NAME:
+				return getTagName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -149,14 +165,16 @@ public class GitRevisionImpl extends RepositoryRevisionImpl implements GitRevisi
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case GitPackage.GIT_REVISION__HASH:
-			setHash((String) newValue);
-			return;
-		case GitPackage.GIT_REVISION__TAG_NAME:
-			setTagName((String) newValue);
-			return;
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
+			case GitPackage.GIT_REVISION__HASH:
+				setHash((String)newValue);
+				return;
+			case GitPackage.GIT_REVISION__TAG_NAME:
+				setTagName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -167,14 +185,16 @@ public class GitRevisionImpl extends RepositoryRevisionImpl implements GitRevisi
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-		case GitPackage.GIT_REVISION__HASH:
-			setHash(HASH_EDEFAULT);
-			return;
-		case GitPackage.GIT_REVISION__TAG_NAME:
-			setTagName(TAG_NAME_EDEFAULT);
-			return;
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
+			case GitPackage.GIT_REVISION__HASH:
+				setHash(HASH_EDEFAULT);
+				return;
+			case GitPackage.GIT_REVISION__TAG_NAME:
+				setTagName(TAG_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -185,12 +205,14 @@ public class GitRevisionImpl extends RepositoryRevisionImpl implements GitRevisi
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case GitPackage.GIT_REVISION__HASH:
-			return HASH_EDEFAULT == null ? hash != null : !HASH_EDEFAULT.equals(hash);
-		case GitPackage.GIT_REVISION__TAG_NAME:
-			return TAG_NAME_EDEFAULT == null ? tagName != null : !TAG_NAME_EDEFAULT.equals(tagName);
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
+			case GitPackage.GIT_REVISION__HASH:
+				return HASH_EDEFAULT == null ? hash != null : !HASH_EDEFAULT.equals(hash);
+			case GitPackage.GIT_REVISION__TAG_NAME:
+				return TAG_NAME_EDEFAULT == null ? tagName != null : !TAG_NAME_EDEFAULT.equals(tagName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -201,9 +223,9 @@ public class GitRevisionImpl extends RepositoryRevisionImpl implements GitRevisi
 	 * @generated
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (hash: ");

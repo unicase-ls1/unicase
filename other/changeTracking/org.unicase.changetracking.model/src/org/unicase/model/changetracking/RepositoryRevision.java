@@ -1,10 +1,14 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.model.changetracking;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.unicase.model.UnicaseModelElement;
 
 /**
@@ -24,7 +28,8 @@ import org.unicase.model.UnicaseModelElement;
  * @model abstract="true"
  * @generated
  */
-public interface RepositoryRevision extends UnicaseModelElement {
+public interface RepositoryRevision extends UnicaseModelElement
+{
 	/**
 	 * Returns the value of the '<em><b>Repository Stream</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.unicase.model.changetracking.RepositoryStream#getRevisions <em>Revisions</em>}'.

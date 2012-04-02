@@ -1,14 +1,23 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
+
 package org.unicase.model.changetracking.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
-import org.unicase.metamodel.provider.MetamodelEditPlugin;
+
+import org.eclipse.emf.emfstore.common.model.provider.CommonEditPlugin;
+
+import org.eclipse.emf.emfstore.server.model.provider.ServerEditPlugin;
+
 import org.unicase.model.provider.ModelEditPlugin;
 
 /**
@@ -17,7 +26,8 @@ import org.unicase.model.provider.ModelEditPlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public final class ChangeTrackingEditPlugin extends EMFPlugin {
+public final class ChangeTrackingEditPlugin extends EMFPlugin
+{
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
@@ -40,8 +50,16 @@ public final class ChangeTrackingEditPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChangeTrackingEditPlugin() {
-		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, EsmodelEditPlugin.INSTANCE, MetamodelEditPlugin.INSTANCE, ModelEditPlugin.INSTANCE, });
+	public ChangeTrackingEditPlugin()
+	{
+		super
+		  (new ResourceLocator [] 
+		   {
+		     EcoreEditPlugin.INSTANCE,
+		     ModelEditPlugin.INSTANCE,
+		     CommonEditPlugin.INSTANCE,
+		     ServerEditPlugin.INSTANCE,
+		   });
 	}
 
 	/**
@@ -52,7 +70,8 @@ public final class ChangeTrackingEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	@Override
-	public ResourceLocator getPluginResourceLocator() {
+	public ResourceLocator getPluginResourceLocator()
+	{
 		return plugin;
 	}
 
@@ -63,7 +82,8 @@ public final class ChangeTrackingEditPlugin extends EMFPlugin {
 	 * @return the singleton instance.
 	 * @generated
 	 */
-	public static Implementation getPlugin() {
+	public static Implementation getPlugin()
+	{
 		return plugin;
 	}
 
@@ -73,14 +93,16 @@ public final class ChangeTrackingEditPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static class Implementation extends EclipsePlugin {
+	public static class Implementation extends EclipsePlugin
+	{
 		/**
 		 * Creates an instance.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public Implementation() {
+		public Implementation()
+		{
 			super();
 
 			// Remember the static instance.

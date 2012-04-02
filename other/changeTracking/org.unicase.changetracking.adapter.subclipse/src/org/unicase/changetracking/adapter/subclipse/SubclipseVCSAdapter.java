@@ -1,13 +1,16 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.changetracking.adapter.subclipse;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.unicase.changetracking.adapter.commands.SubclipseCreateChangePackageCommand;
 import org.unicase.changetracking.commands.ChangeTrackingCommand;
+import org.unicase.changetracking.exceptions.VCSException;
 import org.unicase.changetracking.ui.BasicApplyPatchChangePackageCommand;
 import org.unicase.changetracking.vcs.BasicVCSAdapter;
 import org.unicase.model.changetracking.ChangePackage;
@@ -52,6 +55,11 @@ public class SubclipseVCSAdapter extends BasicVCSAdapter {
 	@Override
 	public ChangeTrackingCommand applyChangePackage(ChangePackage changePackage) {
 		return new BasicApplyPatchChangePackageCommand((PatchChangePackage) changePackage);
+	}
+
+	public RepositoryLocation findRepoLocation(IProject[] workspaceProjects,
+			Project unicaseProject) throws VCSException {
+		return null;
 	}
 
 }

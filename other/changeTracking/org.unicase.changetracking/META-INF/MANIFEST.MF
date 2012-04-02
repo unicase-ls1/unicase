@@ -8,10 +8,11 @@ Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
  org.eclipse.core.resources;visibility:=reexport,
  org.unicase.changetracking.model;visibility:=reexport,
  org.eclipse.ui;visibility:=reexport,
- org.unicase.workspace;visibility:=reexport,
  org.eclipse.team.core;visibility:=reexport,
  org.eclipse.compare,
- org.eclipse.debug.core
+ org.eclipse.debug.core,
+ org.eclipse.emf.ecp.common,
+ org.eclipse.emf.emfstore.client
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.changetracking.commands,

@@ -1,26 +1,36 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.model.changetracking.git.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.unicase.model.changetracking.ChangetrackingPackage;
 import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.RepositoryRevision;
 import org.unicase.model.changetracking.Stream;
+
 import org.unicase.model.changetracking.git.GitBranch;
 import org.unicase.model.changetracking.git.GitBranchChangePackage;
 import org.unicase.model.changetracking.git.GitPackage;
+
 import org.unicase.model.impl.UnicaseModelElementImpl;
 
 /**
@@ -40,7 +50,8 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  *
  * @generated
  */
-public class GitBranchImpl extends UnicaseModelElementImpl implements GitBranch {
+public class GitBranchImpl extends UnicaseModelElementImpl implements GitBranch
+{
 	/**
 	 * The cached value of the '{@link #getLocation() <em>Location</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -106,7 +117,8 @@ public class GitBranchImpl extends UnicaseModelElementImpl implements GitBranch 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GitBranchImpl() {
+	protected GitBranchImpl()
+	{
 		super();
 	}
 
@@ -116,7 +128,8 @@ public class GitBranchImpl extends UnicaseModelElementImpl implements GitBranch 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return GitPackage.Literals.GIT_BRANCH;
 	}
 
@@ -125,11 +138,14 @@ public class GitBranchImpl extends UnicaseModelElementImpl implements GitBranch 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RepositoryLocation getLocation() {
-		if (location != null && location.eIsProxy()) {
-			InternalEObject oldLocation = (InternalEObject) location;
-			location = (RepositoryLocation) eResolveProxy(oldLocation);
-			if (location != oldLocation) {
+	public RepositoryLocation getLocation()
+	{
+		if (location != null && location.eIsProxy())
+		{
+			InternalEObject oldLocation = (InternalEObject)location;
+			location = (RepositoryLocation)eResolveProxy(oldLocation);
+			if (location != oldLocation)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GitPackage.GIT_BRANCH__LOCATION, oldLocation, location));
 			}
@@ -142,7 +158,8 @@ public class GitBranchImpl extends UnicaseModelElementImpl implements GitBranch 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RepositoryLocation basicGetLocation() {
+	public RepositoryLocation basicGetLocation()
+	{
 		return location;
 	}
 
@@ -151,15 +168,14 @@ public class GitBranchImpl extends UnicaseModelElementImpl implements GitBranch 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLocation(RepositoryLocation newLocation, NotificationChain msgs) {
+	public NotificationChain basicSetLocation(RepositoryLocation newLocation, NotificationChain msgs)
+	{
 		RepositoryLocation oldLocation = location;
 		location = newLocation;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GitPackage.GIT_BRANCH__LOCATION, oldLocation, newLocation);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -169,17 +185,19 @@ public class GitBranchImpl extends UnicaseModelElementImpl implements GitBranch 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLocation(RepositoryLocation newLocation) {
-		if (newLocation != location) {
+	public void setLocation(RepositoryLocation newLocation)
+	{
+		if (newLocation != location)
+		{
 			NotificationChain msgs = null;
 			if (location != null)
-				msgs = ((InternalEObject) location).eInverseRemove(this, ChangetrackingPackage.REPOSITORY_LOCATION__STREAMS, RepositoryLocation.class, msgs);
+				msgs = ((InternalEObject)location).eInverseRemove(this, ChangetrackingPackage.REPOSITORY_LOCATION__STREAMS, RepositoryLocation.class, msgs);
 			if (newLocation != null)
-				msgs = ((InternalEObject) newLocation).eInverseAdd(this, ChangetrackingPackage.REPOSITORY_LOCATION__STREAMS, RepositoryLocation.class, msgs);
+				msgs = ((InternalEObject)newLocation).eInverseAdd(this, ChangetrackingPackage.REPOSITORY_LOCATION__STREAMS, RepositoryLocation.class, msgs);
 			msgs = basicSetLocation(newLocation, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GitPackage.GIT_BRANCH__LOCATION, newLocation, newLocation));
 	}
 
@@ -188,8 +206,10 @@ public class GitBranchImpl extends UnicaseModelElementImpl implements GitBranch 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<RepositoryRevision> getRevisions() {
-		if (revisions == null) {
+	public EList<RepositoryRevision> getRevisions()
+	{
+		if (revisions == null)
+		{
 			revisions = new EObjectWithInverseResolvingEList<RepositoryRevision>(RepositoryRevision.class, this, GitPackage.GIT_BRANCH__REVISIONS, ChangetrackingPackage.REPOSITORY_REVISION__REPOSITORY_STREAM);
 		}
 		return revisions;
@@ -200,8 +220,10 @@ public class GitBranchImpl extends UnicaseModelElementImpl implements GitBranch 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Stream> getUsingStreams() {
-		if (usingStreams == null) {
+	public EList<Stream> getUsingStreams()
+	{
+		if (usingStreams == null)
+		{
 			usingStreams = new EObjectWithInverseResolvingEList<Stream>(Stream.class, this, GitPackage.GIT_BRANCH__USING_STREAMS, ChangetrackingPackage.STREAM__REPOSITORY_STREAM);
 		}
 		return usingStreams;
@@ -212,8 +234,10 @@ public class GitBranchImpl extends UnicaseModelElementImpl implements GitBranch 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<GitBranchChangePackage> getReferringChangePackages() {
-		if (referringChangePackages == null) {
+	public EList<GitBranchChangePackage> getReferringChangePackages()
+	{
+		if (referringChangePackages == null)
+		{
 			referringChangePackages = new EObjectWithInverseResolvingEList<GitBranchChangePackage>(GitBranchChangePackage.class, this, GitPackage.GIT_BRANCH__REFERRING_CHANGE_PACKAGES, GitPackage.GIT_BRANCH_CHANGE_PACKAGE__BRANCH);
 		}
 		return referringChangePackages;
@@ -224,7 +248,8 @@ public class GitBranchImpl extends UnicaseModelElementImpl implements GitBranch 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getBranchName() {
+	public String getBranchName()
+	{
 		return branchName;
 	}
 
@@ -233,7 +258,8 @@ public class GitBranchImpl extends UnicaseModelElementImpl implements GitBranch 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBranchName(String newBranchName) {
+	public void setBranchName(String newBranchName)
+	{
 		String oldBranchName = branchName;
 		branchName = newBranchName;
 		if (eNotificationRequired())
@@ -247,18 +273,20 @@ public class GitBranchImpl extends UnicaseModelElementImpl implements GitBranch 
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case GitPackage.GIT_BRANCH__LOCATION:
-			if (location != null)
-				msgs = ((InternalEObject) location).eInverseRemove(this, ChangetrackingPackage.REPOSITORY_LOCATION__STREAMS, RepositoryLocation.class, msgs);
-			return basicSetLocation((RepositoryLocation) otherEnd, msgs);
-		case GitPackage.GIT_BRANCH__REVISIONS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRevisions()).basicAdd(otherEnd, msgs);
-		case GitPackage.GIT_BRANCH__USING_STREAMS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUsingStreams()).basicAdd(otherEnd, msgs);
-		case GitPackage.GIT_BRANCH__REFERRING_CHANGE_PACKAGES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getReferringChangePackages()).basicAdd(otherEnd, msgs);
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case GitPackage.GIT_BRANCH__LOCATION:
+				if (location != null)
+					msgs = ((InternalEObject)location).eInverseRemove(this, ChangetrackingPackage.REPOSITORY_LOCATION__STREAMS, RepositoryLocation.class, msgs);
+				return basicSetLocation((RepositoryLocation)otherEnd, msgs);
+			case GitPackage.GIT_BRANCH__REVISIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRevisions()).basicAdd(otherEnd, msgs);
+			case GitPackage.GIT_BRANCH__USING_STREAMS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getUsingStreams()).basicAdd(otherEnd, msgs);
+			case GitPackage.GIT_BRANCH__REFERRING_CHANGE_PACKAGES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getReferringChangePackages()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -269,16 +297,18 @@ public class GitBranchImpl extends UnicaseModelElementImpl implements GitBranch 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case GitPackage.GIT_BRANCH__LOCATION:
-			return basicSetLocation(null, msgs);
-		case GitPackage.GIT_BRANCH__REVISIONS:
-			return ((InternalEList<?>) getRevisions()).basicRemove(otherEnd, msgs);
-		case GitPackage.GIT_BRANCH__USING_STREAMS:
-			return ((InternalEList<?>) getUsingStreams()).basicRemove(otherEnd, msgs);
-		case GitPackage.GIT_BRANCH__REFERRING_CHANGE_PACKAGES:
-			return ((InternalEList<?>) getReferringChangePackages()).basicRemove(otherEnd, msgs);
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case GitPackage.GIT_BRANCH__LOCATION:
+				return basicSetLocation(null, msgs);
+			case GitPackage.GIT_BRANCH__REVISIONS:
+				return ((InternalEList<?>)getRevisions()).basicRemove(otherEnd, msgs);
+			case GitPackage.GIT_BRANCH__USING_STREAMS:
+				return ((InternalEList<?>)getUsingStreams()).basicRemove(otherEnd, msgs);
+			case GitPackage.GIT_BRANCH__REFERRING_CHANGE_PACKAGES:
+				return ((InternalEList<?>)getReferringChangePackages()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -289,20 +319,21 @@ public class GitBranchImpl extends UnicaseModelElementImpl implements GitBranch 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case GitPackage.GIT_BRANCH__LOCATION:
-			if (resolve)
-				return getLocation();
-			return basicGetLocation();
-		case GitPackage.GIT_BRANCH__REVISIONS:
-			return getRevisions();
-		case GitPackage.GIT_BRANCH__USING_STREAMS:
-			return getUsingStreams();
-		case GitPackage.GIT_BRANCH__REFERRING_CHANGE_PACKAGES:
-			return getReferringChangePackages();
-		case GitPackage.GIT_BRANCH__BRANCH_NAME:
-			return getBranchName();
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
+			case GitPackage.GIT_BRANCH__LOCATION:
+				if (resolve) return getLocation();
+				return basicGetLocation();
+			case GitPackage.GIT_BRANCH__REVISIONS:
+				return getRevisions();
+			case GitPackage.GIT_BRANCH__USING_STREAMS:
+				return getUsingStreams();
+			case GitPackage.GIT_BRANCH__REFERRING_CHANGE_PACKAGES:
+				return getReferringChangePackages();
+			case GitPackage.GIT_BRANCH__BRANCH_NAME:
+				return getBranchName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -314,26 +345,28 @@ public class GitBranchImpl extends UnicaseModelElementImpl implements GitBranch 
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case GitPackage.GIT_BRANCH__LOCATION:
-			setLocation((RepositoryLocation) newValue);
-			return;
-		case GitPackage.GIT_BRANCH__REVISIONS:
-			getRevisions().clear();
-			getRevisions().addAll((Collection<? extends RepositoryRevision>) newValue);
-			return;
-		case GitPackage.GIT_BRANCH__USING_STREAMS:
-			getUsingStreams().clear();
-			getUsingStreams().addAll((Collection<? extends Stream>) newValue);
-			return;
-		case GitPackage.GIT_BRANCH__REFERRING_CHANGE_PACKAGES:
-			getReferringChangePackages().clear();
-			getReferringChangePackages().addAll((Collection<? extends GitBranchChangePackage>) newValue);
-			return;
-		case GitPackage.GIT_BRANCH__BRANCH_NAME:
-			setBranchName((String) newValue);
-			return;
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
+			case GitPackage.GIT_BRANCH__LOCATION:
+				setLocation((RepositoryLocation)newValue);
+				return;
+			case GitPackage.GIT_BRANCH__REVISIONS:
+				getRevisions().clear();
+				getRevisions().addAll((Collection<? extends RepositoryRevision>)newValue);
+				return;
+			case GitPackage.GIT_BRANCH__USING_STREAMS:
+				getUsingStreams().clear();
+				getUsingStreams().addAll((Collection<? extends Stream>)newValue);
+				return;
+			case GitPackage.GIT_BRANCH__REFERRING_CHANGE_PACKAGES:
+				getReferringChangePackages().clear();
+				getReferringChangePackages().addAll((Collection<? extends GitBranchChangePackage>)newValue);
+				return;
+			case GitPackage.GIT_BRANCH__BRANCH_NAME:
+				setBranchName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -344,23 +377,25 @@ public class GitBranchImpl extends UnicaseModelElementImpl implements GitBranch 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-		case GitPackage.GIT_BRANCH__LOCATION:
-			setLocation((RepositoryLocation) null);
-			return;
-		case GitPackage.GIT_BRANCH__REVISIONS:
-			getRevisions().clear();
-			return;
-		case GitPackage.GIT_BRANCH__USING_STREAMS:
-			getUsingStreams().clear();
-			return;
-		case GitPackage.GIT_BRANCH__REFERRING_CHANGE_PACKAGES:
-			getReferringChangePackages().clear();
-			return;
-		case GitPackage.GIT_BRANCH__BRANCH_NAME:
-			setBranchName(BRANCH_NAME_EDEFAULT);
-			return;
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
+			case GitPackage.GIT_BRANCH__LOCATION:
+				setLocation((RepositoryLocation)null);
+				return;
+			case GitPackage.GIT_BRANCH__REVISIONS:
+				getRevisions().clear();
+				return;
+			case GitPackage.GIT_BRANCH__USING_STREAMS:
+				getUsingStreams().clear();
+				return;
+			case GitPackage.GIT_BRANCH__REFERRING_CHANGE_PACKAGES:
+				getReferringChangePackages().clear();
+				return;
+			case GitPackage.GIT_BRANCH__BRANCH_NAME:
+				setBranchName(BRANCH_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -371,18 +406,20 @@ public class GitBranchImpl extends UnicaseModelElementImpl implements GitBranch 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case GitPackage.GIT_BRANCH__LOCATION:
-			return location != null;
-		case GitPackage.GIT_BRANCH__REVISIONS:
-			return revisions != null && !revisions.isEmpty();
-		case GitPackage.GIT_BRANCH__USING_STREAMS:
-			return usingStreams != null && !usingStreams.isEmpty();
-		case GitPackage.GIT_BRANCH__REFERRING_CHANGE_PACKAGES:
-			return referringChangePackages != null && !referringChangePackages.isEmpty();
-		case GitPackage.GIT_BRANCH__BRANCH_NAME:
-			return BRANCH_NAME_EDEFAULT == null ? branchName != null : !BRANCH_NAME_EDEFAULT.equals(branchName);
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
+			case GitPackage.GIT_BRANCH__LOCATION:
+				return location != null;
+			case GitPackage.GIT_BRANCH__REVISIONS:
+				return revisions != null && !revisions.isEmpty();
+			case GitPackage.GIT_BRANCH__USING_STREAMS:
+				return usingStreams != null && !usingStreams.isEmpty();
+			case GitPackage.GIT_BRANCH__REFERRING_CHANGE_PACKAGES:
+				return referringChangePackages != null && !referringChangePackages.isEmpty();
+			case GitPackage.GIT_BRANCH__BRANCH_NAME:
+				return BRANCH_NAME_EDEFAULT == null ? branchName != null : !BRANCH_NAME_EDEFAULT.equals(branchName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -393,9 +430,9 @@ public class GitBranchImpl extends UnicaseModelElementImpl implements GitBranch 
 	 * @generated
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (branchName: ");

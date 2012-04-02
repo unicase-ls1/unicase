@@ -1,18 +1,26 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.model.changetracking.patch.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.unicase.emfstore.esmodel.EsmodelFactory;
-import org.unicase.emfstore.esmodel.FileIdentifier;
+import org.eclipse.emf.emfstore.server.model.FileIdentifier;
+import org.eclipse.emf.emfstore.server.model.ModelFactory;
+
 import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.attachment.FileAttachmentType;
+
 import org.unicase.model.changetracking.impl.ChangePackageImpl;
+
 import org.unicase.model.changetracking.patch.PatchChangePackage;
 import org.unicase.model.changetracking.patch.PatchPackage;
 
@@ -33,7 +41,8 @@ import org.unicase.model.changetracking.patch.PatchPackage;
  *
  * @generated
  */
-public class PatchChangePackageImpl extends ChangePackageImpl implements PatchChangePackage {
+public class PatchChangePackageImpl extends ChangePackageImpl implements PatchChangePackage
+{
 	/**
 	 * The default value of the '{@link #getFileName() <em>File Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -139,7 +148,8 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PatchChangePackageImpl() {
+	protected PatchChangePackageImpl()
+	{
 		super();
 	}
 
@@ -149,7 +159,8 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return PatchPackage.Literals.PATCH_CHANGE_PACKAGE;
 	}
 
@@ -158,7 +169,8 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getFileName() {
+	public String getFileName()
+	{
 		return fileName;
 	}
 
@@ -167,7 +179,8 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFileName(String newFileName) {
+	public void setFileName(String newFileName)
+	{
 		String oldFileName = fileName;
 		fileName = newFileName;
 		if (eNotificationRequired())
@@ -179,7 +192,8 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getFileHash() {
+	public String getFileHash()
+	{
 		return fileHash;
 	}
 
@@ -188,7 +202,8 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFileHash(String newFileHash) {
+	public void setFileHash(String newFileHash)
+	{
 		String oldFileHash = fileHash;
 		fileHash = newFileHash;
 		if (eNotificationRequired())
@@ -200,7 +215,8 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getFileID() {
+	public String getFileID()
+	{
 		return fileID;
 	}
 
@@ -209,7 +225,8 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFileID(String newFileID) {
+	public void setFileID(String newFileID)
+	{
 		String oldFileID = fileID;
 		fileID = newFileID;
 		if (eNotificationRequired())
@@ -221,7 +238,8 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getFileSize() {
+	public long getFileSize()
+	{
 		return fileSize;
 	}
 
@@ -230,7 +248,8 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFileSize(long newFileSize) {
+	public void setFileSize(long newFileSize)
+	{
 		long oldFileSize = fileSize;
 		fileSize = newFileSize;
 		if (eNotificationRequired())
@@ -242,7 +261,8 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FileAttachmentType getFileType() {
+	public FileAttachmentType getFileType()
+	{
 		return fileType;
 	}
 
@@ -251,7 +271,8 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFileType(FileAttachmentType newFileType) {
+	public void setFileType(FileAttachmentType newFileType)
+	{
 		FileAttachmentType oldFileType = fileType;
 		fileType = newFileType == null ? FILE_TYPE_EDEFAULT : newFileType;
 		if (eNotificationRequired())
@@ -264,18 +285,20 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_NAME:
-			return getFileName();
-		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_HASH:
-			return getFileHash();
-		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_ID:
-			return getFileID();
-		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_SIZE:
-			return getFileSize();
-		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_TYPE:
-			return getFileType();
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
+			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_NAME:
+				return getFileName();
+			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_HASH:
+				return getFileHash();
+			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_ID:
+				return getFileID();
+			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_SIZE:
+				return getFileSize();
+			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_TYPE:
+				return getFileType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -286,23 +309,25 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_NAME:
-			setFileName((String) newValue);
-			return;
-		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_HASH:
-			setFileHash((String) newValue);
-			return;
-		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_ID:
-			setFileID((String) newValue);
-			return;
-		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_SIZE:
-			setFileSize((Long) newValue);
-			return;
-		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_TYPE:
-			setFileType((FileAttachmentType) newValue);
-			return;
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
+			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_NAME:
+				setFileName((String)newValue);
+				return;
+			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_HASH:
+				setFileHash((String)newValue);
+				return;
+			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_ID:
+				setFileID((String)newValue);
+				return;
+			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_SIZE:
+				setFileSize((Long)newValue);
+				return;
+			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_TYPE:
+				setFileType((FileAttachmentType)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -313,23 +338,25 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_NAME:
-			setFileName(FILE_NAME_EDEFAULT);
-			return;
-		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_HASH:
-			setFileHash(FILE_HASH_EDEFAULT);
-			return;
-		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_ID:
-			setFileID(FILE_ID_EDEFAULT);
-			return;
-		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_SIZE:
-			setFileSize(FILE_SIZE_EDEFAULT);
-			return;
-		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_TYPE:
-			setFileType(FILE_TYPE_EDEFAULT);
-			return;
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
+			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_NAME:
+				setFileName(FILE_NAME_EDEFAULT);
+				return;
+			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_HASH:
+				setFileHash(FILE_HASH_EDEFAULT);
+				return;
+			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_ID:
+				setFileID(FILE_ID_EDEFAULT);
+				return;
+			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_SIZE:
+				setFileSize(FILE_SIZE_EDEFAULT);
+				return;
+			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_TYPE:
+				setFileType(FILE_TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -340,18 +367,20 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_NAME:
-			return FILE_NAME_EDEFAULT == null ? fileName != null : !FILE_NAME_EDEFAULT.equals(fileName);
-		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_HASH:
-			return FILE_HASH_EDEFAULT == null ? fileHash != null : !FILE_HASH_EDEFAULT.equals(fileHash);
-		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_ID:
-			return FILE_ID_EDEFAULT == null ? fileID != null : !FILE_ID_EDEFAULT.equals(fileID);
-		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_SIZE:
-			return fileSize != FILE_SIZE_EDEFAULT;
-		case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_TYPE:
-			return fileType != FILE_TYPE_EDEFAULT;
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
+			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_NAME:
+				return FILE_NAME_EDEFAULT == null ? fileName != null : !FILE_NAME_EDEFAULT.equals(fileName);
+			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_HASH:
+				return FILE_HASH_EDEFAULT == null ? fileHash != null : !FILE_HASH_EDEFAULT.equals(fileHash);
+			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_ID:
+				return FILE_ID_EDEFAULT == null ? fileID != null : !FILE_ID_EDEFAULT.equals(fileID);
+			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_SIZE:
+				return fileSize != FILE_SIZE_EDEFAULT;
+			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_TYPE:
+				return fileType != FILE_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -362,21 +391,18 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == FileAttachment.class) {
-			switch (derivedFeatureID) {
-			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_NAME:
-				return AttachmentPackage.FILE_ATTACHMENT__FILE_NAME;
-			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_HASH:
-				return AttachmentPackage.FILE_ATTACHMENT__FILE_HASH;
-			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_ID:
-				return AttachmentPackage.FILE_ATTACHMENT__FILE_ID;
-			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_SIZE:
-				return AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE;
-			case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_TYPE:
-				return AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE;
-			default:
-				return -1;
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == FileAttachment.class)
+		{
+			switch (derivedFeatureID)
+			{
+				case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_NAME: return AttachmentPackage.FILE_ATTACHMENT__FILE_NAME;
+				case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_HASH: return AttachmentPackage.FILE_ATTACHMENT__FILE_HASH;
+				case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_ID: return AttachmentPackage.FILE_ATTACHMENT__FILE_ID;
+				case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_SIZE: return AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE;
+				case PatchPackage.PATCH_CHANGE_PACKAGE__FILE_TYPE: return AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE;
+				default: return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -388,21 +414,18 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == FileAttachment.class) {
-			switch (baseFeatureID) {
-			case AttachmentPackage.FILE_ATTACHMENT__FILE_NAME:
-				return PatchPackage.PATCH_CHANGE_PACKAGE__FILE_NAME;
-			case AttachmentPackage.FILE_ATTACHMENT__FILE_HASH:
-				return PatchPackage.PATCH_CHANGE_PACKAGE__FILE_HASH;
-			case AttachmentPackage.FILE_ATTACHMENT__FILE_ID:
-				return PatchPackage.PATCH_CHANGE_PACKAGE__FILE_ID;
-			case AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE:
-				return PatchPackage.PATCH_CHANGE_PACKAGE__FILE_SIZE;
-			case AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE:
-				return PatchPackage.PATCH_CHANGE_PACKAGE__FILE_TYPE;
-			default:
-				return -1;
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == FileAttachment.class)
+		{
+			switch (baseFeatureID)
+			{
+				case AttachmentPackage.FILE_ATTACHMENT__FILE_NAME: return PatchPackage.PATCH_CHANGE_PACKAGE__FILE_NAME;
+				case AttachmentPackage.FILE_ATTACHMENT__FILE_HASH: return PatchPackage.PATCH_CHANGE_PACKAGE__FILE_HASH;
+				case AttachmentPackage.FILE_ATTACHMENT__FILE_ID: return PatchPackage.PATCH_CHANGE_PACKAGE__FILE_ID;
+				case AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE: return PatchPackage.PATCH_CHANGE_PACKAGE__FILE_SIZE;
+				case AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE: return PatchPackage.PATCH_CHANGE_PACKAGE__FILE_TYPE;
+				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -414,9 +437,9 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 	 * @generated
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (fileName: ");
@@ -433,25 +456,15 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 		return result.toString();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.model.attachment.FileAttachment#getFileIdentifier()
-	 */
 	public FileIdentifier getFileIdentifier() {
 		if (fileID == null) {
 			return null;
 		}
-		FileIdentifier fid = EsmodelFactory.eINSTANCE.createFileIdentifier();
+		FileIdentifier fid = ModelFactory.eINSTANCE.createFileIdentifier();
 		fid.setIdentifier(fileID);
 		return fid;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.model.attachment.FileAttachment#setFileIdentifier(org.unicase.emfstore.esmodel.FileIdentifier)
-	 */
 	public void setFileIdentifier(FileIdentifier fileId) {
 		if (fileId == null) {
 			setFileID(null);
@@ -459,5 +472,7 @@ public class PatchChangePackageImpl extends ChangePackageImpl implements PatchCh
 			setFileID(fileId.getIdentifier());
 		}
 	}
+		
+	
 
 } //PatchChangePackageImpl

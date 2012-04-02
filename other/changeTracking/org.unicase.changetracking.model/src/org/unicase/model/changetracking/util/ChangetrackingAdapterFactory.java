@@ -1,23 +1,24 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.model.changetracking.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
+
 import org.unicase.model.changetracking.*;
-import org.unicase.model.changetracking.ChangePackage;
-import org.unicase.model.changetracking.ChangetrackingPackage;
-import org.unicase.model.changetracking.Release;
-import org.unicase.model.changetracking.RepositoryLocation;
-import org.unicase.model.changetracking.RepositoryRevision;
-import org.unicase.model.changetracking.RepositoryStream;
-import org.unicase.model.changetracking.Stream;
+
 import org.unicase.model.release.AbstractRelease;
 
 /**
@@ -28,7 +29,8 @@ import org.unicase.model.release.AbstractRelease;
  * @see org.unicase.model.changetracking.ChangetrackingPackage
  * @generated
  */
-public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
+public class ChangetrackingAdapterFactory extends AdapterFactoryImpl
+{
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -43,8 +45,10 @@ public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChangetrackingAdapterFactory() {
-		if (modelPackage == null) {
+	public ChangetrackingAdapterFactory()
+	{
+		if (modelPackage == null)
+		{
 			modelPackage = ChangetrackingPackage.eINSTANCE;
 		}
 	}
@@ -58,12 +62,15 @@ public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	@Override
-	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
+	public boolean isFactoryForType(Object object)
+	{
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+		if (object instanceof EObject)
+		{
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -74,57 +81,60 @@ public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ChangetrackingSwitch<Adapter> modelSwitch = new ChangetrackingSwitch<Adapter>() {
-		@Override
-		public Adapter caseRelease(Release object) {
-			return createReleaseAdapter();
-		}
-
-		@Override
-		public Adapter caseStream(Stream object) {
-			return createStreamAdapter();
-		}
-
-		@Override
-		public Adapter caseChangePackage(ChangePackage object) {
-			return createChangePackageAdapter();
-		}
-
-		@Override
-		public Adapter caseRepositoryRevision(RepositoryRevision object) {
-			return createRepositoryRevisionAdapter();
-		}
-
-		@Override
-		public Adapter caseRepositoryStream(RepositoryStream object) {
-			return createRepositoryStreamAdapter();
-		}
-
-		@Override
-		public Adapter caseRepositoryLocation(RepositoryLocation object) {
-			return createRepositoryLocationAdapter();
-		}
-
-		@Override
-		public Adapter caseUnicaseModelElement(UnicaseModelElement object) {
-			return createUnicaseModelElementAdapter();
-		}
-
-		@Override
-		public Adapter caseAbstractRelease(AbstractRelease object) {
-			return createAbstractReleaseAdapter();
-		}
-
-		@Override
-		public Adapter caseAttachment(Attachment object) {
-			return createAttachmentAdapter();
-		}
-
-		@Override
-		public Adapter defaultCase(EObject object) {
-			return createEObjectAdapter();
-		}
-	};
+	protected ChangetrackingSwitch<Adapter> modelSwitch =
+		new ChangetrackingSwitch<Adapter>()
+		{
+			@Override
+			public Adapter caseRelease(Release object)
+			{
+				return createReleaseAdapter();
+			}
+			@Override
+			public Adapter caseStream(Stream object)
+			{
+				return createStreamAdapter();
+			}
+			@Override
+			public Adapter caseChangePackage(ChangePackage object)
+			{
+				return createChangePackageAdapter();
+			}
+			@Override
+			public Adapter caseRepositoryRevision(RepositoryRevision object)
+			{
+				return createRepositoryRevisionAdapter();
+			}
+			@Override
+			public Adapter caseRepositoryStream(RepositoryStream object)
+			{
+				return createRepositoryStreamAdapter();
+			}
+			@Override
+			public Adapter caseRepositoryLocation(RepositoryLocation object)
+			{
+				return createRepositoryLocationAdapter();
+			}
+			@Override
+			public Adapter caseUnicaseModelElement(UnicaseModelElement object)
+			{
+				return createUnicaseModelElementAdapter();
+			}
+			@Override
+			public Adapter caseAbstractRelease(AbstractRelease object)
+			{
+				return createAbstractReleaseAdapter();
+			}
+			@Override
+			public Adapter caseAttachment(Attachment object)
+			{
+				return createAttachmentAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object)
+			{
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -135,9 +145,11 @@ public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	@Override
-	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+	public Adapter createAdapter(Notifier target)
+	{
+		return modelSwitch.doSwitch((EObject)target);
 	}
+
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.model.changetracking.Release <em>Release</em>}'.
@@ -149,7 +161,8 @@ public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.changetracking.Release
 	 * @generated
 	 */
-	public Adapter createReleaseAdapter() {
+	public Adapter createReleaseAdapter()
+	{
 		return null;
 	}
 
@@ -163,7 +176,8 @@ public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.changetracking.Stream
 	 * @generated
 	 */
-	public Adapter createStreamAdapter() {
+	public Adapter createStreamAdapter()
+	{
 		return null;
 	}
 
@@ -177,7 +191,8 @@ public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.changetracking.ChangePackage
 	 * @generated
 	 */
-	public Adapter createChangePackageAdapter() {
+	public Adapter createChangePackageAdapter()
+	{
 		return null;
 	}
 
@@ -191,7 +206,8 @@ public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.changetracking.RepositoryRevision
 	 * @generated
 	 */
-	public Adapter createRepositoryRevisionAdapter() {
+	public Adapter createRepositoryRevisionAdapter()
+	{
 		return null;
 	}
 
@@ -205,7 +221,8 @@ public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.changetracking.RepositoryStream
 	 * @generated
 	 */
-	public Adapter createRepositoryStreamAdapter() {
+	public Adapter createRepositoryStreamAdapter()
+	{
 		return null;
 	}
 
@@ -219,7 +236,8 @@ public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.changetracking.RepositoryLocation
 	 * @generated
 	 */
-	public Adapter createRepositoryLocationAdapter() {
+	public Adapter createRepositoryLocationAdapter()
+	{
 		return null;
 	}
 
@@ -233,7 +251,8 @@ public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.UnicaseModelElement
 	 * @generated
 	 */
-	public Adapter createUnicaseModelElementAdapter() {
+	public Adapter createUnicaseModelElementAdapter()
+	{
 		return null;
 	}
 
@@ -247,7 +266,8 @@ public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.release.AbstractRelease
 	 * @generated
 	 */
-	public Adapter createAbstractReleaseAdapter() {
+	public Adapter createAbstractReleaseAdapter()
+	{
 		return null;
 	}
 
@@ -261,7 +281,8 @@ public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.model.Attachment
 	 * @generated
 	 */
-	public Adapter createAttachmentAdapter() {
+	public Adapter createAttachmentAdapter()
+	{
 		return null;
 	}
 
@@ -273,7 +294,8 @@ public class ChangetrackingAdapterFactory extends AdapterFactoryImpl {
 	 * @return the new adapter.
 	 * @generated
 	 */
-	public Adapter createEObjectAdapter() {
+	public Adapter createEObjectAdapter()
+	{
 		return null;
 	}
 

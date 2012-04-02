@@ -1,7 +1,10 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.model.changetracking.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -9,8 +12,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.unicase.model.ModelPackage;
+
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.ChangetrackingFactory;
 import org.unicase.model.changetracking.ChangetrackingPackage;
@@ -19,10 +25,15 @@ import org.unicase.model.changetracking.RepositoryLocation;
 import org.unicase.model.changetracking.RepositoryRevision;
 import org.unicase.model.changetracking.RepositoryStream;
 import org.unicase.model.changetracking.Stream;
+
 import org.unicase.model.changetracking.git.GitPackage;
+
 import org.unicase.model.changetracking.git.impl.GitPackageImpl;
+
 import org.unicase.model.changetracking.patch.PatchPackage;
+
 import org.unicase.model.changetracking.patch.impl.PatchPackageImpl;
+
 import org.unicase.model.release.ReleasePackage;
 
 /**
@@ -31,7 +42,8 @@ import org.unicase.model.release.ReleasePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ChangetrackingPackageImpl extends EPackageImpl implements ChangetrackingPackage {
+public class ChangetrackingPackageImpl extends EPackageImpl implements ChangetrackingPackage
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -89,7 +101,8 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * @see #init()
 	 * @generated
 	 */
-	private ChangetrackingPackageImpl() {
+	private ChangetrackingPackageImpl()
+	{
 		super(eNS_URI, ChangetrackingFactory.eINSTANCE);
 	}
 
@@ -112,12 +125,12 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static ChangetrackingPackage init() {
-		if (isInited)
-			return (ChangetrackingPackage) EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI);
+	public static ChangetrackingPackage init()
+	{
+		if (isInited) return (ChangetrackingPackage)EPackage.Registry.INSTANCE.getEPackage(ChangetrackingPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ChangetrackingPackageImpl theChangetrackingPackage = (ChangetrackingPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ChangetrackingPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ChangetrackingPackageImpl());
+		ChangetrackingPackageImpl theChangetrackingPackage = (ChangetrackingPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ChangetrackingPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ChangetrackingPackageImpl());
 
 		isInited = true;
 
@@ -126,8 +139,8 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		GitPackageImpl theGitPackage = (GitPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(GitPackage.eNS_URI) instanceof GitPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GitPackage.eNS_URI) : GitPackage.eINSTANCE);
-		PatchPackageImpl thePatchPackage = (PatchPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(PatchPackage.eNS_URI) instanceof PatchPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PatchPackage.eNS_URI) : PatchPackage.eINSTANCE);
+		GitPackageImpl theGitPackage = (GitPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GitPackage.eNS_URI) instanceof GitPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GitPackage.eNS_URI) : GitPackage.eINSTANCE);
+		PatchPackageImpl thePatchPackage = (PatchPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(PatchPackage.eNS_URI) instanceof PatchPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PatchPackage.eNS_URI) : PatchPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theChangetrackingPackage.createPackageContents();
@@ -142,6 +155,7 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 		// Mark meta-data to indicate it can't be changed
 		theChangetrackingPackage.freeze();
 
+  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ChangetrackingPackage.eNS_URI, theChangetrackingPackage);
 		return theChangetrackingPackage;
@@ -152,7 +166,8 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRelease() {
+	public EClass getRelease()
+	{
 		return releaseEClass;
 	}
 
@@ -161,8 +176,9 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRelease_Stream() {
-		return (EReference) releaseEClass.getEStructuralFeatures().get(0);
+	public EReference getRelease_Stream()
+	{
+		return (EReference)releaseEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -170,8 +186,9 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRelease_Built() {
-		return (EAttribute) releaseEClass.getEStructuralFeatures().get(1);
+	public EAttribute getRelease_Built()
+	{
+		return (EAttribute)releaseEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -179,8 +196,9 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRelease_BuiltRevision() {
-		return (EReference) releaseEClass.getEStructuralFeatures().get(2);
+	public EReference getRelease_BuiltRevision()
+	{
+		return (EReference)releaseEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -188,8 +206,9 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRelease_BuildDate() {
-		return (EAttribute) releaseEClass.getEStructuralFeatures().get(3);
+	public EAttribute getRelease_BuildDate()
+	{
+		return (EAttribute)releaseEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -197,8 +216,9 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRelease_Successor() {
-		return (EReference) releaseEClass.getEStructuralFeatures().get(4);
+	public EReference getRelease_Successor()
+	{
+		return (EReference)releaseEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -206,8 +226,9 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRelease_Predecessor() {
-		return (EReference) releaseEClass.getEStructuralFeatures().get(5);
+	public EReference getRelease_Predecessor()
+	{
+		return (EReference)releaseEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -215,7 +236,8 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStream() {
+	public EClass getStream()
+	{
 		return streamEClass;
 	}
 
@@ -224,8 +246,9 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStream_Releases() {
-		return (EReference) streamEClass.getEStructuralFeatures().get(0);
+	public EReference getStream_Releases()
+	{
+		return (EReference)streamEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -233,8 +256,9 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStream_RepositoryStream() {
-		return (EReference) streamEClass.getEStructuralFeatures().get(1);
+	public EReference getStream_RepositoryStream()
+	{
+		return (EReference)streamEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -242,7 +266,8 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getChangePackage() {
+	public EClass getChangePackage()
+	{
 		return changePackageEClass;
 	}
 
@@ -251,8 +276,9 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getChangePackage_ShortDescription() {
-		return (EAttribute) changePackageEClass.getEStructuralFeatures().get(0);
+	public EAttribute getChangePackage_ShortDescription()
+	{
+		return (EAttribute)changePackageEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -260,7 +286,8 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRepositoryRevision() {
+	public EClass getRepositoryRevision()
+	{
 		return repositoryRevisionEClass;
 	}
 
@@ -269,8 +296,9 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRepositoryRevision_RepositoryStream() {
-		return (EReference) repositoryRevisionEClass.getEStructuralFeatures().get(0);
+	public EReference getRepositoryRevision_RepositoryStream()
+	{
+		return (EReference)repositoryRevisionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -278,8 +306,9 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRepositoryRevision_BuiltWithReleases() {
-		return (EReference) repositoryRevisionEClass.getEStructuralFeatures().get(1);
+	public EReference getRepositoryRevision_BuiltWithReleases()
+	{
+		return (EReference)repositoryRevisionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -287,7 +316,8 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRepositoryStream() {
+	public EClass getRepositoryStream()
+	{
 		return repositoryStreamEClass;
 	}
 
@@ -296,8 +326,9 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRepositoryStream_Location() {
-		return (EReference) repositoryStreamEClass.getEStructuralFeatures().get(0);
+	public EReference getRepositoryStream_Location()
+	{
+		return (EReference)repositoryStreamEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -305,8 +336,9 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRepositoryStream_Revisions() {
-		return (EReference) repositoryStreamEClass.getEStructuralFeatures().get(1);
+	public EReference getRepositoryStream_Revisions()
+	{
+		return (EReference)repositoryStreamEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -314,8 +346,9 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRepositoryStream_UsingStreams() {
-		return (EReference) repositoryStreamEClass.getEStructuralFeatures().get(2);
+	public EReference getRepositoryStream_UsingStreams()
+	{
+		return (EReference)repositoryStreamEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -323,7 +356,8 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRepositoryLocation() {
+	public EClass getRepositoryLocation()
+	{
 		return repositoryLocationEClass;
 	}
 
@@ -332,8 +366,9 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRepositoryLocation_Streams() {
-		return (EReference) repositoryLocationEClass.getEStructuralFeatures().get(0);
+	public EReference getRepositoryLocation_Streams()
+	{
+		return (EReference)repositoryLocationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -341,8 +376,9 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChangetrackingFactory getChangetrackingFactory() {
-		return (ChangetrackingFactory) getEFactoryInstance();
+	public ChangetrackingFactory getChangetrackingFactory()
+	{
+		return (ChangetrackingFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -359,9 +395,9 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void createPackageContents() {
-		if (isCreated)
-			return;
+	public void createPackageContents()
+	{
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -407,9 +443,9 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void initializePackageContents() {
-		if (isInitialized)
-			return;
+	public void initializePackageContents()
+	{
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -418,11 +454,11 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		GitPackage theGitPackage = (GitPackage) EPackage.Registry.INSTANCE.getEPackage(GitPackage.eNS_URI);
-		PatchPackage thePatchPackage = (PatchPackage) EPackage.Registry.INSTANCE.getEPackage(PatchPackage.eNS_URI);
-		ReleasePackage theReleasePackage = (ReleasePackage) EPackage.Registry.INSTANCE.getEPackage(ReleasePackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		GitPackage theGitPackage = (GitPackage)EPackage.Registry.INSTANCE.getEPackage(GitPackage.eNS_URI);
+		PatchPackage thePatchPackage = (PatchPackage)EPackage.Registry.INSTANCE.getEPackage(PatchPackage.eNS_URI);
+		ReleasePackage theReleasePackage = (ReleasePackage)EPackage.Registry.INSTANCE.getEPackage(ReleasePackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theGitPackage);
@@ -482,13 +518,49 @@ public class ChangetrackingPackageImpl extends EPackageImpl implements Changetra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createOrgAnnotations() {
-		String source = "org.unicase.ui.meeditor";
-		addAnnotation(getStream_Releases(), source, new String[] { "priority", "10.0", "position", "right" });
-		addAnnotation(getRepositoryRevision_BuiltWithReleases(), source, new String[] { "priority", "10.0", "position", "right" });
-		addAnnotation(getRepositoryStream_Revisions(), source, new String[] { "priority", "10.0", "position", "right" });
-		addAnnotation(getRepositoryStream_UsingStreams(), source, new String[] { "priority", "12.0", "position", "right" });
-		addAnnotation(getRepositoryLocation_Streams(), source, new String[] { "priority", "10.0", "position", "right" });
+	protected void createOrgAnnotations()
+	{
+		String source = "org.unicase.ui.meeditor";		
+		addAnnotation
+		  (getStream_Releases(), 
+		   source, 
+		   new String[] 
+		   {
+			 "priority", "10.0",
+			 "position", "right"
+		   });		
+		addAnnotation
+		  (getRepositoryRevision_BuiltWithReleases(), 
+		   source, 
+		   new String[] 
+		   {
+			 "priority", "10.0",
+			 "position", "right"
+		   });		
+		addAnnotation
+		  (getRepositoryStream_Revisions(), 
+		   source, 
+		   new String[] 
+		   {
+			 "priority", "10.0",
+			 "position", "right"
+		   });		
+		addAnnotation
+		  (getRepositoryStream_UsingStreams(), 
+		   source, 
+		   new String[] 
+		   {
+			 "priority", "12.0",
+			 "position", "right"
+		   });		
+		addAnnotation
+		  (getRepositoryLocation_Streams(), 
+		   source, 
+		   new String[] 
+		   {
+			 "priority", "10.0",
+			 "position", "right"
+		   });
 	}
 
 } //ChangetrackingPackageImpl

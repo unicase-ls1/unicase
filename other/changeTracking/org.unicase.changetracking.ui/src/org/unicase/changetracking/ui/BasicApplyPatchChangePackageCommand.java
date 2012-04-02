@@ -1,7 +1,8 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.changetracking.ui;
 
@@ -12,12 +13,7 @@ import org.unicase.changetracking.commands.ChangeTrackingCommand;
 import org.unicase.changetracking.commands.ChangeTrackingCommandResult;
 import org.unicase.changetracking.common.ApplyPatchOperation;
 import org.unicase.changetracking.exceptions.UnexpectedChangeTrackingException;
-import org.unicase.emfstore.esmodel.FileIdentifier;
-import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.model.changetracking.patch.PatchChangePackage;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.filetransfer.FileDownloadStatus;
 
 /**
  * The basic command for applying a patch change package. Since eclipse allows
@@ -54,20 +50,20 @@ public class BasicApplyPatchChangePackageCommand extends ChangeTrackingCommand {
 	@Override
 	protected ChangeTrackingCommandResult doRun() {
 
-		FileIdentifier fileId = fileAttachment.getFileIdentifier();
+		org.eclipse.emf.emfstore.server.model.FileIdentifier fileId = fileAttachment.getFileIdentifier();
 
 		if (fileId == null) {
 			throw new UnexpectedChangeTrackingException("No patch saved here.");
 		}
 
-		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(fileAttachment);
+		org.eclipse.emf.emfstore.client.model.ProjectSpace projectSpace = org.eclipse.emf.emfstore.client.model.WorkspaceManager.getProjectSpace(fileAttachment);
 
 		// Get the file
 
-		FileDownloadStatus status;
+		org.eclipse.emf.emfstore.client.model.filetransfer.FileDownloadStatus status;
 		try {
 			status = projectSpace.getFile(fileAttachment.getFileIdentifier());
-		} catch (FileTransferException e1) {
+		} catch (org.eclipse.emf.emfstore.server.exceptions.FileTransferException e1) {
 			throw new UnexpectedChangeTrackingException(e1);
 		}
 
@@ -107,7 +103,7 @@ public class BasicApplyPatchChangePackageCommand extends ChangeTrackingCommand {
 		boolean success;
 		try {
 			success = ApplyPatchOperation.applyPatch(status.getTransferredFile(), null);
-		} catch (FileTransferException e) {
+		} catch (org.eclipse.emf.emfstore.server.exceptions.FileTransferException e) {
 			throw new UnexpectedChangeTrackingException(e);
 		}
 

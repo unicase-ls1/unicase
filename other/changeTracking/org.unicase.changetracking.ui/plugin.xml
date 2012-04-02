@@ -2,14 +2,6 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.unicase.ui.meeditor.melinkcontrols">
-      <widget
-            class="org.unicase.changetracking.ui.widgets.MEChangePackageControl"
-            name="org.unicase.changetracking.ui.MEChangePackageControl"
-            type="org.eclipse.emf.ecore.EObject">
-      </widget>
-   </extension>
-   <extension
          point="org.eclipse.ui.commands">
       <command
             defaultHandler="org.unicase.changetracking.ui.handlers.BuildReleaseHandler"
@@ -55,7 +47,7 @@
    
    <extension point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
+            locationURI="toolbar:org.eclipse.emf.ecp.editor.MEEditorPage?after=additions">
          <command
                commandId="org.unicase.changetracking.ui.buildReleaseCommand"
                icon="icons/buildRelease2.gif"
@@ -143,6 +135,14 @@
             </command>
          </menu>
        </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecp.editor.melinkcontrols">
+      <widget
+            class="org.unicase.changetracking.ui.widgets.MEChangePackageControl"
+            name="org.unicase.changetracking.ui.MEChangePackageControl"
+            type="org.eclipse.emf.ecore.EObject">
+      </widget>
    </extension>
 
 </plugin>

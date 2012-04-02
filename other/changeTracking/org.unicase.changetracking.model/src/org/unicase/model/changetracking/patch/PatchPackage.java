@@ -1,11 +1,15 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.model.changetracking.patch;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.unicase.model.changetracking.ChangetrackingPackage;
 
 /**
@@ -23,7 +27,8 @@ import org.unicase.model.changetracking.ChangetrackingPackage;
  * @model kind="package"
  * @generated
  */
-public interface PatchPackage extends EPackage {
+public interface PatchPackage extends EPackage
+{
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -110,15 +115,6 @@ public interface PatchPackage extends EPackage {
 	 * @ordered
 	 */
 	int PATCH_CHANGE_PACKAGE__INCOMING_DOCUMENT_REFERENCES = ChangetrackingPackage.CHANGE_PACKAGE__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PATCH_CHANGE_PACKAGE__LEAF_SECTION = ChangetrackingPackage.CHANGE_PACKAGE__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -237,6 +233,7 @@ public interface PatchPackage extends EPackage {
 	 */
 	int PATCH_CHANGE_PACKAGE_FEATURE_COUNT = ChangetrackingPackage.CHANGE_PACKAGE_FEATURE_COUNT + 5;
 
+
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.changetracking.patch.PatchChangePackage <em>Change Package</em>}'.
 	 * <!-- begin-user-doc -->
@@ -268,7 +265,8 @@ public interface PatchPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	interface Literals {
+	interface Literals
+	{
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.changetracking.patch.impl.PatchChangePackageImpl <em>Change Package</em>}' class.
 		 * <!-- begin-user-doc -->

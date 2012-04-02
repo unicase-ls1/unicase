@@ -1,7 +1,8 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.changetracking.ui.widgets;
 
@@ -11,6 +12,7 @@ package org.unicase.changetracking.ui.widgets;
  */
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
@@ -23,8 +25,6 @@ import org.unicase.changetracking.ui.Activator;
 import org.unicase.changetracking.ui.handlers.ApplyChangePackageHandler;
 import org.unicase.model.changetracking.ChangePackage;
 import org.unicase.model.changetracking.git.GitBranchChangePackage;
-import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
-import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
 
 /**
  * This MEEditor control extends simple LinkControl and adds an "apply patch"
@@ -33,7 +33,7 @@ import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MELinkControl;
  * @author jfinis
  * 
  */
-public class MEChangePackageControl extends MELinkControl {
+public class MEChangePackageControl extends org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.MELinkControl {
 
 	private static final String APPLIES_THIS_PATCH_ONTO_YOUR_WORKSPACE = "Applies this patch onto your workspace";
 
