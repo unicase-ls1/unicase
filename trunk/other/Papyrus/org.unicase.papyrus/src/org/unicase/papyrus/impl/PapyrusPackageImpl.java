@@ -97,17 +97,12 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @return a newly initialized {@link PapyrusPackage}
-	 * @generated NOT
+	 * @generated
 	 */
 	public static PapyrusPackage init() {
 		if (isInited) {
 			return (PapyrusPackage) EPackage.Registry.INSTANCE.getEPackage(PapyrusPackage.eNS_URI);
 		}
-
-		// begin of custom code: change problematic containment references
-		UMLPackage.eINSTANCE.getPackage_NestedPackage().setContainment(true);
-		UMLPackage.eINSTANCE.getPackage_OwnedType().setContainment(true);
-		// end of custom
 
 		// Obtain or create and register package
 		PapyrusPackageImpl thePapyrusPackage = (PapyrusPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof PapyrusPackageImpl ? EPackage.Registry.INSTANCE
