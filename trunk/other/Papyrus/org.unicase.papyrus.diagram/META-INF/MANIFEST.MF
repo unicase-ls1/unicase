@@ -4,7 +4,7 @@ Bundle-Name: Papyrus-Diagram
 Bundle-SymbolicName: org.unicase.papyrus.diagram;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.unicase.papyrus.edit,
+Require-Bundle: org.unicase.papyrus.edit;visibility:=reexport,
  org.eclipse.papyrus.diagram.common;visibility:=reexport,
  org.eclipse.papyrus.diagram.activity;visibility:=reexport,
  org.eclipse.papyrus.diagram.clazz;visibility:=reexport,
@@ -13,12 +13,13 @@ Require-Bundle: org.unicase.papyrus.edit,
  org.eclipse.papyrus.diagram.sequence;visibility:=reexport,
  org.eclipse.papyrus.diagram.statemachine;visibility:=reexport,
  org.eclipse.papyrus.diagram.usecase;visibility:=reexport,
- org.eclipse.gmf.runtime.diagram.ui.resources.editor,
- org.eclipse.ui.navigator.resources,
- org.eclipse.emf.ecp.common,
- org.eclipse.emf.ecp.editor,
- org.eclipse.emf.emfstore.client,
- org.eclipse.emf.codegen.ecore,
- org.eclipse.emf.importer,
- org.eclipse.uml2.uml.ecore.importer
-Export-Package: org.unicase.papyrus.diagram.services
+ org.eclipse.gmf.runtime.diagram.ui.resources.editor;visibility:=reexport,
+ org.eclipse.ui.navigator.resources;visibility:=reexport,
+ org.eclipse.emf.ecp.common;visibility:=reexport,
+ org.eclipse.emf.ecp.editor;visibility:=reexport,
+ org.eclipse.emf.emfstore.client;visibility:=reexport,
+ org.eclipse.emf.codegen.ecore;visibility:=reexport,
+ org.eclipse.emf.importer;visibility:=reexport,
+ org.eclipse.uml2.uml.ecore.importer;visibility:=reexport
+Export-Package: org.unicase.papyrus.diagram.services,
+ org.unicase.papyrus.diagram
