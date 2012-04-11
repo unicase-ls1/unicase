@@ -27,13 +27,14 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
-import org.unicase.papyrus.PapyrusFactory;
-import org.unicase.papyrus.SysMLClass;
-import org.unicase.papyrus.SysMLModel;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
+
+import org.unicase.papyrus.PapyrusFactory;
+import org.unicase.papyrus.SysMLClass;
+import org.unicase.papyrus.SysMLModel;
+import org.unicase.papyrus.diagram.UnicaseModelSetQueryAdapter;
 
 // dengler: review
 /**
@@ -101,34 +102,39 @@ public class SysMLModelDiagramResource extends ResourceImpl implements Resource,
 	private void initialize() {
 		// TODO: improve this, maybe move it
 		boolean hasModelSetQuery = false;
-		for(Object adapter : model.eResource().eAdapters()) {
-			if(adapter instanceof UnicaseModelSetQueryAdapter) {
+		for (Object adapter : model.eResource().eAdapters()) {
+			if (adapter instanceof UnicaseModelSetQueryAdapter) {
 				hasModelSetQuery = true;
 				break;
 			}
 		}
-		
-		if(!hasModelSetQuery) {
+
+		if (!hasModelSetQuery) {
 			model.eResource().eAdapters().add(new UnicaseModelSetQueryAdapter());
 		}
-		
+
 		new ECPCommand(model) {
 
 			@Override
 			protected void doRun() {
-				switch(model.getDiagramType()) {
+				switch (model.getDiagramType()) {
 				case PARAMETRIC:
 					clazz = PapyrusFactory.eINSTANCE.createSysMLClass();
 					clazz.setName("Parametric");
 					model.getOwnedTypes().add(clazz);
 					break;
+				case BLOCK_DEFINITION:
+				case INTERNAL_BLOCK:
+				case REQUIREMENT:
+					break;
 				default:
+					throw new IllegalArgumentException("No diagram type has been selected!");
 				}
 			}
-			
+
 		}.run(true);
 
-		if(clazz != null ? clazz.getGmfDiagram() == null : model.getGmfDiagram() == null) {
+		if (clazz != null ? clazz.getGmfDiagram() == null : model.getGmfDiagram() == null) {
 			SysMLInitUtil.initialize(clazz != null ? clazz : model);
 		}
 	}

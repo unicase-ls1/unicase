@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.papyrus.sysml.diagram.part;
 
 import java.io.IOException;
@@ -23,6 +28,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
@@ -36,11 +42,15 @@ import org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.Messages;
-import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
 
+/**
+ * Abstract document provider superclass for all Papyrus SysML document providers.
+ * 
+ * @author mharut
+ */
 public abstract class SysMLDocumentProvider extends AbstractDocumentProvider implements IDiagramDocumentProvider {
 	
 	/**
@@ -113,28 +123,6 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 		}
 	}
 
-	protected IDocument createDocument(Object element) throws CoreException {
-		if (false == element instanceof FileEditorInput
-				&& false == element instanceof URIEditorInput) {
-			throw new CoreException(
-					new Status(
-							IStatus.ERROR,
-							SysmlDiagramEditorPlugin.ID,
-							0,
-							NLS
-									.bind(
-											Messages.SysmlDocumentProvider_IncorrectInputError,
-											new Object[] {
-													element,
-													"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-							null));
-		}
-		IDocument document = createEmptyDocument();
-		setDocumentContent(document, (IEditorInput) element);
-		setupDocument(element, document);
-		return document;
-	}
-	
 	/**
 	 * Sets up the given document as it would be provided for the given element. The
 	 * content of the document is not changed. This default implementation is empty.
@@ -249,9 +237,8 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 			try {
 				file.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 			} catch (CoreException ex) {
-				SysmlDiagramEditorPlugin
-						.getInstance()
-						.logError(
+				WorkspaceUtil
+						.logException(
 								Messages.SysmlDocumentProvider_handleElementContentChanged,
 								ex);
 				// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged

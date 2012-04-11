@@ -6,10 +6,15 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.papyrus.sysml.diagram.parametric,
  org.eclipse.papyrus.core,
- org.eclipse.gmf.runtime.diagram.ui.resources.editor,
  org.eclipse.papyrus.diagram.common,
  org.unicase.papyrus,
+ org.unicase.papyrus.diagram,
+ org.eclipse.gmf.runtime.diagram.ui.resources.editor,
  org.eclipse.ui.navigator.resources,
  org.eclipse.emf.ecp.common,
  org.eclipse.emf.ecp.editor,
- org.eclipse.emf.emfstore.client
+ org.eclipse.emf.emfstore.client,
+ org.eclipse.papyrus.sysml.diagram.blockdefinition,
+ org.eclipse.papyrus.sysml.diagram.internalblock,
+ org.eclipse.papyrus.sysml.diagram.requirement,
+ org.eclipse.papyrus.diagram.clazz
