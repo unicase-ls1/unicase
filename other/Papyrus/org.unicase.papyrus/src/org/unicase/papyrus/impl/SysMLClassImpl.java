@@ -41,11 +41,11 @@ public class SysMLClassImpl extends ClassImpl implements SysMLClass {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	protected SysMLClassImpl() {
 		super();
-		setName("new SysML Diagram");
+		setName("new Class");
 	}
 
 	/**
