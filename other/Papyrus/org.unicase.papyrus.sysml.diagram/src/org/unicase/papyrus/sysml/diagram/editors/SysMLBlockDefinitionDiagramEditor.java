@@ -12,9 +12,7 @@ import org.eclipse.papyrus.diagram.clazz.part.DiagramEditorContextMenuProvider;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
-import org.unicase.papyrus.sysml.diagram.editors.SysMLBlockDefinitionDiagramDocumentProvider;
 import org.unicase.papyrus.sysml.diagram.part.SysMLDiagramEditor;
-import org.unicase.papyrus.sysml.diagram.part.SysMLInitUtil;
 
 /**
  * Diagram editor for Papyrus SysML block definition diagrams.

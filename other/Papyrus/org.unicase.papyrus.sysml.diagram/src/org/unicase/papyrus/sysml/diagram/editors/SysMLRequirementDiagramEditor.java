@@ -13,7 +13,6 @@ import org.eclipse.papyrus.sysml.diagram.parametric.part.DiagramEditorContextMen
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.unicase.papyrus.sysml.diagram.part.SysMLDiagramEditor;
-import org.unicase.papyrus.sysml.diagram.part.SysMLInitUtil;
 
 /**
  * Diagram editor for Papyrus SysML requirement diagrams.
