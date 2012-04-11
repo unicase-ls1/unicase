@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.papyrus.diagram.part;
+package org.unicase.papyrus.diagram.services;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,13 +19,13 @@ import org.osgi.framework.Bundle;
  * 
  * @author mharut
  */
-public final class UMLImageUtil {
+public final class UnicaseImageUtil {
 
 	private static Bundle bundle = Platform.getBundle("org.unicase.papyrus.diagram");
 
 	private static String imageDirectoryPath = "/icons/";
 
-	private UMLImageUtil() {
+	private UnicaseImageUtil() {
 		// nothing to do
 	}
 
@@ -107,6 +107,46 @@ public final class UMLImageUtil {
 	 */
 	public static Image getPackageImage() throws IOException {
 		return new Image(Display.getCurrent(), getImageStream("Package.gif"));
+	}
+	
+	/**
+	 * Creates and returns a new icon for Papyrus SysML block definition diagrams.
+	 * 
+	 * @return the newly created image
+	 * @throws IOException if creating the image fails
+	 */
+	public static Image getBlockDefinitionImage() throws IOException {
+		return new Image(Display.getCurrent(), getImageStream("BlockDefinition.gif"));
+	}
+	
+	/**
+	 * Creates and returns a new icon for Papyrus SysML internal block diagrams.
+	 * 
+	 * @return the newly created image
+	 * @throws IOException if creating the image fails
+	 */
+	public static Image getInternalBlockImage() throws IOException {
+		return new Image(Display.getCurrent(), getImageStream("InternalBlock.gif"));
+	}
+	
+	/**
+	 * Creates and returns a new icon for Papyrus SysML parametric diagrams.
+	 * 
+	 * @return the newly created image
+	 * @throws IOException if creating the image fails
+	 */
+	public static Image getParametricImage() throws IOException {
+		return new Image(Display.getCurrent(), getImageStream("Parametric.gif"));
+	}
+	
+	/**
+	 * Creates and returns a new icon for Papyrus SysML requirement diagrams.
+	 * 
+	 * @return the newly created image
+	 * @throws IOException if creating the image fails
+	 */
+	public static Image getRequirementImage() throws IOException {
+		return new Image(Display.getCurrent(), getImageStream("Requirement.gif"));
 	}
 
 	private static InputStream getImageStream(String fileName) throws IOException {

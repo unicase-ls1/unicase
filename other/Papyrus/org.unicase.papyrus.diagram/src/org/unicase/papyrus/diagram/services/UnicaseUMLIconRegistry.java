@@ -13,7 +13,6 @@ import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.papyrus.UMLDiagramType;
 import org.unicase.papyrus.UMLModel;
-import org.unicase.papyrus.diagram.part.UMLImageUtil;
 
 /**
  * Registry for Papyrus UML icons in unicase. There can always only be one instance.
@@ -49,21 +48,21 @@ public final class UnicaseUMLIconRegistry implements IPageIconsRegistry {
 		try {
 			switch (diagramType) {
 			case ACTIVITY:
-				return UMLImageUtil.getActivityImage();
+				return UnicaseImageUtil.getActivityImage();
 			case CLASS:
-				return UMLImageUtil.getClassImage();
+				return UnicaseImageUtil.getClassImage();
 			case COMMUNICATION:
-				return UMLImageUtil.getCommunicationImage();
+				return UnicaseImageUtil.getCommunicationImage();
 			case COMPOSITE:
-				return UMLImageUtil.getCompositeImage();
+				return UnicaseImageUtil.getCompositeImage();
 			case SEQUENCE:
-				return UMLImageUtil.getSequenceImage();
+				return UnicaseImageUtil.getSequenceImage();
 			case STATE_MACHINE:
-				return UMLImageUtil.getStateMachineImage();
+				return UnicaseImageUtil.getStateMachineImage();
 			case USE_CASE:
-				return UMLImageUtil.getUseCaseImage();
+				return UnicaseImageUtil.getUseCaseImage();
 			case PACKAGE:
-				return UMLImageUtil.getPackageImage();
+				return UnicaseImageUtil.getPackageImage();
 			default:
 				return null;
 			}
