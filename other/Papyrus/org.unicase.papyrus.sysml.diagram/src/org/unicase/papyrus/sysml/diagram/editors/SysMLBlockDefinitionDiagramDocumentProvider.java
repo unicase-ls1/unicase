@@ -28,6 +28,7 @@ import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -39,26 +40,25 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.Messages;
-import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorUtil;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
 import org.unicase.papyrus.sysml.diagram.part.SysMLDocumentProvider;
 
 /**
- * Document provider for Papyrus SysML parametric diagrams.
+ * Document provider for Papyrus SysML block definition diagrams.
  * 
  * @author mharut
  */
-public class SysMLParametricDiagramDocumentProvider extends SysMLDocumentProvider {
+public class SysMLBlockDefinitionDiagramDocumentProvider extends SysMLDocumentProvider {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	protected ElementInfo createElementInfo(Object element) throws CoreException {
 		if (!(element instanceof FileEditorInput) && !(element instanceof URIEditorInput)) {
-			throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0, NLS.bind(
-				Messages.SysmlDocumentProvider_IncorrectInputError, new Object[] { element,
+			throw new CoreException(new Status(IStatus.ERROR, "org.eclipse.papyrus.sysml.diagram.blockdefinition", 0,
+				NLS.bind(Messages.SysmlDocumentProvider_IncorrectInputError, new Object[] { element,
 					"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 				null));
 		}
@@ -76,8 +76,8 @@ public class SysMLParametricDiagramDocumentProvider extends SysMLDocumentProvide
 	 */
 	protected IDocument createDocument(Object element) throws CoreException {
 		if (!(element instanceof FileEditorInput) && !(element instanceof URIEditorInput)) {
-			throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0, NLS.bind(
-				Messages.SysmlDocumentProvider_IncorrectInputError, new Object[] { element,
+			throw new CoreException(new Status(IStatus.ERROR, "org.eclipse.papyrus.sysml.diagram.blockdefinition", 0,
+				NLS.bind(Messages.SysmlDocumentProvider_IncorrectInputError, new Object[] { element,
 					"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 				null));
 		}
@@ -108,7 +108,7 @@ public class SysMLParametricDiagramDocumentProvider extends SysMLDocumentProvide
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
-					SysmlDiagramEditorPlugin.getInstance().logError(Messages.SysmlDocumentProvider_isModifiable, ex);
+					WorkspaceUtil.logException(Messages.SysmlDocumentProvider_isModifiable, ex);
 					// Error message to log was initially taken from
 					// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
@@ -133,7 +133,7 @@ public class SysMLParametricDiagramDocumentProvider extends SysMLDocumentProvide
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
-					SysmlDiagramEditorPlugin.getInstance().logError(Messages.SysmlDocumentProvider_isModifiable, ex);
+					WorkspaceUtil.logException(Messages.SysmlDocumentProvider_isModifiable, ex);
 					// Error message to log was initially taken from
 					// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
@@ -303,8 +303,9 @@ public class SysMLParametricDiagramDocumentProvider extends SysMLDocumentProvide
 		if (info != null) {
 			if (!overwrite && !info.isSynchronized()) {
 				throw new CoreException(
-					new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, IResourceStatus.OUT_OF_SYNC_LOCAL,
-						Messages.SysmlDocumentProvider_UnsynchronizedFileSaveError, null));
+					new Status(IStatus.ERROR, "org.eclipse.papyrus.sysml.diagram.blockdefinition",
+						IResourceStatus.OUT_OF_SYNC_LOCAL, Messages.SysmlDocumentProvider_UnsynchronizedFileSaveError,
+						null));
 			}
 			info.stopResourceListening();
 			fireElementStateChanging(element);
@@ -321,7 +322,8 @@ public class SysMLParametricDiagramDocumentProvider extends SysMLDocumentProvide
 							nextResource.save(SysmlDiagramEditorUtil.getSaveOptions());
 						} catch (IOException e) {
 							fireElementStateChangeFailed(element);
-							throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID,
+							throw new CoreException(new Status(IStatus.ERROR,
+								"org.eclipse.papyrus.sysml.diagram.blockdefinition",
 								EditorStatusCodes.RESOURCE_FAILURE, e.getLocalizedMessage(), null));
 						}
 					}
@@ -346,8 +348,8 @@ public class SysMLParametricDiagramDocumentProvider extends SysMLDocumentProvide
 				newResoruceURI = ((URIEditorInput) element).getURI();
 			} else {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0, NLS.bind(
-					Messages.SysmlDocumentProvider_IncorrectInputError, new Object[] { element,
+				throw new CoreException(new Status(IStatus.ERROR, "org.eclipse.papyrus.sysml.diagram.blockdefinition",
+					0, NLS.bind(Messages.SysmlDocumentProvider_IncorrectInputError, new Object[] { element,
 						"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 					null));
 			}
@@ -356,7 +358,7 @@ public class SysMLParametricDiagramDocumentProvider extends SysMLDocumentProvide
 				throw new CoreException(
 					new Status(
 						IStatus.ERROR,
-						SysmlDiagramEditorPlugin.ID,
+						"org.eclipse.papyrus.sysml.diagram.blockdefinition",
 						0,
 						"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
 			}
@@ -376,12 +378,12 @@ public class SysMLParametricDiagramDocumentProvider extends SysMLDocumentProvide
 				newResource.save(SysmlDiagramEditorUtil.getSaveOptions());
 			} catch (ExecutionException e) {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0,
-					e.getLocalizedMessage(), null));
+				throw new CoreException(new Status(IStatus.ERROR, "org.eclipse.papyrus.sysml.diagram.blockdefinition",
+					0, e.getLocalizedMessage(), null));
 			} catch (IOException e) {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0,
-					e.getLocalizedMessage(), null));
+				throw new CoreException(new Status(IStatus.ERROR, "org.eclipse.papyrus.sysml.diagram.blockdefinition",
+					0, e.getLocalizedMessage(), null));
 			}
 			newResource.unload();
 		}

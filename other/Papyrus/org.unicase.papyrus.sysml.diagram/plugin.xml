@@ -7,8 +7,33 @@
             class="org.unicase.papyrus.sysml.diagram.editors.SysMLParametricDiagramEditor"
             default="false"
             extensions="Parametric_diagram"
+            icon="icons/Parametric.gif"
             id="org.unicase.papyrus.sysml.diagram.parametric.SysMLDiagramEditorID"
             name="ParametricDiagramEditor">
+      </editor>
+      <editor
+            class="org.unicase.papyrus.sysml.diagram.editors.SysMLBlockDefinitionDiagramEditor"
+            default="false"
+            extensions="BlockDefinition_diagram"
+            icon="icons/BlockDefinition.gif"
+            id="org.unicase.papyrus.sysml.diagram.blockdefinition.SysMLDiagramEditorID"
+            name="BlockDefinitionDiagramEditor">
+      </editor>
+      <editor
+            class="org.unicase.papyrus.sysml.diagram.editors.SysMLInternalBlockDiagramEditor"
+            default="false"
+            extensions="InternalBlock_diagram"
+            icon="icons/InternalBlock.gif"
+            id="org.unicase.papyrus.sysml.diagram.internalblock.SysMLDiagramEditorID"
+            name="InternalBlockDiagramEditor">
+      </editor>
+      <editor
+            class="org.unicase.papyrus.sysml.diagram.editors.SysMLRequirementDiagramEditor"
+            default="false"
+            extensions="Requirement_diagram"
+            icon="icons/Requirement.gif"
+            id="org.unicase.papyrus.sysml.diagram.requirement.SysMLDiagramEditorID"
+            name="RequirementDiagramEditor">
       </editor>
    </extension>
    <extension
@@ -16,6 +41,21 @@
       <context
             id="org.unicase.papyrus.sysml.diagram.parametric.diagramContext"
             name="SysMLParametricContext"
+            parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
+      <context
+            id="org.unicase.papyrus.sysml.diagram.blockdefinition.diagramContext"
+            name="SysMLBlockDefinitionContext"
+            parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
+      <context
+            id="org.unicase.papyrus.sysml.diagram.internalblock.diagramContext"
+            name="SysMLInternalBlockContext"
+            parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
+      <context
+            id="org.unicase.papyrus.sysml.diagram.requirement.diagramContext"
+            name="SysMLRequirementContext"
             parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
       </context>
    </extension>

@@ -46,11 +46,11 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.unicase.papyrus.sysml.diagram.part.SysMLDocumentProvider;
 
 /**
- * Document provider for Papyrus SysML parametric diagrams.
+ * Document provider for Papyrus SysML requirement diagrams.
  * 
  * @author mharut
  */
-public class SysMLParametricDiagramDocumentProvider extends SysMLDocumentProvider {
+public class SysMLRequirementDiagramDocumentProvider extends SysMLDocumentProvider {
 
 	/**
 	 * {@inheritDoc}
