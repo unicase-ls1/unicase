@@ -7,6 +7,7 @@ package org.unicase.papyrus.sysml.diagram.part;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;

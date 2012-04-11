@@ -27,14 +27,13 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.xml.sax.InputSource;
-
 import org.unicase.papyrus.PapyrusFactory;
 import org.unicase.papyrus.SysMLClass;
 import org.unicase.papyrus.SysMLModel;
 import org.unicase.papyrus.diagram.UnicaseModelSetQueryAdapter;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.xml.sax.InputSource;
 
 // dengler: review
 /**
