@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -24,12 +23,9 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.image.ImageFileFormat;
 import org.eclipse.gmf.runtime.diagram.ui.render.util.CopyToImageUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultModelElementRenderer;
@@ -200,17 +196,12 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 						@Override
 						protected void doRun() {
 							try {
-								Shell shell = Display.getCurrent().getActiveShell();
-								DiagramEditPart editPart = util.createDiagramEditPart(diagram, shell,
-									PreferencesHint.USE_DEFAULTS);
-								Assert.isNotNull(editPart.getDiagramView().getDiagram());
-								Assert.isNotNull(editPart);
-								util.copyToImage(editPart, new Path(tmpImage.toString()), ImageFileFormat.JPEG,
-									new NullProgressMonitor());
-								/*
-								 * util.copyToImage(diagram.getGmfdiagram(), new Path(tmpImage.toString()),
-								 * ImageFileFormat.SVG, new NullProgressMonitor(), PreferencesHint.USE_DEFAULTS);
-								 */
+								// DiagramEditPart editPart = util.createDiagramEditPart(diagram, shell,
+								// PreferencesHint.USE_DEFAULTS);
+								// Assert.isNotNull(editPart.getDiagramView().getDiagram());
+								// Assert.isNotNull(editPart);
+								util.copyToImage(diagram, new Path(tmpImage.toString()), ImageFileFormat.JPEG,
+									new NullProgressMonitor(), PreferencesHint.USE_DEFAULTS);
 							} catch (CoreException e) {
 								WorkspaceUtil.log("Exception while loading the diagram.", e, IStatus.WARNING);
 							} catch (RuntimeException e) {
