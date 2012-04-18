@@ -1,5 +1,0 @@
-c:\users\user\documents\visual studio 2010\Projects\TestCS\CSLib\bin\Debug\CSLib.dll
-c:\users\user\documents\visual studio 2010\Projects\TestCS\CSLib\bin\Debug\CSLib.pdb
-c:\users\user\documents\visual studio 2010\Projects\TestCS\CSLib\obj\Debug\ResolveAssemblyReference.cache
-c:\users\user\documents\visual studio 2010\Projects\TestCS\CSLib\obj\Debug\CSLib.dll
-c:\users\user\documents\visual studio 2010\Projects\TestCS\CSLib\obj\Debug\CSLib.pdb
